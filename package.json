@@ -1,0 +1,14 @@
+{
+  "name": "huetiful",
+  "version": "1.0.0",
+  "description": "Color utilities based on ChromaJS.",
+  "main": "alpha.js",
+  "scripts": {
+    "test": "npx webpack --watch"
+  },
+  "author": "Dean Tarisai",
+  "license": "ISC",
+  "dependencies": {
+    "culori": "^2.0.3"
+  }
+}
