@@ -1,27 +1,34 @@
 
-import { Paper, Grid } from '@mui/material'
+import { Paper, Grid, Typography } from '@mui/material'
 import { gradients } from '../app/codelab/gradients.mjs'
-
-function _createGradients(gradients: [{}]) {
-    return (
-        gradients.forEach((gradient) => {
-            return (<Grid item>
-                <Paper className='w-20 h-20' style={{ background: `linearGradient(60deg,${gradient.colors})` }} />
-            </Grid>)
-        })
-    )
-
-}
+import { grey } from '@mui/material/colors'
 
 
-export default function _GradientContainer() {
+
+function _GradientContainer() {
     return (<>
-        <Grid container spacing={2} className='w-screen h-screen '>
-            {_createGradients(gradients)}
+        <section className="bg-gray-200 w-1/3 h-1/2 overflow-scroll">
+            <Grid container justifyItems={'center'} spacing={2} >
 
-        </Grid>
+
+                {gradients.map((gradient) => 
+                    return (
+                    <Grid item>
+                        <Paper className='h-20 w-20' style={{ background: `linear-gradient(45deg, ${gradient.colors})` }} />
+
+                        <div className=''>
+
+                            <Typography variant='caption'>{gradient.name}</Typography>
+                        </div>
+                    </Grid>)
+                )}
+
+
+            </Grid>
+        </section>
+
     </>)
 }
 
 
-
+export default _GradientContainer

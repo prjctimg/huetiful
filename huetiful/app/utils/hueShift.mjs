@@ -1,16 +1,14 @@
 
 import { formatHex } from '../culori.mjs';
-import { adjustHue } from './utils/adjustHue.mjs'
-import { isColorEqual } from './utils/isColorEqual.mjs'
-import { map } from './utils/map.mjs'
-
+import { adjustHue } from '../helpers/adjustHue.mjs'
+import { map } from '../helpers/map.mjs'
 
 
 const opts = {};
 
 
 /**
- * Creates a palette of hue shifted colors(As a colour becomes lighter, its hue shifts up and darker when its hue shifts  done ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme.
+ * Creates a palette of hue shifted colors(As a colour becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme.
  * @param base {number} color object containing Hue channel. Preferably LCH
  * @param mode {string}  Color space to compute the palette in.
  * @param minLightness {number} Minimum lightness value (range 0-100).
@@ -21,7 +19,7 @@ const opts = {};
  */
 
 // Can we also map palette types to create hue shifted variants per each color in the palette ?
-function hueShift(base = {
+export default function hueShift(base = {
     l: 0,
     c: 0,
     h: 0
