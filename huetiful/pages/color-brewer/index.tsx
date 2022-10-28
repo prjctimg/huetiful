@@ -1,6 +1,6 @@
 import { Grid, Paper } from '@mui/material'
 import _ from 'lodash'
-import { colorbrewer } from '../app/helpers/colorBrewer.mjs'
+import { colorbrewer } from '../../app/helpers/colorBrewer.mjs'
 
 export default function ColorBrewer() {
     return (<Grid container spacing={2}>

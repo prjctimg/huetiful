@@ -1,6 +1,6 @@
 
 import { Paper, Grid, Typography } from '@mui/material'
-import { gradients } from '../app/codelab/gradients.mjs'
+import { gradients } from '../../app/codelab/gradients.mjs'
 import { grey } from '@mui/material/colors'
 
 
