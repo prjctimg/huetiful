@@ -1,32 +1,30 @@
-import { AppBar, Toolbar, Grid, IconButton, Typography } from "@mui/material"
-import { BsDribbble, BsGithub, BsMenuApp, BsTwitter } from 'react-icons/bs'
+import { AppBar, Toolbar, Grid, IconButton, Typography, Divider, Breadcrumbs } from "@mui/material"
+
+import { HiMenu } from "react-icons/hi"
 
 
 
 
 export default function Header() {
-    return (
-        <AppBar>
-            <Toolbar className="flex">
-                <IconButton className=' bg-slate-300 rounded-sm'>
-                    <BsMenuApp className=" w-8 h-8 bg-slate-300 rounded-sm" />
+    return (<>
+
+        <AppBar className="bg-white text-black">
+            <header className="bg-white w-full h-8 block p-2 ">
+                <Typography color={'black'} fontFamily={"Dancing Script"} textAlign='center' paddingX={4} fontWeight={'light'} variant="h5">Huetiful</Typography>
+
+            </header>
+
+            <Toolbar>
+
+
+                <IconButton className=' rounded-sm'>
+                    <HiMenu strokeWidth={0.05} className=" w-8 h-8 fill-slate-500 rounded-sm" />
                 </IconButton>
-                <Typography variant="h6">Title</Typography>
-                <Grid container spacing={2} justifyContent='right' className='px-10'>
-                    <Grid item>
-                        <BsTwitter href="https:/twitter.com/prjctimg" className="w-6 h-6" />
-                    </Grid>
-                    <Grid item>
-                        <BsDribbble className="w-6 h-6" />
-                    </Grid>
-                    <Grid item>
-                        <BsGithub className="w-6 h-6" />
-                    </Grid>
-
-
-                </Grid>
 
 
             </Toolbar>
-        </AppBar>)
+            <Breadcrumbs className="w-full h-4 bg-gradient-to-l from-blue-500 via-purple-500 to-pink-500">
+            </Breadcrumbs>
+        </AppBar>
+    </>)
 }

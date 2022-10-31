@@ -1,15 +1,9 @@
-import { ClassNames } from "@emotion/react";
 import { Paper, Typography, Grid } from "@mui/material";
 import { colorbrewer } from "../app/helpers/colorBrewer.mjs";
-
+import { LoDashStatic } from 'lodash'
 
 //Responsible for laying out color tiles for the computed color values.
 export function PaperGrid() {
-
-
-    const _dataIterable = []
-
-
 
     return (<>
         <Grid spacing={2} container>
@@ -28,8 +22,12 @@ export function PaperGrid() {
 
                     })
                 })
+
+
             }
+
         </Grid>
 
     </>)
 }
+
