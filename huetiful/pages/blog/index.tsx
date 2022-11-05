@@ -1,7 +1,9 @@
-function Blog(params: type) {
+import BlogView from "../../components/blogview";
+
+
+export default function Blog() {
     return (<>
-        <h1>Hello</h1>
+        <BlogView />
     </>)
 }
 
-export default Blog

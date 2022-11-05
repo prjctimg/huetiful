@@ -1,4 +1,12 @@
-import { Container, Grid, ThemeProvider, createTheme } from "@mui/material";
+import {
+    Container,
+    Grid,
+    ThemeProvider,
+    createTheme,
+    Typography,
+    colors
+} from "@mui/material";
+
 import { ReactNode } from "react";
 import Header from "./header";
 import Footer from "./footer";
@@ -8,8 +16,12 @@ import grey from "@mui/material/colors";
 
 const theme = createTheme({
     palette: {
-        primary: { main: purple[300] }
+        primary: { main: colors.purple[300] }
 
+    },
+
+    typography: {
+        fontFamily: 'Poppins'
     }
 
 })
@@ -17,11 +29,15 @@ const theme = createTheme({
 export default function Layout(props: ReactNode) {
     return (<>
         <ThemeProvider theme={theme}>
-            <Header />
-            <Container maxWidth='xs' /* style={{background:}} Dynamic bg per view  */ className="bg-gray-200 pt-32 min-h-screen ">
-                {props.children}
-            </Container>
-            <Footer />
+            <Typography fontFamily={'Poppins'} component='div'>
+                <Header />
+                <Container maxWidth='xs' /* style={{background:}} Dynamic bg per view  */ className="bg-gray-200 pt-32 min-h-screen ">
+                    {props.children}
+                </Container>
+                <Footer />
+
+
+            </Typography>
 
         </ThemeProvider>
 

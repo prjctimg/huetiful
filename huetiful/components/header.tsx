@@ -1,12 +1,23 @@
-import { AppBar, Toolbar, Grid, IconButton, Typography, Divider, Breadcrumbs } from "@mui/material"
+import {
+    AppBar,
+    Breadcrumbs,
+    IconButton,
+    Toolbar,
+    Typography,
+    Box,
+    Drawer
+} from "@mui/material";
 
-import { HiMenu } from "react-icons/hi"
+import { HiMenu } from "react-icons/hi";
 
-
+import { useState } from "react";
 
 
 export default function Header() {
+
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     return (<>
+
 
         <AppBar className="bg-white text-black">
             <header className="bg-white w-full h-8 block p-2 ">
@@ -14,11 +25,22 @@ export default function Header() {
 
             </header>
 
+            <Drawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} anchor="left">
+                <Box p={2} width='250px' textAlign={'center'} role='presentation'>
+                    <Typography color='black' fontWeight={'light'} variant='h5' fontFamily={'Dancing Script'}>Huetiful</Typography>
+                </Box>
+
+            </Drawer>
+
+
+
+
             <Toolbar>
-
-
-                <IconButton className=' rounded-sm'>
-                    <HiMenu strokeWidth={0.05} className=" w-8 h-8 fill-slate-500 rounded-sm" />
+                <IconButton
+                    size="large"
+                    edge='start'
+                    onClick={() => setIsDrawerOpen(true)}>
+                    <HiMenu />
                 </IconButton>
 
 

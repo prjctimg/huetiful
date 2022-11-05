@@ -1,13 +1,9 @@
-/* import discoverPalette from "../app/utils/discoverPalette.mjs";
-import Layout from '../components/Layout'
-import { Paper } from '@mui/material'
+import PaperStack from '../../components/paper-stack'
 
+export default function DiscoverPalettes() {
 
-const DiscoverPalettes = () => {
-
-    return (<>
-
-        </>)
+    return (
+        <PaperStack color={ } />
+    )
 }
 
-export default DiscoverPalettes */

@@ -1,6 +1,6 @@
 import { Button, Card, CardActions, CardHeader, Container, Grid, IconButton, Paper, Typography } from "@mui/material";
 import { BsDownload } from "react-icons/bs";
-import { PaperGrid } from "./paper-grid";
+import { PaperStack } from "./paper-stack";
 
 
 export default function PaletteCard() {
@@ -21,7 +21,7 @@ export default function PaletteCard() {
                                 <BsDownload />
                             </IconButton>
                         </CardActions>
-                        <PaperGrid />
+                        <PaperStack />
                         {/* CTA grid */}
 
 
