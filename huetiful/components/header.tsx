@@ -4,12 +4,17 @@ import {
     IconButton,
     Toolbar,
     Typography,
-    Box,
+    Container,
     Drawer,
     List,
     ListItem,
     Divider,
-    Link as MuiLink
+    Link as MuiLink,
+    ListItemText,
+    ListItemIcon,
+    Accordion,
+    AccordionSummary,
+    AccordionDetails
 } from '@mui/material';
 
 import ColorBrewer from '../pages/color-brewer';
@@ -18,13 +23,13 @@ import { HiMenu, HiMenuAlt1, HiMenuAlt2, HiMoon, HiOutlineMenu, HiSearch } from 
 import Link from 'next/link';
 import { useState } from 'react';
 import { Stack } from '@mui/system';
-import { BsBehance, BsGithub } from 'react-icons/bs';
+import { BsAlarm, BsBehance, BsGithub, BsInfoCircle, BsMailbox, BsPalette } from 'react-icons/bs';
 
 export default function Header() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     return (
         <>
-            <AppBar className="bg-white bg-blend-saturation text-black z-10">
+            <AppBar className="bg-white bg-blend-saturation text-black mb-24">
                 <header className="bg-white w-full h-8 block p-2 ">
                     <Typography
                         color={'black'}
@@ -37,8 +42,8 @@ export default function Header() {
                         Huetiful
                     </Typography>
                 </header>
-                <Drawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} anchor="right">
-                    <Box p={2} width="250px" textAlign={'center'} role="presentation">
+                <Drawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} anchor="left">
+                    <Container p={2} className="max-w-xs" textAlign={'center'} role="presentation">
                         <Typography
                             paddingBottom={2}
                             color="black"
@@ -48,14 +53,56 @@ export default function Header() {
                         >
                             Huetiful
                         </Typography>
-                        <Stack direction="column" spacing={2} divider={<Divider flexItem />}>
-                            <List>
-                                <ListItem className="w-full h-4 hover:bg-slate-500">f</ListItem>
-                                <ListItem> d</ListItem> <ListItem>e</ListItem>{' '}
-                                <ListItem>g</ListItem>
-                            </List>
-                        </Stack>
-                    </Box>
+
+                        <List>
+                            <ListItem>
+                                <Accordion>
+                                    <AccordionSummary>
+                                        <ListItemIcon className="pt-4">
+                                            <BsInfoCircle />
+                                        </ListItemIcon>
+                                        <ListItemText secondary="Discovering ways to effectively use color in user interface design.">
+                                            Guides
+                                        </ListItemText>{' '}
+                                    </AccordionSummary>
+                                </Accordion>
+                            </ListItem>
+
+                            <Divider />
+
+                            <ListItem>
+                                <Accordion>
+                                    <AccordionSummary>
+                                        <ListItemIcon className="pt-4">
+                                            <BsPalette />
+                                        </ListItemIcon>
+                                        <ListItemText secondary="Create aesthetically balanced collections of colors.">
+                                            Palette Generator
+                                        </ListItemText>
+                                    </AccordionSummary>
+                                    <AccordionDetails></AccordionDetails>
+                                </Accordion>
+                                <Divider />
+                            </ListItem>
+
+                            <Divider />
+
+                            <ListItem>
+                                <Accordion>
+                                    <AccordionSummary>
+                                        <ListItemIcon className="pt-4">
+                                            <BsPalette />
+                                        </ListItemIcon>
+
+                                        <ListItemText secondary="Outline of section contents">
+                                            3
+                                        </ListItemText>
+                                    </AccordionSummary>
+                                    <AccordionDetails></AccordionDetails>
+                                </Accordion>
+                            </ListItem>
+                        </List>
+                    </Container>
                 </Drawer>
                 <Toolbar>
                     <IconButton size="large" edge="start" onClick={() => setIsDrawerOpen(true)}>
