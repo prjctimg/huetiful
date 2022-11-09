@@ -42,8 +42,18 @@ export default function Header() {
                         Huetiful
                     </Typography>
                 </header>
-                <Drawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} anchor="left">
-                    <Container p={2} className="max-w-xs" textAlign={'center'} role="presentation">
+                <Drawer
+                    className="bg-current backdrop-blur-sm "
+                    open={isDrawerOpen}
+                    onClose={() => setIsDrawerOpen(false)}
+                    anchor="top"
+                >
+                    <Container
+                        p={2}
+                        className=" backdrop-blur-sm  w-full h-full"
+                        textAlign={'center'}
+                        role="presentation"
+                    >
                         <Typography
                             paddingBottom={2}
                             color="black"
