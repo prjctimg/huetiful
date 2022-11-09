@@ -1,26 +1,7 @@
 import { Card, CardContent, Grid, Paper, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import _ from 'lodash';
-import { colorbrewer } from '../../app/helpers/colorBrewer.mjs';
-
-/* 
-        <>
-            {_.map(colorbrewer, (brew, name) => {
-                return (
-                    <>
-                        <Stack spacing={2} direction="row-reverse" className="py-3">
-                            <Typography variant="title">{name}</Typography>
-                            {_.map(brew, (hex) => {
-                                return <Paper style={{ background: hex }} className="w-10 h-10" />;
-                            })}
-                        </Stack>
-                    </>
-                );
-            })}
-        </>
-    );
-}
- */
+import { colorbrewer } from '../../app/colors/color-brewer.mjs';
 
 export default function ColorBrewer() {
     return (

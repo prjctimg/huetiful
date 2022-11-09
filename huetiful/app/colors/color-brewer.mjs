@@ -1,4 +1,4 @@
-import _ from 'lodash'
+
 /**
     ColorBrewer colors for chroma.js
 
@@ -62,17 +62,8 @@ export var colorbrewer = {
     Pastel1: ['#fbb4ae', '#b3cde3', '#ccebc5', '#decbe4', '#fed9a6', '#ffffcc', '#e5d8bd', '#fddaec', '#f2f2f2'],
 };
 
-_.map(colorbrewer, ((node) => {
-    node.map((color) => {
-
-
-    })
 
 
 
 
-})
 
-
-
-)
