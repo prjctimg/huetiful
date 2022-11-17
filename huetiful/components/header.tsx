@@ -52,7 +52,7 @@ export default function Header() {
                     <Container
                         component="div"
                         className=" backdrop-blur-sm  w-full h-full"
-                        textAlign='center'
+                        
                         
                     >
                         <Typography
