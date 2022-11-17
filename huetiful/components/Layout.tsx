@@ -16,7 +16,7 @@ const theme = createTheme({
     }
 });
 
-export default function Layout(props: ReactNode) {
+export default function Layout(props: any) {
     return (
         <>
             <ThemeProvider theme={theme}>
