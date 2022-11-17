@@ -52,15 +52,15 @@ export default function Header() {
                     <Container
                         component="div"
                         className=" backdrop-blur-sm  w-full h-full"
-                        textAlign={'center'}
-                        role="presentation"
+                        textAlign='center'
+                        
                     >
                         <Typography
                             paddingBottom={2}
                             color="black"
-                            fontWeight={'light'}
+                            fontWeight='light'
                             variant="h5"
-                            fontFamily={'Dancing Script'}
+                            fontFamily='Dancing Script'
                         >
                             Huetiful
                         </Typography>
