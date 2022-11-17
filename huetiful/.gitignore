@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+/codelab
 # next.js
 /.next/
 /out/
