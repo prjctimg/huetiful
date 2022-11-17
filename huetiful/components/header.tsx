@@ -49,7 +49,7 @@ export default function Header() {
                     anchor="top"
                 >
                     <Container
-                        p={2}
+                       
                         className=" backdrop-blur-sm  w-full h-full"
                         textAlign={'center'}
                         role="presentation"
