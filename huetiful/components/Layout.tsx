@@ -5,7 +5,6 @@ import Header from './header';
 import Footer from './footer';
 import { purple } from '@mui/material/colors';
 import grey from '@mui/material/colors';
-import SideDrawer from './side-drawer';
 
 const theme = createTheme({
     palette: {
