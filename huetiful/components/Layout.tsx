@@ -25,7 +25,6 @@ export default function Layout(props: ReactNode) {
                     /* style={{background:}} Dynamic bg per view  */
                     className="bg-gray-200 min-h-screen pt-[140px] "
                 >
-                    {' '}
                     {props.children}
                 </Container>
                 <Footer />
