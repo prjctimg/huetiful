@@ -1,3 +1,6 @@
+import _ from 'lodash';
+import chroma from 'chroma-js';
+import { formatHex, lch } from '../culori.mjs';
 import { adjustHue } from '../helpers/adjustHue.mjs';
 
 
@@ -8,39 +11,53 @@ import { adjustHue } from '../helpers/adjustHue.mjs';
  */
 
 
-export function createPalettes(base) {
-    const result = {};
 
-    const pallettes = {
-        analogous: [0, 30, 60],
-        triadic: [0, 120, 240],
-        tetradic: [0, 90, 180, 270],
-        splitComplimentary: [0, 150, 210],
-        complimentary: [0, 180]
-    };
+const pallettes = {
+    analogous: [0, 30, 60],
+    triadic: [0, 120, 240],
+    tetradic: [0, 90, 180, 270],
+    splitComplimentary: [0, 150, 210],
+    complimentary: [0, 180]
+};
+
+function paLetteGenerator(baseColor) {
+    var _palette = {}
+    _.map(pallettes, (value, key) => {
+        _palette[key] = pallettes[key].map((step) => ({
+            l: baseColor[0],
+            c: baseColor[1],
+            h: adjustHue(baseColor[2] + step)
 
 
-
-
-    for (const palette of Object.keys(pallettes)) {
-
-        result[palette] = pallettes[palette]
-            .map((step) => ({
-                l: baseColor.l,
-                c: baseColor.c,
-                h: adjustHue(baseColor.h + step),
-            }));
-
-    }
-    return result;
+        }))
+    })
+    _palette = _.forEach(_palette, (values, key) => {
+        key = values.map(c => chroma.lch(c).hex())
+    })
+    return _palette
 }
-
 
 
 // Usage
-let baseColor = {
-    l: 80,
-    c: 100,
-    h: 5
+let baseColor = [
+
+    80,
+    100,
+    55
+]
+
+let f = paLetteGenerator(baseColor)
+
+
+function lch2hex(lchPaletteObject) {
+
+
+    _.map(lchPaletteObject, (value, index) => {
+        return value.map(lchObj => chroma
+            .lch(lchObj)
+            .hex(lch))
+
+        console.log(`value,index`)
+    })
+
 }
-console.log(createPalettes(baseColor)) 
