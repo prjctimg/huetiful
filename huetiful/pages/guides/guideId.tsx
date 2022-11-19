@@ -18,7 +18,7 @@ export default function GuideId() {
     return (
         <Grid columnSpacing={2} rowSpacing={2} container>
             <Grid item xs={12} sm={12} md={8} lg={6}>
-                <Card>
+                <Card component="div">
                     <CardContent>
                         <Card>
                             <Typography paddingBottom={1} variant="h5" fontWeight="regular">
@@ -60,7 +60,7 @@ export default function GuideId() {
                 </Card>
             </Grid>
             <Grid item xs={12} md={4} lg={4}>
-                <Card className="bg-white">
+                <Card className="bg-white" component="div">
                     <Stack direction="column" spacing={0.5}>
                         <Typography
                             guttterbottom
@@ -71,7 +71,18 @@ export default function GuideId() {
                         >
                             Up next:
                         </Typography>
-                        <Card elavation={0}>
+                        <Card elavation={0} component="div">
+                            <CardContent>
+                                <Typography gutterBottom variant="title">
+                                    Title of guide
+                                </Typography>
+                                <Typography variant="body2">
+                                    This is the description for the post
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                        <Divider />
+                        <Card component="div">
                             <CardContent>
                                 <Typography gutterBottom variant="title">
                                     Title of guide
@@ -93,18 +104,7 @@ export default function GuideId() {
                             </CardContent>
                         </Card>
                         <Divider />
-                        <Card>
-                            <CardContent>
-                                <Typography gutterBottom variant="title">
-                                    Title of guide
-                                </Typography>
-                                <Typography variant="body2">
-                                    This is the description for the post
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                        <Divider />
-                        <Card>
+                        <Card component="div">
                             <CardContent>
                                 <Typography gutterBottom variant="title">
                                     Title of guide

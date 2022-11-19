@@ -14,7 +14,7 @@ export default function GuidesPage() {
     return (
         <Grid spacing={4} container className="bg-red-400">
             <Grid item xs={12} md={8} lg={6} paddingRight={2}>
-                <Card className="w-full h-fit">
+                <Card component="div" className="w-full h-fit">
                     <CardContent>
                         <CardMedia className="w-full h-64">
                             <Skeleton variant="rectangle" />
@@ -47,7 +47,7 @@ export default function GuidesPage() {
             </Grid>
 
             <Grid item>
-                <Card className="w-64 h-fit">
+                <Card component="div" className="w-64 h-fit">
                     <CardContent>
                         <Typography
                             variant="subtitle2"
@@ -76,7 +76,7 @@ export default function GuidesPage() {
             </Grid>
 
             <Grid item>
-                <Card className="w-64 h-fit">
+                <Card component="div" className="w-64 h-fit">
                     <CardContent>
                         <Typography
                             variant="subtitle2"
