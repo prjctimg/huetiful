@@ -1,4 +1,4 @@
-Toimport {
+import {
     Box,
     Card,
     CardContent,
@@ -20,7 +20,7 @@ export default function GuideId() {
             <Grid item xs={12} sm={12} md={8} lg={6}>
                 <Card component="div">
                     <CardContent>
-                        <Card>
+                        
                             <Typography paddingBottom={1} variant="h5" fontWeight="regular">
                                 The Blog title.
                             </Typography>
@@ -55,7 +55,7 @@ export default function GuideId() {
                                     </ListItem>
                                 </List>
                             </Typography>
-                        </Card>
+                        
                     </CardContent>
                 </Card>
             </Grid>
