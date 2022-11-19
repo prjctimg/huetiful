@@ -1,4 +1,4 @@
-import {
+Toimport {
     Box,
     Card,
     CardContent,
@@ -63,7 +63,7 @@ export default function GuideId() {
                 <Card className="bg-white" component="div">
                     <Stack direction="column" spacing={0.5}>
                         <Typography
-                            guttterbottom
+                            guttterBottom
                             paddingTop={2}
                             paddingLeft={2}
                             variant="h6"
