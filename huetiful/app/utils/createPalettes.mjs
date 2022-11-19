@@ -20,7 +20,7 @@ const pallettes = {
     complimentary: [0, 180]
 };
 
-function paLetteGenerator(baseColor) {
+export default function paLetteGenerator(baseColor) {
     var _palette = {}
     _.map(pallettes, (value, key) => {
         _palette[key] = pallettes[key].map((step) => ({
