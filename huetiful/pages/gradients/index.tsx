@@ -14,7 +14,7 @@ import { gradients } from '../../app/colors/gradients.mjs';
 
 function GradientsPage() {
     //Initialize state variable for the gradient colors array
-    var [_gradient, setGradient] = useState<{}>();
+    var [_gradient, setGradient] = useState<{ name: string; colors: number[] }>();
 
     return (
         <>
