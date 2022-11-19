@@ -12,7 +12,7 @@ export default function ColorBrewer() {
                         <Card>
                             <CardContent>
                                 <Typography>{name}</Typography>
-                                <Stack direction="row" columnSpacing={3} spacing={2}>
+                                <Stack component="div" direction="row" spacing={2}>
                                     {_.map(brew, (hex) => {
                                         return (
                                             <Paper
