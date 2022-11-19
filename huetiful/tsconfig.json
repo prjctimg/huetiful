@@ -23,7 +23,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "./.next"
+    "./.next",
+    "./components/*.tsx"
   ],
   "exclude": [
     "stories",
