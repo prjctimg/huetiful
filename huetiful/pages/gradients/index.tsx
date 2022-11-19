@@ -52,7 +52,7 @@ function GradientsPage() {
                     >
                         <ImageList
                             gap={10}
-                            cols="auto"
+                            cols={4}
                             className="xs:w-full grid xs:grid-cols-6 md:grid-cols-3 lg:grid-cols-5"
                         >
                             {_.map(gradients, (gradient) => {
