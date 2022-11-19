@@ -14,7 +14,7 @@ import { gradients } from '../../app/colors/gradients.mjs';
 
 function GradientsPage() {
     //Initialize state variable for the gradient colors array
-    var [_gradient, setGradient] = useState<{ name: string; colors: number[] }>();
+    var [_gradient, setGradient] = useState<{ name: string; colors: string[] }>();
 
     return (
         <>
@@ -52,7 +52,7 @@ function GradientsPage() {
                     >
                         <ImageList
                             gap={10}
-                            cols="auto"
+                            cols={4}
                             className="xs:w-full grid xs:grid-cols-6 md:grid-cols-3 lg:grid-cols-5"
                         >
                             {_.map(gradients, (gradient) => {
