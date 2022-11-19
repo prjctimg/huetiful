@@ -1,5 +1,3 @@
-import { Grid, Paper, Stack, Card, Typography, CardContent } from '@mui/material';
-
 export default function LandingPage() {
-    return <></>;
+    return <h2>Hello, Dean!</h2>;
 }
