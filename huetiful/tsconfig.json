@@ -24,7 +24,6 @@
     "**/*.ts",
     "**/*.tsx",
     "./.next",
-    "./components/*.tsx"
   ],
   "exclude": [
     "stories",
