@@ -8,25 +8,25 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    //  "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true
+    "jsx": "preserve"
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "./.next",
+    "components/*.jsx",
+    "pages/*.jsx"
   ],
   "exclude": [
-    "stories",
-    ".storybook"
+    "node_modules"
   ]
 }

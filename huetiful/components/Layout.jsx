@@ -16,7 +16,7 @@ const theme = createTheme({
     }
 });
 
-export default function Layout(props: any) {
+export default function Layout(props) {
     return (
         <>
             <ThemeProvider theme={theme}>
