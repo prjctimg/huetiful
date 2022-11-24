@@ -1,16 +1,7 @@
 
 import _ from 'lodash'
 import chroma from 'chroma-js'
-
-export function adjustHue(value = 0) {
-  if (value < 0)
-    value += Math.ceil(-value / 360) * 360;
-
-  return value % 360;
-}
-
-
-
+import { adjustHue } from '../helpers/adjustHue.mjs';
 
 export default function createPalettes(baseColor = { l: 0, c: 0, h: 0 }) {
   const targetHueSteps = {
