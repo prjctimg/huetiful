@@ -1,4 +1,3 @@
-
 import {
     AppBar,
     Breadcrumbs,
@@ -19,7 +18,7 @@ import {
 } from '@mui/material';
 
 import ColorBrewer from '../pages/color-brewer';
-import { HiMenu, HiMenuAlt1, HiMenuAlt2, HiMoon, HiOutlineMenu, HiSearch } from 'react-icons/hi';
+import { HiOutlineMenu, HiSearch } from 'react-icons/hi';
 
 import Link from 'next/link';
 import { useState } from 'react';
@@ -31,7 +30,7 @@ export default function Header() {
     return (
         <>
             <AppBar className="bg-white bg-blend-saturation text-black mb-24">
-                <header className="bg-white w-full h-8 block p-2 ">
+                <div className="bg-white w-full h-8 block p-2 ">
                     <Typography
                         color={'black'}
                         fontFamily={'Dancing Script'}
@@ -42,7 +41,7 @@ export default function Header() {
                     >
                         Huetiful
                     </Typography>
-                </header>
+                </div>
                 <Drawer
                     className="bg-current backdrop-blur-sm "
                     open={isDrawerOpen}
@@ -52,15 +51,13 @@ export default function Header() {
                     <Container
                         component="div"
                         className=" backdrop-blur-sm  w-full h-full"
-                        
-                        
                     >
                         <Typography
                             paddingBottom={2}
                             color="black"
-                            fontWeight='light'
+                            fontWeight="light"
                             variant="h5"
-                            fontFamily='Dancing Script'
+                            fontFamily="Dancing Script"
                         >
                             Huetiful
                         </Typography>
@@ -116,7 +113,11 @@ export default function Header() {
                     </Container>
                 </Drawer>
                 <Toolbar>
-                    <IconButton size="large" edge="start" onClick={() => setIsDrawerOpen(true)}>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        onClick={() => setIsDrawerOpen(true)}
+                    >
                         <HiOutlineMenu />
                     </IconButton>
 
@@ -134,14 +135,6 @@ export default function Header() {
                         </IconButton>
                     </div>
                 </Toolbar>
-                <Breadcrumbs aria-label="breadcrumbs" className="w-full px-4">
-                    <MuiLink>
-                        <Link href="/color-brewer">Color Functions</Link>
-                    </MuiLink>
-                    <MuiLink>
-                        <Link href="/color-brewer">color-brewer</Link>
-                    </MuiLink>
-                </Breadcrumbs>{' '}
             </AppBar>
         </>
     );
