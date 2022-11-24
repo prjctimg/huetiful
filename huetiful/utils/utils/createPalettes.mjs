@@ -1,8 +1,18 @@
-import adjustHue from '../helpers/adjustHue.mjs'
+
 import _ from 'lodash'
 import chroma from 'chroma-js'
 
-function createPalettes(baseColor = { l: 0, c: 0, h: 0 }) {
+export function adjustHue(value = 0) {
+  if (value < 0)
+    value += Math.ceil(-value / 360) * 360;
+
+  return value % 360;
+}
+
+
+
+
+export default function createPalettes(baseColor = { l: 0, c: 0, h: 0 }) {
   const targetHueSteps = {
     analogous: [0, 30, 60],
     triadic: [0, 120, 240],
@@ -22,7 +32,18 @@ function createPalettes(baseColor = { l: 0, c: 0, h: 0 }) {
     }));
   }
 
-  return palettes;
+  /* function lch2hex(lchPaletteObj = {}) {
+    _.forEach(lchPaletteObj, (value, key) => {
+
+      return lchPaletteObj[key] =  value.map(lchObj => chroma.lch(lchObj).hex('lch'))
+    })
+
+  }
+
+  return lch2hex(palettes) */
+
+  return palettes
+
 }
 
 
@@ -38,7 +59,7 @@ function generate() {
     mode: "lch"
   };
 }
-const d = createPalettes({ l: 70, c: 80, h: 70 })
+createPalettes({ l: 70, c: 80, h: 70 })
 
 
 //MUST make the function more generic
@@ -46,14 +67,4 @@ const d = createPalettes({ l: 70, c: 80, h: 70 })
  * Takes the palette object and returns the colorspace converted to hex. 
  * @param {} lchPaletteObj 
  */
-export function lch2hex(lchPaletteObj = {}) {
-  _.forEach(lchPaletteObj, (value, key) => {
 
-    return value.map(lchObj => chroma.lch(lchObj).hex('lch'))
-  })
-
-}
-
-module.exports = {
-  lch2hex, createScientificPalettes: createPalettes
-}
