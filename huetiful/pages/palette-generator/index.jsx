@@ -28,7 +28,7 @@ export default function PaletteGenerator() {
                                     let hex = chroma.lch(lchObj).hex('lch');
                                     return (
                                         <Typography
-                                            key={key}
+                                            key={hex}
                                             component="div"
                                             variant="caption"
                                         >
