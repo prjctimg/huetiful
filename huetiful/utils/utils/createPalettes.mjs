@@ -23,15 +23,6 @@ export default function createPalettes(baseColor = { l: 0, c: 0, h: 0 }) {
     }));
   }
 
-  /* function lch2hex(lchPaletteObj = {}) {
-    _.forEach(lchPaletteObj, (value, key) => {
-
-      return lchPaletteObj[key] =  value.map(lchObj => chroma.lch(lchObj).hex('lch'))
-    })
-
-  }
-
-  return lch2hex(palettes) */
 
   return palettes
 
