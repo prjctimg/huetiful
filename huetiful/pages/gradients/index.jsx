@@ -10,7 +10,7 @@ import {
     Box,
     Typography
 } from '@mui/material';
-import { gradients } from '../../app/colors/gradients.mjs';
+import { gradients } from '../../utils/colors/gradients.mjs';
 
 function GradientsPage() {
     //Initialize state variable for the gradient colors array
@@ -20,8 +20,16 @@ function GradientsPage() {
         <>
             <title>Gradient generator</title>
 
-            <Grid container columnSpacing={3} rowSpacing={3}>
-                <Grid item xs={12} md={8}>
+            <Grid
+                container
+                columnSpacing={3}
+                rowSpacing={3}
+            >
+                <Grid
+                    item
+                    xs={12}
+                    md={8}
+                >
                     <Card>
                         <Paper
                             className="h-[50vh]"
@@ -42,7 +50,12 @@ function GradientsPage() {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={8} md={4}>
+                <Grid
+                    item
+                    xs={12}
+                    sm={8}
+                    md={4}
+                >
                     <Box
                         sx={{
                             overflowX: 'wrap',

@@ -1,4 +1,4 @@
-import { Grid, Typography, Card, CardContent, Stack, Paper, Input, Box } from '@mui/material';
+import { Grid, Typography, Card, CardContent, Stack, Paper, Input } from '@mui/material';
 import _ from 'lodash';
 import chroma from 'chroma-js';
 import createPalettes from '../../utils/utils/createPalettes.mjs';
