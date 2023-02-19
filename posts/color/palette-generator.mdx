@@ -1,0 +1,53 @@
+## Creating balanced color palettes using JavaScript.
+
+This idea was inspired by a post by George Francis. You can read the original article here.
+
+Commonly designers have worked with color in graphic design using RGB,HSL and HSV. Though they are
+better color spaces such as LCH or OKLCH which is perceptually uniform these color spaces are not
+yet supported by browsers.
+
+In this post we're going to build a simple palette generator that make picking colors in yur
+projects easier and more creative.
+
+I will be working with two libraries to demonstrate how the same functionqality can be achieved with
+each. Depending on your taste you are free to choose the approach that feels easier and customizable
+for you. I will be working with Chroma-js and Culori which are open source JavaScript libraries for
+perfoming color computations
+
+The function will take a color value. It will convert the color value to a color space thats
+perceptually uniform. The color computions are done in that color space. The resulting colors are
+returned in a CSS compatible color format.
+
+### Prerequisities:
+
+An understanding of basic JavaScript will be enough to understand and (optionally), an idea in color
+theory will make it easier to understand the reasoning behind the code.
+
+### Objective:
+
+By the end of this post we should have a palette generator that can output different palette
+schemes.
+
+#### How does it work
+
+The function takes input as a color value. The color value passed to the function is converted to a
+color space that produces perceptually uniform colors. Depending on the color space used you can
+apply optional ranges for the computations The function returns a map with different color-schemes
+with the palette name as key and an array of hex codes as values. For each color in the array a
+tonal palette is generated as per Material Design Guidelines.
+
+##### Application
+
+Generating color palettes with code can give us fine control over the colors we want to use as well
+as offer us infinite choices when we,re experimenting with designs.
+
+Coupled with some custom CSS properties we can use this function to test out the colors for our
+designs.
+
+Below is an example of using the createPalettes function to find the best set of colors suited for
+the role.
+
+##### Making the colors nicer
+
+We can optionally apply a constraint to the chroma/saturation of our colors so that we get colors
+that are harmonized in our palettes

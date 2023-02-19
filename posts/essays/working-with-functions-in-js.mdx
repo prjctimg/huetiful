@@ -1,0 +1,46 @@
+#### Why functions ?
+
+Functions allow us to encapsulate reusable pieces of code. This means that instead of writing the
+code for a specific task over and over again we can just store the procedures in a function and then
+call that function whenever we need to use those steps again. In short they help keep our code DRY
+(Don't repeat yourself).
+
+```
+//This is how we define a simple function in JavaScript
+function addSum(a,b){
+    // Any code that you want to use
+    return a+b;
+}
+```
+
+#### Working with function parameters
+
+Also known as arguments, parameters are wrapped around in parentheses () and they are how we pass
+input to a function. The arguments are passed down to any code that requests them within the
+function.
+
+Using a parameter that is not defined in the parentheses or a variable not declared within an
+accesible scope will throw an error:
+
+```
+function addSum(a,b){
+    return a+b+c
+}
+
+// Throws a reference error:c is not defined
+addSum(2,2)
+```
+
+#### Function currying
+
+Currying allows us to create highly reusable functions by splitting the arguments to unary functions
+(a function that takes one argument)
+
+This is useful when we have a function that takes many arguments and passing all the arguments at
+one goal may not be effecient.
+
+Currying involves wrapping the function in a higher order function and returning a unary function
+for each parameter with the last parameter being passed to a function that resolves the value of all
+the arguments.
+
+#### Currying and partially applied functions

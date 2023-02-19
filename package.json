@@ -1,0 +1,32 @@
+{
+  "name": "huetiful",
+  "version": "1.0.0",
+  "description": "A small collection of JavaScript functions for color manipulations.",
+  "main": "index.js",
+  "dependencies": {
+    "chroma-js": "^2.4.2",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "test": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github/prjctimg/huetiful"
+  },
+  "keywords": [
+    "color-palettes",
+    "LCH",
+    "CIELAB",
+    "JavaScript",
+    "gradient-generator",
+    "palette-generator",
+    "hue-shifts",
+    "color-picker"
+  ],
+  "author": "Dean Tarisai",
+  "license": "MIT"
+}

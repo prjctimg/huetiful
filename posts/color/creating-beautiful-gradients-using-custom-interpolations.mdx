@@ -1,0 +1,41 @@
+### Creating beautiful gradients using custom interpolations and the LAB color space.
+
+####### Learn how to design harmonious gradients using JavaScript based custom interpolation
+functions and balanced color spaces.
+
+Gradients have been a long time favourite for designers. They're so versatile and with careful use
+can push the brand message better to the users. The problem starts when we have to pick the best
+colors. Its either the colors "don't feel right" or balancing the saturation is frustrating.
+
+In this post we're going to explore some of the handy functions I've come across the Internet. If
+you love working with CSS gradients, you're at the right place.
+
+#### A quick overview of the important terms
+
+##### What is interpolation?
+
+In the case of color, interpolating means tracing a line through the coordinates of these colors,
+and figuring out what colors reside on the line at various positions.
+
+### Example of interpolation goes here
+
+#### The CIELab color space
+
+#### Why the Lab color space ?
+
+Interpolation in the RGB color space sometimes produces grayish colors and the center of the
+interpolated tends to get darker. Linear RGB interpolation can give better results.
+
+LAB interpolation produces better results because it is perceptually uniform. However support for
+Lab is not yet in browsers so we'll only use this color space to perfom the computations and the
+convert the end results to a CSS compatible color format like hex codes.
+
+#### Approach
+
+Our function will take an array of colors to interpolate, a mode param to specify the color space to
+perform the computations in as args. We will be using Culori to do the dirty work of handling the
+color conversions and manipulations.
+
+```import
+
+```

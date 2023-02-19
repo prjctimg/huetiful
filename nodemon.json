@@ -1,0 +1,1 @@
+{"watch":["src"],"ext":".ts,.js,.mjs","exec":"node ./src/color-fns/tonalPalette.mjs --watch "}
