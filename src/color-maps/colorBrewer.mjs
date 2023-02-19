@@ -1,4 +1,4 @@
-
+import _ from 'lodash'
 /**
     ColorBrewer colors for chroma.js
 
@@ -61,9 +61,15 @@ const colorbrewer = {
     Pastel1: ['#fbb4ae', '#b3cde3', '#ccebc5', '#decbe4', '#fed9a6', '#ffffcc', '#e5d8bd', '#fddaec', '#f2f2f2'],
 };
 
+// Convert the object to a map for more optimized search perfomance.
+export const colorBrewerMap = _.forEach(colorbrewer, (value, key) => {
 
+    var _map = new Map()
+    _map.set(key, value)
+    return _map
+})
 
-
+console.log(colorBrewerMap)
 
 
 
