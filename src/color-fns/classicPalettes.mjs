@@ -21,15 +21,14 @@ export function classicPalettes(baseColor = { l: 0, c: 0, h: 0 }) {
   };
 
   const palettes = {};
-
-  for (const type of Object.keys(targetHueSteps)) {
-    palettes[type] = targetHueSteps[type].map((step) => ({
+  _.each(targetHueSteps, (value, key) => {
+    palettes[key] = targetHueSteps[key].map((step) => ({
       mode: "lch",
       l: baseColor.l,
       c: baseColor.c,
       h: adjustHue(baseColor.h + step)
-    }));
-  }
+    }))
+  })
 
 
   return palettes
@@ -49,8 +48,8 @@ function generate() {
     mode: "lch"
   };
 }
-classicPalettes({ l: 70, c: 80, h: 70 })
-
+let palettes = classicPalettes({ l: 70, c: 80, h: 70 })
+console.log(palettes)
 
 //MUST make the function more generic
 
