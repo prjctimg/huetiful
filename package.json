@@ -16,7 +16,7 @@
   "repository": {
     "type": "git",
     "url": "https://github/prjctimg/huetiful"
-  },
+  },"publishConfig": { "registry": "https://npm.pkg.github.com/prjctimg" },
   "keywords": [
     "color-palettes",
     "LCH",
