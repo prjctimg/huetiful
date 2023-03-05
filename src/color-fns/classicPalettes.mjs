@@ -22,7 +22,7 @@ export const classicPalettes = (baseColor = { l: 0, c: 0, h: 0 }) => {
   const palettes = {};
 
 
-  
+
   _.each(targetHueSteps, (value, key) => {
     palettes[key] = targetHueSteps[key].map((step) => ({
       mode: "lch",
@@ -39,24 +39,5 @@ export const classicPalettes = (baseColor = { l: 0, c: 0, h: 0 }) => {
 
 
 
-
-
-function generate() {
-  // choose a random base color
-  const base = {
-    l: 50 + Math.random() * 10,
-    c: 60 + Math.random() * 10,
-    h: Math.random() * 360,
-    mode: "lch"
-  };
-}
-let palettes = classicPalettes({ l: 70, c: 80, h: 70 })
-console.log(palettes)
-
-//MUST make the function more generic
-
-
-
-// Train  a network that can generate nice color scheme
 
 

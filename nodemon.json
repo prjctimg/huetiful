@@ -1,1 +1,1 @@
-{"watch":["src"],"ext":".js,.mjs","exec":"node ./src/codelab/bilerp.mjs --watch "}
+{"watch":["src"],"ext":".js,.mjs","exec":"node ./src/color-fns/bilerp.mjs --watch "}
