@@ -6,7 +6,7 @@
 
 This is more of a collection of handy utilities (honestly I wouldn't call it a library😂). 
 
-Interested in contributing ? Feel free to open an issue or comment on the currently open ones and let's build it the way you would want it!
+Interested in [contributing](https://github.com/prjctimg/huetiful/issues/new/choose) ? Feel free to open an issue or comment on the currently open ones and let's build it the way you would want it!
 
 
 
