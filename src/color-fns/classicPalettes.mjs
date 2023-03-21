@@ -1,4 +1,28 @@
-import _ from 'lodash'
+import base from "../codelab/base.mjs";
+
+
+
+
+const analogous = [0, 180, 360]
+const triadic = [0, 120, 240]
+const tetradic = [0, 90, 180, 270]
+const complementary = [0, 180]
+const splitComplementary = [0, 150, 210]
+
+console.log(base(analogous)('yellow'))
+
+
+
+
+
+
+
+
+
+
+
+
+/* import _ from 'lodash'
 import chroma from 'chroma-js'
 
 
@@ -12,13 +36,7 @@ function adjustHue(value = 0) {
 
 
 export const classicPalettes = (baseColor = { l: 0, c: 0, h: 0 }) => {
-  const targetHueSteps = {
-    analogous: [0, 30, 60],
-    triadic: [0, 120, 240],
-    tetradic: [0, 90, 180, 270],
-    complementary: [0, 180],
-    splitComplementary: [0, 150, 210]
-  };
+  
   const palettes = {};
 
 
@@ -41,3 +59,4 @@ export const classicPalettes = (baseColor = { l: 0, c: 0, h: 0 }) => {
 
 
 
+ */
