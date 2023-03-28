@@ -3,6 +3,16 @@ import { formatHex } from '../libs/culori.mjs';
 import { map } from './helpers/map.mjs'
 
 
+
+
+function adjustHue(value = 0) {
+    if (value < 0)
+        value += Math.ceil(-value / 360) * 360;
+
+    return value % 360;
+}
+
+
 const opts = {};
 
 
@@ -87,6 +97,4 @@ const hueStep = 12
 
 
 
-const d = hueShift(base, mode, minLightness, maxLightness)
-
-console.log(d) 
+/* const d = hueShift(base, mode, minLightness, maxLightness) */
