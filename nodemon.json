@@ -1,1 +1,1 @@
-{"watch":["src"],"ext":".js,.mjs","exec":"node ./src/color-fns/classicPalettes.mjs --watch "}
+{"watch":["src"],"ext":".js,.mjs","exec":"node ./src/experimental/cubehelix.mjs --watch "}

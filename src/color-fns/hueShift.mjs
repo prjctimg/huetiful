@@ -1,6 +1,6 @@
 
-import { formatHex } from '../culori.mjs';
-import { map } from '../helpers/map.mjs'
+import { formatHex } from '../libs/culori.mjs';
+import { map } from './helpers/map.mjs'
 
 
 const opts = {};
