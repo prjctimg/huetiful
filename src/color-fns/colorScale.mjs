@@ -1,10 +1,16 @@
 import { formatHex8, interpolate, samples } from "../libs/culori.mjs";
 import _ from 'lodash'
+import chroma from '../libs/chroma'
 
 //Referential transparency is a must for concise function chaining.
 //Returning unary functions
 
 
+
+export const bezierScale = ([...c]) => num => chroma
+    .bezier([...c])
+    .scale()
+    .colors(num)
 
 
 let grays = interpolate(['pink', 'azure'])

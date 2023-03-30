@@ -160,6 +160,8 @@ var named = {
   plum: 14524637,
   powderblue: 11591910,
   purple: 8388736,
+  // Added in CSS Colors Level 4:
+  // https://drafts.csswg.org/css-color/#changes-from-3
   rebeccapurple: 6697881,
   red: 16711680,
   rosybrown: 12357519,
@@ -216,18 +218,19 @@ var num_per_none = `(?:${num}%|${num}|none)`;
 var hue = `(?:${num}(deg|grad|rad|turn)|${num})`;
 var hue_none = `(?:${num}(deg|grad|rad|turn)|${num}|none)`;
 var c = `\\s*,\\s*`;
-var s = `\\s+`;
 var rx_num_per_none = new RegExp("^" + num_per_none + "$");
 
-// src/rgb/parseRgb.js
-var rgb_num_old = new RegExp(`^rgba?\\(\\s*${num}${c}${num}${c}${num}\\s*(?:,\\s*${num_per}\\s*)?\\)$`);
-var rgb_per_old = new RegExp(`^rgba?\\(\\s*${per}${c}${per}${c}${per}\\s*(?:,\\s*${num_per}\\s*)?\\)$`);
-var rgb_num_new = new RegExp(`^rgba?\\(\\s*${num_none}${s}${num_none}${s}${num_none}\\s*(?:\\/\\s*${num_per_none}\\s*)?\\)$`);
-var rgb_per_new = new RegExp(`^rgba?\\(\\s*${per_none}${s}${per_none}${s}${per_none}\\s*(?:\\/\\s*${num_per_none}\\s*)?\\)$`);
-var parseRgb = (color) => {
+// src/rgb/parseRgbLegacy.js
+var rgb_num_old = new RegExp(
+  `^rgba?\\(\\s*${num}${c}${num}${c}${num}\\s*(?:,\\s*${num_per}\\s*)?\\)$`
+);
+var rgb_per_old = new RegExp(
+  `^rgba?\\(\\s*${per}${c}${per}${c}${per}\\s*(?:,\\s*${num_per}\\s*)?\\)$`
+);
+var parseRgbLegacy = (color) => {
   let res = { mode: "rgb" };
   let match;
-  if (match = color.match(rgb_num_old) || color.match(rgb_num_new)) {
+  if (match = color.match(rgb_num_old)) {
     if (match[1] !== void 0) {
       res.r = match[1] / 255;
     }
@@ -237,7 +240,7 @@ var parseRgb = (color) => {
     if (match[3] !== void 0) {
       res.b = match[3] / 255;
     }
-  } else if (match = color.match(rgb_per_old) || color.match(rgb_per_new)) {
+  } else if (match = color.match(rgb_per_old)) {
     if (match[1] !== void 0) {
       res.r = match[1] / 100;
     }
@@ -257,6 +260,412 @@ var parseRgb = (color) => {
   }
   return res;
 };
+var parseRgbLegacy_default = parseRgbLegacy;
+
+// src/_prepare.js
+var prepare = (color, mode) => color === void 0 ? void 0 : typeof color !== "object" ? parse_default(color) : color.mode !== void 0 ? color : mode ? { ...color, mode } : void 0;
+var prepare_default = prepare;
+
+// src/converter.js
+var converter = (target_mode = "rgb") => (color) => (color = prepare_default(color, target_mode)) !== void 0 ? (
+  // if the color's mode corresponds to our target mode
+  color.mode === target_mode ? (
+    // then just return the color
+    color
+  ) : (
+    // otherwise check to see if we have a dedicated
+    // converter for the target mode
+    converters[color.mode][target_mode] ? (
+      // and return its result...
+      converters[color.mode][target_mode](color)
+    ) : (
+      // ...otherwise pass through RGB as an intermediary step.
+      // if the target mode is RGB...
+      target_mode === "rgb" ? (
+        // just return the RGB
+        converters[color.mode].rgb(color)
+      ) : (
+        // otherwise convert color.mode -> RGB -> target_mode
+        converters.rgb[target_mode](converters[color.mode].rgb(color))
+      )
+    )
+  )
+) : void 0;
+var converter_default = converter;
+
+// src/modes.js
+var converters = {};
+var modes = {};
+var parsers = [];
+var colorProfiles = {};
+var identity = (v) => v;
+var useMode = (definition28) => {
+  converters[definition28.mode] = {
+    ...converters[definition28.mode],
+    ...definition28.toMode
+  };
+  Object.keys(definition28.fromMode || {}).forEach((k4) => {
+    if (!converters[k4]) {
+      converters[k4] = {};
+    }
+    converters[k4][definition28.mode] = definition28.fromMode[k4];
+  });
+  if (!definition28.ranges) {
+    definition28.ranges = {};
+  }
+  if (!definition28.difference) {
+    definition28.difference = {};
+  }
+  definition28.channels.forEach((channel) => {
+    if (definition28.ranges[channel] === void 0) {
+      definition28.ranges[channel] = [0, 1];
+    }
+    if (!definition28.interpolate[channel]) {
+      throw new Error(`Missing interpolator for: ${channel}`);
+    }
+    if (typeof definition28.interpolate[channel] === "function") {
+      definition28.interpolate[channel] = {
+        use: definition28.interpolate[channel]
+      };
+    }
+    if (!definition28.interpolate[channel].fixup) {
+      definition28.interpolate[channel].fixup = identity;
+    }
+  });
+  modes[definition28.mode] = definition28;
+  (definition28.parse || []).forEach((parser) => {
+    useParser(parser, definition28.mode);
+  });
+  return converter_default(definition28.mode);
+};
+var getMode = (mode) => modes[mode];
+var useParser = (parser, mode) => {
+  if (typeof parser === "string") {
+    if (!mode) {
+      throw new Error(`'mode' required when 'parser' is a string`);
+    }
+    colorProfiles[parser] = mode;
+  } else if (typeof parser === "function") {
+    if (parsers.indexOf(parser) < 0) {
+      parsers.push(parser);
+    }
+  }
+};
+var removeParser = (parser) => {
+  if (typeof parser === "string") {
+    delete colorProfiles[parser];
+  } else if (typeof parser === "function") {
+    const idx = parsers.indexOf(parser);
+    if (idx > 0) {
+      parsers.splice(idx, 1);
+    }
+  }
+};
+
+// src/parse.js
+var IdentStartCodePoint = /[^\x00-\x7F]|[a-zA-Z_]/;
+var IdentCodePoint = /[^\x00-\x7F]|[-\w]/;
+var Tok = {
+  Function: "function",
+  Ident: "ident",
+  Number: "number",
+  Percentage: "percentage",
+  ParenClose: ")",
+  None: "none",
+  Hue: "hue",
+  Alpha: "alpha"
+};
+var _i = 0;
+function is_num(chars) {
+  let ch = chars[_i];
+  let ch1 = chars[_i + 1];
+  if (ch === "-" || ch === "+") {
+    return /\d/.test(ch1) || ch1 === "." && /\d/.test(chars[_i + 2]);
+  }
+  if (ch === ".") {
+    return /\d/.test(ch1);
+  }
+  return /\d/.test(ch);
+}
+function is_ident(chars) {
+  if (_i >= chars.length) {
+    return false;
+  }
+  let ch = chars[_i];
+  if (IdentStartCodePoint.test(ch)) {
+    return true;
+  }
+  if (ch === "-") {
+    if (chars.length - _i < 2) {
+      return false;
+    }
+    let ch1 = chars[_i + 1];
+    if (ch1 === "-" || IdentStartCodePoint.test(ch1)) {
+      return true;
+    }
+    return false;
+  }
+  return false;
+}
+var huenits = {
+  deg: 1,
+  rad: 180 / Math.PI,
+  grad: 9 / 10,
+  turn: 360
+};
+function num2(chars) {
+  let value = "";
+  if (chars[_i] === "-" || chars[_i] === "+") {
+    value += chars[_i++];
+  }
+  value += digits(chars);
+  if (chars[_i] === "." && /\d/.test(chars[_i + 1])) {
+    value += chars[_i++] + digits(chars);
+  }
+  if (chars[_i] === "e" || chars[_i] === "E") {
+    if ((chars[_i + 1] === "-" || chars[_i + 1] === "+") && /\d/.test(chars[_i + 2])) {
+      value += chars[_i++] + chars[_i++] + digits(chars);
+    } else if (/\d/.test(chars[_i + 1])) {
+      value += chars[_i++] + digits(chars);
+    }
+  }
+  if (is_ident(chars)) {
+    let id = ident(chars);
+    if (id === "deg" || id === "rad" || id === "turn" || id === "grad") {
+      return { type: Tok.Hue, value: value * huenits[id] };
+    }
+    return void 0;
+  }
+  if (chars[_i] === "%") {
+    _i++;
+    return { type: Tok.Percentage, value: +value };
+  }
+  return { type: Tok.Number, value: +value };
+}
+function digits(chars) {
+  let v = "";
+  while (/\d/.test(chars[_i])) {
+    v += chars[_i++];
+  }
+  return v;
+}
+function ident(chars) {
+  let v = "";
+  while (_i < chars.length && IdentCodePoint.test(chars[_i])) {
+    v += chars[_i++];
+  }
+  return v;
+}
+function identlike(chars) {
+  let v = ident(chars);
+  if (chars[_i] === "(") {
+    _i++;
+    return { type: Tok.Function, value: v };
+  }
+  if (v === "none") {
+    return { type: Tok.None, value: void 0 };
+  }
+  return { type: Tok.Ident, value: v };
+}
+function tokenize(str = "") {
+  let chars = str.trim();
+  let tokens = [];
+  let ch;
+  _i = 0;
+  while (_i < chars.length) {
+    ch = chars[_i++];
+    if (ch === "\n" || ch === "	" || ch === " ") {
+      while (_i < chars.length && (chars[_i] === "\n" || chars[_i] === "	" || chars[_i] === " ")) {
+        _i++;
+      }
+      continue;
+    }
+    if (ch === ",") {
+      return void 0;
+    }
+    if (ch === ")") {
+      tokens.push({ type: Tok.ParenClose });
+      continue;
+    }
+    if (ch === "+") {
+      if (is_num(chars)) {
+        _i--;
+        tokens.push(num2(chars));
+        continue;
+      }
+      return void 0;
+    }
+    if (ch === "-") {
+      if (is_num(chars)) {
+        _i--;
+        tokens.push(num2(chars));
+        continue;
+      } else if (is_ident(chars)) {
+        _i--;
+        tokens.push({ type: Tok.Ident, value: ident(chars) });
+        continue;
+      }
+      return void 0;
+    }
+    if (ch === ".") {
+      if (is_num(chars)) {
+        _i--;
+        tokens.push(num2(chars));
+        continue;
+      }
+      return void 0;
+    }
+    if (ch === "/") {
+      while (_i < chars.length && (chars[_i] === "\n" || chars[_i] === "	" || chars[_i] === " ")) {
+        _i++;
+      }
+      let alpha;
+      if (is_num(chars)) {
+        alpha = num2(chars);
+        if (alpha.type !== Tok.Hue) {
+          tokens.push({ type: Tok.Alpha, value: alpha });
+          continue;
+        }
+      }
+      if (is_ident(chars)) {
+        if (ident(chars) === "none") {
+          tokens.push({
+            type: Tok.Alpha,
+            value: { type: Tok.None, value: void 0 }
+          });
+          continue;
+        }
+      }
+      return void 0;
+    }
+    if (/\d/.test(ch)) {
+      _i--;
+      tokens.push(num2(chars));
+      continue;
+    }
+    if (IdentStartCodePoint.test(ch)) {
+      _i--;
+      tokens.push(identlike(chars));
+      continue;
+    }
+    return void 0;
+  }
+  return tokens;
+}
+function parseColorSyntax(tokens) {
+  tokens._i = 0;
+  let token = tokens[tokens._i++];
+  if (!token || token.type !== Tok.Function || token.value !== "color") {
+    return void 0;
+  }
+  token = tokens[tokens._i++];
+  if (token.type !== Tok.Ident) {
+    return void 0;
+  }
+  const mode = colorProfiles[token.value];
+  if (!mode) {
+    return void 0;
+  }
+  const res = { mode };
+  const coords = consumeCoords(tokens, false);
+  if (!coords) {
+    return void 0;
+  }
+  const channels = getMode(mode).channels;
+  for (let ii = 0, c4; ii < channels.length; ii++) {
+    c4 = coords[ii];
+    if (c4.type !== Tok.None) {
+      res[channels[ii]] = c4.type === Tok.Number ? c4.value : c4.value / 100;
+    }
+  }
+  return res;
+}
+function consumeCoords(tokens, includeHue) {
+  const coords = [];
+  let token;
+  while (tokens._i < tokens.length) {
+    token = tokens[tokens._i++];
+    if (token.type === Tok.None || token.type === Tok.Number || token.type === Tok.Alpha || token.type === Tok.Percentage || includeHue && token.type === Tok.Hue) {
+      coords.push(token);
+      continue;
+    }
+    if (token.type === Tok.ParenClose) {
+      if (tokens._i < tokens.length) {
+        return void 0;
+      }
+      continue;
+    }
+    return void 0;
+  }
+  if (coords.length < 3 || coords.length > 4) {
+    return void 0;
+  }
+  if (coords.length === 4) {
+    if (coords[3].type !== Tok.Alpha) {
+      return void 0;
+    }
+    coords[3] = coords[3].value;
+  }
+  if (coords.length === 3) {
+    coords.push({ type: Tok.None, value: void 0 });
+  }
+  return coords.every((c4) => c4.type !== Tok.Alpha) ? coords : void 0;
+}
+function parseModernSyntax(tokens, includeHue) {
+  tokens._i = 0;
+  let token = tokens[tokens._i++];
+  if (!token || token.type !== Tok.Function) {
+    return void 0;
+  }
+  let coords = consumeCoords(tokens, includeHue);
+  if (!coords) {
+    return void 0;
+  }
+  coords.unshift(token.value);
+  return coords;
+}
+var parse = (color) => {
+  if (typeof color !== "string") {
+    return void 0;
+  }
+  const tokens = tokenize(color);
+  const parsed = tokens ? parseModernSyntax(tokens, true) : void 0;
+  let result = void 0;
+  let i = 0;
+  let len = parsers.length;
+  while (i < len) {
+    if ((result = parsers[i++](color, parsed)) !== void 0) {
+      return result;
+    }
+  }
+  return tokens ? parseColorSyntax(tokens) : void 0;
+};
+var parse_default = parse;
+
+// src/rgb/parseRgb.js
+function parseRgb(color, parsed) {
+  if (!parsed || parsed[0] !== "rgb" && parsed[0] !== "rgba") {
+    return void 0;
+  }
+  const res = { mode: "rgb" };
+  const [, r2, g, b, alpha] = parsed;
+  if (r2.type === Tok.Hue || g.type === Tok.Hue || b.type === Tok.Hue) {
+    return void 0;
+  }
+  if (r2.type !== Tok.None) {
+    res.r = r2.type === Tok.Number ? r2.value / 255 : r2.value / 100;
+  }
+  if (g.type !== Tok.None) {
+    res.g = g.type === Tok.Number ? g.value / 255 : g.value / 100;
+  }
+  if (b.type !== Tok.None) {
+    res.b = b.type === Tok.Number ? b.value / 255 : b.value / 100;
+  }
+  if (alpha.type !== Tok.None) {
+    res.alpha = alpha.type === Tok.Number ? alpha.value : alpha.value / 100;
+  }
+  return res;
+}
 var parseRgb_default = parseRgb;
 
 // src/rgb/parseTransparent.js
@@ -265,7 +674,7 @@ var parseTransparent_default = parseTransparent;
 
 // src/interpolate/lerp.js
 var lerp = (a, b, t) => a + t * (b - a);
-var lerp_default = lerp;
+var unlerp = (a, b, v) => (v - a) / (b - a);
 
 // src/interpolate/piecewise.js
 var get_classes = (arr) => {
@@ -294,7 +703,7 @@ var interpolatorPiecewise = (interpolator2) => (arr) => {
 };
 
 // src/interpolate/linear.js
-var interpolatorLinear = interpolatorPiecewise(lerp_default);
+var interpolatorLinear = interpolatorPiecewise(lerp);
 
 // src/fixup/alpha.js
 var fixupAlpha = (arr) => {
@@ -313,7 +722,14 @@ var fixupAlpha = (arr) => {
 var definition = {
   mode: "rgb",
   channels: ["r", "g", "b", "alpha"],
-  parse: [parseHex_default, parseRgb_default, parseNamed_default, parseTransparent_default, "srgb"],
+  parse: [
+    parseRgb_default,
+    parseHex_default,
+    parseRgbLegacy_default,
+    parseNamed_default,
+    parseTransparent_default,
+    "srgb"
+  ],
   serialize: "srgb",
   interpolate: {
     r: interpolatorLinear,
@@ -333,8 +749,8 @@ var convertA98ToXyz65 = (a982) => {
   let res = {
     mode: "xyz65",
     x: 0.5766690429101305 * r2 + 0.1855582379065463 * g + 0.1882286462349947 * b,
-    y: 0.29734497525053605 * r2 + 0.6273635662554661 * g + 0.07529145849399788 * b,
-    z: 0.02703136138641234 * r2 + 0.07068885253582723 * g + 0.9913375368376388 * b
+    y: 0.297344975250536 * r2 + 0.6273635662554661 * g + 0.0752914584939979 * b,
+    z: 0.0270313613864123 * r2 + 0.0706888525358272 * g + 0.9913375368376386 * b
   };
   if (a982.alpha !== void 0) {
     res.alpha = a982.alpha;
@@ -348,9 +764,15 @@ var gamma = (v) => Math.pow(Math.abs(v), 256 / 563) * Math.sign(v);
 var convertXyz65ToA98 = ({ x, y, z, alpha }) => {
   let res = {
     mode: "a98",
-    r: gamma(x * 2.0415879038107465 - y * 0.5650069742788596 - 0.34473135077832956 * z),
-    g: gamma(x * -0.9692436362808795 + y * 1.8759675015077202 + 0.04155505740717557 * z),
-    b: gamma(x * 0.013444280632031142 - y * 0.11836239223101838 + 1.0151749943912054 * z)
+    r: gamma(
+      x * 2.0415879038107465 - y * 0.5650069742788597 - 0.3447313507783297 * z
+    ),
+    g: gamma(
+      x * -0.9692436362808798 + y * 1.8759675015077206 + 0.0415550574071756 * z
+    ),
+    b: gamma(
+      x * 0.0134442806320312 - y * 0.1183623922310184 + 1.0151749943912058 * z
+    )
   };
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -385,9 +807,9 @@ var convertRgbToXyz65 = (rgb5) => {
   let { r: r2, g, b, alpha } = convertRgbToLrgb_default(rgb5);
   let res = {
     mode: "xyz65",
-    x: 0.4124564 * r2 + 0.3575761 * g + 0.1804375 * b,
-    y: 0.2126729 * r2 + 0.7151522 * g + 0.072175 * b,
-    z: 0.0193339 * r2 + 0.119192 * g + 0.9503041 * b
+    x: 0.4123907992659593 * r2 + 0.357584339383878 * g + 0.1804807884018343 * b,
+    y: 0.2126390058715102 * r2 + 0.715168678767756 * g + 0.0721923153607337 * b,
+    z: 0.0193308187155918 * r2 + 0.119194779794626 * g + 0.9505321522496607 * b
   };
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -420,9 +842,9 @@ var convertLrgbToRgb_default = convertLrgbToRgb;
 // src/xyz65/convertXyz65ToRgb.js
 var convertXyz65ToRgb = ({ x, y, z, alpha }) => {
   let res = convertLrgbToRgb_default({
-    r: x * 3.2404542 - y * 1.5371385 - 0.4985314 * z,
-    g: x * -0.969266 + y * 1.8760108 + 0.041556 * z,
-    b: x * 0.0556434 - y * 0.2040259 + 1.0572252 * z
+    r: x * 3.2409699419045226 - y * 1.537383177570094 - 0.4986107602930034 * z,
+    g: x * -0.9692436362808796 + y * 1.8759675015077204 + 0.0415550574071756 * z,
+    b: x * 0.0556300796969936 - y * 0.2039769588889765 + 1.0569715142428784 * z
   });
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -504,10 +926,10 @@ var convertRgbToCubehelix = ({ r: r2, g, b, alpha }) => {
 var convertRgbToCubehelix_default = convertRgbToCubehelix;
 
 // src/cubehelix/convertCubehelixToRgb.js
-var convertCubehelixToRgb = ({ h, s: s2, l, alpha }) => {
+var convertCubehelixToRgb = ({ h, s, l, alpha }) => {
   let res = { mode: "rgb" };
   h = (h === void 0 ? 0 : h + 120) * degToRad;
-  let amp = s2 === void 0 ? 0 : s2 * l * (1 - l);
+  let amp = s === void 0 ? 0 : s * l * (1 - l);
   let cosh = Math.cos(h);
   let sinh = Math.sin(h);
   res.r = l + amp * (M[0] * cosh + M[1] * sinh);
@@ -518,139 +940,6 @@ var convertCubehelixToRgb = ({ h, s: s2, l, alpha }) => {
   return res;
 };
 var convertCubehelixToRgb_default = convertCubehelixToRgb;
-
-// src/parse.js
-function parseColorSyntax(color) {
-  const m = color.match(/^color\(\s*([a-z0-9-]+)\s*(.*?)\s*\)$/);
-  if (!m) {
-    return void 0;
-  }
-  const mode = colorProfiles[m[1]];
-  if (!mode) {
-    return void 0;
-  }
-  const res = { mode };
-  const [cmp_string, alpha] = m[2].split(/\s*\/\s*/);
-  let cm;
-  if (alpha !== void 0) {
-    cm = alpha.match(rx_num_per_none);
-    if (!cm) {
-      return void 0;
-    }
-    if (cm[1] !== void 0) {
-      res.alpha = cm[1] / 100;
-    } else if (cm[2] !== void 0) {
-      res.alpha = +cm[2];
-    }
-  }
-  const components = cmp_string.split(/\s+/);
-  let channels = getMode(mode).channels;
-  for (let i = 0, ch; i < channels.length; i++) {
-    ch = channels[i];
-    if (ch === "alpha") {
-      continue;
-    }
-    if (i >= components.length || !components[i]) {
-      res[ch] = 0;
-      continue;
-    }
-    if (!(cm = components[i].match(rx_num_per_none))) {
-      return void 0;
-    }
-    if (cm[1] !== void 0) {
-      res[ch] = cm[1] / 100;
-    } else if (cm[2] !== void 0) {
-      res[ch] = +cm[2];
-    }
-  }
-  return res;
-}
-var parse = (color) => {
-  if (typeof color !== "string") {
-    return void 0;
-  }
-  let result = void 0;
-  let i = 0;
-  let len = parsers.length;
-  while (i < len) {
-    if ((result = parsers[i++](color)) !== void 0) {
-      return result;
-    }
-  }
-  return parseColorSyntax(color);
-};
-var parse_default = parse;
-
-// src/_prepare.js
-var prepare = (color, mode) => color === void 0 ? void 0 : typeof color !== "object" ? parse_default(color) : color.mode !== void 0 ? color : mode ? { ...color, mode } : void 0;
-var prepare_default = prepare;
-
-// src/converter.js
-var converter = (target_mode = "rgb") => (color) => (color = prepare_default(color, target_mode)) !== void 0 ? color.mode === target_mode ? color : converters[color.mode][target_mode] ? converters[color.mode][target_mode](color) : target_mode === "rgb" ? converters[color.mode].rgb(color) : converters.rgb[target_mode](converters[color.mode].rgb(color)) : void 0;
-var converter_default = converter;
-
-// src/modes.js
-var converters = {};
-var modes = {};
-var parsers = [];
-var colorProfiles = {};
-var identity = (v) => v;
-var useMode = (definition27) => {
-  converters[definition27.mode] = {
-    ...converters[definition27.mode],
-    ...definition27.toMode
-  };
-  Object.keys(definition27.fromMode || {}).forEach((k3) => {
-    if (!converters[k3]) {
-      converters[k3] = {};
-    }
-    converters[k3][definition27.mode] = definition27.fromMode[k3];
-  });
-  if (!definition27.ranges) {
-    definition27.ranges = {};
-  }
-  if (!definition27.difference) {
-    definition27.difference = {};
-  }
-  definition27.channels.forEach((channel) => {
-    if (definition27.ranges[channel] === void 0) {
-      definition27.ranges[channel] = [0, 1];
-    }
-    if (!definition27.interpolate[channel]) {
-      throw new Error(`Missing interpolator for: ${channel}`);
-    }
-    if (typeof definition27.interpolate[channel] === "function") {
-      definition27.interpolate[channel] = {
-        use: definition27.interpolate[channel]
-      };
-    }
-    if (!definition27.interpolate[channel].fixup) {
-      definition27.interpolate[channel].fixup = identity;
-    }
-  });
-  modes[definition27.mode] = definition27;
-  (definition27.parse || []).forEach((parser) => {
-    if (typeof parser === "function") {
-      useParser(parser);
-    } else if (typeof parser === "string") {
-      colorProfiles[parser] = definition27.mode;
-    }
-  });
-  return converter_default(definition27.mode);
-};
-var getMode = (mode) => modes[mode];
-var useParser = (parser) => {
-  const idx = parsers.indexOf(parser);
-  if (idx < 0) {
-    parsers.push(parser);
-  }
-};
-var removeParser = (parser) => {
-  const idx = parsers.indexOf(parser);
-  if (idx > 0) {
-    parsers.splice(idx, 1);
-  }
-};
 
 // src/difference.js
 var differenceHueSaturation = (std, smp) => {
@@ -690,18 +979,20 @@ var differenceEuclidean = (mode = "rgb", weights = [1, 1, 1, 0]) => {
   return (std, smp) => {
     let ConvStd = conv(std);
     let ConvSmp = conv(smp);
-    return Math.sqrt(channels.reduce((sum, k3, idx) => {
-      let delta = diffs[k3] ? diffs[k3](ConvStd, ConvSmp) : ConvStd[k3] - ConvSmp[k3];
-      return sum + (weights[idx] || 0) * Math.pow(isNaN(delta) ? 0 : delta, 2);
-    }, 0));
+    return Math.sqrt(
+      channels.reduce((sum, k4, idx) => {
+        let delta = diffs[k4] ? diffs[k4](ConvStd, ConvSmp) : ConvStd[k4] - ConvSmp[k4];
+        return sum + (weights[idx] || 0) * Math.pow(isNaN(delta) ? 0 : delta, 2);
+      }, 0)
+    );
   };
 };
 var differenceCie76 = () => differenceEuclidean("lab65");
 var differenceCie94 = (kL = 1, K1 = 0.045, K2 = 0.015) => {
-  let lab3 = converter_default("lab65");
+  let lab2 = converter_default("lab65");
   return (std, smp) => {
-    let LabStd = lab3(std);
-    let LabSmp = lab3(smp);
+    let LabStd = lab2(std);
+    let LabSmp = lab2(smp);
     let lStd = LabStd.l;
     let aStd = LabStd.a;
     let bStd = LabStd.b;
@@ -713,14 +1004,16 @@ var differenceCie94 = (kL = 1, K1 = 0.045, K2 = 0.015) => {
     let dL2 = Math.pow(lStd - lSmp, 2);
     let dC2 = Math.pow(cStd - cSmp, 2);
     let dH2 = Math.pow(aStd - aSmp, 2) + Math.pow(bStd - bSmp, 2) - dC2;
-    return Math.sqrt(dL2 / Math.pow(kL, 2) + dC2 / Math.pow(1 + K1 * cStd, 2) + dH2 / Math.pow(1 + K2 * cStd, 2));
+    return Math.sqrt(
+      dL2 / Math.pow(kL, 2) + dC2 / Math.pow(1 + K1 * cStd, 2) + dH2 / Math.pow(1 + K2 * cStd, 2)
+    );
   };
 };
 var differenceCiede2000 = (Kl = 1, Kc = 1, Kh = 1) => {
-  let lab3 = converter_default("lab65");
+  let lab2 = converter_default("lab65");
   return (std, smp) => {
-    let LabStd = lab3(std);
-    let LabSmp = lab3(smp);
+    let LabStd = lab2(std);
+    let LabSmp = lab2(smp);
     let lStd = LabStd.l;
     let aStd = LabStd.a;
     let bStd = LabStd.b;
@@ -730,7 +1023,9 @@ var differenceCiede2000 = (Kl = 1, Kc = 1, Kh = 1) => {
     let bSmp = LabSmp.b;
     let cSmp = Math.sqrt(aSmp * aSmp + bSmp * bSmp);
     let cAvg = (cStd + cSmp) / 2;
-    let G = 0.5 * (1 - Math.sqrt(Math.pow(cAvg, 7) / (Math.pow(cAvg, 7) + Math.pow(25, 7))));
+    let G = 0.5 * (1 - Math.sqrt(
+      Math.pow(cAvg, 7) / (Math.pow(cAvg, 7) + Math.pow(25, 7))
+    ));
     let apStd = aStd * (1 + G);
     let apSmp = aSmp * (1 + G);
     let cpStd = Math.sqrt(apStd * apStd + bStd * bStd);
@@ -763,20 +1058,22 @@ var differenceCiede2000 = (Kl = 1, Kc = 1, Kh = 1) => {
     let deltaTheta = 30 * Math.PI / 180 * Math.exp(-1 * Math.pow((180 / Math.PI * hp - 275) / 25, 2));
     let Rc = 2 * Math.sqrt(Math.pow(Cp, 7) / (Math.pow(Cp, 7) + Math.pow(25, 7)));
     let Rt = -1 * Math.sin(2 * deltaTheta) * Rc;
-    return Math.sqrt(Math.pow(dL / (Kl * Sl), 2) + Math.pow(dC / (Kc * Sc), 2) + Math.pow(dH / (Kh * Sh), 2) + Rt * dC / (Kc * Sc) * dH / (Kh * Sh));
+    return Math.sqrt(
+      Math.pow(dL / (Kl * Sl), 2) + Math.pow(dC / (Kc * Sc), 2) + Math.pow(dH / (Kh * Sh), 2) + Rt * dC / (Kc * Sc) * dH / (Kh * Sh)
+    );
   };
 };
 var differenceCmc = (l = 1, c4 = 1) => {
-  let lab3 = converter_default("lab65");
+  let lab2 = converter_default("lab65");
   return (std, smp) => {
-    let LabStd = lab3(std);
+    let LabStd = lab2(std);
     let lStd = LabStd.l;
     let aStd = LabStd.a;
     let bStd = LabStd.b;
     let cStd = Math.sqrt(aStd * aStd + bStd * bStd);
     let hStd = Math.atan2(bStd, aStd);
     hStd = hStd + 2 * Math.PI * (hStd < 0);
-    let LabSmp = lab3(smp);
+    let LabSmp = lab2(smp);
     let lSmp = LabSmp.l;
     let aSmp = LabSmp.a;
     let bSmp = LabSmp.b;
@@ -789,14 +1086,16 @@ var differenceCmc = (l = 1, c4 = 1) => {
     let Sl = lStd < 16 ? 0.511 : 0.040975 * lStd / (1 + 0.01765 * lStd);
     let Sc = 0.0638 * cStd / (1 + 0.0131 * cStd) + 0.638;
     let Sh = Sc * (F * T + 1 - F);
-    return Math.sqrt(dL2 / Math.pow(l * Sl, 2) + dC2 / Math.pow(c4 * Sc, 2) + dH2 / Math.pow(Sh, 2));
+    return Math.sqrt(
+      dL2 / Math.pow(l * Sl, 2) + dC2 / Math.pow(c4 * Sc, 2) + dH2 / Math.pow(Sh, 2)
+    );
   };
 };
 var differenceHyab = () => {
-  let lab3 = converter_default("lab65");
+  let lab2 = converter_default("lab65");
   return (std, smp) => {
-    let LabStd = lab3(std);
-    let LabSmp = lab3(smp);
+    let LabStd = lab2(std);
+    let LabSmp = lab2(smp);
     let dL = LabStd.l - LabSmp.l;
     let dA = LabStd.a - LabSmp.a;
     let dB = LabStd.b - LabSmp.b;
@@ -807,14 +1106,17 @@ var differenceKotsarenkoRamos = () => differenceEuclidean("yiq", [0.5053, 0.299,
 
 // src/average.js
 var averageAngle = (val) => {
-  let sum = val.reduce((sum2, val2) => {
-    if (val2 !== void 0) {
-      let rad = val2 * Math.PI / 180;
-      sum2.sin += Math.sin(rad);
-      sum2.cos += Math.cos(rad);
-    }
-    return sum2;
-  }, { sin: 0, cos: 0 });
+  let sum = val.reduce(
+    (sum2, val2) => {
+      if (val2 !== void 0) {
+        let rad = val2 * Math.PI / 180;
+        sum2.sin += Math.sin(rad);
+        sum2.cos += Math.cos(rad);
+      }
+      return sum2;
+    },
+    { sin: 0, cos: 0 }
+  );
   return Math.atan2(sum.sin, sum.cos) * 180 / Math.PI;
 };
 var averageNumber = (val) => {
@@ -825,23 +1127,26 @@ var isfn = (o) => typeof o === "function";
 function average(colors, mode = "rgb", overrides) {
   let def = getMode(mode);
   let cc = colors.map(converter_default(mode));
-  return def.channels.reduce((res, ch) => {
-    let arr = cc.map((c4) => c4[ch]).filter((val) => val !== void 0);
-    if (arr.length) {
-      let fn5;
-      if (isfn(overrides)) {
-        fn5 = overrides;
-      } else if (overrides && isfn(overrides[ch])) {
-        fn5 = overrides[ch];
-      } else if (def.average && isfn(def.average[ch])) {
-        fn5 = def.average[ch];
-      } else {
-        fn5 = averageNumber;
+  return def.channels.reduce(
+    (res, ch) => {
+      let arr = cc.map((c4) => c4[ch]).filter((val) => val !== void 0);
+      if (arr.length) {
+        let fn5;
+        if (isfn(overrides)) {
+          fn5 = overrides;
+        } else if (overrides && isfn(overrides[ch])) {
+          fn5 = overrides[ch];
+        } else if (def.average && isfn(def.average[ch])) {
+          fn5 = def.average[ch];
+        } else {
+          fn5 = averageNumber;
+        }
+        res[ch] = fn5(arr, ch);
       }
-      res[ch] = fn5(arr, ch);
-    }
-    return res;
-  }, { mode });
+      return res;
+    },
+    { mode }
+  );
 }
 
 // src/cubehelix/definition.js
@@ -909,11 +1214,22 @@ var convertLchToLab = ({ l, c: c4, h, alpha }, mode = "lab") => {
 var convertLchToLab_default = convertLchToLab;
 
 // src/xyz65/constants.js
-var Xn = 0.95047;
-var Yn = 1;
-var Zn = 1.08883;
 var k = Math.pow(29, 3) / Math.pow(3, 3);
 var e = Math.pow(6, 3) / Math.pow(29, 3);
+
+// src/constants.js
+var D50 = {
+  X: 0.3457 / 0.3585,
+  Y: 1,
+  Z: (1 - 0.3457 - 0.3585) / 0.3585
+};
+var D65 = {
+  X: 0.3127 / 0.329,
+  Y: 1,
+  Z: (1 - 0.3127 - 0.329) / 0.329
+};
+var k2 = Math.pow(29, 3) / Math.pow(3, 3);
+var e2 = Math.pow(6, 3) / Math.pow(29, 3);
 
 // src/lab65/convertLab65ToXyz65.js
 var fn3 = (v) => Math.pow(v, 3) > e ? Math.pow(v, 3) : (116 * v - 16) / k;
@@ -923,9 +1239,9 @@ var convertLab65ToXyz65 = ({ l, a, b, alpha }) => {
   let fz = fy - b / 200;
   let res = {
     mode: "xyz65",
-    x: fn3(fx) * Xn,
-    y: fn3(fy) * Yn,
-    z: fn3(fz) * Zn
+    x: fn3(fx) * D65.X,
+    y: fn3(fy) * D65.Y,
+    z: fn3(fz) * D65.Z
   };
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -935,15 +1251,15 @@ var convertLab65ToXyz65 = ({ l, a, b, alpha }) => {
 var convertLab65ToXyz65_default = convertLab65ToXyz65;
 
 // src/lab65/convertLab65ToRgb.js
-var convertLab65ToRgb = (lab3) => convertXyz65ToRgb_default(convertLab65ToXyz65_default(lab3));
+var convertLab65ToRgb = (lab2) => convertXyz65ToRgb_default(convertLab65ToXyz65_default(lab2));
 var convertLab65ToRgb_default = convertLab65ToRgb;
 
 // src/lab65/convertXyz65ToLab65.js
 var f = (value) => value > e ? Math.cbrt(value) : (k * value + 16) / 116;
 var convertXyz65ToLab65 = ({ x, y, z, alpha }) => {
-  let f0 = f(x / Xn);
-  let f1 = f(y / Yn);
-  let f22 = f(z / Zn);
+  let f0 = f(x / D65.X);
+  let f1 = f(y / D65.Y);
+  let f22 = f(z / D65.Z);
   let res = {
     mode: "lab65",
     l: 116 * f1 - 16,
@@ -985,10 +1301,10 @@ var convertDlchToLab65 = ({ l, c: c4, h, alpha }) => {
     res.a = res.b = 0;
   } else {
     let G = (Math.exp(0.0435 * c4 * kCH * kE) - 1) / 0.075;
-    let e3 = G * Math.cos(h / 180 * Math.PI - \u03B8);
+    let e4 = G * Math.cos(h / 180 * Math.PI - \u03B8);
     let f3 = G * Math.sin(h / 180 * Math.PI - \u03B8);
-    res.a = e3 * cos\u03B8 - f3 / 0.83 * sin\u03B8;
-    res.b = e3 * sin\u03B8 + f3 / 0.83 * cos\u03B8;
+    res.a = e4 * cos\u03B8 - f3 / 0.83 * sin\u03B8;
+    res.b = e4 * sin\u03B8 + f3 / 0.83 * cos\u03B8;
   }
   if (alpha !== void 0)
     res.alpha = alpha;
@@ -998,16 +1314,16 @@ var convertDlchToLab65_default = convertDlchToLab65;
 
 // src/dlch/convertLab65ToDlch.js
 var convertLab65ToDlch = ({ l, a, b, alpha }) => {
-  let e3 = a * cos\u03B8 + b * sin\u03B8;
+  let e4 = a * cos\u03B8 + b * sin\u03B8;
   let f3 = 0.83 * (b * cos\u03B8 - a * sin\u03B8);
-  let G = Math.sqrt(e3 * e3 + f3 * f3);
+  let G = Math.sqrt(e4 * e4 + f3 * f3);
   let res = {
     mode: "dlch",
     l: factor / kE * Math.log(1 + 39e-4 * l),
     c: Math.log(1 + 0.075 * G) / (0.0435 * kCH * kE)
   };
   if (res.c) {
-    res.h = normalizeHue_default((Math.atan2(f3, e3) + \u03B8) / Math.PI * 180);
+    res.h = normalizeHue_default((Math.atan2(f3, e4) + \u03B8) / Math.PI * 180);
   }
   if (alpha !== void 0)
     res.alpha = alpha;
@@ -1091,55 +1407,55 @@ var definition5 = {
 var definition_default5 = definition5;
 
 // src/hsi/convertHsiToRgb.js
-function convertHsiToRgb({ h, s: s2, i, alpha }) {
+function convertHsiToRgb({ h, s, i, alpha }) {
   h = normalizeHue_default(h);
   let f3 = Math.abs(h / 60 % 2 - 1);
   let res;
   switch (Math.floor(h / 60)) {
     case 0:
       res = {
-        r: i * (1 + s2 * (3 / (2 - f3) - 1)),
-        g: i * (1 + s2 * (3 * (1 - f3) / (2 - f3) - 1)),
-        b: i * (1 - s2)
+        r: i * (1 + s * (3 / (2 - f3) - 1)),
+        g: i * (1 + s * (3 * (1 - f3) / (2 - f3) - 1)),
+        b: i * (1 - s)
       };
       break;
     case 1:
       res = {
-        r: i * (1 + s2 * (3 * (1 - f3) / (2 - f3) - 1)),
-        g: i * (1 + s2 * (3 / (2 - f3) - 1)),
-        b: i * (1 - s2)
+        r: i * (1 + s * (3 * (1 - f3) / (2 - f3) - 1)),
+        g: i * (1 + s * (3 / (2 - f3) - 1)),
+        b: i * (1 - s)
       };
       break;
     case 2:
       res = {
-        r: i * (1 - s2),
-        g: i * (1 + s2 * (3 / (2 - f3) - 1)),
-        b: i * (1 + s2 * (3 * (1 - f3) / (2 - f3) - 1))
+        r: i * (1 - s),
+        g: i * (1 + s * (3 / (2 - f3) - 1)),
+        b: i * (1 + s * (3 * (1 - f3) / (2 - f3) - 1))
       };
       break;
     case 3:
       res = {
-        r: i * (1 - s2),
-        g: i * (1 + s2 * (3 * (1 - f3) / (2 - f3) - 1)),
-        b: i * (1 + s2 * (3 / (2 - f3) - 1))
+        r: i * (1 - s),
+        g: i * (1 + s * (3 * (1 - f3) / (2 - f3) - 1)),
+        b: i * (1 + s * (3 / (2 - f3) - 1))
       };
       break;
     case 4:
       res = {
-        r: i * (1 + s2 * (3 * (1 - f3) / (2 - f3) - 1)),
-        g: i * (1 - s2),
-        b: i * (1 + s2 * (3 / (2 - f3) - 1))
+        r: i * (1 + s * (3 * (1 - f3) / (2 - f3) - 1)),
+        g: i * (1 - s),
+        b: i * (1 + s * (3 / (2 - f3) - 1))
       };
       break;
     case 5:
       res = {
-        r: i * (1 + s2 * (3 / (2 - f3) - 1)),
-        g: i * (1 - s2),
-        b: i * (1 + s2 * (3 * (1 - f3) / (2 - f3) - 1))
+        r: i * (1 + s * (3 / (2 - f3) - 1)),
+        g: i * (1 - s),
+        b: i * (1 + s * (3 * (1 - f3) / (2 - f3) - 1))
       };
       break;
     default:
-      res = { r: i * (1 - s2), g: i * (1 - s2), b: i * (1 - s2) };
+      res = { r: i * (1 - s), g: i * (1 - s), b: i * (1 - s) };
   }
   res.mode = "rgb";
   if (alpha !== void 0)
@@ -1193,9 +1509,9 @@ var definition6 = {
 var definition_default6 = definition6;
 
 // src/hsl/convertHslToRgb.js
-function convertHslToRgb({ h, s: s2, l, alpha }) {
+function convertHslToRgb({ h, s, l, alpha }) {
   h = normalizeHue_default(h);
-  let m1 = l + s2 * (l < 0.5 ? l : 1 - l);
+  let m1 = l + s * (l < 0.5 ? l : 1 - l);
   let m2 = m1 - (m1 - l) * 2 * Math.abs(h / 60 % 2 - 1);
   let res;
   switch (Math.floor(h / 60)) {
@@ -1256,11 +1572,12 @@ var hueToDeg = (val, unit) => {
 };
 var hue_default = hueToDeg;
 
-// src/hsl/parseHsl.js
-var hsl_old = new RegExp(`^hsla?\\(\\s*${hue}${c}${per}${c}${per}\\s*(?:,\\s*${num_per}\\s*)?\\)$`);
-var hsl_new = new RegExp(`^hsla?\\(\\s*${hue_none}${s}${per_none}${s}${per_none}\\s*(?:\\/\\s*${num_per_none}\\s*)?\\)$`);
-var parseHsl = (color) => {
-  let match = color.match(hsl_old) || color.match(hsl_new);
+// src/hsl/parseHslLegacy.js
+var hsl_old = new RegExp(
+  `^hsla?\\(\\s*${hue}${c}${per}${c}${per}\\s*(?:,\\s*${num_per}\\s*)?\\)$`
+);
+var parseHslLegacy = (color) => {
+  let match = color.match(hsl_old);
   if (!match)
     return;
   let res = { mode: "hsl" };
@@ -1282,6 +1599,38 @@ var parseHsl = (color) => {
   }
   return res;
 };
+var parseHslLegacy_default = parseHslLegacy;
+
+// src/hsl/parseHsl.js
+function parseHsl(color, parsed) {
+  if (!parsed || parsed[0] !== "hsl" && parsed[0] !== "hsla") {
+    return void 0;
+  }
+  const res = { mode: "hsl" };
+  const [, h, s, l, alpha] = parsed;
+  if (h.type !== Tok.None) {
+    if (h.type === Tok.Percentage) {
+      return void 0;
+    }
+    res.h = h.value;
+  }
+  if (s.type !== Tok.None) {
+    if (s.type === Tok.Hue) {
+      return void 0;
+    }
+    res.s = s.type === Tok.Number ? s.value : s.value / 100;
+  }
+  if (l.type !== Tok.None) {
+    if (l.type === Tok.Hue) {
+      return void 0;
+    }
+    res.l = l.type === Tok.Number ? l.value : l.value / 100;
+  }
+  if (alpha.type !== Tok.None) {
+    res.alpha = alpha.type === Tok.Number ? alpha.value : alpha.value / 100;
+  }
+  return res;
+}
 var parseHsl_default = parseHsl;
 
 // src/hsl/definition.js
@@ -1297,7 +1646,7 @@ var definition7 = {
   ranges: {
     h: [0, 360]
   },
-  parse: [parseHsl_default],
+  parse: [parseHsl_default, parseHslLegacy_default],
   serialize: (c4) => `hsl(${c4.h || 0} ${c4.s !== void 0 ? c4.s * 100 + "%" : "none"} ${c4.l !== void 0 ? c4.l * 100 + "%" : "none"}${c4.alpha < 1 ? ` / ${c4.alpha}` : ""})`,
   interpolate: {
     h: { use: interpolatorLinear, fixup: fixupHueShorter },
@@ -1315,31 +1664,31 @@ var definition7 = {
 var definition_default7 = definition7;
 
 // src/hsv/convertHsvToRgb.js
-function convertHsvToRgb({ h, s: s2, v, alpha }) {
+function convertHsvToRgb({ h, s, v, alpha }) {
   h = normalizeHue_default(h);
   let f3 = Math.abs(h / 60 % 2 - 1);
   let res;
   switch (Math.floor(h / 60)) {
     case 0:
-      res = { r: v, g: v * (1 - s2 * f3), b: v * (1 - s2) };
+      res = { r: v, g: v * (1 - s * f3), b: v * (1 - s) };
       break;
     case 1:
-      res = { r: v * (1 - s2 * f3), g: v, b: v * (1 - s2) };
+      res = { r: v * (1 - s * f3), g: v, b: v * (1 - s) };
       break;
     case 2:
-      res = { r: v * (1 - s2), g: v, b: v * (1 - s2 * f3) };
+      res = { r: v * (1 - s), g: v, b: v * (1 - s * f3) };
       break;
     case 3:
-      res = { r: v * (1 - s2), g: v * (1 - s2 * f3), b: v };
+      res = { r: v * (1 - s), g: v * (1 - s * f3), b: v };
       break;
     case 4:
-      res = { r: v * (1 - s2 * f3), g: v * (1 - s2), b: v };
+      res = { r: v * (1 - s * f3), g: v * (1 - s), b: v };
       break;
     case 5:
-      res = { r: v, g: v * (1 - s2), b: v * (1 - s2 * f3) };
+      res = { r: v, g: v * (1 - s), b: v * (1 - s * f3) };
       break;
     default:
-      res = { r: v * (1 - s2), g: v * (1 - s2), b: v * (1 - s2) };
+      res = { r: v * (1 - s), g: v * (1 - s), b: v * (1 - s) };
   }
   res.mode = "rgb";
   if (alpha !== void 0)
@@ -1395,9 +1744,9 @@ var definition_default8 = definition8;
 // src/hwb/convertHwbToRgb.js
 function convertHwbToRgb({ h, w, b, alpha }) {
   if (w + b > 1) {
-    let s2 = w + b;
-    w /= s2;
-    b /= s2;
+    let s = w + b;
+    w /= s;
+    b /= s;
   }
   return convertHsvToRgb({
     h,
@@ -1425,32 +1774,36 @@ function convertRgbToHwb(rgba) {
 }
 
 // src/hwb/parseHwb.js
-var hwb = new RegExp(`^hwb\\(\\s*${hue_none}${s}${per_none}${s}${per_none}\\s*(?:\\/\\s*${num_per_none}\\s*)?\\)$`);
-var parseHwb = (color) => {
-  let match = color.match(hwb);
-  if (!match) {
+function ParseHwb(color, parsed) {
+  if (!parsed || parsed[0] !== "hwb") {
     return void 0;
   }
-  let res = { mode: "hwb" };
-  if (match[3] !== void 0) {
-    res.h = +match[3];
-  } else if (match[1] !== void 0 && match[2] !== void 0) {
-    res.h = hue_default(match[1], match[2]);
+  const res = { mode: "hwb" };
+  const [, h, w, b, alpha] = parsed;
+  if (h.type !== Tok.None) {
+    if (h.type === Tok.Percentage) {
+      return void 0;
+    }
+    res.h = h.value;
   }
-  if (match[4] !== void 0) {
-    res.w = match[4] / 100;
+  if (w.type !== Tok.None) {
+    if (w.type === Tok.Hue) {
+      return void 0;
+    }
+    res.w = w.type === Tok.Number ? w.value : w.value / 100;
   }
-  if (match[5] !== void 0) {
-    res.b = match[5] / 100;
+  if (b.type !== Tok.None) {
+    if (b.type === Tok.Hue) {
+      return void 0;
+    }
+    res.b = b.type === Tok.Number ? b.value : b.value / 100;
   }
-  if (match[6] !== void 0) {
-    res.alpha = match[6] / 100;
-  } else if (match[7] !== void 0) {
-    res.alpha = +match[7];
+  if (alpha.type !== Tok.None) {
+    res.alpha = alpha.type === Tok.Number ? alpha.value : alpha.value / 100;
   }
   return res;
-};
-var parseHwb_default = parseHwb;
+}
+var parseHwb_default = ParseHwb;
 
 // src/hwb/definition.js
 var definition9 = {
@@ -1502,13 +1855,13 @@ var convertXyz65ToJab = ({ x, y, z, alpha }) => {
   let yp = 0.66 * y + 0.34 * x;
   let l = pq(0.41478972 * xp + 0.579999 * yp + 0.014648 * z);
   let m = pq(-0.20151 * xp + 1.120649 * yp + 0.0531008 * z);
-  let s2 = pq(-0.0166008 * xp + 0.2648 * yp + 0.6684799 * z);
+  let s = pq(-0.0166008 * xp + 0.2648 * yp + 0.6684799 * z);
   let i = (l + m) / 2;
   let res = {
     mode: "jab",
     j: 0.44 * i / (1 - 0.56 * i) - d0,
-    a: 3.524 * l - 4.066708 * m + 0.542708 * s2,
-    b: 0.199076 * l + 1.096799 * m - 1.295875 * s2
+    a: 3.524 * l - 4.066708 * m + 0.542708 * s,
+    b: 0.199076 * l + 1.096799 * m - 1.295875 * s
   };
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -1533,12 +1886,16 @@ var convertJabToXyz65 = ({ j, a, b, alpha }) => {
   let i = (j + d02) / (0.44 + 0.56 * (j + d02));
   let l = pq_inv(i + 0.13860504 * a + 0.058047316 * b);
   let m = pq_inv(i - 0.13860504 * a - 0.058047316 * b);
-  let s2 = pq_inv(i - 0.096019242 * a - 0.8118919 * b);
+  let s = pq_inv(i - 0.096019242 * a - 0.8118919 * b);
   let res = {
     mode: "xyz65",
-    x: rel(1.661373024652174 * l - 0.914523081304348 * m + 0.23136208173913045 * s2),
-    y: rel(-0.3250758611844533 * l + 1.571847026732543 * m - 0.21825383453227928 * s2),
-    z: rel(-0.090982811 * l - 0.31272829 * m + 1.5227666 * s2)
+    x: rel(
+      1.661373024652174 * l - 0.914523081304348 * m + 0.23136208173913045 * s
+    ),
+    y: rel(
+      -0.3250758611844533 * l + 1.571847026732543 * m - 0.21825383453227928 * s
+    ),
+    z: rel(-0.090982811 * l - 0.31272829 * m + 1.5227666 * s)
   };
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -1656,23 +2013,20 @@ var definition11 = {
 var definition_default11 = definition11;
 
 // src/xyz50/constants.js
-var Xn2 = 0.96422;
-var Yn2 = 1;
-var Zn2 = 0.82521;
-var k2 = Math.pow(29, 3) / Math.pow(3, 3);
-var e2 = Math.pow(6, 3) / Math.pow(29, 3);
+var k3 = Math.pow(29, 3) / Math.pow(3, 3);
+var e3 = Math.pow(6, 3) / Math.pow(29, 3);
 
 // src/lab/convertLabToXyz50.js
-var fn4 = (v) => Math.pow(v, 3) > e2 ? Math.pow(v, 3) : (116 * v - 16) / k2;
+var fn4 = (v) => Math.pow(v, 3) > e3 ? Math.pow(v, 3) : (116 * v - 16) / k3;
 var convertLabToXyz50 = ({ l, a, b, alpha }) => {
   let fy = (l + 16) / 116;
   let fx = a / 500 + fy;
   let fz = fy - b / 200;
   let res = {
     mode: "xyz50",
-    x: fn4(fx) * Xn2,
-    y: fn4(fy) * Yn2,
-    z: fn4(fz) * Zn2
+    x: fn4(fx) * D50.X,
+    y: fn4(fy) * D50.Y,
+    z: fn4(fz) * D50.Z
   };
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -1684,9 +2038,9 @@ var convertLabToXyz50_default = convertLabToXyz50;
 // src/xyz50/convertXyz50ToRgb.js
 var convertXyz50ToRgb = ({ x, y, z, alpha }) => {
   let res = convertLrgbToRgb_default({
-    r: x * 3.1338561 - y * 1.6168667 - 0.4906146 * z,
-    g: x * -0.9787684 + y * 1.9161415 + 0.033454 * z,
-    b: x * 0.0719453 - y * 0.2289914 + 1.4052427 * z
+    r: x * 3.1341359569958707 - y * 1.6173863321612538 - 0.4906619460083532 * z,
+    g: x * -0.978795502912089 + y * 1.916254567259524 + 0.03344273116131949 * z,
+    b: x * 0.07195537988411677 - y * 0.2289768264158322 + 1.405386058324125 * z
   });
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -1696,7 +2050,7 @@ var convertXyz50ToRgb = ({ x, y, z, alpha }) => {
 var convertXyz50ToRgb_default = convertXyz50ToRgb;
 
 // src/lab/convertLabToRgb.js
-var convertLabToRgb = (lab3) => convertXyz50ToRgb_default(convertLabToXyz50_default(lab3));
+var convertLabToRgb = (lab2) => convertXyz50ToRgb_default(convertLabToXyz50_default(lab2));
 var convertLabToRgb_default = convertLabToRgb;
 
 // src/xyz50/convertRgbToXyz50.js
@@ -1704,9 +2058,9 @@ var convertRgbToXyz50 = (rgb5) => {
   let { r: r2, g, b, alpha } = convertRgbToLrgb_default(rgb5);
   let res = {
     mode: "xyz50",
-    x: 0.4360747 * r2 + 0.3850649 * g + 0.1430804 * b,
-    y: 0.2225045 * r2 + 0.7168786 * g + 0.0606169 * b,
-    z: 0.0139322 * r2 + 0.0971045 * g + 0.7141733 * b
+    x: 0.436065742824811 * r2 + 0.3851514688337912 * g + 0.14307845442264197 * b,
+    y: 0.22249319175623702 * r2 + 0.7168870538238823 * g + 0.06061979053616537 * b,
+    z: 0.013923904500943465 * r2 + 0.09708128566574634 * g + 0.7140993584005155 * b
   };
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -1716,11 +2070,11 @@ var convertRgbToXyz50 = (rgb5) => {
 var convertRgbToXyz50_default = convertRgbToXyz50;
 
 // src/lab/convertXyz50ToLab.js
-var f2 = (value) => value > e2 ? Math.cbrt(value) : (k2 * value + 16) / 116;
+var f2 = (value) => value > e3 ? Math.cbrt(value) : (k3 * value + 16) / 116;
 var convertXyz50ToLab = ({ x, y, z, alpha }) => {
-  let f0 = f2(x / Xn2);
-  let f1 = f2(y / Yn2);
-  let f22 = f2(z / Zn2);
+  let f0 = f2(x / D50.X);
+  let f1 = f2(y / D50.Y);
+  let f22 = f2(z / D50.Z);
   let res = {
     mode: "lab",
     l: 116 * f1 - 16,
@@ -1745,29 +2099,29 @@ var convertRgbToLab = (rgb5) => {
 var convertRgbToLab_default = convertRgbToLab;
 
 // src/lab/parseLab.js
-var lab = new RegExp(`^lab\\(\\s*${per_none}${s}${num_none}${s}${num_none}\\s*(?:\\/\\s*${num_per_none}\\s*)?\\)$`);
-var parseLab = (color) => {
-  let match = color.match(lab);
-  if (!match) {
+function parseLab(color, parsed) {
+  if (!parsed || parsed[0] !== "lab") {
     return void 0;
   }
-  let res = { mode: "lab" };
-  if (match[1] !== void 0) {
-    res.l = +match[1];
+  const res = { mode: "lab" };
+  const [, l, a, b, alpha] = parsed;
+  if (l.type === Tok.Hue || a.type === Tok.Hue || b.type === Tok.Hue) {
+    return void 0;
   }
-  if (match[2] !== void 0) {
-    res.a = +match[2];
+  if (l.type !== Tok.None) {
+    res.l = l.value;
   }
-  if (match[3] !== void 0) {
-    res.b = +match[3];
+  if (a.type !== Tok.None) {
+    res.a = a.type === Tok.Number ? a.value : a.value * 125 / 100;
   }
-  if (match[4] !== void 0) {
-    res.alpha = match[4] / 100;
-  } else if (match[5] !== void 0) {
-    res.alpha = +match[5];
+  if (b.type !== Tok.None) {
+    res.b = b.type === Tok.Number ? b.value : b.value * 125 / 100;
+  }
+  if (alpha.type !== Tok.None) {
+    res.alpha = alpha.type === Tok.Number ? alpha.value : alpha.value / 100;
   }
   return res;
-};
+}
 var parseLab_default = parseLab;
 
 // src/lab/definition.js
@@ -1784,11 +2138,11 @@ var definition12 = {
   channels: ["l", "a", "b", "alpha"],
   ranges: {
     l: [0, 100],
-    a: [-79.287, 93.55],
-    b: [-112.029, 93.388]
+    a: [-100, 100],
+    b: [-100, 100]
   },
   parse: [parseLab_default],
-  serialize: (c4) => `lab(${c4.l !== void 0 ? c4.l + "%" : "none"} ${c4.a !== void 0 ? c4.a : "none"} ${c4.b !== void 0 ? c4.b : "none"}${c4.alpha < 1 ? ` / ${c4.alpha}` : ""})`,
+  serialize: (c4) => `lab(${c4.l !== void 0 ? c4.l : "none"} ${c4.a !== void 0 ? c4.a : "none"} ${c4.b !== void 0 ? c4.b : "none"}${c4.alpha < 1 ? ` / ${c4.alpha}` : ""})`,
   interpolate: {
     l: interpolatorLinear,
     a: interpolatorLinear,
@@ -1821,31 +2175,35 @@ var definition13 = {
 var definition_default13 = definition13;
 
 // src/lch/parseLch.js
-var lch = new RegExp(`^lch\\(\\s*${per_none}${s}${num_none}${s}${hue_none}\\s*(?:\\/\\s*${num_per_none}\\s*)?\\)$`);
-var parseLch = (color) => {
-  let match = color.match(lch);
-  if (!match) {
+function parseLch(color, parsed) {
+  if (!parsed || parsed[0] !== "lch") {
     return void 0;
   }
-  let res = { mode: "lch" };
-  if (match[1] !== void 0) {
-    res.l = +match[1];
+  const res = { mode: "lch" };
+  const [, l, c4, h, alpha] = parsed;
+  if (l.type !== Tok.None) {
+    if (l.type === Tok.Hue) {
+      return void 0;
+    }
+    res.l = l.value;
   }
-  if (match[2] !== void 0) {
-    res.c = Math.max(0, +match[2]);
+  if (c4.type !== Tok.None) {
+    res.c = Math.max(
+      0,
+      c4.type === Tok.Number ? c4.value : c4.value * 150 / 100
+    );
   }
-  if (match[5] !== void 0) {
-    res.h = +match[5];
-  } else if (match[3] !== void 0 && match[4] !== void 0) {
-    res.h = hue_default(match[3], match[4]);
+  if (h.type !== Tok.None) {
+    if (h.type === Tok.Percentage) {
+      return void 0;
+    }
+    res.h = h.value;
   }
-  if (match[6] !== void 0) {
-    res.alpha = match[6] / 100;
-  } else if (match[7] !== void 0) {
-    res.alpha = +match[7];
+  if (alpha.type !== Tok.None) {
+    res.alpha = alpha.type === Tok.Number ? alpha.value : alpha.value / 100;
   }
   return res;
-};
+}
 var parseLch_default = parseLch;
 
 // src/lch/definition.js
@@ -1862,11 +2220,11 @@ var definition14 = {
   channels: ["l", "c", "h", "alpha"],
   ranges: {
     l: [0, 100],
-    c: [0, 131.207],
+    c: [0, 150],
     h: [0, 360]
   },
   parse: [parseLch_default],
-  serialize: (c4) => `lch(${c4.l !== void 0 ? c4.l + "%" : "none"} ${c4.c !== void 0 ? c4.c : "none"} ${c4.h || 0}${c4.alpha < 1 ? ` / ${c4.alpha}` : ""})`,
+  serialize: (c4) => `lch(${c4.l !== void 0 ? c4.l : "none"} ${c4.c !== void 0 ? c4.c : "none"} ${c4.h || 0}${c4.alpha < 1 ? ` / ${c4.alpha}` : ""})`,
   interpolate: {
     h: { use: interpolatorLinear, fixup: fixupHueShorter },
     c: interpolatorLinear,
@@ -1940,11 +2298,11 @@ var convertLchuvToLuv_default = convertLchuvToLuv;
 // src/luv/convertXyz50ToLuv.js
 var u_fn = (x, y, z) => 4 * x / (x + 15 * y + 3 * z);
 var v_fn = (x, y, z) => 9 * y / (x + 15 * y + 3 * z);
-var un = u_fn(Xn2, Yn2, Zn2);
-var vn = v_fn(Xn2, Yn2, Zn2);
-var l_fn = (value) => value <= e2 ? k2 * value : 116 * Math.cbrt(value) - 16;
+var un = u_fn(D50.X, D50.Y, D50.Z);
+var vn = v_fn(D50.X, D50.Y, D50.Z);
+var l_fn = (value) => value <= e3 ? k3 * value : 116 * Math.cbrt(value) - 16;
 var convertXyz50ToLuv = ({ x, y, z, alpha }) => {
-  let l = l_fn(y / Yn2);
+  let l = l_fn(y / D50.Y);
   let u = u_fn(x, y, z);
   let v = v_fn(x, y, z);
   if (!isFinite(u) || !isFinite(v)) {
@@ -1969,12 +2327,12 @@ var convertXyz50ToLuv_default = convertXyz50ToLuv;
 // src/luv/convertLuvToXyz50.js
 var u_fn2 = (x, y, z) => 4 * x / (x + 15 * y + 3 * z);
 var v_fn2 = (x, y, z) => 9 * y / (x + 15 * y + 3 * z);
-var un2 = u_fn2(Xn2, Yn2, Zn2);
-var vn2 = v_fn2(Xn2, Yn2, Zn2);
+var un2 = u_fn2(D50.X, D50.Y, D50.Z);
+var vn2 = v_fn2(D50.X, D50.Y, D50.Z);
 var convertLuvToXyz50 = ({ l, u, v, alpha }) => {
   let up = u / (13 * l) + un2;
   let vp = v / (13 * l) + vn2;
-  let y = Yn2 * (l <= 8 ? l / k2 : Math.pow((l + 16) / 116, 3));
+  let y = D50.Y * (l <= 8 ? l / k3 : Math.pow((l + 16) / 116, 3));
   let x = y * (9 * up) / (4 * vp);
   let z = y * (12 - 3 * up - 20 * vp) / (4 * vp);
   let res = { mode: "xyz50", x, y, z };
@@ -2031,8 +2389,8 @@ var definition17 = {
   fromMode: {
     rgb: convertRgbToLrgb_default
   },
-  parse: ["--srgb-linear"],
-  serialize: "--srgb-linear"
+  parse: ["srgb-linear"],
+  serialize: "srgb-linear"
 };
 var definition_default17 = definition17;
 
@@ -2066,9 +2424,15 @@ var definition_default18 = definition18;
 
 // src/oklab/convertLrgbToOklab.js
 var convertLrgbToOklab = ({ r: r2, g, b, alpha }) => {
-  let L = Math.cbrt(0.4122214708 * r2 + 0.5363325363 * g + 0.0514459929 * b);
-  let M2 = Math.cbrt(0.2119034982 * r2 + 0.6806995451 * g + 0.1073969566 * b);
-  let S = Math.cbrt(0.0883024619 * r2 + 0.2817188376 * g + 0.6299787005 * b);
+  let L = Math.cbrt(
+    0.41222147079999993 * r2 + 0.5363325363 * g + 0.0514459929 * b
+  );
+  let M2 = Math.cbrt(
+    0.2119034981999999 * r2 + 0.6806995450999999 * g + 0.1073969566 * b
+  );
+  let S = Math.cbrt(
+    0.08830246189999998 * r2 + 0.2817188376 * g + 0.6299787005000002 * b
+  );
   let res = {
     mode: "oklab",
     l: 0.2104542553 * L + 0.793617785 * M2 - 0.0040720468 * S,
@@ -2094,14 +2458,23 @@ var convertRgbToOklab_default = convertRgbToOklab;
 
 // src/oklab/convertOklabToLrgb.js
 var convertOklabToLrgb = ({ l, a, b, alpha }) => {
-  let L = Math.pow(l + 0.3963377774 * a + 0.2158037573 * b, 3);
-  let M2 = Math.pow(l - 0.1055613458 * a - 0.0638541728 * b, 3);
-  let S = Math.pow(l - 0.0894841775 * a - 1.291485548 * b, 3);
+  let L = Math.pow(
+    l * 0.9999999984505198 + 0.39633779217376786 * a + 0.2158037580607588 * b,
+    3
+  );
+  let M2 = Math.pow(
+    l * 1.0000000088817609 - 0.10556134232365635 * a - 0.06385417477170591 * b,
+    3
+  );
+  let S = Math.pow(
+    l * 1.0000000546724108 - 0.08948418209496575 * a - 1.2914855378640917 * b,
+    3
+  );
   let res = {
     mode: "lrgb",
-    r: 4.0767416621 * L - 3.3077115913 * M2 + 0.2309699292 * S,
-    g: -1.2684380046 * L + 2.6097574011 * M2 - 0.3413193965 * S,
-    b: -0.0041960863 * L - 0.7034186147 * M2 + 1.707614701 * S
+    r: 4.076741661347994 * L - 3.307711590408193 * M2 + 0.230969928729428 * S,
+    g: -1.2684380040921763 * L + 2.6097574006633715 * M2 - 0.3413193963102197 * S,
+    b: -0.004196086541837188 * L - 0.7034186144594493 * M2 + 1.7076147009309444 * S
   };
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -2128,12 +2501,12 @@ function toe_inv(x) {
   return (x * x + k_1 * x) / (k_3 * (x + k_2));
 }
 function compute_max_saturation(a, b) {
-  let k0, k1, k22, k3, k4, wl, wm, ws;
+  let k0, k1, k22, k32, k4, wl, wm, ws;
   if (-1.88170328 * a - 0.80936493 * b > 1) {
     k0 = 1.19086277;
     k1 = 1.76576728;
     k22 = 0.59662641;
-    k3 = 0.75515197;
+    k32 = 0.75515197;
     k4 = 0.56771245;
     wl = 4.0767416621;
     wm = -3.3077115913;
@@ -2142,7 +2515,7 @@ function compute_max_saturation(a, b) {
     k0 = 0.73956515;
     k1 = -0.45954404;
     k22 = 0.08285427;
-    k3 = 0.1254107;
+    k32 = 0.1254107;
     k4 = 0.14503204;
     wl = -1.2684380046;
     wm = 2.6097574011;
@@ -2151,13 +2524,13 @@ function compute_max_saturation(a, b) {
     k0 = 1.35733652;
     k1 = -915799e-8;
     k22 = -1.1513021;
-    k3 = -0.50559606;
+    k32 = -0.50559606;
     k4 = 692167e-8;
     wl = -0.0041960863;
     wm = -0.7034186147;
     ws = 1.707614701;
   }
-  let S = k0 + k1 * a + k22 * b + k3 * a * a + k4 * a * b;
+  let S = k0 + k1 * a + k22 * b + k32 * a * a + k4 * a * b;
   let k_l = 0.3963377774 * a + 0.2158037573 * b;
   let k_m = -0.1055613458 * a - 0.0638541728 * b;
   let k_s = -0.0894841775 * a - 1.291485548 * b;
@@ -2167,14 +2540,14 @@ function compute_max_saturation(a, b) {
     let s_ = 1 + S * k_s;
     let l = l_ * l_ * l_;
     let m = m_ * m_ * m_;
-    let s2 = s_ * s_ * s_;
+    let s = s_ * s_ * s_;
     let l_dS = 3 * k_l * l_ * l_;
     let m_dS = 3 * k_m * m_ * m_;
     let s_dS = 3 * k_s * s_ * s_;
     let l_dS2 = 6 * k_l * k_l * l_;
     let m_dS2 = 6 * k_m * k_m * m_;
     let s_dS2 = 6 * k_s * k_s * s_;
-    let f3 = wl * l + wm * m + ws * s2;
+    let f3 = wl * l + wm * m + ws * s;
     let f1 = wl * l_dS + wm * m_dS + ws * s_dS;
     let f22 = wl * l_dS2 + wm * m_dS2 + ws * s_dS2;
     S = S - f3 * f1 / (f1 * f1 - 0.5 * f3 * f22);
@@ -2214,24 +2587,24 @@ function find_gamut_intersection(a, b, L1, C1, L0, cusp = null) {
         let s_ = L + C * k_s;
         let l = l_ * l_ * l_;
         let m = m_ * m_ * m_;
-        let s2 = s_ * s_ * s_;
+        let s = s_ * s_ * s_;
         let ldt = 3 * l_dt * l_ * l_;
         let mdt = 3 * m_dt * m_ * m_;
         let sdt = 3 * s_dt * s_ * s_;
         let ldt2 = 6 * l_dt * l_dt * l_;
         let mdt2 = 6 * m_dt * m_dt * m_;
         let sdt2 = 6 * s_dt * s_dt * s_;
-        let r2 = 4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s2 - 1;
+        let r2 = 4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s - 1;
         let r1 = 4.0767416621 * ldt - 3.3077115913 * mdt + 0.2309699292 * sdt;
         let r22 = 4.0767416621 * ldt2 - 3.3077115913 * mdt2 + 0.2309699292 * sdt2;
         let u_r = r1 / (r1 * r1 - 0.5 * r2 * r22);
         let t_r = -r2 * u_r;
-        let g = -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s2 - 1;
+        let g = -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s - 1;
         let g1 = -1.2684380046 * ldt + 2.6097574011 * mdt - 0.3413193965 * sdt;
         let g2 = -1.2684380046 * ldt2 + 2.6097574011 * mdt2 - 0.3413193965 * sdt2;
         let u_g = g1 / (g1 * g1 - 0.5 * g * g2);
         let t_g = -g * u_g;
-        let b2 = -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s2 - 1;
+        let b2 = -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s - 1;
         let b1 = -0.0041960863 * ldt - 0.7034186147 * mdt + 1.707614701 * sdt;
         let b22 = -0.0041960863 * ldt2 - 0.7034186147 * mdt2 + 1.707614701 * sdt2;
         let u_b = b1 / (b1 * b1 - 0.5 * b2 * b22);
@@ -2259,10 +2632,14 @@ function get_Cs(L, a_, b_) {
   let ST_max = get_ST_max(a_, b_, cusp);
   let S_mid = 0.11516993 + 1 / (7.4477897 + 4.1590124 * b_ + a_ * (-2.19557347 + 1.75198401 * b_ + a_ * (-2.13704948 - 10.02301043 * b_ + a_ * (-4.24894561 + 5.38770819 * b_ + 4.69891013 * a_))));
   let T_mid = 0.11239642 + 1 / (1.6132032 - 0.68124379 * b_ + a_ * (0.40370612 + 0.90148123 * b_ + a_ * (-0.27087943 + 0.6122399 * b_ + a_ * (299215e-8 - 0.45399568 * b_ - 0.14661872 * a_))));
-  let k3 = C_max / Math.min(L * ST_max[0], (1 - L) * ST_max[1]);
+  let k4 = C_max / Math.min(L * ST_max[0], (1 - L) * ST_max[1]);
   let C_a = L * S_mid;
   let C_b = (1 - L) * T_mid;
-  let C_mid = 0.9 * k3 * Math.sqrt(Math.sqrt(1 / (1 / (C_a * C_a * C_a * C_a) + 1 / (C_b * C_b * C_b * C_b))));
+  let C_mid = 0.9 * k4 * Math.sqrt(
+    Math.sqrt(
+      1 / (1 / (C_a * C_a * C_a * C_a) + 1 / (C_b * C_b * C_b * C_b))
+    )
+  );
   C_a = L * 0.4;
   C_b = (1 - L) * 0.8;
   let C_0 = Math.sqrt(1 / (1 / (C_a * C_a) + 1 / (C_b * C_b)));
@@ -2270,34 +2647,34 @@ function get_Cs(L, a_, b_) {
 }
 
 // src/okhsl/convertOklabToOkhsl.js
-function convertOklabToOkhsl(lab3) {
-  const ret = { mode: "okhsl", l: toe(lab3.l) };
-  if (lab3.alpha !== void 0) {
-    ret.alpha = lab3.alpha;
+function convertOklabToOkhsl(lab2) {
+  const ret = { mode: "okhsl", l: toe(lab2.l) };
+  if (lab2.alpha !== void 0) {
+    ret.alpha = lab2.alpha;
   }
-  let c4 = Math.sqrt(lab3.a * lab3.a + lab3.b * lab3.b);
+  let c4 = Math.sqrt(lab2.a * lab2.a + lab2.b * lab2.b);
   if (!c4) {
     ret.s = 0;
     return ret;
   }
-  let [C_0, C_mid, C_max] = get_Cs(lab3.l, lab3.a / c4, lab3.b / c4);
-  let s2;
+  let [C_0, C_mid, C_max] = get_Cs(lab2.l, lab2.a / c4, lab2.b / c4);
+  let s;
   if (c4 < C_mid) {
     let k_0 = 0;
     let k_1 = 0.8 * C_0;
     let k_2 = 1 - k_1 / C_mid;
     let t = (c4 - k_0) / (k_1 + k_2 * (c4 - k_0));
-    s2 = t * 0.8;
+    s = t * 0.8;
   } else {
     let k_0 = C_mid;
     let k_1 = 0.2 * C_mid * C_mid * 1.25 * 1.25 / C_0;
     let k_2 = 1 - k_1 / (C_max - C_mid);
     let t = (c4 - k_0) / (k_1 + k_2 * (c4 - k_0));
-    s2 = 0.8 + 0.2 * t;
+    s = 0.8 + 0.2 * t;
   }
-  if (s2) {
-    ret.s = s2;
-    ret.h = normalizeHue_default(Math.atan2(lab3.b, lab3.a) * 180 / Math.PI);
+  if (s) {
+    ret.s = s;
+    ret.h = normalizeHue_default(Math.atan2(lab2.b, lab2.a) * 180 / Math.PI);
   }
   return ret;
 }
@@ -2353,34 +2730,36 @@ var modeOkhsl = {
 var modeOkhsl_default = modeOkhsl;
 
 // src/okhsv/convertOklabToOkhsv.js
-function convertOklabToOkhsv(lab3) {
-  let c4 = Math.sqrt(lab3.a * lab3.a + lab3.b * lab3.b);
-  let l = lab3.l;
-  let a_ = c4 ? lab3.a / c4 : 1;
-  let b_ = c4 ? lab3.b / c4 : 1;
+function convertOklabToOkhsv(lab2) {
+  let c4 = Math.sqrt(lab2.a * lab2.a + lab2.b * lab2.b);
+  let l = lab2.l;
+  let a_ = c4 ? lab2.a / c4 : 1;
+  let b_ = c4 ? lab2.b / c4 : 1;
   let [S_max, T] = get_ST_max(a_, b_);
   let S_0 = 0.5;
-  let k3 = 1 - S_0 / S_max;
+  let k4 = 1 - S_0 / S_max;
   let t = T / (c4 + l * T);
   let L_v = t * l;
   let C_v = t * c4;
   let L_vt = toe_inv(L_v);
   let C_vt = C_v * L_vt / L_v;
   let rgb_scale = convertOklabToLrgb_default({ l: L_vt, a: a_ * C_vt, b: b_ * C_vt });
-  let scale_L = Math.cbrt(1 / Math.max(rgb_scale.r, rgb_scale.g, rgb_scale.b, 0));
+  let scale_L = Math.cbrt(
+    1 / Math.max(rgb_scale.r, rgb_scale.g, rgb_scale.b, 0)
+  );
   l = l / scale_L;
   c4 = c4 / scale_L * toe(l) / l;
   l = toe(l);
   const ret = {
     mode: "okhsv",
-    s: c4 ? (S_0 + T) * C_v / (T * S_0 + T * k3 * C_v) : 0,
+    s: c4 ? (S_0 + T) * C_v / (T * S_0 + T * k4 * C_v) : 0,
     v: l ? l / L_v : 0
   };
   if (ret.s) {
-    ret.h = normalizeHue_default(Math.atan2(lab3.b, lab3.a) * 180 / Math.PI);
+    ret.h = normalizeHue_default(Math.atan2(lab2.b, lab2.a) * 180 / Math.PI);
   }
-  if (lab3.alpha !== void 0) {
-    ret.alpha = lab3.alpha;
+  if (lab2.alpha !== void 0) {
+    ret.alpha = lab2.alpha;
   }
   return ret;
 }
@@ -2396,9 +2775,9 @@ function convertOkhsvToOklab(hsv2) {
   const b_ = Math.sin(h / 180 * Math.PI);
   const [S_max, T] = get_ST_max(a_, b_);
   const S_0 = 0.5;
-  const k3 = 1 - S_0 / S_max;
-  const L_v = 1 - hsv2.s * S_0 / (S_0 + T - T * k3 * hsv2.s);
-  const C_v = hsv2.s * T * S_0 / (S_0 + T - T * k3 * hsv2.s);
+  const k4 = 1 - S_0 / S_max;
+  const L_v = 1 - hsv2.s * S_0 / (S_0 + T - T * k4 * hsv2.s);
+  const C_v = hsv2.s * T * S_0 / (S_0 + T - T * k4 * hsv2.s);
   const L_vt = toe_inv(L_v);
   const C_vt = C_v * L_vt / L_v;
   const rgb_scale = convertOklabToLrgb_default({
@@ -2406,7 +2785,9 @@ function convertOkhsvToOklab(hsv2) {
     a: a_ * C_vt,
     b: b_ * C_vt
   });
-  const scale_L = Math.cbrt(1 / Math.max(rgb_scale.r, rgb_scale.g, rgb_scale.b, 0));
+  const scale_L = Math.cbrt(
+    1 / Math.max(rgb_scale.r, rgb_scale.g, rgb_scale.b, 0)
+  );
   const L_new = toe_inv(hsv2.v * L_v);
   const C = C_v * L_new / L_v;
   ret.l = L_new * scale_L;
@@ -2433,6 +2814,32 @@ var modeOkhsv = {
 };
 var modeOkhsv_default = modeOkhsv;
 
+// src/oklab/parseOklab.js
+function parseOklab(color, parsed) {
+  if (!parsed || parsed[0] !== "oklab") {
+    return void 0;
+  }
+  const res = { mode: "oklab" };
+  const [, l, a, b, alpha] = parsed;
+  if (l.type === Tok.Hue || a.type === Tok.Hue || b.type === Tok.Hue) {
+    return void 0;
+  }
+  if (l.type !== Tok.None) {
+    res.l = l.type === Tok.Number ? l.value : l.value / 100;
+  }
+  if (a.type !== Tok.None) {
+    res.a = a.type === Tok.Number ? a.value : a.value * 0.4 / 100;
+  }
+  if (b.type !== Tok.None) {
+    res.b = b.type === Tok.Number ? b.value : b.value * 0.4 / 100;
+  }
+  if (alpha.type !== Tok.None) {
+    res.alpha = alpha.type === Tok.Number ? alpha.value : alpha.value / 100;
+  }
+  return res;
+}
+var parseOklab_default = parseOklab;
+
 // src/oklab/definition.js
 var definition19 = {
   ...definition_default12,
@@ -2446,14 +2853,46 @@ var definition19 = {
     rgb: convertRgbToOklab_default
   },
   ranges: {
-    l: [0, 0.999],
-    a: [-0.233, 0.276],
-    b: [-0.311, 0.198]
+    l: [0, 1],
+    a: [-0.4, 0.4],
+    b: [-0.4, 0.4]
   },
-  parse: ["--oklab"],
-  serialize: "--oklab"
+  parse: [parseOklab_default],
+  serialize: (c4) => `oklab(${c4.l !== void 0 ? c4.l : "none"} ${c4.a !== void 0 ? c4.a : "none"} ${c4.b !== void 0 ? c4.b : "none"}${c4.alpha < 1 ? ` / ${c4.alpha}` : ""})`
 };
 var definition_default19 = definition19;
+
+// src/oklch/parseOklch.js
+function parseOklch(color, parsed) {
+  if (!parsed || parsed[0] !== "oklch") {
+    return void 0;
+  }
+  const res = { mode: "oklch" };
+  const [, l, c4, h, alpha] = parsed;
+  if (l.type !== Tok.None) {
+    if (l.type === Tok.Hue) {
+      return void 0;
+    }
+    res.l = l.type === Tok.Number ? l.value : l.value / 100;
+  }
+  if (c4.type !== Tok.None) {
+    res.c = Math.max(
+      0,
+      c4.type === Tok.Number ? c4.value : c4.value * 0.4 / 100
+    );
+  }
+  if (h.type !== Tok.None) {
+    if (h.type === Tok.Percentage) {
+      return void 0;
+    }
+    res.h = h.value;
+  }
+  if (alpha.type !== Tok.None) {
+    res.alpha = alpha.type === Tok.Number ? alpha.value : alpha.value / 100;
+  }
+  return res;
+}
+var parseOklch_default = parseOklch;
 
 // src/oklch/definition.js
 var definition20 = {
@@ -2467,11 +2906,11 @@ var definition20 = {
     rgb: (c4) => convertLabToLch_default(convertRgbToOklab_default(c4), "oklch"),
     oklab: (c4) => convertLabToLch_default(c4, "oklch")
   },
-  parse: ["--oklch"],
-  serialize: "--oklch",
+  parse: [parseOklch_default],
+  serialize: (c4) => `oklch(${c4.l !== void 0 ? c4.l : "none"} ${c4.c !== void 0 ? c4.c : "none"} ${c4.h || 0}${c4.alpha < 1 ? ` / ${c4.alpha}` : ""})`,
   ranges: {
-    l: [0, 0.999],
-    c: [0, 0.322],
+    l: [0, 1],
+    c: [0, 0.4],
     h: [0, 360]
   }
 };
@@ -2482,9 +2921,9 @@ var convertP3ToXyz65 = (rgb5) => {
   let { r: r2, g, b, alpha } = convertRgbToLrgb_default(rgb5);
   let res = {
     mode: "xyz65",
-    x: 0.4865709 * r2 + 0.2656676 * g + 0.1982172 * b,
-    y: 0.2289745 * r2 + 0.6917385 * g + 0.0792869 * b,
-    z: 0 * r2 + 0.0451133 * g + 1.0439443 * b
+    x: 0.486570948648216 * r2 + 0.265667693169093 * g + 0.1982172852343625 * b,
+    y: 0.2289745640697487 * r2 + 0.6917385218365062 * g + 0.079286914093745 * b,
+    z: 0 * r2 + 0.0451133818589026 * g + 1.043944368900976 * b
   };
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -2495,11 +2934,14 @@ var convertP3ToXyz65_default = convertP3ToXyz65;
 
 // src/p3/convertXyz65ToP3.js
 var convertXyz65ToP3 = ({ x, y, z, alpha }) => {
-  let res = convertLrgbToRgb_default({
-    r: x * 2.4934969 - y * 0.9313836 - 0.4027107 * z,
-    g: x * -0.8294889 + y * 1.762664 + 0.0236246 * z,
-    b: x * 0.0358458 - y * 0.0761723 + 0.9568845 * z
-  }, "p3");
+  let res = convertLrgbToRgb_default(
+    {
+      r: x * 2.4934969119414263 - y * 0.9313836179191242 - 0.402710784450717 * z,
+      g: x * -0.8294889695615749 + y * 1.7626640603183465 + 0.0236246858419436 * z,
+      b: x * 0.0358458302437845 - y * 0.0761723892680418 + 0.9568845240076871 * z
+    },
+    "p3"
+  );
   if (alpha !== void 0) {
     res.alpha = alpha;
   }
@@ -2535,9 +2977,13 @@ var gamma2 = (v) => {
 var convertXyz50ToProphoto = ({ x, y, z, alpha }) => {
   let res = {
     mode: "prophoto",
-    r: gamma2(x * 1.3457989731028281 - y * 0.25558010007997534 - 0.05110628506753401 * z),
-    g: gamma2(x * -0.5446224939028347 + y * 1.5082327413132781 + 0.02053603239147973 * z),
-    b: gamma2(x * 0 + y * 0 + 1.2119675456389454 * z)
+    r: gamma2(
+      x * 1.3457868816471585 - y * 0.2555720873797946 - 0.0511018649755453 * z
+    ),
+    g: gamma2(
+      x * -0.5446307051249019 + y * 1.5082477428451466 + 0.0205274474364214 * z
+    ),
+    b: gamma2(x * 0 + y * 0 + 1.2119675456389452 * z)
   };
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -2560,9 +3006,9 @@ var convertProphotoToXyz50 = (prophoto2) => {
   let b = linearize2(prophoto2.b);
   let res = {
     mode: "xyz50",
-    x: 0.7977604896723027 * r2 + 0.13518583717574031 * g + 0.0313493495815248 * b,
-    y: 0.2880711282292934 * r2 + 0.7118432178101014 * g + 8565396060525902e-20 * b,
-    z: 0 * r2 + 0 * g + 0.8251046025104601 * b
+    x: 0.7977666449006423 * r2 + 0.1351812974005331 * g + 0.0313477341283922 * b,
+    y: 0.2880748288194013 * r2 + 0.7118352342418731 * g + 899369387256e-16 * b,
+    z: 0 * r2 + 0 * g + 0.8251046025104602 * b
   };
   if (prophoto2.alpha !== void 0) {
     res.alpha = prophoto2.alpha;
@@ -2601,9 +3047,15 @@ var gamma3 = (v) => {
 var convertXyz65ToRec2020 = ({ x, y, z, alpha }) => {
   let res = {
     mode: "rec2020",
-    r: gamma3(x * 1.7166511879712674 - y * 0.35567078377639233 - 0.25336628137365974 * z),
-    g: gamma3(x * -0.6666843518324892 + y * 1.6164812366349395 + 0.01576854581391113 * z),
-    b: gamma3(x * 0.017639857445310783 - y * 0.042770613257808524 + 0.9421031212354738 * z)
+    r: gamma3(
+      x * 1.7166511879712683 - y * 0.3556707837763925 - 0.2533662813736599 * z
+    ),
+    g: gamma3(
+      x * -0.6666843518324893 + y * 1.6164812366349395 + 0.0157685458139111 * z
+    ),
+    b: gamma3(
+      x * 0.0176398574453108 - y * 0.0427706132578085 + 0.9421031212354739 * z
+    )
   };
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -2628,9 +3080,9 @@ var convertRec2020ToXyz65 = (rec20202) => {
   let b = linearize3(rec20202.b);
   let res = {
     mode: "xyz65",
-    x: 0.6369580483012914 * r2 + 0.14461690358620832 * g + 0.1688809751641721 * b,
-    y: 0.2627002120112671 * r2 + 0.6779980715188708 * g + 0.05930171646986196 * b,
-    z: 0 * r2 + 0.028072693049087428 * g + 1.060985057710791 * b
+    x: 0.6369580483012911 * r2 + 0.1446169035862083 * g + 0.1688809751641721 * b,
+    y: 0.262700212011267 * r2 + 0.6779980715188708 * g + 0.059301716469862 * b,
+    z: 0 * r2 + 0.0280726930490874 * g + 1.0609850577107909 * b
   };
   if (rec20202.alpha !== void 0) {
     res.alpha = rec20202.alpha;
@@ -2656,10 +3108,79 @@ var definition23 = {
 };
 var definition_default23 = definition23;
 
-// src/xyz50/definition.js
+// src/xyb/constants.js
+var bias = 0.0037930732552754493;
+var bias_cbrt = Math.cbrt(bias);
+
+// src/xyb/convertRgbToXyb.js
+var transfer = (v) => Math.cbrt(v) - bias_cbrt;
+var convertRgbToXyb = (color) => {
+  const { r: r2, g, b, alpha } = convertRgbToLrgb_default(color);
+  const l = transfer(0.3 * r2 + 0.622 * g + 0.078 * b + bias);
+  const m = transfer(0.23 * r2 + 0.692 * g + 0.078 * b + bias);
+  const s = transfer(
+    0.2434226892454782 * r2 + 0.2047674442449682 * g + 0.5518098665095535 * b + bias
+  );
+  const res = {
+    mode: "xyb",
+    x: (l - m) / 2,
+    y: (l + m) / 2,
+    /* Apply default chroma from luma (subtract Y from B) */
+    b: s - (l + m) / 2
+  };
+  if (alpha !== void 0)
+    res.alpha = alpha;
+  return res;
+};
+var convertRgbToXyb_default = convertRgbToXyb;
+
+// src/xyb/convertXybToRgb.js
+var transfer2 = (v) => Math.pow(v + bias_cbrt, 3);
+var convertXybToRgb = ({ x, y, b, alpha }) => {
+  const l = transfer2(x + y) - bias;
+  const m = transfer2(y - x) - bias;
+  const s = transfer2(b + y) - bias;
+  const res = convertLrgbToRgb_default({
+    r: 11.031566904639861 * l - 9.866943908131562 * m - 0.16462299650829934 * s,
+    g: -3.2541473810744237 * l + 4.418770377582723 * m - 0.16462299650829934 * s,
+    b: -3.6588512867136815 * l + 2.7129230459360922 * m + 1.9459282407775895 * s
+  });
+  if (alpha !== void 0)
+    res.alpha = alpha;
+  return res;
+};
+var convertXybToRgb_default = convertXybToRgb;
+
+// src/xyb/definition.js
 var definition24 = {
+  mode: "xyb",
+  channels: ["x", "y", "b", "alpha"],
+  parse: ["--xyb"],
+  serialize: "--xyb",
+  toMode: {
+    rgb: convertXybToRgb_default
+  },
+  fromMode: {
+    rgb: convertRgbToXyb_default
+  },
+  ranges: {
+    x: [-0.0154, 0.0281],
+    y: [0, 0.8453],
+    b: [-0.2778, 0.388]
+  },
+  interpolate: {
+    x: interpolatorLinear,
+    y: interpolatorLinear,
+    b: interpolatorLinear,
+    alpha: { use: interpolatorLinear, fixup: fixupAlpha }
+  }
+};
+var definition_default24 = definition24;
+
+// src/xyz50/definition.js
+var definition25 = {
   mode: "xyz50",
-  parse: ["xyz-d50", "--xyz-d50"],
+  parse: ["xyz-d50"],
   serialize: "xyz-d50",
   toMode: {
     rgb: convertXyz50ToRgb_default,
@@ -2682,16 +3203,16 @@ var definition24 = {
     alpha: { use: interpolatorLinear, fixup: fixupAlpha }
   }
 };
-var definition_default24 = definition24;
+var definition_default25 = definition25;
 
 // src/xyz65/convertXyz65ToXyz50.js
 var convertXyz65ToXyz50 = (xyz652) => {
   let { x, y, z, alpha } = xyz652;
   let res = {
     mode: "xyz50",
-    x: 1.0478112 * x + 0.0228866 * y - 0.050127 * z,
-    y: 0.0295424 * x + 0.9904844 * y - 0.0170491 * z,
-    z: -92345e-7 * x + 0.0150436 * y + 0.7521316 * z
+    x: 1.0479298208405488 * x + 0.0229467933410191 * y - 0.0501922295431356 * z,
+    y: 0.0296278156881593 * x + 0.990434484573249 * y - 0.0170738250293851 * z,
+    z: -0.0092430581525912 * x + 0.0150551448965779 * y + 0.7518742899580008 * z
   };
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -2705,9 +3226,9 @@ var convertXyz50ToXyz65 = (xyz502) => {
   let { x, y, z, alpha } = xyz502;
   let res = {
     mode: "xyz65",
-    x: 0.9555766 * x - 0.0230393 * y + 0.0631636 * z,
-    y: -0.0282895 * x + 1.0099416 * y + 0.0210077 * z,
-    z: 0.0122982 * x - 0.020483 * y + 1.3299098 * z
+    x: 0.9554734527042182 * x - 0.0230985368742614 * y + 0.0632593086610217 * z,
+    y: -0.0283697069632081 * x + 1.0099954580058226 * y + 0.021041398966943 * z,
+    z: 0.0123140016883199 * x - 0.0205076964334779 * y + 1.3303659366080753 * z
   };
   if (alpha !== void 0) {
     res.alpha = alpha;
@@ -2717,7 +3238,7 @@ var convertXyz50ToXyz65 = (xyz502) => {
 var convertXyz50ToXyz65_default = convertXyz50ToXyz65;
 
 // src/xyz65/definition.js
-var definition25 = {
+var definition26 = {
   mode: "xyz65",
   toMode: {
     rgb: convertXyz65ToRgb_default,
@@ -2733,7 +3254,7 @@ var definition25 = {
     z: [0, 1.088]
   },
   channels: ["x", "y", "z", "alpha"],
-  parse: ["xyz", "xyz-d65", "--xyz-d65"],
+  parse: ["xyz", "xyz-d65"],
   serialize: "xyz-d65",
   interpolate: {
     x: interpolatorLinear,
@@ -2742,12 +3263,11 @@ var definition25 = {
     alpha: { use: interpolatorLinear, fixup: fixupAlpha }
   }
 };
-var definition_default25 = definition25;
+var definition_default26 = definition26;
 
 // src/yiq/convertRgbToYiq.js
-var convertRgbToYiq = (rgb5) => {
-  let { r: r2, g, b, alpha } = convertRgbToLrgb_default(rgb5);
-  let res = {
+var convertRgbToYiq = ({ r: r2, g, b, alpha }) => {
+  const res = {
     mode: "yiq",
     y: 0.29889531 * r2 + 0.58662247 * g + 0.11448223 * b,
     i: 0.59597799 * r2 - 0.2741761 * g - 0.32180189 * b,
@@ -2760,16 +3280,21 @@ var convertRgbToYiq = (rgb5) => {
 var convertRgbToYiq_default = convertRgbToYiq;
 
 // src/yiq/convertYiqToRgb.js
-var convertYiqToRgb = ({ y, i, q, alpha }) => convertLrgbToRgb_default({
-  r: y + 0.95608445 * i + 0.6208885 * q,
-  g: y - 0.27137664 * i - 0.6486059 * q,
-  b: y - 1.10561724 * i + 1.70250126 * q,
-  alpha
-});
+var convertYiqToRgb = ({ y, i, q, alpha }) => {
+  const res = {
+    mode: "rgb",
+    r: y + 0.95608445 * i + 0.6208885 * q,
+    g: y - 0.27137664 * i - 0.6486059 * q,
+    b: y - 1.10561724 * i + 1.70250126 * q
+  };
+  if (alpha !== void 0)
+    res.alpha = alpha;
+  return res;
+};
 var convertYiqToRgb_default = convertYiqToRgb;
 
 // src/yiq/definition.js
-var definition26 = {
+var definition27 = {
   mode: "yiq",
   toMode: {
     rgb: convertYiqToRgb_default
@@ -2791,7 +3316,7 @@ var definition26 = {
     alpha: { use: interpolatorLinear, fixup: fixupAlpha }
   }
 };
-var definition_default26 = definition26;
+var definition_default27 = definition27;
 
 // src/round.js
 var r = (value, precision) => Math.round(value * (precision = Math.pow(10, precision))) / precision;
@@ -2836,12 +3361,12 @@ var serializeHsl = (color) => {
     return void 0;
   }
   const h = twoDecimals(color.h || 0);
-  const s2 = color.s !== void 0 ? twoDecimals(clamp(color.s) * 100) + "%" : "none";
+  const s = color.s !== void 0 ? twoDecimals(clamp(color.s) * 100) + "%" : "none";
   const l = color.l !== void 0 ? twoDecimals(clamp(color.l) * 100) + "%" : "none";
   if (color.alpha === void 0 || color.alpha === 1) {
-    return `hsl(${h}, ${s2}, ${l})`;
+    return `hsl(${h}, ${s}, ${l})`;
   } else {
-    return `hsla(${h}, ${s2}, ${l}, ${twoDecimals(clamp(color.alpha))})`;
+    return `hsla(${h}, ${s}, ${l}, ${twoDecimals(clamp(color.alpha))})`;
   }
 };
 var formatCss = (c4) => {
@@ -2874,18 +3399,18 @@ var formatHsl = (c4) => serializeHsl(converter_default("hsl")(c4));
 
 // src/blend.js
 var BLENDS = {
-  normal: (b, s2) => s2,
-  multiply: (b, s2) => b * s2,
-  screen: (b, s2) => b + s2 - b * s2,
-  "hard-light": (b, s2) => s2 < 0.5 ? b * 2 * s2 : 2 * s2 * (1 - b) - 1,
-  overlay: (b, s2) => b < 0.5 ? s2 * 2 * b : 2 * b * (1 - s2) - 1,
-  darken: (b, s2) => Math.min(b, s2),
-  lighten: (b, s2) => Math.max(b, s2),
-  "color-dodge": (b, s2) => b === 0 ? 0 : s2 === 1 ? 1 : Math.min(1, b / (1 - s2)),
-  "color-burn": (b, s2) => b === 1 ? 1 : s2 === 0 ? 0 : 1 - Math.min(1, (1 - b) / s2),
-  "soft-light": (b, s2) => s2 < 0.5 ? b - (1 - 2 * s2) * b * (1 - b) : b + (2 * s2 - 1) * ((b < 0.25 ? ((16 * b - 12) * b + 4) * b : Math.sqrt(b)) - b),
-  difference: (b, s2) => Math.abs(b - s2),
-  exclusion: (b, s2) => b + s2 - 2 * b * s2
+  normal: (b, s) => s,
+  multiply: (b, s) => b * s,
+  screen: (b, s) => b + s - b * s,
+  "hard-light": (b, s) => s < 0.5 ? b * 2 * s : 2 * s * (1 - b) - 1,
+  overlay: (b, s) => b < 0.5 ? s * 2 * b : 2 * b * (1 - s) - 1,
+  darken: (b, s) => Math.min(b, s),
+  lighten: (b, s) => Math.max(b, s),
+  "color-dodge": (b, s) => b === 0 ? 0 : s === 1 ? 1 : Math.min(1, b / (1 - s)),
+  "color-burn": (b, s) => b === 1 ? 1 : s === 0 ? 0 : 1 - Math.min(1, (1 - b) / s),
+  "soft-light": (b, s) => s < 0.5 ? b - (1 - 2 * s) * b * (1 - b) : b + (2 * s - 1) * ((b < 0.25 ? ((16 * b - 12) * b + 4) * b : Math.sqrt(b)) - b),
+  difference: (b, s) => Math.abs(b - s),
+  exclusion: (b, s) => b + s - 2 * b * s
 };
 var blend = (colors, type = "normal", mode = "rgb") => {
   let fn5 = typeof type === "function" ? type : BLENDS[type];
@@ -2898,41 +3423,47 @@ var blend = (colors, type = "normal", mode = "rgb") => {
     }
     return cc;
   });
-  return converted.reduce((b, s2) => {
+  return converted.reduce((b, s) => {
     if (b === void 0)
-      return s2;
-    let alpha = s2.alpha + b.alpha * (1 - s2.alpha);
-    return channels.reduce((res, ch) => {
-      if (ch !== "alpha") {
-        if (alpha === 0) {
-          res[ch] = 0;
-        } else {
-          res[ch] = s2.alpha * (1 - b.alpha) * s2[ch] + s2.alpha * b.alpha * fn5(b[ch], s2[ch]) + (1 - s2.alpha) * b.alpha * b[ch];
-          res[ch] = Math.max(0, Math.min(1, res[ch] / alpha));
+      return s;
+    let alpha = s.alpha + b.alpha * (1 - s.alpha);
+    return channels.reduce(
+      (res, ch) => {
+        if (ch !== "alpha") {
+          if (alpha === 0) {
+            res[ch] = 0;
+          } else {
+            res[ch] = s.alpha * (1 - b.alpha) * s[ch] + s.alpha * b.alpha * fn5(b[ch], s[ch]) + (1 - s.alpha) * b.alpha * b[ch];
+            res[ch] = Math.max(0, Math.min(1, res[ch] / alpha));
+          }
         }
-      }
-      return res;
-    }, { mode, alpha });
+        return res;
+      },
+      { mode, alpha }
+    );
   });
 };
 var blend_default = blend;
 
 // src/random.js
 var rand = ([min2, max]) => min2 + Math.random() * (max - min2);
-var to_intervals = (constraints) => Object.keys(constraints).reduce((o, k3) => {
-  let v = constraints[k3];
-  o[k3] = Array.isArray(v) ? v : [v, v];
+var to_intervals = (constraints) => Object.keys(constraints).reduce((o, k4) => {
+  let v = constraints[k4];
+  o[k4] = Array.isArray(v) ? v : [v, v];
   return o;
 }, {});
 var random = (mode = "rgb", constraints = {}) => {
   let def = getMode(mode);
   let limits = to_intervals(constraints);
-  return def.channels.reduce((res, ch) => {
-    if (limits.alpha || ch !== "alpha") {
-      res[ch] = rand(limits[ch] || def.ranges[ch]);
-    }
-    return res;
-  }, { mode });
+  return def.channels.reduce(
+    (res, ch) => {
+      if (limits.alpha || ch !== "alpha") {
+        res[ch] = rand(limits[ch] || def.ranges[ch]);
+      }
+      return res;
+    },
+    { mode }
+  );
 };
 var random_default = random;
 
@@ -2942,13 +3473,19 @@ var mapper = (fn5, mode = "rgb", preserve_mode = false) => {
   let conv = mode ? converter_default(mode) : prepare_default;
   return (color) => {
     let conv_color = conv(color);
-    let res = (channels || getMode(color.mode).channels).reduce((res2, ch) => {
-      let v = fn5(conv_color[ch], ch, conv_color, mode);
-      if (v !== void 0 && !isNaN(v)) {
-        res2[ch] = v;
-      }
-      return res2;
-    }, { mode });
+    if (!conv_color) {
+      return void 0;
+    }
+    let res = (channels || getMode(color.mode).channels).reduce(
+      (res2, ch) => {
+        let v = fn5(conv_color[ch], ch, conv_color, mode);
+        if (v !== void 0 && !isNaN(v)) {
+          res2[ch] = v;
+        }
+        return res2;
+      },
+      { mode }
+    );
     if (!preserve_mode) {
       return res;
     }
@@ -3058,10 +3595,13 @@ var interpolate_fn = (colors, mode = "rgb", overrides, premap) => {
   }, {});
   if (premap) {
     let ccolors = conv_colors.map((color, idx) => {
-      return def.channels.reduce((c4, ch) => {
-        c4[ch] = fixed[ch][idx];
-        return c4;
-      }, { mode });
+      return def.channels.reduce(
+        (c4, ch) => {
+          c4[ch] = fixed[ch][idx];
+          return c4;
+        },
+        { mode }
+      );
     });
     fixed = def.channels.reduce((res, ch) => {
       res[ch] = ccolors.map((c4) => {
@@ -3110,13 +3650,16 @@ var interpolate_fn = (colors, mode = "rgb", overrides, premap) => {
       P = fn5(P);
     }
     let t0 = (idx - 1 + P) / n3;
-    return def.channels.reduce((res, channel) => {
-      let val = interpolators[channel](t0);
-      if (val !== void 0) {
-        res[channel] = val;
-      }
-      return res;
-    }, { mode });
+    return def.channels.reduce(
+      (res, channel) => {
+        let val = interpolators[channel](t0);
+        if (val !== void 0) {
+          res[channel] = val;
+        }
+        return res;
+      },
+      { mode }
+    );
   };
 };
 var interpolate = (colors, mode = "rgb", overrides) => interpolate_fn(colors, mode, overrides);
@@ -3125,7 +3668,10 @@ var interpolateWith = (premap, postmap) => (colors, mode = "rgb", overrides) => 
   let it = interpolate_fn(colors, mode, overrides, premap);
   return post ? (t) => post(it(t)) : it;
 };
-var interpolateWithPremultipliedAlpha = interpolateWith(mapAlphaMultiply, mapAlphaDivide);
+var interpolateWithPremultipliedAlpha = interpolateWith(
+  mapAlphaMultiply,
+  mapAlphaDivide
+);
 
 // src/interpolate/splineBasis.js
 var mod = (v, l) => (v + l) % l;
@@ -3137,12 +3683,24 @@ var bspline = (Vim2, Vim1, Vi, Vip1, t) => {
 var interpolatorSplineBasis = (arr) => (t) => {
   let classes = arr.length - 1;
   let i = t >= 1 ? classes - 1 : Math.max(0, Math.floor(t * classes));
-  return bspline(i > 0 ? arr[i - 1] : 2 * arr[i] - arr[i + 1], arr[i], arr[i + 1], i < classes - 1 ? arr[i + 2] : 2 * arr[i + 1] - arr[i], (t - i / classes) * classes);
+  return bspline(
+    i > 0 ? arr[i - 1] : 2 * arr[i] - arr[i + 1],
+    arr[i],
+    arr[i + 1],
+    i < classes - 1 ? arr[i + 2] : 2 * arr[i + 1] - arr[i],
+    (t - i / classes) * classes
+  );
 };
 var interpolatorSplineBasisClosed = (arr) => (t) => {
   const classes = arr.length - 1;
   const i = Math.floor(t * classes);
-  return bspline(arr[mod(i - 1, arr.length)], arr[mod(i, arr.length)], arr[mod(i + 1, arr.length)], arr[mod(i + 2, arr.length)], (t - i / classes) * classes);
+  return bspline(
+    arr[mod(i - 1, arr.length)],
+    arr[mod(i, arr.length)],
+    arr[mod(i + 1, arr.length)],
+    arr[mod(i + 2, arr.length)],
+    (t - i / classes) * classes
+  );
 };
 
 // src/interpolate/splineNatural.js
@@ -3177,17 +3735,19 @@ var min = Math.min;
 var abs2 = Math.abs;
 var mono = (arr) => {
   let n3 = arr.length - 1;
-  let s2 = [];
+  let s = [];
   let p4 = [];
   let yp = [];
   for (let i = 0; i < n3; i++) {
-    s2.push((arr[i + 1] - arr[i]) * n3);
+    s.push((arr[i + 1] - arr[i]) * n3);
     p4.push(i > 0 ? 0.5 * (arr[i + 1] - arr[i - 1]) * n3 : void 0);
-    yp.push(i > 0 ? (sgn(s2[i - 1]) + sgn(s2[i])) * min(abs2(s2[i - 1]), abs2(s2[i]), 0.5 * abs2(p4[i])) : void 0);
+    yp.push(
+      i > 0 ? (sgn(s[i - 1]) + sgn(s[i])) * min(abs2(s[i - 1]), abs2(s[i]), 0.5 * abs2(p4[i])) : void 0
+    );
   }
-  return [s2, p4, yp];
+  return [s, p4, yp];
 };
-var interpolator = (arr, yp, s2) => {
+var interpolator = (arr, yp, s) => {
   let n3 = arr.length - 1;
   let n22 = n3 * n3;
   return (t) => {
@@ -3200,7 +3760,7 @@ var interpolator = (arr, yp, s2) => {
     let t1 = t - i / n3;
     let t2 = t1 * t1;
     let t3 = t2 * t1;
-    return (yp[i] + yp[i + 1] - 2 * s2[i]) * n22 * t3 + (3 * s2[i] - 2 * yp[i] - yp[i + 1]) * n3 * t2 + yp[i] * t1 + arr[i];
+    return (yp[i] + yp[i + 1] - 2 * s[i]) * n22 * t3 + (3 * s[i] - 2 * yp[i] - yp[i + 1]) * n3 * t2 + yp[i] * t1 + arr[i];
   };
 };
 var interpolatorSplineMonotone = (arr) => {
@@ -3208,33 +3768,33 @@ var interpolatorSplineMonotone = (arr) => {
     return interpolatorLinear(arr);
   }
   let n3 = arr.length - 1;
-  let [s2, , yp] = mono(arr);
-  yp[0] = s2[0];
-  yp[n3] = s2[n3 - 1];
-  return interpolator(arr, yp, s2);
+  let [s, , yp] = mono(arr);
+  yp[0] = s[0];
+  yp[n3] = s[n3 - 1];
+  return interpolator(arr, yp, s);
 };
 var interpolatorSplineMonotone2 = (arr) => {
   if (arr.length < 3) {
     return interpolatorLinear(arr);
   }
   let n3 = arr.length - 1;
-  let [s2, p4, yp] = mono(arr);
+  let [s, p4, yp] = mono(arr);
   p4[0] = (arr[1] * 2 - arr[0] * 1.5 - arr[2] * 0.5) * n3;
   p4[n3] = (arr[n3] * 1.5 - arr[n3 - 1] * 2 + arr[n3 - 2] * 0.5) * n3;
-  yp[0] = p4[0] * s2[0] <= 0 ? 0 : abs2(p4[0]) > 2 * abs2(s2[0]) ? 2 * s2[0] : p4[0];
-  yp[n3] = p4[n3] * s2[n3 - 1] <= 0 ? 0 : abs2(p4[n3]) > 2 * abs2(s2[n3 - 1]) ? 2 * s2[n3 - 1] : p4[n3];
-  return interpolator(arr, yp, s2);
+  yp[0] = p4[0] * s[0] <= 0 ? 0 : abs2(p4[0]) > 2 * abs2(s[0]) ? 2 * s[0] : p4[0];
+  yp[n3] = p4[n3] * s[n3 - 1] <= 0 ? 0 : abs2(p4[n3]) > 2 * abs2(s[n3 - 1]) ? 2 * s[n3 - 1] : p4[n3];
+  return interpolator(arr, yp, s);
 };
 var interpolatorSplineMonotoneClosed = (arr) => {
   let n3 = arr.length - 1;
-  let [s2, p4, yp] = mono(arr);
+  let [s, p4, yp] = mono(arr);
   p4[0] = 0.5 * (arr[1] - arr[n3]) * n3;
   p4[n3] = 0.5 * (arr[0] - arr[n3 - 1]) * n3;
   let s_m1 = (arr[0] - arr[n3]) * n3;
   let s_n = s_m1;
-  yp[0] = (sgn(s_m1) + sgn(s2[0])) * min(abs2(s_m1), abs2(s2[0]), 0.5 * abs2(p4[0]));
-  yp[n3] = (sgn(s2[n3 - 1]) + sgn(s_n)) * min(abs2(s2[n3 - 1]), abs2(s_n), 0.5 * abs2(p4[n3]));
-  return interpolator(arr, yp, s2);
+  yp[0] = (sgn(s_m1) + sgn(s[0])) * min(abs2(s_m1), abs2(s[0]), 0.5 * abs2(p4[0]));
+  yp[n3] = (sgn(s[n3 - 1]) + sgn(s_n)) * min(abs2(s[n3 - 1]), abs2(s_n), 0.5 * abs2(p4[n3]));
+  return interpolator(arr, yp, s);
 };
 
 // src/easing/gamma.js
@@ -3303,7 +3863,9 @@ var clampChroma = (color, mode = "lch") => {
       end = clamped.c;
     }
   }
-  return conv(displayable_default(clamped) ? clamped : { ...clamped, c: _last_good_c });
+  return conv(
+    displayable_default(clamped) ? clamped : { ...clamped, c: _last_good_c }
+  );
 };
 
 // src/nearest.js
@@ -3321,13 +3883,10 @@ var nearest = (colors, metric = differenceEuclidean(), accessor = (d) => d) => {
 };
 var nearest_default = nearest;
 
-// src/util/lerp.js
-var lerp2 = (a, b, t) => a === void 0 || b === void 0 ? void 0 : a + t * (b - a);
-var lerp_default2 = lerp2;
-
 // src/filter.js
 var minzero = (v) => Math.max(v, 0);
 var clamp2 = (v) => Math.max(Math.min(v, 1), 0);
+var lerp2 = (a, b, t) => a === void 0 || b === void 0 ? void 0 : a + t * (b - a);
 var matrixSepia = (amount) => {
   let a = 1 - clamp2(amount);
   return [
@@ -3350,19 +3909,19 @@ var matrixSepia = (amount) => {
   ];
 };
 var matrixSaturate = (sat) => {
-  let s2 = minzero(sat);
+  let s = minzero(sat);
   return [
-    0.213 + 0.787 * s2,
-    0.715 - 0.715 * s2,
-    0.072 - 0.072 * s2,
+    0.213 + 0.787 * s,
+    0.715 - 0.715 * s,
+    0.072 - 0.072 * s,
     0,
-    0.213 - 0.213 * s2,
-    0.715 + 0.285 * s2,
-    0.072 - 0.072 * s2,
+    0.213 - 0.213 * s,
+    0.715 + 0.285 * s,
+    0.072 - 0.072 * s,
     0,
-    0.213 - 0.213 * s2,
-    0.715 - 0.715 * s2,
-    0.072 + 0.928 * s2,
+    0.213 - 0.213 * s,
+    0.715 - 0.715 * s,
+    0.072 + 0.928 * s,
     0,
     0,
     0,
@@ -3394,19 +3953,19 @@ var matrixGrayscale = (amount) => {
 var matrixHueRotate = (degrees) => {
   let rad = Math.PI * degrees / 180;
   let c4 = Math.cos(rad);
-  let s2 = Math.sin(rad);
+  let s = Math.sin(rad);
   return [
-    0.213 + c4 * 0.787 - s2 * 0.213,
-    0.715 - c4 * 0.715 - s2 * 0.715,
-    0.072 - c4 * 0.072 + s2 * 0.928,
+    0.213 + c4 * 0.787 - s * 0.213,
+    0.715 - c4 * 0.715 - s * 0.715,
+    0.072 - c4 * 0.072 + s * 0.928,
     0,
-    0.213 - c4 * 0.213 + s2 * 0.143,
-    0.715 + c4 * 0.285 + s2 * 0.14,
-    0.072 - c4 * 0.072 - s2 * 0.283,
+    0.213 - c4 * 0.213 + s * 0.143,
+    0.715 + c4 * 0.285 + s * 0.14,
+    0.072 - c4 * 0.072 - s * 0.283,
     0,
-    0.213 - c4 * 0.213 - s2 * 0.787,
-    0.715 - c4 * 0.715 + s2 * 0.715,
-    0.072 + c4 * 0.928 + s2 * 0.072,
+    0.213 - c4 * 0.213 - s * 0.787,
+    0.715 - c4 * 0.715 + s * 0.715,
+    0.072 + c4 * 0.928 + s * 0.072,
     0,
     0,
     0,
@@ -3452,7 +4011,11 @@ var filterSaturate = (amt = 1, mode = "rgb") => matrix(matrixSaturate(amt), mode
 var filterGrayscale = (amt = 1, mode = "rgb") => matrix(matrixGrayscale(amt), mode, true);
 var filterInvert = (amt = 1, mode = "rgb") => {
   let a = clamp2(amt);
-  return mapper((v, ch) => ch === "alpha" ? v : lerp_default2(a, 1 - a, v), mode, true);
+  return mapper(
+    (v, ch) => ch === "alpha" ? v : lerp2(a, 1 - a, v),
+    mode,
+    true
+  );
 };
 var filterHueRotate = (deg = 0, mode = "rgb") => matrix(matrixHueRotate(deg), mode, true);
 
@@ -3804,7 +4367,7 @@ var deficiency = (lut, t) => {
   let arr = lut[i];
   if (w > 0 && i < lut.length - 1) {
     let arr_2 = lut[i + 1];
-    arr = arr.map((v, idx) => lerp_default(arr[idx], arr_2[idx], w));
+    arr = arr.map((v, idx) => lerp(arr[idx], arr_2[idx], w));
   }
   return (color) => {
     let c4 = prepare_default(color);
@@ -3859,12 +4422,12 @@ var dlch = useMode(definition_default5);
 var hsi = useMode(definition_default6);
 var hsl = useMode(definition_default7);
 var hsv = useMode(definition_default8);
-var hwb2 = useMode(definition_default9);
+var hwb = useMode(definition_default9);
 var jab = useMode(definition_default10);
 var jch = useMode(definition_default11);
-var lab2 = useMode(definition_default12);
+var lab = useMode(definition_default12);
 var lab65 = useMode(definition_default13);
-var lch2 = useMode(definition_default14);
+var lch = useMode(definition_default14);
 var lch65 = useMode(definition_default15);
 var lchuv = useMode(definition_default16);
 var lrgb = useMode(definition_default17);
@@ -3877,9 +4440,10 @@ var p3 = useMode(definition_default21);
 var prophoto = useMode(definition_default22);
 var rec2020 = useMode(definition_default23);
 var rgb4 = useMode(definition_default);
-var xyz50 = useMode(definition_default24);
-var xyz65 = useMode(definition_default25);
-var yiq = useMode(definition_default26);
+var xyb = useMode(definition_default24);
+var xyz50 = useMode(definition_default25);
+var xyz65 = useMode(definition_default26);
+var yiq = useMode(definition_default27);
 export {
   a98,
   average,
@@ -3931,9 +4495,11 @@ export {
   convertRgbToLab65_default as convertRgbToLab65,
   convertRgbToLrgb_default as convertRgbToLrgb,
   convertRgbToOklab_default as convertRgbToOklab,
+  convertRgbToXyb_default as convertRgbToXyb,
   convertRgbToXyz50_default as convertRgbToXyz50,
   convertRgbToXyz65_default as convertRgbToXyz65,
   convertRgbToYiq_default as convertRgbToYiq,
+  convertXybToRgb_default as convertXybToRgb,
   convertXyz50ToLab_default as convertXyz50ToLab,
   convertXyz50ToLuv_default as convertXyz50ToLuv,
   convertXyz50ToProphoto_default as convertXyz50ToProphoto,
@@ -3991,7 +4557,7 @@ export {
   hsi,
   hsl,
   hsv,
-  hwb2 as hwb,
+  hwb,
   interpolate,
   interpolateWith,
   interpolateWithPremultipliedAlpha,
@@ -4006,12 +4572,12 @@ export {
   interpolatorSplineNaturalClosed,
   jab,
   jch,
-  lab2 as lab,
+  lab,
   lab65,
-  lch2 as lch,
+  lch,
   lch65,
   lchuv,
-  lerp_default as lerp,
+  lerp,
   lrgb,
   luv,
   mapAlphaDivide,
@@ -4044,9 +4610,10 @@ export {
   definition_default22 as modeProphoto,
   definition_default23 as modeRec2020,
   definition_default as modeRgb,
-  definition_default24 as modeXyz50,
-  definition_default25 as modeXyz65,
-  definition_default26 as modeYiq,
+  definition_default24 as modeXyb,
+  definition_default25 as modeXyz50,
+  definition_default26 as modeXyz65,
+  definition_default27 as modeYiq,
   nearest_default as nearest,
   okhsl,
   okhsv,
@@ -4056,11 +4623,15 @@ export {
   parse_default as parse,
   parseHex_default as parseHex,
   parseHsl_default as parseHsl,
+  parseHslLegacy_default as parseHslLegacy,
   parseHwb_default as parseHwb,
   parseLab_default as parseLab,
   parseLch_default as parseLch,
   parseNamed_default as parseNamed,
+  parseOklab_default as parseOklab,
+  parseOklch_default as parseOklch,
   parseRgb_default as parseRgb,
+  parseRgbLegacy_default as parseRgbLegacy,
   parseTransparent_default as parseTransparent,
   prophoto,
   random_default as random,
@@ -4073,10 +4644,12 @@ export {
   serializeHex8,
   serializeHsl,
   serializeRgb,
+  unlerp,
   useMode,
   useParser,
   contrast as wcagContrast,
   luminance as wcagLuminance,
+  xyb,
   xyz50,
   xyz65,
   yiq

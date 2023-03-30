@@ -2,11 +2,8 @@ const themeMap = new Map()
 
 const themes = {
     Earthtones: {
-        primary: {
-            light: '',
-            secondary: ''
-        },
-        secondary: {
+        basePalette: [],
+       /*  secondary: {
             light: '',
             secondary: ''
         },
@@ -15,7 +12,7 @@ const themes = {
             primary: [],
             secondary: []
         },
-        tonal: {
+        */ tonal: {
             // An  array of tonal palettes as per MDG 
             primary: [],
             secondary: []

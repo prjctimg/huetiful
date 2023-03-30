@@ -8,7 +8,7 @@ import { clampChroma, displayable, formatHex } from '../culori.mjs'
  */
 function isVisible(color) {
     if (displayable(color)) {
-        return console.log(color)
+        return
     } else {
 
         return clampChroma(color, color.c !== undefined ? color.mode : 'lch')
@@ -25,8 +25,6 @@ function isVisible(color) {
 /* const i = isVisible({ r: 280, g: 60, b: 40 })
  */
 
-const t = displayable('red')
-console.log(t)
 
 isVisible('red')
 export default isVisible

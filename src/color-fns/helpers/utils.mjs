@@ -1,50 +1,41 @@
 import chroma from '../../libs/chroma'
 
-export const scale = ([...c]) => num => chroma
-    .bezier([...c])
-    .scale()
-    .colors(num)
-
-
+e
 /**
  * Gets the specifified channel on the color. Can be used to perform checks on channel values before applying color corrections
  * @param color Any recognizable color token
  * @param channel The channel to be retrieved */
-export const getChannel = color =>
-    channel =>
+export var getChannel = color =>
+    modeChannel =>
         chroma(color)
-            .get(channel)
+            .get(modeChannel)
 
 
 
 
 
-export const set = color =>
-    channel =>
+export var setChannel = color =>
+    modeChannel =>
         value =>
             chroma(color)
-                .set(channel, value)
+                .set(modeChannel, value)
 
 
 
 
-export const hex = color =>
-    chroma(color)
-        .hex()
 
 
-export const brighten = color =>
+export var brighten = color =>
     (value = 1) =>
         chroma(color)
             .brighten(value)
 
 
 
-console.log(hex('pink'))
 
 
 
-export const setStyle = (prop) => {
+export var setStyle = (prop) => {
     return (value) => {
         return document
             .body
