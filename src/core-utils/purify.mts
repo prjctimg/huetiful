@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import chroma from 'chroma-js';
 import { converter, formatHex8 } from 'culori';
 import colors from '../colors/colors.mjs';
 import tailwindColors from '../color-maps/tailwindColors.mjs';
 import type { Colors } from '../colors/colors.js';
+import { num2rgb } from './num2rgb.mjs';
 
 /**
  * @function purify
@@ -11,14 +11,11 @@ import type { Colors } from '../colors/colors.js';
  * @param {Color | Array<Color>} arr
  * @returns
  */
-
-export default function purify(arr: Colors, mode: keyof ColorSpaces) {
-    //PEMDAS... this must always run first
-
+export default function (arr: Colors, mode: keyof ColorSpaces) {
     return _.map(arr, (val) => {
         //First check if the color token is valid using the Chroma constructor
-        return chroma.valid(val)
-            ? chroma(val).hex('auto')
+        return _.isInteger(val)
+            ? num2rgb(val)
             : // If not identifiable then check it against the keys of tailwind hues. If true return that hue at 500
             _.isString(val) && _.has(tailwindColors, val)
             ? colors(val, '500')

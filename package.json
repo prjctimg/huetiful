@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build":"node ./scripts/build.js",
-    "test": "nodemon"
+    "test": "npm run build && nodemon"
   },
   "repository": {
     "type": "git",
