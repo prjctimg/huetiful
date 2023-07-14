@@ -32,14 +32,8 @@ export { hueShift, base, pastel };
 
 // core-utils
 import purify from './core-utils/purify.mjs';
-import {
-    getChannel,
-    getLuminance,
-    getTemp,
-    setChannel,
-    setLuminance,
-    setTemp
-} from './core-utils/helpers.mjs';
+import { getChannel, getTemp, setChannel, setLuminance, setTemp } from './core-utils/helpers.mjs';
+import { getLuminance } from './core-utils/getLuminance';
 export { getChannel, getLuminance, getTemp, setChannel, setLuminance, setTemp, purify };
 
 // SortBy modules

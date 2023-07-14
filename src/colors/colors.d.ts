@@ -11,10 +11,11 @@ hueRange(mode: keyof HueColorSpaces): [number, number] {}
 
 
 /**
- * Any color value as recognized by the Chroma() constructor.
+ * Any color value i.e hexadecimal or string.
  * @param
  * @see chromajswebsitehere
  */
+
 export type baseColor = number | string | object | [number, number, number, keyof HueColorSpaces];
 
 /**

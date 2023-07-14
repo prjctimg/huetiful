@@ -11,7 +11,7 @@ import { num2rgb } from './num2rgb.mjs';
  * @param {Color | Array<Color>} arr
  * @returns
  */
-export default function (arr: Colors, mode: keyof ColorSpaces) {
+const purify = (arr: Colors, mode: keyof ColorSpaces) => {
     return _.map(arr, (val) => {
         //First check if the color token is valid using the Chroma constructor
         return _.isInteger(val)
@@ -24,4 +24,6 @@ export default function (arr: Colors, mode: keyof ColorSpaces) {
             ? converter(mode)(val)
             : ReferenceError(`Not a valid color token`);
     });
-}
+};
+
+export { purify };

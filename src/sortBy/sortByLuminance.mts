@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import purify from '../core-utils/purify.mjs';
-import { getLuminance } from '../core-utils/helpers.mjs';
+import { getLuminance } from '../core-utils/getLuminance';
 
 // sortByLuminance
 /**
