@@ -6,10 +6,12 @@
 //ported from chroma-js
 
 import _ from 'lodash';
-
-const temperature2rgb = (kelvin: number) => {
+const temperature2rgb = (kelvin) => {
+    //Hue change starts at approx 655 Kelvins ???
+    const eps = 655;
+    _.inRange(kelvin, 400, 650) ? (kelvin = eps) : kelvin;
     const { log } = Math;
-    const temp = kelvin / 100;
+    const temp = _.divide(kelvin, 100);
     let r, g, b;
     if (_.lt(temp, 66)) {
         r = 255;

@@ -14,19 +14,20 @@ import { temperature2rgb } from './temperature2rgb.mjs';
  * @param color {baseColor}
  * @returns {number}
  */
+
 const rgb2temperature = (color: baseColor) => {
     const rgb = converter('rgb')(color);
-    const r = rgb['r'],
-        b = rgb['b'];
+    const rgbLimit = 255;
+    _.map(rgb, (val, key) => _.set(rgb, key, _.multiply(val, rgbLimit)));
+
     let minTemp = 1000;
     let maxTemp = 40000;
     const eps = 0.4;
     let temp;
-    while (_.gt(maxTemp - minTemp, eps)) {
-        temp = _.multiply(_.add(maxTemp, minTemp), 0.5);
+    while (maxTemp - minTemp > eps) {
+        temp = _.add(maxTemp, _.multiply(minTemp, 0.5));
         const rgb = temperature2rgb(temp);
-
-        if (_.gte(_.divide(rgb['b'], rgb['r']), _.divide((b, r)))) {
+        if (_.gte(_.divide(rgb['b'], rgb['r']), _.divide(['b'], rgb['r']))) {
             maxTemp = temp;
         } else {
             minTemp = temp;
