@@ -26,7 +26,7 @@ const rgb2temperature = (color: baseColor) => {
         temp = _.multiply(_.add(maxTemp, minTemp), 0.5);
         const rgb = temperature2rgb(temp);
 
-        if (_.gte(_.divide(rgb[2], rgb[0]), _.divide((b, r)))) {
+        if (_.gte(_.divide(rgb['b'], rgb['r']), _.divide((b, r)))) {
             maxTemp = temp;
         } else {
             minTemp = temp;

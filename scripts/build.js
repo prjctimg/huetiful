@@ -15,7 +15,7 @@ new Generator({
 
 
 const sharedConfig = {
-    entryPoints: ['.//src/core-utils/purify.mts'],
+    entryPoints: ['.//src/core-utils/index.ts'],
     bundle: true,
     minify: false,
     //  external: Object.keys(dependencies).concat(Object.keys(peerDependencies))

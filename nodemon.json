@@ -1,1 +1,1 @@
-{"watch":["src","build"],"ext":".js,.mjs,.cjs","exec":"node ./src/core-utils/darken.mjs --watch "}
+{"watch":["src","build"],"ext":".js,.mjs,.cjs","exec":"node ./src/experimental/easing.mjs --watch "}

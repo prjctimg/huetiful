@@ -1,7 +1,5 @@
 export { getChannel } from './get.mjs';
 export { rgb2num } from './rgb2num.mjs';
-export { getTemp } from './rgb2temperature.mjs';
-export { getLuminance } from './getLuminance.mjs';
 export { setChannel } from './set.mjs';
 export { getTemp } from './rgb2temperature.mjs';
 export { alpha } from './alpha.mjs';
