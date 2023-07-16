@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 // If the value passedin is a float then the decimal is treated as opacity
 // The outputn is rounded up when you pass in an integer
-export var num2rgb: object = (num: number) => {
+const num2rgb = (num) => {
     if (_.isInteger(num) && _.gte(num, 0) && _.lte(num, 0xffffff)) {
         const r = num >> 16;
         const g = (num >> 8) & 0xff;
@@ -18,3 +18,6 @@ export var num2rgb: object = (num: number) => {
     }
     throw new Error('unknown num color: ' + num);
 };
+
+
+export { num2rgb }

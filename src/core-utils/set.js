@@ -1,17 +1,20 @@
 // ported from chroma-js Color.set
 
-// @ts-nocheck
+// @ts-ignore
 import _ from 'lodash';
 import { converter } from 'culori';
-import type { baseColor } from '../colors/colors';
-
 /**Sets the value for a single specifified channel in a color object.
  *
- * @param {} color Any recognizable color token.
- * @param {} modeChannel The mode and channel to work with. For example 'rgb.b'.
+ * @param  color Any recognizable color token.
+ * @param  modeChannel The mode and channel to work with. For example 'rgb.b'.
  * @returns color The mutated color.
  */
-const set = (mc: string) => (color: baseColor, value: string | number) => {
+
+
+
+const set = mc => (color, value) => {
+
+
     const [mode, channel] = mc.split('.');
     const src = converter(mode)(color);
 

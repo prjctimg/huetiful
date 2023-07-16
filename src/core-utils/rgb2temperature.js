@@ -1,13 +1,12 @@
 /*
  * Based on implementation by Neil Bartlett
- * https://github.com/neilbartlett/color-temperature
+ * https://github.com/neilbartlett/color-temperature and chroma-js
  **/
 
 //  @ts-nocheck
 import { converter } from 'culori';
 import _ from 'lodash';
-import type { baseColor } from '../colors/colors.js';
-import { temperature2rgb } from './temperature2rgb.mjs';
+import { temperature2rgb } from './temperature2rgb';
 
 /**
  * Returns the temperature value in Kelvins of the passed in color token.
@@ -15,9 +14,10 @@ import { temperature2rgb } from './temperature2rgb.mjs';
  * @returns {number}
  */
 
-const rgb2temperature = (color: baseColor) => {
+const rgb2temperature = (color) => {
     const rgb = converter('rgb')(color);
     const rgbLimit = 255;
+
     _.map(rgb, (val, key) => _.set(rgb, key, _.multiply(val, rgbLimit)));
 
     let minTemp = 1000;

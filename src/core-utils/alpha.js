@@ -1,8 +1,18 @@
 import { converter } from 'culori';
 import _ from 'lodash';
-import type { baseColor } from '../colors/colors';
 
-const alpha = (color: baseColor, alpha: number): baseColor => {
+
+//@ts-check
+
+/**
+ * Sets/gets the opacity of a color.
+ *
+ * @param color
+ * @param value
+ * @returns
+ */
+
+const alpha = (color, value) => {
     const src = converter('rgb')(color);
 
     if (alpha !== undefined && _.isNumber(alpha)) {

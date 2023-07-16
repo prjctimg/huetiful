@@ -1,14 +1,18 @@
 import { converter, interpolate, wcagLuminance } from 'culori';
 import _ from 'lodash';
 
-import type { baseColor } from '../colors/colors';
 
-const getLuminance = (color: baseColor) => wcagLuminance(color);
+
+const getLuminance = (color) => wcagLuminance(color);
 
 const { pow, abs } = Math;
-// @ts-nocheck
 
-const luminance = function (color, lum) {
+/**
+ * Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
+ * @param color 
+ * @param lum 
+ */
+const luminance = (color, lum) => {
     const white = '#ffffff',
         black = '#000000';
 
@@ -26,6 +30,7 @@ const luminance = function (color, lum) {
         color = converter(mode)(color);
 
         const test = (low, high) => {
+            //Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
             const mid = interpolate([low, high])(0.5);
             const lm = wcagLuminance(mid);
             if (_.lt(abs(lum - lm), EPS) || !MAX_ITER--) {

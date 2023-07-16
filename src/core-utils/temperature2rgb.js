@@ -1,5 +1,6 @@
-/*
- * Based on implementation by Neil Bartlett
+/**
+ 
+* Converts any number between 1 and 30000 to a color. 
  * https://github.com/neilbartlett/color-temperature
  */
 
@@ -9,8 +10,10 @@ import _ from 'lodash';
 const temperature2rgb = (kelvin) => {
     //Hue change starts at approx 655 Kelvins ???
     const eps = 655;
-    _.inRange(kelvin, 400, 650) ? (kelvin = eps) : kelvin;
     const { log } = Math;
+    // Checking if the passed in value is within a problematic range that returns negative values on the blue channel.
+    _.inRange(kelvin, 400, 650) ? (kelvin = eps) : kelvin;
+
     const temp = _.divide(kelvin, 100);
     let r, g, b;
     if (_.lt(temp, 66)) {
@@ -18,20 +21,20 @@ const temperature2rgb = (kelvin) => {
         g = _.lt(temp, 6)
             ? 0
             : _.add(
-                  _.subtract(
-                      -155.25485562709179,
-                      _.multiply(0.44596950469579133, (g = _.subtract(temp, 2)))
-                  ),
-                  _.multiply(104.49216199393888, log(g))
-              );
+                _.subtract(
+                    -155.25485562709179,
+                    _.multiply(0.44596950469579133, (g = _.subtract(temp, 2)))
+                ),
+                _.multiply(104.49216199393888, log(g))
+            );
 
         b = _.lt(temp, 20)
             ? 0
             : _.sum([
-                  -254.76935184120902,
-                  _.multiply(0.8274096064007395, (b = _.subtract(temp, 10))),
-                  _.multiply(115.67994401066147, log(b))
-              ]);
+                -254.76935184120902,
+                _.multiply(0.8274096064007395, (b = _.subtract(temp, 10))),
+                _.multiply(115.67994401066147, log(b))
+            ]);
     } else {
         r = _.subtract(
             _.add(351.97690566805693, _.multiply(0.114206453784165, (r = _.subtract(temp, 55)))),

@@ -1,8 +1,13 @@
 import { converter, formatHex } from 'culori';
-import type { baseColor } from '../colors/colors';
 // ported froma chroma-js brighten
 
-const darken = (color: baseColor, amount) => {
+/**
+ * Darkens the color by reducing the lightness channel. Internally the color space is Lab by default but any channel with a lightness channel or the HWB COLOR SPACE.
+ * @param color
+ * @param amount
+ * @returns
+ */
+const darken = (color, amount) => {
     _.defaultTo(amount, 1);
     const mode = 'lab';
     const Kn = 18;
