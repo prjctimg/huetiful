@@ -1,6 +1,5 @@
-import { converter } from 'culori';
-import _ from 'lodash';
-
+import { converter } from "culori";
+import { isNumber } from "lodash-es";
 
 //@ts-check
 
@@ -13,12 +12,12 @@ import _ from 'lodash';
  */
 
 const alpha = (color, value) => {
-    const src = converter('rgb')(color);
+  const src = converter("rgb")(color);
 
-    if (alpha !== undefined && _.isNumber(alpha)) {
-        src['alpha'] = alpha;
-    }
-    return src;
+  if (alpha !== undefined && isNumber(alpha)) {
+    src["alpha"] = alpha;
+  }
+  return src;
 };
 
 export { alpha };

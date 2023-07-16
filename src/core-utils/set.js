@@ -1,7 +1,7 @@
 // ported from chroma-js Color.set
 
 // @ts-ignore
-import _ from 'lodash';
+import { slice, isString, isNumber } from 'lodash-es';
 import { converter } from 'culori';
 /**Sets the value for a single specifified channel in a color object.
  *
@@ -19,7 +19,7 @@ const set = mc => (color, value) => {
     const src = converter(mode)(color);
 
     if (channel) {
-        if (_.isString(value)) {
+        if (isString(value)) {
             switch (value.charAt(0)) {
                 case '+':
                     src[channel] += +value;
@@ -28,15 +28,15 @@ const set = mc => (color, value) => {
                     src[channel] -= +value;
                     break;
                 case '*':
-                    src[channel] *= _.slice(+value, 1);
+                    src[channel] *= slice(+value, 1);
                     break;
                 case '/':
-                    src[channel] /= _.slice(+value, 1);
+                    src[channel] /= slice(+value, 1);
                     break;
                 default:
                     src[channel] = +value;
             }
-        } else if (_.isNumber(value)) {
+        } else if (isNumber(value)) {
             src[channel] = value;
         } else {
             throw new Error(`unsupported value for setChannel`);

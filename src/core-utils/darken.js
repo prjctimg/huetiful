@@ -1,4 +1,5 @@
-import { converter, formatHex } from 'culori';
+import { defaultTo, multiply } from "lodash-es";
+import { converter, formatHex } from "culori";
 // ported froma chroma-js brighten
 
 /**
@@ -8,16 +9,16 @@ import { converter, formatHex } from 'culori';
  * @returns
  */
 const darken = (color, amount) => {
-    _.defaultTo(amount, 1);
-    const mode = 'lab';
-    const Kn = 18;
-    const lab = converter(mode)(color);
-    lab['l'] -= Kn * amount;
-    return formatHex(converter(mode)(lab));
+  defaultTo(amount, 1);
+  const mode = "lab";
+  const Kn = 18;
+  const lab = converter(mode)(color);
+  lab["l"] -= multiply(Kn, amount);
+  return formatHex(converter(mode)(lab));
 };
 
 const brighten = function (color, amount = 1) {
-    return darken(color, -amount);
+  return darken(color, -amount);
 };
 
 export { brighten, darken };

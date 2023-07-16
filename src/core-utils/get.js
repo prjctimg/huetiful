@@ -1,5 +1,5 @@
 import { converter } from 'culori';
-import _ from 'lodash';
+import { split, get } from 'lodash-es';
 
 /**
  * Gets the specifified channel on the color. Can be used to perform checks on channel values before applying color corrections
@@ -8,10 +8,10 @@ import _ from 'lodash';
 const get =
     (mc) =>
         (color) => {
-            const [mode, channel] = _.split(mc, '.');
+            const [mode, channel] = split(mc, '.');
             const src = converter(mode)(color);
 
-            return channel ? _.get(src, channel) : Error(`unknown channel ${channel} in mode ${mode}`);
+            return channel ? get(src, channel) : Error(`unknown channel ${channel} in mode ${mode}`);
         };
 
 export { get as getChannel };

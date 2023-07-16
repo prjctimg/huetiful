@@ -1,3 +1,21 @@
-import { getChannel, getTemp, setChannel, darken, brighten, alpha, setLuminance, setTemp } from "./core-utils";
+import {
+  getChannel,
+  getTemp,
+  setChannel,
+  darken,
+  brighten,
+  alpha,
+  setLuminance,
+  setTemp,
+} from "./core-utils";
 
-export { getChannel, getTemp, setChannel, darken, brighten, alpha, setLuminance, setTemp }
+export {
+  getChannel,
+  getTemp,
+  setChannel,
+  darken,
+  brighten,
+  alpha,
+  setLuminance,
+  setTemp,
+};

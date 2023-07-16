@@ -1,5 +1,5 @@
 import { converter, interpolate, wcagLuminance } from 'culori';
-import _ from 'lodash';
+import { lt, gt, eq, defaultTo, lte, divide, add, multiply, sum } from 'lodash-es';
 
 
 
@@ -19,9 +19,9 @@ const luminance = (color, lum) => {
     const EPS = 1e-7;
     let MAX_ITER = 20;
 
-    if (lum !== undefined && _.isNumber(lum)) {
+    if (lum !== undefined && isNumber(lum)) {
         // return pure black/white
-        (_.eq(lum, 0) && _.defaultTo(lum, black)) || (_.eq(lum, 1) && _.defaultTo(!lum, white));
+        (eq(lum, 0) && defaultTo(lum, black)) || (eq(lum, 1) && defaultTo(!lum, white));
 
         // compute new color using...
 
@@ -33,13 +33,13 @@ const luminance = (color, lum) => {
             //Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
             const mid = interpolate([low, high])(0.5);
             const lm = wcagLuminance(mid);
-            if (_.lt(abs(lum - lm), EPS) || !MAX_ITER--) {
+            if (lt(abs(lum - lm), EPS) || !MAX_ITER--) {
                 // close enough
                 return mid;
             }
-            return _.gt(lm, lum) ? test(low, mid) : test(mid, high);
+            return gt(lm, lum) ? test(low, mid) : test(mid, high);
         };
-        const rgb = cur_lum > lum ? test(black, color) : test(color, white);
+        const rgb = gt(cur_lum, lum) ? test(black, color) : test(color, white);
         color = rgb;
         return color;
     }
@@ -54,12 +54,12 @@ const rgb2luminance = (r, g, b) => {
     r = luminance_x(r);
     g = luminance_x(g);
     b = luminance_x(b);
-    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    return sum([multiply(0.2126, r), multiply(0.7152, g), multiply(0.0722, b)]);
 };
 
 const luminance_x = (x) => {
     x /= 255;
-    return x <= 0.03928 ? x / 12.92 : pow((x + 0.055) / 1.055, 2.4);
+    return lte(x, 0.03928) ? divide(x, 12.92) : pow(divide(add(x, 0.055), 1.055), 2.4);
 };
 
 export { luminance as setLuminance };

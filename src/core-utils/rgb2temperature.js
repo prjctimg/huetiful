@@ -5,7 +5,7 @@
 
 //  @ts-nocheck
 import { converter } from 'culori';
-import _ from 'lodash';
+import { gte, divide, map, set, multiply, round, add } from 'lodash-es';
 import { temperature2rgb } from './temperature2rgb';
 
 /**
@@ -18,22 +18,22 @@ const rgb2temperature = (color) => {
     const rgb = converter('rgb')(color);
     const rgbLimit = 255;
 
-    _.map(rgb, (val, key) => _.set(rgb, key, _.multiply(val, rgbLimit)));
+    map(rgb, (val, key) => set(rgb, key, multiply(val, rgbLimit)));
 
     let minTemp = 1000;
     let maxTemp = 40000;
     const eps = 0.4;
     let temp;
     while (maxTemp - minTemp > eps) {
-        temp = _.add(maxTemp, _.multiply(minTemp, 0.5));
+        temp = add(maxTemp, multiply(minTemp, 0.5));
         const rgb = temperature2rgb(temp);
-        if (_.gte(_.divide(rgb['b'], rgb['r']), _.divide(['b'], rgb['r']))) {
+        if (gte(divide(rgb['b'], rgb['r']), divide(['b'], rgb['r']))) {
             maxTemp = temp;
         } else {
             minTemp = temp;
         }
     }
-    return _.round(temp);
+    return round(temp);
 };
 
 export { rgb2temperature as getTemp };

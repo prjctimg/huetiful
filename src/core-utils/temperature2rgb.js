@@ -6,52 +6,68 @@
 
 //ported from chroma-js
 
-import _ from 'lodash';
+import {
+  subtract,
+  multiply,
+  add,
+  divide,
+  multiply,
+  sum,
+  inRange,
+  lt,
+  fromPairs,
+} from "lodash-es";
 const temperature2rgb = (kelvin) => {
-    //Hue change starts at approx 655 Kelvins ???
-    const eps = 655;
-    const { log } = Math;
-    // Checking if the passed in value is within a problematic range that returns negative values on the blue channel.
-    _.inRange(kelvin, 400, 650) ? (kelvin = eps) : kelvin;
+  //Hue change starts at approx 655 Kelvins ???
+  const eps = 655;
+  const { log } = Math;
+  // Checking if the passed in value is within a problematic range that returns negative values on the blue channel.
+  inRange(kelvin, 400, 650) ? (kelvin = eps) : kelvin;
 
-    const temp = _.divide(kelvin, 100);
-    let r, g, b;
-    if (_.lt(temp, 66)) {
-        r = 255;
-        g = _.lt(temp, 6)
-            ? 0
-            : _.add(
-                _.subtract(
-                    -155.25485562709179,
-                    _.multiply(0.44596950469579133, (g = _.subtract(temp, 2)))
-                ),
-                _.multiply(104.49216199393888, log(g))
-            );
+  const temp = divide(kelvin, 100);
+  let r, g, b;
+  if (lt(temp, 66)) {
+    r = 255;
+    g = lt(temp, 6)
+      ? 0
+      : add(
+          subtract(
+            -155.25485562709179,
+            multiply(0.44596950469579133, (g = subtract(temp, 2)))
+          ),
+          multiply(104.49216199393888, log(g))
+        );
 
-        b = _.lt(temp, 20)
-            ? 0
-            : _.sum([
-                -254.76935184120902,
-                _.multiply(0.8274096064007395, (b = _.subtract(temp, 10))),
-                _.multiply(115.67994401066147, log(b))
-            ]);
-    } else {
-        r = _.subtract(
-            _.add(351.97690566805693, _.multiply(0.114206453784165, (r = _.subtract(temp, 55)))),
-            _.multiply(40.25366309332127, log(r))
-        );
-        g = _.subtract(
-            _.add(325.4494125711974, _.multiply(0.07943456536662342, (g = _.subtract(temp, 50)))),
-            _.multiply(28.0852963507957, log(g))
-        );
-        b = 255;
-    }
-    return _.fromPairs([
-        ['r', r],
-        ['g', g],
-        ['b', b],
-        ['mode', 'rgb']
-    ]);
+    b = lt(temp, 20)
+      ? 0
+      : sum([
+          -254.76935184120902,
+          multiply(0.8274096064007395, (b = subtract(temp, 10))),
+          multiply(115.67994401066147, log(b)),
+        ]);
+  } else {
+    r = subtract(
+      add(
+        351.97690566805693,
+        multiply(0.114206453784165, (r = subtract(temp, 55)))
+      ),
+      multiply(40.25366309332127, log(r))
+    );
+    g = subtract(
+      add(
+        325.4494125711974,
+        multiply(0.07943456536662342, (g = subtract(temp, 50)))
+      ),
+      multiply(28.0852963507957, log(g))
+    );
+    b = 255;
+  }
+  return fromPairs([
+    ["r", r],
+    ["g", g],
+    ["b", b],
+    ["mode", "rgb"],
+  ]);
 };
 
 export { temperature2rgb };
