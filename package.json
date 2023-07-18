@@ -1,6 +1,6 @@
 {
   "name": "huetiful-js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "main": "./dist/huetiful.cjs",
   "module": "./dist/huetiful.min.mjs",
@@ -8,7 +8,7 @@
   "description": "A small collection of JavaScript functions for color manipulations.",
   "dependencies": {
     "culori": "3.0.1",
-    "huetiful-js": "^0.0.5",
+    
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
