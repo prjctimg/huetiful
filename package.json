@@ -1,18 +1,14 @@
 {
-  "name": "huetifuljs",
+  "name": "huetiful-js",
   "version": "0.0.5",
   "type": "module",
   "main": "./dist/huetiful.cjs",
   "module": "./dist/huetiful.min.mjs",
   "browser": "./dist/huetiful.min.js",
-  "exports": {
-    ".": "./src/index.js",
-    "./require": "./dist/huetiful.cjs",
-    "./package.json": "./package.json"
-  },
   "description": "A small collection of JavaScript functions for color manipulations.",
   "dependencies": {
     "culori": "3.0.1",
+    "huetiful-js": "^0.0.5",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
@@ -23,6 +19,8 @@
     "chroma-js": "^2.4.2",
     "culori": "^3.0.1",
     "esbuild": "^0.17.18",
+    "ink-docstrap": "^1.3.2",
+    "jsdoc": "^4.0.2",
     "nodemon": "^3.0.1",
     "typescript": "^4.9.5"
   },
@@ -37,7 +35,11 @@
     "type": "git",
     "url": "https://github/prjctimg/huetiful"
   },
-  "keywords": [],
+  "keywords": [
+    "LCH",
+    "Palette",
+    "Color"
+  ],
   "author": "Dean Tarisai",
   "email": "arcaneqoder@gmail.com",
   "homepage": "https://huetiful.github.io",

@@ -1,6 +1,7 @@
 {
   "include": [
-    "./src/**/*.js"
+    "./src/**/*.js",
+    "easing.js"
   ],
   "compilerOptions": {
     "allowJs": true,

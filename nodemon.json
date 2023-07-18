@@ -1,1 +1,1 @@
-{"watch":["dist","src"],"ext":".js","exec":"node ./src/experimental/easing.js --watch "}
+{"watch":["dist","src"],"ext":".js","exec":"node app.js --watch "}

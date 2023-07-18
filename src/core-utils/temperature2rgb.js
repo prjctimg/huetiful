@@ -11,7 +11,6 @@ import {
   multiply,
   add,
   divide,
-  multiply,
   sum,
   inRange,
   lt,
@@ -70,4 +69,4 @@ const temperature2rgb = (kelvin) => {
   ]);
 };
 
-export { temperature2rgb };
+export { temperature2rgb as setTemp };
