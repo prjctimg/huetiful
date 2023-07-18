@@ -1,3 +1,3 @@
-import { getTemp } from "./src/index.js";
+import { alpha, getTemp } from "./src/index.js";
 
-console.log(getTemp("pink"));
+console.log(alpha("pink"));
