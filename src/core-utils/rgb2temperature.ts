@@ -16,7 +16,8 @@ import {
   add,
   subtract,
 } from "lodash-es";
-import { setTemp } from "./temperature2rgb.js";
+import { setTemp } from "./temperature2rgb.ts";
+import type { baseColor } from "../paramTypes.ts";
 
 /**
  * Returns the temperature value in Kelvins of the passed in color token.
@@ -24,7 +25,7 @@ import { setTemp } from "./temperature2rgb.js";
  * @returns {number}
  */
 
-const rgb2temperature = (color) => {
+const rgb2temperature = (color: baseColor) => {
   //Store the color in an object with the RGB channels normalized to [0,1]
   const rgb = converter("rgb")(color);
   const rgbLimit = 255;
