@@ -2,28 +2,29 @@ import { has, isString, map, isObject, keys, isInteger } from "lodash-es";
 import { converter } from "culori";
 import colors from "../colors/colors.ts";
 import type { baseColor } from "../paramTypes.ts";
-import tailwindColors from "../color-maps/tailwindColors.ts";
+import defaultPalette from "../color-maps/defaultTailwindPalette.ts";
 
 import { num2rgb } from "./num2rgb.ts";
 
 /**
  * @function
  * Converts all elements in array to hex values. Checks if the value is a color object with the mode key.
- * @param  arr
- * @returns
+ * @param  arr The array of colors.
+ * @returns array Returns an array of hex codes.
  */
 const purify = (arr: baseColor[], mode: "rgb" | "hex"): string[] => {
+  const black = "#000000";
   const result = map(arr, (val) => {
     //First check if the color token is valid using the Chroma constructor. :
 
     if (isInteger(val)) {
       return num2rgb(val);
-    } else if (isString(val) && has(tailwindColors, val)) {
+    } else if (isString(val) && has(defaultPalette, val)) {
       return colors(val, "500");
     } else if (isObject(val) && (val.mode || keys(val).toString())) {
       return converter(mode)(val);
     } else {
-      return "#000000";
+      return black;
     }
 
     // If not identifiable then check it against the keys of tailwind hues. If true return that hue at 500

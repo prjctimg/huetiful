@@ -1,7 +1,23 @@
 {
   "include": [
     "./src/**/*.js",
-    "easing.js"
+    "easing.js",
+    "src/index.ts",
+    "src/core-utils/temperature2rgb.ts",
+    "src/core-utils/set.ts",
+    "src/core-utils/rgb2temperature.ts",
+    "src/core-utils/rgb2num.ts",
+    "src/core-utils/purify.ts",
+    "src/core-utils/num2rgb.ts",
+    "src/core-utils/luminance.ts",
+    "src/core-utils/get.ts",
+    "src/core-utils/darken.ts",
+    "src/core-utils/alpha.ts",
+    "src/color-maps/defaultTailwindPalette.ts",
+    "src/colors/tailwindColors.ts",
+    "src/color-maps/defaultTailwindPalette.ts",
+    "src/colors/colors.ts",
+    "src/colors/tailwindColors.ts"
   ],
   "compilerOptions": {
     "allowJs": true,

@@ -72,8 +72,8 @@ const rgb2luminance = (r, g, b) => {
   return sum([multiply(0.2126, r), multiply(0.7152, g), multiply(0.0722, b)]);
 };
 
-const luminance_x = (x) => {
-  divide(x, 255) = x;
+const luminance_x = (x: number) => {
+  x /= 255;
   return lte(x, 0.03928)
     ? divide(x, 12.92)
     : pow(divide(add(x, 0.055), 1.055), 2.4);

@@ -1,1 +1,3 @@
-{"watch":["dist","src"],"ext":".js","exec":"node ./app.js --watch "}
+{"watch":["src"],"exec":"node app.js --watch ","execMap":{
+    ".ts":"ts-node"
+}}

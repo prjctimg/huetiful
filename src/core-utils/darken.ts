@@ -16,7 +16,7 @@ const darken = (
   mode: keyof HueColorSpaces
 ) => {
   defaultTo(amount, 1);
-  const mode = "lab";
+  const default_mode = "lab";
   const Kn = 18;
 
   // Addv acheck here like the one in set.js

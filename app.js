@@ -1,12 +1,3 @@
-import {
-  alpha,
-  brighten,
-  darken,
-  getTemp,
-  purify,
-} from "./src/core-utils/purify.js";
+import { tailwindColors } from "./dist/huetiful.esm.mjs";
 
-console.log(alpha("pink"));
-console.log(
-  purify(["slate", "blue", "#3fab0d", { l: 50, c: 80, h: 120 }, 780])
-);
+console.log(tailwindColors("amber")("300"));

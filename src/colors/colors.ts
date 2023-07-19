@@ -1,5 +1,5 @@
 import { get, map, values, isUndefined, forEach, isEqual } from "lodash-es";
-import tailwindColors from "../color-maps/tailwindColors.js";
+import tailwindColors from "../color-maps/defaultTailwindPalette.js";
 
 export default function colors(hue, val) {
   // Store the TailwindCSS color map
