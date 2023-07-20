@@ -7,7 +7,7 @@ import type { HueMap, ScaleValues } from "../paramTypes.ts";
  * @returns color A hex string value or array of hex strings.
  *
  */
-
+// Make it case insensetive.
 const tailwindColors =
   (shade: keyof HueMap) =>
   (val?: keyof ScaleValues): string | string[] => {

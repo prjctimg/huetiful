@@ -1,7 +1,23 @@
-import { get, map, values, isUndefined, forEach, isEqual } from "lodash-es";
-import tailwindColors from "../color-maps/defaultTailwindPalette.js";
+import {
+  get,
+  map,
+  values,
+  isUndefined,
+  forEach,
+  isEqual,
+  has,
+} from "lodash-es";
+import shades from "../color-maps/defaultTailwindPalette.ts";
+import type { HueMap, ScaleValues } from "../paramTypes.ts";
 
-const colors = (hue, val) => {
+/**
+ * @function
+ * A wrapper function for the default Tailwind palette. If called with both parameters it return the hex code at the specified shade and value. Else, if called with the shade parameter as "all" it will return all colors from the shades in the palette map at the specified value (if value is undefined it will default to "500"). When called with the shade parameter only it will return all the colors from 100 to 900 of the specified shade.
+ * @param shade Any shade in the default TailwindCSS palette e.g amber,blue.
+ * @param val Any value from 100 to 900 in increments of 100 e.g "200".
+ * @returns color Returns a hex code string or array of hex codes depending on how the function is called.
+ */
+const colors = (shade: keyof HueMap, val: keyof ScaleValues) => {
   const defaultHue = "all";
   const black = "#000000";
 
@@ -10,13 +26,15 @@ const colors = (hue, val) => {
 
   // If only the value is defined return that color value for every hue.
 
-  if (isEqual(hue, defaultHue)) {
-    return map(tailwindColors, (hueType) => get(hueType, [val || "500"]));
-  } else if (hue && val) {
-    return get(tailwindColors[hue], val);
-  } else if (hue && isUndefined(val)) {
-    return values(tailwindColors[hue]);
-  } else if (isUndefined(hue) && isUndefined(val)) {
+  if (isEqual(shade, defaultHue)) {
+    return map(shades, (color) => get(color, [val || "500"]));
+  } else if (has(shades, shade) && val) {
+    return get(shades[shade], val);
+  } else if (shade && isUndefined(val)) {
+    return values(shades[shade]);
+  } else if (isUndefined(shade) && isUndefined(val)) {
     return black;
   }
 };
+
+export { colors };

@@ -9,7 +9,10 @@ import { getTemp } from "./core-utils/rgb2temperature.ts";
 import { setChannel } from "./core-utils/set.ts";
 import { setTemp } from "./core-utils/temperature2rgb.ts";
 import { tailwindColors } from "./colors/tailwindColors.ts";
+import { isAchromatic } from "./colors/achromatic.ts";
+import { colors } from "./colors/colors.ts";
 export {
+  isAchromatic,
   getChannel,
   getTemp,
   setChannel,
@@ -22,4 +25,5 @@ export {
   num2rgb,
   purify,
   tailwindColors,
+  colors,
 };

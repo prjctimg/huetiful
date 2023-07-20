@@ -1,6 +1,6 @@
 import { has, isString, map, isObject, keys, isInteger } from "lodash-es";
 import { converter } from "culori";
-import colors from "../colors/colors.ts";
+import { colors } from "../colors/colors.ts";
 import type { baseColor } from "../paramTypes.ts";
 import defaultPalette from "../color-maps/defaultTailwindPalette.ts";
 
