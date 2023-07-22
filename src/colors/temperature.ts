@@ -14,27 +14,27 @@ import type { baseColor } from "../paramTypes.ts";
 import { format } from "../core-utils/format.ts";
 
 const isCool = (color: baseColor) => {
+  const { r, g, b } = color;
   // Make sure the color is parseable by converter()
-  const xyz = converter("xyz65")(format(color));
-  console.log(xyz);
-  // I want to clip colors within the
+
   // Double conversion from XYZ to Lab. Why though ???
-  color = converter("lab65")(color);
-  console.log(color);
+  color = converter("lab65")(format(color));
+
+  // Capture the cool and warm ranges (starts and ends)
+  const cool = { start: -100, end: -20 };
+  const warm = { start: 40, end: 100 };
+
+  const isACool =
+    inRange(g, cool["start"], cool["end"]) &&
+    inRange(b, cool["start"], cool["end"]);
+  const isAWarm =
+    inRange(g, warm["start"], warm["end"]) &&
+    inRange(b, warm["start"], warm["end"]);
 
   // i need to take account of the different channel values for certain color ranges
-  let r, g, b, y;
-
-  // Coords for red,green,yellow,blue
-  y = b = { start: 0, end: clamp(color["b"], 100, 1) };
-  b = { start: 0, end: clamp(color["b"], -100, 0) };
-  g = { start: 0, end: clamp(color["a"], -100, 0) };
-  r = { start: 0, end: clamp(color["a"], 100, 1) };
-  // Check the ranges of the *a and *b component
-  return inRange(color["a"], g["start"], g["end"]) &&
-    inRange(color["b"], b["start"], b["end"])
-    ? stubTrue()
-    : stubFalse();
+  const isCoolColor = isACool && gt(color["a"], 0);
+  const isWarmColor = isAWarm && gt(color["a"], 0);
+  return isCoolColor || isWarmColor;
 };
 
 export { isCool };
