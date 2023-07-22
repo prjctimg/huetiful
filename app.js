@@ -1,3 +1,8 @@
-import { tailwindColors, colors, isAchromatic } from "./dist/huetiful.esm.mjs";
+import {
+  tailwindColors,
+  colors,
+  isAchromatic,
+  isCool,
+} from "./dist/huetiful.esm.mjs";
 
-console.log(isAchromatic("gray"));
+console.log(isCool("blue"));

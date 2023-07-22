@@ -30,6 +30,7 @@ const rgb2temperature = (color: baseColor) => {
   const rgb = converter("rgb")(color);
   const rgbLimit = 255;
   const r = rgb["r"],
+    g = rgb["g"],
     b = rgb["b"];
   map(rgb, (val, key) => set(rgb, key, multiply(val, rgbLimit)));
 
@@ -40,10 +41,14 @@ const rgb2temperature = (color: baseColor) => {
   while (gt(subtract(maxTemp, minTemp), eps)) {
     temp = multiply(add(maxTemp, minTemp), 0.5);
     const rgb = setTemp(temp);
-    if (gte(divide(rgb["b"], rgb["r"]), divide(b, r))) {
+    if (gt(b, 0)) {
+      if (gte(divide(rgb["b"], rgb["r"]), divide(b, r))) {
+        maxTemp = temp;
+      } else {
+        minTemp = temp;
+      }
+    } else if (rgb["g"] >= g) {
       maxTemp = temp;
-    } else {
-      minTemp = temp;
     }
   }
 
