@@ -4,6 +4,12 @@
  * @see chromajswebsitehere
  */
 
+export type palette =
+  | "analogous"
+  | "triadic"
+  | "tetradic"
+  | " complementary"
+  | "splitComplementary";
 export type baseColor =
   | number
   | string

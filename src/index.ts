@@ -12,8 +12,10 @@ import { tailwindColors } from "./colors/tailwindColors.ts";
 import { isAchromatic } from "./colors/achromatic.ts";
 import { colors } from "./colors/colors.ts";
 import { isCool } from "./colors/temperature.ts";
+import { base } from "./palettes/base.ts";
 
 export {
+  base,
   isCool,
   isAchromatic,
   getChannel,
