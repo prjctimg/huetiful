@@ -1,3 +1,3 @@
-import { base } from "./dist/huetiful.esm.mjs";
+import { base, filterByTemp } from "./dist/huetiful.esm.mjs";
 
-console.log(base("analogous")("blue"));
+console.log(filterByTemp(["#fc3ab1", "#000000", "#ffffff", "#d31bce"]));

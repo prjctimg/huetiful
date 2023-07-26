@@ -4,7 +4,7 @@
  **/
 
 //  @ts-nocheck
-import { converter } from "culori";
+import { lrgb } from "culori";
 import {
   gt,
   gte,
@@ -27,7 +27,7 @@ import type { baseColor } from "../paramTypes.ts";
 
 const rgb2temperature = (color: baseColor) => {
   //Store the color in an object with the RGB channels normalized to [0,1]
-  const rgb = converter("rgb")(color);
+  const rgb = lrgb(color);
   const rgbLimit = 255;
   const r = rgb["r"],
     g = rgb["g"],

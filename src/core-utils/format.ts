@@ -1,5 +1,15 @@
-import { has, isString, map, isObject, keys, isInteger } from "lodash-es";
-import { converter } from "culori";
+import {
+  has,
+  isString,
+  map,
+  isObject,
+  keys,
+  isInteger,
+  toLower,
+  set,
+  toString,
+} from "lodash-es";
+import { colorsNamed, converter } from "culori";
 import { colors } from "../colors/colors.ts";
 import type { baseColor } from "../paramTypes.ts";
 import defaultPalette from "../color-maps/defaultTailwindPalette.ts";
@@ -21,9 +31,12 @@ const format = (color: baseColor): string => {
 
   if (isInteger(color)) {
     return num2rgb(color);
-  } else if (isString(color) && has(defaultPalette, color)) {
-    return colors(color, "500");
-  } else if (isObject(color) && (color.mode || keys(color).toString())) {
+  } else if (isString(color) && has(colorsNamed, toLower(color))) {
+    return colorsNamed[color];
+  } else if (
+    isObject(color) &&
+    (color.mode || set(color, "mode", toString(keys(color))))
+  ) {
     return converter(mode)(color);
   } else {
     return black;

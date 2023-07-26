@@ -17,7 +17,13 @@
     "src/colors/tailwindColors.ts",
     "src/color-maps/defaultTailwindPalette.ts",
     "src/colors/colors.ts",
-    "src/colors/tailwindColors.ts"
+    "src/colors/tailwindColors.ts",
+    "src/color-maps/colorBrewer.ts",
+    "src/color-maps/gradients.ts",
+    "src/color-maps/hslHueMap.ts",
+    "src/filterBy/filterByLuminance.ts",
+    "src/filterBy/filterByTemp.ts",
+    "src/filterBy/filterByHue.ts"
   ],
   "compilerOptions": {
     "allowJs": true,

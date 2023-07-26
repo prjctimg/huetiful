@@ -1,40 +1,34 @@
 import {
   add,
   clamp,
+  concat,
+  find,
   gt,
   inRange,
   lt,
   lte,
+  map,
+  min,
+  max,
   stubFalse,
   stubTrue,
 } from "lodash-es";
+import hueTempMap from "../color-maps/hueTemperature.ts";
 import { converter } from "culori";
-import { getTemp } from "../core-utils/rgb2temperature.ts";
 import type { baseColor } from "../paramTypes.ts";
 import { format } from "../core-utils/format.ts";
 
 const isCool = (color: baseColor) => {
-  const { r, g, b } = color;
-  // Make sure the color is parseable by converter()
+  color = converter("lch")(format(color));
 
-  // Double conversion from XYZ to Lab. Why though ???
-  color = converter("lab65")(format(color));
+  let concatArr = (obj) =>
+    map(obj, (val, key) => concat(val["cool"], val["warm"]));
 
-  // Capture the cool and warm ranges (starts and ends)
-  const cool = { start: -100, end: -20 };
-  const warm = { start: 40, end: 100 };
+    // I'm queryingbthe hueTempMap object. I want the key that returns true
+   find(hueTempMap, (val) =>{
 
-  const isACool =
-    inRange(g, cool["start"], cool["end"]) &&
-    inRange(b, cool["start"], cool["end"]);
-  const isAWarm =
-    inRange(g, warm["start"], warm["end"]) &&
-    inRange(b, warm["start"], warm["end"]);
-
-  // i need to take account of the different channel values for certain color ranges
-  const isCoolColor = isACool && gt(color["a"], 0);
-  const isWarmColor = isAWarm && gt(color["a"], 0);
-  return isCoolColor || isWarmColor;
+   return inRange(color["h"], min(concatArr(val)), max(concatArr(val)))
+  )}
 };
 
 export { isCool };
