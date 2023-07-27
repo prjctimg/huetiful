@@ -1,10 +1,11 @@
-import _ from "lodash";
-import purify from "../core-utils/purify.js";
-import { getChannel } from "../core-utils/get.js";
+import { map, inRange, fromPairs, filter } from "lodash-es";
+
+import { getChannel } from "../core-utils/get.ts";
+import { converter, formatHex } from "culori";
 
 //filterByHue takes an array of colors and
 /**
- * @function filterByHue
+ * @function
  * Returns colors in the specified hue ranges between 0 to 360 and color space.
  * @param {Array} colors The array of colors to filter.
  * @param {Number} startHue The minimum end of the hue range.
@@ -13,29 +14,23 @@ import { getChannel } from "../core-utils/get.js";
  * @returns {Array} Array of the filtered colors.
  */
 
-const filterByHue = (
-  colors = [],
-  startHue = 200,
-  endHue = 300,
-  mode = "lch"
-) => {
-  var getColor = _.nth;
+const filterByHue = (colors = [], startHue = 200, endHue = 300) => {
+  colors = map(colors, (el) => converter("lch")(el));
 
   // Color space and channel to query from.
-  var colorArr = purify(colors);
-  var colorObjArr = _.map(colorArr, (val, key) =>
-    _.fromPairs([
-      ["hue", getChannel(val)(mode)],
-      ["name", getColor(colors, key)],
+  /* var colorArr = purify(colors); */
+  var colorObjArr = map(colorArr, (el) =>
+    fromPairs([
+      ["hue", getChannel(el)("lch")],
+      ["name", formatHex(el)],
     ])
   );
 
   // This variable stores the array that matches the filtering criteria defined by the start and end hues
-  var filteredArr = _.filter(colorObjArr, (val) =>
-    _.inRange(val.hue, startHue, endHue)
+  return map(
+    filter(colorObjArr, (el) => inRange(el["hue"], startHue, endHue)),
+    (el) => el["name"]
   );
-
-  return _.map(filteredArr, (val) => val.name);
 };
 
 export { filterByHue };

@@ -15,8 +15,10 @@ import { colors } from "./colors/colors.ts";
 import { base } from "./palettes/base.ts";
 import { filterByLuminance } from "./filterBy/filterByLuminance.ts";
 import { filterByTemp } from "./filterBy/filterByTemp.ts";
+import { filterByHue } from "./filterBy/filterByHue.ts";
 
 export {
+  filterByHue,
   base,
   filterByTemp,
   filterByLuminance,
