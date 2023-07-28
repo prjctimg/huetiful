@@ -1,9 +1,10 @@
-import _ from 'lodash';
-import purify from '../core-utils/purify.mjs';
-import { getChannel } from '../core-utils/helpers.mjs';
-import hslHueMap from '../color-maps/hslHueMap.mjs';
-import { differenceEuclidean, nearest } from 'culori';
-import type { Colors, HueColorSpaces } from '../colors/colors.js';
+import _ from "lodash";
+import purify from "../core-utils/purify.mjs";
+import { getChannel } from "../core-utils/helpers.mjs";
+import hslHueMap from "../color-maps/hslHueMap.mjs";
+import { differenceEuclidean, nearest } from "culori";
+import type { Colors, HueColorSpaces } from "../colors/colors.js";
+import { sortBy } from "../paramTypes.js";
 
 /**
  * @function sortByHue * Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
@@ -14,31 +15,12 @@ import type { Colors, HueColorSpaces } from '../colors/colors.js';
  */
 
 // Todo: Add the mode param so that users can select mode to work with. The default is
-export default function sortByHue(
-    colors: Colors,
-    order: 'asc' | 'desc',
-    mode: keyof HueColorSpaces
-) {
-    const tailwindBaseHues = _.keys({
-        indigo: '#4f46e5',
-        gray: '#4b5563',
-        zinc: '#52525b',
-        neutral: '#525252',
-        stone: '#57534e',
-        red: '#dc2626',
-        orange: '#ea580c',
-        amber: '#d97706',
-        yellow: '#ca8a04',
-        lime: '#65a30d',
-        green: '#16a34a',
-        emerald: '#059669',
-        teal: '#0d9488',
-        sky: '#0284c7',
-        blue: '#2563eb',
-        violet: '#7c3aed',
-        purple: '#9333ea',
-        fuchsia: '#c026d3',
-        pink: '#db2777',
-        rose: '#e11d48'
-    });
-}
+const sortByHue: sortBy = (colors, order) => {
+  const factor = "hue";
+  const cb = getChannel("lch.h");
+  //Sorting the color array of object by the 'temp' property in the specified order.
+
+  return sortedArr(factor, cb, order)(colorObjArr, colors);
+};
+
+export { sortByHue };

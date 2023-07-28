@@ -1,6 +1,7 @@
 import { filter, inRange, map, fromPairs } from "lodash-es";
 import { getTemp } from "../core-utils/rgb2temperature.ts";
 import { formatHex, converter } from "culori";
+import { filterBy } from "../paramTypes.js";
 
 /**
  * @function
@@ -14,22 +15,16 @@ import { formatHex, converter } from "culori";
 
 //TODO Could also specify warm|cool to quickly return the filtered array. This param overrides startTemp and endTemp.
 
-const filterByTemp = (colors = [], startTemp = 1000, endTemp = 6000) => {
-  colors = map(colors, (el) => converter("rgb")(el));
-
-  var colorObjArr = map(colors, (el) =>
-    fromPairs([
-      ["temp", getTemp(el)],
-      ["name", formatHex(el)],
-    ])
-  );
-
+const filterByTemp: filterBy = (colors, startTemp = 1000, endTemp = 6000) => {
   // This variable stores the array that matches the filtering criteria defined by the start and end hues
-  var filteredArr = filter(colorObjArr, (el) =>
-    inRange(el["temp"], startTemp, endTemp)
-  );
+  const factor = "temp";
+  const cb = getTemp;
 
-  return map(filteredArr, (el) => el["name"]);
+  return filteredArr(factor)(
+    colorObjArr(factor, cb)(colors),
+    startTemp,
+    endTemp
+  );
 };
 
 export { filterByTemp };

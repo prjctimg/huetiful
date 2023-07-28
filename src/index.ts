@@ -18,7 +18,11 @@ import { filterByTemp } from "./filterBy/filterByTemp.ts";
 import { filterByHue } from "./filterBy/filterByHue.ts";
 import { filterBySaturation } from "./filterBy/filterBySaturation.ts";
 import { sortByTemp } from "./sortBy/sortByTemp.ts";
+import { sortByLuminance } from "./sortBy/sortByLuminance.ts";
+import { sortBySaturation } from "./sortBy/sortBySaturation.ts";
 export {
+  sortByLuminance,
+  sortBySaturation,
   sortByTemp,
   filterByHue,
   filterBySaturation,

@@ -1,7 +1,6 @@
 import { getTemp } from "../core-utils/rgb2temperature.ts";
-import type { baseColor } from "../paramTypes.ts";
+import type { baseColor, sortBy } from "../paramTypes.ts";
 import { colorObjArr, sortedArr } from "../core-utils/helpers.ts";
-import { defaultTo } from "lodash";
 
 /**
  * @function
@@ -12,10 +11,7 @@ import { defaultTo } from "lodash";
  * @see Based on Neil Bartlett's implementation https://github.com/neilbartlett/color-temperature
  */
 
-const sortByTemp = (
-  colors: baseColor[],
-  order: "asc" | "desc"
-): baseColor[] => {
+const sortByTemp: sortBy = (colors, order) => {
   // Purifying the data.All colors are converted to the specified mode to ensure unbiased results.
   const factor = "temp";
   const cb = getTemp;

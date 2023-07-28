@@ -1,5 +1,6 @@
 import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 import { wcagLuminance } from "culori";
+import { filterBy } from "../paramTypes.js";
 
 /**
  *  @function
@@ -10,8 +11,8 @@ import { wcagLuminance } from "culori";
  * @returns Array of filtered colors.
  */
 
-const filterByLuminance = (
-  colors = [],
+const filterByLuminance: filterBy = (
+  colors,
   startLuminance = 0.05,
   endLuminance = 1
 ) => {

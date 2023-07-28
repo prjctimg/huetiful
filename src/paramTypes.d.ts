@@ -25,7 +25,12 @@ export type baseColor =
  * @param
  *
  */
+export type filterBy = (colors = [], start: number, end: number) => baseColor[];
 
+export type sortBy = (
+  colors: baseColor[],
+  order: "asc" | "desc"
+) => baseColor[];
 export type factorMapper = (
   factor: string,
   cb: (arg: baseColor) => number
