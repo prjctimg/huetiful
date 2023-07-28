@@ -1,3 +1,17 @@
-import { base, filterByLuminance, filterByTemp } from "./dist/huetiful.esm.mjs";
+import {
+  base,
+  filterByLuminance,
+  filterByTemp,
+  filterBySaturation,
+  getChannel,
+  filterByHue,
+} from "./dist/huetiful.esm.mjs";
 
-console.log(filterByLuminance(["#fc3ab1", "#000000", "#ffffff", "#d31bce"]));
+console.log(
+  filterByHue(
+    ["#fc3ab1", "blue", "yellow", "purple", "#d31bce", "red"],
+    10,
+    200
+  )
+);
+console.log(getChannel("lch.c")("pink"));

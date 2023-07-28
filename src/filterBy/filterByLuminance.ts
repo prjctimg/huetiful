@@ -1,6 +1,5 @@
-import { map, fromPairs, inRange, filter } from "lodash-es";
-import { format } from "../core-utils/format.ts";
-import { formatHex, converter, wcagLuminance } from "culori";
+import { colorObjArr, filteredArr } from "./helpers.ts";
+import { wcagLuminance } from "culori";
 
 /**
  *  @function
@@ -16,21 +15,15 @@ const filterByLuminance = (
   startLuminance = 0.05,
   endLuminance = 1
 ) => {
-  colors = map(colors, (el) => converter("lrgb")(el));
   // Formatting color tokens to parseable type
   // Create an object that has the luminance and name of color as properties.
-  var colorObjArr = map(colors, (color) =>
-    fromPairs([
-      ["luminance", wcagLuminance(color)],
-      ["name", formatHex(color)],
-    ])
-  );
+  const factor = "luminance";
+  const cb = wcagLuminance;
 
-  return map(
-    filter(colorObjArr, (color) =>
-      inRange(color["luminance"], startLuminance, endLuminance)
-    ),
-    (color) => color["name"]
+  return filteredArr(factor)(
+    colorObjArr(factor, cb)(colors),
+    startLuminance,
+    endLuminance
   );
 };
 
