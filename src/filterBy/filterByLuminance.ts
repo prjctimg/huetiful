@@ -1,4 +1,4 @@
-import { colorObjArr, filteredArr } from "./helpers.ts";
+import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 import { wcagLuminance } from "culori";
 
 /**

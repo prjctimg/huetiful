@@ -17,7 +17,9 @@ import { filterByLuminance } from "./filterBy/filterByLuminance.ts";
 import { filterByTemp } from "./filterBy/filterByTemp.ts";
 import { filterByHue } from "./filterBy/filterByHue.ts";
 import { filterBySaturation } from "./filterBy/filterBySaturation.ts";
+import { sortByTemp } from "./sortBy/sortByTemp.ts";
 export {
+  sortByTemp,
   filterByHue,
   filterBySaturation,
   base,

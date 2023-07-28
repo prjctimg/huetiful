@@ -23,10 +23,13 @@ export type baseColor =
 
 /**
  * @param
- * The upper and lower bound of a property.Usually clamped to [0,1]
+ *
  */
 
-export type Range = [number, number];
+export type factorMapper = (
+  factor: string,
+  cb: (arg: baseColor) => number
+) => (colors: baseColor[]) => object[];
 
 type HueColorSpaces = {
   hsl?: [number, number];

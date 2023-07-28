@@ -1,4 +1,4 @@
-import { filteredArr, colorObjArr } from "./helpers.ts";
+import { filteredArr, colorObjArr } from "../core-utils/helpers.ts";
 
 import { getChannel } from "../core-utils/get.ts";
 import type { baseColor } from "../paramTypes.ts";

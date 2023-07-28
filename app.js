@@ -1,5 +1,6 @@
 import {
   base,
+  sortByTemp,
   filterByLuminance,
   filterByTemp,
   filterBySaturation,
@@ -8,10 +9,6 @@ import {
 } from "./dist/huetiful.esm.mjs";
 
 console.log(
-  filterByHue(
-    ["#fc3ab1", "blue", "yellow", "purple", "#d31bce", "red"],
-    10,
-    200
-  )
+  sortByTemp(["#fc3ab1", "blue", "yellow", "purple", "#d31bce", "red"], "asc")
 );
 console.log(getChannel("lch.c")("pink"));
