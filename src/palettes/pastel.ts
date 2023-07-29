@@ -48,10 +48,34 @@ const pastelSample = {
   maxSampleSaturation: max(sampleSaturation),
   minSampleValue: min(sampleValues),
   maxSampleValue: max(sampleValues),
+
+
+
+
+
+
+
+
 };
+
+
+
+
+//Normalize the s and v channels between low and max values for each
 const pastelMapper = (
   color: baseColor,
   value: number,
   saturation: number,
   mode = "hsv"
-): baseColor => {};
+): baseColor => {
+
+ color = converter('hsv')(color)
+
+ // For now we're simply returning an hsv object with the s and v channel set to the averages
+  return {
+    h:color['h']
+    s:pastelSample['averageSaturation'],
+    v:pastelSample['averageValue'],
+  };
+};
+
