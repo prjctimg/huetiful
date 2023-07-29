@@ -1,9 +1,12 @@
+![](huetiful-logo.png)
+
+
 # huetiful-js 
 
 huetiful-js is a JavaScript library for general purpose color manipulation. It builds on top of the Culori API 
 
 ## Installation
-Using [npm](https://www.npmjs.com/package/huetiful-js) to install huetiful-js.
+Use [npm](https://www.npmjs.com/package/huetiful-js) to install the package.
 
 ```bash
 npm i huetiful-js
