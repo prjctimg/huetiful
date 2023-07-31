@@ -63,7 +63,7 @@ const pastelSample = {
 
 //Normalize the s and v channels between low and max values for each
 const pastelMapper = (
-  color: baseColor,
+  color: baseColor,-
   value: number,
   saturation: number,
   mode = "hsv"
