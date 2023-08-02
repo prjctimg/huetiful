@@ -1,6 +1,6 @@
-import type { sortBy } from "../paramTypes.js";
-
-import { getLuminance } from "../core-utils/luminance.js";
+import type { sortBy } from "../paramTypes.ts";
+import { sortedArr } from "../core-utils/helpers.ts";
+import { getLuminance } from "../core-utils/luminance.ts";
 
 /**
  * Sorts colors according to the relative brightness as defined by WCAG definition.
@@ -15,7 +15,7 @@ const sortByLuminance: sortBy = (colors, order) => {
   const cb = getLuminance;
   //Sorting the color array of object by the 'temp' property in the specified order.
 
-  return sortedArr(factor, cb, order)(colorObjArr, colors);
+  return sortedArr(factor, cb, order)(colors);
 };
 
 export { sortByLuminance };

@@ -22,9 +22,7 @@ import {
  * @param kelvin The number of Kelvins. From 0 to 30,000 .
  * @returns color An RGB color object.
  */
-const temperature2rgb = (
-  kelvin: number
-): { r: number; g: number; b: number; mode: "rgb" } => {
+const temperature2rgb = (kelvin: number) => {
   //Hue change starts at approx 655 Kelvins ???
   const eps = 655;
   const { log } = Math;

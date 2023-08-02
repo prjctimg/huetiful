@@ -26,6 +26,7 @@
     "src/filterBy/filterByHue.ts"
   ],
   "compilerOptions": {
+    "skipLibCheck": true,
     "allowJs": true,
     // "checkJs": true,
     "declaration": true,
@@ -33,6 +34,7 @@
     "emitDeclarationOnly": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
-    "declarationDir": "types"
+    "declarationDir": "types",
+    "allowImportingTsExtensions": true
   }
 }

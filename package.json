@@ -1,6 +1,6 @@
 {
   "name": "huetiful-js",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "type": "module",
   "main": "./dist/huetiful.cjs",
   "module": "./dist/huetiful.min.mjs",
@@ -11,17 +11,11 @@
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "@types/chroma-js": "^2.4.0",
     "@types/culori": "^2.0.0",
-    "@types/lodash": "^4.14.191",
     "@types/lodash-es": "^4.17.8",
-    "chroma-js": "^2.4.2",
-    "culori": "^3.0.1",
     "esbuild": "^0.17.18",
-    "ink-docstrap": "^1.3.2",
-    "jsdoc": "^4.0.2",
     "nodemon": "^3.0.1",
-    "ts-node": "^10.9.1",
+    "typedoc": "^0.24.8",
     "typescript": "^4.9.5"
   },
   "scripts": {
@@ -31,10 +25,12 @@
     "dist",
     "src"
   ],
-  "publishConfig": {"registry": "https://npm.pkg.github.com"},
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github/prjctimg/huetiful"
+    "url": "https://github/prjctimg/huetiful.git"
   },
   "keywords": [
     "LCH",

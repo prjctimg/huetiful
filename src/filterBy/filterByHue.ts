@@ -1,7 +1,7 @@
 import { filteredArr, colorObjArr } from "../core-utils/helpers.ts";
 
 import { getChannel } from "../core-utils/get.ts";
-import type { baseColor, filterBy } from "../paramTypes.ts";
+import type { Color, filterBy } from "../paramTypes.ts";
 
 //filterByHue takes an array of colors and
 /**
@@ -14,15 +14,11 @@ import type { baseColor, filterBy } from "../paramTypes.ts";
  * @returns  Array of the filtered colors.
  */
 
-const filterByHue: filterBy = (
-  colors,
-  startHue = 0,
-  endHue = 360
-): baseColor[] => {
+const filterByHue: filterBy = (colors, startHue = 0, endHue = 360) => {
   const factor = "hue";
   const cb = getChannel("lch.h");
   console.log(colorObjArr(factor, cb)(colors));
-  return filteredArr(factor)(colorObjArr(factor, cb)(colors), startHue, endHue);
+  return filteredArr(factor)(colors, startHue, endHue);
 };
 
 export { filterByHue };

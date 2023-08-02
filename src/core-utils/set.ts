@@ -1,9 +1,10 @@
+//@ts-nocheck
+
 // ported from chroma-js Color.set
 
-// @ts-ignore
 import { slice, isString, isNumber } from "lodash-es";
 import { converter } from "culori";
-import type { baseColor } from "../paramTypes.ts";
+import type { Color } from "../paramTypes.ts";
 /**Sets the value for a single specifified channel in a color object.
  *
  * @param  color Any recognizable color token.
@@ -14,7 +15,7 @@ import type { baseColor } from "../paramTypes.ts";
 
 const setChannel =
   (mc: string) =>
-  (color: baseColor, value: number | string): baseColor => {
+  (color: Color, value: number | string): Color => {
     const [mode, channel] = mc.split(".");
     const src = converter(mode)(color);
 

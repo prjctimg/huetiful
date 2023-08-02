@@ -1,8 +1,7 @@
+//@ts-nocheck
 import { converter, formatHex8 } from "culori";
 import { defaultTo, divide, inRange, isNumber, isUndefined } from "lodash-es";
-import type { baseColor } from "../paramTypes.ts";
-
-//@ts-check
+import type { Color } from "../paramTypes.ts";
 
 /**
  * Sets/gets the opacity of a color.
@@ -12,7 +11,7 @@ import type { baseColor } from "../paramTypes.ts";
  * @returns color The resulting color. Returns an 8 character hex code.
  */
 
-const alpha = (color: baseColor, value?: number): baseColor | number => {
+const alpha = (color: Color, value?: number): Color | number => {
   // We never perfom an operation on an undefined color. Defaults to pure black
   defaultTo(color, "#000000");
   if (isUndefined(value)) {

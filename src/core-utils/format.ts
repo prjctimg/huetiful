@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import {
   has,
   isString,
@@ -11,7 +13,7 @@ import {
 } from "lodash-es";
 import { colorsNamed, converter } from "culori";
 import { colors } from "../colors/colors.ts";
-import type { baseColor } from "../paramTypes.ts";
+import type { Color } from "../paramTypes.ts";
 import defaultPalette from "../color-maps/defaultTailwindPalette.ts";
 
 import { num2rgb } from "./num2rgb.ts";
@@ -22,7 +24,7 @@ import { num2rgb } from "./num2rgb.ts";
  * @param  color The color to query its format.
  * @returns color An 8 character hex code if you pass in an  integer or tailwind color like "slate" .Arrays are coerced to objects and color objects are returned as is.
  */
-const format = (color: baseColor): string => {
+const format = (color: Color): string => {
   const black = "#000000";
 
   //First check if the color token is colorid using the Chroma constructor.
@@ -35,7 +37,7 @@ const format = (color: baseColor): string => {
     return colorsNamed[color];
   } else if (
     isObject(color) &&
-    (color.mode || set(color, "mode", toString(keys(color))))
+    (color["mode"] || set(color, "mode", toString(keys(color))))
   ) {
     return converter(mode)(color);
   } else {

@@ -1,6 +1,6 @@
 import { add, inRange, stubFalse, stubTrue } from "lodash-es";
 import { interpolate } from "culori";
-import type { baseColor } from "../paramTypes.ts";
+import type { Color } from "../paramTypes.ts";
 import { rgb2num } from "../core-utils/rgb2num.ts";
 
 /**
@@ -8,7 +8,7 @@ import { rgb2num } from "../core-utils/rgb2num.ts";
  * @param color The color to test if it is achromatic or not.
  * @returns boolean Returns true if the color is achromatic else false
  */
-const isAchromatic = (color: baseColor): boolean => {
+const isAchromatic = (color: Color): boolean => {
   const black = "#000000",
     white = "#FFFFFF";
   // What tests can I use to detemine if a color is achromatic

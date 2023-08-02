@@ -1,6 +1,8 @@
+//@ts-nocheck
+
 import { converter } from "culori";
 import { split, get } from "lodash-es";
-import type { baseColor } from "../paramTypes.ts";
+import type { Color } from "../paramTypes.ts";
 
 /**
  * Gets the  value specifified channel on the color.
@@ -10,7 +12,7 @@ import type { baseColor } from "../paramTypes.ts";
  * */
 const getChannel =
   (mc: string) =>
-  (color: baseColor): number => {
+  (color: Color): number => {
     const [mode, channel] = split(mc, ".");
     const src = converter(mode)(color);
 

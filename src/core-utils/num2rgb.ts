@@ -1,5 +1,7 @@
+//@ts-nocheck
+
 import { lte, gte, isInteger, fromPairs, isEqual } from "lodash-es";
-import { baseColor } from "../paramTypes.ts";
+import { Color } from "../paramTypes.ts";
 import { formatHex, formatHex8 } from "culori";
 
 // If the value is a floating point then we treat the decimal value as the opacity of the color.
@@ -13,13 +15,14 @@ import { formatHex, formatHex8 } from "culori";
  * @returns color An RGB color object.
  */
 const num2rgb = (
-  num: number
+  num: number,
+  hex = false
 ): { r: number; g: number; b: number; mode: "rgb" } | string => {
   if (isInteger(num) && gte(num, 0) && lte(num, 0xffffff)) {
     const r = num >> 16;
     const g = (num >> 8) & 0xff;
     const b = num & 0xff;
-    const output = fromPairs([
+    let output = fromPairs([
       ["r", r],
       ["g", g],
       ["b", b],
@@ -27,7 +30,7 @@ const num2rgb = (
       ["mode", "rgb"],
     ]);
 
-    return isEqual(mode, hex) ? formatHex8(output) : output;
+    return hex ? formatHex8(output) : output;
   }
   throw new Error("unknown num color: " + num);
 };

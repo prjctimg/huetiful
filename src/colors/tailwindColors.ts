@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { map, has, isUndefined, identity, get, isEqual } from "lodash-es";
 import tailwindHues from "../color-maps/defaultTailwindPalette.ts";
 import type { HueMap, ScaleValues } from "../paramTypes.ts";

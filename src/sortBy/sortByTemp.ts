@@ -1,6 +1,6 @@
 import { getTemp } from "../core-utils/rgb2temperature.ts";
-import type { baseColor, sortBy } from "../paramTypes.ts";
-import { colorObjArr, sortedArr } from "../core-utils/helpers.ts";
+import type { Color, sortBy } from "../paramTypes.ts";
+import { sortedArr } from "../core-utils/helpers.ts";
 
 /**
  * @function
@@ -17,7 +17,7 @@ const sortByTemp: sortBy = (colors, order) => {
   const cb = getTemp;
   //Sorting the color array of object by the 'temp' property in the specified order.
 
-  return sortedArr(factor, cb, order)(colorObjArr, colors);
+  return sortedArr(factor, cb, order)(colors);
 };
 
 export { sortByTemp };

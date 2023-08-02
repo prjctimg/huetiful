@@ -1,6 +1,7 @@
+//@ts-nocheck
 import { defaultTo, multiply } from "lodash-es";
 import { converter, formatHex } from "culori";
-import type { HueColorSpaces, baseColor } from "../paramTypes.ts";
+import type { HueColorSpaces, Color } from "../paramTypes.ts";
 // ported froma chroma-js brighten
 
 /**
@@ -10,11 +11,7 @@ import type { HueColorSpaces, baseColor } from "../paramTypes.ts";
  * @param mode The color space to compute the color in. Any color space with a lightness channel will do (including HWB)
  * @returns color The darkened color.
  */
-const darken = (
-  color: baseColor,
-  amount: number,
-  mode: keyof HueColorSpaces
-) => {
+const darken = (color: Color, amount: number): Color => {
   defaultTo(amount, 1);
   const default_mode = "lab";
   const Kn = 18;
@@ -22,7 +19,7 @@ const darken = (
   // Addv acheck here like the one in set.js
   const lab = converter(mode)(color);
   lab["l"] -= multiply(Kn, amount);
-  return formatHex(converter(mode)(lab));
+  return formatHex(converter(default_mode)(lab));
 };
 
 /**
@@ -32,7 +29,7 @@ const darken = (
  * @param mode The color space to compute the color in. Any color space with a lightness channel will do (including HWB)
  * @returns
  */
-const brighten = (color: baseColor, amount: number | string) => {
+const brighten = (color: Color, amount: number | string): Color => {
   return darken(color, -amount);
 };
 

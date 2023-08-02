@@ -21,11 +21,7 @@ const filterByLuminance: filterBy = (
   const factor = "luminance";
   const cb = wcagLuminance;
 
-  return filteredArr(factor)(
-    colorObjArr(factor, cb)(colors),
-    startLuminance,
-    endLuminance
-  );
+  return filteredArr(factor)(colors, startLuminance, endLuminance);
 };
 
 export { filterByLuminance };

@@ -1,4 +1,4 @@
-import type { baseColor, factorMapper } from "../paramTypes.ts";
+import type { Color, factorMapper } from "../paramTypes.ts";
 import { map, fromPairs, inRange, filter, orderBy } from "lodash-es";
 
 /**
@@ -18,18 +18,18 @@ const colorObjArr: factorMapper = (factor, cb) => (colors) =>
 
 const filteredArr =
   (factor: string) =>
-  (colorObjArr: object[], start: number, end: number): baseColor[] =>
+  (colors: Color[], start: number, end: number): Color[] =>
     map(
-      filter(colorObjArr, (el) => inRange(el[factor], start, end)),
+      filter(colorObjArr(factor, cb)(colors), (el) =>
+        inRange(el[factor], start, end)
+      ),
       (color) => color["name"]
     );
 
-const sortedArr =
-  (factor: string, cb: () => {}, order: string) =>
-  (colorObjArr: factorMapper, colors: baseColor[]): baseColor[] =>
-    map(
-      orderBy(colorObjArr(factor, cb)(colors), factor, order),
-      (el) => el["name"]
-    );
+const sortedArr: factorMapper = (factor, cb, order) => (colors) =>
+  map(
+    orderBy(colorObjArr(factor, cb)(colors), factor, order),
+    (el) => el["name"]
+  );
 
 export { colorObjArr, filteredArr, sortedArr };

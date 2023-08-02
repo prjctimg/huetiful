@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { converter, interpolate, wcagLuminance } from "culori";
 import {
   lt,
@@ -9,15 +10,16 @@ import {
   add,
   multiply,
   sum,
+  isNumber,
 } from "lodash-es";
-import type { baseColor } from "../paramTypes.ts";
+import type { Color } from "../paramTypes.ts";
 
 /**
  * Gets the luminance value of that color as defined by WCAG.
  * @param color The color to query.
  * @returns value The color's luminance value.
  */
-const getLuminance = (color: baseColor) => wcagLuminance(color);
+const getLuminance = (color: Color) => wcagLuminance(color);
 
 const { pow, abs } = Math;
 
@@ -60,16 +62,19 @@ const luminance = (color, lum) => {
   }
   //   spreading the array values (r,g,b)
 
-  return rgb2luminance(...color);
+  return rgb2luminance(color);
 };
 
-const rgb2luminance = (r, g, b) => {
+const rgb2luminance = (color: Color): number => {
+  color = converter("rgb")(color);
+
   // relative luminance
   // see http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
-  r = luminance_x(r);
-  g = luminance_x(g);
-  b = luminance_x(b);
-  return sum([multiply(0.2126, r), multiply(0.7152, g), multiply(0.0722, b)]);
+  return sum([
+    multiply(0.2126, luminance_x(color["r"])),
+    multiply(0.7152, luminance_x(color["g"])),
+    multiply(0.0722, luminance_x(color["b"])),
+  ]);
 };
 
 const luminance_x = (x: number) => {
