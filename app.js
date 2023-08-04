@@ -1,19 +1,13 @@
-import {
-  base,
-  sortByTemp,
-  filterByLuminance,
-  filterByTemp,
-  filterBySaturation,
-  getChannel,
-  filterByHue,
-} from "./dist/huetiful.esm.mjs";
-import { map } from "lodash-es";
-import { converter } from "culori";
+import { filterByLuminance } from "./dist/huetiful.esm.mjs";
+
 console.log(
-  sortByTemp(["#fc3ab1", "blue", "yellow", "purple", "#d31bce", "red"], "asc")
+  filterByLuminance(
+    ["yellow", "red", "#fc3ab1", "#d31bce", "purple", "blue"],
+    ">=0.5"
+  )
 );
 
-const samplePastelObj = [
+/* const samplePastelObj = [
   {
     color: "#fea3aa",
     saturation: 0.35826771653543305,
@@ -42,3 +36,4 @@ const samplePastelObj = [
   },
 ];
 console.log(map(samplePastelObj, (el) => converter("lch")(el["color"])));
+ */

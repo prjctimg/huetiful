@@ -14,7 +14,7 @@ const filterBySaturation: filterBy = (
   const cb = getChannel("lch.c");
 
   //  Normalize saturation ranges later
-  return filteredArr(factor)(
+  return filteredArr(factor, cb)(
     colors,
     multiply(100, startSaturation),
     multiply(100, endSaturation)

@@ -18,7 +18,7 @@ const filterByHue: filterBy = (colors, startHue = 0, endHue = 360) => {
   const factor = "hue";
   const cb = getChannel("lch.h");
   console.log(colorObjArr(factor, cb)(colors));
-  return filteredArr(factor)(colors, startHue, endHue);
+  return filteredArr(factor, cb)(colors, startHue, endHue);
 };
 
 export { filterByHue };

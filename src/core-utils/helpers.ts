@@ -1,4 +1,4 @@
-import type { Color, factorMapper, predicate } from "../paramTypes.ts";
+import { Color, factorMapper, predicate } from "../paramTypes.ts";
 import {
   map,
   fromPairs,
@@ -14,6 +14,8 @@ import {
   gt,
   lte,
   gte,
+  flow,
+  words,
 } from "lodash-es";
 
 /**
@@ -30,39 +32,57 @@ const colorObjArr: factorMapper = (factor, cb) => (colors) =>
       ["name", el],
     ])
   );
-
+/**
+ *  Filters an array of color objects with a "factor"  property whose value is determined by a predicate or getter via the cb param.
+ * @param factor
+ * @param cb
+ * @returns
+ */
 const filteredArr =
   (factor: string, cb?: (arg: Color) => number) =>
   (colors: Color[], start: number | string, end: number): Color[] => {
-    /**
-     * Higher order function over map,filter and colorObjArr.
-     * @param test The predicate callback functions. Adds elements that return truthy.
-     * @returns
-     */
-    const mapFilter = (test: typeof predicate): Color[] =>
-      map(filter(colorObjArr(factor, cb)(colors), test), (el) => el["name"]);
     let result: Color[];
 
     if (isNumber(start)) {
-      result = mapFilter((el) => inRange(el[factor], start, end));
+      result = map(
+        filter(colorObjArr(factor, cb)(colors), (el) =>
+          inRange(el[factor], start, end)
+        ),
+        (el) => el["name"]
+      );
       return result;
+
+      // If string split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
     } else if (isString(start)) {
-      const pattern = /(>=|<|>|=<)/;
+      //The pattern to match
+      let operator = /^(>=|<=|<|>)/,
+        value = /[0-9]*\.?[0-9]+/;
 
-      let [sign, value] = split(start, pattern);
+      // Array
+      let val = value.exec(start),
+        op = operator.exec(start);
 
-      switch (sign) {
+      function mapFilter(test: () => boolean) {
+        return map(
+          filter(colorObjArr(factor, cb)(colors), (el) =>
+            test(el[factor], toNumber(val["0"]))
+          ),
+          (el) => el["name"]
+        );
+      }
+      switch (op["0"]) {
         case "<":
-          result = mapFilter(lt(el[factor], toNumber(value)));
+          result = mapFilter(lt);
+
           break;
         case ">":
-          result = mapFilter(gt(el[factor], toNumber(value)));
+          result = mapFilter(gt);
           break;
         case "=<":
-          result = mapFilter(lte(el[factor], toNumber(value)));
+          result = mapFilter(lte);
           break;
         case ">=":
-          result = mapFilter(gte(el[factor], toNumber(value)));
+          result = mapFilter(gte);
           break;
       }
     }
