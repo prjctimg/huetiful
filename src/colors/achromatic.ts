@@ -4,6 +4,7 @@ import type { Color } from "../paramTypes.ts";
 import { rgb2num } from "../core-utils/rgb2num.ts";
 
 /**
+ * @function
  *  Checks if a color is achromatic(without hue or simply grayscale).
  * @param color The color to test if it is achromatic or not.
  * @returns boolean Returns true if the color is achromatic else false
@@ -18,7 +19,7 @@ const isAchromatic = (color: Color): boolean => {
   const gray = interpolate([black, white]);
 
   //Capture the min and max numerical range for grayscale colors
-  const t_min = 0.05,
+  const t_min = 0.005,
     t_max = 0.995;
   const min = rgb2num(gray(t_min)),
     max = rgb2num(gray(t_max));
