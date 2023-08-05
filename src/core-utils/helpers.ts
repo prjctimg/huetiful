@@ -1,4 +1,4 @@
-import { Color, factorMapper, predicate } from "../paramTypes.ts";
+import { Color, factorMapper } from "../paramTypes.ts";
 import {
   map,
   fromPairs,
@@ -19,6 +19,7 @@ import {
 } from "lodash-es";
 
 /**
+ * @function
  * Creates a custom object with a factor to pass to the predicate function.
  * @param factor The quality being queried.
  * @param cb The callback function for computing the factor's start.
@@ -62,14 +63,14 @@ const filteredArr =
       let val = value.exec(start),
         op = operator.exec(start);
 
-      function mapFilter(test: () => boolean) {
+      const mapFilter = (test: (x: number, y: number) => boolean): Color[] => {
         return map(
           filter(colorObjArr(factor, cb)(colors), (el) =>
             test(el[factor], toNumber(val["0"]))
           ),
           (el) => el["name"]
         );
-      }
+      };
       switch (op["0"]) {
         case "<":
           result = mapFilter(lt);

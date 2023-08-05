@@ -20,12 +20,12 @@ import { setTemp } from "./temperature2rgb.ts";
 import type { Color } from "../paramTypes.ts";
 
 /**
- * Returns the temperature value in Kelvins of the passed in color token.
- * @param color {Color}
- * @returns {number}
+ * Returns the temperature value in Kelvins of the passed in color.
+ * @param color The color to query its temperature value
+ * @returns The color's temperature in Kelvins.
  */
 
-const rgb2temperature = (color: Color) => {
+const rgb2temperature = (color: Color): number => {
   //Store the color in an object with the RGB channels normalized to [0,1]
   const rgb = lrgb(color);
   const rgbLimit = 255;

@@ -4,7 +4,7 @@ import { filterBy } from "../paramTypes.js";
 
 /**
  *  @function
- * Returns an array of colors in the specified luminance range
+ * Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
  * @param  colors The array of colors to filter.
  * @param  startLuminance The minimum end of the luminance range.
  * @param  endLuminance The maximum end of the luminance range.

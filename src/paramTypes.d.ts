@@ -10,7 +10,7 @@ export type palette =
   | "tetradic"
   | " complementary"
   | "splitComplementary";
-export type Color = number | string | object | undefined;
+export type Color = number | string | object;
 
 /**
  * @param

@@ -14,19 +14,20 @@ import {
 } from "lodash-es";
 import type { Color } from "../paramTypes.ts";
 
-/**
+/** @alias
  * Gets the luminance value of that color as defined by WCAG.
  * @param color The color to query.
  * @returns value The color's luminance value.
  */
-const getLuminance = (color: Color) => wcagLuminance(color);
+const getLuminance = (color: Color): number => wcagLuminance(color);
 
 const { pow, abs } = Math;
 
 /**
+ * @function
  * Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
- * @param color
- * @param lum
+ * @param color The color to set luminance
+ * @param lum The amount of luminance to set. The value range is normalised between [0,1]
  */
 const luminance = (color, lum) => {
   const white = "#ffffff",
@@ -84,5 +85,4 @@ const luminance_x = (x: number) => {
     : pow(divide(add(x, 0.055), 1.055), 2.4);
 };
 
-export { luminance as setLuminance };
-export { getLuminance };
+export { luminance as setLuminance, getLuminance };

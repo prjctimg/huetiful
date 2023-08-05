@@ -16,13 +16,15 @@ import {
   lt,
   fromPairs,
 } from "lodash-es";
+import type { Color } from "../paramTypes.ts";
 
 /**
- *Converts the temperature value (in Kelvins) to an RGB color object.
+ * @function
+ *Converts the temperature value (in Kelvins) to an RGB color.
  * @param kelvin The number of Kelvins. From 0 to 30,000 .
  * @returns color An RGB color object.
  */
-const temperature2rgb = (kelvin: number) => {
+const temperature2rgb = (kelvin: number): Color => {
   //Hue change starts at approx 655 Kelvins ???
   const eps = 655;
   const { log } = Math;
