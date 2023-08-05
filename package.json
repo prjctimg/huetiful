@@ -20,7 +20,8 @@
   },
   "scripts": {
     "build": "node build.js",
-    "publish":"typedoc && npm publish"
+    "publish":"typedoc && npm publish",
+    "docs":"git checkout gh-pages && git merge dev && typedoc && git add . && git commit -m 'Updated the documentation. && git push -u gh-pages gh-pages"
   },
   "files": [
     "dist",
