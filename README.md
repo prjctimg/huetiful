@@ -1,8 +1,6 @@
-![](huetiful-logo.png)
+![](./huetiful-logo.png)
 
-# huetiful-js
-
-A JavaScript library for simple color manipulation. It builds on top of the Culori.js API
+A JavaScript library for simple color manipulation. It bu
 
 ### What you can do with this package:
 
