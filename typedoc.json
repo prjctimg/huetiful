@@ -3,8 +3,7 @@
     "excludeExternals": true,
     "readme": "README.md",
     "entryPoints": [
-        "./src/index.ts",
-        "./src/paramTypes.d.ts"
+        "./src/index.ts"
     ],
-    "gitRemote": "https://github.com/prjctimg/huetiful"
+    "gitRemote": "https://github.com/prjctimg/huetiful "
 }
