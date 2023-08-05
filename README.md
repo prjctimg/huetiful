@@ -1,6 +1,6 @@
 ![](./huetiful-logo.png)
 
-A JavaScript library for simple color manipulation. It bu
+A JavaScript library for simple color manipulations.
 
 ### What you can do with this package:
 
