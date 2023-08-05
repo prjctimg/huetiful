@@ -1,7 +1,7 @@
 {
     "out": "docs",
     "excludeExternals": true,
-    "readme": "README.md",
+    "readme": "./README.md",
     "entryPoints": [
         "./src/index.ts"
     ],
