@@ -4,9 +4,10 @@ import { converter } from "culori";
 import type { Color } from "../paramTypes.ts";
 
 /**
- * Gets the numerical equivalent of a color from 0 to 16,777,215
+ * @function
+ * Returns the numerical equivalent of a color.
  * @param color The color to convert to its numerical equivalent.
- * @returns value The numerical value of the color.
+ * @returns value The numerical value of the color from 0 to 16,777,215.
  */
 
 const rgb2num = (color: Color): number => {

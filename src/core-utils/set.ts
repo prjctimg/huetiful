@@ -5,11 +5,12 @@
 import { slice, isString, isNumber } from "lodash-es";
 import { converter } from "culori";
 import type { Color } from "../paramTypes.ts";
-/**Sets the value for a single specifified channel in a color object.
- *
+/**
+ * @function
+ *Sets the value for the specified channel in a color.
  * @param  color Any recognizable color token.
  * @param  mc The mode and channel to work with. For example 'rgb.b'.
- * @param The amount to brighten with. Also supports expressions as strings e.g set('lch.c)("#fc23a1","*0.5")
+ * @param  value The value to set on the queried channel. Also supports expressions as strings e.g set('lch.c)("#fc23a1","*0.5")
  * @returns color The mutated color.
  */
 

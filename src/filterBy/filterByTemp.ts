@@ -21,7 +21,7 @@ const filterByTemp: filterBy = (colors, startTemp = 1000, endTemp = 6000) => {
   const factor = "temp";
   const cb = getTemp;
 
-  return filteredArr(factor)(colors, startTemp, endTemp);
+  return filteredArr(factor, cb)(colors, startTemp, endTemp);
 };
 
 export { filterByTemp };

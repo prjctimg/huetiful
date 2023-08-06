@@ -12,23 +12,33 @@ import {
   max,
   stubFalse,
   stubTrue,
+  forEach,
+  filter,
 } from "lodash-es";
+
+import { getChannel } from "../core-utils/get.ts";
 import hueTempMap from "../color-maps/hueTemperature.ts";
-import { converter } from "culori";
 import type { baseColor } from "../paramTypes.ts";
-import { format } from "../core-utils/format.ts";
 
-const isCool = (color: baseColor) => {
-  color = converter("lch")(format(color));
+/**
+ * @function
+ * @description Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.
+ * @param color The color to check the temperature.
+ * @returns True or false.
+ */
+const isCool = (color: baseColor): boolean => {
+  // First we need to get the hue value which we'll pass to the predicate
+  const factor = getChannel("lch.h")(color);
 
-  let concatArr = (obj) =>
-    map(obj, (val, key) => concat(val["cool"], val["warm"]));
+  console.log(`The factor is ${factor}`);
 
-    // I'm queryingbthe hueTempMap object. I want the key that returns true
-   find(hueTempMap, (val) =>{
+  return find(hueTempMap, (val, key) =>
+    inRange(factor, val["cool"]["0"], val["cool"]["1"])
+  )
+    ? stubTrue()
+    : stubFalse();
 
-   return inRange(color["h"], min(concatArr(val)), max(concatArr(val)))
-  )}
+  // For ech key in hueTempMap concat the
 };
 
 export { isCool };

@@ -10,7 +10,7 @@ export type palette =
   | "tetradic"
   | " complementary"
   | "splitComplementary";
-export type Color = number | string | object | undefined;
+export type Color = number | string | object;
 
 /**
  * @param
@@ -22,7 +22,7 @@ export type Color = number | string | object | undefined;
  *
  */
 export type filterBy = (colors: Color[], start: number, end: number) => Color[];
-
+export type factor = "luminance" | "temp" | "saturation";
 export type sortBy = (colors: Color[], order: "asc" | "desc") => Color[];
 export type factorMapper = (
   factor: string,

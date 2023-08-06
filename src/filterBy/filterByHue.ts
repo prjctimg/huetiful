@@ -6,11 +6,10 @@ import type { Color, filterBy } from "../paramTypes.ts";
 //filterByHue takes an array of colors and
 /**
  * @function
- * Returns colors in the specified hue ranges between 0 to 360 and color space.
+ * Returns colors in the specified hue ranges between 0 to 360.
  * @param colors The array of colors to filter.
  * @param  startHue The minimum end of the hue range.
  * @param  endHue The maximum end of the hue range.
- * @param   mode The color space to work in. Default is LCH because it is perceptually uniform.
  * @returns  Array of the filtered colors.
  */
 
@@ -18,7 +17,7 @@ const filterByHue: filterBy = (colors, startHue = 0, endHue = 360) => {
   const factor = "hue";
   const cb = getChannel("lch.h");
   console.log(colorObjArr(factor, cb)(colors));
-  return filteredArr(factor)(colors, startHue, endHue);
+  return filteredArr(factor, cb)(colors, startHue, endHue);
 };
 
 export { filterByHue };

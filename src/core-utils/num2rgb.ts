@@ -10,14 +10,12 @@ import { formatHex, formatHex8 } from "culori";
 // The outputn is rounded up when you pass in an integer
 
 /**
- * Takes an integer and returns its RGB color equivalent.
- * @param num Any integer between 0 and 16,777,215.
- * @returns color An RGB color object.
+ * @function
+ *  Returns the RGB color equivalent of any number between 0 and 16,777,215.
+ * @param num The number to convert to RGB
+ * @returns color An RGB color object or hex string.
  */
-const num2rgb = (
-  num: number,
-  hex = false
-): { r: number; g: number; b: number; mode: "rgb" } | string => {
+const num2rgb = (num: number, hex = false): Color => {
   if (isInteger(num) && gte(num, 0) && lte(num, 0xffffff)) {
     const r = num >> 16;
     const g = (num >> 8) & 0xff;
