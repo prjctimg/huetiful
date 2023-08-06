@@ -10,7 +10,7 @@ import { setTemp } from "./core-utils/temperature2rgb.ts";
 import { tailwindColors } from "./colors/tailwindColors.ts";
 import { isAchromatic } from "./colors/achromatic.ts";
 import { colors } from "./colors/colors.ts";
-// import { isCool } from "./colors/temperature.ts";
+import { isCool } from "./colors/temperature.ts";
 import { base } from "./palettes/base.ts";
 import { filterByLuminance } from "./filterBy/filterByLuminance.ts";
 import { filterByTemp } from "./filterBy/filterByTemp.ts";
@@ -20,6 +20,7 @@ import { sortByTemp } from "./sortBy/sortByTemp.ts";
 import { sortByLuminance } from "./sortBy/sortByLuminance.ts";
 import { sortBySaturation } from "./sortBy/sortBySaturation.ts";
 export {
+  isCool,
   sortByLuminance,
   sortBySaturation,
   sortByTemp,

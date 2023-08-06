@@ -1,9 +1,9 @@
 {
   "name": "huetiful-js",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "type": "module",
-  "main": "./dist/huetiful.esm.js",
-  "module": "./dist/huetiful.mjs",
+  "main": "./dist/huetiful.mjs",
+  "module": "./dist/huetiful.cjs",
   "browser": "./dist/huetiful.min.js",
   "description": "A simple JavaScript library for color manipulations.",
   "dependencies": {
@@ -20,21 +20,19 @@
   },
   "scripts": {
     "build": "node build.js",
-    "publish":"typedoc && npm publish",
+    "publish":"npm publish",
     "docs":"git checkout gh-pages && git merge dev && typedoc && git add . && git commit -m 'Updated the documentation. && git push -u gh-pages gh-pages"
   },
   "files": [
     "dist",
     "src"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
+ 
   "repository": "github:prjctimg/huetiful",
   "keywords": [
     "LCH",
-    "Palette",
-    "Color"
+    "palette","color schemes",
+    "color"
   ],
   "author": "Dean Tarisai",
   "email": "arcaneqoder@gmail.com",
