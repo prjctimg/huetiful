@@ -1,9 +1,8 @@
 // Pastels.mjs. - This module creates pastel versions of a color. It will take an arr or single value , tweak it and then return the result. Optional overrides for min max values when iterating over an arr.
-import { baseColor } from "../paramTypes.ts";
-import { converter, mapper } from "culori";
-import { map, min, max, mean, set } from "lodash-es";
-const sampleSaturation = map(samplePastelObj, (el) => el["saturation"]);
-const sampleValues = map(samplePastelObj, (el) => el["value"]);
+import { Color } from "../paramTypes.ts";
+import { converter, formatHex8 } from "culori";
+import { map, min, max, mean, set, random } from "lodash-es";
+
 const samplePastelObj = [
   {
     color: "#fea3aa",
@@ -33,6 +32,9 @@ const samplePastelObj = [
   },
 ];
 
+const sampleSaturation = map(samplePastelObj, (el) => el["saturation"]);
+const sampleValues = map(samplePastelObj, (el) => el["value"]);
+
 /** 
 
  * @function
@@ -48,34 +50,41 @@ const pastelSample = {
   maxSampleSaturation: max(sampleSaturation),
   minSampleValue: min(sampleValues),
   maxSampleValue: max(sampleValues),
-
-
-
-
-
-
-
-
 };
-
-
-
 
 //Normalize the s and v channels between low and max values for each
-const pastelMapper = (
-  color: baseColor,-
-  value: number,
-  saturation: number,
-  mode = "hsv"
-): baseColor => {
 
- color = converter('hsv')(color)
+/**
+ * @description Returns a random pastel variant of the passed in color.
+ * @param color The color to return a pastel variant of.
+ * @param hex Pass in true to return an 8-character hex code else it will return an HSV color object.
+ * @returns A random pastel color.
+ */
+const pastelMapper = (color: Color, hex = true): Color => {
+  color = converter("hsv")(color);
 
- // For now we're simply returning an hsv object with the s and v channel set to the averages
-  return {
-    h:color['h']
-    s:pastelSample['averageSaturation'],
-    v:pastelSample['averageValue'],
-  };
+  // For now we're simply returning an hsv object with the s and v channel set to the averages
+  return hex
+    ? formatHex8({
+        h: color["h"],
+        s: pastelSample["averageSaturation"],
+        v: pastelSample["averageValue"],
+        mode: "hsv",
+      })
+    : {
+        h: color["h"],
+        s: random(
+          pastelSample["minSampleSaturation"],
+          pastelSample["maxSampleSaturation"],
+          true
+        ),
+        v: random(
+          pastelSample["minSampleValue"],
+          pastelSample["maxSampleValue"],
+          true
+        ),
+        mode: "hsv",
+      };
 };
 
+export { pastelMapper as pastel };

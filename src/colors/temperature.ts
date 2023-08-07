@@ -36,7 +36,7 @@ const isCool = (color: Color): boolean => {
   let factor = getChannel("lch.h")(color);
 
   return find(hueTempMap, (val, key) =>
-    inRange(floorCeil(factor), val["cool"]["0"], val["cool"]["1"])
+    inRange(floorCeil(factor), val["cool"][0], val["cool"][1])
   )
     ? stubTrue()
     : stubFalse();
@@ -54,7 +54,7 @@ const isWarm = (color: Color) => {
   const factor = getChannel("lch.h")(color);
 
   return find(hueTempMap, (val, key) =>
-    inRange(floorCeil(factor), val["warm"]["0"], val["warm"]["1"])
+    inRange(floorCeil(factor), val["warm"][0], val["warm"][1])
   )
     ? stubTrue()
     : stubFalse();

@@ -16,6 +16,10 @@ import {
   gte,
   flow,
   words,
+  subtract,
+  divide,
+  min,
+  multiply,
 } from "lodash-es";
 
 /**
@@ -95,4 +99,14 @@ const sortedArr: factorMapper = (factor, cb, order) => (colors) =>
     orderBy(colorObjArr(factor, cb)(colors), factor, order),
     (el) => el["name"]
   );
-export { colorObjArr, filteredArr, sortedArr };
+
+/**
+ * @description Normalizes passed in values to 0 and 1
+ * @param start
+ * @param end
+ */
+/* const normalize = (num: number, start: number, end: number): number => {
+  return multiply(num, subtract(end, start));
+}; */
+
+export { colorObjArr, filteredArr, sortedArr, normalize };

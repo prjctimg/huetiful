@@ -19,7 +19,9 @@ import { filterBySaturation } from "./filterBy/filterBySaturation.ts";
 import { sortByTemp } from "./sortBy/sortByTemp.ts";
 import { sortByLuminance } from "./sortBy/sortByLuminance.ts";
 import { sortBySaturation } from "./sortBy/sortBySaturation.ts";
+import { pastel } from "./palettes/pastel.ts";
 export {
+  pastel,
   isCool,
   isWarm,
   sortByLuminance,
