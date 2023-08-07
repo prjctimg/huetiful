@@ -1,9 +1,0 @@
-{
-    "out": "docs",
-    "excludeExternals": true,
-    "readme": "./README.md",
-    "entryPoints": [
-        "./src/index.ts"
-    ],
-    "gitRemote": "https://github.com/prjctimg/huetiful "
-}
