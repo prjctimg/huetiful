@@ -1,3 +1,3 @@
-import { filterByLuminance, isCool } from "./dist/huetiful.esm.mjs";
+import { filterByLuminance, isCool, isWarm } from "huetiful-js";
 
-console.log(isCool("pink"));
+isWarm("pink");
