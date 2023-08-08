@@ -1,3 +1,4 @@
+//@ts-nocheck
 // Pastels.mjs. - This module creates pastel versions of a color. It will take an arr or single value , tweak it and then return the result. Optional overrides for min max values when iterating over an arr.
 import { Color } from "../paramTypes.ts";
 import { converter, formatHex8 } from "culori";

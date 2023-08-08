@@ -1,6 +1,6 @@
 {
   "name": "huetiful-js",
-  "version": "0.0.10",
+  "version": "0.3.0",
   "type": "module",
   "main": "./dist/huetiful.mjs",
   "module": "./dist/huetiful.cjs",
@@ -20,8 +20,8 @@
   },
   "scripts": {
     "build": "node build.js",
-    "publish":"npm publish",
-    "docs":"git checkout gh-pages && git merge dev && typedoc && git add . && git commit -m 'Updated the documentation. && git push -u gh-pages gh-pages"
+   
+    "docs":" typedoc && git add . && git commit -m 'Updated the documentation.' "
   },
   "files": [
     "dist",

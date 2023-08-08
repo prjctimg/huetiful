@@ -28,13 +28,13 @@
   "compilerOptions": {
     "skipLibCheck": true,
     "allowJs": true,
-    // "checkJs": true,
+    "checkJs": true,
     "declaration": true,
     "declarationMap": true,
     "emitDeclarationOnly": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
     "declarationDir": "types",
-    "allowImportingTsExtensions": true
+    /* "allowImportingTsExtensions": true, */
   }
 }
