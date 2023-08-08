@@ -6,7 +6,7 @@ import type { HueColorSpaces, Color } from "../paramTypes.ts";
 
 /**
  * @function
- * Darkens the color by reducing the lightness channel. .
+ * @description Darkens the color by reducing the lightness channel. .
  * @param   color The color to darken.
  * @param amount The amount to darken with. Also supports expressions as strings e.g darken("#fc23a1","*0.5")
  * @param mode The color space to compute the color in. Any color space with a lightness channel will do (including HWB)

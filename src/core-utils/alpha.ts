@@ -5,8 +5,8 @@ import type { Color } from "../paramTypes.ts";
 
 /**
  * @function
- * Sets/gets the opacity of a color.
- * @param color The color with the targeted opacity channel. Takes any valid color token.
+ * @description Sets the opacity of a color. Also gets the alpha value of the color if the value param is omitted
+ * @param color The color with the targeted opacity/alpha channel.
  * @param value The value to apply to the opacity channel. The value is between [0,1]
  * @returns color The resulting color. Returns an 8 character hex code.
  */

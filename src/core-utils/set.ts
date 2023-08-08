@@ -2,7 +2,7 @@
 
 // ported from chroma-js Color.set
 
-import { slice, isString, isNumber } from "lodash-es";
+import { slice, isString, isNumber, toNumber } from "lodash-es";
 import { converter } from "culori";
 import type { Color } from "../paramTypes.ts";
 /**
@@ -30,10 +30,10 @@ const setChannel =
             src[channel] -= +value;
             break;
           case "*":
-            src[channel] *= slice(+value, 1);
+            src[channel] *= toNumber(slice(value, 1));
             break;
           case "/":
-            src[channel] /= slice(+value, 1);
+            src[channel] /= toNumber(slice(value, 1));
             break;
           default:
             src[channel] = +value;

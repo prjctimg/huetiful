@@ -19,10 +19,11 @@ const floorCeil = (num: number): number => {
   if (isInteger(num)) {
     return num;
   } else {
-    let decimal = split(toString(num), ".");
+    let strArr = split(toString(num), ".");
+    let float = strArr[1];
 
     //If the decimal value is .4  and below it will be rounded down else it will be rounded up.
-    return /^[0-4]$/.test(decimal[1].charAt(0)) ? floor(num) : ceil(num);
+    return /^[0-4]$/.test(float.charAt(0)) ? floor(num) : ceil(num);
   }
 };
 
