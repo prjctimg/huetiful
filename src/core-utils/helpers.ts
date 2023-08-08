@@ -109,4 +109,4 @@ const sortedArr: factorMapper = (factor, cb, order) => (colors) =>
   return multiply(num, subtract(end, start));
 }; */
 
-export { colorObjArr, filteredArr, sortedArr, normalize };
+export { colorObjArr, filteredArr, sortedArr };

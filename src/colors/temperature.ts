@@ -5,13 +5,14 @@ import {
   startsWith,
   stubFalse,
   stubTrue,
+  toString,
 } from "lodash-es";
 
 import { getChannel } from "../core-utils/get.ts";
 import hueTempMap from "../color-maps/hueTemperature.ts";
 import type { Color } from "../paramTypes.ts";
 
-const isInteger = (num: number) => /^-?[0-9]+$/.test(num);
+const isInteger = (num: number) => /^-?[0-9]+$/.test(toString(num));
 
 const floorCeil = (num: number): number => {
   const { ceil, floor } = Math;
