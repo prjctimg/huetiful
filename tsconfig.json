@@ -1,7 +1,5 @@
 {
   "include": [
-    "./src/**/*.js",
-    "easing.js",
     "src/index.ts",
     "src/core-utils/temperature2rgb.ts",
     "src/core-utils/set.ts",
@@ -26,15 +24,15 @@
     "src/filterBy/filterByHue.ts"
   ],
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "skipLibCheck": true,
-    "allowJs": true,
+    // "allowJs": true,
     "checkJs": true,
     "declaration": true,
-    "declarationMap": true,
+    // "declarationMap": true,
     "emitDeclarationOnly": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
     "declarationDir": "types",
-    /* "allowImportingTsExtensions": true, */
   }
 }
