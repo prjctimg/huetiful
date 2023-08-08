@@ -1,3 +1,3 @@
-import { filterByLuminance, isCool, isWarm } from "huetiful-js";
+import { hueShift, isCool } from "./dist/huetiful.esm.mjs";
 
-isWarm("pink");
+console.log(hueShift("pink", {}, true));

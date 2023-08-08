@@ -36,14 +36,6 @@ const samplePastelObj = [
 const sampleSaturation = map(samplePastelObj, (el) => el["saturation"]);
 const sampleValues = map(samplePastelObj, (el) => el["value"]);
 
-/** 
-
- * @function
- *  Returns the pastel variant of the passed in color.
- *  @param  saturation An array of the start and end range of saturation normalized between [0...1]. The raw range is between 0.92 and 0.99 (rounded to 2s.f)
- * @param value
- */
-
 const pastelSample = {
   averageSaturation: mean(sampleValues),
   averageValue: mean(sampleSaturation),
