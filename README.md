@@ -9,7 +9,7 @@ A JavaScript library for simple color manipulations.
 - Create colors from templated values like pastels, hueshifted color scales etc
 - Reference to all colors in the default TailwindCSS palette with every shade as a function!
 - Categorize colors using their properties such as temperature and achromaticity
-  -And much more. See the docs [here](https://prjctimg.github.io/huetiful)
+- And much more. See the docs [here](https://prjctimg.github.io/huetiful)
 
 ## Installation
 
