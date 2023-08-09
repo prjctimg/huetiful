@@ -42,8 +42,6 @@ const isCool = (color: Color): boolean => {
   )
     ? stubTrue()
     : stubFalse();
-
-  // For ech key in hueTempMap concat the
 };
 
 /**

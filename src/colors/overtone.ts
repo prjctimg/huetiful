@@ -12,15 +12,17 @@ import type { Color } from "../paramTypes.ts";
  */
 const overtone = (color: Color): boolean => {
   const factor = getChannel("lch.h")(color);
-  let hues;
+  let hues: string[];
   // We check if the color can be found in the deined ranges
-  return find(hueTempMap, (val, key) =>
+  find(hueTempMap, (val, key) =>
     (inRange(factor, val["warm"][0], val["warm"][1]) ||
       inRange(factor, val["cool"][0], val["cool"][1])) &&
     words(key, "-")
       ? (hues = split(key, "-"))
       : false
   );
+
+  return hues[1];
 };
 
 export { overtone };
