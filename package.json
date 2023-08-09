@@ -1,6 +1,6 @@
 {
   "name": "huetiful-js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "main": "./dist/huetiful.esm.mjs",
   "module": "./dist/huetiful.cjs",
