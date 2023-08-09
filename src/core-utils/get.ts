@@ -6,7 +6,7 @@ import type { Color } from "../paramTypes.ts";
 
 /**
  * @function
- * Gets the  value specifified channel on the color.
+ * @description Gets the  value specifified channel on the color.
  * @param mc The mode and channel to be retrieved. For example "rgb.b" will return the value of the blue channel in the RGB color space of that color.
  * @param color The color being queried.
  * @returns value The value of the queried channel.

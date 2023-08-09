@@ -1,5 +1,26 @@
 //@ts-nocheck
+import { getChannel } from "../core-utils/get.ts";
+import hueTempMap from "../color-maps/hueTemperature.ts";
+import { find, matchesProperty, inRange, words, split } from "lodash-es";
+import type { Color } from "../paramTypes.ts";
 
-const overTone = (first) => {
-  second;
+/**
+ * @function
+ * @description Returns the hue which is biasing the passed in color
+ * @param color The color to query its overtone.
+ * @returns The name of the overtone hue.
+ */
+const overtone = (color: Color): boolean => {
+  const factor = getChannel("lch.h")(color);
+  let hues;
+  // We check if the color can be found in the deined ranges
+  return find(hueTempMap, (val, key) =>
+    (inRange(factor, val["warm"][0], val["warm"][1]) ||
+      inRange(factor, val["cool"][0], val["cool"][1])) &&
+    words(key, "-")
+      ? (hues = split(key, "-"))
+      : false
+  );
 };
+
+export { overtone };

@@ -4,13 +4,15 @@
  * @see chromajswebsitehere
  */
 
+import type { Color as _color } from "culori";
+
 export type palette =
   | "analogous"
   | "triadic"
   | "tetradic"
   | " complementary"
   | "splitComplementary";
-export type Color = number | string | object;
+export type Color = number | string | object | keyof _color;
 
 /**
  * @param
