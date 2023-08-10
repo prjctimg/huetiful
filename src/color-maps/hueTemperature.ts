@@ -37,7 +37,7 @@ export default {
     warm: [271, 290],
     cool: [251, 270],
   },
-  " purple": {
+  purple: {
     warm: [316, 320],
     cool: [291, 315],
   },
