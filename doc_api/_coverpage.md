@@ -1,8 +1,6 @@
-![](../huetiful-logo.png)
+![](./huetiful-logo.png)
 
-A JavaScript library for simple color manipulations.
-
-### What you can do with this package:
+# A JavaScript library for simple color manipulations.
 
 - Filter collections of color according to different properties i.e hue,saturation etc
 - Sort colors according to their properties like luminance andf hue.

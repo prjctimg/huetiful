@@ -1,4 +1,5 @@
 {
+    "out": "./doc_api/api",
     "entryPoints": [
         "./src/index.ts"
     ],

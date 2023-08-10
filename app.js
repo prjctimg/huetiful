@@ -1,4 +1,24 @@
-import { hueShift, isCool } from "./dist/huetiful.esm.mjs";
+import { filterByTemp } from "huetiful-js";
+let sample = [
+  "#00ffdc",
+  "#00ff78",
+  "#00c000",
+  "#007e00",
+  "#164100",
+  "#ffff00",
+  "#310000",
+  "#3e0000",
+  "#4e0000",
+  "#600000",
+  "#720000",
+];
 
-console.log(hueShift("pink", {}, true));
-//CMYK
+filterByTemp(sample, 1000, 20000);
+
+// [
+  '#00c000', '#007e00',
+  '#164100', '#ffff00',
+  '#310000', '#3e0000',
+  '#4e0000', '#600000',
+  '#720000'
+]
