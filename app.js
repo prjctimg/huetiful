@@ -1,4 +1,4 @@
-import { sortByHue } from "./dist/huetiful-js";
+import { sortByHue } from "huetiful-js";
 let sample = [
   "#00ffdc",
   "#00ff78",
