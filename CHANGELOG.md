@@ -9,3 +9,14 @@ Rewrote the codebase in TypeScript. Eliminated dependancy on chroma-js. Finished
 ### v0.0.10
 
 Added `filterBy` and `sortBy` modules for filtering and sorting collections of colors respectively. Released first beta documentation.
+
+
+### 1.0.0
+
+Stable `core-utils` .
+Fixed runtime crashes in outdated modules
+
+### 1.2.1
+
+Added `types` . NPM package now has full Typescript/IntelliSense support
+
