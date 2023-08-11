@@ -1,12 +1,14 @@
 // esbuild script
 //@ts-nocheck
-import { build } from "esbuild";
+var { build } = require("esbuild");
+
+var { dependencies } = require("./package.json");
 
 const sharedConfig = {
   entryPoints: [".//src/index.ts"],
   bundle: true,
   minify: false,
-  //  external: Object.keys(dependencies).concat(Object.keys(peerDependencies))
+  external: Object.keys(dependencies),
 };
 
 //Bundled CJS
@@ -42,5 +44,3 @@ build({
   globalName: "huetiful",
   minify: true,
 });
-
-//  Add UMD global.

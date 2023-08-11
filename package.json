@@ -5,22 +5,24 @@
   "main": "./dist/huetiful.esm.mjs",
   "module": "./dist/huetiful.cjs",
   "browser": "./dist/huetiful.min.js",
+  "types": "./types/index.d.ts",
   "description": "A simple JavaScript library for color manipulations.",
   "dependencies": {
     "culori": "3.0.1",
-    "huetiful-js": "^1.0.0",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@types/culori": "^2.0.0",
     "@types/lodash-es": "^4.17.8",
+    "dts-bundle-generator": "^8.0.1",
     "esbuild": "^0.17.18",
     "nodemon": "^3.0.1",
     "typedoc": "^0.24.8",
     "typescript": "^4.9.5"
   },
   "scripts": {
-    "build": "node build.js",
+    
+    "build":" node build.cjs && dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts",
     "docs": " typedoc && git add . && git commit -m 'Updated the documentation.' "
   },
   "files": [
