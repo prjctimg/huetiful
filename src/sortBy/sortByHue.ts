@@ -1,6 +1,6 @@
 import { getChannel } from "../core-utils/get.ts";
-
-import { sortBy } from "../paramTypes.js";
+import { sortedArr } from "../core-utils/helpers.ts";
+import type { sortBy } from "../paramTypes.js";
 
 /**
  * @function

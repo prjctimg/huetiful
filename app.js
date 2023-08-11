@@ -1,4 +1,4 @@
-import { filterByTemp } from "huetiful-js";
+import { sortByHue } from "./dist/huetiful-js";
 let sample = [
   "#00ffdc",
   "#00ff78",
@@ -13,12 +13,4 @@ let sample = [
   "#720000",
 ];
 
-filterByTemp(sample, 1000, 20000);
-
-// [
-  '#00c000', '#007e00',
-  '#164100', '#ffff00',
-  '#310000', '#3e0000',
-  '#4e0000', '#600000',
-  '#720000'
-]
+console.log(sortByHue(sample, "desc"));
