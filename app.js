@@ -1,4 +1,4 @@
-import { sortByHue } from "huetiful-js";
+import { getTemp, maxTemp } from "./dist/huetiful.esm.mjs";
 let sample = [
   "#00ffdc",
   "#00ff78",
@@ -13,4 +13,4 @@ let sample = [
   "#720000",
 ];
 
-console.log(sortByHue(sample, "desc"));
+console.log(getTemp("purple"));

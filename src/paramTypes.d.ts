@@ -10,9 +10,9 @@ export type palette =
   | "analogous"
   | "triadic"
   | "tetradic"
-  | " complementary"
+  | "complementary"
   | "splitComplementary";
-export type Color = number | string | object | keyof _color;
+export type Color = number | string | object;
 
 /**
  * @param

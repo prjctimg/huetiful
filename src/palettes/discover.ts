@@ -1,33 +1,23 @@
-export default function discoverPalette(...colors) {
+import { base } from "./base.ts";
+import type { Color } from "../paramTypes.ts";
+import { filter, forEach, fromPairs, map, some } from "lodash-es";
+
+const discoverPalette = (colors: Color[]) => {
   const palettes = {};
 
-  for (const color of colors) {
-    const targetPalettes = base(color);
+  let targetPalettes = forEach(colors, (color) =>
+    fromPairs([
+      ["analogous", base("analogous")(color)],
+      ["tetradic", base("tetradic")(color)],
+      ["triadic", base("triadic")(color)],
+      ["splitComplementary", base("splitComplementary")(color)],
+      ["complementary", base("complementary")(color)],
+    ])
+  );
+  let paletteType = map(targetPalettes, (val, key) => {
+    let palette = [];
 
-    for (const paletteType of Object.keys(targetPalettes)) {
-      const palette = [];
-
-      let variance = 0;
-
-      for (const targetColor of targetPalettes[paletteType]) {
-        //Filter out colors already in the palette
-        const availableColors = colors.filter(
-          (color1) => !palette.some((color2) => (color1, color2))
-        );
-
-        const match = nearest(
-          availableColors,
-          differenceEuclidean("lch")
-        )(targetColor)[0];
-
-        variance += differenceEuclidean("lch")(targetColor, match);
-
-        palette.push(match);
-      }
-      if (!palettes[paletteType] || variance < palettes[paletteType]) {
-        palette[paletteType] = { colors: palette, variance };
-      }
-    }
-  }
-  return palettes;
-}
+    let variance = 0;
+    filter(targetPalettes[key], (c1) => !some(palette, (c2) => (c1, c2)));
+  });
+};
