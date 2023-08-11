@@ -1,16 +1,23 @@
+//@ts-nocheck
+
 import {
+  concat,
   find,
   inRange,
+  max,
+  min,
   split,
   startsWith,
   stubFalse,
   stubTrue,
   toString,
+  values,
 } from "lodash-es";
 
 import { getChannel } from "../core-utils/get.ts";
 import hueTempMap from "../color-maps/hueTemperature.ts";
 import type { Color } from "../paramTypes.ts";
+import { getTemp } from "../core-utils/rgb2temperature.ts";
 
 const isInteger = (num: number) => /^-?[0-9]+$/.test(toString(num));
 
@@ -59,4 +66,54 @@ const isWarm = (color: Color) => {
     ? stubTrue()
     : stubFalse();
 };
-export { isCool, isWarm };
+
+/**
+ * @function
+ * @description Checks the approximate maximum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
+ * @param color The color to check its maximum temperature.
+ * @returns The maximum temperature in Kelvins.
+ */
+const maxTemp = (color: Color): number => {
+  // Get the hue value of the color
+  const factor = getChannel("lch.h")(color);
+
+  // Then  we check to see in what hue family it is and check the highest hue value for that family
+  let hueRange = find(hueTempMap, (hue, key) =>
+    inRange(factor, min(concat(...values(hue))), max(concat(...values(hue))))
+  );
+  let maxHue: number = max(concat(...values(hueRange)));
+
+  let result = getTemp({
+    l: 100,
+    c: 100,
+    h: maxHue,
+  });
+
+  return result;
+};
+
+/**
+ * @function
+ * @description Checks the approximate minimum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
+ * @param color The color to check its minimum temperature.
+ * @returns The minimum temperature in Kelvins.
+ */
+const minTemp = (color: Color): number => {
+  // Get the hue value of the color
+  const factor = getChannel("lch.h")(color);
+
+  // Then  we check to see in what hue family it is and check the highest hue value for that family
+  let hueRange = find(hueTempMap, (hue, key) =>
+    inRange(factor, min(concat(...values(hue))), max(concat(...values(hue))))
+  );
+  let minHue: number = min(concat(...values(hueRange)));
+
+  let result = getTemp({
+    l: 100,
+    c: 100,
+    h: minHue,
+  });
+
+  return result;
+};
+export { isCool, isWarm, maxTemp, minTemp };
