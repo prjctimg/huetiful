@@ -4,6 +4,8 @@ These are a subtype of colors that have no `hue`. Also known as grays, these col
 
 We can use the `isAchromatic` utility to check if a color is achromatic or not.
 
+`(color:Color):boolean`
+
 ```
 import { isAchromatic } from "huetiful-js";
 import { formatHex8, interpolate, samples } from "culori"
