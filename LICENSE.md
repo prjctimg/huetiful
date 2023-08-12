@@ -1,6 +1,6 @@
 MIT License
 
-huetifuljs - JavaScript library for color utilities and simple manipulations.
+huetiful-js  A JavaScript library for simple color manipulations.
 
 Copyright (c) 2023, Dean Tarisai
 
