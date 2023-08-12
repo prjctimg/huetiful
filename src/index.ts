@@ -23,6 +23,7 @@ import { sortByHue } from "./sortBy/sortByHue.ts";
 import { pastel } from "./palettes/pastel.ts";
 import { hueShift } from "./palettes/hueShift.ts";
 export {
+  minTemp,
   maxTemp,
   sortByHue,
   pastel,
