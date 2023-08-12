@@ -6,7 +6,7 @@ import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 
 /**
  * @function
- * Returns an array of colors in the specified temperature range between 0 and 30,000 Kelvins.
+ * @description Returns an array of colors in the specified temperature range between 0 and 30,000 Kelvins.
  * @param colors The array of colors to filter.
  * @param  startTemp The minimum end of the temperature range.
  * @param  endTemp The maximum end of the temperature range.
@@ -16,7 +16,11 @@ import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 
 //TODO Could also specify warm|cool to quickly return the filtered array. This param overrides startTemp and endTemp.
 //@ts-ignore
-const filterByTemp: filterBy = (colors, startTemp = 1000, endTemp = 6000) => {
+const filterByTemp: filterBy = (
+  colors,
+  startTemp = 1000,
+  endTemp = 6000
+): Color[] => {
   // This variable stores the array that matches the filtering criteria defined by the start and end hues
   const factor = "temp";
   const cb = getTemp;

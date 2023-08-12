@@ -5,9 +5,16 @@ These are a subtype of colors that have no `hue`. Also known as grays, these col
 We can use the `isAchromatic` utility to check if a color is achromatic or not.
 
 ```
-import { isAchromatic } from "./dist/huetiful.esm.mjs";
+import { isAchromatic } from "huetiful-js";
 import { formatHex8, interpolate, samples } from "culori"
 
+
+/**
+ * @function
+ *  @description Checks if a color is achromatic(without hue or simply grayscale).
+ * @param color The color to test if it is achromatic or not.
+ * @returns boolean Returns true if the color is achromatic else false
+ */
 isAchromatic('pink')
 // Returns false
 

@@ -7,7 +7,7 @@ import { converter } from "culori";
 import type { Color } from "../paramTypes.ts";
 /**
  * @function
- *Sets the value for the specified channel in a color.
+ *@description Sets the value for the specified channel in a color.
  * @param  color Any recognizable color token.
  * @param  mc The mode and channel to work with. For example 'rgb.b'.
  * @param  value The value to set on the queried channel. Also supports expressions as strings e.g set('lch.c)("#fc23a1","*0.5")

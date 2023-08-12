@@ -24,6 +24,7 @@ import {
 
 /**
  * @function
+ * @private
  * Creates a custom object with a factor to pass to the predicate function.
  * @param factor The quality being queried.
  * @param cb The callback function for computing the factor's start.

@@ -20,7 +20,7 @@ import { setTemp } from "./temperature2rgb.ts";
 import type { Color } from "../paramTypes.ts";
 
 /**
- * Returns the temperature value in Kelvins of the passed in color.
+ * @description Returns the temperature value in Kelvins of the passed in color.
  * @param color The color to query its temperature value
  * @returns The color's temperature in Kelvins.
  */

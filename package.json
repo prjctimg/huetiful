@@ -26,15 +26,14 @@
     "docs": " typedoc && git add . && git commit -m 'Updated the documentation.' "
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "repository": "github:prjctimg/huetiful",
   "keywords": [
     "LCH",
     "palette",
     "color schemes",
-    "color"
+    "color","gradient generator","typescript","javascript"
   ],
   "author": "Dean Tarisai",
   "email": "arcaneqoder@gmail.com",

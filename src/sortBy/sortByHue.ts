@@ -4,7 +4,7 @@ import type { sortBy } from "../paramTypes.js";
 
 /**
  * @function
- *  * Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
+ * @description Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
  * @param  colors The array of colors to sort
  * @param order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @returns  An array of the sorted color values.

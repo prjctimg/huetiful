@@ -29,7 +29,7 @@ const lightnessMapper =
     );
 
 /**
- *@description Generates a palette of hue shifted colors (as a colour becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme.
+ * @description Generates a palette of hue shifted colors (as a colour becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme.
  * @param color The color to use as the base of the hueshift. Colors are internally converted to LCH.
  * @param minLightness  Minimum lightness value (range 0-100).
  * @param maxLightness  Maximum lightness value (range 0-100).

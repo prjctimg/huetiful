@@ -25,11 +25,12 @@ const { pow, abs } = Math;
 
 /**
  * @function
- * Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
+ * @description Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
  * @param color The color to set luminance
  * @param lum The amount of luminance to set. The value range is normalised between [0,1]
+ * @returns The mutated color with the modified properties
  */
-const luminance = (color, lum) => {
+const luminance = (color: Color, lum: number): Color => {
   const white = "#ffffff",
     black = "#000000";
 

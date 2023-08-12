@@ -29,9 +29,20 @@ red('900')
 
 ### The `colors` utility
 
-`colors` is similat to `tailwindColors` except that it is not curried but takes the exact parameters. It differs because it has an additional `all` parameter that allows us to extract all colors from the palette at the specified value
+`(shade: keyof HueMap,val: keyof ScaleValues): Color | Color[]`
+
+`colors` is similar to `tailwindColors` except that it is not curried but takes the exact parameters. It differs because it has an additional `all` parameter that allows us to extract all colors from the palette at the specified value
 
 ```
+
+/**
+ * @function
+ * @description A wrapper function for the default Tailwind palette. If called with both parameters it return the hex code at the specified shade and value. Else, if called with the shade parameter as "all" it will return all colors from the shades in the palette map at the specified value (if value is undefined it will default to "500"). When called with the shade parameter only it will return all the colors from 100 to 900 of the specified shade.
+ * @param shade Any shade in the default TailwindCSS palette e.g amber,blue.
+ * @param val Any value from 100 to 900 in increments of 100 e.g "200".
+ * @returns color Returns a hex code string or array of hex codes depending on how the function is called.
+ */
+
 import { colors } from "huetiful-js";
 
 let all300 = colors("all", 300);
