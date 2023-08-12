@@ -22,7 +22,9 @@ import { sortBySaturation } from "./sortBy/sortBySaturation.ts";
 import { sortByHue } from "./sortBy/sortByHue.ts";
 import { pastel } from "./palettes/pastel.ts";
 import { hueShift } from "./palettes/hueShift.ts";
+import { earthtone } from "./palettes/earthtone.ts";
 export {
+  earthtone,
   minTemp,
   maxTemp,
   sortByHue,

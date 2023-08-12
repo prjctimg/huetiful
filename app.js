@@ -1,4 +1,4 @@
-import { getTemp, maxTemp } from "./dist/huetiful.esm.mjs";
+import { earthtone, getTemp, maxTemp } from "./dist/huetiful.esm.mjs";
 let sample = [
   "#00ffdc",
   "#00ff78",
@@ -13,4 +13,4 @@ let sample = [
   "#720000",
 ];
 
-console.log(getTemp("purple"));
+console.log(earthtone("purple", "brown", 6));
