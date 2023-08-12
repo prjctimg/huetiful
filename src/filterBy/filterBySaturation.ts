@@ -6,7 +6,7 @@ import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 
 /**
  *  @function
- * Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
+ * @description Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
  * @param  colors The array of colors to filter.
  * @param  startSaturation The minimum end of the saturation range.
  * @param  endSaturation The maximum end of the saturation range.
@@ -17,7 +17,7 @@ const filterBySaturation: filterBy = (
   colors,
   startSaturation = 0.05,
   endSaturation = 1
-) => {
+): Color[] => {
   const factor = "saturation";
   const cb = getChannel("lch.c");
 

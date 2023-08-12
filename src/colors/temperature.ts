@@ -57,7 +57,7 @@ const isCool = (color: Color): boolean => {
  * @param color The color to check the temperature.
  * @returns True or false.
  */
-const isWarm = (color: Color) => {
+const isWarm = (color: Color): boolean => {
   const factor = getChannel("lch.h")(color);
 
   return find(hueTempMap, (val, key) =>

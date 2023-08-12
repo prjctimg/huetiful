@@ -20,7 +20,7 @@ import type { Color } from "../paramTypes.ts";
 
 /**
  * @function
- *Converts the temperature value (in Kelvins) to an RGB color.
+ * @description Converts the temperature value (in Kelvins) to an RGB color.
  * @param kelvin The number of Kelvins. From 0 to 30,000 .
  * @returns color An RGB color object.
  */

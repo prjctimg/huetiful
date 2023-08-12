@@ -3,11 +3,12 @@ import { sortedArr } from "../core-utils/helpers.ts";
 import { getLuminance } from "../core-utils/luminance.ts";
 
 /**
- * Sorts colors according to the relative brightness as defined by WCAG definition.
- * @param {Array<string>} colors The array of colors to sort
- * @param {string} order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
- * @returns [colors] An array of the sorted color values.
- * @see Uses chroma.luminance() https://vis4.net/chroma-js/#color-luminance
+ * @function
+ * @description Sorts colors according to the relative brightness as defined by WCAG definition.
+ * @param  colors The array of colors to sort
+ * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
+ * @returns An array of the sorted color values.
+ 
  */
 
 const sortByLuminance: sortBy = (colors, order) => {

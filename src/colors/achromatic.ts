@@ -5,7 +5,7 @@ import { rgb2num } from "../core-utils/rgb2num.ts";
 
 /**
  * @function
- *  Checks if a color is achromatic(without hue or simply grayscale).
+ *  @description Checks if a color is achromatic(without hue or simply grayscale).
  * @param color The color to test if it is achromatic or not.
  * @returns boolean Returns true if the color is achromatic else false
  */

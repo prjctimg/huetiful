@@ -24,7 +24,7 @@ import type { Color, palette } from "../paramTypes.ts";
 
 const base =
   (scheme: palette) =>
-  (color: Color, hex = false) => {
+  (color: Color, hex = false): Color[] => {
     // Converting the color to lch
     color = converter("lch")(color);
     const lowMin = 0.05,

@@ -8,16 +8,19 @@ import {
   has,
 } from "lodash-es";
 import shades from "../color-maps/defaultTailwindPalette.ts";
-import type { HueMap, ScaleValues } from "../paramTypes.ts";
+import type { HueMap, ScaleValues, Color } from "../paramTypes.ts";
 
 /**
  * @function
- * A wrapper function for the default Tailwind palette. If called with both parameters it return the hex code at the specified shade and value. Else, if called with the shade parameter as "all" it will return all colors from the shades in the palette map at the specified value (if value is undefined it will default to "500"). When called with the shade parameter only it will return all the colors from 100 to 900 of the specified shade.
+ * @description A wrapper function for the default Tailwind palette. If called with both parameters it return the hex code at the specified shade and value. Else, if called with the shade parameter as "all" it will return all colors from the shades in the palette map at the specified value (if value is undefined it will default to "500"). When called with the shade parameter only it will return all the colors from 100 to 900 of the specified shade.
  * @param shade Any shade in the default TailwindCSS palette e.g amber,blue.
  * @param val Any value from 100 to 900 in increments of 100 e.g "200".
  * @returns color Returns a hex code string or array of hex codes depending on how the function is called.
  */
-const colors = (shade: keyof HueMap, val: keyof ScaleValues) => {
+const colors = (
+  shade: keyof HueMap,
+  val: keyof ScaleValues
+): Color | Color[] => {
   const defaultHue = "all";
   const black = "#000000";
 
