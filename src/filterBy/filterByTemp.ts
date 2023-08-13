@@ -16,11 +16,7 @@ import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 
 //TODO Could also specify warm|cool to quickly return the filtered array. This param overrides startTemp and endTemp.
 //@ts-ignore
-const filterByTemp: filterBy = (
-  colors,
-  startTemp = 1000,
-  endTemp = 6000
-): Color[] => {
+const filterByTemp: filterBy = (colors, startTemp = 1000, endTemp = 6000) => {
   // This variable stores the array that matches the filtering criteria defined by the start and end hues
   const factor = "temp";
   const cb = getTemp;
