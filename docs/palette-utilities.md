@@ -3,7 +3,7 @@
 `(scheme: palette) =>
   (color: Color, hex = false):Color[]`
 
-```
+```javascript
 
 
 /**
@@ -20,7 +20,7 @@
 
 `(color: Color, tone: keyof earthtones, num = 1): Color[]`
 
-```
+```javascript
 /**
  * @description Creates a scale of a spline based interpolation between an earthtone and a color.
  * @param color The color to interpolate an earth tone with.
@@ -36,7 +36,7 @@
 
 `(color: Color, hex = true): Color`
 
-```
+```javascript
 
 
 
@@ -52,7 +52,7 @@
 
 `(color: Color, opts = {minLightness?:number,maxLightness?:number}, hex = false): Color[]`
 
-```
+```javascript
 /**
  * @description Generates a palette of hue shifted colors (as a colour becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme.
  * @param color The color to use as the base of the hueshift. Colors are internally converted to LCH.

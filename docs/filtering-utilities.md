@@ -13,7 +13,7 @@ All the filtering functions:
 
 `(colors: Color[], startHue = 0, endHue = 360):Colors[]`
 
-```
+```javascript
 import { filterByHue } from "huetiful-js";
 let sample = [
   "#00ffdc",
@@ -52,7 +52,7 @@ filterByHue(sample, 20, 80);
   endLuminance = 1
 ): Color[]`
 
-```
+```javascript
 import { filterByLuminance } from "huetiful-js";
 let sample = [
   "#00ffdc",
@@ -88,7 +88,7 @@ filterByLuminance(sample, 0.4, 0.9);
 
 `(colors, startSaturation = 0.05, endSaturation = 1):Color[]`
 
-```
+```javascript
 import { filterBySaturation } from "huetiful-js";
 let sample = [
   "#00ffdc",
@@ -127,9 +127,10 @@ filterBySaturation(sample, 0.1, 0.8);
 
 #### `filterByTemp`
 
-` (colors, startTemp = 1000, endTemp = 6000):Color[]`
+`(colors, startTemp = 1000, endTemp = 6000):Color[]`
 
-`import { filterByTemp } from "huetiful-js";
+```javascript
+import { filterByTemp } from "huetiful-js";
 let sample = [
 "#00ffdc",
 "#00ff78",
@@ -144,7 +145,7 @@ let sample = [
 "#720000",
 ];
 
-/\*\*
+/**
 
 - @function
 - @description Returns an array of colors in the specified temperature range between 0 and 30,000 Kelvins.
@@ -152,8 +153,7 @@ let sample = [
 - @param startTemp The minimum end of the temperature range.
 - @param endTemp The maximum end of the temperature range.
 - @returns Array of the filtered colors.
-- @see Based on Neil Bartlett's implementation https://github.com/neilbartlett/color-temperature
-  \*/
+  */
 
 filterByTemp(sample, 1000, 20000);
 
@@ -164,8 +164,6 @@ filterByTemp(sample, 1000, 20000);
 '#4e0000', '#600000',
 '#720000'
 ]
-
-```
 
 
 ```

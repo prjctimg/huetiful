@@ -12,7 +12,7 @@ All the sorting functions:
 
 `(colors:Color[], order:'asc' | 'desc'):Color[]`
 
-```
+```javascript
 import { sortByLuminance } from "huetiful-js";
 let sample = [
   "#00ffdc",
@@ -64,7 +64,7 @@ sortByLuminance(sample, "desc");
 
 `(colors:Color[], order:'asc' | 'desc'):Color[]`
 
-```
+```javascript
 import { sortBySaturation } from "huetiful-js";
 let sample = [
   "#00ffdc",
@@ -117,7 +117,7 @@ sortBySaturation(sample);
 
 `(colors:Color[], order:'asc' | 'desc'):Color[]`
 
-```
+```javascript
 import { sortByHue } from "huetiful-js";
 let sample = [
   "#00ffdc",
@@ -160,7 +160,7 @@ sortByHue(sample,'desc');
 
 `(colors:Color[], order:'asc' | 'desc'):Color[]`
 
-```
+```javascript
 import { sortByTemp } from "huetiful-js";
 let sample = [
   "#00ffdc",

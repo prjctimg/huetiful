@@ -2,7 +2,7 @@
 
 The library comes along with the default TailwindCSS palette in the form of a curried wrapper function that takes the Tailwind shade as its first parameter and the value i.e `500` as the second parameter.
 
-```
+```javascript
 import { tailwindColors } from "huetiful-js";
 
 // We pass in red as the target hue.
@@ -33,7 +33,7 @@ red('900')
 
 `colors` is similar to `tailwindColors` except that it is not curried but takes the exact parameters. It differs because it has an additional `all` parameter that allows us to extract all colors from the palette at the specified value
 
-```
+```javascript
 
 /**
  * @function

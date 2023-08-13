@@ -6,7 +6,7 @@ We can use `isWarm` and `isCool` to determine if a color is approximately warm o
 
 `(color: Color):boolean`
 
-```
+```javascript
 
 import { isWarm } from 'huetiful-js'
 
@@ -50,7 +50,7 @@ map(sample, isWarm);
 
 `(color: Color):boolean`
 
-```
+```javascript
 import { isCool } from 'huetiful-js'
 
 let sample = [
@@ -94,7 +94,7 @@ map(sample, isCool);
 
 `(color: Color): number`
 
-```
+```javascript
 /**
  * @function
  * @description Checks the approximate minimum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
@@ -111,7 +111,7 @@ map(sample, isCool);
 
 `(color: Color): number`
 
-```
+```javascript
 /**
  * @function
  * @description Checks the approximate maximum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
@@ -121,5 +121,3 @@ map(sample, isCool);
 ```
 
 Please note that precision of the utilities is limited and improvement suggestions are welcome. Feel free to open an issue for suggestions.
-
-Further reading [Color temperature]()
