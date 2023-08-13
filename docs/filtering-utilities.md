@@ -129,7 +129,8 @@ filterBySaturation(sample, 0.1, 0.8);
 
 ` (colors, startTemp = 1000, endTemp = 6000):Color[]`
 
-`import { filterByTemp } from "huetiful-js";
+```
+import { filterByTemp } from "huetiful-js";
 let sample = [
 "#00ffdc",
 "#00ff78",
@@ -167,5 +168,3 @@ filterByTemp(sample, 1000, 20000);
 
 ```
 
-
-```
