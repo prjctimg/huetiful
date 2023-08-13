@@ -6,7 +6,7 @@ These are the small helper utilities for doing various low level manipulations a
 
 `(color: Color, value?: number): Color | number`
 
-```
+```javascript
 **
  * @function
  * @description Sets the opacity of a color. Also gets the alpha value of the color if the value param is omitted
@@ -24,7 +24,7 @@ These are the small helper utilities for doing various low level manipulations a
 
 `(color: Color, amount: number): Color`
 
-```
+```javascript
 /**
  * @function
  * @description Darkens the color by reducing the lightness channel. .
@@ -40,7 +40,7 @@ These are the small helper utilities for doing various low level manipulations a
 `(mc: string) =>
   (color: Color): number`
 
-```
+```javascript
 /**
  * @function
  * @description Gets the  value specifified channel on the color.
@@ -54,7 +54,7 @@ These are the small helper utilities for doing various low level manipulations a
 
 `(color: Color): number`
 
-```
+```javascript
 /** @alias
  * Gets the luminance value of that color as defined by WCAG.
  * @param color The color to query.
@@ -67,7 +67,7 @@ These are the small helper utilities for doing various low level manipulations a
 
 `(color: Color, lum: number):Color`
 
-```
+```javascript
 /**
  * @function
  * @description Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
@@ -82,7 +82,7 @@ These are the small helper utilities for doing various low level manipulations a
 
 `(color: Color): number`
 
-```
+```javascript
 /**
  * @description Returns the temperature value in Kelvins of the passed in color.
  * @param color The color to query its temperature value
@@ -96,7 +96,7 @@ These are the small helper utilities for doing various low level manipulations a
 `(mc: string) =>
   (color: Color, value: number | string): Color`
 
-```
+```javascript
 /**
  * @function
  * @description Sets the value for the specified channel in a color.
@@ -111,7 +111,7 @@ These are the small helper utilities for doing various low level manipulations a
 
 `(kelvin: number): Color`
 
-```
+```javascript
 /**
  * @function
  * @description Converts the temperature value (in Kelvins) to an RGB color.
