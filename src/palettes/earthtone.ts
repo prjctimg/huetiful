@@ -20,13 +20,13 @@ import { Interpolator } from "culori/src/interpolate/Interpolator.js";
  * @param color The color to interpolate an earth tone with.
  * @param tone The earthtone to interpolate with.
  * @param num The number of iterations to produce from the color and earthtone.
- * @returns The array o colors resulting from the earthtone interpolation.
+ * @returns The array of colors resulting from the earthtone interpolation as hex codes.
  */
 const earthtone = (color: Color, tone: keyof earthtones, num = 1): Color[] => {
-  defaultTo(color, "black") && (color = lch(color));
-
-  let f = interpolate(
-    [
+  color = lch(color);
+  let base =
+    tone ||
+    ("dark" &&
       get(
         {
           "light gray": "#e5e5e5",
@@ -40,19 +40,15 @@ const earthtone = (color: Color, tone: keyof earthtones, num = 1): Color[] => {
           "dark brown": "#473b31",
           dark: "#352a21",
         },
-        defaultTo(tone, "dark brown")
-      ),
-      easingSmootherstep,
-      color,
-    ],
-    "lch",
-    {
-      h: {
-        use: interpolatorSplineNatural,
-        fixup: fixupHueShorter,
-      },
-    }
-  );
+        tone
+      ));
+
+  let f = interpolate([base, color, easingSmootherstep], "lch", {
+    h: {
+      use: interpolatorSplineNatural,
+      fixup: fixupHueShorter,
+    },
+  });
 
   return map(samples(num), (t) => formatHex8(f(t)));
 };
