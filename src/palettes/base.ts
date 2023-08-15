@@ -9,10 +9,13 @@ import {
   forEach,
   subtract,
   mean,
+  range,
+  divide,
 } from "lodash-es";
 import { converter, formatHex8 } from "culori";
 
 import type { Color, palette } from "../paramTypes.ts";
+import { adjustHue } from "../core-utils/helpers.ts";
 
 /**
  * @function
@@ -32,11 +35,21 @@ const base =
       highMin = 0.5,
       highMax = 0.995;
     let targetHueSteps = {
-      analogous: [0, 180, 360],
-      triadic: [0, 120, 240],
-      tetradic: [0, 90, 180, 270],
-      complementary: [0, 180],
-      splitComplementary: [0, 150, 210],
+      analogous: map(range(3), (val) =>
+        adjustHue(add(color["h"], multiply(divide(val, 12), 360)))
+      ),
+      triadic: map(range(3), (val) =>
+        adjustHue(add(color["h"], multiply(divide(val, 3), 360)))
+      ),
+      tetradic: map(range(4), (val) =>
+        adjustHue(add(color["h"], multiply(divide(val, 4), 360)))
+      ),
+      complementary: map(range(2), (val) =>
+        adjustHue(add(color["h"], multiply(divide(val, 2), 360)))
+      ),
+      customAnalogous: map(range(4), (val) =>
+        adjustHue(add(color["h"], multiply(divide(val, 4), color["h"])))
+      ),
     };
     // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
     targetHueSteps = forEach(targetHueSteps, (scheme) =>

@@ -1,15 +1,14 @@
-export type earthtones = {
-  "light gray": "#e5e5e5";
-  silver: "#f5f5f5";
-  sand: "#c2b2a4";
-  tupe: "#a79e8a";
-  mahogany: "#958c7c";
-  "brick red": "#7d7065 ";
-  clay: "#6a5c52";
-  cocoa: "#584a3e";
-  "dark brown": "#473b31";
-  dark: "#352a21";
-};
+export type earthtones =
+  | "light gray"
+  | "silver"
+  | "sand"
+  | "tupe"
+  | "mahogany"
+  | "brick red"
+  | "clay"
+  | "cocoa"
+  | "dark brown"
+  | "dark";
 export type divergingScheme =
   | "Spectral"
   | "RdYlGn"
@@ -56,7 +55,8 @@ export type palette =
   | "triadic"
   | "tetradic"
   | "complementary"
-  | "splitComplementary";
+  | "splitComplementary"
+  | "customAnalogous";
 export type Color = number | string | object;
 
 /**

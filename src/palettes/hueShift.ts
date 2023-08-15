@@ -11,13 +11,9 @@ import {
   add,
   lt,
 } from "lodash-es";
-import type { Color } from "../paramTypes.js";
-
+import type { Color } from "../paramTypes.ts";
+import { adjustHue } from "../core-utils/helpers.ts";
 const { ceil } = Math;
-const adjustHue = (value = 0) =>
-  lt(value, 0)
-    ? (value += multiply(ceil(divide(-value, 360)), 360))
-    : value % 360;
 
 const lightnessMapper =
   (n: number) =>

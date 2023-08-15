@@ -106,8 +106,12 @@ const sortedArr: factorMapper = (factor, cb, order) => (colors) =>
  * @param start
  * @param end
  */
-/* const normalize = (num: number, start: number, end: number): number => {
+const normalize = (num: number, start: number, end: number): number => {
   return multiply(num, subtract(end, start));
-}; */
+};
 
-export { colorObjArr, filteredArr, sortedArr };
+const adjustHue = (value = 0) =>
+  lt(value, 0)
+    ? (value += multiply(ceil(divide(-value, 360)), 360))
+    : value % 360;
+export { adjustHue, colorObjArr, filteredArr, sortedArr, normalize };
