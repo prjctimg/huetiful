@@ -1,4 +1,5 @@
-import { earthtone, getTemp, maxTemp } from "./dist/huetiful.esm.mjs";
+import { diverging, qualitative, sequential } from "./dist/huetiful.esm.mjs";
+
 let sample = [
   "#00ffdc",
   "#00ff78",
@@ -13,4 +14,4 @@ let sample = [
   "#720000",
 ];
 
-console.log(earthtone("purple", "brown", 6));
+console.log(sequential("YlOrBr"));

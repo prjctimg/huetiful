@@ -6,6 +6,8 @@
 .pnp.js
 
 # testing
+
+/color-thief
 /coverage
 /experimental
 # next.js

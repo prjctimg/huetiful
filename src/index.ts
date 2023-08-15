@@ -23,7 +23,11 @@ import { sortByHue } from "./sortBy/sortByHue.ts";
 import { pastel } from "./palettes/pastel.ts";
 import { hueShift } from "./palettes/hueShift.ts";
 import { earthtone } from "./palettes/earthtone.ts";
+import { sequential, diverging, qualitative } from "./colors/colorBrewer.ts";
 export {
+  sequential,
+  diverging,
+  qualitative,
   earthtone,
   minTemp,
   maxTemp,

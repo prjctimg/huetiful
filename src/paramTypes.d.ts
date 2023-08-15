@@ -1,5 +1,3 @@
-import type { Color as _color } from "culori";
-
 export type earthtones = {
   "light gray": "#e5e5e5";
   silver: "#f5f5f5";
@@ -12,6 +10,46 @@ export type earthtones = {
   "dark brown": "#473b31";
   dark: "#352a21";
 };
+export type divergingScheme =
+  | "Spectral"
+  | "RdYlGn"
+  | "RdBu"
+  | "PiYG"
+  | "PRGn"
+  | "RdYlBu"
+  | "BrBG"
+  | "RdGy"
+  | "PuOr";
+export type qualitativeScheme =
+  | "Set2"
+  | "Accent"
+  | "Set1"
+  | "Set3"
+  | "Dark2"
+  | "Paired"
+  | "Pastel2"
+  | "Pastel1";
+
+export type sequentialScheme =
+  | "OrRd"
+  | "PuBu"
+  | "BuPu"
+  | "Oranges"
+  | "BuGn"
+  | "YlOrBr"
+  | "YlGn"
+  | "Reds"
+  | "RdPu"
+  | "Greens"
+  | "YlGnBu"
+  | "Purples"
+  | "GnBu"
+  | "Greys"
+  | "YlOrRd"
+  | "PuRd"
+  | "Blues"
+  | "PuBuGn"
+  | "Viridis";
 
 export type palette =
   | "analogous"
