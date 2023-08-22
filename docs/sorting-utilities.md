@@ -192,5 +192,49 @@ sortByTemp(sample)
 sortByTemp(sample,'desc')
 
 
+## `sortByLightness`
+
+`(colors:Color[], order:'asc' | 'desc'):Color[]`
+
+```javascript
+/**
+
+- @function
+- @description Sorts colors according to their lightness.
+- @param  colors The array of colors to sort
+- @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
+- @returns An array of the sorted color values.
+ */
+
+```
+
+##### Example
+
+```javascript
+
+import { sortByLightness } from "huetiful-js";
+let sample = [
+  "#00ffdc",
+  "#00ff78",
+  "#00c000",
+  "#007e00",
+  "#164100",
+  "#ffff00",
+  "#310000",
+  "#3e0000",
+  "#4e0000",
+  "#600000",
+  "#720000",
+]
+
+sortByLightness(sample)
+
+//
+
+
+sortByLightness(sample,'desc')
+
+//
+
 
 ```

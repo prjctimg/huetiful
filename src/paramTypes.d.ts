@@ -1,3 +1,4 @@
+export type tone = "light" | "dark";
 export type earthtones =
   | "light gray"
   | "silver"

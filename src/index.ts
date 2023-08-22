@@ -24,7 +24,11 @@ import { pastel } from "./palettes/pastel.ts";
 import { hueShift } from "./palettes/hueShift.ts";
 import { earthtone } from "./palettes/earthtone.ts";
 import { sequential, diverging, qualitative } from "./colors/colorBrewer.ts";
+import { pairedScheme } from "./palettes/paired.ts";
+import { sortByLightness } from "./sortBy/sortByLightness.ts";
 export {
+  sortByLightness,
+  pairedScheme,
   sequential,
   diverging,
   qualitative,

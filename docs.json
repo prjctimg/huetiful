@@ -1,0 +1,4352 @@
+{
+	"id": 0,
+	"name": "huetiful-js",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 110,
+			"name": "alpha",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "core-utils/alpha.ts",
+					"line": 14,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 111,
+					"name": "alpha",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Sets the opacity of a color. Also gets the alpha value of the color if the value param is omitted"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "color The resulting color. Returns an 8 character hex code."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "core-utils/alpha.ts",
+							"line": 14,
+							"character": 14
+						}
+					],
+					"parameters": [
+						{
+							"id": 112,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color with the targeted opacity/alpha channel."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						},
+						{
+							"id": 113,
+							"name": "value",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {
+								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The value to apply to the opacity channel. The value is between [0,1]"
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "src/paramTypes.d.ts",
+							"qualifiedName": "Color"
+						},
+						"name": "Color",
+						"package": "huetiful-js"
+					}
+				}
+			]
+		},
+		{
+			"id": 63,
+			"name": "base",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "palettes/base.ts",
+					"line": 27,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 64,
+					"name": "base",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Generates a randomised classic color scheme from a single base color."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "An array of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "palettes/base.ts",
+							"line": 28,
+							"character": 2
+						}
+					],
+					"parameters": [
+						{
+							"id": 65,
+							"name": "scheme",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Any classic color scheme either \"analogous\"|\"triadic\"|\"tetradic\"|\"complementary\"|\"splitComplementary\"."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "palette"
+								},
+								"name": "palette",
+								"package": "huetiful-js"
+							}
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 66,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "palettes/base.ts",
+									"line": 29,
+									"character": 2
+								}
+							],
+							"signatures": [
+								{
+									"id": 67,
+									"name": "__type",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "palettes/base.ts",
+											"line": 29,
+											"character": 2
+										}
+									],
+									"parameters": [
+										{
+											"id": 68,
+											"name": "color",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "src/paramTypes.d.ts",
+													"qualifiedName": "Color"
+												},
+												"name": "Color",
+												"package": "huetiful-js"
+											}
+										},
+										{
+											"id": 69,
+											"name": "hex",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "boolean"
+											},
+											"defaultValue": "false"
+										}
+									],
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"target": {
+												"sourceFileName": "src/paramTypes.d.ts",
+												"qualifiedName": "Color"
+											},
+											"name": "Color",
+											"package": "huetiful-js"
+										}
+									}
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 106,
+			"name": "brighten",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "core-utils/darken.ts",
+					"line": 33,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 107,
+					"name": "brighten",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": []
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "core-utils/darken.ts",
+							"line": 33,
+							"character": 17
+						}
+					],
+					"parameters": [
+						{
+							"id": 108,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to brighten."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						},
+						{
+							"id": 109,
+							"name": "amount",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The amount to brighten with. Also supports expressions as strings e.g darken(\"#fc23a1\",\"*0.5\")"
+									}
+								]
+							},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "intrinsic",
+										"name": "number"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "src/paramTypes.d.ts",
+							"qualifiedName": "Color"
+						},
+						"name": "Color",
+						"package": "huetiful-js"
+					}
+				}
+			]
+		},
+		{
+			"id": 134,
+			"name": "colors",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "colors/colors.ts",
+					"line": 20,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 135,
+					"name": "colors",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A wrapper function for the default Tailwind palette. If called with both parameters it return the hex code at the specified shade and value. Else, if called with the shade parameter as \"all\" it will return all colors from the shades in the palette map at the specified value (if value is undefined it will default to \"500\"). When called with the shade parameter only it will return all the colors from 100 to 900 of the specified shade."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "color Returns a hex code string or array of hex codes depending on how the function is called."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "colors/colors.ts",
+							"line": 20,
+							"character": 15
+						}
+					],
+					"parameters": [
+						{
+							"id": 136,
+							"name": "shade",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Any shade in the default TailwindCSS palette e.g amber,blue."
+									}
+								]
+							},
+							"type": {
+								"type": "typeOperator",
+								"operator": "keyof",
+								"target": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "HueMap"
+									},
+									"name": "HueMap",
+									"package": "huetiful-js"
+								}
+							}
+						},
+						{
+							"id": 137,
+							"name": "val",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Any value from 100 to 900 in increments of 100 e.g \"200\"."
+									}
+								]
+							},
+							"type": {
+								"type": "typeOperator",
+								"operator": "keyof",
+								"target": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "ScaleValues"
+									},
+									"name": "ScaleValues",
+									"package": "huetiful-js"
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							},
+							{
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "Color"
+									},
+									"name": "Color",
+									"package": "huetiful-js"
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": 102,
+			"name": "darken",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "core-utils/darken.ts",
+					"line": 15,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 103,
+					"name": "darken",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Darkens the color by reducing the lightness channel. ."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "color The darkened color."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "core-utils/darken.ts",
+							"line": 15,
+							"character": 15
+						}
+					],
+					"parameters": [
+						{
+							"id": 104,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to darken."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						},
+						{
+							"id": 105,
+							"name": "amount",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The amount to darken with. Also supports expressions as strings e.g darken(\"#fc23a1\",\"*0.5\")"
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "src/paramTypes.d.ts",
+							"qualifiedName": "Color"
+						},
+						"name": "Color",
+						"package": "huetiful-js"
+					}
+				}
+			]
+		},
+		{
+			"id": 4,
+			"name": "diverging",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "colors/colorBrewer.ts",
+					"line": 259,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 5,
+					"name": "diverging",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A wrapper function for ColorBrewer's map of diverging color schemes."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "An array of colors in hex represantation or the string 'black' when an invalid scheme is passed as an argument."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "colors/colorBrewer.ts",
+							"line": 259,
+							"character": 18
+						}
+					],
+					"parameters": [
+						{
+							"id": 6,
+							"name": "scheme",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The name of the scheme."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "divergingScheme"
+								},
+								"name": "divergingScheme",
+								"package": "huetiful-js"
+							}
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "Color"
+									},
+									"name": "Color",
+									"package": "huetiful-js"
+								}
+							},
+							{
+								"type": "literal",
+								"value": "black"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": 10,
+			"name": "earthtone",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "palettes/earthtone.ts",
+					"line": 25,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 11,
+					"name": "earthtone",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Creates a scale of a spline based interpolation between an earthtone and a color."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The array of colors resulting from the earthtone interpolation as hex codes."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "palettes/earthtone.ts",
+							"line": 25,
+							"character": 18
+						}
+					],
+					"parameters": [
+						{
+							"id": 12,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to interpolate an earth tone with."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						},
+						{
+							"id": 13,
+							"name": "earthtone",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The earthtone to interpolate with."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "earthtones"
+								},
+								"name": "earthtones",
+								"package": "huetiful-js"
+							}
+						},
+						{
+							"id": 14,
+							"name": "num",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The number of iterations to produce from the color and earthtone."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							},
+							"defaultValue": "1"
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"target": {
+								"sourceFileName": "src/paramTypes.d.ts",
+								"qualifiedName": "Color"
+							},
+							"name": "Color",
+							"package": "huetiful-js"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 53,
+			"name": "filterByHue",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "filterBy/filterByHue.ts",
+					"line": 16,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 54,
+					"name": "filterByHue",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Returns colors in the specified hue ranges between 0 to 360."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array of the filtered colors."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "paramTypes.d.ts",
+							"line": 71,
+							"character": 23
+						}
+					],
+					"parameters": [
+						{
+							"id": 55,
+							"name": "colors",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The array of colors to filter."
+									}
+								]
+							},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "Color"
+									},
+									"name": "Color",
+									"package": "huetiful-js"
+								}
+							}
+						},
+						{
+							"id": 56,
+							"name": "start",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 57,
+							"name": "end",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"target": {
+								"sourceFileName": "src/paramTypes.d.ts",
+								"qualifiedName": "Color"
+							},
+							"name": "Color",
+							"package": "huetiful-js"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 75,
+			"name": "filterByLuminance",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "filterBy/filterByLuminance.ts",
+					"line": 14,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 76,
+					"name": "filterByLuminance",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Returns an array of colors in the specified luminance range. The range is normalised to [0,1]."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array of filtered colors."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "paramTypes.d.ts",
+							"line": 71,
+							"character": 23
+						}
+					],
+					"parameters": [
+						{
+							"id": 77,
+							"name": "colors",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The array of colors to filter."
+									}
+								]
+							},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "Color"
+									},
+									"name": "Color",
+									"package": "huetiful-js"
+								}
+							}
+						},
+						{
+							"id": 78,
+							"name": "start",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 79,
+							"name": "end",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"target": {
+								"sourceFileName": "src/paramTypes.d.ts",
+								"qualifiedName": "Color"
+							},
+							"name": "Color",
+							"package": "huetiful-js"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 58,
+			"name": "filterBySaturation",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "filterBy/filterBySaturation.ts",
+					"line": 16,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 59,
+					"name": "filterBySaturation",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Returns an array of colors in the specified saturation range. The range is normalised to [0,1]."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array of filtered colors."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "paramTypes.d.ts",
+							"line": 71,
+							"character": 23
+						}
+					],
+					"parameters": [
+						{
+							"id": 60,
+							"name": "colors",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The array of colors to filter."
+									}
+								]
+							},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "Color"
+									},
+									"name": "Color",
+									"package": "huetiful-js"
+								}
+							}
+						},
+						{
+							"id": 61,
+							"name": "start",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 62,
+							"name": "end",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"target": {
+								"sourceFileName": "src/paramTypes.d.ts",
+								"qualifiedName": "Color"
+							},
+							"name": "Color",
+							"package": "huetiful-js"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 70,
+			"name": "filterByTemp",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "filterBy/filterByTemp.ts",
+					"line": 19,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 71,
+					"name": "filterByTemp",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Returns an array of colors in the specified temperature range between 0 and 30,000 Kelvins."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array of the filtered colors."
+									}
+								]
+							},
+							{
+								"tag": "@see",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Based on Neil Bartlett's implementation https://github.com/neilbartlett/color-temperature"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "paramTypes.d.ts",
+							"line": 71,
+							"character": 23
+						}
+					],
+					"parameters": [
+						{
+							"id": 72,
+							"name": "colors",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The array of colors to filter."
+									}
+								]
+							},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "Color"
+									},
+									"name": "Color",
+									"package": "huetiful-js"
+								}
+							}
+						},
+						{
+							"id": 73,
+							"name": "start",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 74,
+							"name": "end",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"target": {
+								"sourceFileName": "src/paramTypes.d.ts",
+								"qualifiedName": "Color"
+							},
+							"name": "Color",
+							"package": "huetiful-js"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 83,
+			"name": "getChannel",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "core-utils/get.ts",
+					"line": 14,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 84,
+					"name": "getChannel",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Gets the  value specifified channel on the color."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "value The value of the queried channel."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "core-utils/get.ts",
+							"line": 15,
+							"character": 2
+						}
+					],
+					"parameters": [
+						{
+							"id": 85,
+							"name": "mc",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The mode and channel to be retrieved. For example \"rgb.b\" will return the value of the blue channel in the RGB color space of that color."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 86,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "core-utils/get.ts",
+									"line": 16,
+									"character": 2
+								}
+							],
+							"signatures": [
+								{
+									"id": 87,
+									"name": "__type",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "core-utils/get.ts",
+											"line": 16,
+											"character": 2
+										}
+									],
+									"parameters": [
+										{
+											"id": 88,
+											"name": "color",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "src/paramTypes.d.ts",
+													"qualifiedName": "Color"
+												},
+												"name": "Color",
+												"package": "huetiful-js"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 89,
+			"name": "getLuminance",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "core-utils/luminance.ts",
+					"line": 22,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 90,
+					"name": "getLuminance",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@alias",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Gets the luminance value of that color as defined by WCAG."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "value The color's luminance value."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "core-utils/luminance.ts",
+							"line": 22,
+							"character": 21
+						}
+					],
+					"parameters": [
+						{
+							"id": 91,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to query."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				}
+			]
+		},
+		{
+			"id": 92,
+			"name": "getTemp",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "core-utils/rgb2temperature.ts",
+					"line": 28,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 93,
+					"name": "getTemp",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Returns the temperature value in Kelvins of the passed in color."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The color's temperature in Kelvins."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "core-utils/rgb2temperature.ts",
+							"line": 28,
+							"character": 24
+						}
+					],
+					"parameters": [
+						{
+							"id": 94,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to query its temperature value"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				}
+			]
+		},
+		{
+			"id": 29,
+			"name": "hueShift",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "palettes/hueShift.ts",
+					"line": 39,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 30,
+					"name": "hueShift",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Generates a palette of hue shifted colors (as a colour becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "An array of colors."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "palettes/hueShift.ts",
+							"line": 39,
+							"character": 17
+						}
+					],
+					"parameters": [
+						{
+							"id": 31,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to use as the base of the hueshift. Colors are internally converted to LCH."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						},
+						{
+							"id": 32,
+							"name": "opts",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 33,
+									"name": "__type",
+									"variant": "declaration",
+									"kind": 65536,
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "palettes/hueShift.ts",
+											"line": 39,
+											"character": 39
+										}
+									]
+								}
+							},
+							"defaultValue": "{}"
+						},
+						{
+							"id": 34,
+							"name": "hex",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Optional boolen to return lch color objects or hex codes in the result array. Default is false  which returns LCH color objects."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"defaultValue": "false"
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"target": {
+								"sourceFileName": "src/paramTypes.d.ts",
+								"qualifiedName": "Color"
+							},
+							"name": "Color",
+							"package": "huetiful-js"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 80,
+			"name": "isAchromatic",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "colors/achromatic.ts",
+					"line": 12,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 81,
+					"name": "isAchromatic",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Checks if a color is achromatic(without hue or simply grayscale)."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "boolean Returns true if the color is achromatic else false"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "colors/achromatic.ts",
+							"line": 12,
+							"character": 21
+						}
+					],
+					"parameters": [
+						{
+							"id": 82,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to test if it is achromatic or not."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			]
+		},
+		{
+			"id": 35,
+			"name": "isCool",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "colors/temperature.ts",
+					"line": 43,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 36,
+					"name": "isCool",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "True or false."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "colors/temperature.ts",
+							"line": 43,
+							"character": 15
+						}
+					],
+					"parameters": [
+						{
+							"id": 37,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to check the temperature."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			]
+		},
+		{
+			"id": 38,
+			"name": "isWarm",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "colors/temperature.ts",
+					"line": 60,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 39,
+					"name": "isWarm",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Checks if a color can be roughly classified as a warm color. Returns true if color is a warm color else false."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "True or false."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "colors/temperature.ts",
+							"line": 60,
+							"character": 15
+						}
+					],
+					"parameters": [
+						{
+							"id": 40,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to check the temperature."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			]
+		},
+		{
+			"id": 18,
+			"name": "maxTemp",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "colors/temperature.ts",
+					"line": 76,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 19,
+					"name": "maxTemp",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Checks the approximate maximum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The maximum temperature in Kelvins."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "colors/temperature.ts",
+							"line": 76,
+							"character": 16
+						}
+					],
+					"parameters": [
+						{
+							"id": 20,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to check its maximum temperature."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				}
+			]
+		},
+		{
+			"id": 15,
+			"name": "minTemp",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "colors/temperature.ts",
+					"line": 101,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 16,
+					"name": "minTemp",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Checks the approximate minimum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The minimum temperature in Kelvins."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "colors/temperature.ts",
+							"line": 101,
+							"character": 16
+						}
+					],
+					"parameters": [
+						{
+							"id": 17,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to check its minimum temperature."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				}
+			]
+		},
+		{
+			"id": 124,
+			"name": "num2rgb",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "core-utils/num2rgb.ts",
+					"line": 18,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 125,
+					"name": "num2rgb",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Returns the RGB color equivalent of any number between 0 and 16,777,215."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "color An RGB color object or hex string."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "core-utils/num2rgb.ts",
+							"line": 18,
+							"character": 16
+						}
+					],
+					"parameters": [
+						{
+							"id": 126,
+							"name": "num",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The number to convert to RGB"
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 127,
+							"name": "hex",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"defaultValue": "false"
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "src/paramTypes.d.ts",
+							"qualifiedName": "Color"
+						},
+						"name": "Color",
+						"package": "huetiful-js"
+					}
+				}
+			]
+		},
+		{
+			"id": 25,
+			"name": "pastel",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "palettes/pastel.ts",
+					"line": 56,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 26,
+					"name": "pastel",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Returns a random pastel variant of the passed in color."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A random pastel color."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "palettes/pastel.ts",
+							"line": 56,
+							"character": 21
+						}
+					],
+					"parameters": [
+						{
+							"id": 27,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to return a pastel variant of."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						},
+						{
+							"id": 28,
+							"name": "hex",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Pass in true to return an 8-character hex code else it will return an HSV color object."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"defaultValue": "true"
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "src/paramTypes.d.ts",
+							"qualifiedName": "Color"
+						},
+						"name": "Color",
+						"package": "huetiful-js"
+					}
+				}
+			]
+		},
+		{
+			"id": 7,
+			"name": "qualitative",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "colors/colorBrewer.ts",
+					"line": 390,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 8,
+					"name": "qualitative",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A wrapper function for ColorBrewer's map of qualitative color schemes."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "An array of colors in hex represantation or the string 'black' when an invalid scheme is passed as an argument."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "colors/colorBrewer.ts",
+							"line": 390,
+							"character": 20
+						}
+					],
+					"parameters": [
+						{
+							"id": 9,
+							"name": "scheme",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The name of the scheme"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "qualitativeScheme"
+								},
+								"name": "qualitativeScheme",
+								"package": "huetiful-js"
+							}
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "Color"
+									},
+									"name": "Color",
+									"package": "huetiful-js"
+								}
+							},
+							{
+								"type": "literal",
+								"value": "black"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": 121,
+			"name": "rgb2num",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "core-utils/rgb2num.ts",
+					"line": 13,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 122,
+					"name": "rgb2num",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Returns the numerical equivalent of a color."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "value The numerical value of the color from 0 to 16,777,215."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "core-utils/rgb2num.ts",
+							"line": 13,
+							"character": 16
+						}
+					],
+					"parameters": [
+						{
+							"id": 123,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to convert to its numerical equivalent."
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				}
+			]
+		},
+		{
+			"id": 1,
+			"name": "sequential",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "colors/colorBrewer.ts",
+					"line": 36,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 2,
+					"name": "sequential",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A wrapper function for ColorBrewer's map of sequential color schemes."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "An array of colors in hex represantation or the string 'black' when an invalid scheme is passed as an argument."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "colors/colorBrewer.ts",
+							"line": 36,
+							"character": 19
+						}
+					],
+					"parameters": [
+						{
+							"id": 3,
+							"name": "scheme",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The name of the scheme"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "sequentialScheme"
+								},
+								"name": "sequentialScheme",
+								"package": "huetiful-js"
+							}
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "Color"
+									},
+									"name": "Color",
+									"package": "huetiful-js"
+								}
+							},
+							{
+								"type": "literal",
+								"value": "black"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": 95,
+			"name": "setChannel",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "core-utils/set.ts",
+					"line": 17,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 96,
+					"name": "setChannel",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Sets the value for the specified channel in a color."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "color The mutated color."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "core-utils/set.ts",
+							"line": 18,
+							"character": 2
+						}
+					],
+					"parameters": [
+						{
+							"id": 97,
+							"name": "mc",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The mode and channel to work with. For example 'rgb.b'."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 98,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "core-utils/set.ts",
+									"line": 19,
+									"character": 2
+								}
+							],
+							"signatures": [
+								{
+									"id": 99,
+									"name": "__type",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "core-utils/set.ts",
+											"line": 19,
+											"character": 2
+										}
+									],
+									"parameters": [
+										{
+											"id": 100,
+											"name": "color",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"target": {
+													"sourceFileName": "src/paramTypes.d.ts",
+													"qualifiedName": "Color"
+												},
+												"name": "Color",
+												"package": "huetiful-js"
+											}
+										},
+										{
+											"id": 101,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "string"
+													},
+													{
+														"type": "intrinsic",
+														"name": "number"
+													}
+												]
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "src/paramTypes.d.ts",
+											"qualifiedName": "Color"
+										},
+										"name": "Color",
+										"package": "huetiful-js"
+									}
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 114,
+			"name": "setLuminance",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "core-utils/luminance.ts",
+					"line": 33,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 115,
+					"name": "setLuminance",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance)."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The mutated color with the modified properties"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "core-utils/luminance.ts",
+							"line": 33,
+							"character": 18
+						}
+					],
+					"parameters": [
+						{
+							"id": 116,
+							"name": "color",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The color to set luminance"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/paramTypes.d.ts",
+									"qualifiedName": "Color"
+								},
+								"name": "Color",
+								"package": "huetiful-js"
+							}
+						},
+						{
+							"id": 117,
+							"name": "lum",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The amount of luminance to set. The value range is normalised between [0,1]"
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "src/paramTypes.d.ts",
+							"qualifiedName": "Color"
+						},
+						"name": "Color",
+						"package": "huetiful-js"
+					}
+				}
+			]
+		},
+		{
+			"id": 118,
+			"name": "setTemp",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "core-utils/temperature2rgb.ts",
+					"line": 27,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 119,
+					"name": "setTemp",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Converts the temperature value (in Kelvins) to an RGB color."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "color An RGB color object."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "core-utils/temperature2rgb.ts",
+							"line": 27,
+							"character": 24
+						}
+					],
+					"parameters": [
+						{
+							"id": 120,
+							"name": "kelvin",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The number of Kelvins. From 0 to 30,000 ."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "src/paramTypes.d.ts",
+							"qualifiedName": "Color"
+						},
+						"name": "Color",
+						"package": "huetiful-js"
+					}
+				}
+			]
+		},
+		{
+			"id": 21,
+			"name": "sortByHue",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "sortBy/sortByHue.ts",
+					"line": 15,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 22,
+					"name": "sortByHue",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "An array of the sorted color values."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "paramTypes.d.ts",
+							"line": 73,
+							"character": 21
+						}
+					],
+					"parameters": [
+						{
+							"id": 23,
+							"name": "colors",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The array of colors to sort"
+									}
+								]
+							},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "Color"
+									},
+									"name": "Color",
+									"package": "huetiful-js"
+								}
+							}
+						},
+						{
+							"id": 24,
+							"name": "order",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')"
+									}
+								]
+							},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "literal",
+										"value": "asc"
+									},
+									{
+										"type": "literal",
+										"value": "desc"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"target": {
+								"sourceFileName": "src/paramTypes.d.ts",
+								"qualifiedName": "Color"
+							},
+							"name": "Color",
+							"package": "huetiful-js"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 41,
+			"name": "sortByLuminance",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "sortBy/sortByLuminance.ts",
+					"line": 14,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 42,
+					"name": "sortByLuminance",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Sorts colors according to the relative brightness as defined by WCAG definition."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "An array of the sorted color values."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "paramTypes.d.ts",
+							"line": 73,
+							"character": 21
+						}
+					],
+					"parameters": [
+						{
+							"id": 43,
+							"name": "colors",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The array of colors to sort"
+									}
+								]
+							},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "Color"
+									},
+									"name": "Color",
+									"package": "huetiful-js"
+								}
+							}
+						},
+						{
+							"id": 44,
+							"name": "order",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')"
+									}
+								]
+							},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "literal",
+										"value": "asc"
+									},
+									{
+										"type": "literal",
+										"value": "desc"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"target": {
+								"sourceFileName": "src/paramTypes.d.ts",
+								"qualifiedName": "Color"
+							},
+							"name": "Color",
+							"package": "huetiful-js"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 45,
+			"name": "sortBySaturation",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "sortBy/sortBySaturation.ts",
+					"line": 13,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 46,
+					"name": "sortBySaturation",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Sorts colors according to their saturation."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "An array of the sorted color values."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "paramTypes.d.ts",
+							"line": 73,
+							"character": 21
+						}
+					],
+					"parameters": [
+						{
+							"id": 47,
+							"name": "colors",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The array of colors to sort"
+									}
+								]
+							},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "Color"
+									},
+									"name": "Color",
+									"package": "huetiful-js"
+								}
+							}
+						},
+						{
+							"id": 48,
+							"name": "order",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')"
+									}
+								]
+							},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "literal",
+										"value": "asc"
+									},
+									{
+										"type": "literal",
+										"value": "desc"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"target": {
+								"sourceFileName": "src/paramTypes.d.ts",
+								"qualifiedName": "Color"
+							},
+							"name": "Color",
+							"package": "huetiful-js"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 49,
+			"name": "sortByTemp",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "sortBy/sortByTemp.ts",
+					"line": 14,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 50,
+					"name": "sortByTemp",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Sorts colors according to temperature value in Kelvins according to the temperatu. Achromatic colors may return awkward results."
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "An array of the sorted color values."
+									}
+								]
+							},
+							{
+								"tag": "@see",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Based on Neil Bartlett's implementation https://github.com/neilbartlett/color-temperature"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "paramTypes.d.ts",
+							"line": 73,
+							"character": 21
+						}
+					],
+					"parameters": [
+						{
+							"id": 51,
+							"name": "colors",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The array of colors to sort"
+									}
+								]
+							},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "Color"
+									},
+									"name": "Color",
+									"package": "huetiful-js"
+								}
+							}
+						},
+						{
+							"id": 52,
+							"name": "order",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')"
+									}
+								]
+							},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "literal",
+										"value": "asc"
+									},
+									{
+										"type": "literal",
+										"value": "desc"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"target": {
+								"sourceFileName": "src/paramTypes.d.ts",
+								"qualifiedName": "Color"
+							},
+							"name": "Color",
+							"package": "huetiful-js"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": 128,
+			"name": "tailwindColors",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "colors/tailwindColors.ts",
+					"line": 15,
+					"character": 6
+				}
+			],
+			"signatures": [
+				{
+					"id": 129,
+					"name": "tailwindColors",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [],
+						"blockTags": [
+							{
+								"tag": "@function",
+								"content": []
+							},
+							{
+								"tag": "@description",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Wrapper function that returns TailwindCSS color value(s) of the specified shade. If invoked with no parameters it returns an array of colors from 100 to 900. If invoked with parameter will return the specified shade vale,"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "color A hex string value or array of hex strings."
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "colors/tailwindColors.ts",
+							"line": 16,
+							"character": 2
+						}
+					],
+					"parameters": [
+						{
+							"id": 130,
+							"name": "shade",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "typeOperator",
+								"operator": "keyof",
+								"target": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/paramTypes.d.ts",
+										"qualifiedName": "HueMap"
+									},
+									"name": "HueMap",
+									"package": "huetiful-js"
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 131,
+							"name": "__type",
+							"variant": "declaration",
+							"kind": 65536,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "colors/tailwindColors.ts",
+									"line": 17,
+									"character": 2
+								}
+							],
+							"signatures": [
+								{
+									"id": 132,
+									"name": "__type",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "colors/tailwindColors.ts",
+											"line": 17,
+											"character": 2
+										}
+									],
+									"parameters": [
+										{
+											"id": 133,
+											"name": "val",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {
+												"isOptional": true
+											},
+											"type": {
+												"type": "typeOperator",
+												"operator": "keyof",
+												"target": {
+													"type": "reference",
+													"target": {
+														"sourceFileName": "src/paramTypes.d.ts",
+														"qualifiedName": "ScaleValues"
+													},
+													"name": "ScaleValues",
+													"package": "huetiful-js"
+												}
+											}
+										}
+									],
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "array",
+												"elementType": {
+													"type": "intrinsic",
+													"name": "string"
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Functions",
+			"children": [
+				110,
+				63,
+				106,
+				134,
+				102,
+				4,
+				10,
+				53,
+				75,
+				58,
+				70,
+				83,
+				89,
+				92,
+				29,
+				80,
+				35,
+				38,
+				18,
+				15,
+				124,
+				25,
+				7,
+				121,
+				1,
+				95,
+				114,
+				118,
+				21,
+				41,
+				45,
+				49,
+				128
+			]
+		}
+	],
+	"packageName": "huetiful-js",
+	"readme": [
+		{
+			"kind": "text",
+			"text": "![](./docs/huetiful-logo.png)\r\n\r\nA JavaScript library for simple color manipulations.\r\n\r\n### What you can do with this package:\r\n\r\n- Filter collections of color according to different properties i.e hue,saturation etc\r\n- Sort colors according to their properties like luminance andf hue.\r\n- Create colors from templated values like pastels, hueshifted color scales etc\r\n- Reference to all colors in the default TailwindCSS palette with every shade as a function!\r\n- Categorize colors using their properties such as temperature and achromaticity\r\n- And much more. See the docs [here](https://prjctimg.github.io/huetiful)\r\n\r\n## Installation\r\n\r\nUse [npm](https://www.npmjs.com/package/huetiful-js) to install the package.\r\n\r\n"
+		},
+		{
+			"kind": "code",
+			"text": "```bash\r\nnpm i huetiful-js\r\n```"
+		},
+		{
+			"kind": "text",
+			"text": "\r\n\r\n## Contributing\r\n\r\nContributions are welcome! Help make this project more useful for creative coders by sharing your ideas and stomping out bugs and feature suggestions. For major changes, please open an issue first to discuss what you would like to change.\r\n\r\n## License\r\n\r\n[MIT](https://choosealicense.com/licenses/mit/)"
+		}
+	],
+	"symbolIdMap": {
+		"0": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": ""
+		},
+		"1": {
+			"sourceFileName": "src/colors/colorBrewer.ts",
+			"qualifiedName": "sequential"
+		},
+		"2": {
+			"sourceFileName": "src/colors/colorBrewer.ts",
+			"qualifiedName": "sequential"
+		},
+		"3": {
+			"sourceFileName": "src/colors/colorBrewer.ts",
+			"qualifiedName": "scheme"
+		},
+		"4": {
+			"sourceFileName": "src/colors/colorBrewer.ts",
+			"qualifiedName": "diverging"
+		},
+		"5": {
+			"sourceFileName": "src/colors/colorBrewer.ts",
+			"qualifiedName": "diverging"
+		},
+		"6": {
+			"sourceFileName": "src/colors/colorBrewer.ts",
+			"qualifiedName": "scheme"
+		},
+		"7": {
+			"sourceFileName": "src/colors/colorBrewer.ts",
+			"qualifiedName": "qualitative"
+		},
+		"8": {
+			"sourceFileName": "src/colors/colorBrewer.ts",
+			"qualifiedName": "qualitative"
+		},
+		"9": {
+			"sourceFileName": "src/colors/colorBrewer.ts",
+			"qualifiedName": "scheme"
+		},
+		"10": {
+			"sourceFileName": "src/palettes/earthtone.ts",
+			"qualifiedName": "earthtone"
+		},
+		"11": {
+			"sourceFileName": "src/palettes/earthtone.ts",
+			"qualifiedName": "earthtone"
+		},
+		"12": {
+			"sourceFileName": "src/palettes/earthtone.ts",
+			"qualifiedName": "color"
+		},
+		"13": {
+			"sourceFileName": "src/palettes/earthtone.ts",
+			"qualifiedName": "earthtone"
+		},
+		"14": {
+			"sourceFileName": "src/palettes/earthtone.ts",
+			"qualifiedName": "num"
+		},
+		"15": {
+			"sourceFileName": "src/colors/temperature.ts",
+			"qualifiedName": "minTemp"
+		},
+		"16": {
+			"sourceFileName": "src/colors/temperature.ts",
+			"qualifiedName": "minTemp"
+		},
+		"17": {
+			"sourceFileName": "src/colors/temperature.ts",
+			"qualifiedName": "color"
+		},
+		"18": {
+			"sourceFileName": "src/colors/temperature.ts",
+			"qualifiedName": "maxTemp"
+		},
+		"19": {
+			"sourceFileName": "src/colors/temperature.ts",
+			"qualifiedName": "maxTemp"
+		},
+		"20": {
+			"sourceFileName": "src/colors/temperature.ts",
+			"qualifiedName": "color"
+		},
+		"21": {
+			"sourceFileName": "src/sortBy/sortByHue.ts",
+			"qualifiedName": "sortByHue"
+		},
+		"22": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "sortByHue"
+		},
+		"23": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "colors"
+		},
+		"24": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "order"
+		},
+		"25": {
+			"sourceFileName": "src/palettes/pastel.ts",
+			"qualifiedName": "pastelMapper"
+		},
+		"26": {
+			"sourceFileName": "src/palettes/pastel.ts",
+			"qualifiedName": "pastelMapper"
+		},
+		"27": {
+			"sourceFileName": "src/palettes/pastel.ts",
+			"qualifiedName": "color"
+		},
+		"28": {
+			"sourceFileName": "src/palettes/pastel.ts",
+			"qualifiedName": "hex"
+		},
+		"29": {
+			"sourceFileName": "src/palettes/hueShift.ts",
+			"qualifiedName": "hueshift"
+		},
+		"30": {
+			"sourceFileName": "src/palettes/hueShift.ts",
+			"qualifiedName": "hueshift"
+		},
+		"31": {
+			"sourceFileName": "src/palettes/hueShift.ts",
+			"qualifiedName": "color"
+		},
+		"32": {
+			"sourceFileName": "src/palettes/hueShift.ts",
+			"qualifiedName": "opts"
+		},
+		"33": {
+			"sourceFileName": "src/palettes/hueShift.ts",
+			"qualifiedName": "__object"
+		},
+		"34": {
+			"sourceFileName": "src/palettes/hueShift.ts",
+			"qualifiedName": "hex"
+		},
+		"35": {
+			"sourceFileName": "src/colors/temperature.ts",
+			"qualifiedName": "isCool"
+		},
+		"36": {
+			"sourceFileName": "src/colors/temperature.ts",
+			"qualifiedName": "isCool"
+		},
+		"37": {
+			"sourceFileName": "src/colors/temperature.ts",
+			"qualifiedName": "color"
+		},
+		"38": {
+			"sourceFileName": "src/colors/temperature.ts",
+			"qualifiedName": "isWarm"
+		},
+		"39": {
+			"sourceFileName": "src/colors/temperature.ts",
+			"qualifiedName": "isWarm"
+		},
+		"40": {
+			"sourceFileName": "src/colors/temperature.ts",
+			"qualifiedName": "color"
+		},
+		"41": {
+			"sourceFileName": "src/sortBy/sortByLuminance.ts",
+			"qualifiedName": "sortByLuminance"
+		},
+		"42": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "sortByLuminance"
+		},
+		"43": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "colors"
+		},
+		"44": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "order"
+		},
+		"45": {
+			"sourceFileName": "src/sortBy/sortBySaturation.ts",
+			"qualifiedName": "sortBySaturation"
+		},
+		"46": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "sortBySaturation"
+		},
+		"47": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "colors"
+		},
+		"48": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "order"
+		},
+		"49": {
+			"sourceFileName": "src/sortBy/sortByTemp.ts",
+			"qualifiedName": "sortByTemp"
+		},
+		"50": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "sortByTemp"
+		},
+		"51": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "colors"
+		},
+		"52": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "order"
+		},
+		"53": {
+			"sourceFileName": "src/filterBy/filterByHue.ts",
+			"qualifiedName": "filterByHue"
+		},
+		"54": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "filterByHue"
+		},
+		"55": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "colors"
+		},
+		"56": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "start"
+		},
+		"57": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "end"
+		},
+		"58": {
+			"sourceFileName": "src/filterBy/filterBySaturation.ts",
+			"qualifiedName": "filterBySaturation"
+		},
+		"59": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "filterBySaturation"
+		},
+		"60": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "colors"
+		},
+		"61": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "start"
+		},
+		"62": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "end"
+		},
+		"63": {
+			"sourceFileName": "src/palettes/base.ts",
+			"qualifiedName": "base"
+		},
+		"64": {
+			"sourceFileName": "src/palettes/base.ts",
+			"qualifiedName": "base"
+		},
+		"65": {
+			"sourceFileName": "src/palettes/base.ts",
+			"qualifiedName": "scheme"
+		},
+		"66": {
+			"sourceFileName": "src/palettes/base.ts",
+			"qualifiedName": "__function"
+		},
+		"67": {
+			"sourceFileName": "src/palettes/base.ts",
+			"qualifiedName": "__function"
+		},
+		"68": {
+			"sourceFileName": "src/palettes/base.ts",
+			"qualifiedName": "color"
+		},
+		"69": {
+			"sourceFileName": "src/palettes/base.ts",
+			"qualifiedName": "hex"
+		},
+		"70": {
+			"sourceFileName": "src/filterBy/filterByTemp.ts",
+			"qualifiedName": "filterByTemp"
+		},
+		"71": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "filterByTemp"
+		},
+		"72": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "colors"
+		},
+		"73": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "start"
+		},
+		"74": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "end"
+		},
+		"75": {
+			"sourceFileName": "src/filterBy/filterByLuminance.ts",
+			"qualifiedName": "filterByLuminance"
+		},
+		"76": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "filterByLuminance"
+		},
+		"77": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "colors"
+		},
+		"78": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "start"
+		},
+		"79": {
+			"sourceFileName": "src/paramTypes.d.ts",
+			"qualifiedName": "end"
+		},
+		"80": {
+			"sourceFileName": "src/colors/achromatic.ts",
+			"qualifiedName": "isAchromatic"
+		},
+		"81": {
+			"sourceFileName": "src/colors/achromatic.ts",
+			"qualifiedName": "isAchromatic"
+		},
+		"82": {
+			"sourceFileName": "src/colors/achromatic.ts",
+			"qualifiedName": "color"
+		},
+		"83": {
+			"sourceFileName": "src/core-utils/get.ts",
+			"qualifiedName": "getChannel"
+		},
+		"84": {
+			"sourceFileName": "src/core-utils/get.ts",
+			"qualifiedName": "getChannel"
+		},
+		"85": {
+			"sourceFileName": "src/core-utils/get.ts",
+			"qualifiedName": "mc"
+		},
+		"86": {
+			"sourceFileName": "src/core-utils/get.ts",
+			"qualifiedName": "__function"
+		},
+		"87": {
+			"sourceFileName": "src/core-utils/get.ts",
+			"qualifiedName": "__function"
+		},
+		"88": {
+			"sourceFileName": "src/core-utils/get.ts",
+			"qualifiedName": "color"
+		},
+		"89": {
+			"sourceFileName": "src/core-utils/luminance.ts",
+			"qualifiedName": "getLuminance"
+		},
+		"90": {
+			"sourceFileName": "src/core-utils/luminance.ts",
+			"qualifiedName": "getLuminance"
+		},
+		"91": {
+			"sourceFileName": "src/core-utils/luminance.ts",
+			"qualifiedName": "color"
+		},
+		"92": {
+			"sourceFileName": "src/core-utils/rgb2temperature.ts",
+			"qualifiedName": "rgb2temperature"
+		},
+		"93": {
+			"sourceFileName": "src/core-utils/rgb2temperature.ts",
+			"qualifiedName": "rgb2temperature"
+		},
+		"94": {
+			"sourceFileName": "src/core-utils/rgb2temperature.ts",
+			"qualifiedName": "color"
+		},
+		"95": {
+			"sourceFileName": "src/core-utils/set.ts",
+			"qualifiedName": "setChannel"
+		},
+		"96": {
+			"sourceFileName": "src/core-utils/set.ts",
+			"qualifiedName": "setChannel"
+		},
+		"97": {
+			"sourceFileName": "src/core-utils/set.ts",
+			"qualifiedName": "mc"
+		},
+		"98": {
+			"sourceFileName": "src/core-utils/set.ts",
+			"qualifiedName": "__function"
+		},
+		"99": {
+			"sourceFileName": "src/core-utils/set.ts",
+			"qualifiedName": "__function"
+		},
+		"100": {
+			"sourceFileName": "src/core-utils/set.ts",
+			"qualifiedName": "color"
+		},
+		"101": {
+			"sourceFileName": "src/core-utils/set.ts",
+			"qualifiedName": "value"
+		},
+		"102": {
+			"sourceFileName": "src/core-utils/darken.ts",
+			"qualifiedName": "darken"
+		},
+		"103": {
+			"sourceFileName": "src/core-utils/darken.ts",
+			"qualifiedName": "darken"
+		},
+		"104": {
+			"sourceFileName": "src/core-utils/darken.ts",
+			"qualifiedName": "color"
+		},
+		"105": {
+			"sourceFileName": "src/core-utils/darken.ts",
+			"qualifiedName": "amount"
+		},
+		"106": {
+			"sourceFileName": "src/core-utils/darken.ts",
+			"qualifiedName": "brighten"
+		},
+		"107": {
+			"sourceFileName": "src/core-utils/darken.ts",
+			"qualifiedName": "brighten"
+		},
+		"108": {
+			"sourceFileName": "src/core-utils/darken.ts",
+			"qualifiedName": "color"
+		},
+		"109": {
+			"sourceFileName": "src/core-utils/darken.ts",
+			"qualifiedName": "amount"
+		},
+		"110": {
+			"sourceFileName": "src/core-utils/alpha.ts",
+			"qualifiedName": "alpha"
+		},
+		"111": {
+			"sourceFileName": "src/core-utils/alpha.ts",
+			"qualifiedName": "alpha"
+		},
+		"112": {
+			"sourceFileName": "src/core-utils/alpha.ts",
+			"qualifiedName": "color"
+		},
+		"113": {
+			"sourceFileName": "src/core-utils/alpha.ts",
+			"qualifiedName": "value"
+		},
+		"114": {
+			"sourceFileName": "src/core-utils/luminance.ts",
+			"qualifiedName": "luminance"
+		},
+		"115": {
+			"sourceFileName": "src/core-utils/luminance.ts",
+			"qualifiedName": "luminance"
+		},
+		"116": {
+			"sourceFileName": "src/core-utils/luminance.ts",
+			"qualifiedName": "color"
+		},
+		"117": {
+			"sourceFileName": "src/core-utils/luminance.ts",
+			"qualifiedName": "lum"
+		},
+		"118": {
+			"sourceFileName": "src/core-utils/temperature2rgb.ts",
+			"qualifiedName": "temperature2rgb"
+		},
+		"119": {
+			"sourceFileName": "src/core-utils/temperature2rgb.ts",
+			"qualifiedName": "temperature2rgb"
+		},
+		"120": {
+			"sourceFileName": "src/core-utils/temperature2rgb.ts",
+			"qualifiedName": "kelvin"
+		},
+		"121": {
+			"sourceFileName": "src/core-utils/rgb2num.ts",
+			"qualifiedName": "rgb2num"
+		},
+		"122": {
+			"sourceFileName": "src/core-utils/rgb2num.ts",
+			"qualifiedName": "rgb2num"
+		},
+		"123": {
+			"sourceFileName": "src/core-utils/rgb2num.ts",
+			"qualifiedName": "color"
+		},
+		"124": {
+			"sourceFileName": "src/core-utils/num2rgb.ts",
+			"qualifiedName": "num2rgb"
+		},
+		"125": {
+			"sourceFileName": "src/core-utils/num2rgb.ts",
+			"qualifiedName": "num2rgb"
+		},
+		"126": {
+			"sourceFileName": "src/core-utils/num2rgb.ts",
+			"qualifiedName": "num"
+		},
+		"127": {
+			"sourceFileName": "src/core-utils/num2rgb.ts",
+			"qualifiedName": "hex"
+		},
+		"128": {
+			"sourceFileName": "src/colors/tailwindColors.ts",
+			"qualifiedName": "tailwindColors"
+		},
+		"129": {
+			"sourceFileName": "src/colors/tailwindColors.ts",
+			"qualifiedName": "tailwindColors"
+		},
+		"130": {
+			"sourceFileName": "src/colors/tailwindColors.ts",
+			"qualifiedName": "shade"
+		},
+		"131": {
+			"sourceFileName": "src/colors/tailwindColors.ts",
+			"qualifiedName": "__function"
+		},
+		"132": {
+			"sourceFileName": "src/colors/tailwindColors.ts",
+			"qualifiedName": "__function"
+		},
+		"133": {
+			"sourceFileName": "src/colors/tailwindColors.ts",
+			"qualifiedName": "val"
+		},
+		"134": {
+			"sourceFileName": "src/colors/colors.ts",
+			"qualifiedName": "colors"
+		},
+		"135": {
+			"sourceFileName": "src/colors/colors.ts",
+			"qualifiedName": "colors"
+		},
+		"136": {
+			"sourceFileName": "src/colors/colors.ts",
+			"qualifiedName": "shade"
+		},
+		"137": {
+			"sourceFileName": "src/colors/colors.ts",
+			"qualifiedName": "val"
+		}
+	}
+}

@@ -22,6 +22,8 @@ import { Interpolator } from "culori/src/interpolate/Interpolator.js";
  * @param num The number of iterations to produce from the color and earthtone.
  * @returns The array of colors resulting from the earthtone interpolation as hex codes.
  */
+
+//Add an overrides object with interpolation function and
 const earthtone = (color: Color, earthtone: earthtones, num = 1): Color[] => {
   color = lch(color);
 

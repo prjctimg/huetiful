@@ -2,7 +2,7 @@
 
 // ported from chroma-js Color.set
 
-import { slice, isString, isNumber, toNumber } from "lodash-es";
+import { slice, isString, isNumber, toNumber, split } from "lodash-es";
 import { converter } from "culori";
 import type { Color } from "../paramTypes.ts";
 /**
@@ -17,7 +17,7 @@ import type { Color } from "../paramTypes.ts";
 const setChannel =
   (mc: string) =>
   (color: Color, value: number | string): Color => {
-    const [mode, channel] = mc.split(".");
+    const [mode, channel] = split(mc, ".");
     const src = converter(mode)(color);
 
     if (channel) {

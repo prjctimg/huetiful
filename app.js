@@ -1,17 +1,15 @@
-import { diverging, qualitative, sequential } from "./dist/huetiful.esm.mjs";
+/* import { easingSmootherstep, fixupHueShorter, interpolate } from "culori";
+import { tailwindColors } from "huetiful-js";
 
-let sample = [
-  "#00ffdc",
-  "#00ff78",
-  "#00c000",
-  "#007e00",
-  "#164100",
-  "#ffff00",
-  "#310000",
-  "#3e0000",
-  "#4e0000",
-  "#600000",
-  "#720000",
-];
+let pink = tailwindColors("pink")("500"),
+  blue = tailwindColors("blue")("200"),
+  tones = { dark: "#000000", light: "#ffffff" };
+console.log(interpolate([pink, tones["dark"], blue], "lch")(0.8));
+ */
 
-console.log(sequential("YlOrBr"));
+import { map } from "lodash-es";
+import { pairedScheme } from "./dist/huetiful.esm.mjs";
+
+import { converter } from "culori";
+
+console.log(pairedScheme("purple", 20, 20, "light"));

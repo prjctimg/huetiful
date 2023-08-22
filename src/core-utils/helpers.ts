@@ -112,6 +112,6 @@ const normalize = (num: number, start: number, end: number): number => {
 
 const adjustHue = (value = 0) =>
   lt(value, 0)
-    ? (value += multiply(ceil(divide(-value, 360)), 360))
+    ? (value += multiply(Math.ceil(divide(-value, 360)), 360))
     : value % 360;
 export { adjustHue, colorObjArr, filteredArr, sortedArr, normalize };

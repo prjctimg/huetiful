@@ -25,7 +25,8 @@ const lightnessMapper =
     );
 
 /**
- * @description Generates a palette of hue shifted colors (as a colour becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme.
+ * @function
+ * @description Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme.
  * @param color The color to use as the base of the hueshift. Colors are internally converted to LCH.
  * @param minLightness  Minimum lightness value (range 0-100).
  * @param maxLightness  Maximum lightness value (range 0-100).
@@ -36,14 +37,18 @@ const lightnessMapper =
  */
 
 // Can we also lightnessMapper palette types to create hue shifted variants per each color in the palette ?
-const hueshift = (color: Color, opts = {}, hex = false): Color[] => {
+const hueshift = (
+  color: Color,
+  opts = { minLightness, maxLightness, hueStep, num },
+  hex = false
+): Color[] => {
   color = converter("lch")(color);
   let { minLightness, maxLightness, hueStep, num } = opts;
 
   // Pass in default values if any of the opts is undefined
   minLightness = defaultTo(minLightness, 10);
   maxLightness = defaultTo(maxLightness, 90);
-  hueStep = defaultTo(hueStep, 12);
+  hueStep = defaultTo(opts["hueStep"], 12);
   num = defaultTo(num, 6);
 
   let palette = [color];

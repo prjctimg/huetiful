@@ -22,8 +22,9 @@
     "typescript": "^4.9.5"
   },
   "scripts": {
-    "build": " node build.cjs && dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts",
-    "docs": " typedoc && git add . && git commit -m 'Updated the documentation.' "
+    "build": " node build.cjs",
+    "docs": " typedoc && git add . && git commit -m 'Updated the documentation.' ",
+    "types": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts"
   },
   "files": [
     "dist"
