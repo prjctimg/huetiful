@@ -10,7 +10,6 @@
  * @param hex Optional boolen to return lch color objects or hex codes in the result array. Default is false  which returns LCH color objects.
  * @returns An array of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
  */
-
 ```
 
 `(scheme: palette) =>

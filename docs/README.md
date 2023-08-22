@@ -5,7 +5,7 @@ A JavaScript library for simple color manipulations.
 ### What you can do with this package
 
 - Filter collections of color according to different properties i.e hue,saturation etc
-- Sort colors according to their properties like luminance andf hue.
+- Sort colors according to their properties like luminance and hue.
 - Create colors from templated values like pastels, hueshifted color scales etc
 - Reference to all colors in the default TailwindCSS palette with every shade as a function!
 - Categorize colors using their properties such as temperature and achromaticity
