@@ -12,6 +12,17 @@ All the filtering functions:
 
 #### `filterByHue`
 
+```javascript
+/**
+ * @function
+ * Returns colors in the specified hue ranges between 0 to 360.
+ * @param colors The array of colors to filter.
+ * @param  startHue The minimum end of the hue range.
+ * @param  endHue The maximum end of the hue range.
+ * @returns  Array of the filtered colors.
+ */
+ ```
+
 `(colors: Color[], startHue = 0, endHue = 360):Colors[]`
 
 ```javascript
@@ -31,14 +42,7 @@ let sample = [
 ];
 
 
-/**
- * @function
- * Returns colors in the specified hue ranges between 0 to 360.
- * @param colors The array of colors to filter.
- * @param  startHue The minimum end of the hue range.
- * @param  endHue The maximum end of the hue range.
- * @returns  Array of the filtered colors.
- */
+
 filterByHue(sample, 20, 80);
 
 // [ '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
@@ -46,6 +50,18 @@ filterByHue(sample, 20, 80);
 ```
 
 #### `filterByLuminance`
+
+```javascript
+/**
+ *  @function
+ * Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
+ * @param  colors The array of colors to filter.
+ * @param  startLuminance The minimum end of the luminance range.
+ * @param  endLuminance The maximum end of the luminance range.
+ * @returns Array of filtered colors.
+ */
+
+```
 
 `(
   colors:Color[],
@@ -70,14 +86,6 @@ let sample = [
 ];
 
 
-/**
- *  @function
- * Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
- * @param  colors The array of colors to filter.
- * @param  startLuminance The minimum end of the luminance range.
- * @param  endLuminance The maximum end of the luminance range.
- * @returns Array of filtered colors.
- */
 
 filterByLuminance(sample, 0.4, 0.9);
 
@@ -86,6 +94,18 @@ filterByLuminance(sample, 0.4, 0.9);
 ```
 
 #### `filterBySaturation`
+
+```javascript
+/**
+ *  @function
+ * @description Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
+ * @param  colors The array of colors to filter.
+ * @param  startSaturation The minimum end of the saturation range.
+ * @param  endSaturation The maximum end of the saturation range.
+ * @returns Array of filtered colors.
+ */
+
+```
 
 `(colors, startSaturation = 0.05, endSaturation = 1):Color[]`
 
@@ -106,14 +126,6 @@ let sample = [
 ];
 
 
-/**
- *  @function
- * @description Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
- * @param  colors The array of colors to filter.
- * @param  startSaturation The minimum end of the saturation range.
- * @param  endSaturation The maximum end of the saturation range.
- * @returns Array of filtered colors.
- */
 
 filterBySaturation(sample, 0.1, 0.8);
 
@@ -127,6 +139,19 @@ filterBySaturation(sample, 0.1, 0.8);
 ```
 
 #### `filterByTemp`
+
+```javascript
+/**
+
+- @function
+- @description Returns an array of colors in the specified temperature range between 0 and 30,000 Kelvins.
+- @param colors The array of colors to filter.
+- @param startTemp The minimum end of the temperature range.
+- @param endTemp The maximum end of the temperature range.
+- @returns Array of the filtered colors.
+  */
+
+```
 
 `(colors, startTemp = 1000, endTemp = 6000):Color[]`
 
@@ -146,15 +171,6 @@ let sample = [
 "#720000",
 ];
 
-/**
-
-- @function
-- @description Returns an array of colors in the specified temperature range between 0 and 30,000 Kelvins.
-- @param colors The array of colors to filter.
-- @param startTemp The minimum end of the temperature range.
-- @param endTemp The maximum end of the temperature range.
-- @returns Array of the filtered colors.
-  */
 
 filterByTemp(sample, 1000, 20000);
 

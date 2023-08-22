@@ -1,8 +1,5 @@
 #### `base`
 
-`(scheme: palette) =>
-  (color: Color, hex = false):Color[]`
-
 ```javascript
 
 
@@ -16,9 +13,10 @@
 
 ```
 
-#### `earthtone`
+`(scheme: palette) =>
+  (color: Color, hex = false):Color[]`
 
-`(color: Color, tone: keyof earthtones, num = 1): Color[]`
+#### `earthtone`
 
 ```javascript
 /**
@@ -32,9 +30,9 @@
 
 ```
 
-#### `pastel`
+`(color: Color, tone: keyof earthtones, num = 1): Color[]`
 
-`(color: Color, hex = true): Color`
+#### `pastel`
 
 ```javascript
 
@@ -48,9 +46,9 @@
  */
 ```
 
-##### `hueshift`
+`(color: Color, hex = true): Color`
 
-`(color: Color, opts = {minLightness?:number,maxLightness?:number}, hex = false): Color[]`
+##### `hueshift`
 
 ```javascript
 /**
@@ -65,3 +63,5 @@
  */
 
 ```
+
+`(color: Color, opts = {minLightness?:number,maxLightness?:number}, hex = false): Color[]`
