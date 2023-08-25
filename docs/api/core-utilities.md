@@ -1,4 +1,9 @@
-### `core-utils`
+---
+title: Core-utils
+---
+
+
+ 
 
 These are the small helper utilities for doing various low level manipulations and such as querying a color's channel values.
 

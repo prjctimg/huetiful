@@ -1,3 +1,8 @@
+---
+title: Palette utilities
+---
+
+
 #### `base`
 
 ```javascript

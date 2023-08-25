@@ -1,26 +1,31 @@
-<h3>The <code>sortBy</code> module</h3>
-<p>The library has a <code>sortBy</code> module which has utilities for sorting colors using different factors as criteria.</p>
-<p>All the sorting functions:</p>
-<ul>
-<li>A collection of colors to sort according to the criteria defined by the sorting function.</li>
-<li>The sorting order as the optional second parameter. Default is ascending.</li>
-<li>Return an array of sorted colors ordered either in ascending or descending order</li>
-</ul>
-<h4><code>sortByLuminance</code></h4>
-<p><code>(colors:Color[], order:'asc' | 'desc'):Color[]</code></p>
-<pre><code class="language-javascript">import { sortByLuminance } from &quot;huetiful-js&quot;;
+title: Sorting colors in collect
+
+The library has a `sortBy` module which has utilities for sorting colors using different factors as criteria.
+
+All the sorting functions:
+
+- A collection of colors to sort according to the criteria defined by the sorting function.
+- The sorting order as the optional second parameter. Default is ascending.
+- Return an array of sorted colors ordered either in ascending or descending order
+
+#### `sortByLuminance`
+
+`(colors:Color[], order:'asc' | 'desc'):Color[]`
+
+```javascript
+import { sortByLuminance } from "huetiful-js";
 let sample = [
-  &quot;#00ffdc&quot;,
-  &quot;#00ff78&quot;,
-  &quot;#00c000&quot;,
-  &quot;#007e00&quot;,
-  &quot;#164100&quot;,
-  &quot;#ffff00&quot;,
-  &quot;#310000&quot;,
-  &quot;#3e0000&quot;,
-  &quot;#4e0000&quot;,
-  &quot;#600000&quot;,
-  &quot;#720000&quot;,
+  "#00ffdc",
+  "#00ff78",
+  "#00c000",
+  "#007e00",
+  "#164100",
+  "#ffff00",
+  "#310000",
+  "#3e0000",
+  "#4e0000",
+  "#600000",
+  "#720000",
 ];
 
 /**
@@ -42,7 +47,7 @@ sortByLuminance(sample)
   '#ffff00'
 ]
 
-sortByLuminance(sample, &quot;desc&quot;);
+sortByLuminance(sample, "desc");
 
 // [
   '#ffff00', '#00ffdc',
@@ -53,22 +58,26 @@ sortByLuminance(sample, &quot;desc&quot;);
   '#310000'
 ]
 
-</code></pre>
-<h4><code>sortBySaturation</code></h4>
-<p><code>(colors:Color[], order:'asc' | 'desc'):Color[]</code></p>
-<pre><code class="language-javascript">import { sortBySaturation } from &quot;huetiful-js&quot;;
+```
+
+#### `sortBySaturation`
+
+`(colors:Color[], order:'asc' | 'desc'):Color[]`
+
+```javascript
+import { sortBySaturation } from "huetiful-js";
 let sample = [
-  &quot;#00ffdc&quot;,
-  &quot;#00ff78&quot;,
-  &quot;#00c000&quot;,
-  &quot;#007e00&quot;,
-  &quot;#164100&quot;,
-  &quot;#ffff00&quot;,
-  &quot;#310000&quot;,
-  &quot;#3e0000&quot;,
-  &quot;#4e0000&quot;,
-  &quot;#600000&quot;,
-  &quot;#720000&quot;,
+  "#00ffdc",
+  "#00ff78",
+  "#00c000",
+  "#007e00",
+  "#164100",
+  "#ffff00",
+  "#310000",
+  "#3e0000",
+  "#4e0000",
+  "#600000",
+  "#720000",
 ];
 
 
@@ -102,22 +111,26 @@ sortBySaturation(sample);
   '#310000'
 ]
 
-</code></pre>
-<h4><code>sortByHue</code></h4>
-<p><code>(colors:Color[], order:'asc' | 'desc'):Color[]</code></p>
-<pre><code class="language-javascript">import { sortByHue } from &quot;huetiful-js&quot;;
+```
+
+#### `sortByHue`
+
+`(colors:Color[], order:'asc' | 'desc'):Color[]`
+
+```javascript
+import { sortByHue } from "huetiful-js";
 let sample = [
-  &quot;#00ffdc&quot;,
-  &quot;#00ff78&quot;,
-  &quot;#00c000&quot;,
-  &quot;#007e00&quot;,
-  &quot;#164100&quot;,
-  &quot;#ffff00&quot;,
-  &quot;#310000&quot;,
-  &quot;#3e0000&quot;,
-  &quot;#4e0000&quot;,
-  &quot;#600000&quot;,
-  &quot;#720000&quot;,
+  "#00ffdc",
+  "#00ff78",
+  "#00c000",
+  "#007e00",
+  "#164100",
+  "#ffff00",
+  "#310000",
+  "#3e0000",
+  "#4e0000",
+  "#600000",
+  "#720000",
 ];
 
 
@@ -141,22 +154,26 @@ sortByHue(sample,'desc');
 
 
 
-</code></pre>
-<h4><code>sortByTemp</code></h4>
-<p><code>(colors:Color[], order:'asc' | 'desc'):Color[]</code></p>
-<pre><code class="language-javascript">import { sortByTemp } from &quot;huetiful-js&quot;;
+```
+
+#### `sortByTemp`
+
+`(colors:Color[], order:'asc' | 'desc'):Color[]`
+
+```javascript
+import { sortByTemp } from "huetiful-js";
 let sample = [
-  &quot;#00ffdc&quot;,
-  &quot;#00ff78&quot;,
-  &quot;#00c000&quot;,
-  &quot;#007e00&quot;,
-  &quot;#164100&quot;,
-  &quot;#ffff00&quot;,
-  &quot;#310000&quot;,
-  &quot;#3e0000&quot;,
-  &quot;#4e0000&quot;,
-  &quot;#600000&quot;,
-  &quot;#720000&quot;,
+  "#00ffdc",
+  "#00ff78",
+  "#00c000",
+  "#007e00",
+  "#164100",
+  "#ffff00",
+  "#310000",
+  "#3e0000",
+  "#4e0000",
+  "#600000",
+  "#720000",
 ];
 
 
@@ -189,22 +206,25 @@ sortByTemp(sample,'desc')
 - @returns An array of the sorted color values.
  */
 
-</code></pre>
-<h5>Example</h5>
-<pre><code class="language-javascript">
-import { sortByLightness } from &quot;huetiful-js&quot;;
+```
+
+##### Example
+
+```javascript
+
+import { sortByLightness } from "huetiful-js";
 let sample = [
-  &quot;#00ffdc&quot;,
-  &quot;#00ff78&quot;,
-  &quot;#00c000&quot;,
-  &quot;#007e00&quot;,
-  &quot;#164100&quot;,
-  &quot;#ffff00&quot;,
-  &quot;#310000&quot;,
-  &quot;#3e0000&quot;,
-  &quot;#4e0000&quot;,
-  &quot;#600000&quot;,
-  &quot;#720000&quot;,
+  "#00ffdc",
+  "#00ff78",
+  "#00c000",
+  "#007e00",
+  "#164100",
+  "#ffff00",
+  "#310000",
+  "#3e0000",
+  "#4e0000",
+  "#600000",
+  "#720000",
 ]
 
 sortByLightness(sample)
@@ -217,4 +237,4 @@ sortByLightness(sample,'desc')
 //
 
 
-</code></pre>
+```
