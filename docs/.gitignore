@@ -1,4 +1,4 @@
-_site/
+
 /node_mudules
 node_modules/
 package-lock.json
