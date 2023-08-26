@@ -1,10 +1,12 @@
 ---
-title: Home
 permalink: /home
 layout: /layouts/page.njk
+eleventyNavigation:
+  ordering: 0
+  key: Home
 ---
 
-![Huetiful](assets/huetiful-logo.png)
+![Huetiful](/content/images/huetiful-logo.png)
 
 A JavaScript library for simple color manipulations.
 

@@ -1,22 +1,25 @@
 ---
-title: Achromaticity in color
+title: Working with achromatic colors
+eleventyNavigation:
+  ordering: 6
+  key: Working with achromatic colors
 ---
 
-These are a subtype of colors that have no `hue`. Also known as grays, these colors can be found by interpolating black and white.
-
-We can use the `isAchromatic` utility to check if a color is achromatic or not.
-
-```javascript
-/**
- * @function
- *  @description Checks if a color is achromatic(without hue or simply grayscale).
- * @param color The color to test if it is achromatic or not.
- * @returns boolean Returns true if the color is achromatic else false
- */
-```
 
 
-`(color:Color):boolean`
+These are a subtype of colors that have no **hue**. Also known as grays, these colors can be found by interpolating black and white. 
+
+We can use the **isAchromatic** utility to check if a color is achromatic or not.
+
+**Parameters:**
+(color:Color):boolean
+color The color to test if it is achromatic or not.
+
+**Returns:**
+Returns true if the color is achromatic else false
+
+**Description:**
+Checks if a color is achromatic(without hue or simply grayscale).
 
 ```javascript
 import { isAchromatic } from "huetiful-js";
@@ -73,6 +76,6 @@ console.log(map(grays, isAchromatic));
 
 ```
 
-In the above code, we used `isAchromatic` against different samples of achromatic as well as chromatic colors. The `samples` array contained chromatic colors whilst `grays` holds the achromatic colors. Notice that at the last and first index when we tested for achromatic colors we had `false` values instead of `true`. This is because white and black are not achromatic.
+In the above code, we used **isAchromatic** against different samples of achromatic as well as chromatic colors. The **samples** array contained chromatic colors whilst `grays` holds the achromatic colors. Notice that at the last and first index when we tested for achromatic colors we had `false` values instead of **true**. This is because pure white/black are not achromatic.
 
-For a color to be classified as being achromatic, it needs a falsy value on the `saturation` / `chroma` channel such as 0, `NaN` or `undefined`. This is because the `hue` depends on the `saturation` channel to be true or not be gray. This means that altering the `hue` or `lightness` channel whilst `saturation` is falsy will only return a grey color and black or white (at the extreme ends of the `lightness` channel) .
+> For a color to be classified as being achromatic, it needs a falsy value on the **saturation** / **chroma** channel such as 0, **NaN** or **undefined**. This is because the `hue` depends on the **saturation** channel to be true or not be gray. This means that altering the **hue** or **lightness** channel whilst **saturation** is falsy will only return a gray color and black or white (at the extreme ends of the **lightness** channel) .

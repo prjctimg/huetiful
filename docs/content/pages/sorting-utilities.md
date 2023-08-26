@@ -1,5 +1,8 @@
 ---
 title: Sorting colors
+eleventyNavigation:
+  ordering: 3
+  key: Sorting colors
 ---
 The library has a `sortBy` module which has utilities for sorting colors using different factors as criteria.
 
@@ -9,9 +12,20 @@ All the sorting functions:
 - The sorting order as the optional second parameter. Default is ascending.
 - Return an array of sorted colors ordered either in ascending or descending order
 
-#### `sortByLuminance`
+#### sortByLuminance
 
-`(colors:Color[], order:'asc' | 'desc'):Color[]`
+**Parameters:**
+(colors:Color[], order:'asc' | 'desc'):Color[]
+*colors* The array of colors to sort
+ *order* The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
+ 
+**Returns:**
+An array of the sorted color values.
+
+**Description:**
+Sorts colors according to their luminance value as per WCAG definition.
+
+**Example:**
 
 ```javascript
 import { sortByLuminance } from "huetiful-js";
@@ -29,16 +43,10 @@ let sample = [
   "#720000",
 ];
 
-/**
- * @function
- * @description Sorts colors according to the relative brightness as defined by WCAG definition.
- * @param  colors The array of colors to sort
- * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
- * @returns An array of the sorted color values.
+ 
 
- */
-
-sortByLuminance(sample)
+let sorted = sortByLuminance(sample)
+console.log(sorted)
 // [
   '#310000', '#3e0000',
   '#4e0000', '#600000',
@@ -48,8 +56,8 @@ sortByLuminance(sample)
   '#ffff00'
 ]
 
-sortByLuminance(sample, "desc");
-
+let sortedDescending = sortByLuminance(sample, "desc");
+console.log(sortedDescending)
 // [
   '#ffff00', '#00ffdc',
   '#00ff78', '#00c000',
@@ -61,9 +69,20 @@ sortByLuminance(sample, "desc");
 
 ```
 
-#### `sortBySaturation`
+#### sortBySaturation
 
-`(colors:Color[], order:'asc' | 'desc'):Color[]`
+**Parameters:**
+(colors:Color[], order:'asc' | 'desc'):Color[]
+colors The array of colors to sort
+ order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
+ 
+**Returns:**
+An array of the sorted color values.
+
+**Description:**
+Sorts colors according to their saturation.
+
+**Example:**
 
 ```javascript
 import { sortBySaturation } from "huetiful-js";
@@ -81,17 +100,8 @@ let sample = [
   "#720000",
 ];
 
-
-/**
- * @function
- * @description Sorts colors according to their saturation.
- * @param  colors The array of colors to sort
- * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
- * @returns An array of the sorted color values.
- */
-
-sortBySaturation(sample);
-
+let sorted = sortBySaturation(sample);
+console.log(sorted);
 
 // [
   '#310000', '#3e0000',
@@ -102,7 +112,8 @@ sortBySaturation(sample);
   '#ffff00'
 ]
 
-sortBySaturation(sample);
+let sortedDescending = sortBySaturation(sample,'desc');
+console.log(sortedDescending)
 // [
   '#ffff00', '#00c000',
   '#00ff78', '#007e00',
@@ -114,10 +125,22 @@ sortBySaturation(sample);
 
 ```
 
-#### `sortByHue`
+#### sortByHue
 
-`(colors:Color[], order:'asc' | 'desc'):Color[]`
 
+**Parameters:**
+(colors:Color[], order:'asc' | 'desc'):Color[]
+*colors* The array of colors to sort
+ *order* The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
+ mode The color space to compute the color distances in. All *colors* within the collection will be converted to mode. Also note that because differences in hue mapping certain color spaces such as HSL and LCH hue values do not align. Keep such quirks in mind to avoid weird results.
+ 
+**Returns:**
+An array of the sorted color values.
+
+**Description:**
+Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported.
+
+**Example:**
 ```javascript
 import { sortByHue } from "huetiful-js";
 let sample = [
@@ -135,31 +158,29 @@ let sample = [
 ];
 
 
-/**
- * @function
- * @description Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
- * @param  colors The array of colors to sort
- * @param order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
- * @returns  An array of the sorted color values.
- * @param mode The color space to compute the color distances in. All colors within the collection will be converted to mode. Also note that because differences in hue mapping certain color spaces such as HSL and LCH hue values do not align. Keep such quirks in mind to avoid weird results.
- */
-
-sortByHue(sample);
+let sorted = sortByHue(sample);
+console.log(sorted)
 
 
-
-sortByHue(sample,'desc');
-
-
-
-
-
+let sortedDescending = sortByHue(sample,'desc');
+console.log(sortedDescending)
 
 ```
 
-#### `sortByTemp`
+#### sortByTemp
 
-`(colors:Color[], order:'asc' | 'desc'):Color[]`
+**Parameters:**
+(colors:Color[], order:'asc' | 'desc'):Color[]
+*colors* The array of colors to sort
+ *order* The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
+ 
+**Returns:**
+An array of the sorted color values.
+
+**Description:**
+Sorts colors according to their tempertaure. Based on [Neil Bartlett's](https://github.com/neilbartlett/color-temperature) implementation.
+
+**Example**
 
 ```javascript
 import { sortByTemp } from "huetiful-js";
@@ -177,39 +198,27 @@ let sample = [
   "#720000",
 ];
 
+let sorted = sortByTemp(sample)
+console.log(sorted)
 
-/**
- * @function
- * @description Sorts colors according to temperature value in Kelvins according to the temperatu. Achromatic colors may return awkward results.
- * @param  colors The array of colors to sort
- * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
- * @returns [colors] An array of the sorted color values.
- * @see Based on Neil Bartlett's implementation https://github.com/neilbartlett/color-temperature
- */
-
-sortByTemp(sample)
-
-
-sortByTemp(sample,'desc')
-
-
-## `sortByLightness`
-
-`(colors:Color[], order:'asc' | 'desc'):Color[]`
-
-```javascript
-/**
-
-- @function
-- @description Sorts colors according to their lightness.
-- @param  colors The array of colors to sort
-- @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
-- @returns An array of the sorted color values.
- */
-
+let sortedDescending = sortByTemp(sample,'desc')
+console.log(sortedDescending)
 ```
 
-##### Example
+#### sortByLightness
+
+**Parameters:**
+(colors:Color[], order:'asc' | 'desc'):Color[]
+colors The array of colors to sort
+ order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
+ 
+**Returns:**
+An array of the sorted color values.
+
+**Description:**
+Sorts colors according to their lightness.
+
+**Example:**
 
 ```javascript
 

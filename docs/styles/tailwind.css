@@ -26,6 +26,7 @@
   }
   .prose pre code {
     @apply overflow-x-auto !important 
+    @apply dark:text-gray-400
   }
   .prose .footer-nav a {
     @apply no-underline !important

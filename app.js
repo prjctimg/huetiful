@@ -10,6 +10,6 @@ console.log(interpolate([pink, tones["dark"], blue], "lch")(0.8));
 import { map } from "lodash-es";
 import { pairedScheme } from "./dist/huetiful.esm.mjs";
 
-import { converter } from "culori";
+import { converter, interpolatorSplineMonotone } from "culori";
 
-console.log(pairedScheme("purple", 20, 20, "light"));
+console.log(pairedScheme("purple", 20, 8, "light"));

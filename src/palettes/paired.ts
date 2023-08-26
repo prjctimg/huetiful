@@ -22,17 +22,14 @@ import { setChannel } from "../core-utils/set.ts";
 import { Color, tone } from "../paramTypes.ts";
 import {
   converter,
-  easingGamma,
   easingInOutSine,
   easingSmootherstep,
   fixupAlpha,
-  fixupHueLonger,
   fixupHueShorter,
-  formatHex,
   formatHex8,
   interpolate,
+  interpolatorSplineBasis,
   interpolatorSplineBasisClosed,
-  interpolatorSplineMonotone,
   interpolatorSplineNatural,
   samples,
 } from "culori";
@@ -55,6 +52,7 @@ const pairedScheme = (
   via: tone,
   overrides = {
     h: {
+      use: interpolatorSplineBasis,
       fixup: fixupHueShorter,
     },
     c: interpolatorSplineNatural,
@@ -66,7 +64,11 @@ const pairedScheme = (
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
   let derivedHue = setChannel("lch.h")(color, add(color["h"], hueStep));
 
-  let tones = { dark: "#000000", light: "#ffffff" };
+  // Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes
+  let tones = {
+    dark: { l: 0, c: 0, h: 0, mode: "lch" },
+    light: { l: 100, c: 0, h: 0, mode: "lch" },
+  };
 
   let scale = interpolate(
     [color, tones[via || "dark"], derivedHue],

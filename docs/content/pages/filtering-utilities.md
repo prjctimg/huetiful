@@ -1,8 +1,11 @@
 ---
 title: Filtering colors
+eleventyNavigation:
+  ordering: 2
+  key: Filtering colors
 ---
 
-The library has a `filterBy` module which is a collection utilities for filtering colors using different factors as criteria.
+The library has a *filterBy* module which is a collection utilities for filtering colors using different factors as criteria.
 
 All the filtering functions:
 

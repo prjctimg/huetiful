@@ -1,24 +1,26 @@
 ---
 title: Core utilities
+eleventyNavigation:
+  ordering: 1
+  key: Core utilities
 ---
-
-
- 
-
 These are the small helper utilities for doing various low level manipulations and such as querying a color's channel values.
 
 #### `alpha`
+**Parameters:**
+(color: Color, value?: number): Color | number
+*color* The color with the targeted opacity/alpha channel.
+*value* The value to apply to the opacity channel. The value is between [0,1]
 
-`(color: Color, value?: number): Color | number`
+**Returns:**
+The resulting color. Returns an 8 character hex code.
 
+**Description**
+Sets the opacity of a color. Also gets the alpha value of the color if the value parameter is omitted
+
+**Example:**
 ```javascript
-**
- * @function
- * @description Sets the opacity of a color. Also gets the alpha value of the color if the value param is omitted
- * @param color The color with the targeted opacity/alpha channel.
- * @param value The value to apply to the opacity channel. The value is between [0,1]
- * @returns color The resulting color. Returns an 8 character hex code.
- */
+
 
 
 // Example
@@ -26,101 +28,118 @@ These are the small helper utilities for doing various low level manipulations a
 ```
 
 #### `darken`
+**Parameters:**
+(color: Color, amount: number): Color
+ *color* The color to darken.
+ *amount* The amount to darken with. Also supports expressions as strings e.g darken("#fc23a1","*0.5")
+ *mode* The color space to compute the color in. Any color space with a lightness channel will do (including HWB)
+**Returns:**
+The darkened color.
 
-`(color: Color, amount: number): Color`
+**Description:**
+Darkens the color by reducing the lightness channel.
 
+**Example:**
 ```javascript
-/**
- * @function
- * @description Darkens the color by reducing the lightness channel. .
- * @param   color The color to darken.
- * @param amount The amount to darken with. Also supports expressions as strings e.g darken("#fc23a1","*0.5")
- * @param mode The color space to compute the color in. Any color space with a lightness channel will do (including HWB)
- * @returns color The darkened color.
- */
+// Example
 ```
 
 ### `getChannel`
 
-`(mc: string) =>
-  (color: Color): number`
+**Parameters**
+(mc: string) => (color: Color): number
+ *mc* The mode and channel to be retrieved. For example "rgb.b" will return the value of the blue channel in the RGB color space of that color.
+ *color* The color being queried.
+
+**Returns:**
+The value of the queried channel.
+
+**Description:**
+Gets the  value specified channel on the color.
 
 ```javascript
-/**
- * @function
- * @description Gets the  value specifified channel on the color.
- * @param mc The mode and channel to be retrieved. For example "rgb.b" will return the value of the blue channel in the RGB color space of that color.
- * @param color The color being queried.
- * @returns value The value of the queried channel.
- * */
+// Example
 ```
 
 #### `getLuminance`
+**Parameters:**
+(color: Color): number
+*color* The color to query.
 
-`(color: Color): number`
+**Returns:**
+The color's luminance value.
 
+**Description:**
+Gets the luminance value of that color as defined by WCAG.
 ```javascript
-/** @alias
- * Gets the luminance value of that color as defined by WCAG.
- * @param color The color to query.
- * @returns value The color's luminance value.
- */
+//Example
 
 ```
 
 #### `setLuminance`
+**Parameters:**
+(color: Color, lum: number):Color
+*color* The color to set luminance
+*lum* The amount of luminance to set. The value range is normalised between [0,1].
 
-`(color: Color, lum: number):Color`
+**Returns:**
+The mutated color with the modified properties.
+
+**Description:**
+Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
 
 ```javascript
-/**
- * @function
- * @description Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
- * @param color The color to set luminance
- * @param lum The amount of luminance to set. The value range is normalised between [0,1]
- * @returns The mutated color with the modified properties
- */
+// Example
 
 ```
 
-#### `getTemp`
+#### getTemp
+**Parameters:**
+(color: Color): number
+*color* The color to query its temperature value
 
-`(color: Color): number`
+**Returns:**
+The color's temperature in Kelvins.
 
+**Description:**
+Gets the temperature value in Kelvins of the passed in color.
+
+**Example:**
 ```javascript
-/**
- * @description Returns the temperature value in Kelvins of the passed in color.
- * @param color The color to query its temperature value
- * @returns The color's temperature in Kelvins.
- */
+// Example
 
 ```
 
-#### `setChannel`
-
-`(mc: string) =>
-  (color: Color, value: number | string): Color`
-
+#### setChannel
+**Parameters:**
+(mc: string) => (color: Color, value: number | string): Color
+*color* Any recognizable color token.
+ *mc* The mode and channel to work with. For example 'rgb.b'.
+ *value* The value to set on the queried channel. Also supports expressions as strings e.g set('lch.c)("#fc23a1","*0.5")
+ 
+ **Returns:**
+ The mutated color.
+ 
+ **Description:**
+ Sets the value for the specified channel in a color.
+ 
+ **Example:**
 ```javascript
-/**
- * @function
- * @description Sets the value for the specified channel in a color.
- * @param  color Any recognizable color token.
- * @param  mc The mode and channel to work with. For example 'rgb.b'.
- * @param  value The value to set on the queried channel. Also supports expressions as strings e.g set('lch.c)("#fc23a1","*0.5")
- * @returns color The mutated color.
- */
+// Example
 ```
 
-#### `setTemp`
+#### setTemp
+**Parameters:**
+(kelvin: number): Color
+*kelvin* The number of Kelvins. From 0 to 30,000 .
 
-`(kelvin: number): Color`
+**Returns:**
+ An RGB color object.
+ 
+**Description:**
+Converts the temperature value (in Kelvins) to an RGB color.
 
+**Example:**
 ```javascript
-/**
- * @function
- * @description Converts the temperature value (in Kelvins) to an RGB color.
- * @param kelvin The number of Kelvins. From 0 to 30,000 .
- * @returns color An RGB color object.
- */
+// Example
 ```
