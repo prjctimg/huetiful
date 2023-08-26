@@ -10,25 +10,25 @@ The library has a *filterBy* module which is a collection utilities for filterin
 All the filtering functions:
 
 - Take a collection of colors as the first parameter.
-- Have a `start` and `end` value for the factor being used as filtering criteria.
-- Can take expressions as the second parameter as strings. If the second param (`start`) is a string the `end` param is ignored.
+- Have a *start* and *end* value for the factor being used as filtering criteria.
+- Can take expressions as the second parameter as strings. If the second parameter (*start*) is a string the *end* parameter is ignored.
 - Returns an array of colors that pass the filtering constraints.
 
-#### `filterByHue`
+#### filterByHue
 
-```javascript
-/**
- * @function
- * Returns colors in the specified hue ranges between 0 to 360.
- * @param colors The array of colors to filter.
- * @param  startHue The minimum end of the hue range.
- * @param  endHue The maximum end of the hue range.
- * @returns  Array of the filtered colors.
- */
- ```
+**Parameters:**
+(colors: Color[], startHue = 0, endHue = 360):Colors[]
+*colors* The array of colors to filter.
+ *startHue* The minimum end of the hue range.
+ *endHue* The maximum end of the hue range.
+ 
+ **Returns:**
+Array of the filtered colors.
 
-`(colors: Color[], startHue = 0, endHue = 360):Colors[]`
-
+**Description**
+Returns colors in the specified hue ranges between 0 to 360.
+ 
+**Example:**
 ```javascript
 import { filterByHue } from "huetiful-js";
 let sample = [
@@ -53,26 +53,21 @@ filterByHue(sample, 20, 80);
 
 ```
 
-#### `filterByLuminance`
+#### filterByLuminance
 
-```javascript
-/**
- *  @function
- * Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
- * @param  colors The array of colors to filter.
- * @param  startLuminance The minimum end of the luminance range.
- * @param  endLuminance The maximum end of the luminance range.
- * @returns Array of filtered colors.
- */
+**Parameters:**
+(colors: Color[], startLuminance = 0.05, endLuminance = 1):Colors[]
+*colors* The array of colors to filter.
+ *startLuminance* The minimum end of the luminance range.
+ *endLuminance* The maximum end of the luminance range.
+ 
+ **Returns:**
+Array of the filtered colors.
 
-```
+**Description**
+Returns colors in the specified luminance range.The range is normalized to [0,1]
 
-`(
-  colors:Color[],
-  startLuminance = 0.05,
-  endLuminance = 1
-): Color[]`
-
+**Example:**
 ```javascript
 import { filterByLuminance } from "huetiful-js";
 let sample = [
@@ -97,21 +92,23 @@ filterByLuminance(sample, 0.4, 0.9);
 
 ```
 
-#### `filterBySaturation`
+#### filterBySaturation
 
-```javascript
-/**
- *  @function
- * @description Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
- * @param  colors The array of colors to filter.
- * @param  startSaturation The minimum end of the saturation range.
- * @param  endSaturation The maximum end of the saturation range.
- * @returns Array of filtered colors.
- */
+**Parameters:**
+(colors, startSaturation = 0.05, endSaturation = 1):Color[]
+*colors* The array of colors to filter.
+ *startSaturation* The minimum end of the saturation range.
+ *endSaturation* The maximum end of the saturation range.
+ 
+ **Returns:**
+Array of the filtered colors.
 
-```
+**Description:**
+Returns an array of colors in the specified saturation range. The range is normalized to [0,1]
 
-`(colors, startSaturation = 0.05, endSaturation = 1):Color[]`
+**Example:**
+
+
 
 ```javascript
 import { filterBySaturation } from "huetiful-js";
@@ -142,22 +139,19 @@ filterBySaturation(sample, 0.1, 0.8);
 
 ```
 
-#### `filterByTemp`
+#### filterByTemp
 
-```javascript
-/**
+**Parameters:**
+(colors, startTemp = 1000, endTemp = 6000):Color[]
+*colors* The array of colors to filter.
+*startTemp* The minimum end of the temperature range.
+*endTemp* The maximum end of the temperature range.
 
-- @function
-- @description Returns an array of colors in the specified temperature range between 0 and 30,000 Kelvins.
-- @param colors The array of colors to filter.
-- @param startTemp The minimum end of the temperature range.
-- @param endTemp The maximum end of the temperature range.
-- @returns Array of the filtered colors.
-  */
-
-```
-
-`(colors, startTemp = 1000, endTemp = 6000):Color[]`
+**Returns:** 
+Array of the filtered colors.
+  
+**Description:**
+Returns an array of colors in the specified temperature range between 0 and 30,000 Kelvins.
 
 ```javascript
 import { filterByTemp } from "huetiful-js";

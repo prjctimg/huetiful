@@ -46,9 +46,9 @@ import { adjustHue } from "../core-utils/helpers.ts";
  * @returns An array containing the paired scheme.
  */
 const pairedScheme = (
-  color = "blue",
-  hueStep = 12,
-  num = 4,
+  color: Color,
+  hueStep: number,
+  num: number,
   via: tone,
   overrides = {
     h: {
@@ -62,7 +62,7 @@ const pairedScheme = (
 ): Color[] => {
   color = converter("lch")(color);
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
-  let derivedHue = setChannel("lch.h")(color, add(color["h"], hueStep));
+  let derivedHue = setChannel("lch.h")(color, add(color["h"], hueStep || 12));
 
   // Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes
   let tones = {
@@ -77,7 +77,7 @@ const pairedScheme = (
   );
 
   // Declare the num of iterations in samples() which will be used as the t value and a reverse array for the derivedHue
-  let smp = samples(num);
+  let smp = samples(num || 4);
   let reverseSmp = reverse(smp);
 
   //The arrays to capture the different iterations
