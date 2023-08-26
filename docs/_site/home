@@ -5,25 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Huetiful</title>
   <meta name="description" content="JavaScript library for simple color manipulations.">
-  <link rel="stylesheet" href="/style.css?v=1693056332715"/>
+  <link rel="stylesheet" href="/style.css"/>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💥</text></svg>">
 
   
   
 
-  <script>function applyThemeColor(){"true"===localStorage.getItem("darkmode")||!localStorage.getItem("darkmode")&&window.matchMedia("(prefers-color-scheme: dark)").matches?(localStorage.setItem("darkmode","true"),document.documentElement.classList.add("dark")):document.documentElement.classList.remove("dark")}function activateDarkMode(){const e="true"===localStorage.getItem("darkmode")?"false":"true";localStorage.setItem("darkmode",e),applyThemeColor()}applyThemeColor();</script>
-  <script defer>function logout(){localStorage.removeItem("passphrase"),window.location.href="/"}function showNavigation(){const e=document.getElementById("navigation");e.classList.remove("hidden","sticky","pt-32"),e.classList.add("absolute","right-0","top-0","-mt-0","z-50","pt-0","bg-white","border-l","border-gray-200")}function closeNavigation(){const e=document.getElementById("navigation");e.classList.add("hidden"),e.classList.remove("absolute","right-0","z-50","bg-gray-100","border-r","border-gray-800")}function toggleLayout(e){"horizontal"===localStorage.getItem("layout")?localStorage.setItem("layout","vertical"):"vertical"===localStorage.getItem("layout")?localStorage.setItem("layout","horizontal"):localStorage.getItem("layout")||("horizontal"===e?localStorage.setItem("layout","vertical"):localStorage.setItem("layout","horizontal")),console.log(localStorage.getItem("layout"))}window.netlifyIdentity&&window.netlifyIdentity.on("init",e=>{e||window.netlifyIdentity.on("login",()=>{document.location.href="/admin/"})}),document.addEventListener("DOMContentLoaded",function(){document.getElementById("main").addEventListener("click",closeNavigation,!1)}),function(e,t){"use strict";const n=n=>{const o=e.searchIndex.search(n.target.value,{bool:"OR",expand:!0}),a=t.getElementById("searchField"),d=t.getElementById("searchResults"),i=t.getElementById("noResultsFound");t.getElementById("navigation");a.addEventListener("focus",e=>{e.target.classList.remove("hidden"),d.classList.remove("hidden")}),t.addEventListener("click",function(e){a.contains(e.target)||(console.log("hidden"),d.classList.add("hidden"),i.classList.add("hidden"),i.classList.add("hidden"))}),d.innerHTML="",""!=n.target.value?""!=o?(i.classList.add("hidden"),d.classList.add("p-4"),o.map(e=>{const{id:n,title:o,description:a}=e.doc,i=t.createElement("li",{tabindex:"-1"});d.appendChild(i);const l=t.createElement("h3");i.appendChild(l);const s=t.createElement("a");s.setAttribute("href",n),s.textContent=o,l.appendChild(s);const c=t.createElement("p");c.textContent=a,i.appendChild(c)})):i.classList.remove("hidden"):i.classList.add("hidden")};fetch("/search-index.json").then(o=>o.json().then(o=>{e.searchIndex=elasticlunr.Index.load(o),t.getElementById("searchField").addEventListener("input",n)}))}(window,document);</script>
-
- 
+  <script>
+    function applyThemeColor(){"true"===localStorage.getItem("darkmode")||!localStorage.getItem("darkmode")&&window.matchMedia("(prefers-color-scheme: dark)").matches?(localStorage.setItem("darkmode","true"),document.documentElement.classList.add("dark")):document.documentElement.classList.remove("dark")}function activateDarkMode(){const e="true"===localStorage.getItem("darkmode")?"false":"true";localStorage.setItem("darkmode",e),applyThemeColor()}applyThemeColor();
+  </script>
+  <script defer>
+    function logout(){localStorage.removeItem("passphrase"),window.location.href="/"}function showNavigation(){const e=document.getElementById("navigation");e.classList.remove("hidden","sticky","pt-32"),e.classList.add("absolute","right-0","top-0","-mt-0","z-50","pt-0","bg-white","border-l","border-gray-200")}function closeNavigation(){const e=document.getElementById("navigation");e.classList.add("hidden"),e.classList.remove("absolute","right-0","z-50","bg-gray-100","border-r","border-gray-800")}function toggleLayout(e){"horizontal"===localStorage.getItem("layout")?localStorage.setItem("layout","vertical"):"vertical"===localStorage.getItem("layout")?localStorage.setItem("layout","horizontal"):localStorage.getItem("layout")||("horizontal"===e?localStorage.setItem("layout","vertical"):localStorage.setItem("layout","horizontal")),console.log(localStorage.getItem("layout"))}window.netlifyIdentity&&window.netlifyIdentity.on("init",e=>{e||window.netlifyIdentity.on("login",()=>{document.location.href="/admin/"})}),document.addEventListener("DOMContentLoaded",function(){document.getElementById("main").addEventListener("click",closeNavigation,!1)}),function(e,t){"use strict";const n=n=>{const o=e.searchIndex.search(n.target.value,{bool:"OR",expand:!0}),a=t.getElementById("searchField"),d=t.getElementById("searchResults"),i=t.getElementById("noResultsFound");t.getElementById("navigation");a.addEventListener("focus",e=>{e.target.classList.remove("hidden"),d.classList.remove("hidden")}),t.addEventListener("click",function(e){a.contains(e.target)||(console.log("hidden"),d.classList.add("hidden"),i.classList.add("hidden"),i.classList.add("hidden"))}),d.innerHTML="",""!=n.target.value?""!=o?(i.classList.add("hidden"),d.classList.add("p-4"),o.map(e=>{const{id:n,title:o,description:a}=e.doc,i=t.createElement("li",{tabindex:"-1"});d.appendChild(i);const l=t.createElement("h3");i.appendChild(l);const s=t.createElement("a");s.setAttribute("href",n),s.textContent=o,l.appendChild(s);const c=t.createElement("p");c.textContent=a,i.appendChild(c)})):i.classList.remove("hidden"):i.classList.add("hidden")};fetch("/search-index.json").then(o=>o.json().then(o=>{e.searchIndex=elasticlunr.Index.load(o),t.getElementById("searchField").addEventListener("input",n)}))}(window,document);
+  </script>
 
   
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js" defer></script>
+
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js" defer></script>
   
 
   
 
 </head>
-
   <body>
     <div id="app" class="h-screen bg-white dark:bg-gray-900">
       <div class="fixed w-full top-0 left-0 z-10 "> 
@@ -67,14 +70,14 @@
           <div class="block md:hidden pt-4 font-semibold text-gray-500">Huetiful</div>
           <div class="block md:hidden text-sm text-gray-500 mb-4">Exploring color as a medium of creativity.</div>
           </a>
-          <ul class="nav"><li class="item"><a href="/working-with-achromatic-colors/" class="item">Working with achromatic colors</a></li>
-<li class="item"><a href="/color-temperature/" class="item">Color temperature</a></li>
-<li class="item"><a href="/core-utilities/" class="item">Core utilities</a></li>
-<li class="item"><a href="/filtering-colors/" class="item">Filtering colors</a></li>
-<li class="item"><a href="/hue-shifting/" class="item">Hue shifting</a></li>
-<li class="item active"><a href="/home" class="item active">Home</a></li>
-<li class="item"><a href="/sorting-colors/" class="item">Sorting colors</a></li>
-<li class="item"><a href="/tailwind-colors/" class="item">Tailwind colors</a></li></ul>
+          <ul class="nav"><li class="item"><a href="/docs/working-with-achromatic-colors/" class="item">Working with achromatic colors</a></li>
+<li class="item"><a href="/docs/color-temperature/" class="item">Color temperature</a></li>
+<li class="item"><a href="/docs/core-utilities/" class="item">Core utilities</a></li>
+<li class="item"><a href="/docs/filtering-colors/" class="item">Filtering colors</a></li>
+<li class="item"><a href="/docs/hue-shifting/" class="item">Hue shifting</a></li>
+<li class="item active"><a href="/docs/home" class="item active">Home</a></li>
+<li class="item"><a href="/docs/sorting-colors/" class="item">Sorting colors</a></li>
+<li class="item"><a href="/docs/tailwind-colors/" class="item">Tailwind colors</a></li></ul>
         </div>
       </nav>
       
@@ -130,9 +133,9 @@
                     
                     
                     
-                     <ul class="footer-nav pt-4 mb-8  ml-0 pl-0 flex flex-wrap flex-row-reverse  justify-between mt-8 list-none"><li class="ml-0 pl-0"><a class="font-semibold text-gray-500 hover:text-gray-900" href="/working-with-achromatic-colors/">Working with achromatic colors</a> <svg height="24" fill="none" viewBox="0 0 24 24" stroke="#6B7280" class="inline ml-1 flex-shrink-0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></li><li class="ml-0 pl-0"><svg height="24" fill="none" viewBox="0 0 24 24" stroke="#6B7280" class="transform rotate-180 inline mr-1 flex-shrink-0">
+                     <ul class="footer-nav pt-4 mb-8  ml-0 pl-0 flex flex-wrap flex-row-reverse  justify-between mt-8 list-none"><li class="ml-0 pl-0"><a class="font-semibold text-gray-500 hover:text-gray-900" href="/docs/color-temperature/">Color temperature</a> <svg height="24" fill="none" viewBox="0 0 24 24" stroke="#6B7280" class="inline ml-1 flex-shrink-0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></li><li class="ml-0 pl-0"><svg height="24" fill="none" viewBox="0 0 24 24" stroke="#6B7280" class="transform rotate-180 inline mr-1 flex-shrink-0">
                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                     <a class="font-semibold text-gray-500 hover:text-gray-900" href="/hue-shifting/">
+                     <a class="font-semibold text-gray-500 hover:text-gray-900" href="/docs/hue-shifting/">
                     Hue shifting </a> </li>
                     </ul>
                     

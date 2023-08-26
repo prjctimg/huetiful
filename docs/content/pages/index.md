@@ -1,6 +1,5 @@
 ---
 permalink: /home
-layout: /layouts/page.njk
 eleventyNavigation:
   ordering: 0
   key: Home

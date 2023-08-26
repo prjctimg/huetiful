@@ -1,24 +1,14 @@
 {
-  "name": "spacebook",
+  "name": "huetiful-docs",
   "version": "1.0.0",
   "description": "A simple site generator based on Eleventy, Tailwind 2.0, and Alpine.js",
   "scripts": {
     "start": "npx eleventy --serve & npx postcss styles/tailwind.css --o _site/style.css --watch",
-    "build": "ELEVENTY_PRODUCTION=true eleventy && NODE_ENV=production postcss styles/tailwind.css --o _site/style.css &&  ./node_modules/.bin/cleancss -o _site/style.css _site/style.css",
+    "build": "env NODE_ENV=production npx eleventy --pathprefix 'docs' && postcss styles/tailwind.css --o _site/style.css &&  ./node_modules/.bin/cleancss -o _site/style.css _site/style.css",
     "watch": "npx eleventy --watch",
     "debug": "DEBUG=* npx eleventy"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/broeker/spacebook.git"
-  },
-  "author": "Tim Broeker <broeker@gmail.com> (https://www.electriccitizen.com/)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/broeker/spacebook/issues"
-  },
-  "homepage": "https://github.com/broeker/spacebook",
-  "devDependencies": {
+   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
     "alpinejs": "^2.7.3",
     "eleventy-plugin-lazyimages": "^2.1.0",
