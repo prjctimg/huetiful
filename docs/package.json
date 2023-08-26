@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A simple site generator based on Eleventy, Tailwind 2.0, and Alpine.js",
   "scripts": {
-    "start": "eleventy --serve & postcss styles/tailwind.css --o _site/style.css --watch",
+    "start": "npx eleventy --serve & npx postcss styles/tailwind.css --o _site/style.css --watch",
     "build": "ELEVENTY_PRODUCTION=true eleventy && NODE_ENV=production postcss styles/tailwind.css --o _site/style.css &&  ./node_modules/.bin/cleancss -o _site/style.css _site/style.css",
     "watch": "npx eleventy --watch",
     "debug": "DEBUG=* npx eleventy"

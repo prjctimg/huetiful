@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Huetiful</title>
   <meta name="description" content="JavaScript library for simple color manipulations.">
-  <link rel="stylesheet" href="/style.css?v=1693051510774"/>
+  <link rel="stylesheet" href="/style.css?v=1693056332715"/>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💥</text></svg>">
 
   
@@ -72,9 +72,9 @@
 <li class="item"><a href="/core-utilities/" class="item">Core utilities</a></li>
 <li class="item"><a href="/filtering-colors/" class="item">Filtering colors</a></li>
 <li class="item"><a href="/hue-shifting/" class="item">Hue shifting</a></li>
+<li class="item active"><a href="/home" class="item active">Home</a></li>
 <li class="item"><a href="/sorting-colors/" class="item">Sorting colors</a></li>
-<li class="item"><a href="/tailwind-colors/" class="item">Tailwind colors</a></li>
-<li class="item active"><a href="/home" class="item active">Home</a></li></ul>
+<li class="item"><a href="/tailwind-colors/" class="item">Tailwind colors</a></li></ul>
         </div>
       </nav>
       
@@ -89,7 +89,7 @@
         <div class="inline-block w-auto text-xs text-gray-500 pt-1 pb-1 pl-3 mr-2 rounded ">Updated <time datetime="2023-08-26">Aug 26, 2023</time></div>
         
         
-        <div class="inline-block w-auto text-xs  text-gray-500 hover:bg-gray-200 pt-1 pr-4 pb-1 pl-3 rounded "><a target="_blank" rel="noopener" rel="noreferrer" href="https://github.com/prjctimg/huetiful/edit/main/./content/pages/index.md">Edit</a></div>
+        <div class="inline-block w-auto text-xs  text-gray-500 hover:bg-gray-200 pt-1 pr-4 pb-1 pl-3 rounded "><a target="_blank" rel="noopener" rel="noreferrer" href="https://github.com/prjctimg/huetiful/edit/main/./index.md">Edit</a></div>
         
     </div>
     
@@ -130,7 +130,7 @@
                     
                     
                     
-                     <ul class="footer-nav pt-4 mb-8  ml-0 pl-0 flex flex-wrap flex-row-reverse  justify-between mt-8 list-none"><li class="ml-0 pl-0"><a class="font-semibold text-gray-500 hover:text-gray-900" href="/sorting-colors/">Sorting colors</a> <svg height="24" fill="none" viewBox="0 0 24 24" stroke="#6B7280" class="inline ml-1 flex-shrink-0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></li><li class="ml-0 pl-0"><svg height="24" fill="none" viewBox="0 0 24 24" stroke="#6B7280" class="transform rotate-180 inline mr-1 flex-shrink-0">
+                     <ul class="footer-nav pt-4 mb-8  ml-0 pl-0 flex flex-wrap flex-row-reverse  justify-between mt-8 list-none"><li class="ml-0 pl-0"><a class="font-semibold text-gray-500 hover:text-gray-900" href="/working-with-achromatic-colors/">Working with achromatic colors</a> <svg height="24" fill="none" viewBox="0 0 24 24" stroke="#6B7280" class="inline ml-1 flex-shrink-0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></li><li class="ml-0 pl-0"><svg height="24" fill="none" viewBox="0 0 24 24" stroke="#6B7280" class="transform rotate-180 inline mr-1 flex-shrink-0">
                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                      <a class="font-semibold text-gray-500 hover:text-gray-900" href="/hue-shifting/">
                     Hue shifting </a> </li>

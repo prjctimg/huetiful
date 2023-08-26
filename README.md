@@ -1,4 +1,4 @@
-![](./docs/huetiful-logo.png)
+![](./docs/content/images/huetiful-logo.png)
 
 A JavaScript library for simple color manipulations.
 
