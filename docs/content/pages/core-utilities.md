@@ -1,5 +1,5 @@
 ---
-title: Core-utils
+title: Core utilities
 ---
 
 

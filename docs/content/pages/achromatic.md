@@ -1,4 +1,6 @@
-### Achromaticity in color
+---
+title: Achromaticity in color
+---
 
 These are a subtype of colors that have no `hue`. Also known as grays, these colors can be found by interpolating black and white.
 
@@ -62,13 +64,12 @@ let f = interpolate(["black", "white"]);
 let grays = map(samples(12), (c) => formatHex8(f(c)));
 console.log(map(grays, isAchromatic));
 
-// [
-  false, true, true,
+// 
+ [ false, true, true,
   true,  true, true,
   true,  true, true,
   true,  true, false
 ]
-
 
 ```
 

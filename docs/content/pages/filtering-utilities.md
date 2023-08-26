@@ -1,5 +1,5 @@
 ---
-title:Filtering colors from collections
+title: Filtering colors
 ---
 
 The library has a `filterBy` module which is a collection utilities for filtering colors using different factors as criteria.

@@ -1,5 +1,6 @@
-title: Sorting colors in collect
-
+---
+title: Sorting colors
+---
 The library has a `sortBy` module which has utilities for sorting colors using different factors as criteria.
 
 All the sorting functions:

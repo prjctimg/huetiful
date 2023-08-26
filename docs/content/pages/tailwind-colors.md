@@ -1,4 +1,6 @@
-### `tailwindColors` utility
+---
+title: Tailwind colors
+---
 
 The library comes along with the default TailwindCSS palette in the form of a curried wrapper function that takes the Tailwind shade as its first parameter and the value i.e `500` as the second parameter.
 

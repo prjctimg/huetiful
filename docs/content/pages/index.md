@@ -1,8 +1,10 @@
 ---
-layout: /layouts/base.njk
+title: Home
+permalink: /home
+layout: /layouts/page.njk
 ---
 
-![Huetiful](/huetiful-logo.png)
+![Huetiful](assets/huetiful-logo.png)
 
 A JavaScript library for simple color manipulations.
 
