@@ -1,4 +1,6 @@
 //@ts-nocheck
+// Original source from   George Francis: Coloring with Code
+// Can we also lightnessMapper palette types to create hue shifted variants per each color in the palette ?
 
 import { converter, formatHex } from "culori";
 import {
@@ -36,7 +38,6 @@ const lightnessMapper =
  * @returns An array of colors.
  */
 
-// Can we also lightnessMapper palette types to create hue shifted variants per each color in the palette ?
 const hueshift = (
   color: Color,
   opts = { minLightness, maxLightness, hueStep, num },

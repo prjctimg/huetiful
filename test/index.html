@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            http-equiv="X-UA-Compatible"
-            content="IE=edge"
-        />
-        <link
-            rel="stylesheet"
-            href="index.css"
-        />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-        />
-        <title>Document</title>
-    </head>
-    <body>
-        <h1>Huetiful test suite</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="tailwind.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="mx-auto px-6">
+      <div class="palette-count">
+        <input type="color" name="Pick Color" id="color-input" />
+        <select title="Number of colors" aria-label="Colors" id="palette-count">
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12" selected>12</option>
+        </select>
+      </div>
 
-        <script
-            type="module"
-            src="index.js"
-        ></script>
-    </body>
+      <div id="container" class="p-2 flex-shrink h-fit w-fit">
+        <div id="color-tile" class="h-4 w-4 px-1.5 py-2 rounded-md"></div>
+      </div>
+    </main>
+    <script type="module" src="huetiful.esm.mjs "></script>
+    <script type="module" src="index.js"></script>
+  </body>
 </html>

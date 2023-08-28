@@ -1,3 +1,2 @@
-{"watch":["src","./app.js"],"exec":"node app.js --watch ","execMap":{
-    ".ts":"ts-node"
-}}
+{"exec":"node ./app.js --watch "
+}

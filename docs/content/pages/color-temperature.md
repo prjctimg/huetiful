@@ -5,9 +5,9 @@ eleventyNavigation:
   key: Color temperature
 ---
 
-Colors can be classified into warm and cool colors which in turn have ranges(in Kelvins). For example blue is a cool color and the blue hue is found within a certain numerical range (degrees if we are looking at the `hue` channel). Using assumptions such as these allows us to determine which colors we want in our designs.
+Colors can be classified into warm and cool colors which in turn have ranges(in Kelvins). For example blue is a cool color and the blue hue is found within a certain numerical range (degrees if we are looking at the *hue* channel). Using assumptions such as these allows us to determine which colors we want in our designs.
 
-We can use *isWarm* and *isCool* to determine if a color is approximately warm or cool. The utilities rely on `hue` ranges to determine the temperature of the color.
+We can use *isWarm* and *isCool* to determine if a color is approximately warm or cool. The utilities rely on *hue* ranges to determine the temperature of the color.
 
 #### isWarm
 **Parameters:**

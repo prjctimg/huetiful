@@ -4,7 +4,7 @@ eleventyNavigation:
   ordering: 3
   key: Sorting colors
 ---
-The library has a `sortBy` module which has utilities for sorting colors using different factors as criteria.
+The library has a *sortBy* module which has utilities for sorting colors using different factors as criteria.
 
 All the sorting functions:
 

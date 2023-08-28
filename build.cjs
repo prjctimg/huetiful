@@ -8,7 +8,7 @@ const sharedConfig = {
   entryPoints: [".//src/index.ts"],
   bundle: true,
   minify: false,
-  external: Object.keys(dependencies),
+  // external: Object.keys(dependencies),
 };
 
 //Bundled CJS

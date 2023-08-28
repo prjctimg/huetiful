@@ -1,12 +1,12 @@
 ---
-permalink: /home
+permalink: /
 layout: /layouts/page.njk
 eleventyNavigation:
   ordering: 0
   key: Home
 ---
 
-![Huetiful](/content/images/huetiful-logo.png)
+![Huetiful](./content/images/huetiful-logo.png)
 
 A JavaScript library for simple color manipulations.
 
@@ -14,10 +14,10 @@ A JavaScript library for simple color manipulations.
 
 - Filter collections of color according to different properties i.e hue,saturation etc
 - Sort colors according to their properties like luminance and hue.
-- Create colors from templated values like pastels, hueshifted color scales etc
+- Create colors from template values like pastels, hueshifted color scales, paired schemes etc!
 - Reference to all colors in the default TailwindCSS palette with every shade as a function!
-- Categorize colors using their properties such as temperature and achromaticity
-- And much more. See the docs [here](https://prjctimg.github.io/huetiful)
+- Categorize colors using their properties such as temperature and achromatic/chromatic .
+- And much more.
 
 ## Installation
 

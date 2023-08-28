@@ -66,7 +66,7 @@ const pairedScheme = (
 
   // Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes
   let tones = {
-    dark: { l: 0, c: 0, h: 0, mode: "lch" },
+    dark: "#263238",
     light: { l: 100, c: 0, h: 0, mode: "lch" },
   };
 
