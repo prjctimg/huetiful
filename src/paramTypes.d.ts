@@ -1,4 +1,16 @@
 export type tone = "light" | "dark";
+export type hue =
+  | "red-purple"
+  | "red"
+  | "yellow-red"
+  | "yellow"
+  | "green-yellow"
+  | "green"
+  | "blue-green"
+  | "blue"
+  | "purple-blue"
+  | "purple";
+
 export type earthtones =
   | "light gray"
   | "silver"

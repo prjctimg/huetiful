@@ -104,3 +104,16 @@ An array containing the paired scheme.
 **Description:**
 Creates a scheme that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black.
 
+#### getHue
+
+**Parameters:**
+(color: Color): string
+
+**Returns:**
+ The name of the hue family for example red or green.
+
+
+**Description:**
+ Gets the hue family which a acolor belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
+ 
+ 

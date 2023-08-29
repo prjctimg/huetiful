@@ -1,4 +1,4 @@
-import { diverging } from "huetiful-js";
+import { hueShift } from "huetiful-js";
 
-let accent = diverging("BrBG");
-console.log(accent);
+let hueShiftedPalette = hueShift("#3e0000", {}, true);
+console.log(hueShiftedPalette);

@@ -1,7 +1,7 @@
 // Returns the hue range where a color is found. If the hue Channel is falsy we return gray ?
-import type { Color, factor } from "../paramTypes.ts";
+import type { Color, factor, hue } from "../paramTypes.ts";
 import hueTempMap from "../color-maps/hueTemperature.ts";
-import { converter, lch } from "culori";
+import { converter } from "culori";
 import {
   max,
   concat,
@@ -20,7 +20,7 @@ import { floorCeil } from "../core-utils/helpers.ts";
  * @param color The color to query its shade or hue family.
  * @returns The name of the hue family for example red or green.
  */
-const shade = (color: Color): string => {
+const getHue = (color: Color): hue => {
   // First convert the color to LCH
 
   color = converter("lch")(color);
@@ -50,4 +50,4 @@ const shade = (color: Color): string => {
   return results;
 };
 
-export { shade };
+export { getHue };

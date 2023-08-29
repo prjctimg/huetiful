@@ -180,3 +180,40 @@ filterByTemp(sample, 1000, 20000);
 '#720000'
 ]
 ```
+
+
+#### filterByLightness
+
+**Parameters:**
+(colors,startLightness = 5,endLightness = 100): Color[]
+*colors* The array of colors to filter.
+*startLightness* The minimum end of the lightness range.
+*endLightness* The maximum end of the lightness range.
+
+**Returns:** 
+Array of the filtered colors.
+  
+**Description:**
+Returns an array of colors in the specified lightness range. The range is between 0 and 100.
+
+```javascript
+import { filterByLightness } from "huetiful-js";
+let sample = [
+"#00ffdc",
+"#00ff78",
+"#00c000",
+"#007e00",
+"#164100",
+"#ffff00",
+"#310000",
+"#3e0000",
+"#4e0000",
+"#600000",
+"#720000",
+];
+
+
+filterByLightness(sample, 20, 80);
+
+// [ '#00c000', '#007e00', '#164100', '#720000' ]
+```

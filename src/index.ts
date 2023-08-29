@@ -27,9 +27,9 @@ import { sequential, diverging, qualitative } from "./colors/colorBrewer.ts";
 import { pairedScheme } from "./palettes/paired.ts";
 import { sortByLightness } from "./sortBy/sortByLightness.ts";
 import { filterByLightness } from "./filterBy/filterByLightness.ts";
-import { shade } from "./palettes/shade.ts";
+import { getHue } from "./palettes/shade.ts";
 export {
-  shade,
+  getHue,
   filterByLightness,
   sortByLightness,
   pairedScheme,
