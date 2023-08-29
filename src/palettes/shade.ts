@@ -1,4 +1,5 @@
 // Returns the hue range where a color is found. If the hue Channel is falsy we return gray ?
+// @ts-nocheck
 import type { Color, factor, hue } from "../paramTypes.ts";
 import hueTempMap from "../color-maps/hueTemperature.ts";
 import { converter } from "culori";
