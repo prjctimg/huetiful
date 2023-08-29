@@ -1,3 +1,4 @@
-import {} from "huetiful-js";
+import { diverging } from "huetiful-js";
 
-console.log(hueSh);
+let accent = diverging("BrBG");
+console.log(accent);

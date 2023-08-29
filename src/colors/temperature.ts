@@ -18,22 +18,7 @@ import { getChannel } from "../core-utils/get.ts";
 import hueTempMap from "../color-maps/hueTemperature.ts";
 import type { Color } from "../paramTypes.ts";
 import { getTemp } from "../core-utils/rgb2temperature.ts";
-
-const isInteger = (num: number) => /^-?[0-9]+$/.test(toString(num));
-
-const floorCeil = (num: number): number => {
-  const { ceil, floor } = Math;
-  if (isInteger(num)) {
-    return num;
-  } else {
-    let strArr = split(toString(num), ".");
-    let float = strArr[1];
-
-    //If the decimal value is .4  and below it will be rounded down else it will be rounded up.
-    return /^[0-4]$/.test(float.charAt(0)) ? floor(num) : ceil(num);
-  }
-};
-
+import { floorCeil } from "../core-utils/helpers.ts";
 /**
  * @function
  * @description Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.

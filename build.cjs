@@ -8,7 +8,7 @@ const sharedConfig = {
   entryPoints: [".//src/index.ts"],
   bundle: true,
   minify: false,
-  // external: Object.keys(dependencies),
+  external: Object.keys(dependencies),
 };
 
 //Bundled CJS
@@ -34,6 +34,7 @@ build({
   format: "iife",
   outfile: "dist/huetiful.js",
   globalName: "huetiful",
+  external: [],
 });
 
 //Bundled IIFE minified
@@ -43,4 +44,5 @@ build({
   outfile: "dist/huetiful.min.js",
   globalName: "huetiful",
   minify: true,
+  external: [],
 });

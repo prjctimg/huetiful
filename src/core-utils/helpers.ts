@@ -114,4 +114,39 @@ const adjustHue = (value = 0) =>
   lt(value, 0)
     ? (value += multiply(Math.ceil(divide(-value, 360)), 360))
     : value % 360;
-export { adjustHue, colorObjArr, filteredArr, sortedArr, normalize };
+
+/**
+ * Checks if a number is a float.
+ * @param num The number to query
+ * @returns True if the number is an integer else false
+ */
+const isInt = (num: number) => /^-?[0-9]+$/.test(toString(num));
+
+/**
+ * @function
+ * Rounds up or down a number based on the float value.
+ * @param num The number to round up or down.
+ * @returns An integer
+ */
+const floorCeil = (num: number): number => {
+  const { ceil, floor } = Math;
+  if (isInt(num)) {
+    return num;
+  } else {
+    let strArr = split(toString(num), ".");
+    let float = strArr[1];
+
+    //If the decimal value is .4  and below it will be rounded down else it will be rounded up.
+    return /^[0-4]$/.test(float.charAt(0)) ? floor(num) : ceil(num);
+  }
+};
+
+export {
+  adjustHue,
+  colorObjArr,
+  filteredArr,
+  sortedArr,
+  normalize,
+  floorCeil,
+  isInt,
+};
