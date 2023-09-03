@@ -1,4 +1,4 @@
-import type { sortBy } from "../paramTypes.ts";
+import type { factor, sortBy } from "../paramTypes.ts";
 import { sortedArr } from "../core-utils/helpers.ts";
 import { getLuminance } from "../core-utils/luminance.ts";
 
@@ -12,7 +12,7 @@ import { getLuminance } from "../core-utils/luminance.ts";
  */
 
 const sortByLuminance: sortBy = (colors, order) => {
-  const factor = "luminance";
+  const factor: factor = "luminance";
   const cb = getLuminance;
   //Sorting the color array of object by the 'temp' property in the specified order.
 

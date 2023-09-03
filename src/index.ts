@@ -28,7 +28,11 @@ import { pairedScheme } from "./palettes/paired.ts";
 import { sortByLightness } from "./sortBy/sortByLightness.ts";
 import { filterByLightness } from "./filterBy/filterByLightness.ts";
 import { getHue } from "./palettes/shade.ts";
+import { filterByContrast } from "./filterBy/filterByContrast.ts";
+import { sortByContrast } from "./sortBy/sortByContrast.ts";
 export {
+  sortByContrast,
+  filterByContrast,
   getHue,
   filterByLightness,
   sortByLightness,

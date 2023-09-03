@@ -90,6 +90,7 @@ Generates a palette of hue shifted colors (as a colour becomes lighter, its hue 
 ```
 
 #### pairedScheme
+
 **Parameters:**
 (color: Color,hueStep: number,num: number, via: tone,overrides:{}): Color[]
 *color* The color to return a paired color scheme from.

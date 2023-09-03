@@ -81,9 +81,34 @@ export type Color = number | string | object;
  * @param
  *
  */
+export type filterBy = (
+  colors: Color[],
+  against?: Color,
+  start: number,
+  end: number
+) => Color[];
+
 export type filterBy = (colors: Color[], start: number, end: number) => Color[];
-export type factor = "luminance" | "temp" | "saturation";
+
+/**
+ * @type
+ * The property being queried. Used in utilities that perform operations on collections.
+ */
+export type factor =
+  | "luminance"
+  | "temp"
+  | "saturation"
+  | "contrast"
+  | "distance"
+  | "lightness"
+  | "hue";
+export type sortBy = (
+  colors: Color[],
+  against?: Color,
+  order: "asc" | "desc"
+) => Color[];
 export type sortBy = (colors: Color[], order: "asc" | "desc") => Color[];
+
 export type factorMapper = (
   factor: string,
   cb: (arg: Color) => number,

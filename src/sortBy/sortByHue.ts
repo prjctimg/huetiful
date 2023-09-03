@@ -1,6 +1,6 @@
 import { getChannel } from "../core-utils/get.ts";
 import { sortedArr } from "../core-utils/helpers.ts";
-import type { sortBy } from "../paramTypes.js";
+import type { factor, sortBy } from "../paramTypes.js";
 
 /**
  * @function
@@ -13,7 +13,7 @@ import type { sortBy } from "../paramTypes.js";
 
 // Todo: Add the mode param so that users can select mode to work with. The default is
 const sortByHue: sortBy = (colors, order) => {
-  const factor = "hue";
+  const factor: factor = "hue";
   const cb = getChannel("lch.h");
   //Sorting the color array of object by the 'temp' property in the specified order.
 
