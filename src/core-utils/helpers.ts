@@ -96,11 +96,12 @@ const filteredArr =
     return result;
   };
 
-const sortedArr: factorMapper = (factor, cb, order) => (colors) =>
-  map(
-    orderBy(colorObjArr(factor, cb)(colors), factor, order),
-    (el) => el["name"]
-  );
+const sortedArr: factorMapper =
+  (factor, cb, order, colorObj = false) =>
+  (colors) =>
+    map(orderBy(colorObjArr(factor, cb)(colors), factor, order), (el) =>
+      colorObj ? el : el["name"]
+    );
 
 /**
  * @description Normalizes passed in values to 0 and 1

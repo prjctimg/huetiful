@@ -111,19 +111,12 @@ export type sortBy = (colors: Color[], order: "asc" | "desc") => Color[];
 
 export type factorMapper = (
   factor: string,
-  cb: (arg: Color) => number,
-  order?: "asc" | "desc"
+  cb: (arg: Color, colorSpace?: HueColorSpaces) => number,
+  order?: "asc" | "desc",
+  colorObj = false
 ) => (colors: Color[]) => Color[];
 
-type HueColorSpaces = {
-  hsl?: [number, number];
-  hsv?: [number, number];
-  hsi?: [number, number];
-
-  lch?: [number, number];
-  oklch?: [number, number];
-  hcl?: [number, number];
-};
+export type HueColorSpaces = "hsl" | "hsv" | "hsi" | "oklch" | "lch" | "hwb";
 
 type ScaleValues = {
   "100": string;
@@ -138,9 +131,7 @@ type ScaleValues = {
   "900": string;
 };
 
-// The users dont interact directly with the Color instance rather it is wrapped in a function and acts as an entry wrapper to the underlying class meta.
-
-type HueMap = {
+export type HueMap = {
   indigo: {
     "50": string;
     "100": string;

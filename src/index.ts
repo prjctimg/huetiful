@@ -30,7 +30,12 @@ import { filterByLightness } from "./filterBy/filterByLightness.ts";
 import { getHue } from "./palettes/shade.ts";
 import { filterByContrast } from "./filterBy/filterByContrast.ts";
 import { sortByContrast } from "./sortBy/sortByContrast.ts";
+import { getFarthestHue, getNearestHue, minHue, maxHue } from "./colors/hue.ts";
 export {
+  minHue,
+  maxHue,
+  getFarthestHue,
+  getNearestHue,
   sortByContrast,
   filterByContrast,
   getHue,
