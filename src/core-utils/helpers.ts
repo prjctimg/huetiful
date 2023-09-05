@@ -1,6 +1,7 @@
 import { Color, factorMapper } from "../paramTypes.ts";
 import {
   map,
+  slice,
   fromPairs,
   inRange,
   filter,
@@ -143,6 +144,42 @@ const floorCeil = (num: number): number => {
   }
 };
 
+/**
+ * Performs arithmetic operations on colors by passing the arithmetic operator from the value if it is a string. It requires the src variable to be declared in the global scope of the invoking func.
+ * @param src The color object.
+ * @param channel The channel to set.
+ * @param value The value to apply.
+ */
+
+const expressionParser = (
+  src: Color,
+  channel: string,
+  value: string
+): number => {
+  const reOperator = /^(\*|\+|\-|\/)/,
+    reValue = /[0-9]*\.?[0-9]+/;
+  const sign = reOperator.exec(value),
+    amt = reValue.exec(value);
+  const cb = (amt: string) => toNumber(amt);
+  switch (sign["0"]) {
+    case "+":
+      src[channel] += +cb(amt["0"]);
+      break;
+    case "-":
+      src[channel] -= +cb(amt["0"]);
+      break;
+    case "*":
+      src[channel] *= +cb(amt["0"]);
+      break;
+    case "/":
+      src[channel] /= +cb(amt["0"]);
+      break;
+    default:
+      src[channel] = +cb(amt["0"]);
+  }
+  return src;
+};
+
 export {
   adjustHue,
   colorObjArr,
@@ -151,4 +188,5 @@ export {
   normalize,
   floorCeil,
   isInt,
+  expressionParser,
 };

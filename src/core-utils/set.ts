@@ -5,6 +5,7 @@
 import { slice, isString, isNumber, toNumber, split } from "lodash-es";
 import { converter } from "culori";
 import type { Color } from "../paramTypes.ts";
+import { expressionParser } from "./helpers.ts";
 /**
  * @function
  *@description Sets the value for the specified channel in a color.
@@ -18,28 +19,13 @@ const setChannel =
   (mc: string) =>
   (color: Color, value: number | string): Color => {
     const [mode, channel] = split(mc, ".");
-    const src = converter(mode)(color);
+    const src: Color = converter(mode)(color);
 
     if (channel) {
-      if (isString(value)) {
-        switch (value.charAt(0)) {
-          case "+":
-            src[channel] += +value;
-            break;
-          case "-":
-            src[channel] -= +value;
-            break;
-          case "*":
-            src[channel] *= toNumber(slice(value, 1));
-            break;
-          case "/":
-            src[channel] /= toNumber(slice(value, 1));
-            break;
-          default:
-            src[channel] = +value;
-        }
-      } else if (isNumber(value)) {
+      if (isNumber(value)) {
         src[channel] = value;
+      } else if (isString(value)) {
+        expressionParser(src, channel, value);
       } else {
         throw new Error(`unsupported value for setChannel`);
       }

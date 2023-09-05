@@ -61,16 +61,14 @@ const getNearestHue = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
-  return predicate(colorSpace)(
-    get(
-      first(
-        remove(
-          sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors),
-          (el) => el[factor] !== undefined
-        )
-      ),
-      "name"
-    )
+  return get(
+    first(
+      remove(
+        sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors),
+        (el) => el[factor] !== undefined
+      )
+    ),
+    factor
   );
 };
 
@@ -89,16 +87,14 @@ const getFarthestHue = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
-  return predicate(colorSpace)(
-    get(
-      last(
-        remove(
-          sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors),
-          (el) => el[factor] !== undefined
-        )
-      ),
-      "name"
-    )
+  return get(
+    last(
+      remove(
+        sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors),
+        (el) => el[factor] !== undefined
+      )
+    ),
+    factor
   );
 };
 

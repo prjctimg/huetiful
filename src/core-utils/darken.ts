@@ -1,37 +1,52 @@
 //@ts-nocheck
-import { defaultTo, multiply } from "lodash-es";
+import { defaultTo, isNumber, isString, multiply, toNumber } from "lodash-es";
 import { converter, formatHex } from "culori";
 import type { HueColorSpaces, Color } from "../paramTypes.ts";
+import { expressionParser } from "./helpers.ts";
 // ported froma chroma-js brighten
 
 /**
  * @function
  * @description Darkens the color by reducing the lightness channel. .
  * @param   color The color to darken.
- * @param amount The amount to darken with. Also supports expressions as strings e.g darken("#fc23a1","*0.5")
+ * @param value The amount to darken with. Also supports expressions as strings e.g darken("#fc23a1","*0.5")
  * @param mode The color space to compute the color in. Any color space with a lightness channel will do (including HWB)
  * @returns color The darkened color.
  */
-const darken = (color: Color, amount: number): Color => {
-  defaultTo(amount, 1);
+const darken = (color: Color, value: number | string): Color => {
+  defaultTo(value, 1);
   const default_mode = "lab";
   const Kn = 18;
-
+  const channel = "l";
   // Addv acheck here like the one in set.js
-  const lab = converter(mode)(color);
-  lab["l"] -= multiply(Kn, amount);
-  return formatHex(converter(default_mode)(lab));
+  const src = converter(default_mode)(color);
+
+  if (isNumber(value)) {
+    src["l"] -= multiply(Kn, value);
+  } else if (isString(value)) {
+    expressionParser(src, channel, value);
+  }
+
+  return formatHex(converter(default_mode)(src));
 };
 
 /**
  *
  * @param color The color to brighten.
- * @param amount The amount to brighten with. Also supports expressions as strings e.g darken("#fc23a1","*0.5")
+ * @param value The amount to brighten with. Also supports expressions as strings e.g darken("#fc23a1","*0.5")
  * @param mode The color space to compute the color in. Any color space with a lightness channel will do (including HWB)
  * @returns
  */
-const brighten = (color: Color, amount: number | string): Color => {
-  return darken(color, -amount);
+const brighten = (color: Color, value: number | string): Color => {
+  const { abs } = Math;
+  let result: Color;
+  if (isNumber(value)) {
+    result = darken(color, -value);
+  } else if (isString(value)) {
+    let amt = abs(toNumber(value.slice(1)));
+    result = darken(color, -amt);
+  }
+  return result;
 };
 
 export { brighten, darken };

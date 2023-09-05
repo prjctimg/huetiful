@@ -1,7 +1,16 @@
 //@ts-nocheck
 import { converter, formatHex8 } from "culori";
-import { defaultTo, divide, inRange, isNumber, isUndefined } from "lodash-es";
+import {
+  defaultTo,
+  divide,
+  inRange,
+  isNumber,
+  isString,
+  isUndefined,
+  set,
+} from "lodash-es";
 import type { Color } from "../paramTypes.ts";
+import { expressionParser } from "./helpers.ts";
 
 /**
  * @function
@@ -11,19 +20,23 @@ import type { Color } from "../paramTypes.ts";
  * @returns color The resulting color. Returns an 8 character hex code.
  */
 
-const alpha = (color: Color, value?: number): Color | number => {
+const alpha = (color: Color, value?: number | string): Color | number => {
   // We never perfom an operation on an undefined color. Defaults to pure black
   defaultTo(color, "#000000");
+  const src = converter("rgb")(color);
+  let channel = "alpha";
+
   if (isUndefined(value)) {
-    return formatHex8(color);
+    return src[channel];
   } else if (isNumber(value)) {
-    inRange(value, 0, 1.0) ? alpha : divide(alpha, 100);
-    const src = converter("rgb")(color);
-
-    src["alpha"] = value;
-
-    return formatHex8(src);
+    inRange(value, 0, 1.0)
+      ? (src[channel] = value)
+      : (src[channel] = divide(100, value));
+  } else if (isString(value)) {
+    set(src, channel, defaultTo(src[channel], 1));
+    expressionParser(src, channel, value);
   }
+  return formatHex8(src);
 };
 
 export { alpha };
