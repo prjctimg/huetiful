@@ -12,12 +12,15 @@ A JavaScript library for simple color manipulations.
 
 ### What you can do with this package
 
-- Filter collections of color according to different properties i.e hue,saturation etc
-- Sort colors according to their properties like luminance and hue.
+- Filter arrays of color according to different properties i.e hue,saturation etc
+- Sort arrays of colors according to their properties like luminance and hue.
 - Create colors from template values like pastels, hueshifted color scales, paired schemes etc!
 - Reference to all colors in the default TailwindCSS palette with every shade as a function!
 - Categorize colors using their properties such as temperature and achromatic/chromatic .
-- And much more.
+- Get values of statistical significance (such as min and max hue values) from arrays of colors.
+
+> #### Nice to know
+> All the functions come with TypeScript IntelliSense autocomplete for built-in parameters and are documented using TSDoc for code description during development. No need to cram the docs!  
 
 ## Installation
 
@@ -28,8 +31,8 @@ npm i huetiful-js
 ```
 
 ## Contributing
-
-Contributions are welcome! Help make this project more useful for creative coders by sharing your ideas and stomping out bugs and feature suggestions. For major changes, please open an issue first to discuss what you would like to change.
+First of all, thank you for using huetiful-js! Its people like you that make open source software better for the community!
+Contributions are welcome! Help make this project better and easier to use for other developers by sharing your ideas and stomping out bugs and feature suggestions. For any major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 

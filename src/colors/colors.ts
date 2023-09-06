@@ -17,10 +17,7 @@ import type { HueMap, ScaleValues, Color } from "../paramTypes.ts";
  * @param val Any value from 100 to 900 in increments of 100 e.g "200".
  * @returns color Returns a hex code string or array of hex codes depending on how the function is called.
  */
-const colors = (
-  shade: keyof HueMap,
-  val: keyof ScaleValues
-): Color | Color[] => {
+const colors = (shade: keyof HueMap, val: ScaleValues): Color | Color[] => {
   const defaultHue = "all";
   const black = "#000000";
 

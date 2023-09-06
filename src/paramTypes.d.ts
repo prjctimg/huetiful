@@ -110,26 +110,54 @@ export type sortBy = (
 export type sortBy = (colors: Color[], order: "asc" | "desc") => Color[];
 
 export type factorMapper = (
-  factor: string,
+  factor: factor,
   cb: (arg: Color, colorSpace?: HueColorSpaces) => number,
   order?: "asc" | "desc",
   colorObj = false
 ) => (colors: Color[]) => Color[];
 
+export type ColorSpaces =
+  | A98
+  | Cubehelix
+  | Dlab
+  | Dlch
+  | Hsi
+  | Hsl
+  | Hsv
+  | Hwb
+  | Jab
+  | Jch
+  | Lab
+  | Lab65
+  | Lch
+  | Lch65
+  | Lchuv
+  | Lrgb
+  | Luv
+  | Okhsl
+  | Okhsv
+  | Oklab
+  | Oklch
+  | P3
+  | Prophoto
+  | Rec2020
+  | Rgb
+  | Xyz50
+  | Xyz65
+  | Yiq;
 export type HueColorSpaces = "hsl" | "hsv" | "hsi" | "oklch" | "lch" | "hwb";
 
-type ScaleValues = {
-  "100": string;
-  "50": string;
-  "200": string;
-  "300": string;
-  "400": string;
-  "500": string;
-  "600": string;
-  "700": string;
-  "800": string;
-  "900": string;
-};
+export type ScaleValues =
+  | "100"
+  | "50"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 
 export type HueMap = {
   indigo: {
@@ -390,21 +418,6 @@ export type HueMap = {
     "800": string;
     "900": string;
   };
-};
-
-type ColorSpaces = {
-  rgb: [number, number, number];
-  rgba: [number, number, number, number];
-  hsl: [number, number, number];
-  hsv: [number, number, number];
-  hsi: [number, number, number];
-  lab: [number, number, number];
-  oklab: [number, number, number];
-  lch: [number, number, number];
-  oklch: [number, number, number];
-  hcl: [number, number, number];
-  cmyk: [number, number, number, number];
-  gl: [number, number, number, number];
 };
 
 type ColorTemp = "warm" | "cool" | "daylight" | "incadescent" | "fluorescent";

@@ -1,6 +1,0 @@
-> "Some moments are just worth capturing"
-> - Anonymous
-
-I'm Carlos Takudzwa Kankhungwa (born 19 January 2001), a passionate mobile photographer based in Harare, Zimbabwe/ I began my freelance career in 2019 though I didn't know it at that time. The first phone I used was a Huawei Mate 7 and I first experimented with taking still images of any objects I found interesting (see the images included below). My initial breakthrough was in 2022 when I upgraded to a Samsung Galaxy A52 which allowed me to take better pictures than ever before. This allowed me to push my content to Twitter which has my largest audience up to date. In 2023, I have a growing online audience  and have my images on popular image hosting sites like Shutterstock, (Add all the platforms). Throughout my journey I've been inspired by {list the people that inspired you}. My latest project is an upcoming online photo gallery with which I'm hoping to tell stories through pictures whilst capturing the magic of Africa in every shot. THe project will launch publicly end of October 2023.
-
-Amongst my various interests I'm also a fan of custom built gaming PCs (I enjoy taking things apart just to see how they work),gaming,coding and swimming.

@@ -14,7 +14,7 @@ import type { HueMap, ScaleValues } from "../paramTypes.ts";
 // Make it case insensetive.
 const tailwindColors =
   (shade: keyof HueMap) =>
-  (val?: keyof ScaleValues): string | string[] => {
+  (val?: ScaleValues): string | string[] => {
     // This is a curried func that takes in the shade and returns a function that takes in a value from 100 thru 900
 
     const black = "#000000";

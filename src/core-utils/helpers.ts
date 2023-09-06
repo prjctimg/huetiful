@@ -1,4 +1,4 @@
-import { Color, factorMapper } from "../paramTypes.ts";
+import { Color, factor, factorMapper } from "../paramTypes.ts";
 import {
   map,
   slice,
@@ -47,7 +47,7 @@ const colorObjArr: factorMapper = (factor, cb) => (colors) =>
  * @returns
  */
 const filteredArr =
-  (factor: string, cb?: (arg: Color) => number) =>
+  (factor: factor, cb?: (arg: Color) => number) =>
   (colors: Color[], start: number | string, end: number): Color[] => {
     let result: Color[];
 
