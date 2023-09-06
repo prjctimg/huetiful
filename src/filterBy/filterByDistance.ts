@@ -1,6 +1,6 @@
 import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 import { differenceEuclidean } from "culori";
-import { Color, factor, filterBy, ColorSpaces } from "../paramTypes.ts";
+import { Color, factor, ColorSpaces } from "../paramTypes.ts";
 
 /**
  *  @function
@@ -8,6 +8,8 @@ import { Color, factor, filterBy, ColorSpaces } from "../paramTypes.ts";
  * @param  colors The array of colors to filter.
  * @param  startDistance The minimum end of the distance range.
  * @param  endDistance The maximum end of the distance range.
+ * @param weights The weighting values to pass to the Euclidean function. Default is [1,1,1,0].
+ * @param mode The color space to calculate the distance in .
  * @returns Array of filtered colors.
  */
 

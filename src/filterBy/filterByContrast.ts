@@ -1,7 +1,7 @@
 import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 import { wcagContrast } from "culori";
 
-import { filterBy, Color } from "../paramTypes.ts";
+import { Color, factor } from "../paramTypes.ts";
 /**
  *  @function
  * Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
@@ -11,7 +11,7 @@ import { filterBy, Color } from "../paramTypes.ts";
  * @returns Array of filtered colors.
  */
 
-const filterByContrast: filterBy = (
+const filterByContrast = (
   colors: Color[],
   against: Color,
   startContrast = 0.05,

@@ -1,6 +1,6 @@
 import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 import { wcagLuminance } from "culori";
-import { filterBy } from "../paramTypes.js";
+import { factor, filterBy } from "../paramTypes.js";
 import { Color } from "../paramTypes.ts";
 /**
  *  @function
@@ -11,14 +11,14 @@ import { Color } from "../paramTypes.ts";
  * @returns Array of filtered colors.
  */
 
-const filterByLuminance: filterBy = (
-  colors,
+const filterByLuminance = (
+  colors: Color[],
   startLuminance = 0.05,
   endLuminance = 1
 ): Color[] => {
   // Formatting color tokens to parseable type
   // Create an object that has the luminance and name of color as properties.
-  const factor = "luminance";
+  const factor: factor = "luminance";
   const cb = wcagLuminance;
 
   return filteredArr(factor, cb)(colors, startLuminance, endLuminance);

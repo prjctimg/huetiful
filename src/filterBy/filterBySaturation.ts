@@ -1,7 +1,7 @@
 // Filters colors according to a defined saturation range
 import { multiply } from "lodash-es";
 import { getChannel } from "../core-utils/get.ts";
-import type { Color, filterBy } from "../paramTypes";
+import type { Color, factor, filterBy } from "../paramTypes";
 import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 
 /**
@@ -13,12 +13,12 @@ import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
  * @returns Array of filtered colors.
  */
 
-const filterBySaturation: filterBy = (
-  colors,
+const filterBySaturation = (
+  colors: Color[],
   startSaturation = 0.05,
   endSaturation = 1
 ): Color[] => {
-  const factor = "saturation";
+  const factor: factor = "saturation";
   const cb = getChannel("lch.c");
 
   //  Normalize saturation ranges later

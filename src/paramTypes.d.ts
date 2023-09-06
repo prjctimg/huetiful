@@ -78,19 +78,6 @@ export type Color = number | string | object;
  */
 
 /**
- * @param
- *
- */
-export type filterBy = (
-  colors: Color[],
-  against?: Color,
-  start: number,
-  end: number
-) => Color[];
-
-export type filterBy = (colors: Color[], start: number, end: number) => Color[];
-
-/**
  * @type
  * The property being queried. Used in utilities that perform operations on collections.
  */
@@ -102,12 +89,6 @@ export type factor =
   | "distance"
   | "lightness"
   | "hue";
-export type sortBy = (
-  colors: Color[],
-  against?: Color,
-  order: "asc" | "desc"
-) => Color[];
-export type sortBy = (colors: Color[], order: "asc" | "desc") => Color[];
 
 export type factorMapper = (
   factor: factor,
@@ -117,34 +98,28 @@ export type factorMapper = (
 ) => (colors: Color[]) => Color[];
 
 export type ColorSpaces =
-  | A98
-  | Cubehelix
-  | Dlab
-  | Dlch
-  | Hsi
-  | Hsl
-  | Hsv
-  | Hwb
-  | Jab
-  | Jch
-  | Lab
-  | Lab65
-  | Lch
-  | Lch65
-  | Lchuv
-  | Lrgb
-  | Luv
-  | Okhsl
-  | Okhsv
-  | Oklab
-  | Oklch
-  | P3
-  | Prophoto
-  | Rec2020
-  | Rgb
-  | Xyz50
-  | Xyz65
-  | Yiq;
+  | "a98"
+  | "cubehelix"
+  | "dlab"
+  | "dlch"
+  | "hsi"
+  | "hsl"
+  | "hsv"
+  | "hwb"
+  | "jab"
+  | "jch"
+  | "lab"
+  | "lab65"
+  | "lch"
+  | "lch65"
+  | "lchuv"
+  | "lrgb"
+  | "luv"
+  | "okhsl"
+  | "okhsv"
+  | "oklab"
+  | "rgb";
+
 export type HueColorSpaces = "hsl" | "hsv" | "hsi" | "oklch" | "lch" | "hwb";
 
 export type ScaleValues =

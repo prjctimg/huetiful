@@ -1,4 +1,4 @@
-import type { factor, sortBy, Color } from "../paramTypes.ts";
+import type { factor, Color } from "../paramTypes.ts";
 import { sortedArr } from "../core-utils/helpers.ts";
 import { wcagContrast } from "culori";
 
@@ -11,7 +11,11 @@ import { wcagContrast } from "culori";
  
  */
 
-const sortByContrast: sortBy = (colors, against, order) => {
+const sortByContrast = (
+  colors: Color[],
+  against: Color,
+  order: "asc" | "desc"
+): Color[] => {
   const factor: factor = "contrast";
   const cb = (against: Color) => (color: Color) => wcagContrast(color, against);
   //Sorting the color array of object by the 'temp' property in the specified order.

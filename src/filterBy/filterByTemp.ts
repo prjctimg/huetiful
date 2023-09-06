@@ -1,8 +1,7 @@
 import { filter, inRange, map, fromPairs } from "lodash-es";
 import { getTemp } from "../core-utils/rgb2temperature.ts";
-import { formatHex, converter } from "culori";
-import { filterBy } from "../paramTypes.ts";
-import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
+import { Color, factor } from "../paramTypes.ts";
+import { filteredArr } from "../core-utils/helpers.ts";
 
 /**
  * @function
@@ -14,14 +13,18 @@ import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
  * @see Based on Neil Bartlett's implementation https://github.com/neilbartlett/color-temperature
  */
 
-//TODO Could also specify warm|cool to quickly return the filtered array. This param overrides startTemp and endTemp.
-//@ts-ignore
-const filterByTemp: filterBy = (colors, startTemp = 1000, endTemp = 6000) => {
+const filterByTemp = (
+  colors: Color[],
+  startTemp = 1000,
+  endTemp = 6000
+): Color[] => {
   // This variable stores the array that matches the filtering criteria defined by the start and end hues
-  const factor = "temp";
+  const factor: factor = "temp";
   const cb = getTemp;
 
   return filteredArr(factor, cb)(colors, startTemp, endTemp);
 };
 
 export { filterByTemp };
+
+//TODO Could also specify warm|cool to quickly return the filtered array. This param overrides startTemp and endTemp.
