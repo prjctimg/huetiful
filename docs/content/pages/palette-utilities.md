@@ -1,8 +1,11 @@
 ---
 title: Palette utilities
+eleventyNavigation:
+  key: Palette utilities
 ---
 
 These are functions that return custom palettes from a single base color by mapping certain values to the color's channels.
+
 #### base
 
 **Parameters:**
@@ -17,6 +20,7 @@ These are functions that return custom palettes from a single base color by mapp
 Generates a randomised classic color scheme from a single base color.
 
 **Example:**
+
 ```javascript
 
 // Example
@@ -29,14 +33,15 @@ Generates a randomised classic color scheme from a single base color.
 *color* The color to interpolate an earth tone with.
  *tone* The earthtone to interpolate with.
  *num* The number of iterations to produce from the color and earthtone.
- 
+
  **Returns:**
  The array o colors resulting from the earthtone interpolation.
- 
+
  **Description:**
  Creates a scale of a spline based interpolation between an earthtone and a color.
- 
+
 **Example:**
+
 ```javascript
 
 // Example
@@ -49,13 +54,13 @@ Generates a randomised classic color scheme from a single base color.
 (color: Color, hex = true): Color
 *color* The color to return a pastel variant of.
  *hex* Pass in true to return an 8-character hex code else it will return an HSV color object.
- 
+
  **Returns:**
  A random pastel color.
- 
+
  **Description:**
  Returns a random pastel variant of the passed in color.
- 
+
  **Example:**
 
 ```javascript
@@ -65,28 +70,49 @@ Generates a randomised classic color scheme from a single base color.
  // Example
 ```
 
+We can also create a palette of hue shifted colors from a single base color. The *hueShift* utility can achieve the same:
 
-
-##### hueshift
+#### hueShift
 
 **Parameters:**
-(color: Color, opts = {minLightness?:number,maxLightness?:number}, hex = false): Color[]
- *color* The color to use as the base of the hueshift. Colors are internally converted to LCH.
- *minLightness*  Minimum lightness value (range 0-100).
- *maxLightness*  Maximum lightness value (range 0-100).
- *num* The number of iterations to do on the color. It equals the amount of elements in the result array.
- *hueStep*  Controls how much the hue will shift at each iteration.
- *hex* Optional boolean to return lch color objects or hex codes in the result array. Default is false  which returns LCH color objects.
- 
+(color: Color,
+ opts = {
+ minLightness,
+ maxLightness,
+ hueStep,
+ num },hex = true
+): Color[]
+ *color* **The color to use as the base of the hueshift. Colors are internally converted to LCH.**
+ *minLightness* **Minimum lightness value (range 0-100).**
+ *maxLightness* **Maximum lightness value (range 0-100).**
+ *num* **The number of iterations to do on the color. It equals the amount of elements in the result array.**
+ *hueStep*  **Controls how much the hue will shift at each iteration.**
+ *hex* **Optional boolean to return lch color objects or hex codes in the result array. Default is true which returns hexadecimal colors.**
+
 **Returns:**
-An array of hue-shifted colors.
+An array of colors.
 
 **Description:**
-Generates a palette of hue shifted colors (as a colour becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme.
+Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our color will be at either extreme.
 
 **Example:**
+
 ```javascript
-// Example
+import { hueShift } from "huetiful-js";
+
+let hueShiftedPalette = hueShift("#3e0000", {}, true);
+
+console.log(hueShiftedPalette);
+
+// [
+  '#ffffe1', '#ffdca5',
+  '#ca9a70', '#935c40',
+  '#5c2418', '#3e0000',
+  '#310000', '#34000f',
+  '#38001e', '#3b002c',
+  '#3b0c3a'
+]
+
 ```
 
 #### pairedScheme
@@ -113,8 +139,11 @@ Creates a scheme that consists of a base color that is incremented by a hueStep 
 **Returns:**
  The name of the hue family for example red or green.
 
-
 **Description:**
  Gets the hue family which a acolor belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
+
+ ```javascript
  
+ // Example
  
+ ```

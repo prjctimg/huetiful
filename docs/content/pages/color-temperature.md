@@ -1,7 +1,7 @@
 ---
 title: Color temperature
 eleventyNavigation:
-  ordering: 5
+
   key: Color temperature
 ---
 
@@ -10,6 +10,7 @@ Colors can be classified into warm and cool colors which in turn have ranges(in 
 We can use *isWarm* and *isCool* to determine if a color is approximately warm or cool. The utilities rely on *hue* ranges to determine the temperature of the color.
 
 #### isWarm
+
 **Parameters:**
 (color: Color):boolean
  *color* The color to check the temperature.
@@ -67,7 +68,6 @@ True or false
 **Description:**
 Checks if a color can be roughly classified as a cool color. Returns true if color is a warm color else false.
 
-
 ```javascript
 import { isCool } from 'huetiful-js'
 
@@ -108,13 +108,13 @@ console.log(map(sample, isCool));
 **Parameters:**
 (color: Color): number
  *color* The color to check its minimum temperature.
- 
+
  **Returns**
  The minimum temperature in Kelvins.
- 
+
  **Description:**
   Checks the approximate minimum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
- 
+
  **Example:**
 
 ```javascript
@@ -130,15 +130,14 @@ console.log(map(sample, isCool));
 **Parameters:**
 (color: Color): number
  *color* The color to check its minimum temperature.
- 
+
  **Returns**
  The minimum temperature in Kelvins.
- 
+
  **Description:**
   Checks the approximate minimum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
 
 **Example:**
-
 
 ```javascript
 

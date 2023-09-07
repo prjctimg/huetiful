@@ -2,8 +2,8 @@
 permalink: /
 layout: /layouts/page.njk
 eleventyNavigation:
-  ordering: 0
-  key: Home
+  ordering: 1
+  key: Getting started
 ---
 
 ![Huetiful](./content/images/huetiful-logo.png)

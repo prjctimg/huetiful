@@ -1,13 +1,12 @@
 ---
 title: Working with achromatic colors
 eleventyNavigation:
-  ordering: 6
   key: Working with achromatic colors
 ---
 
 
 
-These are a subtype of colors that have no *hue*. Also known as grays, these colors can be found by interpolating black and white. 
+These are a subtype of colors that have no *hue*. Also known as grays, these colors can be found by interpolating black and white.
 
 We can use the *isAchromatic* utility to check if a color is achromatic or not.
 
