@@ -1,7 +1,6 @@
 ---
 title: Types
 eleventyNavigation:
-  ordering: 7
   key: Types
 ---
 
