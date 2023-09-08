@@ -1,4 +1,4 @@
-import { getTemp } from "../core-utils/rgb2temperature.ts";
+import { getTemp } from "../core-utils/getTemp.ts";
 import type { Color, factor } from "../paramTypes.ts";
 import { sortedArr } from "../core-utils/helpers.ts";
 
@@ -21,3 +21,5 @@ const sortByTemp = (colors: Color[], order: "asc" | "desc"): Color[] => {
 };
 
 export { sortByTemp };
+
+// This function is hanging. Debug it

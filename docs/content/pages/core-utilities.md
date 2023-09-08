@@ -141,8 +141,9 @@ Gets the temperature value in Kelvins of the passed in color.
 #### setTemp
 
 **Parameters:**
-(kelvin: number): Color
+(kelvin: number,hex=false): Color
 *kelvin* **The number of Kelvins. From 0 to 30,000 .**
+*hex* **Optional parameter to either return an RGB or hexadecimal.**
 
 **Returns:**
 The color as a hexadecimal string.

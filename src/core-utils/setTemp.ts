@@ -16,16 +16,17 @@ import {
   lt,
   fromPairs,
 } from "lodash-es";
-import type { Color } from "../paramTypes.ts";
+import type { Color } from "../paramTypes";
 import { formatHex } from "culori";
 
 /**
  * @function
  * @description Converts the temperature value (in Kelvins) to an RGB color.
  * @param kelvin The number of Kelvins. From 0 to 30,000 .
- * @returns color The color as a hexadecimal string.
+ * @param hex Optional boolean parameter to either return an RGB color object or hexadecimal string. Default is true.
+ * @returns color The color as a hexadecimal  or RGB color object.
  */
-const temperature2rgb = (kelvin: number): Color => {
+const setTemp = (kelvin: number, hex = true): Color => {
   //Hue change starts at approx 655 Kelvins ???
   const eps = 655;
   const { log } = Math;
@@ -77,7 +78,7 @@ const temperature2rgb = (kelvin: number): Color => {
     ["mode", "rgb"],
   ]);
 
-  return formatHex(result);
+  return hex ? formatHex(result) : result;
 };
 
-export { temperature2rgb as setTemp };
+export { setTemp };

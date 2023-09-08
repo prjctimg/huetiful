@@ -57,7 +57,24 @@ All the filtering functions:
 
 ```javascript
 
-//Example
+import { filterByContrast } from "huetiful-js";
+
+let sample = [
+  "#00ffdc",
+  "#00ff78",
+  "#00c000",
+  "#007e00",
+  "#164100",
+  "#ffff00",
+  "#310000",
+  "#3e0000",
+  "#4e0000",
+  "#600000",
+  "#720000",
+];
+
+console.log(filterByContrast(sample, "green", ">=3"));
+// [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
 
 ```
 
@@ -405,6 +422,7 @@ Sorts colors according to hue values. It works with any color space with a hue c
 
 ```javascript
 import { sortByHue } from "huetiful-js";
+
 let sample = [
   "#00ffdc",
   "#00ff78",
@@ -422,10 +440,25 @@ let sample = [
 
 let sorted = sortByHue(sample);
 console.log(sorted)
-
+// [
+  '#310000', '#3e0000',
+  '#4e0000', '#600000',
+  '#720000', '#ffff00',
+  '#164100', '#00c000',
+  '#007e00', '#00ff78',
+  '#00ffdc'
+]
 
 let sortedDescending = sortByHue(sample,'desc');
 console.log(sortedDescending)
+// [
+  '#00ffdc', '#00ff78',
+  '#007e00', '#00c000',
+  '#164100', '#ffff00',
+  '#720000', '#600000',
+  '#4e0000', '#3e0000',
+  '#310000'
+]
 
 ```
 
@@ -485,6 +518,7 @@ Sorts colors according to their lightness.
 ```javascript
 
 import { sortByLightness } from "huetiful-js";
+
 let sample = [
   "#00ffdc",
   "#00ff78",
@@ -501,12 +535,26 @@ let sample = [
 
 sortByLightness(sample)
 
-//
+// [
+  '#310000', '#3e0000',
+  '#4e0000', '#600000',
+  '#720000', '#164100',
+  '#007e00', '#00c000',
+  '#00ff78', '#00ffdc',
+  '#ffff00'
+]
 
 
 sortByLightness(sample,'desc')
 
-//
+// [
+  '#ffff00', '#00ffdc',
+  '#00ff78', '#00c000',
+  '#007e00', '#164100',
+  '#720000', '#600000',
+  '#4e0000', '#3e0000',
+  '#310000'
+]
 
 
 ```
@@ -530,7 +578,27 @@ Sorts colors according to their Euclidean distance. The distance factor is deter
 
 ```javascript
 
-//Example
+import { sortByDistance } from 'huetiful-js'
+
+let sample = ["purple", "green", "red", "brown"];
+console.log(
+  sortByDistance(sample, "yellow", "asc", {
+    mode: "lch",
+  })
+);
+
+// [ 'brown', 'red', 'green', 'purple' ]
+
+
+let sample = ["purple", "green", "red", "brown"];
+console.log(
+  sortByDistance(sample, "yellow", "asc", {
+    mode: "lch",
+  })
+);
+
+// [ 'green', 'brown', 'red', 'purple' ]
+
 
 ```
 
@@ -551,5 +619,15 @@ Sorts colors according to their contrast value as defined by WCAG. The contrast 
 
 ```javascript
 
-//Example
+import { sortByContrast } from 'huetiful-js'
+
+let sample = ["purple", "green", "red", "brown"];
+console.log(sortByContrast(sample, "yellow"));
+// [ 'red', 'green', 'brown', 'purple' ]
+
+console.log(sortByContrast(sample, "yellow", "desc"));
+// [ 'purple', 'brown', 'green', 'red' ]
+
+
+
 ```

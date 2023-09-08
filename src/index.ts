@@ -4,9 +4,9 @@ import { getChannel } from "./core-utils/get.ts";
 import { getLuminance, setLuminance } from "./core-utils/luminance.ts";
 import { num2rgb } from "./core-utils/num2rgb.ts";
 import { rgb2num } from "./core-utils/rgb2num.ts";
-import { getTemp } from "./core-utils/rgb2temperature.ts";
+import { getTemp } from "./core-utils/getTemp.ts";
 import { setChannel } from "./core-utils/set.ts";
-import { setTemp } from "./core-utils/temperature2rgb.ts";
+import { setTemp } from "./core-utils/setTemp.ts";
 import { tailwindColors } from "./colors/tailwindColors.ts";
 import { isAchromatic } from "./colors/achromatic.ts";
 import { colors } from "./colors/colors.ts";
@@ -31,7 +31,12 @@ import { getHue } from "./palettes/shade.ts";
 import { filterByContrast } from "./filterBy/filterByContrast.ts";
 import { sortByContrast } from "./sortBy/sortByContrast.ts";
 import { getFarthestHue, getNearestHue, minHue, maxHue } from "./colors/hue.ts";
+import { sortByDistance } from "./sortBy/sortByDistance.ts";
+import { filterByDistance } from "./filterBy/filterByDistance.ts";
+
 export {
+  filterByDistance,
+  sortByDistance,
   minHue,
   maxHue,
   getFarthestHue,

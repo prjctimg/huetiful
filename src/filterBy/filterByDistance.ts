@@ -37,4 +37,4 @@ const filterByDistance = (
 export { filterByDistance };
 
 // Make modes lower case and string keys
-// Refactor all modules for better Ts
+// Debug 'Cannot destructure mode'

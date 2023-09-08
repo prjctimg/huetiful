@@ -16,8 +16,8 @@ import {
   add,
   subtract,
 } from "lodash-es";
-import { setTemp } from "./temperature2rgb.ts";
-import type { Color } from "../paramTypes.ts";
+import { setTemp } from "./setTemp.ts";
+import type { Color } from "../paramTypes";
 
 /**
  * @description Returns the temperature value in Kelvins of the passed in color.
@@ -47,7 +47,7 @@ const rgb2temperature = (color: Color): number => {
       } else {
         minTemp = temp;
       }
-    } else if (rgb["g"] >= g) {
+    } else if (gte(rgb["g"], g)) {
       maxTemp = temp;
     }
   }

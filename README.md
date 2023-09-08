@@ -23,6 +23,5 @@ npm i huetiful-js
 
 Contributions are welcome! Help make this project more useful for creative coders by sharing your ideas and stomping out bugs and feature suggestions. For major changes, please open an issue first to discuss what you would like to change.
 
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+Released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+ license.

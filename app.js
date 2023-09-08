@@ -1,19 +1,23 @@
-import { formatHex } from "culori";
-import {
-  alpha,
-  brighten,
-  darken,
-  getFarthestHue,
-  getNearestHue,
-  maxHue,
-  minHue,
-  setChannel,
-} from "./dist/huetiful.esm.mjs";
+import { filterByDistance, getTemp } from "./dist/huetiful.esm.mjs";
 
-let sample = ["purple", "yellow", "green"];
-console.log(alpha("orange", "+0.4"));
-console.log(alpha("orange", 0.3));
-/* console.log(darken("orange", 0.1));
-console.log(brighten("orange", "+0.5"));
+import chroma from "chroma-js";
+
+let sample = [
+  "#00ffdc",
+  "#00ff78",
+  "#00c000",
+  "#007e00",
+  "#164100",
+  "#ffff00",
+  "#310000",
+  "#3e0000",
+  "#4e0000",
+  "#600000",
+  "#720000",
+];
+
+/* console.log(filterByDistance(sample, "green", ">4"));
  */
-console.log(setChannel("lch.h")("orange", "*0.8"));
+
+console.log(getTemp("brown"));
+console.log(chroma("brown").temperature());

@@ -17,7 +17,7 @@ import {
 import { getChannel } from "../core-utils/get.ts";
 import hueTempMap from "../color-maps/hueTemperature.ts";
 import type { Color } from "../paramTypes.ts";
-import { getTemp } from "../core-utils/rgb2temperature.ts";
+import { getTemp } from "../core-utils/getTemp.ts";
 import { floorCeil } from "../core-utils/helpers.ts";
 /**
  * @function
