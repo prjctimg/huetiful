@@ -1,6 +1,9 @@
-import { filterByDistance, getTemp } from "./dist/huetiful.esm.mjs";
-
-import chroma from "chroma-js";
+import {
+  sortByTemp,
+  filterByDistance,
+  filterByTemp,
+  getTemp,
+} from "./dist/huetiful.esm.mjs";
 
 let sample = [
   "#00ffdc",
@@ -16,8 +19,5 @@ let sample = [
   "#720000",
 ];
 
-/* console.log(filterByDistance(sample, "green", ">4"));
- */
-
+console.log(filterByTemp(sample, ">10000"));
 console.log(getTemp("brown"));
-console.log(chroma("brown").temperature());

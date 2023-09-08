@@ -1,5 +1,5 @@
 import { filter, inRange, map, fromPairs } from "lodash-es";
-import { getTemp } from "../core-utils/rgb2temperature.ts";
+import { getTemp } from "../core-utils/getTemp.ts";
 import { Color, factor } from "../paramTypes.ts";
 import { filteredArr } from "../core-utils/helpers.ts";
 

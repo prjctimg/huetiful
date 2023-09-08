@@ -4,7 +4,7 @@
  **/
 
 //  @ts-nocheck
-import { lrgb } from "culori";
+import { converter, lrgb } from "culori";
 import {
   gt,
   gte,
@@ -26,32 +26,26 @@ import type { Color } from "../paramTypes";
  */
 
 const rgb2temperature = (color: Color): number => {
+  const { round } = Math;
   //Store the color in an object with the RGB channels normalized to [0,1]
-  const rgb = lrgb(color);
-  const rgbLimit = 255;
+  // Add a color obj for rgb using culori
+  const rgb = converter("rgb")(color);
+  // Allocate the red and blue channels to variables
   const r = rgb["r"],
-    g = rgb["g"],
     b = rgb["b"];
-  map(rgb, (val, key) => set(rgb, key, multiply(val, rgbLimit)));
-
   let minTemp = 1000;
   let maxTemp = 40000;
   const eps = 0.4;
   let temp;
-  while (gt(subtract(maxTemp, minTemp), eps)) {
-    temp = multiply(add(maxTemp, minTemp), 0.5);
-    const rgb = setTemp(temp);
-    if (gt(b, 0)) {
-      if (gte(divide(rgb["b"], rgb["r"]), divide(b, r))) {
-        maxTemp = temp;
-      } else {
-        minTemp = temp;
-      }
-    } else if (gte(rgb["g"], g)) {
+  while (maxTemp - minTemp > eps) {
+    temp = (maxTemp + minTemp) * 0.5;
+    const rgb = setTemp(temp, false);
+    if (rgb["b"] / rgb["r"] >= b / r) {
       maxTemp = temp;
+    } else {
+      minTemp = temp;
     }
   }
-
   return round(temp);
 };
 
