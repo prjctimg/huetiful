@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": " node build.cjs",
-    "deploy": " npm run build && npm run types && npm version minor && npm publish",
+    "deploy": " npm run build && npm run types && npm version patch && npm publish",
     "types": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts"
   },
   "files": [
