@@ -2,13 +2,13 @@
 //@ts-nocheck
 var { build } = require("esbuild");
 
-var { peerDependencies } = require("./package.json");
+var { dependencies } = require("./package.json");
 
 const sharedConfig = {
   entryPoints: [".//src/index.ts"],
   bundle: true,
   minify: false,
-  external: Object.keys(peerDependencies),
+  external: Object.keys(dependencies),
 };
 
 //Bundled CJS
