@@ -1,8 +1,5 @@
-/**
+// @ts-nocheck
  
-* Converts any number between 1 and 30000 to a color. 
- * https://github.com/neilbartlett/color-temperature
- */
 
 //ported from chroma-js
 

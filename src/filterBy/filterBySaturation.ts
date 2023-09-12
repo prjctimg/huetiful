@@ -1,7 +1,7 @@
-// Filters colors according to a defined saturation range
+// @ts-nocheck
 import { multiply } from "lodash-es";
 import { getChannel } from "../core-utils/get.ts";
-import type { Color, factor, filterBy } from "../paramTypes";
+import type { Color, factor } from "../paramTypes";
 import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 
 /**

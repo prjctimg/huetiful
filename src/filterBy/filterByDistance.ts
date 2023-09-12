@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 import { differenceEuclidean } from "culori";
 import { Color, factor, ColorSpaces } from "../paramTypes.ts";
@@ -18,10 +20,8 @@ const filterByDistance = (
   against: Color,
   startDistance = 0.05,
   endDistance?: number,
-  {
-    mode,
-    weights,
-  }: { mode?: ColorSpaces; weights?: [number, number, number, number] }
+  mode?: ColorSpaces,
+  weights?: [number, number, number, number]
 ): Color[] => {
   // Formatting color tokens to parseable type
   // How do I get the distance

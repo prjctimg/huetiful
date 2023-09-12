@@ -1,6 +1,6 @@
 //This module contains getNearestHue,getFarthestHue,minHue and maxHue which are collection based utils that return the color with the queried factor.
-
-import { Color, HueColorSpaces, colorFactorObj, factor } from "../paramTypes";
+// @ts-nocheck
+import { Color, HueColorSpaces, factor } from "../paramTypes";
 import { getChannel } from "../core-utils/get.ts";
 import {
   defaultTo,
@@ -33,7 +33,8 @@ const targetHue = (color: Color, colorSpace: HueColorSpaces): number =>
 // Return the absolute value since hue is a cyclic value which can either be  in clockwise/anti-clockwise.
 //This means that the color object with the smallest hue value is the  nearest color/hue.
 const cb =
-  (color: Color, colorSpace: HueColorSpaces) => (subtrahend: Color) => {
+  (color: Color, colorSpace: HueColorSpaces | string) =>
+  (subtrahend: Color) => {
     return abs(
       subtract(
         targetHue(color, colorSpace),

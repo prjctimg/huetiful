@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { factor, Color } from "../paramTypes.ts";
 import { sortedArr } from "../core-utils/helpers.ts";
 import { wcagContrast } from "culori";

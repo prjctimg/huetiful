@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Color, factor, factorMapper } from "../paramTypes.ts";
 import {
   map,

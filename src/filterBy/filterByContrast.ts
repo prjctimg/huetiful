@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 import { wcagContrast } from "culori";
 

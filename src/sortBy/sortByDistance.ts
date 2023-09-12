@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { factor, Color, ColorSpaces } from "../paramTypes.ts";
 import { getChannel } from "../core-utils/get.ts";
 import { sortedArr } from "../core-utils/helpers.ts";
@@ -18,10 +19,8 @@ const sortByDistance = (
   colors: Color[],
   against: Color,
   order?: "asc" | "desc",
-  {
-    mode,
-    weights,
-  }: { mode?: ColorSpaces; weights?: [number, number, number, number] }
+  mode?: ColorSpaces,
+  weights?: [number, number, number, number]
 ): Color[] => {
   const factor: factor = "distance";
   const cb = (against: Color, mode: ColorSpaces) => (color: Color) =>

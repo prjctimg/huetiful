@@ -1,6 +1,6 @@
 import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 import { wcagLuminance } from "culori";
-import { factor, filterBy } from "../paramTypes.js";
+import { factor } from "../paramTypes.js";
 import { Color } from "../paramTypes.ts";
 /**
  *  @function
