@@ -1,4 +1,5 @@
-huetiful - JavaScript library for simple color manipulations based on the Culori API.
+huetiful-js 
+JavaScript library for simple color manipulations based on the Culori API.
 
 Copyright 2023, Dean Tarisai
 
