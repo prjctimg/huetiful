@@ -7,8 +7,7 @@
     "build:docs": "env NODE_ENV=production npx eleventy && postcss styles/tailwind.css --o _site/style.css",
     "watch": "npx eleventy --watch",
     "debug": "DEBUG=* npx eleventy",
-    "deploy:docs": "gh-pages -d ./_site -r https://github.com/prjctimg/huetiful",
-    "docs":"npm run build:docs && npm run deploy:docs"
+    "deploy:docs": "gh-pages -d ./_site -r https://github.com/prjctimg/huetiful"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
