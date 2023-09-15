@@ -1,6 +1,6 @@
 {
   "name": "huetiful-js",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "type": "module",
   "main": "./dist/huetiful.esm.mjs",
   "module": "./dist/huetiful.cjs",
@@ -25,7 +25,7 @@
     "build": " node build.cjs",
     "prepare": " npm run build && npm run types",
     "types": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts",
-    "docs":"cd docs && npm run build:docs && npm run deploy:docs"
+    "docs": "cd docs && npm run build:docs && npm run deploy:docs"
   },
   "files": [
     "dist"
