@@ -18,7 +18,7 @@ All the filtering functions:
 
  **Parameters:**
  (colors: Color[],against: Color,startDistance = 0.05,endDistance?: number,
-  { mode?: ColorSpaces; weights?: [number, number, number, number] }
+   mode?: ColorSpaces, weights?: [number, number, number, number])
  *startDistance* **The minimum end of the distance range.**
  *endDistance* **The maximum end of the distance range.**
  *weights* **The weighting values to pass to the Euclidean function. Default is [1,1,1,0].**
@@ -562,7 +562,7 @@ sortByLightness(sample,'desc')
 #### sortByDistance
 
 **Parameters:**
-(colors: Color[],against: Color,order?: "asc" | "desc",{ mode?: ColorSpaces, weights?: [number, number, number, number] }): Color[]
+(colors: Color[],against: Color,order?: "asc" | "desc", mode?: ColorSpaces, weights?: [number, number, number, number]): Color[]
  *colors* **The array of colors to sort.**
  *against* **The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.**
  *order* **The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')**
@@ -630,4 +630,220 @@ console.log(sortByContrast(sample, "yellow", "desc"));
 
 
 
+```
+
+## Property getters
+
+These utilities get values of statistical significance from arrays of colors for the three attributes of color:
+
+- Lightness
+- Saturation or chroma
+- Hue
+
+> Good to know
+> Because Culori sets a default of 1 or full saturation on colors that do not have an explicitly set saturation or chroma channel, it's better if the colors are first converted to hexadecimal format instead of passing them as CSS named colors like "blue" or "green".
+
+The default color space for these utilities is LCH.
+
+#### getNearestHue
+
+**Parameters:**
+(color: Color,colors: Color[],colorSpace?: HueColorSpaces): number
+ *color* **The color to use its hue value as the minuend.**
+ *colors* **The collection of colors to compare against.**
+ *colorSpace* **The mode color space to perform the computation in.**
+
+**Returns:**
+The hue value from the color with the smallest hue distance. If the colors are achromatic, it returns undefined.
+
+**Description:**
+Returns the smallest hue difference between the passed in color and each element in the colors collection. Achromatic colors are excluded from the final result array. Use isAchromatic to remove grays from your color collection as a predicate to Array.map()
+
+**Example:**
+
+```javascript
+import { getNearestHue } from 'huetiful-js'
+
+let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"];
+
+console.log(getNearestHue("lime", sample, "lch"));
+
+// 23.962083662849253
+
+```
+
+#### getFarthestHue
+
+**Parameters:**
+(color: Color,colors: Color[],colorSpace?: HueColorSpaces): number
+ *color* **The color to use its hue value as the minuend.**
+ *colors* **The collection of colors to compare against.**
+ *colorSpace* **The mode color space to perform the computation in.**
+
+**Returns:**
+The hue value from the color with the largest hue distance. If the colors are achromatic, it returns undefined.
+
+**Description:**
+Returns the largest hue difference between the passed in color and each element in the colors collection. Achromatic colors are excluded from the final result array. Use isAchromatic to remove grays from your color collection as a predicate to Array.map()
+
+**Example:**
+
+```javascript
+import { getFarthestHue } from 'huetiful-js'
+
+console.log(getFarthestHue("lime", sample, "lch"));
+// 139.16534433552653
+
+```
+
+#### minHue
+
+**Parameters:**
+(colors: Color[],colorSpace?: HueColorSpaces,colorObj = false): number | { factor: number; color: Color }
+ *colors* **The array of colors to query the color with the smallest hue value.**
+ *colorSpace* **The mode color space to perform the computation in.**
+ *colorObj* **Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.**
+
+ **Returns:**
+ The smallest hue value in the colors passed in or a custom object.
+
+ **Description:**
+ Gets the smallest hue value from the passed in colors.
+
+**Example:**
+
+```javascript
+import { minHue } from 'huetiful-js'
+
+let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"];
+
+console.log(minHue(sample, "lch"));
+// 12.462831644544274
+
+```
+
+#### maxHue
+
+**Parameters:**
+(colors: Color[],colorSpace?: HueColorSpaces,colorObj = false): number | { factor: number; color: Color }
+ *colors* **The array of colors to query the color with the largest hue value.**
+ *colorSpace* **The mode color space to perform the computation in.**
+ *colorObj* **Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.**
+
+**Returns:**
+The largest hue value in the colors passed in or a custom object.
+
+**Description:**
+Gets the largest hue value from the passed in colors.
+
+**Example:**
+
+```javascript
+import { maxHue } from 'huetiful-js'
+let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"];
+
+console.log(maxHue(sample, "lch"));
+// 273.54920266436477
+
+```
+
+#### getNearestChroma
+
+**Parameters:**
+(color: Color,colors: Color[],colorSpace?: HueColorSpaces): number
+ *color* **The color to use its saturation value as the minuend.**
+ *colors* **The collection of colors to compare against.**
+ *colorSpace* **The mode color space to perform the computation in.**
+
+**Returns:**
+The chroma/saturation value from the color with the smallest chroma distance. If the colors are achromatic, it returns undefined.
+
+**Description:**
+Returns the smallest chroma/saturation difference between the passed in color and each element in the colors collection. Achromatic colors are excluded from the final result array. Use isAchromatic with Array.map to remove grays from your color collection.
+
+**Example:**
+
+```javascript
+import { getNearestChroma } from 'huetiful-js'
+
+let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"];
+
+console.log(getNearestChroma("lime", sample, "lch"));
+// 46.11029351529832
+
+```
+
+#### getFarthestChroma
+
+**Parameters:**
+(color: Color,colors: Color[],colorSpace?: HueColorSpaces): number
+ *color* **The color to use its saturation value as the minuend.**
+ *colors* **The collection of colors to compare against.**
+ *colorSpace* **The mode color space to perform the computation in.**
+
+**Returns:**
+The chroma/saturation value from the color with the largest hue distance. If the colors are achromatic, it returns undefined.
+
+**Description:**
+Returns the largest chroma/saturation difference between the passed in color and each element in the colors collection. Achromatic colors are excluded from the final result array. Use isAchromatic with Array.map to remove grays from your color collection.
+
+**Example:**
+
+```javascript
+import { getFarthestChroma } from 'huetiful-js'
+
+let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"];
+
+console.log(getFarthestChroma("lime", sample, "lch"));
+// 90.87480913244802
+
+```
+
+#### minChroma
+
+**Parameters:**
+(colors: Color[],colorSpace?: HueColorSpaces,colorObj = false): number | { factor: number; color: Color }
+ *colors* **The array of colors to query the color with the smallest saturation/chroma value.**
+ *colorSpace* **The mode color space to perform the computation in.**
+ *colorObj* **Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false.**
+
+**Returns:**
+The smallest chroma/saturation value in the colors passed in or a custom object.
+
+**Description:**
+Gets the smallest chroma/saturation value from the passed in colors.
+**Example:**
+
+```javascript
+import { minChroma } from 'huetiful-js'
+
+let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"];
+
+console.log(minChroma(sample, "lch"));
+// 22.45669293295522
+
+```
+
+#### maxChroma
+
+**Parameters:**
+*colors* **The array of colors to query the color with the smallest saturation/chroma value.**
+ *colorSpace* **The mode color space to perform the computation in.**
+ *colorObj* **Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false.**
+
+**Returns:**
+The largest chroma/saturation value in the colors passed in or a custom object.
+
+**Description:**
+Gets the largest chroma/saturation value from the passed in colors.
+
+**Example:**
+
+```javascript
+import { maxChroma } from 'huetiful-js'
+
+let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"];
+
+console.log(maxChroma(sample, "lch"));
+// 67.22120855010492
 ```

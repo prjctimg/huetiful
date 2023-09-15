@@ -16,7 +16,7 @@ import {
   add,
   subtract,
 } from "lodash-es";
-import { setTemp } from "./setTemp.ts";
+import { temp2Color } from "./temp2Color.ts";
 import type { Color } from "../paramTypes";
 
 /**
@@ -25,7 +25,7 @@ import type { Color } from "../paramTypes";
  * @returns The color's temperature in Kelvins.
  */
 
-const rgb2temperature = (color: Color): number => {
+const getTemp = (color: Color): number => {
   const { round } = Math;
   //Store the color in an object with the RGB channels normalized to [0,1]
   // Add a color obj for rgb using culori
@@ -49,4 +49,4 @@ const rgb2temperature = (color: Color): number => {
   return round(temp);
 };
 
-export { rgb2temperature as getTemp };
+export { getTemp };

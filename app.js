@@ -1,23 +1,30 @@
+import { formatHex, formatHex8 } from "culori";
 import {
-  sortByTemp,
-  filterByDistance,
-  filterByTemp,
+  getChannel,
+  getFarthestChroma,
+  getNearestChroma,
+  maxChroma,
+  minChroma,
+  alpha,
+  darken,
+  getLuminance,
+  setLuminance,
   getTemp,
+  temp2Color,
+  getNearestHue,
+  getFarthestHue,
 } from "./dist/huetiful.esm.mjs";
 
-let sample = [
-  "#00ffdc",
-  "#00ff78",
-  "#00c000",
-  "#007e00",
-  "#164100",
-  "#ffff00",
-  "#310000",
-  "#3e0000",
-  "#4e0000",
-  "#600000",
-  "#720000",
-];
+let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"];
 
-console.log(filterByTemp(sample, ">10000"));
-console.log(getTemp("brown"));
+console.log(maxChroma(sample, "lch"));
+
+// 67.22120855010492
+console.log(
+  formatHex8({
+    r: 1,
+    g: 0.6424549534953387,
+    b: 0.2919643957148001,
+    mode: "rgb",
+  })
+);

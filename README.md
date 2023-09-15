@@ -1,8 +1,8 @@
 ![](./docs/content/images/huetiful-logo.png)
 
-A JavaScript library for simple color manipulations.
+JavaScript library for simple color manipulations based on the Culori API.
 
-### What you can do with this package:
+### What you can do with this package
 
 - Filter collections of color according to different properties i.e hue,saturation etc
 - Sort colors according to their properties like luminance andf hue.
@@ -21,7 +21,9 @@ npm i huetiful-js
 
 ## Contributing
 
-Contributions are welcome! Help make this project more useful for creative coders by sharing your ideas and stomping out bugs and feature suggestions. For major changes, please open an issue first to discuss what you would like to change.
+First of all, thank you for using huetiful-js! Its people like you that make open source software better for the community!
+Contributions are welcome! Help make this project better and easier to use for other developers by sharing your ideas and stomping out bugs and feature suggestions. For any major changes, please open an issue first to discuss what you would like to change.
 
-Released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
- license.
+## License
+
+Released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license.

@@ -1,11 +1,10 @@
 // @ts-nocheck
- 
 
 //ported from chroma-js
 
 import { fromPairs } from "lodash-es";
 import type { Color } from "../paramTypes";
-import { formatHex } from "culori";
+import { formatHex, formatHex8 } from "culori";
 
 /**
  * @function
@@ -14,7 +13,7 @@ import { formatHex } from "culori";
  * @param hex Optional boolean parameter to either return an RGB color object or hexadecimal string. Default is true.
  * @returns color The color as a hexadecimal  or RGB color object.
  */
-const setTemp = (kelvin: number, hex = true): Color => {
+const temp2Color = (kelvin: number, hex = false): Color => {
   //Hue change starts at approx 655 Kelvins ???
   const eps = 655;
   const { log } = Math;
@@ -50,13 +49,13 @@ const setTemp = (kelvin: number, hex = true): Color => {
     b = 255;
   }
   let result = fromPairs([
-    ["r", r],
-    ["g", g],
-    ["b", b],
+    ["r", r / 255],
+    ["g", g / 255],
+    ["b", b / 255],
     ["mode", "rgb"],
   ]);
 
   return hex ? formatHex(result) : result;
 };
 
-export { setTemp };
+export { temp2Color };

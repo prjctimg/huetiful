@@ -15,17 +15,25 @@ These are helper utilities for doing various low level manipulations and such as
 **Returns:**
 The resulting color. Returns an 8 character hex code.
 
-**Description**
+**Description:**
 Sets the opacity of a color. Also gets the alpha value of the color if the value parameter is omitted
 
 **Example:**
 
 ```javascript
+import { alpha } from 'huetiful-js'
 
+// Getting the alpha 
+console.log(alpha("#a1bd2f0d"));
+// 0.050980392156862744
 
+// Setting the alpha
 
-// Example
+let myColor = alpha("b2c3f1", 0.5);
 
+console.log(myColor);
+
+// #b2c3f180
 ```
 
 #### darken
@@ -44,7 +52,11 @@ Darkens the color by reducing the lightness channel.
 **Example:**
 
 ```javascript
-// Example
+import { darken } from 'huetiful-js'
+
+console.log(darken("#a1bd2f", 0.2));
+// #97b323
+
 ```
 
 #### getChannel
@@ -54,6 +66,8 @@ Darkens the color by reducing the lightness channel.
  *mc* **The mode and channel to be retrieved. For example "rgb.b" will return the value of the blue channel in the RGB color space of that color.**
  *color* **The color being queried.**
 
+> See [Color spaces](https://culorijs.org/color-spaces/) on the Culori docs for the channel value ranges of all the supported color spaces.
+
 **Returns:**
 The value of the queried channel.
 
@@ -61,7 +75,11 @@ The value of the queried channel.
 Gets the  value specified channel on the color.
 
 ```javascript
-// Example
+import { getChannel } from 'huetiful-js'
+
+console.log(getChannel("rgb.g")("#a1bd2f"));
+// 0.7411764705882353
+
 ```
 
 #### getLuminance
@@ -77,7 +95,10 @@ The color's luminance value.
 Gets the luminance value of that color as defined by WCAG.
 
 ```javascript
-//Example
+import { getLuminance } from 'huetiful-js'
+
+console.log(getLuminance("#a1bd2f"));
+// 0.4417749513730954
 
 ```
 
@@ -95,7 +116,12 @@ The mutated color with the modified properties.
 Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
 
 ```javascript
-// Example
+import { setLuminance,getLuminance } from 'huetiful-js'
+
+let myColor = setLuminance("#a1bd2f", 0.5);
+
+console.log(getLuminance(myColor));
+// 0.4999999136285792
 
 ```
 
@@ -114,7 +140,10 @@ Gets the temperature value in Kelvins of the passed in color.
 **Example:**
 
 ```javascript
-// Example
+import { getTemp } from 'huetiful-js'
+
+console.log(getTemp("#a1bd2f"));
+// 2542
 
 ```
 
@@ -135,10 +164,11 @@ Gets the temperature value in Kelvins of the passed in color.
  **Example:**
 
 ```javascript
-// Example
+import { setChannel } from 'huetiful-js'
+
 ```
 
-#### setTemp
+#### temp2Color
 
 **Parameters:**
 (kelvin: number,hex=false): Color
@@ -154,5 +184,9 @@ Converts the temperature value (in Kelvins) to an RGB color.
 **Example:**
 
 ```javascript
-// Example
+import { temp2Color } from 'huetiful-js'
+
+console.log(temp2Color(2542));
+// #ffa44a
+
 ```

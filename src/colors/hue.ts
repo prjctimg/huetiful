@@ -55,7 +55,7 @@ const predicate = (colorSpace: HueColorSpaces) => (color: Color) => {
  * @param color The color to use its hue value as the minuend.
  * @param colors The collection of colors to compare against.
  * @param colorSpace The mode color space to perform the computation in.
- * @returns The hue value from the color with the smallest hue distance. It returns undefined
+ * @returns The hue value from the color with the smallest hue distance. If the colors are achromatic, it returns undefined.
  */
 const getNearestHue = (
   color: Color,
@@ -80,7 +80,7 @@ const getNearestHue = (
  * @param color The color to use its hue value as the minuend.
  * @param colors The collection of colors to compare against.
  * @param colorSpace The mode color space to perform the computation in.
- * @returns The hue value from the color with the largest hue distance. It returns undefined
+ * @returns The hue value from the color with the largest hue distance. If the colors are achromatic, it returns undefined.
  */
 
 const getFarthestHue = (
