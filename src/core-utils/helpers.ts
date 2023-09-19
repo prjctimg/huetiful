@@ -40,7 +40,7 @@ const colorObjArr: factorMapper = (factor, cb) => (colors) =>
     fromPairs([
       [factor, cb(el)],
       ["name", el],
-    ])
+    ]),
   );
 /**
  *  Filters an array of color objects with a "factor"  property whose value is determined by a predicate or getter via the cb param.
@@ -56,9 +56,9 @@ const filteredArr =
     if (isNumber(start)) {
       result = map(
         filter(colorObjArr(factor, cb)(colors), (el) =>
-          inRange(el[factor], start, end)
+          inRange(el[factor], start, end),
         ),
-        (el) => el["name"]
+        (el) => el["name"],
       );
       return result;
 
@@ -75,9 +75,9 @@ const filteredArr =
       const mapFilter = (test: (x: number, y: number) => boolean): Color[] => {
         return map(
           filter(colorObjArr(factor, cb)(colors), (el) =>
-            test(el[factor], toNumber(val["0"]))
+            test(el[factor], toNumber(val["0"])),
           ),
-          (el) => el["name"]
+          (el) => el["name"],
         );
       };
       switch (op["0"]) {
@@ -103,7 +103,7 @@ const sortedArr: factorMapper =
   (factor, cb, order, colorObj = false) =>
   (colors) =>
     map(orderBy(colorObjArr(factor, cb)(colors), factor, order), (el) =>
-      colorObj ? el : el["name"]
+      colorObj ? el : el["name"],
     );
 
 /**
@@ -156,7 +156,7 @@ const floorCeil = (num: number): number => {
 const expressionParser = (
   src: Color,
   channel: string,
-  value: string
+  value: string,
 ): number => {
   const reOperator = /^(\*|\+|\-|\/)/,
     reValue = /[0-9]*\.?[0-9]+/;

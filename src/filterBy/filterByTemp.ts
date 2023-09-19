@@ -16,7 +16,7 @@ import { filteredArr } from "../core-utils/helpers.ts";
 const filterByTemp = (
   colors: Color[],
   startTemp = 1000,
-  endTemp = 6000
+  endTemp = 6000,
 ): Color[] => {
   // This variable stores the array that matches the filtering criteria defined by the start and end hues
   const factor: factor = "temp";

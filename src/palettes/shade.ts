@@ -46,7 +46,7 @@ const getHue = (color: Color): hue => {
 
   // We then pick the truthy key by returning an object which returns true for the inRange predicate
   let results = toString(
-    keys(pickBy(hueTempMap, (val, hue) => cb(factor, hue)))
+    keys(pickBy(hueTempMap, (val, hue) => cb(factor, hue))),
   );
   return results;
 };
