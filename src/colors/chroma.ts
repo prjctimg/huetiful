@@ -66,12 +66,12 @@ const predicate = (colorSpace: HueColorSpaces) => (color: Color) =>
 const getNearestChroma = (
   color: Color,
   colors: Color[],
-  colorSpace?: HueColorSpaces
+  colorSpace?: HueColorSpaces,
 ): number => {
   const cb = chromaDiff(color, colorSpace || "lch");
   let sortedObjArr = remove(
     sortedArr(factor, cb, "asc", true)(colors),
-    (el) => el[factor] !== undefined
+    (el) => el[factor] !== undefined,
   );
   return get(first(sortedObjArr), factor);
 };
@@ -89,12 +89,12 @@ const getNearestChroma = (
 const getFarthestChroma = (
   color: Color,
   colors: Color[],
-  colorSpace?: HueColorSpaces
+  colorSpace?: HueColorSpaces,
 ): number => {
   const cb = chromaDiff(color, colorSpace || "lch");
   let sortedObjArr = remove(
     sortedArr(factor, cb, "asc", true)(colors),
-    (el) => el[factor] !== undefined
+    (el) => el[factor] !== undefined,
   );
   return get(last(sortedObjArr), factor);
 };
@@ -110,11 +110,11 @@ const getFarthestChroma = (
 const minChroma = (
   colors: Color[],
   colorSpace?: HueColorSpaces,
-  colorObj = false
+  colorObj = false,
 ): number | { factor: number; color: Color } => {
   const result: Array<{ factor: number; name: Color }> = remove(
     sortedArr(factor, predicate(colorSpace || "lch"), "asc", true)(colors),
-    (el) => el[factor] !== undefined
+    (el) => el[factor] !== undefined,
   );
   let value;
 
@@ -140,11 +140,11 @@ const minChroma = (
 const maxChroma = (
   colors: Color[],
   colorSpace?: HueColorSpaces,
-  colorObj = false
+  colorObj = false,
 ): number | { factor: number; color: Color } => {
   const result: Array<{ factor: number; name: Color }> = remove(
     sortedArr(factor, predicate(colorSpace || "lch"), "asc", true)(colors),
-    (el) => el[factor] !== undefined
+    (el) => el[factor] !== undefined,
   );
 
   let value;

@@ -38,8 +38,8 @@ const cb =
     return abs(
       subtract(
         targetHue(color, colorSpace),
-        getChannel(mode(colorSpace))(subtrahend)
-      )
+        getChannel(mode(colorSpace))(subtrahend),
+      ),
     );
   };
 
@@ -60,16 +60,16 @@ const predicate = (colorSpace: HueColorSpaces) => (color: Color) => {
 const getNearestHue = (
   color: Color,
   colors: Color[],
-  colorSpace?: HueColorSpaces
+  colorSpace?: HueColorSpaces,
 ): number => {
   return get(
     first(
       remove(
         sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors),
-        (el) => el[factor] !== undefined
-      )
+        (el) => el[factor] !== undefined,
+      ),
     ),
-    factor
+    factor,
   );
 };
 
@@ -86,16 +86,16 @@ const getNearestHue = (
 const getFarthestHue = (
   color: Color,
   colors: Color[],
-  colorSpace?: HueColorSpaces
+  colorSpace?: HueColorSpaces,
 ): number => {
   return get(
     last(
       remove(
         sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors),
-        (el) => el[factor] !== undefined
-      )
+        (el) => el[factor] !== undefined,
+      ),
     ),
-    factor
+    factor,
   );
 };
 
@@ -110,11 +110,11 @@ const getFarthestHue = (
 const minHue = (
   colors: Color[],
   colorSpace?: HueColorSpaces,
-  colorObj = false
+  colorObj = false,
 ): number | { factor: number; color: Color } => {
   const result: Array<{ factor: number; name: Color }> = remove(
     sortedArr(factor, predicate(colorSpace), "asc", true)(colors),
-    (el) => el[factor] !== undefined
+    (el) => el[factor] !== undefined,
   );
   let value;
 
@@ -140,11 +140,11 @@ const minHue = (
 const maxHue = (
   colors: Color[],
   colorSpace?: HueColorSpaces,
-  colorObj = false
+  colorObj = false,
 ): number | { factor: number; color: Color } => {
   const result: Array<{ factor: number; name: Color }> = remove(
     sortedArr(factor, predicate(colorSpace), "asc", true)(colors),
-    (el) => el[factor] !== undefined
+    (el) => el[factor] !== undefined,
   );
 
   let value;

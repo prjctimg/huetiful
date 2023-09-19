@@ -13,7 +13,7 @@ import { Color, factor } from "../paramTypes.ts";
 const filterByLightness = (
   colors: Color[],
   startLightness = 5,
-  endLightness = 100
+  endLightness = 100,
 ): Color[] => {
   // Formatting color tokens to parseable type
   // Create an object that has the lightness and name of color as properties.

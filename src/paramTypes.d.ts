@@ -94,7 +94,7 @@ export type factorMapper = (
   factor: factor,
   cb: (arg: Color, colorSpace?: HueColorSpaces) => number,
   order?: "asc" | "desc",
-  colorObj = false
+  colorObj = false,
 ) => (colors: Color[]) => Color[];
 
 export type ColorSpaces =

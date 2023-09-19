@@ -52,7 +52,7 @@ module.exports = function (eleventyConfig) {
       </picture>`;
 
       return `${picture}`;
-    }
+    },
   );
 
   eleventyConfig.addLiquidShortcode("icon", function (title, url) {
@@ -143,7 +143,7 @@ module.exports = function (eleventyConfig) {
           (a.data.eleventyNavigation.order || 0) -
           (b.data.eleventyNavigation.order || 0)
         );
-      })
+      }),
   );
 
   // Date formatting (human readable)
@@ -220,7 +220,7 @@ module.exports = function (eleventyConfig) {
     markdownIt(options)
       .use(mdIterator, "url_new_win", "link_open", function (tokens, idx) {
         const [attrName, href] = tokens[idx].attrs.find(
-          (attr) => attr[0] === "href"
+          (attr) => attr[0] === "href",
         );
         if (
           href &&
@@ -248,7 +248,7 @@ module.exports = function (eleventyConfig) {
       .use(markdownItAttrs, {
         includeLevel: [2, 3],
         listType: "ol",
-      })
+      }),
   );
 
   return {

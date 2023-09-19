@@ -16,7 +16,7 @@ const filterByContrast = (
   colors: Color[],
   against: Color,
   startContrast = 0.05,
-  endContrast?: number
+  endContrast?: number,
 ): Color[] => {
   // Formatting color tokens to parseable type
   // Create an object that has the contrast and name of color as properties.
