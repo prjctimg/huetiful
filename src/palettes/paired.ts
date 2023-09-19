@@ -58,7 +58,7 @@ const pairedScheme = (
     c: interpolatorSplineNatural,
     l: interpolatorSplineBasisClosed,
     alpha: { fixup: fixupAlpha },
-  }
+  },
 ): Color[] => {
   color = converter("lch")(color);
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
@@ -73,7 +73,7 @@ const pairedScheme = (
   let scale = interpolate(
     [color, tones[via || "dark"], derivedHue],
     "lch",
-    overrides
+    overrides,
   );
 
   // Declare the num of iterations in samples() which will be used as the t value and a reverse array for the derivedHue

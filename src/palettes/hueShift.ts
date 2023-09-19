@@ -21,7 +21,7 @@ const lightnessMapper =
   (start2: number, end2: number) =>
     multiply(
       divide(subtract(n, start1), subtract(end1, start1)),
-      add(subtract(end2, start2), start2)
+      add(subtract(end2, start2), start2),
     );
 
 /**
@@ -40,7 +40,7 @@ const lightnessMapper =
 const hueshift = (
   color: Color,
   opts = { minLightness, maxLightness, hueStep, num },
-  hex = false
+  hex = false,
 ): Color[] => {
   color = converter("lch")(color);
   let { minLightness, maxLightness, hueStep, num } = opts;

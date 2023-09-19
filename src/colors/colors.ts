@@ -19,7 +19,7 @@ import type { HueMap, ScaleValues, Color } from "../paramTypes.ts";
  */
 const colors = (
   shade: keyof HueMap,
-  val: keyof ScaleValues
+  val: keyof ScaleValues,
 ): Color | Color[] => {
   const defaultHue = "all";
   const black = "#000000";

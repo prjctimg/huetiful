@@ -12,7 +12,7 @@ const discoverPalette = (colors: Color[]) => {
       ["triadic", base("triadic")(color)],
       ["splitComplementary", base("splitComplementary")(color)],
       ["complementary", base("complementary")(color)],
-    ])
+    ]),
   );
   let paletteType = map(targetPalettes, (val, key) => {
     let palette = [];

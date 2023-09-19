@@ -40,9 +40,9 @@ const temperature2rgb = (kelvin: number): Color => {
       : add(
           subtract(
             -155.25485562709179,
-            multiply(0.44596950469579133, (g = subtract(temp, 2)))
+            multiply(0.44596950469579133, (g = subtract(temp, 2))),
           ),
-          multiply(104.49216199393888, log(g))
+          multiply(104.49216199393888, log(g)),
         );
 
     b = lt(temp, 20)
@@ -56,16 +56,16 @@ const temperature2rgb = (kelvin: number): Color => {
     r = subtract(
       add(
         351.97690566805693,
-        multiply(0.114206453784165, (r = subtract(temp, 55)))
+        multiply(0.114206453784165, (r = subtract(temp, 55))),
       ),
-      multiply(40.25366309332127, log(r))
+      multiply(40.25366309332127, log(r)),
     );
     g = subtract(
       add(
         325.4494125711974,
-        multiply(0.07943456536662342, (g = subtract(temp, 50)))
+        multiply(0.07943456536662342, (g = subtract(temp, 50))),
       ),
-      multiply(28.0852963507957, log(g))
+      multiply(28.0852963507957, log(g)),
     );
     b = 255;
   }

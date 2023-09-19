@@ -45,7 +45,7 @@ const isCool = (color: Color): boolean => {
   let factor = getChannel("lch.h")(color);
 
   return find(hueTempMap, (val, key) =>
-    inRange(floorCeil(factor), val["cool"][0], val["cool"][1])
+    inRange(floorCeil(factor), val["cool"][0], val["cool"][1]),
   )
     ? stubTrue()
     : stubFalse();
@@ -61,7 +61,7 @@ const isWarm = (color: Color): boolean => {
   const factor = getChannel("lch.h")(color);
 
   return find(hueTempMap, (val, key) =>
-    inRange(floorCeil(factor), val["warm"][0], val["warm"][1])
+    inRange(floorCeil(factor), val["warm"][0], val["warm"][1]),
   )
     ? stubTrue()
     : stubFalse();
@@ -79,7 +79,7 @@ const maxTemp = (color: Color): number => {
 
   // Then  we check to see in what hue family it is and check the highest hue value for that family
   let hueRange = find(hueTempMap, (hue, key) =>
-    inRange(factor, min(concat(...values(hue))), max(concat(...values(hue))))
+    inRange(factor, min(concat(...values(hue))), max(concat(...values(hue)))),
   );
   let maxHue: number = max(concat(...values(hueRange)));
 
@@ -104,7 +104,7 @@ const minTemp = (color: Color): number => {
 
   // Then  we check to see in what hue family it is and check the highest hue value for that family
   let hueRange = find(hueTempMap, (hue, key) =>
-    inRange(factor, min(concat(...values(hue))), max(concat(...values(hue))))
+    inRange(factor, min(concat(...values(hue))), max(concat(...values(hue)))),
   );
   let minHue: number = min(concat(...values(hueRange)));
 

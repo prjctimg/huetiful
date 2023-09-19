@@ -33,7 +33,7 @@ const tailwindColors =
       return get(targetHue, val);
     } else {
       throw Error(
-        `${val} is not a valid scale value. Values are in increments of 100 up to 900 e.g "200"`
+        `${val} is not a valid scale value. Values are in increments of 100 up to 900 e.g "200"`,
       );
     }
   };

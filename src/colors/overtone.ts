@@ -19,7 +19,7 @@ const overtone = (color: Color): boolean => {
       inRange(factor, val["cool"][0], val["cool"][1])) &&
     words(key, "-")
       ? (hues = split(key, "-"))
-      : false
+      : false,
   );
 
   return hues[1];

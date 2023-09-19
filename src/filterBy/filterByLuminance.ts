@@ -14,7 +14,7 @@ import { Color } from "../paramTypes.ts";
 const filterByLuminance: filterBy = (
   colors,
   startLuminance = 0.05,
-  endLuminance = 1
+  endLuminance = 1,
 ): Color[] => {
   // Formatting color tokens to parseable type
   // Create an object that has the luminance and name of color as properties.

@@ -1,4 +1,4 @@
-const autoprefixer = require('autoprefixer');
+const autoprefixer = require("autoprefixer");
 
 module.exports = {
   important: true,
@@ -13,7 +13,7 @@ module.exports = {
       safelist: [],
     },
   },
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
     container: {
       center: true,
@@ -22,41 +22,38 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
-            maxWidth: '100%',
+            maxWidth: "100%",
             a: {
-              color: '#1D4ED8',
-              '&:hover': {
-              color: '#1E3A8A',
+              color: "#1D4ED8",
+              "&:hover": {
+                color: "#1E3A8A",
               },
             },
-            '.prose a.edit, .tag a': {
-              color: '#333',
-              'text-decoration': 'none',
+            ".prose a.edit, .tag a": {
+              color: "#333",
+              "text-decoration": "none",
             },
-            'ul.footer-nav': {
-              '::before': {
-                display: 'none',
-                'text-decoration': 'none',
-              }
+            "ul.footer-nav": {
+              "::before": {
+                display: "none",
+                "text-decoration": "none",
+              },
             },
-            'ul.contains-task-list': {
-              '::before': {
-                display: 'none',
-              }
+            "ul.contains-task-list": {
+              "::before": {
+                display: "none",
+              },
             },
-            'ul.spacelog': {
-              '::before': {
-                display: 'none',
-              }
+            "ul.spacelog": {
+              "::before": {
+                display: "none",
+              },
             },
           },
         },
-      }
+      },
     },
-  }, 
+  },
   variants: {},
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-  ],
-}
+  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms")],
+};

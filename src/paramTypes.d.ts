@@ -75,7 +75,7 @@ export type sortBy = (colors: Color[], order: "asc" | "desc") => Color[];
 export type factorMapper = (
   factor: string,
   cb: (arg: Color) => number,
-  order?: "asc" | "desc"
+  order?: "asc" | "desc",
 ) => (colors: Color[]) => Color[];
 
 type HueColorSpaces = {
