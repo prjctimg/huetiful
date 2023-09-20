@@ -8,17 +8,31 @@ const sharedConfig = {
   entryPoints: [".//src/index.ts"],
   bundle: true,
   minify: false,
-  external: Object.keys(dependencies),
 };
 
 //Bundled CJS
-build({ ...sharedConfig, outfile: "dist/huetiful.cjs", format: "cjs" });
+build({
+  ...sharedConfig,
+  outfile: "dist/huetiful.cjs",
+  format: "cjs",
+  external: Object.keys(dependencies),
+});
 
 //Bundled CJS minified
-build({ ...sharedConfig, outfile: "dist/huetiful.min.cjs", minify: true });
+build({
+  ...sharedConfig,
+  outfile: "dist/huetiful.min.cjs",
+  minify: true,
+  external: Object.keys(dependencies),
+});
 
 //Bundled ESM
-build({ ...sharedConfig, format: "esm", outfile: "dist/huetiful.esm.mjs" });
+build({
+  ...sharedConfig,
+  format: "esm",
+  outfile: "dist/huetiful.esm.mjs",
+  external: Object.keys(dependencies),
+});
 
 //Bundled ESM minified
 build({
@@ -26,6 +40,7 @@ build({
   format: "esm",
   outfile: "dist/huetiful.esm.min.mjs",
   minify: true,
+  external: Object.keys(dependencies),
 });
 
 //Bundled IIFE
@@ -34,7 +49,6 @@ build({
   format: "iife",
   outfile: "dist/huetiful.js",
   globalName: "huetiful",
-  external: [],
 });
 
 //Bundled IIFE minified
@@ -44,5 +58,4 @@ build({
   outfile: "dist/huetiful.min.js",
   globalName: "huetiful",
   minify: true,
-  external: [],
 });
