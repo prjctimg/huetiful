@@ -17,6 +17,11 @@ import { converter, formatHex8 } from "culori"
 import type { Color, palette } from "../paramTypes.ts"
 import { adjustHue } from "../core-utils/helpers.ts"
 
+const cb = (r: number, d: number, color: Color) =>
+  map(range(r), (val) =>
+    adjustHue(add(color["h"], multiply(divide(val, d), 360)))
+  )
+
 /**
  * @function
  * @description Generates a randomised classic color scheme from a single base color.
@@ -36,13 +41,11 @@ const base =
       highMin = 0.5,
       highMax = 0.995
     let targetHueSteps = {
-      analogous: map(range(3), (val) => add(color["h"], multiply(divide(val, 12), 360))),
-      triadic: map(range(3), (val) => add(color["h"], multiply(divide(val, 3), 360))),
-      tetradic: map(range(4), (val) => add(color["h"], multiply(divide(val, 4), 360))),
-      complementary: map(range(2), (val) => add(color["h"], multiply(divide(val, 2), 360))),
-      customAnalogous: map(range(4), (val) =>
-        add(color["h"], multiply(divide(val, 4), color["h"]))
-      ),
+      analogous: cb(3, 12, color),
+      triadic: cb(3, 3, color),
+      tetradic: cb(4, 4, color),
+      complementary: cb(2, 2, color),
+      customAnalogous: cb(4, 4, color),
     }
     // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
     targetHueSteps = forEach(targetHueSteps, (scheme) =>

@@ -36,12 +36,22 @@ import { filterByDistance } from "./filterBy/filterByDistance.ts"
 //import { argType } from "./core-utils/helpers.ts"
 import { getComplimentaryHue } from "./palettes/getComplimentaryHue.ts"
 import {
+  getFarthestLightness,
+  getNearestLightness,
+  maxLightness,
+  minLightness,
+} from "./colors/lightness.ts"
+import {
   getFarthestChroma,
   getNearestChroma,
   maxChroma,
   minChroma,
 } from "./colors/chroma.ts"
 export {
+  getFarthestLightness,
+  getNearestLightness,
+  maxLightness,
+  minLightness,
   getFarthestChroma,
   getNearestChroma,
   maxChroma,

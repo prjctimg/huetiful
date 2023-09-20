@@ -1,8 +1,8 @@
 // @ts-nocheck
 // This module contains minChroma,maxChroma,getFarthestChroma,getNearestChroma
 
-import { Color, HueColorSpaces, factor } from "../paramTypes";
-import { getChannel } from "../core-utils/get.ts";
+import { Color, HueColorSpaces, factor } from "../paramTypes"
+import { getChannel } from "../core-utils/get.ts"
 import {
   defaultTo,
   fromPairs,
@@ -17,24 +17,24 @@ import {
   remove,
   split,
   lt,
-} from "lodash-es";
-import { colorObjArr, filteredArr, sortedArr } from "../core-utils/helpers";
+} from "lodash-es"
+import { colorObjArr, filteredArr, sortedArr } from "../core-utils/helpers"
 
 //  The factor being investigated.
 
-const factor: factor = "saturation";
+const factor: factor = "saturation"
 
 // I must test if the passed in mode has a chroma/saturation channel. Should I use RegExp  ?
 
 const mode = (colorSpace: HueColorSpaces | string): string => {
   // Matches any string with c or s
-  const reChroma = /(s|c)/;
-  let ch = reChroma.exec(colorSpace);
+  const reChroma = /(s|c)/
+  let ch = reChroma.exec(colorSpace)
 
   return reChroma.test(colorSpace)
     ? `${colorSpace}.${ch[0]}`
-    : Error(`The color space ${colorSpace} has no chroma/saturation channel.`);
-};
+    : Error(`The color space ${colorSpace} has no chroma/saturation channel.`)
+}
 
 // The callback to invoke per color in the passed in collection.
 // The subtrahend is each color in the collection
@@ -43,16 +43,16 @@ const mode = (colorSpace: HueColorSpaces | string): string => {
 const chromaDiff =
   (color: Color, colorSpace: HueColorSpaces | string) =>
   (subtrahend: Color) => {
-    let cs = mode(colorSpace);
+    let cs = mode(colorSpace)
     return lt(getChannel(cs)(color), getChannel(cs)(subtrahend))
       ? subtract(getChannel(cs)(subtrahend), getChannel(cs)(color))
-      : subtract(getChannel(cs)(color), getChannel(cs)(subtrahend));
-  };
+      : subtract(getChannel(cs)(color), getChannel(cs)(subtrahend))
+  }
 
 // If the predicate returns undefined or false on the chroma channel then it means that it is an achromatic color.
 // Callback func for the minHue and maxHue utils. The funny thing is that most of the code is similar with minor changes here and there
 const predicate = (colorSpace: HueColorSpaces) => (color: Color) =>
-  getChannel(mode(colorSpace))(color) || undefined;
+  getChannel(mode(colorSpace))(color) || undefined
 
 /**
  *
@@ -68,13 +68,13 @@ const getNearestChroma = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
-  const cb = chromaDiff(color, colorSpace || "lch");
+  const cb = chromaDiff(color, colorSpace || "lch")
   let sortedObjArr = remove(
     sortedArr(factor, cb, "asc", true)(colors),
     (el) => el[factor] !== undefined
-  );
-  return get(first(sortedObjArr), factor);
-};
+  )
+  return get(first(sortedObjArr), factor)
+}
 
 /**
  *
@@ -91,13 +91,13 @@ const getFarthestChroma = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
-  const cb = chromaDiff(color, colorSpace || "lch");
+  const cb = chromaDiff(color, colorSpace || "lch")
   let sortedObjArr = remove(
     sortedArr(factor, cb, "asc", true)(colors),
     (el) => el[factor] !== undefined
-  );
-  return get(last(sortedObjArr), factor);
-};
+  )
+  return get(last(sortedObjArr), factor)
+}
 
 /**
  *@function
@@ -115,19 +115,19 @@ const minChroma = (
   const result: Array<{ factor: number; name: Color }> = remove(
     sortedArr(factor, predicate(colorSpace || "lch"), "asc", true)(colors),
     (el) => el[factor] !== undefined
-  );
-  let value;
+  )
+  let value
 
   if (gt(result.length, 0)) {
     if (colorObj) {
-      value = first(result);
+      value = first(result)
     } else {
-      value = get(first(result), factor);
+      value = get(first(result), factor)
     }
   }
 
-  return value;
-};
+  return value
+}
 
 /**
  *@function
@@ -145,19 +145,19 @@ const maxChroma = (
   const result: Array<{ factor: number; name: Color }> = remove(
     sortedArr(factor, predicate(colorSpace || "lch"), "asc", true)(colors),
     (el) => el[factor] !== undefined
-  );
+  )
 
-  let value;
+  let value
 
   if (gt(result.length, 0)) {
     if (colorObj) {
-      value = last(result);
+      value = last(result)
     } else {
-      value = get(last(result), factor);
+      value = get(last(result), factor)
     }
   }
 
-  return value;
-};
+  return value
+}
 
-export { getFarthestChroma, getNearestChroma, maxChroma, minChroma };
+export { getFarthestChroma, getNearestChroma, maxChroma, minChroma }
