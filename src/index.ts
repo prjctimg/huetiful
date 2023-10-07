@@ -27,7 +27,7 @@ import { sequential, diverging, qualitative } from "./colors/colorBrewer.ts"
 import { pairedScheme } from "./palettes/paired.ts"
 import { sortByLightness } from "./sortBy/sortByLightness.ts"
 import { filterByLightness } from "./filterBy/filterByLightness.ts"
-import { getHue } from "./palettes/shade.ts"
+import { getHue } from "./palettes/getHue.ts"
 import { filterByContrast } from "./filterBy/filterByContrast.ts"
 import { sortByContrast } from "./sortBy/sortByContrast.ts"
 import { getFarthestHue, getNearestHue, minHue, maxHue } from "./colors/hue.ts"
@@ -47,7 +47,9 @@ import {
   maxChroma,
   minChroma,
 } from "./colors/chroma.ts"
+import { discoverPalettes } from "./palettes/discoverPalettes.ts"
 export {
+  discoverPalettes,
   getFarthestLightness,
   getNearestLightness,
   maxLightness,

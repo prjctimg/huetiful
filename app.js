@@ -1,10 +1,5 @@
 import { formatHex, formatHex8 } from "culori"
-import {
-  getFarthestLightness,
-  getNearestLightness,
-  minLightness,
-  maxLightness,
-} from "./dist/huetiful.esm.mjs"
+import { discoverPalettes } from "./dist/huetiful.esm.mjs"
 
 let sample = [
   "#00ffdc",
@@ -20,7 +15,4 @@ let sample = [
   "#720000",
 ]
 
-console.log(getFarthestLightness("brown", sample))
-console.log(getNearestLightness("brown", sample))
-console.log(minLightness(sample))
-console.log(maxLightness(sample))
+console.log(discoverPalettes(sample))

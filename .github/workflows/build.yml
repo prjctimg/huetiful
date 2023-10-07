@@ -1,0 +1,27 @@
+name: Build and publish to NPM
+
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install development dependencies
+        run: npm ci
+
+      - name: Build bundle
+        run: npm run build
+
+        - name: Build types
+        - run: npm run types
+
+      - name: Publish to NPM
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_PUBLISH }}
+        run: npm publish --tag latest
