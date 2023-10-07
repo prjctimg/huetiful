@@ -15,7 +15,7 @@ import { wcagContrast } from "culori";
 const sortByContrast = (
   colors: Color[],
   against: Color,
-  order: "asc" | "desc"
+  order: "asc" | "desc",
 ): Color[] => {
   const factor: factor = "contrast";
   const cb = (against: Color) => (color: Color) => wcagContrast(color, against);

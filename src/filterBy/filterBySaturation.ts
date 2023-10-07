@@ -16,7 +16,7 @@ import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
 const filterBySaturation = (
   colors: Color[],
   startSaturation = 0.05,
-  endSaturation = 1
+  endSaturation = 1,
 ): Color[] => {
   const factor: factor = "saturation";
   const cb = getChannel("lch.c");
@@ -25,7 +25,7 @@ const filterBySaturation = (
   return filteredArr(factor, cb)(
     colors,
     multiply(100, startSaturation),
-    multiply(100, endSaturation)
+    multiply(100, endSaturation),
   );
 };
 

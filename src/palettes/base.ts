@@ -41,21 +41,46 @@ const base =
       highMin = 0.5,
       highMax = 0.995
     let targetHueSteps = {
+<<<<<<< HEAD
       analogous: cb(3, 12, color),
       triadic: cb(3, 3, color),
       tetradic: cb(4, 4, color),
       complementary: cb(2, 2, color),
       customAnalogous: cb(4, 4, color),
     }
+=======
+      analogous: map(range(3), (val) =>
+        add(color["h"], multiply(divide(val, 12), 360)),
+      ),
+      triadic: map(range(3), (val) =>
+        add(color["h"], multiply(divide(val, 3), 360)),
+      ),
+      tetradic: map(range(4), (val) =>
+        add(color["h"], multiply(divide(val, 4), 360)),
+      ),
+      complementary: map(range(2), (val) =>
+        add(color["h"], multiply(divide(val, 2), 360)),
+      ),
+      customAnalogous: map(range(4), (val) =>
+        add(color["h"], multiply(divide(val, 4), color["h"])),
+      ),
+    };
+>>>>>>> b6a8452b1ab110b7367b1b178c2f33136175c11d
     // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
     targetHueSteps = forEach(targetHueSteps, (scheme) =>
       map(scheme, (step) =>
         mean([
           random(multiply(step, lowMax), multiply(step, lowMin), true),
           random(multiply(step, highMax), multiply(step, highMin), true),
+<<<<<<< HEAD
         ])
       )
     )
+=======
+        ]),
+      ),
+    );
+>>>>>>> b6a8452b1ab110b7367b1b178c2f33136175c11d
 
     // The map for steps to obtain the targeted palettes
 
@@ -65,8 +90,13 @@ const base =
         ["c", color["c"]],
         ["h", step],
         ["mode", "lch"],
+<<<<<<< HEAD
       ])
     )
+=======
+      ]),
+    );
+>>>>>>> b6a8452b1ab110b7367b1b178c2f33136175c11d
 
     return hex ? map(colors, formatHex8) : colors
   }

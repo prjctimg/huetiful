@@ -101,8 +101,13 @@ const colorObjArr: factorMapper = (factor, cb) => (colors) =>
     fromPairs([
       [factor, cb(el)],
       ["name", el],
+<<<<<<< HEAD
     ])
   )
+=======
+    ]),
+  );
+>>>>>>> b6a8452b1ab110b7367b1b178c2f33136175c11d
 /**
  *  Filters an array of color objects with a "factor"  property whose value is determined by a predicate or getter via the cb param.
  * @param factor
@@ -117,11 +122,17 @@ const filteredArr =
     if (isNumber(start)) {
       result = map(
         filter(colorObjArr(factor, cb)(colors), (el) =>
-          inRange(el[factor], start, end)
+          inRange(el[factor], start, end),
         ),
+<<<<<<< HEAD
         (el) => el["name"]
       )
       return result
+=======
+        (el) => el["name"],
+      );
+      return result;
+>>>>>>> b6a8452b1ab110b7367b1b178c2f33136175c11d
 
       // If string split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
     } else if (isString(start)) {
@@ -136,11 +147,17 @@ const filteredArr =
       const mapFilter = (test: (x: number, y: number) => boolean): Color[] => {
         return map(
           filter(colorObjArr(factor, cb)(colors), (el) =>
-            test(el[factor], toNumber(val["0"]))
+            test(el[factor], toNumber(val["0"])),
           ),
+<<<<<<< HEAD
           (el) => el["name"]
         )
       }
+=======
+          (el) => el["name"],
+        );
+      };
+>>>>>>> b6a8452b1ab110b7367b1b178c2f33136175c11d
       switch (op["0"]) {
         case "<":
           result = mapFilter(lt)
@@ -164,8 +181,13 @@ const sortedArr: factorMapper =
   (factor, cb, order, colorObj = false) =>
   (colors) =>
     map(orderBy(colorObjArr(factor, cb)(colors), factor, order), (el) =>
+<<<<<<< HEAD
       colorObj ? el : el["name"]
     )
+=======
+      colorObj ? el : el["name"],
+    );
+>>>>>>> b6a8452b1ab110b7367b1b178c2f33136175c11d
 
 /**
  * @description Normalizes passed in values to 0 and 1
@@ -217,7 +239,7 @@ const floorCeil = (num: number): number => {
 const expressionParser = (
   src: Color,
   channel: string,
-  value: string
+  value: string,
 ): number => {
   const reOperator = /^(\*|\+|\-|\/)/,
     reValue = /[0-9]*\.?[0-9]+/

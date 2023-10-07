@@ -15,4 +15,18 @@ let sample = [
   "#720000",
 ]
 
+<<<<<<< HEAD
 console.log(discoverPalettes(sample))
+=======
+console.log(maxChroma(sample, "lch"));
+
+// 67.22120855010492
+console.log(
+  formatHex8({
+    r: 1,
+    g: 0.6424549534953387,
+    b: 0.2919643957148001,
+    mode: "rgb",
+  }),
+);
+>>>>>>> b6a8452b1ab110b7367b1b178c2f33136175c11d

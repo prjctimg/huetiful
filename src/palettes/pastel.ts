@@ -69,12 +69,12 @@ const pastelMapper = (color: Color, hex = true): Color => {
         s: random(
           pastelSample["minSampleSaturation"],
           pastelSample["maxSampleSaturation"],
-          true
+          true,
         ),
         v: random(
           pastelSample["minSampleValue"],
           pastelSample["maxSampleValue"],
-          true
+          true,
         ),
         mode: "hsv",
       };

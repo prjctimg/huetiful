@@ -21,7 +21,7 @@ const filterByDistance = (
   startDistance = 0.05,
   endDistance?: number,
   mode?: ColorSpaces,
-  weights?: [number, number, number, number]
+  weights?: [number, number, number, number],
 ): Color[] => {
   // Formatting color tokens to parseable type
   // How do I get the distance

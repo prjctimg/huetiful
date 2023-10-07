@@ -20,7 +20,7 @@ const sortByDistance = (
   against: Color,
   order?: "asc" | "desc",
   mode?: ColorSpaces,
-  weights?: [number, number, number, number]
+  weights?: [number, number, number, number],
 ): Color[] => {
   const factor: factor = "distance";
   const cb = (against: Color, mode: ColorSpaces) => (color: Color) =>
