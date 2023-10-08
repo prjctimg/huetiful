@@ -2,7 +2,7 @@ name: Build and publish to NPM
 
 on:
   push:
-    tags: ['v*']
+    tags: ["v*"]
 
 jobs:
   build-and-publish:
@@ -18,8 +18,8 @@ jobs:
       - name: Build bundle
         run: npm run build
 
-        - name: Build types
-        - run: npm run types
+      - name: Build types
+        run: npm run types
 
       - name: Publish to NPM
         env:
