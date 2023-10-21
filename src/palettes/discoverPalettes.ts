@@ -12,8 +12,8 @@ const isColorEqual = (c1: Color, c2: Color): boolean => {
 }
 
 const discoverPalettes = (colors: Color[], scheme: palette) => {
-  colors = map(colors, converter("lch"))
-  const palettes = {}
+  colors = map(colors, (c) => converter("lch")(c))
+  var palettes = {}
   const schemes = [
     "analogous",
     "triadic",

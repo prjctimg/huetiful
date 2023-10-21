@@ -2,11 +2,11 @@
   "name": "huetiful-js",
   "version": "1.6.0",
   "type": "module",
-  "main": "./dist/huetiful.esm.mjs",
-  "module": "./dist/huetiful.cjs",
+  "main": "./dist/huetiful.cjs",
+  "module": "./dist/huetiful.esm.mjs",
   "browser": "./dist/huetiful.min.js",
   "types": "./dist/index.d.ts",
-  "description": "A simple JavaScript library for color manipulations.",
+  "description": "JavaScript library for color manipulations based on Culori.",
   "dependencies": {
     "culori": "^3.0.1",
     "lodash-es": "^4.17.21"
@@ -34,7 +34,8 @@
     "palette",
     "color schemes",
     "color",
-    "gradient generator",
+    "Culori",
+    "functional",
     "typescript",
     "javascript"
   ],

@@ -1,4 +1,2 @@
-{"exec":"ts-node ./src/palettes/discoverPalettes.ts --watch ","execMap":{
-    "ts":"ts-node"
-}
+{"exec":"node app.js --watch "
 }
