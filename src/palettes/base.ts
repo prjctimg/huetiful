@@ -31,14 +31,7 @@ const cb = (iterations: number, distance: number, color: Color) =>
  */
 
 const base =
-  (
-    scheme:
-      | "analogous"
-      | "triadic"
-      | "tetradic"
-      | "complementary"
-      | "customAnalogous"
-  ) =>
+  (scheme: "analogous" | "triadic" | "tetradic" | "complementary") =>
   (color: Color, hex = false): Color[] => {
     // Converting the color to lch
 
@@ -52,7 +45,6 @@ const base =
       triadic: cb(3, 120, color),
       tetradic: cb(4, 90, color),
       complementary: cb(2, 180, color),
-      customAnalogous: cb(4, 18, color),
     }
     // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
     targetHueSteps = forEach(targetHueSteps, (scheme) =>

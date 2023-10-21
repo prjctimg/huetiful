@@ -9,10 +9,10 @@ import {
   interpolatorSplineNatural,
   fixupHueShorter,
   lch,
-} from "culori";
-import type { Color, earthtones } from "../paramTypes.ts";
-import { defaultTo, get, keys, map } from "lodash-es";
-import { Interpolator } from "culori/src/interpolate/Interpolator.js";
+} from "culori"
+import type { Color, earthtones } from "../paramTypes.ts"
+import { defaultTo, get, keys, map, toLower } from "lodash-es"
+import { Interpolator } from "culori/src/interpolate/Interpolator.js"
 
 /**
  * @function
@@ -25,8 +25,8 @@ import { Interpolator } from "culori/src/interpolate/Interpolator.js";
 
 //Add an overrides object with interpolation function and
 const earthtone = (color: Color, earthtone: earthtones, num = 1): Color[] => {
-  color = lch(color);
-
+  color = lch(color)
+  earthtone = toLower(earthtone)
   let tones = {
     "light-gray": "#e5e5e5",
     silver: "#f5f5f5",
@@ -38,17 +38,17 @@ const earthtone = (color: Color, earthtone: earthtones, num = 1): Color[] => {
     cocoa: "#584a3e",
     "dark-brown": "#473b31",
     dark: "#352a21",
-  };
-  let base = get(tones, defaultTo(earthtone, "dark"));
+  }
+  let base = get(tones, defaultTo(earthtone, "dark"))
 
   let f = interpolate([base, color, easingSmootherstep], "lch", {
     h: {
       use: interpolatorSplineNatural,
       fixup: fixupHueShorter,
     },
-  });
+  })
 
-  return map(samples(num), (t) => formatHex8(f(t)));
-};
+  return map(samples(num), (t) => formatHex8(f(t)))
+}
 
-export { earthtone };
+export { earthtone }

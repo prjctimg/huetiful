@@ -1,5 +1,5 @@
 import { formatHex, formatHex8 } from "culori"
-import { discoverPalettes } from "./dist/huetiful.esm.mjs"
+import { base, discoverPalettes } from "./dist/huetiful.esm.mjs"
 
 let sample = [
   "#00ffdc",
@@ -22,3 +22,4 @@ let sample = [
 ]
 
 console.log(discoverPalettes(sample))
+console["log"](base("analogous")("blue"))

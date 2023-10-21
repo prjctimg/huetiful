@@ -1,6 +1,15 @@
 import { nearest, differenceEuclidean, converter, formatHex8 } from "culori"
 import { Color } from "../paramTypes"
-import { filter, forOwn, isEqual, keys, map, set, some } from "lodash-es"
+import {
+  filter,
+  forOwn,
+  isEqual,
+  keys,
+  map,
+  set,
+  some,
+  toLower,
+} from "lodash-es"
 import { base } from "./base.ts"
 
 const isColorEqual = (c1: Color, c2: Color): boolean => {
@@ -56,7 +65,13 @@ const discoverPalettes = (
     }
   }
 
-  return scheme ? palettes[scheme] : palettes
+  if (typeof scheme == "string") {
+    return palettes[toLower(scheme)]
+  } else if (typeof scheme == "undefined") {
+    return palettes
+  } else {
+    throw Error(`${scheme} is not a valid palette scheme.`)
+  }
 }
 
 export { discoverPalettes }
