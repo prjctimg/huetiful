@@ -29,13 +29,9 @@ const isCool = (color: Color): boolean => {
   // First we need to get the hue value which we'll pass to the predicate
   let factor = getChannel("lch.h")(color)
 
-<<<<<<< HEAD
-  return find(hueTempMap, (val, key) => inRange(floorCeil(factor), val["cool"][0], val["cool"][1]))
-=======
   return find(hueTempMap, (val, key) =>
-    inRange(floorCeil(factor), val["cool"][0], val["cool"][1]),
+    inRange(floorCeil(factor), val["cool"][0], val["cool"][1])
   )
->>>>>>> b6a8452b1ab110b7367b1b178c2f33136175c11d
     ? stubTrue()
     : stubFalse()
 }
@@ -49,13 +45,9 @@ const isCool = (color: Color): boolean => {
 const isWarm = (color: Color): boolean => {
   const factor = getChannel("lch.h")(color)
 
-<<<<<<< HEAD
-  return find(hueTempMap, (val, key) => inRange(floorCeil(factor), val["warm"][0], val["warm"][1]))
-=======
   return find(hueTempMap, (val, key) =>
-    inRange(floorCeil(factor), val["warm"][0], val["warm"][1]),
+    inRange(floorCeil(factor), val["warm"][0], val["warm"][1])
   )
->>>>>>> b6a8452b1ab110b7367b1b178c2f33136175c11d
     ? stubTrue()
     : stubFalse()
 }
@@ -72,15 +64,9 @@ const maxTemp = (color: Color): number => {
 
   // Then  we check to see in what hue family it is and check the highest hue value for that family
   let hueRange = find(hueTempMap, (hue, key) =>
-<<<<<<< HEAD
     inRange(factor, min(concat(...values(hue))), max(concat(...values(hue))))
   )
   let maxHue: number = max(concat(...values(hueRange)))
-=======
-    inRange(factor, min(concat(...values(hue))), max(concat(...values(hue)))),
-  );
-  let maxHue: number = max(concat(...values(hueRange)));
->>>>>>> b6a8452b1ab110b7367b1b178c2f33136175c11d
 
   let result = getTemp({
     l: 100,
@@ -103,15 +89,9 @@ const minTemp = (color: Color): number => {
 
   // Then  we check to see in what hue family it is and check the highest hue value for that family
   let hueRange = find(hueTempMap, (hue, key) =>
-<<<<<<< HEAD
     inRange(factor, min(concat(...values(hue))), max(concat(...values(hue))))
   )
   let minHue: number = min(concat(...values(hueRange)))
-=======
-    inRange(factor, min(concat(...values(hue))), max(concat(...values(hue)))),
-  );
-  let minHue: number = min(concat(...values(hueRange)));
->>>>>>> b6a8452b1ab110b7367b1b178c2f33136175c11d
 
   let result = getTemp({
     l: 100,

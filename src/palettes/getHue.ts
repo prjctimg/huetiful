@@ -46,16 +46,9 @@ const getHue = (color: Color): hue => {
 
   // We then pick the truthy key by returning an object which returns true for the inRange predicate
   let results = toString(
-<<<<<<< HEAD:src/palettes/getHue.ts
     keys(pickBy(hueTempMap, (val, hue) => cb(factor, hue)))
   )
   return results
 }
-=======
-    keys(pickBy(hueTempMap, (val, hue) => cb(factor, hue))),
-  );
-  return results;
-};
->>>>>>> b6a8452b1ab110b7367b1b178c2f33136175c11d:src/palettes/shade.ts
 
 export { getHue }

@@ -1,4 +1,4 @@
-export type tone = "light" | "dark";
+export type tone = "light" | "dark"
 export type hue =
   | "red-purple"
   | "red"
@@ -9,7 +9,7 @@ export type hue =
   | "blue-green"
   | "blue"
   | "purple-blue"
-  | "purple";
+  | "purple"
 
 export type earthtones =
   | "light gray"
@@ -21,7 +21,7 @@ export type earthtones =
   | "clay"
   | "cocoa"
   | "dark brown"
-  | "dark";
+  | "dark"
 export type divergingScheme =
   | "Spectral"
   | "RdYlGn"
@@ -31,7 +31,7 @@ export type divergingScheme =
   | "RdYlBu"
   | "BrBG"
   | "RdGy"
-  | "PuOr";
+  | "PuOr"
 export type qualitativeScheme =
   | "Set2"
   | "Accent"
@@ -40,7 +40,7 @@ export type qualitativeScheme =
   | "Dark2"
   | "Paired"
   | "Pastel2"
-  | "Pastel1";
+  | "Pastel1"
 
 export type sequentialScheme =
   | "OrRd"
@@ -61,16 +61,9 @@ export type sequentialScheme =
   | "PuRd"
   | "Blues"
   | "PuBuGn"
-  | "Viridis";
+  | "Viridis"
 
-export type palette =
-  | "analogous"
-  | "triadic"
-  | "tetradic"
-  | "complementary"
-  | "splitComplementary"
-  | "customAnalogous";
-export type Color = number | string | object;
+export type Color = number | string | object
 
 /**
  * @param
@@ -88,14 +81,14 @@ export type factor =
   | "contrast"
   | "distance"
   | "lightness"
-  | "hue";
+  | "hue"
 
 export type factorMapper = (
   factor: factor,
   cb: (arg: Color, colorSpace?: HueColorSpaces) => number,
   order?: "asc" | "desc",
-  colorObj = false,
-) => (colors: Color[]) => Color[];
+  colorObj = false
+) => (colors: Color[]) => Color[]
 
 export type ColorSpaces =
   | "a98"
@@ -118,9 +111,9 @@ export type ColorSpaces =
   | "okhsl"
   | "okhsv"
   | "oklab"
-  | "rgb";
+  | "rgb"
 
-export type HueColorSpaces = "hsl" | "hsv" | "hsi" | "oklch" | "lch" | "hwb";
+export type HueColorSpaces = "hsl" | "hsv" | "hsi" | "oklch" | "lch" | "hwb"
 
 export type ScaleValues =
   | "100"
@@ -132,267 +125,267 @@ export type ScaleValues =
   | "600"
   | "700"
   | "800"
-  | "900";
+  | "900"
 
 export type HueMap = {
   indigo: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
   gray: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   zinc: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   neutral: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   stone: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   red: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   orange: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   amber: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   yellow: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   lime: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   green: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   emerald: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   teal: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   sky: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   blue: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   violet: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   purple: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   fuchsia: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   pink: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
 
   rose: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
-  };
-};
+    "50": string
+    "100": string
+    "200": string
+    "300": string
+    "400": string
+    "500": string
+    "600": string
+    "700": string
+    "800": string
+    "900": string
+  }
+}
 
-type ColorTemp = "warm" | "cool" | "daylight" | "incadescent" | "fluorescent";
+type ColorTemp = "warm" | "cool" | "daylight" | "incadescent" | "fluorescent"
