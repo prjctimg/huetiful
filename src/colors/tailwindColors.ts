@@ -1,8 +1,16 @@
 //@ts-nocheck
 
-import { map, has, isUndefined, identity, get, isEqual } from "lodash-es";
-import tailwindHues from "../color-maps/defaultTailwindPalette.ts";
-import type { HueMap, ScaleValues } from "../paramTypes.ts";
+import {
+  map,
+  has,
+  isUndefined,
+  identity,
+  get,
+  isEqual,
+  toLower,
+} from "lodash-es"
+import tailwindHues from "../color-maps/defaultTailwindPalette.ts"
+import type { HueMap, ScaleValues } from "../paramTypes.ts"
 
 /**
  * @function
@@ -16,26 +24,26 @@ const tailwindColors =
   (shade: keyof HueMap) =>
   (val?: ScaleValues): string | string[] => {
     // This is a curried func that takes in the shade and returns a function that takes in a value from 100 thru 900
-
-    const black = "#000000";
+    shade = toLower(shade)
+    const black = "#000000"
 
     // We check if the shade is a valid Tailwind shade if not we return pure black.
     const targetHue = has(tailwindHues, shade)
       ? get(tailwindHues, shade)
-      : black;
+      : black
 
     // If targetHue is black we simply return it
     if (isEqual(targetHue, black)) {
-      return targetHue;
+      return targetHue
     } else if (isUndefined(val)) {
-      return map(targetHue, (val) => identity(val));
+      return map(targetHue, (val) => identity(val))
     } else if (has(targetHue, val)) {
-      return get(targetHue, val);
+      return get(targetHue, val)
     } else {
       throw Error(
-        `${val} is not a valid scale value. Values are in increments of 100 up to 900 e.g "200"`,
-      );
+        `${val} is not a valid scale value. Values are in increments of 100 up to 900 e.g "200"`
+      )
     }
-  };
+  }
 
-export { tailwindColors };
+export { tailwindColors }
