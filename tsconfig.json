@@ -3,7 +3,7 @@
     "src/index.ts"
   ],
   "compilerOptions": {
-    //  "allowImportingTsExtensions": true,
+    "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     // "allowJs": true,
     "checkJs": true,
