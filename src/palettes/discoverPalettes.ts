@@ -26,6 +26,26 @@ const isColorEqual = (c1: Color, c2: Color): boolean => {
  * @param colors The array of colors to create palettes from. Preferably use 5 or more colors for better results.
  * @param scheme (Optional) The palette type you want to return.
  * @returns An array of colors if the scheme parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
+ * @example
+ * 
+ * import { discoverPalettes } from 'huetiful-js'
+
+let sample = [
+  "#ffff00",
+  "#00ffdc",
+  "#00ff78",
+  "#00c000",
+  "#007e00",
+  "#164100",
+  "#720000",
+  "#600000",
+  "#4e0000",
+  "#3e0000",
+  "#310000",
+]
+
+console.log(discoverPalettes(sample, "tetradic"))
+// [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
  */
 const discoverPalettes = (
   colors: Color[],

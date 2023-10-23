@@ -3,13 +3,11 @@
 import {
   concat,
   some,
+  find,
   inRange,
   max,
   min,
-  split,
   startsWith,
-  stubFalse,
-  stubTrue,
   toString,
   values,
 } from "lodash-es"
@@ -103,6 +101,15 @@ const isWarm = (color: Color): boolean => {
  * @description Checks the approximate maximum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
  * @param color The color to check its maximum temperature.
  * @returns The maximum temperature in Kelvins.
+ * @example
+ * 
+ * import { maxTemp } from "huetiful-js"; 
+ * 
+ * console.log(maxTemp("#a1bd2f"))
+// 7926
+
+console.log(maxTemp("b2c3f1"))
+// 9570
  */
 const maxTemp = (color: Color): number => {
   // Get the hue value of the color
@@ -115,9 +122,10 @@ const maxTemp = (color: Color): number => {
   let maxHue: number = max(concat(...values(hueRange)))
 
   let result = getTemp({
-    l: 100,
-    c: 100,
+    l: getChannel("lch.l")(color),
+    c: getChannel("lch.c")(color),
     h: maxHue,
+    mode: "lch",
   })
 
   return result
@@ -128,21 +136,34 @@ const maxTemp = (color: Color): number => {
  * @description Checks the approximate minimum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
  * @param color The color to check its minimum temperature.
  * @returns The minimum temperature in Kelvins.
+ * @example
+ * 
+ * import { minTemp } from 'huetiful-js'
+ * 
+ * console.log(minTemp("#a1bd2f"))
+// 2528
+
+console.log(minTemp("b2c3f1"))
+// 20107
+ * 
  */
 const minTemp = (color: Color): number => {
   // Get the hue value of the color
   const factor = getChannel("lch.h")(color)
 
   // Then  we check to see in what hue family it is and check the highest hue value for that family
-  let hueRange = find(hueTempMap, (hue, key) =>
-    inRange(factor, min(concat(...values(hue))), max(concat(...values(hue))))
+  let hueRange: { warm: [number, number]; cool: [number, number] } = find(
+    hueTempMap,
+    (hue, key) =>
+      inRange(factor, min(concat(...values(hue))), max(concat(...values(hue))))
   )
   let minHue: number = min(concat(...values(hueRange)))
 
   let result = getTemp({
-    l: 100,
-    c: 100,
+    l: getChannel("lch.l")(color),
+    c: getChannel("lch.c")(color),
     h: minHue,
+    mode: "lch",
   })
 
   return result

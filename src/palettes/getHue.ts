@@ -13,13 +13,20 @@ import {
   keys,
   defaultTo,
 } from "lodash-es"
-import { floorCeil } from "../core-utils/helpers.js"
+import { floorCeil } from "../core-utils/helpers.ts"
 
 /**
  *@function
  @description Gets the hue family which a a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
  * @param color The color to query its shade or hue family.
  * @returns The name of the hue family for example red or green.
+ * @example
+ * 
+ * import { getHue } from 'huetiful-js'
+
+
+console.log(getHue("#310000"))
+// red
  */
 const getHue = (color: Color): hue => {
   // First convert the color to LCH

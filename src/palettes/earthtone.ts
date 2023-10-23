@@ -11,7 +11,7 @@ import {
   lch,
 } from "culori"
 import type { Color, earthtones } from "../paramTypes.ts"
-import { defaultTo, get, keys, map, toLower } from "lodash-es"
+import { map, toLower } from "lodash-es"
 import { Interpolator } from "culori/src/interpolate/Interpolator.js"
 
 /**
@@ -21,11 +21,19 @@ import { Interpolator } from "culori/src/interpolate/Interpolator.js"
  * @param earthtone The earthtone to interpolate with.
  * @param num The number of iterations to produce from the color and earthtone.
  * @returns The array of colors resulting from the earthtone interpolation as hex codes.
+ * 
+ * @example
+ * 
+ * import { earthtone } from 'huetiful-js'
+
+
+console.log(earthtone("pink", "clay", 5))
+// [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
+
  */
 
 //Add an overrides object with interpolation function and
 const earthtone = (color: Color, earthtone: earthtones, num = 1): Color[] => {
-  color = lch(color)
   earthtone = toLower(earthtone)
   let tones = {
     "light-gray": "#e5e5e5",
@@ -39,7 +47,7 @@ const earthtone = (color: Color, earthtone: earthtones, num = 1): Color[] => {
     "dark-brown": "#473b31",
     dark: "#352a21",
   }
-  let base = get(tones, defaultTo(earthtone, "dark"))
+  let base: Color = tones[earthtone || "dark"]
 
   let f = interpolate([base, color, easingSmootherstep], "lch", {
     h: {

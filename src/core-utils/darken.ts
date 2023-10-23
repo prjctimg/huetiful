@@ -1,8 +1,8 @@
 //@ts-nocheck
-import { defaultTo, isNumber, isString, multiply, toNumber } from "lodash-es";
-import { converter, formatHex } from "culori";
-import type { HueColorSpaces, Color } from "../paramTypes.ts";
-import { expressionParser } from "./helpers.ts";
+import { defaultTo, isNumber, isString, multiply, toNumber } from "lodash-es"
+import { converter, formatHex } from "culori"
+import type { HueColorSpaces, Color } from "../paramTypes.ts"
+import { expressionParser } from "./helpers.ts"
 // ported froma chroma-js brighten
 
 /**
@@ -11,23 +11,38 @@ import { expressionParser } from "./helpers.ts";
  * @param   color The color to darken.
  * @param value The amount to darken with. Also supports expressions as strings e.g darken("#fc23a1","*0.5")
  * @returns color The darkened color.
+ * @example
+ * 
+ * import { alpha } from 'huetiful-js'
+
+// Getting the alpha
+console.log(alpha('#a1bd2f0d'))
+// 0.050980392156862744
+
+// Setting the alpha
+
+let myColor = alpha('b2c3f1', 0.5)
+
+console.log(myColor)
+
+// #b2c3f180
  */
 const darken = (color: Color, value: number | string): Color => {
-  defaultTo(value, 1);
-  const default_mode = "lab";
-  const Kn = 18;
-  const channel = "l";
-  // Addv acheck here like the one in set.js
-  const src = converter(default_mode)(color);
+  defaultTo(value, 1)
 
-  if (isNumber(value)) {
-    src["l"] -= multiply(Kn, value);
-  } else if (isString(value)) {
-    expressionParser(src, channel, value);
+  const Kn = 18
+  const channel = "l"
+  // Addv acheck here like the one in set.js
+  const src = converter("lab")(color)
+
+  if (typeof value === "number") {
+    src["l"] -= Kn * value
+  } else if (typeof value === "string") {
+    expressionParser(src, channel, value)
   }
 
-  return formatHex(converter(default_mode)(src));
-};
+  return formatHex(src)
+}
 
 /**
  *
@@ -37,15 +52,15 @@ const darken = (color: Color, value: number | string): Color => {
  * @returns
  */
 const brighten = (color: Color, value: number | string): Color => {
-  const { abs } = Math;
-  let result: Color;
+  const { abs } = Math
+  let result: Color
   if (isNumber(value)) {
-    result = darken(color, -value);
+    result = darken(color, -value)
   } else if (isString(value)) {
-    let amt = abs(toNumber(value.slice(1)));
-    result = darken(color, -amt);
+    let amt = abs(toNumber(value.slice(1)))
+    result = darken(color, -amt)
   }
-  return result;
-};
+  return result
+}
 
-export { brighten, darken };
+export { brighten, darken }

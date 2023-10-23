@@ -1,26 +1,12 @@
 //@ts-nocheck
-import {
-  fromPairs,
-  range,
-  map,
-  add,
-  random,
-  multiply,
-  forEach,
-  subtract,
-  mean,
-  divide,
-  toLower,
-} from "lodash-es"
+import { fromPairs, range, map, random, forEach, toLower } from "lodash-es"
 import { converter, formatHex8 } from "culori"
 
 import type { Color } from "../paramTypes.ts"
 import { adjustHue } from "../core-utils/helpers.ts"
 
 const cb = (iterations: number, distance: number, color: Color) =>
-  map(range(iterations), (val) =>
-    adjustHue(add(color["h"], multiply(distance, val)))
-  )
+  map(range(iterations), (val) => adjustHue(color["h"] + distance * val))
 
 /**
  * @function
@@ -28,6 +14,12 @@ const cb = (iterations: number, distance: number, color: Color) =>
  * @param  scheme  Any classic color scheme either "analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary".
  * @param hex Optional boolen to return lch color objects or hex codes in the result array. Default is false  which returns LCH color objects.
  * @returns An array of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
+ * @example
+ * 
+ import { base } from 'huetiful-js'
+
+console.log(base("triadic")("#a1bd2f", true))
+// [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
  */
 
 const base =
@@ -48,11 +40,12 @@ const base =
     }
     // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
     targetHueSteps = forEach(targetHueSteps, (scheme) =>
-      map(scheme, (step) =>
-        mean([
-          random(multiply(step, lowMax), multiply(step, lowMin), true),
-          random(multiply(step, highMax), multiply(step, highMin), true),
-        ])
+      map(
+        scheme,
+        (step) =>
+          (random(step * lowMax, step * lowMin, true) +
+            random(step * highMax, step * highMin, true)) /
+          2
       )
     )
 

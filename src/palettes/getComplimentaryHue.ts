@@ -13,6 +13,9 @@ import { formatHex8 } from "culori"
  * @description Gets the complementary hue of the passed in color. The function is internally guarded against achromatic colors.
  * @param color The color to retrieve its complimentary hue.
  * @returns An object with the hue family and complimentary color as keys.
+ * @example
+ *
+ *
  */
 const getComplimentaryHue = (color: Color): { hue: string; color: Color } => {
   let modeChannel = "lch.h"

@@ -41,6 +41,7 @@ import {
   maxLightness,
   minLightness,
 } from "./colors/lightness.ts"
+import { overtone } from "./colors/overtone.ts"
 import {
   getFarthestChroma,
   getNearestChroma,
@@ -49,6 +50,7 @@ import {
 } from "./colors/chroma.ts"
 import { discoverPalettes } from "./palettes/discoverPalettes.ts"
 export {
+  overtone,
   discoverPalettes,
   getFarthestLightness,
   getNearestLightness,
