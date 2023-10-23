@@ -16,15 +16,14 @@ import {
   reverse,
   toString,
   uniq,
-} from "lodash-es";
-import { getChannel } from "../core-utils/get.ts";
-import { setChannel } from "../core-utils/set.ts";
-import { Color, tone } from "../paramTypes.ts";
+} from "lodash-es"
+import { getChannel } from "../core-utils/get.ts"
+import { setChannel } from "../core-utils/set.ts"
+import { Color, tone } from "../paramTypes.ts"
 import {
   converter,
   easingInOutSine,
   easingSmootherstep,
-  fixupAlpha,
   fixupHueShorter,
   formatHex8,
   interpolate,
@@ -32,8 +31,8 @@ import {
   interpolatorSplineBasisClosed,
   interpolatorSplineNatural,
   samples,
-} from "culori";
-import { adjustHue } from "../core-utils/helpers.ts";
+} from "culori"
+import { adjustHue } from "../core-utils/helpers.ts"
 
 /**
  * @function pairedScheme
@@ -44,6 +43,12 @@ import { adjustHue } from "../core-utils/helpers.ts";
  * @param num The number of color samples to generate.
  * @param overrides The optional overrides object to customize per channel options like interpolation methods and channel fixups.
  * @returns An array containing the paired scheme.
+ * @example 
+ * 
+ * import { pairedScheme } from 'huetiful-js'
+
+console.log(pairedScheme("green", 6, 5, "dark"))
+// [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
  */
 const pairedScheme = (
   color: Color,
@@ -58,43 +63,43 @@ const pairedScheme = (
     c: interpolatorSplineNatural,
     l: interpolatorSplineBasisClosed,
     alpha: { fixup: fixupAlpha },
-  },
+  }
 ): Color[] => {
-  color = converter("lch")(color);
+  color = converter("lch")(color)
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
-  let derivedHue = setChannel("lch.h")(color, add(color["h"], hueStep || 12));
+  let derivedHue = setChannel("lch.h")(color, add(color["h"], hueStep || 12))
 
   // Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes
   let tones = {
     dark: "#263238",
     light: { l: 100, c: 0, h: 0, mode: "lch" },
-  };
+  }
 
   let scale = interpolate(
     [color, tones[via || "dark"], derivedHue],
     "lch",
-    overrides,
-  );
+    overrides
+  )
 
   // Declare the num of iterations in samples() which will be used as the t value and a reverse array for the derivedHue
-  let smp = samples(num || 4);
-  let reverseSmp = reverse(smp);
+  let smp = samples(num || 4)
+  let reverseSmp = reverse(smp)
 
   //The arrays to capture the different iterations
-  let baseHueArr = [];
-  let derivedHueArr = [];
+  let baseHueArr = []
+  let derivedHueArr = []
 
   // The muations on the arrays
-  let c1 = (x) => baseHueArr.unshift(scale(easingInOutSine(x)));
-  let c2 = (y) => derivedHueArr.push(scale(easingInOutSine(reverseSmp[y])));
+  let c1 = (x) => baseHueArr.unshift(scale(easingInOutSine(x)))
+  let c2 = (y) => derivedHueArr.push(scale(easingInOutSine(reverseSmp[y])))
 
   //Map the samples to c1 and c2
-  map(smp, (t, y) => c1(t) && c2(y));
+  map(smp, (t, y) => c1(t) && c2(y))
   // Concat,deduplicate the color arrays and return them as hex
-  return uniq(map(concat(baseHueArr, derivedHueArr), (c) => formatHex8(c)));
-};
+  return uniq(map(concat(baseHueArr, derivedHueArr), (c) => formatHex8(c)))
+}
 
-export { pairedScheme };
+export { pairedScheme }
 
 // For 20 iterations only 11 colors are unique.
 // What if I remove _.uniq ?

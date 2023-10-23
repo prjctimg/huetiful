@@ -48,10 +48,18 @@ const pastelSample = {
 //Normalize the s and v channels between low and max values for each
 
 /**
+ * @function
  * @description Returns a random pastel variant of the passed in color.
  * @param color The color to return a pastel variant of.
  * @param hex Pass in true to return an 8-character hex code else it will return an HSV color object.
  * @returns A random pastel color.
+ * @example
+ * 
+ * 
+import { pastel } from 'huetiful-js'
+
+console.log(pastel("green", true))
+// #036103ff
  */
 const pastelMapper = (color: Color, hex = true): Color => {
   color = converter("hsv")(color)

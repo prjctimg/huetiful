@@ -1,8 +1,8 @@
 // @ts-nocheck
-import type { factor, Color, ColorSpaces } from "../paramTypes.ts";
-import { getChannel } from "../core-utils/get.ts";
-import { sortedArr } from "../core-utils/helpers.ts";
-import { differenceEuclidean } from "culori";
+import type { factor, Color, ColorSpaces } from "../paramTypes.ts"
+import { getChannel } from "../core-utils/get.ts"
+import { sortedArr } from "../core-utils/helpers.ts"
+import { differenceEuclidean } from "culori"
 
 /**
  * @function
@@ -13,6 +13,26 @@ import { differenceEuclidean } from "culori";
  * @param weights The weighting values to pass to the Euclidean function. Default is [1,1,1,0].
  * @param mode The color space to calculate the distance in .
  * @returns An array of the sorted color values.
+ * @example
+ * import { sortByDistance } from 'huetiful-js'
+
+let sample = ['purple', 'green', 'red', 'brown']
+console.log(
+  sortByDistance(sample, 'yellow', 'asc', {
+    mode: 'lch',
+  })
+)
+
+// [ 'brown', 'red', 'green', 'purple' ]
+
+let sample = ['purple', 'green', 'red', 'brown']
+console.log(
+  sortByDistance(sample, 'yellow', 'asc', {
+    mode: 'lch',
+  })
+)
+
+// [ 'green', 'brown', 'red', 'purple' ]
  */
 
 const sortByDistance = (
@@ -20,14 +40,14 @@ const sortByDistance = (
   against: Color,
   order?: "asc" | "desc",
   mode?: ColorSpaces,
-  weights?: [number, number, number, number],
+  weights?: [number, number, number, number]
 ): Color[] => {
-  const factor: factor = "distance";
+  const factor: factor = "distance"
   const cb = (against: Color, mode: ColorSpaces) => (color: Color) =>
-    differenceEuclidean(mode || "lch", weights || [1, 1, 1, 0])(against, color);
+    differenceEuclidean(mode || "lch", weights || [1, 1, 1, 0])(against, color)
   //Sorting the color array of object by the 'distance' property in the specified order.
 
-  return sortedArr(factor, cb(against, mode), order)(colors);
-};
+  return sortedArr(factor, cb(against, mode), order)(colors)
+}
 
-export { sortByDistance };
+export { sortByDistance }

@@ -10,6 +10,9 @@ import {
   earthtone,
   getHue,
   getComplimentaryHue,
+  pairedScheme,
+  pastel,
+  filterByDistance,
 } from "./dist/huetiful.esm.mjs"
 
 let sample = [
@@ -24,4 +27,4 @@ let sample = [
   "#4e0000",
 ]
 
-console.log(getComplimentaryHue("#3e0000"))
+console.log(filterByDistance(sample, "green", 0.001))

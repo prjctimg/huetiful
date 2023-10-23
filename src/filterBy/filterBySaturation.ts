@@ -1,8 +1,8 @@
 // @ts-nocheck
-import { multiply } from "lodash-es";
-import { getChannel } from "../core-utils/get.ts";
-import type { Color, factor } from "../paramTypes";
-import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
+import { multiply } from "lodash-es"
+import { getChannel } from "../core-utils/get.ts"
+import type { Color, factor } from "../paramTypes"
+import { colorObjArr, filteredArr } from "../core-utils/helpers.ts"
 
 /**
  *  @function
@@ -11,22 +11,41 @@ import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
  * @param  startSaturation The minimum end of the saturation range.
  * @param  endSaturation The maximum end of the saturation range.
  * @returns Array of filtered colors.
+ * @example
+ * import { filterByContrast } from 'huetiful-js'
+
+let sample = [
+  '#00ffdc',
+  '#00ff78',
+  '#00c000',
+  '#007e00',
+  '#164100',
+  '#ffff00',
+  '#310000',
+  '#3e0000',
+  '#4e0000',
+  '#600000',
+  '#720000',
+]
+
+console.log(filterByContrast(sample, 'green', '>=3'))
+// [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
  */
 
 const filterBySaturation = (
   colors: Color[],
   startSaturation = 0.05,
-  endSaturation = 1,
+  endSaturation = 1
 ): Color[] => {
-  const factor: factor = "saturation";
-  const cb = getChannel("lch.c");
+  const factor: factor = "saturation"
+  const cb = getChannel("lch.c")
 
   //  Normalize saturation ranges later
   return filteredArr(factor, cb)(
     colors,
     multiply(100, startSaturation),
-    multiply(100, endSaturation),
-  );
-};
+    multiply(100, endSaturation)
+  )
+}
 
-export { filterBySaturation };
+export { filterBySaturation }
