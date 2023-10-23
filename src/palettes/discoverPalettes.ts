@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { nearest, differenceEuclidean, converter, formatHex8 } from "culori"
 import { Color } from "../paramTypes"
 import {

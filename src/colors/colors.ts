@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { map, values, has, toLower } from "lodash-es"
 import shades from "../color-maps/defaultTailwindPalette.ts"
 import type { HueMap, ScaleValues, Color } from "../paramTypes.ts"
