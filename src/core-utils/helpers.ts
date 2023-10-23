@@ -243,8 +243,24 @@ const expressionParser = (
   return src
 }
 
+/**
+ * @function
+ * Matches the chroma/saturation channel of any compliant color space
+ * @param colorSpace The color space to match saturation/chroma channel.
+ * @returns The mode channel string passed to getChannel()
+ */
+const matchChromaChannel = (colorSpace: HueColorSpaces | string): string => {
+  // Matches any string with c or s
+  const reChroma = /(s|c)/
+  let ch = reChroma.exec(colorSpace)
+
+  return reChroma.test(colorSpace)
+    ? `${colorSpace}.${ch[0]}`
+    : Error(`The color space ${colorSpace} has no chroma/saturation channel.`)
+}
+
 export {
-  argType,
+  matchChromaChannel,
   adjustHue,
   colorObjArr,
   filteredArr,

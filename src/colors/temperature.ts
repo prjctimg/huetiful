@@ -2,7 +2,7 @@
 
 import {
   concat,
-  find,
+  some,
   inRange,
   max,
   min,
@@ -24,16 +24,40 @@ import { floorCeil } from "../core-utils/helpers.ts"
  * @description Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.
  * @param color The color to check the temperature.
  * @returns True or false.
+ * @example
+ * 
+ * import { isCool } from 'huetiful-js'
+
+let sample = [
+  "#00ffdc",
+  "#00ff78",
+  "#00c000"
+];
+
+
+console.log(isCool(sample[7]));
+// false
+
+console.log(map(sample, isCool));
+
+// [ true,  false, truee]
+
+
+
  */
 const isCool = (color: Color): boolean => {
   // First we need to get the hue value which we'll pass to the predicate
   let factor = getChannel("lch.h")(color)
 
-  return find(hueTempMap, (val, key) =>
-    inRange(floorCeil(factor), val["cool"][0], val["cool"][1])
-  )
-    ? stubTrue()
-    : stubFalse()
+  if (
+    some(hueTempMap, (val, key) =>
+      inRange(floorCeil(factor), val["cool"][0], val["cool"][1])
+    )
+  ) {
+    return true
+  } else {
+    return false
+  }
 }
 
 /**
@@ -41,15 +65,37 @@ const isCool = (color: Color): boolean => {
  * @description Checks if a color can be roughly classified as a warm color. Returns true if color is a warm color else false.
  * @param color The color to check the temperature.
  * @returns True or false.
+ * @example import { isWarm } from 'huetiful-js'
+
+let sample = [
+  "#00ffdc",
+  "#00ff78",
+  "#00c000"
+];
+
+
+
+console.log(isWarm(sample[7]));
+//true
+
+console.log(map(sample, isWarm));
+
+
+// [ false, true,  false]
+
  */
 const isWarm = (color: Color): boolean => {
   const factor = getChannel("lch.h")(color)
 
-  return find(hueTempMap, (val, key) =>
-    inRange(floorCeil(factor), val["warm"][0], val["warm"][1])
-  )
-    ? stubTrue()
-    : stubFalse()
+  if (
+    some(hueTempMap, (val, key) =>
+      inRange(floorCeil(factor), val["warm"][0], val["warm"][1])
+    )
+  ) {
+    return true
+  } else {
+    return false
+  }
 }
 
 /**

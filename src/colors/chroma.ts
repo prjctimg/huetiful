@@ -3,21 +3,8 @@
 
 import { Color, HueColorSpaces, factor } from "../paramTypes"
 import { getChannel } from "../core-utils/get.ts"
-import {
-  defaultTo,
-  fromPairs,
-  get,
-  isUndefined,
-  map,
-  gt,
-  sortBy,
-  subtract,
-  last,
-  first,
-  remove,
-  split,
-  lt,
-} from "lodash-es"
+import { matchChromaChannel } from "../core-utils/helpers"
+import { remove } from "lodash-es"
 import { colorObjArr, filteredArr, sortedArr } from "../core-utils/helpers"
 
 //  The factor being investigated.
@@ -26,16 +13,6 @@ const factor: factor = "saturation"
 
 // I must test if the passed in mode has a chroma/saturation channel. Should I use RegExp  ?
 
-const mode = (colorSpace: HueColorSpaces | string): string => {
-  // Matches any string with c or s
-  const reChroma = /(s|c)/
-  let ch = reChroma.exec(colorSpace)
-
-  return reChroma.test(colorSpace)
-    ? `${colorSpace}.${ch[0]}`
-    : Error(`The color space ${colorSpace} has no chroma/saturation channel.`)
-}
-
 // The callback to invoke per color in the passed in collection.
 // The subtrahend is each color in the collection
 //This means that the color object with the smallest chroma value is the  nearest chroma.
@@ -43,16 +20,19 @@ const mode = (colorSpace: HueColorSpaces | string): string => {
 const chromaDiff =
   (color: Color, colorSpace: HueColorSpaces | string) =>
   (subtrahend: Color) => {
-    let cs = mode(colorSpace)
-    return lt(getChannel(cs)(color), getChannel(cs)(subtrahend))
-      ? subtract(getChannel(cs)(subtrahend), getChannel(cs)(color))
-      : subtract(getChannel(cs)(color), getChannel(cs)(subtrahend))
+    let cs = matchChromaChannel(colorSpace)
+
+    if (getChannel(cs)(color) < getChannel(cs)(subtrahend)) {
+      return getChannel(cs)(subtrahend) - getChannel(cs)(color)
+    } else {
+      return getChannel(cs)(color) - getChannel(cs)(subtrahend)
+    }
   }
 
 // If the predicate returns undefined or false on the chroma channel then it means that it is an achromatic color.
 // Callback func for the minHue and maxHue utils. The funny thing is that most of the code is similar with minor changes here and there
 const predicate = (colorSpace: HueColorSpaces) => (color: Color) =>
-  getChannel(mode(colorSpace))(color) || undefined
+  getChannel(matchChromaChannel(colorSpace))(color) || undefined
 
 /**
  *
@@ -62,6 +42,14 @@ const predicate = (colorSpace: HueColorSpaces) => (color: Color) =>
  * @param colors The collection of colors to compare against.
  * @param colorSpace The mode color space to perform the computation in.
  * @returns The chroma/saturation value from the color with the smallest chroma distance. If the colors are achromatic, it returns undefined.
+ * @example
+ * 
+ * import { getFarthestChroma } from 'huetiful-js'
+
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(getFarthestChroma('lime', sample, 'lch'))
+// 90.87480913244802
  */
 const getNearestChroma = (
   color: Color,
@@ -73,7 +61,7 @@ const getNearestChroma = (
     sortedArr(factor, cb, "asc", true)(colors),
     (el) => el[factor] !== undefined
   )
-  return get(first(sortedObjArr), factor)
+  return sortedObjArr[0][factor]
 }
 
 /**
@@ -84,6 +72,14 @@ const getNearestChroma = (
  * @param colors The collection of colors to compare against.
  * @param colorSpace The mode color space to perform the computation in.
  * @returns The chroma/saturation value from the color with the largest saturation distance. If the colors are achromatic, it returns undefined.
+ * @example 
+ * 
+ * import { getFarthestChroma } from 'huetiful-js'
+
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(getFarthestChroma('lime', sample, 'lch'))
+// 90.87480913244802
  */
 
 const getFarthestChroma = (
@@ -93,10 +89,10 @@ const getFarthestChroma = (
 ): number => {
   const cb = chromaDiff(color, colorSpace || "lch")
   let sortedObjArr = remove(
-    sortedArr(factor, cb, "asc", true)(colors),
+    sortedArr(factor, cb, "desc", true)(colors),
     (el) => el[factor] !== undefined
   )
-  return get(last(sortedObjArr), factor)
+  return sortedObjArr[0][factor]
 }
 
 /**
@@ -106,6 +102,14 @@ const getFarthestChroma = (
  * @param colorSpace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false.
  * @returns The smallest chroma/saturation value in the colors passed in or a custom object.
+ * @example
+ * 
+ * import { minChroma } from 'huetiful-js'
+
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(minChroma(sample, 'lch'))
+// 22.45669293295522
  */
 const minChroma = (
   colors: Color[],
@@ -116,13 +120,13 @@ const minChroma = (
     sortedArr(factor, predicate(colorSpace || "lch"), "asc", true)(colors),
     (el) => el[factor] !== undefined
   )
-  let value
+  let value: number | { factor: number; name: Color }
 
-  if (gt(result.length, 0)) {
+  if (result.length > 0) {
     if (colorObj) {
-      value = first(result)
+      value = result[0]
     } else {
-      value = get(first(result), factor)
+      value = result[0][factor]
     }
   }
 
@@ -136,6 +140,14 @@ const minChroma = (
  * @param colorSpace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false.
  * @returns The largest saturation value in the colors passed in or a custom object.
+ * @example 
+ * 
+ * import { maxChroma } from 'huetiful-js'
+
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(maxChroma(sample, 'lch'))
+// 67.22120855010492
  */
 const maxChroma = (
   colors: Color[],
@@ -143,17 +155,17 @@ const maxChroma = (
   colorObj = false
 ): number | { factor: number; color: Color } => {
   const result: Array<{ factor: number; name: Color }> = remove(
-    sortedArr(factor, predicate(colorSpace || "lch"), "asc", true)(colors),
+    sortedArr(factor, predicate(colorSpace || "lch"), "desc", true)(colors),
     (el) => el[factor] !== undefined
   )
 
-  let value
+  let value: { factor: number; name: Color } | number
 
-  if (gt(result.length, 0)) {
+  if (result.length > 0) {
     if (colorObj) {
-      value = last(result)
+      value = result[0]
     } else {
-      value = get(last(result), factor)
+      value = result[0][factor]
     }
   }
 

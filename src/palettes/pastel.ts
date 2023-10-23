@@ -1,8 +1,8 @@
 //@ts-nocheck
 // Pastels.mjs. - This module creates pastel versions of a color. It will take an arr or single value , tweak it and then return the result. Optional overrides for min max values when iterating over an arr.
-import { Color } from "../paramTypes.ts";
-import { converter, formatHex8 } from "culori";
-import { map, min, max, mean, set, random } from "lodash-es";
+import { Color } from "../paramTypes.ts"
+import { converter, formatHex8 } from "culori"
+import { map, min, max, mean, set, random } from "lodash-es"
 
 const samplePastelObj = [
   {
@@ -31,10 +31,10 @@ const samplePastelObj = [
     saturation: 0.3881856540084388,
     value: 0.9294117647058824,
   },
-];
+]
 
-const sampleSaturation = map(samplePastelObj, (el) => el["saturation"]);
-const sampleValues = map(samplePastelObj, (el) => el["value"]);
+const sampleSaturation = map(samplePastelObj, (el) => el["saturation"])
+const sampleValues = map(samplePastelObj, (el) => el["value"])
 
 const pastelSample = {
   averageSaturation: mean(sampleValues),
@@ -43,7 +43,7 @@ const pastelSample = {
   maxSampleSaturation: max(sampleSaturation),
   minSampleValue: min(sampleValues),
   maxSampleValue: max(sampleValues),
-};
+}
 
 //Normalize the s and v channels between low and max values for each
 
@@ -54,7 +54,7 @@ const pastelSample = {
  * @returns A random pastel color.
  */
 const pastelMapper = (color: Color, hex = true): Color => {
-  color = converter("hsv")(color);
+  color = converter("hsv")(color)
 
   // For now we're simply returning an hsv object with the s and v channel set to the averages
   return hex
@@ -69,15 +69,17 @@ const pastelMapper = (color: Color, hex = true): Color => {
         s: random(
           pastelSample["minSampleSaturation"],
           pastelSample["maxSampleSaturation"],
-          true,
+          true
         ),
         v: random(
           pastelSample["minSampleValue"],
           pastelSample["maxSampleValue"],
-          true,
+          true
         ),
         mode: "hsv",
-      };
-};
+      }
+}
 
-export { pastelMapper as pastel };
+export { pastelMapper as pastel }
+
+// TODO: Fix duplicate colors returned from the func

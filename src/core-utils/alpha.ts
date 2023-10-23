@@ -1,16 +1,8 @@
 //@ts-nocheck
-import { converter, formatHex8 } from "culori";
-import {
-  defaultTo,
-  divide,
-  inRange,
-  isNumber,
-  isString,
-  isUndefined,
-  set,
-} from "lodash-es";
-import type { Color } from "../paramTypes.ts";
-import { expressionParser } from "./helpers.ts";
+import { converter, formatHex8 } from "culori"
+import { inRange } from "lodash-es"
+import type { Color } from "../paramTypes.ts"
+import { expressionParser } from "./helpers.ts"
 
 /**
  * @function
@@ -18,25 +10,39 @@ import { expressionParser } from "./helpers.ts";
  * @param color The color with the targeted opacity/alpha channel.
  * @param value The value to apply to the opacity channel. The value is between [0,1]
  * @returns color The resulting color. Returns an 8 character hex code.
+ * @example
+ * 
+ * // Getting the alpha
+console.log(alpha('#a1bd2f0d'))
+// 0.050980392156862744
+
+// Setting the alpha
+
+let myColor = alpha('b2c3f1', 0.5)
+
+console.log(myColor)
+
+// #b2c3f180
  */
 
 const alpha = (color: Color, value?: number | string): Color | number => {
   // We never perfom an operation on an undefined color. Defaults to pure black
-  defaultTo(color, "#000000");
-  const src = converter("rgb")(color);
-  let channel = "alpha";
+  defaultTo(color, "#000000")
+  const src: Color = converter("rgb")(color)
+  let channel = "alpha"
 
-  if (isUndefined(value)) {
-    return src[channel];
-  } else if (isNumber(value)) {
-    inRange(value, 0, 1.0)
-      ? (src[channel] = value)
-      : (src[channel] = divide(100, value));
-  } else if (isString(value)) {
-    set(src, channel, defaultTo(src[channel], 1));
-    expressionParser(src, channel, value);
+  if (typeof value === "undefined" || null) {
+    return src[channel]
+  } else if (typeof value === "number") {
+    if (inRange(value, 0, 1)) {
+      src[channel] = value
+    } else {
+      src[channel] = value / 100
+    }
+  } else if (typeof value === "string") {
+    expressionParser(src, channel, value)
   }
-  return formatHex8(src);
-};
+  return formatHex8(src)
+}
 
-export { alpha };
+export { alpha }

@@ -1,7 +1,7 @@
 //This module contains getNearestHue,getFarthestHue,minHue and maxHue which are collection based utils that return the color with the queried factor.
 // @ts-nocheck
-import { Color, HueColorSpaces, factor } from "../paramTypes";
-import { getChannel } from "../core-utils/get.ts";
+import { Color, HueColorSpaces, factor } from "../paramTypes"
+import { getChannel } from "../core-utils/get.ts"
 import {
   defaultTo,
   filter,
@@ -15,19 +15,19 @@ import {
   last,
   first,
   remove,
-} from "lodash-es";
-import { colorObjArr, filteredArr, sortedArr } from "../core-utils/helpers";
+} from "lodash-es"
+import { colorObjArr, filteredArr, sortedArr } from "../core-utils/helpers"
 
 //  Globals
 
-const { abs } = Math;
+const { abs } = Math
 
-const factor: factor = "hue";
+const factor: factor = "hue"
 const mode = (colorSpace: HueColorSpaces): string =>
-  `${defaultTo(colorSpace, "lch")}.h`;
+  `${defaultTo(colorSpace, "lch")}.h`
 // The hue value of our color which we are using for comparison
 const targetHue = (color: Color, colorSpace: HueColorSpaces): number =>
-  getChannel(mode(colorSpace))(color);
+  getChannel(mode(colorSpace))(color)
 
 // The callback to invoke per color in the passed in collection.
 // Return the absolute value since hue is a cyclic value which can either be  in clockwise/anti-clockwise.
@@ -38,15 +38,15 @@ const cb =
     return abs(
       subtract(
         targetHue(color, colorSpace),
-        getChannel(mode(colorSpace))(subtrahend),
-      ),
-    );
-  };
+        getChannel(mode(colorSpace))(subtrahend)
+      )
+    )
+  }
 
 // Callback func for the minHue and maxHue utils. The funny thing is that most of the code is similar with minor changes here and there
 const predicate = (colorSpace: HueColorSpaces) => (color: Color) => {
-  return getChannel(mode(colorSpace))(color) || undefined;
-};
+  return getChannel(mode(colorSpace))(color) || undefined
+}
 
 /**
  *
@@ -56,22 +56,31 @@ const predicate = (colorSpace: HueColorSpaces) => (color: Color) => {
  * @param colors The collection of colors to compare against.
  * @param colorSpace The mode color space to perform the computation in.
  * @returns The hue value from the color with the smallest hue distance. If the colors are achromatic, it returns undefined.
+ * @example
+ * 
+ * import { getNearestHue } from 'huetiful-js'
+
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(getNearestHue('lime', sample, 'lch'))
+
+// 23.962083662849253
  */
 const getNearestHue = (
   color: Color,
   colors: Color[],
-  colorSpace?: HueColorSpaces,
+  colorSpace?: HueColorSpaces
 ): number => {
   return get(
     first(
       remove(
         sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors),
-        (el) => el[factor] !== undefined,
-      ),
+        (el) => el[factor] !== undefined
+      )
     ),
-    factor,
-  );
-};
+    factor
+  )
+}
 
 /**
  *
@@ -81,23 +90,29 @@ const getNearestHue = (
  * @param colors The collection of colors to compare against.
  * @param colorSpace The mode color space to perform the computation in.
  * @returns The hue value from the color with the largest hue distance. If the colors are achromatic, it returns undefined.
- */
+ *@example
+import { getFarthestHue } from 'huetiful-js'
+
+console.log(getFarthestHue('lime', sample, 'lch'))
+// 139.16534433552653
+
+*/
 
 const getFarthestHue = (
   color: Color,
   colors: Color[],
-  colorSpace?: HueColorSpaces,
+  colorSpace?: HueColorSpaces
 ): number => {
   return get(
     last(
       remove(
         sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors),
-        (el) => el[factor] !== undefined,
-      ),
+        (el) => el[factor] !== undefined
+      )
     ),
-    factor,
-  );
-};
+    factor
+  )
+}
 
 /**
  *@function
@@ -106,28 +121,36 @@ const getFarthestHue = (
  * @param colorSpace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.
  * @returns The smallest hue value in the colors passed in or a custom object.
+ * @example
+ * 
+ * import { minHue } from 'huetiful-js'
+
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(minHue(sample, 'lch'))
+// 12.462831644544274
  */
 const minHue = (
   colors: Color[],
   colorSpace?: HueColorSpaces,
-  colorObj = false,
+  colorObj = false
 ): number | { factor: number; color: Color } => {
   const result: Array<{ factor: number; name: Color }> = remove(
     sortedArr(factor, predicate(colorSpace), "asc", true)(colors),
-    (el) => el[factor] !== undefined,
-  );
-  let value;
+    (el) => el[factor] !== undefined
+  )
+  let value
 
   if (gt(result.length, 0)) {
     if (colorObj) {
-      value = first(result);
+      value = first(result)
     } else {
-      value = get(first(result), factor);
+      value = get(first(result), factor)
     }
   }
 
-  return value;
-};
+  return value
+}
 
 /**
  *@function
@@ -136,28 +159,35 @@ const minHue = (
  * @param colorSpace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.
  * @returns The largest hue value in the colors passed in or a custom object.
+ * @example
+ * 
+ * import { maxHue } from 'huetiful-js'
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(maxHue(sample, 'lch'))
+// 273.54920266436477
  */
 const maxHue = (
   colors: Color[],
   colorSpace?: HueColorSpaces,
-  colorObj = false,
+  colorObj = false
 ): number | { factor: number; color: Color } => {
   const result: Array<{ factor: number; name: Color }> = remove(
     sortedArr(factor, predicate(colorSpace), "asc", true)(colors),
-    (el) => el[factor] !== undefined,
-  );
+    (el) => el[factor] !== undefined
+  )
 
-  let value;
+  let value
 
   if (gt(result.length, 0)) {
     if (colorObj) {
-      value = last(result);
+      value = last(result)
     } else {
-      value = get(last(result), factor);
+      value = get(last(result), factor)
     }
   }
 
-  return value;
-};
+  return value
+}
 
-export { getFarthestHue, getNearestHue, maxHue, minHue };
+export { getFarthestHue, getNearestHue, maxHue, minHue }
