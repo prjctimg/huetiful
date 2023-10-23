@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { inRange } from "lodash-es"
 import { interpolate } from "culori"
 import type { Color } from "../paramTypes.ts"

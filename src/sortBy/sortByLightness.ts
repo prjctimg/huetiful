@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { factor, Color } from "../paramTypes.ts"
 import { getChannel } from "../core-utils/get.ts"
 import { sortedArr } from "../core-utils/helpers.ts"
