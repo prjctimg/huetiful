@@ -1,3 +1,5 @@
+[![Build and Deploy](https://github.com/prjctimg/huetiful/actions/workflows/deploy.yaml/badge.svg?branch=api&event=deployment)](https://github.com/prjctimg/huetiful/actions/workflows/deploy.yaml)
+
 ![](./docs/content/images/huetiful-logo.png)
 
 JavaScript library for simple color manipulations based on the Culori API.
