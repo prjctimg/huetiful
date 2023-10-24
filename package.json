@@ -6,7 +6,7 @@
   "module": "./dist/huetiful.esm.mjs",
   "browser": "./dist/huetiful.min.js",
   "types": "./dist/index.d.ts",
-  "description": "JavaScript library for color manipulations based on Culori.",
+  "description": "JavaScript library for general purpose color manipulations based on Culori.",
   "dependencies": {
     "culori": "^3.0.1",
     "lodash-es": "^4.17.21"
@@ -41,7 +41,7 @@
   ],
   "author": "Dean Tarisai",
   "email": "arcaneqoder@gmail.com",
-  "homepage": "https://prjctimg.github.io/huetiful-docs",
+  "homepage": "https://huetiful-docs.vercel.app",
   "license": "Apache 2.0",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"

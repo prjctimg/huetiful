@@ -49,7 +49,9 @@ import {
   minChroma,
 } from "./colors/chroma.ts"
 import { discoverPalettes } from "./palettes/discoverPalettes.ts"
+import { hex } from "./core-utils/hex.ts"
 export {
+  hex,
   overtone,
   discoverPalettes,
   getFarthestLightness,
