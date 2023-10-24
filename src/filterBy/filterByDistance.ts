@@ -1,8 +1,8 @@
 // @ts-nocheck
 
-import { colorObjArr, filteredArr } from "../core-utils/helpers.ts";
-import { differenceEuclidean } from "culori";
-import { Color, factor, ColorSpaces } from "../paramTypes.ts";
+import { colorObjArr, filteredArr } from "../core-utils/helpers.ts"
+import { differenceEuclidean } from "culori"
+import { Color, factor, ColorSpaces } from "../paramTypes.ts"
 
 /**
  *  @function
@@ -13,6 +13,22 @@ import { Color, factor, ColorSpaces } from "../paramTypes.ts";
  * @param weights The weighting values to pass to the Euclidean function. Default is [1,1,1,0].
  * @param mode The color space to calculate the distance in .
  * @returns Array of filtered colors.
+ * @example
+ * import { filterByDistance } from 'huetiful-js'
+
+let sample = [
+  "#ffff00",
+  "#00ffdc",
+  "#00ff78",
+  "#00c000",
+  "#007e00",
+  "#164100",
+  "#720000",
+  "#600000",
+]
+
+console.log(filterByDistance(sample, "yellow", 0.1))
+// [ '#ffff00' ]
  */
 
 const filterByDistance = (
@@ -21,20 +37,24 @@ const filterByDistance = (
   startDistance = 0.05,
   endDistance?: number,
   mode?: ColorSpaces,
-  weights?: [number, number, number, number],
+  weights?: [number, number, number, number]
 ): Color[] => {
   // Formatting color tokens to parseable type
   // How do I get the distance
 
   // Create an object that has the distance and name of color as properties.
-  const factor: factor = "distance";
+  const factor: factor = "distance"
   const cb = (against: Color, mode: ColorSpaces) => (color: Color) =>
-    differenceEuclidean(mode || "lch", weights || [1, 1, 1, 0])(against, color);
+    differenceEuclidean(mode || "lch", weights || [1, 1, 1, 0])(against, color)
 
-  return filteredArr(factor, cb(against))(colors, startDistance, endDistance);
-};
+  return filteredArr(factor, cb(against, mode))(
+    colors,
+    startDistance,
+    endDistance
+  )
+}
 
-export { filterByDistance };
+export { filterByDistance }
 
 // Make modes lower case and string keys
 // Debug 'Cannot destructure mode'

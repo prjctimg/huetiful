@@ -33,7 +33,7 @@ console.log(overtone("cyan"))
 console.log(overtone("blue"))
 // false
  */
-const overtone = (color: Color): boolean => {
+const overtone = (color: Color): string | boolean => {
   const factor = getChannel("lch.h")(color)
   let hues: string[]
   // We check if the color can be found in the defined ranges
