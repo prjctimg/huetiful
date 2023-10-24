@@ -55,8 +55,7 @@ const getNearestHue = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
-  return
-  remove(
+  return remove(
     sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors),
     (el) => el[factor] !== undefined
   )[0][factor]

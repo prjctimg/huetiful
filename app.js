@@ -14,6 +14,7 @@ import {
   pastel,
   filterByDistance,
   overtone,
+  getChannel,
 } from "./dist/huetiful.esm.mjs"
 
 let sample = [
@@ -27,11 +28,7 @@ let sample = [
   "#600000",
 ]
 
-console.log(overtone("fefefe"))
-// 'gray'
+console.log(getComplimentaryHue("pink", true))
+//// { hue: 'blue-green', color: '#97dfd7ff' }
 
-console.log(overtone("cyan"))
-// 'green'
-
-console.log(overtone("blue"))
-// false
+console.log(getComplimentaryHue("purple"))
