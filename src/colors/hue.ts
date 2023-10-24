@@ -2,29 +2,16 @@
 // @ts-nocheck
 import { Color, HueColorSpaces, factor } from "../paramTypes"
 import { getChannel } from "../core-utils/get.ts"
-import {
-  defaultTo,
-  filter,
-  fromPairs,
-  get,
-  isUndefined,
-  map,
-  gt,
-  sortBy,
-  subtract,
-  last,
-  first,
-  remove,
-} from "lodash-es"
+import { map, remove } from "lodash-es"
 import { colorObjArr, filteredArr, sortedArr } from "../core-utils/helpers"
+import { isAchromatic } from "./achromatic.ts"
 
 //  Globals
 
 const { abs } = Math
 
 const factor: factor = "hue"
-const mode = (colorSpace: HueColorSpaces): string =>
-  `${defaultTo(colorSpace, "lch")}.h`
+const mode = (colorSpace: HueColorSpaces): string => `${colorSpace || "lch"}.h`
 // The hue value of our color which we are using for comparison
 const targetHue = (color: Color, colorSpace: HueColorSpaces): number =>
   getChannel(mode(colorSpace))(color)
@@ -36,10 +23,7 @@ const cb =
   (color: Color, colorSpace: HueColorSpaces | string) =>
   (subtrahend: Color) => {
     return abs(
-      subtract(
-        targetHue(color, colorSpace),
-        getChannel(mode(colorSpace))(subtrahend)
-      )
+      targetHue(color, colorSpace) - getChannel(mode(colorSpace))(subtrahend)
     )
   }
 
@@ -71,15 +55,11 @@ const getNearestHue = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
-  return get(
-    first(
-      remove(
-        sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors),
-        (el) => el[factor] !== undefined
-      )
-    ),
-    factor
-  )
+  return
+  remove(
+    sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors),
+    (el) => el[factor] !== undefined
+  )[0][factor]
 }
 
 /**
@@ -103,15 +83,10 @@ const getFarthestHue = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
-  return get(
-    last(
-      remove(
-        sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors),
-        (el) => el[factor] !== undefined
-      )
-    ),
-    factor
-  )
+  return remove(
+    sortedArr(factor, cb(color, mode(colorSpace)), "desc", true)(colors),
+    (el) => el[factor] !== undefined
+  )[0][factor]
 }
 
 /**
@@ -141,11 +116,11 @@ const minHue = (
   )
   let value
 
-  if (gt(result.length, 0)) {
+  if (result.length > 0) {
     if (colorObj) {
-      value = first(result)
+      value = result[0]
     } else {
-      value = get(first(result), factor)
+      value = result[0][factor]
     }
   }
 
@@ -173,17 +148,17 @@ const maxHue = (
   colorObj = false
 ): number | { factor: number; color: Color } => {
   const result: Array<{ factor: number; name: Color }> = remove(
-    sortedArr(factor, predicate(colorSpace), "asc", true)(colors),
+    sortedArr(factor, predicate(colorSpace), "desc", true)(colors),
     (el) => el[factor] !== undefined
   )
 
   let value
 
-  if (gt(result.length, 0)) {
+  if (result.length > 0) {
     if (colorObj) {
-      value = last(result)
+      value = result[0]
     } else {
-      value = get(last(result), factor)
+      value = result[0][factor]
     }
   }
 
