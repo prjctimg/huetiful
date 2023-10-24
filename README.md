@@ -1,4 +1,4 @@
-[![Build and publish to NPM](https://github.com/prjctimg/huetiful/actions/workflows/build.yml/badge.svg)](https://github.com/prjctimg/huetiful/actions/workflows/build.yml)
+(https://github.com/prjctimg/huetiful/actions/workflows/build.yml)
 ![](huetiful-logo.png)
 
 JavaScript library for simple color manipulations based on the Culori API.
