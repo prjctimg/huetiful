@@ -39,3 +39,5 @@ yarn-error.log*
 next-env.d.ts
 /_site
 
+app.js
+*.code-worspace
