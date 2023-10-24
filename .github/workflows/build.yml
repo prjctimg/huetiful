@@ -2,8 +2,8 @@ name: Build and publish to NPM
 
 on:
   push:
-    branch: main
-    tags: '*v'
+    branches: main
+    tags: "*v"
 
 jobs:
   build-and-publish:
