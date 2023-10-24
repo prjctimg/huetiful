@@ -28,8 +28,4 @@ let sample = [
   "#600000",
 ]
 
-console.log(getComplimentaryHue("pink", true))
-//// { hue: 'blue-green', color: '#97dfd7ff' }
-
-console.log(getComplimentaryHue("purple"))
-// #005700ff
+console.log(pairedScheme("blue", 5, 8, "light"))
