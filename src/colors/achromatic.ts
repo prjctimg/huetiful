@@ -1,8 +1,5 @@
 // @ts-nocheck
-import { inRange } from "lodash-es"
-import { interpolate } from "culori"
 import type { Color } from "../paramTypes.ts"
-import { rgb2num } from "../core-utils/rgb2num.ts"
 import { getChannel } from "../core-utils/get.ts"
 import { matchChromaChannel } from "../core-utils/helpers.ts"
 
@@ -55,21 +52,7 @@ console.log(map(grays, isAchromatic));
 
  */
 const isAchromatic = (color: Color): boolean => {
-  const black = "#000000",
-    white = "#FFFFFF"
-
   const cb = (mc: string) => getChannel(mc)(color)
-  // 1) Interpolate between white and black and then get the range of the colors from rgb2num. Use rgb mode internally.
-  // create the grayscale function
-  const gray = interpolate([black, white])
-
-  //Capture the min and max t for grayscale colors
-  const t_min = 0.001
-  const t_max = 0.998
-
-  // Capture the approx. min and max number range of grey
-  const min = rgb2num(gray(t_min))
-  const max = rgb2num(gray(t_max))
 
   // Store the value of chroma and saturation channels.
   const checkHsl = cb("hsl.s")
@@ -78,10 +61,7 @@ const isAchromatic = (color: Color): boolean => {
   // 2) Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
   //   OR
   // 2)Check if the color's numerical represantation is within the defined ranges.
-  if (
-    (checkHsl || checkLch) === (undefined || null || 0) ||
-    inRange(rgb2num(color), min, max)
-  ) {
+  if ((checkHsl || checkLch) === (undefined || null || 0)) {
     return true
   } else {
     return false

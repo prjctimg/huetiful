@@ -13,6 +13,7 @@ import {
   pairedScheme,
   pastel,
   filterByDistance,
+  overtone,
 } from "./dist/huetiful.esm.mjs"
 
 let sample = [
@@ -24,7 +25,13 @@ let sample = [
   "#164100",
   "#720000",
   "#600000",
-  "#4e0000",
 ]
 
-console.log(filterByDistance(sample, "green", 0.001))
+console.log(overtone("fefefe"))
+// 'gray'
+
+console.log(overtone("cyan"))
+// 'green'
+
+console.log(overtone("blue"))
+// false
