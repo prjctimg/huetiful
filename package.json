@@ -41,7 +41,7 @@
   ],
   "author": "Dean Tarisai",
   "email": "arcaneqoder@gmail.com",
-  "homepage": "https://prjctimg.github.io/huetiful-docs",
+  "homepage": "https://huetiful-docs.vercel.app",
   "license": "Apache 2.0",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
