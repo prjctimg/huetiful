@@ -10,8 +10,7 @@ JavaScript library for simple color manipulations based on the Culori API.
 - Create colors from templated values like pastels, hueshifted color scales etc
 - Reference to all colors in the default TailwindCSS palette with every shade as a function!
 - Categorize colors using their properties such as temperature and achromaticity
-- And much more. See the docs [here](https://prjctimg.github.io/huetiful)
-
+- And much more. See the docs [here](http s://huetiful-docs.vercel.app
 ## Installation
 
 Use [npm](https://www.npmjs.com/package/huetiful-js) to install the package.
