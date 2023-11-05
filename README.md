@@ -1,4 +1,7 @@
-![npm](https://img.shields.io/npm/:dm/:huetiful-js)
+![npm](https://img.shields.io/npm/dm/huetiful-js)
+![License](https://img.shields.io/npm/l/huetiful-js)
+![Latest release](https://img.shields.io/github/downloads/prjctimg/huetiful/latest/huetiful-js)
+
 
 ![](./huetiful-logo.png)
 
@@ -11,7 +14,7 @@ JavaScript library for simple color manipulations based on the Culori API.
 - Create colors from templated values like pastels, hueshifted color scales etc
 - Reference to all colors in the default TailwindCSS palette with every shade as a function!
 - Categorize colors using their properties such as temperature and achromaticity
-- And much more. See the docs [here](http s://huetiful-docs.vercel.app
+- And much more. See the docs [here](https://huetiful-docs.vercel.app
 ## Installation
 
 Use [npm](https://www.npmjs.com/package/huetiful-js) to install the package.
