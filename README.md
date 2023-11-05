@@ -1,3 +1,4 @@
+![npm](https://img.shields.io/npm/:dm/:huetiful-js)
 
 ![](./huetiful-logo.png)
 
