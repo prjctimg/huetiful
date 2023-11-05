@@ -1,6 +1,8 @@
 ![npm](https://img.shields.io/npm/dm/huetiful-js)
 ![License](https://img.shields.io/npm/l/huetiful-js)
-![Latest release](https://img.shields.io/github/downloads/prjctimg/huetiful/latest/huetiful-js)
+![GitHub issues](https://img.shields.io/github/issues/prjctimg/huetiful)
+![Scrutinizer coverage](https://img.shields.io/scrutinizer/coverage/g/prjctimg/huetiful/main)
+![GitHub Repo stars](https://img.shields.io/github/stars/prjctimg/huetiful)
 
 
 ![](./huetiful-logo.png)
