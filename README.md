@@ -32,3 +32,5 @@ Contributions are welcome! Help make this project better and easier to use for o
 ## License
 
 Released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license.
+
+![Contributors](https://img.shields.io/github/all-contributors/prjctimg/huetiful)
