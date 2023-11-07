@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "typescript-config/strict": "off",
+    "disown-opener": "off",
+    "meta-viewport": "off"
+  }
+}
