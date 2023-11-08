@@ -1,6 +1,6 @@
 {
   "name": "huetiful-js",
-  "version": "1.7.1",
+  "version": "1.7.3",
   "type": "module",
   "main": "./dist/huetiful.cjs",
   "module": "./dist/huetiful.esm.mjs",
@@ -8,14 +8,18 @@
   "types": "./dist/index.d.ts",
   "description": "JavaScript library for general purpose color manipulations based on Culori.",
   "dependencies": {
-    "culori": "^3.0.1",
-    "lodash-es": "^4.17.21"
+    "culori": "^3.0.1"
   },
   "devDependencies": {
     "@types/culori": "^2.0.0",
-    "@types/lodash-es": "^4.17.8",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
     "dts-bundle-generator": "^8.0.1",
     "esbuild": "^0.17.19",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
     "nodemon": "^3.0.1",
     "typescript": "^4.9.5"
   },
@@ -23,21 +27,28 @@
     "build": " node build.cjs",
     "prepare": " npm run build && npm run types",
     "types": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts",
-    "docs": "cd docs && npm run build:docs && npm run deploy:docs"
+    "docs": "cd docs && npm run build:docs && npm run deploy:docs",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --config .prettierrc 'src/**/*.ts' --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format && npm run lint",
+      "pre-push": "git pull"
+    }
   },
   "files": [
     "dist"
   ],
   "repository": "github:prjctimg/huetiful",
   "keywords": [
-    "LCH",
+    "lch",
     "palette",
     "color schemes",
     "color",
-    "Culori",
-    "functional",
-    "typescript",
-    "javascript"
+    "culori",
+    "gradients",
+    "tailwind"
   ],
   "author": "Dean Tarisai",
   "email": "arcaneqoder@gmail.com",
