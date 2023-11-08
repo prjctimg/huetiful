@@ -1,8 +1,8 @@
 // @ts-nocheck
 // From colorbrewr
 
-import { setChannel } from "../core-utils/set.ts"
-import { Color, tone } from "../paramTypes.ts"
+import { setChannel } from '../core-utils/set.ts';
+import { Color, tone } from '../paramTypes.ts';
 import {
   converter,
   easingSmootherstep,
@@ -13,8 +13,8 @@ import {
   interpolatorSplineBasisClosed,
   interpolatorSplineNatural,
   fixupAlpha,
-  samples,
-} from "culori"
+  samples
+} from 'culori';
 
 /**
  * @function pairedScheme
@@ -38,42 +38,39 @@ const pairedScheme = (
   num: number,
   via: tone
 ): Color[] => {
-  color = converter("lch")(color)
+  color = converter('lch')(color);
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
-  let derivedHue = setChannel("lch.h")(color, color["h"] + hueStep || 12)
+  let derivedHue = setChannel('lch.h')(color, color['h'] + hueStep || 12);
 
   // Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes
   let tones = {
-    dark: "#263238",
-    light: { l: 100, c: 0.1, h: 0, mode: "lch" },
-  }
+    dark: '#263238',
+    light: { l: 100, c: 0.1, h: 0, mode: 'lch' }
+  };
 
-  let scale = interpolate([color, tones[via || "dark"], derivedHue], "lch", {
+  let scale = interpolate([color, tones[via || 'dark'], derivedHue], 'lch', {
     h: {
       use: interpolatorSplineBasis,
-      fixup: fixupHueShorter,
+      fixup: fixupHueShorter
     },
     c: interpolatorSplineNatural,
     l: interpolatorSplineBasisClosed,
-    alpha: { fixup: fixupAlpha },
-  })
+    alpha: { fixup: fixupAlpha }
+  });
 
-  const { abs, round } = Math
+  const { abs, round } = Math;
 
   // Declare the num of iterations in samples() which will be used as the t value
   // Since the interpolation returns half duplicate values we double the sample value
   // Guard the num param against negative values and floats
-  let smp = samples((round(abs(num)) || 4) * 2)
+  let smp = samples((round(abs(num)) || 4) * 2);
 
   //The array to capture the different iterations
-  let results: Color[]
-  results = smp.map(
-    (t) => formatHex8(
-      scale
-      (easingSmootherstep(t))))
+  let results: Color[];
+  results = smp.map((t) => formatHex8(scale(easingSmootherstep(t))));
 
   // Return a slice of the array from the start to the half length of the array
-  return results.slice( 0, results.length / 2)
-}
+  return results.slice(0, results.length / 2);
+};
 
-export { pairedScheme }
+export { pairedScheme };

@@ -1,7 +1,6 @@
 // @ts-nocheck
-import type { Color } from "../paramTypes.ts"
-import { getChannel } from "../core-utils/get.ts"
-
+import type { Color } from '../paramTypes.ts';
+import { getChannel } from '../core-utils/get.ts';
 
 /**
  * @function
@@ -52,20 +51,20 @@ console.log(map(grays, isAchromatic));
 
  */
 const isAchromatic = (color: Color): boolean => {
-  const cb = (mc: string) => getChannel(mc)(color)
+  const cb = (mc: string) => getChannel(mc)(color);
 
   // Store the value of chroma and saturation channels.
-  const checkHsl = cb("hsl.s")
-  const checkLch = cb("lch.c")
+  const checkHsl = cb('hsl.s');
+  const checkLch = cb('lch.c');
 
   // 2) Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
   //   OR
   // 2)Check if the color's numerical represantation is within the defined ranges.
   if ((checkHsl || checkLch) === (undefined || null || 0)) {
-    return true
+    return true;
   } else {
-    return false
+    return false;
   }
-}
+};
 
-export { isAchromatic }
+export { isAchromatic };

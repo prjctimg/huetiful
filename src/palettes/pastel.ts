@@ -1,42 +1,42 @@
 //@ts-nocheck
 // Pastels.mjs. - This module creates pastel versions of a color. It will take an arr or single value , tweak it and then return the result. Optional overrides for min max values when iterating over an arr.
-import { Color } from "../paramTypes.ts"
-import { converter, formatHex8, averageNumber } from "culori"
-import { min, max } from "../fp/array.ts";
-import { random } from "../fp/number.ts";
-import { map, set, } from "lodash-es"
+import { Color } from '../paramTypes.ts';
+import { converter, formatHex8, averageNumber } from 'culori';
+import { min, max } from '../fp/array.ts';
+import { random } from '../fp/number.ts';
+import { map, set } from 'lodash-es';
 
 const samplePastelObj = [
   {
-    color: "#fea3aa",
+    color: '#fea3aa',
     saturation: 0.35826771653543305,
-    value: 0.996078431372549,
+    value: 0.996078431372549
   },
   {
-    color: "#f8b88b",
+    color: '#f8b88b',
     saturation: 0.43951612903225806,
-    value: 0.9725490196078431,
+    value: 0.9725490196078431
   },
-  { color: "#faf884", saturation: 0.472, value: 0.9803921568627451 },
+  { color: '#faf884', saturation: 0.472, value: 0.9803921568627451 },
   {
-    color: "#f2a2e8",
+    color: '#f2a2e8',
     saturation: 0.3305785123966942,
-    value: 0.9490196078431372,
+    value: 0.9490196078431372
   },
   {
-    color: "#b2cefe",
+    color: '#b2cefe',
     saturation: 0.2992125984251969,
-    value: 0.996078431372549,
+    value: 0.996078431372549
   },
   {
-    color: "#baed91",
+    color: '#baed91',
     saturation: 0.3881856540084388,
-    value: 0.9294117647058824,
-  },
-]
+    value: 0.9294117647058824
+  }
+];
 
-const sampleSaturation = samplePastelObj.map( (el) => el["saturation"])
-const sampleValues = samplePastelObj.map( (el) => el["value"])
+const sampleSaturation = samplePastelObj.map((el) => el['saturation']);
+const sampleValues = samplePastelObj.map((el) => el['value']);
 
 const pastelSample = {
   averageSaturation: averageNumber(sampleValues),
@@ -44,8 +44,8 @@ const pastelSample = {
   minSampleSaturation: min(sampleSaturation),
   maxSampleSaturation: max(sampleSaturation),
   minSampleValue: min(sampleValues),
-  maxSampleValue: max(sampleValues),
-}
+  maxSampleValue: max(sampleValues)
+};
 
 //Normalize the s and v channels between low and max values for each
 
@@ -64,35 +64,34 @@ console.log(pastel("green", true))
 // #036103ff
  */
 const pastel = (color: Color, hex = true): Color => {
-  color = converter("hsv")(color)
+  color = converter('hsv')(color);
 
   // For now we're simply returning an hsv object with the s and v channel set to the averages
   if (hex) {
     return formatHex8({
-      h: color["h"],
-      s: pastelSample["averageSaturation"],
-      v: pastelSample["averageValue"],
-      mode: "hsv",
-    })
-
+      h: color['h'],
+      s: pastelSample['averageSaturation'],
+      v: pastelSample['averageValue'],
+      mode: 'hsv'
+    });
   } else {
     return {
-      h: color["h"],
+      h: color['h'],
       s: random(
-        pastelSample["minSampleSaturation"],
-        pastelSample["maxSampleSaturation"],
+        pastelSample['minSampleSaturation'],
+        pastelSample['maxSampleSaturation'],
         true
       ),
       v: random(
-        pastelSample["minSampleValue"],
-        pastelSample["maxSampleValue"],
+        pastelSample['minSampleValue'],
+        pastelSample['maxSampleValue'],
         true
       ),
-      mode: "hsv",
-    }
+      mode: 'hsv'
+    };
   }
-}
+};
 
-export { pastel }
+export { pastel };
 
 // TODO: Fix duplicate colors returned from the func

@@ -1,7 +1,6 @@
-
-import { getTemp } from "../core-utils/getTemp.ts"
-import { Color, factor } from "../paramTypes.ts"
-import {  filteredArr } from "../fp/array.ts"
+import { getTemp } from '../core-utils/getTemp.ts';
+import { Color, factor } from '../paramTypes.ts';
+import { filteredArr } from '../fp/array.ts';
 
 /**
  * @function
@@ -46,12 +45,12 @@ const filterByTemp = (
   endTemp = 6000
 ): Color[] => {
   // This variable stores the array that matches the filtering criteria defined by the start and end hues
-  const factor: factor = "temp"
-  const cb = getTemp
+  const factor: factor = 'temp';
+  const cb = getTemp;
 
-  return filteredArr(factor, cb)(colors, startTemp, endTemp)
-}
+  return filteredArr(factor, cb)(colors, startTemp, endTemp);
+};
 
-export { filterByTemp }
+export { filterByTemp };
 
 //TODO Could also specify warm|cool to quickly return the filtered array. This param overrides startTemp and endTemp.

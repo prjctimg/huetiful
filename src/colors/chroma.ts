@@ -1,14 +1,14 @@
 // @ts-nocheck
 // This module contains minChroma,maxChroma,getFarthestChroma,getNearestChroma
 
-import { Color, HueColorSpaces, factor } from "../paramTypes"
-import { getChannel } from "../core-utils/get.ts"
-import { matchChromaChannel } from "../fp/string.ts"
-import { sortedArr } from "../fp/array.ts"
+import { Color, HueColorSpaces, factor } from '../paramTypes';
+import { getChannel } from '../core-utils/get.ts';
+import { matchChromaChannel } from '../fp/string.ts';
+import { sortedArr } from '../fp/array.ts';
 
 //  The factor being investigated.
 
-const factor: factor = "saturation"
+const factor: factor = 'saturation';
 
 // I must test if the passed in mode has a chroma/saturation channel. Should I use RegExp  ?
 
@@ -19,19 +19,19 @@ const factor: factor = "saturation"
 const chromaDiff =
   (color: Color, colorSpace: HueColorSpaces | string) =>
   (subtrahend: Color) => {
-    let cs = matchChromaChannel(colorSpace)
+    let cs = matchChromaChannel(colorSpace);
 
     if (getChannel(cs)(color) < getChannel(cs)(subtrahend)) {
-      return getChannel(cs)(subtrahend) - getChannel(cs)(color)
+      return getChannel(cs)(subtrahend) - getChannel(cs)(color);
     } else {
-      return getChannel(cs)(color) - getChannel(cs)(subtrahend)
+      return getChannel(cs)(color) - getChannel(cs)(subtrahend);
     }
-  }
+  };
 
 // If the predicate returns undefined or false on the chroma channel then it means that it is an achromatic color.
 // Callback func for the minHue and maxHue utils. The funny thing is that most of the code is similar with minor changes here and there
 const predicate = (colorSpace: HueColorSpaces) => (color: Color) =>
-  getChannel(matchChromaChannel(colorSpace))(color) || undefined
+  getChannel(matchChromaChannel(colorSpace))(color) || undefined;
 
 /**
  *
@@ -55,14 +55,16 @@ const getNearestChroma = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
-  const cb = chromaDiff(color, colorSpace || "lch")
-  let sortedObjArr = 
-    sortedArr(factor, cb, "asc", true)(colors)
-    .filter((el) => el[factor] !== undefined)
-    
-  
-  return sortedObjArr[0][factor]
-}
+  const cb = chromaDiff(color, colorSpace || 'lch');
+  let sortedObjArr = sortedArr(
+    factor,
+    cb,
+    'asc',
+    true
+  )(colors).filter((el) => el[factor] !== undefined);
+
+  return sortedObjArr[0][factor];
+};
 
 /**
  *
@@ -87,13 +89,16 @@ const getFarthestChroma = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
-  const cb = chromaDiff(color, colorSpace || "lch")
-  let sortedObjArr = 
-    sortedArr(factor, cb, "desc", true)(colors)
-    .filter((el) => el[factor] !== undefined)
-  
-  return sortedObjArr[0][factor]
-}
+  const cb = chromaDiff(color, colorSpace || 'lch');
+  let sortedObjArr = sortedArr(
+    factor,
+    cb,
+    'desc',
+    true
+  )(colors).filter((el) => el[factor] !== undefined);
+
+  return sortedObjArr[0][factor];
+};
 
 /**
  *@function
@@ -116,23 +121,25 @@ const minChroma = (
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  const result: Array<{ factor: number; name: Color }> = 
-    sortedArr(factor, predicate(colorSpace || "lch"), "asc", true)(colors)
-    .filter((el) => el[factor] !== undefined)
+  const result: Array<{ factor: number; name: Color }> = sortedArr(
+    factor,
+    predicate(colorSpace || 'lch'),
+    'asc',
+    true
+  )(colors).filter((el) => el[factor] !== undefined);
 
-
-  let value: number | { factor: number; name: Color }
+  let value: number | { factor: number; name: Color };
 
   if (result.length > 0) {
     if (colorObj) {
-      value = result[0]
+      value = result[0];
     } else {
-      value = result[0][factor]
+      value = result[0][factor];
     }
   }
 
-  return value
-}
+  return value;
+};
 
 /**
  *@function
@@ -155,22 +162,24 @@ const maxChroma = (
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  const result: Array<{ factor: number; name: Color }> = 
-    sortedArr(factor, predicate(colorSpace || "lch"), "desc", true)(colors)
-    .filter((el) => el[factor] !== undefined)
-  
+  const result: Array<{ factor: number; name: Color }> = sortedArr(
+    factor,
+    predicate(colorSpace || 'lch'),
+    'desc',
+    true
+  )(colors).filter((el) => el[factor] !== undefined);
 
-  let value: { factor: number; name: Color } | number
+  let value: { factor: number; name: Color } | number;
 
   if (result.length > 0) {
     if (colorObj) {
-      value = result[0]
+      value = result[0];
     } else {
-      value = result[0][factor]
+      value = result[0][factor];
     }
   }
 
-  return value
-}
+  return value;
+};
 
-export { getFarthestChroma, getNearestChroma, maxChroma, minChroma }
+export { getFarthestChroma, getNearestChroma, maxChroma, minChroma };

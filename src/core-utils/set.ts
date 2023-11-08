@@ -2,9 +2,9 @@
 
 // ported from chroma-js Color.set
 
-import { converter } from "culori"
-import type { Color } from "../paramTypes.ts"
-import { expressionParser } from "../fp/string.ts"
+import { converter } from 'culori';
+import type { Color } from '../paramTypes.ts';
+import { expressionParser } from '../fp/string.ts';
 /**
  * @function
  *@description Sets the value for the specified channel in a color.
@@ -26,22 +26,22 @@ console.log(getChannel('lch.h')(myColor))
 const setChannel =
   (mc: string) =>
   (color: Color, value: number | string): Color => {
-    const [mode, channel] = mc.split('.')
-    const src: Color = converter(mode)(color)
+    const [mode, channel] = mc.split('.');
+    const src: Color = converter(mode)(color);
 
     if (channel) {
-      if (typeof value === "number") {
-        src[channel] = value
-      } else if (typeof value === "string") {
-        expressionParser(src, channel, value)
+      if (typeof value === 'number') {
+        src[channel] = value;
+      } else if (typeof value === 'string') {
+        expressionParser(src, channel, value);
       } else {
-        throw new Error(`unsupported value for setChannel`)
+        throw new Error(`unsupported value for setChannel`);
       }
 
-      return src
+      return src;
     } else {
-      throw new Error(`unknown channel ${channel} in mode ${mode}`)
+      throw new Error(`unknown channel ${channel} in mode ${mode}`);
     }
-  }
+  };
 
-export { setChannel }
+export { setChannel };

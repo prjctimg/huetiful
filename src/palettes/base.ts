@@ -1,15 +1,14 @@
 //@ts-nocheck
-import { converter, formatHex8,easingSmoothstep ,samples} from "culori"
+import { converter, formatHex8, easingSmoothstep, samples } from 'culori';
 
-import type { Color } from "../paramTypes.ts"
-import { adjustHue,random } from "../fp/number.ts"
-
-
+import type { Color } from '../paramTypes.ts';
+import { adjustHue, random } from '../fp/number.ts';
 
 // Globals
 const cb = (iterations: number, distance: number, color: Color) =>
-samples(iterations)
-.map((val) => adjustHue((color["h"] + distance) * (val*easingSmoothstep(val))))
+  samples(iterations).map((val) =>
+    adjustHue((color['h'] + distance) * (val * easingSmoothstep(val)))
+  );
 
 /**
  * @function
@@ -26,49 +25,44 @@ console.log(base("triadic")("#a1bd2f", true))
  */
 
 const base =
-  (scheme: "analogous" | "triadic" | "tetradic" | "complementary") =>
+  (scheme: 'analogous' | 'triadic' | 'tetradic' | 'complementary') =>
   (color: Color, hex = false): Color[] => {
     // Converting the color to lch
 
-    color = converter("lch")(color)
+    color = converter('lch')(color);
     const lowMin = 0.05,
       lowMax = 0.495,
       highMin = 0.5,
-      highMax = 0.995
+      highMax = 0.995;
     let targetHueSteps = {
       analogous: cb(3, 12, color),
       triadic: cb(3, 120, color),
       tetradic: cb(4, 90, color),
-      complementary: cb(2, 180, color),
-    }
+      complementary: cb(2, 180, color)
+    };
     // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
-    targetHueSteps = targetHueSteps.forEach( (scheme) =>
-    scheme.map(
+    targetHueSteps = targetHueSteps.forEach((scheme) =>
+      scheme.map(
         (step) =>
-          (random(step * lowMax, step * lowMin) +
-            random(step * highMax, step * highMin) /
-          2
+          random(step * lowMax, step * lowMin) +
+          random(step * highMax, step * highMin) / 2
       )
-    ))
+    );
 
     // The map for steps to obtain the targeted palettes
 
-    const colors = targetHueSteps[scheme.toLowerCase()].map((step) =>({
-        "l":color["l"],
-        "c":color["c"],
-        "h": step,
-        "mode":"lch"
-  })
-    )
+    const colors = targetHueSteps[scheme.toLowerCase()].map((step) => ({
+      l: color['l'],
+      c: color['c'],
+      h: step,
+      mode: 'lch'
+    }));
 
+    if (hex) {
+      return colors.map(formatHex8);
+    } else {
+      return colors;
+    }
+  };
 
-if(hex){
-  return colors.map(formatHex8)
-}else{
-  return colors
-}
-
-
-  }
-
-export { base }
+export { base };

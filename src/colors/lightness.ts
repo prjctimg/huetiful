@@ -1,24 +1,24 @@
 // @ts-nocheck
 
-import { Color, factor } from "../paramTypes"
-import { getChannel } from "../core-utils/get.ts"
-import { sortedArr } from "../fp/array.ts"
+import { Color, factor } from '../paramTypes';
+import { getChannel } from '../core-utils/get.ts';
+import { sortedArr } from '../fp/array.ts';
 
 //  The factor being investigated.
 
-const factor: factor = "lightness"
-let lightness = "lab.l"
+const factor: factor = 'lightness';
+let lightness = 'lab.l';
 
 // The subtrahend is each color in the collection
 //This means that the color object with the smallest lightness value is the  nearest lightness.
 // First check which value is greater and then act accordingly. Refactor hue.ts so that it returns negative
 const lightnessDiff = (color: Color) => (subtrahend: Color) => {
   if (getChannel(lightness)(color) < getChannel(lightness)(subtrahend)) {
-    return getChannel(lightness)(subtrahend) - getChannel(lightness)(color)
+    return getChannel(lightness)(subtrahend) - getChannel(lightness)(color);
   } else {
-    return getChannel(lightness)(color) - getChannel(lightness)(subtrahend)
+    return getChannel(lightness)(color) - getChannel(lightness)(subtrahend);
   }
-}
+};
 
 /**
  *
@@ -39,10 +39,10 @@ console.log(getNearestLightness("green", sample))
  *
  */
 const getNearestLightness = (color: Color, colors: Color[]): number => {
-  const cb = lightnessDiff(color)
-  let sortedObjArr = sortedArr(factor, cb, "asc", true)(colors)
-  return sortedObjArr[0][factor]
-}
+  const cb = lightnessDiff(color);
+  let sortedObjArr = sortedArr(factor, cb, 'asc', true)(colors);
+  return sortedObjArr[0][factor];
+};
 
 /**
  *
@@ -64,10 +64,10 @@ console.log(getFarthestLightness("green", sample))
  */
 
 const getFarthestLightness = (color: Color, colors: Color[]): number => {
-  const cb = lightnessDiff(color)
-  let sortedObjArr = sortedArr(factor, cb, "desc", true)(color)
-  return sortedObjArr[0][factor]
-}
+  const cb = lightnessDiff(color);
+  let sortedObjArr = sortedArr(factor, cb, 'desc', true)(color);
+  return sortedObjArr[0][factor];
+};
 
 /**
  *@function
@@ -90,24 +90,24 @@ const minLightness = (
   colors: Color[],
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  const cb = getChannel(lightness)
+  const cb = getChannel(lightness);
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     cb,
-    "asc",
+    'asc',
     true
-  )(colors)
-  let value: number | { factor: number; name: Color }
+  )(colors);
+  let value: number | { factor: number; name: Color };
 
   if (gt(result.length, 0)) {
     if (colorObj) {
-      value = result[0]
+      value = result[0];
     } else {
-      value = result[0][factor]
+      value = result[0][factor];
     }
   }
-  return value
-}
+  return value;
+};
 
 /**
  *@function
@@ -130,23 +130,28 @@ const maxLightness = (
   colors: Color[],
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  const cb = getChannel(lightness)
+  const cb = getChannel(lightness);
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     cb,
-    "desc",
+    'desc',
     true
-  )(colors)
-  let value: number | { factor: number; name: Color }
+  )(colors);
+  let value: number | { factor: number; name: Color };
 
   if (gt(result.length, 0)) {
     if (colorObj) {
-      value = result[0]
+      value = result[0];
     } else {
-      value = result[0][factor]
+      value = result[0][factor];
     }
   }
-  return value
-}
+  return value;
+};
 
-export { getFarthestLightness, getNearestLightness, maxLightness, minLightness }
+export {
+  getFarthestLightness,
+  getNearestLightness,
+  maxLightness,
+  minLightness
+};

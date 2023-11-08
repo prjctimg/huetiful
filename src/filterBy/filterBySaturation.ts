@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { getChannel } from "../core-utils/get.ts"
-import type { Color, factor } from "../paramTypes"
-import {  filteredArr } from "../fp/array.ts"
+import { getChannel } from '../core-utils/get.ts';
+import type { Color, factor } from '../paramTypes';
+import { filteredArr } from '../fp/array.ts';
 
 /**
  *  @function
@@ -36,15 +36,15 @@ const filterBySaturation = (
   startSaturation = 0.05,
   endSaturation = 1
 ): Color[] => {
-  const factor: factor = "saturation"
-  const cb = getChannel("lch.c")
+  const factor: factor = 'saturation';
+  const cb = getChannel('lch.c');
 
   //  Normalize saturation ranges later
   return filteredArr(factor, cb)(
     colors,
-    (100*startSaturation),
-    (100* endSaturation)
-  )
-}
+    100 * startSaturation,
+    100 * endSaturation
+  );
+};
 
-export { filterBySaturation }
+export { filterBySaturation };

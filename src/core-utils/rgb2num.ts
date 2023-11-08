@@ -1,7 +1,7 @@
 //@ts-nocheck
 
-import { converter } from "culori"
-import type { Color } from "../paramTypes.ts"
+import { converter } from 'culori';
+import type { Color } from '../paramTypes.ts';
 
 /**
  * @function
@@ -17,9 +17,9 @@ console.log(rgb2num("b2c3f1"))
  */
 
 const rgb2num = (color: Color): number => {
-  let rgb: Color = converter("rgb")(color)
+  let rgb: Color = converter('rgb')(color);
 
-  return ((255 * rgb["r"]) << 16) + ((255 * rgb["g"]) << 8) + (255 * rgb["b"])
-}
+  return ((255 * rgb['r']) << 16) + ((255 * rgb['g']) << 8) + 255 * rgb['b'];
+};
 
-export { rgb2num }
+export { rgb2num };

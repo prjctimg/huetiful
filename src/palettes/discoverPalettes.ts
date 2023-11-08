@@ -1,14 +1,12 @@
 // @ts-nocheck
-import { nearest, differenceEuclidean, converter, formatHex8 } from "culori"
-import { Color } from "../paramTypes"
-import { base } from "./base.ts"
+import { nearest, differenceEuclidean, converter, formatHex8 } from 'culori';
+import { Color } from '../paramTypes';
+import { base } from './base.ts';
 
-
-const {keys} = Object
+const { keys } = Object;
 const isColorEqual = (c1: Color, c2: Color): boolean => {
-  return  c1["h"]=== c2["h"] && c1["l"]=== c2["l"] && c1["c"]=== c2["c"]
-  
-}
+  return c1['h'] === c2['h'] && c1['l'] === c2['l'] && c1['c'] === c2['c'];
+};
 
 /**
  * @function
@@ -39,48 +37,48 @@ console.log(discoverPalettes(sample, "tetradic"))
  */
 const discoverPalettes = (
   colors: Color[],
-  scheme: "analogous" | "triadic" | "tetradic" | "complementary"
+  scheme: 'analogous' | 'triadic' | 'tetradic' | 'complementary'
 ): Color[] | object => {
-  colors = colors.map( (c) => converter("lch")(c))
-  const palettes = {}
-  const schemes = ["analogous", "triadic", "tetradic", "complementary"]
-  let targetPalettes = {}
+  colors = colors.map((c) => converter('lch')(c));
+  const palettes = {};
+  const schemes = ['analogous', 'triadic', 'tetradic', 'complementary'];
+  let targetPalettes = {};
   for (const color of colors) {
-    schemes.forEach( (s) => targetPalettes[s] = base(s)(color, false))
+    schemes.forEach((s) => (targetPalettes[s] = base(s)(color, false)));
 
     for (const paletteType of keys(targetPalettes)) {
-      const palette = []
-      let variance = 0
+      const palette = [];
+      let variance = 0;
 
       for (const targetColor of targetPalettes[paletteType]) {
         // filter out colors already in the palette
         const availableColors = colors.filter(
-          (color1) => !palette.some( (color2) => isColorEqual(color1, color2))
-        )
+          (color1) => !palette.some((color2) => isColorEqual(color1, color2))
+        );
 
         const match = nearest(
           availableColors,
-          differenceEuclidean("lch")
-        )(targetColor)[0]
+          differenceEuclidean('lch')
+        )(targetColor)[0];
 
-        variance += differenceEuclidean("lch")(targetColor, match)
+        variance += differenceEuclidean('lch')(targetColor, match);
 
-        palette.push(match)
+        palette.push(match);
       }
 
       if (!palettes[paletteType] || variance < palettes[paletteType].variance) {
-        palettes[paletteType] = palette.map( formatHex8)
+        palettes[paletteType] = palette.map(formatHex8);
       }
     }
   }
 
-  if (typeof scheme == "string") {
-    return palettes[scheme.toLowerCase()]
-  } else if (typeof scheme == "undefined") {
-    return palettes
+  if (typeof scheme == 'string') {
+    return palettes[scheme.toLowerCase()];
+  } else if (typeof scheme == 'undefined') {
+    return palettes;
   } else {
-    throw Error(`${scheme} is not a valid palette scheme.`)
+    throw Error(`${scheme} is not a valid palette scheme.`);
   }
-}
+};
 
-export { discoverPalettes }
+export { discoverPalettes };

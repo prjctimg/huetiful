@@ -1,7 +1,7 @@
-import {  filteredArr } from "../fp/array.ts"
-import { wcagLuminance } from "culori"
-import { factor } from "../paramTypes.js"
-import { Color } from "../paramTypes.ts"
+import { filteredArr } from '../fp/array.ts';
+import { wcagLuminance } from 'culori';
+import { factor } from '../paramTypes.js';
+import { Color } from '../paramTypes.ts';
 /**
  *  @function
  * Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
@@ -38,10 +38,10 @@ const filterByLuminance = (
 ): Color[] => {
   // Formatting color tokens to parseable type
   // Create an object that has the luminance and name of color as properties.
-  const factor: factor = "luminance"
-  const cb = wcagLuminance
+  const factor: factor = 'luminance';
+  const cb = wcagLuminance;
 
-  return filteredArr(factor, cb)(colors, startLuminance, endLuminance)
-}
+  return filteredArr(factor, cb)(colors, startLuminance, endLuminance);
+};
 
-export { filterByLuminance }
+export { filterByLuminance };

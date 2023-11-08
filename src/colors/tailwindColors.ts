@@ -1,7 +1,7 @@
 //@ts-nocheck
 
-import tailwindHues from "../color-maps/swatches/tailwind.js"
-import type { HueMap, ScaleValues } from "../paramTypes.ts"
+import tailwindHues from '../color-maps/swatches/tailwind.js';
+import type { HueMap, ScaleValues } from '../paramTypes.ts';
 
 /**
  * @function
@@ -38,28 +38,28 @@ const tailwindColors =
   (shade: keyof HueMap) =>
   (val?: ScaleValues): string | string[] => {
     // This is a curried func that takes in the shade and returns a function that takes in a value from 100 thru 900
-    shade= shade.toLowerCase()
-const {keys} = Object
+    shade = shade.toLowerCase();
+    const { keys } = Object;
     // We check if the shade is a valid Tailwind shade if not we return pure black.
-    let targetHue
+    let targetHue;
 
     if (keys(tailwindHues).indexOf(shade) > -1) {
-      targetHue = tailwindHues[shade]
+      targetHue = tailwindHues[shade];
     } else {
       throw Error(
         `${shade} is not a valid shade in the default Tailwind palette`
-      )
+      );
     }
 
-    if (typeof val === "undefined") {
-      return values(targetHue)
+    if (typeof val === 'undefined') {
+      return values(targetHue);
     } else if (keys(targetHue).indexOf(val) > -1) {
-      return targetHue[val]
+      return targetHue[val];
     } else {
       throw Error(
         `${val} is not a valid scale value. Values are in increments of 100 up to 900 e.g "200"`
-      )
+      );
     }
-  }
+  };
 
-export { tailwindColors }
+export { tailwindColors };

@@ -1,8 +1,8 @@
 // @ts-nocheck
 
-import {  filteredArr } from "../fp/array.ts"
-import { differenceEuclidean } from "culori"
-import { Color, factor, ColorSpaces } from "../paramTypes.ts"
+import { filteredArr } from '../fp/array.ts';
+import { differenceEuclidean } from 'culori';
+import { Color, factor, ColorSpaces } from '../paramTypes.ts';
 
 /**
  *  @function
@@ -43,18 +43,18 @@ const filterByDistance = (
   // How do I get the distance
 
   // Create an object that has the distance and name of color as properties.
-  const factor: factor = "distance"
+  const factor: factor = 'distance';
   const cb = (against: Color, mode: ColorSpaces) => (color: Color) =>
-    differenceEuclidean(mode || "lch", weights || [1, 1, 1, 0])(against, color)
+    differenceEuclidean(mode || 'lch', weights || [1, 1, 1, 0])(against, color);
 
   return filteredArr(factor, cb(against, mode))(
     colors,
     startDistance,
     endDistance
-  )
-}
+  );
+};
 
-export { filterByDistance }
+export { filterByDistance };
 
 // Make modes lower case and string keys
 // Debug 'Cannot destructure mode'

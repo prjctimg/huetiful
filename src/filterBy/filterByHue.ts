@@ -1,6 +1,6 @@
-import {  filteredArr } from "../fp/array.ts"
-import { getChannel } from "../core-utils/get.ts"
-import type { Color, factor } from "../paramTypes.ts"
+import { filteredArr } from '../fp/array.ts';
+import { getChannel } from '../core-utils/get.ts';
+import type { Color, factor } from '../paramTypes.ts';
 
 //filterByHue takes an array of colors and
 /**
@@ -31,10 +31,10 @@ filterByHue(sample, 20, 80)
  */
 
 const filterByHue = (colors: Color[], startHue = 0, endHue = 360): Color[] => {
-  const factor: factor = "hue"
-  const cb = getChannel("lch.h")
+  const factor: factor = 'hue';
+  const cb = getChannel('lch.h');
 
-  return filteredArr(factor, cb)(colors, startHue, endHue)
-}
+  return filteredArr(factor, cb)(colors, startHue, endHue);
+};
 
-export { filterByHue }
+export { filterByHue };

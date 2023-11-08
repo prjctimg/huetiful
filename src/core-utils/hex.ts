@@ -1,6 +1,6 @@
 // @ts-nocheck
-import type { Color } from "../paramTypes"
-import { formatHex8, formatHex } from "culori"
+import type { Color } from '../paramTypes';
+import { formatHex8, formatHex } from 'culori';
 
 /**
  *@function
@@ -17,15 +17,14 @@ console.log(hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 // #7b7941
  */
 const hex = (color: Color): Color => {
-  if (typeof color === "object" && color["alpha"]) {
-    return formatHex8(color)
+  if (typeof color === 'object' && color['alpha']) {
+    return formatHex8(color);
   } else {
-    return formatHex(color)
+    return formatHex(color);
   }
-}
+};
 
-export { hex }
-
+export { hex };
 
 /*
  

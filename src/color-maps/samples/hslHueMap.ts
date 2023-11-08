@@ -1,82 +1,82 @@
 export default [
   {
-    hue: "indigo",
+    hue: 'indigo',
     minRange: 226.4516129032258,
-    maxRange: 242.1686746987952,
+    maxRange: 242.1686746987952
   },
   {
-    hue: "gray",
+    hue: 'gray',
     minRange: 219.99999999999963,
-    maxRange: 220.9090909090909,
+    maxRange: 220.9090909090909
   },
-  { hue: "zinc", minRange: 240, maxRange: 240 },
+  { hue: 'zinc', minRange: 240, maxRange: 240 },
   /*   { hue: 'neutral', minRange: NaN, maxRange: NaN }, */
-  { hue: "stone", minRange: 60, maxRange: 24 },
-  { hue: "red", minRange: 0, maxRange: 0 },
+  { hue: 'stone', minRange: 60, maxRange: 24 },
+  { hue: 'red', minRange: 0, maxRange: 0 },
   {
-    hue: "orange",
+    hue: 'orange',
     minRange: 34.28571428571429,
-    maxRange: 15.283018867924532,
+    maxRange: 15.283018867924532
   },
   {
-    hue: "amber",
+    hue: 'amber',
     minRange: 47.999999999999986,
-    maxRange: 21.71428571428572,
+    maxRange: 21.71428571428572
   },
   {
-    hue: "yellow",
+    hue: 'yellow',
     minRange: 54.91525423728813,
-    maxRange: 28.42105263157895,
+    maxRange: 28.42105263157895
   },
   {
-    hue: "lime",
+    hue: 'lime',
     minRange: 79.59183673469387,
-    maxRange: 87.61904761904762,
+    maxRange: 87.61904761904762
   },
   {
-    hue: "green",
+    hue: 'green',
     minRange: 140.62499999999997,
-    maxRange: 143.8095238095238,
+    maxRange: 143.8095238095238
   },
   {
-    hue: "emerald",
+    hue: 'emerald',
     minRange: 149.26829268292687,
-    maxRange: 164.16666666666666,
+    maxRange: 164.16666666666666
   },
   {
-    hue: "teal",
+    hue: 'teal',
     minRange: 167.23404255319147,
-    maxRange: 175.93220338983053,
+    maxRange: 175.93220338983053
   },
   {
-    hue: "sky",
+    hue: 'sky',
     minRange: 204.00000000000003,
-    maxRange: 202.0408163265306,
+    maxRange: 202.0408163265306
   },
   {
-    hue: "blue",
+    hue: 'blue',
     minRange: 214.2857142857143,
-    maxRange: 224.44444444444443,
+    maxRange: 224.44444444444443
   },
-  { hue: "violet", minRange: 251.42857142857144, maxRange: 263.5 },
+  { hue: 'violet', minRange: 251.42857142857144, maxRange: 263.5 },
   {
-    hue: "purple",
+    hue: 'purple',
     minRange: 268.695652173913,
-    maxRange: 273.6448598130841,
+    maxRange: 273.6448598130841
   },
   {
-    hue: "fuchsia",
+    hue: 'fuchsia',
     minRange: 286.95652173913044,
-    maxRange: 296.7032967032967,
+    maxRange: 296.7032967032967
   },
   {
-    hue: "pink",
+    hue: 'pink',
     minRange: 325.7142857142858,
-    maxRange: 335.8878504672897,
+    maxRange: 335.8878504672897
   },
   {
-    hue: "rose",
+    hue: 'rose',
     minRange: 355.55555555555554,
-    maxRange: 341.53846153846155,
-  },
+    maxRange: 341.53846153846155
+  }
 ];

@@ -1,7 +1,7 @@
 //@ts-nocheck
-import { values, toLower } from "lodash-es"
-import shades from "../color-maps/swatches/tailwind.js"
-import type { HueMap, ScaleValues, Color } from "../paramTypes.ts"
+import { values, toLower } from 'lodash-es';
+import shades from '../color-maps/swatches/tailwind.js';
+import type { HueMap, ScaleValues, Color } from '../paramTypes.ts';
 
 /**
  * @function
@@ -43,26 +43,26 @@ console.log(red100)
 // #fee2e2
  */
 const colors = (shade: keyof HueMap, val: ScaleValues): Color | Color[] => {
-  const {keys} = Object
-  const defaultHue = "all"
-let hueKeys = keys(shades)
+  const { keys } = Object;
+  const defaultHue = 'all';
+  let hueKeys = keys(shades);
 
-  shade = shade.toLowerCase()
+  shade = shade.toLowerCase();
   // First do an AND check on hue and val params. If true return the hue at the specified value.
   // If only the hue is defined return the whole array of hex codes for that color.
 
   // If only the value is defined return that color value for every hue.
 
   if (shade === defaultHue) {
-    return shades.map((color) => color[val || "500"]) 
+    return shades.map((color) => color[val || '500']);
   } else if (hueKeys.some((hue) => hue === shade) && val) {
-    return shades[shade][val]
-  } else if (shade && typeof val == "undefined") {
-    let keyVals = keys(shades[shade])
-    return keyVals.map((key)=>shades[shade][key])
-  } else if (typeof shade && typeof val == "undefined") {
-    throw Error(`Both shade and value cannot be undefined`)
+    return shades[shade][val];
+  } else if (shade && typeof val == 'undefined') {
+    let keyVals = keys(shades[shade]);
+    return keyVals.map((key) => shades[shade][key]);
+  } else if (typeof shade && typeof val == 'undefined') {
+    throw Error(`Both shade and value cannot be undefined`);
   }
-}
+};
 
-export { colors }
+export { colors };

@@ -1,8 +1,8 @@
 //@ts-nocheck
-import { converter, formatHex8 } from "culori"
-import { inRange } from "../fp/number.ts"
-import type { Color } from "../paramTypes.ts"
-import { expressionParser } from "../fp/string.ts"
+import { converter, formatHex8 } from 'culori';
+import { inRange } from '../fp/number.ts';
+import type { Color } from '../paramTypes.ts';
+import { expressionParser } from '../fp/string.ts';
 
 /**
  * @function
@@ -27,22 +27,22 @@ console.log(myColor)
 
 const alpha = (color: Color, value?: number | string): Color | number => {
   // We never perfom an operation on an undefined color. Defaults to pure black
-  defaultTo(color, "#000000")
-  const src: Color = converter("rgb")(color)
-  let channel = "alpha"
+  defaultTo(color, '#000000');
+  const src: Color = converter('rgb')(color);
+  let channel = 'alpha';
 
-  if (typeof value === "undefined" || null) {
-    return src[channel]
-  } else if (typeof value === "number") {
+  if (typeof value === 'undefined' || null) {
+    return src[channel];
+  } else if (typeof value === 'number') {
     if (inRange(value, 0, 1)) {
-      src[channel] = value
+      src[channel] = value;
     } else {
-      src[channel] = value / 100
+      src[channel] = value / 100;
     }
-  } else if (typeof value === "string") {
-    expressionParser(src, channel, value)
+  } else if (typeof value === 'string') {
+    expressionParser(src, channel, value);
   }
-  return formatHex8(src)
-}
+  return formatHex8(src);
+};
 
-export { alpha }
+export { alpha };

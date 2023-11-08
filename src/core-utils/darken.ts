@@ -1,8 +1,8 @@
 //@ts-nocheck
-import { converter, formatHex } from "culori"
-import type { Color } from "../paramTypes.ts"
-import { expressionParser } from "../fp/string.ts"
-import { isInt } from "../fp/number.ts"
+import { converter, formatHex } from 'culori';
+import type { Color } from '../paramTypes.ts';
+import { expressionParser } from '../fp/string.ts';
+import { isInt } from '../fp/number.ts';
 // ported froma chroma-js brighten
 
 /**
@@ -28,21 +28,19 @@ console.log(myColor)
 // #b2c3f180
  */
 const darken = (color: Color, value: number | string): Color => {
-  
-
-  const Kn = 18
-  const channel = "l"
+  const Kn = 18;
+  const channel = 'l';
   // Addv acheck here like the one in set.js
-  const src = converter("lab")(color)
+  const src = converter('lab')(color);
 
-  if (typeof value === "number") {
-    src["l"] -= Kn * value
-  } else if (typeof value === "string") {
-    expressionParser(src, channel, value||1)
+  if (typeof value === 'number') {
+    src['l'] -= Kn * value;
+  } else if (typeof value === 'string') {
+    expressionParser(src, channel, value || 1);
   }
 
-  return formatHex(src)
-}
+  return formatHex(src);
+};
 
 /**
  *
@@ -52,15 +50,17 @@ const darken = (color: Color, value: number | string): Color => {
  * @returns
  */
 const brighten = (color: Color, value: number | string): Color => {
-  const { abs } = Math
-  let result: Color
+  const { abs } = Math;
+  let result: Color;
   if (typeof value == 'number') {
-    result = darken(color, -value)
+    result = darken(color, -value);
   } else if (typeof value == 'string') {
-    let amt = abs(isInt(value) ? parseInt(value.slice(1)):parseFloat(value.slice(1)))
-    result = darken(color, -amt)
+    let amt = abs(
+      isInt(value) ? parseInt(value.slice(1)) : parseFloat(value.slice(1))
+    );
+    result = darken(color, -amt);
   }
-  return result
-}
+  return result;
+};
 
-export { brighten, darken }
+export { brighten, darken };

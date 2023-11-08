@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { converter, interpolate, wcagLuminance } from "culori"
+import { converter, interpolate, wcagLuminance } from 'culori';
 import {
   lt,
   gt,
@@ -10,9 +10,9 @@ import {
   add,
   multiply,
   sum,
-  isNumber,
-} from "lodash-es"
-import type { Color } from "../paramTypes.ts"
+  isNumber
+} from 'lodash-es';
+import type { Color } from '../paramTypes.ts';
 
 /** @alias
  * Gets the luminance value of that color as defined by WCAG.
@@ -25,9 +25,9 @@ import type { Color } from "../paramTypes.ts"
 console.log(getLuminance('#a1bd2f'))
 // 0.4417749513730954
  */
-const getLuminance = (color: Color): number => wcagLuminance(color)
+const getLuminance = (color: Color): number => wcagLuminance(color);
 
-const { pow, abs } = Math
+const { pow, abs } = Math;
 
 /**
  * @function
@@ -45,74 +45,70 @@ console.log(getLuminance(myColor))
 // 0.4999999136285792
  */
 const setLuminance = (color: Color, lum: number): Color => {
-  const white = "#ffffff",
-    black = "#000000"
+  const white = '#ffffff',
+    black = '#000000';
 
-  const EPS = 1e-7
-  let MAX_ITER = 20
+  const EPS = 1e-7;
+  let MAX_ITER = 20;
 
   if (lum !== undefined && typeof lum == 'number') {
-    (lum == 0 && lum || black) ||
-      (lum == 1 && !lum || white)
+    (lum == 0 && lum) || black || (lum == 1 && !lum) || white;
 
     // compute new color using...
 
-    let cur_lum = wcagLuminance(color)
-    const mode = "rgb"
-    color = converter(mode)(color)
+    let cur_lum = wcagLuminance(color);
+    const mode = 'rgb';
+    color = converter(mode)(color);
 
     const test = (low, high) => {
       //Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
-      const mid = interpolate([low, high])(0.5)
-      const lm = wcagLuminance(mid)
+      const mid = interpolate([low, high])(0.5);
+      const lm = wcagLuminance(mid);
       if (abs(lum - lm > EPS) || !MAX_ITER--) {
         // close enough
-        return mid
+        return mid;
       }
 
       if (lm > lum) {
-        return test(low, mid)
+        return test(low, mid);
       } else {
-        return test(mid, high)
+        return test(mid, high);
       }
+    };
 
-
+    let rgb: Color;
+    if (cur_lum > lum) {
+      rgb = test(black, color);
+    } else {
+      rgb = test(color, white);
     }
-
-
-    let rgb: Color
-    if (cur_lum > lum) { rgb = test(black, color) }
-    else {
-      rgb = test(color, white)
-    }
-    color = rgb
-    return color
+    color = rgb;
+    return color;
   }
   //   spreading the array values (r,g,b)
 
-  return rgb2luminance(color)
-}
+  return rgb2luminance(color);
+};
 
 const rgb2luminance = (color: Color): number => {
-  color = converter("rgb")(color)
+  color = converter('rgb')(color);
 
   // relative luminance
   // see http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
-  return (0.7152 * luminance_x(color["g"])) +
-    (0.2126 * luminance_x(color["r"])) +
-    (0.0722 * luminance_x(color["b"]))
-
-}
+  return (
+    0.7152 * luminance_x(color['g']) +
+    0.2126 * luminance_x(color['r']) +
+    0.0722 * luminance_x(color['b'])
+  );
+};
 
 const luminance_x = (x: number) => {
-  x /= 255
+  x /= 255;
   if (x <= 0.03928) {
-    return x / 12.92
+    return x / 12.92;
   } else {
-    return pow((x + 0.055) / 1.055, 2.4)
-
+    return pow((x + 0.055) / 1.055, 2.4);
   }
+};
 
-}
-
-export {  setLuminance, getLuminance }
+export { setLuminance, getLuminance };

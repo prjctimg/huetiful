@@ -1,8 +1,8 @@
 // @ts-nocheck
-import { getChannel } from "../core-utils/get.ts"
-import { sortedArr } from "../fp/array.ts"
+import { getChannel } from '../core-utils/get.ts';
+import { sortedArr } from '../fp/array.ts';
 
-import type { factor, Color } from "../paramTypes.ts"
+import type { factor, Color } from '../paramTypes.ts';
 
 /**
  * @function
@@ -52,12 +52,12 @@ console.log(sortedDescending)
  */
 
 // Todo: Add the mode param so that users can select mode to work with. The default is
-const sortByHue = (colors: Color[], order: "asc" | "desc"): Color[] => {
-  const factor: factor = "hue"
-  const cb = getChannel("lch.h")
+const sortByHue = (colors: Color[], order: 'asc' | 'desc'): Color[] => {
+  const factor: factor = 'hue';
+  const cb = getChannel('lch.h');
   //Sorting the color array of object by the 'temp' property in the specified order.
 
-  return sortedArr(factor, cb, order)(colors)
-}
+  return sortedArr(factor, cb, order)(colors);
+};
 
-export { sortByHue }
+export { sortByHue };

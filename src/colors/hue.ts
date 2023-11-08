@@ -1,19 +1,18 @@
 //This module contains getNearestHue,getFarthestHue,minHue and maxHue which are collection based utils that return the color with the queried factor.
 // @ts-nocheck
-import { Color, HueColorSpaces, factor } from "../paramTypes"
-import { getChannel } from "../core-utils/get.ts"
-import {  sortedArr } from "../fp/array.ts"
-
+import { Color, HueColorSpaces, factor } from '../paramTypes';
+import { getChannel } from '../core-utils/get.ts';
+import { sortedArr } from '../fp/array.ts';
 
 //  Globals
 
-const { abs } = Math
+const { abs } = Math;
 
-const factor: factor = "hue"
-const mode = (colorSpace: HueColorSpaces): string => `${colorSpace || "lch"}.h`
+const factor: factor = 'hue';
+const mode = (colorSpace: HueColorSpaces): string => `${colorSpace || 'lch'}.h`;
 // The hue value of our color which we are using for comparison
 const targetHue = (color: Color, colorSpace: HueColorSpaces): number =>
-  getChannel(mode(colorSpace))(color)
+  getChannel(mode(colorSpace))(color);
 
 // The callback to invoke per color in the passed in collection.
 // Return the absolute value since hue is a cyclic value which can either be  in clockwise/anti-clockwise.
@@ -23,13 +22,13 @@ const cb =
   (subtrahend: Color) => {
     return abs(
       targetHue(color, colorSpace) - getChannel(mode(colorSpace))(subtrahend)
-    )
-  }
+    );
+  };
 
 // Callback func for the minHue and maxHue utils. The funny thing is that most of the code is similar with minor changes here and there
 const predicate = (colorSpace: HueColorSpaces) => (color: Color) => {
-  return getChannel(mode(colorSpace))(color) || undefined
-}
+  return getChannel(mode(colorSpace))(color) || undefined;
+};
 
 /**
  *
@@ -54,10 +53,13 @@ const getNearestHue = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
-  return sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors)
-  .filter((el) => el[factor] !== undefined)
-  [0][factor]
-}
+  return sortedArr(
+    factor,
+    cb(color, mode(colorSpace)),
+    'asc',
+    true
+  )(colors).filter((el) => el[factor] !== undefined)[0][factor];
+};
 
 /**
  *
@@ -80,10 +82,13 @@ const getFarthestHue = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
-  return  sortedArr(factor, cb(color, mode(colorSpace)), "desc", true)(colors)
-  .filter((el) => el[factor] !== undefined)
-  [0][factor]
-}
+  return sortedArr(
+    factor,
+    cb(color, mode(colorSpace)),
+    'desc',
+    true
+  )(colors).filter((el) => el[factor] !== undefined)[0][factor];
+};
 
 /**
  *@function
@@ -106,23 +111,25 @@ const minHue = (
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  const result: Array<{ factor: number; name: Color }> =
-    sortedArr(factor, predicate(colorSpace), "asc", true)(colors)
-    .filter((el) => el[factor] !== undefined)
-    
-  
-  let value
+  const result: Array<{ factor: number; name: Color }> = sortedArr(
+    factor,
+    predicate(colorSpace),
+    'asc',
+    true
+  )(colors).filter((el) => el[factor] !== undefined);
+
+  let value;
 
   if (result.length > 0) {
     if (colorObj) {
-      value = result[0]
+      value = result[0];
     } else {
-      value = result[0][factor]
+      value = result[0][factor];
     }
   }
 
-  return value
-}
+  return value;
+};
 
 /**
  *@function
@@ -144,21 +151,24 @@ const maxHue = (
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  const result: Array<{ factor: number; name: Color }> = 
-    sortedArr(factor, predicate(colorSpace), "desc", true)(colors)
-    .filter((el) => el[factor] !== undefined)
+  const result: Array<{ factor: number; name: Color }> = sortedArr(
+    factor,
+    predicate(colorSpace),
+    'desc',
+    true
+  )(colors).filter((el) => el[factor] !== undefined);
 
-  let value
+  let value;
 
   if (result.length > 0) {
     if (colorObj) {
-      value = result[0]
+      value = result[0];
     } else {
-      value = result[0][factor]
+      value = result[0][factor];
     }
   }
 
-  return value
-}
+  return value;
+};
 
-export { getFarthestHue, getNearestHue, maxHue, minHue }
+export { getFarthestHue, getNearestHue, maxHue, minHue };
