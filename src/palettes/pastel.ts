@@ -1,8 +1,10 @@
 //@ts-nocheck
 // Pastels.mjs. - This module creates pastel versions of a color. It will take an arr or single value , tweak it and then return the result. Optional overrides for min max values when iterating over an arr.
 import { Color } from "../paramTypes.ts"
-import { converter, formatHex8 } from "culori"
-import { map, min, max, mean, set, random } from "lodash-es"
+import { converter, formatHex8, averageNumber } from "culori"
+import { min, max } from "../fp/array.ts";
+import { random } from "../fp/number.ts";
+import { map, set, } from "lodash-es"
 
 const samplePastelObj = [
   {
@@ -33,12 +35,12 @@ const samplePastelObj = [
   },
 ]
 
-const sampleSaturation = map(samplePastelObj, (el) => el["saturation"])
-const sampleValues = map(samplePastelObj, (el) => el["value"])
+const sampleSaturation = samplePastelObj.map( (el) => el["saturation"])
+const sampleValues = samplePastelObj.map( (el) => el["value"])
 
 const pastelSample = {
-  averageSaturation: mean(sampleValues),
-  averageValue: mean(sampleSaturation),
+  averageSaturation: averageNumber(sampleValues),
+  averageValue: averageNumber(sampleSaturation),
   minSampleSaturation: min(sampleSaturation),
   maxSampleSaturation: max(sampleSaturation),
   minSampleValue: min(sampleValues),
@@ -61,33 +63,36 @@ import { pastel } from 'huetiful-js'
 console.log(pastel("green", true))
 // #036103ff
  */
-const pastelMapper = (color: Color, hex = true): Color => {
+const pastel = (color: Color, hex = true): Color => {
   color = converter("hsv")(color)
 
   // For now we're simply returning an hsv object with the s and v channel set to the averages
-  return hex
-    ? formatHex8({
-        h: color["h"],
-        s: pastelSample["averageSaturation"],
-        v: pastelSample["averageValue"],
-        mode: "hsv",
-      })
-    : {
-        h: color["h"],
-        s: random(
-          pastelSample["minSampleSaturation"],
-          pastelSample["maxSampleSaturation"],
-          true
-        ),
-        v: random(
-          pastelSample["minSampleValue"],
-          pastelSample["maxSampleValue"],
-          true
-        ),
-        mode: "hsv",
-      }
+  if (hex) {
+    return formatHex8({
+      h: color["h"],
+      s: pastelSample["averageSaturation"],
+      v: pastelSample["averageValue"],
+      mode: "hsv",
+    })
+
+  } else {
+    return {
+      h: color["h"],
+      s: random(
+        pastelSample["minSampleSaturation"],
+        pastelSample["maxSampleSaturation"],
+        true
+      ),
+      v: random(
+        pastelSample["minSampleValue"],
+        pastelSample["maxSampleValue"],
+        true
+      ),
+      mode: "hsv",
+    }
+  }
 }
 
-export { pastelMapper as pastel }
+export { pastel }
 
 // TODO: Fix duplicate colors returned from the func

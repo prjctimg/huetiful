@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { colorObjArr, filteredArr } from "../core-utils/helpers.ts"
+import {  filteredArr } from "../fp/array.ts"
 import { differenceEuclidean } from "culori"
 import { Color, factor, ColorSpaces } from "../paramTypes.ts"
 

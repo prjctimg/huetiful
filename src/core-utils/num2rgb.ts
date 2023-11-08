@@ -26,17 +26,22 @@ const num2rgb = (num: number, hex = false): Color => {
     const r = num >> 16
     const g = (num >> 8) & 0xff
     const b = num & 0xff
-    let output = fromPairs([
-      ["r", r / 255],
-      ["g", g / 255],
-      ["b", b / 255],
-      ["mode", "rgb"],
-    ])
+    let output = ({
+      "r": r / 255,
+      "g": g / 255,
+      "b": b / 255,
+      "mode": "rgb"
+  })
     output = converter("rgb")(output)
 
-    return hex ? formatHex(output) : output
-  }
-  throw new Error("unknown num color: " + num)
+
+    if (hex) {
+     return formatHex(output)
+    } else {
+      return  output
+    }
+    
+  } else{throw  Error("unknown num color: " + num)}
 }
 
 export { num2rgb }

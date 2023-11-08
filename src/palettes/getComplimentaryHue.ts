@@ -1,9 +1,10 @@
 // @ts-nocheck
-import hueTempMap from "../color-maps/hueTemperature"
-import { inRange, min, max, findKey, values } from "lodash-es"
+import hueTempMap from "../color-maps/samples/hueTemperature"
 import { getChannel } from "../core-utils/get"
-import { adjustHue, floorCeil } from "../core-utils/helpers"
-import type { Color, HueColorSpaces } from "../paramTypes"
+import {min,max  } from "../fp/array.ts";
+import { customConcat, find } from "../fp/object.ts";
+import { adjustHue, floorCeil,inRange } from "../fp/number.ts"
+import type { Color } from "../paramTypes"
 import { isAchromatic } from "../colors/achromatic"
 import { setChannel } from "../core-utils/set"
 import { formatHex8 } from "culori"
@@ -40,10 +41,10 @@ const getComplimentaryHue = (
   }
   let result
   // Find the hue family which the color belongs to
-  let hueFamily: string = findKey(hueTempMap, (val, key) => {
+  let hueFamily: string = find(hueTempMap, (val) => {
     // Get the min and max hue value for each hue family
-    let minHue = min(...values(val)),
-      maxHue = max(...values(val))
+    let minHue = min(customConcat(val)),
+      maxHue = max(customConcat(val))
 
     if (complementaryHue) {
       return inRange(floorCeil(complementaryHue), minHue, maxHue)

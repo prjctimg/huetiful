@@ -2,10 +2,9 @@
 
 // ported from chroma-js Color.set
 
-import { split } from "lodash-es"
 import { converter } from "culori"
 import type { Color } from "../paramTypes.ts"
-import { expressionParser } from "./helpers.ts"
+import { expressionParser } from "../fp/string.ts"
 /**
  * @function
  *@description Sets the value for the specified channel in a color.
@@ -27,7 +26,7 @@ console.log(getChannel('lch.h')(myColor))
 const setChannel =
   (mc: string) =>
   (color: Color, value: number | string): Color => {
-    const [mode, channel] = split(mc, ".")
+    const [mode, channel] = mc.split('.')
     const src: Color = converter(mode)(color)
 
     if (channel) {

@@ -8,11 +8,8 @@ import {
   easingSmootherstep,
   interpolatorSplineNatural,
   fixupHueShorter,
-  lch,
 } from "culori"
 import type { Color, earthtones } from "../paramTypes.ts"
-import { map, toLower } from "lodash-es"
-import { Interpolator } from "culori/src/interpolate/Interpolator.js"
 
 /**
  * @function
@@ -34,7 +31,7 @@ console.log(earthtone("pink", "clay", 5))
 
 //Add an overrides object with interpolation function and
 const earthtone = (color: Color, earthtone: earthtones, num = 1): Color[] => {
-  earthtone = toLower(earthtone)
+  earthtone = earthtone.toLowerCase()
   let tones = {
     "light-gray": "#e5e5e5",
     silver: "#f5f5f5",
@@ -56,7 +53,7 @@ const earthtone = (color: Color, earthtone: earthtones, num = 1): Color[] => {
     },
   })
 
-  return map(samples(num), (t) => formatHex8(f(t)))
+  return samples(num).map( (t) => formatHex8(f(t)))
 }
 
 export { earthtone }

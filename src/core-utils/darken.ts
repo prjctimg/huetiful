@@ -1,8 +1,8 @@
 //@ts-nocheck
-import { defaultTo, isNumber, isString, multiply, toNumber } from "lodash-es"
 import { converter, formatHex } from "culori"
-import type { HueColorSpaces, Color } from "../paramTypes.ts"
-import { expressionParser } from "./helpers.ts"
+import type { Color } from "../paramTypes.ts"
+import { expressionParser } from "../fp/string.ts"
+import { isInt } from "../fp/number.ts"
 // ported froma chroma-js brighten
 
 /**
@@ -28,7 +28,7 @@ console.log(myColor)
 // #b2c3f180
  */
 const darken = (color: Color, value: number | string): Color => {
-  defaultTo(value, 1)
+  
 
   const Kn = 18
   const channel = "l"
@@ -38,7 +38,7 @@ const darken = (color: Color, value: number | string): Color => {
   if (typeof value === "number") {
     src["l"] -= Kn * value
   } else if (typeof value === "string") {
-    expressionParser(src, channel, value)
+    expressionParser(src, channel, value||1)
   }
 
   return formatHex(src)
@@ -54,10 +54,10 @@ const darken = (color: Color, value: number | string): Color => {
 const brighten = (color: Color, value: number | string): Color => {
   const { abs } = Math
   let result: Color
-  if (isNumber(value)) {
+  if (typeof value == 'number') {
     result = darken(color, -value)
-  } else if (isString(value)) {
-    let amt = abs(toNumber(value.slice(1)))
+  } else if (typeof value == 'string') {
+    let amt = abs(isInt(value) ? parseInt(value.slice(1)):parseFloat(value.slice(1)))
     result = darken(color, -amt)
   }
   return result

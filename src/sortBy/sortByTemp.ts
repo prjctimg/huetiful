@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { getTemp } from "../core-utils/getTemp.ts"
 import type { Color, factor } from "../paramTypes.ts"
-import { sortedArr } from "../core-utils/helpers.ts"
+import { sortedArr } from "../fp/array.ts"
 
 /**
  * @function
@@ -43,5 +43,3 @@ const sortByTemp = (colors: Color[], order: "asc" | "desc"): Color[] => {
 }
 
 export { sortByTemp }
-
-// This function is hanging. Debug it

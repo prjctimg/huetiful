@@ -1,4 +1,4 @@
-import { colorObjArr, filteredArr } from "../core-utils/helpers.ts"
+import {  filteredArr } from "../fp/array.ts"
 import { getChannel } from "../core-utils/get.ts"
 import { Color, factor } from "../paramTypes.ts"
 /**

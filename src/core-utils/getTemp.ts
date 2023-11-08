@@ -4,7 +4,7 @@
  **/
 
 //  @ts-nocheck
-import { converter, lrgb } from "culori"
+import { converter } from "culori"
 import { temp2Color } from "./temp2Color.ts"
 import type { Color } from "../paramTypes"
 

@@ -2,8 +2,7 @@
 
 import { Color, factor } from "../paramTypes"
 import { getChannel } from "../core-utils/get.ts"
-import { map } from "lodash-es"
-import { colorObjArr, filteredArr, sortedArr } from "../core-utils/helpers"
+import { sortedArr } from "../fp/array.ts"
 
 //  The factor being investigated.
 

@@ -1,17 +1,12 @@
 //@ts-nocheck
 import { getChannel } from "../core-utils/get.ts"
-import hueTempMap from "../color-maps/hueTemperature.ts"
+import hueTempMap from "../color-maps/samples/hueTemperature.js"
+import {  min,
+  max} from '../fp/array.ts'
+  import { inRange } from "../fp/number.ts"
 import {
-  find,
-  matchesProperty,
-  inRange,
-  words,
-  split,
-  includes,
-  values,
-  min,
-  max,
-} from "lodash-es"
+  find,customConcat
+} from "../fp/object.ts"
 import type { Color } from "../paramTypes.ts"
 import { isAchromatic } from "./achromatic.ts"
 
@@ -36,15 +31,18 @@ console.log(overtone("blue"))
 const overtone = (color: Color): string | boolean => {
   const factor = getChannel("lch.h")(color)
   let hues: string[]
+
   // We check if the color can be found in the defined ranges
-  find(hueTempMap, (hue, key) => {
+  find(hueTempMap, (hue:object, key:string) => {
     // Capture the min and max values and see if the passed in color is within that range
-    let minVal = min(...values(hue))
-    let maxVal = max(...values(hue))
+    let minVal = min(customConcat(hue))
+    let maxVal = max(customConcat(hue))
+
+    // If the color is achromatic return the string gray
     if (isAchromatic(color)) {
       return (hues = "gray")
-    } else if (inRange(factor, minVal, maxVal) && includes(key, "-")) {
-      return (hues = split(key, "-"))
+    } else if (inRange(factor, minVal, maxVal) && /-/.test(key)) {
+      return (hues = key.split('-'))
     } else {
       return (hues = false)
     }
@@ -53,7 +51,7 @@ const overtone = (color: Color): string | boolean => {
   if (typeof hues == "string") {
     return hues
   } else {
-    return hues[1] || false
+    return hues[1] 
   }
 }
 

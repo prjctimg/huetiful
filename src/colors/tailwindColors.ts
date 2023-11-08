@@ -1,15 +1,6 @@
 //@ts-nocheck
 
-import {
-  map,
-  has,
-  isUndefined,
-  identity,
-  get,
-  isEqual,
-  toLower,
-} from "lodash-es"
-import tailwindHues from "../color-maps/defaultTailwindPalette.ts"
+import tailwindHues from "../color-maps/swatches/tailwind.js"
 import type { HueMap, ScaleValues } from "../paramTypes.ts"
 
 /**
@@ -47,12 +38,12 @@ const tailwindColors =
   (shade: keyof HueMap) =>
   (val?: ScaleValues): string | string[] => {
     // This is a curried func that takes in the shade and returns a function that takes in a value from 100 thru 900
-    shade = toLower(shade)
-
+    shade= shade.toLowerCase()
+const {keys} = Object
     // We check if the shade is a valid Tailwind shade if not we return pure black.
     let targetHue
 
-    if (has(tailwindHues, shade)) {
+    if (keys(tailwindHues).indexOf(shade) > -1) {
       targetHue = tailwindHues[shade]
     } else {
       throw Error(
@@ -62,7 +53,7 @@ const tailwindColors =
 
     if (typeof val === "undefined") {
       return values(targetHue)
-    } else if (has(targetHue, val)) {
+    } else if (keys(targetHue).indexOf(val) > -1) {
       return targetHue[val]
     } else {
       throw Error(

@@ -1,7 +1,7 @@
-import { filter, inRange, map, fromPairs } from "lodash-es"
+
 import { getTemp } from "../core-utils/getTemp.ts"
 import { Color, factor } from "../paramTypes.ts"
-import { filteredArr } from "../core-utils/helpers.ts"
+import {  filteredArr } from "../fp/array.ts"
 
 /**
  * @function

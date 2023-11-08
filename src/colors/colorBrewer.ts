@@ -17,7 +17,6 @@
     specific language governing permissions and limitations under the License.
 */
 
-import { has, includes, keys, map, mapKeys, toLower } from "lodash-es"
 import type {
   sequentialScheme,
   divergingScheme,
@@ -26,15 +25,19 @@ import type {
 } from "../paramTypes"
 
 // Convert all the keys to lowercase
-const cb = (str: string) => toLower(str)
+const cb = (str: string) => str.toLowerCase()
 
 //Check if the scheme object has the passed in scheme
 const schemeMapper = (scheme: string, schemesObject: object): Color[] => {
+  const {keys} = Object
   // Map all schemes keys to lower case
   const schemeOptions = keys(schemesObject)
+  .map(cb)
+
+
   scheme = cb(scheme)
   // Check if passed in scheme is available
-  if (includes(schemeOptions, scheme)) {
+  if (schemeOptions.indexOf(scheme) > -1) {
     return schemesObject[scheme]
   } else {
     // Else throw error:Invalid scheme
@@ -65,7 +68,7 @@ console.log(sequential("OrRd"))
 
  */
 const sequential = (scheme: sequentialScheme): Color[] => {
-  let schemes = mapKeys(
+  let schemes = 
     {
       OrRd: [
         "#fff7ec",
@@ -276,9 +279,9 @@ const sequential = (scheme: sequentialScheme): Color[] => {
         "#b6de2b",
         "#fee825",
       ],
-    },
-    (val, key) => cb(key)
-  )
+    }
+    
+  
 
   return schemeMapper(scheme, schemes)
 }
@@ -304,7 +307,7 @@ console.log(diverging("Spectral"))
  */
 
 const diverging = (scheme: divergingScheme): Color[] => {
-  let schemes = mapKeys(
+  let schemes = 
     {
       Spectral: [
         "#9e0142",
@@ -423,9 +426,7 @@ const diverging = (scheme: divergingScheme): Color[] => {
         "#542788",
         "#2d004b",
       ],
-    },
-    (val, key) => cb(key)
-  )
+    }
 
   return schemeMapper(scheme, schemes)
 }
@@ -451,7 +452,7 @@ console.log(qualitative("Accent"))
  */
 
 const qualitative = (scheme: qualitativeScheme): Color[] => {
-  let schemes = mapKeys(
+  let schemes =
     {
       Set2: [
         "#66c2a5",
@@ -543,9 +544,7 @@ const qualitative = (scheme: qualitativeScheme): Color[] => {
         "#fddaec",
         "#f2f2f2",
       ],
-    },
-    (val, key) => cb(key)
-  )
+    }
   return schemeMapper(scheme, schemes)
 }
 

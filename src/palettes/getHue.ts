@@ -1,20 +1,11 @@
 // Returns the hue range where a color is found. If the hue Channel is falsy we return gray ?
 // @ts-nocheck
-import type { Color, factor, hue } from "../paramTypes.js"
-import hueTempMap from "../color-maps/hueTemperature.js"
+import type { Color, hue } from "../paramTypes.js"
+import hueTempMap from "../color-maps/samples/hueTemperature.js"
 import { converter } from "culori"
-import {
-  max,
-  concat,
-  min,
-  inRange,
-  toString,
-  pickBy,
-  keys,
-  defaultTo,
-} from "lodash-es"
-import { floorCeil } from "../core-utils/helpers.ts"
-
+import { floorCeil,inRange } from "../fp/number.ts"
+import {min,max  } from "../fp/array.ts";
+import { customConcat } from "../fp/object.ts"
 /**
  *@function
  @description Gets the hue family which a a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
@@ -35,10 +26,10 @@ const getHue = (color: Color): hue => {
 
   // Helpers to fetch the highest/lowest hue value per hue range
   let getMin = (hue: string): number => {
-      return min(concat(hueTempMap[hue]["cool"], hueTempMap[hue]["warm"]))
+      return min(customConcat(hueTempMap[hue]))
     },
     getMax = (hue: string): number => {
-      return max(concat(hueTempMap[hue]["cool"], hueTempMap[hue]["warm"]))
+      return max(customConcat(hueTempMap[hue]))
     }
 
   //Capure the hue value
@@ -47,15 +38,23 @@ const getHue = (color: Color): hue => {
   //  First check if hue is falsy. If true return the string "gray"
   // The predicate-func
   let cb = (factor: number | false, hue: string) =>
-    factor === undefined || NaN || false || null
+    factor === undefined || NaN || false
       ? "gray"
       : inRange(floorCeil(factor), getMin(hue), getMax(hue))
 
   // We then pick the truthy key by returning an object which returns true for the inRange predicate
-  let results = toString(
-    keys(pickBy(hueTempMap, (val, hue) => cb(factor, hue)))
-  )
-  return results
+  const {keys} = Object
+
+let result:string
+
+for (const hue in hueTempMap) {
+  if (cb(factor,hue)) {
+    result =  hue
+  }
+}
+
+
+return result
 }
 
 export { getHue }

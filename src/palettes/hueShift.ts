@@ -2,20 +2,9 @@
 // Original source from   George Francis: Coloring with Code
 // Can we also lightnessMapper palette types to create hue shifted variants per each color in the palette ?
 
-import { converter, formatHex } from "culori"
-import {
-  range,
-  defaultTo,
-  divide,
-  map,
-  multiply,
-  subtract,
-  add,
-  lt,
-} from "lodash-es"
+import { converter, easingSmootherstep, formatHex, samples } from "culori"
 import type { Color } from "../paramTypes.ts"
-import { adjustHue } from "../core-utils/helpers.ts"
-const { ceil } = Math
+import { adjustHue } from "../fp/number.ts"
 
 const lightnessMapper =
   (n: number) =>
@@ -51,7 +40,7 @@ console.log(hueShiftedPalette);
 ]
  */
 
-const hueshift = (
+const hueShift = (
   color: Color,
   opts = { minLightness, maxLightness, hueStep, num },
   hex = false
@@ -68,10 +57,10 @@ const hueshift = (
   let palette = [color]
 
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
-  range(1, num).map((val) => {
+  samples(num).map((val) => {
     //adjustHue checks hue values are clamped.
-    let hueDark = adjustHue(color["h"] - hueStep * val)
-    let hueLight = adjustHue(color["h"] + hueStep * val)
+    let hueDark = adjustHue(color["h"] - hueStep * (val*easingSmootherstep(val)))
+    let hueLight = adjustHue(color["h"] + hueStep *(val*easingSmootherstep(val)))
 
     // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
     const lightnessDark = lightnessMapper(val)(0, 4)(color["l"], minLightness)
@@ -94,10 +83,10 @@ const hueshift = (
   })
 
   if (hex) {
-    return map(palette, formatHex)
+    return palette.map( formatHex)
   } else {
     return palette
   }
 }
 
-export { hueshift as hueShift }
+export { hueShift }

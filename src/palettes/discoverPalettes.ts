@@ -1,24 +1,13 @@
 // @ts-nocheck
 import { nearest, differenceEuclidean, converter, formatHex8 } from "culori"
 import { Color } from "../paramTypes"
-import {
-  filter,
-  forOwn,
-  isEqual,
-  keys,
-  map,
-  set,
-  some,
-  toLower,
-} from "lodash-es"
 import { base } from "./base.ts"
 
+
+const {keys} = Object
 const isColorEqual = (c1: Color, c2: Color): boolean => {
-  return (
-    isEqual(c1["h"], c2["h"]) &&
-    isEqual(c1["l"], c2["l"]) &&
-    isEqual(c1["c"], c2["c"])
-  )
+  return  c1["h"]=== c2["h"] && c1["l"]=== c2["l"] && c1["c"]=== c2["c"]
+  
 }
 
 /**
@@ -52,12 +41,12 @@ const discoverPalettes = (
   colors: Color[],
   scheme: "analogous" | "triadic" | "tetradic" | "complementary"
 ): Color[] | object => {
-  colors = map(colors, (c) => converter("lch")(c))
+  colors = colors.map( (c) => converter("lch")(c))
   const palettes = {}
   const schemes = ["analogous", "triadic", "tetradic", "complementary"]
   let targetPalettes = {}
   for (const color of colors) {
-    forOwn(schemes, (s) => set(targetPalettes, s, base(s)(color, false)))
+    schemes.forEach( (s) => targetPalettes[s] = base(s)(color, false))
 
     for (const paletteType of keys(targetPalettes)) {
       const palette = []
@@ -65,9 +54,8 @@ const discoverPalettes = (
 
       for (const targetColor of targetPalettes[paletteType]) {
         // filter out colors already in the palette
-        const availableColors = filter(
-          colors,
-          (color1) => !some(palette, (color2) => isColorEqual(color1, color2))
+        const availableColors = colors.filter(
+          (color1) => !palette.some( (color2) => isColorEqual(color1, color2))
         )
 
         const match = nearest(
@@ -81,13 +69,13 @@ const discoverPalettes = (
       }
 
       if (!palettes[paletteType] || variance < palettes[paletteType].variance) {
-        palettes[paletteType] = map(palette, formatHex8)
+        palettes[paletteType] = palette.map( formatHex8)
       }
     }
   }
 
   if (typeof scheme == "string") {
-    return palettes[toLower(scheme)]
+    return palettes[scheme.toLowerCase()]
   } else if (typeof scheme == "undefined") {
     return palettes
   } else {

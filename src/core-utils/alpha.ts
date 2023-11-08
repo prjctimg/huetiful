@@ -1,8 +1,8 @@
 //@ts-nocheck
 import { converter, formatHex8 } from "culori"
-import { inRange } from "lodash-es"
+import { inRange } from "../fp/number.ts"
 import type { Color } from "../paramTypes.ts"
-import { expressionParser } from "./helpers.ts"
+import { expressionParser } from "../fp/string.ts"
 
 /**
  * @function

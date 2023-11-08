@@ -3,9 +3,8 @@
 
 import { Color, HueColorSpaces, factor } from "../paramTypes"
 import { getChannel } from "../core-utils/get.ts"
-import { matchChromaChannel } from "../core-utils/helpers"
-import { remove } from "lodash-es"
-import { colorObjArr, filteredArr, sortedArr } from "../core-utils/helpers"
+import { matchChromaChannel } from "../fp/string.ts"
+import { sortedArr } from "../fp/array.ts"
 
 //  The factor being investigated.
 
@@ -57,10 +56,11 @@ const getNearestChroma = (
   colorSpace?: HueColorSpaces
 ): number => {
   const cb = chromaDiff(color, colorSpace || "lch")
-  let sortedObjArr = remove(
-    sortedArr(factor, cb, "asc", true)(colors),
-    (el) => el[factor] !== undefined
-  )
+  let sortedObjArr = 
+    sortedArr(factor, cb, "asc", true)(colors)
+    .filter((el) => el[factor] !== undefined)
+    
+  
   return sortedObjArr[0][factor]
 }
 
@@ -88,10 +88,10 @@ const getFarthestChroma = (
   colorSpace?: HueColorSpaces
 ): number => {
   const cb = chromaDiff(color, colorSpace || "lch")
-  let sortedObjArr = remove(
-    sortedArr(factor, cb, "desc", true)(colors),
-    (el) => el[factor] !== undefined
-  )
+  let sortedObjArr = 
+    sortedArr(factor, cb, "desc", true)(colors)
+    .filter((el) => el[factor] !== undefined)
+  
   return sortedObjArr[0][factor]
 }
 
@@ -116,10 +116,11 @@ const minChroma = (
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  const result: Array<{ factor: number; name: Color }> = remove(
-    sortedArr(factor, predicate(colorSpace || "lch"), "asc", true)(colors),
-    (el) => el[factor] !== undefined
-  )
+  const result: Array<{ factor: number; name: Color }> = 
+    sortedArr(factor, predicate(colorSpace || "lch"), "asc", true)(colors)
+    .filter((el) => el[factor] !== undefined)
+
+
   let value: number | { factor: number; name: Color }
 
   if (result.length > 0) {
@@ -154,10 +155,10 @@ const maxChroma = (
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  const result: Array<{ factor: number; name: Color }> = remove(
-    sortedArr(factor, predicate(colorSpace || "lch"), "desc", true)(colors),
-    (el) => el[factor] !== undefined
-  )
+  const result: Array<{ factor: number; name: Color }> = 
+    sortedArr(factor, predicate(colorSpace || "lch"), "desc", true)(colors)
+    .filter((el) => el[factor] !== undefined)
+  
 
   let value: { factor: number; name: Color } | number
 

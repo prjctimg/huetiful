@@ -1,12 +1,15 @@
 //@ts-nocheck
-import { fromPairs, range, map, random, forEach, toLower } from "lodash-es"
-import { converter, formatHex8 } from "culori"
+import { converter, formatHex8,easingSmoothstep ,samples} from "culori"
 
 import type { Color } from "../paramTypes.ts"
-import { adjustHue } from "../core-utils/helpers.ts"
+import { adjustHue,random } from "../fp/number.ts"
 
+
+
+// Globals
 const cb = (iterations: number, distance: number, color: Color) =>
-  map(range(iterations), (val) => adjustHue(color["h"] + distance * val))
+samples(iterations)
+.map((val) => adjustHue((color["h"] + distance) * (val*easingSmoothstep(val))))
 
 /**
  * @function
@@ -39,28 +42,33 @@ const base =
       complementary: cb(2, 180, color),
     }
     // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
-    targetHueSteps = forEach(targetHueSteps, (scheme) =>
-      map(
-        scheme,
+    targetHueSteps = targetHueSteps.forEach( (scheme) =>
+    scheme.map(
         (step) =>
-          (random(step * lowMax, step * lowMin, true) +
-            random(step * highMax, step * highMin, true)) /
+          (random(step * lowMax, step * lowMin) +
+            random(step * highMax, step * highMin) /
           2
       )
-    )
+    ))
 
     // The map for steps to obtain the targeted palettes
 
-    const colors = map(targetHueSteps[toLower(scheme)], (step) =>
-      fromPairs([
-        ["l", color["l"]],
-        ["c", color["c"]],
-        ["h", step],
-        ["mode", "lch"],
-      ])
+    const colors = targetHueSteps[scheme.toLowerCase()].map((step) =>({
+        "l":color["l"],
+        "c":color["c"],
+        "h": step,
+        "mode":"lch"
+  })
     )
 
-    return hex ? map(colors, formatHex8) : colors
+
+if(hex){
+  return colors.map(formatHex8)
+}else{
+  return colors
+}
+
+
   }
 
 export { base }

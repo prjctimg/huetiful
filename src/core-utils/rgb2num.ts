@@ -2,7 +2,6 @@
 
 import { converter } from "culori"
 import type { Color } from "../paramTypes.ts"
-import { mapValues } from "lodash-es"
 
 /**
  * @function
@@ -18,9 +17,9 @@ console.log(rgb2num("b2c3f1"))
  */
 
 const rgb2num = (color: Color): number => {
-  let rgb = converter("rgb")(color)
-  rgb = mapValues(rgb, (channel) => 255 * channel)
-  return (rgb["r"] << 16) + (rgb["g"] << 8) + rgb["b"]
+  let rgb: Color = converter("rgb")(color)
+
+  return ((255 * rgb["r"]) << 16) + ((255 * rgb["g"]) << 8) + (255 * rgb["b"])
 }
 
 export { rgb2num }

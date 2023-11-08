@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { getChannel } from "../core-utils/get.ts"
-import { sortedArr } from "../core-utils/helpers.ts"
+import { sortedArr } from "../fp/array.ts"
+
 import type { factor, Color } from "../paramTypes.ts"
 
 /**

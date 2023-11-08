@@ -2,9 +2,8 @@
 // @ts-nocheck
 import { Color, HueColorSpaces, factor } from "../paramTypes"
 import { getChannel } from "../core-utils/get.ts"
-import { map, remove } from "lodash-es"
-import { colorObjArr, filteredArr, sortedArr } from "../core-utils/helpers"
-import { isAchromatic } from "./achromatic.ts"
+import {  sortedArr } from "../fp/array.ts"
+
 
 //  Globals
 
@@ -55,10 +54,9 @@ const getNearestHue = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
-  return remove(
-    sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors),
-    (el) => el[factor] !== undefined
-  )[0][factor]
+  return sortedArr(factor, cb(color, mode(colorSpace)), "asc", true)(colors)
+  .filter((el) => el[factor] !== undefined)
+  [0][factor]
 }
 
 /**
@@ -82,10 +80,9 @@ const getFarthestHue = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
-  return remove(
-    sortedArr(factor, cb(color, mode(colorSpace)), "desc", true)(colors),
-    (el) => el[factor] !== undefined
-  )[0][factor]
+  return  sortedArr(factor, cb(color, mode(colorSpace)), "desc", true)(colors)
+  .filter((el) => el[factor] !== undefined)
+  [0][factor]
 }
 
 /**
@@ -109,10 +106,11 @@ const minHue = (
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  const result: Array<{ factor: number; name: Color }> = remove(
-    sortedArr(factor, predicate(colorSpace), "asc", true)(colors),
-    (el) => el[factor] !== undefined
-  )
+  const result: Array<{ factor: number; name: Color }> =
+    sortedArr(factor, predicate(colorSpace), "asc", true)(colors)
+    .filter((el) => el[factor] !== undefined)
+    
+  
   let value
 
   if (result.length > 0) {
@@ -146,10 +144,9 @@ const maxHue = (
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  const result: Array<{ factor: number; name: Color }> = remove(
-    sortedArr(factor, predicate(colorSpace), "desc", true)(colors),
-    (el) => el[factor] !== undefined
-  )
+  const result: Array<{ factor: number; name: Color }> = 
+    sortedArr(factor, predicate(colorSpace), "desc", true)(colors)
+    .filter((el) => el[factor] !== undefined)
 
   let value
 

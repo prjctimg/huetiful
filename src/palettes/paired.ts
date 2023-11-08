@@ -1,25 +1,6 @@
 // @ts-nocheck
 // From colorbrewr
 
-import {
-  add,
-  concat,
-  defaultTo,
-  divide,
-  flatten,
-  fromPairs,
-  get,
-  isEqual,
-  map,
-  multiply,
-  range,
-  reverse,
-  slice,
-  toString,
-  uniq,
-  values,
-} from "lodash-es"
-import { getChannel } from "../core-utils/get.ts"
 import { setChannel } from "../core-utils/set.ts"
 import { Color, tone } from "../paramTypes.ts"
 import {
@@ -34,7 +15,6 @@ import {
   fixupAlpha,
   samples,
 } from "culori"
-import { adjustHue } from "../core-utils/helpers.ts"
 
 /**
  * @function pairedScheme
@@ -87,14 +67,13 @@ const pairedScheme = (
 
   //The array to capture the different iterations
   let results: Color[]
-  results = map(smp, (t) => formatHex8(scale(easingSmootherstep(t))))
+  results = smp.map(
+    (t) => formatHex8(
+      scale
+      (easingSmootherstep(t))))
 
   // Return a slice of the array from the start to the half length of the array
-  return slice(results, 0, results.length / 2)
+  return results.slice( 0, results.length / 2)
 }
 
 export { pairedScheme }
-
-// For 20 iterations only 11 colors are unique.
-// What if I remove _.uniq ?
-// How can I ensure that the colors return a unique color per iteration ?

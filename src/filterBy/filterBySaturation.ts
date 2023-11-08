@@ -1,8 +1,7 @@
 // @ts-nocheck
-import { multiply } from "lodash-es"
 import { getChannel } from "../core-utils/get.ts"
 import type { Color, factor } from "../paramTypes"
-import { colorObjArr, filteredArr } from "../core-utils/helpers.ts"
+import {  filteredArr } from "../fp/array.ts"
 
 /**
  *  @function
@@ -43,8 +42,8 @@ const filterBySaturation = (
   //  Normalize saturation ranges later
   return filteredArr(factor, cb)(
     colors,
-    multiply(100, startSaturation),
-    multiply(100, endSaturation)
+    (100*startSaturation),
+    (100* endSaturation)
   )
 }
 

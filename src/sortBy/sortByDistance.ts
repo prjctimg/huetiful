@@ -1,7 +1,6 @@
 // @ts-nocheck
 import type { factor, Color, ColorSpaces } from "../paramTypes.ts"
-import { getChannel } from "../core-utils/get.ts"
-import { sortedArr } from "../core-utils/helpers.ts"
+import { sortedArr } from "../fp/array.ts"
 import { differenceEuclidean } from "culori"
 
 /**

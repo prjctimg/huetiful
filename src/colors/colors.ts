@@ -1,6 +1,6 @@
 //@ts-nocheck
-import { map, values, has, toLower } from "lodash-es"
-import shades from "../color-maps/defaultTailwindPalette.ts"
+import { values, toLower } from "lodash-es"
+import shades from "../color-maps/swatches/tailwind.js"
 import type { HueMap, ScaleValues, Color } from "../paramTypes.ts"
 
 /**
@@ -43,20 +43,23 @@ console.log(red100)
 // #fee2e2
  */
 const colors = (shade: keyof HueMap, val: ScaleValues): Color | Color[] => {
+  const {keys} = Object
   const defaultHue = "all"
+let hueKeys = keys(shades)
 
-  shade = toLower(shade)
+  shade = shade.toLowerCase()
   // First do an AND check on hue and val params. If true return the hue at the specified value.
   // If only the hue is defined return the whole array of hex codes for that color.
 
   // If only the value is defined return that color value for every hue.
 
   if (shade === defaultHue) {
-    return map(shades, (color) => color[val || "500"])
-  } else if (has(shades, shade) && val) {
+    return shades.map((color) => color[val || "500"]) 
+  } else if (hueKeys.some((hue) => hue === shade) && val) {
     return shades[shade][val]
   } else if (shade && typeof val == "undefined") {
-    return values(shades[shade])
+    let keyVals = keys(shades[shade])
+    return keyVals.map((key)=>shades[shade][key])
   } else if (typeof shade && typeof val == "undefined") {
     throw Error(`Both shade and value cannot be undefined`)
   }

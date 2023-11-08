@@ -44,17 +44,16 @@ let myColor = setLuminance('#a1bd2f', 0.5)
 console.log(getLuminance(myColor))
 // 0.4999999136285792
  */
-const luminance = (color: Color, lum: number): Color => {
+const setLuminance = (color: Color, lum: number): Color => {
   const white = "#ffffff",
     black = "#000000"
 
   const EPS = 1e-7
   let MAX_ITER = 20
 
-  if (lum !== undefined && isNumber(lum)) {
-    // return pure black/white
-    ;(eq(lum, 0) && defaultTo(lum, black)) ||
-      (eq(lum, 1) && defaultTo(!lum, white))
+  if (lum !== undefined && typeof lum == 'number') {
+    (lum == 0 && lum || black) ||
+      (lum == 1 && !lum || white)
 
     // compute new color using...
 
@@ -66,13 +65,26 @@ const luminance = (color: Color, lum: number): Color => {
       //Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
       const mid = interpolate([low, high])(0.5)
       const lm = wcagLuminance(mid)
-      if (lt(abs(lum - lm), EPS) || !MAX_ITER--) {
+      if (abs(lum - lm > EPS) || !MAX_ITER--) {
         // close enough
         return mid
       }
-      return gt(lm, lum) ? test(low, mid) : test(mid, high)
+
+      if (lm > lum) {
+        return test(low, mid)
+      } else {
+        return test(mid, high)
+      }
+
+
     }
-    const rgb = gt(cur_lum, lum) ? test(black, color) : test(color, white)
+
+
+    let rgb: Color
+    if (cur_lum > lum) { rgb = test(black, color) }
+    else {
+      rgb = test(color, white)
+    }
     color = rgb
     return color
   }
@@ -86,18 +98,21 @@ const rgb2luminance = (color: Color): number => {
 
   // relative luminance
   // see http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
-  return sum([
-    multiply(0.2126, luminance_x(color["r"])),
-    multiply(0.7152, luminance_x(color["g"])),
-    multiply(0.0722, luminance_x(color["b"])),
-  ])
+  return (0.7152 * luminance_x(color["g"])) +
+    (0.2126 * luminance_x(color["r"])) +
+    (0.0722 * luminance_x(color["b"]))
+
 }
 
 const luminance_x = (x: number) => {
   x /= 255
-  return lte(x, 0.03928)
-    ? divide(x, 12.92)
-    : pow(divide(add(x, 0.055), 1.055), 2.4)
+  if (x <= 0.03928) {
+    return x / 12.92
+  } else {
+    return pow((x + 0.055) / 1.055, 2.4)
+
+  }
+
 }
 
-export { luminance as setLuminance, getLuminance }
+export {  setLuminance, getLuminance }

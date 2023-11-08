@@ -82,11 +82,17 @@ export type factor =
   | "distance"
   | "lightness"
   | "hue"
+  
+  
+  type order =   "asc" | "desc"
 
-export type factorMapper = (
+  type callback = (arg: Color, colorSpace?: HueColorSpaces) => number
+
+
+  type factorMapper = (
   factor: factor,
-  cb: (arg: Color, colorSpace?: HueColorSpaces) => number,
-  order?: "asc" | "desc",
+callback:callback,
+ order?:order,
   colorObj = false
 ) => (colors: Color[]) => Color[]
 

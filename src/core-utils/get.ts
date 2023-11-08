@@ -1,7 +1,6 @@
 //@ts-nocheck
 
 import { converter } from "culori"
-import { split, get } from "lodash-es"
 import type { Color } from "../paramTypes.ts"
 
 /**
@@ -20,12 +19,15 @@ console.log(getChannel('rgb.g')('#a1bd2f'))
 const getChannel =
   (mc: string) =>
   (color: Color): number => {
-    const [mode, channel] = split(mc, ".")
+    const [mode, channel] = mc.split('.')
     const src = converter(mode)(color)
 
-    return channel
-      ? get(src, channel)
-      : Error(`unknown channel ${channel} in mode ${mode}`)
+    if (channel) {
+      return src[channel]
+    } else {
+      throw Error(`unknown channel ${channel} in mode ${mode}`)
+    }
+    
   }
 
 export { getChannel }

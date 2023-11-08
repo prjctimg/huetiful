@@ -54,14 +54,20 @@ const temp2Color = (kelvin: number, hex = false): Color => {
       28.0852963507957 * log(g)
     b = 255
   }
-  let result = fromPairs([
-    ["r", r / 255],
-    ["g", g / 255],
-    ["b", b / 255],
-    ["mode", "rgb"],
-  ])
+  let result = ({
+    "r": r / 255,
+    "g": g / 255,
+    "b": b / 255,
+    "mode":"rgb"
+})
 
-  return hex ? formatHex(result) : result
+
+if (hex) {
+   return formatHex(result)
+} else {
+  return result
+}
+  
 }
 
 export { temp2Color }
