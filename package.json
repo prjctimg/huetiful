@@ -30,14 +30,8 @@
     "docs": "cd docs && npm run build:docs && npm run deploy:docs",
     "lint": "eslint . --ext .ts",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run format && npm run lint",
-      "pre-push": "git pull"
-    }
-  },
-  "files": [
+  }
+  ,"files": [
     "dist"
   ],
   "repository": "github:prjctimg/huetiful",
@@ -56,5 +50,10 @@
   "license": "Apache 2.0",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
-  }
-}
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format && npm run lint",
+      "pre-push": "git pull"
+    }
+}}
