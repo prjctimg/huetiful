@@ -29,9 +29,9 @@
     "types": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts",
     "docs": "cd docs && npm run build:docs && npm run deploy:docs",
     "lint": "eslint . --ext .ts",
-    "format": "prettier --config .prettierrc 'src/**/*.ts' --write"
-  }
-  ,"files": [
+    "format": "prettier --config .prettierrc \"src/**/*.ts\" --write"
+  },
+  "files": [
     "dist"
   ],
   "repository": "github:prjctimg/huetiful",
@@ -56,4 +56,5 @@
       "pre-commit": "npm run format && npm run lint",
       "pre-push": "git pull"
     }
-}}
+  }
+}
