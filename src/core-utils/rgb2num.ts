@@ -1,6 +1,7 @@
 //@ts-nocheck
 
-import { converter } from 'culori';
+import { useMode, modeRgb } from 'culori/fn';
+import { toHex } from './hex.ts';
 import type { Color } from '../paramTypes.ts';
 
 /**
@@ -17,7 +18,8 @@ console.log(rgb2num("b2c3f1"))
  */
 
 const rgb2num = (color: Color): number => {
-  let rgb: Color = converter('rgb')(color);
+  const toRgb = useMode(modeRgb);
+  let rgb: Color = toRgb(toHex(color));
 
   return ((255 * rgb['r']) << 16) + ((255 * rgb['g']) << 8) + 255 * rgb['b'];
 };
