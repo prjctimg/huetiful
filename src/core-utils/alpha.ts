@@ -1,7 +1,8 @@
 //@ts-nocheck
-import { useMode, modeLch } from 'culori';
+import { useMode, modeLch } from 'culori/fn';
 import { inRange } from '../fp/number.ts';
 import { expressionParser } from '../fp/string.ts';
+import { toHex } from './hex.ts';
 import type { Color } from '../paramTypes.ts';
 
 /**
@@ -31,7 +32,7 @@ const alpha = (color: Color, value?: number | string): Color | number => {
 
   let channel = 'alpha';
   const lch = useMode(modeLch);
-  const src: Color = lch(hex(color));
+  const src: Color = lch(toHex(color));
   if (typeof value === 'undefined' || null) {
     return src[channel];
   } else if (typeof value === 'number') {

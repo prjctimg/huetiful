@@ -1,8 +1,8 @@
 //@ts-nocheck
 
-import { Color } from '../paramTypes.ts';
-import { formatHex, converter } from 'culori';
-
+import 'culori/css';
+import type { Color } from '../paramTypes.ts';
+import { toHex } from 'hex';
 // If the value is a floating point then we treat the decimal value as the opacity of the color.
 
 // If the value passedin is a float then the decimal is treated as opacity
@@ -25,16 +25,16 @@ const num2rgb = (num: number, hex = false): Color => {
     const r = num >> 16;
     const g = (num >> 8) & 0xff;
     const b = num & 0xff;
+
     let output = {
       r: r / 255,
       g: g / 255,
       b: b / 255,
       mode: 'rgb'
     };
-    output = converter('rgb')(output);
 
     if (hex) {
-      return formatHex(output);
+      return toHex(output);
     } else {
       return output;
     }

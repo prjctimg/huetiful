@@ -19,7 +19,7 @@ console.log(hex({ l: 50, c: 31, h: 100, alpha: 0.5, mode: "lch" }))
 console.log(hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 // #7b7941
  */
-const hex = (color: Color): Color => {
+const toHex = (color: Color): Color => {
   // if its a plain color object use formatHex
   if (Array.isArray(color) && inRange(color.length, 4, 5)) {
     // capture the mode and channel values seperately
@@ -88,4 +88,4 @@ const hex = (color: Color): Color => {
   }
 };
 
-export { hex };
+export { toHex };

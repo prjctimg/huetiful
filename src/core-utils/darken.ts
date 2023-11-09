@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { easingSmootherstep, modeLab, useMode } from 'culori/fn';
-import { hex } from './hex.ts';
+import { toHex } from './hex.ts';
 import { expressionParser } from '../fp/string.ts';
 import { isInt } from '../fp/number.ts';
 import type { Color } from '../paramTypes.ts';
@@ -21,7 +21,7 @@ const darken = (color: Color, value: number | string): Color => {
   const Kn = 18;
   const channel = 'l';
   const lab = useMode(modeLab);
-  const src = lab(hex(color));
+  const src = lab(toHex(color));
 
   if (typeof value === 'number') {
     src['l'] -= Kn * (value * easingSmootherstep(value / 100));

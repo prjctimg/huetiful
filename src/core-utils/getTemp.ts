@@ -7,7 +7,7 @@
 import { useMode, modeRgb } from 'culori/fn';
 import { temp2Color } from './temp2Color.ts';
 import type { Color } from '../paramTypes';
-import { hex } from './hex.ts';
+import { toHex } from './hex.ts';
 
 /**
  * @description Returns the temperature value in Kelvins of the passed in color.
@@ -26,7 +26,7 @@ const getTemp = (color: Color): number => {
   //Store the color in an object with the RGB channels normalized to [0,1]
   // Add a color obj for rgb using culori
   const rgb = useMode(modeRgb);
-  const src = rgb(hex(color));
+  const src = rgb(toHex(color));
   // Allocate the red and blue channels to variables
   const r: number = src['r'],
     b: number = src['b'];

@@ -2,7 +2,7 @@
 
 import { converter } from 'culori/fn';
 import 'culori/css';
-import { hex } from './hex.ts';
+import { toHex } from './hex.ts';
 import type { Color } from '../paramTypes.ts';
 
 /**
@@ -22,7 +22,7 @@ const getChannel =
   (mc: string) =>
   (color: Color): number => {
     const [mode, channel] = mc.split('.');
-    const src = converter(mode)(hex(color));
+    const src = converter(mode)(toHex(color));
 
     if (channel) {
       return src[channel];
