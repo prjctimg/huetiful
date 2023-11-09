@@ -10,13 +10,59 @@ const sharedConfig = {
   minify: false,
 }
 
-//Bundled CJS
+
+
+
+                                // ***Modular imports** \\
+
+// palettes/ import
 build({
   ...sharedConfig,
-  outfile: "dist/huetiful.cjs",
-  format: "cjs",
+  entryPoints: [".//src/palettes/index.ts"],
+  outfile: "dist/palettes/index.esm.mjs",
+  minify: true,
   external: Object.keys(dependencies),
 })
+
+// filterBy/ import
+build({
+  ...sharedConfig,
+  outfile: "dist/filterBy/index.esm.mjs",
+  minify: true,
+  external: Object.keys(dependencies),
+})
+
+
+// sortBy/ import
+build({
+  ...sharedConfig,
+  entryPoints:['.//src/sortBy/index.ts'],
+  outfile: "dist/sortBy/index.esm.mjs",
+  minify: true,
+  external: Object.keys(dependencies),
+})
+
+// colors/ import
+build({
+  ...sharedConfig,
+  entryPoints: [".//src/colors/index.ts"],
+  outfile: "dist/colors/index.esm.mjs",
+  minify: true,
+  external: Object.keys(dependencies),
+})
+
+
+// core-utils/ import
+build({
+  ...sharedConfig,
+  entryPoints: [".//src/core-utils/index.ts"],
+  outfile: "dist/core-utils/index.esm.mjs",
+  minify: true,
+  external: Object.keys(dependencies),
+})
+
+
+
 
 //Bundled CJS minified
 build({
@@ -25,6 +71,8 @@ build({
   minify: true,
   external: Object.keys(dependencies),
 })
+
+
 
 //Bundled ESM
 build({
