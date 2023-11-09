@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { getChannel } from '../core-utils/get.ts';
-import type { Color, factor } from '../paramTypes';
 import { filteredArr } from '../fp/array.ts';
+import type { Color, factor } from '../paramTypes';
 
 /**
  *  @function
