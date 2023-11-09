@@ -2,7 +2,7 @@
 import type { Color } from '../paramTypes';
 import { formatHex8, formatHex } from 'culori';
 import { num2rgb } from './num2rgb';
-import { inRange } from '../fp/number';
+import { inRange, normalize } from '../fp/number';
 
 /**
  *@function
@@ -46,25 +46,34 @@ const hex = (color: Color): Color => {
       channels.map((val, key) => {
         res[mode.charAt(key)] = val;
 
-        // if our rgb values are [0,255] we normalize them to [0,1]
-        // for Culori to make sense of the channel values else it defaults o white
-        if (mode === 'rgb' || 'rgba') {
-          if (channels.some((ch) => !inRange(ch, 0, 1))) {
-            res['r'] /= 255;
-            res['g'] /= 255;
-            res['b'] /= 255;
+        if (mode === 'rgb') {
+          if (color.length === 5) {
+            res['alpha'] = color[color.length - 2];
+            channels = color.slice(0, color.length - 2);
           }
+          // if our rgb values are [0,255] we normalize them to [0,1]
+          // for Culori to make sense of the channel values else it defaults o white
+          if (channels.some((ch) => Math.abs(ch) > 1)) {
+            return channels.map(
+              (ch, key) => (res[mode.charAt(key)] = ch / 255)
+            );
+          }
+        } else {
+          return channels.map((ch, key) => (res[mode.charAt(key)] = ch));
         }
-        return res;
       });
+
       // store the result as a hex string
 
       res = formatHex(res);
     } else {
       res['mode'] = mode;
-      channels = color.slice(0, 4);
+      res['alpha'] = color[color.length - 2];
+      channels = color.slice(0, 3);
       mode = mode.substring(mode.length - 3).concat('a');
-      channels.map((val, key) => (res[mode.charAt(key)] = val));
+      channels.map((ch, key) => {
+        res[mode.charAt(key)] = ch;
+      });
       res = formatHex8(res);
     }
     return res;
