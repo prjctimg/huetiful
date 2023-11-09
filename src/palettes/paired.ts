@@ -1,20 +1,21 @@
 // @ts-nocheck
 // From colorbrewr
 
+import { hex } from '../core-utils/index.ts';
 import { setChannel } from '../core-utils/set.ts';
 import { Color, tone } from '../paramTypes.ts';
 import {
-  converter,
   easingSmootherstep,
   fixupHueShorter,
-  formatHex8,
   interpolate,
   interpolatorSplineBasis,
   interpolatorSplineBasisClosed,
   interpolatorSplineNatural,
   fixupAlpha,
-  samples
-} from 'culori';
+  samples,
+  useMode,
+  modeLch
+} from 'culori/fn';
 
 /**
  * @function pairedScheme
@@ -38,7 +39,9 @@ const pairedScheme = (
   num: number,
   via: tone
 ): Color[] => {
-  color = converter('lch')(color);
+  const toLch = useMode(modeLch);
+  color = toLch(hex(color));
+
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
   let derivedHue = setChannel('lch.h')(color, color['h'] + hueStep || 12);
 
