@@ -27,7 +27,7 @@ console.log(myColor)
 
 const alpha = (color: Color, value?: number | string): Color | number => {
   // We never perfom an operation on an undefined color. Defaults to pure black
-  defaultTo(color, '#000000');
+  color = color || 'black';
   const src: Color = converter('rgb')(color);
   let channel = 'alpha';
 

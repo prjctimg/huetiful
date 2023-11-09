@@ -1,17 +1,5 @@
 //@ts-nocheck
 import { converter, interpolate, wcagLuminance } from 'culori';
-import {
-  lt,
-  gt,
-  eq,
-  defaultTo,
-  lte,
-  divide,
-  add,
-  multiply,
-  sum,
-  isNumber
-} from 'lodash-es';
 import type { Color } from '../paramTypes.ts';
 
 /** @alias
@@ -60,7 +48,7 @@ const setLuminance = (color: Color, lum: number): Color => {
     const mode = 'rgb';
     color = converter(mode)(color);
 
-    const test = (low, high) => {
+    const test = (low: Color, high: Color) => {
       //Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
       const mid = interpolate([low, high])(0.5);
       const lm = wcagLuminance(mid);

@@ -31,7 +31,7 @@ const getTemp = (color: Color): number => {
   let minTemp = 1000;
   let maxTemp = 40000;
   const eps = 0.4;
-  let temp;
+  let temp: number;
   while (maxTemp - minTemp > eps) {
     temp = (maxTemp + minTemp) * 0.5;
     const rgb = temp2Color(temp, false);

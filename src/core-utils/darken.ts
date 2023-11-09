@@ -55,9 +55,14 @@ const brighten = (color: Color, value: number | string): Color => {
   if (typeof value == 'number') {
     result = darken(color, -value);
   } else if (typeof value == 'string') {
-    let amt = abs(
-      isInt(value) ? parseInt(value.slice(1)) : parseFloat(value.slice(1))
-    );
+    let amt: number
+
+    if (isInt(value)) {
+      amt = parseInt(value.slice(1))
+    } else {
+      amt = parseFloat(value.slice(1))
+    }
+    amt = abs(amt)
     result = darken(color, -amt);
   }
   return result;

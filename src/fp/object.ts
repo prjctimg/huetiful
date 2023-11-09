@@ -1,7 +1,10 @@
 // This module has object methods
+
+import type { callback, factor } from '../paramTypes';
+
 // @ts-nocheck
-const colorObj = (factor, callback) => (color) => {
-  return { factor: callback(color), name: color };
+const colorObj = (factor: factor, callback: callback) => (color) => {
+  return { [factor]: callback(color), name: color };
 };
 
 const find = (collection: object, predicate: (val, key?, idx?) => any) => {

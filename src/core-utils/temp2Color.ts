@@ -2,9 +2,8 @@
 
 //ported from chroma-js
 
-import { fromPairs } from 'lodash-es';
 import type { Color } from '../paramTypes';
-import { formatHex, formatHex8 } from 'culori';
+import { formatHex } from 'culori';
 
 /**
  * @function
@@ -28,21 +27,21 @@ const temp2Color = (kelvin: number, hex = false): Color => {
   //
   const temp = kelvin / 100;
 
-  let r, g, b;
+  let r: number, g: number, b: number;
   if (temp < 66) {
     r = 255;
     g =
       temp < 6
         ? 0
         : -155.25485562709179 -
-          0.44596950469579133 * (g = temp - 2) +
-          104.49216199393888 * log(g);
+        0.44596950469579133 * (g = temp - 2) +
+        104.49216199393888 * log(g);
     b =
       temp < 20
         ? 0
         : -254.76935184120902 +
-          0.8274096064007395 * (b = temp - 10) +
-          115.67994401066147 * log(b);
+        0.8274096064007395 * (b = temp - 10) +
+        115.67994401066147 * log(b);
   } else {
     r =
       351.97690566805693 +

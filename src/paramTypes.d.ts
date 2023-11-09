@@ -63,7 +63,7 @@ export type sequentialScheme =
   | 'PuBuGn'
   | 'Viridis';
 
-export type Color = number | string | object;
+export type Color = number | string | object | [number, number, number, number?, string]
 
 /**
  * @param

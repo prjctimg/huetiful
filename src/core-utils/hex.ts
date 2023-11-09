@@ -1,6 +1,8 @@
 // @ts-nocheck
 import type { Color } from '../paramTypes';
 import { formatHex8, formatHex } from 'culori';
+import { num2rgb } from './num2rgb';
+import { inRange } from '../fp/number';
 
 /**
  *@function
@@ -17,62 +19,48 @@ console.log(hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 // #7b7941
  */
 const hex = (color: Color): Color => {
-  if (typeof color === 'object' && color['alpha']) {
-    return formatHex8(color);
-  } else {
-    return formatHex(color);
+  // if its a plain color object use formatHex
+  if (typeof color === 'object') {
+    return (color['alpha'] && formatHex8(color)) || formatHex(color);
+  }
+  // if its a number use num2rgb
+  else if (typeof color == 'number') {
+    return num2rgb(color, true);
+  } // if its not a string and has a lengh property then its an array...
+  else if (Array.isArray(color) && inRange(color.length, 4, 5)) {
+    // capture the mode and channel values seperately
+    let mode: string = color[color.length - 1];
+    let channels: number[];
+
+    // the object that will be conditionally mutated depending on the array's length
+    let res = {};
+    if (color.length == 4) {
+      // also applies to the 'else' clause
+      // set the res mode property before the mode variable is mutated
+      res['mode'] = mode;
+
+      // slice the appropiate amount of channels in this case 3
+      channels = color.slice(0, 3);
+
+      // set mode to a substring which trims the string at an index that is the reslt of length - 3
+      mode = mode.substring(mode.length - 3);
+
+      // for every channel value
+      // set the property of the res object to have a key
+      // that is the substring at the specified index
+      // and its value to be this.val
+      channels.map((val, key) => (res[mode.charAt(key)] = val));
+      // store the result as a hex string
+      res = formatHex(res);
+    } else {
+      res['mode'] = mode;
+      channels = color.slice(0, 4);
+      mode = mode.substring(mode.length - 3).concat('a');
+      channels.map((val, key) => (res[mode.charAt(key)] = val));
+      res = formatHex8(res);
+    }
+    return res;
   }
 };
 
 export { hex };
-
-/*
- 
- * @function
- * @description argType is a contract that checks the argument passed in and applies the relevant parsing function for the data type passed in.
- * @param arg The argument to query
- * @param mutate Boolean value to determine whether a color token should be modified to hex before being returne. This is because off precision loss if colors are first converted to hex before being manipulated since different color spaces have different gamut limits.
- * @returns A recognizable or purified color token.
- 
-const argType = (arg: any, mutate = false): Color => {
-  const arr =
-      'If the color token is an array it must have the mode channel values in the respective and a string as the last element specifying the color space the passed in values belong to. For example [255,10,50,"rgb"] ',
-    obj =
-      'If the color token is an object it must have the mode property defined to specify the color space the channel values belong to. For example {r:30,g:100,b:0,mode:"rgb"}',
-    num = "If the color token is a number it must be between 0 and 16,777,215",
-    str =
-      "If the color token is a string it will be treated as a hex code which can be of length 3,4,6 or 8 characters long and begin with the # symbol"
-
-  if (typeof arg == "number") {
-    return num2rgb(arg, mutate)
-  } else if (isPlainObject(arg)) {
-    return mutate ? formatHex8(arg) : arg
-  } else if (isArray(arg)) {
-    let mode: string = last(arg),
-      color = {}
-
-    // For each channel set the color object to have the the path[channel] and value of the channel as arg[index]
-    color = map(mode, (channel, index) => set(color, channel, index)) && set(color, "mode", mode)
-
-    return formatHex(color)
-  } else if (isString(arg)) {
-    return (startsWith(arg, "#", 0) && arg.length === 3) || 4 || 6
-      ? formatHex(arg)
-      : formatHex8(arg)
-  } else {
-    throw Error(
-      `${arg} is an unrecognized color token. ${
-        typeof arg === "number"
-          ? num
-          : typeof arg === "string"
-          ? str
-          : typeof arg === "object"
-          ? obj
-          : isArray(arg)
-          ? arr
-          : ""
-      }`
-    )
-  }
-}
- */

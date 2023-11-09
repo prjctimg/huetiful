@@ -1,6 +1,6 @@
 //@ts-nocheck
 
-import { converter } from 'culori';
+import { converter } from 'culori/fn';
 import type { Color } from '../paramTypes.ts';
 
 /**
@@ -18,15 +18,15 @@ console.log(getChannel('rgb.g')('#a1bd2f'))
  * */
 const getChannel =
   (mc: string) =>
-  (color: Color): number => {
-    const [mode, channel] = mc.split('.');
-    const src = converter(mode)(color);
+    (color: Color): number => {
+      const [mode, channel] = mc.split('.');
+      const src = converter(mode)(color);
 
-    if (channel) {
-      return src[channel];
-    } else {
-      throw Error(`unknown channel ${channel} in mode ${mode}`);
-    }
-  };
+      if (channel) {
+        return src[channel];
+      } else {
+        throw Error(`unknown channel ${channel} in mode ${mode}`);
+      }
+    };
 
 export { getChannel };

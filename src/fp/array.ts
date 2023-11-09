@@ -2,7 +2,7 @@
 // @ts-nocheck
 import { colorObj } from './object';
 import { factor, Color, callback, order } from '../paramTypes';
-
+import { gt, gte, lt, lte, inRange } from './number';
 /*
  * @function
  * @private
@@ -12,14 +12,12 @@ import { factor, Color, callback, order } from '../paramTypes';
  * @param colors The array of colors to iterate over.
  * @returns An array of objects.
  */
-const colorObjArr = (
-  colors: Color[],
-  factor: factor,
-  callback: callback
-): Array<{ factor; name }> => {
-  callback = colorObj(factor, callback);
-  return colors.map(callback);
-};
+const colorObjArr =
+  (factor: factor, callback) =>
+  (colors: Color[]): Array<{ factor: factor; name: Color }> => {
+    let cb = colorObj(factor, callback);
+    return colors.map((color) => cb(color));
+  };
 
 /**
  * @description Filters an array according to the value of a color's queried factor
@@ -33,10 +31,8 @@ const filteredArr =
     let result: Color[];
 
     if (typeof start == 'number') {
-      result = colorObjArr(
-        factor,
-        cb
-      )(colors)
+      result = colorObjArr(factor, cb)(colors);
+      result = result
         .filter((color) => inRange(color[factor], start, end))
         .map((color) => color['name']);
 
@@ -69,7 +65,7 @@ const filteredArr =
         case '>':
           result = mapFilter(gt);
           break;
-        case '=<':
+        case '<=':
           result = mapFilter(lte);
           break;
         case '>=':

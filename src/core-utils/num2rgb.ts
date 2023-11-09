@@ -1,6 +1,5 @@
 //@ts-nocheck
 
-import { fromPairs } from 'lodash-es';
 import { Color } from '../paramTypes.ts';
 import { formatHex, converter } from 'culori';
 
