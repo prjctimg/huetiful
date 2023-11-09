@@ -1,8 +1,8 @@
 // @ts-nocheck
 
-import { Color, factor } from '../paramTypes';
 import { getChannel } from '../core-utils/get.ts';
 import { sortedArr } from '../fp/array.ts';
+import type { Color, factor } from '../paramTypes';
 
 //  The factor being investigated.
 

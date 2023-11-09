@@ -1,12 +1,12 @@
 //@ts-nocheck
 
 import { getChannel } from '../core-utils/get.ts';
-import hueTempMap from '../color-maps/samples/hueTemperature.js';
-import type { Color } from '../paramTypes.ts';
+import hueTempMap from '../color-maps/samples/hueTemperature';
 import { getTemp } from '../core-utils/getTemp.ts';
 import { floorCeil, inRange } from '../fp/number.ts';
 import { min, max } from '../fp/array.ts';
 import { customConcat, find } from '../fp/object.ts';
+import type { Color } from '../paramTypes.ts';
 /**
  * @function
  * @description Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.

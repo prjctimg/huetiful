@@ -1,6 +1,5 @@
 //@ts-nocheck
-import { values, toLower } from 'lodash-es';
-import shades from '../color-maps/swatches/tailwind.js';
+import shades from '../color-maps/swatches/tailwind.ts';
 import type { HueMap, ScaleValues, Color } from '../paramTypes.ts';
 
 /**

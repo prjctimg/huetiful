@@ -1,11 +1,11 @@
 //@ts-nocheck
 import { getChannel } from '../core-utils/get.ts';
-import hueTempMap from '../color-maps/samples/hueTemperature.js';
+import hueTempMap from '../color-maps/samples/hueTemperature';
 import { min, max } from '../fp/array.ts';
 import { inRange } from '../fp/number.ts';
 import { find, customConcat } from '../fp/object.ts';
-import type { Color } from '../paramTypes.ts';
 import { isAchromatic } from './achromatic.ts';
+import type { Color } from '../paramTypes.ts';
 
 /**
  * @function

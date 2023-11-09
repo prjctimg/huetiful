@@ -1,6 +1,6 @@
 //@ts-nocheck
 
-import tailwindHues from '../color-maps/swatches/tailwind.js';
+import tailwindHues from '../color-maps/swatches/tailwind';
 import type { HueMap, ScaleValues } from '../paramTypes.ts';
 
 /**
@@ -41,9 +41,9 @@ const tailwindColors =
     shade = shade.toLowerCase();
     const { keys } = Object;
     // We check if the shade is a valid Tailwind shade if not we return pure black.
-    let targetHue;
+    let targetHue: object;
 
-    if (keys(tailwindHues).indexOf(shade) > -1) {
+    if (keys(tailwindHues).indexOf(shade) != -1) {
       targetHue = tailwindHues[shade];
     } else {
       throw Error(
@@ -52,7 +52,7 @@ const tailwindColors =
     }
 
     if (typeof val === 'undefined') {
-      return values(targetHue);
+      return keys(targetHue).map((value) => targetHue[value]);
     } else if (keys(targetHue).indexOf(val) > -1) {
       return targetHue[val];
     } else {
