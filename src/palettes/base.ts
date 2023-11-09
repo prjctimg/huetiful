@@ -41,14 +41,13 @@ const base =
       complementary: cb(2, 180, color)
     };
     // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
-    targetHueSteps = targetHueSteps.forEach((scheme) =>
+    for (const scheme of Object.keys(targetHueSteps)) {
       scheme.map(
         (step) =>
           random(step * lowMax, step * lowMin) +
           random(step * highMax, step * highMin) / 2
-      )
-    );
-
+      );
+    }
     // The map for steps to obtain the targeted palettes
 
     const colors = targetHueSteps[scheme.toLowerCase()].map((step) => ({

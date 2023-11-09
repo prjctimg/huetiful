@@ -1,12 +1,13 @@
 // @ts-nocheck
-import type { Color } from '../paramTypes';
-import { formatHex8, formatHex } from 'culori';
-import { num2rgb } from './num2rgb';
-import { inRange, normalize } from '../fp/number';
 
+import 'culori/css';
+import { formatHex8, formatHex } from 'culori/fn';
+import { num2rgb } from './num2rgb';
+import { inRange } from '../fp/number';
+import type { Color } from '../paramTypes';
 /**
  *@function
- @description Converts color objects and CSS named colors to hexadecimal.
+ @description Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red') to hexadecimal.
  * @param color The color to convert to hexadecimal. Works on color objects and CSS named colors.
  * @returns A hexadecimal representation of the passed in color.
  * @example

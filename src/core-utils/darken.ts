@@ -1,8 +1,9 @@
 //@ts-nocheck
-import { converter, formatHex } from 'culori';
-import type { Color } from '../paramTypes.ts';
+import { easingSmootherstep, modeLab, useMode } from 'culori/fn';
+import { hex } from './hex.ts';
 import { expressionParser } from '../fp/string.ts';
 import { isInt } from '../fp/number.ts';
+import type { Color } from '../paramTypes.ts';
 // ported froma chroma-js brighten
 
 /**
@@ -13,28 +14,17 @@ import { isInt } from '../fp/number.ts';
  * @returns color The darkened color.
  * @example
  * 
- * import { alpha } from 'huetiful-js'
+ * 
 
-// Getting the alpha
-console.log(alpha('#a1bd2f0d'))
-// 0.050980392156862744
-
-// Setting the alpha
-
-let myColor = alpha('b2c3f1', 0.5)
-
-console.log(myColor)
-
-// #b2c3f180
  */
 const darken = (color: Color, value: number | string): Color => {
   const Kn = 18;
   const channel = 'l';
-  // Addv acheck here like the one in set.js
-  const src = converter('lab')(color);
+  const lab = useMode(modeLab);
+  const src = lab(hex(color));
 
   if (typeof value === 'number') {
-    src['l'] -= Kn * value;
+    src['l'] -= Kn * (value * easingSmootherstep(value / 100));
   } else if (typeof value === 'string') {
     expressionParser(src, channel, value || 1);
   }
@@ -55,14 +45,14 @@ const brighten = (color: Color, value: number | string): Color => {
   if (typeof value == 'number') {
     result = darken(color, -value);
   } else if (typeof value == 'string') {
-    let amt: number
+    let amt: number;
 
     if (isInt(value)) {
-      amt = parseInt(value.slice(1))
+      amt = parseInt(value.slice(1));
     } else {
-      amt = parseFloat(value.slice(1))
+      amt = parseFloat(value.slice(1));
     }
-    amt = abs(amt)
+    amt = abs(amt);
     result = darken(color, -amt);
   }
   return result;

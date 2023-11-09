@@ -1,8 +1,8 @@
 //@ts-nocheck
-import { converter, formatHex8 } from 'culori';
+import { useMode, modeLch } from 'culori';
 import { inRange } from '../fp/number.ts';
-import type { Color } from '../paramTypes.ts';
 import { expressionParser } from '../fp/string.ts';
+import type { Color } from '../paramTypes.ts';
 
 /**
  * @function
@@ -28,9 +28,10 @@ console.log(myColor)
 const alpha = (color: Color, value?: number | string): Color | number => {
   // We never perfom an operation on an undefined color. Defaults to pure black
   color = color || 'black';
-  const src: Color = converter('rgb')(color);
-  let channel = 'alpha';
 
+  let channel = 'alpha';
+  const lch = useMode(modeLch);
+  const src: Color = lch(hex(color));
   if (typeof value === 'undefined' || null) {
     return src[channel];
   } else if (typeof value === 'number') {
