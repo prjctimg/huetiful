@@ -2,9 +2,11 @@
 
 // ported from chroma-js Color.set
 
-import { converter } from 'culori';
-import type { Color } from '../paramTypes.ts';
+import { converter } from 'culori/fn';
+import 'culori/css';
+import { toHex } from './hex.ts';
 import { expressionParser } from '../fp/string.ts';
+import type { Color } from '../paramTypes.ts';
 /**
  * @function
  *@description Sets the value for the specified channel in a color.
@@ -27,7 +29,7 @@ const setChannel =
   (mc: string) =>
   (color: Color, value: number | string): Color => {
     const [mode, channel] = mc.split('.');
-    const src: Color = converter(mode)(color);
+    const src: Color = converter(mode)(toHex(color));
 
     if (channel) {
       if (typeof value === 'number') {
