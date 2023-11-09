@@ -2,7 +2,7 @@
 import { useMode, modeLch } from 'culori/fn';
 import { inRange } from '../fp/number.ts';
 import { expressionParser } from '../fp/string.ts';
-import { toHex } from './hex.ts';
+import { toHex } from './toHex.ts';
 import type { Color } from '../paramTypes.ts';
 
 /**

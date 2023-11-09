@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { easingSmootherstep, modeLab, useMode } from 'culori/fn';
-import { toHex } from './hex.ts';
+import { toHex } from './toHex.ts';
 import { expressionParser } from '../fp/string.ts';
 import { isInt } from '../fp/number.ts';
 import type { Color } from '../paramTypes.ts';

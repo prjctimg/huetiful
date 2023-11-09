@@ -3,7 +3,7 @@ import { filteredArr } from '../fp/array.ts';
 import { wcagContrast } from 'culori/fn';
 
 import type { Color, factor } from '../paramTypes.ts';
-import { toHex } from '../core-utils/hex.ts';
+import { toHex } from '../core-utils/toHex.ts';
 /**
  *  @function
  * Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.

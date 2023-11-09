@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { interpolate, wcagLuminance, useMode, modeRgb } from 'culori/fn';
 import type { Color } from '../paramTypes.ts';
-import { hex } from './hex.ts';
+import { toHex } from './toHex.ts';
 /** @alias
  * Gets the luminance value of that color as defined by WCAG.
  * @param color The color to query.

@@ -2,7 +2,7 @@
 
 import 'culori/css';
 import type { Color } from '../paramTypes.ts';
-import { toHex } from 'hex';
+import { toHex } from './toHex.ts';
 // If the value is a floating point then we treat the decimal value as the opacity of the color.
 
 // If the value passedin is a float then the decimal is treated as opacity

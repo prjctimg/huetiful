@@ -4,7 +4,7 @@
 
 import { converter } from 'culori/fn';
 import 'culori/css';
-import { toHex } from './hex.ts';
+import { toHex } from './toHex.ts';
 import { expressionParser } from '../fp/string.ts';
 import type { Color } from '../paramTypes.ts';
 /**

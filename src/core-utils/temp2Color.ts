@@ -2,7 +2,7 @@
 
 //ported from chroma-js
 
-import { toHex } from './hex';
+import { toHex } from './toHex';
 import type { Color } from '../paramTypes';
 /**
  * @function

@@ -7,7 +7,7 @@
 import { useMode, modeRgb } from 'culori/fn';
 import { temp2Color } from './temp2Color.ts';
 import type { Color } from '../paramTypes';
-import { toHex } from './hex.ts';
+import { toHex } from './toHex.ts';
 
 /**
  * @description Returns the temperature value in Kelvins of the passed in color.
