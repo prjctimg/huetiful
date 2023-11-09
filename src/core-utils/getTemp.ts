@@ -4,9 +4,10 @@
  **/
 
 //  @ts-nocheck
-import { converter } from 'culori';
+import { useMode, modeRgb } from 'culori/fn';
 import { temp2Color } from './temp2Color.ts';
 import type { Color } from '../paramTypes';
+import { hex } from './hex.ts';
 
 /**
  * @description Returns the temperature value in Kelvins of the passed in color.
@@ -24,10 +25,11 @@ const getTemp = (color: Color): number => {
   const { round } = Math;
   //Store the color in an object with the RGB channels normalized to [0,1]
   // Add a color obj for rgb using culori
-  const rgb = converter('rgb')(color);
+  const rgb = useMode(modeRgb);
+  const src = rgb(hex(color));
   // Allocate the red and blue channels to variables
-  const r = rgb['r'],
-    b = rgb['b'];
+  const r: number = src['r'],
+    b: number = src['b'];
   let minTemp = 1000;
   let maxTemp = 40000;
   const eps = 0.4;
