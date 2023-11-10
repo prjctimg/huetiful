@@ -17,4 +17,4 @@ jobs:
           blockingLabels: needs triage,blocked,core team work,needs design,duplicate
           blockingLabelsMessage: The issue you are trying to assign yourself is blocked until it can be triaged by a maintainer.
           trigger: .take
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
