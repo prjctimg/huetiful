@@ -14,8 +14,8 @@ const normalize = (num: number, start: number, end: number): number => {
 
 const random = (min: number, max: number): number => {
   if (min > max) {
-    let mn = min;
-    let mx = max;
+    const mn = min;
+    const mx = max;
     max = mn;
     min = mx;
   } else {
@@ -35,8 +35,8 @@ const inRange = (number: number, start: number, end?: number): boolean => {
   // If start is greater than end flip the values
   if (start > end) {
     // Store the values in temporary variable
-    let s = start;
-    let e = end((end = s)) && (start = e);
+    const s = start;
+    const e = end((end = s)) && (start = e);
   }
 
   // If there's no end, then start = end and start = 0
@@ -67,8 +67,8 @@ const floorCeil = (num: number): number => {
   if (isInt(num)) {
     return num;
   } else {
-    let strArr = num.toString().split('.');
-    let float = strArr[1];
+    const strArr = num.toString().split('.');
+    const float = strArr[1];
 
     //If the decimal value is .4  and below it will be rounded down else it will be rounded up.
     const reFloorCeil = (float: string) => /^[0-4]$/.test(float.charAt(0));

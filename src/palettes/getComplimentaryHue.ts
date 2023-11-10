@@ -29,7 +29,7 @@ const getComplimentaryHue = (
   color: Color,
   colorObj = false
 ): { hue: string; color: Color } | Color => {
-  let modeChannel = 'lch.h';
+  const modeChannel = 'lch.h';
   // A complementary hue is 180 deg from the hue value of the passed in color
 
   let complementaryHue: number | false;
@@ -41,9 +41,9 @@ const getComplimentaryHue = (
   }
   let result;
   // Find the hue family which the color belongs to
-  let hueFamily: string = find(hueTempMap, (val) => {
+  const hueFamily: string = find(hueTempMap, (val) => {
     // Get the min and max hue value for each hue family
-    let minHue = min(customConcat(val)),
+    const minHue = min(customConcat(val)),
       maxHue = max(customConcat(val));
 
     if (complementaryHue) {

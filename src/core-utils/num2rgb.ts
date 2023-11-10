@@ -26,7 +26,7 @@ const num2rgb = (num: number, hex = false): Color => {
     const g = (num >> 8) & 0xff;
     const b = num & 0xff;
 
-    let output = {
+    const output = {
       r: r / 255,
       g: g / 255,
       b: b / 255,

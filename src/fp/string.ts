@@ -13,7 +13,7 @@ const expressionParser = (
   value: string
 ): number => {
   // regExp to match arithmetic operator and the value
-  const reOperator = /^(\*|\+|\-|\/)/;
+  const reOperator = /^(*|\+|\-|\/)/;
   const reValue = /[0-9]*\.?[0-9]+/;
 
   // Storing the arithmetic sign and value
@@ -51,7 +51,7 @@ const expressionParser = (
 const matchChromaChannel = (colorSpace: HueColorSpaces | string): string => {
   // Matches any string with c or s
   const reChroma = /(s|c)/;
-  let ch = reChroma.exec(colorSpace);
+  const ch = reChroma.exec(colorSpace);
 
   if (reChroma.test(colorSpace)) {
     return `${colorSpace}.${ch[0]}`;

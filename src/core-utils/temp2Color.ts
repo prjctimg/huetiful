@@ -51,7 +51,7 @@ const temp2Color = (kelvin: number, hex = false): Color => {
       28.0852963507957 * log(g);
     b = 255;
   }
-  let result = {
+  const result = {
     r: r / 255,
     g: g / 255,
     b: b / 255,

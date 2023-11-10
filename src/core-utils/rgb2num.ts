@@ -19,7 +19,7 @@ console.log(rgb2num("b2c3f1"))
 
 const rgb2num = (color: Color): number => {
   const toRgb = useMode(modeRgb);
-  let rgb: Color = toRgb(toHex(color));
+  const rgb: Color = toRgb(toHex(color));
 
   return ((255 * rgb['r']) << 16) + ((255 * rgb['g']) << 8) + 255 * rgb['b'];
 };

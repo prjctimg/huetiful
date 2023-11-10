@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // Returns the hue range where a color is found. If the hue Channel is falsy we return gray ?
 // @ts-nocheck
 import type { Color, hue } from '../paramTypes.js';
@@ -25,7 +26,7 @@ const getHue = (color: Color): hue => {
   color = converter('lch')(color);
 
   // Helpers to fetch the highest/lowest hue value per hue range
-  let getMin = (hue: string): number => {
+  const getMin = (hue: string): number => {
       return min(customConcat(hueTempMap[hue]));
     },
     getMax = (hue: string): number => {
@@ -33,17 +34,16 @@ const getHue = (color: Color): hue => {
     };
 
   //Capure the hue value
-  let factor: number | undefined = color['h'];
+  const factor: number | undefined = color['h'];
 
   //  First check if hue is falsy. If true return the string "gray"
   // The predicate-func
-  let cb = (factor: number | false, hue: string) =>
+  const cb = (factor: number | false, hue: string) =>
     factor === undefined || NaN || false
       ? 'gray'
       : inRange(floorCeil(factor), getMin(hue), getMax(hue));
 
   // We then pick the truthy key by returning an object which returns true for the inRange predicate
-  const { keys } = Object;
 
   let result: string;
 

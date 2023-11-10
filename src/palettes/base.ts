@@ -35,7 +35,7 @@ const base =
       lowMax = 0.495,
       highMin = 0.5,
       highMax = 0.995;
-    let targetHueSteps = {
+    const targetHueSteps = {
       analogous: cb(3, 12, color),
       triadic: cb(3, 120, color),
       tetradic: cb(4, 90, color),

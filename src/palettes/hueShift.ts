@@ -54,15 +54,15 @@ const hueShift = (
   hueStep = opts['hueStep' || 12];
   num = num || 6;
 
-  let palette = [color];
+  const palette = [color];
 
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
   samples(num).map((val) => {
     //adjustHue checks hue values are clamped.
-    let hueDark = adjustHue(
+    const hueDark = adjustHue(
       color['h'] - hueStep * (val * easingSmootherstep(val))
     );
-    let hueLight = adjustHue(
+    const hueLight = adjustHue(
       color['h'] + hueStep * (val * easingSmootherstep(val))
     );
 

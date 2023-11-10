@@ -44,8 +44,7 @@ const setLuminance = (color: Color, lum: number): Color => {
 
     // compute new color using...
 
-    let cur_lum = wcagLuminance(color);
-    const mode = 'rgb';
+    const cur_lum = wcagLuminance(color);
 
     color = toRgb(hex(color));
 
@@ -80,7 +79,7 @@ const setLuminance = (color: Color, lum: number): Color => {
 };
 
 const rgb2luminance = (color: Color): number => {
-  color = toRgb(color);
+  color = toRgb(toHex(color));
 
   // relative luminance
   // see http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef

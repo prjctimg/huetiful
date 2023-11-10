@@ -32,8 +32,8 @@ const overtone = (color: Color): string | boolean => {
   // We check if the color can be found in the defined ranges
   find(hueTempMap, (hue: object, key: string) => {
     // Capture the min and max values and see if the passed in color is within that range
-    let minVal = min(customConcat(hue));
-    let maxVal = max(customConcat(hue));
+    const minVal = min(customConcat(hue));
+    const maxVal = max(customConcat(hue));
 
     // If the color is achromatic return the string gray
     if (isAchromatic(color)) {

@@ -42,7 +42,7 @@ const discoverPalettes = (
   colors = colors.map((c) => converter('lch')(c));
   const palettes = {};
   const schemes = ['analogous', 'triadic', 'tetradic', 'complementary'];
-  let targetPalettes = {};
+  const targetPalettes = {};
   for (const color of colors) {
     schemes.forEach((s) => (targetPalettes[s] = base(s)(color, false)));
 

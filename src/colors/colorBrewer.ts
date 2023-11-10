@@ -66,7 +66,7 @@ console.log(sequential("OrRd"))
 
  */
 const sequential = (scheme: sequentialScheme): Color[] => {
-  let schemes = {
+  const schemes = {
     OrRd: [
       '#fff7ec',
       '#fee8c8',
@@ -302,7 +302,7 @@ console.log(diverging("Spectral"))
  */
 
 const diverging = (scheme: divergingScheme): Color[] => {
-  let schemes = {
+  const schemes = {
     Spectral: [
       '#9e0142',
       '#d53e4f',
@@ -446,7 +446,7 @@ console.log(qualitative("Accent"))
  */
 
 const qualitative = (scheme: qualitativeScheme): Color[] => {
-  let schemes = {
+  const schemes = {
     Set2: [
       '#66c2a5',
       '#fc8d62',

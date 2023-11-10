@@ -30,7 +30,7 @@ const alpha = (color: Color, value?: number | string): Color | number => {
   // We never perfom an operation on an undefined color. Defaults to pure black
   color = color || 'black';
 
-  let channel = 'alpha';
+  const channel = 'alpha';
   const lch = useMode(modeLch);
   const src: Color = lch(toHex(color));
   if (typeof value === 'undefined' || null) {

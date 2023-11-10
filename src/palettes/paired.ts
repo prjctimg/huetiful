@@ -43,15 +43,15 @@ const pairedScheme = (
   color = toLch(hex(color));
 
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
-  let derivedHue = setChannel('lch.h')(color, color['h'] + hueStep || 12);
+  const derivedHue = setChannel('lch.h')(color, color['h'] + hueStep || 12);
 
   // Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes
-  let tones = {
+  const tones = {
     dark: '#263238',
     light: { l: 100, c: 0.1, h: 0, mode: 'lch' }
   };
 
-  let scale = interpolate([color, tones[via || 'dark'], derivedHue], 'lch', {
+  const scale = interpolate([color, tones[via || 'dark'], derivedHue], 'lch', {
     h: {
       use: interpolatorSplineBasis,
       fixup: fixupHueShorter
@@ -66,11 +66,12 @@ const pairedScheme = (
   // Declare the num of iterations in samples() which will be used as the t value
   // Since the interpolation returns half duplicate values we double the sample value
   // Guard the num param against negative values and floats
-  let smp = samples((round(abs(num)) || 4) * 2);
+  const smp = samples((round(abs(num)) || 4) * 2);
 
   //The array to capture the different iterations
-  let results: Color[];
-  results = smp.map((t) => formatHex8(scale(easingSmootherstep(t))));
+  const results: Color[] = smp.map((t) =>
+    formatHex8(scale(easingSmootherstep(t)))
+  );
 
   // Return a slice of the array from the start to the half length of the array
   return results.slice(0, results.length / 2);

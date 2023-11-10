@@ -7,7 +7,10 @@ const colorObj = (factor: factor, callback: callback) => (color) => {
   return { [factor]: callback(color), name: color };
 };
 
-const find = (collection: object, predicate: (val, key?, idx?) => any) => {
+const find = (
+  collection: object,
+  predicate: (val, key?, idx?) => object | string
+) => {
   let prop;
   for (prop in collection) {
     if (predicate(collection[prop], prop)) {

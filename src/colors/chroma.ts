@@ -19,7 +19,7 @@ const factor: factor = 'saturation';
 const chromaDiff =
   (color: Color, colorSpace: HueColorSpaces | string) =>
   (subtrahend: Color) => {
-    let cs = matchChromaChannel(colorSpace);
+    const cs = matchChromaChannel(colorSpace);
 
     if (getChannel(cs)(color) < getChannel(cs)(subtrahend)) {
       return getChannel(cs)(subtrahend) - getChannel(cs)(color);
@@ -56,7 +56,7 @@ const getNearestChroma = (
   colorSpace?: HueColorSpaces
 ): number => {
   const cb = chromaDiff(color, colorSpace || 'lch');
-  let sortedObjArr = sortedArr(
+  const sortedObjArr = sortedArr(
     factor,
     cb,
     'asc',
@@ -90,7 +90,7 @@ const getFarthestChroma = (
   colorSpace?: HueColorSpaces
 ): number => {
   const cb = chromaDiff(color, colorSpace || 'lch');
-  let sortedObjArr = sortedArr(
+  const sortedObjArr = sortedArr(
     factor,
     cb,
     'desc',
