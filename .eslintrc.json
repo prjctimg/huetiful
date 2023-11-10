@@ -1,0 +1,18 @@
+/* eslint-disable prettier/prettier */
+ {
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "no-console": 1,
+      "prettier/prettier": 0,
+      "@typescript-eslint/ban-ts-comment":0,
+    "no-useless-escape":0
+  }
+}

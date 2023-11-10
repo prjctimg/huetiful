@@ -2,12 +2,11 @@
 import hueTempMap from '../color-maps/samples/hueTemperature';
 import { getChannel } from '../core-utils/get';
 import { min, max } from '../fp/array.ts';
-import { customConcat, find } from '../fp/object.ts';
+import { customConcat } from '../fp/object.ts';
 import { adjustHue, floorCeil, inRange } from '../fp/number.ts';
-import type { Color } from '../paramTypes';
 import { isAchromatic } from '../colors/achromatic';
 import { setChannel } from '../core-utils/set';
-import { formatHex8 } from 'culori';
+import type { Color } from '../paramTypes';
 
 /**
  * @function
@@ -39,20 +38,17 @@ const getComplimentaryHue = (
   } else {
     complementaryHue = false;
   }
-  let result;
+
   // Find the hue family which the color belongs to
-  const hueFamily: string = find(hueTempMap, (val) => {
-    // Get the min and max hue value for each hue family
-    const minHue = min(customConcat(val)),
-      maxHue = max(customConcat(val));
+  let hueFamily: string;
 
-    if (complementaryHue) {
-      return inRange(floorCeil(complementaryHue), minHue, maxHue);
-    } else {
-      return complementaryHue;
+  for (const hue of Object.keys(hueTempMap)) {
+    const hueValues: number[] = customConcat(hueTempMap[hue]);
+    if (inRange(floorCeil(complementaryHue), min(hueValues), max(hueValues))) {
+      return (hueFamily = hue);
     }
-  });
-
+  }
+  let result;
   if (complementaryHue) {
     result = {
       hue: hueFamily,

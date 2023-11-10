@@ -13,7 +13,7 @@ const expressionParser = (
   value: string
 ): number => {
   // regExp to match arithmetic operator and the value
-  const reOperator = /^(*|\+|\-|\/)/;
+  const reOperator = /^(\*|\+|\-|\/)/;
   const reValue = /[0-9]*\.?[0-9]+/;
 
   // Storing the arithmetic sign and value
