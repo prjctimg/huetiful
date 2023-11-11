@@ -67,7 +67,7 @@ export type Color =
   | number
   | string
   | object
-  | [number, number, number, number?, string];
+  | [string, number, number, number, number?];
 
 /**
  * @param

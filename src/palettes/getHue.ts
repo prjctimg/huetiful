@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // Returns the hue range where a color is found. If the hue Channel is falsy we return gray ?
 // @ts-nocheck
-import type { Color, hue } from '../paramTypes.js';
-import hueTempMap from '../color-maps/samples/hueTemperature.js';
-import { converter } from 'culori';
-import { floorCeil, inRange } from '../fp/number.ts';
+import hueTempMap from '../color-maps/samples/hueTemperature';
+import { useMode, modeLch } from 'culori/fn';
+import { inRange } from '../fp/number.ts';
 import { min, max } from '../fp/array.ts';
 import { customConcat } from '../fp/object.ts';
+import { toHex } from '../core-utils/toHex.ts';
+import type { Color, hue } from '../paramTypes';
+
 /**
  *@function
  @description Gets the hue family which a a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
@@ -22,38 +24,37 @@ console.log(getHue("#310000"))
  */
 const getHue = (color: Color): hue => {
   // First convert the color to LCH
-
-  color = converter('lch')(color);
-
-  // Helpers to fetch the highest/lowest hue value per hue range
-  const getMin = (hue: string): number => {
-      return min(customConcat(hueTempMap[hue]));
-    },
-    getMax = (hue: string): number => {
-      return max(customConcat(hueTempMap[hue]));
-    };
+  const lch = useMode(modeLch);
+  color = lch(toHex(color));
 
   //Capure the hue value
   const factor: number | undefined = color['h'];
 
   //  First check if hue is falsy. If true return the string "gray"
   // The predicate-func
-  const cb = (factor: number | false, hue: string) =>
-    factor === undefined || NaN || false
-      ? 'gray'
-      : inRange(floorCeil(factor), getMin(hue), getMax(hue));
 
   // We then pick the truthy key by returning an object which returns true for the inRange predicate
 
-  let result: string;
+  const hueKeys = Object.keys(hueTempMap);
+  const hueFamily = hueKeys
+    .map((hue) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
-  for (const hue in Object.keys(hueTempMap)) {
-    if (cb(factor, hue)) {
-      result = hue;
-    }
-  }
+      const hueVals = customConcat(hueTempMap[hue]);
+      const minVal = min(...hueVals);
+      const maxVal = max(...hueVals);
+      const bool = customConcat(hueTempMap[hue]).some(() =>
+        inRange(factor, minVal, maxVal)
+      );
 
-  return result;
+      if (bool) {
+        return hue;
+      }
+    })
+    .filter((val) => typeof val === 'string')
+    .toString();
+
+  return hueFamily;
 };
 
 export { getHue };

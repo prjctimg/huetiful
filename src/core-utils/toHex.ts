@@ -7,16 +7,16 @@ import { inRange } from '../fp/number';
 import type { Color } from '../paramTypes';
 /**
  *@function
- @description Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red') to hexadecimal.
+ @description Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), numbers from 0 to 166,777,215 and arrays in the form of [string,number,number,number,numer?] the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
  * @param color The color to convert to hexadecimal. Works on color objects and CSS named colors.
  * @returns A hexadecimal representation of the passed in color.
  * @example
- * import { hex } from "huetiful-js";
+ * import { toHex } from "huetiful-js";
  * 
-console.log(hex({ l: 50, c: 31, h: 100, alpha: 0.5, mode: "lch" }))
+console.log(toHex({ l: 50, c: 31, h: 100, alpha: 0.5, mode: "lch" }))
 // #7b794180
 
-console.log(hex({ l: 50, c: 31, h: 100, mode: "lch" }))
+console.log(toHex({ l: 50, c: 31, h: 100, mode: "lch" }))
 // #7b7941
  */
 const toHex = (color: Color): Color => {
