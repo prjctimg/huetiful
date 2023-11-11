@@ -1,7 +1,7 @@
 // @ts-nocheck
 // From colorbrewr
 
-import { hex } from '../core-utils/index.ts';
+import { toHex } from '../core-utils/toHex.ts';
 import { setChannel } from '../core-utils/set.ts';
 import { Color, tone } from '../paramTypes.ts';
 import {
@@ -40,7 +40,7 @@ const pairedScheme = (
   via: tone
 ): Color[] => {
   const toLch = useMode(modeLch);
-  color = toLch(hex(color));
+  color = toLch(toHex(color));
 
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
   const derivedHue = setChannel('lch.h')(color, color['h'] + hueStep || 12);
