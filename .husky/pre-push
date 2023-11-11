@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run format && npm version patch
+# We cant push code that doesn't build.
+ npm run build && npm run format 
