@@ -47,7 +47,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "repository": "github:prjctimg/huetiful",
   "keywords": [
