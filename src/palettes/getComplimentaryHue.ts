@@ -3,10 +3,13 @@ import hueTempMap from '../color-maps/samples/hueTemperature';
 import { getChannel } from '../core-utils/get';
 import { min, max } from '../fp/array.ts';
 import { customConcat } from '../fp/object.ts';
-import { adjustHue, floorCeil, inRange } from '../fp/number.ts';
-import { isAchromatic } from '../colors/achromatic';
+import { adjustHue, inRange } from '../fp/number.ts';
 import { setChannel } from '../core-utils/set';
 import type { Color } from '../paramTypes';
+import { toHex } from '../core-utils/toHex.ts';
+
+const { keys } = Object;
+const hueKeys = keys(hueTempMap);
 
 /**
  * @function
@@ -31,28 +34,37 @@ const getComplimentaryHue = (
   const modeChannel = 'lch.h';
   // A complementary hue is 180 deg from the hue value of the passed in color
 
-  let complementaryHue: number | false;
-
-  if (!isAchromatic(color)) {
-    complementaryHue = adjustHue(getChannel(modeChannel)(color) + 180);
-  } else {
-    complementaryHue = false;
-  }
+  const complementaryHue: number = adjustHue(
+    getChannel(modeChannel)(color) + 180
+  );
 
   // Find the hue family which the color belongs to
-  let hueFamily: string;
 
-  for (const hue of Object.keys(hueTempMap)) {
-    const hueValues: number[] = customConcat(hueTempMap[hue]);
-    if (inRange(floorCeil(complementaryHue), min(hueValues), max(hueValues))) {
-      return (hueFamily = hue);
-    }
-  }
-  let result;
+  // eslint-disable-next-line prefer-const
+
+  const hueFamily = hueKeys
+    .map((hue) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+      const hueVals = customConcat(hueTempMap[hue]);
+      const minVal = min(...hueVals);
+      const maxVal = max(...hueVals);
+      const bool = customConcat(hueTempMap[hue]).some(() =>
+        inRange(complementaryHue, minVal, maxVal)
+      );
+
+      if (bool) {
+        return hue;
+      }
+    })
+    .filter((val) => typeof val === 'string')
+    .toString();
+
+  let result: Color | { hue: string; color: Color };
   if (complementaryHue) {
     result = {
       hue: hueFamily,
-      color: formatHex8(setChannel(modeChannel)(color, complementaryHue))
+      color: toHex(setChannel(modeChannel)(color, complementaryHue))
     };
   } else {
     result = { hue: 'gray', color: color };

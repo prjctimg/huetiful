@@ -47,7 +47,7 @@ const getHue = (color: Color): hue => {
 
   let result: string;
 
-  for (const hue in hueTempMap) {
+  for (const hue in Object.keys(hueTempMap)) {
     if (cb(factor, hue)) {
       result = hue;
     }

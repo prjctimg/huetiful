@@ -1,9 +1,9 @@
 // This module has object methods
 
-import type { callback, factor } from '../paramTypes';
+import type { callback, factor, Color } from '../paramTypes';
 
 // @ts-nocheck
-const colorObj = (factor: factor, callback: callback) => (color) => {
+const colorObj = (factor: factor, callback: callback) => (color: Color) => {
   return { [factor]: callback(color), name: color };
 };
 
@@ -21,7 +21,14 @@ const find = (
 };
 
 const customConcat = (hue: object) => {
-  let res: number[];
-  return res.concat(hue['warm'], hue['cool']);
+  const res: number[] = [];
+  const { keys } = Object;
+  if (typeof hue == 'object') {
+    const hueKeys = keys(hue);
+
+    //@ts-ignore
+    res.push(...hueKeys.map((key) => hue[key]));
+  }
+  return res;
 };
 export { colorObj, find, customConcat };

@@ -20,7 +20,7 @@ build({
   ...sharedConfig,
   entryPoints: [".//src/palettes/index.ts"],
   outfile: "dist/palettes/index.esm.mjs",
-  minify: true,
+
   external: Object.keys(dependencies),
 })
 
@@ -28,8 +28,8 @@ build({
 build({
   ...sharedConfig,
   outfile: "dist/filterBy/index.esm.mjs",
-  minify: true,
   external: Object.keys(dependencies),
+  platform:'neutral'
 })
 
 
@@ -38,7 +38,6 @@ build({
   ...sharedConfig,
   entryPoints:['.//src/sortBy/index.ts'],
   outfile: "dist/sortBy/index.esm.mjs",
-  minify: true,
   external: Object.keys(dependencies),
 })
 
@@ -47,7 +46,15 @@ build({
   ...sharedConfig,
   entryPoints: [".//src/colors/index.ts"],
   outfile: "dist/colors/index.esm.mjs",
-  minify: true,
+  external: Object.keys(dependencies),
+})
+
+
+// fp/ import
+build({
+  ...sharedConfig,
+  entryPoints: [".//src/fp/index.ts"],
+  outfile: "dist/fp/index.esm.mjs",
   external: Object.keys(dependencies),
 })
 

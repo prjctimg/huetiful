@@ -32,19 +32,10 @@ const adjustHue = (value = 0) => {
 };
 
 const inRange = (number: number, start: number, end?: number): boolean => {
-  // If start is greater than end flip the values
-  if (start > end) {
-    // Store the values in temporary variable
-    const s = start;
-    const e = end((end = s)) && (start = e);
-  }
-
-  // If there's no end, then start = end and start = 0
-  if (!end) {
-    end = start;
-    start = 0;
-  }
-  return number >= start && number <= end;
+  /* Built-in method references for those with the same name as other `lodash` methods. */
+  var nativeMax = Math.max,
+    nativeMin = Math.min;
+  return number >= nativeMin(start, end) && number < nativeMax(start, end);
 };
 
 /**
