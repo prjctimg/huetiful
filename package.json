@@ -38,7 +38,7 @@
     "types": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts",
     "docs": "cd docs && npm run build:docs && npm run deploy:docs",
     "lint": "eslint . --ext .ts",
-    "format": "prettier --config .prettierrc \"src/**/*.ts\" --write"
+    "format": "prettier --config .prettierrc.json \"src/**/*.ts\" --write"
   },
   "husky": {
     "hooks": {
