@@ -138,6 +138,13 @@ The list of functions goes on beyond this. And since the library is pure JavaScr
 
 [See the full docs here]()
 
+
+## Need help ?
+
+See some unexpected results? [Checkout our issue tracker]() to open an issue or search for the problem to see if your issue already exists
+
+Would like to join the chat and share ideas and suggestions ? [See our discussions]() for the open topics.
+
 ## Contributing
 
 First of all, thank you for using huetiful-js! Its people like you that make open source software better for the community!
