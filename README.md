@@ -23,8 +23,9 @@ npm i huetiful-js
 ## Contributing
 
 First of all, thank you for using huetiful-js! Its people like you that make open source software better for the community!
-Contributions are welcome! Help make this project better and easier to use for other developers by sharing your ideas and stomping out bugs and feature suggestions. For any major changes, please open an issue first to discuss what you would like to change.
+Contributions are welcome! Help make this project better and easier to use for other developers by sharing your ideas and stomping out bugs and feature suggestions. Please see the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
 
 ## License
 
 Released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license.
+See the [LICENSE](./LICENSE.md) for the full list of open source licenses.

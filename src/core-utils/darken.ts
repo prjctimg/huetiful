@@ -48,6 +48,7 @@ const brighten = (color: Color, value: number | string): Color => {
   } else if (typeof value == 'string') {
     expressionParser(src, channel, value);
   }
+
   return toHex(src);
 };
 
