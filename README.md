@@ -4,7 +4,7 @@
  #### JavaScript library for general purpose color manipulations.
 
 
-The aim of this project is to help designers and developers alike  work with color more programatically using utilities based on color theory. Though not necessarily a requiement, a basic background of color spaces, properties of color and any other color theory related information will make the library's use cases appear more simpler.
+The aim of this project is to help designers and developers alike  work with color more programatically using utilities based on color theory. Though not necessarily a requirement, a basic background of color spaces, properties of color and any other color theory related information will make the library's use cases appear more simpler.
 
 This project is inspired by projects such as [chroma-js](),[colorBrewer.org](),[TailwindCSS]() and borrows some of the reasoning behind them to build functionality. In fact this library uses [Culori]() as its core dependency because it provides a rich API of low level functions written in JavaScript to perform color conversions and other general purpose color manipulations.
 
@@ -26,16 +26,18 @@ For use in the browser use [CDN]() to load the package (UMD)
 Code sample
 ```
 
-## Quick examples
+## Overview
 
 Below are short walkthroughs to demonstrate how the functions can be used in example scenerios.
 
 ### Colors
 
+#### What's a color ?
+
 A color can be defined in various formats. This gives us more flexibility in how we want to define our color. Below are examples listing all the supported formats of passing in color values and their respective conversion functions:
 
 ```js
-// Examples 
+
 
 ```
 
@@ -53,11 +55,11 @@ We can even mix different color formats with no problem at all:
 ```
 
 
-For more information on the color spaces supported by the library and the expected ranges, checkout the [Color Spaces page on the Culori docs]() . Or checkout the docs about [Color conversions]()
+For more information on the color spaces supported by the library and the expected ranges, checkout the [Color Spaces page on the Culori docs]() . Or checkout the library's [Color conversions]() page.
 
 > All the functions are internally guarded by `toHex()` so you don't have to worry about converting colors back and fourth.
 
-#### Tailwind
+#### Tailwind colors
 
 As a starting point the library comes along with the default [TailwindCSS]() palette included.. This helps you get started easier when you're using [palette functions]() such as `hueShift()` and `earthtone()`
 
@@ -71,7 +73,11 @@ The Tailwind colors are in the form of two wrapper functions that both take the 
 We can even return the whole scale `(050 - 900)` of a shade as an array of hex strings. The order of elements is in order with the scale values:
 
 
-## Working with collections of colors
+### Working with collections of colors
+
+#### Sorting colors
+
+#### Filtering colors
 
 The library has functions for sorting and filtering colors using their property values like saturation,lightness and even temperaure in Kelvins. Below is an example of using the filtering and sorting functions on an array of colors:
 
@@ -92,7 +98,7 @@ A small collection of simple palette functions are included in the library. One 
 // Example
 
 ```
-There's more where that came from. [See the palettes docs]()
+There's more where that came from. [See the palettes page]()
 
 
 ### Predicates
@@ -136,6 +142,8 @@ Or maybe we want to know which color has the furthest hue distance in our sample
 
 The list of functions goes on beyond this. And since the library is pure JavaScript, you can hook it up with your creative coding library of choice like [p5js]() or [runejs](). The possibilities are limited by the imagination of the user.
 
+For an introduction to terminology used in color checkout this guide on my blog.
+
 [See the full docs here]()
 
 
@@ -156,4 +164,4 @@ Contributions are welcome! Help make this project better and easier to use for o
 > Dean Tarisai and contributors
 > huetiful-js is released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license.
 >
-> This project makes extensive use of open source resources and its inception would have had been null if it wasn't for their pioneering. See the [LICENSE](./LICENSE.md) for the full list of open source licenses.
+> This project makes extensive use of open source resources and its inception would have had been null if it wasn't for their pioneering. See the [LICENSES](./LICENSE.md) for the full list of open source licenses.
