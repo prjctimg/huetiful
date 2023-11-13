@@ -1,8 +1,9 @@
 //@ts-nocheck
-import { converter, formatHex8, easingSmoothstep, samples } from 'culori';
+import { useMode, modeLch, easingSmoothstep, samples } from 'culori/fn';
 
 import type { Color } from '../paramTypes.ts';
 import { adjustHue, random } from '../fp/number.ts';
+import { toHex } from '../core-utils/toHex.ts';
 
 // Globals
 const cb = (iterations: number, distance: number, color: Color) =>
@@ -28,30 +29,29 @@ const base =
   (scheme: 'analogous' | 'triadic' | 'tetradic' | 'complementary') =>
   (color: Color, hex = false): Color[] => {
     // Converting the color to lch
-
-    color = converter('lch')(color);
+    const lch = useMode(modeLch);
+    color = lch(color);
     const lowMin = 0.05,
       lowMax = 0.495,
       highMin = 0.5,
       highMax = 0.995;
-    let targetHueSteps = {
+    const targetHueSteps = {
       analogous: cb(3, 12, color),
       triadic: cb(3, 120, color),
       tetradic: cb(4, 90, color),
       complementary: cb(2, 180, color)
     };
     // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
-    targetHueSteps = targetHueSteps.forEach((scheme) =>
-      scheme.map(
-        (step) =>
+    for (const scheme of Object.keys(targetHueSteps)) {
+      targetHueSteps[scheme].map(
+        (step: number) =>
           random(step * lowMax, step * lowMin) +
           random(step * highMax, step * highMin) / 2
-      )
-    );
-
+      );
+    }
     // The map for steps to obtain the targeted palettes
 
-    const colors = targetHueSteps[scheme.toLowerCase()].map((step) => ({
+    const colors = targetHueSteps[scheme.toLowerCase()].map((step: number) => ({
       l: color['l'],
       c: color['c'],
       h: step,
@@ -59,7 +59,7 @@ const base =
     }));
 
     if (hex) {
-      return colors.map(formatHex8);
+      return colors.map(toHex);
     } else {
       return colors;
     }

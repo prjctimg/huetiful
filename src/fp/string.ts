@@ -51,7 +51,7 @@ const expressionParser = (
 const matchChromaChannel = (colorSpace: HueColorSpaces | string): string => {
   // Matches any string with c or s
   const reChroma = /(s|c)/;
-  let ch = reChroma.exec(colorSpace);
+  const ch = reChroma.exec(colorSpace);
 
   if (reChroma.test(colorSpace)) {
     return `${colorSpace}.${ch[0]}`;

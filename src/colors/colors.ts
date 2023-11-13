@@ -1,6 +1,5 @@
 //@ts-nocheck
-import { values, toLower } from 'lodash-es';
-import shades from '../color-maps/swatches/tailwind.js';
+import shades from '../color-maps/swatches/tailwind.ts';
 import type { HueMap, ScaleValues, Color } from '../paramTypes.ts';
 
 /**
@@ -45,7 +44,7 @@ console.log(red100)
 const colors = (shade: keyof HueMap, val: ScaleValues): Color | Color[] => {
   const { keys } = Object;
   const defaultHue = 'all';
-  let hueKeys = keys(shades);
+  const hueKeys = keys(shades);
 
   shade = shade.toLowerCase();
   // First do an AND check on hue and val params. If true return the hue at the specified value.
@@ -58,7 +57,7 @@ const colors = (shade: keyof HueMap, val: ScaleValues): Color | Color[] => {
   } else if (hueKeys.some((hue) => hue === shade) && val) {
     return shades[shade][val];
   } else if (shade && typeof val == 'undefined') {
-    let keyVals = keys(shades[shade]);
+    const keyVals = keys(shades[shade]);
     return keyVals.map((key) => shades[shade][key]);
   } else if (typeof shade && typeof val == 'undefined') {
     throw Error(`Both shade and value cannot be undefined`);

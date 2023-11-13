@@ -2,9 +2,8 @@
 
 //ported from chroma-js
 
+import { toHex } from './toHex';
 import type { Color } from '../paramTypes';
-import { formatHex } from 'culori';
-
 /**
  * @function
  * @description Converts the temperature value (in Kelvins) to an RGB color.
@@ -20,7 +19,6 @@ console.log(temp2Color(2542))
  */
 const temp2Color = (kelvin: number, hex = false): Color => {
   //Hue change starts at approx 655 Kelvins ???
-  const eps = 655;
   const { log } = Math;
   // Checking if the passed in value is within a problematic range that returns negative values on the blue channel.
   //inRange(kelvin, 400, 650) ? (kelvin = eps) : kelvin;
@@ -34,14 +32,14 @@ const temp2Color = (kelvin: number, hex = false): Color => {
       temp < 6
         ? 0
         : -155.25485562709179 -
-        0.44596950469579133 * (g = temp - 2) +
-        104.49216199393888 * log(g);
+          0.44596950469579133 * (g = temp - 2) +
+          104.49216199393888 * log(g);
     b =
       temp < 20
         ? 0
         : -254.76935184120902 +
-        0.8274096064007395 * (b = temp - 10) +
-        115.67994401066147 * log(b);
+          0.8274096064007395 * (b = temp - 10) +
+          115.67994401066147 * log(b);
   } else {
     r =
       351.97690566805693 +
@@ -53,7 +51,7 @@ const temp2Color = (kelvin: number, hex = false): Color => {
       28.0852963507957 * log(g);
     b = 255;
   }
-  let result = {
+  const result = {
     r: r / 255,
     g: g / 255,
     b: b / 255,
@@ -61,7 +59,7 @@ const temp2Color = (kelvin: number, hex = false): Color => {
   };
 
   if (hex) {
-    return formatHex(result);
+    return toHex(result);
   } else {
     return result;
   }

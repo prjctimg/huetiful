@@ -15,7 +15,7 @@ import { gt, gte, lt, lte, inRange } from './number';
 const colorObjArr =
   (factor: factor, callback) =>
   (colors: Color[]): Array<{ factor: factor; name: Color }> => {
-    let cb = colorObj(factor, callback);
+    const cb = colorObj(factor, callback);
     return colors.map((color) => cb(color));
   };
 
@@ -41,12 +41,12 @@ const filteredArr =
       // If string split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
     } else if (typeof start == 'string') {
       //The pattern to match
-      let operator = /^(>=|<=|<|>)/;
+      const operator = /^(>=|<=|<|>)/;
 
-      let value = /[0-9]*\.?[0-9]+/;
+      const value = /[0-9]*\.?[0-9]+/;
 
       // Array
-      let val = value.exec(start),
+      const val = value.exec(start),
         op = operator.exec(start);
 
       const mapFilter = (test: (x: number, y: number) => boolean): Color[] => {
@@ -105,11 +105,11 @@ const customSort = (order: order, factor?: factor) => {
 const sortedArr =
   (factor: factor, callback: callback, order: order, colorObj = false) =>
   (colors: Color[]) => {
-    let results: Color[] | Array<{ factor: number; name: Color }>;
-    (colorObj && color) || color['name'];
+    const results: Color[] | Array<{ factor: number; name: Color }> =
+      colorObjArr(factor, callback)(colors);
+    //  (colorObj && color) || color['name'];
 
     // Assign the value of colorObj to results variable
-    results = colorObjArr(factor, callback)(colors);
 
     // Sort the array using our customSort helper function
     results.sort(customSort(order, factor));
@@ -123,19 +123,47 @@ const sortedArr =
     }
   };
 
-/**
- * @description Gets the largest value in an array
- * @param array The array to retrieve maximum value
- * @returns The largest number in the array
- */
-const max = (array: number[]): number => array.sort(customSort('desc'))[0];
+// from the lodash implementation of _.min and _.max
+const identity = (value) => {
+  return value;
+};
+const baseExtremum = (array: number[], iteratee, comparator) => {
+  var index = -1,
+    length = array.length;
+
+  while (++index < length) {
+    var value = array[index],
+      current = iteratee(value);
+
+    if (
+      current != null &&
+      (computed === undefined
+        ? current === current
+        : comparator(current, computed))
+    ) {
+      var computed = current,
+        result = value;
+    }
+  }
+  return result;
+};
 
 /**
  * @description Gets the smallest value in an array
  * @param array The array to retrieve minimum value
  * @returns The smallest number in the array
  */
+const min = (array: number[]): number => {
+  return array && array.length ? baseExtremum(array, identity, lt) : undefined;
+};
+/**
+ * @description Gets the largest value in an array
+ * @param array The array to retrieve maximum value
+ * @returns The largest number in the array
+ */
 
-const min = (array: number[]): number => array.sort(customSort('asc'))[0];
+const max = (array: number[]): number => {
+  return array && array.length ? baseExtremum(array, identity, gt) : undefined;
+};
 
 export { colorObjArr, filteredArr, sortedArr, customSort, max, min };

@@ -2,9 +2,10 @@
 // Original source from   George Francis: Coloring with Code
 // Can we also lightnessMapper palette types to create hue shifted variants per each color in the palette ?
 
-import { converter, easingSmootherstep, formatHex, samples } from 'culori';
+import { easingSmootherstep, modeLch, samples, useMode } from 'culori/fn';
 import type { Color } from '../paramTypes.ts';
 import { adjustHue } from '../fp/number.ts';
+import { toHex } from '../core-utils/toHex.ts';
 
 const lightnessMapper =
   (n: number) =>
@@ -18,7 +19,7 @@ const lightnessMapper =
  * @param color The color to use as the base of the hueshift. Colors are internally converted to LCH.
  * @param minLightness  Minimum lightness value (range 0-100).
  * @param maxLightness  Maximum lightness value (range 0-100).
- * @param num The number of iterations to do on the color. It equals the amount of elements in the result array.
+ * @param iterations The number of iterations to perform on the color. The length of the resultant array is the number of iterations multiplied by 2 plus the base color passed or (iterations*2)+1.
  * @param hueStep  Controls how much the hue will shift at each iteration.
  * @param hex Optional boolen to return lch color objects or hex codes in the result array. Default is false  which returns LCH color objects.
  * @returns An array of colors.
@@ -42,34 +43,48 @@ console.log(hueShiftedPalette);
 
 const hueShift = (
   color: Color,
-  opts = { minLightness, maxLightness, hueStep, num },
+  {
+    minLightness,
+    maxLightness,
+    hueStep,
+    iterations
+  }: {
+    minLightness?: number;
+    maxLightness?: number;
+    hueStep?: number;
+    iterations?: number;
+  },
   hex = false
 ): Color[] => {
-  color = converter('lch')(color);
-  let { minLightness, maxLightness, hueStep, num } = opts;
+  const lch = useMode(modeLch);
+
+  color = lch(toHex(color));
 
   // Pass in default values if any of the opts is undefined
   minLightness = minLightness || 10;
   maxLightness = maxLightness || 90;
-  hueStep = opts['hueStep' || 12];
-  num = num || 6;
+  hueStep = hueStep || 5;
+  iterations = iterations || 6;
 
-  let palette = [color];
+  const palette: Color[] = [color];
 
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
-  samples(num).map((val) => {
+
+  samples(iterations).map((t) => {
     //adjustHue checks hue values are clamped.
-    let hueDark = adjustHue(
-      color['h'] - hueStep * (val * easingSmootherstep(val))
-    );
-    let hueLight = adjustHue(
-      color['h'] + hueStep * (val * easingSmootherstep(val))
-    );
+    const hueDark = adjustHue(color['h'] - hueStep * t);
+    const hueLight = adjustHue(color['h'] + hueStep * t);
 
     // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
-    const lightnessDark = lightnessMapper(val)(0, 4)(color['l'], minLightness);
+    const lightnessDark = lightnessMapper(easingSmootherstep(t))(
+      0.1,
+      iterations
+    )(color['l'], minLightness);
 
-    const lightnessLight = lightnessMapper(val)(0, 4)(color['l'], maxLightness);
+    const lightnessLight = lightnessMapper(easingSmootherstep(t))(
+      0.05,
+      iterations
+    )(color['l'], maxLightness);
 
     palette.push({
       l: lightnessDark,
@@ -87,7 +102,7 @@ const hueShift = (
   });
 
   if (hex) {
-    return palette.map(formatHex);
+    return palette.map(toHex);
   } else {
     return palette;
   }

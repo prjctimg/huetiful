@@ -1,7 +1,7 @@
 //@ts-nocheck
-import { converter, interpolate, wcagLuminance } from 'culori';
+import { interpolate, wcagLuminance, useMode, modeRgb } from 'culori/fn';
 import type { Color } from '../paramTypes.ts';
-
+import { toHex } from './toHex.ts';
 /** @alias
  * Gets the luminance value of that color as defined by WCAG.
  * @param color The color to query.
@@ -13,10 +13,10 @@ import type { Color } from '../paramTypes.ts';
 console.log(getLuminance('#a1bd2f'))
 // 0.4417749513730954
  */
-const getLuminance = (color: Color): number => wcagLuminance(color);
+const getLuminance = (color: Color): number => wcagLuminance(hex(color));
 
 const { pow, abs } = Math;
-
+const toRgb = useMode(modeRgb);
 /**
  * @function
  * @description Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
@@ -44,9 +44,9 @@ const setLuminance = (color: Color, lum: number): Color => {
 
     // compute new color using...
 
-    let cur_lum = wcagLuminance(color);
-    const mode = 'rgb';
-    color = converter(mode)(color);
+    const cur_lum = wcagLuminance(color);
+
+    color = toRgb(hex(color));
 
     const test = (low: Color, high: Color) => {
       //Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
@@ -79,7 +79,7 @@ const setLuminance = (color: Color, lum: number): Color => {
 };
 
 const rgb2luminance = (color: Color): number => {
-  color = converter('rgb')(color);
+  color = toRgb(toHex(color));
 
   // relative luminance
   // see http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef

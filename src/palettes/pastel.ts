@@ -1,10 +1,10 @@
 //@ts-nocheck
 // Pastels.mjs. - This module creates pastel versions of a color. It will take an arr or single value , tweak it and then return the result. Optional overrides for min max values when iterating over an arr.
-import { Color } from '../paramTypes.ts';
-import { converter, formatHex8, averageNumber } from 'culori';
+import type { Color } from '../paramTypes.ts';
+import { averageNumber, modeHsv, useMode } from 'culori/fn';
 import { min, max } from '../fp/array.ts';
 import { random } from '../fp/number.ts';
-import { map, set } from 'lodash-es';
+import { toHex } from '../core-utils/toHex.js';
 
 const samplePastelObj = [
   {
@@ -64,11 +64,11 @@ console.log(pastel("green", true))
 // #036103ff
  */
 const pastel = (color: Color, hex = true): Color => {
-  color = converter('hsv')(color);
-
+  const toHsv = useMode(modeHsv);
+  color = toHsv(toHex(color));
   // For now we're simply returning an hsv object with the s and v channel set to the averages
   if (hex) {
-    return formatHex8({
+    return toHex({
       h: color['h'],
       s: pastelSample['averageSaturation'],
       v: pastelSample['averageValue'],
@@ -93,5 +93,3 @@ const pastel = (color: Color, hex = true): Color => {
 };
 
 export { pastel };
-
-// TODO: Fix duplicate colors returned from the func

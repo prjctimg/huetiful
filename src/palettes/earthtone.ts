@@ -32,7 +32,7 @@ console.log(earthtone("pink", "clay", 5))
 //Add an overrides object with interpolation function and
 const earthtone = (color: Color, earthtone: earthtones, num = 1): Color[] => {
   earthtone = earthtone.toLowerCase();
-  let tones = {
+  const tones = {
     'light-gray': '#e5e5e5',
     silver: '#f5f5f5',
     sand: '#c2b2a4',
@@ -44,9 +44,9 @@ const earthtone = (color: Color, earthtone: earthtones, num = 1): Color[] => {
     'dark-brown': '#473b31',
     dark: '#352a21'
   };
-  let base: Color = tones[earthtone || 'dark'];
+  const base: Color = tones[earthtone || 'dark'];
 
-  let f = interpolate([base, color, easingSmootherstep], 'lch', {
+  const f = interpolate([base, color, easingSmootherstep], 'lch', {
     h: {
       use: interpolatorSplineNatural,
       fixup: fixupHueShorter

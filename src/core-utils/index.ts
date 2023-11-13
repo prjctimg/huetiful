@@ -2,7 +2,7 @@ export { alpha } from './alpha';
 export { brighten, darken } from './darken';
 export { getChannel } from './get';
 export { getTemp } from './getTemp';
-export { hex } from './hex';
+export { toHex } from './toHex';
 export { setLuminance, getLuminance } from './luminance';
 export { num2rgb } from './num2rgb';
 export { rgb2num } from './rgb2num';

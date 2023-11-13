@@ -2,12 +2,14 @@
 import hueTempMap from '../color-maps/samples/hueTemperature';
 import { getChannel } from '../core-utils/get';
 import { min, max } from '../fp/array.ts';
-import { customConcat, find } from '../fp/object.ts';
-import { adjustHue, floorCeil, inRange } from '../fp/number.ts';
-import type { Color } from '../paramTypes';
-import { isAchromatic } from '../colors/achromatic';
+import { customConcat } from '../fp/object.ts';
+import { adjustHue, inRange } from '../fp/number.ts';
 import { setChannel } from '../core-utils/set';
-import { formatHex8 } from 'culori';
+import type { Color } from '../paramTypes';
+import { toHex } from '../core-utils/toHex.ts';
+
+const { keys } = Object;
+const hueKeys = keys(hueTempMap);
 
 /**
  * @function
@@ -29,34 +31,40 @@ const getComplimentaryHue = (
   color: Color,
   colorObj = false
 ): { hue: string; color: Color } | Color => {
-  let modeChannel = 'lch.h';
+  const modeChannel = 'lch.h';
   // A complementary hue is 180 deg from the hue value of the passed in color
 
-  let complementaryHue: number | false;
+  const complementaryHue: number = adjustHue(
+    getChannel(modeChannel)(color) + 180
+  );
 
-  if (!isAchromatic(color)) {
-    complementaryHue = adjustHue(getChannel(modeChannel)(color) + 180);
-  } else {
-    complementaryHue = false;
-  }
-  let result;
   // Find the hue family which the color belongs to
-  let hueFamily: string = find(hueTempMap, (val) => {
-    // Get the min and max hue value for each hue family
-    let minHue = min(customConcat(val)),
-      maxHue = max(customConcat(val));
 
-    if (complementaryHue) {
-      return inRange(floorCeil(complementaryHue), minHue, maxHue);
-    } else {
-      return complementaryHue;
-    }
-  });
+  // eslint-disable-next-line prefer-const
 
+  const hueFamily = hueKeys
+    .map((hue) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+      const hueVals = customConcat(hueTempMap[hue]);
+      const minVal = min(...hueVals);
+      const maxVal = max(...hueVals);
+      const bool = customConcat(hueTempMap[hue]).some(() =>
+        inRange(complementaryHue, minVal, maxVal)
+      );
+
+      if (bool) {
+        return hue;
+      }
+    })
+    .filter((val) => typeof val === 'string')
+    .toString();
+
+  let result: Color | { hue: string; color: Color };
   if (complementaryHue) {
     result = {
       hue: hueFamily,
-      color: formatHex8(setChannel(modeChannel)(color, complementaryHue))
+      color: toHex(setChannel(modeChannel)(color, complementaryHue))
     };
   } else {
     result = { hue: 'gray', color: color };

@@ -1,8 +1,9 @@
 //This module contains getNearestHue,getFarthestHue,minHue and maxHue which are collection based utils that return the color with the queried factor.
 // @ts-nocheck
-import { Color, HueColorSpaces, factor } from '../paramTypes';
+
 import { getChannel } from '../core-utils/get.ts';
 import { sortedArr } from '../fp/array.ts';
+import type { Color, HueColorSpaces, factor } from '../paramTypes';
 
 //  Globals
 

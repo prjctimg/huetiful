@@ -1,10 +1,10 @@
 //@ts-nocheck
-import { converter, formatHex } from 'culori';
-import type { Color } from '../paramTypes.ts';
+import { easingSmootherstep, modeLab, useMode } from 'culori/fn';
+import { toHex } from './toHex.ts';
 import { expressionParser } from '../fp/string.ts';
-import { isInt } from '../fp/number.ts';
+import type { Color } from '../paramTypes.ts';
 // ported froma chroma-js brighten
-
+const toLab = useMode(modeLab);
 /**
  * @function
  * @description Darkens the color by reducing the lightness channel. .
@@ -13,33 +13,22 @@ import { isInt } from '../fp/number.ts';
  * @returns color The darkened color.
  * @example
  * 
- * import { alpha } from 'huetiful-js'
+ * 
 
-// Getting the alpha
-console.log(alpha('#a1bd2f0d'))
-// 0.050980392156862744
-
-// Setting the alpha
-
-let myColor = alpha('b2c3f1', 0.5)
-
-console.log(myColor)
-
-// #b2c3f180
  */
 const darken = (color: Color, value: number | string): Color => {
   const Kn = 18;
   const channel = 'l';
-  // Addv acheck here like the one in set.js
-  const src = converter('lab')(color);
+
+  const src = toLab(toHex(color));
 
   if (typeof value === 'number') {
-    src['l'] -= Kn * value;
+    src['l'] -= Kn * easingSmootherstep(value / 100);
   } else if (typeof value === 'string') {
     expressionParser(src, channel, value || 1);
   }
 
-  return formatHex(src);
+  return toHex(src);
 };
 
 /**
@@ -50,22 +39,17 @@ const darken = (color: Color, value: number | string): Color => {
  * @returns
  */
 const brighten = (color: Color, value: number | string): Color => {
-  const { abs } = Math;
-  let result: Color;
-  if (typeof value == 'number') {
-    result = darken(color, -value);
-  } else if (typeof value == 'string') {
-    let amt: number
+  const src = toLab(toHex(color));
+  const channel = 'l';
 
-    if (isInt(value)) {
-      amt = parseInt(value.slice(1))
-    } else {
-      amt = parseFloat(value.slice(1))
-    }
-    amt = abs(amt)
-    result = darken(color, -amt);
+  if (typeof value == 'number') {
+    value = Math.abs(value);
+    src['l'] -= Kn * easingSmootherstep(value / 100);
+  } else if (typeof value == 'string') {
+    expressionParser(src, channel, value);
   }
-  return result;
+
+  return toHex(src);
 };
 
 export { brighten, darken };

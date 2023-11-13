@@ -1,60 +1,112 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // esbuild script
 //@ts-nocheck
-var { build } = require("esbuild")
 
-var { dependencies } = require("./package.json")
+// eslint-disable-next-line no-undef
+var { build } = require('esbuild');
+
+
 
 const sharedConfig = {
-  entryPoints: [".//src/index.ts"],
+  entryPoints: ['.//src/index.ts'],
   bundle: true,
-  minify: false,
-}
+  minify: false
+};
 
-//Bundled CJS
+// ***Modular imports** \\
+
+// palettes/ import
 build({
   ...sharedConfig,
-  outfile: "dist/huetiful.cjs",
-  format: "cjs",
-  external: Object.keys(dependencies),
-})
+  format: 'esm',
+  entryPoints: ['.//src/palettes/index.ts'],
+  outfile: 'dist/palettes/index.esm.mjs',
+
+
+});
+
+// filterBy/ import
+build({
+  ...sharedConfig,
+  format: 'esm',
+  outfile: 'dist/filterBy/index.esm.mjs',
+
+  platform: 'neutral'
+});
+
+// sortBy/ import
+build({
+  ...sharedConfig,
+  format: 'esm',
+  entryPoints: ['.//src/sortBy/index.ts'],
+  outfile: 'dist/sortBy/index.esm.mjs',
+
+});
+
+// colors/ import
+build({
+  ...sharedConfig,
+  format: 'esm',
+  entryPoints: ['.//src/colors/index.ts'],
+  outfile: 'dist/colors/index.esm.mjs',
+
+});
+
+// fp/ import
+build({
+  ...sharedConfig,
+  format: 'esm',
+  entryPoints: ['.//src/fp/index.ts'],
+  outfile: 'dist/fp/index.esm.mjs'
+});
+
+// core-utils/ import
+build({
+  format: 'esm',
+  ...sharedConfig,
+  entryPoints: ['.//src/core-utils/index.ts'],
+  outfile: 'dist/core-utils/index.esm.mjs',
+
+});
 
 //Bundled CJS minified
 build({
   ...sharedConfig,
-  outfile: "dist/huetiful.min.cjs",
+  outfile: 'dist/huetiful.min.cjs',
   minify: true,
-  external: Object.keys(dependencies),
-})
+
+});
 
 //Bundled ESM
 build({
   ...sharedConfig,
-  format: "esm",
-  outfile: "dist/huetiful.esm.mjs",
-})
+  format: 'esm',
+  outfile: 'dist/huetiful.esm.mjs'
+});
 
 //Bundled ESM minified
 build({
   ...sharedConfig,
-  format: "esm",
-  outfile: "dist/huetiful.esm.min.mjs",
+  format: 'esm',
+  outfile: 'dist/huetiful.esm.min.mjs',
   minify: true,
-  external: Object.keys(dependencies),
-})
+
+});
 
 //Bundled IIFE
 build({
   ...sharedConfig,
-  format: "iife",
-  outfile: "dist/huetiful.js",
-  globalName: "huetiful",
-})
+  format: 'iife',
+  outfile: 'dist/huetiful.js',
+  globalName: 'huetiful',
+  minify: false
+});
 
 //Bundled IIFE minified
 build({
   ...sharedConfig,
-  format: "iife",
-  outfile: "dist/huetiful.min.js",
-  globalName: "huetiful",
-  minify: true,
-})
+  format: 'iife',
+  outfile: 'dist/huetiful.min.js',
+  globalName: 'huetiful',
+  minify: true
+});

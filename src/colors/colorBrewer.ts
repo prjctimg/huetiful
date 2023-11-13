@@ -1,22 +1,4 @@
 //@ts-nocheck
-
-/**
-    ColorBrewer colors for chroma.js
-
-    Copyright (c) 2002 Cynthia Brewer, Mark Harrower, and The
-    Pennsylvania State University.
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software distributed
-    under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-    CONDITIONS OF ANY KIND, either express or implied. See the License for the
-    specific language governing permissions and limitations under the License.
-*/
-
 import type {
   sequentialScheme,
   divergingScheme,
@@ -66,7 +48,7 @@ console.log(sequential("OrRd"))
 
  */
 const sequential = (scheme: sequentialScheme): Color[] => {
-  let schemes = {
+  const schemes = {
     OrRd: [
       '#fff7ec',
       '#fee8c8',
@@ -302,7 +284,7 @@ console.log(diverging("Spectral"))
  */
 
 const diverging = (scheme: divergingScheme): Color[] => {
-  let schemes = {
+  const schemes = {
     Spectral: [
       '#9e0142',
       '#d53e4f',
@@ -446,7 +428,7 @@ console.log(qualitative("Accent"))
  */
 
 const qualitative = (scheme: qualitativeScheme): Color[] => {
-  let schemes = {
+  const schemes = {
     Set2: [
       '#66c2a5',
       '#fc8d62',

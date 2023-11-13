@@ -1,13 +1,13 @@
 // @ts-nocheck
 
-import { Color, factor } from '../paramTypes';
 import { getChannel } from '../core-utils/get.ts';
 import { sortedArr } from '../fp/array.ts';
+import type { Color, factor } from '../paramTypes';
 
 //  The factor being investigated.
 
 const factor: factor = 'lightness';
-let lightness = 'lab.l';
+const lightness = 'lab.l';
 
 // The subtrahend is each color in the collection
 //This means that the color object with the smallest lightness value is the  nearest lightness.
@@ -40,7 +40,7 @@ console.log(getNearestLightness("green", sample))
  */
 const getNearestLightness = (color: Color, colors: Color[]): number => {
   const cb = lightnessDiff(color);
-  let sortedObjArr = sortedArr(factor, cb, 'asc', true)(colors);
+  const sortedObjArr = sortedArr(factor, cb, 'asc', true)(colors);
   return sortedObjArr[0][factor];
 };
 
@@ -65,7 +65,7 @@ console.log(getFarthestLightness("green", sample))
 
 const getFarthestLightness = (color: Color, colors: Color[]): number => {
   const cb = lightnessDiff(color);
-  let sortedObjArr = sortedArr(factor, cb, 'desc', true)(color);
+  const sortedObjArr = sortedArr(factor, cb, 'desc', true)(colors);
   return sortedObjArr[0][factor];
 };
 
