@@ -47,8 +47,8 @@ const toHex = (color: Color): Color => {
       ) => {
         // Remove the mode element
         colorArr.shift();
-        if (colorArr.length === 5) {
-          colorArr = colorArr.slice(1, 4);
+        if (colorArr.length === 4) {
+          colorArr = colorArr.slice(0, 3);
         }
         return colorArr;
       };
