@@ -3,7 +3,6 @@
 import 'culori/css';
 import { formatHex8, formatHex, colorsNamed } from 'culori/fn';
 import { num2rgb } from './num2rgb';
-import { inRange } from '../fp/number';
 import type { Color } from '../paramTypes';
 
 /**
@@ -22,7 +21,7 @@ console.log(toHex({ l: 50, c: 31, h: 100, mode: "lch" }))
  */
 const toHex = (color: Color): Color => {
   // the result to return at the end of the function
-  let res = {};
+  let src = {};
 
   // if its of type string and not a CSS named color then its probably hex so we don't convert it
   if (
@@ -31,51 +30,65 @@ const toHex = (color: Color): Color => {
   ) {
     return color;
   } else {
-    if (Array.isArray(color) && inRange(color.length, 4, 5)) {
-      // capture the mode and remove it from the array
+    // If our color is an array
+    if (Array.isArray(color)) {
+      // capture the mode
       const mode: string = color[0];
-
-      // Capture the channel values
-      const channels: number[] =
-        color.length === 5 ? color.slice(1, color.length - 1) : color.slice(1);
-      // The color array's length
 
       // set mode to a substring which trims the string at an index that is the reslt of length - 3
       const modeChannels = mode.substring(mode.length - 3);
-      const getModeChan = (key: number) => modeChannels.charAt(key);
-      // the object that will be conditionally mutated depending on the array's length
-      // set the res mode property before the mode variable is mutated
+      // Gets the channel key from the passed in mode
+      const getModeChan = (mode: string, key: number) => mode.charAt(key);
 
-      // If our mode is rgb...
-      if (mode === 'rgb') {
-        // if our rgb values are [0,255] we normalize them to [0,1]
-        // for Culori to make sense of the channel values else it defaults o white
-        if (channels.some((ch) => Math.abs(ch) > 1)) {
-          channels.map((ch, key) => (res[getModeChan(key)] = ch / 255));
+      // Store the channels excluding alpha
+      const channels = (
+        src: object,
+        colorArr: [string, number, number, number?]
+      ) => {
+        // Remove the mode element
+        colorArr.shift();
+        if (colorArr.length === 5) {
+          colorArr = colorArr.slice(1, 4);
         }
-        // else just map the values to channels
-      } else {
-        channels.map((ch, key) => (res[getModeChan(key)] = ch));
-      }
+        return colorArr;
+      };
 
-      res['mode'] = mode;
-
-      // if channel array has the alpha value
-      // we assign it and then remove it from the channel array
-      // and then set the arrHasAlpha variable to true
-
-      // store the result as a hex string
-
-      res = formatHex(res);
+      /**
+       * Returns a color object with normalized RGB values or just maps value to keys and return the resultant object
+       * @param src The object to manipulate
+       * @param mode The color space.
+       * @param colorArr  The array of the color's channel values excluding the alpha/opacity channel
+       * @returns A color object
+       */
+      const channelMapper = (
+        src = {},
+        mode: string,
+        colorArr: [number, number, number]
+      ): number[] => {
+        src['mode'] = mode;
+        // If our mode is rgb...
+        if (src['mode'] === 'rgb') {
+          // if our rgb values are [0,255] we normalize them to [0,1]
+          // for Culori to make sense of the channel values else it defaults o white
+          if (colorArr.some((ch) => Math.abs(ch) > 1)) {
+            colorArr.map((ch, key) => (src[getModeChan(mode, key)] = ch / 255));
+          }
+        } else {
+          colorArr.map((ch, key) => (src[getModeChan(mode, key)] = ch));
+        }
+        return src;
+      };
+      src['alpha'] = color[4] || 1;
+      src = channelMapper(src, modeChannels, channels(src, color));
+      src = (src['alpha'] < 1 && formatHex8(src)) || formatHex(src);
     }
     // if its a number use num2rgb
     else if (typeof color === 'number') {
-      res = num2rgb(color, true);
-    } // if its not a string and has a lengh property then its an array...
-    else {
-      res = (color['alpha'] && formatHex8(color)) || formatHex(color);
+      src = num2rgb(color, true);
+    } else {
+      src = (color['alpha'] && formatHex8(color)) || formatHex(color);
     }
-    return res;
+    return src;
   }
 };
 
