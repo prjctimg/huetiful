@@ -5,7 +5,7 @@ import hueTempMap from '../color-maps/samples/hueTemperature';
 import { getTemp } from '../core-utils/getTemp.ts';
 import { floorCeil, inRange } from '../fp/number.ts';
 import { min, max } from '../fp/array.ts';
-import { customConcat, find } from '../fp/object.ts';
+import { customConcat, findKey } from '../fp/object.ts';
 import type { Color } from '../paramTypes.ts';
 /**
  * @function
@@ -38,7 +38,7 @@ const isCool = (color: Color): boolean => {
   const factor = getChannel('lch.h')(color);
 
   if (
-    find(hueTempMap, (val) =>
+    findKey(hueTempMap, (val) =>
       inRange(floorCeil(factor), val['cool'][0], val['cool'][1])
     )
   ) {
@@ -76,7 +76,7 @@ const isWarm = (color: Color): boolean => {
   const factor = getChannel('lch.h')(color);
 
   if (
-    find(hueTempMap, (val) =>
+    findKey(hueTempMap, (val) =>
       inRange(floorCeil(factor), val['warm'][0], val['warm'][1])
     )
   ) {
@@ -106,7 +106,7 @@ const maxTemp = (color: Color): number => {
   const factor = getChannel('lch.h')(color);
 
   // Then  we check to see in what hue family it is and check the highest hue value for that family
-  const hueRange = find(hueTempMap, (hue) =>
+  const hueRange = findKey(hueTempMap, (hue) =>
     inRange(factor, min(customConcat(hue)), max(customConcat(hue)))
   );
 
@@ -143,7 +143,7 @@ const minTemp = (color: Color): number => {
   const factor = getChannel('lch.h')(color);
 
   // Then  we check to see in what hue family it is and check the highest hue value for that family
-  const hueRange = find(hueTempMap, (hue) =>
+  const hueRange = findKey(hueTempMap, (hue) =>
     inRange(factor, min(customConcat(hue)), max(customConcat(hue)))
   );
 
