@@ -11,5 +11,5 @@ export {
   random
 } from './number';
 export { colorObjArr, filteredArr, sortedArr, max, min } from './array';
-export { colorObj, findKey } from './object';
+export { colorObj } from './object';
 export { matchChromaChannel, expressionParser } from './string';

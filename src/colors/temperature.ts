@@ -161,7 +161,8 @@ console.log(minTemp("b2c3f1"))
  */
 const minTemp = (color: Color): number => {
   // Get the hue value of the color
-  const factor = getChannel('lch.h')(color);
+  // eslint-disable-next-line prefer-const
+  let factor = getChannel('lch.h')(color);
 
   // Then  we check to see in what hue family it is and check the highest hue value for that family
   const hue: string = customFindKey(hueTempMap, factor);

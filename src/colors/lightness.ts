@@ -4,9 +4,6 @@ import { getChannel } from '../getters_and_setters/get.ts';
 import { sortedArr } from '../fp/array.ts';
 import type { Color, factor } from '../paramTypes';
 
-//  The factor being investigated.
-
-const factor: factor = 'lightness';
 const lightness = 'lab.l';
 
 // The subtrahend is each color in the collection
@@ -39,6 +36,9 @@ console.log(getNearestLightness("green", sample))
  *
  */
 const getNearestLightness = (color: Color, colors: Color[]): number => {
+  //  The factor being investigated.
+
+  const factor: factor = 'lightness';
   const cb = lightnessDiff(color);
   const sortedObjArr = sortedArr(factor, cb, 'asc', true)(colors);
   return sortedObjArr[0][factor];
@@ -64,6 +64,9 @@ console.log(getFarthestLightness("green", sample))
  */
 
 const getFarthestLightness = (color: Color, colors: Color[]): number => {
+  //  The factor being investigated.
+
+  const factor: factor = 'lightness';
   const cb = lightnessDiff(color);
   const sortedObjArr = sortedArr(factor, cb, 'desc', true)(colors);
   return sortedObjArr[0][factor];
@@ -90,6 +93,9 @@ const minLightness = (
   colors: Color[],
   colorObj = false
 ): number | { factor: number; color: Color } => {
+  //  The factor being investigated.
+
+  const factor: factor = 'lightness';
   const cb = getChannel(lightness);
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
@@ -130,6 +136,9 @@ const maxLightness = (
   colors: Color[],
   colorObj = false
 ): number | { factor: number; color: Color } => {
+  //  The factor being investigated.
+
+  const factor: factor = 'lightness';
   const cb = getChannel(lightness);
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
