@@ -2,7 +2,7 @@
 // This module contains minChroma,maxChroma,getFarthestChroma,getNearestChroma
 
 import { Color, HueColorSpaces, factor } from '../paramTypes';
-import { getChannel } from '../core-utils/get.ts';
+import { getChannel } from '../getters_and_setters/get.ts';
 import { matchChromaChannel } from '../fp/string.ts';
 import { sortedArr } from '../fp/array.ts';
 

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import type { Color } from '../paramTypes.ts';
-import { getChannel } from '../core-utils/get.ts';
+import { getChannel } from '../getters_and_setters/get.ts';
 
 /**
  * @function

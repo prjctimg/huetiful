@@ -4,9 +4,9 @@
 
 import { converter } from 'culori/fn';
 import 'culori/css';
-import { toHex } from './toHex.ts';
-import { expressionParser } from '../fp/string.ts';
-import type { Color } from '../paramTypes.ts';
+import { toHex } from './toHex.js';
+import { expressionParser } from '../fp/string.js';
+import type { Color } from '../paramTypes.js';
 /**
  * @function
  *@description Sets the value for the specified channel in a color.

@@ -3,7 +3,7 @@
 import { filteredArr } from '../fp/array.ts';
 import { differenceEuclidean } from 'culori/fn';
 import type { Color, factor, ColorSpaces } from '../paramTypes.ts';
-import { toHex } from '../core-utils/toHex.ts';
+import { toHex } from '../getters_and_setters/toHex.ts';
 
 /**
  *  @function

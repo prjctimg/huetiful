@@ -6,7 +6,7 @@ import { useMode, modeLch } from 'culori/fn';
 import { inRange } from '../fp/number.ts';
 import { min, max } from '../fp/array.ts';
 import { customConcat } from '../fp/object.ts';
-import { toHex } from '../core-utils/toHex.ts';
+import { toHex } from '../getters_and_setters/toHex.ts';
 import type { Color, hue } from '../paramTypes';
 
 /**

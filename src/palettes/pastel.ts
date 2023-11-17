@@ -4,7 +4,7 @@ import type { Color } from '../paramTypes.ts';
 import { averageNumber, modeHsv, useMode } from 'culori/fn';
 import { min, max } from '../fp/array.ts';
 import { random } from '../fp/number.ts';
-import { toHex } from '../core-utils/toHex.js';
+import { toHex } from '../getters_and_setters/toHex.js';
 
 const samplePastelObj = [
   {

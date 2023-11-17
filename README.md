@@ -353,7 +353,7 @@ console.log(sample.filter(isWarm))
 
 ```
 
-### Property getters
+### Get the temperature right
 
 And what if we wanted to get the color with the smallest/largest temperature range in Kelvins:
 

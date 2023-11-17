@@ -1,9 +1,9 @@
 //@ts-nocheck
 import { useMode, modeLch } from 'culori/fn';
-import { inRange } from '../fp/number.ts';
-import { expressionParser } from '../fp/string.ts';
-import { toHex } from './toHex.ts';
-import type { Color } from '../paramTypes.ts';
+import { inRange } from '../fp/number.js';
+import { expressionParser } from '../fp/string.js';
+import { toHex } from './toHex.js';
+import type { Color } from '../paramTypes.js';
 
 /**
  * @function
