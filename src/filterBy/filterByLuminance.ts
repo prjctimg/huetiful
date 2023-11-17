@@ -1,6 +1,6 @@
 import { filteredArr } from '../fp/array.ts';
 import { Color } from '../paramTypes.ts';
-import { getLuminance } from '../core-utils/luminance.ts';
+import { getLuminance } from '../getters_and_setters/luminance.ts';
 import type { factor } from '../paramTypes';
 /**
  *  @function

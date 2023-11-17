@@ -1,7 +1,7 @@
 //This module contains getNearestHue,getFarthestHue,minHue and maxHue which are collection based utils that return the color with the queried factor.
 // @ts-nocheck
 
-import { getChannel } from '../core-utils/get.ts';
+import { getChannel } from '../getters_and_setters/get.ts';
 import { sortedArr } from '../fp/array.ts';
 import type { Color, HueColorSpaces, factor } from '../paramTypes';
 
@@ -72,6 +72,20 @@ const getNearestHue = (
  * @returns The hue value from the color with the largest hue distance. If the colors are achromatic, it returns undefined.
  *@example
 import { getFarthestHue } from 'huetiful-js'
+
+ let sample = [
+  '#00ffdc',
+  '#00ff78',
+  '#00c000',
+  '#007e00',
+  '#164100',
+  '#ffff00',
+  '#310000',
+  '#3e0000',
+  '#4e0000',
+  '#600000',
+  '#720000',
+]
 
 console.log(getFarthestHue('lime', sample, 'lch'))
 // 139.16534433552653

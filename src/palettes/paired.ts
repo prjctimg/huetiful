@@ -1,8 +1,8 @@
 // @ts-nocheck
 // From colorbrewr
 
-import { toHex } from '../core-utils/toHex.ts';
-import { setChannel } from '../core-utils/set.ts';
+import { toHex } from '../converters/toHex.ts';
+import { setChannel } from '../getters_and_setters/set.ts';
 import { Color, tone } from '../paramTypes.ts';
 import {
   easingSmootherstep,

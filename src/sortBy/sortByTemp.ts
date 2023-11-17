@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { getTemp } from '../core-utils/getTemp.ts';
+import { getTemp } from '../converters/getTemp.ts';
 import type { Color, factor } from '../paramTypes.ts';
 import { sortedArr } from '../fp/array.ts';
 

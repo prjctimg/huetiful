@@ -2,13 +2,9 @@
 // This module contains minChroma,maxChroma,getFarthestChroma,getNearestChroma
 
 import { Color, HueColorSpaces, factor } from '../paramTypes';
-import { getChannel } from '../core-utils/get.ts';
+import { getChannel } from '../getters_and_setters/get.ts';
 import { matchChromaChannel } from '../fp/string.ts';
 import { sortedArr } from '../fp/array.ts';
-
-//  The factor being investigated.
-
-const factor: factor = 'saturation';
 
 // I must test if the passed in mode has a chroma/saturation channel. Should I use RegExp  ?
 
@@ -55,6 +51,9 @@ const getNearestChroma = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
+  //  The factor being investigated.
+
+  const factor: factor = 'saturation';
   const cb = chromaDiff(color, colorSpace || 'lch');
   const sortedObjArr = sortedArr(
     factor,
@@ -89,6 +88,9 @@ const getFarthestChroma = (
   colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
+  //  The factor being investigated.
+
+  const factor: factor = 'saturation';
   const cb = chromaDiff(color, colorSpace || 'lch');
   const sortedObjArr = sortedArr(
     factor,
@@ -121,6 +123,9 @@ const minChroma = (
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
+  //  The factor being investigated.
+
+  const factor: factor = 'saturation';
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     predicate(colorSpace || 'lch'),
@@ -162,6 +167,9 @@ const maxChroma = (
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
+  //  The factor being investigated.
+
+  const factor: factor = 'saturation';
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     predicate(colorSpace || 'lch'),

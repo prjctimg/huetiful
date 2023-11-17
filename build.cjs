@@ -64,8 +64,8 @@ build({
 build({
   format: 'esm',
   ...sharedConfig,
-  entryPoints: ['.//src/core-utils/index.ts'],
-  outfile: 'dist/core-utils/index.esm.mjs',
+  entryPoints: ['.//src/getters_and_setters/index.ts'],
+  outfile: 'dist/getters_and_setters/index.esm.mjs',
 
 });
 

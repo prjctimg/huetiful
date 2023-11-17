@@ -1,4 +1,4 @@
-import { getTemp } from '../core-utils/getTemp.ts';
+import { getTemp } from '../converters/getTemp.ts';
 import { filteredArr } from '../fp/array.ts';
 import type { Color, factor } from '../paramTypes.ts';
 

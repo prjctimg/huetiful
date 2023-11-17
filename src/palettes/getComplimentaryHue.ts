@@ -1,12 +1,12 @@
 // @ts-nocheck
 import hueTempMap from '../color-maps/samples/hueTemperature';
-import { getChannel } from '../core-utils/get';
+import { getChannel } from '../getters_and_setters/get.ts';
 import { min, max } from '../fp/array.ts';
 import { customConcat } from '../fp/object.ts';
 import { adjustHue, inRange } from '../fp/number.ts';
-import { setChannel } from '../core-utils/set';
+import { setChannel } from '../getters_and_setters/set.ts';
 import type { Color } from '../paramTypes';
-import { toHex } from '../core-utils/toHex.ts';
+import { toHex } from '../converters/toHex.ts';
 
 const { keys } = Object;
 const hueKeys = keys(hueTempMap);

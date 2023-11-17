@@ -1,5 +1,5 @@
 import { filteredArr } from '../fp/array.ts';
-import { getChannel } from '../core-utils/get.ts';
+import { getChannel } from '../getters_and_setters/get.ts';
 import type { Color, factor } from '../paramTypes.ts';
 
 //filterByHue takes an array of colors and

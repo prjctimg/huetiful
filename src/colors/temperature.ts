@@ -1,12 +1,49 @@
 //@ts-nocheck
 
-import { getChannel } from '../core-utils/get.ts';
+import { getChannel } from '../getters_and_setters/get.ts';
 import hueTempMap from '../color-maps/samples/hueTemperature';
-import { getTemp } from '../core-utils/getTemp.ts';
+import { getTemp } from '../converters/getTemp.ts';
 import { floorCeil, inRange } from '../fp/number.ts';
 import { min, max } from '../fp/array.ts';
-import { customConcat, find } from '../fp/object.ts';
+import { customConcat } from '../fp/object.ts';
 import type { Color } from '../paramTypes.ts';
+
+const customFindKey = (collection: object, factor: number) => {
+  // If the color is achromatic return the string gray
+
+  const propKeys = Object.keys(collection);
+
+  const result: string = propKeys
+    .filter((key) => {
+      const hueVals = customConcat(collection[key]);
+      // @ts-ignore
+      const minVal = min(...hueVals);
+      // @ts-ignore
+      const maxVal = max(...hueVals);
+      // Capture the min and max values and see if the passed in color is within that range
+
+      return inRange(factor, minVal, maxVal);
+    })
+    .toString();
+
+  return result;
+};
+const predicate = (factor: number, temp: 'warm' | 'cool'): boolean => {
+  const hueKeys = Object.keys(hueTempMap);
+  if (
+    hueKeys.some((val) =>
+      inRange(
+        floorCeil(factor),
+        hueTempMap[val][temp][0],
+        hueTempMap[val][temp][1]
+      )
+    )
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+};
 /**
  * @function
  * @description Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.
@@ -37,15 +74,7 @@ const isCool = (color: Color): boolean => {
   // First we need to get the hue value which we'll pass to the predicate
   const factor = getChannel('lch.h')(color);
 
-  if (
-    find(hueTempMap, (val) =>
-      inRange(floorCeil(factor), val['cool'][0], val['cool'][1])
-    )
-  ) {
-    return true;
-  } else {
-    return false;
-  }
+  return predicate(factor, 'cool');
 };
 
 /**
@@ -75,15 +104,7 @@ console.log(map(sample, isWarm));
 const isWarm = (color: Color): boolean => {
   const factor = getChannel('lch.h')(color);
 
-  if (
-    find(hueTempMap, (val) =>
-      inRange(floorCeil(factor), val['warm'][0], val['warm'][1])
-    )
-  ) {
-    return true;
-  } else {
-    return false;
-  }
+  return predicate(factor, 'cool');
 };
 
 /**
@@ -106,11 +127,11 @@ const maxTemp = (color: Color): number => {
   const factor = getChannel('lch.h')(color);
 
   // Then  we check to see in what hue family it is and check the highest hue value for that family
-  const hueRange = find(hueTempMap, (hue) =>
-    inRange(factor, min(customConcat(hue)), max(customConcat(hue)))
-  );
+  const hue: string = customFindKey(hueTempMap, factor);
 
-  const maxHue: number = max(customConcat(hueRange));
+  // Get accurate hue start/ends in HSL
+
+  const maxHue: number = max(...customConcat(hueTempMap[hue]));
 
   const result = getTemp({
     l: getChannel('lch.l')(color),
@@ -140,14 +161,15 @@ console.log(minTemp("b2c3f1"))
  */
 const minTemp = (color: Color): number => {
   // Get the hue value of the color
-  const factor = getChannel('lch.h')(color);
+  // eslint-disable-next-line prefer-const
+  let factor = getChannel('lch.h')(color);
 
   // Then  we check to see in what hue family it is and check the highest hue value for that family
-  const hueRange = find(hueTempMap, (hue) =>
-    inRange(factor, min(customConcat(hue)), max(customConcat(hue)))
-  );
+  const hue: string = customFindKey(hueTempMap, factor);
 
-  const minHue: number = min(customConcat(hueRange));
+  const minHue: number = min(...customConcat(hueTempMap[hue]));
+
+  // Get accurate hue start/ends in HSL
 
   const result = getTemp({
     l: getChannel('lch.l')(color),

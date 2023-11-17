@@ -7,19 +7,6 @@ const colorObj = (factor: factor, callback: callback) => (color: Color) => {
   return { [factor]: callback(color), name: color };
 };
 
-const find = (
-  collection: object,
-  predicate: (val, key?, idx?) => object | string
-) => {
-  let prop;
-  for (prop in collection) {
-    if (predicate(collection[prop], prop)) {
-      return collection[prop];
-    }
-  }
-  return false;
-};
-
 const customConcat = (hue: object) => {
   const res: number[] = [];
   const { keys } = Object;
@@ -31,4 +18,4 @@ const customConcat = (hue: object) => {
   }
   return res;
 };
-export { colorObj, find, customConcat };
+export { colorObj, customConcat };

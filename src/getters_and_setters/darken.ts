@@ -1,8 +1,8 @@
 //@ts-nocheck
 import { easingSmootherstep, modeLab, useMode } from 'culori/fn';
-import { toHex } from './toHex.ts';
-import { expressionParser } from '../fp/string.ts';
-import type { Color } from '../paramTypes.ts';
+import { toHex } from '../converters/toHex';
+import { expressionParser } from '../fp/string';
+import type { Color } from '../paramTypes';
 // ported froma chroma-js brighten
 const toLab = useMode(modeLab);
 /**

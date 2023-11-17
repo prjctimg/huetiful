@@ -1,5 +1,5 @@
 import { filteredArr } from '../fp/array.ts';
-import { getChannel } from '../core-utils/get.ts';
+import { getChannel } from '../getters_and_setters/get.ts';
 import { Color, factor } from '../paramTypes.ts';
 /**
  *  @function

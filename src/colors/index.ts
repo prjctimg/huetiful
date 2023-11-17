@@ -12,6 +12,7 @@ export {
   maxLightness,
   minLightness
 } from './lightness';
+export { getFarthestHue, getNearestHue, maxHue, minHue } from './hue';
 export { overtone } from './overtone';
 export { tailwindColors } from './tailwindColors';
 export { isCool, isWarm, maxTemp, minTemp } from './temperature';
