@@ -1,7 +1,7 @@
 // @ts-nocheck
 import type { factor, Color } from '../paramTypes.ts';
 import { sortedArr } from '../fp/array.ts';
-import { wcagContrast } from 'culori';
+import { wcagContrast } from 'culori/fn';
 
 /**
  * @function

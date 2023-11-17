@@ -2,14 +2,14 @@
 // takes one color and returns the specified amount of samples
 // @ts-nocheck
 import {
-  formatHex8,
   interpolate,
   samples,
   easingSmootherstep,
   interpolatorSplineNatural,
   fixupHueShorter
-} from 'culori';
+} from 'culori/fn';
 import type { Color, earthtones } from '../paramTypes.ts';
+import { toHex } from '../converters/toHex.ts';
 
 /**
  * @function
@@ -46,14 +46,14 @@ const earthtone = (color: Color, earthtone: earthtones, num = 1): Color[] => {
   };
   const base: Color = tones[earthtone || 'dark'];
 
-  const f = interpolate([base, color, easingSmootherstep], 'lch', {
+  const f = interpolate([base, toHex(color), easingSmootherstep], 'lch', {
     h: {
       use: interpolatorSplineNatural,
       fixup: fixupHueShorter
     }
   });
 
-  return samples(num).map((t) => formatHex8(f(t)));
+  return samples(num).map((t) => toHex(f(t)));
 };
 
 export { earthtone };

@@ -8,6 +8,26 @@ import { min, max } from '../fp/array.ts';
 import { customConcat } from '../fp/object.ts';
 import type { Color } from '../paramTypes.ts';
 
+const customFindKey = (collection: object, factor: number) => {
+  // If the color is achromatic return the string gray
+
+  const propKeys = Object.keys(collection);
+
+  const result: string = propKeys
+    .filter((key) => {
+      const hueVals = customConcat(collection[key]);
+      // @ts-ignore
+      const minVal = min(...hueVals);
+      // @ts-ignore
+      const maxVal = max(...hueVals);
+      // Capture the min and max values and see if the passed in color is within that range
+
+      return inRange(factor, minVal, maxVal);
+    })
+    .toString();
+
+  return result;
+};
 const predicate = (factor: number, temp: 'warm' | 'cool'): boolean => {
   const hueKeys = Object.keys(hueTempMap);
   if (
@@ -105,17 +125,11 @@ console.log(maxTemp("b2c3f1"))
 const maxTemp = (color: Color): number => {
   // Get the hue value of the color
   const factor = getChannel('lch.h')(color);
-  const hueKeys = Object.keys(hueTempMap);
+
   // Then  we check to see in what hue family it is and check the highest hue value for that family
-  const hue = hueKeys
-    .filter((hue) => {
-      return inRange(
-        factor,
-        min(...customConcat(hue)),
-        max(...customConcat(hue))
-      );
-    })
-    .toString();
+  const hue: string = customFindKey(hueTempMap, factor);
+
+  // Get accurate hue start/ends in HSL
 
   const maxHue: number = max(...customConcat(hueTempMap[hue]));
 
@@ -150,9 +164,7 @@ const minTemp = (color: Color): number => {
   const factor = getChannel('lch.h')(color);
 
   // Then  we check to see in what hue family it is and check the highest hue value for that family
-  const hue: string = findKey(hueTempMap, (hue) =>
-    inRange(factor, min(...customConcat(hue)), max(customConcat(hue)))
-  );
+  const hue: string = customFindKey(hueTempMap, factor);
 
   const minHue: number = min(...customConcat(hueTempMap[hue]));
 

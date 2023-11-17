@@ -1,7 +1,7 @@
 // @ts-nocheck
 // From colorbrewr
 
-import { toHex } from '../getters_and_setters/toHex.ts';
+import { toHex } from '../converters/toHex.ts';
 import { setChannel } from '../getters_and_setters/set.ts';
 import { Color, tone } from '../paramTypes.ts';
 import {

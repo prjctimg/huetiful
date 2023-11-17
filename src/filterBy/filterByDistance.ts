@@ -3,8 +3,7 @@
 import { filteredArr } from '../fp/array.ts';
 import { differenceEuclidean } from 'culori/fn';
 import type { Color, factor, ColorSpaces } from '../paramTypes.ts';
-import { toHex } from '../getters_and_setters/toHex.ts';
-
+import { toHex } from '../converters/toHex.ts';
 /**
  *  @function
  * Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.

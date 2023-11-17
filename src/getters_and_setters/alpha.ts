@@ -2,7 +2,7 @@
 import { useMode, modeLch } from 'culori/fn';
 import { inRange } from '../fp/number.js';
 import { expressionParser } from '../fp/string.js';
-import { toHex } from './toHex.js';
+import { toHex } from '../converters/toHex.js';
 import type { Color } from '../paramTypes.js';
 
 /**

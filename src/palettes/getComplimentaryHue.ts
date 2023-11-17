@@ -6,7 +6,7 @@ import { customConcat } from '../fp/object.ts';
 import { adjustHue, inRange } from '../fp/number.ts';
 import { setChannel } from '../getters_and_setters/set.ts';
 import type { Color } from '../paramTypes';
-import { toHex } from '../getters_and_setters/toHex.ts';
+import { toHex } from '../converters/toHex.ts';
 
 const { keys } = Object;
 const hueKeys = keys(hueTempMap);

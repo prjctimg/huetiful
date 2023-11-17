@@ -2,8 +2,8 @@
 
 import { converter } from 'culori/fn';
 import 'culori/css';
-import { toHex } from './toHex.js';
-import type { Color } from '../paramTypes.js';
+import { toHex } from '../converters/toHex.ts';
+import type { Color } from '../paramTypes';
 
 /**
  * @function
