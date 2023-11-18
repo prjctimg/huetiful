@@ -30,24 +30,26 @@ const filteredArr =
   (colors: Color[], start: number | string, end: number): Color[] => {
     let result: Color[];
 
-    if (typeof start == 'number') {
-      result = colorObjArr(factor, cb)(colors);
-      result = result
+    if (typeof start === 'number') {
+      result = colorObjArr(
+        factor,
+        cb
+      )(colors)
         .filter((color) => inRange(color[factor], start, end))
         .map((color) => color['name']);
 
       return result;
 
       // If string split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
-    } else if (typeof start == 'string') {
+    } else if (typeof start === 'string') {
       //The pattern to match
-      const operator = /^(>=|<=|<|>)/;
+      const reOperator = /^(>=|<=|<|>)/;
 
       const value = /[0-9]*\.?[0-9]+/;
 
       // Array
       const val = value.exec(start),
-        op = operator.exec(start);
+        op = reOperator.exec(start);
 
       const mapFilter = (test: (x: number, y: number) => boolean): Color[] => {
         return colorObjArr(

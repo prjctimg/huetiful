@@ -50,7 +50,10 @@
     "dist",
     "src"
   ],
-  "repository": "github:prjctimg/huetiful",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prjctimg/huetiful.git"
+  },
   "keywords": [
     "lch",
     "palette",

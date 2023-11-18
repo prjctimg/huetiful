@@ -68,38 +68,46 @@ const hueShift = (
 
   const palette: Color[] = [color];
 
+  // Maximum number of iterations possible.
+  const MAX_SAFE_ITERATIONS = 360 / hueStep;
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
 
-  samples(iterations).map((t) => {
-    //adjustHue checks hue values are clamped.
-    const hueDark = adjustHue(color['h'] - hueStep * t);
-    const hueLight = adjustHue(color['h'] + hueStep * t);
+  if (iterations <= MAX_SAFE_ITERATIONS) {
+    samples(iterations).map((t) => {
+      //adjustHue checks hue values are clamped.
+      const hueDark = adjustHue(color['h'] - hueStep * t);
+      const hueLight = adjustHue(color['h'] + hueStep * t);
 
-    // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
-    const lightnessDark = lightnessMapper(easingSmootherstep(t))(
-      0.1,
-      iterations
-    )(color['l'], minLightness);
+      // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
+      const lightnessDark = lightnessMapper(easingSmootherstep(t))(
+        0.1,
+        iterations
+      )(color['l'], minLightness);
 
-    const lightnessLight = lightnessMapper(easingSmootherstep(t))(
-      0.05,
-      iterations
-    )(color['l'], maxLightness);
+      const lightnessLight = lightnessMapper(easingSmootherstep(t))(
+        0.05,
+        iterations
+      )(color['l'], maxLightness);
 
-    palette.push({
-      l: lightnessDark,
-      c: color['c'],
-      h: hueDark,
-      mode: 'lch'
+      palette.push({
+        l: lightnessDark,
+        c: color['c'],
+        h: hueDark,
+        mode: 'lch'
+      });
+
+      palette.unshift({
+        l: lightnessLight,
+        c: color['c'],
+        h: hueLight,
+        mode: 'lch'
+      });
     });
-
-    palette.unshift({
-      l: lightnessLight,
-      c: color['c'],
-      h: hueLight,
-      mode: 'lch'
-    });
-  });
+  } else {
+    throw Error(
+      `The number of iterations exceeds the maximum number of iterations. The maximum iterations are determined by the size of the hueStep. To find the maximum iterations possible, use this formula: 360/hueStep`
+    );
+  }
 
   if (hex) {
     return palette.map(toHex);
