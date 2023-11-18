@@ -1,5 +1,5 @@
 import { getTemp } from '../converters/getTemp.ts';
-import { filteredArr } from '../fp/array.ts';
+import { filteredArr } from '../fp/array/filteredArr.ts';
 import type { Color, factor } from '../paramTypes.ts';
 
 /**

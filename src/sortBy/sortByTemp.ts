@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { getTemp } from '../converters/getTemp.ts';
 import type { Color, factor } from '../paramTypes.ts';
-import { sortedArr } from '../fp/array.ts';
+import { sortedArr } from '../fp/array/sortedArr.ts';
 
 /**
  * @function

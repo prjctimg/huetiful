@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { getChannel } from '../getters_and_setters/get.ts';
-import { sortedArr } from '../fp/array.ts';
+import { sortedArr } from '../fp/array/sortedArr.ts';
 import type { Color, factor } from '../paramTypes';
 
 const lightness = 'lab.l';

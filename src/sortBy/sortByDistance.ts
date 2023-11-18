@@ -1,6 +1,6 @@
 // @ts-nocheck
 import type { factor, Color, ColorSpaces } from '../paramTypes.ts';
-import { sortedArr } from '../fp/array.ts';
+import { sortedArr } from '../fp/array/sortedArr.ts';
 import { differenceEuclidean } from 'culori/fn';
 
 /**

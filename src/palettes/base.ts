@@ -2,7 +2,8 @@
 import { useMode, modeLch, easingSmoothstep, samples } from 'culori/fn';
 
 import type { Color } from '../paramTypes.ts';
-import { adjustHue, random } from '../fp/number.ts';
+import { adjustHue } from '../fp/number/adjustHue.ts';
+import { random } from '../fp/number/random.ts';
 import { toHex } from '../converters/toHex.ts';
 // Globals
 const cb = (iterations: number, distance: number, color: Color) =>

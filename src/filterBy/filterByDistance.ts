@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { filteredArr } from '../fp/array.ts';
+import { filteredArr } from '../fp/array/filteredArr.ts';
 import { differenceEuclidean } from 'culori/fn';
 import type { Color, factor, ColorSpaces } from '../paramTypes.ts';
 import { toHex } from '../converters/toHex.ts';

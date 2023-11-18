@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { getChannel } from '../getters_and_setters/get.ts';
-import { filteredArr } from '../fp/array.ts';
+import { filteredArr } from '../fp/array/filteredArr.ts';
 import type { Color, factor } from '../paramTypes';
 
 /**

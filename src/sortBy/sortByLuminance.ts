@@ -1,6 +1,6 @@
 // @ts-nocheck
 import type { factor, Color } from '../paramTypes.ts';
-import { sortedArr } from '../fp/array.ts';
+import { sortedArr } from '../fp/array/sortedArr.ts';
 import { getLuminance } from '../getters_and_setters/luminance.ts';
 
 /**

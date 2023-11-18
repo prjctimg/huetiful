@@ -1,9 +1,10 @@
 // @ts-nocheck
 import hueTempMap from '../color-maps/samples/hueTemperature';
 import { getChannel } from '../getters_and_setters/get.ts';
-import { min, max } from '../fp/array.ts';
-import { customConcat } from '../fp/object.ts';
-import { adjustHue, inRange } from '../fp/number.ts';
+import { min, max } from '../fp/array/min_max.ts';
+import { customConcat } from '../fp/object/customConcat.ts';
+import { inRange } from '../fp/number/inRange.ts';
+import { adjustHue } from '../fp/number/adjustHue.ts';
 import { setChannel } from '../getters_and_setters/set.ts';
 import type { Color } from '../paramTypes';
 import { toHex } from '../converters/toHex.ts';

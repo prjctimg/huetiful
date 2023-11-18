@@ -2,8 +2,8 @@
 // Pastels.mjs. - This module creates pastel versions of a color. It will take an arr or single value , tweak it and then return the result. Optional overrides for min max values when iterating over an arr.
 import type { Color } from '../paramTypes.ts';
 import { averageNumber, modeHsv, useMode } from 'culori/fn';
-import { min, max } from '../fp/array.ts';
-import { random } from '../fp/number.ts';
+import { min, max } from '../fp/array/min_max.ts';
+import { random } from '../fp/number/random.ts';
 import { toHex } from '../converters/toHex.js';
 
 const samplePastelObj = [

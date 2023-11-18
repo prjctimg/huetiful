@@ -3,8 +3,8 @@
 
 import { Color, HueColorSpaces, factor } from '../paramTypes';
 import { getChannel } from '../getters_and_setters/get.ts';
-import { matchChromaChannel } from '../fp/string.ts';
-import { sortedArr } from '../fp/array.ts';
+import { matchChromaChannel } from '../fp/string/matchChromaChannel.ts';
+import { sortedArr } from '../fp/array/sortedArr.ts';
 
 // I must test if the passed in mode has a chroma/saturation channel. Should I use RegExp  ?
 

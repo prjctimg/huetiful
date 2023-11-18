@@ -1,7 +1,8 @@
 // @ts-nocheck
-import { nearest, differenceEuclidean, converter, formatHex8 } from 'culori';
+import { nearest, differenceEuclidean, useMode, modeLch } from 'culori/fn';
 import { Color } from '../paramTypes';
 import { base } from './base.ts';
+import { toHex } from '../converters/toHex.ts';
 
 const { keys } = Object;
 const isColorEqual = (c1: Color, c2: Color): boolean => {
@@ -39,7 +40,8 @@ const discoverPalettes = (
   colors: Color[],
   scheme: 'analogous' | 'triadic' | 'tetradic' | 'complementary'
 ): Color[] | object => {
-  colors = colors.map((c) => converter('lch')(c));
+  const toLch = useMode(modeLch);
+  colors = colors.map((color) => toLch('lch')(toHex(color)));
   const palettes = {};
   const schemes = ['analogous', 'triadic', 'tetradic', 'complementary'];
   const targetPalettes = {};

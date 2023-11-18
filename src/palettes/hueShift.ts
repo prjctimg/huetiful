@@ -4,7 +4,7 @@
 
 import { easingSmootherstep, modeLch, samples, useMode } from 'culori/fn';
 import type { Color } from '../paramTypes.ts';
-import { adjustHue } from '../fp/number.ts';
+import { adjustHue } from '../fp/number/adjustHue.ts';
 import { toHex } from '../converters/toHex.ts';
 
 const lightnessMapper =

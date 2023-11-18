@@ -1,4 +1,4 @@
-import { filteredArr } from '../fp/array.ts';
+import { filteredArr } from '../fp/array/filteredArr.ts';
 import { Color } from '../paramTypes.ts';
 import { getLuminance } from '../getters_and_setters/luminance.ts';
 import type { factor } from '../paramTypes';
