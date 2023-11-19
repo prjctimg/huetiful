@@ -14,12 +14,40 @@ import type { Color, Earthtones, EarthtoneOptions } from '../paramTypes.ts';
 import { toHex } from '../converters/toHex.ts';
 
 //Add an overrides object with interpolation function and
-const baseEarthtone = (
+const defaultArg = (arg) => arg;
+
+/**
+ * @function
+ * @description Creates a scale of a spline based interpolation between an earthtone and a color.
+ * @param color The color to interpolate an earth tone with.
+ * @param earthtone The earthtone to interpolate with.
+ * @param iterations The number of iterations to produce from the color and earthtone.
+ * @param options Optional overrides for customising interpolation and easing functions.
+ * @returns The array of colors resulting from the earthtone interpolation as hex codes.
+ * @example
+ * 
+ * import { earthtone } from 'huetiful-js'
+
+
+console.log(earthtone("pink", "clay", 5))
+// [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
+
+ */
+
+const earthtone = (
   color: Color,
   earthtone?: Earthtones,
   iterations = 1,
   options: EarthtoneOptions
 ): Color[] => {
+  // eslint-disable-next-line prefer-const
+  options = {
+    easingFunc: defaultArg(easingSmootherstep),
+    hueInterpolator: defaultArg(interpolatorSplineBasisClosed),
+    chromaInterpolator: defaultArg(interpolatorSplineNatural),
+    hueFixup: defaultArg(fixupHueShorter),
+    lightnessInterpolator: defaultArg(interpolatorSplineMonotone)
+  };
   earthtone = earthtone.toLowerCase();
   const tones = {
     'light-gray': '#e5e5e5',
@@ -53,43 +81,6 @@ const baseEarthtone = (
   } else {
     return samples(iterations).map((t) => toHex(f(t)));
   }
-};
-
-const defaultArg = (arg) => arg;
-
-/**
- * @function
- * @description Creates a scale of a spline based interpolation between an earthtone and a color.
- * @param color The color to interpolate an earth tone with.
- * @param earthtone The earthtone to interpolate with.
- * @param iterations The number of iterations to produce from the color and earthtone.
- * @param options Optional overrides for customising interpolation and easing functions.
- * @returns The array of colors resulting from the earthtone interpolation as hex codes.
- * @example
- * 
- * import { earthtone } from 'huetiful-js'
-
-
-console.log(earthtone("pink", "clay", 5))
-// [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
-
- */
-
-const earthtone = (
-  color: Color,
-  earthtone?: Earthtones,
-  iterations?: number,
-  options?: EarthtoneOptions
-): Color[] => {
-  const options: EarthtoneOptions = {
-    easingFunc: defaultArg(easingSmootherstep),
-    hueInterpolator: defaultArg(interpolatorSplineBasisClosed),
-    chromaInterpolator: defaultArg(interpolatorSplineNatural),
-    hueFixup: defaultArg(fixupHueShorter),
-    lightnessInterpolator: defaultArg(interpolatorSplineMonotone)
-  };
-
-  return baseEarthtone(color, earthtone, iterations, options);
 };
 
 export { earthtone };

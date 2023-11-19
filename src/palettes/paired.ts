@@ -39,7 +39,8 @@ const pairedScheme = (
   via: Tone,
   options: EarthtoneOptions
 ): Color[] => {
-  const options: EarthtoneOptions = {
+  // eslint-disable-next-line prefer-const
+  options = {
     easingFunc: defaultArg(easingSmootherstep),
     hueInterpolator: defaultArg(interpolatorSplineBasisClosed),
     chromaInterpolator: defaultArg(interpolatorSplineNatural),
