@@ -14,7 +14,6 @@ import type { Color, Earthtones, EarthtoneOptions } from '../paramTypes.ts';
 import { toHex } from '../converters/toHex.ts';
 
 //Add an overrides object with interpolation function and
-const defaultArg = (arg) => arg;
 
 /**
  * @function
@@ -40,13 +39,12 @@ const earthtone = (
   iterations = 1,
   options: EarthtoneOptions
 ): Color[] => {
-  // eslint-disable-next-line prefer-const
   options = {
-    easingFunc: defaultArg(easingSmootherstep),
-    hueInterpolator: defaultArg(interpolatorSplineBasisClosed),
-    chromaInterpolator: defaultArg(interpolatorSplineNatural),
-    hueFixup: defaultArg(fixupHueShorter),
-    lightnessInterpolator: defaultArg(interpolatorSplineMonotone)
+    easingFunc: easingSmootherstep,
+    hueInterpolator: interpolatorSplineBasisClosed,
+    chromaInterpolator: interpolatorSplineNatural,
+    hueFixup: fixupHueShorter,
+    lightnessInterpolator: interpolatorSplineMonotone
   };
   earthtone = earthtone.toLowerCase();
   const tones = {
