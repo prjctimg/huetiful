@@ -1,3 +1,4 @@
+export type Interpolator = (arr: number[]) => (t: number) => number;
 export type tone = 'light' | 'dark';
 export type hue =
   | 'red-purple'

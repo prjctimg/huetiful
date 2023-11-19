@@ -1,8 +1,7 @@
 
-![](./huetiful-logo.png)
+![Logo](./huetiful-logo.png)
 
- #### JavaScript library for general purpose color manipulations.
-
+#### JavaScript library for general purpose color manipulations
 
 The aim of this project is to help designers and developers alike  work with color more programatically using utilities based on color theory. Though not necessarily a requirement, a basic background of color spaces, properties of color and any other color theory related information will make the library's use cases appear more simpler.
 
@@ -76,9 +75,7 @@ console.log(toHex(arrColorWithAlpha))
 
 Note that toHex takes any color format and returns the hex string represantation of it:
 
-
 We can even mix different color formats with no problem at all:
-
 
 For more information on the color spaces supported by the library and the expected ranges, checkout the [Color Spaces page on the Culori docs]() . Or checkout the library's [Color conversions]() page.
 
@@ -237,7 +234,6 @@ console.log(filterByHue(sample, '<=100')
 ```
 [See more about the parameter types and other sorting/filtering functions]()
 
-
 ### Palette functions
 
 A small collection of simple palette functions are included in the library. One of my favourites is the `hueShift()`  (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down. ) , function which was inspired by (special thanks) [George Francis's implementation in this post]()
@@ -263,7 +259,6 @@ console.log(hueShiftedPalette);
 ```
 
 There's more where that came from. [See the palettes page]()
-
 
 ### Predicates
 
@@ -391,8 +386,6 @@ console.log(getFarthestHue('lime', sample, 'lch'))
 
 ```
 
-
-
 ## What's next
 
 The list of functions goes on beyond this. And since the library is pure JavaScript, you can hook it up with your creative coding library of choice like [p5js]() or [runejs](). The possibilities are limited by the imagination of the user.
@@ -400,7 +393,6 @@ The list of functions goes on beyond this. And since the library is pure JavaScr
 For an introduction to terminology used in color checkout this guide on my blog.
 
 [See the full docs here]()
-
 
 ## Need help ?
 
