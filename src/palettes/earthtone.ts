@@ -81,8 +81,7 @@ const earthtone = (
   iterations?: number,
   options?: EarthtoneOptions
 ): Color[] => {
-  var options: EarthtoneOptions;
-  options = {
+  const options: EarthtoneOptions = {
     easingFunc: defaultArg(easingSmootherstep),
     hueInterpolator: defaultArg(interpolatorSplineBasisClosed),
     chromaInterpolator: defaultArg(interpolatorSplineNatural),
