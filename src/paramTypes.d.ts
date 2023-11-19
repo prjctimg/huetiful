@@ -1,3 +1,10 @@
+export type EarthtoneOptions = {
+  easingFunc?: (t: number) => number;
+  hueInterpolator?: Interpolator;
+  chromaInterpolator?: Interpolator;
+  hueFixup?: (arr: number[]) => number[];
+  lightnessInterpolator?: Interpolator;
+};
 export type Interpolator = (arr: number[]) => (t: number) => number;
 export type tone = 'light' | 'dark';
 export type hue =

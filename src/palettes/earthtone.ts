@@ -10,7 +10,7 @@ import {
   interpolatorSplineMonotone,
   interpolatorSplineBasisClosed
 } from 'culori/fn';
-import type { Color, earthtones, Interpolator } from '../paramTypes.ts';
+import type { Color, earthtones, EarthtoneOptions } from '../paramTypes.ts';
 import { toHex } from '../converters/toHex.ts';
 
 //Add an overrides object with interpolation function and
@@ -56,14 +56,6 @@ const baseEarthtone = (
 };
 
 const defaultArg = (arg) => arg;
-
-type EarthtoneOptions = {
-  easingFunc?: (t: number) => number;
-  hueInterpolator?: Interpolator;
-  chromaInterpolator?: Interpolator;
-  hueFixup?: (arr: number[]) => number[];
-  lightnessInterpolator?: Interpolator;
-};
 
 /**
  * @function
