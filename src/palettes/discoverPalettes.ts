@@ -74,12 +74,14 @@ const discoverPalettes = (
     }
   }
 
-  if (typeof scheme == 'string') {
+  if (typeof scheme === 'string') {
     return palettes[scheme.toLowerCase()];
-  } else if (typeof scheme == 'undefined') {
+  } else if (typeof scheme === 'undefined') {
     return palettes;
   } else {
-    throw Error(`${scheme} is not a valid palette scheme.`);
+    throw Error(
+      `${scheme} is not a valid scheme. The schemes are triadic | tetradic | analogous | complementary`
+    );
   }
 };
 
