@@ -16,6 +16,7 @@ const cb = (iterations: number, distance: number, color: Color) =>
  * @description Generates a randomised classic color scheme from a single base color.
  * @param  scheme  Any classic color scheme either "analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary".
  * @param hex Optional boolen to return lch color objects or hex codes in the result array. Default is false  which returns LCH color objects.
+ * @param easingFunc Optional parameter to pass in a custom easing function. The default is smoothstep
  * @returns An array of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
  * @example
  * 
@@ -27,7 +28,9 @@ console.log(base("triadic")("#a1bd2f", true))
 
 const base =
   (scheme: 'analogous' | 'triadic' | 'tetradic' | 'complementary') =>
-  (color: Color, hex = false): Color[] => {
+  (color: Color, hex = false, easingFunc: (t: number) => number): Color[] => {
+    scheme = scheme.toLowerCase();
+    easingFunc = easingFunc || easingSmoothstep;
     // Converting the color to lch
     const lch = useMode(modeLch);
     color = lch(color);
@@ -51,10 +54,10 @@ const base =
     }
     // The map for steps to obtain the targeted palettes
 
-    const colors = targetHueSteps[scheme.toLowerCase()].map((step: number) => ({
+    const colors = targetHueSteps[scheme].map((step: number) => ({
       l: color['l'],
       c: color['c'],
-      h: step,
+      h: step * easingFunc(1 / targetHueSteps[scheme].length),
       mode: 'lch'
     }));
 
