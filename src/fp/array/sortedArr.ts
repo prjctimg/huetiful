@@ -1,4 +1,4 @@
-import { factor, Color, callback, order } from '../../paramTypes';
+import { Factor, Color, callback, order } from '../../paramTypes';
 import { colorObjArr } from './colorObjArr';
 import { customSort } from './customSort';
 
@@ -9,7 +9,7 @@ import { customSort } from './customSort';
  * @returns An array of colors or color objects.
  */
 const sortedArr =
-  (factor: factor, callback: callback, order: order, colorObj = false) =>
+  (factor: Factor, callback: callback, order: order, colorObj = false) =>
   (colors: Color[]) => {
     const results: Color[] | Array<{ factor: number; name: Color }> =
       colorObjArr(factor, callback)(colors);

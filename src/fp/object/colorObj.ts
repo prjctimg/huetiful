@@ -1,7 +1,7 @@
-import type { callback, factor, Color } from '../../paramTypes';
+import type { callback, Factor, Color } from '../../paramTypes';
 
 // @ts-nocheck
-const colorObj = (factor: factor, callback: callback) => (color: Color) => {
+const colorObj = (factor: Factor, callback: callback) => (color: Color) => {
   return { [factor]: callback(color), name: color };
 };
 

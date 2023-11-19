@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { factor, Color, callback } from '../../paramTypes';
+import { Factor, Color, callback } from '../../paramTypes';
 import { gt, gte, lt, lte } from '../number/comparison';
 import { inRange } from '../number/inRange';
 import { colorObjArr } from './colorObjArr';
@@ -11,7 +11,7 @@ import { colorObjArr } from './colorObjArr';
  * @returns The filtered array
  */
 const filteredArr =
-  (factor: factor, cb?: callback) =>
+  (factor: Factor, cb?: callback) =>
   (colors: Color[], start: number | string, end: number): Color[] => {
     let result: Color[];
 

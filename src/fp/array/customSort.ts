@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { factor, order } from '../../paramTypes';
+import { Factor, order } from '../../paramTypes';
 
 /**
  * @description Helper function for native sorting method for arrays.
@@ -7,7 +7,7 @@ import { factor, order } from '../../paramTypes';
  * @param order Either ascending or descending.
  * @returns A sorted array.
  */
-export const customSort = (order: order, factor?: factor) => {
+export const customSort = (order: order, factor?: Factor) => {
   //  Special thanks to deechris27 on youtube
   // a-b gives asc order & b-a gives desc order
   factor = factor || 'factor';

@@ -1,8 +1,8 @@
 //@ts-nocheck
 import type {
-  sequentialScheme,
-  divergingScheme,
-  qualitativeScheme,
+  SequentialScheme,
+  DivergingScheme,
+  QualitativeScheme,
   Color
 } from '../paramTypes';
 
@@ -47,7 +47,7 @@ console.log(sequential("OrRd"))
 
 
  */
-const sequential = (scheme: sequentialScheme): Color[] => {
+const sequential = (scheme: SequentialScheme): Color[] => {
   const schemes = {
     OrRd: [
       '#fff7ec',
@@ -283,7 +283,7 @@ console.log(diverging("Spectral"))
 ]
  */
 
-const diverging = (scheme: divergingScheme): Color[] => {
+const diverging = (scheme: DivergingScheme): Color[] => {
   const schemes = {
     Spectral: [
       '#9e0142',
@@ -427,7 +427,7 @@ console.log(qualitative("Accent"))
 
  */
 
-const qualitative = (scheme: qualitativeScheme): Color[] => {
+const qualitative = (scheme: QualitativeScheme): Color[] => {
   const schemes = {
     Set2: [
       '#66c2a5',

@@ -1,7 +1,7 @@
 // @ts-nocheck
 // This module contains minChroma,maxChroma,getFarthestChroma,getNearestChroma
 
-import { Color, HueColorSpaces, factor } from '../paramTypes';
+import { Color, HueColorSpaces, Factor } from '../paramTypes';
 import { getChannel } from '../getters_and_setters/get.ts';
 import { matchChromaChannel } from '../fp/string/matchChromaChannel.ts';
 import { sortedArr } from '../fp/array/sortedArr.ts';
@@ -53,7 +53,7 @@ const getNearestChroma = (
 ): number => {
   //  The factor being investigated.
 
-  const factor: factor = 'saturation';
+  const factor: Factor = 'saturation';
   const cb = chromaDiff(color, colorSpace || 'lch');
   const sortedObjArr = sortedArr(
     factor,
@@ -90,7 +90,7 @@ const getFarthestChroma = (
 ): number => {
   //  The factor being investigated.
 
-  const factor: factor = 'saturation';
+  const factor: Factor = 'saturation';
   const cb = chromaDiff(color, colorSpace || 'lch');
   const sortedObjArr = sortedArr(
     factor,
@@ -125,7 +125,7 @@ const minChroma = (
 ): number | { factor: number; color: Color } => {
   //  The factor being investigated.
 
-  const factor: factor = 'saturation';
+  const factor: Factor = 'saturation';
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     predicate(colorSpace || 'lch'),
@@ -169,7 +169,7 @@ const maxChroma = (
 ): number | { factor: number; color: Color } => {
   //  The factor being investigated.
 
-  const factor: factor = 'saturation';
+  const factor: Factor = 'saturation';
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     predicate(colorSpace || 'lch'),

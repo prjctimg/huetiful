@@ -3,7 +3,7 @@
 
 import { toHex } from '../converters/toHex.ts';
 import { setChannel } from '../getters_and_setters/set.ts';
-import { Color, tone } from '../paramTypes.ts';
+import { Color, Tone } from '../paramTypes.ts';
 import {
   easingSmootherstep,
   fixupHueShorter,
@@ -37,7 +37,7 @@ const pairedScheme = (
   color: Color,
   hueStep: number,
   num: number,
-  via: tone
+  via: Tone
 ): Color[] => {
   const toLch = useMode(modeLch);
   color = toLch(toHex(color));

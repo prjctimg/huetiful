@@ -1,5 +1,5 @@
 // @ts-nocheck
-import type { factor, Color } from '../paramTypes.ts';
+import type { Factor, Color } from '../paramTypes.ts';
 import { sortedArr } from '../fp/array/sortedArr.ts';
 import { getLuminance } from '../getters_and_setters/luminance.ts';
 
@@ -53,7 +53,7 @@ console.log(sortedDescending)
  */
 
 const sortByLuminance = (colors: Color[], order: 'asc' | 'desc'): Color[] => {
-  const factor: factor = 'luminance';
+  const factor: Factor = 'luminance';
   const cb = getLuminance;
   //Sorting the color array of object by the 'temp' property in the specified order.
 
