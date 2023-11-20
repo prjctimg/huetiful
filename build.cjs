@@ -68,7 +68,8 @@ build({
 build({
   ...sharedConfig,
   format: 'esm',
-  outfile: 'dist/huetiful.esm.mjs'
+  outfile: 'dist/huetiful.esm.mjs', minifySyntax: true
+
 });
 
 //Bundled ESM minified
@@ -77,24 +78,17 @@ build({
   format: 'esm',
   outfile: 'dist/huetiful.esm.min.mjs',
   minify: true,
-  bundle: true
+  bundle: true, minifySyntax: true
 });
 
 //Bundled IIFE
-// build({
-//   ...sharedConfig,
-//   format: 'iife',
-//   outfile: 'dist/huetiful.js',
-//   globalName: 'huetiful',
-
-
-// });
-
-//Bundled IIFE minified
 build({
   ...sharedConfig,
   format: 'iife',
   outfile: 'dist/huetiful.min.js',
-  globalName: 'huetiful', minify: true, bundle: true,
-  minify: true
+  globalName: 'huetiful',
+  bundle: true, minifySyntax: true, minify: true
+
 });
+
+
