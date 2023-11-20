@@ -9,7 +9,7 @@ var { build } = require('esbuild');
 
 const sharedConfig = {
   entryPoints: ['.//src/index.ts'],
-  bundle: true,
+  bundle: false,
   minify: false
 };
 
@@ -31,7 +31,7 @@ build({
   format: 'esm',
   outfile: 'dist/filterBy/index.esm.mjs',
 
-  platform: 'neutral'
+
 });
 
 // sortBy/ import
@@ -52,13 +52,6 @@ build({
 
 });
 
-// fp/ import
-build({
-  ...sharedConfig,
-  format: 'esm',
-  entryPoints: ['.//src/fp/index.ts'],
-  outfile: 'dist/fp/index.esm.mjs'
-});
 
 // core-utils/ import
 build({
@@ -69,13 +62,7 @@ build({
 
 });
 
-//Bundled CJS minified
-build({
-  ...sharedConfig,
-  outfile: 'dist/huetiful.min.cjs',
-  minify: true,
 
-});
 
 //Bundled ESM
 build({
@@ -90,23 +77,24 @@ build({
   format: 'esm',
   outfile: 'dist/huetiful.esm.min.mjs',
   minify: true,
-
+  bundle: true
 });
 
 //Bundled IIFE
-build({
-  ...sharedConfig,
-  format: 'iife',
-  outfile: 'dist/huetiful.js',
-  globalName: 'huetiful',
-  minify: false
-});
+// build({
+//   ...sharedConfig,
+//   format: 'iife',
+//   outfile: 'dist/huetiful.js',
+//   globalName: 'huetiful',
+
+
+// });
 
 //Bundled IIFE minified
 build({
   ...sharedConfig,
   format: 'iife',
   outfile: 'dist/huetiful.min.js',
-  globalName: 'huetiful',
+  globalName: 'huetiful', minify: true, bundle: true,
   minify: true
 });
