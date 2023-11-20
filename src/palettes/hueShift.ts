@@ -4,7 +4,7 @@
 
 import { easingSmootherstep, modeLch, samples, useMode } from 'culori/fn';
 import type { Color } from '../paramTypes.ts';
-import { adjustHue } from '../fp/number.ts';
+import { adjustHue } from '../fp/number/adjustHue.ts';
 import { toHex } from '../converters/toHex.ts';
 
 const lightnessMapper =
@@ -22,12 +22,12 @@ const lightnessMapper =
  * @param iterations The number of iterations to perform on the color. The length of the resultant array is the number of iterations multiplied by 2 plus the base color passed or (iterations*2)+1.
  * @param hueStep  Controls how much the hue will shift at each iteration.
  * @param hex Optional boolen to return lch color objects or hex codes in the result array. Default is false  which returns LCH color objects.
- * @returns An array of colors.
+ * @returns An array of colors in either hex or as LCH color objects.
  * @example
  * 
  * import { hueShift } from "huetiful-js";
 
-let hueShiftedPalette = hueShift("#3e0000", {}, true);
+let hueShiftedPalette = hueShift("#3e0000",true);
 
 console.log(hueShiftedPalette);
 
@@ -43,63 +43,74 @@ console.log(hueShiftedPalette);
 
 const hueShift = (
   color: Color,
+  hex = false,
   {
     minLightness,
     maxLightness,
     hueStep,
-    iterations
+    iterations,
+    easingFn
   }: {
     minLightness?: number;
     maxLightness?: number;
     hueStep?: number;
     iterations?: number;
-  },
-  hex = false
+    easingFn: (t: number) => number;
+  }
 ): Color[] => {
-  const lch = useMode(modeLch);
-
-  color = lch(toHex(color));
-
-  // Pass in default values if any of the opts is undefined
   minLightness = minLightness || 10;
   maxLightness = maxLightness || 90;
   hueStep = hueStep || 5;
   iterations = iterations || 6;
+  easingFn = easingSmootherstep || easingFn;
+  const toLch = useMode(modeLch);
+
+  color = toLch(toHex(color));
+
+  // Pass in default values if any of the opts is undefined
 
   const palette: Color[] = [color];
 
+  // Maximum number of iterations possible.
+  const MAX_SAFE_ITERATIONS = 360 / hueStep;
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
 
-  samples(iterations).map((t) => {
-    //adjustHue checks hue values are clamped.
-    const hueDark = adjustHue(color['h'] - hueStep * t);
-    const hueLight = adjustHue(color['h'] + hueStep * t);
+  if (iterations <= MAX_SAFE_ITERATIONS) {
+    samples(iterations).map((t) => {
+      //adjustHue checks hue values are clamped.
+      const hueDark = adjustHue(color['h'] - hueStep * t);
+      const hueLight = adjustHue(color['h'] + hueStep * t);
 
-    // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
-    const lightnessDark = lightnessMapper(easingSmootherstep(t))(
-      0.1,
-      iterations
-    )(color['l'], minLightness);
+      // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
+      const lightnessDark = lightnessMapper(easingFn(t))(0.1, iterations)(
+        color['l'],
+        minLightness
+      );
 
-    const lightnessLight = lightnessMapper(easingSmootherstep(t))(
-      0.05,
-      iterations
-    )(color['l'], maxLightness);
+      const lightnessLight = lightnessMapper(easingFn(t))(0.05, iterations)(
+        color['l'],
+        maxLightness
+      );
 
-    palette.push({
-      l: lightnessDark,
-      c: color['c'],
-      h: hueDark,
-      mode: 'lch'
+      palette.push({
+        l: lightnessDark,
+        c: color['c'],
+        h: hueDark,
+        mode: 'lch'
+      });
+
+      palette.unshift({
+        l: lightnessLight,
+        c: color['c'],
+        h: hueLight,
+        mode: 'lch'
+      });
     });
-
-    palette.unshift({
-      l: lightnessLight,
-      c: color['c'],
-      h: hueLight,
-      mode: 'lch'
-    });
-  });
+  } else {
+    throw Error(
+      `The number of iterations exceeds the maximum number of iterations. The maximum iterations are determined by the size of the hueStep. To find the maximum iterations possible, use this formula: 360/hueStep`
+    );
+  }
 
   if (hex) {
     return palette.map(toHex);

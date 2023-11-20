@@ -1,5 +1,13 @@
-export type tone = 'light' | 'dark';
-export type hue =
+export type EarthtoneOptions = {
+  easingFunc?: (t: number) => number;
+  hueInterpolator?: Interpolator;
+  chromaInterpolator?: Interpolator;
+  hueFixup?: (arr: number[]) => number[];
+  lightnessInterpolator?: Interpolator;
+};
+export type Interpolator = (arr: number[]) => (t: number) => number;
+export type Tone = 'light' | 'dark';
+export type Hue =
   | 'red-purple'
   | 'red'
   | 'yellow-red'
@@ -11,7 +19,7 @@ export type hue =
   | 'purple-blue'
   | 'purple';
 
-export type earthtones =
+export type Earthtones =
   | 'light gray'
   | 'silver'
   | 'sand'
@@ -22,7 +30,7 @@ export type earthtones =
   | 'cocoa'
   | 'dark brown'
   | 'dark';
-export type divergingScheme =
+export type DivergingScheme =
   | 'Spectral'
   | 'RdYlGn'
   | 'RdBu'
@@ -32,7 +40,7 @@ export type divergingScheme =
   | 'BrBG'
   | 'RdGy'
   | 'PuOr';
-export type qualitativeScheme =
+export type QualitativeScheme =
   | 'Set2'
   | 'Accent'
   | 'Set1'
@@ -42,7 +50,7 @@ export type qualitativeScheme =
   | 'Pastel2'
   | 'Pastel1';
 
-export type sequentialScheme =
+export type SequentialScheme =
   | 'OrRd'
   | 'PuBu'
   | 'BuPu'
@@ -78,7 +86,7 @@ export type Color =
  * @type
  * The property being queried. Used in utilities that perform operations on collections.
  */
-export type factor =
+export type Factor =
   | 'luminance'
   | 'temp'
   | 'saturation'
@@ -87,14 +95,14 @@ export type factor =
   | 'lightness'
   | 'hue';
 
-type order = 'asc' | 'desc';
+type Order = 'asc' | 'desc';
 
 type callback = (arg: Color, colorSpace?: HueColorSpaces) => number;
 
-type factorMapper = (
-  factor: factor,
+type FactorMapper = (
+  factor: Factor,
   callback: callback,
-  order?: order,
+  order?: Order,
   colorObj = false
 ) => (colors: Color[]) => Color[];
 

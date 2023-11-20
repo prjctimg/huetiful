@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { useMode, modeLch } from 'culori/fn';
-import { inRange } from '../fp/number.js';
-import { expressionParser } from '../fp/string.js';
+import { inRange } from '../fp/number/inRange.js';
+import { expressionParser } from '../fp/string/expressionParser.js';
 import { toHex } from '../converters/toHex.js';
 import type { Color } from '../paramTypes.js';
 

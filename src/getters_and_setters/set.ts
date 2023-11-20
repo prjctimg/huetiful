@@ -5,7 +5,7 @@
 import { converter } from 'culori/fn';
 import 'culori/css';
 import { toHex } from '../converters/toHex.js';
-import { expressionParser } from '../fp/string.js';
+import { expressionParser } from '../fp/string/expressionParser.js';
 import type { Color } from '../paramTypes.js';
 /**
  * @function

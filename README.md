@@ -1,12 +1,11 @@
 
-![](./huetiful-logo.png)
+![Logo](./huetiful-logo.png)
 
- #### JavaScript library for general purpose color manipulations.
-
+#### JavaScript library for general purpose color manipulations
 
 The aim of this project is to help designers and developers alike  work with color more programatically using utilities based on color theory. Though not necessarily a requirement, a basic background of color spaces, properties of color and any other color theory related information will make the library's use cases appear more simpler.
 
-This project is inspired by projects such a [chroma-js](),[colorBrewer.org](),[TailwindCSS]() and borrows some of the reasoning behind them to build functionality. In fact this library uses [Culori]() as its core dependency because it provides a rich API of low level functions written in JavaScript to perform color conversions and other general purpose color manipulations.
+This project is inspired by projects such a [chroma-js](https://gka.github.io/chroma.js),[colorbrewer](https://colorbrewer2.org),[TailwindCSS](https://tailwindcss.com) and borrows some of the reasoning behind them to build functionality. In fact this library uses [Culori](https://culorijs.org) as its core dependency because it provides a rich API of low level functions written in JavaScript to perform color conversions and other general purpose color manipulations.
 
 ## Getting started
 
@@ -19,11 +18,14 @@ Use [npm](https://www.npmjs.com/package/huetiful-js) to install the package.
 npm i huetiful-js
 ```
 
-For use in the browser use [CDN]() to load the package (UMD)
+For use in the browser, you can use a CDN [you can use jsdelivr]() to load the library.
 
 ```html
+https://cdn.jsdelivr.net/npm/huetiful-js/dist/huetiful.min.js
 
-Code sample
+# With script tag 
+
+<script type='module' src='https://cdn.jsdelivr.net/npm/huetiful-js/dist/huetiful.esm.min.mjs'></script>
 ```
 
 ## Overview
@@ -76,17 +78,15 @@ console.log(toHex(arrColorWithAlpha))
 
 Note that toHex takes any color format and returns the hex string represantation of it:
 
-
 We can even mix different color formats with no problem at all:
 
-
-For more information on the color spaces supported by the library and the expected ranges, checkout the [Color Spaces page on the Culori docs]() . Or checkout the library's [Color conversions]() page.
+For more information on the color spaces supported by the library and the expected ranges, checkout the [Color Spaces page on the Culori docs](https://culorijs.org/color-spaces) . Or checkout the library's [Color conversions](https://huetiful-docs.vercel.app/blog/color-spaces-and-converters) page.
 
 > All the functions are internally guarded by `toHex()` so you don't have to worry about converting colors back and fourth.
 
 #### Tailwind colors
 
-As a starting point the library comes along with the default [TailwindCSS]() palette included.. This helps you get started easier when you're using [palette functions]() such as `hueShift()` and `earthtone()`
+As a starting point the library comes along with the default TailwindCSS palette included.. This helps you get started easier when you're using [palette functions](https://huetiful-docs.vercel.app/blog/palette-utilities) such as `hueShift()` and `earthtone()`
 
 The Tailwind colors are in the form of two wrapper functions that both take the same parameters but with a few differences: one is curried by default and the other is a tweaked variant of the same functionality but with a few improvements. Below are some examples showing the differences between the two functions:
 
@@ -154,7 +154,7 @@ The library has functions for sorting and filtering colors using their property 
 
 #### Sorting colors
 
-Below is an example of sorting colors by the relative luminance as defined by [WCAG 2.0](). 
+Below is an example of sorting colors by the relative luminance as defined by WCAG 2.0. 
 > Note that you can specify the order as either ascending (`asc`) or descending (`desc`). The default is ascending. :
 
 ```js
@@ -202,7 +202,7 @@ console.log(sortedDescending)
 
 #### Filtering colors
 
-Below is an example of filtering colors by their hue angle. The function uses LCH internally because its more perceptually uniform than HSL. [George Francis explains this phenomena in detail here.]()
+Below is an example of filtering colors by their hue angle. The function uses LCH internally because its more perceptually uniform than HSL. [George Francis explains this phenomena in detail here.](https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/)
 
 ```js
  let sample = [
@@ -235,13 +235,11 @@ console.log(filterByHue(sample, '<=100')
 // [ '#ffff00', '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
 
 ```
-[See more about the parameter types and other sorting/filtering functions]()
-
+[See more about the parameter types and other filtering functions](https://huetiful-docs.vercel.app/blog/sorting-color)
 
 ### Palette functions
 
-A small collection of simple palette functions are included in the library. One of my favourites is the `hueShift()`  (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down. ) , function which was inspired by (special thanks) [George Francis's implementation in this post]()
-
+A small collection of simple palette functions are included in the library. One of my favourites is the `hueShift()`  (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down. ) .
 ```js
 import { hueShift } from "huetiful-js";
 
@@ -263,7 +261,6 @@ console.log(hueShiftedPalette);
 ```
 
 There's more where that came from. [See the palettes page]()
-
 
 ### Predicates
 
@@ -391,27 +388,27 @@ console.log(getFarthestHue('lime', sample, 'lch'))
 
 ```
 
-
-
 ## What's next
 
-The list of functions goes on beyond this. And since the library is pure JavaScript, you can hook it up with your creative coding library of choice like [p5js]() or [runejs](). The possibilities are limited by the imagination of the user.
+The list of functions goes on beyond this. And since the library is pure JavaScript, you can hook it up with your creative coding library of choice like p5js or runejs. The possibilities are limited by the imagination of the user.
 
-For an introduction to terminology used in color checkout this guide on my blog.
 
-[See the full docs here]()
-
+[See the full docs here](https:huetiful-docs.vercel.app)
 
 ## Need help ?
 
-See some unexpected results? [Checkout our issue tracker]() to open an issue or search for the problem to see if your issue already exists
+See some unexpected results? [Check the issue tracker](https://github.com/prjctimg/huetiful/issues) to open an issue or search for the problem to see if your issue already exists or has been resolved.
 
-Would like to join the chat and share ideas and suggestions ? [See our discussions]() for the open topics.
+Would like to join the chat and share ideas and suggestions ? [See the discussions and just say hi, or share a coding meme(whatever breaks the ice)](https://github.com/prjctimg/huetiful/discussions)
 
 ## Contributing
 
 First of all, thank you for using huetiful-js! Its people like you that make open source software better for the community!
 Contributions are welcome! Help make this project better and easier to use for other developers by sharing your ideas and stomping out bugs and feature suggestions. Please see the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
+
+## References
+
+[Coloring with code: A programmatic approach by George Francis](https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/)
 
 > ## License
 >

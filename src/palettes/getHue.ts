@@ -3,11 +3,11 @@
 // @ts-nocheck
 import hueTempMap from '../color-maps/samples/hueTemperature';
 import { useMode, modeLch } from 'culori/fn';
-import { inRange } from '../fp/number.ts';
-import { min, max } from '../fp/array.ts';
-import { customConcat } from '../fp/object.ts';
+import { inRange } from '../fp/number/inRange.ts';
+import { min, max } from '../fp/array/min_max.ts';
+import { customConcat } from '../fp/object/customConcat.ts';
 import { toHex } from '../converters/toHex.ts';
-import type { Color, hue } from '../paramTypes';
+import type { Color, Hue } from '../paramTypes';
 
 /**
  *@function
@@ -22,7 +22,7 @@ import type { Color, hue } from '../paramTypes';
 console.log(getHue("#310000"))
 // red
  */
-const getHue = (color: Color): hue => {
+const getHue = (color: Color): Hue => {
   // First convert the color to LCH
   const lch = useMode(modeLch);
   color = lch(toHex(color));

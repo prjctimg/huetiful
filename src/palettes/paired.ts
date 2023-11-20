@@ -3,16 +3,15 @@
 
 import { toHex } from '../converters/toHex.ts';
 import { setChannel } from '../getters_and_setters/set.ts';
-import { Color, tone } from '../paramTypes.ts';
+import { Color, EarthtoneOptions, Tone } from '../paramTypes.ts';
 import {
-  easingSmootherstep,
-  fixupHueShorter,
   interpolate,
-  interpolatorSplineBasis,
-  interpolatorSplineBasisClosed,
-  interpolatorSplineNatural,
-  fixupAlpha,
   samples,
+  easingSmootherstep,
+  interpolatorSplineNatural,
+  fixupHueShorter,
+  interpolatorSplineMonotone,
+  interpolatorSplineBasisClosed,
   useMode,
   modeLch
 } from 'culori/fn';
@@ -23,7 +22,7 @@ import {
  * @param color The color to return a paired color scheme from.
  * @param via The tone to interpolate through (either white or black). Default is white.
  * @param hueStep The value to increment the base color's hue channel with.
- * @param num The number of color samples to generate.
+ * @param iterations The number of color samples to generate.
  * @param overrides The optional overrides object to customize per channel options like interpolation methods and channel fixups.
  * @returns An array containing the paired scheme.
  * @example 
@@ -36,9 +35,18 @@ console.log(pairedScheme("green", 6, 5, "dark"))
 const pairedScheme = (
   color: Color,
   hueStep: number,
-  num: number,
-  via: tone
+  iterations: number,
+  via: Tone,
+  options: EarthtoneOptions
 ): Color[] => {
+  // eslint-disable-next-line prefer-const
+  options = {
+    easingFunc: defaultArg(easingSmootherstep),
+    hueInterpolator: defaultArg(interpolatorSplineBasisClosed),
+    chromaInterpolator: defaultArg(interpolatorSplineNatural),
+    hueFixup: defaultArg(fixupHueShorter),
+    lightnessInterpolator: defaultArg(interpolatorSplineMonotone)
+  };
   const toLch = useMode(modeLch);
   color = toLch(toHex(color));
 
@@ -48,17 +56,20 @@ const pairedScheme = (
   // Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes
   const tones = {
     dark: '#263238',
-    light: { l: 100, c: 0.1, h: 0, mode: 'lch' }
+    light: { l: 100, c: 0, h: 0, mode: 'lch' }
   };
 
   const scale = interpolate([color, tones[via || 'dark'], derivedHue], 'lch', {
     h: {
-      use: interpolatorSplineBasis,
-      fixup: fixupHueShorter
+      fixup: options['hueFixup'],
+      use: options['hueInterpolator']
     },
-    c: interpolatorSplineNatural,
-    l: interpolatorSplineBasisClosed,
-    alpha: { fixup: fixupAlpha }
+    c: {
+      use: options['chromaInterpolator']
+    },
+    l: {
+      use: options['lightnessInterpolator']
+    }
   });
 
   const { abs, round } = Math;
@@ -66,7 +77,7 @@ const pairedScheme = (
   // Declare the num of iterations in samples() which will be used as the t value
   // Since the interpolation returns half duplicate values we double the sample value
   // Guard the num param against negative values and floats
-  const smp = samples((round(abs(num)) || 4) * 2);
+  const smp = samples((round(abs(iterations)) || 4) * 2);
 
   //The array to capture the different iterations
   const results: Color[] = smp.map((t) =>

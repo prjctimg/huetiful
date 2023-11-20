@@ -2,14 +2,14 @@
 // @ts-nocheck
 
 import { getChannel } from '../getters_and_setters/get.ts';
-import { sortedArr } from '../fp/array.ts';
-import type { Color, HueColorSpaces, factor } from '../paramTypes';
+import { sortedArr } from '../fp/array/sortedArr.ts';
+import type { Color, HueColorSpaces, Factor } from '../paramTypes';
 
 //  Globals
 
 const { abs } = Math;
 
-const factor: factor = 'hue';
+const factor: Factor = 'hue';
 const mode = (colorSpace: HueColorSpaces): string => `${colorSpace || 'lch'}.h`;
 // The hue value of our color which we are using for comparison
 const targetHue = (color: Color, colorSpace: HueColorSpaces): number =>

@@ -3,31 +3,13 @@
 import { getChannel } from '../getters_and_setters/get.ts';
 import hueTempMap from '../color-maps/samples/hueTemperature';
 import { getTemp } from '../converters/getTemp.ts';
-import { floorCeil, inRange } from '../fp/number.ts';
-import { min, max } from '../fp/array.ts';
-import { customConcat } from '../fp/object.ts';
+import { floorCeil } from '../fp/number/floorCeil.ts';
+import { inRange } from '../fp/number/inRange.ts';
+import { min, max } from '../fp/array/min_max.ts';
+import { customConcat } from '../fp/object/customConcat.ts';
+import { customFindKey } from '../fp/object/customFindKey.ts';
 import type { Color } from '../paramTypes.ts';
 
-const customFindKey = (collection: object, factor: number) => {
-  // If the color is achromatic return the string gray
-
-  const propKeys = Object.keys(collection);
-
-  const result: string = propKeys
-    .filter((key) => {
-      const hueVals = customConcat(collection[key]);
-      // @ts-ignore
-      const minVal = min(...hueVals);
-      // @ts-ignore
-      const maxVal = max(...hueVals);
-      // Capture the min and max values and see if the passed in color is within that range
-
-      return inRange(factor, minVal, maxVal);
-    })
-    .toString();
-
-  return result;
-};
 const predicate = (factor: number, temp: 'warm' | 'cool'): boolean => {
   const hueKeys = Object.keys(hueTempMap);
   if (

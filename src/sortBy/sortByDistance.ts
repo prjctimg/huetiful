@@ -1,6 +1,6 @@
 // @ts-nocheck
-import type { factor, Color, ColorSpaces } from '../paramTypes.ts';
-import { sortedArr } from '../fp/array.ts';
+import type { Factor, Color, ColorSpaces } from '../paramTypes.ts';
+import { sortedArr } from '../fp/array/sortedArr.ts';
 import { differenceEuclidean } from 'culori/fn';
 
 /**
@@ -41,7 +41,7 @@ const sortByDistance = (
   mode?: ColorSpaces,
   weights?: [number, number, number, number]
 ): Color[] => {
-  const factor: factor = 'distance';
+  const factor: Factor = 'distance';
   const cb = (against: Color, mode: ColorSpaces) => (color: Color) =>
     differenceEuclidean(mode || 'lch', weights || [1, 1, 1, 0])(against, color);
   //Sorting the color array of object by the 'distance' property in the specified order.

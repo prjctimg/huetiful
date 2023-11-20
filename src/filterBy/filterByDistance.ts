@@ -1,8 +1,8 @@
 // @ts-nocheck
 
-import { filteredArr } from '../fp/array.ts';
+import { filteredArr } from '../fp/array/filteredArr.ts';
 import { differenceEuclidean } from 'culori/fn';
-import type { Color, factor, ColorSpaces } from '../paramTypes.ts';
+import type { Color, Factor, ColorSpaces } from '../paramTypes.ts';
 import { toHex } from '../converters/toHex.ts';
 /**
  *  @function
@@ -43,7 +43,7 @@ const filterByDistance = (
   // How do I get the distance
 
   // Create an object that has the distance and name of color as properties.
-  const factor: factor = 'distance';
+  const factor: Factor = 'distance';
   const cb = (against: Color, mode: ColorSpaces) => (color: Color) =>
     differenceEuclidean(
       mode || 'lch',

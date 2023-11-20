@@ -1,13 +1,13 @@
 {
   "name": "huetiful-js",
-  "version": "1.7.5",
+  "version": "1.7.6",
   "type": "module",
-  "main": "./dist/huetiful.cjs",
   "module": "./dist/huetiful.esm.mjs",
   "browser": "./dist/huetiful.min.js",
   "exports": {
     "./fp": "./dist/fp/index.esm.mjs",
-    "./core-utils": "./dist/core-utils/index.esm.mjs",
+    "./getters_and_setters/index.esm.mjs": "./dist/getters_and_setters/index.esm.mjs",
+    "./converters": "./dist/converters/index.esm.mjs",
     "./palettes": "./dist/palettes/index.esm.mjs",
     "./filterBy": "./dist/filterBy/index.esm.mjs",
     "./sortBy": "./dist/sortBy/index.esm.mjs",
@@ -50,15 +50,24 @@
     "dist",
     "src"
   ],
-  "repository": "github:prjctimg/huetiful",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prjctimg/huetiful.git"
+  },
   "keywords": [
     "lch",
-    "palette",
+    "palettes",
     "color schemes",
     "color",
     "culori",
     "gradients",
-    "tailwind"
+    "tailwind",
+    "cielab",
+    "rgb",
+    "hsl",
+    "hsv",
+    "colorbrewer",
+    "tailwindcss"
   ],
   "author": "Dean Tarisai",
   "email": "arcaneqoder@gmail.com",
