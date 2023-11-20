@@ -2,6 +2,7 @@
   "name": "huetiful-js",
   "version": "1.7.6",
   "type": "module",
+  "main": "./dist/huetiful.esm.mjs",
   "module": "./dist/huetiful.esm.mjs",
   "browser": "./dist/huetiful.min.js",
   "exports": {
@@ -28,6 +29,7 @@
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "huetiful-js": "^1.7.6",
     "husky": "^8.0.3",
     "nodemon": "^3.0.1",
     "typescript": "^4.9.5"
@@ -38,7 +40,8 @@
     "types": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts",
     "docs": "cd docs && npm run build:docs && npm run deploy:docs",
     "lint": "eslint . --ext .ts",
-    "format": "prettier --config .prettierrc.json \"src/**/*.ts\" --write"
+    "format": "prettier --config .prettierrc.json \"src/**/*.ts\" --write",
+    "publish": "npm publish rm -r dist"
   },
   "husky": {
     "hooks": {
