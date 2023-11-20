@@ -390,11 +390,10 @@ console.log(getFarthestHue('lime', sample, 'lch'))
 
 ## What's next
 
-The list of functions goes on beyond this. And since the library is pure JavaScript, you can hook it up with your creative coding library of choice like [p5js]() or [runejs](). The possibilities are limited by the imagination of the user.
+The list of functions goes on beyond this. And since the library is pure JavaScript, you can hook it up with your creative coding library of choice like p5js or runejs. The possibilities are limited by the imagination of the user.
 
-For an introduction to terminology used in color checkout this guide on my blog.
 
-[See the full docs here]()
+[See the full docs here](https:huetiful-docs.vercel.app)
 
 ## Need help ?
 
