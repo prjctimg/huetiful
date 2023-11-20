@@ -56,12 +56,18 @@
   },
   "keywords": [
     "lch",
-    "palette",
+    "palettes",
     "color schemes",
     "color",
     "culori",
     "gradients",
-    "tailwind"
+    "tailwind",
+    "cielab",
+    "rgb",
+    "hsl",
+    "hsv",
+    "colorbrewer",
+    "tailwindcss"
   ],
   "author": "Dean Tarisai",
   "email": "arcaneqoder@gmail.com",
