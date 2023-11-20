@@ -1,9 +1,8 @@
 # Contributing
 
-
-
 Thank you for empowering open source by using our project! It's people like you that keep the software community thriving and relevant. Your contribution means a lot to us!
 
+Our documentation site runs on NextJS and uses TailwindCSS for styling. [Go to the documentation repository]() to see more about how you can make our docs better by contributing.
 
 ## Getting started
 

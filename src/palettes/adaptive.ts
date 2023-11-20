@@ -10,6 +10,9 @@
 // 5. What are the nuances of dark/light mode. How is the color corrected when we switch themes
 // 6. How can this be implemented in code
 
+// Providing a min luminance contrast ratio between text and background.
+//
+
 // adaptive returns an object of the adjusted colors
 // {lightMode/darkMode:Color[]}
 
