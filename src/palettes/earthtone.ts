@@ -36,8 +36,8 @@ console.log(earthtone("pink", "clay", 5))
 const earthtone = (
   color: Color,
   earthtone?: Earthtones,
-  iterations = 1,
-  options: EarthtoneOptions
+  iterations?: number,
+  options?: EarthtoneOptions
 ): Color[] => {
   options = {
     easingFunc: easingSmootherstep,
@@ -46,6 +46,7 @@ const earthtone = (
     hueFixup: fixupHueShorter,
     lightnessInterpolator: interpolatorSplineMonotone
   };
+  iterations = iterations < 1 ? 1 : iterations;
   earthtone = earthtone.toLowerCase();
   const tones = {
     'light-gray': '#e5e5e5',

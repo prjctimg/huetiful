@@ -2,7 +2,6 @@
   "name": "huetiful-js",
   "version": "1.7.6",
   "type": "module",
-  "main": "./dist/huetiful.cjs",
   "module": "./dist/huetiful.esm.mjs",
   "browser": "./dist/huetiful.min.js",
   "exports": {
