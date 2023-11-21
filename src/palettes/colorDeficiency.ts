@@ -57,8 +57,10 @@ const baseColorDeficiency = (
 const colorDeficiency =
   (deficiency: 'red' | 'blue' | 'green' | 'monochromacy') =>
   (color: Color, severity = 1) => {
+    // Store the keys of deficiency types
     const deficiencies: string[] = ['red', 'blue', 'green', 'monochromacy'];
-    deficiency = deficiency.toLowerCase();
+    // Cast 'red' as the default parameter
+    deficiency = [deficiency || 'red'].toString().toLowerCase();
 
     if (
       typeof deficiency === 'string' &&
