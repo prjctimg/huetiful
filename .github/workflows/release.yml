@@ -65,42 +65,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  deploy:
-    environment:
-      name: ${{ needs.setup.outputs.DEPLOY_ENVIRONMENT }}
-    name: Deploy to Vercel
-    needs:
-      - release
-    runs-on: ubuntu-latest
-    env:
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-    steps:
-      - name: '☁️ checkout repository'
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: '🔧 setup node'
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: '🔧 install npm@latest vercel@canary'
-        run: npm i -g npm@latest vercel@canary
-
-      - name: '📦 Pull Vercel Environment Information'
-        run: npx vercel pull --yes --environment=${{ needs.setup.outputs.VERCEL_ENVIRONMENT }} --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: '📦 Pull Vercel Build Environment'
-        run: npx vercel env pull .env.local --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: '📂 Build Project Artifacts'
-        run: npx vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: '🚀 Deploy Project Artifacts to Vercel'
-        run: npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-
   cleanup:
     name: Cleanup actions
     needs:
