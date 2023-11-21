@@ -6,3 +6,4 @@ export { getHue } from './getHue';
 export { pairedScheme } from './paired';
 export { base } from './base';
 export { pastel } from './pastel';
+export { colorDeficiency } from './colorDeficiency';
