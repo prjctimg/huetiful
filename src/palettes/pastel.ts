@@ -79,14 +79,9 @@ const pastel = (color: Color, hex = true): Color => {
       h: color['h'],
       s: random(
         pastelSample['minSampleSaturation'],
-        pastelSample['maxSampleSaturation'],
-        true
+        pastelSample['maxSampleSaturation']
       ),
-      v: random(
-        pastelSample['minSampleValue'],
-        pastelSample['maxSampleValue'],
-        true
-      ),
+      v: random(pastelSample['minSampleValue'], pastelSample['maxSampleValue']),
       mode: 'hsv'
     };
   }

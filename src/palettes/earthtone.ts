@@ -47,7 +47,7 @@ const earthtone = (
     lightnessInterpolator: interpolatorSplineMonotone
   };
   iterations = iterations < 1 ? 1 : iterations;
-  earthtone = earthtone.toLowerCase();
+  earthtone = [earthtone || 'dark'].toString().toLowerCase();
   const tones = {
     'light-gray': '#e5e5e5',
     silver: '#f5f5f5',
@@ -60,7 +60,7 @@ const earthtone = (
     'dark-brown': '#473b31',
     dark: '#352a21'
   };
-  const base: Color = tones[earthtone || 'dark'];
+  const base: Color = tones[earthtone];
 
   const f = interpolate([base, toHex(color), options['easingFunc']], 'lch', {
     h: {
