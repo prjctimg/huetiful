@@ -37,16 +37,16 @@ const earthtone = (
   color: Color,
   earthtone?: Earthtones,
   iterations?: number,
-  options?: EarthtoneOptions
-): Color[] => {
   options = {
     easingFunc: easingSmootherstep,
     hueInterpolator: interpolatorSplineBasisClosed,
     chromaInterpolator: interpolatorSplineNatural,
     hueFixup: fixupHueShorter,
     lightnessInterpolator: interpolatorSplineMonotone
-  };
-  iterations = iterations < 1 ? 1 : iterations;
+  }
+): Color[] => {
+  iterations =
+    typeof iterations === 'undefined' || iterations > 1 ? 1 : iterations;
   earthtone = [earthtone || 'dark'].toString().toLowerCase();
   const tones = {
     'light-gray': '#e5e5e5',
