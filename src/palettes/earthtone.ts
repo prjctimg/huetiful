@@ -10,7 +10,7 @@ import {
   interpolatorSplineMonotone,
   interpolatorSplineBasisClosed
 } from 'culori/fn';
-import type { Color, Earthtones, EarthtoneOptions } from '../paramTypes.ts';
+import type { Color, Earthtones } from '../paramTypes.ts';
 import { toHex } from '../converters/toHex.ts';
 
 //Add an overrides object with interpolation function and
@@ -37,17 +37,17 @@ const earthtone = (
   color: Color,
   earthtone?: Earthtones,
   iterations?: number,
-  options?: EarthtoneOptions
-): Color[] => {
   options = {
     easingFunc: easingSmootherstep,
     hueInterpolator: interpolatorSplineBasisClosed,
     chromaInterpolator: interpolatorSplineNatural,
     hueFixup: fixupHueShorter,
     lightnessInterpolator: interpolatorSplineMonotone
-  };
-  iterations = iterations < 1 ? 1 : iterations;
-  earthtone = earthtone.toLowerCase();
+  }
+): Color[] => {
+  iterations =
+    typeof iterations === 'undefined' || iterations > 1 ? 1 : iterations;
+  earthtone = [earthtone || 'dark'].toString().toLowerCase();
   const tones = {
     'light-gray': '#e5e5e5',
     silver: '#f5f5f5',
@@ -60,7 +60,13 @@ const earthtone = (
     'dark-brown': '#473b31',
     dark: '#352a21'
   };
-  const base: Color = tones[earthtone || 'dark'];
+  options['easingFunc'] = options['easingFunc'] || easingSmootherstep;
+  options['lightnessInterpolator'] =
+    options['lightnessInterpolator'] || interpolatorSplineMonotone;
+  options['chromaInterpolator'] || interpolatorSplineNatural;
+  options['hueInterpolator'] || interpolatorSplineBasisClosed;
+  options['hueFixup'] = options['hueFixup'] || fixupHueShorter;
+  const base: Color = tones[earthtone];
 
   const f = interpolate([base, toHex(color), options['easingFunc']], 'lch', {
     h: {

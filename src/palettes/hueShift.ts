@@ -44,74 +44,63 @@ console.log(hueShiftedPalette);
 const hueShift = (
   color: Color,
   hex = false,
-  {
-    minLightness,
-    maxLightness,
-    hueStep,
-    iterations,
-    easingFn
-  }: {
-    minLightness?: number;
-    maxLightness?: number;
-    hueStep?: number;
-    iterations?: number;
-    easingFn: (t: number) => number;
+  options = {
+    minLightness: 10,
+    maxLightness: 90,
+    hueStep: 5,
+    iterations: 6,
+    easingFn: easingSmootherstep
   }
 ): Color[] => {
-  minLightness = minLightness || 10;
-  maxLightness = maxLightness || 90;
-  hueStep = hueStep || 5;
-  iterations = iterations || 6;
-  easingFn = easingSmootherstep || easingFn;
   const toLch = useMode(modeLch);
 
   color = toLch(toHex(color));
 
-  // Pass in default values if any of the opts is undefined
+  // Pass default values in case the options object is overridden
+  options['easingFn'] = options['easingFn'] || easingSmootherstep;
+  options['hueStep'] = options['hueStep'] || 5;
+  options['iterations'] = (options['iterations'] || 6) + 1;
+  options['minLightness'] = options['minLightness'] || 10;
+  options['maxLightness'] = options['maxLightness'] || 90;
 
+  // Pass in default values if any of the opts is undefined
+  const tValues = samples(options['iterations']);
   const palette: Color[] = [color];
 
   // Maximum number of iterations possible.
-  const MAX_SAFE_ITERATIONS = 360 / hueStep;
+
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
 
-  if (iterations <= MAX_SAFE_ITERATIONS) {
-    samples(iterations).map((t) => {
-      //adjustHue checks hue values are clamped.
-      const hueDark = adjustHue(color['h'] - hueStep * t);
-      const hueLight = adjustHue(color['h'] + hueStep * t);
+  for (let i = 1; i < options['iterations']; i++) {
+    //adjustHue checks hue values are clamped.
+    const hueDark = adjustHue(color['h'] - options['hueStep'] * i);
+    const hueLight = adjustHue(color['h'] + options['hueStep'] * i);
 
-      // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
-      const lightnessDark = lightnessMapper(easingFn(t))(0.1, iterations)(
-        color['l'],
-        minLightness
-      );
+    // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
+    const lightnessDark = lightnessMapper(options['easingFn'](tValues[i - 1]))(
+      0.1,
+      options['iterations']
+    )(color['l'], options['minLightness']);
 
-      const lightnessLight = lightnessMapper(easingFn(t))(0.05, iterations)(
-        color['l'],
-        maxLightness
-      );
+    const lightnessLight = lightnessMapper(options['easingFn'](tValues[i - 1]))(
+      0.05,
+      options['iterations']
+    )(color['l'], options['maxLightness']);
 
-      palette.push({
-        l: lightnessDark,
-        c: color['c'],
-        h: hueDark,
-        mode: 'lch'
-      });
-
-      palette.unshift({
-        l: lightnessLight,
-        c: color['c'],
-        h: hueLight,
-        mode: 'lch'
-      });
+    palette.push({
+      l: lightnessDark,
+      c: color['c'],
+      h: hueDark,
+      mode: 'lch'
     });
-  } else {
-    throw Error(
-      `The number of iterations exceeds the maximum number of iterations. The maximum iterations are determined by the size of the hueStep. To find the maximum iterations possible, use this formula: 360/hueStep`
-    );
-  }
 
+    palette.unshift({
+      l: lightnessLight,
+      c: color['c'],
+      h: hueLight,
+      mode: 'lch'
+    });
+  }
   if (hex) {
     return palette.map(toHex);
   } else {

@@ -4,6 +4,16 @@ export type EarthtoneOptions = {
   chromaInterpolator?: Interpolator;
   hueFixup?: (arr: number[]) => number[];
   lightnessInterpolator?: Interpolator;
+  via: Tone;
+  hueStep?: number;
+  iterations?: number;
+};
+export type HueShiftOptions = {
+  minLightness?: number;
+  maxLightness?: number;
+  hueStep?: number;
+  iterations?: number;
+  easingFn: (t: number) => number;
 };
 export type Interpolator = (arr: number[]) => (t: number) => number;
 export type Tone = 'light' | 'dark';
