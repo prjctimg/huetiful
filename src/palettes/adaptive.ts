@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-nocheck
 
 // This module will make use of contrast ratio to create adaptive palettes
@@ -20,6 +21,17 @@
 // 1. backgroundColor
 // 2. foregroundColor
 // Do I need constrains for the background
+
+// First I need to declare some constants to serve as starting points
+const MIN_CONTRAST = 0;
+const MAX_CONTRAST = 1;
+const MIN_LUMINANCE = 1;
+const MAX_LUMINANCE = 2;
+
+// Allows us to generate color based based on the desired contrast ratio
+const TARGET_CONTRAST_RATIO = 1;
+
+const adaptivePalette = () => {};
 
 const lightMode = () => {};
 const darkMode = () => {};

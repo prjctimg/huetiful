@@ -68,7 +68,7 @@ build({
   ...sharedConfig,
   external: Object.keys(dependencies),
   format: 'esm',
-  outfile: 'dist/huetiful.esm.mjs', minifySyntax: true,
+  outfile: 'dist/huetiful.esm.mjs'
 
 });
 
