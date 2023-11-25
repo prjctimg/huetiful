@@ -36,7 +36,7 @@ Because certain end results are easier to achieve in different color spaces, col
 
 ### base
 
-▸ **base**(`scheme`): (`color`: `Color`, `hex`: `boolean`, `easingFunc`: (`t`: `number`) => `number`) => `Color`[]
+▸ **base**(`scheme`): (`color`: [`Color`](paramTypes.md#color), `hex`: `boolean`, `easingFunc`: (`t`: `number`) => `number`) => [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
@@ -50,19 +50,19 @@ Because certain end results are easier to achieve in different color spaces, col
 
 An array of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
 
-▸ (`color`, `hex?`, `easingFunc`): `Color`[]
+▸ (`color`, `hex?`, `easingFunc`): [`Color`](paramTypes.md#color)[]
 
 ##### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `color` | `Color` | `undefined` |
+| `color` | [`Color`](paramTypes.md#color) | `undefined` |
 | `hex` | `boolean` | `false` |
 | `easingFunc` | (`t`: `number`) => `number` | `undefined` |
 
 ##### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 **`Function`**
 
@@ -87,18 +87,18 @@ ___
 
 ### discoverPalettes
 
-▸ **discoverPalettes**(`colors`, `scheme`): `object` \| `Color`[]
+▸ **discoverPalettes**(`colors`, `scheme`): `object` \| [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to create palettes from. Preferably use 5 or more colors for better results. |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to create palettes from. Preferably use 5 or more colors for better results. |
 | `scheme` | ``"analogous"`` \| ``"triadic"`` \| ``"tetradic"`` \| ``"complementary"`` | (Optional) The palette type you want to return. |
 
 #### Returns
 
-`object` \| `Color`[]
+`object` \| [`Color`](paramTypes.md#color)[]
 
 An array of colors if the scheme parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
 
@@ -139,14 +139,14 @@ ___
 
 ### earthtone
 
-▸ **earthtone**(`color`, `earthtone?`, `iterations?`, `options?`): `Color`[]
+▸ **earthtone**(`color`, `earthtone?`, `iterations?`, `options?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `color` | `Color` | `undefined` | The color to interpolate an earth tone with. |
-| `earthtone?` | `Earthtones` | `undefined` | The earthtone to interpolate with. |
+| `color` | [`Color`](paramTypes.md#color) | `undefined` | The color to interpolate an earth tone with. |
+| `earthtone?` | [`Earthtones`](paramTypes.md#earthtones) | `undefined` | The earthtone to interpolate with. |
 | `iterations?` | `number` | `undefined` | The number of iterations to produce from the color and earthtone. |
 | `options` | `Object` | `undefined` | Optional overrides for customising interpolation and easing functions. |
 | `options.chromaInterpolator` | `Interpolator` | `interpolatorSplineNatural` | - |
@@ -157,7 +157,7 @@ ___
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 The array of colors resulting from the earthtone interpolation as hex codes.
 
@@ -184,18 +184,18 @@ ___
 
 ### getComplimentaryHue
 
-▸ **getComplimentaryHue**(`color`, `colorObj?`): `Color` \| \{ `color`: `Color` ; `hue`: `string`  }
+▸ **getComplimentaryHue**(`color`, `colorObj?`): [`Color`](paramTypes.md#color) \| \{ `color`: [`Color`](paramTypes.md#color) ; `hue`: `string`  }
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `color` | `Color` | `undefined` | The color to retrieve its complimentary hue. |
+| `color` | [`Color`](paramTypes.md#color) | `undefined` | The color to retrieve its complimentary hue. |
 | `colorObj` | `boolean` | `false` | Optional boolean whether to return an object with the result color hue family or just the result color. Default is false. |
 
 #### Returns
 
-`Color` \| \{ `color`: `Color` ; `hue`: `string`  }
+[`Color`](paramTypes.md#color) \| \{ `color`: [`Color`](paramTypes.md#color) ; `hue`: `string`  }
 
 An object with the hue family and complimentary color as keys.
 
@@ -225,17 +225,17 @@ ___
 
 ### getHue
 
-▸ **getHue**(`color`): `Hue`
+▸ **getHue**(`color`): [`Hue`](paramTypes.md#hue)
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to query its shade or hue family. |
+| `color` | [`Color`](paramTypes.md#color) | The color to query its shade or hue family. |
 
 #### Returns
 
-`Hue`
+[`Hue`](paramTypes.md#hue)
 
 The name of the hue family for example red or green.
 
@@ -262,13 +262,13 @@ ___
 
 ### hueShift
 
-▸ **hueShift**(`color`, `hex?`, `options?`): `Color`[]
+▸ **hueShift**(`color`, `hex?`, `options?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `color` | `Color` | `undefined` | The color to use as the base of the hueshift. Colors are internally converted to LCH. |
+| `color` | [`Color`](paramTypes.md#color) | `undefined` | The color to use as the base of the hueshift. Colors are internally converted to LCH. |
 | `hex` | `boolean` | `false` | Optional boolen to return lch color objects or hex codes in the result array. Default is false which returns LCH color objects. |
 | `options` | `Object` | `undefined` | - |
 | `options.easingFn` | (`t`: `number`) => `number` | `easingSmootherstep` | - |
@@ -279,7 +279,7 @@ ___
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of colors in either hex or as LCH color objects.
 
@@ -316,18 +316,18 @@ ___
 
 ### pairedScheme
 
-▸ **pairedScheme**(`color`, `options`): `Color`[]
+▸ **pairedScheme**(`color`, `options`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to return a paired color scheme from. |
-| `options` | `EarthtoneOptions` | - |
+| `color` | [`Color`](paramTypes.md#color) | The color to return a paired color scheme from. |
+| `options` | [`EarthtoneOptions`](paramTypes.md#earthtoneoptions) | - |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array containing the paired scheme.
 
@@ -356,18 +356,18 @@ ___
 
 ### pastel
 
-▸ **pastel**(`color`, `hex?`): `Color`
+▸ **pastel**(`color`, `hex?`): [`Color`](paramTypes.md#color)
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `color` | `Color` | `undefined` | The color to return a pastel variant of. |
+| `color` | [`Color`](paramTypes.md#color) | `undefined` | The color to return a pastel variant of. |
 | `hex` | `boolean` | `true` | Pass in true to return an 8-character hex code else it will return an HSV color object. |
 
 #### Returns
 
-`Color`
+[`Color`](paramTypes.md#color)
 
 A random pastel color.
 

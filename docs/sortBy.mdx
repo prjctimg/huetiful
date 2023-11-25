@@ -43,19 +43,19 @@ The functions take 2 similar parameters in common; a collection of colors and an
 
 ### sortByContrast
 
-▸ **sortByContrast**(`colors`, `against`, `order`): `Color`[]
+▸ **sortByContrast**(`colors`, `against`, `order`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort |
-| `against` | `Color` | - |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
+| `against` | [`Color`](paramTypes.md#color) | - |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 
@@ -86,21 +86,21 @@ ___
 
 ### sortByDistance
 
-▸ **sortByDistance**(`colors`, `against`, `order?`, `mode?`, `weights?`): `Color`[]
+▸ **sortByDistance**(`colors`, `against`, `order?`, `mode?`, `weights?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort. |
-| `against` | `Color` | The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array. |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort. |
+| `against` | [`Color`](paramTypes.md#color) | The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array. |
 | `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
-| `mode?` | `ColorSpaces` | The color space to calculate the distance in . |
+| `mode?` | [`ColorSpaces`](paramTypes.md#colorspaces) | The color space to calculate the distance in . |
 | `weights?` | [`number`, `number`, `number`, `number`] | The weighting values to pass to the Euclidean function. Default is [1,1,1,0]. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 
@@ -142,18 +142,18 @@ ___
 
 ### sortByHue
 
-▸ **sortByHue**(`colors`, `order`): `Color`[]
+▸ **sortByHue**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 
@@ -211,18 +211,18 @@ ___
 
 ### sortByLightness
 
-▸ **sortByLightness**(`colors`, `order`): `Color`[]
+▸ **sortByLightness**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 
@@ -282,18 +282,18 @@ ___
 
 ### sortByLuminance
 
-▸ **sortByLuminance**(`colors`, `order`): `Color`[]
+▸ **sortByLuminance**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 
@@ -352,18 +352,18 @@ ___
 
 ### sortBySaturation
 
-▸ **sortBySaturation**(`colors`, `order`): `Color`[]
+▸ **sortBySaturation**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 
@@ -423,18 +423,18 @@ ___
 
 ### sortByTemp
 
-▸ **sortByTemp**(`colors`, `order`): `Color`[]
+▸ **sortByTemp**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 

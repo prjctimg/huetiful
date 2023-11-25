@@ -7,7 +7,7 @@ var { readdirSync, readFileSync, writeFileSync } = require('fs')
 ////// Documentation generator script
 ///// Each subdir in src is an .md file
 ///// Start and end tags in the files in docs will guide the md injection
-const pathSegments = ['colors', 'filterBy', 'converters', 'getters_and_setters', 'palettes', 'sortBy']
+const pathSegments = ['accessibility', 'colors', 'filterBy', 'converters', 'getters_and_setters', 'palettes', 'sortBy']
 const fileContents = (rootDir, filenameSegment, extension) => readFileSync(`./${rootDir}/${filenameSegment}.${extension}`, 'utf8')
 
 // Check if the source file to be injected have the comments

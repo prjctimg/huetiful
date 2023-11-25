@@ -63,18 +63,18 @@ We can use _isWarm_ and _isCool_ to determine if a color is approximately warm o
 
 ### colors
 
-▸ **colors**(`shade`, `val`): `Color` \| `Color`[]
+▸ **colors**(`shade`, `val`): [`Color`](paramTypes.md#color) \| [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `shade` | keyof `HueMap` | Any shade in the default TailwindCSS palette e.g amber,blue. |
-| `val` | `ScaleValues` | Any value from 100 to 900 in increments of 100 e.g "200". |
+| `shade` | keyof [`HueMap`](paramTypes.md#huemap) | Any shade in the default TailwindCSS palette e.g amber,blue. |
+| `val` | [`ScaleValues`](paramTypes.md#scalevalues) | Any value from 100 to 900 in increments of 100 e.g "200". |
 
 #### Returns
 
-`Color` \| `Color`[]
+[`Color`](paramTypes.md#color) \| [`Color`](paramTypes.md#color)[]
 
 color Returns a hex code string or array of hex codes depending on how the function is called.
 
@@ -127,17 +127,17 @@ ___
 
 ### diverging
 
-▸ **diverging**(`scheme`): `Color`[]
+▸ **diverging**(`scheme`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `scheme` | `DivergingScheme` | The name of the scheme. |
+| `scheme` | [`DivergingScheme`](paramTypes.md#divergingscheme) | The name of the scheme. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of colors in hex represantation.
 
@@ -175,9 +175,9 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to use its chroma/saturation value as the minuend. |
-| `colors` | `Color`[] | The collection of colors to compare against. |
-| `colorSpace?` | `HueColorSpaces` | The mode color space to perform the computation in. |
+| `color` | [`Color`](paramTypes.md#color) | The color to use its chroma/saturation value as the minuend. |
+| `colors` | [`Color`](paramTypes.md#color)[] | The collection of colors to compare against. |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | The mode color space to perform the computation in. |
 
 #### Returns
 
@@ -216,9 +216,9 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to use its hue value as the minuend. |
-| `colors` | `Color`[] | The collection of colors to compare against. |
-| `colorSpace?` | `HueColorSpaces` | The mode color space to perform the computation in. |
+| `color` | [`Color`](paramTypes.md#color) | The color to use its hue value as the minuend. |
+| `colors` | [`Color`](paramTypes.md#color)[] | The collection of colors to compare against. |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | The mode color space to perform the computation in. |
 
 #### Returns
 
@@ -269,8 +269,8 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to use its lightness value as the minuend. |
-| `colors` | `Color`[] | The collection of colors to compare against. |
+| `color` | [`Color`](paramTypes.md#color) | The color to use its lightness value as the minuend. |
+| `colors` | [`Color`](paramTypes.md#color)[] | The collection of colors to compare against. |
 
 #### Returns
 
@@ -310,9 +310,9 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to use its chroma/saturation value as the minuend. |
-| `colors` | `Color`[] | The collection of colors to compare against. |
-| `colorSpace?` | `HueColorSpaces` | The mode color space to perform the computation in. |
+| `color` | [`Color`](paramTypes.md#color) | The color to use its chroma/saturation value as the minuend. |
+| `colors` | [`Color`](paramTypes.md#color)[] | The collection of colors to compare against. |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | The mode color space to perform the computation in. |
 
 #### Returns
 
@@ -351,9 +351,9 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to use its hue value as the minuend. |
-| `colors` | `Color`[] | The collection of colors to compare against. |
-| `colorSpace?` | `HueColorSpaces` | The mode color space to perform the computation in. |
+| `color` | [`Color`](paramTypes.md#color) | The color to use its hue value as the minuend. |
+| `colors` | [`Color`](paramTypes.md#color)[] | The collection of colors to compare against. |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | The mode color space to perform the computation in. |
 
 #### Returns
 
@@ -393,8 +393,8 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to use its lightness value as the minuend. |
-| `colors` | `Color`[] | The collection of colors to compare against. |
+| `color` | [`Color`](paramTypes.md#color) | The color to use its lightness value as the minuend. |
+| `colors` | [`Color`](paramTypes.md#color)[] | The collection of colors to compare against. |
 
 #### Returns
 
@@ -434,7 +434,7 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to test if it is achromatic or not. |
+| `color` | [`Color`](paramTypes.md#color) | The color to test if it is achromatic or not. |
 
 #### Returns
 
@@ -503,7 +503,7 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to check the temperature. |
+| `color` | [`Color`](paramTypes.md#color) | The color to check the temperature. |
 
 #### Returns
 
@@ -550,7 +550,7 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to check the temperature. |
+| `color` | [`Color`](paramTypes.md#color) | The color to check the temperature. |
 
 #### Returns
 
@@ -591,19 +591,19 @@ ___
 
 ### maxChroma
 
-▸ **maxChroma**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: `Color` ; `factor`: `number`  }
+▸ **maxChroma**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number`  }
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to query the color with the largest saturation value. |
-| `colorSpace?` | `HueColorSpaces` | `undefined` | The mode color space to perform the computation in. |
+| `colors` | [`Color`](paramTypes.md#color)[] | `undefined` | The array of colors to query the color with the largest saturation value. |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | `undefined` | The mode color space to perform the computation in. |
 | `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false. |
 
 #### Returns
 
-`number` \| \{ `color`: `Color` ; `factor`: `number`  }
+`number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number`  }
 
 The largest saturation value in the colors passed in or a custom object.
 
@@ -632,19 +632,19 @@ ___
 
 ### maxHue
 
-▸ **maxHue**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: `Color` ; `factor`: `number`  }
+▸ **maxHue**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number`  }
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to query the color with the largest hue value. |
-| `colorSpace?` | `HueColorSpaces` | `undefined` | The mode color space to perform the computation in. |
+| `colors` | [`Color`](paramTypes.md#color)[] | `undefined` | The array of colors to query the color with the largest hue value. |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | `undefined` | The mode color space to perform the computation in. |
 | `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false. |
 
 #### Returns
 
-`number` \| \{ `color`: `Color` ; `factor`: `number`  }
+`number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number`  }
 
 The largest hue value in the colors passed in or a custom object.
 
@@ -672,18 +672,18 @@ ___
 
 ### maxLightness
 
-▸ **maxLightness**(`colors`, `colorObj?`): `number` \| \{ `color`: `Color` ; `factor`: `number`  }
+▸ **maxLightness**(`colors`, `colorObj?`): `number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number`  }
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to query the color with the largest lightness value. |
+| `colors` | [`Color`](paramTypes.md#color)[] | `undefined` | The array of colors to query the color with the largest lightness value. |
 | `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false. |
 
 #### Returns
 
-`number` \| \{ `color`: `Color` ; `factor`: `number`  }
+`number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number`  }
 
 The largest lightness value in the colors passed in or a custom object.
 
@@ -719,7 +719,7 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to check its maximum temperature. |
+| `color` | [`Color`](paramTypes.md#color) | The color to check its maximum temperature. |
 
 #### Returns
 
@@ -753,19 +753,19 @@ ___
 
 ### minChroma
 
-▸ **minChroma**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: `Color` ; `factor`: `number`  }
+▸ **minChroma**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number`  }
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to query the color with the smallest chroma/saturation value. |
-| `colorSpace?` | `HueColorSpaces` | `undefined` | The mode color space to perform the computation in. |
+| `colors` | [`Color`](paramTypes.md#color)[] | `undefined` | The array of colors to query the color with the smallest chroma/saturation value. |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | `undefined` | The mode color space to perform the computation in. |
 | `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false. |
 
 #### Returns
 
-`number` \| \{ `color`: `Color` ; `factor`: `number`  }
+`number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number`  }
 
 The smallest chroma/saturation value in the colors passed in or a custom object.
 
@@ -794,19 +794,19 @@ ___
 
 ### minHue
 
-▸ **minHue**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: `Color` ; `factor`: `number`  }
+▸ **minHue**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number`  }
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to query the color with the smallest hue value. |
-| `colorSpace?` | `HueColorSpaces` | `undefined` | The mode color space to perform the computation in. |
+| `colors` | [`Color`](paramTypes.md#color)[] | `undefined` | The array of colors to query the color with the smallest hue value. |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | `undefined` | The mode color space to perform the computation in. |
 | `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false. |
 
 #### Returns
 
-`number` \| \{ `color`: `Color` ; `factor`: `number`  }
+`number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number`  }
 
 The smallest hue value in the colors passed in or a custom object.
 
@@ -835,18 +835,18 @@ ___
 
 ### minLightness
 
-▸ **minLightness**(`colors`, `colorObj?`): `number` \| \{ `color`: `Color` ; `factor`: `number`  }
+▸ **minLightness**(`colors`, `colorObj?`): `number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number`  }
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to query the color with the smallest lightness value. |
+| `colors` | [`Color`](paramTypes.md#color)[] | `undefined` | The array of colors to query the color with the smallest lightness value. |
 | `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false. |
 
 #### Returns
 
-`number` \| \{ `color`: `Color` ; `factor`: `number`  }
+`number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number`  }
 
 The smallest lightness value in the colors passed in or a custom object.
 
@@ -882,7 +882,7 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to check its minimum temperature. |
+| `color` | [`Color`](paramTypes.md#color) | The color to check its minimum temperature. |
 
 #### Returns
 
@@ -922,7 +922,7 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to query its overtone. |
+| `color` | [`Color`](paramTypes.md#color) | The color to query its overtone. |
 
 #### Returns
 
@@ -959,17 +959,17 @@ ___
 
 ### qualitative
 
-▸ **qualitative**(`scheme`): `Color`[]
+▸ **qualitative**(`scheme`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `scheme` | `QualitativeScheme` | The name of the scheme |
+| `scheme` | [`QualitativeScheme`](paramTypes.md#qualitativescheme) | The name of the scheme |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of colors in hex represantation.
 
@@ -1001,17 +1001,17 @@ ___
 
 ### sequential
 
-▸ **sequential**(`scheme`): `Color`[]
+▸ **sequential**(`scheme`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `scheme` | `SequentialScheme` | The name of the scheme |
+| `scheme` | [`SequentialScheme`](paramTypes.md#sequentialscheme) | The name of the scheme |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of colors in hex represantation.
 
@@ -1045,13 +1045,13 @@ ___
 
 ### tailwindColors
 
-▸ **tailwindColors**(`shade`): (`val?`: `ScaleValues`) => `string` \| `string`[]
+▸ **tailwindColors**(`shade`): (`val?`: [`ScaleValues`](paramTypes.md#scalevalues)) => `string` \| `string`[]
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `shade` | keyof `HueMap` |
+| `shade` | keyof [`HueMap`](paramTypes.md#huemap) |
 
 #### Returns
 
@@ -1065,7 +1065,7 @@ color A hex string value or array of hex strings.
 
 | Name | Type |
 | :------ | :------ |
-| `val?` | `ScaleValues` |
+| `val?` | [`ScaleValues`](paramTypes.md#scalevalues) |
 
 ##### Returns
 

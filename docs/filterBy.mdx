@@ -45,20 +45,20 @@ Coupled with a JavaScript language feature like template literals, we can even p
 
 ### filterByContrast
 
-▸ **filterByContrast**(`colors`, `against`, `startContrast?`, `endContrast?`): `Color`[]
+▸ **filterByContrast**(`colors`, `against`, `startContrast?`, `endContrast?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
-| `against` | `Color` | `undefined` | - |
+| `colors` | [`Color`](paramTypes.md#color)[] | `undefined` | The array of colors to filter. |
+| `against` | [`Color`](paramTypes.md#color) | `undefined` | - |
 | `startContrast` | `number` | `0.05` | The minimum end of the contrast range. |
 | `endContrast?` | `number` | `undefined` | The maximum end of the contrast range. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of filtered colors.
 
@@ -97,22 +97,22 @@ ___
 
 ### filterByDistance
 
-▸ **filterByDistance**(`colors`, `against`, `startDistance?`, `endDistance?`, `mode?`, `weights?`): `Color`[]
+▸ **filterByDistance**(`colors`, `against`, `startDistance?`, `endDistance?`, `mode?`, `weights?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
-| `against` | `Color` | `undefined` | - |
+| `colors` | [`Color`](paramTypes.md#color)[] | `undefined` | The array of colors to filter. |
+| `against` | [`Color`](paramTypes.md#color) | `undefined` | - |
 | `startDistance` | `number` | `0.05` | The minimum end of the distance range. |
 | `endDistance?` | `number` | `undefined` | The maximum end of the distance range. |
-| `mode?` | `ColorSpaces` | `undefined` | The color space to calculate the distance in . |
+| `mode?` | [`ColorSpaces`](paramTypes.md#colorspaces) | `undefined` | The color space to calculate the distance in . |
 | `weights?` | [`number`, `number`, `number`, `number`] | `undefined` | The weighting values to pass to the Euclidean function. Default is [1,1,1,0]. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of filtered colors.
 
@@ -148,19 +148,19 @@ ___
 
 ### filterByHue
 
-▸ **filterByHue**(`colors`, `startHue?`, `endHue?`): `Color`[]
+▸ **filterByHue**(`colors`, `startHue?`, `endHue?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
+| `colors` | [`Color`](paramTypes.md#color)[] | `undefined` | The array of colors to filter. |
 | `startHue` | `number` | `0` | The minimum end of the hue range. |
 | `endHue` | `number` | `360` | The maximum end of the hue range. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of the filtered colors.
 
@@ -198,19 +198,19 @@ ___
 
 ### filterByLightness
 
-▸ **filterByLightness**(`colors`, `startLightness?`, `endLightness?`): `Color`[]
+▸ **filterByLightness**(`colors`, `startLightness?`, `endLightness?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
+| `colors` | [`Color`](paramTypes.md#color)[] | `undefined` | The array of colors to filter. |
 | `startLightness` | `number` | `5` | The minimum end of the lightness range. |
 | `endLightness` | `number` | `100` | The maximum end of the lightness range. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of filtered colors.
 
@@ -251,19 +251,19 @@ ___
 
 ### filterByLuminance
 
-▸ **filterByLuminance**(`colors`, `startLuminance?`, `endLuminance?`): `Color`[]
+▸ **filterByLuminance**(`colors`, `startLuminance?`, `endLuminance?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
+| `colors` | [`Color`](paramTypes.md#color)[] | `undefined` | The array of colors to filter. |
 | `startLuminance` | `number` | `0.05` | The minimum end of the luminance range. |
 | `endLuminance` | `number` | `1` | The maximum end of the luminance range. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of filtered colors.
 
@@ -304,19 +304,19 @@ ___
 
 ### filterBySaturation
 
-▸ **filterBySaturation**(`colors`, `startSaturation?`, `endSaturation?`): `Color`[]
+▸ **filterBySaturation**(`colors`, `startSaturation?`, `endSaturation?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
+| `colors` | [`Color`](paramTypes.md#color)[] | `undefined` | The array of colors to filter. |
 | `startSaturation` | `number` | `0.05` | The minimum end of the saturation range. |
 | `endSaturation` | `number` | `1` | The maximum end of the saturation range. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of filtered colors.
 
@@ -357,19 +357,19 @@ ___
 
 ### filterByTemp
 
-▸ **filterByTemp**(`colors`, `startTemp?`, `endTemp?`): `Color`[]
+▸ **filterByTemp**(`colors`, `startTemp?`, `endTemp?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
+| `colors` | [`Color`](paramTypes.md#color)[] | `undefined` | The array of colors to filter. |
 | `startTemp` | `number` | `1000` | The minimum end of the temperature range. |
 | `endTemp` | `number` | `6000` | The maximum end of the temperature range. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of the filtered colors.
 

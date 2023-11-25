@@ -35,18 +35,18 @@ For operations where you may need to query the value before you can run other in
 
 ### alpha
 
-▸ **alpha**(`color`, `value?`): `Color`
+▸ **alpha**(`color`, `value?`): [`Color`](paramTypes.md#color)
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color with the targeted opacity/alpha channel. |
+| `color` | [`Color`](paramTypes.md#color) | The color with the targeted opacity/alpha channel. |
 | `value?` | `string` \| `number` | The value to apply to the opacity channel. The value is between [0,1] |
 
 #### Returns
 
-`Color`
+[`Color`](paramTypes.md#color)
 
 color The resulting color. Returns an 8 character hex code.
 
@@ -80,18 +80,18 @@ ___
 
 ### brighten
 
-▸ **brighten**(`color`, `value`): `Color`
+▸ **brighten**(`color`, `value`): [`Color`](paramTypes.md#color)
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to brighten. |
+| `color` | [`Color`](paramTypes.md#color) | The color to brighten. |
 | `value` | `string` \| `number` | The amount to brighten with. Also supports expressions as strings e.g darken("#fc23a1","*0.5") |
 
 #### Returns
 
-`Color`
+[`Color`](paramTypes.md#color)
 
 #### Defined in
 
@@ -101,18 +101,18 @@ ___
 
 ### darken
 
-▸ **darken**(`color`, `value`): `Color`
+▸ **darken**(`color`, `value`): [`Color`](paramTypes.md#color)
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to darken. |
+| `color` | [`Color`](paramTypes.md#color) | The color to darken. |
 | `value` | `string` \| `number` | The amount to darken with. Also supports expressions as strings e.g darken("#fc23a1","*0.5") |
 
 #### Returns
 
-`Color`
+[`Color`](paramTypes.md#color)
 
 color The darkened color.
 
@@ -136,7 +136,7 @@ ___
 
 ### getChannel
 
-▸ **getChannel**(`mc`): (`color`: `Color`) => `number`
+▸ **getChannel**(`mc`): (`color`: [`Color`](paramTypes.md#color)) => `number`
 
 #### Parameters
 
@@ -156,7 +156,7 @@ value The value of the queried channel.
 
 | Name | Type |
 | :------ | :------ |
-| `color` | `Color` |
+| `color` | [`Color`](paramTypes.md#color) |
 
 ##### Returns
 
@@ -191,7 +191,7 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to query. |
+| `color` | [`Color`](paramTypes.md#color) | The color to query. |
 
 #### Returns
 
@@ -220,7 +220,7 @@ ___
 
 ### setChannel
 
-▸ **setChannel**(`mc`): (`color`: `Color`, `value`: `string` \| `number`) => `Color`
+▸ **setChannel**(`mc`): (`color`: [`Color`](paramTypes.md#color), `value`: `string` \| `number`) => [`Color`](paramTypes.md#color)
 
 #### Parameters
 
@@ -234,18 +234,18 @@ ___
 
 color The mutated color.
 
-▸ (`color`, `value`): `Color`
+▸ (`color`, `value`): [`Color`](paramTypes.md#color)
 
 ##### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `color` | `Color` |
+| `color` | [`Color`](paramTypes.md#color) |
 | `value` | `string` \| `number` |
 
 ##### Returns
 
-`Color`
+[`Color`](paramTypes.md#color)
 
 **`Function`**
 
@@ -272,18 +272,18 @@ ___
 
 ### setLuminance
 
-▸ **setLuminance**(`color`, `lum`): `Color`
+▸ **setLuminance**(`color`, `lum`): [`Color`](paramTypes.md#color)
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `Color` | The color to set luminance |
+| `color` | [`Color`](paramTypes.md#color) | The color to set luminance |
 | `lum` | `number` | The amount of luminance to set. The value range is normalised between [0,1] |
 
 #### Returns
 
-`Color`
+[`Color`](paramTypes.md#color)
 
 The mutated color with the modified properties.
 
