@@ -18,7 +18,7 @@ On this step its a matter of preference to either use git clone for cloning the 
 
 ```bash
 #  Cloning the repository. It will populate your current working directory with all the files in the repository
-npx degit prjctimg:huetiful
+npx degit prjctimg/huetiful
 
 ```
 

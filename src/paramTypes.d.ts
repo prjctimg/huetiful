@@ -8,13 +8,7 @@ export type EarthtoneOptions = {
   hueStep?: number;
   iterations?: number;
 };
-export type HueShiftOptions = {
-  minLightness?: number;
-  maxLightness?: number;
-  hueStep?: number;
-  iterations?: number;
-  easingFn: (t: number) => number;
-};
+
 export type Interpolator = (arr: number[]) => (t: number) => number;
 export type Tone = 'light' | 'dark';
 export type Hue =
@@ -30,15 +24,15 @@ export type Hue =
   | 'purple';
 
 export type Earthtones =
-  | 'light gray'
+  | 'light-gray'
   | 'silver'
   | 'sand'
   | 'tupe'
   | 'mahogany'
-  | 'brick red'
+  | 'brick-red'
   | 'clay'
   | 'cocoa'
-  | 'dark brown'
+  | 'dark-brown'
   | 'dark';
 export type DivergingScheme =
   | 'Spectral'

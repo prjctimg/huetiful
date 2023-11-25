@@ -16,7 +16,7 @@
     ".": "./dist/huetiful.esm.mjs"
   },
   "types": "./dist/index.d.ts",
-  "description": "JavaScript library for general purpose color manipulations based on Culori.",
+  "description": "Library for general purpose color manipulations based on CuloriJS .",
   "dependencies": {
     "culori": "^3.0.1"
   },
@@ -32,9 +32,11 @@
     "huetiful-js": "^1.7.6",
     "husky": "^8.0.3",
     "nodemon": "^3.0.1",
-    "typescript": "^4.9.5"
+    "typedoc-plugin-markdown": "^3.17.1",
+    "typescript": "^5.3.2"
   },
   "scripts": {
+    "docs": "npx typedoc --plugin typedoc-plugin-markdown --readme none && node docs.cjs && rm -r temp",
     "build": " node build.cjs",
     "prepare": " npm run build && npm run types",
     "types": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts",

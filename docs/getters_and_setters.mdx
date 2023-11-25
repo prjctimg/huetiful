@@ -1,0 +1,311 @@
+---
+title: Getters and setters.
+date: '2023-11-22'
+draft: false
+summary: Functions for setting and getting color properties.
+layout: PostSimple
+canonicalUrl: https://huetiful-docs.vercel.app/api/getters_and_setters
+---
+
+For operations where you may need to query the value before you can run other instructions, the library has some functions for retrieving such values such as an individual channel's value, getting its luminance et cetera.
+
+> You can pass any recognized color token because there all guarded by `toHex()` under the hood.
+
+### API
+
+<!-- TSDOC_START -->
+
+[huetiful-js](../README.md) / getters\_and\_setters
+
+# Module: getters\_and\_setters
+
+## Table of contents
+
+### Functions
+
+- [alpha](getters_and_setters.md#alpha)
+- [brighten](getters_and_setters.md#brighten)
+- [darken](getters_and_setters.md#darken)
+- [getChannel](getters_and_setters.md#getchannel)
+- [getLuminance](getters_and_setters.md#getluminance)
+- [setChannel](getters_and_setters.md#setchannel)
+- [setLuminance](getters_and_setters.md#setluminance)
+
+## Functions
+
+### alpha
+
+▸ **alpha**(`color`, `value?`): `Color`
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `color` | `Color` | The color with the targeted opacity/alpha channel. |
+| `value?` | `string` \| `number` | The value to apply to the opacity channel. The value is between [0,1] |
+
+#### Returns
+
+`Color`
+
+color The resulting color. Returns an 8 character hex code.
+
+**`Function`**
+
+**`Description`**
+
+Sets the opacity of a color. Also gets the alpha value of the color if the value param is omitted
+
+**`Example`**
+
+```ts
+// Getting the alpha
+console.log(alpha('#a1bd2f0d'))
+// 0.050980392156862744
+
+// Setting the alpha
+
+let myColor = alpha('b2c3f1', 0.5)
+
+console.log(myColor)
+
+// #b2c3f180
+```
+
+#### Defined in
+
+src/getters_and_setters/alpha.ts:29
+
+___
+
+### brighten
+
+▸ **brighten**(`color`, `value`): `Color`
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `color` | `Color` | The color to brighten. |
+| `value` | `string` \| `number` | The amount to brighten with. Also supports expressions as strings e.g darken("#fc23a1","*0.5") |
+
+#### Returns
+
+`Color`
+
+#### Defined in
+
+src/getters_and_setters/darken.ts:41
+
+___
+
+### darken
+
+▸ **darken**(`color`, `value`): `Color`
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `color` | `Color` | The color to darken. |
+| `value` | `string` \| `number` | The amount to darken with. Also supports expressions as strings e.g darken("#fc23a1","*0.5") |
+
+#### Returns
+
+`Color`
+
+color The darkened color.
+
+**`Function`**
+
+**`Description`**
+
+Darkens the color by reducing the lightness channel. .
+
+**`Example`**
+
+```ts
+
+```
+
+#### Defined in
+
+src/getters_and_setters/darken.ts:19
+
+___
+
+### getChannel
+
+▸ **getChannel**(`mc`): (`color`: `Color`) => `number`
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `mc` | `string` | The mode and channel to be retrieved. For example "rgb.b" will return the value of the blue channel in the RGB color space of that color. |
+
+#### Returns
+
+`fn`
+
+value The value of the queried channel.
+
+▸ (`color`): `number`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `color` | `Color` |
+
+##### Returns
+
+`number`
+
+**`Function`**
+
+**`Description`**
+
+Gets the  value specifified channel on the color.
+
+**`Example`**
+
+```ts
+import { getChannel } from 'huetiful-js'
+
+console.log(getChannel('rgb.g')('#a1bd2f'))
+// 0.7411764705882353
+```
+
+#### Defined in
+
+src/getters_and_setters/get.ts:22
+
+___
+
+### getLuminance
+
+▸ **getLuminance**(`color`): `number`
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `color` | `Color` | The color to query. |
+
+#### Returns
+
+`number`
+
+value The color's luminance value.
+
+**`Alias`**
+
+Gets the luminance value of that color as defined by WCAG.
+
+**`Example`**
+
+```ts
+import { getLuminance } from 'huetiful-js'
+
+console.log(getLuminance('#a1bd2f'))
+// 0.4417749513730954
+```
+
+#### Defined in
+
+src/getters_and_setters/luminance.ts:16
+
+___
+
+### setChannel
+
+▸ **setChannel**(`mc`): (`color`: `Color`, `value`: `string` \| `number`) => `Color`
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `mc` | `string` | The mode and channel to work with. For example 'rgb.b'. |
+
+#### Returns
+
+`fn`
+
+color The mutated color.
+
+▸ (`color`, `value`): `Color`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `color` | `Color` |
+| `value` | `string` \| `number` |
+
+##### Returns
+
+`Color`
+
+**`Function`**
+
+**`Description`**
+
+Sets the value for the specified channel in a color.
+
+**`Example`**
+
+```ts
+import { setChannel } from 'huetiful-js'
+
+let myColor = setChannel('lch.h')('green',10)
+
+console.log(getChannel('lch.h')(myColor))
+// 10
+```
+
+#### Defined in
+
+src/getters_and_setters/set.ts:29
+
+___
+
+### setLuminance
+
+▸ **setLuminance**(`color`, `lum`): `Color`
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `color` | `Color` | The color to set luminance |
+| `lum` | `number` | The amount of luminance to set. The value range is normalised between [0,1] |
+
+#### Returns
+
+`Color`
+
+The mutated color with the modified properties.
+
+**`Function`**
+
+**`Description`**
+
+Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
+
+**`Example`**
+
+```ts
+import { setLuminance, getLuminance } from 'huetiful-js'
+
+let myColor = setLuminance('#a1bd2f', 0.5)
+
+console.log(getLuminance(myColor))
+// 0.4999999136285792
+```
+
+#### Defined in
+
+src/getters_and_setters/luminance.ts:35
+
+<!-- TSDOC_END -->
