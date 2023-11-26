@@ -53,38 +53,26 @@ const pastelSample = {
  * @function
  * @description Returns a random pastel variant of the passed in color.
  * @param color The color to return a pastel variant of.
- * @param hex Pass in true to return an 8-character hex code else it will return an HSV color object.
  * @returns A random pastel color.
  * @example
  * 
  * 
 import { pastel } from 'huetiful-js'
 
-console.log(pastel("green", true))
+console.log(pastel("green"))
 // #036103ff
  */
-const pastel = (color: Color, hex = true): Color => {
+const pastel = (color: Color): Color => {
   const toHsv = useMode(modeHsv);
   color = toHsv(toHex(color));
   // For now we're simply returning an hsv object with the s and v channel set to the averages
-  if (hex) {
-    return toHex({
-      h: color['h'],
-      s: pastelSample['averageSaturation'],
-      v: pastelSample['averageValue'],
-      mode: 'hsv'
-    });
-  } else {
-    return {
-      h: color['h'],
-      s: random(
-        pastelSample['minSampleSaturation'],
-        pastelSample['maxSampleSaturation']
-      ),
-      v: random(pastelSample['minSampleValue'], pastelSample['maxSampleValue']),
-      mode: 'hsv'
-    };
-  }
+
+  return toHex({
+    h: color['h'],
+    s: pastelSample['averageSaturation'],
+    v: random(pastelSample['minSampleValue'], pastelSample['maxSampleValue']),
+    mode: 'hsv'
+  });
 };
 
 export { pastel };

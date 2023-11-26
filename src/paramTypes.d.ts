@@ -1,14 +1,80 @@
-export type EarthtoneOptions = {
+export type Options = {
+  /**
+   * The easing function to use.
+   * @param t Any value between 0 and 1
+   * @returns A number.
+   */
   easingFunc?: (t: number) => number;
+
+  /**
+   * The interpolation method to use on the hue channel.
+   */
   hueInterpolator?: Interpolator;
+
+  /**
+   * The interpolation method to use on the chroma channel.
+   */
   chromaInterpolator?: Interpolator;
+
+  /**
+   * The type of hue fixup to apply to the hue channels during interpolation.
+   */
   hueFixup?: (arr: number[]) => number[];
+
+  /**
+   * The interpolation method to use on the lightness channel.
+   */
   lightnessInterpolator?: Interpolator;
-  via: Tone;
+  /**
+   * The color to pass through during interpolation.
+   */
+  via?: Tone;
+
+  /**
+   * The amount of hue angles to increment each iteration with.
+   */
   hueStep?: number;
+
+  /**
+   * * @param earthtone The earthtone to interpolate with.
+   */
+  earthtones?:
+    | 'light-gray'
+    | 'silver'
+    | 'sand'
+    | 'tupe'
+    | 'mahogany'
+    | 'brick-red'
+    | 'clay'
+    | 'cocoa'
+    | 'dark-brown'
+    | 'dark';
+
+  /**
+   * The amount of samples to return in the result collection.
+   */
   iterations?: number;
+
+  /**
+   * * @param minLightness  Minimum lightness value (range 0-100).
+   */
+  minLightness?: number;
+  /**
+   * @param maxLightness  Maximum lightness value (range 0-100).
+   */
+  maxLightness?: number;
 };
 
+export type PairedSchemeOptions = Omit<
+  Options,
+  'earthtones' | 'maxLightness' | 'minLightness'
+>;
+export type EarthtoneOptions = Omit<
+  Options,
+  'hueStep' | 'via' | 'maxLightness' | 'minLightness'
+>;
+
+type HueShiftOptions = Omit<Options, 'via' | 'earthtones' | ''>;
 export type Interpolator = (arr: number[]) => (t: number) => number;
 export type Tone = 'light' | 'dark';
 export type Hue =
@@ -23,17 +89,6 @@ export type Hue =
   | 'purple-blue'
   | 'purple';
 
-export type Earthtones =
-  | 'light-gray'
-  | 'silver'
-  | 'sand'
-  | 'tupe'
-  | 'mahogany'
-  | 'brick-red'
-  | 'clay'
-  | 'cocoa'
-  | 'dark-brown'
-  | 'dark';
 export type DivergingScheme =
   | 'Spectral'
   | 'RdYlGn'

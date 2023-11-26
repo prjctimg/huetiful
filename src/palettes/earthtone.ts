@@ -4,13 +4,13 @@
 import {
   interpolate,
   samples,
-  easingSmootherstep,
   interpolatorSplineNatural,
   fixupHueShorter,
   interpolatorSplineMonotone,
-  interpolatorSplineBasisClosed
+  interpolatorSplineBasisClosed,
+  easingSmootherstep
 } from 'culori/fn';
-import type { Color, Earthtones } from '../paramTypes.ts';
+import type { Color, EarthtoneOptions } from '../paramTypes.ts';
 import { toHex } from '../converters/toHex.ts';
 
 //Add an overrides object with interpolation function and
@@ -19,35 +19,41 @@ import { toHex } from '../converters/toHex.ts';
  * @function
  * @description Creates a scale of a spline based interpolation between an earthtone and a color.
  * @param color The color to interpolate an earth tone with.
- * @param earthtone The earthtone to interpolate with.
- * @param iterations The number of iterations to produce from the color and earthtone.
- * @param options Optional overrides for customising interpolation and easing functions.
+  * @param options Optional overrides for customising interpolation and easing functions.
  * @returns The array of colors resulting from the earthtone interpolation as hex codes.
  * @example
  * 
  * import { earthtone } from 'huetiful-js'
 
 
-console.log(earthtone("pink", "clay", 5))
+console.log(earthtone("pink",{earthtones:'clay',iterations:5 }))
 // [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
 
  */
 
-const earthtone = (
-  color: Color,
-  earthtone?: Earthtones,
-  iterations?: number,
-  options = {
-    easingFunc: easingSmootherstep,
-    hueInterpolator: interpolatorSplineBasisClosed,
-    chromaInterpolator: interpolatorSplineNatural,
-    hueFixup: fixupHueShorter,
-    lightnessInterpolator: interpolatorSplineMonotone
-  }
-): Color[] => {
-  iterations =
-    typeof iterations === 'undefined' || iterations > 1 ? 1 : iterations;
-  earthtone = [earthtone || 'dark'].toString().toLowerCase();
+const earthtone = (color: Color, options: EarthtoneOptions): Color[] => {
+  let {
+    chromaInterpolator,
+    hueFixup,
+    hueInterpolator,
+    lightnessInterpolator,
+    iterations,
+    earthtones,
+    easingFunc
+  } = options || {};
+
+  const checkArg = (arg, def) => arg || def;
+  easingFunc = checkArg(easingFunc, easingSmootherstep);
+  chromaInterpolator = checkArg(chromaInterpolator, interpolatorSplineNatural);
+  hueFixup = checkArg(hueFixup, fixupHueShorter);
+  hueInterpolator = checkArg(hueInterpolator, interpolatorSplineBasisClosed);
+  lightnessInterpolator = checkArg(
+    lightnessInterpolator,
+    interpolatorSplineMonotone
+  );
+  iterations = checkArg(iterations, 1);
+
+  earthtones = checkArg(earthtones, 'dark');
   const tones = {
     'light-gray': '#e5e5e5',
     silver: '#f5f5f5',
@@ -60,24 +66,19 @@ const earthtone = (
     'dark-brown': '#473b31',
     dark: '#352a21'
   };
-  options['easingFunc'] = options['easingFunc'] || easingSmootherstep;
-  options['lightnessInterpolator'] =
-    options['lightnessInterpolator'] || interpolatorSplineMonotone;
-  options['chromaInterpolator'] || interpolatorSplineNatural;
-  options['hueInterpolator'] || interpolatorSplineBasisClosed;
-  options['hueFixup'] = options['hueFixup'] || fixupHueShorter;
-  const base: Color = tones[earthtone];
 
-  const f = interpolate([base, toHex(color), options['easingFunc']], 'lch', {
+  const base: Color = tones[earthtones.toLowerCase()];
+
+  const f = interpolate([base, toHex(color), easingFunc], 'lch', {
     h: {
-      fixup: options['hueFixup'],
-      use: options['hueInterpolator']
+      fixup: hueFixup,
+      use: hueInterpolator
     },
     c: {
-      use: options['chromaInterpolator']
+      use: chromaInterpolator
     },
     l: {
-      use: options['lightnessInterpolator']
+      use: lightnessInterpolator
     }
   });
 
