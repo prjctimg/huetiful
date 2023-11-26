@@ -50,7 +50,11 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "CONTRIBUTING.md",
+    "LICENSE.md",
+    "huetiful-logo.png"
   ],
   "repository": {
     "type": "git",
