@@ -7,7 +7,7 @@
   "browser": "./dist/huetiful.min.js",
   "exports": {
     "./fp": "./dist/fp/index.esm.mjs",
-    "./getters_and_setters/index.esm.mjs": "./dist/getters_and_setters/index.esm.mjs",
+    "./getters_and_setters": "./dist/getters_and_setters/index.esm.mjs",
     "./converters": "./dist/converters/index.esm.mjs",
     "./palettes": "./dist/palettes/index.esm.mjs",
     "./filterBy": "./dist/filterBy/index.esm.mjs",
@@ -59,6 +59,8 @@
   "keywords": [
     "lch",
     "palettes",
+    "color blind",
+    "color vision deficiency",
     "color schemes",
     "color",
     "culori",
