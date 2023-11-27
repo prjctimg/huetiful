@@ -3,13 +3,13 @@
 
 #### JavaScript library for general purpose color manipulations
 
-The aim of this project is to help designers and developers alike  work with color more programatically using utilities based on color theory. Though not necessarily a requirement, a basic background of color spaces, properties of color and any other color theory related information will make the library's use cases appear more simpler.
+The aim🎯 of this project is to help designers👨🏾‍🎨👩🏻‍🎨 and developers👩🏾‍💻 alike  work with color🎨 more programatically using utilities based on color theory. Though not necessarily a requirement, a basic background of color spaces, properties of color and any other color theory related information will make the library's use cases appear more simpler.
 
-This project is inspired by projects such a [chroma-js](https://gka.github.io/chroma.js),[colorbrewer](https://colorbrewer2.org),[TailwindCSS](https://tailwindcss.com) and borrows some of the reasoning behind them to build functionality. In fact this library uses [Culori](https://culorijs.org) as its core dependency because it provides a rich API of low level functions written in JavaScript to perform color conversions and other general purpose color manipulations.
+This project is inspired🤩 by projects such a [chroma-js](https://gka.github.io/chroma.js),[colorbrewer](https://colorbrewer2.org),[TailwindCSS](https://tailwindcss.com) and borrows some of the reasoning behind them to build functionality. In fact this library uses [Culori](https://culorijs.org) as its core dependency because it provides a rich API of low level functions written in JavaScript to perform color conversions and other general purpose color manipulations.
 
-## Getting started
+## Getting started⛳
 
-The library is available on npm as a package: Links to CDNs will be added soon.
+The library🧾 is available on npm as a package📦: Links to CDNs will be added soon.
 
 > Note: Assuming you already have NodeJS installed
 Use [npm](https://www.npmjs.com/package/huetiful-js) to install the package.
@@ -18,7 +18,7 @@ Use [npm](https://www.npmjs.com/package/huetiful-js) to install the package.
 npm i huetiful-js
 ```
 
-For use in the browser, you can use a CDN [you can use jsdelivr]() to load the library.
+For use in the browser🌐, you can use a CDN [you can use jsdelivr]() to load the library.
 
 ```html
 https://cdn.jsdelivr.net/npm/huetiful-js/dist/huetiful.min.js
@@ -28,13 +28,13 @@ https://cdn.jsdelivr.net/npm/huetiful-js/dist/huetiful.min.js
 <script type='module' src='https://cdn.jsdelivr.net/npm/huetiful-js/dist/huetiful.esm.min.mjs'></script>
 ```
 
-## Overview
+## Overview👀
 
-Below are short walkthroughs to demonstrate how the functions can be used in example scenerios.
+Below are short walkthroughs🚶🏾‍♂️ to demonstrate👩🏽‍🏫 how the functions can be used in example scenerios.
 
-### Colors
+### Colors🌈
 
-#### What's a color ?
+#### What's a color 🤔?
 
 A color can be defined in various formats. This gives us more flexibility in how we want to define our color. Below are examples listing all the supported formats of passing in color values and their respective conversion functions:
 
@@ -76,15 +76,15 @@ console.log(toHex(arrColorWithAlpha))
 
 ```
 
-Note that toHex takes any color format and returns the hex string represantation of it:
+Note⚠️ that toHex takes any color format and returns the hex string represantation of it:
 
-We can even mix different color formats with no problem at all:
+We can even mix different color formats with no problem at all🤯:
 
-For more information on the color spaces supported by the library and the expected ranges, checkout the [Color Spaces page on the Culori docs](https://culorijs.org/color-spaces) . Or checkout the library's [Color conversions](https://huetiful-docs.vercel.app/blog/color-spaces-and-converters) page.
+For more informationℹ️ on the color spaces supported by the library and the expected ranges, checkout the [Color Spaces page on the Culori docs](https://culorijs.org/color-spaces) . Or checkout the library's [Color conversions](https://huetiful-docs.vercel.app/blog/color-spaces-and-converters) page 🔗.
 
-> All the functions are internally guarded by `toHex()` so you don't have to worry about converting colors back and fourth.
+> ℹ️ All the functions are internally guarded by `toHex()` so you don't have to worry about converting colors back and fourth.
 
-#### Tailwind colors
+#### Tailwind colors🎨
 
 As a starting point the library comes along with the default TailwindCSS palette included.. This helps you get started easier when you're using [palette functions](https://huetiful-docs.vercel.app/blog/palette-utilities) such as `hueShift()` and `earthtone()`
 
@@ -148,9 +148,9 @@ console.log(red100)
 
 
 
-### Working with collections of colors
+### Working with collections of colors👩🏻‍🎨🎨
 
-The library has functions for sorting and filtering colors using their property values like saturation,lightness and even temperaure in Kelvins. Below are some examples of using the filtering and sorting functions on an array of colors:
+The library🧾 has functions for sorting and filtering colors using their property values like saturation,lightness and even temperaure in Kelvins. Below are some examples of using the filtering and sorting functions on an array of colors:
 
 #### Sorting colors
 
@@ -260,11 +260,11 @@ console.log(hueShiftedPalette);
 
 ```
 
-There's more where that came from. [See the palettes page]()
+There's more where that came from. [See the palettes page](https://huetiful-docs.vercel.app/blog/palettes)
 
-### Predicates
+### Predicates⚖️
 
-Is this color cool or warm, is it achromatic (grayscale) or chromatic? Though its easy to tell colors apart visually when they're displayed on the screen it can be a bit confusing to tell colors apart using code. Below is an example of demonstrating how to determine if a color is gray or not:
+Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? Though its easy to tell colors apart visually when they're displayed on the screen📺 it can be a bit confusing to tell colors apart using code🔢. Below is an example of demonstrating how to determine if a color is gray or not:
 
 ```js
 
@@ -311,7 +311,7 @@ console.log(map(grays, isAchromatic));
 
 ```
 
-Here's an example showing how we can check if a color is cool using one of the predicates:
+Here's an example🎆 showing how we can check if a color is cool using one of the predicates:
 
 
 ```js
@@ -333,7 +333,7 @@ console.log(map(sample, isCool));
 
 
 ```
-Another use case would be passing the predicate to an array method like `filter` to filter a collection of colors removing colors that return false for the passed in predicate. In the following example we use is warm to only return warm colors:
+Another use👷 case would be passing the predicate to an array method like `filter` to filter a collection of colors removing colors that return false for the passed in predicate. In the following example we use is warm to only return warm colors:
 
 ```js
 import { isWarm } from 'huetiful-js'
@@ -350,7 +350,7 @@ console.log(sample.filter(isWarm))
 
 ```
 
-### Get the temperature right
+### Get the temperature🌡️ right
 
 And what if we wanted to get the color with the smallest/largest temperature range in Kelvins:
 
@@ -364,7 +364,7 @@ console.log(maxTemp("b2c3f1"))
 // 20107
 ```
 
-Or maybe we want to know which color has the furthest hue distance in our sample collection against our target color:
+Or maybe we want to know which color has the furthest hue distance in our sample collection against our target color 🤔:
 
 ```js
 
@@ -388,25 +388,25 @@ console.log(getFarthestHue('lime', sample, 'lch'))
 
 ```
 
-## What's next
+## What's next🤷🏽‍♂️
 
-The list of functions goes on beyond this. And since the library is pure JavaScript, you can hook it up with your creative coding library of choice like p5js or runejs. The possibilities are limited by the imagination of the user.
+The list of functions goes on beyond this🌌. And since the library is pure JavaScript, you can hook it up with your creative👨🏻‍🎨 coding library of choice like p5js or runejs. The possibilities are limited by the imagination🤯 of the user.
 
 
-[See the full docs here](https:huetiful-docs.vercel.app)
+[See the full docs📜](https:huetiful-docs.vercel.app)
 
-## Need help ?
+## Need help😣 ?
 
-See some unexpected results? [Check the issue tracker](https://github.com/prjctimg/huetiful/issues) to open an issue or search for the problem to see if your issue already exists or has been resolved.
+See some unexpected results😖? [Check the issue tracker](https://github.com/prjctimg/huetiful/issues) to open an issue or search for the problem to see if your issue already exists or has been resolved.
 
-Would like to join the chat and share ideas and suggestions ? [See the discussions and just say hi, or share a coding meme(whatever breaks the ice)](https://github.com/prjctimg/huetiful/discussions)
+Would like to join the chat🗣️ and share ideas💡 and suggestions💭 ? [See the discussions and just say hi, or share a coding meme(whatever breaks the ice🏔️)](https://github.com/prjctimg/huetiful/discussions)
 
-## Contributing
+## Contributing👐🏾🤝
 
-First of all, thank you for using huetiful-js! Its people like you that make open source software better for the community!
-Contributions are welcome! Help make this project better and easier to use for other developers by sharing your ideas and stomping out bugs and feature suggestions. Please see the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
+First of all, thank you🙏🏾 for using huetiful-js! Its people like you👈🏾 that make open source software better for the community👨‍👩‍👦‍👦!
+Contributions are welcome! Help make this project better and easier to use for other developers by sharing your ideas and stomping out bugs🐛 and feature suggestions💡. Please see🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
 
-## References
+## References🔗
 
 [Coloring with code: A programmatic approach by George Francis](https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/)
 
