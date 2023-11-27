@@ -2,8 +2,8 @@
 // Original source from   George Francis: Coloring with Code
 // Can we also lightnessMapper palette types to create hue shifted variants per each color in the palette ?
 
-import { easingSmootherstep, modeLch, samples, useMode } from 'culori/fn';
-import type { Color } from '../paramTypes.ts';
+import { easingSmoothstep, modeLch, samples, useMode } from 'culori/fn';
+import type { Color, HueShiftOptions } from '../paramTypes.ts';
 import { adjustHue } from '../fp/number/adjustHue.ts';
 import { toHex } from '../converters/toHex.ts';
 
@@ -17,17 +17,12 @@ const lightnessMapper =
  * @function
  * @description Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme.
  * @param color The color to use as the base of the hueshift. Colors are internally converted to LCH.
- * @param minLightness  Minimum lightness value (range 0-100).
- * @param maxLightness  Maximum lightness value (range 0-100).
- * @param iterations The number of iterations to perform on the color. The length of the resultant array is the number of iterations multiplied by 2 plus the base color passed or (iterations*2)+1.
- * @param hueStep  Controls how much the hue will shift at each iteration.
- * @param hex Optional boolen to return lch color objects or hex codes in the result array. Default is false  which returns LCH color objects.
- * @returns An array of colors in either hex or as LCH color objects.
+ * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
+ *@returns An array of colors in hex. The length of the resultant array is the number of iterations multiplied by 2 plus the base color passed or (iterations*2)+1
  * @example
- * 
  * import { hueShift } from "huetiful-js";
 
-let hueShiftedPalette = hueShift("#3e0000",true);
+let hueShiftedPalette = hueShift("#3e0000");
 
 console.log(hueShiftedPalette);
 
@@ -41,51 +36,42 @@ console.log(hueShiftedPalette);
 ]
  */
 
-const hueShift = (
-  color: Color,
-  hex = false,
-  options = {
-    minLightness: 10,
-    maxLightness: 90,
-    hueStep: 5,
-    iterations: 6,
-    easingFn: easingSmootherstep
-  }
-): Color[] => {
+const hueShift = (color: Color, options: HueShiftOptions): Color[] => {
   const toLch = useMode(modeLch);
-
   color = toLch(toHex(color));
+  const checkArg = (arg, def) => arg || def;
+  let { iterations, hueStep, minLightness, maxLightness, easingFunc } =
+    options || {};
 
   // Pass default values in case the options object is overridden
-  options['easingFn'] = options['easingFn'] || easingSmootherstep;
-  options['hueStep'] = options['hueStep'] || 5;
-  options['iterations'] = (options['iterations'] || 6) + 1;
-  options['minLightness'] = options['minLightness'] || 10;
-  options['maxLightness'] = options['maxLightness'] || 90;
-
+  easingFunc = checkArg(easingFunc, easingSmoothstep);
+  iterations = checkArg(iterations, 6) + 1;
+  hueStep = checkArg(hueStep, 5);
+  minLightness = checkArg(minLightness, 10);
+  maxLightness = checkArg(maxLightness, 90);
   // Pass in default values if any of the opts is undefined
-  const tValues = samples(options['iterations']);
+  const tValues = samples(iterations);
   const palette: Color[] = [color];
 
   // Maximum number of iterations possible.
 
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
 
-  for (let i = 1; i < options['iterations']; i++) {
+  for (let i = 1; i < iterations; i++) {
     //adjustHue checks hue values are clamped.
-    const hueDark = adjustHue(color['h'] - options['hueStep'] * i);
-    const hueLight = adjustHue(color['h'] + options['hueStep'] * i);
+    const hueDark = adjustHue(color['h'] - hueStep * i);
+    const hueLight = adjustHue(color['h'] + hueStep * i);
 
     // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
-    const lightnessDark = lightnessMapper(options['easingFn'](tValues[i - 1]))(
+    const lightnessDark = lightnessMapper(easingFunc(tValues[i - 1]))(
       0.1,
-      options['iterations']
-    )(color['l'], options['minLightness']);
+      iterations
+    )(color['l'], minLightness);
 
-    const lightnessLight = lightnessMapper(options['easingFn'](tValues[i - 1]))(
+    const lightnessLight = lightnessMapper(easingFunc(tValues[i - 1]))(
       0.05,
-      options['iterations']
-    )(color['l'], options['maxLightness']);
+      iterations
+    )(color['l'], maxLightness);
 
     palette.push({
       l: lightnessDark,
@@ -101,11 +87,7 @@ const hueShift = (
       mode: 'lch'
     });
   }
-  if (hex) {
-    return palette.map(toHex);
-  } else {
-    return palette;
-  }
+  return palette.map(toHex);
 };
 
 export { hueShift };

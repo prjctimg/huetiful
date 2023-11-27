@@ -21,9 +21,9 @@ The functions take 2 similar parameters in common; a collection of colors and an
 
 ### API
 
-<!-- TSDOC_START -->
 
-[huetiful-js](../README.md) / sortBy
+
+[huetiful](../README.md) / sortBy
 
 # Module: sortBy
 
@@ -43,19 +43,19 @@ The functions take 2 similar parameters in common; a collection of colors and an
 
 ### sortByContrast
 
-▸ **sortByContrast**(`colors`, `against`, `order`): `Color`[]
+▸ **sortByContrast**(`colors`, `against`, `order`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort |
-| `against` | `Color` | - |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
+| `against` | [`Color`](paramTypes.md#color) | - |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 
@@ -80,27 +80,27 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 
 #### Defined in
 
-src/sortBy/sortByContrast.ts:25
+sortBy/sortByContrast.ts:25
 
 ___
 
 ### sortByDistance
 
-▸ **sortByDistance**(`colors`, `against`, `order?`, `mode?`, `weights?`): `Color`[]
+▸ **sortByDistance**(`colors`, `against`, `order?`, `mode?`, `weights?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort. |
-| `against` | `Color` | The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array. |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort. |
+| `against` | [`Color`](paramTypes.md#color) | The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array. |
 | `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
-| `mode?` | `ColorSpaces` | The color space to calculate the distance in . |
+| `mode?` | [`ColorSpaces`](paramTypes.md#colorspaces) | The color space to calculate the distance in . |
 | `weights?` | [`number`, `number`, `number`, `number`] | The weighting values to pass to the Euclidean function. Default is [1,1,1,0]. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 
@@ -136,24 +136,24 @@ console.log(
 
 #### Defined in
 
-src/sortBy/sortByDistance.ts:37
+sortBy/sortByDistance.ts:37
 
 ___
 
 ### sortByHue
 
-▸ **sortByHue**(`colors`, `order`): `Color`[]
+▸ **sortByHue**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 
@@ -205,24 +205,24 @@ console.log(sortedDescending)
 
 #### Defined in
 
-src/sortBy/sortByHue.ts:55
+sortBy/sortByHue.ts:55
 
 ___
 
 ### sortByLightness
 
-▸ **sortByLightness**(`colors`, `order`): `Color`[]
+▸ **sortByLightness**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 
@@ -276,24 +276,24 @@ sortByLightness(sample,'desc')
 
 #### Defined in
 
-src/sortBy/sortByLightness.ts:54
+sortBy/sortByLightness.ts:54
 
 ___
 
 ### sortByLuminance
 
-▸ **sortByLuminance**(`colors`, `order`): `Color`[]
+▸ **sortByLuminance**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 
@@ -346,24 +346,24 @@ console.log(sortedDescending)
 
 #### Defined in
 
-src/sortBy/sortByLuminance.ts:55
+sortBy/sortByLuminance.ts:55
 
 ___
 
 ### sortBySaturation
 
-▸ **sortBySaturation**(`colors`, `order`): `Color`[]
+▸ **sortBySaturation**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 
@@ -417,24 +417,24 @@ console.log(sortedDescending)
 
 #### Defined in
 
-src/sortBy/sortBySaturation.ts:53
+sortBy/sortBySaturation.ts:53
 
 ___
 
 ### sortByTemp
 
-▸ **sortByTemp**(`colors`, `order`): `Color`[]
+▸ **sortByTemp**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Color`[] | The array of colors to sort |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of the sorted color values.
 
@@ -475,6 +475,6 @@ console.log(sortedDescending)
 
 #### Defined in
 
-src/sortBy/sortByTemp.ts:36
+sortBy/sortByTemp.ts:36
 
-<!-- TSDOC_END -->
+

@@ -14,7 +14,7 @@ The `filterBy` module has functions for filtering colors from a collection. The 
 The functions take the same base parameters: `(colors:Color[],start:number|string,end?:number):Colors[]`
 The reason why the `start` parameter is a union type of `string|number` is because we can pass an expression as astring allowing us to skip the optional `end` parameter completely.
 
-The operator is expected to ocuppy the first index of the string"<5" which means return colors that are **less than** 5 (of whatever is being used for comparison e.g lightness.) . Or in the instance of testing for a value greater than or equal to, in that case the operator takes two indexes: 0 and 1. For example, ">=5" means return colors that are **greater than or equal to** 5.
+The operator is expected to ocuppy the first index of the string"\<5" which means return colors that are **less than** 5 (of whatever is being used for comparison e.g lightness.) . Or in the instance of testing for a value greater than or equal to, in that case the operator takes two indexes: 0 and 1. For example, "\>=5" means return colors that are **greater than or equal to** 5.
 
 > Remember:
 > Don't include whitespaces in expression string.
@@ -23,9 +23,7 @@ Coupled with a JavaScript language feature like template literals, we can even p
 
 ### API
 
-<!-- TSDOC_START -->
-
-[huetiful-js](../README.md) / filterBy
+[huetiful](../README.md) / filterBy
 
 # Module: filterBy
 
@@ -45,20 +43,20 @@ Coupled with a JavaScript language feature like template literals, we can even p
 
 ### filterByContrast
 
-▸ **filterByContrast**(`colors`, `against`, `startContrast?`, `endContrast?`): `Color`[]
+▸ **filterByContrast**(`colors`, `against`, `startContrast?`, `endContrast?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
-| `against` | `Color` | `undefined` | - |
-| `startContrast` | `number` | `0.05` | The minimum end of the contrast range. |
-| `endContrast?` | `number` | `undefined` | The maximum end of the contrast range. |
+| Name            | Type                             | Default value | Description                            |
+| :-------------- | :------------------------------- | :------------ | :------------------------------------- |
+| `colors`        | [`Color`](paramTypes.md#color)[] | `undefined`   | The array of colors to filter.         |
+| `against`       | [`Color`](paramTypes.md#color)   | `undefined`   | -                                      |
+| `startContrast` | `number`                         | `0.05`        | The minimum end of the contrast range. |
+| `endContrast?`  | `number`                         | `undefined`   | The maximum end of the contrast range. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of filtered colors.
 
@@ -69,50 +67,50 @@ Returns an array of colors with the specified contrast range. The contrast is te
 **`Example`**
 
 ```ts
-import { filterByContrast } from 'huetiful-js'
+import { filterByContrast } from 'huetiful-js';
 
 let sample = [
- '#00ffdc',
- '#00ff78',
- '#00c000',
- '#007e00',
- '#164100',
- '#ffff00',
- '#310000',
- '#3e0000',
- '#4e0000',
- '#600000',
- '#720000',
-]
+  '#00ffdc',
+  '#00ff78',
+  '#00c000',
+  '#007e00',
+  '#164100',
+  '#ffff00',
+  '#310000',
+  '#3e0000',
+  '#4e0000',
+  '#600000',
+  '#720000'
+];
 
-console.log(filterByContrast(sample, 'green', '>=3'))
+console.log(filterByContrast(sample, 'green', '>=3'));
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
 ```
 
 #### Defined in
 
-src/filterBy/filterByContrast.ts:38
+filterBy/filterByContrast.ts:38
 
-___
+---
 
 ### filterByDistance
 
-▸ **filterByDistance**(`colors`, `against`, `startDistance?`, `endDistance?`, `mode?`, `weights?`): `Color`[]
+▸ **filterByDistance**(`colors`, `against`, `startDistance?`, `endDistance?`, `mode?`, `weights?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
-| `against` | `Color` | `undefined` | - |
-| `startDistance` | `number` | `0.05` | The minimum end of the distance range. |
-| `endDistance?` | `number` | `undefined` | The maximum end of the distance range. |
-| `mode?` | `ColorSpaces` | `undefined` | The color space to calculate the distance in . |
-| `weights?` | [`number`, `number`, `number`, `number`] | `undefined` | The weighting values to pass to the Euclidean function. Default is [1,1,1,0]. |
+| Name            | Type                                       | Default value | Description                                                                   |
+| :-------------- | :----------------------------------------- | :------------ | :---------------------------------------------------------------------------- |
+| `colors`        | [`Color`](paramTypes.md#color)[]           | `undefined`   | The array of colors to filter.                                                |
+| `against`       | [`Color`](paramTypes.md#color)             | `undefined`   | -                                                                             |
+| `startDistance` | `number`                                   | `0.05`        | The minimum end of the distance range.                                        |
+| `endDistance?`  | `number`                                   | `undefined`   | The maximum end of the distance range.                                        |
+| `mode?`         | [`ColorSpaces`](paramTypes.md#colorspaces) | `undefined`   | The color space to calculate the distance in .                                |
+| `weights?`      | [`number`, `number`, `number`, `number`]   | `undefined`   | The weighting values to pass to the Euclidean function. Default is [1,1,1,0]. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of filtered colors.
 
@@ -123,44 +121,44 @@ Returns an array of colors with the specified distance range. The distance is te
 **`Example`**
 
 ```ts
-import { filterByDistance } from 'huetiful-js'
+import { filterByDistance } from 'huetiful-js';
 
 let sample = [
- "#ffff00",
- "#00ffdc",
- "#00ff78",
- "#00c000",
- "#007e00",
- "#164100",
- "#720000",
- "#600000",
-]
+  '#ffff00',
+  '#00ffdc',
+  '#00ff78',
+  '#00c000',
+  '#007e00',
+  '#164100',
+  '#720000',
+  '#600000'
+];
 
-console.log(filterByDistance(sample, "yellow", 0.1))
+console.log(filterByDistance(sample, 'yellow', 0.1));
 // [ '#ffff00' ]
 ```
 
 #### Defined in
 
-src/filterBy/filterByDistance.ts:34
+filterBy/filterByDistance.ts:34
 
-___
+---
 
 ### filterByHue
 
-▸ **filterByHue**(`colors`, `startHue?`, `endHue?`): `Color`[]
+▸ **filterByHue**(`colors`, `startHue?`, `endHue?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
-| `startHue` | `number` | `0` | The minimum end of the hue range. |
-| `endHue` | `number` | `360` | The maximum end of the hue range. |
+| Name       | Type                             | Default value | Description                       |
+| :--------- | :------------------------------- | :------------ | :-------------------------------- |
+| `colors`   | [`Color`](paramTypes.md#color)[] | `undefined`   | The array of colors to filter.    |
+| `startHue` | `number`                         | `0`           | The minimum end of the hue range. |
+| `endHue`   | `number`                         | `360`         | The maximum end of the hue range. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of the filtered colors.
 
@@ -172,45 +170,45 @@ Returns colors in the specified hue ranges between 0 to 360.
 
 ```ts
 let sample = [
- '#00ffdc',
- '#00ff78',
- '#00c000',
- '#007e00',
- '#164100',
- '#ffff00',
- '#310000',
- '#3e0000',
- '#4e0000',
- '#600000',
- '#720000',
-]
+  '#00ffdc',
+  '#00ff78',
+  '#00c000',
+  '#007e00',
+  '#164100',
+  '#ffff00',
+  '#310000',
+  '#3e0000',
+  '#4e0000',
+  '#600000',
+  '#720000'
+];
 
-filterByHue(sample, 20, 80)
+filterByHue(sample, 20, 80);
 
 // [ '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
 ```
 
 #### Defined in
 
-src/filterBy/filterByHue.ts:33
+filterBy/filterByHue.ts:33
 
-___
+---
 
 ### filterByLightness
 
-▸ **filterByLightness**(`colors`, `startLightness?`, `endLightness?`): `Color`[]
+▸ **filterByLightness**(`colors`, `startLightness?`, `endLightness?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
-| `startLightness` | `number` | `5` | The minimum end of the lightness range. |
-| `endLightness` | `number` | `100` | The maximum end of the lightness range. |
+| Name             | Type                             | Default value | Description                             |
+| :--------------- | :------------------------------- | :------------ | :-------------------------------------- |
+| `colors`         | [`Color`](paramTypes.md#color)[] | `undefined`   | The array of colors to filter.          |
+| `startLightness` | `number`                         | `5`           | The minimum end of the lightness range. |
+| `endLightness`   | `number`                         | `100`         | The maximum end of the lightness range. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of filtered colors.
 
@@ -223,47 +221,47 @@ Returns an array of colors in the specified lightness range. The range is betwee
 **`Example`**
 
 ```ts
-import { filterByLightness } from 'huetiful-js'
+import { filterByLightness } from 'huetiful-js';
 let sample = [
- '#00ffdc',
- '#00ff78',
- '#00c000',
- '#007e00',
- '#164100',
- '#ffff00',
- '#310000',
- '#3e0000',
- '#4e0000',
- '#600000',
- '#720000',
-]
+  '#00ffdc',
+  '#00ff78',
+  '#00c000',
+  '#007e00',
+  '#164100',
+  '#ffff00',
+  '#310000',
+  '#3e0000',
+  '#4e0000',
+  '#600000',
+  '#720000'
+];
 
-filterByLightness(sample, 20, 80)
+filterByLightness(sample, 20, 80);
 
 // [ '#00c000', '#007e00', '#164100', '#720000' ]
 ```
 
 #### Defined in
 
-src/filterBy/filterByLightness.ts:33
+filterBy/filterByLightness.ts:33
 
-___
+---
 
 ### filterByLuminance
 
-▸ **filterByLuminance**(`colors`, `startLuminance?`, `endLuminance?`): `Color`[]
+▸ **filterByLuminance**(`colors`, `startLuminance?`, `endLuminance?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
-| `startLuminance` | `number` | `0.05` | The minimum end of the luminance range. |
-| `endLuminance` | `number` | `1` | The maximum end of the luminance range. |
+| Name             | Type                             | Default value | Description                             |
+| :--------------- | :------------------------------- | :------------ | :-------------------------------------- |
+| `colors`         | [`Color`](paramTypes.md#color)[] | `undefined`   | The array of colors to filter.          |
+| `startLuminance` | `number`                         | `0.05`        | The minimum end of the luminance range. |
+| `endLuminance`   | `number`                         | `1`           | The maximum end of the luminance range. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of filtered colors.
 
@@ -276,47 +274,47 @@ Returns an array of colors in the specified luminance range. The range is normal
 **`Example`**
 
 ```ts
-import { filterByLuminance } from 'huetiful-js'
+import { filterByLuminance } from 'huetiful-js';
 let sample = [
- '#00ffdc',
- '#00ff78',
- '#00c000',
- '#007e00',
- '#164100',
- '#ffff00',
- '#310000',
- '#3e0000',
- '#4e0000',
- '#600000',
- '#720000',
-]
+  '#00ffdc',
+  '#00ff78',
+  '#00c000',
+  '#007e00',
+  '#164100',
+  '#ffff00',
+  '#310000',
+  '#3e0000',
+  '#4e0000',
+  '#600000',
+  '#720000'
+];
 
-filterByLuminance(sample, 0.4, 0.9)
+filterByLuminance(sample, 0.4, 0.9);
 
 // [ '#00ffdc', '#00ff78' ]
 ```
 
 #### Defined in
 
-src/filterBy/filterByLuminance.ts:34
+filterBy/filterByLuminance.ts:34
 
-___
+---
 
 ### filterBySaturation
 
-▸ **filterBySaturation**(`colors`, `startSaturation?`, `endSaturation?`): `Color`[]
+▸ **filterBySaturation**(`colors`, `startSaturation?`, `endSaturation?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
-| `startSaturation` | `number` | `0.05` | The minimum end of the saturation range. |
-| `endSaturation` | `number` | `1` | The maximum end of the saturation range. |
+| Name              | Type                             | Default value | Description                              |
+| :---------------- | :------------------------------- | :------------ | :--------------------------------------- |
+| `colors`          | [`Color`](paramTypes.md#color)[] | `undefined`   | The array of colors to filter.           |
+| `startSaturation` | `number`                         | `0.05`        | The minimum end of the saturation range. |
+| `endSaturation`   | `number`                         | `1`           | The maximum end of the saturation range. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of filtered colors.
 
@@ -329,47 +327,47 @@ Returns an array of colors in the specified saturation range. The range is norma
 **`Example`**
 
 ```ts
-import { filterByContrast } from 'huetiful-js'
+import { filterByContrast } from 'huetiful-js';
 
 let sample = [
- '#00ffdc',
- '#00ff78',
- '#00c000',
- '#007e00',
- '#164100',
- '#ffff00',
- '#310000',
- '#3e0000',
- '#4e0000',
- '#600000',
- '#720000',
-]
+  '#00ffdc',
+  '#00ff78',
+  '#00c000',
+  '#007e00',
+  '#164100',
+  '#ffff00',
+  '#310000',
+  '#3e0000',
+  '#4e0000',
+  '#600000',
+  '#720000'
+];
 
-console.log(filterByContrast(sample, 'green', '>=3'))
+console.log(filterByContrast(sample, 'green', '>=3'));
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
 ```
 
 #### Defined in
 
-src/filterBy/filterBySaturation.ts:34
+filterBy/filterBySaturation.ts:34
 
-___
+---
 
 ### filterByTemp
 
-▸ **filterByTemp**(`colors`, `startTemp?`, `endTemp?`): `Color`[]
+▸ **filterByTemp**(`colors`, `startTemp?`, `endTemp?`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to filter. |
-| `startTemp` | `number` | `1000` | The minimum end of the temperature range. |
-| `endTemp` | `number` | `6000` | The maximum end of the temperature range. |
+| Name        | Type                             | Default value | Description                               |
+| :---------- | :------------------------------- | :------------ | :---------------------------------------- |
+| `colors`    | [`Color`](paramTypes.md#color)[] | `undefined`   | The array of colors to filter.            |
+| `startTemp` | `number`                         | `1000`        | The minimum end of the temperature range. |
+| `endTemp`   | `number`                         | `6000`        | The maximum end of the temperature range. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 Array of the filtered colors.
 
@@ -414,6 +412,4 @@ filterByTemp(sample, 1000, 20000);
 
 #### Defined in
 
-src/filterBy/filterByTemp.ts:42
-
-<!-- TSDOC_END -->
+filterBy/filterByTemp.ts:42

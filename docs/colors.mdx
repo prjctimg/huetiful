@@ -25,9 +25,7 @@ Colors can be classified into warm and cool colors which in turn have ranges(in 
 
 We can use _isWarm_ and _isCool_ to determine if a color is approximately warm or cool. The utilities rely on _hue_ ranges to determine the temperature of the color.
 
-<!-- TSDOC_START -->
-
-[huetiful-js](../README.md) / colors
+[huetiful](../README.md) / colors
 
 # Module: colors
 
@@ -63,18 +61,18 @@ We can use _isWarm_ and _isCool_ to determine if a color is approximately warm o
 
 ### colors
 
-▸ **colors**(`shade`, `val`): `Color` \| `Color`[]
+▸ **colors**(`shade`, `val`): [`Color`](paramTypes.md#color) \| [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `shade` | keyof `HueMap` | Any shade in the default TailwindCSS palette e.g amber,blue. |
-| `val` | `ScaleValues` | Any value from 100 to 900 in increments of 100 e.g "200". |
+| Name    | Type                                       | Description                                                  |
+| :------ | :----------------------------------------- | :----------------------------------------------------------- |
+| `shade` | keyof [`HueMap`](paramTypes.md#huemap)     | Any shade in the default TailwindCSS palette e.g amber,blue. |
+| `val`   | [`ScaleValues`](paramTypes.md#scalevalues) | Any value from 100 to 900 in increments of 100 e.g "200".    |
 
 #### Returns
 
-`Color` \| `Color`[]
+[`Color`](paramTypes.md#color) \| [`Color`](paramTypes.md#color)[]
 
 color Returns a hex code string or array of hex codes depending on how the function is called.
 
@@ -121,23 +119,23 @@ console.log(red100)
 
 #### Defined in
 
-src/colors/colors.ts:44
+colors/colors.ts:44
 
-___
+---
 
 ### diverging
 
-▸ **diverging**(`scheme`): `Color`[]
+▸ **diverging**(`scheme`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `scheme` | `DivergingScheme` | The name of the scheme. |
+| Name     | Type                                               | Description             |
+| :------- | :------------------------------------------------- | :---------------------- |
+| `scheme` | [`DivergingScheme`](paramTypes.md#divergingscheme) | The name of the scheme. |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of colors in hex represantation.
 
@@ -163,9 +161,9 @@ console.log(diverging("Spectral"))
 
 #### Defined in
 
-src/colors/colorBrewer.ts:286
+colors/colorBrewer.ts:286
 
-___
+---
 
 ### getFarthestChroma
 
@@ -173,11 +171,11 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The color to use its chroma/saturation value as the minuend. |
-| `colors` | `Color`[] | The collection of colors to compare against. |
-| `colorSpace?` | `HueColorSpaces` | The mode color space to perform the computation in. |
+| Name          | Type                                             | Description                                                  |
+| :------------ | :----------------------------------------------- | :----------------------------------------------------------- |
+| `color`       | [`Color`](paramTypes.md#color)                   | The color to use its chroma/saturation value as the minuend. |
+| `colors`      | [`Color`](paramTypes.md#color)[]                 | The collection of colors to compare against.                 |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | The mode color space to perform the computation in.          |
 
 #### Returns
 
@@ -194,19 +192,19 @@ Returns the largest chroma/saturation difference between the passed in color and
 **`Example`**
 
 ```ts
-import { getFarthestChroma } from 'huetiful-js'
+import { getFarthestChroma } from 'huetiful-js';
 
-let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1'];
 
-console.log(getFarthestChroma('lime', sample, 'lch'))
+console.log(getFarthestChroma('lime', sample, 'lch'));
 // 90.87480913244802
 ```
 
 #### Defined in
 
-src/colors/chroma.ts:86
+colors/chroma.ts:86
 
-___
+---
 
 ### getFarthestHue
 
@@ -214,11 +212,11 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The color to use its hue value as the minuend. |
-| `colors` | `Color`[] | The collection of colors to compare against. |
-| `colorSpace?` | `HueColorSpaces` | The mode color space to perform the computation in. |
+| Name          | Type                                             | Description                                         |
+| :------------ | :----------------------------------------------- | :-------------------------------------------------- |
+| `color`       | [`Color`](paramTypes.md#color)                   | The color to use its hue value as the minuend.      |
+| `colors`      | [`Color`](paramTypes.md#color)[]                 | The collection of colors to compare against.        |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | The mode color space to perform the computation in. |
 
 #### Returns
 
@@ -235,31 +233,31 @@ Returns the largest hue difference between the passed in color and each element 
 **`Example`**
 
 ```ts
-import { getFarthestHue } from 'huetiful-js'
+import { getFarthestHue } from 'huetiful-js';
 
 let sample = [
- '#00ffdc',
- '#00ff78',
- '#00c000',
- '#007e00',
- '#164100',
- '#ffff00',
- '#310000',
- '#3e0000',
- '#4e0000',
- '#600000',
- '#720000',
-]
+  '#00ffdc',
+  '#00ff78',
+  '#00c000',
+  '#007e00',
+  '#164100',
+  '#ffff00',
+  '#310000',
+  '#3e0000',
+  '#4e0000',
+  '#600000',
+  '#720000'
+];
 
-console.log(getFarthestHue('lime', sample, 'lch'))
+console.log(getFarthestHue('lime', sample, 'lch'));
 // 139.16534433552653
 ```
 
 #### Defined in
 
-src/colors/hue.ts:95
+colors/hue.ts:95
 
-___
+---
 
 ### getFarthestLightness
 
@@ -267,10 +265,10 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The color to use its lightness value as the minuend. |
-| `colors` | `Color`[] | The collection of colors to compare against. |
+| Name     | Type                             | Description                                          |
+| :------- | :------------------------------- | :--------------------------------------------------- |
+| `color`  | [`Color`](paramTypes.md#color)   | The color to use its lightness value as the minuend. |
+| `colors` | [`Color`](paramTypes.md#color)[] | The collection of colors to compare against.         |
 
 #### Returns
 
@@ -287,20 +285,20 @@ Returns the largest lightness difference between the passed in color and each el
 **`Example`**
 
 ```ts
-import { getFarthestLightness } from 'huetiful-js'
+import { getFarthestLightness } from 'huetiful-js';
 
-let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1'];
 
-console.log(getFarthestLightness("green", sample))
+console.log(getFarthestLightness('green', sample));
 
 // 34.668980006120606
 ```
 
 #### Defined in
 
-src/colors/lightness.ts:66
+colors/lightness.ts:66
 
-___
+---
 
 ### getNearestChroma
 
@@ -308,11 +306,11 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The color to use its chroma/saturation value as the minuend. |
-| `colors` | `Color`[] | The collection of colors to compare against. |
-| `colorSpace?` | `HueColorSpaces` | The mode color space to perform the computation in. |
+| Name          | Type                                             | Description                                                  |
+| :------------ | :----------------------------------------------- | :----------------------------------------------------------- |
+| `color`       | [`Color`](paramTypes.md#color)                   | The color to use its chroma/saturation value as the minuend. |
+| `colors`      | [`Color`](paramTypes.md#color)[]                 | The collection of colors to compare against.                 |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | The mode color space to perform the computation in.          |
 
 #### Returns
 
@@ -329,19 +327,19 @@ Returns the smallest chroma/saturation difference between the passed in color an
 **`Example`**
 
 ```ts
-import { getFarthestChroma } from 'huetiful-js'
+import { getFarthestChroma } from 'huetiful-js';
 
-let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1'];
 
-console.log(getFarthestChroma('lime', sample, 'lch'))
+console.log(getFarthestChroma('lime', sample, 'lch'));
 // 90.87480913244802
 ```
 
 #### Defined in
 
-src/colors/chroma.ts:49
+colors/chroma.ts:49
 
-___
+---
 
 ### getNearestHue
 
@@ -349,11 +347,11 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The color to use its hue value as the minuend. |
-| `colors` | `Color`[] | The collection of colors to compare against. |
-| `colorSpace?` | `HueColorSpaces` | The mode color space to perform the computation in. |
+| Name          | Type                                             | Description                                         |
+| :------------ | :----------------------------------------------- | :-------------------------------------------------- |
+| `color`       | [`Color`](paramTypes.md#color)                   | The color to use its hue value as the minuend.      |
+| `colors`      | [`Color`](paramTypes.md#color)[]                 | The collection of colors to compare against.        |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | The mode color space to perform the computation in. |
 
 #### Returns
 
@@ -370,20 +368,20 @@ Returns the smallest hue difference between the passed in color and each element
 **`Example`**
 
 ```ts
-import { getNearestHue } from 'huetiful-js'
+import { getNearestHue } from 'huetiful-js';
 
-let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1'];
 
-console.log(getNearestHue('lime', sample, 'lch'))
+console.log(getNearestHue('lime', sample, 'lch'));
 
 // 23.962083662849253
 ```
 
 #### Defined in
 
-src/colors/hue.ts:52
+colors/hue.ts:52
 
-___
+---
 
 ### getNearestLightness
 
@@ -391,10 +389,10 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The color to use its lightness value as the minuend. |
-| `colors` | `Color`[] | The collection of colors to compare against. |
+| Name     | Type                             | Description                                          |
+| :------- | :------------------------------- | :--------------------------------------------------- |
+| `color`  | [`Color`](paramTypes.md#color)   | The color to use its lightness value as the minuend. |
+| `colors` | [`Color`](paramTypes.md#color)[] | The collection of colors to compare against.         |
 
 #### Returns
 
@@ -411,20 +409,20 @@ Returns the smallest lightness difference between the passed in color and each e
 **`Example`**
 
 ```ts
-import { getNearestLightness } from 'huetiful-js'
+import { getNearestLightness } from 'huetiful-js';
 
-let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1'];
 
-console.log(getNearestLightness("green", sample))
+console.log(getNearestLightness('green', sample));
 
 //26.338769793418493
 ```
 
 #### Defined in
 
-src/colors/lightness.ts:38
+colors/lightness.ts:38
 
-___
+---
 
 ### isAchromatic
 
@@ -432,9 +430,9 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The color to test if it is achromatic or not. |
+| Name    | Type                           | Description                                   |
+| :------ | :----------------------------- | :-------------------------------------------- |
+| `color` | [`Color`](paramTypes.md#color) | The color to test if it is achromatic or not. |
 
 #### Returns
 
@@ -451,30 +449,25 @@ Checks if a color is achromatic(without hue or simply grayscale).
 **`Example`**
 
 ```ts
-import { isAchromatic } from "huetiful-js";
-import { formatHex8, interpolate, samples } from "culori"
+import { isAchromatic } from 'huetiful-js';
+import { formatHex8, interpolate, samples } from 'culori';
 
-isAchromatic('pink')
+isAchromatic('pink');
 // false
 
-let sample = [
- "#164100",
- "#ffff00",
- "#310000",
- 'pink'
-];
+let sample = ['#164100', '#ffff00', '#310000', 'pink'];
 
 console.log(map(sample, isAchromatic));
 
 // [false, false, false,false]
 
-isAchromatic('gray')
+isAchromatic('gray');
 // Returns true
 
 console.log(map(sample, isAchromatic));
 
 // we create an interpolation using black and white
-let f = interpolate(["black", "white"]);
+let f = interpolate(['black', 'white']);
 
 //We then create 12 evenly spaced samples and pass them to f as the `t` param required by an interpolating function.
 // Lastly we convert the color to hex for brevity for this example (otherwise color objects work fine too.)
@@ -482,18 +475,14 @@ let grays = map(samples(12), (c) => formatHex8(f(c)));
 console.log(map(grays, isAchromatic));
 
 //
-[ false, true, true,
- true,  true, true,
- true,  true, true,
- true,  true, false
-]
+[false, true, true, true, true, true, true, true, true, true, true, false];
 ```
 
 #### Defined in
 
-src/colors/achromatic.ts:53
+colors/achromatic.ts:53
 
-___
+---
 
 ### isCool
 
@@ -501,9 +490,9 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The color to check the temperature. |
+| Name    | Type                           | Description                         |
+| :------ | :----------------------------- | :---------------------------------- |
+| `color` | [`Color`](paramTypes.md#color) | The color to check the temperature. |
 
 #### Returns
 
@@ -520,13 +509,9 @@ Checks if a color can be roughly classified as a cool color. Returns true if col
 **`Example`**
 
 ```ts
-import { isCool } from 'huetiful-js'
+import { isCool } from 'huetiful-js';
 
-let sample = [
- "#00ffdc",
- "#00ff78",
- "#00c000"
-];
+let sample = ['#00ffdc', '#00ff78', '#00c000'];
 
 console.log(isCool(sample[7]));
 // false
@@ -538,9 +523,9 @@ console.log(map(sample, isCool));
 
 #### Defined in
 
-src/colors/temperature.ts:55
+colors/temperature.ts:55
 
-___
+---
 
 ### isWarm
 
@@ -548,9 +533,9 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The color to check the temperature. |
+| Name    | Type                           | Description                         |
+| :------ | :----------------------------- | :---------------------------------- |
+| `color` | [`Color`](paramTypes.md#color) | The color to check the temperature. |
 
 #### Returns
 
@@ -567,13 +552,9 @@ Checks if a color can be roughly classified as a warm color. Returns true if col
 **`Example`**
 
 ```ts
-import { isWarm } from 'huetiful-js'
+import { isWarm } from 'huetiful-js';
 
-let sample = [
- "#00ffdc",
- "#00ff78",
- "#00c000"
-];
+let sample = ['#00ffdc', '#00ff78', '#00c000'];
 
 console.log(isWarm(sample[7]));
 //true
@@ -585,25 +566,25 @@ console.log(map(sample, isWarm));
 
 #### Defined in
 
-src/colors/temperature.ts:86
+colors/temperature.ts:86
 
-___
+---
 
 ### maxChroma
 
-▸ **maxChroma**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: `Color` ; `factor`: `number`  }
+▸ **maxChroma**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number` }
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to query the color with the largest saturation value. |
-| `colorSpace?` | `HueColorSpaces` | `undefined` | The mode color space to perform the computation in. |
-| `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false. |
+| Name          | Type                                             | Default value | Description                                                                                                                               |
+| :------------ | :----------------------------------------------- | :------------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `colors`      | [`Color`](paramTypes.md#color)[]                 | `undefined`   | The array of colors to query the color with the largest saturation value.                                                                 |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | `undefined`   | The mode color space to perform the computation in.                                                                                       |
+| `colorObj`    | `boolean`                                        | `false`       | Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false. |
 
 #### Returns
 
-`number` \| \{ `color`: `Color` ; `factor`: `number`  }
+`number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number` }
 
 The largest saturation value in the colors passed in or a custom object.
 
@@ -616,35 +597,35 @@ Gets the largest saturation value from the passed in colors.
 **`Example`**
 
 ```ts
-import { maxChroma } from 'huetiful-js'
+import { maxChroma } from 'huetiful-js';
 
-let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1'];
 
-console.log(maxChroma(sample, 'lch'))
+console.log(maxChroma(sample, 'lch'));
 // 67.22120855010492
 ```
 
 #### Defined in
 
-src/colors/chroma.ts:165
+colors/chroma.ts:165
 
-___
+---
 
 ### maxHue
 
-▸ **maxHue**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: `Color` ; `factor`: `number`  }
+▸ **maxHue**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number` }
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to query the color with the largest hue value. |
-| `colorSpace?` | `HueColorSpaces` | `undefined` | The mode color space to perform the computation in. |
-| `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false. |
+| Name          | Type                                             | Default value | Description                                                                                                                        |
+| :------------ | :----------------------------------------------- | :------------ | :--------------------------------------------------------------------------------------------------------------------------------- |
+| `colors`      | [`Color`](paramTypes.md#color)[]                 | `undefined`   | The array of colors to query the color with the largest hue value.                                                                 |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | `undefined`   | The mode color space to perform the computation in.                                                                                |
+| `colorObj`    | `boolean`                                        | `false`       | Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false. |
 
 #### Returns
 
-`number` \| \{ `color`: `Color` ; `factor`: `number`  }
+`number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number` }
 
 The largest hue value in the colors passed in or a custom object.
 
@@ -657,33 +638,33 @@ Gets the largest hue value from the passed in colors.
 **`Example`**
 
 ```ts
-import { maxHue } from 'huetiful-js'
-let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+import { maxHue } from 'huetiful-js';
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1'];
 
-console.log(maxHue(sample, 'lch'))
+console.log(maxHue(sample, 'lch'));
 // 273.54920266436477
 ```
 
 #### Defined in
 
-src/colors/hue.ts:164
+colors/hue.ts:164
 
-___
+---
 
 ### maxLightness
 
-▸ **maxLightness**(`colors`, `colorObj?`): `number` \| \{ `color`: `Color` ; `factor`: `number`  }
+▸ **maxLightness**(`colors`, `colorObj?`): `number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number` }
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to query the color with the largest lightness value. |
-| `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false. |
+| Name       | Type                             | Default value | Description                                                                                                                              |
+| :--------- | :------------------------------- | :------------ | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| `colors`   | [`Color`](paramTypes.md#color)[] | `undefined`   | The array of colors to query the color with the largest lightness value.                                                                 |
+| `colorObj` | `boolean`                        | `false`       | Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false. |
 
 #### Returns
 
-`number` \| \{ `color`: `Color` ; `factor`: `number`  }
+`number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number` }
 
 The largest lightness value in the colors passed in or a custom object.
 
@@ -696,20 +677,20 @@ Gets the largest lightness value from the passed in colors.
 **`Example`**
 
 ```ts
-import { maxLightness } from 'huetiful-js'
+import { maxLightness } from 'huetiful-js';
 
-let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1'];
 
-console.log(maxLightness(sample, true))
+console.log(maxLightness(sample, true));
 
 // { lightness: 80.94668903360088, name: '#f3bac1' }
 ```
 
 #### Defined in
 
-src/colors/lightness.ts:135
+colors/lightness.ts:135
 
-___
+---
 
 ### maxTemp
 
@@ -717,9 +698,9 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The color to check its maximum temperature. |
+| Name    | Type                           | Description                                 |
+| :------ | :----------------------------- | :------------------------------------------ |
+| `color` | [`Color`](paramTypes.md#color) | The color to check its maximum temperature. |
 
 #### Returns
 
@@ -736,36 +717,36 @@ Checks the approximate maximum temperature that a color can have without losing 
 **`Example`**
 
 ```ts
-import { maxTemp } from "huetiful-js"; 
+import { maxTemp } from 'huetiful-js';
 
-console.log(maxTemp("#a1bd2f"))
+console.log(maxTemp('#a1bd2f'));
 // 7926
 
-console.log(maxTemp("b2c3f1"))
+console.log(maxTemp('b2c3f1'));
 // 9570
 ```
 
 #### Defined in
 
-src/colors/temperature.ts:107
+colors/temperature.ts:107
 
-___
+---
 
 ### minChroma
 
-▸ **minChroma**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: `Color` ; `factor`: `number`  }
+▸ **minChroma**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number` }
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to query the color with the smallest chroma/saturation value. |
-| `colorSpace?` | `HueColorSpaces` | `undefined` | The mode color space to perform the computation in. |
-| `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false. |
+| Name          | Type                                             | Default value | Description                                                                                                                               |
+| :------------ | :----------------------------------------------- | :------------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `colors`      | [`Color`](paramTypes.md#color)[]                 | `undefined`   | The array of colors to query the color with the smallest chroma/saturation value.                                                         |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | `undefined`   | The mode color space to perform the computation in.                                                                                       |
+| `colorObj`    | `boolean`                                        | `false`       | Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false. |
 
 #### Returns
 
-`number` \| \{ `color`: `Color` ; `factor`: `number`  }
+`number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number` }
 
 The smallest chroma/saturation value in the colors passed in or a custom object.
 
@@ -778,35 +759,35 @@ Gets the smallest chroma/saturation value from the passed in colors.
 **`Example`**
 
 ```ts
-import { minChroma } from 'huetiful-js'
+import { minChroma } from 'huetiful-js';
 
-let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1'];
 
-console.log(minChroma(sample, 'lch'))
+console.log(minChroma(sample, 'lch'));
 // 22.45669293295522
 ```
 
 #### Defined in
 
-src/colors/chroma.ts:121
+colors/chroma.ts:121
 
-___
+---
 
 ### minHue
 
-▸ **minHue**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: `Color` ; `factor`: `number`  }
+▸ **minHue**(`colors`, `colorSpace?`, `colorObj?`): `number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number` }
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to query the color with the smallest hue value. |
-| `colorSpace?` | `HueColorSpaces` | `undefined` | The mode color space to perform the computation in. |
-| `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false. |
+| Name          | Type                                             | Default value | Description                                                                                                                        |
+| :------------ | :----------------------------------------------- | :------------ | :--------------------------------------------------------------------------------------------------------------------------------- |
+| `colors`      | [`Color`](paramTypes.md#color)[]                 | `undefined`   | The array of colors to query the color with the smallest hue value.                                                                |
+| `colorSpace?` | [`HueColorSpaces`](paramTypes.md#huecolorspaces) | `undefined`   | The mode color space to perform the computation in.                                                                                |
+| `colorObj`    | `boolean`                                        | `false`       | Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false. |
 
 #### Returns
 
-`number` \| \{ `color`: `Color` ; `factor`: `number`  }
+`number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number` }
 
 The smallest hue value in the colors passed in or a custom object.
 
@@ -819,34 +800,34 @@ Gets the smallest hue value from the passed in colors.
 **`Example`**
 
 ```ts
-import { minHue } from 'huetiful-js'
+import { minHue } from 'huetiful-js';
 
-let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1'];
 
-console.log(minHue(sample, 'lch'))
+console.log(minHue(sample, 'lch'));
 // 12.462831644544274
 ```
 
 #### Defined in
 
-src/colors/hue.ts:124
+colors/hue.ts:124
 
-___
+---
 
 ### minLightness
 
-▸ **minLightness**(`colors`, `colorObj?`): `number` \| \{ `color`: `Color` ; `factor`: `number`  }
+▸ **minLightness**(`colors`, `colorObj?`): `number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number` }
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `colors` | `Color`[] | `undefined` | The array of colors to query the color with the smallest lightness value. |
-| `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false. |
+| Name       | Type                             | Default value | Description                                                                                                                              |
+| :--------- | :------------------------------- | :------------ | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| `colors`   | [`Color`](paramTypes.md#color)[] | `undefined`   | The array of colors to query the color with the smallest lightness value.                                                                |
+| `colorObj` | `boolean`                        | `false`       | Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false. |
 
 #### Returns
 
-`number` \| \{ `color`: `Color` ; `factor`: `number`  }
+`number` \| \{ `color`: [`Color`](paramTypes.md#color) ; `factor`: `number` }
 
 The smallest lightness value in the colors passed in or a custom object.
 
@@ -859,20 +840,20 @@ Gets the smallest lightness value from the passed in colors.
 **`Example`**
 
 ```ts
-import { minLightness } from 'huetiful-js'
+import { minLightness } from 'huetiful-js';
 
-let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1'];
 
-console.log(minLightness(sample, true))
+console.log(minLightness(sample, true));
 
 // { lightness: 72.61647882089876, name: '#a1bd2f' }
 ```
 
 #### Defined in
 
-src/colors/lightness.ts:92
+colors/lightness.ts:92
 
-___
+---
 
 ### minTemp
 
@@ -880,9 +861,9 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The color to check its minimum temperature. |
+| Name    | Type                           | Description                                 |
+| :------ | :----------------------------- | :------------------------------------------ |
+| `color` | [`Color`](paramTypes.md#color) | The color to check its minimum temperature. |
 
 #### Returns
 
@@ -899,20 +880,20 @@ Checks the approximate minimum temperature that a color can have without losing 
 **`Example`**
 
 ```ts
-import { minTemp } from 'huetiful-js'
+import { minTemp } from 'huetiful-js';
 
-console.log(minTemp("#a1bd2f"))
+console.log(minTemp('#a1bd2f'));
 // 2528
 
-console.log(minTemp("b2c3f1"))
+console.log(minTemp('b2c3f1'));
 // 20107
 ```
 
 #### Defined in
 
-src/colors/temperature.ts:144
+colors/temperature.ts:144
 
-___
+---
 
 ### overtone
 
@@ -920,9 +901,9 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The color to query its overtone. |
+| Name    | Type                           | Description                      |
+| :------ | :----------------------------- | :------------------------------- |
+| `color` | [`Color`](paramTypes.md#color) | The color to query its overtone. |
 
 #### Returns
 
@@ -939,37 +920,37 @@ Returns the hue which is biasing the passed in color
 **`Example`**
 
 ```ts
-import { overtone } from "huetiful-js";
+import { overtone } from 'huetiful-js';
 
-console.log(overtone("fefefe"))
+console.log(overtone('fefefe'));
 // 'gray'
 
-console.log(overtone("cyan"))
+console.log(overtone('cyan'));
 // 'green'
 
-console.log(overtone("blue"))
+console.log(overtone('blue'));
 // false
 ```
 
 #### Defined in
 
-src/colors/overtone.ts:26
+colors/overtone.ts:26
 
-___
+---
 
 ### qualitative
 
-▸ **qualitative**(`scheme`): `Color`[]
+▸ **qualitative**(`scheme`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `scheme` | `QualitativeScheme` | The name of the scheme |
+| Name     | Type                                                   | Description            |
+| :------- | :----------------------------------------------------- | :--------------------- |
+| `scheme` | [`QualitativeScheme`](paramTypes.md#qualitativescheme) | The name of the scheme |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of colors in hex represantation.
 
@@ -995,23 +976,23 @@ console.log(qualitative("Accent"))
 
 #### Defined in
 
-src/colors/colorBrewer.ts:430
+colors/colorBrewer.ts:430
 
-___
+---
 
 ### sequential
 
-▸ **sequential**(`scheme`): `Color`[]
+▸ **sequential**(`scheme`): [`Color`](paramTypes.md#color)[]
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `scheme` | `SequentialScheme` | The name of the scheme |
+| Name     | Type                                                 | Description            |
+| :------- | :--------------------------------------------------- | :--------------------- |
+| `scheme` | [`SequentialScheme`](paramTypes.md#sequentialscheme) | The name of the scheme |
 
 #### Returns
 
-`Color`[]
+[`Color`](paramTypes.md#color)[]
 
 An array of colors in hex represantation.
 
@@ -1039,19 +1020,19 @@ console.log(sequential("OrRd"))
 
 #### Defined in
 
-src/colors/colorBrewer.ts:50
+colors/colorBrewer.ts:50
 
-___
+---
 
 ### tailwindColors
 
-▸ **tailwindColors**(`shade`): (`val?`: `ScaleValues`) => `string` \| `string`[]
+▸ **tailwindColors**(`shade`): (`val?`: [`ScaleValues`](paramTypes.md#scalevalues)) => `string` \| `string`[]
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `shade` | keyof `HueMap` |
+| Name    | Type                                   |
+| :------ | :------------------------------------- |
+| `shade` | keyof [`HueMap`](paramTypes.md#huemap) |
 
 #### Returns
 
@@ -1063,9 +1044,9 @@ color A hex string value or array of hex strings.
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `val?` | `ScaleValues` |
+| Name   | Type                                       |
+| :----- | :----------------------------------------- |
+| `val?` | [`ScaleValues`](paramTypes.md#scalevalues) |
 
 ##### Returns
 
@@ -1103,8 +1084,6 @@ console.log(red('900'));
 
 #### Defined in
 
-src/colors/tailwindColors.ts:38
-
-<!-- TSDOC_END -->
+colors/tailwindColors.ts:38
 
 > Please note that precision of the temperature utilities is limited and improvement suggestions are welcome. Feel free to open an issue for suggestions. Or do a PR to showcase the suggested improvements.

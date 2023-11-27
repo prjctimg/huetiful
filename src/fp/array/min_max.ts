@@ -1,3 +1,4 @@
+/* eslint-disable no-ternary */
 // @ts-nocheck
 
 import { gt, lt } from '../number/comparison';

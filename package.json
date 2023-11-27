@@ -1,13 +1,13 @@
 {
   "name": "huetiful-js",
-  "version": "1.7.8-alpha-1",
+  "version": "1.7.83",
   "type": "module",
   "main": "./dist/huetiful.esm.mjs",
   "module": "./dist/huetiful.esm.mjs",
   "browser": "./dist/huetiful.min.js",
   "exports": {
     "./fp": "./dist/fp/index.esm.mjs",
-    "./getters_and_setters/index.esm.mjs": "./dist/getters_and_setters/index.esm.mjs",
+    "./getters_and_setters": "./dist/getters_and_setters/index.esm.mjs",
     "./converters": "./dist/converters/index.esm.mjs",
     "./palettes": "./dist/palettes/index.esm.mjs",
     "./filterBy": "./dist/filterBy/index.esm.mjs",
@@ -36,7 +36,7 @@
     "typescript": "^5.3.2"
   },
   "scripts": {
-    "docs": "npx typedoc --plugin typedoc-plugin-markdown --readme none && node docs.cjs && rm -r temp",
+    "docs": "npx typedoc --plugin typedoc-plugin-markdown  && node docs.cjs && git add .",
     "build": " node build.cjs",
     "prepare": " npm run build && npm run types",
     "types": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts",
@@ -51,15 +51,20 @@
   },
   "files": [
     "dist",
-    "src"
+    "README.md",
+    "CONTRIBUTING.md",
+    "LICENSE.md",
+    "huetiful-logo.png"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/prjctimg/huetiful.git"
+    "url": "https://github.com/prjctimg/huetiful.git"
   },
   "keywords": [
     "lch",
     "palettes",
+    "color blind",
+    "color vision deficiency",
     "color schemes",
     "color",
     "culori",
@@ -75,8 +80,11 @@
   "author": "Dean Tarisai",
   "email": "arcaneqoder@gmail.com",
   "homepage": "https://huetiful-docs.vercel.app",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/prjctimg/huetiful/issues"
   }
 }
