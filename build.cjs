@@ -10,7 +10,9 @@ var { dependencies } = require('./package.json')
 const sharedConfig = {
   entryPoints: ['.//src/index.ts'],
   bundle: true,
-  minify: false
+  minify: false,
+  minifySyntax: true
+
 };
 
 // ***Modular imports** \\
@@ -20,7 +22,7 @@ build({
   ...sharedConfig,
   format: 'esm',
   entryPoints: ['.//src/palettes/index.ts'],
-  outfile: 'dist/palettes/index.esm.mjs',
+  outfile: 'dist/palettes/index.esm.mjs'
 
 
 });

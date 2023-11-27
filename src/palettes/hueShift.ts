@@ -47,7 +47,6 @@ const hueShift = (color: Color, options: HueShiftOptions): Color[] => {
   easingFunc = checkArg(easingFunc, easingSmoothstep);
   iterations = checkArg(iterations, 6) + 1;
   hueStep = checkArg(hueStep, 5);
-
   minLightness = checkArg(minLightness, 10);
   maxLightness = checkArg(maxLightness, 90);
   // Pass in default values if any of the opts is undefined

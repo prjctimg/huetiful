@@ -50,7 +50,6 @@
     }
   },
   "files": [
-    "temp",
     "dist",
     "README.md",
     "CONTRIBUTING.md",
@@ -59,7 +58,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/prjctimg/huetiful.git"
+    "url": "https://github.com/prjctimg/huetiful.git"
   },
   "keywords": [
     "lch",

@@ -1,4 +1,4 @@
-export type Options = {
+type Options = {
   /**
    * The easing function to use.
    * @param t Any value between 0 and 1
@@ -7,31 +7,31 @@ export type Options = {
   easingFunc?: (t: number) => number;
 
   /**
-   * The interpolation method to use on the hue channel.
+   *@param The interpolation method to use on the hue channel.
    */
   hueInterpolator?: Interpolator;
 
   /**
-   * The interpolation method to use on the chroma channel.
+   *@param The interpolation method to use on the chroma channel.
    */
   chromaInterpolator?: Interpolator;
 
   /**
-   * The type of hue fixup to apply to the hue channels during interpolation.
+   *@param The type of hue fixup to apply to the hue channels during interpolation.
    */
   hueFixup?: (arr: number[]) => number[];
 
   /**
-   * The interpolation method to use on the lightness channel.
+   *@param The interpolation method to use on the lightness channel.
    */
   lightnessInterpolator?: Interpolator;
   /**
-   * The color to pass through during interpolation.
+   *@param The color to pass through during interpolation.
    */
   via?: Tone;
 
   /**
-   * The amount of hue angles to increment each iteration with.
+   *@param The amount of hue angles to increment each iteration with.
    */
   hueStep?: number;
 
@@ -51,7 +51,7 @@ export type Options = {
     | 'dark';
 
   /**
-   * The amount of samples to return in the result collection.
+   *@param The amount of samples to return in the result collection.
    */
   iterations?: number;
 
