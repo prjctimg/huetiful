@@ -1,3 +1,4 @@
+/* eslint-disable no-ternary */
 // @ts-nocheck
 
 //ported from chroma-js
