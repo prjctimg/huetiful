@@ -1,5 +1,5 @@
 {
-  "name": "huetiful",
+  "name": "huetiful-js",
   "version": "1.7.83",
   "type": "module",
   "main": "./dist/huetiful.esm.mjs",
