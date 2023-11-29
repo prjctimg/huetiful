@@ -63,3 +63,4 @@ for (const pathSeg of pathSegments) {
     generateDocs(pathSeg)
 }
 
+console.log(`Done`)
