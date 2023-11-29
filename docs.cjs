@@ -13,20 +13,41 @@ const fileContents = (rootDir, filenameSegment, extension) => readFileSync(`./${
 // Check if the source file to be injected have the comments
 // This runs after typedoc builds the docs
 
-const reComment = /(<!-- TSDOC_START -->)[\s\S]*?(<!-- TSDOC_END -->)$/gm;
-const replace = data => `<!-- TSDOC_START -->\n\n${data}\n<!-- TSDOC_END -->`;
+const emojiMap = {
+    '### Functions': ':toolbox:',
+    'Module\:': ':books:',
 
+    '## Table of contents': ':scroll:',
+    '### Parameters': ':abacus:',
+    '#### Returns': ':back:',
+
+    '#### Defined in': ':spiral_notepad:'
+}
+//const reMarkdownHeading = heading => /^(#{1,6})\s+(heading)$/gm
+const reHtmlComment = /(<!-- TSDOC_START -->)[\s\S]*?(<!-- TSDOC_END -->)$/gm;
+const replace = data => `\n${data}\n`;
+//const reEmojiInjector = (pattern = '') => /^(pattern)$/gm
 
 const generateDocs = (filenameSegment) => {
-    const tempFile = fileContents(`temp/modules`,
+    let tempFile = fileContents(`temp/modules`,
         filenameSegment, `md`)
-    const destFile = fileContents(`docs`, filenameSegment, `mdx`)
-    if (destFile.match(reComment)) {
+    let destFile = fileContents(`templates`, filenameSegment, `mdx`)
+    if (destFile.match(reHtmlComment)) {
+
+
+
+
+        for (const heading of Object.keys(emojiMap)) {
+            const re = pattern => new RegExp(pattern, 'gi')
+            tempFile = tempFile.replace(re(heading), `${heading}${emojiMap[heading]}`)
+        }
+        tempFile = tempFile.replace(/\*\*`Description`\*\*/g, '**`Description`** :information_source:'
+        )
+        tempFile = tempFile.replace(/\*\*`Example`\*\*/g, '**`Example`** :clipboard:')
 
         writeFileSync(`./docs/${filenameSegment}.mdx`,
             // This is the source .mdx file in ./docs we're writing to
-            destFile.replace(reComment, replace(tempFile)), 'utf-8');
-
+            destFile.replace(reHtmlComment, replace(tempFile)), 'utf-8');
         return
     } else {
         writeFileSync(destFile, tempFile, 'utf-8')
@@ -36,3 +57,4 @@ const generateDocs = (filenameSegment) => {
 for (const pathSeg of pathSegments) {
     generateDocs(pathSeg)
 }
+
