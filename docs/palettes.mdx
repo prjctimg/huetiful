@@ -14,7 +14,7 @@ Because certain end results are easier to achieve in different color spaces, col
 
 [huetiful-js](../README.md) / palettes
 
-# Module::books: palettes
+# Module::package: palettes
 
 ## Table of contents:scroll:
 
@@ -60,7 +60,7 @@ An array of 8 character hex codes. Elements in the array depend on the number of
 
 [`Color`](paramTypes.md#color)[]
 
-**`Function`**
+
 
 **`Description`** :information_source:
 
@@ -75,7 +75,7 @@ console.log(base("triadic")("#a1bd2f", true))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
 ```
 
-#### Defined in:spiral_notepad:
+#### Defined in:memo:
 
 palettes/base.ts:29
 
@@ -98,7 +98,7 @@ ___
 
 An array of colors if the scheme parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
 
-**`Function`**
+
 
 **`Description`** :information_source:
 
@@ -127,7 +127,7 @@ console.log(discoverPalettes(sample, "tetradic"))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
 ```
 
-#### Defined in:spiral_notepad:
+#### Defined in:memo:
 
 palettes/discoverPalettes.ts:39
 
@@ -150,7 +150,7 @@ ___
 
 The array of colors resulting from the earthtone interpolation as hex codes.
 
-**`Function`**
+
 
 **`Description`** :information_source:
 
@@ -165,7 +165,7 @@ console.log(earthtone("pink",{earthtones:'clay',iterations:5 }))
 // [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
 ```
 
-#### Defined in:spiral_notepad:
+#### Defined in:memo:
 
 palettes/earthtone.ts:34
 
@@ -188,7 +188,7 @@ ___
 
 An object with the hue family and complimentary color as keys.
 
-**`Function`**
+
 
 **`Description`** :information_source:
 
@@ -206,7 +206,7 @@ console.log(getComplimentaryHue("purple"))
 // #005700ff
 ```
 
-#### Defined in:spiral_notepad:
+#### Defined in:memo:
 
 palettes/getComplimentaryHue.ts:31
 
@@ -228,7 +228,7 @@ ___
 
 The name of the hue family for example red or green.
 
-**`Function`**
+
 
 **`Description`** :information_source:
 
@@ -243,7 +243,7 @@ console.log(getHue("#310000"))
 // red
 ```
 
-#### Defined in:spiral_notepad:
+#### Defined in:memo:
 
 palettes/getHue.ts:25
 
@@ -266,7 +266,7 @@ ___
 
 An array of colors in hex. The length of the resultant array is the number of iterations multiplied by 2 plus the base color passed or (iterations*2)+1
 
-**`Function`**
+
 
 **`Description`** :information_source:
 
@@ -291,7 +291,7 @@ console.log(hueShiftedPalette);
 ]
 ```
 
-#### Defined in:spiral_notepad:
+#### Defined in:memo:
 
 palettes/hueShift.ts:39
 
@@ -314,7 +314,7 @@ ___
 
 An array containing the paired scheme.
 
-**`Function`**
+
 
 pairedScheme
 
@@ -331,7 +331,7 @@ console.log(pairedScheme("green",{hueStep:6,iterations:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
 ```
 
-#### Defined in:spiral_notepad:
+#### Defined in:memo:
 
 palettes/paired.ts:32
 
@@ -353,7 +353,7 @@ ___
 
 A random pastel color.
 
-**`Function`**
+
 
 **`Description`** :information_source:
 
@@ -368,7 +368,7 @@ console.log(pastel("green"))
 // #036103ff
 ```
 
-#### Defined in:spiral_notepad:
+#### Defined in:memo:
 
 palettes/pastel.ts:65
 

@@ -13,20 +13,18 @@ const fileContents = (rootDir, filenameSegment, extension) => readFileSync(`./${
 // Check if the source file to be injected have the comments
 // This runs after typedoc builds the docs
 
-const emojiMap = {
+const markdownHeadingEmojiMap = {
     '### Functions': ':toolbox:',
-    'Module\:': ':books:',
-
+    'Module\:': ':package:',
     '## Table of contents': ':scroll:',
     '### Parameters': ':abacus:',
     '#### Returns': ':back:',
-
-    '#### Defined in': ':spiral_notepad:'
+    '#### Defined in': ':memo:'
 }
-//const reMarkdownHeading = heading => /^(#{1,6})\s+(heading)$/gm
+
 const reHtmlComment = /(<!-- TSDOC_START -->)[\s\S]*?(<!-- TSDOC_END -->)$/gm;
 const replace = data => `\n${data}\n`;
-//const reEmojiInjector = (pattern = '') => /^(pattern)$/gm
+
 
 const generateDocs = (filenameSegment) => {
     let tempFile = fileContents(`temp/modules`,
@@ -34,16 +32,21 @@ const generateDocs = (filenameSegment) => {
     let destFile = fileContents(`templates`, filenameSegment, `mdx`)
     if (destFile.match(reHtmlComment)) {
 
+        console.log(`[info] Adding emojis in ${filenameSegment}.md`)
+        const re = pattern => new RegExp(pattern, 'gi')
 
+        for (const heading of Object.keys(markdownHeadingEmojiMap)) {
 
-
-        for (const heading of Object.keys(emojiMap)) {
-            const re = pattern => new RegExp(pattern, 'gi')
-            tempFile = tempFile.replace(re(heading), `${heading}${emojiMap[heading]}`)
+            tempFile = tempFile.replace(re(heading), `${heading}${markdownHeadingEmojiMap[heading]}`)
         }
         tempFile = tempFile.replace(/\*\*`Description`\*\*/g, '**`Description`** :information_source:'
         )
-        tempFile = tempFile.replace(/\*\*`Example`\*\*/g, '**`Example`** :clipboard:')
+
+        tempFile = tempFile.replace(/\*\*`Example`\*\*/g, '**`Example`** :clipboard:'
+        )
+
+        tempFile = tempFile.replace(/\*\*`Function`\*\*/g, ''
+        )
 
         writeFileSync(`./docs/${filenameSegment}.mdx`,
             // This is the source .mdx file in ./docs we're writing to
@@ -54,7 +57,9 @@ const generateDocs = (filenameSegment) => {
     }
 }
 
+
 for (const pathSeg of pathSegments) {
+
     generateDocs(pathSeg)
 }
 
