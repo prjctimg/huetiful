@@ -45,3 +45,4 @@ next-env.d.ts
 
 app.js
 *.code-worspace
+/leonardo-main
