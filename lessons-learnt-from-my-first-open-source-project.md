@@ -41,7 +41,7 @@ For those who want to start contributing to open source software but don't know 
 
 ### It takes a community to build
 
-I'd like to thank @foss2cyber, @takanome-dev and @adarshwathwatham for being my first contributors and helping make this effort thrive. This project has been boosted by your efforts indeed! And of course @danburzo for open sourcing Culorijs on which this library is built on. The documentation site is an open source template made by @timlrx. Certain parts of the source code borrow from lodash and chroma-js on which this project initially depended on during its earlier releases. [See the list of open source licenses here](https://github.com/prjctimg/huetiful/tree/main/LICENSE.md)
+I'd like to thank [@foss2cyber](https://github.com/foss2cyber), [@takanome-dev](https://github.com/takanome-dev) and [@adarshswaminath](https://github.com/adarshswaminath) for being my first contributors and helping make this effort thrive. This project has been boosted by your efforts indeed! And of course [@danburzo](https://github.com/danburzo) for open sourcing Culorijs on which this library is built on. The documentation site is an open source template made by @timlrx. Certain parts of the source code borrow from lodash and chroma-js on which this project initially depended on during its earlier releases. [See the list of open source licenses here](https://github.com/prjctimg/huetiful/tree/main/LICENSE.md)
 
 > Kusatenda huroyi (Ingratitude is malice)
 >

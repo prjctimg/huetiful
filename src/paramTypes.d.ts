@@ -1,3 +1,17 @@
+/**
+ * @type
+ * @description This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.
+ */
+type AdaptivePalette = {
+  lightMode: Color[];
+  darkMode: Color[];
+  mode: Pick<HueColorSpaces, 'lch' | 'lab' | 'oklab' | 'oklch'>;
+};
+
+/**
+ * @type
+ * @description The override parameters for palette functions.
+ */
 type Options = {
   /**
    * The easing function to use.

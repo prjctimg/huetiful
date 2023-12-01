@@ -31,7 +31,6 @@ const MAX_LUMINANCE = 2;
 // Allows us to generate color based based on the desired contrast ratio
 const TARGET_CONTRAST_RATIO = 1;
 
-const adaptivePalette = () => {};
 
 const lightMode = () => {};
 const darkMode = () => {};
