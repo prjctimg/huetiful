@@ -40,6 +40,7 @@ build({
 //Bundled IIFE
 build({
   ...sharedConfig,
+  platform: 'browser',
   format: 'iife',
   outfile: 'dist/index.umd.js',
   globalName: 'huetiful',
@@ -47,4 +48,13 @@ build({
 
 });
 
+build({
+  ...sharedConfig,
+  platform: 'browser',
+  format: 'iife',
+  outfile: 'dist/index.umd.js',
+  globalName: 'huetiful',
+  minifySyntax: true, minify: true
+
+});
 

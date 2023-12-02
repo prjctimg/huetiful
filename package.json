@@ -2,9 +2,10 @@
   "name": "huetiful-js",
   "version": "1.7.84",
   "type": "module",
-  "main": "./dist/index.esm.mjs",
-  "module": "./dist/index.cjs",
-  "browser": "./dist/index.umd.min.js",
+  "main": "./dist/index.esm.cjs",
+  "module": "./dist/index.mjs",
+  "browser": "./dist/index.min.js",
+  "jsdelivr": "./dist/index.umd.js",
   "types": "./dist/index.d.ts",
   "description": "Library for general purpose color manipulations based on CuloriJS .",
   "dependencies": {
