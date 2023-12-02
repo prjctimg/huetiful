@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-nocheck
+import { tailwindColors } from 'huetiful-js';
+import { getContrast } from '../getters_and_setters/contrast';
+import type { Color } from '../paramTypes';
 
 // This module will make use of contrast ratio to create adaptive palettes
 
@@ -58,4 +61,15 @@ const polynomial = (x: number) => {
 
 // The relative luminance returned should be compliant to the defined ratio
 
-const adaptivePalettes = () => {};
+const adaptivePalettes = (
+  foregroundColor,
+  { dark, light }: { light?: Color; dark?: Color }
+) => {
+  let { light, dark } = undefined || {};
+
+  const checkArg = (arg, def) => arg || def;
+  light = checkArg(light, tailwindColors('gray')('100'));
+  dark = checkArg(dark, tailwindColors('stone')('800'));
+  const lightContrast = getContrast(foregroundColor);
+  // First get the contrast between the passed in colors
+};
