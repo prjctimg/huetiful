@@ -54,6 +54,8 @@ const polynomial = (x: number) => {
 // - colorluminance
 
 // Find contrast colors
-// find contrast color pairs
+// find contrast color pairs that are harmonius
 
 // The relative luminance returned should be compliant to the defined ratio
+
+const adaptivePalettes = () => {};

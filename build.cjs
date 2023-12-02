@@ -15,51 +15,13 @@ const sharedConfig = {
 
 };
 
-// ***Modular imports** \\
 
-// palettes/ import
+// commonJS import
 build({
+  format: 'cjs',
   ...sharedConfig,
-  format: 'esm',
-  entryPoints: ['.//src/palettes/index.ts'],
-  outfile: 'dist/palettes/index.esm.mjs'
-
-
-});
-
-// filterBy/ import
-build({
-  ...sharedConfig,
-  format: 'esm',
-  outfile: 'dist/filterBy/index.esm.mjs',
-
-
-});
-
-// sortBy/ import
-build({
-  ...sharedConfig,
-  format: 'esm',
-  entryPoints: ['.//src/sortBy/index.ts'],
-  outfile: 'dist/sortBy/index.esm.mjs',
-
-});
-
-// colors/ import
-build({
-  ...sharedConfig,
-  format: 'esm',
-  entryPoints: ['.//src/colors/index.ts'],
-  outfile: 'dist/colors/index.esm.mjs',
-});
-
-
-// core-utils/ import
-build({
-  format: 'esm',
-  ...sharedConfig,
-  entryPoints: ['.//src/getters_and_setters/index.ts'],
-  outfile: 'dist/getters_and_setters/index.esm.mjs',
+  entryPoints: ['.//src/index.ts'],
+  outfile: 'dist/index.cjs',
 
 });
 
@@ -70,26 +32,18 @@ build({
   ...sharedConfig,
   external: Object.keys(dependencies),
   format: 'esm',
-  outfile: 'dist/huetiful.esm.mjs'
+  outfile: 'dist/index.esm.mjs'
 
 });
 
-//Bundled ESM minified
-build({
-  ...sharedConfig,
-  format: 'esm',
-  outfile: 'dist/huetiful.esm.min.mjs',
-  minify: true,
-
-});
 
 //Bundled IIFE
 build({
   ...sharedConfig,
   format: 'iife',
-  outfile: 'dist/huetiful.min.js',
+  outfile: 'dist/index.umd.js',
   globalName: 'huetiful',
-  minify: true
+  minifySyntax: true
 
 });
 
