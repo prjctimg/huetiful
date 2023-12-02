@@ -7,7 +7,7 @@
   "browser": "./dist/index.min.js",
   "jsdelivr": "./dist/index.umd.js",
   "types": "./dist/index.d.ts",
-  "description": "Library for general purpose color manipulations based on CuloriJS .",
+  "description": "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
   "dependencies": {
     "culori": "^3.0.1"
   },
