@@ -1,6 +1,6 @@
 {
   "name": "huetiful-js",
-  "version": "1.7.83",
+  "version": "1.7.84",
   "type": "module",
   "main": "./dist/index.esm.mjs",
   "module": "./dist/index.cjs",
