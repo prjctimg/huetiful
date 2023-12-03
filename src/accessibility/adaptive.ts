@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-nocheck
-import { tailwindColors } from 'huetiful-js';
+import { tailwindColors } from '../colors/tailwindColors';
+import { getLuminance } from '../getters_and_setters/luminance';
 import { getContrast } from '../getters_and_setters/contrast';
 import type { Color } from '../paramTypes';
 
@@ -62,14 +63,17 @@ const polynomial = (x: number) => {
 // The relative luminance returned should be compliant to the defined ratio
 
 const adaptivePalettes = (
-  foregroundColor,
+  foregroundColor: Color,
   { dark, light }: { light?: Color; dark?: Color }
 ) => {
   let { light, dark } = undefined || {};
 
   const checkArg = (arg, def) => arg || def;
   light = checkArg(light, tailwindColors('gray')('100'));
+
+  // First get the contrast between the passed in color and the backgrounds
   dark = checkArg(dark, tailwindColors('stone')('800'));
-  const lightContrast = getContrast(foregroundColor);
-  // First get the contrast between the passed in colors
+  const lightContrast = getContrast(foregroundColor, light);
+  const darkContrast = getContrast(foregroundColor, dark);
+  const colorLuminance = getLuminance(foregroundColor);
 };
