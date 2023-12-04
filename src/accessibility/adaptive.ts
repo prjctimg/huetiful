@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-nocheck
+import { cam } from 'ciecam02-ts';
+import { illuminant } from 'ciebase-ts';
 import { tailwindColors } from '../colors/tailwindColors';
 import { getLuminance } from '../getters_and_setters/luminance';
 import { getContrast } from '../getters_and_setters/contrast';
 import type { Color } from '../paramTypes';
+import { modeJch, useMode } from 'culori';
 
 // This module will make use of contrast ratio to create adaptive palettes
 
@@ -61,6 +64,23 @@ const polynomial = (x: number) => {
 // find contrast color pairs that are harmonius
 
 // The relative luminance returned should be compliant to the defined ratio
+
+const ciecam = cam(
+  {
+    whitePoint: illuminant.D65,
+    adaptingLuminance: 40,
+    backgroundLuminance: 20,
+    surroundType: 'average',
+    discounting: false
+  },
+  cfs('JCh')
+);
+
+// First convert cam to xyz then rgb
+
+const xyz = useMode(modeJch);
+const jch2rgb = (jch: Color) =>
+  xyz(ciecam.fromXyz({ J: jch['j'], C: jch['c'], h: jch['h'] }));
 
 const adaptivePalettes = (
   foregroundColor: Color,
