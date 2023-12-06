@@ -6,7 +6,7 @@ import { easingSmoothstep, modeLch, samples, useMode } from 'culori/fn';
 import type { Color, HueShiftOptions } from '../paramTypes.ts';
 import { adjustHue } from '../fp/number/adjustHue.ts';
 import { toHex } from '../converters/toHex.ts';
-
+import { checkArg } from '../fp/misc.ts';
 const lightnessMapper =
   (n: number) =>
   (start1: number, end1: number) =>
@@ -39,7 +39,7 @@ console.log(hueShiftedPalette);
 const hueShift = (color: Color, options: HueShiftOptions): Color[] => {
   const toLch = useMode(modeLch);
   color = toLch(toHex(color));
-  const checkArg = (arg, def) => arg || def;
+
   let { iterations, hueStep, minLightness, maxLightness, easingFunc } =
     options || {};
 

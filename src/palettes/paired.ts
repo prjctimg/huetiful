@@ -15,6 +15,7 @@ import {
   modeLch,
   easingSmoothstep
 } from 'culori/fn';
+import { checkArg } from '../fp/misc.ts';
 
 /**
  * @function pairedScheme
@@ -42,7 +43,6 @@ const pairedScheme = (color: Color, options: PairedSchemeOptions): Color[] => {
     easingFunc
   } = options || {};
 
-  const checkArg = (arg, def) => arg || def;
   easingFunc = checkArg(easingFunc, easingSmoothstep);
   chromaInterpolator = checkArg(chromaInterpolator, interpolatorSplineNatural);
   hueFixup = checkArg(hueFixup, fixupHueShorter);

@@ -1,12 +1,47 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-nocheck
-import { cam } from 'ciecam02-ts';
-import { illuminant } from 'ciebase-ts';
 import { tailwindColors } from '../colors/tailwindColors';
 import { getLuminance } from '../getters_and_setters/luminance';
 import { getContrast } from '../getters_and_setters/contrast';
 import type { Color } from '../paramTypes';
-import { modeJch, useMode } from 'culori';
+import { IViewingConditions, cam, cfs, gamut } from 'ciecam02-ts';
+import { rgb, workspace, illuminant, xyz } from 'ciebase-ts';
+import { toHex as nativeToHex } from '../converters/toHex';
+
+
+
+// Pass viewing conditions
+export const ciecam = (viewingConditions: IViewingConditions) => {
+ 
+ const {
+   whitePoint,
+   adaptingLuminance,
+   backgroundLuminance,
+   adoptingLuinance,
+   surroundType,
+   discounting
+ } = viewingConditions ||{}
+
+  
+  
+    whitePoint: illuminant['D65'],
+    adaptingLuminance: 40,
+    backgroundLuminance: 20,
+    adoptingLuinance: 40,
+    surroundType: 'average',
+    discounting: false
+  
+ 
+  cam(viewingConditions, cfs('Jch'));
+} 
+export const xyzToSrgb = xyz(workspace['sRGB'], illuminant['D65']);
+const xyzGamut = gamut(xyzToSrgb, ciecam);
+const hexToCam = (hex) => {
+  return ciecam.fromXyz(xyzToSrgb.fromRgb(rgb.fromHex(nativeToHex(hex))));
+};
+const camToHex = (CAM) => {
+  return rgb.toHex(xyzToSrgb.toRgb(xyzToSrgb.toRgb(ciecam.toXyz(CAM))));
+};
 
 // This module will make use of contrast ratio to create adaptive palettes
 
@@ -75,6 +110,8 @@ const ciecam = cam(
   },
   cfs('JCh')
 );
+
+// The correlates are channels in short  "QJMCshH"
 
 // First convert cam to xyz then rgb
 

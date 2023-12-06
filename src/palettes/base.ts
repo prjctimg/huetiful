@@ -5,6 +5,7 @@ import type { Color } from '../paramTypes.ts';
 import { adjustHue } from '../fp/number/adjustHue.ts';
 import { random } from '../fp/number/random.ts';
 import { toHex } from '../converters/toHex.ts';
+import { checkArg } from '../fp/misc.ts';
 // Globals
 const cb = (iterations: number, distance: number, color: Color) =>
   samples(iterations).map((val) =>
@@ -29,7 +30,7 @@ const base =
   (scheme: 'analogous' | 'triadic' | 'tetradic' | 'complementary') =>
   (color: Color, easingFunc: (t: number) => number): Color[] => {
     scheme = scheme.toLowerCase();
-    easingFunc = easingFunc || easingSmoothstep;
+    easingFunc = checkArg(easingFunc, easingSmoothstep);
     // Converting the color to lch
     const lch = useMode(modeLch);
     color = lch(color);

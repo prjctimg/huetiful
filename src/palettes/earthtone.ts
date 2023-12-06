@@ -12,7 +12,7 @@ import {
 } from 'culori/fn';
 import type { Color, EarthtoneOptions } from '../paramTypes.ts';
 import { toHex } from '../converters/toHex.ts';
-
+import { checkArg } from '../fp/misc.ts';
 //Add an overrides object with interpolation function and
 
 /**
@@ -42,7 +42,6 @@ const earthtone = (color: Color, options: EarthtoneOptions): Color[] => {
     easingFunc
   } = options || {};
 
-  const checkArg = (arg, def) => arg || def;
   easingFunc = checkArg(easingFunc, easingSmootherstep);
   chromaInterpolator = checkArg(chromaInterpolator, interpolatorSplineNatural);
   hueFixup = checkArg(hueFixup, fixupHueShorter);
