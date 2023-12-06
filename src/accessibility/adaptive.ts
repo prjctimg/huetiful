@@ -5,43 +5,9 @@ import { getLuminance } from '../getters_and_setters/luminance';
 import { getContrast } from '../getters_and_setters/contrast';
 import type { Color } from '../paramTypes';
 import { IViewingConditions, cam, cfs, gamut } from 'ciecam02-ts';
-import { rgb, workspace, illuminant, xyz } from 'ciebase-ts';
+import { rgb, workspace, illuminant, xyz, Vector3D } from 'ciebase-ts';
 import { toHex as nativeToHex } from '../converters/toHex';
-
-
-
-// Pass viewing conditions
-export const ciecam = (viewingConditions: IViewingConditions) => {
- 
- const {
-   whitePoint,
-   adaptingLuminance,
-   backgroundLuminance,
-   adoptingLuinance,
-   surroundType,
-   discounting
- } = viewingConditions ||{}
-
-  
-  
-    whitePoint: illuminant['D65'],
-    adaptingLuminance: 40,
-    backgroundLuminance: 20,
-    adoptingLuinance: 40,
-    surroundType: 'average',
-    discounting: false
-  
- 
-  cam(viewingConditions, cfs('Jch'));
-} 
-export const xyzToSrgb = xyz(workspace['sRGB'], illuminant['D65']);
-const xyzGamut = gamut(xyzToSrgb, ciecam);
-const hexToCam = (hex) => {
-  return ciecam.fromXyz(xyzToSrgb.fromRgb(rgb.fromHex(nativeToHex(hex))));
-};
-const camToHex = (CAM) => {
-  return rgb.toHex(xyzToSrgb.toRgb(xyzToSrgb.toRgb(ciecam.toXyz(CAM))));
-};
+import { checkArg } from '../fp/misc';
 
 // This module will make use of contrast ratio to create adaptive palettes
 
@@ -65,11 +31,6 @@ const camToHex = (CAM) => {
 // Do I need constrains for the background
 
 // First I need to declare some constants to serve as starting points
-
-const polynomial = (x: number) => {
-  return Math.sqrt(Math.sqrt((Math.pow(x, 2.25) + Math.pow(x, 4)) / 2));
-};
-
 ////// Adapted from Adobe color
 
 // Convert the color to an optimized color space for creating background colors
@@ -100,7 +61,16 @@ const polynomial = (x: number) => {
 
 // The relative luminance returned should be compliant to the defined ratio
 
-const ciecam = cam(
+// The correlates are channels in short  "QJMCshH"
+
+// First convert cam to xyz then rgb
+
+const polynomial = (x: number) => {
+  return Math.sqrt(Math.sqrt((Math.pow(x, 2.25) + Math.pow(x, 4)) / 2));
+};
+// Pass viewing conditions
+
+const baseCieCam = cam(
   {
     whitePoint: illuminant.D65,
     adaptingLuminance: 40,
@@ -111,26 +81,71 @@ const ciecam = cam(
   cfs('JCh')
 );
 
-// The correlates are channels in short  "QJMCshH"
+/**
+ * @function
+ * @description Converts any color to Jch. The color is converted to CAM then XYZ under the hood.
+ * @param color Any recognizable color token
+ * @param viewingConditions Optional parameters for specifying the viewing conditions.
+ * @returns An array of the Jch channel values
+ */
+const toJch = (
+  color: Color,
+  viewingConditions?: IViewingConditions
+): Vector3D => {
+  let {
+    whitePoint,
+    adaptingLuminance,
+    backgroundLuminance,
+    surroundType,
+    discounting
+  } = viewingConditions || {};
 
-// First convert cam to xyz then rgb
+  color = checkArg(color, '#000000');
+  whitePoint = checkArg(whitePoint, illuminant['D65']);
+  adaptingLuminance = checkArg(adaptingLuminance, 40);
+  backgroundLuminance = checkArg(backgroundLuminance, 20);
+  surroundType = checkArg(surroundType, 'average');
+  discounting = checkArg(discounting, false);
 
-const xyz = useMode(modeJch);
-const jch2rgb = (jch: Color) =>
-  xyz(ciecam.fromXyz({ J: jch['j'], C: jch['c'], h: jch['h'] }));
+  color = cam(viewingConditions, cfs('Jch')).toXyz(
+    hexToCam(nativeToHex(color))
+  );
 
-const adaptivePalettes = (
-  foregroundColor: Color,
+  return color;
+};
+export const xyzToSrgb = (color: Vector3D) =>
+  xyz(workspace['sRGB'], illuminant['D65']).toRgb(color);
+const xyzGamut = gamut(xyzToSrgb, baseCieCam);
+const hexToCam = (hex) => {
+  return baseCieCam.fromXyz(bas.fromRgb(rgb.fromHex(nativeToHex(hex))));
+};
+const camToHex = (CAM) => {
+  return rgb.toHex(xyzToSrgb.toRgb(xyzToSrgb.toRgb(baseCieCam.toXyz(CAM))));
+};
+
+const jch2rgb = (jch: Vector3D) =>
+  xyz(baseCieCam.fromXyz({ J: jch[0], C: jch[1], h: jch[2] })).toRgb();
+
+const adaptivePalette = (
+  colors: Color[],
   { dark, light }: { light?: Color; dark?: Color }
 ) => {
   let { light, dark } = undefined || {};
 
-  const checkArg = (arg, def) => arg || def;
   light = checkArg(light, tailwindColors('gray')('100'));
 
   // First get the contrast between the passed in color and the backgrounds
   dark = checkArg(dark, tailwindColors('stone')('800'));
-  const lightContrast = getContrast(foregroundColor, light);
-  const darkContrast = getContrast(foregroundColor, dark);
-  const colorLuminance = getLuminance(foregroundColor);
+  const lightContrast = getContrast(colors, light);
+  const darkContrast = getContrast(colors, dark);
+  const colorLuminance = getLuminance(color);
+  const lightLuminance = getLuminance(light);
+  const darkLuminance = getLuminance(dark);
+  colors = colors.map((color) => toJch(color));
+};
+
+export const xyzToSrgb = xyz(workspace['sRGB'], illuminant['D65']);
+const xyzGamut = gamut(xyzToSrgb, baseCieCam);
+const hexToCam = (hex) => {
+  return baseCieCam.fromXyz(xyzToSrgb.fromRgb(rgb.fromHex(nativeToHex(hex))));
 };
