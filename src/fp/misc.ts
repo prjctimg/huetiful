@@ -1,3 +1,3 @@
 const checkArg = (arg, def) => arg || def;
-
-export { checkArg };
+const getModeChannel = (mode: string, key: number) => mode.charAt(key);
+export { checkArg, getModeChannel };

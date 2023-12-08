@@ -3,6 +3,7 @@
 import 'culori/css';
 import { formatHex8, formatHex, colorsNamed } from 'culori/fn';
 import { num2rgb } from './num2rgb';
+import { getModeChannel } from '../fp/misc';
 import type { Color } from '../paramTypes';
 
 /**
@@ -38,7 +39,6 @@ const toHex = (color: Color): Color => {
       // set mode to a substring which trims the string at an index that is the reslt of length - 3
       const modeChannels = mode.substring(mode.length - 3);
       // Gets the channel key from the passed in mode
-      const getModeChan = (mode: string, key: number) => mode.charAt(key);
 
       // Store the channels excluding alpha
       const channels = (
@@ -71,10 +71,12 @@ const toHex = (color: Color): Color => {
           // if our rgb values are [0,255] we normalize them to [0,1]
           // for Culori to make sense of the channel values else it defaults o white
           if (colorArr.some((ch) => Math.abs(ch) > 1)) {
-            colorArr.map((ch, key) => (src[getModeChan(mode, key)] = ch / 255));
+            colorArr.map(
+              (ch, key) => (src[getModeChannel(mode, key)] = ch / 255)
+            );
           }
         } else {
-          colorArr.map((ch, key) => (src[getModeChan(mode, key)] = ch));
+          colorArr.map((ch, key) => (src[getModeChannel(mode, key)] = ch));
         }
         return src;
       };
