@@ -144,6 +144,10 @@ export type SequentialScheme =
   | 'PuBuGn'
   | 'Viridis';
 
+/**
+ * @type
+ * @description Any recognizable color token.
+ */
 export type Color =
   | number
   | string
