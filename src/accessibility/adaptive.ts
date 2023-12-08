@@ -8,6 +8,7 @@ import { IViewingConditions, cam, cfs, gamut } from 'ciecam02-ts';
 import { rgb, workspace, illuminant, xyz, Vector3D } from 'ciebase-ts';
 import { toHex as nativeToHex } from '../converters/toHex';
 import { checkArg } from '../fp/misc';
+import { hexToCam } from './hexToCam';
 
 // This module will make use of contrast ratio to create adaptive palettes
 
@@ -70,7 +71,7 @@ const polynomial = (x: number) => {
 };
 // Pass viewing conditions
 
-const baseCieCam = cam(
+export const baseCieCam = cam(
   {
     whitePoint: illuminant.D65,
     adaptingLuminance: 40,
@@ -116,13 +117,6 @@ const toJch = (
 export const xyzToSrgb = (color: Vector3D) =>
   xyz(workspace['sRGB'], illuminant['D65']).toRgb(color);
 const xyzGamut = gamut(xyzToSrgb, baseCieCam);
-const hexToCam = (hex) => {
-  return baseCieCam.fromXyz(bas.fromRgb(rgb.fromHex(nativeToHex(hex))));
-};
-const camToHex = (CAM) => {
-  return rgb.toHex(xyzToSrgb.toRgb(xyzToSrgb.toRgb(baseCieCam.toXyz(CAM))));
-};
-
 const jch2rgb = (jch: Vector3D) =>
   xyz(baseCieCam.fromXyz({ J: jch[0], C: jch[1], h: jch[2] })).toRgb();
 
