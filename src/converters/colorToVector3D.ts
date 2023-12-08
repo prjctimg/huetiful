@@ -6,7 +6,7 @@ import { toHex } from './toHex';
 import 'culori/all';
 import { converter } from 'culori/fn';
 import { checkArg } from '../fp/misc';
-
+import { getModeChannel } from '../fp/misc';
 /**
  * @function
  * @description Returns an array of channel values in the mode color space.
@@ -19,9 +19,9 @@ const colorToVector3D = (color: Color, mode?: ColorSpaces) => {
   color = toHex(color);
 
   const colorObject: Color = converter(mode)(color);
-  const result: Vector3D = Object.keys(colorObject)
-    .filter((key) => key !== 'mode' && 'alpha')
-    .map((key) => colorObject[key]);
+  const result: Vector3D = Object.keys(colorObject).map(
+    (key) => colorObject[getModeChannel(mode, key)]
+  );
 
   return result;
 };
