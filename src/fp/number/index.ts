@@ -8,3 +8,4 @@ export { normalize } from './normalize';
 export { floorCeil } from './floorCeil';
 export { adjustHue } from './adjustHue';
 export { inRange } from './inRange';
+export { polynomial } from './polynomial';
