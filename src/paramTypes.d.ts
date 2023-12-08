@@ -1,11 +1,14 @@
+type Illuminant = 'A' | 'C' | 'D50' | 'D55';
+'D65' | 'D75';
+
 /**
  * @type
  * @description This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.
  */
-type AdaptivePalette = {
-  lightMode: Color[];
-  darkMode: Color[];
-  mode: Pick<HueColorSpaces, 'lch' | 'lab' | 'oklab' | 'oklch'>;
+type AdaptivePaletteOptions = {
+  backgroundColor?: { light?: Color; dark?: Color };
+  viewingConditions?: ViewingConditions;
+  colorBlind?: boolean;
 };
 
 /**
@@ -79,6 +82,13 @@ type Options = {
   maxLightness?: number;
 };
 
+type ViewingConditions = {
+  adaptingLuminance?: number;
+  backgroundLuminance?: number;
+  discounting?: boolean;
+  surroundType?: 'dim' | 'dark' | 'average';
+  whitePoint?: Illuminant;
+};
 export type PairedSchemeOptions = Omit<
   Options,
   'earthtones' | 'maxLightness' | 'minLightness'

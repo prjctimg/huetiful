@@ -3,21 +3,27 @@
 import { tailwindColors } from '../colors/tailwindColors';
 import { getLuminance } from '../getters_and_setters/luminance';
 import { getContrast } from '../getters_and_setters/contrast';
-import type { Color } from '../paramTypes';
-import { IViewingConditions, cam, cfs, gamut } from 'ciecam02-ts';
-import { rgb, workspace, illuminant, xyz, Vector3D } from 'ciebase-ts';
-import { toHex as nativeToHex } from '../converters/toHex';
+import type { Color, AdaptivePaletteOptions } from '../paramTypes';
 import { checkArg } from '../fp/misc';
-import { hexToCam } from './hexToCam';
-
+import { baseCiecam } from '../converters/ciecam';
 // This module will make use of contrast ratio to create adaptive palettes
 
 // Things I need to understand first:
 // 1. What is adaptive color exactly
+// -> Adaptive color is meant to adjust to luminance changes in the surrounding colors (or simply background)
+
 // 2. What makes color adaptive
+// -> Being able to look perceptually similar between different themes or backgrounds. For example a certain color looks over saturated in a dark theme. We can change the color's luminance to compensate for this shortfall whilt maintaining the hue and saturation constraints in our design system.
+
 // 3. What is contrast and how does it affect adaptive color
+// -> Contrast is the perceived difference in color i.e the ability of one color to stand out from another. This allows colors to be readible on different backgrounds.
+
 // 4. What are the specifics of contrast ratio in relation to design elements
+// -> Contrast ratios allow us to define the contrast relationship between the colors we're working with. For example certain text must meet a minimum contrast ratio in order for it to be easily viewable to a wider userbase.
+
 // 5. What are the nuances of dark/light mode. How is the color corrected when we switch themes
+// -> Certain colors will diverge from our color system if we tune them up. For example yellow will turn dark yellow if we adjust it to meet WCAG requirements in light mode. Therefore such colors cannot be used for text.
+
 // 6. How can this be implemented in code
 
 // Providing a min luminance contrast ratio between text and background.
@@ -27,21 +33,12 @@ import { hexToCam } from './hexToCam';
 // {lightMode/darkMode:Color[]}
 
 // Possible params
-// 1. backgroundColor
-// 2. foregroundColor
-// Do I need constrains for the background
+// 1. backgroundColor -> The backgroundColor to compare against
+// 2. colors -> The colors to tune
+// 3. viewingConditions
 
 // First I need to declare some constants to serve as starting points
-////// Adapted from Adobe color
-
-// Convert the color to an optimized color space for creating background colors
-//
-
-// 1. I need a properly defined color object that has all the color properties I'll need for comparisons.
-
-// 2. Smooth scale function
-// - Points = A nested array of each colors channel value [[],[],[]]
-// -
+////// Approach was adapted from Adobe's Leonardo tool
 
 /////// Rough concept of adaptive color
 
@@ -66,64 +63,7 @@ import { hexToCam } from './hexToCam';
 
 // First convert cam to xyz then rgb
 
-const polynomial = (x: number) => {
-  return Math.sqrt(Math.sqrt((Math.pow(x, 2.25) + Math.pow(x, 4)) / 2));
-};
-// Pass viewing conditions
-
-export const baseCieCam = cam(
-  {
-    whitePoint: illuminant.D65,
-    adaptingLuminance: 40,
-    backgroundLuminance: 20,
-    surroundType: 'average',
-    discounting: false
-  },
-  cfs('JCh')
-);
-
-/**
- * @function
- * @description Converts any color to Jch. The color is converted to CAM then XYZ under the hood.
- * @param color Any recognizable color token
- * @param viewingConditions Optional parameters for specifying the viewing conditions.
- * @returns An array of the Jch channel values
- */
-const toJch = (
-  color: Color,
-  viewingConditions?: IViewingConditions
-): Vector3D => {
-  let {
-    whitePoint,
-    adaptingLuminance,
-    backgroundLuminance,
-    surroundType,
-    discounting
-  } = viewingConditions || {};
-
-  color = checkArg(color, '#000000');
-  whitePoint = checkArg(whitePoint, illuminant['D65']);
-  adaptingLuminance = checkArg(adaptingLuminance, 40);
-  backgroundLuminance = checkArg(backgroundLuminance, 20);
-  surroundType = checkArg(surroundType, 'average');
-  discounting = checkArg(discounting, false);
-
-  color = cam(viewingConditions, cfs('Jch')).toXyz(
-    hexToCam(nativeToHex(color))
-  );
-
-  return color;
-};
-export const xyzToSrgb = (color: Vector3D) =>
-  xyz(workspace['sRGB'], illuminant['D65']).toRgb(color);
-const xyzGamut = gamut(xyzToSrgb, baseCieCam);
-const jch2rgb = (jch: Vector3D) =>
-  xyz(baseCieCam.fromXyz({ J: jch[0], C: jch[1], h: jch[2] })).toRgb();
-
-const adaptivePalette = (
-  colors: Color[],
-  { dark, light }: { light?: Color; dark?: Color }
-) => {
+const adaptivePalette = (colors: Color[], options?: AdaptivePaletteOptions) => {
   let { light, dark } = undefined || {};
 
   light = checkArg(light, tailwindColors('gray')('100'));
@@ -136,10 +76,4 @@ const adaptivePalette = (
   const lightLuminance = getLuminance(light);
   const darkLuminance = getLuminance(dark);
   colors = colors.map((color) => toJch(color));
-};
-
-export const xyzToSrgb = xyz(workspace['sRGB'], illuminant['D65']);
-const xyzGamut = gamut(xyzToSrgb, baseCieCam);
-const hexToCam = (hex) => {
-  return baseCieCam.fromXyz(xyzToSrgb.fromRgb(rgb.fromHex(nativeToHex(hex))));
 };
