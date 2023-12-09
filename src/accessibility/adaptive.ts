@@ -64,16 +64,18 @@ import { baseCiecam } from '../converters/ciecam';
 // First convert cam to xyz then rgb
 
 const adaptivePalette = (colors: Color[], options?: AdaptivePaletteOptions) => {
-  let { light, dark } = undefined || {};
-
-  light = checkArg(light, tailwindColors('gray')('100'));
-
-  // First get the contrast between the passed in color and the backgrounds
-  dark = checkArg(dark, tailwindColors('stone')('800'));
-  const lightContrast = getContrast(colors, light);
-  const darkContrast = getContrast(colors, dark);
-  const colorLuminance = getLuminance(color);
-  const lightLuminance = getLuminance(light);
-  const darkLuminance = getLuminance(dark);
-  colors = colors.map((color) => toJch(color));
+  // return customMystery;
 };
+
+//   let { light, dark } = undefined || {};
+// let  = options
+//   light = checkArg(light, tailwindColors('gray')('100'));
+
+//   // First get the contrast between the passed in color and the backgrounds
+//   dark = checkArg(dark, tailwindColors('stone')('800'));
+//   const lightContrast = getContrast(colors, light);
+//   const darkContrast = getContrast(colors, dark);
+//   const colorLuminance = getLuminance(color);
+//   const lightLuminance = getLuminance(light);
+//   const darkLuminance = getLuminance(dark);
+//   colors = colors.map((color) => toJch(color));

@@ -7,9 +7,9 @@ import { Color } from '../paramTypes';
 
 // Pass viewing conditions
 
-export const baseCieCam = cam(
+const baseCieCam = cam(
   {
-    whitePoint: illuminant.D65,
+    whitePoint: illuminant['D65'],
     adaptingLuminance: 40,
     backgroundLuminance: 20,
     surroundType: 'average',
@@ -44,4 +44,4 @@ const camToColor = (CAM: IJchProps) => {
   return rgb.toHex(xyzConverter.toRgb(baseCieCam.toXyz(CAM)));
 };
 
-export { colorToCam, camToColor };
+export { colorToCam, camToColor, baseCieCam };
