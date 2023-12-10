@@ -1,10 +1,10 @@
 // @ts-nocheck
 
-import 'culori/css';
-import { formatHex8, formatHex, colorsNamed } from 'culori/fn';
-import { num2rgb } from './num2rgb';
-import { getModeChannel } from '../fp/misc';
-import type { Color } from '../paramTypes';
+import "culori/css";
+import { formatHex8, formatHex, colorsNamed } from "culori/fn";
+import { num2rgb } from "./num2rgb";
+import { getModeChannel } from "../fp/misc";
+import type { Color } from "../types";
 
 /**
  *@function
@@ -26,7 +26,7 @@ const toHex = (color: Color): Color => {
 
   // if its of type string and not a CSS named color then its probably hex so we don't convert it
   if (
-    typeof color === 'string' &&
+    typeof color === "string" &&
     !Object.keys(colorsNamed).some((el) => el === color)
   ) {
     return color;
@@ -65,9 +65,9 @@ const toHex = (color: Color): Color => {
         mode: string,
         colorArr: [number, number, number]
       ): number[] => {
-        src['mode'] = mode;
+        src["mode"] = mode;
         // If our mode is rgb...
-        if (src['mode'] === 'rgb') {
+        if (src["mode"] === "rgb") {
           // if our rgb values are [0,255] we normalize them to [0,1]
           // for Culori to make sense of the channel values else it defaults o white
           if (colorArr.some((ch) => Math.abs(ch) > 1)) {
@@ -80,15 +80,15 @@ const toHex = (color: Color): Color => {
         }
         return src;
       };
-      src['alpha'] = color[4] || 1;
+      src["alpha"] = color[4] || 1;
       src = channelMapper(src, modeChannels, channels(src, color));
-      src = (src['alpha'] < 1 && formatHex8(src)) || formatHex(src);
+      src = (src["alpha"] < 1 && formatHex8(src)) || formatHex(src);
     }
     // if its a number use num2rgb
-    else if (typeof color === 'number') {
+    else if (typeof color === "number") {
       src = num2rgb(color, true);
     } else {
-      src = (color['alpha'] && formatHex8(color)) || formatHex(color);
+      src = (color["alpha"] && formatHex8(color)) || formatHex(color);
     }
     return src;
   }

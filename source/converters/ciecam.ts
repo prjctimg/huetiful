@@ -1,24 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-nocheck
-import { rgb, illuminant, xyz, workspace, Vector3D } from 'ciebase-ts';
-import { cfs, cam, IJchProps } from 'ciecam02-ts';
-import { toHex as nativeToHex } from './toHex';
-import { Color } from '../paramTypes';
+import { rgb, illuminant, xyz, workspace, Vector3D } from "ciebase-ts";
+import { cfs, cam, IJchProps } from "ciecam02-ts";
+import { toHex as nativeToHex } from "./toHex";
+import { Color } from "../types";
 
 // Pass viewing conditions
 
 const baseCieCam = cam(
   {
-    whitePoint: illuminant['D65'],
+    whitePoint: illuminant["D65"],
     adaptingLuminance: 40,
     backgroundLuminance: 20,
-    surroundType: 'average',
-    discounting: false
+    surroundType: "average",
+    discounting: false,
   },
-  cfs('JCh')
+  cfs("JCh")
 );
 
-const xyzConverter = xyz(workspace['WideGamutRGB'], illuminant['D65']);
+const xyzConverter = xyz(workspace["WideGamutRGB"], illuminant["D65"]);
 
 // this func takes output from hexToCAM
 

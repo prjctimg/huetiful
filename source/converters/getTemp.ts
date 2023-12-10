@@ -4,10 +4,10 @@
  **/
 
 //  @ts-nocheck
-import { useMode, modeLrgb } from 'culori/fn';
-import { temp2Color } from './temp2Color.ts';
-import type { Color } from '../paramTypes.js';
-import { toHex } from './toHex.ts';
+import { useMode, modeLrgb } from "culori/fn";
+import { temp2Color } from "./temp2Color.ts";
+import type { Color } from "../types.js";
+import { toHex } from "./toHex.ts";
 
 /**
  * @description Returns the temperature value in Kelvins of the passed in color.
@@ -28,8 +28,8 @@ const getTemp = (color: Color): number => {
   const toRgb = useMode(modeLrgb);
   const src = toRgb(toHex(color));
   // Allocate the red and blue channels to variables
-  const r: number = src['r'],
-    b: number = src['b'];
+  const r: number = src["r"],
+    b: number = src["b"];
   let minTemp = 1000;
   let maxTemp = 40000;
   const eps = 0.4;
@@ -37,7 +37,7 @@ const getTemp = (color: Color): number => {
   while (maxTemp - minTemp > eps) {
     temp = (maxTemp + minTemp) * 0.5;
     const rgb = temp2Color(temp, false);
-    if (rgb['b'] / rgb['r'] >= b / r) {
+    if (rgb["b"] / rgb["r"] >= b / r) {
       maxTemp = temp;
     } else {
       minTemp = temp;

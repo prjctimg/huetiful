@@ -1,8 +1,8 @@
 //@ts-nocheck
 
-import { useMode, modeRgb } from 'culori/fn';
-import { toHex } from './toHex.ts';
-import type { Color } from '../paramTypes';
+import { useMode, modeRgb } from "culori/fn";
+import { toHex } from "./toHex.ts";
+import type { Color } from "../types";
 
 /**
  * @function
@@ -21,7 +21,7 @@ const rgb2num = (color: Color): number => {
   const toRgb = useMode(modeRgb);
   const rgb: Color = toRgb(toHex(color));
 
-  return ((255 * rgb['r']) << 16) + ((255 * rgb['g']) << 8) + 255 * rgb['b'];
+  return ((255 * rgb["r"]) << 16) + ((255 * rgb["g"]) << 8) + 255 * rgb["b"];
 };
 
 export { rgb2num };

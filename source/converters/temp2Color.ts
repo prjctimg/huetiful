@@ -4,7 +4,7 @@
 //ported from chroma-js
 
 import { toHex } from './toHex';
-import type { Color } from '../paramTypes';
+import type { Color } from '../types';
 /**
  * @function
  * @description Converts the temperature value (in Kelvins) to an RGB color.

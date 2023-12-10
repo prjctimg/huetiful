@@ -1,8 +1,8 @@
 //@ts-nocheck
 
-import 'culori/css';
-import type { Color } from '../paramTypes';
-import { toHex } from './toHex.ts';
+import "culori/css";
+import type { Color } from "../types";
+import { toHex } from "./toHex.ts";
 // If the value is a floating point then we treat the decimal value as the opacity of the color.
 
 // If the value passedin is a float then the decimal is treated as opacity
@@ -21,7 +21,7 @@ console.log(num2rgb(900, true))
 // #000384
  */
 const num2rgb = (num: number, hex = false): Color => {
-  if (typeof num === 'number' && num >= 0 && num <= 0xffffff) {
+  if (typeof num === "number" && num >= 0 && num <= 0xffffff) {
     const r = num >> 16;
     const g = (num >> 8) & 0xff;
     const b = num & 0xff;
@@ -30,7 +30,7 @@ const num2rgb = (num: number, hex = false): Color => {
       r: r / 255,
       g: g / 255,
       b: b / 255,
-      mode: 'rgb'
+      mode: "rgb",
     };
 
     if (hex) {
@@ -39,7 +39,7 @@ const num2rgb = (num: number, hex = false): Color => {
       return output;
     }
   } else {
-    throw Error('unknown num color: ' + num);
+    throw Error("unknown num color: " + num);
   }
 };
 
