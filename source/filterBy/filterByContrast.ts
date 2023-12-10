@@ -2,7 +2,7 @@
 import { filteredArr } from '../fp/array/filteredArr.ts';
 import { wcagContrast } from 'culori/fn';
 
-import type { Color, Factor } from '../paramTypes';
+import type { Color, Factor } from '../types';
 import { toHex } from '../converters/toHex.ts';
 
 /**

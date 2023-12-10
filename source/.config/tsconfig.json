@@ -13,6 +13,6 @@
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
     "declarationDir": "./types",
-    "rootDir":"../"
+    "rootDir":".."
   }
 }

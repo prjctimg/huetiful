@@ -1,7 +1,6 @@
-import { filteredArr } from '../fp/array/filteredArr.ts';
-import { Color } from '../paramTypes';
-import { getLuminance } from '../getters_and_setters/luminance.ts';
-import type { Factor } from '../paramTypes';
+import { filteredArr } from "../fp/array/filteredArr.ts";
+import { getLuminance } from "../getters_and_setters/luminance.ts";
+import type { Factor, Color } from "../types";
 /**
  *  @function
  * @description Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
@@ -38,7 +37,7 @@ const filterByLuminance = (
 ): Color[] => {
   // Formatting color tokens to parseable type
   // Create an object that has the luminance and name of color as properties.
-  const factor: Factor = 'luminance';
+  const factor: Factor = "luminance";
   const cb = getLuminance;
 
   return filteredArr(factor, cb)(colors, startLuminance, endLuminance);
