@@ -8,9 +8,7 @@ import { sortedArr } from "../fp/array/sortedArr.ts";
 
 // I must test if the passed in mode has a chroma/saturation channel. Should I use RegExp  ?
 
-// The callback to invoke per color in the passed in collection.
-// The subtrahend is each color in the collection
-//This means that the color object with the smallest chroma value is the  nearest chroma.
+// Use jch by default
 // First check which value is greater and then act accordingly. Refactor hue.ts so that it returns negative
 const chromaDiff =
   (color: Color, colorSpace: HueColorSpaces | string) =>

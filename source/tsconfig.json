@@ -1,6 +1,6 @@
 {
   "include": [
-    "../index.ts"
+    "./index.ts"
   ],
   "compilerOptions": {
     "allowImportingTsExtensions": true,
@@ -13,6 +13,6 @@
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
     "declarationDir": "./types",
-    "rootDir":".."
+   // "rootDir":"../"
   }
 }

@@ -9,6 +9,8 @@ import type { Color, HueColorSpaces, Factor } from "../types";
 
 const { abs } = Math;
 
+// Use jch by default
+
 const factor: Factor = "hue";
 const mode = (colorSpace: HueColorSpaces): string => `${colorSpace || "lch"}.h`;
 // The hue value of our color which we are using for comparison

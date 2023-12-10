@@ -42,12 +42,12 @@ let sample = [
 ];
 
 
-console.log(isCool(sample[7]));
+console.log(isCool(sample[2]));
 // false
 
 console.log(map(sample, isCool));
 
-// [ true,  false, truee]
+// [ true,  false, true]
 
 
 
@@ -74,7 +74,7 @@ let sample = [
 
 
 
-console.log(isWarm(sample[7]));
+console.log(isWarm(sample[2]));
 //true
 
 console.log(map(sample, isWarm));

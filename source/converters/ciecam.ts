@@ -4,6 +4,7 @@ import { rgb, illuminant, xyz, workspace, Vector3D } from "ciebase-ts";
 import { cfs, cam, IJchProps } from "ciecam02-ts";
 import { toHex as nativeToHex } from "./toHex";
 import { Color } from "../types";
+import { normalize } from "../fp";
 
 // Pass viewing conditions
 
@@ -17,7 +18,7 @@ const baseCieCam = cam(
   },
   cfs("JCh")
 );
-
+const normalizeJch = (color) => normalize();
 const xyzConverter = xyz(workspace["WideGamutRGB"], illuminant["D65"]);
 
 // this func takes output from hexToCAM
