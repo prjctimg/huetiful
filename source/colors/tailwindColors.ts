@@ -1,7 +1,7 @@
 //@ts-nocheck
 
 import tailwindHues from '../color-maps/swatches/tailwind.ts';
-import type { HueMap, ScaleValues } from '../paramTypes';
+import type { HueMap, ScaleValues } from '../types';
 
 /**
  * @function

@@ -1,9 +1,9 @@
 //@ts-nocheck
-import { getChannel } from '../getters_and_setters/get.ts';
-import hueTempMap from '../color-maps/samples/hueTemperature.ts';
-import { isAchromatic } from './achromatic.ts';
-import { customFindKey } from '../fp/object/customFindKey.ts';
-import type { Color } from '../paramTypes';
+import { getChannel } from "../getters_and_setters/get.ts";
+import hueTempMap from "../color-maps/samples/hueTemperature.ts";
+import { isAchromatic } from "./achromatic.ts";
+import { customFindKey } from "../fp/object/customFindKey.ts";
+import type { Color } from "../types";
 
 /**
  * @function
@@ -24,15 +24,15 @@ console.log(overtone("blue"))
 // false
  */
 const overtone = (color: Color): string | boolean => {
-  const factor = getChannel('lch.h')(color);
+  const factor = getChannel("lch.h")(color);
   let hue = customFindKey(hueTempMap, factor);
 
   // We check if the color can be found in the defined ranges
 
   if (isAchromatic(color)) {
-    return 'gray';
+    return "gray";
   } else if (/-/.test(hue)) {
-    hue = hue.split('-');
+    hue = hue.split("-");
     return hue[1];
   } else {
     return false;

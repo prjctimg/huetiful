@@ -1,11 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-nocheck
-import { tailwindColors } from '../colors/tailwindColors';
-import { getLuminance } from '../getters_and_setters/luminance';
-import { getContrast } from '../getters_and_setters/contrast';
-import type { Color, AdaptivePaletteOptions } from '../paramTypes';
-import { checkArg } from '../fp/misc';
-import { baseCiecam } from '../converters/ciecam';
+import type { Color, AdaptivePaletteOptions } from "../types";
 // This module will make use of contrast ratio to create adaptive palettes
 
 // Things I need to understand first:

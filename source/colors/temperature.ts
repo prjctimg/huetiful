@@ -1,16 +1,16 @@
 //@ts-nocheck
 
-import { getChannel } from '../getters_and_setters/get.ts';
-import hueTempMap from '../color-maps/samples/hueTemperature.ts';
-import { getTemp } from '../converters/getTemp.ts';
-import { floorCeil } from '../fp/number/floorCeil.ts';
-import { inRange } from '../fp/number/inRange.ts';
-import { min, max } from '../fp/array/min_max.ts';
-import { customConcat } from '../fp/object/customConcat.ts';
-import { customFindKey } from '../fp/object/customFindKey.ts';
-import type { Color } from '../paramTypes';
+import { getChannel } from "../getters_and_setters/get.ts";
+import hueTempMap from "../color-maps/samples/hueTemperature.ts";
+import { getTemp } from "../converters/getTemp.ts";
+import { floorCeil } from "../fp/number/floorCeil.ts";
+import { inRange } from "../fp/number/inRange.ts";
+import { min, max } from "../fp/array/min_max.ts";
+import { customConcat } from "../fp/object/customConcat.ts";
+import { customFindKey } from "../fp/object/customFindKey.ts";
+import type { Color } from "../types";
 
-const predicate = (factor: number, temp: 'warm' | 'cool'): boolean => {
+const predicate = (factor: number, temp: "warm" | "cool"): boolean => {
   const hueKeys = Object.keys(hueTempMap);
   if (
     hueKeys.some((val) =>
@@ -54,9 +54,9 @@ console.log(map(sample, isCool));
  */
 const isCool = (color: Color): boolean => {
   // First we need to get the hue value which we'll pass to the predicate
-  const factor = getChannel('lch.h')(color);
+  const factor = getChannel("lch.h")(color);
 
-  return predicate(factor, 'cool');
+  return predicate(factor, "cool");
 };
 
 /**
@@ -84,9 +84,9 @@ console.log(map(sample, isWarm));
 
  */
 const isWarm = (color: Color): boolean => {
-  const factor = getChannel('lch.h')(color);
+  const factor = getChannel("lch.h")(color);
 
-  return predicate(factor, 'cool');
+  return predicate(factor, "cool");
 };
 
 /**
@@ -106,7 +106,7 @@ console.log(maxTemp("b2c3f1"))
  */
 const maxTemp = (color: Color): number => {
   // Get the hue value of the color
-  const factor = getChannel('lch.h')(color);
+  const factor = getChannel("lch.h")(color);
 
   // Then  we check to see in what hue family it is and check the highest hue value for that family
   const hue: string = customFindKey(hueTempMap, factor);
@@ -116,10 +116,10 @@ const maxTemp = (color: Color): number => {
   const maxHue: number = max(...customConcat(hueTempMap[hue]));
 
   const result = getTemp({
-    l: getChannel('lch.l')(color),
-    c: getChannel('lch.c')(color),
+    l: getChannel("lch.l")(color),
+    c: getChannel("lch.c")(color),
     h: maxHue,
-    mode: 'lch'
+    mode: "lch",
   });
 
   return result;
@@ -144,7 +144,7 @@ console.log(minTemp("b2c3f1"))
 const minTemp = (color: Color): number => {
   // Get the hue value of the color
   // eslint-disable-next-line prefer-const
-  let factor = getChannel('lch.h')(color);
+  let factor = getChannel("lch.h")(color);
 
   // Then  we check to see in what hue family it is and check the highest hue value for that family
   const hue: string = customFindKey(hueTempMap, factor);
@@ -154,10 +154,10 @@ const minTemp = (color: Color): number => {
   // Get accurate hue start/ends in HSL
 
   const result = getTemp({
-    l: getChannel('lch.l')(color),
-    c: getChannel('lch.c')(color),
+    l: getChannel("lch.l")(color),
+    c: getChannel("lch.c")(color),
     h: minHue,
-    mode: 'lch'
+    mode: "lch",
   });
 
   return result;
