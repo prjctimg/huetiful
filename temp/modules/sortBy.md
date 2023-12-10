@@ -1,0 +1,453 @@
+[huetiful-js](../README.md) / sortBy
+
+# Module: sortBy
+
+## Table of contents
+
+### Functions
+
+- [sortByContrast](sortBy.md#sortbycontrast)
+- [sortByDistance](sortBy.md#sortbydistance)
+- [sortByHue](sortBy.md#sortbyhue)
+- [sortByLightness](sortBy.md#sortbylightness)
+- [sortByLuminance](sortBy.md#sortbyluminance)
+- [sortBySaturation](sortBy.md#sortbysaturation)
+- [sortByTemp](sortBy.md#sortbytemp)
+
+## Functions
+
+### sortByContrast
+
+▸ **sortByContrast**(`colors`, `against`, `order`): [`Color`](paramTypes.md#color)[]
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
+| `against` | [`Color`](paramTypes.md#color) | - |
+| `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+
+#### Returns
+
+[`Color`](paramTypes.md#color)[]
+
+An array of the sorted color values.
+
+**`Function`**
+
+**`Description`**
+
+Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
+
+**`Example`**
+
+```ts
+import { sortByContrast } from 'huetiful-js'
+
+let sample = ['purple', 'green', 'red', 'brown']
+console.log(sortByContrast(sample, 'yellow'))
+// [ 'red', 'green', 'brown', 'purple' ]
+
+console.log(sortByContrast(sample, 'yellow', 'desc'))
+// [ 'purple', 'brown', 'green', 'red' ]
+```
+
+#### Defined in
+
+sortBy/sortByContrast.ts:25
+
+___
+
+### sortByDistance
+
+▸ **sortByDistance**(`colors`, `against`, `order?`, `mode?`, `weights?`): [`Color`](paramTypes.md#color)[]
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort. |
+| `against` | [`Color`](paramTypes.md#color) | The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array. |
+| `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+| `mode?` | [`ColorSpaces`](paramTypes.md#colorspaces) | The color space to calculate the distance in . |
+| `weights?` | [`number`, `number`, `number`, `number`] | The weighting values to pass to the Euclidean function. Default is [1,1,1,0]. |
+
+#### Returns
+
+[`Color`](paramTypes.md#color)[]
+
+An array of the sorted color values.
+
+**`Function`**
+
+**`Description`**
+
+Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is compared against a color which is used for comparison for all the colors in the array.
+
+**`Example`**
+
+```ts
+import { sortByDistance } from 'huetiful-js'
+
+let sample = ['purple', 'green', 'red', 'brown']
+console.log(
+ sortByDistance(sample, 'yellow', 'asc', {
+   mode: 'lch',
+ })
+)
+
+// [ 'brown', 'red', 'green', 'purple' ]
+
+let sample = ['purple', 'green', 'red', 'brown']
+console.log(
+ sortByDistance(sample, 'yellow', 'asc', {
+   mode: 'lch',
+ })
+)
+
+// [ 'green', 'brown', 'red', 'purple' ]
+```
+
+#### Defined in
+
+sortBy/sortByDistance.ts:37
+
+___
+
+### sortByHue
+
+▸ **sortByHue**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
+| `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+
+#### Returns
+
+[`Color`](paramTypes.md#color)[]
+
+An array of the sorted color values.
+
+**`Function`**
+
+**`Description`**
+
+Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
+
+**`Example`**
+
+```ts
+let sample = [
+ "#00ffdc",
+ "#00ff78",
+ "#00c000",
+ "#007e00",
+ "#164100",
+ "#ffff00",
+ "#310000",
+ "#3e0000",
+ "#4e0000",
+ "#600000",
+ "#720000",
+];
+
+let sorted = sortByHue(sample);
+console.log(sorted)
+// [
+ '#310000', '#3e0000',
+ '#4e0000', '#600000',
+ '#720000', '#ffff00',
+ '#164100', '#00c000',
+ '#007e00', '#00ff78',
+ '#00ffdc'
+]
+
+let sortedDescending = sortByHue(sample,'desc');
+console.log(sortedDescending)
+// [
+ '#00ffdc', '#00ff78',
+ '#007e00', '#00c000',
+ '#164100', '#ffff00',
+ '#720000', '#600000',
+ '#4e0000', '#3e0000',
+ '#310000'
+]
+```
+
+#### Defined in
+
+sortBy/sortByHue.ts:55
+
+___
+
+### sortByLightness
+
+▸ **sortByLightness**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
+| `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+
+#### Returns
+
+[`Color`](paramTypes.md#color)[]
+
+An array of the sorted color values.
+
+**`Function`**
+
+**`Description`**
+
+Sorts colors according to their lightness.
+
+**`Example`**
+
+```ts
+import { sortByLightness } from "huetiful-js";
+
+let sample = [
+ "#00ffdc",
+ "#00ff78",
+ "#00c000",
+ "#007e00",
+ "#164100",
+ "#ffff00",
+ "#310000",
+ "#3e0000",
+ "#4e0000",
+ "#600000",
+ "#720000",
+]
+
+sortByLightness(sample)
+
+// [
+ '#310000', '#3e0000',
+ '#4e0000', '#600000',
+ '#720000', '#164100',
+ '#007e00', '#00c000',
+ '#00ff78', '#00ffdc',
+ '#ffff00'
+]
+
+sortByLightness(sample,'desc')
+
+// [
+ '#ffff00', '#00ffdc',
+ '#00ff78', '#00c000',
+ '#007e00', '#164100',
+ '#720000', '#600000',
+ '#4e0000', '#3e0000',
+ '#310000'
+]
+```
+
+#### Defined in
+
+sortBy/sortByLightness.ts:54
+
+___
+
+### sortByLuminance
+
+▸ **sortByLuminance**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
+| `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+
+#### Returns
+
+[`Color`](paramTypes.md#color)[]
+
+An array of the sorted color values.
+
+**`Function`**
+
+**`Description`**
+
+Sorts colors according to the relative brightness as defined by WCAG definition.
+
+**`Example`**
+
+```ts
+import { sortByLuminance } from "huetiful-js";
+let sample = [
+ "#00ffdc",
+ "#00ff78",
+ "#00c000",
+ "#007e00",
+ "#164100",
+ "#ffff00",
+ "#310000",
+ "#3e0000",
+ "#4e0000",
+ "#600000",
+ "#720000",
+];
+
+let sorted = sortByLuminance(sample)
+console.log(sorted)
+// [
+ '#310000', '#3e0000',
+ '#4e0000', '#600000',
+ '#720000', '#164100',
+ '#007e00', '#00c000',
+ '#00ff78', '#00ffdc',
+ '#ffff00'
+]
+
+let sortedDescending = sortByLuminance(sample, "desc");
+console.log(sortedDescending)
+// [
+ '#ffff00', '#00ffdc',
+ '#00ff78', '#00c000',
+ '#007e00', '#164100',
+ '#720000', '#600000',
+ '#4e0000', '#3e0000',
+ '#310000'
+]
+```
+
+#### Defined in
+
+sortBy/sortByLuminance.ts:55
+
+___
+
+### sortBySaturation
+
+▸ **sortBySaturation**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
+| `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+
+#### Returns
+
+[`Color`](paramTypes.md#color)[]
+
+An array of the sorted color values.
+
+**`Function`**
+
+**`Description`**
+
+Sorts colors according to their saturation.
+
+**`Example`**
+
+```ts
+import { sortBySaturation } from "huetiful-js";
+let sample = [
+ "#00ffdc",
+ "#00ff78",
+ "#00c000",
+ "#007e00",
+ "#164100",
+ "#ffff00",
+ "#310000",
+ "#3e0000",
+ "#4e0000",
+ "#600000",
+ "#720000",
+];
+
+let sorted = sortBySaturation(sample);
+console.log(sorted);
+
+// [
+ '#310000', '#3e0000',
+ '#164100', '#4e0000',
+ '#600000', '#720000',
+ '#00ffdc', '#007e00',
+ '#00ff78', '#00c000',
+ '#ffff00'
+]
+
+let sortedDescending = sortBySaturation(sample,'desc');
+console.log(sortedDescending)
+// [
+ '#ffff00', '#00c000',
+ '#00ff78', '#007e00',
+ '#00ffdc', '#720000',
+ '#600000', '#4e0000',
+ '#164100', '#3e0000',
+ '#310000'
+]
+```
+
+#### Defined in
+
+sortBy/sortBySaturation.ts:53
+
+___
+
+### sortByTemp
+
+▸ **sortByTemp**(`colors`, `order`): [`Color`](paramTypes.md#color)[]
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `colors` | [`Color`](paramTypes.md#color)[] | The array of colors to sort |
+| `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+
+#### Returns
+
+[`Color`](paramTypes.md#color)[]
+
+An array of the sorted color values.
+
+**`Function`**
+
+**`Description`**
+
+Sorts colors according to temperature value in Kelvins according to the temperatu. Achromatic colors may return awkward results.
+
+**`See`**
+
+Based on Neil Bartlett's implementation https://github.com/neilbartlett/color-temperature
+
+**`Example`**
+
+```ts
+import { sortByTemp } from 'huetiful-js'
+let sample = [
+ '#00ffdc',
+ '#00ff78',
+ '#00c000',
+ '#007e00',
+ '#164100',
+ '#ffff00',
+ '#310000',
+ '#3e0000',
+ '#4e0000',
+ '#600000',
+ '#720000',
+]
+
+let sorted = sortByTemp(sample)
+console.log(sorted)
+
+let sortedDescending = sortByTemp(sample, 'desc')
+console.log(sortedDescending)
+```
+
+#### Defined in
+
+sortBy/sortByTemp.ts:36
