@@ -7,6 +7,8 @@ import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 
+// Add fork and star CTAs
+// Add version tag
 const Header = () => {
   return (
     <header className="flex items-center justify-between py-10">

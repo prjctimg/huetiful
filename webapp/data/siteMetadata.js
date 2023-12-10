@@ -3,12 +3,12 @@ const siteMetadata = {
   title: 'huetiful',
   author: 'Dean Tarisai',
   headerTitle: '',
-  description: 'JavaScript library for simple color manipulations based on Culori.js',
+  description: "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
   language: 'en-us',
-  theme: 'system', // system, dark or light
+  theme: 'dark', // system, dark or light
   siteUrl: 'https://prjctimg.github.io/huetiful',
   siteRepo: 'https://github.com/prjctimg/huetiful',
-  siteLogo: '/static/images/deantarisai-logo.png',
+  siteLogo: '/static/images/huetiful-logo.png',
   image: '/static/images/slowly-avatar.png',
   socialBanner: '/static/images/deantarisai-banner.png',
   email: 'prjctimg@outlook.com',
@@ -28,11 +28,11 @@ const siteMetadata = {
     googleAnalyticsId: '', // e.g. UA-000000-2 or G-XXXXXXX
     posthogAnalyticsId: '', // posthog.init e.g. phc_5yXvArzvRdqtZIsHkEm3Fkkhm3d0bEYUXCaFISzqPSQ
   },
-  newsletter: {
+ // newsletter: {
     // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
     // Please add your .env file and modify it according to your selection
-    provider: 'mailchimp',
-  },
+ //   provider: 'mailchimp',
+//  },
   comment: {
     // If you want to use a commenting system other than giscus you have to add it to the
     // content security policy in the `next.config.js` file.
@@ -52,7 +52,7 @@ const siteMetadata = {
       metadata: '0',
       // theme example: light, dark, dark_dimmed, dark_high_contrast
       // transparent_dark, preferred_color_scheme, custom
-      theme: 'light',
+      theme: 'dark',
       // Place the comment box above the comments. options: bottom, top
       inputPosition: 'bottom',
       // Choose the language giscus will be displayed in. options: en, es, zh-CN, zh-TW, ko, ja etc

@@ -1,0 +1,11 @@
+{
+  "entryPoints": ["../**/index.ts", "../paramTypes.d.ts"],
+  "entryPointStrategy": "resolve",
+  "out": "../../webapp/data/temp",
+  "exclude": ["../color-maps"],
+  "tsconfig":"./tsconfig.json",
+  "plugin":["typedoc-plugin-markdown"],
+  "includeVersion":true,
+  "disableSources":true
+
+}

@@ -28,12 +28,12 @@
     "typescript": "^5.3.2"
   },
   "scripts": {
-    "docs": "npx typedoc --plugin typedoc-plugin-markdown  && rm -r docs  && mkdir docs && node docs.cjs && git add .",
-    "build": "rm -r dist && mkdir dist && node build.cjs",
+    "docs": "cd .config && npx typedoc  && cd .. && node ./.scripts/docs.cjs && rm -r ../webapp/data/temp && git add .",
+    "build": "rm -r lib && mkdir lib && node ./.scripts/build.cjs",
     "prepare": " npm run build && npm run types",
-    "types": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts",
-    "lint": "eslint . --ext .ts",
-    "format": "prettier --config .prettierrc.json \"src/**/*.ts\" --write"
+    "types": "dts-bundle-generator -o ./lib/index.d.ts ./index.ts",
+    "lint": "eslint .config/.eslintrc.json --ext .ts",
+    "format": "prettier --config .config/.prettierrc.json \"/**/*.ts\" --write"
   },
   "husky": {
     "hooks": {
@@ -42,11 +42,10 @@
     }
   },
   "files": [
-    "dist",
+    "lib",
     "README.md",
     "CONTRIBUTING.md",
-    "LICENSE.md",
-    "huetiful-logo.png"
+    "LICENSE.md"
   ],
   "repository": {
     "type": "git",

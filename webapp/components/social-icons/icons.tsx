@@ -1,3 +1,5 @@
+// Use react feather icons instead. A SIMPLE COMPONENT REDRESSING LOL
+
 import { SVGProps } from 'react'
 
 // Icons taken from: https://simpleicons.org/

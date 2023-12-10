@@ -4,6 +4,8 @@ interface Props {
   text: string
 }
 
+
+// Restyle tag 
 const Tag = ({ text }: Props) => {
   return (
     <Link

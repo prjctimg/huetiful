@@ -1,0 +1,91 @@
+---
+title: Converters
+date: '2023-11-22'
+draft: false
+summary: Functions for converting colors from different formats.
+layout: PostSimple
+canonicalUrl: https://huetiful-docs.vercel.app/api/converters
+---
+
+There a few converter functions in the library that can parse colors from different formats.
+
+The supported color formats are:
+
+- Arrays in the form of `[mode,number,number,number,number?]` .
+  The `mode` is the color space for example 'hsl' which we pass our channel values to. The fourth optional number value is the `alpha` or opacity channel which expects a value between [0,1], any value beyond this domain is normalized back to that range.
+
+- Any value of the type `Number` between 0 and 16,777,215. For example a binary number e.g `0x3af1d3`
+
+- Plain objects with channels as keys ,a required `mode` property and an optional alpha property. For example: `{ mode:'rgb', r:20, g:40, b:100, alpha:0.5 }` .
+
+- CSS named colors for example 'blue' or 'antiquewhite' .
+
+- And of course hexadecimal strings.
+
+
+[huetiful-js - v1.7.87](../README.md) / [Modules](../modules.md) / converters
+
+# Module::package: converters
+
+## Table of contents:scroll:
+
+### References
+
+- [baseCieCam](converters.md#baseciecam)
+- [camToColor](converters.md#camtocolor)
+- [colorToCam](converters.md#colortocam)
+- [getTemp](converters.md#gettemp)
+- [num2rgb](converters.md#num2rgb)
+- [rgb2num](converters.md#rgb2num)
+- [temp2Color](converters.md#temp2color)
+- [toHex](converters.md#tohex)
+
+## References
+
+### baseCieCam
+
+Re-exports [baseCieCam](index.md#baseciecam)
+
+___
+
+### camToColor
+
+Re-exports [camToColor](index.md#camtocolor)
+
+___
+
+### colorToCam
+
+Re-exports [colorToCam](index.md#colortocam)
+
+___
+
+### getTemp
+
+Re-exports [getTemp](index.md#gettemp)
+
+___
+
+### num2rgb
+
+Re-exports [num2rgb](index.md#num2rgb)
+
+___
+
+### rgb2num
+
+Re-exports [rgb2num](index.md#rgb2num)
+
+___
+
+### temp2Color
+
+Re-exports [temp2Color](index.md#temp2color)
+
+___
+
+### toHex
+
+Re-exports [toHex](index.md#tohex)
+
+

@@ -1,5 +1,6 @@
 'use client'
 
+// Use feather icons for the icon and add a css color transition
 import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 
