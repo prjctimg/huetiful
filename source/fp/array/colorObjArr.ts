@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { colorObj } from "../object/colorObj";
-import { Factor, Color } from "../../types";
+import { Factor, ColorToken } from "../../types";
 
 /*
  * @function
@@ -14,7 +14,7 @@ import { Factor, Color } from "../../types";
  */
 export const colorObjArr =
   (factor: Factor, callback) =>
-  (colors: Color[]): Array<{ factor: Factor; name: Color }> => {
+  (colors: ColorToken[]): Array<{ factor: Factor; name: ColorToken }> => {
     const cb = colorObj(factor, callback);
     return colors.map((color) => cb(color));
   };

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import type { Color } from "../types";
+import type { ColorToken } from "../types";
 import { getChannel } from "../getters_and_setters/get.ts";
 
 /**
@@ -50,7 +50,7 @@ console.log(map(grays, isAchromatic));
 ]
 
  */
-const isAchromatic = (color: Color): boolean => {
+const isAchromatic = (color: ColorToken): boolean => {
   const cb = (mc: string) => getChannel(mc)(color);
 
   // Store the value of chroma and saturation channels.

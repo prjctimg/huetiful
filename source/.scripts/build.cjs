@@ -4,48 +4,48 @@
 //@ts-nocheck
 
 // eslint-disable-next-line no-undef
-var { build } = require('esbuild');
-var { dependencies } = require('./package.json');
+var { build } = require("esbuild");
+var { dependencies } = require("../package.json");
 
 const sharedConfig = {
-  entryPoints: ['.//index.ts'],
+  entryPoints: [".//index.ts"],
   bundle: true,
   minify: false,
-  minifySyntax: true
+  minifySyntax: true,
 };
 
 // commonJS import
 build({
-  format: 'cjs',
+  format: "cjs",
   ...sharedConfig,
-  entryPoints: ['.//index.ts'],
-  outfile: 'lib/index.cjs'
+  entryPoints: [".//index.ts"],
+  outfile: "./lib/index.cjs",
 });
 
 //Bundled ESM
 build({
   ...sharedConfig,
   external: Object.keys(dependencies),
-  format: 'esm',
-  outfile: 'lib/index.esm.mjs'
+  format: "esm",
+  outfile: "./lib/index.esm.mjs",
 });
 
 //Bundled IIFE
 build({
   ...sharedConfig,
-  platform: 'browser',
-  format: 'iife',
-  outfile: 'lib/index.umd.js',
-  globalName: 'huetiful',
-  minifySyntax: true
+  platform: "browser",
+  format: "iife",
+  outfile: "./lib/index.umd.js",
+  globalName: "huetiful",
+  minifySyntax: true,
 });
 
 build({
   ...sharedConfig,
-  platform: 'browser',
-  format: 'iife',
-  outfile: 'lib/index.umd.js',
-  globalName: 'huetiful',
+  platform: "browser",
+  format: "iife",
+  outfile: "../lib/index.umd.js",
+  globalName: "huetiful",
   minifySyntax: true,
-  minify: true
+  minify: true,
 });

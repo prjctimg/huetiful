@@ -1,5 +1,5 @@
 // @ts-nocheck
-import type { Factor, Color } from "../types";
+import type { Factor, ColorToken } from "../types";
 import { sortedArr } from "../fp/array/sortedArr.ts";
 import { getLuminance } from "../getters_and_setters/luminance.ts";
 
@@ -52,7 +52,10 @@ console.log(sortedDescending)
  
  */
 
-const sortByLuminance = (colors: Color[], order: "asc" | "desc"): Color[] => {
+const sortByLuminance = (
+  colors: ColorToken[],
+  order: "asc" | "desc"
+): ColorToken[] => {
   const factor: Factor = "luminance";
   const cb = getLuminance;
 

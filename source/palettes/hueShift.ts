@@ -3,7 +3,7 @@
 // Can we also lightnessMapper palette types to create hue shifted variants per each color in the palette ?
 
 import { easingSmoothstep, modeLch, samples, useMode } from "culori/fn";
-import type { Color, HueShiftOptions } from "../types";
+import type { ColorToken, HueShiftOptions } from "../types";
 import { adjustHue } from "../fp/number/adjustHue.ts";
 import { toHex } from "../converters/toHex.ts";
 import { checkArg } from "../fp/misc.ts";
@@ -36,7 +36,10 @@ console.log(hueShiftedPalette);
 ]
  */
 
-const hueShift = (color: Color, options: HueShiftOptions): Color[] => {
+const hueShift = (
+  color: ColorToken,
+  options: HueShiftOptions
+): ColorToken[] => {
   const toLch = useMode(modeLch);
   color = toLch(toHex(color));
 
@@ -51,7 +54,7 @@ const hueShift = (color: Color, options: HueShiftOptions): Color[] => {
   maxLightness = checkArg(maxLightness, 90);
   // Pass in default values if any of the opts is undefined
   const tValues = samples(iterations);
-  const palette: Color[] = [color];
+  const palette: ColorToken[] = [color];
 
   // Maximum number of iterations possible.
 

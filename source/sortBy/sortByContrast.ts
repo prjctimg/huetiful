@@ -1,5 +1,5 @@
 // @ts-nocheck
-import type { Factor, Color } from "../types";
+import type { Factor, ColorToken } from "../types";
 import { sortedArr } from "../fp/array/sortedArr.ts";
 import { wcagContrast } from "culori/fn";
 
@@ -23,12 +23,13 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
  */
 
 const sortByContrast = (
-  colors: Color[],
-  against: Color,
+  colors: ColorToken[],
+  against: ColorToken,
   order: "asc" | "desc"
-): Color[] => {
+): ColorToken[] => {
   const factor: Factor = "contrast";
-  const cb = (against: Color) => (color: Color) => wcagContrast(color, against);
+  const cb = (against: ColorToken) => (color: ColorToken) =>
+    wcagContrast(color, against);
   //Sorting the color array of object by the 'temp' property in the specified order.
 
   return sortedArr(factor, cb(against), order)(colors);

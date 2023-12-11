@@ -10,7 +10,7 @@ type ColorDistanceOptions = {
  * @description This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.
  */
 type AdaptivePaletteOptions = {
-  backgroundColor?: { light?: Color; dark?: Color };
+  backgroundColor?: { light?: ColorToken; dark?: ColorToken };
   viewingConditions?: ViewingConditions;
   colorBlind?: boolean;
 };
@@ -162,7 +162,7 @@ export type SequentialScheme =
  * @type
  * @description Any recognizable color token.
  */
-export type Color =
+export type ColorToken =
   | number
   | string
   | object
@@ -188,14 +188,14 @@ export type Factor =
 
 type Order = "asc" | "desc";
 
-type callback = (arg: Color, colorSpace?: HueColorSpaces) => number;
+type callback = (arg: ColorToken, colorSpace?: HueColorSpaces) => number;
 
 type FactorMapper = (
   factor: Factor,
   callback: callback,
   order?: Order,
   colorObj?: boolean
-) => (colors: Color[]) => Color[];
+) => (colors: ColorToken[]) => ColorToken[];
 
 export type ColorSpaces =
   | "a98"

@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { interpolate, wcagLuminance, useMode, modeRgb } from "culori/fn";
-import type { Color } from "../types.js";
+import type { ColorToken } from "../types.js";
 import { toHex } from "../converters/toHex.js";
 /** @alias
  * Gets the luminance value of that color as defined by WCAG.
@@ -13,7 +13,7 @@ import { toHex } from "../converters/toHex.js";
 console.log(getLuminance('#a1bd2f'))
 // 0.4417749513730954
  */
-const getLuminance = (color: Color): number => wcagLuminance(hex(color));
+const getLuminance = (color: ColorToken): number => wcagLuminance(hex(color));
 
 const { pow, abs } = Math;
 const toRgb = useMode(modeRgb);
@@ -32,7 +32,7 @@ let myColor = setLuminance('#a1bd2f', 0.5)
 console.log(getLuminance(myColor))
 // 0.4999999136285792
  */
-const setLuminance = (color: Color, lum: number): Color => {
+const setLuminance = (color: ColorToken, lum: number): ColorToken => {
   const white = "#ffffff",
     black = "#000000";
 
@@ -48,7 +48,7 @@ const setLuminance = (color: Color, lum: number): Color => {
 
     color = toRgb(hex(color));
 
-    const test = (low: Color, high: Color) => {
+    const test = (low: ColorToken, high: ColorToken) => {
       //Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
       const mid = interpolate([low, high])(0.5);
       const lm = wcagLuminance(mid);
@@ -64,7 +64,7 @@ const setLuminance = (color: Color, lum: number): Color => {
       }
     };
 
-    let rgb: Color;
+    let rgb: ColorToken;
     if (cur_lum > lum) {
       rgb = test(black, color);
     } else {
@@ -78,7 +78,7 @@ const setLuminance = (color: Color, lum: number): Color => {
   return rgb2luminance(color);
 };
 
-const rgb2luminance = (color: Color): number => {
+const rgb2luminance = (color: ColorToken): number => {
   color = toRgb(toHex(color));
 
   // relative luminance

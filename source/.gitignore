@@ -19,7 +19,7 @@ emoji.md
 
 # production
 /build
-/lib
+lib
 
 # misc
 .DS_Store

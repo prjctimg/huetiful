@@ -6,7 +6,7 @@
 //  @ts-nocheck
 import { useMode, modeLrgb } from "culori/fn";
 import { temp2Color } from "./temp2Color.ts";
-import type { Color } from "../types.js";
+import type { ColorToken } from "../types.js";
 import { toHex } from "./toHex.ts";
 
 /**
@@ -21,7 +21,7 @@ console.log(getTemp('#a1bd2f'))
 // 2542
  */
 
-const getTemp = (color: Color): number => {
+const getTemp = (color: ColorToken): number => {
   const { round } = Math;
   //Store the color in an object with the RGB channels normalized to [0,1]
   // Add a color obj for rgb using culori

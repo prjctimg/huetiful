@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Factor, Color, callback } from "../../types";
+import { Factor, ColorToken, callback } from "../../types";
 import { gt, gte, lt, lte } from "../number/comparison";
 import { inRange } from "../number/inRange";
 import { colorObjArr } from "./colorObjArr";
@@ -12,8 +12,8 @@ import { colorObjArr } from "./colorObjArr";
  */
 const filteredArr =
   (factor: Factor, cb?: callback) =>
-  (colors: Color[], start: number | string, end: number): Color[] => {
-    let result: Color[];
+  (colors: ColorToken[], start: number | string, end: number): ColorToken[] => {
+    let result: ColorToken[];
 
     if (typeof start === "number") {
       result = colorObjArr(
@@ -36,7 +36,9 @@ const filteredArr =
       const val = value.exec(start),
         op = reOperator.exec(start);
 
-      const mapFilter = (test: (x: number, y: number) => boolean): Color[] => {
+      const mapFilter = (
+        test: (x: number, y: number) => boolean
+      ): ColorToken[] => {
         return colorObjArr(
           factor,
           cb

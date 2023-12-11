@@ -1,6 +1,6 @@
 //@ts-nocheck
 import shades from "../color-maps/swatches/tailwind.ts";
-import type { HueMap, ScaleValues, Color } from "../types";
+import type { HueMap, ScaleValues, ColorToken } from "../types";
 
 /**
  * @function
@@ -41,7 +41,10 @@ let red100 = colors("red", 100);
 console.log(red100)
 // #fee2e2
  */
-const colors = (shade: keyof HueMap, val: ScaleValues): Color | Color[] => {
+const colors = (
+  shade: keyof HueMap,
+  val: ScaleValues
+): ColorToken | ColorToken[] => {
   const { keys } = Object;
   const defaultHue = "all";
   const hueKeys = keys(shades);

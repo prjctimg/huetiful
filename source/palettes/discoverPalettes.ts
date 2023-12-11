@@ -1,11 +1,11 @@
 // @ts-nocheck
 import { nearest, differenceEuclidean, useMode, modeLch } from "culori/fn";
-import { Color } from "../types";
+import { ColorToken } from "../types";
 import { base } from "./base.ts";
 import { toHex } from "../converters/toHex.ts";
 
 const { keys } = Object;
-const isColorEqual = (c1: Color, c2: Color): boolean => {
+const isColorEqual = (c1: ColorToken, c2: ColorToken): boolean => {
   return c1["h"] === c2["h"] && c1["l"] === c2["l"] && c1["c"] === c2["c"];
 };
 
@@ -37,9 +37,9 @@ console.log(discoverPalettes(sample, "tetradic"))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
  */
 const discoverPalettes = (
-  colors: Color[],
+  colors: ColorToken[],
   scheme: "analogous" | "triadic" | "tetradic" | "complementary"
-): Color[] | object => {
+): ColorToken[] | object => {
   const toLch = useMode(modeLch);
   colors = colors.map((color) => toLch("lch")(toHex(color)));
   const palettes = {};

@@ -1,7 +1,7 @@
 //@ts-nocheck
 
 import "culori/css";
-import type { Color } from "../types";
+import type { ColorToken } from "../types";
 import { toHex } from "./toHex.ts";
 // If the value is a floating point then we treat the decimal value as the opacity of the color.
 
@@ -20,7 +20,7 @@ import { toHex } from "./toHex.ts";
 console.log(num2rgb(900, true))
 // #000384
  */
-const num2rgb = (num: number, hex = false): Color => {
+const num2rgb = (num: number, hex = false): ColorToken => {
   if (typeof num === "number" && num >= 0 && num <= 0xffffff) {
     const r = num >> 16;
     const g = (num >> 8) & 0xff;

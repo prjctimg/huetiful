@@ -1,7 +1,7 @@
 // @ts-nocheck
 // This module contains minChroma,maxChroma,getFarthestChroma,getNearestChroma
 
-import { Color, HueColorSpaces, Factor } from "../types";
+import { ColorToken, HueColorSpaces, Factor } from "../types";
 import { getChannel } from "../getters_and_setters/get.ts";
 import { matchChromaChannel } from "../fp/string/matchChromaChannel.ts";
 import { sortedArr } from "../fp/array/sortedArr.ts";
@@ -11,8 +11,8 @@ import { sortedArr } from "../fp/array/sortedArr.ts";
 // Use jch by default
 // First check which value is greater and then act accordingly. Refactor hue.ts so that it returns negative
 const chromaDiff =
-  (color: Color, colorSpace: HueColorSpaces | string) =>
-  (subtrahend: Color) => {
+  (color: ColorToken, colorSpace: HueColorSpaces | string) =>
+  (subtrahend: ColorToken) => {
     const cs = matchChromaChannel(colorSpace);
 
     if (getChannel(cs)(color) < getChannel(cs)(subtrahend)) {
@@ -24,7 +24,7 @@ const chromaDiff =
 
 // If the predicate returns undefined or false on the chroma channel then it means that it is an achromatic color.
 // Callback func for the minHue and maxHue utils. The funny thing is that most of the code is similar with minor changes here and there
-const predicate = (colorSpace: HueColorSpaces) => (color: Color) =>
+const predicate = (colorSpace: HueColorSpaces) => (color: ColorToken) =>
   getChannel(matchChromaChannel(colorSpace))(color) || undefined;
 
 /**
@@ -45,8 +45,8 @@ console.log(getFarthestChroma('lime', sample, 'lch'))
 // 90.87480913244802
  */
 const getNearestChroma = (
-  color: Color,
-  colors: Color[],
+  color: ColorToken,
+  colors: ColorToken[],
   colorSpace?: HueColorSpaces
 ): number => {
   //  The factor being investigated.
@@ -82,8 +82,8 @@ console.log(getFarthestChroma('lime', sample, 'lch'))
  */
 
 const getFarthestChroma = (
-  color: Color,
-  colors: Color[],
+  color: ColorToken,
+  colors: ColorToken[],
   colorSpace?: HueColorSpaces
 ): number => {
   //  The factor being investigated.
@@ -117,21 +117,21 @@ console.log(minChroma(sample, 'lch'))
 // 22.45669293295522
  */
 const minChroma = (
-  colors: Color[],
+  colors: ColorToken[],
   colorSpace?: HueColorSpaces,
   colorObj = false
-): number | { factor: number; color: Color } => {
+): number | { factor: number; color: ColorToken } => {
   //  The factor being investigated.
 
   const factor: Factor = "saturation";
-  const result: Array<{ factor: number; name: Color }> = sortedArr(
+  const result: Array<{ factor: number; name: ColorToken }> = sortedArr(
     factor,
     predicate(colorSpace || "lch"),
     "asc",
     true
   )(colors).filter((el) => el[factor] !== undefined);
 
-  let value: number | { factor: number; name: Color };
+  let value: number | { factor: number; name: ColorToken };
 
   if (result.length > 0) {
     if (colorObj) {
@@ -161,21 +161,21 @@ console.log(maxChroma(sample, 'lch'))
 // 67.22120855010492
  */
 const maxChroma = (
-  colors: Color[],
+  colors: ColorToken[],
   colorSpace?: HueColorSpaces,
   colorObj = false
-): number | { factor: number; color: Color } => {
+): number | { factor: number; color: ColorToken } => {
   //  The factor being investigated.
 
   const factor: Factor = "saturation";
-  const result: Array<{ factor: number; name: Color }> = sortedArr(
+  const result: Array<{ factor: number; name: ColorToken }> = sortedArr(
     factor,
     predicate(colorSpace || "lch"),
     "desc",
     true
   )(colors).filter((el) => el[factor] !== undefined);
 
-  let value: { factor: number; name: Color } | number;
+  let value: { factor: number; name: ColorToken } | number;
 
   if (result.length > 0) {
     if (colorObj) {

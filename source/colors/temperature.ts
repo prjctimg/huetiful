@@ -8,7 +8,7 @@ import { inRange } from "../fp/number/inRange.ts";
 import { min, max } from "../fp/array/min_max.ts";
 import { customConcat } from "../fp/object/customConcat.ts";
 import { customFindKey } from "../fp/object/customFindKey.ts";
-import type { Color } from "../types";
+import type { ColorToken } from "../types";
 
 const predicate = (factor: number, temp: "warm" | "cool"): boolean => {
   const hueKeys = Object.keys(hueTempMap);
@@ -52,7 +52,7 @@ console.log(map(sample, isCool));
 
 
  */
-const isCool = (color: Color): boolean => {
+const isCool = (color: ColorToken): boolean => {
   // First we need to get the hue value which we'll pass to the predicate
   const factor = getChannel("lch.h")(color);
 
@@ -83,7 +83,7 @@ console.log(map(sample, isWarm));
 // [ false, true,  false]
 
  */
-const isWarm = (color: Color): boolean => {
+const isWarm = (color: ColorToken): boolean => {
   const factor = getChannel("lch.h")(color);
 
   return predicate(factor, "cool");
@@ -104,7 +104,7 @@ const isWarm = (color: Color): boolean => {
 console.log(maxTemp("b2c3f1"))
 // 9570
  */
-const maxTemp = (color: Color): number => {
+const maxTemp = (color: ColorToken): number => {
   // Get the hue value of the color
   const factor = getChannel("lch.h")(color);
 
@@ -141,7 +141,7 @@ console.log(minTemp("b2c3f1"))
 // 20107
  * 
  */
-const minTemp = (color: Color): number => {
+const minTemp = (color: ColorToken): number => {
   // Get the hue value of the color
   // eslint-disable-next-line prefer-const
   let factor = getChannel("lch.h")(color);

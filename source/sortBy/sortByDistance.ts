@@ -1,7 +1,7 @@
 // @ts-nocheck
 import type {
   Factor,
-  Color,
+  ColorToken,
   ColorSpaces,
   ColorDistanceOptions,
 } from "../types";
@@ -43,17 +43,17 @@ console.log(
  */
 
 const sortByDistance = (
-  colors: Color[],
-  against: Color,
+  colors: ColorToken[],
+  against: ColorToken,
   order?: "asc" | "desc",
   options?: ColorDistanceOptions
-): Color[] => {
+): ColorToken[] => {
   let { mode, weights } = options || {};
 
   mode = checkArg(mode, "lchuv");
   weights = checkArg(weights, [1, 1, 1, 0]);
   const factor: Factor = "distance";
-  const cb = (against: Color, mode: ColorSpaces) => (color: Color) =>
+  const cb = (against: ColorToken, mode: ColorSpaces) => (color: ColorToken) =>
     differenceEuclidean(mode, weights)(against, color);
   //Sorting the color array of object by the 'distance' property in the specified order.
 

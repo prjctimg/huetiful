@@ -2,7 +2,7 @@
 import { getChannel } from "../getters_and_setters/get.ts";
 import { sortedArr } from "../fp/array/sortedArr.ts";
 
-import type { Factor, Color } from "../types";
+import type { Factor, ColorToken } from "../types";
 
 /**
  * @function
@@ -53,10 +53,10 @@ console.log(sortedDescending)
 
 // Todo: Add the mode param so that users can select mode to work with. The default is lch
 const sortByHue = (
-  colors: Color[],
+  colors: ColorToken[],
   order: "asc" | "desc",
   mode = "jch"
-): Color[] => {
+): ColorToken[] => {
   const factor: Factor = "hue";
   const reHue = /h/gi.test(mode);
   if (reHue) {

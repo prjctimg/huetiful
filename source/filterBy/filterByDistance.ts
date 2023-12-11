@@ -2,7 +2,7 @@
 
 import { filteredArr } from "../fp/array/filteredArr.ts";
 import { differenceEuclidean } from "culori/fn";
-import type { Color, Factor, ColorSpaces } from "../types";
+import type { ColorToken, Factor, ColorSpaces } from "../types";
 import { toHex } from "../converters/toHex.ts";
 /**
  *  @function
@@ -32,19 +32,19 @@ console.log(filterByDistance(sample, "yellow", 0.1))
  */
 
 const filterByDistance = (
-  colors: Color[],
-  against: Color,
+  colors: ColorToken[],
+  against: ColorToken,
   startDistance = 0.05,
   endDistance?: number,
   mode?: ColorSpaces,
   weights?: [number, number, number, number]
-): Color[] => {
+): ColorToken[] => {
   // Formatting color tokens to parseable type
   // How do I get the distance
 
   // Create an object that has the distance and name of color as properties.
   const factor: Factor = "distance";
-  const cb = (against: Color, mode: ColorSpaces) => (color: Color) =>
+  const cb = (against: ColorToken, mode: ColorSpaces) => (color: ColorToken) =>
     differenceEuclidean(
       mode || "lch",
       weights || [1, 1, 1, 0]

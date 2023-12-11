@@ -1,4 +1,4 @@
-import { Factor, Color, callback, Order } from "../../types";
+import { Factor, ColorToken, callback, Order } from "../../types";
 import { colorObjArr } from "./colorObjArr";
 import { customSort } from "./customSort";
 
@@ -10,8 +10,8 @@ import { customSort } from "./customSort";
  */
 const sortedArr =
   (factor: Factor, callback: callback, order: Order, colorObj = false) =>
-  (colors: Color[]) => {
-    const results: Color[] | Array<{ factor: number; name: Color }> =
+  (colors: ColorToken[]) => {
+    const results: ColorToken[] | Array<{ factor: number; name: ColorToken }> =
       colorObjArr(factor, callback)(colors);
     //  (colorObj && color) || color['name'];
     // Assign the value of colorObj to results variable

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Color } from "../../types";
+import { ColorToken } from "../../types";
 
 /**
  * Performs arithmetic operations on colors by passing the arithmetic operator from the value if it is a string. It requires the src variable to be declared in the global scope of the invoking func.
@@ -7,7 +7,11 @@ import { Color } from "../../types";
  * @param channel The channel to set.
  * @param value The value to apply.
  */
-function expressionParser(src: Color, channel: string, value: string): number {
+function expressionParser(
+  src: ColorToken,
+  channel: string,
+  value: string
+): number {
   // regExp to match arithmetic operator and the value
   const reOperator = /^(\*|\+|\-|\/)/;
   const reValue = /[0-9]*\.?[0-9]+/;

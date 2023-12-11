@@ -1,5 +1,5 @@
 // @ts-nocheck
-import type { Factor, Color } from "../types";
+import type { Factor, ColorToken } from "../types";
 import { getChannel } from "../getters_and_setters/get.ts";
 import { sortedArr } from "../fp/array/sortedArr.ts";
 
@@ -51,7 +51,10 @@ sortByLightness(sample,'desc')
 
  */
 // For lightness use a different color space
-const sortByLightness = (colors: Color[], order: "asc" | "desc"): Color[] => {
+const sortByLightness = (
+  colors: ColorToken[],
+  order: "asc" | "desc"
+): ColorToken[] => {
   const factor: Factor = "lightness";
   const cb = getChannel("lch.l");
   //Sorting the color array of object by the 'temp' property in the specified order.

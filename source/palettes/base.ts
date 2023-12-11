@@ -1,13 +1,13 @@
 //@ts-nocheck
 import { useMode, modeLch, easingSmoothstep, samples } from "culori/fn";
 
-import type { Color } from "../types";
+import type { ColorToken } from "../types";
 import { adjustHue } from "../fp/number/adjustHue.ts";
 import { random } from "../fp/number/random.ts";
 import { toHex } from "../converters/toHex.ts";
 import { checkArg } from "../fp/misc.ts";
 // Globals
-const cb = (iterations: number, distance: number, color: Color) =>
+const cb = (iterations: number, distance: number, color: ColorToken) =>
   samples(iterations).map((val) =>
     adjustHue((color["h"] + distance) * (val * easingSmoothstep(val)))
   );
@@ -28,7 +28,7 @@ console.log(base("triadic")("#a1bd2f", true))
 
 const base =
   (scheme: "analogous" | "triadic" | "tetradic" | "complementary") =>
-  (color: Color, easingFunc: (t: number) => number): Color[] => {
+  (color: ColorToken, easingFunc: (t: number) => number): ColorToken[] => {
     scheme = scheme.toLowerCase();
     easingFunc = checkArg(easingFunc, easingSmoothstep);
     // Converting the color to lch

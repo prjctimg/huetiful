@@ -3,7 +3,7 @@ import { getChannel } from "../getters_and_setters/get.ts";
 import hueTempMap from "../color-maps/samples/hueTemperature.ts";
 import { isAchromatic } from "./achromatic.ts";
 import { customFindKey } from "../fp/object/customFindKey.ts";
-import type { Color } from "../types";
+import type { ColorToken } from "../types";
 
 /**
  * @function
@@ -23,7 +23,7 @@ console.log(overtone("cyan"))
 console.log(overtone("blue"))
 // false
  */
-const overtone = (color: Color): string | boolean => {
+const overtone = (color: ColorToken): string | boolean => {
   const factor = getChannel("lch.h")(color);
   let hue = customFindKey(hueTempMap, factor);
 

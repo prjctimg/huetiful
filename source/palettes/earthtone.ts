@@ -10,7 +10,7 @@ import {
   interpolatorSplineBasisClosed,
   easingSmootherstep,
 } from "culori/fn";
-import type { Color, EarthtoneOptions } from "../types";
+import type { ColorToken, EarthtoneOptions } from "../types";
 import { toHex } from "../converters/toHex.ts";
 import { checkArg } from "../fp/misc.ts";
 //Add an overrides object with interpolation function and
@@ -31,7 +31,10 @@ console.log(earthtone("pink",{earthtones:'clay',iterations:5 }))
 
  */
 
-const earthtone = (color: Color, options: EarthtoneOptions): Color[] => {
+const earthtone = (
+  color: ColorToken,
+  options: EarthtoneOptions
+): ColorToken[] => {
   let {
     chromaInterpolator,
     hueFixup,
@@ -66,7 +69,7 @@ const earthtone = (color: Color, options: EarthtoneOptions): Color[] => {
     dark: "#352a21",
   };
 
-  const base: Color = tones[earthtones.toLowerCase()];
+  const base: ColorToken = tones[earthtones.toLowerCase()];
 
   const f = interpolate([base, toHex(color), easingFunc], "lch", {
     h: {

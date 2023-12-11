@@ -1,6 +1,6 @@
 import { filteredArr } from "../fp/array/filteredArr.ts";
 import { getChannel } from "../getters_and_setters/get.ts";
-import { Color, Factor } from "../types";
+import { ColorToken, Factor } from "../types";
 /**
  *  @function
  * @description Returns an array of colors in the specified lightness range. The range is between 0 and 100.
@@ -31,10 +31,10 @@ filterByLightness(sample, 20, 80)
  */
 
 const filterByLightness = (
-  colors: Color[],
+  colors: ColorToken[],
   startLightness = 5,
   endLightness = 100
-): Color[] => {
+): ColorToken[] => {
   // Formatting color tokens to parseable type
   // Create an object that has the lightness and name of color as properties.
   const factor: Factor = "lightness";
