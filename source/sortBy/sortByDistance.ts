@@ -3,6 +3,8 @@ import type { Factor, Color, ColorSpaces } from "../types";
 import { sortedArr } from "../fp/array/sortedArr.ts";
 import { differenceEuclidean } from "culori/fn";
 
+// Use lchuv65
+
 /**
  * @function
  * @description Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is compared against a color which is used for comparison for all the colors in the array.

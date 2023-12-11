@@ -5,7 +5,7 @@ import { sortedArr } from "../fp/array/sortedArr.ts";
 
 /**
  * @function
- * @description Sorts colors according to temperature value in Kelvins according to the temperatu. Achromatic colors may return awkward results.
+ * @description Sorts colors according to temperature value in Kelvins according to the temperatu. Achromatic colors may return awkward results.Please note that color temperature makes sense when measuring color that is nearer to white.
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @returns  An array of the sorted color values.

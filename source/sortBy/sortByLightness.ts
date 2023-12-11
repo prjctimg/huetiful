@@ -50,7 +50,7 @@ sortByLightness(sample,'desc')
 ]
 
  */
-
+// For lightness use a different color space
 const sortByLightness = (colors: Color[], order: "asc" | "desc"): Color[] => {
   const factor: Factor = "lightness";
   const cb = getChannel("lch.l");

@@ -51,7 +51,7 @@ console.log(sortedDescending)
 
  */
 
-// Todo: Add the mode param so that users can select mode to work with. The default is
+// Todo: Add the mode param so that users can select mode to work with. The default is lch
 const sortByHue = (colors: Color[], order: "asc" | "desc"): Color[] => {
   const factor: Factor = "hue";
   const cb = getChannel("lch.h");
