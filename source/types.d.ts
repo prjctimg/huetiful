@@ -1,5 +1,10 @@
 type Illuminant = "A" | "C" | "D50" | "D55" | "D65" | "D75";
 
+type ColorDistanceOptions = {
+  weights?: [number, number, number, number];
+  mode?: ColorSpaces;
+};
+
 /**
  * @type
  * @description This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.

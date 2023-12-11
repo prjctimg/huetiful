@@ -52,6 +52,9 @@
     "url": "https://github.com/prjctimg/huetiful.git"
   },
   "keywords": [
+    "d65",
+    "lchuv",
+    "jch",
     "lch",
     "palettes",
     "color blind",
