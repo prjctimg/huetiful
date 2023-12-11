@@ -52,12 +52,21 @@ console.log(sortedDescending)
  */
 
 // Todo: Add the mode param so that users can select mode to work with. The default is lch
-const sortByHue = (colors: Color[], order: "asc" | "desc"): Color[] => {
+const sortByHue = (
+  colors: Color[],
+  order: "asc" | "desc",
+  mode = "jch"
+): Color[] => {
   const factor: Factor = "hue";
-  const cb = getChannel("lch.h");
-  //Sorting the color array of object by the 'temp' property in the specified order.
+  const reHue = /h/gi.test(mode);
+  if (reHue) {
+    const cb = getChannel(`${mode}.h`);
+    //Sorting the color array of object by the 'temp' property in the specified order.
 
-  return sortedArr(factor, cb, order)(colors);
+    return sortedArr(factor, cb, order)(colors);
+  } else {
+    throw Error(`The color space ${mode} has no hue channel try 'lch' instead`);
+  }
 };
 
 export { sortByHue };
