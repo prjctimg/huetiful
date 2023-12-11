@@ -1,12 +1,12 @@
 // @ts-nocheck
-import { nearest, differenceEuclidean, useMode, modeLch } from 'culori/fn';
-import { Color } from '../paramTypes';
-import { base } from './base.ts';
-import { toHex } from '../converters/toHex.ts';
+import { nearest, differenceEuclidean, useMode, modeLch } from "culori/fn";
+import { Color } from "../types";
+import { base } from "./base.ts";
+import { toHex } from "../converters/toHex.ts";
 
 const { keys } = Object;
 const isColorEqual = (c1: Color, c2: Color): boolean => {
-  return c1['h'] === c2['h'] && c1['l'] === c2['l'] && c1['c'] === c2['c'];
+  return c1["h"] === c2["h"] && c1["l"] === c2["l"] && c1["c"] === c2["c"];
 };
 
 /**
@@ -38,12 +38,12 @@ console.log(discoverPalettes(sample, "tetradic"))
  */
 const discoverPalettes = (
   colors: Color[],
-  scheme: 'analogous' | 'triadic' | 'tetradic' | 'complementary'
+  scheme: "analogous" | "triadic" | "tetradic" | "complementary"
 ): Color[] | object => {
   const toLch = useMode(modeLch);
-  colors = colors.map((color) => toLch('lch')(toHex(color)));
+  colors = colors.map((color) => toLch("lch")(toHex(color)));
   const palettes = {};
-  const schemes = ['analogous', 'triadic', 'tetradic', 'complementary'];
+  const schemes = ["analogous", "triadic", "tetradic", "complementary"];
   const targetPalettes = {};
   for (const color of colors) {
     schemes.forEach((s) => (targetPalettes[s] = base(s)(color, false)));
@@ -60,10 +60,10 @@ const discoverPalettes = (
 
         const match = nearest(
           availableColors,
-          differenceEuclidean('lch')
+          differenceEuclidean("lch")
         )(targetColor)[0];
 
-        variance += differenceEuclidean('lch')(targetColor, match);
+        variance += differenceEuclidean("lch")(targetColor, match);
 
         palette.push(match);
       }
@@ -74,9 +74,9 @@ const discoverPalettes = (
     }
   }
 
-  if (typeof scheme === 'string') {
+  if (typeof scheme === "string") {
     return palettes[scheme.toLowerCase()];
-  } else if (typeof scheme === 'undefined') {
+  } else if (typeof scheme === "undefined") {
     return palettes;
   } else {
     throw Error(

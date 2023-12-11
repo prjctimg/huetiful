@@ -1,7 +1,7 @@
 //@ts-nocheck
-import { getTemp } from '../converters/getTemp.ts';
-import type { Color, Factor } from '../paramTypes';
-import { sortedArr } from '../fp/array/sortedArr.ts';
+import { getTemp } from "../converters/getTemp.ts";
+import type { Color, Factor } from "../types";
+import { sortedArr } from "../fp/array/sortedArr.ts";
 
 /**
  * @function
@@ -33,9 +33,9 @@ let sortedDescending = sortByTemp(sample, 'desc')
 console.log(sortedDescending)
  */
 
-const sortByTemp = (colors: Color[], order: 'asc' | 'desc'): Color[] => {
+const sortByTemp = (colors: Color[], order: "asc" | "desc"): Color[] => {
   // Purifying the data.All colors are converted to the specified mode to ensure unbiased results.
-  const factor: Factor = 'temp';
+  const factor: Factor = "temp";
   const cb = getTemp;
   //Sorting the color array of object by the 'temp' property in the specified order.
 

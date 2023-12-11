@@ -1,13 +1,13 @@
 // @ts-nocheck
-import hueTempMap from '../color-maps/samples/hueTemperature.ts';
-import { getChannel } from '../getters_and_setters/get.ts';
-import { min, max } from '../fp/array/min_max.ts';
-import { customConcat } from '../fp/object/customConcat.ts';
-import { inRange } from '../fp/number/inRange.ts';
-import { adjustHue } from '../fp/number/adjustHue.ts';
-import { setChannel } from '../getters_and_setters/set.ts';
-import type { Color } from '../paramTypes';
-import { toHex } from '../converters/toHex.ts';
+import hueTempMap from "../color-maps/samples/hueTemperature.ts";
+import { getChannel } from "../getters_and_setters/get.ts";
+import { min, max } from "../fp/array/min_max.ts";
+import { customConcat } from "../fp/object/customConcat.ts";
+import { inRange } from "../fp/number/inRange.ts";
+import { adjustHue } from "../fp/number/adjustHue.ts";
+import { setChannel } from "../getters_and_setters/set.ts";
+import type { Color } from "../types";
+import { toHex } from "../converters/toHex.ts";
 
 const { keys } = Object;
 const hueKeys = keys(hueTempMap);
@@ -32,7 +32,7 @@ const getComplimentaryHue = (
   color: Color,
   colorObj = false
 ): { hue: string; color: Color } | Color => {
-  const modeChannel = 'lch.h';
+  const modeChannel = "lch.h";
   // A complementary hue is 180 deg from the hue value of the passed in color
 
   const complementaryHue: number = adjustHue(
@@ -58,20 +58,20 @@ const getComplimentaryHue = (
         return hue;
       }
     })
-    .filter((val) => typeof val === 'string')
+    .filter((val) => typeof val === "string")
     .toString();
 
   let result: Color | { hue: string; color: Color };
   if (complementaryHue) {
     result = {
       hue: hueFamily,
-      color: toHex(setChannel(modeChannel)(color, complementaryHue))
+      color: toHex(setChannel(modeChannel)(color, complementaryHue)),
     };
   } else {
-    result = { hue: 'gray', color: color };
+    result = { hue: "gray", color: color };
   }
 
-  return (colorObj && result) || result['color'];
+  return (colorObj && result) || result["color"];
 };
 
 export { getComplimentaryHue };

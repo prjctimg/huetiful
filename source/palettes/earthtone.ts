@@ -8,11 +8,11 @@ import {
   fixupHueShorter,
   interpolatorSplineMonotone,
   interpolatorSplineBasisClosed,
-  easingSmootherstep
-} from 'culori/fn';
-import type { Color, EarthtoneOptions } from '../paramTypes';
-import { toHex } from '../converters/toHex.ts';
-import { checkArg } from '../fp/misc.ts';
+  easingSmootherstep,
+} from "culori/fn";
+import type { Color, EarthtoneOptions } from "../types";
+import { toHex } from "../converters/toHex.ts";
+import { checkArg } from "../fp/misc.ts";
 //Add an overrides object with interpolation function and
 
 /**
@@ -39,7 +39,7 @@ const earthtone = (color: Color, options: EarthtoneOptions): Color[] => {
     lightnessInterpolator,
     iterations,
     earthtones,
-    easingFunc
+    easingFunc,
   } = options || {};
 
   easingFunc = checkArg(easingFunc, easingSmootherstep);
@@ -52,33 +52,33 @@ const earthtone = (color: Color, options: EarthtoneOptions): Color[] => {
   );
   iterations = checkArg(iterations, 1);
 
-  earthtones = checkArg(earthtones, 'dark');
+  earthtones = checkArg(earthtones, "dark");
   const tones = {
-    'light-gray': '#e5e5e5',
-    silver: '#f5f5f5',
-    sand: '#c2b2a4',
-    tupe: '#a79e8a',
-    mahogany: '#958c7c',
-    'brick-red': '#7d7065',
-    clay: '#6a5c52',
-    cocoa: '#584a3e',
-    'dark-brown': '#473b31',
-    dark: '#352a21'
+    "light-gray": "#e5e5e5",
+    silver: "#f5f5f5",
+    sand: "#c2b2a4",
+    tupe: "#a79e8a",
+    mahogany: "#958c7c",
+    "brick-red": "#7d7065",
+    clay: "#6a5c52",
+    cocoa: "#584a3e",
+    "dark-brown": "#473b31",
+    dark: "#352a21",
   };
 
   const base: Color = tones[earthtones.toLowerCase()];
 
-  const f = interpolate([base, toHex(color), easingFunc], 'lch', {
+  const f = interpolate([base, toHex(color), easingFunc], "lch", {
     h: {
       fixup: hueFixup,
-      use: hueInterpolator
+      use: hueInterpolator,
     },
     c: {
-      use: chromaInterpolator
+      use: chromaInterpolator,
     },
     l: {
-      use: lightnessInterpolator
-    }
+      use: lightnessInterpolator,
+    },
   });
 
   if (iterations === 1) {

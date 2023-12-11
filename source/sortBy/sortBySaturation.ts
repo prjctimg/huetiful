@@ -1,7 +1,7 @@
 // @ts-nocheck
-import type { Factor, Color } from '../paramTypes';
-import { getChannel } from '../getters_and_setters/get.ts';
-import { sortedArr } from '../fp/array/sortedArr.ts';
+import type { Factor, Color } from "../types";
+import { getChannel } from "../getters_and_setters/get.ts";
+import { sortedArr } from "../fp/array/sortedArr.ts";
 
 /**
  * @function
@@ -50,9 +50,9 @@ console.log(sortedDescending)
 
  */
 
-const sortBySaturation = (colors: Color[], order: 'asc' | 'desc'): Color[] => {
-  const factor: Factor = 'saturation';
-  const cb = getChannel('lch.c');
+const sortBySaturation = (colors: Color[], order: "asc" | "desc"): Color[] => {
+  const factor: Factor = "saturation";
+  const cb = getChannel("lch.c");
   //Sorting the color array of object by the 'temp' property in the specified order.
 
   return sortedArr(factor, cb, order)(colors);
