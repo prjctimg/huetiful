@@ -1,4 +1,4 @@
-import { HueColorSpaces } from '../../paramTypes';
+import { HueColorSpaces } from "../../types";
 
 /**
  * @function

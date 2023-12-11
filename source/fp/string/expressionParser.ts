@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Color } from '../../paramTypes';
+import { Color } from "../../types";
 
 /**
  * Performs arithmetic operations on colors by passing the arithmetic operator from the value if it is a string. It requires the src variable to be declared in the global scope of the invoking func.
@@ -19,21 +19,21 @@ function expressionParser(src: Color, channel: string, value: string): number {
   const cb = (amt: string) => parseFloat(amt);
 
   // Match an operator against the first truthy case and perform the relevant math operation
-  switch (sign['0']) {
-    case '+':
-      src[channel] += +cb(amt['0']);
+  switch (sign["0"]) {
+    case "+":
+      src[channel] += +cb(amt["0"]);
       break;
-    case '-':
-      src[channel] -= +cb(amt['0']);
+    case "-":
+      src[channel] -= +cb(amt["0"]);
       break;
-    case '*':
-      src[channel] *= +cb(amt['0']);
+    case "*":
+      src[channel] *= +cb(amt["0"]);
       break;
-    case '/':
-      src[channel] /= +cb(amt['0']);
+    case "/":
+      src[channel] /= +cb(amt["0"]);
       break;
     default:
-      src[channel] = +cb(amt['0']);
+      src[channel] = +cb(amt["0"]);
   }
   return src;
 }

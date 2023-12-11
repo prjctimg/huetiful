@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import { colorObj } from '../object/colorObj';
-import { Factor, Color } from '../../paramTypes';
+import { colorObj } from "../object/colorObj";
+import { Factor, Color } from "../../types";
 
 /*
  * @function

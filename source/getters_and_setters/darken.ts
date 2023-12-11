@@ -1,8 +1,8 @@
 //@ts-nocheck
-import { easingSmootherstep, modeLab, useMode } from 'culori/fn';
-import { toHex } from '../converters/toHex';
-import { expressionParser } from '../fp/string/expressionParser';
-import type { Color } from '../paramTypes';
+import { easingSmootherstep, modeLab, useMode } from "culori/fn";
+import { toHex } from "../converters/toHex";
+import { expressionParser } from "../fp/string/expressionParser";
+import type { Color } from "../types";
 // ported froma chroma-js brighten
 const toLab = useMode(modeLab);
 /**
@@ -18,13 +18,13 @@ const toLab = useMode(modeLab);
  */
 const darken = (color: Color, value: number | string): Color => {
   const Kn = 18;
-  const channel = 'l';
+  const channel = "l";
 
   const src = toLab(toHex(color));
 
-  if (typeof value === 'number') {
-    src['l'] -= Kn * easingSmootherstep(value / 100);
-  } else if (typeof value === 'string') {
+  if (typeof value === "number") {
+    src["l"] -= Kn * easingSmootherstep(value / 100);
+  } else if (typeof value === "string") {
     expressionParser(src, channel, value || 1);
   }
 
@@ -40,12 +40,12 @@ const darken = (color: Color, value: number | string): Color => {
  */
 const brighten = (color: Color, value: number | string): Color => {
   const src = toLab(toHex(color));
-  const channel = 'l';
+  const channel = "l";
 
-  if (typeof value == 'number') {
+  if (typeof value == "number") {
     value = Math.abs(value);
-    src['l'] -= Kn * easingSmootherstep(value / 100);
-  } else if (typeof value == 'string') {
+    src["l"] -= Kn * easingSmootherstep(value / 100);
+  } else if (typeof value == "string") {
     expressionParser(src, channel, value);
   }
 
