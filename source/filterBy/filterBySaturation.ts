@@ -1,7 +1,13 @@
 // @ts-nocheck
 import { getChannel } from "../getters_and_setters/get.ts";
 import { filteredArr } from "../fp/array/filteredArr.ts";
-import type { Color, Factor } from "../types";
+import type { Color, Factor, HueColorSpaces } from "../types";
+import {
+  getSaturationRange,
+  matchChromaChannel,
+  normalize,
+} from "../fp/index.ts";
+import modeRanges from "../color-maps/samples/modeRanges.ts";
 
 /**
  *  @function
@@ -9,6 +15,7 @@ import type { Color, Factor } from "../types";
  * @param  colors The array of colors to filter.
  * @param  startSaturation The minimum end of the saturation range.
  * @param  endSaturation The maximum end of the saturation range.
+ * @param mode The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.
  * @returns Array of filtered colors.
  * @example
  * import { filterByContrast } from 'huetiful-js'
@@ -34,17 +41,30 @@ console.log(filterByContrast(sample, 'green', '>=3'))
 const filterBySaturation = (
   colors: Color[],
   startSaturation = 0.05,
-  endSaturation = 1
+  endSaturation = 1,
+  mode?: HueColorSpaces
 ): Color[] => {
   const factor: Factor = "saturation";
-  const cb = getChannel("lch.c");
 
-  //  Normalize saturation ranges later
-  return filteredArr(factor, cb)(
-    colors,
-    100 * startSaturation,
-    100 * endSaturation
-  );
+  if (matchChromaChannel(mode)) {
+    const chromaChannel = matchChromaChannel(mode);
+    const cb = getChannel(`${mode}.${chromaChannel}`);
+
+    const saturationRange = getSaturationRange(modeRanges, mode, chromaChannel);
+    const start = saturationRange[0];
+    const end = saturationRange[1];
+    const reDigits = /([0-9])/.exec(startSaturation)["0"];
+    //  Normalize saturation ranges later
+    return filteredArr(factor, cb)(
+      colors,
+      normalize(reDigits, start, end),
+      normalize(endSaturation, start, end)
+    );
+  } else {
+    throw Error(
+      `The passed in color space ${mode} has no chroma or saturation channel. Try 'jch'`
+    );
+  }
 };
 
 export { filterBySaturation };

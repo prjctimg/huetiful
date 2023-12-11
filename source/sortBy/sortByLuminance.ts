@@ -55,6 +55,7 @@ console.log(sortedDescending)
 const sortByLuminance = (colors: Color[], order: "asc" | "desc"): Color[] => {
   const factor: Factor = "luminance";
   const cb = getLuminance;
+
   //Sorting the color array of object by the 'temp' property in the specified order.
 
   return sortedArr(factor, cb, order)(colors);
