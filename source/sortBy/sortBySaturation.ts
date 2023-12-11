@@ -1,13 +1,15 @@
 // @ts-nocheck
-import type { Factor, Color } from "../types";
+import type { Factor, Color, HueColorSpaces } from "../types";
 import { getChannel } from "../getters_and_setters/get.ts";
 import { sortedArr } from "../fp/array/sortedArr.ts";
+import { checkArg, matchChromaChannel } from "../fp/index.ts";
 
 /**
  * @function
  * @description Sorts colors according to their saturation.
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
+ * @param mode The mode color space to compute the saturation value in. The default is jch .
  * @returns An array of the sorted color values.
  * @example
  * import { sortBySaturation } from "huetiful-js";
@@ -50,12 +52,24 @@ console.log(sortedDescending)
 
  */
 
-const sortBySaturation = (colors: Color[], order: "asc" | "desc"): Color[] => {
+const sortBySaturation = (
+  colors: Color[],
+  order: "asc" | "desc",
+  mode?: HueColorSpaces
+): Color[] => {
   const factor: Factor = "saturation";
-  const cb = getChannel("lch.c");
-  //Sorting the color array of object by the 'temp' property in the specified order.
+  mode = checkArg(mode, "jch");
+  if (matchChromaChannel(mode)) {
+    const chromaChannel = matchChromaChannel(mode);
+    const cb = getChannel(`${mode}.${chromaChannel}`);
+    //Sorting the color array of object by the 'temp' property in the specified order.
 
-  return sortedArr(factor, cb, order)(colors);
+    return sortedArr(factor, cb, order)(colors);
+  } else {
+    throw Error(
+      `The passed in color space ${mode} has no chroma channel. Try 'jch' instead.`
+    );
+  }
 };
 
 export { sortBySaturation };
