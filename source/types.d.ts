@@ -1,5 +1,18 @@
 type Illuminant = "A" | "C" | "D50" | "D55" | "D65" | "D75";
-
+type ColorOptions = {
+  temperature?: number;
+  colorspace?: HueColorSpaces;
+  luminance?: number;
+  saturation?: number;
+  illuminant?: "D50" | "D65";
+  background?: {
+    lightMode?: ColorToken;
+    darkMode?: ColorToken;
+    custom?: ColorToken;
+  };
+  contrast?: number;
+  lightness?: number;
+};
 type ColorDistanceOptions = {
   weights?: [number, number, number, number];
   mode?: ColorSpaces;

@@ -29,7 +29,7 @@
   },
   "scripts": {
     "docs": "cd .config && npx typedoc  && cd .. && node ./.scripts/docs.cjs && rm -r ../webapp/data/temp && git add .",
-    "build": "rm -r lib && mkdir lib && node ./.scripts/build.cjs",
+    "build": "rm -r lib && mkdir lib && node .scripts/build.cjs",
     "prepare": " npm run build && npm run types",
     "types": "dts-bundle-generator -o ./lib/index.d.ts ./index.ts",
     "lint": "eslint .config/.eslintrc.json --ext .ts",

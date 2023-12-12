@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-const checkArg = (arg, def) => arg || def;
+const checkArg = (arg, def) => (typeof arg === undefined ? def : arg);
 const getSaturationRange = (
   modeRanges,
   mode: string,

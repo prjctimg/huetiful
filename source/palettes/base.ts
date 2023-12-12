@@ -26,9 +26,9 @@ console.log(base("triadic")("#a1bd2f", true))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
  */
 
-const base =
+const scheme =
   (scheme: "analogous" | "triadic" | "tetradic" | "complementary") =>
-  (color: ColorToken, easingFunc: (t: number) => number): ColorToken[] => {
+  (color: ColorToken, easingFunc?: (t: number) => number): ColorToken[] => {
     scheme = scheme.toLowerCase();
     easingFunc = checkArg(easingFunc, easingSmoothstep);
     // Converting the color to lch
@@ -64,4 +64,4 @@ const base =
     return colors.map(toHex);
   };
 
-export { base };
+export { scheme };

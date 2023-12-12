@@ -11,57 +11,59 @@ import {
   getNearestChroma as nativeGetNearestChroma,
   getNearestLightness as nativeGetNearestLightness,
   overtone as nativeOvertone,
-} from "../colors";
-import { checkArg, matchChromaChannel } from "../fp";
-import {
+  toHex as nativeToHex,
   getChannel,
   getContrast,
   getLuminance,
   setChannel,
   setLuminance,
-} from "../getters_and_setters";
+  checkArg,
+  matchChromaChannel,
+  scheme as nativeScheme,
+  pastel as nativePastel,
+  hueShift as nativeHueShift,
+  getHue as nativeGetHue,
+  colorToCam,
+  getTemp as temp,
+  pairedScheme as nativePairedScheme,
+  earthtone as nativeEarthtone,
+  getComplimentaryHue as nativeGetComplimentaryHue,
+} from "../index";
+
 import modeRanges from "../color-maps/samples/modeRanges";
-import type { ColorToken, HueColorSpaces } from "../types";
+import type {
+  ColorOptions,
+  ColorToken,
+  EarthtoneOptions,
+  Hue,
+  HueShiftOptions,
+  PairedSchemeOptions,
+} from "../types";
+import { IJchProps } from "ciecam02-ts";
 
 class Color {
-  color: ColorToken;
-  colorspace: HueColorSpaces;
-  output: ColorToken;
-  background: {
-    lightMode: ColorToken;
-    darkMode: ColorToken;
-    custom: ColorToken;
-  };
   constructor(
     color: ColorToken,
     {
       colorspace,
       luminance,
-      output,
       saturation,
       background,
       lightness,
-    }: {
-      colorspace?: HueColorSpaces;
-      luminance?: number;
-      saturation?: number;
-      output?: ColorToken;
-      illuminant?: "D50" | "D65";
-      background?: {
-        lightMode?: ColorToken;
-        darkMode?: ColorToken;
-        custom?: ColorToken;
-      };
-      contrast?: number;
-      lightness?: number;
-    }
+      temperature,
+    }: ColorOptions
   ) {
     this["color"] = checkArg(color, "#000");
-    this["luminance"] = getLuminance(this["color"]);
+    this["luminance"] = checkArg(luminance, getLuminance(this["color"]));
+    this["lightness"] = checkArg(lightness, getChannel("lch.l")(this["color"]));
     this["colorspace"] = checkArg(colorspace, "jch");
-    this["saturation"] = getChannel(
-      `${this["colorspace"]}.${matchChromaChannel(this["colorspace"])}`
-    )(this["color"]);
+    this["saturation"] = checkArg(
+      saturation,
+      getChannel(
+        `${this["colorspace"]}.${matchChromaChannel(this["colorspace"])}`
+      )(this["color"])
+    );
+    this["temperature"] = checkArg(temperature, temp(this["color"]));
     this["background"] = checkArg(background, {});
     this["background"]["lightMode"] = checkArg(
       this["background"]["lightMode"],
@@ -75,7 +77,36 @@ class Color {
       this["color"],
       this["background"]["custom"]
     );
-    this.output = checkArg(output, "hex");
+  }
+
+  set alpha(amount: number | string) {}
+  getChannel() {}
+  setChannel() {}
+  get alpha(): number {}
+  brighten(amount: number | string) {}
+  darken(amount: number | string) {}
+  toCam(): IJchProps {
+    return colorToCam(this["color"]);
+  }
+  toHex(): ColorToken {
+    return nativeToHex(this["color"]);
+  }
+  pastel(): ColorToken {
+    return nativePastel(this["color"]);
+  }
+  pairedScheme(options?: PairedSchemeOptions): ColorToken[] {
+    return nativePairedScheme(this["color"], checkArg(options, {}));
+  }
+  hueShift(options?: HueShiftOptions): ColorToken[] {
+    return nativeHueShift(this["color"], checkArg(options, {}));
+  }
+  getComplimentaryHue(
+    colorObj?: boolean
+  ): { hue: Hue; color: ColorToken } | ColorToken {
+    return nativeGetComplimentaryHue(this["color"], checkArg(colorObj, false));
+  }
+  earthtone(options?: EarthtoneOptions): ColorToken {
+    return nativeEarthtone(this["color"], checkArg(options, []));
   }
   contrast(against: "lightMode" | "darkMode" | ColorToken) {
     let result: number;
@@ -144,6 +175,15 @@ class Color {
   }
   ovetone() {
     return nativeOvertone(this["color"]);
+  }
+  getHue() {
+    return nativeGetHue(this["color"]);
+  }
+  scheme(
+    scheme: "analogous" | "triadic" | "tetradic" | "complementary",
+    easingFunc?: (t: number) => number
+  ): ColorToken[] {
+    return nativeScheme(scheme)(this["color"], easingFunc);
   }
 }
 

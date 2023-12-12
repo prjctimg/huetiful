@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // Returns the hue range where a color is found. If the hue Channel is falsy we return gray ?
 // @ts-nocheck
-import hueTempMap from "../color-maps/samples/hueTemperature.ts";
+import hueTempMap from "../color-maps/samples/hueTemperature.js";
 import { useMode, modeLch } from "culori/fn";
-import { inRange } from "../fp/number/inRange.ts";
-import { min, max } from "../fp/array/min_max.ts";
-import { customConcat } from "../fp/object/customConcat.ts";
-import { toHex } from "../converters/toHex.ts";
-import type { ColorToken, Hue } from "../types";
+import { inRange } from "../fp/number/inRange.js";
+import { min, max } from "../fp/array/min_max.js";
+import { customConcat } from "../fp/object/customConcat.js";
+import { toHex } from "../converters/toHex.js";
+import type { ColorToken, Hue } from "../types.js";
 
 /**
  *@function
