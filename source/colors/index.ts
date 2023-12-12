@@ -1,3 +1,5 @@
+import { Color } from "./color";
+
 export {
   getFarthestChroma,
   getNearestChroma,
