@@ -26,10 +26,7 @@ console.log(myColor)
 // #b2c3f180
  */
 
-const alpha = (
-  color: ColorToken,
-  value?: number | string
-): ColorToken | number => {
+const alpha = (color: ColorToken, value?: number | string): number => {
   // We never perfom an operation on an undefined color. Defaults to pure black
   color = color || "black";
 
@@ -47,7 +44,7 @@ const alpha = (
   } else if (typeof value === "string") {
     expressionParser(src, channel, value);
   }
-  return formatHex8(src);
+  return toHex(src);
 };
 
 export { alpha };
