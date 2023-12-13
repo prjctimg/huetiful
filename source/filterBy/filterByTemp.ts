@@ -1,6 +1,6 @@
 import { getTemp } from "../converters/getTemp.ts";
 import { filteredArr } from "../fp/array/filteredArr.ts";
-import type { ColorToken, Factor } from "../types";
+import type { Color, Factor } from "../types";
 
 /**
  * @function
@@ -40,10 +40,10 @@ filterByTemp(sample, 1000, 20000);
  */
 
 const filterByTemp = (
-  colors: ColorToken[],
+  colors: Color[],
   startTemp = 1000,
   endTemp = 6000
-): ColorToken[] => {
+): Color[] => {
   // This variable stores the array that matches the filtering criteria defined by the start and end hues
   const factor: Factor = "temp";
   const cb = getTemp;

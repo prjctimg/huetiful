@@ -3,7 +3,7 @@
 import { rgb, illuminant, xyz, workspace, Vector3D } from "ciebase-ts";
 import { cfs, cam, IJchProps } from "ciecam02-ts";
 import { toHex as nativeToHex } from "./toHex";
-import { ColorToken } from "../types";
+import { Color } from "../types";
 import { normalize } from "../fp";
 
 // Pass viewing conditions
@@ -29,7 +29,7 @@ const xyzConverter = xyz(workspace["WideGamutRGB"], illuminant["D65"]);
  * @param color The color to convert
  * @returns A JCh color object.
  */
-const colorToCam = (color: ColorToken) => {
+const colorToCam = (color: Color) => {
   return baseCieCam.fromXyz(
     xyzConverter.fromRgb(rgb.fromHex(nativeToHex(color)))
   );

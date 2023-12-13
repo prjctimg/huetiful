@@ -4,7 +4,7 @@ import "culori/css";
 import { formatHex8, formatHex, colorsNamed } from "culori/fn";
 import { num2rgb } from "./num2rgb";
 import { getModeChannel } from "../fp/misc";
-import type { ColorToken } from "../types";
+import type { Color } from "../types";
 
 /**
  *@function
@@ -20,7 +20,7 @@ console.log(toHex({ l: 50, c: 31, h: 100, alpha: 0.5, mode: "lch" }))
 console.log(toHex({ l: 50, c: 31, h: 100, mode: "lch" }))
 // #7b7941
  */
-const toHex = (color: ColorToken): ColorToken => {
+const toHex = (color: Color): string => {
   // the result to return at the end of the function
   let src = {};
 

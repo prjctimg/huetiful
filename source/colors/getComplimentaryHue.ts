@@ -6,7 +6,7 @@ import { customConcat } from "../fp/object/customConcat.js";
 import { inRange } from "../fp/number/inRange.js";
 import { adjustHue } from "../fp/number/adjustHue.js";
 import { setChannel } from "../getters_and_setters/set.js";
-import type { ColorToken } from "../types.js";
+import type { Color } from "../types.js";
 import { toHex } from "../converters/toHex.js";
 
 const { keys } = Object;
@@ -29,9 +29,9 @@ console.log(getComplimentaryHue("purple"))
 // #005700ff
  */
 const getComplimentaryHue = (
-  color: ColorToken,
+  color: Color,
   colorObj = false
-): { hue: string; color: ColorToken } | ColorToken => {
+): { hue: string; color: Color } | Color => {
   const modeChannel = "lch.h";
   // A complementary hue is 180 deg from the hue value of the passed in color
 
@@ -61,7 +61,7 @@ const getComplimentaryHue = (
     .filter((val) => typeof val === "string")
     .toString();
 
-  let result: ColorToken | { hue: string; color: ColorToken };
+  let result: Color | { hue: string; color: Color };
   if (complementaryHue) {
     result = {
       hue: hueFamily,

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import type { Factor, ColorToken, HueColorSpaces } from "../types";
+import type { Factor, Color, HueColorSpaces } from "../types";
 import { getChannel } from "../getters_and_setters/get.ts";
 import { sortedArr } from "../fp/array/sortedArr.ts";
 import { checkArg, matchChromaChannel } from "../fp/index.ts";
@@ -53,10 +53,10 @@ console.log(sortedDescending)
  */
 
 const sortBySaturation = (
-  colors: ColorToken[],
+  colors: Color[],
   order: "asc" | "desc",
   mode?: HueColorSpaces
-): ColorToken[] => {
+): Color[] => {
   const factor: Factor = "saturation";
   mode = checkArg(mode, "jch");
   if (matchChromaChannel(mode)) {

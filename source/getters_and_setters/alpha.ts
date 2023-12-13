@@ -3,7 +3,7 @@ import { useMode, modeLch } from "culori/fn";
 import { inRange } from "../fp/number/inRange.js";
 import { expressionParser } from "../fp/string/expressionParser.js";
 import { toHex } from "../converters/toHex.js";
-import type { ColorToken } from "../types.js";
+import type { Color } from "../types.js";
 
 /**
  * @function
@@ -26,13 +26,13 @@ console.log(myColor)
 // #b2c3f180
  */
 
-const alpha = (color: ColorToken, value?: number | string): number => {
+const alpha = (color: Color, value?: number | string): number => {
   // We never perfom an operation on an undefined color. Defaults to pure black
   color = color || "black";
 
   const channel = "alpha";
   const lch = useMode(modeLch);
-  const src: ColorToken = lch(toHex(color));
+  const src: Color = lch(toHex(color));
   if (typeof value === "undefined" || null) {
     return src[channel];
   } else if (typeof value === "number") {

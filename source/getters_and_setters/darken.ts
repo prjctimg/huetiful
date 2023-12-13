@@ -2,7 +2,7 @@
 import { easingSmootherstep, modeLab, useMode } from "culori/fn";
 import { toHex } from "../converters/toHex";
 import { expressionParser } from "../fp/string/expressionParser";
-import type { ColorToken } from "../types";
+import type { Color } from "../types";
 // ported froma chroma-js brighten
 const toLab = useMode(modeLab);
 /**
@@ -16,7 +16,7 @@ const toLab = useMode(modeLab);
  * 
 
  */
-const darken = (color: ColorToken, value: number | string): ColorToken => {
+const darken = (color: Color, value: number | string): Color => {
   const Kn = 18;
   const channel = "l";
 
@@ -38,7 +38,7 @@ const darken = (color: ColorToken, value: number | string): ColorToken => {
  * @param mode The color space to compute the color in. Any color space with a lightness channel will do (including HWB)
  * @returns
  */
-const brighten = (color: ColorToken, value: number | string): ColorToken => {
+const brighten = (color: Color, value: number | string): Color => {
   const src = toLab(toHex(color));
   const channel = "l";
 

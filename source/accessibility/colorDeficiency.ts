@@ -6,7 +6,7 @@ import {
   filterGrayscale,
 } from "culori/fn";
 import { toHex } from "../converters/toHex";
-import type { ColorToken } from "../types";
+import type { Color } from "../types";
 
 // This module is focused on creating color blind safe palettes that adhere to the minimum contrast requirements
 
@@ -22,10 +22,10 @@ import type { ColorToken } from "../types";
 
 const baseColorDeficiency = (
   def: "red" | "blue" | "green" | "monochromacy",
-  col: ColorToken,
+  col: Color,
   sev: number
 ) => {
-  let result: ColorToken;
+  let result: Color;
   col = toHex(col);
   switch (def) {
     case "blue":
@@ -70,7 +70,7 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
  */
 const colorDeficiency =
   (deficiency: "red" | "blue" | "green" | "monochromacy") =>
-  (color: ColorToken, severity = 1) => {
+  (color: Color, severity = 1) => {
     // Store the keys of deficiency types
     const deficiencies: string[] = ["red", "blue", "green", "monochromacy"];
     // Cast 'red' as the default parameter

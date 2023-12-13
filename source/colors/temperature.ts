@@ -8,7 +8,7 @@ import { inRange } from "../fp/number/inRange.ts";
 import { min, max } from "../fp/array/min_max.ts";
 import { customConcat } from "../fp/object/customConcat.ts";
 import { customFindKey } from "../fp/object/customFindKey.ts";
-import type { ColorToken } from "../types";
+import type { Color } from "../types";
 
 const predicate = (factor: number, temp: "warm" | "cool"): boolean => {
   const hueKeys = Object.keys(hueTempMap);
@@ -52,7 +52,7 @@ console.log(map(sample, isCool));
 
 
  */
-const isCool = (color: ColorToken): boolean => {
+const isCool = (color: Color): boolean => {
   // First we need to get the hue value which we'll pass to the predicate
   const factor = getChannel("lch.h")(color);
 
@@ -83,7 +83,7 @@ console.log(map(sample, isWarm));
 // [ false, true,  false]
 
  */
-const isWarm = (color: ColorToken): boolean => {
+const isWarm = (color: Color): boolean => {
   const factor = getChannel("lch.h")(color);
 
   return predicate(factor, "cool");
@@ -91,6 +91,7 @@ const isWarm = (color: ColorToken): boolean => {
 
 /**
  * @function
+ * @experimental
  * @description Checks the approximate maximum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
  * @param color The color to check its maximum temperature.
  * @returns The maximum temperature in Kelvins.
@@ -104,7 +105,7 @@ const isWarm = (color: ColorToken): boolean => {
 console.log(maxTemp("b2c3f1"))
 // 9570
  */
-const maxTemp = (color: ColorToken): number => {
+const maxTemp = (color: Color): number => {
   // Get the hue value of the color
   const factor = getChannel("lch.h")(color);
 
@@ -126,6 +127,7 @@ const maxTemp = (color: ColorToken): number => {
 };
 
 /**
+ * @experimental
  * @function
  * @description Checks the approximate minimum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
  * @param color The color to check its minimum temperature.
@@ -141,7 +143,7 @@ console.log(minTemp("b2c3f1"))
 // 20107
  * 
  */
-const minTemp = (color: ColorToken): number => {
+const minTemp = (color: Color): number => {
   // Get the hue value of the color
   // eslint-disable-next-line prefer-const
   let factor = getChannel("lch.h")(color);

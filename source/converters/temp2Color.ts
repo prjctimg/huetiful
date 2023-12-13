@@ -4,7 +4,7 @@
 //ported from chroma-js
 
 import { toHex } from "./toHex";
-import type { ColorToken } from "../types";
+import type { Color } from "../types";
 /**
  * @function
  * @description Converts the temperature value (in Kelvins) to an RGB color.
@@ -18,7 +18,7 @@ import type { ColorToken } from "../types";
 console.log(temp2Color(2542))
 // #ffa44a
  */
-const temp2Color = (kelvin: number, hex = false): ColorToken => {
+const temp2Color = (kelvin: number, hex = false): Color => {
   //Hue change starts at approx 655 Kelvins ???
   const { log } = Math;
   // Checking if the passed in value is within a problematic range that returns negative values on the blue channel.

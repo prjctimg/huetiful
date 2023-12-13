@@ -2,7 +2,7 @@
 
 import { useMode, modeRgb } from "culori/fn";
 import { toHex } from "./toHex.ts";
-import type { ColorToken } from "../types";
+import type { Color } from "../types";
 
 /**
  * @function
@@ -17,9 +17,9 @@ console.log(rgb2num("b2c3f1"))
 // 11715569
  */
 
-const rgb2num = (color: ColorToken): number => {
+const rgb2num = (color: Color): number => {
   const toRgb = useMode(modeRgb);
-  const rgb: ColorToken = toRgb(toHex(color));
+  const rgb: Color = toRgb(toHex(color));
 
   return ((255 * rgb["r"]) << 16) + ((255 * rgb["g"]) << 8) + 255 * rgb["b"];
 };

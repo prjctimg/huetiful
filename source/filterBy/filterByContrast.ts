@@ -2,7 +2,7 @@
 import { filteredArr } from "../fp/array/filteredArr.ts";
 import { wcagContrast } from "culori/fn";
 
-import type { ColorToken, Factor } from "../types";
+import type { Color, Factor } from "../types";
 import { toHex } from "../converters/toHex.ts";
 
 /**
@@ -36,15 +36,15 @@ console.log(filterByContrast(sample, 'green', '>=3'))
  */
 
 const filterByContrast = (
-  colors: ColorToken[],
-  against: ColorToken,
+  colors: Color[],
+  against: Color,
   startContrast = 0.05,
   endContrast?: number
-): ColorToken[] => {
+): Color[] => {
   // Formatting color tokens to parseable type
   // Create an object that has the contrast and name of color as properties.
   const factor: Factor = "contrast";
-  const cb = (against: ColorToken) => (color: ColorToken) =>
+  const cb = (against: Color) => (color: Color) =>
     wcagContrast(...[color, against].map(toHex));
 
   return filteredArr(factor, cb(against))(colors, startContrast, endContrast);

@@ -37,7 +37,7 @@ import {
 import modeRanges from "../color-maps/samples/modeRanges";
 import type {
   ColorOptions,
-  ColorToken,
+  Color,
   EarthtoneOptions,
   Hue,
   HueColorSpaces,
@@ -46,10 +46,8 @@ import type {
 } from "../types";
 import { IJchProps } from "ciecam02-ts";
 
-class Color {
-  color: ColorToken;
-
-  constructor(color: ColorToken, options?: ColorOptions) {
+class IColor {
+  constructor(color: Color, options?: ColorOptions) {
     let {
       illuminant,
       alpha,
@@ -117,7 +115,7 @@ class Color {
     );
   }
 
-  alpha(amount?: number | string): ColorToken | number {
+  alpha(amount?: number | string): IColor | number {
     if (amount === undefined) {
       return nativeAlpha(this["color"]);
     } else {
@@ -132,7 +130,7 @@ class Color {
       this["color"]
     );
   }
-  setChannel(channel: string, value: number | string): ColorToken {
+  setChannel(channel: string, value: number | string): IColor {
     this["color"] = this;
     this["color"] = nativeSetChannel(
       `${this["colorspace"]}.${channel.toLowerCase()}`
@@ -140,7 +138,7 @@ class Color {
     return this;
   }
   //
-  temperature(kelvins: number): number | ColorToken {
+  temperature(kelvins: number): number | IColor {
     if (kelvins === undefined) {
       return getTemp(this["color"]);
     } else {
@@ -165,17 +163,17 @@ class Color {
   toCam(): IJchProps {
     return colorToCam(this["color"]);
   }
-  toHex(): ColorToken {
+  toHex(): IColor {
     this["color"] = this;
     this["color"] = nativeToHex(this["color"]);
     return this;
   }
-  pastel(): ColorToken {
+  pastel(): IColor {
     this["color"] = this;
     this["color"] = nativePastel(this["color"]);
     return this;
   }
-  pairedScheme(options?: PairedSchemeOptions): ColorToken[] {
+  pairedScheme(options?: PairedSchemeOptions): IColor[] {
     this["colors"] = load(
       nativePairedScheme(this["color"], checkArg(options, {}))
     );
@@ -185,9 +183,7 @@ class Color {
     this["colors"] = load(nativeHueShift(this["color"], checkArg(options, {})));
     return this["colors"];
   }
-  getComplimentaryHue(
-    colorObj?: boolean
-  ): { hue: Hue; color: ColorToken } | ColorToken {
+  getComplimentaryHue(colorObj?: boolean): { hue: Hue; color: Color } | Color {
     return nativeGetComplimentaryHue(this["color"], checkArg(colorObj, false));
   }
   earthtone(options?: EarthtoneOptions): ColorArray {
@@ -196,7 +192,7 @@ class Color {
     );
     return this["colors"];
   }
-  contrast(against: "lightMode" | "darkMode" | ColorToken) {
+  contrast(against: "lightMode" | "darkMode" | IColor) {
     let result: number;
     switch (against) {
       case "lightMode":
@@ -243,22 +239,51 @@ class Color {
   isCool() {
     return nativeIsCool(this["color"]);
   }
-  getFarthestHue(colors: ColorToken[]) {
+
+  /**
+ * @function
+ * @description Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
+ * @param deficiency The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
+ * @see For a deep dive on  color vision deficiency go to
+ * @param color The color to return its deficiency simulated variant.
+ * @param severity The intensity of the filter. The exepected value is between [0,1]. For example 0.5
+ * @returns The color as its simulated variant as a hexadecimal string.
+ * @example
+ * 
+ * import { colorDeficiency, toHex } from 'huetiful-js'
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'blue'. 
+// We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
+let tritanomaly = colorDeficiency('blue')
+console.log(tritanomaly(['rgb', 230, 100, 50, 0.5], 0.1))
+// #dd663680
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'red'. The severity is not explicitly set so it defaults to 1
+let protanopia = colorDeficiency('red')
+console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
+// #9f9f9f
+ */
+  colorDeficiency(
+    deficiency?: "red" | "blue" | "green" | "monochromacy",
+    severity = 1
+  ): Color {}
+
+  getFarthestHue(colors: IColor[]) {
     return nativeGetFarthestHue(this["color"], colors, this["colorspace"]);
   }
-  getNearestHue(colors: ColorToken[]) {
+  getNearestHue(colors: IColor[]) {
     return nativeGetNearestHue(this["color"], colors, this["colorspace"]);
   }
-  getNearestChroma(colors: ColorToken[]) {
+  getNearestChroma(colors: IColor[]) {
     return nativeGetNearestChroma(this["color"], colors, this["colorspace"]);
   }
-  getNearestLightness(colors: ColorToken[]) {
+  getNearestLightness(colors: IColor[]) {
     return nativeGetNearestLightness(this["color"], colors);
   }
-  getFarthestChroma(colors: ColorToken[]) {
+  getFarthestChroma(colors: IColor[]) {
     return nativeGetFarthestChroma(this["color"], colors, this["colorspace"]);
   }
-  getFarthestLightness(colors: ColorToken[]) {
+  getFarthestLightness(colors: IColor[]) {
     return nativeGetFarthestLightness(this["color"], colors);
   }
   ovetone() {
@@ -270,9 +295,9 @@ class Color {
   scheme(
     scheme: "analogous" | "triadic" | "tetradic" | "complementary",
     easingFunc?: (t: number) => number
-  ): ColorToken[] {
+  ): Color[] {
     return nativeScheme(scheme)(this["color"], easingFunc);
   }
 }
 
-export { Color };
+export { IColor as Color };

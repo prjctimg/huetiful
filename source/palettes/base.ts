@@ -1,13 +1,13 @@
 //@ts-nocheck
 import { useMode, modeLch, easingSmoothstep, samples } from "culori/fn";
 
-import type { ColorToken } from "../types";
+import type { Color } from "../types";
 import { adjustHue } from "../fp/number/adjustHue.ts";
 import { random } from "../fp/number/random.ts";
 import { toHex } from "../converters/toHex.ts";
 import { checkArg } from "../fp/misc.ts";
 // Globals
-const cb = (iterations: number, distance: number, color: ColorToken) =>
+const cb = (iterations: number, distance: number, color: Color) =>
   samples(iterations).map((val) =>
     adjustHue((color["h"] + distance) * (val * easingSmoothstep(val)))
   );
@@ -15,7 +15,7 @@ const cb = (iterations: number, distance: number, color: ColorToken) =>
 /**
  * @function
  * @description Generates a randomised classic color scheme from a single base color.
- * @param  scheme  Any classic color scheme either "analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary".
+ * @param  schemeType  Any classic color scheme either "analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary".
  * @param easingFunc Optional parameter to pass in a custom easing function. The default is smoothstep
  * @returns An array of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
  * @example
@@ -27,9 +27,11 @@ console.log(base("triadic")("#a1bd2f", true))
  */
 
 const scheme =
-  (scheme: "analogous" | "triadic" | "tetradic" | "complementary") =>
-  (color: ColorToken, easingFunc?: (t: number) => number): ColorToken[] => {
-    scheme = scheme.toLowerCase();
+  (
+    schemeType: "analogous" | "triadic" | "tetradic" | "complementary" | string
+  ) =>
+  (color: Color, easingFunc?: (t: number) => number): Color[] => {
+    schemeType = schemeType.toLowerCase();
     easingFunc = checkArg(easingFunc, easingSmoothstep);
     // Converting the color to lch
     const lch = useMode(modeLch);
@@ -54,10 +56,10 @@ const scheme =
     }
     // The map for steps to obtain the targeted palettes
 
-    const colors = targetHueSteps[scheme].map((step: number) => ({
+    const colors = targetHueSteps[schemeType].map((step: number) => ({
       l: color["l"],
       c: color["c"],
-      h: step * easingFunc(1 / targetHueSteps[scheme].length),
+      h: step * easingFunc(1 / targetHueSteps[schemeType].length),
       mode: "lch",
     }));
 

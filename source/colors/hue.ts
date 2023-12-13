@@ -3,7 +3,7 @@
 
 import { getChannel } from "../getters_and_setters/get.ts";
 import { sortedArr } from "../fp/array/sortedArr.ts";
-import type { ColorToken, HueColorSpaces, Factor } from "../types";
+import type { Color, HueColorSpaces, Factor } from "../types";
 
 //  Globals
 
@@ -14,22 +14,22 @@ const { abs } = Math;
 const factor: Factor = "hue";
 const mode = (colorSpace: HueColorSpaces): string => `${colorSpace || "lch"}.h`;
 // The hue value of our color which we are using for comparison
-const targetHue = (color: ColorToken, colorSpace: HueColorSpaces): number =>
+const targetHue = (color: Color, colorSpace: HueColorSpaces): number =>
   getChannel(mode(colorSpace))(color);
 
 // The callback to invoke per color in the passed in collection.
 // Return the absolute value since hue is a cyclic value which can either be  in clockwise/anti-clockwise.
 //This means that the color object with the smallest hue value is the  nearest color/hue.
 const cb =
-  (color: ColorToken, colorSpace: HueColorSpaces | string) =>
-  (subtrahend: ColorToken) => {
+  (color: Color, colorSpace: HueColorSpaces | string) =>
+  (subtrahend: Color) => {
     return abs(
       targetHue(color, colorSpace) - getChannel(mode(colorSpace))(subtrahend)
     );
   };
 
 // Callback func for the minHue and maxHue utils. The funny thing is that most of the code is similar with minor changes here and there
-const predicate = (colorSpace: HueColorSpaces) => (color: ColorToken) => {
+const predicate = (colorSpace: HueColorSpaces) => (color: Color) => {
   return getChannel(mode(colorSpace))(color) || undefined;
 };
 
@@ -52,8 +52,8 @@ console.log(getNearestHue('lime', sample, 'lch'))
 // 23.962083662849253
  */
 const getNearestHue = (
-  color: ColorToken,
-  colors: ColorToken[],
+  color: Color,
+  colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
   return sortedArr(
@@ -95,8 +95,8 @@ console.log(getFarthestHue('lime', sample, 'lch'))
 */
 
 const getFarthestHue = (
-  color: ColorToken,
-  colors: ColorToken[],
+  color: Color,
+  colors: Color[],
   colorSpace?: HueColorSpaces
 ): number => {
   return sortedArr(
@@ -124,11 +124,11 @@ console.log(minHue(sample, 'lch'))
 // 12.462831644544274
  */
 const minHue = (
-  colors: ColorToken[],
+  colors: Color[],
   colorSpace?: HueColorSpaces,
   colorObj = false
-): number | { factor: number; color: ColorToken } => {
-  const result: Array<{ factor: number; name: ColorToken }> = sortedArr(
+): number | { factor: number; color: Color } => {
+  const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     predicate(colorSpace),
     "asc",
@@ -164,11 +164,11 @@ console.log(maxHue(sample, 'lch'))
 // 273.54920266436477
  */
 const maxHue = (
-  colors: ColorToken[],
+  colors: Color[],
   colorSpace?: HueColorSpaces,
   colorObj = false
-): number | { factor: number; color: ColorToken } => {
-  const result: Array<{ factor: number; name: ColorToken }> = sortedArr(
+): number | { factor: number; color: Color } => {
+  const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     predicate(colorSpace),
     "desc",

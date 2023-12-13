@@ -2,21 +2,168 @@
 import type {
   ColorDistanceOptions,
   ColorSpaces,
-  ColorToken,
+  Color,
   HueColorSpaces,
 } from "../../types";
 import { checkArg } from "../index";
+import { discoverPalettes as nativeDiscoverPalettes } from "../../palettes";
 import * as filterBy from "../../filterBy";
 import * as sortBy from "../../sortBy";
 
 class ColorArray {
-  private _colors: ColorToken[];
-  constructor(colors: ColorToken[]) {
-    this["_colors"] = checkArg(colors, []);
-    //@ts-ignore
-    this["_colors"] = this;
-    return this;
+  // private _colors: ColorToken[];
+  constructor(colors: Color[]) {
+    this["colors"] = checkArg(colors, []);
   }
+
+  /**
+ * @function
+ * @description Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
+ * @param colors The array of colors to create palettes from. Preferably use 5 or more colors for better results.
+ * @param schemeType (Optional) The palette type you want to return.
+ * @returns An array of colors if the scheme parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
+ * @example
+ * 
+ * import { discoverPalettes } from 'huetiful-js'
+
+let sample = [
+  "#ffff00",
+  "#00ffdc",
+  "#00ff78",
+  "#00c000",
+  "#007e00",
+  "#164100",
+  "#720000",
+  "#600000",
+  "#4e0000",
+  "#3e0000",
+  "#310000",
+]
+
+console.log(discoverPalettes(sample, "tetradic"))
+// [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
+ */
+  discoverPalettes(
+    schemeType?: "analogous" | "triadic" | "tetradic" | "complementary"
+  ): Color[] | object {
+    return nativeDiscoverPalettes(this["colors"], schemeType);
+  }
+
+  /**
+ *@function
+ * @description Gets the largest hue value from the passed in colors.
+ * @param colors The array of colors to query the color with the largest hue value.
+ * @param colorSpace The mode color space to perform the computation in.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.
+ * @returns The largest hue value in the colors passed in or a custom object.
+ * @example
+ * 
+ * import { maxHue } from 'huetiful-js'
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(maxHue(sample, 'lch'))
+// 273.54920266436477
+ */
+  maxHue(
+    colorSpace?: HueColorSpaces,
+    colorObj = false
+  ): number | { factor: number; color: Color } {}
+
+  /**
+ *@function
+ * @description Gets the smallest hue value from the passed in colors.
+ * @param colors The array of colors to query the color with the smallest hue value.
+ * @param colorSpace The mode color space to perform the computation in.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.
+ * @returns The smallest hue value in the colors passed in or a custom object.
+ * @example
+ * 
+ * import { minHue } from 'huetiful-js'
+
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(minHue(sample, 'lch'))
+// 12.462831644544274
+ */
+  minHue(
+    colorSpace?: HueColorSpaces,
+    colorObj = false
+  ): number | { factor: number; color: Color } {}
+
+  /**
+ *@function
+ * @description Gets the smallest lightness value from the passed in colors.
+ * @param colors The array of colors to query the color with the smallest lightness value.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.
+ * @returns The smallest lightness value in the colors passed in or a custom object.
+ * @example
+ * 
+ * import { minLightness } from 'huetiful-js'
+
+let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
+
+console.log(minLightness(sample, true))
+
+// { lightness: 72.61647882089876, name: '#a1bd2f' }
+
+ */
+  minLightness(colorObj = false): number | { factor: number; color: Color } {}
+
+  /**
+ *@function
+ * @description Gets the largest lightness value from the passed in colors.
+ * @param colors The array of colors to query the color with the largest lightness value.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.
+ * @returns The largest lightness value in the colors passed in or a custom object.
+ * @example 
+ * 
+ * import { maxLightness } from 'huetiful-js'
+
+let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
+
+console.log(maxLightness(sample, true))
+
+// { lightness: 80.94668903360088, name: '#f3bac1' }
+
+ */
+  maxLightness(colorObj = false): number | { factor: number; color: Color } {}
+
+  /**
+ * @experimental
+ * @function
+ * @description Checks the approximate maximum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
+ * @param color The color to check its maximum temperature.
+ * @returns The maximum temperature in Kelvins.
+ * @example
+ * 
+ * import { maxTemp } from "huetiful-js"; 
+ * 
+ * console.log(maxTemp("#a1bd2f"))
+// 7926
+
+console.log(maxTemp("b2c3f1"))
+// 9570
+ */
+  maxTemp(color: Color): number {}
+
+  /**
+ * @experimental
+ * @function
+ * @description Checks the approximate minimum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
+ * @param color The color to check its minimum temperature.
+ * @returns The minimum temperature in Kelvins.
+ * @example
+ * 
+ * import { minTemp } from 'huetiful-js'
+ * 
+ * console.log(minTemp("#a1bd2f"))
+// 2528
+
+console.log(minTemp("b2c3f1"))
+// 20107
+ * 
+ */
+  minTemp(color: Color): number {}
 
   /**
  * @function
@@ -52,9 +199,9 @@ console.log(filterByContrast(sample, 'green', '>=3'))
     mode?: HueColorSpaces
   ): ColorArray {
     // @ts-ignore
-    this["_colors"] = this;
-    this["_colors"] = filterBy.filterBySaturation(
-      this["_colors"],
+
+    this["colors"] = filterBy.filterBySaturation(
+      this["colors"],
       startSaturation,
       endSaturation,
       mode
@@ -90,10 +237,8 @@ filterByLightness(sample, 20, 80)
 // [ '#00c000', '#007e00', '#164100', '#720000' ]
  */
   filterByLightness(startLightness = 5, endLightness = 100): ColorArray {
-    //@ts-ignore
-    this["_colors"] = this;
-    this["_colors"] = filterBy.filterByLightness(
-      this["_colors"],
+    this["colors"] = filterBy.filterByLightness(
+      this["colors"],
       startLightness,
       endLightness
     );
@@ -126,16 +271,14 @@ console.log(filterByDistance(sample, "yellow", 0.1))
  */
 
   filterByDistance(
-    against: ColorToken,
+    against: Color,
     startDistance = 0.05,
     endDistance?: number,
     mode?: ColorSpaces,
     weights?: [number, number, number, number]
   ): ColorArray {
-    // @ts-ignore
-    this["_colors"] = this;
-    this["_colors"] = filterBy.filterByDistance(
-      this["_colors"],
+    this["colors"] = filterBy.filterByDistance(
+      this["colors"],
       against,
       startDistance,
       endDistance,
@@ -182,13 +325,7 @@ filterByTemp(sample, 1000, 20000);
  */
 
   filterByTemp(startTemp = 1000, endTemp = 6000): ColorArray {
-    // @ts-ignore
-    this["_colors"] = this;
-    this["_colors"] = filterBy.filterByTemp(
-      this["_colors"],
-      startTemp,
-      endTemp
-    );
+    this["colors"] = filterBy.filterByTemp(this["colors"], startTemp, endTemp);
     return this;
   }
   /**
@@ -222,18 +359,17 @@ console.log(filterByContrast(sample, 'green', '>=3'))
  */
 
   filterByContrast(
-    against: ColorToken,
+    against: Color,
     startContrast = 0.05,
     endContrast?: number
   ): ColorArray {
-    // @ts-ignore
-    this["_colors"] = this;
-    this["_colors"] = filterBy.filterByContrast(
-      this["_colors"],
+    this["colors"] = filterBy.filterByContrast(
+      this["colors"],
       against,
       startContrast,
       endContrast
     );
+
     return this;
   }
   /**
@@ -263,9 +399,7 @@ filterByHue(sample, 20, 80)
  */
 
   filterByHue(startHue = 0, endHue = 360): ColorArray {
-    // @ts-ignore
-    this["_colors"] = this;
-    this["_colors"] = filterBy.filterByHue(this["_colors"], startHue, endHue);
+    this["colors"] = filterBy.filterByHue(this["colors"], startHue, endHue);
     return this;
   }
   /**
@@ -297,10 +431,8 @@ filterByLuminance(sample, 0.4, 0.9)
  */
 
   filterByLuminance(startLuminance = 0.05, endLuminance = 1): ColorArray {
-    // @ts-ignore
-    this["_colors"] = this;
-    this["_colors"] = filterBy.filterByLuminance(
-      this["_colors"],
+    this["colors"] = filterBy.filterByLuminance(
+      this["colors"],
       startLuminance,
       endLuminance
     );
@@ -358,7 +490,7 @@ sortByLightness(sample,'desc')
   sortByLightness(order?: "asc" | "desc"): ColorArray {
     // @ts-ignore
     this[this._colors] = this;
-    this["_colors"] = sortBy.sortByLightness(this["_colors"], order);
+    this["colors"] = sortBy.sortByLightness(this["colors"], order);
     return this;
   }
   /**
@@ -392,14 +524,12 @@ console.log(
  */
 
   sortByDistance(
-    against: ColorToken,
+    against: Color,
     order?: "asc" | "desc",
     options?: ColorDistanceOptions
   ): ColorArray {
-    // @ts-ignore
-    this["_colors"] = this;
-    this["_colors"] = sortBy.sortByDistance(
-      this["_colors"],
+    this["colors"] = sortBy.sortByDistance(
+      this["colors"],
       against,
       order,
       options
@@ -458,9 +588,7 @@ console.log(sortedDescending)
  */
 
   sortByLuminance(order?: "asc" | "desc"): ColorArray {
-    // @ts-ignore
-    this["_colors"] = this;
-    this["_colors"] = sortBy.sortByLuminance(this["_colors"], order);
+    this["colors"] = sortBy.sortByLuminance(this["colors"], order);
     return this;
   }
   /**
@@ -512,9 +640,7 @@ console.log(sortedDescending)
  */
 
   sortBySaturation(order: "asc" | "desc", mode?: HueColorSpaces): ColorArray {
-    // @ts-ignore
-    this["_colors"] = this;
-    this["_colors"] = sortBy.sortBySaturation(this["_colors"], order, mode);
+    this["colors"] = sortBy.sortBySaturation(this["colors"], order, mode);
     return this;
   }
 
@@ -537,10 +663,8 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
  
  */
 
-  sortByContrast(against: ColorToken, order?: "asc" | "desc"): ColorArray {
-    // @ts-ignore
-    this["_colors"] = this;
-    this["_colors"] = sortBy.sortByContrast(this["_colors"], against, order);
+  sortByContrast(against: Color, order?: "asc" | "desc"): ColorArray {
+    this["colors"] = sortBy.sortByContrast(this["colors"], against, order);
     return this;
   }
   /**
@@ -591,9 +715,7 @@ console.log(sortedDescending)
 
   // Todo: Add the mode param so that users can select mode to work with. The default is lch
   sortByHue(order: "asc" | "desc", mode = "jch"): ColorArray {
-    // @ts-ignore
-    this["_colors"] = this;
-    this["_colors"] = sortBy.sortByHue(this["_colors"], order, mode);
+    this["colors"] = sortBy.sortByHue(this["colors"], order, mode);
     return this;
   }
   /**
@@ -627,14 +749,16 @@ console.log(sortedDescending)
  */
 
   sortByTemp(order?: "asc" | "desc"): ColorArray {
-    // @ts-ignore
-    this["_colors"] = this;
-    this["_colors"] = sortBy.sortByTemp(this["_colors"], order);
+    this["colors"] = sortBy.sortByTemp(this["colors"], order);
     return this;
   }
 
-  colors(): ColorToken {
-    return this["_colors"];
+  /**
+   * @method
+   * @returns Returns the result value from the chain.
+   */
+  output(): Color {
+    return this["colors"];
   }
 }
 
@@ -643,7 +767,7 @@ console.log(sortedDescending)
  * @description A class that takes an array of colors and exposes all the utilities that handle collections of colors as methods. The methods can be chained as long as `this` being returned can be iterated on. Works like Array object.
  * @param colors An array of colors to chain the array methods on. Every element in the array will be parsed as a color token.
  */
-var load = (colors: ColorToken[]): ColorArray => {
+var load = (colors: Color[]): ColorArray => {
   return new ColorArray(colors);
 };
 

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { getChannel } from "../getters_and_setters/get.ts";
 import { filteredArr } from "../fp/array/filteredArr.ts";
-import type { ColorToken, Factor, HueColorSpaces } from "../types";
+import type { Color, Factor, HueColorSpaces } from "../types";
 import {
   getSaturationRange,
   matchChromaChannel,
@@ -39,11 +39,11 @@ console.log(filterByContrast(sample, 'green', '>=3'))
  */
 
 const filterBySaturation = (
-  colors: ColorToken[],
+  colors: Color[],
   startSaturation = 0.05,
   endSaturation = 1,
   mode?: HueColorSpaces
-): ColorToken[] => {
+): Color[] => {
   const factor: Factor = "saturation";
 
   if (matchChromaChannel(mode)) {

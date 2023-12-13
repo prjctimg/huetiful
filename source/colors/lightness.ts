@@ -2,7 +2,7 @@
 
 import { getChannel } from "../getters_and_setters/get.ts";
 import { sortedArr } from "../fp/array/sortedArr.ts";
-import type { ColorToken, Factor } from "../types";
+import type { Color, Factor } from "../types";
 
 const lightness = "lab.l";
 
@@ -11,7 +11,7 @@ const lightness = "lab.l";
 // The subtrahend is each color in the collection
 //This means that the color object with the smallest lightness value is the  nearest lightness.
 // First check which value is greater and then act accordingly. Refactor hue.ts so that it returns negative
-const lightnessDiff = (color: ColorToken) => (subtrahend: ColorToken) => {
+const lightnessDiff = (color: Color) => (subtrahend: Color) => {
   if (getChannel(lightness)(color) < getChannel(lightness)(subtrahend)) {
     return getChannel(lightness)(subtrahend) - getChannel(lightness)(color);
   } else {
@@ -37,10 +37,7 @@ console.log(getNearestLightness("green", sample))
 //26.338769793418493
  *
  */
-const getNearestLightness = (
-  color: ColorToken,
-  colors: ColorToken[]
-): number => {
+const getNearestLightness = (color: Color, colors: Color[]): number => {
   //  The factor being investigated.
 
   const factor: Factor = "lightness";
@@ -68,10 +65,7 @@ console.log(getFarthestLightness("green", sample))
 
  */
 
-const getFarthestLightness = (
-  color: ColorToken,
-  colors: ColorToken[]
-): number => {
+const getFarthestLightness = (color: Color, colors: Color[]): number => {
   //  The factor being investigated.
 
   const factor: Factor = "lightness";
@@ -98,20 +92,20 @@ console.log(minLightness(sample, true))
 
  */
 const minLightness = (
-  colors: ColorToken[],
+  colors: Color[],
   colorObj = false
-): number | { factor: number; color: ColorToken } => {
+): number | { factor: number; color: Color } => {
   //  The factor being investigated.
 
   const factor: Factor = "lightness";
   const cb = getChannel(lightness);
-  const result: Array<{ factor: number; name: ColorToken }> = sortedArr(
+  const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     cb,
     "asc",
     true
   )(colors);
-  let value: number | { factor: number; name: ColorToken };
+  let value: number | { factor: number; name: Color };
 
   if (gt(result.length, 0)) {
     if (colorObj) {
@@ -141,20 +135,20 @@ console.log(maxLightness(sample, true))
 
  */
 const maxLightness = (
-  colors: ColorToken[],
+  colors: Color[],
   colorObj = false
-): number | { factor: number; color: ColorToken } => {
+): number | { factor: number; color: Color } => {
   //  The factor being investigated.
 
   const factor: Factor = "lightness";
   const cb = getChannel(lightness);
-  const result: Array<{ factor: number; name: ColorToken }> = sortedArr(
+  const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     cb,
     "desc",
     true
   )(colors);
-  let value: number | { factor: number; name: ColorToken };
+  let value: number | { factor: number; name: Color };
 
   if (gt(result.length, 0)) {
     if (colorObj) {

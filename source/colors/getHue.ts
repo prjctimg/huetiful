@@ -7,7 +7,7 @@ import { inRange } from "../fp/number/inRange.js";
 import { min, max } from "../fp/array/min_max.js";
 import { customConcat } from "../fp/object/customConcat.js";
 import { toHex } from "../converters/toHex.js";
-import type { ColorToken, Hue } from "../types.js";
+import type { Color, Hue } from "../types.js";
 
 /**
  *@function
@@ -22,7 +22,7 @@ import type { ColorToken, Hue } from "../types.js";
 console.log(getHue("#310000"))
 // red
  */
-const getHue = (color: ColorToken): Hue => {
+const getHue = (color: Color): Hue => {
   // First convert the color to LCH
   const lch = useMode(modeLch);
   color = lch(toHex(color));

@@ -3,14 +3,14 @@ import type {
   SequentialScheme,
   DivergingScheme,
   QualitativeScheme,
-  ColorToken,
+  Color,
 } from "../types";
 
 // Convert all the keys to lowercase
 const cb = (str: string) => str.toLowerCase();
 
 //Check if the scheme object has the passed in scheme
-const schemeMapper = (scheme: string, schemesObject: object): ColorToken[] => {
+const schemeMapper = (scheme: string, schemesObject: object): Color[] => {
   const { keys } = Object;
   // Map all schemes keys to lower case
   const schemeOptions = keys(schemesObject).map(cb);
@@ -47,7 +47,7 @@ console.log(sequential("OrRd"))
 
 
  */
-const sequential = (scheme: SequentialScheme): ColorToken[] => {
+const sequential = (scheme: SequentialScheme): Color[] => {
   const schemes = {
     OrRd: [
       "#fff7ec",
@@ -283,7 +283,7 @@ console.log(diverging("Spectral"))
 ]
  */
 
-const diverging = (scheme: DivergingScheme): ColorToken[] => {
+const diverging = (scheme: DivergingScheme): Color[] => {
   const schemes = {
     Spectral: [
       "#9e0142",
@@ -427,7 +427,7 @@ console.log(qualitative("Accent"))
 
  */
 
-const qualitative = (scheme: QualitativeScheme): ColorToken[] => {
+const qualitative = (scheme: QualitativeScheme): Color[] => {
   const schemes = {
     Set2: [
       "#66c2a5",

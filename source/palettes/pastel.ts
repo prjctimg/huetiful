@@ -1,6 +1,6 @@
 //@ts-nocheck
 // Pastels.mjs. - This module creates pastel versions of a color. It will take an arr or single value , tweak it and then return the result. Optional overrides for min max values when iterating over an arr.
-import type { ColorToken } from "../types";
+import type { Color } from "../types";
 import { averageNumber, modeHsv, useMode } from "culori/fn";
 import { min, max } from "../fp/array/min_max.ts";
 import { random } from "../fp/number/random.ts";
@@ -62,7 +62,7 @@ import { pastel } from 'huetiful-js'
 console.log(pastel("green"))
 // #036103ff
  */
-const pastel = (color: ColorToken): ColorToken => {
+const pastel = (color: Color): Color => {
   const toHsv = useMode(modeHsv);
   color = toHsv(toHex(color));
   // For now we're simply returning an hsv object with the s and v channel set to the averages

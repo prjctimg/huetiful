@@ -6,7 +6,7 @@ import { converter } from "culori/fn";
 import "culori/css";
 import { toHex } from "../converters/toHex.js";
 import { expressionParser } from "../fp/string/expressionParser.js";
-import type { ColorToken } from "../types.js";
+import type { Color } from "../types.js";
 /**
  * @function
  *@description Sets the value for the specified channel in a color.
@@ -27,9 +27,9 @@ console.log(getChannel('lch.h')(myColor))
 
 const setChannel =
   (mc: string) =>
-  (color: ColorToken, value: number | string): ColorToken => {
+  (color: Color, value: number | string): Color => {
     const [mode, channel] = mc.split(".");
-    const src: ColorToken = converter(mode)(toHex(color));
+    const src: Color = converter(mode)(toHex(color));
 
     if (channel) {
       if (typeof value === "number") {

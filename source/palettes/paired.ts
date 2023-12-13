@@ -3,7 +3,7 @@
 
 import { toHex } from "../converters/toHex.ts";
 import { setChannel } from "../getters_and_setters/set.ts";
-import { ColorToken, PairedSchemeOptions } from "../types";
+import { Color, PairedSchemeOptions } from "../types";
 import {
   interpolate,
   samples,
@@ -30,10 +30,7 @@ import { checkArg } from "../fp/misc.ts";
 console.log(pairedScheme("green",{hueStep:6,iterations:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
  */
-const pairedScheme = (
-  color: ColorToken,
-  options: PairedSchemeOptions
-): ColorToken[] => {
+const pairedScheme = (color: Color, options: PairedSchemeOptions): Color[] => {
   // eslint-disable-next-line prefer-const
   let {
     chromaInterpolator,
@@ -93,7 +90,7 @@ const pairedScheme = (
     const smp = samples(iterations * 2);
 
     //The array to capture the different iterations
-    const results: ColorToken[] = smp.map((t) => toHex(scale(easingFunc(t))));
+    const results: Color[] = smp.map((t) => toHex(scale(easingFunc(t))));
     // Return a slice of the array from the start to the half length of the array
     return results.slice(0, results.length / 2);
   }
