@@ -7,10 +7,15 @@ import type {
 } from "../../types";
 import { checkArg } from "../index";
 import * as filterBy from "../../filterBy";
+import * as sortBy from "../../sortBy";
 
 class ColorArray {
+  private _colors: ColorToken[];
   constructor(colors: ColorToken[]) {
-    this["colors"] = this;
+    this["_colors"] = checkArg(colors, []);
+    //@ts-ignore
+    this["_colors"] = this;
+    return this;
   }
 
   /**
@@ -45,10 +50,11 @@ console.log(filterByContrast(sample, 'green', '>=3'))
     startSaturation = 0.05,
     endSaturation = 1,
     mode?: HueColorSpaces
-  ) {
-    this["colors"] = this;
-    this["colors"] = filterBy.filterBySaturation(
-      this["colors"],
+  ): ColorArray {
+    // @ts-ignore
+    this["_colors"] = this;
+    this["_colors"] = filterBy.filterBySaturation(
+      this["_colors"],
       startSaturation,
       endSaturation,
       mode
@@ -84,9 +90,10 @@ filterByLightness(sample, 20, 80)
 // [ '#00c000', '#007e00', '#164100', '#720000' ]
  */
   filterByLightness(startLightness = 5, endLightness = 100): ColorArray {
-    this["colors"] = this;
-    this["colors"] = filterBy.filterByLightness(
-      this["colors"],
+    //@ts-ignore
+    this["_colors"] = this;
+    this["_colors"] = filterBy.filterByLightness(
+      this["_colors"],
       startLightness,
       endLightness
     );
@@ -125,9 +132,10 @@ console.log(filterByDistance(sample, "yellow", 0.1))
     mode?: ColorSpaces,
     weights?: [number, number, number, number]
   ): ColorArray {
-    this["colors"] = this;
-    this["colors"] = filterBy.filterByDistance(
-      this["colors"],
+    // @ts-ignore
+    this["_colors"] = this;
+    this["_colors"] = filterBy.filterByDistance(
+      this["_colors"],
       against,
       startDistance,
       endDistance,
@@ -174,8 +182,13 @@ filterByTemp(sample, 1000, 20000);
  */
 
   filterByTemp(startTemp = 1000, endTemp = 6000): ColorArray {
-    this["colors"] = this;
-    this["colors"] = filterBy.filterByTemp(this["colors"], startTemp, endTemp);
+    // @ts-ignore
+    this["_colors"] = this;
+    this["_colors"] = filterBy.filterByTemp(
+      this["_colors"],
+      startTemp,
+      endTemp
+    );
     return this;
   }
   /**
@@ -213,9 +226,10 @@ console.log(filterByContrast(sample, 'green', '>=3'))
     startContrast = 0.05,
     endContrast?: number
   ): ColorArray {
-    this["colors"] = this;
-    this["colors"] = filterBy.filterByContrast(
-      this["colors"],
+    // @ts-ignore
+    this["_colors"] = this;
+    this["_colors"] = filterBy.filterByContrast(
+      this["_colors"],
       against,
       startContrast,
       endContrast
@@ -249,8 +263,9 @@ filterByHue(sample, 20, 80)
  */
 
   filterByHue(startHue = 0, endHue = 360): ColorArray {
-    this["colors"] = this;
-    this["colors"] = filterBy.filterByHue(this["colors"], startHue, endHue);
+    // @ts-ignore
+    this["_colors"] = this;
+    this["_colors"] = filterBy.filterByHue(this["_colors"], startHue, endHue);
     return this;
   }
   /**
@@ -282,9 +297,10 @@ filterByLuminance(sample, 0.4, 0.9)
  */
 
   filterByLuminance(startLuminance = 0.05, endLuminance = 1): ColorArray {
-    this["colors"] = this;
-    this["colors"] = filterBy.filterByLuminance(
-      this["colors"],
+    // @ts-ignore
+    this["_colors"] = this;
+    this["_colors"] = filterBy.filterByLuminance(
+      this["_colors"],
       startLuminance,
       endLuminance
     );
@@ -339,11 +355,15 @@ sortByLightness(sample,'desc')
 
  */
 
-  sortByLightness(colors: ColorToken[], order: "asc" | "desc"): ColorToken[] {}
+  sortByLightness(order?: "asc" | "desc"): ColorArray {
+    // @ts-ignore
+    this[this._colors] = this;
+    this["_colors"] = sortBy.sortByLightness(this["_colors"], order);
+    return this;
+  }
   /**
  * @function
  * @description Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
- * @param  colors The array of colors to sort.
  * @param against The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @param weights The weighting values to pass to the Euclidean function. Default is [1,1,1,0].
@@ -372,11 +392,21 @@ console.log(
  */
 
   sortByDistance(
-    colors: ColorToken[],
     against: ColorToken,
     order?: "asc" | "desc",
     options?: ColorDistanceOptions
-  ): ColorToken[];
+  ): ColorArray {
+    // @ts-ignore
+    this["_colors"] = this;
+    this["_colors"] = sortBy.sortByDistance(
+      this["_colors"],
+      against,
+      order,
+      options
+    );
+
+    return this;
+  }
 
   /**
  * @function
@@ -427,7 +457,12 @@ console.log(sortedDescending)
  
  */
 
-  sortByLuminance(colors: ColorToken[], order: "asc" | "desc"): ColorToken[] {}
+  sortByLuminance(order?: "asc" | "desc"): ColorArray {
+    // @ts-ignore
+    this["_colors"] = this;
+    this["_colors"] = sortBy.sortByLuminance(this["_colors"], order);
+    return this;
+  }
   /**
  * @function
  * @description Sorts colors according to their saturation.
@@ -476,11 +511,12 @@ console.log(sortedDescending)
 
  */
 
-  sortBySaturation(
-    colors: ColorToken[],
-    order: "asc" | "desc",
-    mode?: HueColorSpaces
-  ): ColorToken[] {}
+  sortBySaturation(order: "asc" | "desc", mode?: HueColorSpaces): ColorArray {
+    // @ts-ignore
+    this["_colors"] = this;
+    this["_colors"] = sortBy.sortBySaturation(this["_colors"], order, mode);
+    return this;
+  }
 
   /**
  * @function
@@ -501,15 +537,15 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
  
  */
 
-  sortByContrast(
-    colors: ColorToken[],
-    against: ColorToken,
-    order: "asc" | "desc"
-  ): ColorToken[];
+  sortByContrast(against: ColorToken, order?: "asc" | "desc"): ColorArray {
+    // @ts-ignore
+    this["_colors"] = this;
+    this["_colors"] = sortBy.sortByContrast(this["_colors"], against, order);
+    return this;
+  }
   /**
  * @function
  * @description Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
- * @param  colors The array of colors to sort
  * @param order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
 * @param mode The color space to compute the color distances in. All colors within the collection will be converted to mode. Also note that because differences in hue mapping certain color spaces such as HSL and LCH hue values do not align. Keep such quirks in mind to avoid weird results. 
 * @returns  An array of the sorted color values.
@@ -554,11 +590,12 @@ console.log(sortedDescending)
  */
 
   // Todo: Add the mode param so that users can select mode to work with. The default is lch
-  sortByHue(
-    colors: ColorToken[],
-    order: "asc" | "desc",
-    mode = "jch"
-  ): ColorToken[] {}
+  sortByHue(order: "asc" | "desc", mode = "jch"): ColorArray {
+    // @ts-ignore
+    this["_colors"] = this;
+    this["_colors"] = sortBy.sortByHue(this["_colors"], order, mode);
+    return this;
+  }
   /**
  * @function
  * @description Sorts colors according to temperature value in Kelvins according to the temperatu. Achromatic colors may return awkward results.Please note that color temperature makes sense when measuring color that is nearer to white.
@@ -589,7 +626,16 @@ let sortedDescending = sortByTemp(sample, 'desc')
 console.log(sortedDescending)
  */
 
-  sortByTemp(colors: ColorToken[], order: "asc" | "desc"): ColorToken[] {}
+  sortByTemp(order?: "asc" | "desc"): ColorArray {
+    // @ts-ignore
+    this["_colors"] = this;
+    this["_colors"] = sortBy.sortByTemp(this["_colors"], order);
+    return this;
+  }
+
+  colors(): ColorToken {
+    return this["_colors"];
+  }
 }
 
 /**
@@ -600,4 +646,5 @@ console.log(sortedDescending)
 var load = (colors: ColorToken[]): ColorArray => {
   return new ColorArray(colors);
 };
+
 export { load, ColorArray };
