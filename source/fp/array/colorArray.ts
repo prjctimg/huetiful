@@ -600,4 +600,4 @@ console.log(sortedDescending)
 var load = (colors: ColorToken[]): ColorArray => {
   return new ColorArray(colors);
 };
-export { load };
+export { load, ColorArray };

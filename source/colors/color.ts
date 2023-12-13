@@ -1,4 +1,5 @@
-import { temp2Color, toHex } from "../converters";
+import { getTemp, temp2Color, toHex } from "../converters";
+import { load, ColorArray } from "../fp/array/colorArray";
 import {
   colors,
   alpha as nativeAlpha,
@@ -60,87 +61,140 @@ class Color {
       temperature,
     } = options || {};
 
+    // if the color temperature is not passed get
     this["temperature"] = checkArg(temperature, temp(this["color"]));
+
+    // Culori has some illuminant variants for certain color spaces
     this["illuminant"] = checkArg(illuminant, "D65");
-    this["alpha"] = checkArg(alpha, 1);
+
+    // Set the alpha of the color if its not explicitly passed in.
+    this["alpha"] = checkArg(alpha, nativeAlpha(this["color"]));
+
+    // if the color is undefined we cast pure black
     this["color"] = checkArg(color, "#000");
+
+    // set the color's luminance if its not explicitly passed in
     this["luminance"] = checkArg(luminance, getLuminance(this["color"]));
+
+    // set the color's lightness if its not explicitly passed in the default lightness is in Lch but will be refactored soon
     this["lightness"] = checkArg(
       lightness,
       nativeGetChannel("lch.l")(this["color"])
     );
+
+    // set the default color space as jch if a color space is not specified. TODO: get the mode from object and array
     this["colorspace"] = checkArg(colorspace, "jch");
+
+    // set the default saturation to that of the passed in color if the value is not explicitly set
     this["saturation"] = checkArg(
       saturation,
       nativeGetChannel(
         `${this["colorspace"]}.${matchChromaChannel(this["colorspace"])}`
       )(this["color"])
     );
+
+    // color's temperature according to the D65 illuminant
     this["temperature"] = checkArg(temperature, temp(this["color"]));
+    // the object containg color tokens as values and theme names as keys.
     this["background"] = checkArg(background, {});
+
+    // light mode default is gray-100
     this["background"]["lightMode"] = checkArg(
       this["background"]["lightMode"],
       colors("gray", "100")
     );
-    this["background"]["lightMode"] = checkArg(
+
+    // dark mode default is gray-800
+    this["background"]["darkMode"] = checkArg(
       this["background"]["darkMode"],
       colors("gray", "800")
     );
+
+    // the custom background is undefined by default and must be explicitly set
     this["background"]["custom"] = checkArg(
-      this["color"],
-      this["background"]["custom"]
+      this["background"]["custom"],
+      undefined
     );
   }
 
-  set alpha(amount: number | string) {
-    this["alpha"] = nativeAlpha(this["alpha"], amount);
+  alpha(amount?: number | string): ColorToken | number {
+    if (amount === undefined) {
+      return nativeAlpha(this["color"]);
+    } else {
+      this["color"] = this;
+      this["color"] = nativeAlpha(this["color"], amount);
+
+      return this;
+    }
   }
   getChannel(channel: string) {
     return nativeGetChannel(`${this["colorspace"]}.${channel.toLowerCase()}`)(
       this["color"]
     );
   }
-  setChannel(channel: string, value: number | string) {
-    return nativeSetChannel(`${this["colorspace"]}.${channel.toLowerCase()}`)(
-      this["color"],
-      value
-    );
+  setChannel(channel: string, value: number | string): ColorToken {
+    this["color"] = this;
+    this["color"] = nativeSetChannel(
+      `${this["colorspace"]}.${channel.toLowerCase()}`
+    )(this["color"], value);
+    return this;
+  }
+  //
+  temperature(kelvins: number): number | ColorToken {
+    if (kelvins === undefined) {
+      return getTemp(this["color"]);
+    } else {
+      this["color"] = this;
+      this["color"] = temp2Color(kelvins);
+      //@ts-ignore
+      this["temperature"] = temp(this["color"]);
+      return this;
+    }
   }
 
-  set temperature(kelvins: number) {
-    this["color"] = temp2Color(kelvins);
-    this["temperature"] = temp(this["color"]);
-  }
-
-  get alpha(): number {
-    return nativeAlpha(this["color"]);
-  }
   brighten(amount: number | string) {
-    return nativeBrighten(this["color"], amount);
+    this["color"] = this;
+    this["color"] = nativeBrighten(this["color"], amount);
+    return this;
   }
-  darken(amount: number | string) {}
+  darken(amount: number | string) {
+    this["color"] = this;
+    this["color"] = nativeDarken(this["color"], amount);
+    return this;
+  }
   toCam(): IJchProps {
     return colorToCam(this["color"]);
   }
   toHex(): ColorToken {
-    return nativeToHex(this["color"]);
+    this["color"] = this;
+    this["color"] = nativeToHex(this["color"]);
+    return this;
   }
   pastel(): ColorToken {
-    return nativePastel(this["color"]);
+    this["color"] = this;
+    this["color"] = nativePastel(this["color"]);
+    return this;
   }
   pairedScheme(options?: PairedSchemeOptions): ColorToken[] {
-    return nativePairedScheme(this["color"], checkArg(options, {}));
+    this["colors"] = load(
+      nativePairedScheme(this["color"], checkArg(options, {}))
+    );
+    return this["colors"];
   }
-  hueShift(options?: HueShiftOptions): ColorToken[] {
-    return nativeHueShift(this["color"], checkArg(options, {}));
+  hueShift(options?: HueShiftOptions): ColorArray {
+    this["colors"] = load(nativeHueShift(this["color"], checkArg(options, {})));
+    return this["colors"];
   }
   getComplimentaryHue(
     colorObj?: boolean
   ): { hue: Hue; color: ColorToken } | ColorToken {
     return nativeGetComplimentaryHue(this["color"], checkArg(colorObj, false));
   }
-  earthtone(options?: EarthtoneOptions): ColorToken {
-    return nativeEarthtone(this["color"], checkArg(options, []));
+  earthtone(options?: EarthtoneOptions): ColorArray {
+    this["colors"] = load(
+      nativeEarthtone(this["color"], checkArg(options, []))
+    );
+    return this["colors"];
   }
   contrast(against: "lightMode" | "darkMode" | ColorToken) {
     let result: number;
@@ -218,10 +272,6 @@ class Color {
     easingFunc?: (t: number) => number
   ): ColorToken[] {
     return nativeScheme(scheme)(this["color"], easingFunc);
-  }
-
-  get temperature(): number {
-    return this["temperature"];
   }
 }
 
