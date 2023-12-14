@@ -18,3 +18,5 @@
 ### Landing page 
 - Use a flowfield that has hue shifted colors per particle (I need to fix max_iterations in hueShift)
 - Use an animated gradient div at the footer.
+
+a way to download source files
