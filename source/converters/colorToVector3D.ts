@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { Vector3D } from "ciebase-ts";
 import type { Color, ColorSpaces } from "../types";
 import { toHex } from "./toHex";
@@ -18,10 +16,13 @@ const colorToVector3D = (color: Color, mode?: ColorSpaces) => {
   mode = checkArg(mode, "rgb");
   color = toHex(color);
 
+  // @ts-ignore
   const colorObject: Color = converter(mode)(color);
-  const result: Vector3D = Object.keys(colorObject).map(
-    (key) => colorObject[getModeChannel(mode, key)]
-  );
+  // @ts-ignore
+  const result: Vector3D = Object.keys(colorObject).map((key) => {
+    // @ts-ignore
+    return colorObject[getModeChannel(mode, key)];
+  });
 
   return result;
 };

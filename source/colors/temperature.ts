@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 import { getChannel } from "../getters_and_setters/get.ts";
 import hueTempMap from "../color-maps/samples/hueTemperature.ts";
 import { getTemp } from "../converters/getTemp.ts";
@@ -113,7 +111,7 @@ const maxTemp = (color: Color): number => {
   const hue: string = customFindKey(hueTempMap, factor);
 
   // Get accurate hue start/ends in HSL
-
+  // @ts-ignore
   const maxHue: number = max(...customConcat(hueTempMap[hue]));
 
   const result = getTemp({
@@ -151,6 +149,7 @@ const minTemp = (color: Color): number => {
   // Then  we check to see in what hue family it is and check the highest hue value for that family
   const hue: string = customFindKey(hueTempMap, factor);
 
+  // @ts-ignore
   const minHue: number = min(...customConcat(hueTempMap[hue]));
 
   // Get accurate hue start/ends in HSL

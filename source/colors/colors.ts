@@ -1,4 +1,3 @@
-//@ts-nocheck
 import shades from "../color-maps/swatches/tailwind.ts";
 import type { HueMap, ScaleValues, Color } from "../types";
 
@@ -41,7 +40,10 @@ let red100 = colors("red", 100);
 console.log(red100)
 // #fee2e2
  */
-const colors = (shade: keyof HueMap, val: ScaleValues): Color | Color[] => {
+const colors = (
+  shade: keyof HueMap | string,
+  val: ScaleValues
+): Color | Color[] => {
   const { keys } = Object;
   const defaultHue = "all";
   const hueKeys = keys(shades);
@@ -51,9 +53,9 @@ const colors = (shade: keyof HueMap, val: ScaleValues): Color | Color[] => {
   // If only the hue is defined return the whole array of hex codes for that color.
 
   // If only the value is defined return that color value for every hue.
-
+  // @ts-ignore
   if (shade === defaultHue) {
-    return shades.map((color) => color[val || "500"]);
+    return hueKeys.map((color) => shades[color][val || "500"]);
   } else if (hueKeys.some((hue) => hue === shade) && val) {
     return shades[shade][val];
   } else if (shade && typeof val == "undefined") {

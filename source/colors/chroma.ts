@@ -1,4 +1,3 @@
-// @ts-nocheck
 // This module contains minChroma,maxChroma,getFarthestChroma,getNearestChroma
 
 import { Color, HueColorSpaces, Factor } from "../types";
@@ -140,7 +139,7 @@ const minChroma = (
       value = result[0][factor];
     }
   }
-
+  // @ts-ignore
   return value;
 };
 
@@ -184,7 +183,7 @@ const maxChroma = (
       value = result[0][factor];
     }
   }
-
+  // @ts-ignore
   return value;
 };
 

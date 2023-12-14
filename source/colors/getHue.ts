@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // Returns the hue range where a color is found. If the hue Channel is falsy we return gray ?
-// @ts-nocheck
+
 import hueTempMap from "../color-maps/samples/hueTemperature.js";
 import { useMode, modeLch } from "culori/fn";
 import { inRange } from "../fp/number/inRange.js";
@@ -41,7 +41,9 @@ const getHue = (color: Color): Hue => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
       const hueVals = customConcat(hueTempMap[hue]);
+      // @ts-ignore
       const minVal = min(...hueVals);
+      // @ts-ignore
       const maxVal = max(...hueVals);
       const bool = customConcat(hueTempMap[hue]).some(() =>
         inRange(factor, minVal, maxVal)
@@ -53,7 +55,7 @@ const getHue = (color: Color): Hue => {
     })
     .filter((val) => typeof val === "string")
     .toString();
-
+  // @ts-ignore
   return hueFamily;
 };
 

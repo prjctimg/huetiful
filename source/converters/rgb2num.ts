@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 import { useMode, modeRgb } from "culori/fn";
 import { toHex } from "./toHex.ts";
 import type { Color } from "../types";

@@ -3,7 +3,6 @@
  * https://github.com/neilbartlett/color-temperature and chroma-js
  **/
 
-//  @ts-nocheck
 import { useMode, modeLrgb } from "culori/fn";
 import { temp2Color } from "./temp2Color.ts";
 import type { Color } from "../types.js";

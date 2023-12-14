@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { Color } from "../types";
 import { getChannel } from "../getters_and_setters/get.ts";
 

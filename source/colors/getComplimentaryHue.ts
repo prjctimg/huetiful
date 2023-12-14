@@ -1,4 +1,3 @@
-// @ts-nocheck
 import hueTempMap from "../color-maps/samples/hueTemperature.js";
 import { getChannel } from "../getters_and_setters/get.js";
 import { min, max } from "../fp/array/min_max.js";
@@ -48,7 +47,9 @@ const getComplimentaryHue = (
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
       const hueVals = customConcat(hueTempMap[hue]);
+      // @ts-ignore
       const minVal = min(...hueVals);
+      // @ts-ignore
       const maxVal = max(...hueVals);
       const bool = customConcat(hueTempMap[hue]).some(() =>
         inRange(complementaryHue, minVal, maxVal)

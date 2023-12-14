@@ -1,6 +1,3 @@
-//@ts-nocheck
-
-import "culori/css";
 import type { Color } from "../types";
 import { toHex } from "./toHex.ts";
 // If the value is a floating point then we treat the decimal value as the opacity of the color.

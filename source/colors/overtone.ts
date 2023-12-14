@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { getChannel } from "../getters_and_setters/get.ts";
 import hueTempMap from "../color-maps/samples/hueTemperature.ts";
 import { isAchromatic } from "./achromatic.ts";
@@ -32,6 +31,7 @@ const overtone = (color: Color): string | boolean => {
   if (isAchromatic(color)) {
     return "gray";
   } else if (/-/.test(hue)) {
+    // @ts-ignore
     hue = hue.split("-");
     return hue[1];
   } else {

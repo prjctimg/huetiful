@@ -1,8 +1,7 @@
-// @ts-nocheck
-
 import { getChannel } from "../getters_and_setters/get.ts";
 import { sortedArr } from "../fp/array/sortedArr.ts";
 import type { Color, Factor } from "../types";
+import { gt } from "../fp/index.ts";
 
 const lightness = "lab.l";
 
@@ -114,6 +113,7 @@ const minLightness = (
       value = result[0][factor];
     }
   }
+  // @ts-ignore
   return value;
 };
 
@@ -157,6 +157,7 @@ const maxLightness = (
       value = result[0][factor];
     }
   }
+  // @ts-ignore
   return value;
 };
 

@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import "culori/css";
 import { formatHex8, formatHex, colorsNamed } from "culori/fn";
 import { num2rgb } from "./num2rgb";
@@ -48,6 +46,7 @@ const toHex = (color: Color): string => {
         // Remove the mode element
         colorArr.shift();
         if (colorArr.length === 4) {
+          // @ts-ignore
           colorArr = colorArr.slice(0, 3);
         }
         return colorArr;
@@ -78,18 +77,23 @@ const toHex = (color: Color): string => {
         } else {
           colorArr.map((ch, key) => (src[getModeChannel(mode, key)] = ch));
         }
+        // @ts-ignore
         return src;
       };
       src["alpha"] = color[4] || 1;
+      // @ts-ignore
       src = channelMapper(src, modeChannels, channels(src, color));
+      // @ts-ignore
       src = (src["alpha"] < 1 && formatHex8(src)) || formatHex(src);
     }
     // if its a number use num2rgb
     else if (typeof color === "number") {
       src = num2rgb(color, true);
     } else {
+      // @ts-ignore
       src = formatHex8(color);
     }
+    // @ts-ignore
     return src;
   }
 };

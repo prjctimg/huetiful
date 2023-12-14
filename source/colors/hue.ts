@@ -1,5 +1,4 @@
 //This module contains getNearestHue,getFarthestHue,minHue and maxHue which are collection based utils that return the color with the queried factor.
-// @ts-nocheck
 
 import { getChannel } from "../getters_and_setters/get.ts";
 import { sortedArr } from "../fp/array/sortedArr.ts";
@@ -12,21 +11,20 @@ const { abs } = Math;
 // Use jch by default
 
 const factor: Factor = "hue";
-const mode = (colorSpace: HueColorSpaces): string => `${colorSpace || "lch"}.h`;
+
+const mode = (colorSpace: string): string => `${colorSpace || "lch"}.h`;
 // The hue value of our color which we are using for comparison
-const targetHue = (color: Color, colorSpace: HueColorSpaces): number =>
+const targetHue = (color: Color, colorSpace: string): number =>
   getChannel(mode(colorSpace))(color);
 
 // The callback to invoke per color in the passed in collection.
 // Return the absolute value since hue is a cyclic value which can either be  in clockwise/anti-clockwise.
 //This means that the color object with the smallest hue value is the  nearest color/hue.
-const cb =
-  (color: Color, colorSpace: HueColorSpaces | string) =>
-  (subtrahend: Color) => {
-    return abs(
-      targetHue(color, colorSpace) - getChannel(mode(colorSpace))(subtrahend)
-    );
-  };
+const cb = (color: Color, colorSpace: string) => (subtrahend: Color) => {
+  return abs(
+    targetHue(color, colorSpace) - getChannel(mode(colorSpace))(subtrahend)
+  );
+};
 
 // Callback func for the minHue and maxHue utils. The funny thing is that most of the code is similar with minor changes here and there
 const predicate = (colorSpace: HueColorSpaces) => (color: Color) => {
