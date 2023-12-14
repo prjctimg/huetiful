@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { getChannel } from "../getters_and_setters/get.ts";
 import { filteredArr } from "../fp/array/filteredArr.ts";
 import type { Color, Factor, HueColorSpaces } from "../types";
@@ -53,8 +52,10 @@ const filterBySaturation = (
     const saturationRange = getSaturationRange(modeRanges, mode, chromaChannel);
     const start = saturationRange[0];
     const end = saturationRange[1];
-    const reDigits = /([0-9])/.exec(startSaturation)["0"];
+    // @ts-ignore
+    const reDigits: number = /([0-9])/.exec(startSaturation)["0"];
     //  Normalize saturation ranges later
+
     return filteredArr(factor, cb)(
       colors,
       normalize(reDigits, start, end),
