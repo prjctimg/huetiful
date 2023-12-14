@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { getTemp } from "../converters/getTemp.ts";
 import type { Color, Factor } from "../types";
 import { sortedArr } from "../fp/array/sortedArr.ts";

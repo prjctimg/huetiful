@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { Factor, Color } from "../types";
 import { getChannel } from "../getters_and_setters/get.ts";
 import { sortedArr } from "../fp/array/sortedArr.ts";

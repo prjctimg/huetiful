@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type {
   Factor,
   Color,
@@ -53,8 +52,12 @@ const sortByDistance = (
   mode = checkArg(mode, "lchuv");
   weights = checkArg(weights, [1, 1, 1, 0]);
   const factor: Factor = "distance";
-  const cb = (against: Color, mode: ColorSpaces) => (color: Color) =>
-    differenceEuclidean(mode, weights)(against, color);
+
+  const cb = (against: Color, mode: ColorSpaces) => (color: Color) => {
+    // @ts-ignore
+    return differenceEuclidean(mode, weights)(against, color);
+  };
+
   //Sorting the color array of object by the 'distance' property in the specified order.
 
   return sortedArr(factor, cb(against, mode), order)(colors);
