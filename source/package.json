@@ -33,7 +33,8 @@
     "prepare": " npm run build && npm run types",
     "types": "dts-bundle-generator -o ./lib/index.d.ts ./index.ts",
     "lint": "eslint .config/.eslintrc.json --ext .ts",
-    "format": "prettier --config .config/.prettierrc.json \"/**/*.ts\" --write"
+    "format": "prettier --config .config/.prettierrc.json \"/**/*.ts\" --write",
+    "start": "nodemon app.js --watch "
   },
   "husky": {
     "hooks": {
