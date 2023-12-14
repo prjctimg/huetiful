@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Color } from "../../types";
 
 /**
@@ -35,6 +34,7 @@ function expressionParser(src: Color, channel: string, value: string): number {
     default:
       src[channel] = +cb(amt["0"]);
   }
+  // @ts-ignore
   return src;
 }
 export { expressionParser };
