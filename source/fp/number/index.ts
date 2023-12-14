@@ -1,5 +1,5 @@
 // This module has number methods
-// @ts-nocheck
+
 
 export { lt, gt, gte, lte } from './comparison';
 export { random } from './random';

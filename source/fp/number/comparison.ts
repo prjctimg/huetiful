@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 // Comparison operators
 const gt = (x: number, y: number): boolean => x > y;
 const lt = (x: number, y: number): boolean => x < y;
