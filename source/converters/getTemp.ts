@@ -26,10 +26,14 @@ const getTemp = (color: Color): number => {
   //Store the color in an object with the RGB channels normalized to [0,1]
   // Add a color obj for rgb using culori
   const toRgb = useMode(modeLrgb);
-  const src = toRgb(toHex(color));
+
+  const rgb = toRgb(toHex(color));
+  let channelArr = [];
+  channelArr[0] = rgb["r"];
+  channelArr[1] = rgb["b"];
+
   // Allocate the red and blue channels to variables
-  const r: number = src["r"],
-    b: number = src["b"];
+
   let minTemp = 1000;
   let maxTemp = 40000;
   const eps = 0.4;
@@ -37,7 +41,7 @@ const getTemp = (color: Color): number => {
   while (maxTemp - minTemp > eps) {
     temp = (maxTemp + minTemp) * 0.5;
     const rgb = temp2Color(temp, false);
-    if (rgb["b"] / rgb["r"] >= b / r) {
+    if (rgb["b"] / rgb["r"] >= channelArr[1] / channelArr[0]) {
       maxTemp = temp;
     } else {
       minTemp = temp;

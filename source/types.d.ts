@@ -7,11 +7,10 @@ type ColorOptions = {
   luminance?: number;
   saturation?: number;
   illuminant?: "D50" | "D65";
-  background?: {
-    lightMode?: Color;
-    darkMode?: Color;
-    custom?: Color;
-  };
+
+  lightMode?: Color;
+  darkMode?: Color;
+
   contrast?: number;
   colorSpace?: HueColorSpaces;
 };

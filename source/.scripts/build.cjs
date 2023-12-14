@@ -11,7 +11,6 @@ const sharedConfig = {
   entryPoints: [".//index.ts"],
   bundle: true,
   minify: false,
-  minifySyntax: true,
 };
 
 // commonJS import

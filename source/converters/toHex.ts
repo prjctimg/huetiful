@@ -88,7 +88,7 @@ const toHex = (color: Color): string => {
     else if (typeof color === "number") {
       src = num2rgb(color, true);
     } else {
-      src = (color["alpha"] && formatHex8(color)) || formatHex(color);
+      src = formatHex8(color);
     }
     return src;
   }

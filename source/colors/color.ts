@@ -32,6 +32,7 @@ import {
   pairedScheme as nativePairedScheme,
   earthtone as nativeEarthtone,
   getComplimentaryHue as nativeGetComplimentaryHue,
+  colorDeficiency,
 } from "../index";
 
 import modeRanges from "../color-maps/samples/modeRanges";
@@ -54,190 +55,200 @@ class IColor {
       colorspace,
       luminance,
       saturation,
-      background,
+      lightMode,
+      darkMode,
       lightness,
       temperature,
     } = options || {};
-
+    color = checkArg(color, "#000");
     // if the color temperature is not passed get
-    this["temperature"] = checkArg(temperature, temp(this["color"]));
+    this["temperature"] = checkArg(temperature, temp(color));
 
     // Culori has some illuminant variants for certain color spaces
     this["illuminant"] = checkArg(illuminant, "D65");
 
     // Set the alpha of the color if its not explicitly passed in.
-    this["alpha"] = checkArg(alpha, nativeAlpha(this["color"]));
+    this["alpha"] = checkArg(alpha, nativeAlpha(color));
 
     // if the color is undefined we cast pure black
-    this["color"] = checkArg(color, "#000");
+
+    this["_color"] = color;
 
     // set the color's luminance if its not explicitly passed in
-    this["luminance"] = checkArg(luminance, getLuminance(this["color"]));
+    this["_luminance"] = checkArg(luminance, getLuminance(color));
 
     // set the color's lightness if its not explicitly passed in the default lightness is in Lch but will be refactored soon
-    this["lightness"] = checkArg(
-      lightness,
-      nativeGetChannel("lch.l")(this["color"])
-    );
+    this["lightness"] = checkArg(lightness, nativeGetChannel("lch.l")(color));
 
     // set the default color space as jch if a color space is not specified. TODO: get the mode from object and array
     this["colorspace"] = checkArg(colorspace, "jch");
 
     // set the default saturation to that of the passed in color if the value is not explicitly set
-    this["saturation"] = checkArg(
+    this["_saturation"] = checkArg(
       saturation,
       nativeGetChannel(
         `${this["colorspace"]}.${matchChromaChannel(this["colorspace"])}`
-      )(this["color"])
+      )(color)
     );
 
     // color's temperature according to the D65 illuminant
-    this["temperature"] = checkArg(temperature, temp(this["color"]));
-    // the object containg color tokens as values and theme names as keys.
-    this["background"] = checkArg(background, {});
+    this["temperature"] = checkArg(temperature, temp(color));
 
     // light mode default is gray-100
-    this["background"]["lightMode"] = checkArg(
-      this["background"]["lightMode"],
-      colors("gray", "100")
-    );
+    this["lightMode"] = checkArg(lightMode, colors("gray", "100"));
 
     // dark mode default is gray-800
-    this["background"]["darkMode"] = checkArg(
-      this["background"]["darkMode"],
-      colors("gray", "800")
-    );
-
-    // the custom background is undefined by default and must be explicitly set
-    this["background"]["custom"] = checkArg(
-      this["background"]["custom"],
-      undefined
-    );
+    this["darkMode"] = checkArg(darkMode, colors("gray", "800"));
   }
 
   alpha(amount?: number | string): IColor | number {
-    if (amount === undefined) {
-      return nativeAlpha(this["color"]);
-    } else {
-      this["color"] = this;
-      this["color"] = nativeAlpha(this["color"], amount);
-
+    if (amount) {
+      this["_color"] = nativeAlpha(this["_color"], amount);
       return this;
+    } else {
+      return nativeAlpha(this["_color"]);
     }
   }
   getChannel(channel: string) {
     return nativeGetChannel(`${this["colorspace"]}.${channel.toLowerCase()}`)(
-      this["color"]
+      this["_color"]
     );
   }
   setChannel(channel: string, value: number | string): IColor {
-    this["color"] = this;
-    this["color"] = nativeSetChannel(
+    this["_color"] = nativeSetChannel(
       `${this["colorspace"]}.${channel.toLowerCase()}`
-    )(this["color"], value);
+    )(this["_color"], value);
     return this;
   }
-  //
+
   temperature(kelvins: number): number | IColor {
-    if (kelvins === undefined) {
-      return getTemp(this["color"]);
-    } else {
-      this["color"] = this;
-      this["color"] = temp2Color(kelvins);
+    if (kelvins) {
+      this["_color"] = temp2Color(kelvins);
       //@ts-ignore
-      this["temperature"] = temp(this["color"]);
+      this["temperature"] = temp(this["_color"]);
       return this;
+    } else {
+      return getTemp(this["_color"]);
     }
   }
 
   brighten(amount: number | string) {
-    this["color"] = this;
-    this["color"] = nativeBrighten(this["color"], amount);
+    this["_color"] = nativeBrighten(this["_color"], amount);
     return this;
   }
   darken(amount: number | string) {
-    this["color"] = this;
-    this["color"] = nativeDarken(this["color"], amount);
+    this["_color"] = nativeDarken(this["_color"], amount);
     return this;
   }
+
+  // Added viewing conditions options
   toCam(): IJchProps {
-    return colorToCam(this["color"]);
+    return colorToCam(this["_color"]);
   }
   toHex(): IColor {
-    this["color"] = this;
-    this["color"] = nativeToHex(this["color"]);
-    return this;
+    this["_color"] = nativeToHex(this["_color"]);
+    return this["_color"];
   }
   pastel(): IColor {
-    this["color"] = this;
-    this["color"] = nativePastel(this["color"]);
+    this["_color"] = nativePastel(this["_color"]);
     return this;
   }
   pairedScheme(options?: PairedSchemeOptions): IColor[] {
     this["colors"] = load(
-      nativePairedScheme(this["color"], checkArg(options, {}))
+      nativePairedScheme(this["_color"], checkArg(options, {}))
     );
     return this["colors"];
   }
-  hueShift(options?: HueShiftOptions): ColorArray {
-    this["colors"] = load(nativeHueShift(this["color"], checkArg(options, {})));
-    return this["colors"];
+  hueShift(options?: HueShiftOptions): ColorArray | Color {
+    options["iterations"] = checkArg(options["iterations"], 1);
+    if (options["iterations"]) {
+      return nativeHueShift(this["_color"], options);
+    } else {
+      this["colors"] = load(
+        nativeHueShift(this["_color"], checkArg(options, {}))
+      );
+      return this["colors"];
+    }
   }
   getComplimentaryHue(colorObj?: boolean): { hue: Hue; color: Color } | Color {
-    return nativeGetComplimentaryHue(this["color"], checkArg(colorObj, false));
+    if (colorObj) {
+      return nativeGetComplimentaryHue(
+        this["_color"],
+        checkArg(colorObj, colorObj)
+      );
+    } else {
+      this["_color"] = nativeGetComplimentaryHue(
+        this["_color"],
+        checkArg(colorObj, colorObj)
+      );
+      return this["_color"];
+    }
   }
-  earthtone(options?: EarthtoneOptions): ColorArray {
-    this["colors"] = load(
-      nativeEarthtone(this["color"], checkArg(options, []))
-    );
-    return this["colors"];
+  earthtone(options?: EarthtoneOptions): ColorArray | Color {
+    options["iterations"] = checkArg(options["iterations"], 1);
+
+    if (options["iterations"] <= 1) {
+      return nativeEarthtone(this["_color"], options);
+    } else {
+      this["colors"] = load(
+        nativeEarthtone(this["_color"], checkArg(options, {}))
+      );
+      return this["colors"];
+    }
   }
   contrast(against: "lightMode" | "darkMode" | IColor) {
     let result: number;
     switch (against) {
       case "lightMode":
-        result = getContrast(this["color"], this["background"]["lightMode"]);
+        result = getContrast(this["_color"], this["background"]["lightMode"]);
 
         break;
       case "darkMode":
-        result = getContrast(this["color"], this["background"]["darkMode"]);
+        result = getContrast(this["_color"], this["background"]["darkMode"]);
         break;
       default:
-        result = getContrast(this["color"], this["background"]["custom"]);
+        result = getContrast(this["_color"], this["background"]["custom"]);
         break;
     }
     return result;
   }
-
-  get luminance(): number {
-    return this["luminance"];
+  luminance(amount?: number): number {
+    if (amount) {
+      this["_luminance"] = amount;
+      this["_color"] = setLuminance(this["_color"], this["_color"]);
+      // @ts-ignore
+      return this;
+    } else {
+    }
+    return getLuminance(this["_color"]);
   }
 
-  set luminance(luminance: number) {
-    this["color"] = setLuminance(this["color"], luminance);
-    this["luminance"] = getLuminance(this["color"]);
+  output() {
+    return this["_color"];
   }
 
-  get saturation(): number {
-    return this["saturation"];
-  }
-
-  set saturation(amount: string | number) {
-    this["color"] = nativeSetChannel(
+  saturation(amount?: string | number) {
+    this["_saturation"] = nativeGetChannel(
       `${this["colorspace"]}.${matchChromaChannel(this["colorspace"])}`
-    )(this["color"], amount);
-    this["saturation"] = nativeGetChannel(
-      `${this["colorspace"]}.${matchChromaChannel(this["colorspace"])}`
-    )(this["color"]);
+    )(this["_color"]);
+    if (amount) {
+      this["_color"] = nativeSetChannel(
+        `${this["colorspace"]}.${matchChromaChannel(this["colorspace"])}`
+      )(this["_color"], amount);
+
+      return this;
+    } else {
+      return this["_saturation"];
+    }
   }
   isAchromatic() {
-    return nativeIsAchromatic(this["color"]);
+    return nativeIsAchromatic(this["_color"]);
   }
   isWarm() {
-    return nativeIsWarm(this["color"]);
+    return nativeIsWarm(this["_color"]);
   }
   isCool() {
-    return nativeIsCool(this["color"]);
+    return nativeIsCool(this["_color"]);
   }
 
   /**
@@ -263,40 +274,43 @@ let protanopia = colorDeficiency('red')
 console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 // #9f9f9f
  */
-  colorDeficiency(
+  deficiency(
     deficiency?: "red" | "blue" | "green" | "monochromacy",
     severity = 1
-  ): Color {}
+  ): Color {
+    this["_color"] = colorDeficiency(deficiency)(this["_color"], severity);
+    return this;
+  }
 
   getFarthestHue(colors: IColor[]) {
-    return nativeGetFarthestHue(this["color"], colors, this["colorspace"]);
+    return nativeGetFarthestHue(this["_color"], colors, this["colorspace"]);
   }
   getNearestHue(colors: IColor[]) {
-    return nativeGetNearestHue(this["color"], colors, this["colorspace"]);
+    return nativeGetNearestHue(this["_color"], colors, this["colorspace"]);
   }
   getNearestChroma(colors: IColor[]) {
-    return nativeGetNearestChroma(this["color"], colors, this["colorspace"]);
+    return nativeGetNearestChroma(this["_color"], colors, this["colorspace"]);
   }
   getNearestLightness(colors: IColor[]) {
-    return nativeGetNearestLightness(this["color"], colors);
+    return nativeGetNearestLightness(this["_color"], colors);
   }
   getFarthestChroma(colors: IColor[]) {
-    return nativeGetFarthestChroma(this["color"], colors, this["colorspace"]);
+    return nativeGetFarthestChroma(this["_color"], colors, this["colorspace"]);
   }
   getFarthestLightness(colors: IColor[]) {
-    return nativeGetFarthestLightness(this["color"], colors);
+    return nativeGetFarthestLightness(this["_color"], colors);
   }
   ovetone() {
-    return nativeOvertone(this["color"]);
+    return nativeOvertone(this["_color"]);
   }
   getHue() {
-    return nativeGetHue(this["color"]);
+    return nativeGetHue(this["_color"]);
   }
   scheme(
     scheme: "analogous" | "triadic" | "tetradic" | "complementary",
     easingFunc?: (t: number) => number
-  ): Color[] {
-    return nativeScheme(scheme)(this["color"], easingFunc);
+  ): Color[] | ColorArray {
+    return load(nativeScheme(scheme)(this["_color"], easingFunc));
   }
 }
 

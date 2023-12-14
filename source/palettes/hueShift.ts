@@ -36,7 +36,7 @@ console.log(hueShiftedPalette);
 ]
  */
 
-const hueShift = (color: Color, options: HueShiftOptions): Color[] => {
+const hueShift = (color: Color, options?: HueShiftOptions): Color[] => {
   const toLch = useMode(modeLch);
   color = toLch(toHex(color));
 

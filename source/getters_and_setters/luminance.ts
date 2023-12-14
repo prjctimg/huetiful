@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { interpolate, wcagLuminance, useMode, modeRgb } from "culori/fn";
 import type { Color } from "../types.js";
 import { toHex } from "../converters/toHex.js";
@@ -13,7 +12,7 @@ import { toHex } from "../converters/toHex.js";
 console.log(getLuminance('#a1bd2f'))
 // 0.4417749513730954
  */
-const getLuminance = (color: Color): number => wcagLuminance(hex(color));
+const getLuminance = (color: Color): number => wcagLuminance(toHex(color));
 
 const { pow, abs } = Math;
 const toRgb = useMode(modeRgb);
@@ -43,15 +42,17 @@ const setLuminance = (color: Color, lum: number): Color => {
     (lum == 0 && lum) || black || (lum == 1 && !lum) || white;
 
     // compute new color using...
-
+    // @ts-ignore
     const cur_lum = wcagLuminance(color);
 
-    color = toRgb(hex(color));
+    color = toRgb(toHex(color));
 
     const test = (low: Color, high: Color) => {
       //Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
+      // @ts-ignore
       const mid = interpolate([low, high])(0.5);
-      const lm = wcagLuminance(mid);
+      const lm = getLuminance(color);
+      // @ts-ignore
       if (abs(lum - lm > EPS) || !MAX_ITER--) {
         // close enough
         return mid;
