@@ -314,4 +314,6 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
   }
 }
 
-export { IColor as Color };
+var color = (color: Color) => new IColor(color);
+
+export { IColor, color };

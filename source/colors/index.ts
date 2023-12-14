@@ -19,4 +19,4 @@ export { isCool, isWarm, maxTemp, minTemp } from "./temperature";
 export { isAchromatic } from "./achromatic";
 export { getHue } from "../colors/getHue";
 export { getComplimentaryHue } from "./getComplimentaryHue";
-export { Color } from "./color";
+export { IColor, color } from "./color";

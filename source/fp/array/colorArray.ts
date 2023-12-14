@@ -9,6 +9,16 @@ import { checkArg } from "../index";
 import { discoverPalettes as nativeDiscoverPalettes } from "../../palettes";
 import * as filterBy from "../../filterBy";
 import * as sortBy from "../../sortBy";
+import {
+  minChroma as nativeMinChroma,
+  maxChroma as nativeMaxChroma,
+  maxHue as nativeMaxHue,
+  minHue as nativeMinHue,
+  maxLightness as nativeMaxLightness,
+  minLightness as nativeMinLightness,
+  minTemp as nativeMinTemp,
+  maxTemp as nativeMaxTemp,
+} from "../../colors";
 
 class ColorArray {
   // private _colors: ColorToken[];
@@ -52,7 +62,6 @@ console.log(discoverPalettes(sample, "tetradic"))
   /**
  *@function
  * @description Gets the largest hue value from the passed in colors.
- * @param colors The array of colors to query the color with the largest hue value.
  * @param colorSpace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.
  * @returns The largest hue value in the colors passed in or a custom object.
@@ -67,7 +76,9 @@ console.log(maxHue(sample, 'lch'))
   maxHue(
     colorSpace?: HueColorSpaces,
     colorObj = false
-  ): number | { factor: number; color: Color } {}
+  ): number | { factor: number; color: Color } {
+    return nativeMaxHue(this["_colors"], colorSpace, colorObj);
+  }
 
   /**
  *@function
@@ -88,12 +99,13 @@ console.log(minHue(sample, 'lch'))
   minHue(
     colorSpace?: HueColorSpaces,
     colorObj = false
-  ): number | { factor: number; color: Color } {}
+  ): number | { factor: number; color: Color } {
+    return nativeMinHue(this["_colors"], colorSpace, colorObj);
+  }
 
   /**
  *@function
  * @description Gets the smallest lightness value from the passed in colors.
- * @param colors The array of colors to query the color with the smallest lightness value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.
  * @returns The smallest lightness value in the colors passed in or a custom object.
  * @example
@@ -107,7 +119,9 @@ console.log(minLightness(sample, true))
 // { lightness: 72.61647882089876, name: '#a1bd2f' }
 
  */
-  minLightness(colorObj = false): number | { factor: number; color: Color } {}
+  minLightness(colorObj = false): number | { factor: number; color: Color } {
+    return nativeMinLightness(this["_colors"], colorObj);
+  }
 
   /**
  *@function
@@ -126,7 +140,9 @@ console.log(maxLightness(sample, true))
 // { lightness: 80.94668903360088, name: '#f3bac1' }
 
  */
-  maxLightness(colorObj = false): number | { factor: number; color: Color } {}
+  maxLightness(colorObj = false): number | { factor: number; color: Color } {
+    return nativeMaxLightness(this["_colors"], colorObj);
+  }
 
   /**
  * @experimental
@@ -144,7 +160,9 @@ console.log(maxLightness(sample, true))
 console.log(maxTemp("b2c3f1"))
 // 9570
  */
-  maxTemp(color: Color): number {}
+  maxTemp(color: Color): number {
+    return nativeMaxTemp(this["_colors"]);
+  }
 
   /**
  * @experimental
@@ -163,7 +181,9 @@ console.log(minTemp("b2c3f1"))
 // 20107
  * 
  */
-  minTemp(color: Color): number {}
+  minTemp(color: Color): number {
+    return nativeMinTemp(this["_colors"]);
+  }
 
   /**
  * @function
