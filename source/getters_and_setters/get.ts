@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 import { converter } from "culori/fn";
 import "culori/css";
 import { toHex } from "../converters/toHex.ts";
@@ -22,6 +20,7 @@ const getChannel =
   (mc: string) =>
   (color: Color): number => {
     const [mode, channel] = mc.split(".");
+    // @ts-ignore
     const src = converter(mode)(toHex(color));
 
     if (channel) {

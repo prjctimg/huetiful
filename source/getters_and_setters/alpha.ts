@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { useMode, modeLch } from "culori/fn";
 import { inRange } from "../fp/number/inRange.js";
 import { expressionParser } from "../fp/string/expressionParser.js";
@@ -44,6 +43,7 @@ const alpha = (color: Color, value?: number | string): number => {
   } else if (typeof value === "string") {
     expressionParser(src, channel, value);
   }
+  // @ts-ignore
   return toHex(src);
 };
 

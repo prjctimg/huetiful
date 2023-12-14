@@ -36,6 +36,7 @@ const tailwindColors =
   (shade: keyof HueMap) =>
   (val?: ScaleValues): string | string[] => {
     // This is a curried func that takes in the shade and returns a function that takes in a value from 100 thru 900
+    // @ts-ignore
     shade = shade.toLowerCase();
     const { keys } = Object;
     // We check if the shade is a valid Tailwind shade if not we return pure black.

@@ -1,7 +1,6 @@
-// @ts-nocheck
-
 import { wcagContrast } from "culori/fn";
 import type { Color } from "../types";
+import { toHex } from "../converters/toHex";
 
 /**
  * @function
@@ -16,7 +15,9 @@ import type { Color } from "../types";
  * console.log(getContrast("black", "white"));
  * // 21
  */
-const getContrast = (color: Color, against: Color): number =>
-  wcagContrast(color, against);
+const getContrast = (color: Color, against: Color): number => {
+  // @ts-ignore
+  return wcagContrast(toHex(color), toHex(against));
+};
 
 export { getContrast };

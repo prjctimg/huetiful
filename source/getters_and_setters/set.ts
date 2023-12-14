@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 // ported from chroma-js Color.set
 
 import { converter } from "culori/fn";
@@ -29,6 +27,7 @@ const setChannel =
   (mc: string) =>
   (color: Color, value: number | string): Color => {
     const [mode, channel] = mc.split(".");
+    // @ts-ignore
     const src: Color = converter(mode)(toHex(color));
 
     if (channel) {

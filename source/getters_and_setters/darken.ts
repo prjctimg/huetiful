@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { easingSmootherstep, modeLab, useMode } from "culori/fn";
 import { toHex } from "../converters/toHex";
 import { expressionParser } from "../fp/string/expressionParser";
@@ -25,6 +24,7 @@ const darken = (color: Color, value: number | string): Color => {
   if (typeof value === "number") {
     src["l"] -= Kn * easingSmootherstep(value / 100);
   } else if (typeof value === "string") {
+    // @ts-ignore
     expressionParser(src, channel, value || 1);
   }
 
@@ -44,7 +44,7 @@ const brighten = (color: Color, value: number | string): Color => {
 
   if (typeof value == "number") {
     value = Math.abs(value);
-    src["l"] -= Kn * easingSmootherstep(value / 100);
+    src["l"] -= 18 * easingSmootherstep(value / 100);
   } else if (typeof value == "string") {
     expressionParser(src, channel, value);
   }

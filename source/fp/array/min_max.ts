@@ -1,7 +1,6 @@
 /* eslint-disable no-ternary */
-// @ts-nocheck
 
-import { gt, lt } from '../number/comparison';
+import { gt, lt } from "../number/comparison";
 
 // from the lodash implementation of _.min and _.max
 const identity = (value) => {

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { Factor, Order } from "../../types";
 
 /**
@@ -7,7 +6,7 @@ import { Factor, Order } from "../../types";
  * @param order Either ascending or descending.
  * @returns A sorted array.
  */
-export const customSort = (order: Order, factor?: Factor) => {
+export const customSort = (order: Order, factor?: Factor | string) => {
   //  Special thanks to deechris27 on youtube
   // a-b gives asc order & b-a gives desc order
   factor = factor || "factor";

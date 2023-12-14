@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Factor, Color, callback } from "../../types";
 import { gt, gte, lt, lte } from "../number/comparison";
 import { inRange } from "../number/inRange";

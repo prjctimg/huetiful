@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   filterDeficiencyDeuter,
   filterDeficiencyProt,
@@ -7,6 +6,7 @@ import {
 } from "culori/fn";
 import { toHex } from "../converters/toHex";
 import type { Color } from "../types";
+import { checkArg } from "../fp";
 
 // This module is focused on creating color blind safe palettes that adhere to the minimum contrast requirements
 
@@ -28,13 +28,13 @@ const baseColorDeficiency = (
   let result: Color;
   col = toHex(col);
   switch (def) {
-    case "blue":
+    case "blue": // @ts-ignore
       result = filterDeficiencyTrit(sev)(col);
       break;
-    case "red":
+    case "red": // @ts-ignore
       result = filterDeficiencyProt(sev)(col);
       break;
-    case "green":
+    case "green": // @ts-ignore
       result = filterDeficiencyDeuter(sev)(col);
       break;
     case "monochromacy":
@@ -74,7 +74,7 @@ const colorDeficiency =
     // Store the keys of deficiency types
     const deficiencies: string[] = ["red", "blue", "green", "monochromacy"];
     // Cast 'red' as the default parameter
-    deficiency = [deficiency || "red"].toString().toLowerCase();
+    deficiency = checkArg(deficiency, "red");
 
     if (
       typeof deficiency === "string" &&
