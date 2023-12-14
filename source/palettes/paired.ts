@@ -30,7 +30,7 @@ import { checkArg } from "../fp/misc.ts";
 console.log(pairedScheme("green",{hueStep:6,iterations:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
  */
-const pairedScheme = (color: Color, options: PairedSchemeOptions): Color[] => {
+const pairedScheme = (color: Color, options?: PairedSchemeOptions): Color[] => {
   // eslint-disable-next-line prefer-const
   let {
     chromaInterpolator,

@@ -31,7 +31,7 @@ console.log(earthtone("pink",{earthtones:'clay',iterations:5 }))
 
  */
 
-const earthtone = (color: Color, options: EarthtoneOptions): Color[] => {
+const earthtone = (color: Color, options?: EarthtoneOptions): Color[] => {
   let {
     chromaInterpolator,
     hueFixup,
