@@ -2,8 +2,8 @@
 
 //ported from chroma-js
 
-import { toHex } from "./toHex";
-import type { Color } from "../types";
+import { toHex } from './toHex';
+import type { Color } from '../types';
 /**
  * @function
  * @description Converts the temperature value (in Kelvins) to an RGB color.
@@ -55,7 +55,7 @@ const temp2Color = (kelvin: number, hex = false): Color => {
     r: r / 255,
     g: g / 255,
     b: b / 255,
-    mode: "rgb",
+    mode: 'rgb'
   };
 
   if (hex) {

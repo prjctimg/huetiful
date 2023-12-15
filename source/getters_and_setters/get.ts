@@ -1,7 +1,7 @@
-import { converter } from "culori/fn";
-import "culori/css";
-import { toHex } from "../converters/toHex.ts";
-import type { Color } from "../types";
+import { converter } from 'culori/fn';
+import 'culori/css';
+import { toHex } from '../converters/toHex.ts';
+import type { Color } from '../types';
 
 /**
  * @function
@@ -19,7 +19,7 @@ console.log(getChannel('rgb.g')('#a1bd2f'))
 const getChannel =
   (mc: string) =>
   (color: Color): number => {
-    const [mode, channel] = mc.split(".");
+    const [mode, channel] = mc.split('.');
     // @ts-ignore
     const src = converter(mode)(toHex(color));
 

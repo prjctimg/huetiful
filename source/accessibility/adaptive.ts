@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-nocheck
-import type { Color, AdaptivePaletteOptions } from "../types";
+import type { Color, AdaptivePaletteOptions } from '../types';
 // This module will make use of contrast ratio to create adaptive palettes
 
 // Things I need to understand first:

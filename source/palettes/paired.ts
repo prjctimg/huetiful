@@ -1,9 +1,9 @@
 // @ts-nocheck
 // From colorbrewr
 
-import { toHex } from "../converters/toHex.ts";
-import { setChannel } from "../getters_and_setters/set.ts";
-import { Color, PairedSchemeOptions } from "../types";
+import { toHex } from '../converters/toHex.ts';
+import { setChannel } from '../getters_and_setters/set.ts';
+import { Color, PairedSchemeOptions } from '../types';
 import {
   interpolate,
   samples,
@@ -13,9 +13,9 @@ import {
   interpolatorSplineBasisClosed,
   useMode,
   modeLch,
-  easingSmoothstep,
-} from "culori/fn";
-import { checkArg } from "../fp/misc.ts";
+  easingSmoothstep
+} from 'culori/fn';
+import { checkArg } from '../fp/misc.ts';
 
 /**
  * @function pairedScheme
@@ -40,7 +40,7 @@ const pairedScheme = (color: Color, options?: PairedSchemeOptions): Color[] => {
     iterations,
     via,
     hueStep,
-    easingFunc,
+    easingFunc
   } = options || {};
 
   easingFunc = checkArg(easingFunc, easingSmoothstep);
@@ -53,32 +53,32 @@ const pairedScheme = (color: Color, options?: PairedSchemeOptions): Color[] => {
   );
   iterations = checkArg(iterations, 1);
 
-  via = checkArg(via, "light");
+  via = checkArg(via, 'light');
   hueStep = checkArg(hueStep, 5);
 
   const toLch = useMode(modeLch);
   color = toLch(toHex(color));
 
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
-  const derivedHue = setChannel("lch.h")(color, color["h"] + hueStep);
+  const derivedHue = setChannel('lch.h')(color, color['h'] + hueStep);
 
   // Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes
   const tones = {
-    dark: "#263238",
-    light: { l: 100, c: 0.0001, h: 0, mode: "lch" },
+    dark: '#263238',
+    light: { l: 100, c: 0.0001, h: 0, mode: 'lch' }
   };
 
-  const scale = interpolate([color, tones[via], derivedHue], "lch", {
+  const scale = interpolate([color, tones[via], derivedHue], 'lch', {
     h: {
       fixup: hueFixup,
-      use: hueInterpolator,
+      use: hueInterpolator
     },
     c: {
-      use: chromaInterpolator,
+      use: chromaInterpolator
     },
     l: {
-      use: lightnessInterpolator,
-    },
+      use: lightnessInterpolator
+    }
   });
 
   if (iterations <= 1) {

@@ -1,5 +1,5 @@
-import { colorObj } from "../object/colorObj";
-import { Factor, Color } from "../../types";
+import { colorObj } from '../object/colorObj';
+import { Factor, Color } from '../../types';
 
 /*
  * @function
@@ -14,5 +14,6 @@ export const colorObjArr =
   (factor: Factor, callback) =>
   (colors: Color[]): Array<{ factor: Factor; name: Color }> => {
     const cb = colorObj(factor, callback);
+    // @ts-ignore
     return colors.map((color) => cb(color));
   };

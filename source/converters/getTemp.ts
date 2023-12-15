@@ -3,10 +3,10 @@
  * https://github.com/neilbartlett/color-temperature and chroma-js
  **/
 
-import { useMode, modeLrgb } from "culori/fn";
-import { temp2Color } from "./temp2Color.ts";
-import type { Color } from "../types.js";
-import { toHex } from "./toHex.ts";
+import { useMode, modeLrgb } from 'culori/fn';
+import { temp2Color } from './temp2Color.ts';
+import type { Color } from '../types.js';
+import { toHex } from './toHex.ts';
 
 /**
  * @description Returns the temperature value in Kelvins of the passed in color.
@@ -28,8 +28,8 @@ const getTemp = (color: Color): number => {
 
   const rgb = toRgb(toHex(color));
   let channelArr = [];
-  channelArr[0] = rgb["r"];
-  channelArr[1] = rgb["b"];
+  channelArr[0] = rgb['r'];
+  channelArr[1] = rgb['b'];
 
   // Allocate the red and blue channels to variables
 
@@ -40,7 +40,7 @@ const getTemp = (color: Color): number => {
   while (maxTemp - minTemp > eps) {
     temp = (maxTemp + minTemp) * 0.5;
     const rgb = temp2Color(temp, false);
-    if (rgb["b"] / rgb["r"] >= channelArr[1] / channelArr[0]) {
+    if (rgb['b'] / rgb['r'] >= channelArr[1] / channelArr[0]) {
       maxTemp = temp;
     } else {
       minTemp = temp;

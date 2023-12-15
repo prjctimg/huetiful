@@ -1,8 +1,8 @@
-import { filteredArr } from "../fp/array/filteredArr.ts";
+import { filteredArr } from '../fp/array/filteredArr.ts';
 
-import type { Color, Factor } from "../types";
-import { toHex } from "../converters/toHex.ts";
-import { getContrast } from "../getters_and_setters/contrast.ts";
+import type { Color, Factor } from '../types';
+import { toHex } from '../converters/toHex.ts';
+import { getContrast } from '../getters_and_setters/contrast.ts';
 
 /**
  *  @function
@@ -42,7 +42,7 @@ const filterByContrast = (
 ): Color[] => {
   // Formatting color tokens to parseable type
   // Create an object that has the contrast and name of color as properties.
-  const factor: Factor = "contrast";
+  const factor: Factor = 'contrast';
   const cb = (against: Color) => (color: Color) => getContrast(color, against);
 
   return filteredArr(factor, cb(against))(colors, startContrast, endContrast);

@@ -1,5 +1,5 @@
-import tailwindHues from "../color-maps/swatches/tailwind.ts";
-import type { HueMap, ScaleValues } from "../types";
+import tailwindHues from '../color-maps/swatches/tailwind.ts';
+import type { HueMap, ScaleValues } from '../types';
 
 /**
  * @function
@@ -50,7 +50,7 @@ const tailwindColors =
       );
     }
 
-    if (typeof val === "undefined") {
+    if (typeof val === 'undefined') {
       return keys(targetHue).map((value) => targetHue[value]);
     } else if (keys(targetHue).indexOf(val) > -1) {
       return targetHue[val];

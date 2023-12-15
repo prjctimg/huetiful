@@ -1,4 +1,4 @@
-import { HueColorSpaces } from "../../types";
+import { HueColorSpaces } from '../../types';
 
 /**
  * @function

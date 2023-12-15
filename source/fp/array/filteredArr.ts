@@ -1,7 +1,7 @@
-import { Factor, Color, callback } from "../../types";
-import { gt, gte, lt, lte } from "../number/comparison";
-import { inRange } from "../number/inRange";
-import { colorObjArr } from "./colorObjArr";
+import { Factor, Color, callback } from '../../types';
+import { gt, gte, lt, lte } from '../number/comparison';
+import { inRange } from '../number/inRange';
+import { colorObjArr } from './colorObjArr';
 
 /**
  * @description Filters an array according to the value of a color's queried factor
@@ -14,18 +14,18 @@ const filteredArr =
   (colors: Color[], start: number | string, end: number): Color[] => {
     let result: Color[];
 
-    if (typeof start === "number") {
+    if (typeof start === 'number') {
       result = colorObjArr(
         factor,
         cb
       )(colors)
         .filter((color) => inRange(color[factor], start, end))
-        .map((color) => color["name"]);
+        .map((color) => color['name']);
 
       return result;
 
       // If string split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
-    } else if (typeof start === "string") {
+    } else if (typeof start === 'string') {
       //The pattern to match
       const reOperator = /^(>=|<=|<|>)/;
 
@@ -40,21 +40,21 @@ const filteredArr =
           factor,
           cb
         )(colors)
-          .filter((el) => test(el[factor], parseFloat(val["0"])))
-          .map((el) => el["name"]);
+          .filter((el) => test(el[factor], parseFloat(val['0'])))
+          .map((el) => el['name']);
       };
-      switch (op["0"]) {
-        case "<":
+      switch (op['0']) {
+        case '<':
           result = mapFilter(lt);
 
           break;
-        case ">":
+        case '>':
           result = mapFilter(gt);
           break;
-        case "<=":
+        case '<=':
           result = mapFilter(lte);
           break;
-        case ">=":
+        case '>=':
           result = mapFilter(gte);
           break;
       }

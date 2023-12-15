@@ -1,6 +1,6 @@
-import { wcagContrast } from "culori/fn";
-import type { Color } from "../types";
-import { toHex } from "../converters/toHex";
+import { wcagContrast } from 'culori/fn';
+import type { Color } from '../types';
+import { toHex } from '../converters/toHex';
 
 /**
  * @function

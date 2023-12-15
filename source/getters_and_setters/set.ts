@@ -1,10 +1,10 @@
 // ported from chroma-js Color.set
 
-import { converter } from "culori/fn";
-import "culori/css";
-import { toHex } from "../converters/toHex.js";
-import { expressionParser } from "../fp/string/expressionParser.js";
-import type { Color } from "../types.js";
+import { converter } from 'culori/fn';
+import 'culori/css';
+import { toHex } from '../converters/toHex.js';
+import { expressionParser } from '../fp/string/expressionParser.js';
+import type { Color } from '../types.js';
 /**
  * @function
  *@description Sets the value for the specified channel in a color.
@@ -26,14 +26,14 @@ console.log(getChannel('lch.h')(myColor))
 const setChannel =
   (mc: string) =>
   (color: Color, value: number | string): Color => {
-    const [mode, channel] = mc.split(".");
+    const [mode, channel] = mc.split('.');
     // @ts-ignore
     const src: Color = converter(mode)(toHex(color));
 
     if (channel) {
-      if (typeof value === "number") {
+      if (typeof value === 'number') {
         src[channel] = value;
-      } else if (typeof value === "string") {
+      } else if (typeof value === 'string') {
         expressionParser(src, channel, value);
       } else {
         throw new Error(`unsupported value for setChannel`);

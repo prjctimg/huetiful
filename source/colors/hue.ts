@@ -1,8 +1,8 @@
 //This module contains getNearestHue,getFarthestHue,minHue and maxHue which are collection based utils that return the color with the queried factor.
 
-import { getChannel } from "../getters_and_setters/get.ts";
-import { sortedArr } from "../fp/array/sortedArr.ts";
-import type { Color, HueColorSpaces, Factor } from "../types";
+import { getChannel } from '../getters_and_setters/get.ts';
+import { sortedArr } from '../fp/array/sortedArr.ts';
+import type { Color, HueColorSpaces, Factor } from '../types';
 
 //  Globals
 
@@ -10,9 +10,9 @@ const { abs } = Math;
 
 // Use jch by default
 
-const factor: Factor = "hue";
+const factor: Factor = 'hue';
 
-const mode = (colorSpace: string): string => `${colorSpace || "lch"}.h`;
+const mode = (colorSpace: string): string => `${colorSpace || 'lch'}.h`;
 // The hue value of our color which we are using for comparison
 const targetHue = (color: Color, colorSpace: string): number =>
   getChannel(mode(colorSpace))(color);
@@ -57,7 +57,7 @@ const getNearestHue = (
   return sortedArr(
     factor,
     cb(color, mode(colorSpace)),
-    "asc",
+    'asc',
     true
   )(colors).filter((el) => el[factor] !== undefined)[0][factor];
 };
@@ -100,7 +100,7 @@ const getFarthestHue = (
   return sortedArr(
     factor,
     cb(color, mode(colorSpace)),
-    "desc",
+    'desc',
     true
   )(colors).filter((el) => el[factor] !== undefined)[0][factor];
 };
@@ -129,7 +129,7 @@ const minHue = (
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     predicate(colorSpace),
-    "asc",
+    'asc',
     true
   )(colors).filter((el) => el[factor] !== undefined);
 
@@ -169,7 +169,7 @@ const maxHue = (
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     predicate(colorSpace),
-    "desc",
+    'desc',
     true
   )(colors).filter((el) => el[factor] !== undefined);
 

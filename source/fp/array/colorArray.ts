@@ -29,7 +29,6 @@ class ColorArray {
   /**
  * @function
  * @description Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
- * @param colors The array of colors to create palettes from. Preferably use 5 or more colors for better results.
  * @param schemeType (Optional) The palette type you want to return.
  * @returns An array of colors if the scheme parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
  * @example
@@ -78,6 +77,14 @@ console.log(maxHue(sample, 'lch'))
     colorObj = false
   ): number | { factor: number; color: Color } {
     return nativeMaxHue(this["_colors"], colorSpace, colorObj);
+  }
+
+  /**
+   * Returns the current length of the resultant array of colors
+   * @returns The colors array length
+   */
+  length(): number {
+    return this["colors"].length;
   }
 
   /**

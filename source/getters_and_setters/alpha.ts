@@ -1,8 +1,8 @@
-import { useMode, modeLch } from "culori/fn";
-import { inRange } from "../fp/number/inRange.js";
-import { expressionParser } from "../fp/string/expressionParser.js";
-import { toHex } from "../converters/toHex.js";
-import type { Color } from "../types.js";
+import { useMode, modeLch } from 'culori/fn';
+import { inRange } from '../fp/number/inRange.js';
+import { expressionParser } from '../fp/string/expressionParser.js';
+import { toHex } from '../converters/toHex.js';
+import type { Color } from '../types.js';
 
 /**
  * @function
@@ -27,20 +27,20 @@ console.log(myColor)
 
 const alpha = (color: Color, value?: number | string): number => {
   // We never perfom an operation on an undefined color. Defaults to pure black
-  color = color || "black";
+  color = color || 'black';
 
-  const channel = "alpha";
+  const channel = 'alpha';
   const lch = useMode(modeLch);
   const src: Color = lch(toHex(color));
-  if (typeof value === "undefined" || null) {
+  if (typeof value === 'undefined' || null) {
     return src[channel];
-  } else if (typeof value === "number") {
+  } else if (typeof value === 'number') {
     if (inRange(value, 0, 1)) {
       src[channel] = value;
     } else {
       src[channel] = value / 100;
     }
-  } else if (typeof value === "string") {
+  } else if (typeof value === 'string') {
     expressionParser(src, channel, value);
   }
   // @ts-ignore

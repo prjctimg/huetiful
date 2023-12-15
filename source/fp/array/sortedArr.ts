@@ -1,6 +1,6 @@
-import { Factor, Color, callback, Order } from "../../types";
-import { colorObjArr } from "./colorObjArr";
-import { customSort } from "./customSort";
+import { Factor, Color, callback, Order } from '../../types';
+import { colorObjArr } from './colorObjArr';
+import { customSort } from './customSort';
 
 /**
  *  Filters an array of color objects with a "factor"  property whose value is determined by a predicate or getter via the cb param.
@@ -23,7 +23,7 @@ const sortedArr =
     if (colorObj) {
       return results;
     } else {
-      return results.map((color) => color["name"]);
+      return results.map((color) => color['name']);
     }
   };
 

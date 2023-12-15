@@ -2,11 +2,11 @@ import {
   filterDeficiencyDeuter,
   filterDeficiencyProt,
   filterDeficiencyTrit,
-  filterGrayscale,
-} from "culori/fn";
-import { toHex } from "../converters/toHex";
-import type { Color } from "../types";
-import { checkArg } from "../fp";
+  filterGrayscale
+} from 'culori/fn';
+import { toHex } from '../converters/toHex';
+import type { Color } from '../types';
+import { checkArg } from '../fp';
 
 // This module is focused on creating color blind safe palettes that adhere to the minimum contrast requirements
 
@@ -21,24 +21,24 @@ import { checkArg } from "../fp";
 // Read more about the minimum accepted values for palette accessibility
 
 const baseColorDeficiency = (
-  def: "red" | "blue" | "green" | "monochromacy",
+  def: 'red' | 'blue' | 'green' | 'monochromacy',
   col: Color,
   sev: number
 ) => {
   let result: Color;
   col = toHex(col);
   switch (def) {
-    case "blue": // @ts-ignore
+    case 'blue': // @ts-ignore
       result = filterDeficiencyTrit(sev)(col);
       break;
-    case "red": // @ts-ignore
+    case 'red': // @ts-ignore
       result = filterDeficiencyProt(sev)(col);
       break;
-    case "green": // @ts-ignore
+    case 'green': // @ts-ignore
       result = filterDeficiencyDeuter(sev)(col);
       break;
-    case "monochromacy":
-      result = filterGrayscale(sev, "lch")(col);
+    case 'monochromacy':
+      result = filterGrayscale(sev, 'lch')(col);
       break;
   }
 
@@ -69,15 +69,15 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 // #9f9f9f
  */
 const colorDeficiency =
-  (deficiency: "red" | "blue" | "green" | "monochromacy") =>
+  (deficiency: 'red' | 'blue' | 'green' | 'monochromacy') =>
   (color: Color, severity = 1) => {
     // Store the keys of deficiency types
-    const deficiencies: string[] = ["red", "blue", "green", "monochromacy"];
+    const deficiencies: string[] = ['red', 'blue', 'green', 'monochromacy'];
     // Cast 'red' as the default parameter
-    deficiency = checkArg(deficiency, "red");
+    deficiency = checkArg(deficiency, 'red');
 
     if (
-      typeof deficiency === "string" &&
+      typeof deficiency === 'string' &&
       deficiencies.some((el) => el === deficiency)
     ) {
       return baseColorDeficiency(deficiency, color, severity);

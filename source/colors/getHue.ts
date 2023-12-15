@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // Returns the hue range where a color is found. If the hue Channel is falsy we return gray ?
 
-import hueTempMap from "../color-maps/samples/hueTemperature.js";
-import { useMode, modeLch } from "culori/fn";
-import { inRange } from "../fp/number/inRange.js";
-import { min, max } from "../fp/array/min_max.js";
-import { customConcat } from "../fp/object/customConcat.js";
-import { toHex } from "../converters/toHex.js";
-import type { Color, Hue } from "../types.js";
+import hueTempMap from '../color-maps/samples/hueTemperature.js';
+import { useMode, modeLch } from 'culori/fn';
+import { inRange } from '../fp/number/inRange.js';
+import { min, max } from '../fp/array/min_max.js';
+import { customConcat } from '../fp/object/customConcat.js';
+import { toHex } from '../converters/toHex.js';
+import type { Color, Hue } from '../types.js';
 
 /**
  *@function
@@ -28,7 +28,7 @@ const getHue = (color: Color): Hue => {
   color = lch(toHex(color));
 
   //Capure the hue value
-  const factor: number | undefined = color["h"];
+  const factor: number | undefined = color['h'];
 
   //  First check if hue is falsy. If true return the string "gray"
   // The predicate-func
@@ -53,7 +53,7 @@ const getHue = (color: Color): Hue => {
         return hue;
       }
     })
-    .filter((val) => typeof val === "string")
+    .filter((val) => typeof val === 'string')
     .toString();
   // @ts-ignore
   return hueFamily;

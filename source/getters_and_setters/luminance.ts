@@ -1,6 +1,6 @@
-import { interpolate, wcagLuminance, useMode, modeRgb } from "culori/fn";
-import type { Color } from "../types.js";
-import { toHex } from "../converters/toHex.js";
+import { interpolate, wcagLuminance, useMode, modeRgb } from 'culori/fn';
+import type { Color } from '../types.js';
+import { toHex } from '../converters/toHex.js';
 /** @alias
  * Gets the luminance value of that color as defined by WCAG.
  * @param color The color to query.
@@ -32,13 +32,13 @@ console.log(getLuminance(myColor))
 // 0.4999999136285792
  */
 const setLuminance = (color: Color, lum: number): Color => {
-  const white = "#ffffff",
-    black = "#000000";
+  const white = '#ffffff',
+    black = '#000000';
 
   const EPS = 1e-7;
   let MAX_ITER = 20;
 
-  if (lum !== undefined && typeof lum == "number") {
+  if (lum !== undefined && typeof lum == 'number') {
     (lum == 0 && lum) || black || (lum == 1 && !lum) || white;
 
     // compute new color using...
@@ -85,9 +85,9 @@ const rgb2luminance = (color: Color): number => {
   // relative luminance
   // see http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
   return (
-    0.7152 * luminance_x(color["g"]) +
-    0.2126 * luminance_x(color["r"]) +
-    0.0722 * luminance_x(color["b"])
+    0.7152 * luminance_x(color['g']) +
+    0.2126 * luminance_x(color['r']) +
+    0.0722 * luminance_x(color['b'])
   );
 };
 

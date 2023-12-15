@@ -1,10 +1,10 @@
-import { Vector3D } from "ciebase-ts";
-import type { Color, ColorSpaces } from "../types";
-import { toHex } from "./toHex";
-import "culori/all";
-import { converter } from "culori/fn";
-import { checkArg } from "../fp/misc";
-import { getModeChannel } from "../fp/misc";
+import { Vector3D } from 'ciebase-ts';
+import type { Color, ColorSpaces } from '../types';
+import { toHex } from './toHex';
+import 'culori/all';
+import { converter } from 'culori/fn';
+import { checkArg } from '../fp/misc';
+import { getModeChannel } from '../fp/misc';
 /**
  * @function
  * @description Returns an array of channel values in the mode color space.
@@ -13,7 +13,7 @@ import { getModeChannel } from "../fp/misc";
  * @returns An array of channel values excluding the alpha channel.
  */
 const colorToVector3D = (color: Color, mode?: ColorSpaces) => {
-  mode = checkArg(mode, "rgb");
+  mode = checkArg(mode, 'rgb');
   color = toHex(color);
 
   // @ts-ignore

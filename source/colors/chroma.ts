@@ -1,9 +1,9 @@
 // This module contains minChroma,maxChroma,getFarthestChroma,getNearestChroma
 
-import { Color, HueColorSpaces, Factor } from "../types";
-import { getChannel } from "../getters_and_setters/get.ts";
-import { matchChromaChannel } from "../fp/string/matchChromaChannel.ts";
-import { sortedArr } from "../fp/array/sortedArr.ts";
+import { Color, HueColorSpaces, Factor } from '../types';
+import { getChannel } from '../getters_and_setters/get.ts';
+import { matchChromaChannel } from '../fp/string/matchChromaChannel.ts';
+import { sortedArr } from '../fp/array/sortedArr.ts';
 
 // I must test if the passed in mode has a chroma/saturation channel. Should I use RegExp  ?
 
@@ -50,12 +50,12 @@ const getNearestChroma = (
 ): number => {
   //  The factor being investigated.
 
-  const factor: Factor = "saturation";
-  const cb = chromaDiff(color, colorSpace || "lch");
+  const factor: Factor = 'saturation';
+  const cb = chromaDiff(color, colorSpace || 'lch');
   const sortedObjArr = sortedArr(
     factor,
     cb,
-    "asc",
+    'asc',
     true
   )(colors).filter((el) => el[factor] !== undefined);
 
@@ -87,12 +87,12 @@ const getFarthestChroma = (
 ): number => {
   //  The factor being investigated.
 
-  const factor: Factor = "saturation";
-  const cb = chromaDiff(color, colorSpace || "lch");
+  const factor: Factor = 'saturation';
+  const cb = chromaDiff(color, colorSpace || 'lch');
   const sortedObjArr = sortedArr(
     factor,
     cb,
-    "desc",
+    'desc',
     true
   )(colors).filter((el) => el[factor] !== undefined);
 
@@ -122,11 +122,11 @@ const minChroma = (
 ): number | { factor: number; color: Color } => {
   //  The factor being investigated.
 
-  const factor: Factor = "saturation";
+  const factor: Factor = 'saturation';
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
-    predicate(colorSpace || "lch"),
-    "asc",
+    predicate(colorSpace || 'lch'),
+    'asc',
     true
   )(colors).filter((el) => el[factor] !== undefined);
 
@@ -166,11 +166,11 @@ const maxChroma = (
 ): number | { factor: number; color: Color } => {
   //  The factor being investigated.
 
-  const factor: Factor = "saturation";
+  const factor: Factor = 'saturation';
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
-    predicate(colorSpace || "lch"),
-    "desc",
+    predicate(colorSpace || 'lch'),
+    'desc',
     true
   )(colors).filter((el) => el[factor] !== undefined);
 

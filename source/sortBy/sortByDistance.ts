@@ -2,11 +2,11 @@ import type {
   Factor,
   Color,
   ColorSpaces,
-  ColorDistanceOptions,
-} from "../types";
-import { sortedArr } from "../fp/array/sortedArr.ts";
-import { differenceEuclidean } from "culori/fn";
-import { checkArg } from "../fp/misc.ts";
+  ColorDistanceOptions
+} from '../types';
+import { sortedArr } from '../fp/array/sortedArr.ts';
+import { differenceEuclidean } from 'culori/fn';
+import { checkArg } from '../fp/misc.ts';
 
 // Use lchuv
 
@@ -44,14 +44,14 @@ console.log(
 const sortByDistance = (
   colors: Color[],
   against: Color,
-  order?: "asc" | "desc",
+  order?: 'asc' | 'desc',
   options?: ColorDistanceOptions
 ): Color[] => {
   let { mode, weights } = options || {};
 
-  mode = checkArg(mode, "lchuv");
+  mode = checkArg(mode, 'lchuv');
   weights = checkArg(weights, [1, 1, 1, 0]);
-  const factor: Factor = "distance";
+  const factor: Factor = 'distance';
 
   const cb = (against: Color, mode: ColorSpaces) => (color: Color) => {
     // @ts-ignore

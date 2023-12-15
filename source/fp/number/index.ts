@@ -1,6 +1,5 @@
 // This module has number methods
 
-
 export { lt, gt, gte, lte } from './comparison';
 export { random } from './random';
 export { isInt } from './isInt';

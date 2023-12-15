@@ -1,15 +1,15 @@
 //@ts-nocheck
-import { useMode, modeLch, easingSmoothstep, samples } from "culori/fn";
+import { useMode, modeLch, easingSmoothstep, samples } from 'culori/fn';
 
-import type { Color } from "../types";
-import { adjustHue } from "../fp/number/adjustHue.ts";
-import { random } from "../fp/number/random.ts";
-import { toHex } from "../converters/toHex.ts";
-import { checkArg } from "../fp/misc.ts";
+import type { Color } from '../types';
+import { adjustHue } from '../fp/number/adjustHue.ts';
+import { random } from '../fp/number/random.ts';
+import { toHex } from '../converters/toHex.ts';
+import { checkArg } from '../fp/misc.ts';
 // Globals
 const cb = (iterations: number, distance: number, color: Color) =>
   samples(iterations).map((val) =>
-    adjustHue((color["h"] + distance) * (val * easingSmoothstep(val)))
+    adjustHue((color['h'] + distance) * (val * easingSmoothstep(val)))
   );
 
 /**
@@ -28,7 +28,7 @@ console.log(base("triadic")("#a1bd2f", true))
 
 const scheme =
   (
-    schemeType: "analogous" | "triadic" | "tetradic" | "complementary" | string
+    schemeType: 'analogous' | 'triadic' | 'tetradic' | 'complementary' | string
   ) =>
   (color: Color, easingFunc?: (t: number) => number): Color[] => {
     schemeType = schemeType.toLowerCase();
@@ -44,7 +44,7 @@ const scheme =
       analogous: cb(3, 12, color),
       triadic: cb(3, 120, color),
       tetradic: cb(4, 90, color),
-      complementary: cb(2, 180, color),
+      complementary: cb(2, 180, color)
     };
     // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
     for (const scheme of Object.keys(targetHueSteps)) {
@@ -57,10 +57,10 @@ const scheme =
     // The map for steps to obtain the targeted palettes
 
     const colors = targetHueSteps[schemeType].map((step: number) => ({
-      l: color["l"],
-      c: color["c"],
+      l: color['l'],
+      c: color['c'],
       h: step * easingFunc(1 / targetHueSteps[schemeType].length),
-      mode: "lch",
+      mode: 'lch'
     }));
 
     return colors.map(toHex);

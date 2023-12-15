@@ -1,4 +1,4 @@
-import { Factor, Order } from "../../types";
+import { Factor, Order } from '../../types';
 
 /**
  * @description Helper function for native sorting method for arrays.
@@ -9,11 +9,11 @@ import { Factor, Order } from "../../types";
 export const customSort = (order: Order, factor?: Factor | string) => {
   //  Special thanks to deechris27 on youtube
   // a-b gives asc order & b-a gives desc order
-  factor = factor || "factor";
+  factor = factor || 'factor';
   return (a, b) => {
-    if (order === "asc") {
+    if (order === 'asc') {
       return a[factor] - b[factor];
-    } else if (order === "desc") {
+    } else if (order === 'desc') {
       return b[factor] - a[factor];
     }
   };

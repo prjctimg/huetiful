@@ -1,5 +1,5 @@
-import type { Color } from "../types";
-import { getChannel } from "../getters_and_setters/get.ts";
+import type { Color } from '../types';
+import { getChannel } from '../getters_and_setters/get.ts';
 
 /**
  * @function
@@ -53,8 +53,8 @@ const isAchromatic = (color: Color): boolean => {
   const cb = (mc: string) => getChannel(mc)(color);
 
   // Store the value of chroma and saturation channels.
-  const checkHsl = cb("hsl.s");
-  const checkLch = cb("lch.c");
+  const checkHsl = cb('hsl.s');
+  const checkLch = cb('lch.c');
 
   // 2) Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
   //   OR
