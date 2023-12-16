@@ -28,6 +28,7 @@
     "typescript": "^5.3.2"
   },
   "scripts": {
+    "test": "jasmine --config ./.config/jasmine.json",
     "docs": "cd .config && npx typedoc  && cd .. && node ./.scripts/docs.cjs && rm -r ../webapp/data/temp && git add .",
     "build": "rm -r lib && mkdir lib && node .scripts/build.cjs",
     "prepare": " npm run build && npm run types",
