@@ -4,8 +4,8 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJS = (cb5, mod2) => function __require() {
-  return mod2 || (0, cb5[__getOwnPropNames(cb5)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
+var __commonJS = (cb4, mod2) => function __require() {
+  return mod2 || (0, cb4[__getOwnPropNames(cb4)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
 };
 var __export = (target, all) => {
   for (var name in all)
@@ -849,9 +849,9 @@ __export(source_exports, {
   getComplimentaryHue: () => getComplimentaryHue,
   getContrast: () => getContrast,
   getFarthestChroma: () => getFarthestChroma,
+  getFarthestContrast: () => getFarthestContrast,
   getFarthestHue: () => getFarthestHue,
   getFarthestLightness: () => getFarthestLightness,
-  getFurthestContrast: () => getFurthestContrast,
   getHue: () => getHue,
   getLuminance: () => getLuminance,
   getModeChannel: () => getModeChannel,
@@ -859,7 +859,6 @@ __export(source_exports, {
   getNearestContrast: () => getNearestContrast,
   getNearestHue: () => getNearestHue,
   getNearestLightness: () => getNearestLightness,
-  getSaturationRange: () => getSaturationRange,
   getTemp: () => getTemp,
   gt: () => gt,
   gte: () => gte,
@@ -875,16 +874,8 @@ __export(source_exports, {
   matchChromaChannel: () => matchChromaChannel,
   matchLightnessChannel: () => matchLightnessChannel,
   max: () => max,
-  maxChroma: () => maxChroma,
-  maxContrast: () => maxContrast,
-  maxHue: () => maxHue,
-  maxLightness: () => maxLightness,
   maxTemp: () => maxTemp,
   min: () => min2,
-  minChroma: () => minChroma,
-  minContrast: () => minContrast,
-  minHue: () => minHue,
-  minLightness: () => minLightness,
   minTemp: () => minTemp,
   normalize: () => normalize,
   num2rgb: () => num2rgb,
@@ -912,6 +903,714 @@ __export(source_exports, {
   toHex: () => toHex
 });
 module.exports = __toCommonJS(source_exports);
+
+// colors/colorBrewer.ts
+var cb = (str) => str.toLowerCase();
+var schemeMapper = (scheme2, schemesObject) => {
+  const { keys: keys3 } = Object;
+  const schemeOptions = keys3(schemesObject).map(cb);
+  scheme2 = cb(scheme2);
+  if (schemeOptions.indexOf(scheme2) > -1) {
+    return schemesObject[scheme2];
+  } else {
+    throw Error(`${scheme2} is an invalid scheme option.`);
+  }
+};
+var sequential = (scheme2) => {
+  const schemes = {
+    OrRd: [
+      "#fff7ec",
+      "#fee8c8",
+      "#fdd49e",
+      "#fdbb84",
+      "#fc8d59",
+      "#ef6548",
+      "#d7301f",
+      "#b30000",
+      "#7f0000"
+    ],
+    PuBu: [
+      "#fff7fb",
+      "#ece7f2",
+      "#d0d1e6",
+      "#a6bddb",
+      "#74a9cf",
+      "#3690c0",
+      "#0570b0",
+      "#045a8d",
+      "#023858"
+    ],
+    BuPu: [
+      "#f7fcfd",
+      "#e0ecf4",
+      "#bfd3e6",
+      "#9ebcda",
+      "#8c96c6",
+      "#8c6bb1",
+      "#88419d",
+      "#810f7c",
+      "#4d004b"
+    ],
+    Oranges: [
+      "#fff5eb",
+      "#fee6ce",
+      "#fdd0a2",
+      "#fdae6b",
+      "#fd8d3c",
+      "#f16913",
+      "#d94801",
+      "#a63603",
+      "#7f2704"
+    ],
+    BuGn: [
+      "#f7fcfd",
+      "#e5f5f9",
+      "#ccece6",
+      "#99d8c9",
+      "#66c2a4",
+      "#41ae76",
+      "#238b45",
+      "#006d2c",
+      "#00441b"
+    ],
+    YlOrBr: [
+      "#ffffe5",
+      "#fff7bc",
+      "#fee391",
+      "#fec44f",
+      "#fe9929",
+      "#ec7014",
+      "#cc4c02",
+      "#993404",
+      "#662506"
+    ],
+    YlGn: [
+      "#ffffe5",
+      "#f7fcb9",
+      "#d9f0a3",
+      "#addd8e",
+      "#78c679",
+      "#41ab5d",
+      "#238443",
+      "#006837",
+      "#004529"
+    ],
+    Reds: [
+      "#fff5f0",
+      "#fee0d2",
+      "#fcbba1",
+      "#fc9272",
+      "#fb6a4a",
+      "#ef3b2c",
+      "#cb181d",
+      "#a50f15",
+      "#67000d"
+    ],
+    RdPu: [
+      "#fff7f3",
+      "#fde0dd",
+      "#fcc5c0",
+      "#fa9fb5",
+      "#f768a1",
+      "#dd3497",
+      "#ae017e",
+      "#7a0177",
+      "#49006a"
+    ],
+    Greens: [
+      "#f7fcf5",
+      "#e5f5e0",
+      "#c7e9c0",
+      "#a1d99b",
+      "#74c476",
+      "#41ab5d",
+      "#238b45",
+      "#006d2c",
+      "#00441b"
+    ],
+    YlGnBu: [
+      "#ffffd9",
+      "#edf8b1",
+      "#c7e9b4",
+      "#7fcdbb",
+      "#41b6c4",
+      "#1d91c0",
+      "#225ea8",
+      "#253494",
+      "#081d58"
+    ],
+    Purples: [
+      "#fcfbfd",
+      "#efedf5",
+      "#dadaeb",
+      "#bcbddc",
+      "#9e9ac8",
+      "#807dba",
+      "#6a51a3",
+      "#54278f",
+      "#3f007d"
+    ],
+    GnBu: [
+      "#f7fcf0",
+      "#e0f3db",
+      "#ccebc5",
+      "#a8ddb5",
+      "#7bccc4",
+      "#4eb3d3",
+      "#2b8cbe",
+      "#0868ac",
+      "#084081"
+    ],
+    Greys: [
+      "#ffffff",
+      "#f0f0f0",
+      "#d9d9d9",
+      "#bdbdbd",
+      "#969696",
+      "#737373",
+      "#525252",
+      "#252525",
+      "#000000"
+    ],
+    YlOrRd: [
+      "#ffffcc",
+      "#ffeda0",
+      "#fed976",
+      "#feb24c",
+      "#fd8d3c",
+      "#fc4e2a",
+      "#e31a1c",
+      "#bd0026",
+      "#800026"
+    ],
+    PuRd: [
+      "#f7f4f9",
+      "#e7e1ef",
+      "#d4b9da",
+      "#c994c7",
+      "#df65b0",
+      "#e7298a",
+      "#ce1256",
+      "#980043",
+      "#67001f"
+    ],
+    Blues: [
+      "#f7fbff",
+      "#deebf7",
+      "#c6dbef",
+      "#9ecae1",
+      "#6baed6",
+      "#4292c6",
+      "#2171b5",
+      "#08519c",
+      "#08306b"
+    ],
+    PuBuGn: [
+      "#fff7fb",
+      "#ece2f0",
+      "#d0d1e6",
+      "#a6bddb",
+      "#67a9cf",
+      "#3690c0",
+      "#02818a",
+      "#016c59",
+      "#014636"
+    ],
+    Viridis: [
+      "#440154",
+      "#482777",
+      "#3f4a8a",
+      "#31678e",
+      "#26838f",
+      "#1f9d8a",
+      "#6cce5a",
+      "#b6de2b",
+      "#fee825"
+    ]
+  };
+  return schemeMapper(scheme2, schemes);
+};
+var diverging = (scheme2) => {
+  const schemes = {
+    Spectral: [
+      "#9e0142",
+      "#d53e4f",
+      "#f46d43",
+      "#fdae61",
+      "#fee08b",
+      "#ffffbf",
+      "#e6f598",
+      "#abdda4",
+      "#66c2a5",
+      "#3288bd",
+      "#5e4fa2"
+    ],
+    RdYlGn: [
+      "#a50026",
+      "#d73027",
+      "#f46d43",
+      "#fdae61",
+      "#fee08b",
+      "#ffffbf",
+      "#d9ef8b",
+      "#a6d96a",
+      "#66bd63",
+      "#1a9850",
+      "#006837"
+    ],
+    RdBu: [
+      "#67001f",
+      "#b2182b",
+      "#d6604d",
+      "#f4a582",
+      "#fddbc7",
+      "#f7f7f7",
+      "#d1e5f0",
+      "#92c5de",
+      "#4393c3",
+      "#2166ac",
+      "#053061"
+    ],
+    PiYG: [
+      "#8e0152",
+      "#c51b7d",
+      "#de77ae",
+      "#f1b6da",
+      "#fde0ef",
+      "#f7f7f7",
+      "#e6f5d0",
+      "#b8e186",
+      "#7fbc41",
+      "#4d9221",
+      "#276419"
+    ],
+    PRGn: [
+      "#40004b",
+      "#762a83",
+      "#9970ab",
+      "#c2a5cf",
+      "#e7d4e8",
+      "#f7f7f7",
+      "#d9f0d3",
+      "#a6dba0",
+      "#5aae61",
+      "#1b7837",
+      "#00441b"
+    ],
+    RdYlBu: [
+      "#a50026",
+      "#d73027",
+      "#f46d43",
+      "#fdae61",
+      "#fee090",
+      "#ffffbf",
+      "#e0f3f8",
+      "#abd9e9",
+      "#74add1",
+      "#4575b4",
+      "#313695"
+    ],
+    BrBG: [
+      "#543005",
+      "#8c510a",
+      "#bf812d",
+      "#dfc27d",
+      "#f6e8c3",
+      "#f5f5f5",
+      "#c7eae5",
+      "#80cdc1",
+      "#35978f",
+      "#01665e",
+      "#003c30"
+    ],
+    RdGy: [
+      "#67001f",
+      "#b2182b",
+      "#d6604d",
+      "#f4a582",
+      "#fddbc7",
+      "#ffffff",
+      "#e0e0e0",
+      "#bababa",
+      "#878787",
+      "#4d4d4d",
+      "#1a1a1a"
+    ],
+    PuOr: [
+      "#7f3b08",
+      "#b35806",
+      "#e08214",
+      "#fdb863",
+      "#fee0b6",
+      "#f7f7f7",
+      "#d8daeb",
+      "#b2abd2",
+      "#8073ac",
+      "#542788",
+      "#2d004b"
+    ]
+  };
+  return schemeMapper(scheme2, schemes);
+};
+var qualitative = (scheme2) => {
+  const schemes = {
+    Set2: [
+      "#66c2a5",
+      "#fc8d62",
+      "#8da0cb",
+      "#e78ac3",
+      "#a6d854",
+      "#ffd92f",
+      "#e5c494",
+      "#b3b3b3"
+    ],
+    Accent: [
+      "#7fc97f",
+      "#beaed4",
+      "#fdc086",
+      "#ffff99",
+      "#386cb0",
+      "#f0027f",
+      "#bf5b17",
+      "#666666"
+    ],
+    Set1: [
+      "#e41a1c",
+      "#377eb8",
+      "#4daf4a",
+      "#984ea3",
+      "#ff7f00",
+      "#ffff33",
+      "#a65628",
+      "#f781bf",
+      "#999999"
+    ],
+    Set3: [
+      "#8dd3c7",
+      "#ffffb3",
+      "#bebada",
+      "#fb8072",
+      "#80b1d3",
+      "#fdb462",
+      "#b3de69",
+      "#fccde5",
+      "#d9d9d9",
+      "#bc80bd",
+      "#ccebc5",
+      "#ffed6f"
+    ],
+    Dark2: [
+      "#1b9e77",
+      "#d95f02",
+      "#7570b3",
+      "#e7298a",
+      "#66a61e",
+      "#e6ab02",
+      "#a6761d",
+      "#666666"
+    ],
+    Paired: [
+      "#a6cee3",
+      "#1f78b4",
+      "#b2df8a",
+      "#33a02c",
+      "#fb9a99",
+      "#e31a1c",
+      "#fdbf6f",
+      "#ff7f00",
+      "#cab2d6",
+      "#6a3d9a",
+      "#ffff99",
+      "#b15928"
+    ],
+    Pastel2: [
+      "#b3e2cd",
+      "#fdcdac",
+      "#cbd5e8",
+      "#f4cae4",
+      "#e6f5c9",
+      "#fff2ae",
+      "#f1e2cc",
+      "#cccccc"
+    ],
+    Pastel1: [
+      "#fbb4ae",
+      "#b3cde3",
+      "#ccebc5",
+      "#decbe4",
+      "#fed9a6",
+      "#ffffcc",
+      "#e5d8bd",
+      "#fddaec",
+      "#f2f2f2"
+    ]
+  };
+  return schemeMapper(scheme2, schemes);
+};
+
+// color-maps/swatches/tailwind.ts
+var tailwind_default = {
+  /*     black: '#000',
+        white: '#fff', */
+  indigo: {
+    50: "#f8fafc",
+    100: "#f1f5f9",
+    200: "#e2e8f0",
+    300: "#cbd5e1",
+    400: "#94a3b8",
+    500: "#64748b",
+    600: "#475569",
+    700: "#334155",
+    800: "#1e293b",
+    900: "#0f172a"
+  },
+  gray: {
+    50: "#f9fafb",
+    100: "#f3f4f6",
+    200: "#e5e7eb",
+    300: "#d1d5db",
+    400: "#9ca3af",
+    500: "#6b7280",
+    600: "#4b5563",
+    700: "#374151",
+    800: "#1f2937",
+    900: "#111827"
+  },
+  zinc: {
+    50: "#fafafa",
+    100: "#f4f4f5",
+    200: "#e4e4e7",
+    300: "#d4d4d8",
+    400: "#a1a1aa",
+    500: "#71717a",
+    600: "#52525b",
+    700: "#3f3f46",
+    800: "#27272a",
+    900: "#18181b"
+  },
+  neutral: {
+    50: "#fafafa",
+    100: "#f5f5f5",
+    200: "#e5e5e5",
+    300: "#d4d4d4",
+    400: "#a3a3a3",
+    500: "#737373",
+    600: "#525252",
+    700: "#404040",
+    800: "#262626",
+    900: "#171717"
+  },
+  stone: {
+    50: "#fafaf9",
+    100: "#f5f5f4",
+    200: "#e7e5e4",
+    300: "#d6d3d1",
+    400: "#a8a29e",
+    500: "#78716c",
+    600: "#57534e",
+    700: "#44403c",
+    800: "#292524",
+    900: "#1c1917"
+  },
+  red: {
+    50: "#fef2f2",
+    100: "#fee2e2",
+    200: "#fecaca",
+    300: "#fca5a5",
+    400: "#f87171",
+    500: "#ef4444",
+    600: "#dc2626",
+    700: "#b91c1c",
+    800: "#991b1b",
+    900: "#7f1d1d"
+  },
+  orange: {
+    50: "#fff7ed",
+    100: "#ffedd5",
+    200: "#fed7aa",
+    300: "#fdba74",
+    400: "#fb923c",
+    500: "#f97316",
+    600: "#ea580c",
+    700: "#c2410c",
+    800: "#9a3412",
+    900: "#7c2d12"
+  },
+  amber: {
+    50: "#fffbeb",
+    100: "#fef3c7",
+    200: "#fde68a",
+    300: "#fcd34d",
+    400: "#fbbf24",
+    500: "#f59e0b",
+    600: "#d97706",
+    700: "#b45309",
+    800: "#92400e",
+    900: "#78350f"
+  },
+  yellow: {
+    50: "#fefce8",
+    100: "#fef9c3",
+    200: "#fef08a",
+    300: "#fde047",
+    400: "#facc15",
+    500: "#eab308",
+    600: "#ca8a04",
+    700: "#a16207",
+    800: "#854d0e",
+    900: "#713f12"
+  },
+  lime: {
+    50: "#f7fee7",
+    100: "#ecfccb",
+    200: "#d9f99d",
+    300: "#bef264",
+    400: "#a3e635",
+    500: "#84cc16",
+    600: "#65a30d",
+    700: "#4d7c0f",
+    800: "#3f6212",
+    900: "#365314"
+  },
+  green: {
+    50: "#f0fdf4",
+    100: "#dcfce7",
+    200: "#bbf7d0",
+    300: "#86efac",
+    400: "#4ade80",
+    500: "#22c55e",
+    600: "#16a34a",
+    700: "#15803d",
+    800: "#166534",
+    900: "#14532d"
+  },
+  emerald: {
+    50: "#ecfdf5",
+    100: "#d1fae5",
+    200: "#a7f3d0",
+    300: "#6ee7b7",
+    400: "#34d399",
+    500: "#10b981",
+    600: "#059669",
+    700: "#047857",
+    800: "#065f46",
+    900: "#064e3b"
+  },
+  teal: {
+    50: "#f0fdfa",
+    100: "#ccfbf1",
+    200: "#99f6e4",
+    300: "#5eead4",
+    400: "#2dd4bf",
+    500: "#14b8a6",
+    600: "#0d9488",
+    700: "#0f766e",
+    800: "#115e59",
+    900: "#134e4a"
+  },
+  sky: {
+    50: "#f0f9ff",
+    100: "#e0f2fe",
+    200: "#bae6fd",
+    300: "#7dd3fc",
+    400: "#38bdf8",
+    500: "#0ea5e9",
+    600: "#0284c7",
+    700: "#0369a1",
+    800: "#075985",
+    900: "#0c4a6e"
+  },
+  blue: {
+    50: "#eff6ff",
+    100: "#dbeafe",
+    200: "#bfdbfe",
+    300: "#93c5fd",
+    400: "#60a5fa",
+    500: "#3b82f6",
+    600: "#2563eb",
+    700: "#1d4ed8",
+    800: "#1e40af",
+    900: "#1e3a8a"
+  },
+  violet: {
+    50: "#f5f3ff",
+    100: "#ede9fe",
+    200: "#ddd6fe",
+    300: "#c4b5fd",
+    400: "#a78bfa",
+    500: "#8b5cf6",
+    600: "#7c3aed",
+    700: "#6d28d9",
+    800: "#5b21b6",
+    900: "#4c1d95"
+  },
+  purple: {
+    50: "#faf5ff",
+    100: "#f3e8ff",
+    200: "#e9d5ff",
+    300: "#d8b4fe",
+    400: "#c084fc",
+    500: "#a855f7",
+    600: "#9333ea",
+    700: "#7e22ce",
+    800: "#6b21a8",
+    900: "#581c87"
+  },
+  fuchsia: {
+    50: "#fdf4ff",
+    100: "#fae8ff",
+    200: "#f5d0fe",
+    300: "#f0abfc",
+    400: "#e879f9",
+    500: "#d946ef",
+    600: "#c026d3",
+    700: "#a21caf",
+    800: "#86198f",
+    900: "#701a75"
+  },
+  pink: {
+    50: "#fdf2f8",
+    100: "#fce7f3",
+    200: "#fbcfe8",
+    300: "#f9a8d4",
+    400: "#f472b6",
+    500: "#ec4899",
+    600: "#db2777",
+    700: "#be185d",
+    800: "#9d174d",
+    900: "#831843"
+  },
+  rose: {
+    50: "#fff1f2",
+    100: "#ffe4e6",
+    200: "#fecdd3",
+    300: "#fda4af",
+    400: "#fb7185",
+    500: "#f43f5e",
+    600: "#e11d48",
+    700: "#be123c",
+    800: "#9f1239",
+    900: "#881337"
+  }
+};
+
+// colors/colors.ts
+var colors = (shade, val) => {
+  const { keys: keys3 } = Object;
+  const defaultHue = "all";
+  const hueKeys2 = keys3(tailwind_default);
+  shade = shade.toLowerCase();
+  if (shade === defaultHue) {
+    return hueKeys2.map((color2) => tailwind_default[color2][val || "500"]);
+  } else if (hueKeys2.some((hue3) => hue3 === shade) && val) {
+    return tailwind_default[shade][val];
+  } else if (shade && typeof val == "undefined") {
+    const keyVals = keys3(tailwind_default[shade]);
+    return keyVals.map((key) => tailwind_default[shade][key]);
+  } else if (typeof val == "undefined") {
+    throw Error(`Both shade and value cannot be undefined`);
+  }
+};
 
 // node_modules/culori/src/rgb/parseNumber.js
 var parseNumber = (color2, len) => {
@@ -4921,7 +5620,6 @@ var num2rgb = (num3, hex2 = false) => {
 
 // fp/misc.ts
 var checkArg = (arg, def) => typeof arg === void 0 ? def : arg;
-var getSaturationRange = (modeRanges, mode2, chromaChannel) => modeRanges[mode2.toLowerCase()][chromaChannel];
 var getModeChannel = (mode2, key) => mode2.charAt(key);
 
 // converters/toHex.ts
@@ -4976,828 +5674,66 @@ var getChannel = (mc) => (color2) => {
   }
 };
 
-// fp/string/matchChromaChannel.ts
-var matchChromaChannel = (colorSpace) => {
-  const reChroma = /(s|c)/;
-  const ch = reChroma.exec(colorSpace);
-  if (reChroma.test(colorSpace)) {
-    return `${colorSpace}.${ch[0]}`;
-  } else {
-    throw Error(
-      `The color space ${colorSpace} has no chroma/saturation channel.`
-    );
-  }
-};
-
-// fp/object/colorObj.ts
-var colorObj = (factor5, callback) => (color2) => {
-  return { [factor5]: callback(color2), name: color2 };
-};
-
-// fp/array/colorObjArr.ts
-var colorObjArr = (factor5, callback) => (colors2) => {
-  const cb5 = colorObj(factor5, callback);
-  return colors2.map((color2) => cb5(color2));
-};
-
-// fp/array/customSort.ts
-var customSort = (order, factor5) => {
-  factor5 = factor5 || "factor";
-  return (a, b) => {
-    if (order === "asc") {
-      return a[factor5] - b[factor5];
-    } else if (order === "desc") {
-      return b[factor5] - a[factor5];
-    }
-  };
-};
-
-// fp/array/sortedArr.ts
-var sortedArr = (factor5, callback, order, colorObj2 = false) => (colors2) => {
-  const results = colorObjArr(factor5, callback)(colors2);
-  results.sort(customSort(order, factor5));
-  if (colorObj2) {
-    return results;
-  } else {
-    return results.map((color2) => color2["name"]);
-  }
-};
-
-// colors/chroma.ts
-var chromaDiff = (color2, colorSpace) => (subtrahend) => {
-  const cs = matchChromaChannel(colorSpace);
-  if (getChannel(cs)(color2) < getChannel(cs)(subtrahend)) {
-    return getChannel(cs)(subtrahend) - getChannel(cs)(color2);
-  } else {
-    return getChannel(cs)(color2) - getChannel(cs)(subtrahend);
-  }
-};
-var predicate = (colorSpace) => (color2) => getChannel(matchChromaChannel(colorSpace))(color2) || void 0;
-var getNearestChroma = (color2, colors2, colorSpace) => {
-  const factor5 = "saturation";
-  const cb5 = chromaDiff(color2, colorSpace || "lch");
-  const sortedObjArr = sortedArr(
-    factor5,
-    cb5,
-    "asc",
-    true
-  )(colors2).filter((el) => el[factor5] !== void 0);
-  return sortedObjArr[0][factor5];
-};
-var getFarthestChroma = (color2, colors2, colorSpace) => {
-  const factor5 = "saturation";
-  const cb5 = chromaDiff(color2, colorSpace || "lch");
-  const sortedObjArr = sortedArr(
-    factor5,
-    cb5,
-    "desc",
-    true
-  )(colors2).filter((el) => el[factor5] !== void 0);
-  return sortedObjArr[0][factor5];
-};
-var minChroma = (colors2, colorSpace, colorObj2 = false) => {
-  const factor5 = "saturation";
-  const result = sortedArr(
-    factor5,
-    predicate(colorSpace || "lch"),
-    "asc",
-    true
-  )(colors2).filter((el) => el[factor5] !== void 0);
-  let value;
-  if (result.length > 0) {
-    if (colorObj2) {
-      value = result[0];
-    } else {
-      value = result[0][factor5];
-    }
-  }
-  return value;
-};
-var maxChroma = (colors2, colorSpace, colorObj2 = false) => {
-  const factor5 = "saturation";
-  const result = sortedArr(
-    factor5,
-    predicate(colorSpace || "lch"),
-    "desc",
-    true
-  )(colors2).filter((el) => el[factor5] !== void 0);
-  let value;
-  if (result.length > 0) {
-    if (colorObj2) {
-      value = result[0];
-    } else {
-      value = result[0][factor5];
-    }
-  }
-  return value;
-};
-
-// colors/colorBrewer.ts
-var cb = (str) => str.toLowerCase();
-var schemeMapper = (scheme2, schemesObject) => {
-  const { keys: keys3 } = Object;
-  const schemeOptions = keys3(schemesObject).map(cb);
-  scheme2 = cb(scheme2);
-  if (schemeOptions.indexOf(scheme2) > -1) {
-    return schemesObject[scheme2];
-  } else {
-    throw Error(`${scheme2} is an invalid scheme option.`);
-  }
-};
-var sequential = (scheme2) => {
-  const schemes = {
-    OrRd: [
-      "#fff7ec",
-      "#fee8c8",
-      "#fdd49e",
-      "#fdbb84",
-      "#fc8d59",
-      "#ef6548",
-      "#d7301f",
-      "#b30000",
-      "#7f0000"
-    ],
-    PuBu: [
-      "#fff7fb",
-      "#ece7f2",
-      "#d0d1e6",
-      "#a6bddb",
-      "#74a9cf",
-      "#3690c0",
-      "#0570b0",
-      "#045a8d",
-      "#023858"
-    ],
-    BuPu: [
-      "#f7fcfd",
-      "#e0ecf4",
-      "#bfd3e6",
-      "#9ebcda",
-      "#8c96c6",
-      "#8c6bb1",
-      "#88419d",
-      "#810f7c",
-      "#4d004b"
-    ],
-    Oranges: [
-      "#fff5eb",
-      "#fee6ce",
-      "#fdd0a2",
-      "#fdae6b",
-      "#fd8d3c",
-      "#f16913",
-      "#d94801",
-      "#a63603",
-      "#7f2704"
-    ],
-    BuGn: [
-      "#f7fcfd",
-      "#e5f5f9",
-      "#ccece6",
-      "#99d8c9",
-      "#66c2a4",
-      "#41ae76",
-      "#238b45",
-      "#006d2c",
-      "#00441b"
-    ],
-    YlOrBr: [
-      "#ffffe5",
-      "#fff7bc",
-      "#fee391",
-      "#fec44f",
-      "#fe9929",
-      "#ec7014",
-      "#cc4c02",
-      "#993404",
-      "#662506"
-    ],
-    YlGn: [
-      "#ffffe5",
-      "#f7fcb9",
-      "#d9f0a3",
-      "#addd8e",
-      "#78c679",
-      "#41ab5d",
-      "#238443",
-      "#006837",
-      "#004529"
-    ],
-    Reds: [
-      "#fff5f0",
-      "#fee0d2",
-      "#fcbba1",
-      "#fc9272",
-      "#fb6a4a",
-      "#ef3b2c",
-      "#cb181d",
-      "#a50f15",
-      "#67000d"
-    ],
-    RdPu: [
-      "#fff7f3",
-      "#fde0dd",
-      "#fcc5c0",
-      "#fa9fb5",
-      "#f768a1",
-      "#dd3497",
-      "#ae017e",
-      "#7a0177",
-      "#49006a"
-    ],
-    Greens: [
-      "#f7fcf5",
-      "#e5f5e0",
-      "#c7e9c0",
-      "#a1d99b",
-      "#74c476",
-      "#41ab5d",
-      "#238b45",
-      "#006d2c",
-      "#00441b"
-    ],
-    YlGnBu: [
-      "#ffffd9",
-      "#edf8b1",
-      "#c7e9b4",
-      "#7fcdbb",
-      "#41b6c4",
-      "#1d91c0",
-      "#225ea8",
-      "#253494",
-      "#081d58"
-    ],
-    Purples: [
-      "#fcfbfd",
-      "#efedf5",
-      "#dadaeb",
-      "#bcbddc",
-      "#9e9ac8",
-      "#807dba",
-      "#6a51a3",
-      "#54278f",
-      "#3f007d"
-    ],
-    GnBu: [
-      "#f7fcf0",
-      "#e0f3db",
-      "#ccebc5",
-      "#a8ddb5",
-      "#7bccc4",
-      "#4eb3d3",
-      "#2b8cbe",
-      "#0868ac",
-      "#084081"
-    ],
-    Greys: [
-      "#ffffff",
-      "#f0f0f0",
-      "#d9d9d9",
-      "#bdbdbd",
-      "#969696",
-      "#737373",
-      "#525252",
-      "#252525",
-      "#000000"
-    ],
-    YlOrRd: [
-      "#ffffcc",
-      "#ffeda0",
-      "#fed976",
-      "#feb24c",
-      "#fd8d3c",
-      "#fc4e2a",
-      "#e31a1c",
-      "#bd0026",
-      "#800026"
-    ],
-    PuRd: [
-      "#f7f4f9",
-      "#e7e1ef",
-      "#d4b9da",
-      "#c994c7",
-      "#df65b0",
-      "#e7298a",
-      "#ce1256",
-      "#980043",
-      "#67001f"
-    ],
-    Blues: [
-      "#f7fbff",
-      "#deebf7",
-      "#c6dbef",
-      "#9ecae1",
-      "#6baed6",
-      "#4292c6",
-      "#2171b5",
-      "#08519c",
-      "#08306b"
-    ],
-    PuBuGn: [
-      "#fff7fb",
-      "#ece2f0",
-      "#d0d1e6",
-      "#a6bddb",
-      "#67a9cf",
-      "#3690c0",
-      "#02818a",
-      "#016c59",
-      "#014636"
-    ],
-    Viridis: [
-      "#440154",
-      "#482777",
-      "#3f4a8a",
-      "#31678e",
-      "#26838f",
-      "#1f9d8a",
-      "#6cce5a",
-      "#b6de2b",
-      "#fee825"
-    ]
-  };
-  return schemeMapper(scheme2, schemes);
-};
-var diverging = (scheme2) => {
-  const schemes = {
-    Spectral: [
-      "#9e0142",
-      "#d53e4f",
-      "#f46d43",
-      "#fdae61",
-      "#fee08b",
-      "#ffffbf",
-      "#e6f598",
-      "#abdda4",
-      "#66c2a5",
-      "#3288bd",
-      "#5e4fa2"
-    ],
-    RdYlGn: [
-      "#a50026",
-      "#d73027",
-      "#f46d43",
-      "#fdae61",
-      "#fee08b",
-      "#ffffbf",
-      "#d9ef8b",
-      "#a6d96a",
-      "#66bd63",
-      "#1a9850",
-      "#006837"
-    ],
-    RdBu: [
-      "#67001f",
-      "#b2182b",
-      "#d6604d",
-      "#f4a582",
-      "#fddbc7",
-      "#f7f7f7",
-      "#d1e5f0",
-      "#92c5de",
-      "#4393c3",
-      "#2166ac",
-      "#053061"
-    ],
-    PiYG: [
-      "#8e0152",
-      "#c51b7d",
-      "#de77ae",
-      "#f1b6da",
-      "#fde0ef",
-      "#f7f7f7",
-      "#e6f5d0",
-      "#b8e186",
-      "#7fbc41",
-      "#4d9221",
-      "#276419"
-    ],
-    PRGn: [
-      "#40004b",
-      "#762a83",
-      "#9970ab",
-      "#c2a5cf",
-      "#e7d4e8",
-      "#f7f7f7",
-      "#d9f0d3",
-      "#a6dba0",
-      "#5aae61",
-      "#1b7837",
-      "#00441b"
-    ],
-    RdYlBu: [
-      "#a50026",
-      "#d73027",
-      "#f46d43",
-      "#fdae61",
-      "#fee090",
-      "#ffffbf",
-      "#e0f3f8",
-      "#abd9e9",
-      "#74add1",
-      "#4575b4",
-      "#313695"
-    ],
-    BrBG: [
-      "#543005",
-      "#8c510a",
-      "#bf812d",
-      "#dfc27d",
-      "#f6e8c3",
-      "#f5f5f5",
-      "#c7eae5",
-      "#80cdc1",
-      "#35978f",
-      "#01665e",
-      "#003c30"
-    ],
-    RdGy: [
-      "#67001f",
-      "#b2182b",
-      "#d6604d",
-      "#f4a582",
-      "#fddbc7",
-      "#ffffff",
-      "#e0e0e0",
-      "#bababa",
-      "#878787",
-      "#4d4d4d",
-      "#1a1a1a"
-    ],
-    PuOr: [
-      "#7f3b08",
-      "#b35806",
-      "#e08214",
-      "#fdb863",
-      "#fee0b6",
-      "#f7f7f7",
-      "#d8daeb",
-      "#b2abd2",
-      "#8073ac",
-      "#542788",
-      "#2d004b"
-    ]
-  };
-  return schemeMapper(scheme2, schemes);
-};
-var qualitative = (scheme2) => {
-  const schemes = {
-    Set2: [
-      "#66c2a5",
-      "#fc8d62",
-      "#8da0cb",
-      "#e78ac3",
-      "#a6d854",
-      "#ffd92f",
-      "#e5c494",
-      "#b3b3b3"
-    ],
-    Accent: [
-      "#7fc97f",
-      "#beaed4",
-      "#fdc086",
-      "#ffff99",
-      "#386cb0",
-      "#f0027f",
-      "#bf5b17",
-      "#666666"
-    ],
-    Set1: [
-      "#e41a1c",
-      "#377eb8",
-      "#4daf4a",
-      "#984ea3",
-      "#ff7f00",
-      "#ffff33",
-      "#a65628",
-      "#f781bf",
-      "#999999"
-    ],
-    Set3: [
-      "#8dd3c7",
-      "#ffffb3",
-      "#bebada",
-      "#fb8072",
-      "#80b1d3",
-      "#fdb462",
-      "#b3de69",
-      "#fccde5",
-      "#d9d9d9",
-      "#bc80bd",
-      "#ccebc5",
-      "#ffed6f"
-    ],
-    Dark2: [
-      "#1b9e77",
-      "#d95f02",
-      "#7570b3",
-      "#e7298a",
-      "#66a61e",
-      "#e6ab02",
-      "#a6761d",
-      "#666666"
-    ],
-    Paired: [
-      "#a6cee3",
-      "#1f78b4",
-      "#b2df8a",
-      "#33a02c",
-      "#fb9a99",
-      "#e31a1c",
-      "#fdbf6f",
-      "#ff7f00",
-      "#cab2d6",
-      "#6a3d9a",
-      "#ffff99",
-      "#b15928"
-    ],
-    Pastel2: [
-      "#b3e2cd",
-      "#fdcdac",
-      "#cbd5e8",
-      "#f4cae4",
-      "#e6f5c9",
-      "#fff2ae",
-      "#f1e2cc",
-      "#cccccc"
-    ],
-    Pastel1: [
-      "#fbb4ae",
-      "#b3cde3",
-      "#ccebc5",
-      "#decbe4",
-      "#fed9a6",
-      "#ffffcc",
-      "#e5d8bd",
-      "#fddaec",
-      "#f2f2f2"
-    ]
-  };
-  return schemeMapper(scheme2, schemes);
-};
-
-// color-maps/swatches/tailwind.ts
-var tailwind_default = {
-  /*     black: '#000',
-        white: '#fff', */
-  indigo: {
-    50: "#f8fafc",
-    100: "#f1f5f9",
-    200: "#e2e8f0",
-    300: "#cbd5e1",
-    400: "#94a3b8",
-    500: "#64748b",
-    600: "#475569",
-    700: "#334155",
-    800: "#1e293b",
-    900: "#0f172a"
-  },
-  gray: {
-    50: "#f9fafb",
-    100: "#f3f4f6",
-    200: "#e5e7eb",
-    300: "#d1d5db",
-    400: "#9ca3af",
-    500: "#6b7280",
-    600: "#4b5563",
-    700: "#374151",
-    800: "#1f2937",
-    900: "#111827"
-  },
-  zinc: {
-    50: "#fafafa",
-    100: "#f4f4f5",
-    200: "#e4e4e7",
-    300: "#d4d4d8",
-    400: "#a1a1aa",
-    500: "#71717a",
-    600: "#52525b",
-    700: "#3f3f46",
-    800: "#27272a",
-    900: "#18181b"
-  },
-  neutral: {
-    50: "#fafafa",
-    100: "#f5f5f5",
-    200: "#e5e5e5",
-    300: "#d4d4d4",
-    400: "#a3a3a3",
-    500: "#737373",
-    600: "#525252",
-    700: "#404040",
-    800: "#262626",
-    900: "#171717"
-  },
-  stone: {
-    50: "#fafaf9",
-    100: "#f5f5f4",
-    200: "#e7e5e4",
-    300: "#d6d3d1",
-    400: "#a8a29e",
-    500: "#78716c",
-    600: "#57534e",
-    700: "#44403c",
-    800: "#292524",
-    900: "#1c1917"
+// color-maps/samples/hueTemperature.ts
+var hueTemperature_default = {
+  "red-purple": {
+    warm: [343, 359],
+    cool: [321, 342]
   },
   red: {
-    50: "#fef2f2",
-    100: "#fee2e2",
-    200: "#fecaca",
-    300: "#fca5a5",
-    400: "#f87171",
-    500: "#ef4444",
-    600: "#dc2626",
-    700: "#b91c1c",
-    800: "#991b1b",
-    900: "#7f1d1d"
+    warm: [21, 40],
+    cool: [0, 20]
   },
-  orange: {
-    50: "#fff7ed",
-    100: "#ffedd5",
-    200: "#fed7aa",
-    300: "#fdba74",
-    400: "#fb923c",
-    500: "#f97316",
-    600: "#ea580c",
-    700: "#c2410c",
-    800: "#9a3412",
-    900: "#7c2d12"
-  },
-  amber: {
-    50: "#fffbeb",
-    100: "#fef3c7",
-    200: "#fde68a",
-    300: "#fcd34d",
-    400: "#fbbf24",
-    500: "#f59e0b",
-    600: "#d97706",
-    700: "#b45309",
-    800: "#92400e",
-    900: "#78350f"
+  "yellow-red": {
+    warm: [41, 54],
+    cool: [55, 70]
   },
   yellow: {
-    50: "#fefce8",
-    100: "#fef9c3",
-    200: "#fef08a",
-    300: "#fde047",
-    400: "#facc15",
-    500: "#eab308",
-    600: "#ca8a04",
-    700: "#a16207",
-    800: "#854d0e",
-    900: "#713f12"
+    warm: [71, 90],
+    cool: [91, 109]
   },
-  lime: {
-    50: "#f7fee7",
-    100: "#ecfccb",
-    200: "#d9f99d",
-    300: "#bef264",
-    400: "#a3e635",
-    500: "#84cc16",
-    600: "#65a30d",
-    700: "#4d7c0f",
-    800: "#3f6212",
-    900: "#365314"
+  "green-yellow": {
+    warm: [110, 124],
+    cool: [125, 140]
   },
   green: {
-    50: "#f0fdf4",
-    100: "#dcfce7",
-    200: "#bbf7d0",
-    300: "#86efac",
-    400: "#4ade80",
-    500: "#22c55e",
-    600: "#16a34a",
-    700: "#15803d",
-    800: "#166534",
-    900: "#14532d"
+    warm: [141, 160],
+    cool: [161, 180]
   },
-  emerald: {
-    50: "#ecfdf5",
-    100: "#d1fae5",
-    200: "#a7f3d0",
-    300: "#6ee7b7",
-    400: "#34d399",
-    500: "#10b981",
-    600: "#059669",
-    700: "#047857",
-    800: "#065f46",
-    900: "#064e3b"
-  },
-  teal: {
-    50: "#f0fdfa",
-    100: "#ccfbf1",
-    200: "#99f6e4",
-    300: "#5eead4",
-    400: "#2dd4bf",
-    500: "#14b8a6",
-    600: "#0d9488",
-    700: "#0f766e",
-    800: "#115e59",
-    900: "#134e4a"
-  },
-  sky: {
-    50: "#f0f9ff",
-    100: "#e0f2fe",
-    200: "#bae6fd",
-    300: "#7dd3fc",
-    400: "#38bdf8",
-    500: "#0ea5e9",
-    600: "#0284c7",
-    700: "#0369a1",
-    800: "#075985",
-    900: "#0c4a6e"
+  "blue-green": {
+    warm: [181, 200],
+    cool: [201, 220]
   },
   blue: {
-    50: "#eff6ff",
-    100: "#dbeafe",
-    200: "#bfdbfe",
-    300: "#93c5fd",
-    400: "#60a5fa",
-    500: "#3b82f6",
-    600: "#2563eb",
-    700: "#1d4ed8",
-    800: "#1e40af",
-    900: "#1e3a8a"
+    warm: [221, 235],
+    cool: [236, 250]
   },
-  violet: {
-    50: "#f5f3ff",
-    100: "#ede9fe",
-    200: "#ddd6fe",
-    300: "#c4b5fd",
-    400: "#a78bfa",
-    500: "#8b5cf6",
-    600: "#7c3aed",
-    700: "#6d28d9",
-    800: "#5b21b6",
-    900: "#4c1d95"
+  "purple-blue": {
+    warm: [271, 290],
+    cool: [251, 270]
   },
   purple: {
-    50: "#faf5ff",
-    100: "#f3e8ff",
-    200: "#e9d5ff",
-    300: "#d8b4fe",
-    400: "#c084fc",
-    500: "#a855f7",
-    600: "#9333ea",
-    700: "#7e22ce",
-    800: "#6b21a8",
-    900: "#581c87"
-  },
-  fuchsia: {
-    50: "#fdf4ff",
-    100: "#fae8ff",
-    200: "#f5d0fe",
-    300: "#f0abfc",
-    400: "#e879f9",
-    500: "#d946ef",
-    600: "#c026d3",
-    700: "#a21caf",
-    800: "#86198f",
-    900: "#701a75"
-  },
-  pink: {
-    50: "#fdf2f8",
-    100: "#fce7f3",
-    200: "#fbcfe8",
-    300: "#f9a8d4",
-    400: "#f472b6",
-    500: "#ec4899",
-    600: "#db2777",
-    700: "#be185d",
-    800: "#9d174d",
-    900: "#831843"
-  },
-  rose: {
-    50: "#fff1f2",
-    100: "#ffe4e6",
-    200: "#fecdd3",
-    300: "#fda4af",
-    400: "#fb7185",
-    500: "#f43f5e",
-    600: "#e11d48",
-    700: "#be123c",
-    800: "#9f1239",
-    900: "#881337"
+    warm: [316, 320],
+    cool: [291, 315]
   }
 };
 
-// colors/colors.ts
-var colors = (shade, val) => {
-  const { keys: keys3 } = Object;
-  const defaultHue = "all";
-  const hueKeys2 = keys3(tailwind_default);
-  shade = shade.toLowerCase();
-  if (shade === defaultHue) {
-    return hueKeys2.map((color2) => tailwind_default[color2][val || "500"]);
-  } else if (hueKeys2.some((hue3) => hue3 === shade) && val) {
-    return tailwind_default[shade][val];
-  } else if (shade && typeof val == "undefined") {
-    const keyVals = keys3(tailwind_default[shade]);
-    return keyVals.map((key) => tailwind_default[shade][key]);
-  } else if (typeof val == "undefined") {
-    throw Error(`Both shade and value cannot be undefined`);
+// colors/achromatic.ts
+var isAchromatic = (color2) => {
+  const cb4 = (mc) => getChannel(mc)(color2);
+  const checkHsl = cb4("hsl.s");
+  const checkLch = cb4("lch.c");
+  if ((checkHsl || checkLch) === 0) {
+    return true;
+  } else {
+    return false;
   }
+};
+
+// fp/number/inRange.ts
+var inRange = (number, start, end) => {
+  var nativeMax = Math.max, nativeMin = Math.min;
+  return number >= nativeMin(start, end) && number < nativeMax(start, end);
 };
 
 // fp/number/comparison.ts
@@ -5805,6 +5741,272 @@ var gt = (x, y) => x > y;
 var lt = (x, y) => x < y;
 var gte = (x, y) => x >= y;
 var lte = (x, y) => x <= y;
+
+// fp/array/min_max.ts
+var identity2 = (value) => {
+  return value;
+};
+var baseExtremum = (array, iteratee, comparator) => {
+  var index = -1, length = array.length;
+  while (++index < length) {
+    var value = array[index], current = iteratee(value);
+    if (current != null && (computed === void 0 ? current === current : comparator(current, computed))) {
+      var computed = current, result = value;
+    }
+  }
+  return result;
+};
+var min2 = (array) => {
+  return array && array.length ? baseExtremum(array, identity2, lt) : void 0;
+};
+var max = (array) => {
+  return array && array.length ? baseExtremum(array, identity2, gt) : void 0;
+};
+
+// fp/object/customConcat.ts
+var customConcat = (hue3) => {
+  const res = [];
+  const { keys: keys3 } = Object;
+  if (typeof hue3 == "object") {
+    const hueKeys2 = keys3(hue3);
+    res.push(...hueKeys2.map((key) => hue3[key]));
+  }
+  return res;
+};
+
+// fp/object/customFindKey.ts
+var customFindKey = (collection, factor5) => {
+  const propKeys = Object.keys(collection);
+  const result = propKeys.filter((key) => {
+    const hueVals = customConcat(collection[key]);
+    const minVal = min2(...hueVals);
+    const maxVal = max(...hueVals);
+    return inRange(factor5, minVal, maxVal);
+  }).toString();
+  return result;
+};
+
+// colors/overtone.ts
+var overtone = (color2) => {
+  const factor5 = getChannel("lch.h")(color2);
+  let hue3 = customFindKey(hueTemperature_default, factor5);
+  if (isAchromatic(color2)) {
+    return "gray";
+  } else if (/-/.test(hue3)) {
+    hue3 = hue3.split("-");
+    return hue3[1];
+  } else {
+    return false;
+  }
+};
+
+// colors/tailwindColors.ts
+var tailwindColors = (shade) => (val) => {
+  shade = shade.toLowerCase();
+  const { keys: keys3 } = Object;
+  let targetHue;
+  if (keys3(tailwind_default).indexOf(shade) != -1) {
+    targetHue = tailwind_default[shade];
+  } else {
+    throw Error(
+      `${shade} is not a valid shade in the default Tailwind palette`
+    );
+  }
+  if (typeof val === "undefined") {
+    return keys3(targetHue).map((value) => targetHue[value]);
+  } else if (keys3(targetHue).indexOf(val) > -1) {
+    return targetHue[val];
+  } else {
+    throw Error(
+      `${val} is not a valid scale value. Values are in increments of 100 up to 900 e.g "200"`
+    );
+  }
+};
+
+// colors/getHue.ts
+var getHue = (color2) => {
+  const lch3 = useMode(definition_default14);
+  color2 = lch3(toHex(color2));
+  const factor5 = color2["h"];
+  const hueKeys2 = Object.keys(hueTemperature_default);
+  const hueFamily = hueKeys2.map((hue3) => {
+    const hueVals = customConcat(hueTemperature_default[hue3]);
+    const minVal = min2(...hueVals);
+    const maxVal = max(...hueVals);
+    const bool = customConcat(hueTemperature_default[hue3]).some(
+      () => inRange(factor5, minVal, maxVal)
+    );
+    if (bool) {
+      return hue3;
+    }
+  }).filter((val) => typeof val === "string").toString();
+  return hueFamily;
+};
+
+// fp/number/adjustHue.ts
+var adjustHue = (value = 0) => {
+  if (value > 0) {
+    return value += Math.ceil(-value / 360) * 360;
+  } else {
+    return value % 360;
+  }
+};
+
+// fp/string/expressionParser.ts
+function expressionParser(src, channel, value) {
+  const reOperator = /^(\*|\+|\-|\/)/;
+  const reValue = /[0-9]*\.?[0-9]+/;
+  const sign = reOperator.exec(value);
+  const amt = reValue.exec(value);
+  const cb4 = (amt2) => parseFloat(amt2);
+  switch (sign["0"]) {
+    case "+":
+      src[channel] += +cb4(amt["0"]);
+      break;
+    case "-":
+      src[channel] -= +cb4(amt["0"]);
+      break;
+    case "*":
+      src[channel] *= +cb4(amt["0"]);
+      break;
+    case "/":
+      src[channel] /= +cb4(amt["0"]);
+      break;
+    default:
+      src[channel] = +cb4(amt["0"]);
+  }
+  return src;
+}
+
+// getters_and_setters/set.ts
+var setChannel = (mc) => (color2, value) => {
+  const [mode2, channel] = mc.split(".");
+  const src = converter_default(mode2)(toHex(color2));
+  if (channel) {
+    if (typeof value === "number") {
+      src[channel] = value;
+    } else if (typeof value === "string") {
+      expressionParser(src, channel, value);
+    } else {
+      throw new Error(`unsupported value for setChannel`);
+    }
+    return src;
+  } else {
+    throw new Error(`unknown channel ${channel} in mode ${mode2}`);
+  }
+};
+
+// colors/getComplimentaryHue.ts
+var { keys } = Object;
+var hueKeys = keys(hueTemperature_default);
+var getComplimentaryHue = (color2, colorObj2 = false) => {
+  const modeChannel = "lch.h";
+  const complementaryHue = adjustHue(
+    getChannel(modeChannel)(color2) + 180
+  );
+  const hueFamily = hueKeys.map((hue3) => {
+    const hueVals = customConcat(hueTemperature_default[hue3]);
+    const minVal = min2(...hueVals);
+    const maxVal = max(...hueVals);
+    const bool = customConcat(hueTemperature_default[hue3]).some(
+      () => inRange(complementaryHue, minVal, maxVal)
+    );
+    if (bool) {
+      return hue3;
+    }
+  }).filter((val) => typeof val === "string").toString();
+  let result;
+  if (complementaryHue) {
+    result = {
+      hue: hueFamily,
+      color: toHex(setChannel(modeChannel)(color2, complementaryHue))
+    };
+  } else {
+    result = { hue: "gray", color: color2 };
+  }
+  return colorObj2 && result || result["color"];
+};
+
+// converters/temp2Color.ts
+var temp2Color = (kelvin, hex2 = false) => {
+  const { log } = Math;
+  const temp = kelvin / 100;
+  let r2, g, b;
+  if (temp < 66) {
+    r2 = 255;
+    g = temp < 6 ? 0 : -155.25485562709179 - 0.44596950469579133 * (g = temp - 2) + 104.49216199393888 * log(g);
+    b = temp < 20 ? 0 : -254.76935184120902 + 0.8274096064007395 * (b = temp - 10) + 115.67994401066147 * log(b);
+  } else {
+    r2 = 351.97690566805693 + 0.114206453784165 * (r2 = temp - 55) - 40.25366309332127 * log(r2);
+    g = 325.4494125711974 + 0.07943456536662342 * (g = temp - 50) - 28.0852963507957 * log(g);
+    b = 255;
+  }
+  const result = {
+    r: r2 / 255,
+    g: g / 255,
+    b: b / 255,
+    mode: "rgb"
+  };
+  if (hex2) {
+    return toHex(result);
+  } else {
+    return result;
+  }
+};
+
+// converters/rgb2num.ts
+var rgb2num = (color2) => {
+  const toRgb2 = useMode(definition_default);
+  const rgb5 = toRgb2(toHex(color2));
+  return (255 * rgb5["r"] << 16) + (255 * rgb5["g"] << 8) + 255 * rgb5["b"];
+};
+
+// converters/getTemp.ts
+var getTemp = (color2) => {
+  const { round: round2 } = Math;
+  const toRgb2 = useMode(definition_default17);
+  const rgb5 = toRgb2(toHex(color2));
+  let channelArr = [];
+  channelArr[0] = rgb5["r"];
+  channelArr[1] = rgb5["b"];
+  let minTemp2 = 1e3;
+  let maxTemp2 = 4e4;
+  const eps = 0.4;
+  let temp;
+  while (maxTemp2 - minTemp2 > eps) {
+    temp = (maxTemp2 + minTemp2) * 0.5;
+    const rgb6 = temp2Color(temp, false);
+    if (rgb6["b"] / rgb6["r"] >= channelArr[1] / channelArr[0]) {
+      maxTemp2 = temp;
+    } else {
+      minTemp2 = temp;
+    }
+  }
+  return round2(temp);
+};
+
+// converters/ciecam.ts
+var import_ciebase_ts = __toESM(require_lib(), 1);
+var import_ciecam02_ts = __toESM(require_lib2(), 1);
+var baseCieCam = (0, import_ciecam02_ts.cam)(
+  {
+    whitePoint: import_ciebase_ts.illuminant["D65"],
+    adaptingLuminance: 40,
+    backgroundLuminance: 20,
+    surroundType: "average",
+    discounting: false
+  },
+  (0, import_ciecam02_ts.cfs)("JCh")
+);
+var xyzConverter = (0, import_ciebase_ts.xyz)(import_ciebase_ts.workspace["WideGamutRGB"], import_ciebase_ts.illuminant["D65"]);
+var colorToCam = (color2) => {
+  return baseCieCam.fromXyz(
+    xyzConverter.fromRgb(import_ciebase_ts.rgb.fromHex(toHex(color2)))
+  );
+};
+var camToColor = (CAM) => {
+  return import_ciebase_ts.rgb.toHex(xyzConverter.toRgb(baseCieCam.toXyz(CAM)));
+};
 
 // fp/number/random.ts
 var random = (min3, max2) => {
@@ -5822,12 +6024,6 @@ var random = (min3, max2) => {
 var isInt = (num3) => {
   const reInt = /^-?[0-9]+$/;
   return reInt.test(num3.toString());
-};
-
-// fp/number/inRange.ts
-var inRange = (number, start, end) => {
-  var nativeMax = Math.max, nativeMin = Math.min;
-  return number >= nativeMin(start, end) && number < nativeMax(start, end);
 };
 
 // color-maps/samples/modeRanges.ts
@@ -5892,15 +6088,6 @@ var floorCeil = (num3) => {
   return num3;
 };
 
-// fp/number/adjustHue.ts
-var adjustHue = (value = 0) => {
-  if (value > 0) {
-    return value += Math.ceil(-value / 360) * 360;
-  } else {
-    return value % 360;
-  }
-};
-
 // fp/number/polynomial.ts
 var polynomial = (x) => {
   return Math.sqrt(Math.sqrt((Math.pow(x, 2.25) + Math.pow(x, 4)) / 2));
@@ -5908,42 +6095,44 @@ var polynomial = (x) => {
 
 // fp/number/channelDifference.ts
 var channelDifference = (color2, modeChannel) => (subtrahend) => {
-  const cb5 = (color3) => getChannel(modeChannel)(color3);
-  if (cb5(color2) < cb5(subtrahend)) {
-    return cb5(subtrahend) - cb5(color2);
+  const cb4 = (color3) => getChannel(modeChannel)(color3);
+  if (cb4(color2) < cb4(subtrahend)) {
+    return cb4(subtrahend) - cb4(color2);
   } else {
-    return cb5(color2) - cb5(subtrahend);
+    return cb4(color2) - cb4(subtrahend);
   }
 };
 
-// fp/array/min_max.ts
-var identity2 = (value) => {
-  return value;
+// fp/object/colorObj.ts
+var colorObj = (factor5, callback) => (color2) => {
+  return { [factor5]: callback(color2), name: color2 };
 };
-var baseExtremum = (array, iteratee, comparator) => {
-  var index = -1, length = array.length;
-  while (++index < length) {
-    var value = array[index], current = iteratee(value);
-    if (current != null && (computed === void 0 ? current === current : comparator(current, computed))) {
-      var computed = current, result = value;
+
+// fp/array/colorObjArr.ts
+var colorObjArr = (factor5, callback) => (colors2) => {
+  const cb4 = colorObj(factor5, callback);
+  return colors2.map((color2) => cb4(color2));
+};
+
+// fp/array/customSort.ts
+var customSort = (order, factor5) => {
+  factor5 = factor5 || "factor";
+  return (a, b) => {
+    if (order === "asc") {
+      return a[factor5] - b[factor5];
+    } else if (order === "desc") {
+      return b[factor5] - a[factor5];
     }
-  }
-  return result;
-};
-var min2 = (array) => {
-  return array && array.length ? baseExtremum(array, identity2, lt) : void 0;
-};
-var max = (array) => {
-  return array && array.length ? baseExtremum(array, identity2, gt) : void 0;
+  };
 };
 
 // fp/array/filteredArr.ts
-var filteredArr = (factor5, cb5) => (colors2, start, end) => {
+var filteredArr = (factor5, cb4) => (colors2, start, end) => {
   let result;
   if (typeof start === "number") {
     result = colorObjArr(
       factor5,
-      cb5
+      cb4
     )(colors2).filter((color2) => inRange(color2[factor5], start, end)).map((color2) => color2["name"]);
     return result;
   } else if (typeof start === "string") {
@@ -5953,7 +6142,7 @@ var filteredArr = (factor5, cb5) => (colors2, start, end) => {
     const mapFilter = (test) => {
       return colorObjArr(
         factor5,
-        cb5
+        cb4
       )(colors2).filter((el) => test(el[factor5], parseFloat(val["0"]))).map((el) => el["name"]);
     };
     switch (op["0"]) {
@@ -5974,17 +6163,52 @@ var filteredArr = (factor5, cb5) => (colors2, start, end) => {
   return result;
 };
 
+// fp/array/sortedArr.ts
+var sortedArr = (factor5, callback, order, colorObj2 = false) => (colors2) => {
+  const results = colorObjArr(factor5, callback)(colors2);
+  results.sort(customSort(order, factor5));
+  if (colorObj2) {
+    return results;
+  } else {
+    return results.map((color2) => color2["name"]);
+  }
+};
+
+// fp/string/matchChromaChannel.ts
+var matchChromaChannel = (colorSpace) => {
+  const reChroma = /(s|c)/;
+  const ch = reChroma.exec(colorSpace);
+  if (reChroma.test(colorSpace)) {
+    return `${colorSpace}.${ch[0]}`;
+  } else {
+    throw Error(
+      `The color space ${colorSpace} has no chroma/saturation channel.`
+    );
+  }
+};
+
+// fp/string/matchLightnessChannel.ts
+var matchLightnessChannel = (colorSpace) => {
+  const reLightness = /(j|l)/i;
+  const ch = reLightness.exec(colorSpace);
+  if (reLightness.test(colorSpace)) {
+    return `${colorSpace}.${ch[0]}`;
+  } else {
+    throw Error(`The color space ${colorSpace} has no lightness channel.`);
+  }
+};
+
 // palettes/hueShift.ts
 var lightnessMapper = (n3) => (start1, end1) => (start2, end2) => (n3 - start1) / (end1 - start1) * (end2 - start2) + start2;
 var hueShift = (color2, options) => {
   const toLch = useMode(definition_default14);
   color2 = toLch(toHex(color2));
-  let { iterations, hueStep, minLightness: minLightness2, maxLightness: maxLightness2, easingFunc } = options || {};
+  let { iterations, hueStep, minLightness, maxLightness, easingFunc } = options || {};
   easingFunc = checkArg(easingFunc, easingSmoothstep);
   iterations = checkArg(iterations, 6) + 1;
   hueStep = checkArg(hueStep, 5);
-  minLightness2 = checkArg(minLightness2, 10);
-  maxLightness2 = checkArg(maxLightness2, 90);
+  minLightness = checkArg(minLightness, 10);
+  maxLightness = checkArg(maxLightness, 90);
   const tValues = samples_default(iterations);
   const palette = [color2];
   for (let i = 1; i < iterations; i++) {
@@ -5993,11 +6217,11 @@ var hueShift = (color2, options) => {
     const lightnessDark = lightnessMapper(easingFunc(tValues[i - 1]))(
       0.1,
       iterations
-    )(color2["l"], minLightness2);
+    )(color2["l"], minLightness);
     const lightnessLight = lightnessMapper(easingFunc(tValues[i - 1]))(
       0.05,
       iterations
-    )(color2["l"], maxLightness2);
+    )(color2["l"], maxLightness);
     palette.push({
       l: lightnessDark,
       c: color2["c"],
@@ -6045,7 +6269,7 @@ var scheme = (schemeType) => (color2, easingFunc) => {
 };
 
 // palettes/discoverPalettes.ts
-var { keys } = Object;
+var { keys: keys2 } = Object;
 var isColorEqual = (c13, c23) => {
   return c13["h"] === c23["h"] && c13["l"] === c23["l"] && c13["c"] === c23["c"];
 };
@@ -6057,7 +6281,7 @@ var discoverPalettes = (colors2, schemeType) => {
   const targetPalettes = {};
   for (const color2 of colors2) {
     schemeKeys.forEach((s) => targetPalettes[s] = scheme(s)(color2));
-    for (const paletteType of keys(targetPalettes)) {
+    for (const paletteType of keys2(targetPalettes)) {
       const palette = [];
       let variance = 0;
       for (const targetColor of targetPalettes[paletteType]) {
@@ -6112,7 +6336,7 @@ var oklch2 = useMode(definition_default20);
 var p32 = useMode(definition_default21);
 var prophoto2 = useMode(definition_default22);
 var rec20202 = useMode(definition_default23);
-var rgb3 = useMode(definition_default);
+var rgb4 = useMode(definition_default);
 var xyb = useMode(definition_default24);
 var xyz502 = useMode(definition_default25);
 var xyz652 = useMode(definition_default26);
@@ -6166,50 +6390,6 @@ var earthtone = (color2, options) => {
     return toHex(f3(0.5));
   } else {
     return samples_default(iterations).map((t) => toHex(f3(t)));
-  }
-};
-
-// fp/string/expressionParser.ts
-function expressionParser(src, channel, value) {
-  const reOperator = /^(\*|\+|\-|\/)/;
-  const reValue = /[0-9]*\.?[0-9]+/;
-  const sign = reOperator.exec(value);
-  const amt = reValue.exec(value);
-  const cb5 = (amt2) => parseFloat(amt2);
-  switch (sign["0"]) {
-    case "+":
-      src[channel] += +cb5(amt["0"]);
-      break;
-    case "-":
-      src[channel] -= +cb5(amt["0"]);
-      break;
-    case "*":
-      src[channel] *= +cb5(amt["0"]);
-      break;
-    case "/":
-      src[channel] /= +cb5(amt["0"]);
-      break;
-    default:
-      src[channel] = +cb5(amt["0"]);
-  }
-  return src;
-}
-
-// getters_and_setters/set.ts
-var setChannel = (mc) => (color2, value) => {
-  const [mode2, channel] = mc.split(".");
-  const src = converter_default(mode2)(toHex(color2));
-  if (channel) {
-    if (typeof value === "number") {
-      src[channel] = value;
-    } else if (typeof value === "string") {
-      expressionParser(src, channel, value);
-    } else {
-      throw new Error(`unsupported value for setChannel`);
-    }
-    return src;
-  } else {
-    throw new Error(`unknown channel ${channel} in mode ${mode2}`);
   }
 };
 
@@ -6291,78 +6471,28 @@ var pastel = (color2) => {
   });
 };
 
-// converters/temp2Color.ts
-var temp2Color = (kelvin, hex2 = false) => {
-  const { log } = Math;
-  const temp = kelvin / 100;
-  let r2, g, b;
-  if (temp < 66) {
-    r2 = 255;
-    g = temp < 6 ? 0 : -155.25485562709179 - 0.44596950469579133 * (g = temp - 2) + 104.49216199393888 * log(g);
-    b = temp < 20 ? 0 : -254.76935184120902 + 0.8274096064007395 * (b = temp - 10) + 115.67994401066147 * log(b);
-  } else {
-    r2 = 351.97690566805693 + 0.114206453784165 * (r2 = temp - 55) - 40.25366309332127 * log(r2);
-    g = 325.4494125711974 + 0.07943456536662342 * (g = temp - 50) - 28.0852963507957 * log(g);
-    b = 255;
-  }
-  const result = {
-    r: r2 / 255,
-    g: g / 255,
-    b: b / 255,
-    mode: "rgb"
-  };
-  if (hex2) {
-    return toHex(result);
-  } else {
-    return result;
-  }
-};
-
-// converters/getTemp.ts
-var getTemp = (color2) => {
-  const { round: round2 } = Math;
-  const toRgb2 = useMode(definition_default17);
-  const rgb5 = toRgb2(toHex(color2));
-  let channelArr = [];
-  channelArr[0] = rgb5["r"];
-  channelArr[1] = rgb5["b"];
-  let minTemp2 = 1e3;
-  let maxTemp2 = 4e4;
-  const eps = 0.4;
-  let temp;
-  while (maxTemp2 - minTemp2 > eps) {
-    temp = (maxTemp2 + minTemp2) * 0.5;
-    const rgb6 = temp2Color(temp, false);
-    if (rgb6["b"] / rgb6["r"] >= channelArr[1] / channelArr[0]) {
-      maxTemp2 = temp;
-    } else {
-      minTemp2 = temp;
-    }
-  }
-  return round2(temp);
-};
-
 // filterBy/filterByTemp.ts
 var filterByTemp = (colors2, startTemp = 1e3, endTemp = 6e3) => {
   const factor5 = "temp";
-  const cb5 = getTemp;
-  return filteredArr(factor5, cb5)(colors2, startTemp, endTemp);
+  const cb4 = getTemp;
+  return filteredArr(factor5, cb4)(colors2, startTemp, endTemp);
 };
 
 // filterBy/filterBySaturation.ts
 var filterBySaturation = (colors2, startSaturation = 0.05, endSaturation = 1, mode2) => {
   const factor5 = "saturation";
   if (matchChromaChannel(mode2)) {
-    const chromaChannel = matchChromaChannel(mode2);
-    const cb5 = getChannel(`${mode2}.${chromaChannel}`);
-    const saturationRange = getSaturationRange(modeRanges_default, mode2, chromaChannel);
+    mode2 = checkArg(mode2, "jch");
+    const modeChannel = `${mode2}.${matchChromaChannel(mode2)}`;
+    const cb4 = getChannel(`${mode2}.${modeChannel}`);
+    const saturationRange = getSaturationRange(modeRanges_default, mode2, modeChannel);
     const start = saturationRange[0];
     const end = saturationRange[1];
-    const reDigits = /([0-9])/.exec(startSaturation)["0"];
-    return filteredArr(factor5, cb5)(
+    const reDigits = /([0-9])/g.exec(startSaturation)["0"];
+    return filteredArr(factor5, cb4)(
       colors2,
-      normalize(reDigits, start, end),
-      normalize(endSaturation, start, end)
+      normalize(reDigits, modeChannel),
+      normalize(endSaturation, modeChannel)
     );
   } else {
     throw Error(
@@ -6422,46 +6552,35 @@ var luminance_x = (x) => {
 // filterBy/filterByLuminance.ts
 var filterByLuminance = (colors2, startLuminance = 0.05, endLuminance = 1) => {
   const factor5 = "luminance";
-  const cb5 = getLuminance;
-  return filteredArr(factor5, cb5)(colors2, startLuminance, endLuminance);
+  const cb4 = getLuminance;
+  return filteredArr(factor5, cb4)(colors2, startLuminance, endLuminance);
 };
 
 // filterBy/filterByHue.ts
 var filterByHue = (colors2, startHue = 0, endHue = 360) => {
   const factor5 = "hue";
-  const cb5 = getChannel("lch.h");
-  return filteredArr(factor5, cb5)(colors2, startHue, endHue);
-};
-
-// fp/string/matchLightnessChannel.ts
-var matchLightnessChannel = (colorSpace) => {
-  const reLightness = /(j|l)/i;
-  const ch = reLightness.exec(colorSpace);
-  if (reLightness.test(colorSpace)) {
-    return `${colorSpace}.${ch[0]}`;
-  } else {
-    throw Error(`The color space ${colorSpace} has no lightness channel.`);
-  }
+  const cb4 = getChannel("lch.h");
+  return filteredArr(factor5, cb4)(colors2, startHue, endHue);
 };
 
 // filterBy/filterByLightness.ts
 var filterByLightness = (colors2, startLightness = 5, endLightness = 100, mode2) => {
   const factor5 = "lightness";
-  const cb5 = getChannel(`${mode2}.${matchLightnessChannel(mode2)}`);
-  return filteredArr(factor5, cb5)(colors2, startLightness, endLightness);
+  const cb4 = getChannel(`${mode2}.${matchLightnessChannel(mode2)}`);
+  return filteredArr(factor5, cb4)(colors2, startLightness, endLightness);
 };
 
 // filterBy/filterByDistance.ts
 var filterByDistance = (colors2, against, startDistance = 0.05, endDistance, mode2, weights) => {
   const factor5 = "distance";
   against = toHex(against);
-  const cb5 = (against2, mode3) => (color2) => {
+  const cb4 = (against2, mode3) => (color2) => {
     return differenceEuclidean(mode3 || "lch", weights || [1, 1, 1, 0])(
       against2,
       color2
     );
   };
-  return filteredArr(factor5, cb5(against, mode2))(
+  return filteredArr(factor5, cb4(against, mode2))(
     colors2,
     startDistance,
     endDistance
@@ -6469,6 +6588,31 @@ var filterByDistance = (colors2, against, startDistance = 0.05, endDistance, mod
 };
 
 // getters_and_setters/contrast.ts
+var factor2 = "contrast";
+var cb3 = (color2) => (against) => getContrast(color2, against);
+var baseFunc = (against, order, colors2, colorObj2) => {
+  const result = sortedArr(
+    factor2,
+    cb3(against),
+    order,
+    true
+  )(colors2);
+  let value;
+  if (gt(result.length, 0)) {
+    if (colorObj2) {
+      value = result[0];
+    } else {
+      value = result[0][factor2];
+    }
+  }
+  return value;
+};
+var getFarthestContrast = (colors2, against, colorObj2) => {
+  return baseFunc(against, "desc", colors2, colorObj2);
+};
+var getNearestContrast = (colors2, against, colorObj2) => {
+  return baseFunc(against, "asc", colors2, colorObj2);
+};
 var getContrast = (color2, against) => {
   return contrast(toHex(color2), toHex(against));
 };
@@ -6476,15 +6620,15 @@ var getContrast = (color2, against) => {
 // filterBy/filterByContrast.ts
 var filterByContrast = (colors2, against, startContrast = 0.05, endContrast) => {
   const factor5 = "contrast";
-  const cb5 = (against2) => (color2) => getContrast(color2, against2);
-  return filteredArr(factor5, cb5(against))(colors2, startContrast, endContrast);
+  const cb4 = (against2) => (color2) => getContrast(color2, against2);
+  return filteredArr(factor5, cb4(against))(colors2, startContrast, endContrast);
 };
 
 // sortBy/sortByContrast.ts
 var sortByContrast = (colors2, against, order) => {
   const factor5 = "contrast";
-  const cb5 = (against2) => (color2) => contrast(color2, against2);
-  return sortedArr(factor5, cb5(against), order)(colors2);
+  const cb4 = (against2) => (color2) => contrast(color2, against2);
+  return sortedArr(factor5, cb4(against), order)(colors2);
 };
 
 // sortBy/sortByDistance.ts
@@ -6493,10 +6637,10 @@ var sortByDistance = (colors2, against, order, options) => {
   mode2 = checkArg(mode2, "lchuv");
   weights = checkArg(weights, [1, 1, 1, 0]);
   const factor5 = "distance";
-  const cb5 = (against2, mode3) => (color2) => {
+  const cb4 = (against2, mode3) => (color2) => {
     return differenceEuclidean(mode3, weights)(against2, color2);
   };
-  return sortedArr(factor5, cb5(against, mode2), order)(colors2);
+  return sortedArr(factor5, cb4(against, mode2), order)(colors2);
 };
 
 // sortBy/sortByHue.ts
@@ -6504,8 +6648,8 @@ var sortByHue = (colors2, order, mode2 = "jch") => {
   const factor5 = "hue";
   const reHue = /h/gi.test(mode2);
   if (reHue) {
-    const cb5 = getChannel(`${mode2}.h`);
-    return sortedArr(factor5, cb5, order)(colors2);
+    const cb4 = getChannel(`${mode2}.h`);
+    return sortedArr(factor5, cb4, order)(colors2);
   } else {
     throw Error(`The color space ${mode2} has no hue channel try 'lch' instead`);
   }
@@ -6515,15 +6659,15 @@ var sortByHue = (colors2, order, mode2 = "jch") => {
 var sortByLightness = (colors2, order, mode2) => {
   const factor5 = "lightness";
   mode2 = checkArg(mode2, "lch65");
-  const cb5 = getChannel(`${mode2}.${matchLightnessChannel(mode2)}`);
-  return sortedArr(factor5, cb5, order)(colors2);
+  const cb4 = getChannel(`${mode2}.${matchLightnessChannel(mode2)}`);
+  return sortedArr(factor5, cb4, order)(colors2);
 };
 
 // sortBy/sortByLuminance.ts
 var sortByLuminance = (colors2, order) => {
   const factor5 = "luminance";
-  const cb5 = getLuminance;
-  return sortedArr(factor5, cb5, order)(colors2);
+  const cb4 = getLuminance;
+  return sortedArr(factor5, cb4, order)(colors2);
 };
 
 // sortBy/sortBySaturation.ts
@@ -6532,8 +6676,8 @@ var sortBySaturation = (colors2, order, mode2) => {
   mode2 = checkArg(mode2, "jch");
   if (matchChromaChannel(mode2)) {
     const chromaChannel = matchChromaChannel(mode2);
-    const cb5 = getChannel(`${mode2}.${chromaChannel}`);
-    return sortedArr(factor5, cb5, order)(colors2);
+    const cb4 = getChannel(`${mode2}.${chromaChannel}`);
+    return sortedArr(factor5, cb4, order)(colors2);
   } else {
     throw Error(
       `The passed in color space ${mode2} has no chroma channel. Try 'jch' instead.`
@@ -6544,8 +6688,184 @@ var sortBySaturation = (colors2, order, mode2) => {
 // sortBy/sortByTemp.ts
 var sortByTemp = (colors2, order) => {
   const factor5 = "temp";
-  const cb5 = getTemp;
-  return sortedArr(factor5, cb5, order)(colors2);
+  const cb4 = getTemp;
+  return sortedArr(factor5, cb4, order)(colors2);
+};
+
+// getters_and_setters/alpha.ts
+var alpha = (color2, value) => {
+  color2 = color2 || "black";
+  const channel = "alpha";
+  const lch3 = useMode(definition_default14);
+  const src = lch3(toHex(color2));
+  if (typeof value === "undefined" || null) {
+    return src[channel];
+  } else if (typeof value === "number") {
+    if (inRange(value, 0, 1)) {
+      src[channel] = value;
+    } else {
+      src[channel] = value / 100;
+    }
+  } else if (typeof value === "string") {
+    expressionParser(src, channel, value);
+  }
+  return toHex(src);
+};
+
+// getters_and_setters/darken.ts
+var toLab = useMode(definition_default12);
+var darken = (color2, value) => {
+  const Kn = 18;
+  const channel = "l";
+  const src = toLab(toHex(color2));
+  if (typeof value === "number") {
+    src["l"] -= Kn * smootherstep_default(value / 100);
+  } else if (typeof value === "string") {
+    expressionParser(src, channel, value || 1);
+  }
+  return toHex(src);
+};
+var brighten = (color2, value) => {
+  const src = toLab(toHex(color2));
+  const channel = "l";
+  if (typeof value == "number") {
+    value = Math.abs(value);
+    src["l"] -= 18 * smootherstep_default(value / 100);
+  } else if (typeof value == "string") {
+    expressionParser(src, channel, value);
+  }
+  return toHex(src);
+};
+
+// getters_and_setters/chroma.ts
+var predicate = (colorSpace) => (color2) => getChannel(matchChromaChannel(colorSpace))(color2) || void 0;
+var baseFunc2 = (colorSpace, colorObj2, colors2, order) => {
+  const factor5 = "saturation";
+  const result = sortedArr(
+    factor5,
+    predicate(checkArg(colorSpace, "jch")),
+    "asc",
+    true
+  )(colors2).filter((el) => el[factor5] !== void 0);
+  let value;
+  if (result.length > 0) {
+    if (colorObj2) {
+      value = result[0];
+    } else {
+      value = result[0][factor5];
+    }
+  }
+  return value;
+};
+var getNearestChroma = (colors2, colorSpace, colorObj2 = false) => {
+  return baseFunc2(colorSpace, colorObj2, colors2, "asc");
+};
+var getFarthestChroma = (colors2, colorSpace, colorObj2 = false) => {
+  return baseFunc2(colorSpace, colorObj2, colors2, "asc");
+};
+
+// getters_and_setters/lightness.ts
+var lightness = (mode2) => {
+  mode2 = checkArg(mode2, "jch");
+  return `${mode2}.${matchLightnessChannel(mode2)}`;
+};
+var factor3 = "lightness";
+var baseFunc3 = (order, colors2, mode2, colorObj2) => {
+  const cb4 = getChannel(lightness(mode2));
+  const result = sortedArr(
+    factor3,
+    cb4,
+    order,
+    true
+  )(colors2);
+  let value;
+  if (gt(result.length, 0)) {
+    if (colorObj2) {
+      value = result[0];
+    } else {
+      value = result[0][factor3];
+    }
+  }
+  return value;
+};
+var getNearestLightness = (colors2, mode2, colorObj2 = false) => {
+  return baseFunc3("asc", colors2, mode2, colorObj2);
+};
+var getFarthestLightness = (colors2, mode2, colorObj2 = false) => {
+  return baseFunc3("desc", colors2, mode2, colorObj2);
+};
+
+// getters_and_setters/temperature.ts
+var predicate2 = (factor5, temp) => {
+  const hueKeys2 = Object.keys(hueTemperature_default);
+  if (hueKeys2.some(
+    (val) => inRange(
+      floorCeil(factor5),
+      hueTemperature_default[val][temp][0],
+      hueTemperature_default[val][temp][1]
+    )
+  )) {
+    return true;
+  } else {
+    return false;
+  }
+};
+var baseFunc4 = (color2, extremum) => {
+  const factor5 = getChannel("lch.h")(color2);
+  const hue3 = customFindKey(hueTemperature_default, factor5);
+  const maxHue = [extremum](...customConcat(hueTemperature_default[hue3]));
+  const result = getTemp({
+    l: getChannel("lch.l")(color2),
+    c: getChannel("lch.c")(color2),
+    h: maxHue,
+    mode: "lch"
+  });
+  return result;
+};
+var isCool = (color2) => {
+  const factor5 = getChannel("lch.h")(color2);
+  return predicate2(factor5, "cool");
+};
+var isWarm = (color2) => {
+  const factor5 = getChannel("lch.h")(color2);
+  return predicate2(factor5, "cool");
+};
+var maxTemp = (color2) => {
+  return baseFunc4(color2, max);
+};
+var minTemp = (color2) => {
+  return baseFunc4(color2, min2);
+};
+
+// getters_and_setters/hue.ts
+var { abs: abs4 } = Math;
+var factor4 = "hue";
+var baseFunc5 = (colors2, colorSpace, colorObj2, order) => {
+  const result = sortedArr(
+    factor4,
+    predicate3(colorSpace),
+    order,
+    true
+  )(colors2).filter((el) => el[factor4] !== void 0);
+  let value;
+  if (result.length > 0) {
+    if (colorObj2) {
+      value = result[0];
+    } else {
+      value = result[0][factor4];
+    }
+  }
+  return value;
+};
+var mode = (colorSpace) => `${colorSpace || "lch"}.h`;
+var predicate3 = (colorSpace) => (color2) => {
+  return getChannel(mode(colorSpace))(color2) || void 0;
+};
+var getNearestHue = (colors2, colorSpace, colorObj2 = false) => {
+  return baseFunc5(colors2, colorSpace, colorObj2, "asc");
+};
+var getFarthestHue = (colors2, colorSpace, colorObj2 = false) => {
+  return baseFunc5(colors2, colorSpace, colorObj2, "desc");
 };
 
 // fp/array/colorArray.ts
@@ -6597,8 +6917,8 @@ var ColorArray = class {
   console.log(maxHue(sample, 'lch'))
   // 273.54920266436477
    */
-  maxHue(colorSpace, colorObj2 = false) {
-    return maxHue(this["colors"], colorSpace, colorObj2);
+  getFarthestHue(colorSpace, colorObj2 = false) {
+    return getFarthestHue(this["colors"], colorSpace, colorObj2);
   }
   /**
    * Returns the current length of the resultant array of colors
@@ -6623,8 +6943,8 @@ var ColorArray = class {
   console.log(minHue(sample, 'lch'))
   // 12.462831644544274
    */
-  minHue(colorSpace, colorObj2 = false) {
-    return minHue(this["colors"], colorSpace, colorObj2);
+  getNearestHue(colorSpace, colorObj2 = false) {
+    return getNearestHue(this["colors"], colorSpace, colorObj2);
   }
   /**
    *@function
@@ -6642,8 +6962,8 @@ var ColorArray = class {
   // { lightness: 72.61647882089876, name: '#a1bd2f' }
   
    */
-  minLightness(colorObj2 = false) {
-    return minLightness(this["colors"], colorObj2);
+  getNearestLightness(mode2, colorObj2 = false) {
+    return getFarthestLightness(this["colors"], mode2, colorObj2);
   }
   /**
    *@function
@@ -6662,8 +6982,8 @@ var ColorArray = class {
   // { lightness: 80.94668903360088, name: '#f3bac1' }
   
    */
-  maxLightness(colorObj2 = false) {
-    return maxLightness(this["colors"], colorObj2);
+  getFarthestLightness(mode2, colorObj2 = false) {
+    return getNearestLightness(this["colors"], mode2, colorObj2);
   }
   /**
    * @experimental
@@ -7261,368 +7581,6 @@ var load = (colors2) => {
   return new ColorArray(colors2);
 };
 
-// fp/object/customConcat.ts
-var customConcat = (hue3) => {
-  const res = [];
-  const { keys: keys3 } = Object;
-  if (typeof hue3 == "object") {
-    const hueKeys2 = keys3(hue3);
-    res.push(...hueKeys2.map((key) => hue3[key]));
-  }
-  return res;
-};
-
-// fp/object/customFindKey.ts
-var customFindKey = (collection, factor5) => {
-  const propKeys = Object.keys(collection);
-  const result = propKeys.filter((key) => {
-    const hueVals = customConcat(collection[key]);
-    const minVal = min2(...hueVals);
-    const maxVal = max(...hueVals);
-    return inRange(factor5, minVal, maxVal);
-  }).toString();
-  return result;
-};
-
-// colors/lightness.ts
-var lightness = (mode2) => {
-  mode2 = checkArg(mode2, "jch");
-  return `${mode2}.${matchLightnessChannel(mode2)}`;
-};
-var factor2 = "lightness";
-var getNearestLightness = (color2, colors2, mode2) => {
-  const cb5 = channelDifference(color2, checkArg(mode2, "jch"));
-  const sortedObjArr = sortedArr(factor2, cb5, "asc", true)(colors2);
-  return sortedObjArr[0][factor2];
-};
-var getFarthestLightness = (color2, colors2, mode2) => {
-  const cb5 = channelDifference(color2, checkArg(mode2, "jch"));
-  const sortedObjArr = sortedArr(factor2, cb5, "desc", true)(colors2);
-  return sortedObjArr[0][factor2];
-};
-var minLightness = (colors2, mode2, colorObj2 = false) => {
-  const cb5 = getChannel(lightness(mode2));
-  const result = sortedArr(
-    factor2,
-    cb5,
-    "asc",
-    true
-  )(colors2);
-  let value;
-  if (gt(result.length, 0)) {
-    if (colorObj2) {
-      value = result[0];
-    } else {
-      value = result[0][factor2];
-    }
-  }
-  return value;
-};
-var maxLightness = (colors2, mode2, colorObj2 = false) => {
-  const cb5 = getChannel(lightness(mode2));
-  const result = sortedArr(
-    factor2,
-    cb5,
-    "desc",
-    true
-  )(colors2);
-  let value;
-  if (gt(result.length, 0)) {
-    if (colorObj2) {
-      value = result[0];
-    } else {
-      value = result[0][factor2];
-    }
-  }
-  return value;
-};
-
-// colors/hue.ts
-var { abs: abs4 } = Math;
-var factor3 = "hue";
-var mode = (colorSpace) => `${colorSpace || "lch"}.h`;
-var targetHue = (color2, colorSpace) => getChannel(mode(colorSpace))(color2);
-var cb3 = (color2, colorSpace) => (subtrahend) => {
-  return abs4(
-    targetHue(color2, colorSpace) - getChannel(mode(colorSpace))(subtrahend)
-  );
-};
-var predicate2 = (colorSpace) => (color2) => {
-  return getChannel(mode(colorSpace))(color2) || void 0;
-};
-var getNearestHue = (color2, colors2, colorSpace) => {
-  return sortedArr(
-    factor3,
-    cb3(color2, mode(colorSpace)),
-    "asc",
-    true
-  )(colors2).filter((el) => el[factor3] !== void 0)[0][factor3];
-};
-var getFarthestHue = (color2, colors2, colorSpace) => {
-  return sortedArr(
-    factor3,
-    cb3(color2, mode(colorSpace)),
-    "desc",
-    true
-  )(colors2).filter((el) => el[factor3] !== void 0)[0][factor3];
-};
-var minHue = (colors2, colorSpace, colorObj2 = false) => {
-  const result = sortedArr(
-    factor3,
-    predicate2(colorSpace),
-    "asc",
-    true
-  )(colors2).filter((el) => el[factor3] !== void 0);
-  let value;
-  if (result.length > 0) {
-    if (colorObj2) {
-      value = result[0];
-    } else {
-      value = result[0][factor3];
-    }
-  }
-  return value;
-};
-var maxHue = (colors2, colorSpace, colorObj2 = false) => {
-  const result = sortedArr(
-    factor3,
-    predicate2(colorSpace),
-    "desc",
-    true
-  )(colors2).filter((el) => el[factor3] !== void 0);
-  let value;
-  if (result.length > 0) {
-    if (colorObj2) {
-      value = result[0];
-    } else {
-      value = result[0][factor3];
-    }
-  }
-  return value;
-};
-
-// color-maps/samples/hueTemperature.ts
-var hueTemperature_default = {
-  "red-purple": {
-    warm: [343, 359],
-    cool: [321, 342]
-  },
-  red: {
-    warm: [21, 40],
-    cool: [0, 20]
-  },
-  "yellow-red": {
-    warm: [41, 54],
-    cool: [55, 70]
-  },
-  yellow: {
-    warm: [71, 90],
-    cool: [91, 109]
-  },
-  "green-yellow": {
-    warm: [110, 124],
-    cool: [125, 140]
-  },
-  green: {
-    warm: [141, 160],
-    cool: [161, 180]
-  },
-  "blue-green": {
-    warm: [181, 200],
-    cool: [201, 220]
-  },
-  blue: {
-    warm: [221, 235],
-    cool: [236, 250]
-  },
-  "purple-blue": {
-    warm: [271, 290],
-    cool: [251, 270]
-  },
-  purple: {
-    warm: [316, 320],
-    cool: [291, 315]
-  }
-};
-
-// colors/achromatic.ts
-var isAchromatic = (color2) => {
-  const cb5 = (mc) => getChannel(mc)(color2);
-  const checkHsl = cb5("hsl.s");
-  const checkLch = cb5("lch.c");
-  if ((checkHsl || checkLch) === 0) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-// colors/overtone.ts
-var overtone = (color2) => {
-  const factor5 = getChannel("lch.h")(color2);
-  let hue3 = customFindKey(hueTemperature_default, factor5);
-  if (isAchromatic(color2)) {
-    return "gray";
-  } else if (/-/.test(hue3)) {
-    hue3 = hue3.split("-");
-    return hue3[1];
-  } else {
-    return false;
-  }
-};
-
-// colors/tailwindColors.ts
-var tailwindColors = (shade) => (val) => {
-  shade = shade.toLowerCase();
-  const { keys: keys3 } = Object;
-  let targetHue2;
-  if (keys3(tailwind_default).indexOf(shade) != -1) {
-    targetHue2 = tailwind_default[shade];
-  } else {
-    throw Error(
-      `${shade} is not a valid shade in the default Tailwind palette`
-    );
-  }
-  if (typeof val === "undefined") {
-    return keys3(targetHue2).map((value) => targetHue2[value]);
-  } else if (keys3(targetHue2).indexOf(val) > -1) {
-    return targetHue2[val];
-  } else {
-    throw Error(
-      `${val} is not a valid scale value. Values are in increments of 100 up to 900 e.g "200"`
-    );
-  }
-};
-
-// colors/temperature.ts
-var predicate3 = (factor5, temp) => {
-  const hueKeys2 = Object.keys(hueTemperature_default);
-  if (hueKeys2.some(
-    (val) => inRange(
-      floorCeil(factor5),
-      hueTemperature_default[val][temp][0],
-      hueTemperature_default[val][temp][1]
-    )
-  )) {
-    return true;
-  } else {
-    return false;
-  }
-};
-var isCool = (color2) => {
-  const factor5 = getChannel("lch.h")(color2);
-  return predicate3(factor5, "cool");
-};
-var isWarm = (color2) => {
-  const factor5 = getChannel("lch.h")(color2);
-  return predicate3(factor5, "cool");
-};
-var maxTemp = (color2) => {
-  const factor5 = getChannel("lch.h")(color2);
-  const hue3 = customFindKey(hueTemperature_default, factor5);
-  const maxHue2 = max(...customConcat(hueTemperature_default[hue3]));
-  const result = getTemp({
-    l: getChannel("lch.l")(color2),
-    c: getChannel("lch.c")(color2),
-    h: maxHue2,
-    mode: "lch"
-  });
-  return result;
-};
-var minTemp = (color2) => {
-  let factor5 = getChannel("lch.h")(color2);
-  const hue3 = customFindKey(hueTemperature_default, factor5);
-  const minHue2 = min2(...customConcat(hueTemperature_default[hue3]));
-  const result = getTemp({
-    l: getChannel("lch.l")(color2),
-    c: getChannel("lch.c")(color2),
-    h: minHue2,
-    mode: "lch"
-  });
-  return result;
-};
-
-// colors/getHue.ts
-var getHue = (color2) => {
-  const lch3 = useMode(definition_default14);
-  color2 = lch3(toHex(color2));
-  const factor5 = color2["h"];
-  const hueKeys2 = Object.keys(hueTemperature_default);
-  const hueFamily = hueKeys2.map((hue3) => {
-    const hueVals = customConcat(hueTemperature_default[hue3]);
-    const minVal = min2(...hueVals);
-    const maxVal = max(...hueVals);
-    const bool = customConcat(hueTemperature_default[hue3]).some(
-      () => inRange(factor5, minVal, maxVal)
-    );
-    if (bool) {
-      return hue3;
-    }
-  }).filter((val) => typeof val === "string").toString();
-  return hueFamily;
-};
-
-// colors/getComplimentaryHue.ts
-var { keys: keys2 } = Object;
-var hueKeys = keys2(hueTemperature_default);
-var getComplimentaryHue = (color2, colorObj2 = false) => {
-  const modeChannel = "lch.h";
-  const complementaryHue = adjustHue(
-    getChannel(modeChannel)(color2) + 180
-  );
-  const hueFamily = hueKeys.map((hue3) => {
-    const hueVals = customConcat(hueTemperature_default[hue3]);
-    const minVal = min2(...hueVals);
-    const maxVal = max(...hueVals);
-    const bool = customConcat(hueTemperature_default[hue3]).some(
-      () => inRange(complementaryHue, minVal, maxVal)
-    );
-    if (bool) {
-      return hue3;
-    }
-  }).filter((val) => typeof val === "string").toString();
-  let result;
-  if (complementaryHue) {
-    result = {
-      hue: hueFamily,
-      color: toHex(setChannel(modeChannel)(color2, complementaryHue))
-    };
-  } else {
-    result = { hue: "gray", color: color2 };
-  }
-  return colorObj2 && result || result["color"];
-};
-
-// converters/rgb2num.ts
-var rgb2num = (color2) => {
-  const toRgb2 = useMode(definition_default);
-  const rgb5 = toRgb2(toHex(color2));
-  return (255 * rgb5["r"] << 16) + (255 * rgb5["g"] << 8) + 255 * rgb5["b"];
-};
-
-// converters/ciecam.ts
-var import_ciebase_ts = __toESM(require_lib(), 1);
-var import_ciecam02_ts = __toESM(require_lib2(), 1);
-var baseCieCam = (0, import_ciecam02_ts.cam)(
-  {
-    whitePoint: import_ciebase_ts.illuminant["D65"],
-    adaptingLuminance: 40,
-    backgroundLuminance: 20,
-    surroundType: "average",
-    discounting: false
-  },
-  (0, import_ciecam02_ts.cfs)("JCh")
-);
-var xyzConverter = (0, import_ciebase_ts.xyz)(import_ciebase_ts.workspace["WideGamutRGB"], import_ciebase_ts.illuminant["D65"]);
-var colorToCam = (color2) => {
-  return baseCieCam.fromXyz(
-    xyzConverter.fromRgb(import_ciebase_ts.rgb.fromHex(toHex(color2)))
-  );
-};
-var camToColor = (CAM) => {
-  return import_ciebase_ts.rgb.toHex(xyzConverter.toRgb(baseCieCam.toXyz(CAM)));
-};
-
 // colors/color.ts
 var IColor = class {
   constructor(c4, options) {
@@ -7809,23 +7767,23 @@ var IColor = class {
     this["_color"] = colorDeficiency(deficiency2)(this["_color"], severity);
     return this;
   }
-  getFarthestHue(colors2) {
-    return getFarthestHue(this["_color"], colors2, this["colorspace"]);
+  getFarthestHue(colors2, colorObj2) {
+    return getFarthestHue(colors2, this["colorspace"], colorObj2);
   }
-  getNearestHue(colors2) {
-    return getNearestHue(this["_color"], colors2, this["colorspace"]);
+  getNearestHue(colors2, colorObj2) {
+    return getNearestHue(colors2, this["colorspace"], colorObj2);
   }
   getNearestChroma(colors2) {
-    return getNearestChroma(this["_color"], colors2, this["colorspace"]);
+    return getNearestChroma(colors2, this["colorspace"]);
   }
-  getNearestLightness(colors2) {
-    return getNearestLightness(this["_color"], colors2);
+  getNearestLightness(colors2, colorObj2) {
+    return getNearestLightness(colors2, this["colorspace"], colorObj2);
   }
-  getFarthestChroma(colors2) {
-    return getFarthestChroma(this["_color"], colors2, this["colorspace"]);
+  getFarthestChroma(colors2, colorObj2) {
+    return getFarthestChroma(colors2, this["colorspace"], colorObj2);
   }
-  getFarthestLightness(colors2) {
-    return getFarthestLightness(this["_color"], colors2);
+  getFarthestLightness(colors2, colorObj2) {
+    return getFarthestLightness(colors2, this["colorspace"], colorObj2);
   }
   ovetone() {
     return overtone(this["_color"]);
@@ -7838,97 +7796,6 @@ var IColor = class {
   }
 };
 var color = (color2) => new IColor(color2);
-
-// getters_and_setters/alpha.ts
-var alpha = (color2, value) => {
-  color2 = color2 || "black";
-  const channel = "alpha";
-  const lch3 = useMode(definition_default14);
-  const src = lch3(toHex(color2));
-  if (typeof value === "undefined" || null) {
-    return src[channel];
-  } else if (typeof value === "number") {
-    if (inRange(value, 0, 1)) {
-      src[channel] = value;
-    } else {
-      src[channel] = value / 100;
-    }
-  } else if (typeof value === "string") {
-    expressionParser(src, channel, value);
-  }
-  return toHex(src);
-};
-
-// getters_and_setters/darken.ts
-var toLab = useMode(definition_default12);
-var darken = (color2, value) => {
-  const Kn = 18;
-  const channel = "l";
-  const src = toLab(toHex(color2));
-  if (typeof value === "number") {
-    src["l"] -= Kn * smootherstep_default(value / 100);
-  } else if (typeof value === "string") {
-    expressionParser(src, channel, value || 1);
-  }
-  return toHex(src);
-};
-var brighten = (color2, value) => {
-  const src = toLab(toHex(color2));
-  const channel = "l";
-  if (typeof value == "number") {
-    value = Math.abs(value);
-    src["l"] -= 18 * smootherstep_default(value / 100);
-  } else if (typeof value == "string") {
-    expressionParser(src, channel, value);
-  }
-  return toHex(src);
-};
-
-// colors/contrast.ts
-var factor4 = "contrast";
-var cb4 = (color2) => (against) => getContrast(color2, against);
-var getNearestContrast = (against, colors2) => {
-  const sortedObjArr = sortedArr(factor4, cb4(against), "asc", true)(colors2);
-  return sortedObjArr[0][factor4];
-};
-var getFurthestContrast = (against, colors2) => {
-  const sortedObjArr = sortedArr(factor4, cb4(against), "desc", true)(colors2);
-  return sortedObjArr[0][factor4];
-};
-var maxContrast = (colors2, against, colorObj2) => {
-  const result = sortedArr(
-    factor4,
-    cb4(against),
-    "desc",
-    true
-  )(colors2);
-  let value;
-  if (gt(result.length, 0)) {
-    if (colorObj2) {
-      value = result[0];
-    } else {
-      value = result[0][factor4];
-    }
-  }
-  return value;
-};
-var minContrast = (colors2, against, colorObj2) => {
-  const result = sortedArr(
-    factor4,
-    cb4(against),
-    "asc",
-    true
-  )(colors2);
-  let value;
-  if (gt(result.length, 0)) {
-    if (colorObj2) {
-      value = result[0];
-    } else {
-      value = result[0][factor4];
-    }
-  }
-  return value;
-};
 
 // accessibility/colorDeficiency.ts
 var baseColorDeficiency = (def, col, sev) => {

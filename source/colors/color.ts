@@ -279,23 +279,23 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
     return this;
   }
 
-  getFarthestHue(colors: IColor[]) {
-    return nativeGetFarthestHue(this["_color"], colors, this["colorspace"]);
+  getFarthestHue(colors: Color[], colorObj?: boolean) {
+    return nativeGetFarthestHue(colors, this["colorspace"], colorObj);
   }
-  getNearestHue(colors: IColor[]) {
-    return nativeGetNearestHue(this["_color"], colors, this["colorspace"]);
+  getNearestHue(colors: Color[], colorObj?: boolean) {
+    return nativeGetNearestHue(colors, this["colorspace"], colorObj);
   }
-  getNearestChroma(colors: IColor[]) {
-    return nativeGetNearestChroma(this["_color"], colors, this["colorspace"]);
+  getNearestChroma(colors: Color[]) {
+    return nativeGetNearestChroma(colors, this["colorspace"]);
   }
-  getNearestLightness(colors: IColor[]) {
-    return nativeGetNearestLightness(this["_color"], colors);
+  getNearestLightness(colors: Color[], colorObj?: boolean) {
+    return nativeGetNearestLightness(colors, this["colorspace"], colorObj);
   }
-  getFarthestChroma(colors: IColor[]) {
-    return nativeGetFarthestChroma(this["_color"], colors, this["colorspace"]);
+  getFarthestChroma(colors: Color[], colorObj?: boolean) {
+    return nativeGetFarthestChroma(colors, this["colorspace"], colorObj);
   }
-  getFarthestLightness(colors: IColor[]) {
-    return nativeGetFarthestLightness(this["_color"], colors);
+  getFarthestLightness(colors: Color[], colorObj?: boolean) {
+    return nativeGetFarthestLightness(colors, this["colorspace"], colorObj);
   }
   ovetone() {
     return nativeOvertone(this["_color"]);
