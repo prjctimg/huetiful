@@ -1,12 +1,14 @@
-import { filteredArr } from '../fp/array/filteredArr.ts';
-import { getChannel } from '../getters_and_setters/get.ts';
-import { Color, Factor } from '../types';
+import { filteredArr } from "../fp/array/filteredArr.ts";
+import { matchLightnessChannel } from "../fp/string/matchLightnessChannel.ts";
+import { getChannel } from "../getters_and_setters/get.ts";
+import { Color, Factor, HueColorSpaces } from "../types";
 /**
  *  @function
  * @description Returns an array of colors in the specified lightness range. The range is between 0 and 100.
  * @param  colors The array of colors to filter.
  * @param  startLightness The minimum end of the lightness range.
  * @param  endLightness The maximum end of the lightness range.
+ * @param mode The mode colorspace to retrieve the lightness value from. The default is lch65
  * @returns Array of filtered colors.
  * @example
  * 
@@ -33,12 +35,13 @@ filterByLightness(sample, 20, 80)
 const filterByLightness = (
   colors: Color[],
   startLightness = 5,
-  endLightness = 100
+  endLightness = 100,
+  mode?: HueColorSpaces
 ): Color[] => {
   // Formatting color tokens to parseable type
   // Create an object that has the lightness and name of color as properties.
-  const factor: Factor = 'lightness';
-  const cb = getChannel('lch.l');
+  const factor: Factor = "lightness";
+  const cb = getChannel(`${mode}.${matchLightnessChannel(mode)}`);
 
   return filteredArr(factor, cb)(colors, startLightness, endLightness);
 };
