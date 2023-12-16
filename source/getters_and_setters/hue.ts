@@ -11,7 +11,26 @@ const { abs } = Math;
 // Use jch by default
 
 const factor: Factor = "hue";
+const baseFunc = (colors, colorSpace, colorObj, order) => {
+  const result: Array<{ factor: number; name: Color }> = sortedArr(
+    factor,
+    predicate(colorSpace as string),
+    order,
+    true
+  )(colors).filter((el) => el[factor] !== undefined);
 
+  let value;
+
+  if (result.length > 0) {
+    if (colorObj) {
+      value = result[0];
+    } else {
+      value = result[0][factor];
+    }
+  }
+
+  return value;
+};
 const mode = (colorSpace: string): string => `${colorSpace || "lch"}.h`;
 // The hue value of our color which we are using for comparison
 const targetHue = (color: Color, colorSpace: string): number =>
@@ -20,11 +39,6 @@ const targetHue = (color: Color, colorSpace: string): number =>
 // The callback to invoke per color in the passed in collection.
 // Return the absolute value since hue is a cyclic value which can either be  in clockwise/anti-clockwise.
 //This means that the color object with the smallest hue value is the  nearest color/hue.
-const cb = (color: Color, colorSpace: string) => (subtrahend: Color) => {
-  return abs(
-    targetHue(color, colorSpace) - getChannel(mode(colorSpace))(subtrahend)
-  );
-};
 
 // Callback func for the getNearestHue and getFarthestHue utils. The funny thing is that most of the code is similar with minor changes here and there
 const predicate = (colorSpace: string) => (color: Color) => {
@@ -52,24 +66,7 @@ const getNearestHue = (
   colorSpace?: HueColorSpaces | string,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  const result: Array<{ factor: number; name: Color }> = sortedArr(
-    factor,
-    predicate(colorSpace as string),
-    "asc",
-    true
-  )(colors).filter((el) => el[factor] !== undefined);
-
-  let value;
-
-  if (result.length > 0) {
-    if (colorObj) {
-      value = result[0];
-    } else {
-      value = result[0][factor];
-    }
-  }
-
-  return value;
+  return baseFunc(colors, colorSpace, colorObj, "asc");
 };
 
 /**
@@ -92,24 +89,7 @@ const getFarthestHue = (
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  const result: Array<{ factor: number; name: Color }> = sortedArr(
-    factor,
-    predicate(colorSpace as string),
-    "desc",
-    true
-  )(colors).filter((el) => el[factor] !== undefined);
-
-  let value;
-
-  if (result.length > 0) {
-    if (colorObj) {
-      value = result[0];
-    } else {
-      value = result[0][factor];
-    }
-  }
-
-  return value;
+  return baseFunc(colors, colorSpace, colorObj, "desc");
 };
 
 export { getFarthestHue, getNearestHue };

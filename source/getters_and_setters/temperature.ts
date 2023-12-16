@@ -24,6 +24,27 @@ const predicate = (factor: number, temp: "warm" | "cool"): boolean => {
     return false;
   }
 };
+
+const baseFunc = (color, extremum) => {
+  // Get the hue value of the color
+  const factor = getChannel("lch.h")(color);
+
+  // Then  we check to see in what hue family it is and check the highest hue value for that family
+  const hue: string = customFindKey(hueTempMap, factor);
+
+  // Get accurate hue start/ends in HSL
+  // @ts-ignore
+  const maxHue: number = [extremum](...customConcat(hueTempMap[hue]));
+
+  const result = getTemp({
+    l: getChannel("lch.l")(color),
+    c: getChannel("lch.c")(color),
+    h: maxHue,
+    mode: "lch",
+  });
+
+  return result;
+};
 /**
  * @function
  * @description Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.
@@ -104,24 +125,7 @@ console.log(maxTemp("b2c3f1"))
 // 9570
  */
 const maxTemp = (color: Color): number => {
-  // Get the hue value of the color
-  const factor = getChannel("lch.h")(color);
-
-  // Then  we check to see in what hue family it is and check the highest hue value for that family
-  const hue: string = customFindKey(hueTempMap, factor);
-
-  // Get accurate hue start/ends in HSL
-  // @ts-ignore
-  const maxHue: number = max(...customConcat(hueTempMap[hue]));
-
-  const result = getTemp({
-    l: getChannel("lch.l")(color),
-    c: getChannel("lch.c")(color),
-    h: maxHue,
-    mode: "lch",
-  });
-
-  return result;
+  return baseFunc(color, max);
 };
 
 /**
@@ -142,25 +146,6 @@ console.log(minTemp("b2c3f1"))
  * 
  */
 const minTemp = (color: Color): number => {
-  // Get the hue value of the color
-  // eslint-disable-next-line prefer-const
-  let factor = getChannel("lch.h")(color);
-
-  // Then  we check to see in what hue family it is and check the highest hue value for that family
-  const hue: string = customFindKey(hueTempMap, factor);
-
-  // @ts-ignore
-  const minHue: number = min(...customConcat(hueTempMap[hue]));
-
-  // Get accurate hue start/ends in HSL
-
-  const result = getTemp({
-    l: getChannel("lch.l")(color),
-    c: getChannel("lch.c")(color),
-    h: minHue,
-    mode: "lch",
-  });
-
-  return result;
+  return baseFunc(color, min);
 };
 export { isCool, isWarm, maxTemp, minTemp };

@@ -1,15 +1,10 @@
 import { getChannel } from "../getters_and_setters/get";
 import { sortedArr } from "../fp/array/sortedArr";
 import type { Color, Factor, HueColorSpaces } from "../types";
-import {
-  channelDifference,
-  checkArg,
-  gt,
-  matchLightnessChannel,
-} from "../fp/index";
+import { checkArg, gt, matchLightnessChannel } from "../fp/index";
 
 // use jch
-const lightness = (mode) => {
+const lightness = (mode: string) => {
   mode = checkArg(mode, "jch");
   return `${mode}.${matchLightnessChannel(mode)}`;
 };
@@ -19,8 +14,29 @@ const lightness = (mode) => {
 
 const factor: Factor = "lightness";
 
+const baseFunc = (order: "asc" | "desc", colors, mode, colorObj) => {
+  const cb = getChannel(lightness(mode));
+  const result: Array<{ factor: number; color: Color }> = sortedArr(
+    factor,
+    cb,
+    order,
+    true
+  )(colors);
+  let value: number | { factor: number; color: Color };
+
+  if (gt(result.length, 0)) {
+    if (colorObj) {
+      value = result[0];
+    } else {
+      value = result[0][factor];
+    }
+  }
+  // @ts-ignore
+  return value;
+};
+
 /**
- *@function
+ * @function
  * @description Gets the smallest lightness value from the passed in colors.
  * @param colors The array of colors to query the color with the smallest lightness value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.
@@ -42,26 +58,8 @@ const getNearestLightness = (
   mode?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  //  The factor being investigated.
-
-  const cb = getChannel(lightness(mode));
-  const result: Array<{ factor: number; name: Color }> = sortedArr(
-    factor,
-    cb,
-    "asc",
-    true
-  )(colors);
-  let value: number | { factor: number; name: Color };
-
-  if (gt(result.length, 0)) {
-    if (colorObj) {
-      value = result[0];
-    } else {
-      value = result[0][factor];
-    }
-  }
   // @ts-ignore
-  return value;
+  return baseFunc("asc", colors, mode, colorObj);
 };
 
 /**
@@ -87,26 +85,8 @@ const getFarthestLightness = (
   mode?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  //  The factor being investigated.
-
-  const cb = getChannel(lightness(mode));
-  const result: Array<{ factor: number; name: Color }> = sortedArr(
-    factor,
-    cb,
-    "desc",
-    true
-  )(colors);
-  let value: number | { factor: number; name: Color };
-
-  if (gt(result.length, 0)) {
-    if (colorObj) {
-      value = result[0];
-    } else {
-      value = result[0][factor];
-    }
-  }
   // @ts-ignore
-  return value;
+  return baseFunc("desc", colors, mode, colorObj);
 };
 
 export { getFarthestLightness, getNearestLightness };

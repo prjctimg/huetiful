@@ -6,7 +6,25 @@ import { channelDifference, gt, sortedArr } from "../fp";
 
 const factor: Factor = "contrast";
 const cb = (color) => (against) => getContrast(color, against);
+const baseFunc = (against, order, colors, colorObj) => {
+  const result: Array<{ factor: number; name: Color }> = sortedArr(
+    factor,
+    cb(against),
+    order,
+    true
+  )(colors);
+  let value: number | { factor: number; name: Color };
 
+  if (gt(result.length, 0)) {
+    if (colorObj) {
+      value = result[0];
+    } else {
+      value = result[0][factor];
+    }
+  }
+  // @ts-ignore
+  return value;
+};
 /**
  *@function
  * @description Gets the largest contrast value from the passed in colors compared against a sample color.
@@ -31,23 +49,7 @@ const getFarthestContrast = (
   against: Color,
   colorObj?: boolean
 ): number | { factor: number; name: Color } => {
-  const result: Array<{ factor: number; name: Color }> = sortedArr(
-    factor,
-    cb(against),
-    "desc",
-    true
-  )(colors);
-  let value: number | { factor: number; name: Color };
-
-  if (gt(result.length, 0)) {
-    if (colorObj) {
-      value = result[0];
-    } else {
-      value = result[0][factor];
-    }
-  }
-  // @ts-ignore
-  return value;
+  return baseFunc(against, "desc", colors, colorObj);
 };
 
 /**
@@ -72,24 +74,7 @@ const getNearestContrast = (
   against: Color,
   colorObj?: boolean
 ) => {
-  const result: Array<{ factor: number; name: Color }> = sortedArr(
-    factor,
-    cb(against),
-    "asc",
-    true
-  )(colors);
-  let value: number | { factor: number; name: Color };
-
-  if (gt(result.length, 0)) {
-    if (colorObj) {
-      value = result[0];
-    } else {
-      value = result[0][factor];
-    }
-  }
-
-  //@ts-ignore
-  return value;
+  return baseFunc(against, "asc", colors, colorObj);
 };
 
 /**

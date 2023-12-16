@@ -4,27 +4,41 @@ import { Color, HueColorSpaces, Factor } from "../types";
 import { getChannel } from "./get";
 import { matchChromaChannel } from "../fp/string/matchChromaChannel";
 import { sortedArr } from "../fp/array/sortedArr";
+import { checkArg } from "../fp";
 
 // I must test if the passed in mode has a chroma/saturation channel. Should I use RegExp  ?
 
 // Use jch by default
 // First check which value is greater and then act accordingly. Refactor hue.ts so that it returns negative
-const chromaDiff =
-  (color: Color, colorSpace: HueColorSpaces | string) =>
-  (subtrahend: Color) => {
-    const cs = matchChromaChannel(colorSpace);
-
-    if (getChannel(cs)(color) < getChannel(cs)(subtrahend)) {
-      return getChannel(cs)(subtrahend) - getChannel(cs)(color);
-    } else {
-      return getChannel(cs)(color) - getChannel(cs)(subtrahend);
-    }
-  };
 
 // If the predicate returns undefined or false on the chroma channel then it means that it is an achromatic color.
 // Callback func for the minHue and maxHue utils. The funny thing is that most of the code is similar with minor changes here and there
 const predicate = (colorSpace: HueColorSpaces) => (color: Color) =>
   getChannel(matchChromaChannel(colorSpace))(color) || undefined;
+
+const baseFunc = (colorSpace, colorObj, colors, order) => {
+  //  The factor being investigated.
+
+  const factor: Factor = "saturation";
+  const result: Array<{ factor: number; name: Color }> = sortedArr(
+    factor,
+    predicate(checkArg(colorSpace, "jch")),
+    "asc",
+    true
+  )(colors).filter((el) => el[factor] !== undefined);
+
+  let value: number | { factor: number; name: Color };
+
+  if (result.length > 0) {
+    if (colorObj) {
+      value = result[0];
+    } else {
+      value = result[0][factor];
+    }
+  }
+  // @ts-ignore
+  return value;
+};
 
 /**
  *@function
@@ -47,27 +61,8 @@ const getNearestChroma = (
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  //  The factor being investigated.
-
-  const factor: Factor = "saturation";
-  const result: Array<{ factor: number; name: Color }> = sortedArr(
-    factor,
-    predicate(colorSpace || "lch"),
-    "asc",
-    true
-  )(colors).filter((el) => el[factor] !== undefined);
-
-  let value: number | { factor: number; name: Color };
-
-  if (result.length > 0) {
-    if (colorObj) {
-      value = result[0];
-    } else {
-      value = result[0][factor];
-    }
-  }
   // @ts-ignore
-  return value;
+  return baseFunc(colorSpace, colorObj, colors, "asc");
 };
 
 /**
@@ -91,27 +86,8 @@ const getFarthestChroma = (
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } => {
-  //  The factor being investigated.
-
-  const factor: Factor = "saturation";
-  const result: Array<{ factor: number; name: Color }> = sortedArr(
-    factor,
-    predicate(colorSpace || "lch"),
-    "desc",
-    true
-  )(colors).filter((el) => el[factor] !== undefined);
-
-  let value: { factor: number; name: Color } | number;
-
-  if (result.length > 0) {
-    if (colorObj) {
-      value = result[0];
-    } else {
-      value = result[0][factor];
-    }
-  }
   // @ts-ignore
-  return value;
+  return baseFunc(colorSpace, colorObj, colors, "asc");
 };
 
 export { getFarthestChroma, getNearestChroma };
