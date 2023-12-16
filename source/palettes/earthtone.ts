@@ -33,15 +33,7 @@ console.log(earthtone("pink",{earthtones:'clay',iterations:5 }))
  */
 
 const earthtone = (color: Color, options?: EarthtoneOptions): Color[] => {
-  let {
-    chromaInterpolator,
-    hueFixup,
-    hueInterpolator,
-    lightnessInterpolator,
-    iterations,
-    earthtones,
-    easingFunc,
-  } = options || {};
+  let { iterations, earthtones, easingFunc } = options || {};
 
   iterations = checkArg(iterations, 1);
 
