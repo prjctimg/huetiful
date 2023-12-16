@@ -4,7 +4,7 @@
 //@ts-nocheck
 
 // eslint-disable-next-line no-undef
-var { build } = require("esbuild");
+var { build } = require('esbuild');
 var { dependencies } = require("../package.json");
 
 const sharedConfig = {

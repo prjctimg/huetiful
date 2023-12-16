@@ -29,9 +29,9 @@ var __toESM = (mod2, isNodeMode, target) => (target = mod2 != null ? __create(__
 ));
 var __toCommonJS = (mod2) => __copyProps(__defProp({}, "__esModule", { value: true }), mod2);
 
-// ../node_modules/ciebase-ts/lib/helpers.js
+// node_modules/ciebase-ts/lib/helpers.js
 var require_helpers = __commonJS({
-  "../node_modules/ciebase-ts/lib/helpers.js"(exports) {
+  "node_modules/ciebase-ts/lib/helpers.js"(exports) {
     "use strict";
     exports.__esModule = true;
     exports.xyCoodinateToXYZTuple = function(_a) {
@@ -52,9 +52,9 @@ var require_helpers = __commonJS({
   }
 });
 
-// ../node_modules/ciebase-ts/lib/illuminant.js
+// node_modules/ciebase-ts/lib/illuminant.js
 var require_illuminant = __commonJS({
-  "../node_modules/ciebase-ts/lib/illuminant.js"(exports) {
+  "node_modules/ciebase-ts/lib/illuminant.js"(exports) {
     "use strict";
     exports.__esModule = true;
     var helpers_1 = require_helpers();
@@ -77,9 +77,9 @@ var require_illuminant = __commonJS({
   }
 });
 
-// ../node_modules/ciebase-ts/lib/workspace.js
+// node_modules/ciebase-ts/lib/workspace.js
 var require_workspace = __commonJS({
-  "../node_modules/ciebase-ts/lib/workspace.js"(exports) {
+  "node_modules/ciebase-ts/lib/workspace.js"(exports) {
     "use strict";
     exports.__esModule = true;
     var helpers_1 = require_helpers();
@@ -140,9 +140,9 @@ var require_workspace = __commonJS({
   }
 });
 
-// ../node_modules/ciebase-ts/lib/matrix.js
+// node_modules/ciebase-ts/lib/matrix.js
 var require_matrix = __commonJS({
-  "../node_modules/ciebase-ts/lib/matrix.js"(exports) {
+  "node_modules/ciebase-ts/lib/matrix.js"(exports) {
     "use strict";
     exports.__esModule = true;
     var transpose = function(M) {
@@ -195,9 +195,9 @@ var require_matrix = __commonJS({
   }
 });
 
-// ../node_modules/ciebase-ts/lib/xyz.js
+// node_modules/ciebase-ts/lib/xyz.js
 var require_xyz = __commonJS({
-  "../node_modules/ciebase-ts/lib/xyz.js"(exports) {
+  "node_modules/ciebase-ts/lib/xyz.js"(exports) {
     "use strict";
     exports.__esModule = true;
     var illuminant_1 = require_illuminant();
@@ -239,9 +239,9 @@ var require_xyz = __commonJS({
   }
 });
 
-// ../node_modules/ciebase-ts/lib/degree.js
+// node_modules/ciebase-ts/lib/degree.js
 var require_degree = __commonJS({
-  "../node_modules/ciebase-ts/lib/degree.js"(exports) {
+  "node_modules/ciebase-ts/lib/degree.js"(exports) {
     "use strict";
     exports.__esModule = true;
     var PI = Math.PI;
@@ -271,9 +271,9 @@ var require_degree = __commonJS({
   }
 });
 
-// ../node_modules/ciebase-ts/lib/rgb.js
+// node_modules/ciebase-ts/lib/rgb.js
 var require_rgb = __commonJS({
-  "../node_modules/ciebase-ts/lib/rgb.js"(exports) {
+  "node_modules/ciebase-ts/lib/rgb.js"(exports) {
     "use strict";
     exports.__esModule = true;
     var round2 = Math.round;
@@ -303,9 +303,9 @@ var require_rgb = __commonJS({
   }
 });
 
-// ../node_modules/ciebase-ts/lib/index.js
+// node_modules/ciebase-ts/lib/index.js
 var require_lib = __commonJS({
-  "../node_modules/ciebase-ts/lib/index.js"(exports) {
+  "node_modules/ciebase-ts/lib/index.js"(exports) {
     "use strict";
     exports.__esModule = true;
     var illuminant_1 = require_illuminant();
@@ -325,9 +325,9 @@ var require_lib = __commonJS({
   }
 });
 
-// ../node_modules/ciecam02-ts/lib/helpers.js
+// node_modules/ciecam02-ts/lib/helpers.js
 var require_helpers2 = __commonJS({
-  "../node_modules/ciecam02-ts/lib/helpers.js"(exports) {
+  "node_modules/ciecam02-ts/lib/helpers.js"(exports) {
     "use strict";
     exports.__esModule = true;
     var abs4 = Math.abs;
@@ -377,9 +377,9 @@ var require_helpers2 = __commonJS({
   }
 });
 
-// ../node_modules/ciecam02-ts/lib/hq.js
+// node_modules/ciecam02-ts/lib/hq.js
 var require_hq = __commonJS({
-  "../node_modules/ciecam02-ts/lib/hq.js"(exports) {
+  "node_modules/ciecam02-ts/lib/hq.js"(exports) {
     "use strict";
     exports.__esModule = true;
     var helpers_1 = require_helpers2();
@@ -467,9 +467,9 @@ var require_hq = __commonJS({
   }
 });
 
-// ../node_modules/ciecam02-ts/lib/cam.js
+// node_modules/ciecam02-ts/lib/cam.js
 var require_cam = __commonJS({
-  "../node_modules/ciecam02-ts/lib/cam.js"(exports) {
+  "node_modules/ciecam02-ts/lib/cam.js"(exports) {
     "use strict";
     var __assign = exports && exports.__assign || Object.assign || function(t) {
       for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -686,9 +686,9 @@ var require_cam = __commonJS({
   }
 });
 
-// ../node_modules/ciecam02-ts/lib/gamut.js
+// node_modules/ciecam02-ts/lib/gamut.js
 var require_gamut = __commonJS({
-  "../node_modules/ciecam02-ts/lib/gamut.js"(exports) {
+  "node_modules/ciecam02-ts/lib/gamut.js"(exports) {
     "use strict";
     exports.__esModule = true;
     var ciebase_ts_1 = require_lib();
@@ -741,9 +741,9 @@ var require_gamut = __commonJS({
   }
 });
 
-// ../node_modules/ciecam02-ts/lib/ucs.js
+// node_modules/ciecam02-ts/lib/ucs.js
 var require_ucs = __commonJS({
-  "../node_modules/ciecam02-ts/lib/ucs.js"(exports) {
+  "node_modules/ciecam02-ts/lib/ucs.js"(exports) {
     "use strict";
     exports.__esModule = true;
     var ciebase_ts_1 = require_lib();
@@ -792,9 +792,9 @@ var require_ucs = __commonJS({
   }
 });
 
-// ../node_modules/ciecam02-ts/lib/index.js
+// node_modules/ciecam02-ts/lib/index.js
 var require_lib2 = __commonJS({
-  "../node_modules/ciecam02-ts/lib/index.js"(exports) {
+  "node_modules/ciecam02-ts/lib/index.js"(exports) {
     "use strict";
     exports.__esModule = true;
     var cam_1 = require_cam();
@@ -814,13 +814,14 @@ var require_lib2 = __commonJS({
 // index.ts
 var source_exports = {};
 __export(source_exports, {
-  Color: () => IColor,
+  IColor: () => IColor,
   adjustHue: () => adjustHue,
   alpha: () => alpha,
   baseCieCam: () => baseCieCam,
   brighten: () => brighten,
   camToColor: () => camToColor,
   checkArg: () => checkArg,
+  color: () => color,
   colorDeficiency: () => colorDeficiency,
   colorObj: () => colorObj,
   colorObjArr: () => colorObjArr,
@@ -857,7 +858,7 @@ __export(source_exports, {
   getNearestLightness: () => getNearestLightness,
   getSaturationRange: () => getSaturationRange,
   getTemp: () => getTemp,
-  gt: () => gt2,
+  gt: () => gt,
   gte: () => gte,
   hueShift: () => hueShift,
   inRange: () => inRange,
@@ -906,48 +907,48 @@ __export(source_exports, {
 });
 module.exports = __toCommonJS(source_exports);
 
-// ../node_modules/culori/src/rgb/parseNumber.js
-var parseNumber = (color, len) => {
-  if (typeof color !== "number")
+// node_modules/culori/src/rgb/parseNumber.js
+var parseNumber = (color2, len) => {
+  if (typeof color2 !== "number")
     return;
   if (len === 3) {
     return {
       mode: "rgb",
-      r: (color >> 8 & 15 | color >> 4 & 240) / 255,
-      g: (color >> 4 & 15 | color & 240) / 255,
-      b: (color & 15 | color << 4 & 240) / 255
+      r: (color2 >> 8 & 15 | color2 >> 4 & 240) / 255,
+      g: (color2 >> 4 & 15 | color2 & 240) / 255,
+      b: (color2 & 15 | color2 << 4 & 240) / 255
     };
   }
   if (len === 4) {
     return {
       mode: "rgb",
-      r: (color >> 12 & 15 | color >> 8 & 240) / 255,
-      g: (color >> 8 & 15 | color >> 4 & 240) / 255,
-      b: (color >> 4 & 15 | color & 240) / 255,
-      alpha: (color & 15 | color << 4 & 240) / 255
+      r: (color2 >> 12 & 15 | color2 >> 8 & 240) / 255,
+      g: (color2 >> 8 & 15 | color2 >> 4 & 240) / 255,
+      b: (color2 >> 4 & 15 | color2 & 240) / 255,
+      alpha: (color2 & 15 | color2 << 4 & 240) / 255
     };
   }
   if (len === 6) {
     return {
       mode: "rgb",
-      r: (color >> 16 & 255) / 255,
-      g: (color >> 8 & 255) / 255,
-      b: (color & 255) / 255
+      r: (color2 >> 16 & 255) / 255,
+      g: (color2 >> 8 & 255) / 255,
+      b: (color2 & 255) / 255
     };
   }
   if (len === 8) {
     return {
       mode: "rgb",
-      r: (color >> 24 & 255) / 255,
-      g: (color >> 16 & 255) / 255,
-      b: (color >> 8 & 255) / 255,
-      alpha: (color & 255) / 255
+      r: (color2 >> 24 & 255) / 255,
+      g: (color2 >> 16 & 255) / 255,
+      b: (color2 >> 8 & 255) / 255,
+      alpha: (color2 & 255) / 255
     };
   }
 };
 var parseNumber_default = parseNumber;
 
-// ../node_modules/culori/src/colors/named.js
+// node_modules/culori/src/colors/named.js
 var named = {
   aliceblue: 15792383,
   antiquewhite: 16444375,
@@ -1102,21 +1103,21 @@ var named = {
 };
 var named_default = named;
 
-// ../node_modules/culori/src/rgb/parseNamed.js
-var parseNamed = (color) => {
-  return parseNumber_default(named_default[color.toLowerCase()], 6);
+// node_modules/culori/src/rgb/parseNamed.js
+var parseNamed = (color2) => {
+  return parseNumber_default(named_default[color2.toLowerCase()], 6);
 };
 var parseNamed_default = parseNamed;
 
-// ../node_modules/culori/src/rgb/parseHex.js
+// node_modules/culori/src/rgb/parseHex.js
 var hex = /^#?([0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{4}|[0-9a-f]{3})$/i;
-var parseHex = (color) => {
+var parseHex = (color2) => {
   let match;
-  return (match = color.match(hex)) ? parseNumber_default(parseInt(match[1], 16), match[1].length) : void 0;
+  return (match = color2.match(hex)) ? parseNumber_default(parseInt(match[1], 16), match[1].length) : void 0;
 };
 var parseHex_default = parseHex;
 
-// ../node_modules/culori/src/util/regex.js
+// node_modules/culori/src/util/regex.js
 var num = "([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)";
 var num_none = `(?:${num}|none)`;
 var per = `${num}%`;
@@ -1128,17 +1129,17 @@ var hue_none = `(?:${num}(deg|grad|rad|turn)|${num}|none)`;
 var c = `\\s*,\\s*`;
 var rx_num_per_none = new RegExp("^" + num_per_none + "$");
 
-// ../node_modules/culori/src/rgb/parseRgbLegacy.js
+// node_modules/culori/src/rgb/parseRgbLegacy.js
 var rgb_num_old = new RegExp(
   `^rgba?\\(\\s*${num}${c}${num}${c}${num}\\s*(?:,\\s*${num_per}\\s*)?\\)$`
 );
 var rgb_per_old = new RegExp(
   `^rgba?\\(\\s*${per}${c}${per}${c}${per}\\s*(?:,\\s*${num_per}\\s*)?\\)$`
 );
-var parseRgbLegacy = (color) => {
+var parseRgbLegacy = (color2) => {
   let res = { mode: "rgb" };
   let match;
-  if (match = color.match(rgb_num_old)) {
+  if (match = color2.match(rgb_num_old)) {
     if (match[1] !== void 0) {
       res.r = match[1] / 255;
     }
@@ -1148,7 +1149,7 @@ var parseRgbLegacy = (color) => {
     if (match[3] !== void 0) {
       res.b = match[3] / 255;
     }
-  } else if (match = color.match(rgb_per_old)) {
+  } else if (match = color2.match(rgb_per_old)) {
     if (match[1] !== void 0) {
       res.r = match[1] / 100;
     }
@@ -1170,38 +1171,38 @@ var parseRgbLegacy = (color) => {
 };
 var parseRgbLegacy_default = parseRgbLegacy;
 
-// ../node_modules/culori/src/_prepare.js
-var prepare = (color, mode2) => color === void 0 ? void 0 : typeof color !== "object" ? parse_default(color) : color.mode !== void 0 ? color : mode2 ? { ...color, mode: mode2 } : void 0;
+// node_modules/culori/src/_prepare.js
+var prepare = (color2, mode2) => color2 === void 0 ? void 0 : typeof color2 !== "object" ? parse_default(color2) : color2.mode !== void 0 ? color2 : mode2 ? { ...color2, mode: mode2 } : void 0;
 var prepare_default = prepare;
 
-// ../node_modules/culori/src/converter.js
-var converter = (target_mode = "rgb") => (color) => (color = prepare_default(color, target_mode)) !== void 0 ? (
+// node_modules/culori/src/converter.js
+var converter = (target_mode = "rgb") => (color2) => (color2 = prepare_default(color2, target_mode)) !== void 0 ? (
   // if the color's mode corresponds to our target mode
-  color.mode === target_mode ? (
+  color2.mode === target_mode ? (
     // then just return the color
-    color
+    color2
   ) : (
     // otherwise check to see if we have a dedicated
     // converter for the target mode
-    converters[color.mode][target_mode] ? (
+    converters[color2.mode][target_mode] ? (
       // and return its result...
-      converters[color.mode][target_mode](color)
+      converters[color2.mode][target_mode](color2)
     ) : (
       // ...otherwise pass through RGB as an intermediary step.
       // if the target mode is RGB...
       target_mode === "rgb" ? (
         // just return the RGB
-        converters[color.mode].rgb(color)
+        converters[color2.mode].rgb(color2)
       ) : (
         // otherwise convert color.mode -> RGB -> target_mode
-        converters.rgb[target_mode](converters[color.mode].rgb(color))
+        converters.rgb[target_mode](converters[color2.mode].rgb(color2))
       )
     )
   )
 ) : void 0;
 var converter_default = converter;
 
-// ../node_modules/culori/src/modes.js
+// node_modules/culori/src/modes.js
 var converters = {};
 var modes = {};
 var parsers = [];
@@ -1260,7 +1261,7 @@ var useParser = (parser, mode2) => {
   }
 };
 
-// ../node_modules/culori/src/parse.js
+// node_modules/culori/src/parse.js
 var IdentStartCodePoint = /[^\x00-\x7F]|[a-zA-Z_]/;
 var IdentCodePoint = /[^\x00-\x7F]|[-\w]/;
 var Tok = {
@@ -1522,17 +1523,17 @@ function parseModernSyntax(tokens, includeHue) {
   coords.unshift(token.value);
   return coords;
 }
-var parse = (color) => {
-  if (typeof color !== "string") {
+var parse = (color2) => {
+  if (typeof color2 !== "string") {
     return void 0;
   }
-  const tokens = tokenize(color);
+  const tokens = tokenize(color2);
   const parsed = tokens ? parseModernSyntax(tokens, true) : void 0;
   let result = void 0;
   let i = 0;
   let len = parsers.length;
   while (i < len) {
-    if ((result = parsers[i++](color, parsed)) !== void 0) {
+    if ((result = parsers[i++](color2, parsed)) !== void 0) {
       return result;
     }
   }
@@ -1540,8 +1541,8 @@ var parse = (color) => {
 };
 var parse_default = parse;
 
-// ../node_modules/culori/src/rgb/parseRgb.js
-function parseRgb(color, parsed) {
+// node_modules/culori/src/rgb/parseRgb.js
+function parseRgb(color2, parsed) {
   if (!parsed || parsed[0] !== "rgb" && parsed[0] !== "rgba") {
     return void 0;
   }
@@ -1566,14 +1567,14 @@ function parseRgb(color, parsed) {
 }
 var parseRgb_default = parseRgb;
 
-// ../node_modules/culori/src/rgb/parseTransparent.js
+// node_modules/culori/src/rgb/parseTransparent.js
 var parseTransparent = (c2) => c2 === "transparent" ? { mode: "rgb", r: 0, g: 0, b: 0, alpha: 0 } : void 0;
 var parseTransparent_default = parseTransparent;
 
-// ../node_modules/culori/src/interpolate/lerp.js
+// node_modules/culori/src/interpolate/lerp.js
 var lerp = (a, b, t) => a + t * (b - a);
 
-// ../node_modules/culori/src/interpolate/piecewise.js
+// node_modules/culori/src/interpolate/piecewise.js
 var get_classes = (arr) => {
   let classes = [];
   for (let i = 0; i < arr.length - 1; i++) {
@@ -1599,10 +1600,10 @@ var interpolatorPiecewise = (interpolator2) => (arr) => {
   };
 };
 
-// ../node_modules/culori/src/interpolate/linear.js
+// node_modules/culori/src/interpolate/linear.js
 var interpolatorLinear = interpolatorPiecewise(lerp);
 
-// ../node_modules/culori/src/fixup/alpha.js
+// node_modules/culori/src/fixup/alpha.js
 var fixupAlpha = (arr) => {
   let some_defined = false;
   let res = arr.map((v) => {
@@ -1615,7 +1616,7 @@ var fixupAlpha = (arr) => {
   return some_defined ? res : arr;
 };
 
-// ../node_modules/culori/src/rgb/definition.js
+// node_modules/culori/src/rgb/definition.js
 var definition = {
   mode: "rgb",
   channels: ["r", "g", "b", "alpha"],
@@ -1638,7 +1639,7 @@ var definition = {
 };
 var definition_default = definition;
 
-// ../node_modules/culori/src/a98/convertA98ToXyz65.js
+// node_modules/culori/src/a98/convertA98ToXyz65.js
 var linearize = (v) => Math.pow(Math.abs(v), 563 / 256) * Math.sign(v);
 var convertA98ToXyz65 = (a982) => {
   let r2 = linearize(a982.r);
@@ -1657,7 +1658,7 @@ var convertA98ToXyz65 = (a982) => {
 };
 var convertA98ToXyz65_default = convertA98ToXyz65;
 
-// ../node_modules/culori/src/a98/convertXyz65ToA98.js
+// node_modules/culori/src/a98/convertXyz65ToA98.js
 var gamma = (v) => Math.pow(Math.abs(v), 256 / 563) * Math.sign(v);
 var convertXyz65ToA98 = ({ x, y, z, alpha: alpha2 }) => {
   let res = {
@@ -1679,7 +1680,7 @@ var convertXyz65ToA98 = ({ x, y, z, alpha: alpha2 }) => {
 };
 var convertXyz65ToA98_default = convertXyz65ToA98;
 
-// ../node_modules/culori/src/lrgb/convertRgbToLrgb.js
+// node_modules/culori/src/lrgb/convertRgbToLrgb.js
 var fn = (c2) => {
   const abs4 = Math.abs(c2);
   if (abs4 <= 0.04045) {
@@ -1700,7 +1701,7 @@ var convertRgbToLrgb = ({ r: r2, g, b, alpha: alpha2 }) => {
 };
 var convertRgbToLrgb_default = convertRgbToLrgb;
 
-// ../node_modules/culori/src/xyz65/convertRgbToXyz65.js
+// node_modules/culori/src/xyz65/convertRgbToXyz65.js
 var convertRgbToXyz65 = (rgb4) => {
   let { r: r2, g, b, alpha: alpha2 } = convertRgbToLrgb_default(rgb4);
   let res = {
@@ -1716,7 +1717,7 @@ var convertRgbToXyz65 = (rgb4) => {
 };
 var convertRgbToXyz65_default = convertRgbToXyz65;
 
-// ../node_modules/culori/src/lrgb/convertLrgbToRgb.js
+// node_modules/culori/src/lrgb/convertLrgbToRgb.js
 var fn2 = (c2) => {
   const abs4 = Math.abs(c2);
   if (abs4 > 31308e-7) {
@@ -1737,7 +1738,7 @@ var convertLrgbToRgb = ({ r: r2, g, b, alpha: alpha2 }, mode2 = "rgb") => {
 };
 var convertLrgbToRgb_default = convertLrgbToRgb;
 
-// ../node_modules/culori/src/xyz65/convertXyz65ToRgb.js
+// node_modules/culori/src/xyz65/convertXyz65ToRgb.js
 var convertXyz65ToRgb = ({ x, y, z, alpha: alpha2 }) => {
   let res = convertLrgbToRgb_default({
     r: x * 3.2409699419045226 - y * 1.537383177570094 - 0.4986107602930034 * z,
@@ -1751,28 +1752,28 @@ var convertXyz65ToRgb = ({ x, y, z, alpha: alpha2 }) => {
 };
 var convertXyz65ToRgb_default = convertXyz65ToRgb;
 
-// ../node_modules/culori/src/a98/definition.js
+// node_modules/culori/src/a98/definition.js
 var definition2 = {
   ...definition_default,
   mode: "a98",
   parse: ["a98-rgb"],
   serialize: "a98-rgb",
   fromMode: {
-    rgb: (color) => convertXyz65ToA98_default(convertRgbToXyz65_default(color)),
+    rgb: (color2) => convertXyz65ToA98_default(convertRgbToXyz65_default(color2)),
     xyz65: convertXyz65ToA98_default
   },
   toMode: {
-    rgb: (color) => convertXyz65ToRgb_default(convertA98ToXyz65_default(color)),
+    rgb: (color2) => convertXyz65ToRgb_default(convertA98ToXyz65_default(color2)),
     xyz65: convertA98ToXyz65_default
   }
 };
 var definition_default2 = definition2;
 
-// ../node_modules/culori/src/util/normalizeHue.js
+// node_modules/culori/src/util/normalizeHue.js
 var normalizeHue = (hue3) => (hue3 = hue3 % 360) < 0 ? hue3 + 360 : hue3;
 var normalizeHue_default = normalizeHue;
 
-// ../node_modules/culori/src/fixup/hue.js
+// node_modules/culori/src/fixup/hue.js
 var hue2 = (hues, fn5) => {
   return hues.map((hue3, idx, arr) => {
     if (hue3 === void 0) {
@@ -1794,7 +1795,7 @@ var hue2 = (hues, fn5) => {
 };
 var fixupHueShorter = (arr) => hue2(arr, (d) => Math.abs(d) <= 180 ? d : d - 360 * Math.sign(d));
 
-// ../node_modules/culori/src/difference.js
+// node_modules/culori/src/difference.js
 var differenceHueSaturation = (std, smp) => {
   if (std.h === void 0 || smp.h === void 0 || !std.s || !smp.s) {
     return 0;
@@ -1841,7 +1842,7 @@ var differenceEuclidean = (mode2 = "rgb", weights = [1, 1, 1, 0]) => {
   };
 };
 
-// ../node_modules/culori/src/average.js
+// node_modules/culori/src/average.js
 var averageAngle = (val) => {
   let sum = val.reduce(
     (sum2, val2) => {
@@ -1861,7 +1862,7 @@ var averageNumber = (val) => {
   return a.length ? a.reduce((sum, v) => sum + v, 0) / a.length : void 0;
 };
 
-// ../node_modules/culori/src/lch/convertLabToLch.js
+// node_modules/culori/src/lch/convertLabToLch.js
 var convertLabToLch = ({ l, a, b, alpha: alpha2 }, mode2 = "lch") => {
   let c2 = Math.sqrt(a * a + b * b);
   let res = { mode: mode2, l, c: c2 };
@@ -1873,7 +1874,7 @@ var convertLabToLch = ({ l, a, b, alpha: alpha2 }, mode2 = "lch") => {
 };
 var convertLabToLch_default = convertLabToLch;
 
-// ../node_modules/culori/src/lch/convertLchToLab.js
+// node_modules/culori/src/lch/convertLchToLab.js
 var convertLchToLab = ({ l, c: c2, h, alpha: alpha2 }, mode2 = "lab") => {
   let res = {
     mode: mode2,
@@ -1887,11 +1888,11 @@ var convertLchToLab = ({ l, c: c2, h, alpha: alpha2 }, mode2 = "lab") => {
 };
 var convertLchToLab_default = convertLchToLab;
 
-// ../node_modules/culori/src/xyz65/constants.js
+// node_modules/culori/src/xyz65/constants.js
 var k = Math.pow(29, 3) / Math.pow(3, 3);
 var e = Math.pow(6, 3) / Math.pow(29, 3);
 
-// ../node_modules/culori/src/constants.js
+// node_modules/culori/src/constants.js
 var D50 = {
   X: 0.3457 / 0.3585,
   Y: 1,
@@ -1905,7 +1906,7 @@ var D65 = {
 var k2 = Math.pow(29, 3) / Math.pow(3, 3);
 var e2 = Math.pow(6, 3) / Math.pow(29, 3);
 
-// ../node_modules/culori/src/lab65/convertLab65ToXyz65.js
+// node_modules/culori/src/lab65/convertLab65ToXyz65.js
 var fn3 = (v) => Math.pow(v, 3) > e ? Math.pow(v, 3) : (116 * v - 16) / k;
 var convertLab65ToXyz65 = ({ l, a, b, alpha: alpha2 }) => {
   let fy = (l + 16) / 116;
@@ -1924,11 +1925,11 @@ var convertLab65ToXyz65 = ({ l, a, b, alpha: alpha2 }) => {
 };
 var convertLab65ToXyz65_default = convertLab65ToXyz65;
 
-// ../node_modules/culori/src/lab65/convertLab65ToRgb.js
+// node_modules/culori/src/lab65/convertLab65ToRgb.js
 var convertLab65ToRgb = (lab2) => convertXyz65ToRgb_default(convertLab65ToXyz65_default(lab2));
 var convertLab65ToRgb_default = convertLab65ToRgb;
 
-// ../node_modules/culori/src/lab65/convertXyz65ToLab65.js
+// node_modules/culori/src/lab65/convertXyz65ToLab65.js
 var f = (value) => value > e ? Math.cbrt(value) : (k * value + 16) / 116;
 var convertXyz65ToLab65 = ({ x, y, z, alpha: alpha2 }) => {
   let f0 = f(x / D65.X);
@@ -1947,7 +1948,7 @@ var convertXyz65ToLab65 = ({ x, y, z, alpha: alpha2 }) => {
 };
 var convertXyz65ToLab65_default = convertXyz65ToLab65;
 
-// ../node_modules/culori/src/lab65/convertRgbToLab65.js
+// node_modules/culori/src/lab65/convertRgbToLab65.js
 var convertRgbToLab65 = (rgb4) => {
   let res = convertXyz65ToLab65_default(convertRgbToXyz65_default(rgb4));
   if (rgb4.r === rgb4.b && rgb4.b === rgb4.g) {
@@ -1957,7 +1958,7 @@ var convertRgbToLab65 = (rgb4) => {
 };
 var convertRgbToLab65_default = convertRgbToLab65;
 
-// ../node_modules/culori/src/hsl/convertHslToRgb.js
+// node_modules/culori/src/hsl/convertHslToRgb.js
 function convertHslToRgb({ h, s, l, alpha: alpha2 }) {
   h = normalizeHue_default(h);
   let m1 = l + s * (l < 0.5 ? l : 1 - l);
@@ -1991,7 +1992,7 @@ function convertHslToRgb({ h, s, l, alpha: alpha2 }) {
   return res;
 }
 
-// ../node_modules/culori/src/hsl/convertRgbToHsl.js
+// node_modules/culori/src/hsl/convertRgbToHsl.js
 function convertRgbToHsl({ r: r2, g, b, alpha: alpha2 }) {
   let M = Math.max(r2, g, b), m = Math.min(r2, g, b);
   let res = {
@@ -2006,7 +2007,7 @@ function convertRgbToHsl({ r: r2, g, b, alpha: alpha2 }) {
   return res;
 }
 
-// ../node_modules/culori/src/util/hue.js
+// node_modules/culori/src/util/hue.js
 var hueToDeg = (val, unit) => {
   switch (unit) {
     case "deg":
@@ -2021,12 +2022,12 @@ var hueToDeg = (val, unit) => {
 };
 var hue_default = hueToDeg;
 
-// ../node_modules/culori/src/hsl/parseHslLegacy.js
+// node_modules/culori/src/hsl/parseHslLegacy.js
 var hsl_old = new RegExp(
   `^hsla?\\(\\s*${hue}${c}${per}${c}${per}\\s*(?:,\\s*${num_per}\\s*)?\\)$`
 );
-var parseHslLegacy = (color) => {
-  let match = color.match(hsl_old);
+var parseHslLegacy = (color2) => {
+  let match = color2.match(hsl_old);
   if (!match)
     return;
   let res = { mode: "hsl" };
@@ -2050,8 +2051,8 @@ var parseHslLegacy = (color) => {
 };
 var parseHslLegacy_default = parseHslLegacy;
 
-// ../node_modules/culori/src/hsl/parseHsl.js
-function parseHsl(color, parsed) {
+// node_modules/culori/src/hsl/parseHsl.js
+function parseHsl(color2, parsed) {
   if (!parsed || parsed[0] !== "hsl" && parsed[0] !== "hsla") {
     return void 0;
   }
@@ -2082,7 +2083,7 @@ function parseHsl(color, parsed) {
 }
 var parseHsl_default = parseHsl;
 
-// ../node_modules/culori/src/hsl/definition.js
+// node_modules/culori/src/hsl/definition.js
 var definition3 = {
   mode: "hsl",
   toMode: {
@@ -2113,7 +2114,7 @@ var definition3 = {
 };
 var definition_default3 = definition3;
 
-// ../node_modules/culori/src/hsv/convertHsvToRgb.js
+// node_modules/culori/src/hsv/convertHsvToRgb.js
 function convertHsvToRgb({ h, s, v, alpha: alpha2 }) {
   h = normalizeHue_default(h);
   let f3 = Math.abs(h / 60 % 2 - 1);
@@ -2146,7 +2147,7 @@ function convertHsvToRgb({ h, s, v, alpha: alpha2 }) {
   return res;
 }
 
-// ../node_modules/culori/src/hsv/convertRgbToHsv.js
+// node_modules/culori/src/hsv/convertRgbToHsv.js
 function convertRgbToHsv({ r: r2, g, b, alpha: alpha2 }) {
   let M = Math.max(r2, g, b), m = Math.min(r2, g, b);
   let res = {
@@ -2161,7 +2162,7 @@ function convertRgbToHsv({ r: r2, g, b, alpha: alpha2 }) {
   return res;
 }
 
-// ../node_modules/culori/src/hsv/definition.js
+// node_modules/culori/src/hsv/definition.js
 var definition4 = {
   mode: "hsv",
   toMode: {
@@ -2192,7 +2193,7 @@ var definition4 = {
 };
 var definition_default4 = definition4;
 
-// ../node_modules/culori/src/hwb/convertHwbToRgb.js
+// node_modules/culori/src/hwb/convertHwbToRgb.js
 function convertHwbToRgb({ h, w, b, alpha: alpha2 }) {
   if (w + b > 1) {
     let s = w + b;
@@ -2207,7 +2208,7 @@ function convertHwbToRgb({ h, w, b, alpha: alpha2 }) {
   });
 }
 
-// ../node_modules/culori/src/hwb/convertRgbToHwb.js
+// node_modules/culori/src/hwb/convertRgbToHwb.js
 function convertRgbToHwb(rgba) {
   let hsv2 = convertRgbToHsv(rgba);
   if (hsv2 === void 0)
@@ -2224,8 +2225,8 @@ function convertRgbToHwb(rgba) {
   return res;
 }
 
-// ../node_modules/culori/src/hwb/parseHwb.js
-function ParseHwb(color, parsed) {
+// node_modules/culori/src/hwb/parseHwb.js
+function ParseHwb(color2, parsed) {
   if (!parsed || parsed[0] !== "hwb") {
     return void 0;
   }
@@ -2256,7 +2257,7 @@ function ParseHwb(color, parsed) {
 }
 var parseHwb_default = ParseHwb;
 
-// ../node_modules/culori/src/hwb/definition.js
+// node_modules/culori/src/hwb/definition.js
 var definition5 = {
   mode: "hwb",
   toMode: {
@@ -2287,11 +2288,11 @@ var definition5 = {
 };
 var definition_default5 = definition5;
 
-// ../node_modules/culori/src/xyz50/constants.js
+// node_modules/culori/src/xyz50/constants.js
 var k3 = Math.pow(29, 3) / Math.pow(3, 3);
 var e3 = Math.pow(6, 3) / Math.pow(29, 3);
 
-// ../node_modules/culori/src/lab/convertLabToXyz50.js
+// node_modules/culori/src/lab/convertLabToXyz50.js
 var fn4 = (v) => Math.pow(v, 3) > e3 ? Math.pow(v, 3) : (116 * v - 16) / k3;
 var convertLabToXyz50 = ({ l, a, b, alpha: alpha2 }) => {
   let fy = (l + 16) / 116;
@@ -2310,7 +2311,7 @@ var convertLabToXyz50 = ({ l, a, b, alpha: alpha2 }) => {
 };
 var convertLabToXyz50_default = convertLabToXyz50;
 
-// ../node_modules/culori/src/xyz50/convertXyz50ToRgb.js
+// node_modules/culori/src/xyz50/convertXyz50ToRgb.js
 var convertXyz50ToRgb = ({ x, y, z, alpha: alpha2 }) => {
   let res = convertLrgbToRgb_default({
     r: x * 3.1341359569958707 - y * 1.6173863321612538 - 0.4906619460083532 * z,
@@ -2324,11 +2325,11 @@ var convertXyz50ToRgb = ({ x, y, z, alpha: alpha2 }) => {
 };
 var convertXyz50ToRgb_default = convertXyz50ToRgb;
 
-// ../node_modules/culori/src/lab/convertLabToRgb.js
+// node_modules/culori/src/lab/convertLabToRgb.js
 var convertLabToRgb = (lab2) => convertXyz50ToRgb_default(convertLabToXyz50_default(lab2));
 var convertLabToRgb_default = convertLabToRgb;
 
-// ../node_modules/culori/src/xyz50/convertRgbToXyz50.js
+// node_modules/culori/src/xyz50/convertRgbToXyz50.js
 var convertRgbToXyz50 = (rgb4) => {
   let { r: r2, g, b, alpha: alpha2 } = convertRgbToLrgb_default(rgb4);
   let res = {
@@ -2344,7 +2345,7 @@ var convertRgbToXyz50 = (rgb4) => {
 };
 var convertRgbToXyz50_default = convertRgbToXyz50;
 
-// ../node_modules/culori/src/lab/convertXyz50ToLab.js
+// node_modules/culori/src/lab/convertXyz50ToLab.js
 var f2 = (value) => value > e3 ? Math.cbrt(value) : (k3 * value + 16) / 116;
 var convertXyz50ToLab = ({ x, y, z, alpha: alpha2 }) => {
   let f0 = f2(x / D50.X);
@@ -2363,7 +2364,7 @@ var convertXyz50ToLab = ({ x, y, z, alpha: alpha2 }) => {
 };
 var convertXyz50ToLab_default = convertXyz50ToLab;
 
-// ../node_modules/culori/src/lab/convertRgbToLab.js
+// node_modules/culori/src/lab/convertRgbToLab.js
 var convertRgbToLab = (rgb4) => {
   let res = convertXyz50ToLab_default(convertRgbToXyz50_default(rgb4));
   if (rgb4.r === rgb4.b && rgb4.b === rgb4.g) {
@@ -2373,8 +2374,8 @@ var convertRgbToLab = (rgb4) => {
 };
 var convertRgbToLab_default = convertRgbToLab;
 
-// ../node_modules/culori/src/lab/parseLab.js
-function parseLab(color, parsed) {
+// node_modules/culori/src/lab/parseLab.js
+function parseLab(color2, parsed) {
   if (!parsed || parsed[0] !== "lab") {
     return void 0;
   }
@@ -2399,7 +2400,7 @@ function parseLab(color, parsed) {
 }
 var parseLab_default = parseLab;
 
-// ../node_modules/culori/src/lab/definition.js
+// node_modules/culori/src/lab/definition.js
 var definition6 = {
   mode: "lab",
   toMode: {
@@ -2427,7 +2428,7 @@ var definition6 = {
 };
 var definition_default6 = definition6;
 
-// ../node_modules/culori/src/lab65/definition.js
+// node_modules/culori/src/lab65/definition.js
 var definition7 = {
   ...definition_default6,
   mode: "lab65",
@@ -2449,8 +2450,8 @@ var definition7 = {
 };
 var definition_default7 = definition7;
 
-// ../node_modules/culori/src/lch/parseLch.js
-function parseLch(color, parsed) {
+// node_modules/culori/src/lch/parseLch.js
+function parseLch(color2, parsed) {
   if (!parsed || parsed[0] !== "lch") {
     return void 0;
   }
@@ -2481,7 +2482,7 @@ function parseLch(color, parsed) {
 }
 var parseLch_default = parseLch;
 
-// ../node_modules/culori/src/lch/definition.js
+// node_modules/culori/src/lch/definition.js
 var definition8 = {
   mode: "lch",
   toMode: {
@@ -2515,7 +2516,7 @@ var definition8 = {
 };
 var definition_default8 = definition8;
 
-// ../node_modules/culori/src/lch65/definition.js
+// node_modules/culori/src/lch65/definition.js
 var definition9 = {
   ...definition_default8,
   mode: "lch65",
@@ -2537,7 +2538,7 @@ var definition9 = {
 };
 var definition_default9 = definition9;
 
-// ../node_modules/culori/src/lrgb/definition.js
+// node_modules/culori/src/lrgb/definition.js
 var definition10 = {
   ...definition_default,
   mode: "lrgb",
@@ -2552,7 +2553,7 @@ var definition10 = {
 };
 var definition_default10 = definition10;
 
-// ../node_modules/culori/src/oklab/convertLrgbToOklab.js
+// node_modules/culori/src/oklab/convertLrgbToOklab.js
 var convertLrgbToOklab = ({ r: r2, g, b, alpha: alpha2 }) => {
   let L = Math.cbrt(
     0.41222147079999993 * r2 + 0.5363325363 * g + 0.0514459929 * b
@@ -2576,7 +2577,7 @@ var convertLrgbToOklab = ({ r: r2, g, b, alpha: alpha2 }) => {
 };
 var convertLrgbToOklab_default = convertLrgbToOklab;
 
-// ../node_modules/culori/src/oklab/convertRgbToOklab.js
+// node_modules/culori/src/oklab/convertRgbToOklab.js
 var convertRgbToOklab = (rgb4) => {
   let res = convertLrgbToOklab_default(convertRgbToLrgb_default(rgb4));
   if (rgb4.r === rgb4.b && rgb4.b === rgb4.g) {
@@ -2586,7 +2587,7 @@ var convertRgbToOklab = (rgb4) => {
 };
 var convertRgbToOklab_default = convertRgbToOklab;
 
-// ../node_modules/culori/src/oklab/convertOklabToLrgb.js
+// node_modules/culori/src/oklab/convertOklabToLrgb.js
 var convertOklabToLrgb = ({ l, a, b, alpha: alpha2 }) => {
   let L = Math.pow(
     l * 0.9999999984505198 + 0.39633779217376786 * a + 0.2158037580607588 * b,
@@ -2613,12 +2614,12 @@ var convertOklabToLrgb = ({ l, a, b, alpha: alpha2 }) => {
 };
 var convertOklabToLrgb_default = convertOklabToLrgb;
 
-// ../node_modules/culori/src/oklab/convertOklabToRgb.js
+// node_modules/culori/src/oklab/convertOklabToRgb.js
 var convertOklabToRgb = (c2) => convertLrgbToRgb_default(convertOklabToLrgb_default(c2));
 var convertOklabToRgb_default = convertOklabToRgb;
 
-// ../node_modules/culori/src/oklab/parseOklab.js
-function parseOklab(color, parsed) {
+// node_modules/culori/src/oklab/parseOklab.js
+function parseOklab(color2, parsed) {
   if (!parsed || parsed[0] !== "oklab") {
     return void 0;
   }
@@ -2643,7 +2644,7 @@ function parseOklab(color, parsed) {
 }
 var parseOklab_default = parseOklab;
 
-// ../node_modules/culori/src/oklab/definition.js
+// node_modules/culori/src/oklab/definition.js
 var definition11 = {
   ...definition_default6,
   mode: "oklab",
@@ -2665,8 +2666,8 @@ var definition11 = {
 };
 var definition_default11 = definition11;
 
-// ../node_modules/culori/src/oklch/parseOklch.js
-function parseOklch(color, parsed) {
+// node_modules/culori/src/oklch/parseOklch.js
+function parseOklch(color2, parsed) {
   if (!parsed || parsed[0] !== "oklch") {
     return void 0;
   }
@@ -2697,7 +2698,7 @@ function parseOklch(color, parsed) {
 }
 var parseOklch_default = parseOklch;
 
-// ../node_modules/culori/src/oklch/definition.js
+// node_modules/culori/src/oklch/definition.js
 var definition12 = {
   ...definition_default8,
   mode: "oklch",
@@ -2719,7 +2720,7 @@ var definition12 = {
 };
 var definition_default12 = definition12;
 
-// ../node_modules/culori/src/p3/convertP3ToXyz65.js
+// node_modules/culori/src/p3/convertP3ToXyz65.js
 var convertP3ToXyz65 = (rgb4) => {
   let { r: r2, g, b, alpha: alpha2 } = convertRgbToLrgb_default(rgb4);
   let res = {
@@ -2735,7 +2736,7 @@ var convertP3ToXyz65 = (rgb4) => {
 };
 var convertP3ToXyz65_default = convertP3ToXyz65;
 
-// ../node_modules/culori/src/p3/convertXyz65ToP3.js
+// node_modules/culori/src/p3/convertXyz65ToP3.js
 var convertXyz65ToP3 = ({ x, y, z, alpha: alpha2 }) => {
   let res = convertLrgbToRgb_default(
     {
@@ -2752,24 +2753,24 @@ var convertXyz65ToP3 = ({ x, y, z, alpha: alpha2 }) => {
 };
 var convertXyz65ToP3_default = convertXyz65ToP3;
 
-// ../node_modules/culori/src/p3/definition.js
+// node_modules/culori/src/p3/definition.js
 var definition13 = {
   ...definition_default,
   mode: "p3",
   parse: ["display-p3"],
   serialize: "display-p3",
   fromMode: {
-    rgb: (color) => convertXyz65ToP3_default(convertRgbToXyz65_default(color)),
+    rgb: (color2) => convertXyz65ToP3_default(convertRgbToXyz65_default(color2)),
     xyz65: convertXyz65ToP3_default
   },
   toMode: {
-    rgb: (color) => convertXyz65ToRgb_default(convertP3ToXyz65_default(color)),
+    rgb: (color2) => convertXyz65ToRgb_default(convertP3ToXyz65_default(color2)),
     xyz65: convertP3ToXyz65_default
   }
 };
 var definition_default13 = definition13;
 
-// ../node_modules/culori/src/prophoto/convertXyz50ToProphoto.js
+// node_modules/culori/src/prophoto/convertXyz50ToProphoto.js
 var gamma2 = (v) => {
   let abs4 = Math.abs(v);
   if (abs4 >= 1 / 512) {
@@ -2795,7 +2796,7 @@ var convertXyz50ToProphoto = ({ x, y, z, alpha: alpha2 }) => {
 };
 var convertXyz50ToProphoto_default = convertXyz50ToProphoto;
 
-// ../node_modules/culori/src/prophoto/convertProphotoToXyz50.js
+// node_modules/culori/src/prophoto/convertProphotoToXyz50.js
 var linearize2 = (v) => {
   let abs4 = Math.abs(v);
   if (abs4 >= 16 / 512) {
@@ -2820,7 +2821,7 @@ var convertProphotoToXyz50 = (prophoto2) => {
 };
 var convertProphotoToXyz50_default = convertProphotoToXyz50;
 
-// ../node_modules/culori/src/prophoto/definition.js
+// node_modules/culori/src/prophoto/definition.js
 var definition14 = {
   ...definition_default,
   mode: "prophoto",
@@ -2828,16 +2829,16 @@ var definition14 = {
   serialize: "prophoto-rgb",
   fromMode: {
     xyz50: convertXyz50ToProphoto_default,
-    rgb: (color) => convertXyz50ToProphoto_default(convertRgbToXyz50_default(color))
+    rgb: (color2) => convertXyz50ToProphoto_default(convertRgbToXyz50_default(color2))
   },
   toMode: {
     xyz50: convertProphotoToXyz50_default,
-    rgb: (color) => convertXyz50ToRgb_default(convertProphotoToXyz50_default(color))
+    rgb: (color2) => convertXyz50ToRgb_default(convertProphotoToXyz50_default(color2))
   }
 };
 var definition_default14 = definition14;
 
-// ../node_modules/culori/src/rec2020/convertXyz65ToRec2020.js
+// node_modules/culori/src/rec2020/convertXyz65ToRec2020.js
 var \u03B1 = 1.09929682680944;
 var \u03B2 = 0.018053968510807;
 var gamma3 = (v) => {
@@ -2867,7 +2868,7 @@ var convertXyz65ToRec2020 = ({ x, y, z, alpha: alpha2 }) => {
 };
 var convertXyz65ToRec2020_default = convertXyz65ToRec2020;
 
-// ../node_modules/culori/src/rec2020/convertRec2020ToXyz65.js
+// node_modules/culori/src/rec2020/convertRec2020ToXyz65.js
 var \u03B12 = 1.09929682680944;
 var \u03B22 = 0.018053968510807;
 var linearize3 = (v) => {
@@ -2894,24 +2895,24 @@ var convertRec2020ToXyz65 = (rec20202) => {
 };
 var convertRec2020ToXyz65_default = convertRec2020ToXyz65;
 
-// ../node_modules/culori/src/rec2020/definition.js
+// node_modules/culori/src/rec2020/definition.js
 var definition15 = {
   ...definition_default,
   mode: "rec2020",
   fromMode: {
     xyz65: convertXyz65ToRec2020_default,
-    rgb: (color) => convertXyz65ToRec2020_default(convertRgbToXyz65_default(color))
+    rgb: (color2) => convertXyz65ToRec2020_default(convertRgbToXyz65_default(color2))
   },
   toMode: {
     xyz65: convertRec2020ToXyz65_default,
-    rgb: (color) => convertXyz65ToRgb_default(convertRec2020ToXyz65_default(color))
+    rgb: (color2) => convertXyz65ToRgb_default(convertRec2020ToXyz65_default(color2))
   },
   parse: ["rec2020"],
   serialize: "rec2020"
 };
 var definition_default15 = definition15;
 
-// ../node_modules/culori/src/xyz50/definition.js
+// node_modules/culori/src/xyz50/definition.js
 var definition16 = {
   mode: "xyz50",
   parse: ["xyz-d50"],
@@ -2939,7 +2940,7 @@ var definition16 = {
 };
 var definition_default16 = definition16;
 
-// ../node_modules/culori/src/xyz65/convertXyz65ToXyz50.js
+// node_modules/culori/src/xyz65/convertXyz65ToXyz50.js
 var convertXyz65ToXyz50 = (xyz652) => {
   let { x, y, z, alpha: alpha2 } = xyz652;
   let res = {
@@ -2955,7 +2956,7 @@ var convertXyz65ToXyz50 = (xyz652) => {
 };
 var convertXyz65ToXyz50_default = convertXyz65ToXyz50;
 
-// ../node_modules/culori/src/xyz65/convertXyz50ToXyz65.js
+// node_modules/culori/src/xyz65/convertXyz50ToXyz65.js
 var convertXyz50ToXyz65 = (xyz502) => {
   let { x, y, z, alpha: alpha2 } = xyz502;
   let res = {
@@ -2971,7 +2972,7 @@ var convertXyz50ToXyz65 = (xyz502) => {
 };
 var convertXyz50ToXyz65_default = convertXyz50ToXyz65;
 
-// ../node_modules/culori/src/xyz65/definition.js
+// node_modules/culori/src/xyz65/definition.js
 var definition17 = {
   mode: "xyz65",
   toMode: {
@@ -2999,40 +3000,40 @@ var definition17 = {
 };
 var definition_default17 = definition17;
 
-// ../node_modules/culori/src/round.js
+// node_modules/culori/src/round.js
 var r = (value, precision) => Math.round(value * (precision = Math.pow(10, precision))) / precision;
 var round = (precision = 4) => (value) => typeof value === "number" ? r(value, precision) : value;
 var round_default = round;
 
-// ../node_modules/culori/src/formatter.js
+// node_modules/culori/src/formatter.js
 var twoDecimals = round_default(2);
 var clamp = (value) => Math.max(0, Math.min(1, value));
 var fixup = (value) => Math.round(clamp(value) * 255);
-var serializeHex = (color) => {
-  if (color === void 0) {
+var serializeHex = (color2) => {
+  if (color2 === void 0) {
     return void 0;
   }
-  let r2 = fixup(color.r);
-  let g = fixup(color.g);
-  let b = fixup(color.b);
+  let r2 = fixup(color2.r);
+  let g = fixup(color2.g);
+  let b = fixup(color2.b);
   return "#" + (1 << 24 | r2 << 16 | g << 8 | b).toString(16).slice(1);
 };
-var serializeHex8 = (color) => {
-  if (color === void 0) {
+var serializeHex8 = (color2) => {
+  if (color2 === void 0) {
     return void 0;
   }
-  let a = fixup(color.alpha !== void 0 ? color.alpha : 1);
-  return serializeHex(color) + (1 << 8 | a).toString(16).slice(1);
+  let a = fixup(color2.alpha !== void 0 ? color2.alpha : 1);
+  return serializeHex(color2) + (1 << 8 | a).toString(16).slice(1);
 };
 var formatHex = (c2) => serializeHex(converter_default("rgb")(c2));
 var formatHex8 = (c2) => serializeHex8(converter_default("rgb")(c2));
 
-// ../node_modules/culori/src/map.js
+// node_modules/culori/src/map.js
 var mapper = (fn5, mode2 = "rgb", preserve_mode = false) => {
   let channels = mode2 ? getMode(mode2).channels : null;
   let conv = mode2 ? converter_default(mode2) : prepare_default;
-  return (color) => {
-    let conv_color = conv(color);
+  return (color2) => {
+    let conv_color = conv(color2);
     if (!conv_color) {
       return void 0;
     }
@@ -3049,7 +3050,7 @@ var mapper = (fn5, mode2 = "rgb", preserve_mode = false) => {
     if (!preserve_mode) {
       return res;
     }
-    let prep = prepare_default(color);
+    let prep = prepare_default(color2);
     if (prep && prep.mode !== res.mode) {
       return converter_default(prep.mode)(res);
     }
@@ -3069,7 +3070,7 @@ var mapAlphaDivide = (v, ch, c2) => {
   return v;
 };
 
-// ../node_modules/culori/src/util/normalizePositions.js
+// node_modules/culori/src/util/normalizePositions.js
 var normalizePositions = (arr) => {
   if (arr[0] === void 0) {
     arr[0] = 0;
@@ -3103,11 +3104,11 @@ var normalizePositions = (arr) => {
 };
 var normalizePositions_default = normalizePositions;
 
-// ../node_modules/culori/src/easing/midpoint.js
+// node_modules/culori/src/easing/midpoint.js
 var midpoint = (H = 0.5) => (t) => H <= 0 ? 1 : H >= 1 ? 0 : Math.pow(t, Math.log(0.5) / Math.log(H));
 var midpoint_default = midpoint;
 
-// ../node_modules/culori/src/interpolate/interpolate.js
+// node_modules/culori/src/interpolate/interpolate.js
 var isfn = (o) => typeof o === "function";
 var isobj = (o) => o && typeof o === "object";
 var isnum = (o) => typeof o === "number";
@@ -3138,11 +3139,11 @@ var interpolate_fn = (colors2, mode2 = "rgb", overrides, premap) => {
     } else {
       ffn = (v) => v;
     }
-    res[ch] = ffn(conv_colors.map((color) => color[ch]));
+    res[ch] = ffn(conv_colors.map((color2) => color2[ch]));
     return res;
   }, {});
   if (premap) {
-    let ccolors = conv_colors.map((color, idx) => {
+    let ccolors = conv_colors.map((color2, idx) => {
       return def.channels.reduce(
         (c2, ch) => {
           c2[ch] = fixed[ch][idx];
@@ -3221,7 +3222,7 @@ var interpolateWithPremultipliedAlpha = interpolateWith(
   mapAlphaDivide
 );
 
-// ../node_modules/culori/src/interpolate/splineBasis.js
+// node_modules/culori/src/interpolate/splineBasis.js
 var mod = (v, l) => (v + l) % l;
 var bspline = (Vim2, Vim1, Vi, Vip1, t) => {
   let t2 = t * t;
@@ -3251,7 +3252,7 @@ var interpolatorSplineBasisClosed = (arr) => (t) => {
   );
 };
 
-// ../node_modules/culori/src/interpolate/splineNatural.js
+// node_modules/culori/src/interpolate/splineNatural.js
 var solve = (v) => {
   let i;
   let n = v.length - 1;
@@ -3276,7 +3277,7 @@ var solve = (v) => {
 };
 var interpolatorSplineNatural = (arr) => interpolatorSplineBasis(solve(arr));
 
-// ../node_modules/culori/src/interpolate/splineMonotone.js
+// node_modules/culori/src/interpolate/splineMonotone.js
 var sgn = Math.sign;
 var min = Math.min;
 var abs = Math.abs;
@@ -3321,11 +3322,11 @@ var interpolatorSplineMonotone = (arr) => {
   return interpolator(arr, yp, s);
 };
 
-// ../node_modules/culori/src/easing/gamma.js
+// node_modules/culori/src/easing/gamma.js
 var gamma4 = (\u03B3 = 1) => \u03B3 === 1 ? (t) => t : (t) => Math.pow(t, \u03B3);
 var gamma_default = gamma4;
 
-// ../node_modules/culori/src/samples.js
+// node_modules/culori/src/samples.js
 var samples = (n = 2, \u03B3 = 1) => {
   let ease = gamma_default(\u03B3);
   if (n < 2) {
@@ -3339,22 +3340,22 @@ var samples = (n = 2, \u03B3 = 1) => {
 };
 var samples_default = samples;
 
-// ../node_modules/culori/src/nearest.js
+// node_modules/culori/src/nearest.js
 var nearest = (colors2, metric = differenceEuclidean(), accessor = (d) => d) => {
   let arr = colors2.map((c2, idx) => ({ color: accessor(c2), i: idx }));
-  return (color, n = 1, \u03C4 = Infinity) => {
+  return (color2, n = 1, \u03C4 = Infinity) => {
     if (isFinite(n)) {
       n = Math.max(1, Math.min(n, arr.length - 1));
     }
     arr.forEach((c2) => {
-      c2.d = metric(color, c2.color);
+      c2.d = metric(color2, c2.color);
     });
     return arr.sort((a, b) => a.d - b.d).slice(0, n).filter((c2) => c2.d < \u03C4).map((c2) => colors2[c2.i]);
   };
 };
 var nearest_default = nearest;
 
-// ../node_modules/culori/src/filter.js
+// node_modules/culori/src/filter.js
 var clamp2 = (v) => Math.max(Math.min(v, 1), 0);
 var matrixGrayscale = (amount) => {
   let a = 1 - clamp2(amount);
@@ -3380,8 +3381,8 @@ var matrixGrayscale = (amount) => {
 var matrix = (values, mode2, preserve_mode = false) => {
   let conv = converter_default(mode2);
   let channels = getMode(mode2).channels;
-  return (color) => {
-    let c2 = conv(color);
+  return (color2) => {
+    let c2 = conv(color2);
     if (!c2) {
       return void 0;
     }
@@ -3398,13 +3399,13 @@ var matrix = (values, mode2, preserve_mode = false) => {
     if (!preserve_mode) {
       return res;
     }
-    let prep = prepare_default(color);
+    let prep = prepare_default(color2);
     return prep && res.mode !== prep.mode ? converter_default(prep.mode)(res) : res;
   };
 };
 var filterGrayscale = (amt = 1, mode2 = "rgb") => matrix(matrixGrayscale(amt), mode2, true);
 
-// ../node_modules/culori/src/deficiency.js
+// node_modules/culori/src/deficiency.js
 var rgb = converter_default("rgb");
 var PROT = [
   [1, 0, -0, 0, 1, 0, -0, -0, 1],
@@ -3754,8 +3755,8 @@ var deficiency = (lut, t) => {
     let arr_2 = lut[i + 1];
     arr = arr.map((v, idx) => lerp(arr[idx], arr_2[idx], w));
   }
-  return (color) => {
-    let c2 = prepare_default(color);
+  return (color2) => {
+    let c2 = prepare_default(color2);
     if (c2 === void 0) {
       return void 0;
     }
@@ -3776,16 +3777,16 @@ var filterDeficiencyProt = (severity = 1) => deficiency(PROT, severity);
 var filterDeficiencyDeuter = (severity = 1) => deficiency(DEUTER, severity);
 var filterDeficiencyTrit = (severity = 1) => deficiency(TRIT, severity);
 
-// ../node_modules/culori/src/easing/smoothstep.js
+// node_modules/culori/src/easing/smoothstep.js
 var easingSmoothstep = (t) => t * t * (3 - 2 * t);
 
-// ../node_modules/culori/src/easing/smootherstep.js
+// node_modules/culori/src/easing/smootherstep.js
 var smootherstep = (t) => t * t * t * (t * (t * 6 - 15) + 10);
 var smootherstep_default = smootherstep;
 
-// ../node_modules/culori/src/wcag.js
-function luminance(color) {
-  let c2 = converter_default("lrgb")(color);
+// node_modules/culori/src/wcag.js
+function luminance(color2) {
+  let c2 = converter_default("lrgb")(color2);
   return 0.2126 * c2.r + 0.7152 * c2.g + 0.0722 * c2.b;
 }
 function contrast(a, b) {
@@ -3794,7 +3795,7 @@ function contrast(a, b) {
   return (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05);
 }
 
-// ../node_modules/culori/src/bootstrap/css.js
+// node_modules/culori/src/bootstrap/css.js
 var a98 = useMode(definition_default2);
 var hsl = useMode(definition_default3);
 var hsv = useMode(definition_default4);
@@ -3841,13 +3842,13 @@ var getSaturationRange = (modeRanges, mode2, chromaChannel) => modeRanges[mode2.
 var getModeChannel = (mode2, key) => mode2.charAt(key);
 
 // converters/toHex.ts
-var toHex = (color) => {
+var toHex = (color2) => {
   let src = {};
-  if (typeof color === "string" && !Object.keys(named_default).some((el) => el === color)) {
-    return color;
+  if (typeof color2 === "string" && !Object.keys(named_default).some((el) => el === color2)) {
+    return color2;
   } else {
-    if (Array.isArray(color)) {
-      const mode2 = color[0];
+    if (Array.isArray(color2)) {
+      const mode2 = color2[0];
       const modeChannels = mode2.substring(mode2.length - 3);
       const channels = (src2, colorArr) => {
         colorArr.shift();
@@ -3869,22 +3870,22 @@ var toHex = (color) => {
         }
         return src2;
       };
-      src["alpha"] = color[4] || 1;
-      src = channelMapper(src, modeChannels, channels(src, color));
+      src["alpha"] = color2[4] || 1;
+      src = channelMapper(src, modeChannels, channels(src, color2));
       src = src["alpha"] < 1 && formatHex8(src) || formatHex(src);
-    } else if (typeof color === "number") {
-      src = num2rgb(color, true);
+    } else if (typeof color2 === "number") {
+      src = num2rgb(color2, true);
     } else {
-      src = formatHex8(color);
+      src = formatHex8(color2);
     }
     return src;
   }
 };
 
 // getters_and_setters/get.ts
-var getChannel = (mc) => (color) => {
+var getChannel = (mc) => (color2) => {
   const [mode2, channel] = mc.split(".");
-  const src = converter_default(mode2)(toHex(color));
+  const src = converter_default(mode2)(toHex(color2));
   if (channel) {
     return src[channel];
   } else {
@@ -3906,14 +3907,14 @@ var matchChromaChannel = (colorSpace) => {
 };
 
 // fp/object/colorObj.ts
-var colorObj = (factor2, callback) => (color) => {
-  return { [factor2]: callback(color), name: color };
+var colorObj = (factor2, callback) => (color2) => {
+  return { [factor2]: callback(color2), name: color2 };
 };
 
 // fp/array/colorObjArr.ts
 var colorObjArr = (factor2, callback) => (colors2) => {
   const cb4 = colorObj(factor2, callback);
-  return colors2.map((color) => cb4(color));
+  return colors2.map((color2) => cb4(color2));
 };
 
 // fp/array/customSort.ts
@@ -3935,23 +3936,23 @@ var sortedArr = (factor2, callback, order, colorObj2 = false) => (colors2) => {
   if (colorObj2) {
     return results;
   } else {
-    return results.map((color) => color["name"]);
+    return results.map((color2) => color2["name"]);
   }
 };
 
 // colors/chroma.ts
-var chromaDiff = (color, colorSpace) => (subtrahend) => {
+var chromaDiff = (color2, colorSpace) => (subtrahend) => {
   const cs = matchChromaChannel(colorSpace);
-  if (getChannel(cs)(color) < getChannel(cs)(subtrahend)) {
-    return getChannel(cs)(subtrahend) - getChannel(cs)(color);
+  if (getChannel(cs)(color2) < getChannel(cs)(subtrahend)) {
+    return getChannel(cs)(subtrahend) - getChannel(cs)(color2);
   } else {
-    return getChannel(cs)(color) - getChannel(cs)(subtrahend);
+    return getChannel(cs)(color2) - getChannel(cs)(subtrahend);
   }
 };
-var predicate = (colorSpace) => (color) => getChannel(matchChromaChannel(colorSpace))(color) || void 0;
-var getNearestChroma = (color, colors2, colorSpace) => {
+var predicate = (colorSpace) => (color2) => getChannel(matchChromaChannel(colorSpace))(color2) || void 0;
+var getNearestChroma = (color2, colors2, colorSpace) => {
   const factor2 = "saturation";
-  const cb4 = chromaDiff(color, colorSpace || "lch");
+  const cb4 = chromaDiff(color2, colorSpace || "lch");
   const sortedObjArr = sortedArr(
     factor2,
     cb4,
@@ -3960,9 +3961,9 @@ var getNearestChroma = (color, colors2, colorSpace) => {
   )(colors2).filter((el) => el[factor2] !== void 0);
   return sortedObjArr[0][factor2];
 };
-var getFarthestChroma = (color, colors2, colorSpace) => {
+var getFarthestChroma = (color2, colors2, colorSpace) => {
   const factor2 = "saturation";
-  const cb4 = chromaDiff(color, colorSpace || "lch");
+  const cb4 = chromaDiff(color2, colorSpace || "lch");
   const sortedObjArr = sortedArr(
     factor2,
     cb4,
@@ -4705,7 +4706,7 @@ var colors = (shade, val) => {
   const hueKeys2 = keys3(tailwind_default);
   shade = shade.toLowerCase();
   if (shade === defaultHue) {
-    return tailwind_default.map((color) => color[val || "500"]);
+    return hueKeys2.map((color2) => tailwind_default[color2][val || "500"]);
   } else if (hueKeys2.some((hue3) => hue3 === shade) && val) {
     return tailwind_default[shade][val];
   } else if (shade && typeof val == "undefined") {
@@ -4716,184 +4717,28 @@ var colors = (shade, val) => {
   }
 };
 
-// colors/lightness.ts
-var lightness = "lab.l";
-var lightnessDiff = (color) => (subtrahend) => {
-  if (getChannel(lightness)(color) < getChannel(lightness)(subtrahend)) {
-    return getChannel(lightness)(subtrahend) - getChannel(lightness)(color);
+// fp/number/comparison.ts
+var gt = (x, y) => x > y;
+var lt = (x, y) => x < y;
+var gte = (x, y) => x >= y;
+var lte = (x, y) => x <= y;
+
+// fp/number/random.ts
+var random = (min3, max2) => {
+  if (min3 > max2) {
+    const mn = min3;
+    const mx = max2;
+    max2 = mn;
+    min3 = mx;
   } else {
-    return getChannel(lightness)(color) - getChannel(lightness)(subtrahend);
-  }
-};
-var getNearestLightness = (color, colors2) => {
-  const factor2 = "lightness";
-  const cb4 = lightnessDiff(color);
-  const sortedObjArr = sortedArr(factor2, cb4, "asc", true)(colors2);
-  return sortedObjArr[0][factor2];
-};
-var getFarthestLightness = (color, colors2) => {
-  const factor2 = "lightness";
-  const cb4 = lightnessDiff(color);
-  const sortedObjArr = sortedArr(factor2, cb4, "desc", true)(colors2);
-  return sortedObjArr[0][factor2];
-};
-var minLightness = (colors2, colorObj2 = false) => {
-  const factor2 = "lightness";
-  const cb4 = getChannel(lightness);
-  const result = sortedArr(
-    factor2,
-    cb4,
-    "asc",
-    true
-  )(colors2);
-  let value;
-  if (gt(result.length, 0)) {
-    if (colorObj2) {
-      value = result[0];
-    } else {
-      value = result[0][factor2];
-    }
-  }
-  return value;
-};
-var maxLightness = (colors2, colorObj2 = false) => {
-  const factor2 = "lightness";
-  const cb4 = getChannel(lightness);
-  const result = sortedArr(
-    factor2,
-    cb4,
-    "desc",
-    true
-  )(colors2);
-  let value;
-  if (gt(result.length, 0)) {
-    if (colorObj2) {
-      value = result[0];
-    } else {
-      value = result[0][factor2];
-    }
-  }
-  return value;
-};
-
-// colors/hue.ts
-var { abs: abs2 } = Math;
-var factor = "hue";
-var mode = (colorSpace) => `${colorSpace || "lch"}.h`;
-var targetHue = (color, colorSpace) => getChannel(mode(colorSpace))(color);
-var cb2 = (color, colorSpace) => (subtrahend) => {
-  return abs2(
-    targetHue(color, colorSpace) - getChannel(mode(colorSpace))(subtrahend)
-  );
-};
-var predicate2 = (colorSpace) => (color) => {
-  return getChannel(mode(colorSpace))(color) || void 0;
-};
-var getNearestHue = (color, colors2, colorSpace) => {
-  return sortedArr(
-    factor,
-    cb2(color, mode(colorSpace)),
-    "asc",
-    true
-  )(colors2).filter((el) => el[factor] !== void 0)[0][factor];
-};
-var getFarthestHue = (color, colors2, colorSpace) => {
-  return sortedArr(
-    factor,
-    cb2(color, mode(colorSpace)),
-    "desc",
-    true
-  )(colors2).filter((el) => el[factor] !== void 0)[0][factor];
-};
-var minHue = (colors2, colorSpace, colorObj2 = false) => {
-  const result = sortedArr(
-    factor,
-    predicate2(colorSpace),
-    "asc",
-    true
-  )(colors2).filter((el) => el[factor] !== void 0);
-  let value;
-  if (result.length > 0) {
-    if (colorObj2) {
-      value = result[0];
-    } else {
-      value = result[0][factor];
-    }
-  }
-  return value;
-};
-var maxHue = (colors2, colorSpace, colorObj2 = false) => {
-  const result = sortedArr(
-    factor,
-    predicate2(colorSpace),
-    "desc",
-    true
-  )(colors2).filter((el) => el[factor] !== void 0);
-  let value;
-  if (result.length > 0) {
-    if (colorObj2) {
-      value = result[0];
-    } else {
-      value = result[0][factor];
-    }
-  }
-  return value;
-};
-
-// color-maps/samples/hueTemperature.ts
-var hueTemperature_default = {
-  "red-purple": {
-    warm: [343, 359],
-    cool: [321, 342]
-  },
-  red: {
-    warm: [21, 40],
-    cool: [0, 20]
-  },
-  "yellow-red": {
-    warm: [41, 54],
-    cool: [55, 70]
-  },
-  yellow: {
-    warm: [71, 90],
-    cool: [91, 109]
-  },
-  "green-yellow": {
-    warm: [110, 124],
-    cool: [125, 140]
-  },
-  green: {
-    warm: [141, 160],
-    cool: [161, 180]
-  },
-  "blue-green": {
-    warm: [181, 200],
-    cool: [201, 220]
-  },
-  blue: {
-    warm: [221, 235],
-    cool: [236, 250]
-  },
-  "purple-blue": {
-    warm: [271, 290],
-    cool: [251, 270]
-  },
-  purple: {
-    warm: [316, 320],
-    cool: [291, 315]
+    return Math.random() * (max2 - min3) + min3;
   }
 };
 
-// colors/achromatic.ts
-var isAchromatic = (color) => {
-  const cb4 = (mc) => getChannel(mc)(color);
-  const checkHsl = cb4("hsl.s");
-  const checkLch = cb4("lch.c");
-  if ((checkHsl || checkLch) === 0) {
-    return true;
-  } else {
-    return false;
-  }
+// fp/number/isInt.ts
+var isInt = (num3) => {
+  const reInt = /^-?[0-9]+$/;
+  return reInt.test(num3.toString());
 };
 
 // fp/number/inRange.ts
@@ -4902,148 +4747,48 @@ var inRange = (number, start, end) => {
   return number >= nativeMin(start, end) && number < nativeMax(start, end);
 };
 
-// fp/number/comparison.ts
-var gt2 = (x, y) => x > y;
-var lt = (x, y) => x < y;
-var gte = (x, y) => x >= y;
-var lte = (x, y) => x <= y;
-
-// fp/array/min_max.ts
-var identity2 = (value) => {
-  return value;
-};
-var baseExtremum = (array, iteratee, comparator) => {
-  var index = -1, length = array.length;
-  while (++index < length) {
-    var value = array[index], current = iteratee(value);
-    if (current != null && (computed === void 0 ? current === current : comparator(current, computed))) {
-      var computed = current, result = value;
-    }
-  }
-  return result;
-};
-var min2 = (array) => {
-  return array && array.length ? baseExtremum(array, identity2, lt) : void 0;
-};
-var max = (array) => {
-  return array && array.length ? baseExtremum(array, identity2, gt2) : void 0;
+// color-maps/samples/modeRanges.ts
+var modeRanges_default = {
+  cubehelix: {
+    s: [0, 4.614],
+    l: [0, 1]
+  },
+  lab: {
+    l: [0, 100]
+  },
+  dlch: { l: [0, 100], c: [0, 51.484] },
+  jab: {
+    j: [0, 0.222]
+  },
+  jch: {
+    j: [0, 0.221],
+    c: [0, 0.19]
+  },
+  lch: { l: [0, 100], c: [0, 150] },
+  lch65: { l: [0, 100], c: [0, 133.807] },
+  lchuv: { l: [0, 100], c: [0, 176.956] },
+  luv: { l: [0, 100] },
+  oklab: { l: [0, 1] },
+  oklch: { l: [0, 1], c: [0, 0.4] }
 };
 
-// fp/object/customConcat.ts
-var customConcat = (hue3) => {
-  const res = [];
-  const { keys: keys3 } = Object;
-  if (typeof hue3 == "object") {
-    const hueKeys2 = keys3(hue3);
-    res.push(...hueKeys2.map((key) => hue3[key]));
-  }
-  return res;
-};
-
-// fp/object/customFindKey.ts
-var customFindKey = (collection, factor2) => {
-  const propKeys = Object.keys(collection);
-  const result = propKeys.filter((key) => {
-    const hueVals = customConcat(collection[key]);
-    const minVal = min2(...hueVals);
-    const maxVal = max(...hueVals);
-    return inRange(factor2, minVal, maxVal);
-  }).toString();
-  return result;
-};
-
-// colors/overtone.ts
-var overtone = (color) => {
-  const factor2 = getChannel("lch.h")(color);
-  let hue3 = customFindKey(hueTemperature_default, factor2);
-  if (isAchromatic(color)) {
-    return "gray";
-  } else if (/-/.test(hue3)) {
-    hue3 = hue3.split("-");
-    return hue3[1];
-  } else {
-    return false;
-  }
-};
-
-// colors/tailwindColors.ts
-var tailwindColors = (shade) => (val) => {
-  shade = shade.toLowerCase();
-  const { keys: keys3 } = Object;
-  let targetHue2;
-  if (keys3(tailwind_default).indexOf(shade) != -1) {
-    targetHue2 = tailwind_default[shade];
-  } else {
-    throw Error(
-      `${shade} is not a valid shade in the default Tailwind palette`
-    );
-  }
-  if (typeof val === "undefined") {
-    return keys3(targetHue2).map((value) => targetHue2[value]);
-  } else if (keys3(targetHue2).indexOf(val) > -1) {
-    return targetHue2[val];
-  } else {
-    throw Error(
-      `${val} is not a valid scale value. Values are in increments of 100 up to 900 e.g "200"`
-    );
-  }
-};
-
-// converters/temp2Color.ts
-var temp2Color = (kelvin, hex2 = false) => {
-  const { log } = Math;
-  const temp = kelvin / 100;
-  let r2, g, b;
-  if (temp < 66) {
-    r2 = 255;
-    g = temp < 6 ? 0 : -155.25485562709179 - 0.44596950469579133 * (g = temp - 2) + 104.49216199393888 * log(g);
-    b = temp < 20 ? 0 : -254.76935184120902 + 0.8274096064007395 * (b = temp - 10) + 115.67994401066147 * log(b);
-  } else {
-    r2 = 351.97690566805693 + 0.114206453784165 * (r2 = temp - 55) - 40.25366309332127 * log(r2);
-    g = 325.4494125711974 + 0.07943456536662342 * (g = temp - 50) - 28.0852963507957 * log(g);
-    b = 255;
-  }
-  const result = {
-    r: r2 / 255,
-    g: g / 255,
-    b: b / 255,
-    mode: "rgb"
-  };
-  if (hex2) {
-    return toHex(result);
-  } else {
-    return result;
-  }
-};
-
-// converters/getTemp.ts
-var getTemp = (color) => {
-  const { round: round2 } = Math;
-  const toRgb2 = useMode(definition_default10);
-  const rgb4 = toRgb2(toHex(color));
-  let channelArr = [];
-  channelArr[0] = rgb4["r"];
-  channelArr[1] = rgb4["b"];
-  let minTemp2 = 1e3;
-  let maxTemp2 = 4e4;
-  const eps = 0.4;
-  let temp;
-  while (maxTemp2 - minTemp2 > eps) {
-    temp = (maxTemp2 + minTemp2) * 0.5;
-    const rgb5 = temp2Color(temp, false);
-    if (rgb5["b"] / rgb5["r"] >= channelArr[1] / channelArr[0]) {
-      maxTemp2 = temp;
+// fp/number/normalize.ts
+var normalize = (value, modeChannel) => {
+  const [mode2, channel] = modeChannel.split(".");
+  const [start, end] = modeRanges_default[mode2][channel];
+  const range = inRange(value, start, end);
+  if (!range) {
+    if (inRange(value, 0, 1)) {
+      value = end * value;
+    } else if (inRange(value, 1)) {
+      value = end * (value / 100);
     } else {
-      minTemp2 = temp;
+      throw Error(
+        `The value ${value} is out of range for channel ${channel} of colorspace ${mode2} can only accept a value between [0,1] or [0,100] with 0.5 or 50 being half of the channel range.`
+      );
     }
   }
-  return round2(temp);
-};
-
-// fp/number/isInt.ts
-var isInt = (num3) => {
-  const reInt = /^-?[0-9]+$/;
-  return reInt.test(num3.toString());
+  return value;
 };
 
 // fp/number/floorCeil.ts
@@ -5064,74 +4809,6 @@ var floorCeil = (num3) => {
   return num3;
 };
 
-// colors/temperature.ts
-var predicate3 = (factor2, temp) => {
-  const hueKeys2 = Object.keys(hueTemperature_default);
-  if (hueKeys2.some(
-    (val) => inRange(
-      floorCeil(factor2),
-      hueTemperature_default[val][temp][0],
-      hueTemperature_default[val][temp][1]
-    )
-  )) {
-    return true;
-  } else {
-    return false;
-  }
-};
-var isCool = (color) => {
-  const factor2 = getChannel("lch.h")(color);
-  return predicate3(factor2, "cool");
-};
-var isWarm = (color) => {
-  const factor2 = getChannel("lch.h")(color);
-  return predicate3(factor2, "cool");
-};
-var maxTemp = (color) => {
-  const factor2 = getChannel("lch.h")(color);
-  const hue3 = customFindKey(hueTemperature_default, factor2);
-  const maxHue2 = max(...customConcat(hueTemperature_default[hue3]));
-  const result = getTemp({
-    l: getChannel("lch.l")(color),
-    c: getChannel("lch.c")(color),
-    h: maxHue2,
-    mode: "lch"
-  });
-  return result;
-};
-var minTemp = (color) => {
-  let factor2 = getChannel("lch.h")(color);
-  const hue3 = customFindKey(hueTemperature_default, factor2);
-  const minHue2 = min2(...customConcat(hueTemperature_default[hue3]));
-  const result = getTemp({
-    l: getChannel("lch.l")(color),
-    c: getChannel("lch.c")(color),
-    h: minHue2,
-    mode: "lch"
-  });
-  return result;
-};
-
-// colors/getHue.ts
-var getHue = (color) => {
-  const lch2 = useMode(definition_default8);
-  color = lch2(toHex(color));
-  const factor2 = color["h"];
-  const hueKeys2 = Object.keys(hueTemperature_default);
-  const hueFamily = hueKeys2.map((hue3) => {
-    const hueVals = customConcat(hueTemperature_default[hue3]);
-    const minVal = min2(...hueVals);
-    const maxVal = max(...hueVals);
-    const bool = customConcat(hueTemperature_default[hue3]).some(
-      () => inRange(factor2, minVal, maxVal)
-    );
-    if (bool) {
-      return hue3;
-    }
-  }).filter((val) => typeof val === "string").toString();
-  return hueFamily;
-};
-
 // fp/number/adjustHue.ts
 var adjustHue = (value = 0) => {
   if (value > 0) {
@@ -5141,112 +4818,30 @@ var adjustHue = (value = 0) => {
   }
 };
 
-// fp/string/expressionParser.ts
-function expressionParser(src, channel, value) {
-  const reOperator = /^(\*|\+|\-|\/)/;
-  const reValue = /[0-9]*\.?[0-9]+/;
-  const sign = reOperator.exec(value);
-  const amt = reValue.exec(value);
-  const cb4 = (amt2) => parseFloat(amt2);
-  switch (sign["0"]) {
-    case "+":
-      src[channel] += +cb4(amt["0"]);
-      break;
-    case "-":
-      src[channel] -= +cb4(amt["0"]);
-      break;
-    case "*":
-      src[channel] *= +cb4(amt["0"]);
-      break;
-    case "/":
-      src[channel] /= +cb4(amt["0"]);
-      break;
-    default:
-      src[channel] = +cb4(amt["0"]);
-  }
-  return src;
-}
-
-// getters_and_setters/set.ts
-var setChannel = (mc) => (color, value) => {
-  const [mode2, channel] = mc.split(".");
-  const src = converter_default(mode2)(toHex(color));
-  if (channel) {
-    if (typeof value === "number") {
-      src[channel] = value;
-    } else if (typeof value === "string") {
-      expressionParser(src, channel, value);
-    } else {
-      throw new Error(`unsupported value for setChannel`);
-    }
-    return src;
-  } else {
-    throw new Error(`unknown channel ${channel} in mode ${mode2}`);
-  }
-};
-
-// colors/getComplimentaryHue.ts
-var { keys } = Object;
-var hueKeys = keys(hueTemperature_default);
-var getComplimentaryHue = (color, colorObj2 = false) => {
-  const modeChannel = "lch.h";
-  const complementaryHue = adjustHue(
-    getChannel(modeChannel)(color) + 180
-  );
-  const hueFamily = hueKeys.map((hue3) => {
-    const hueVals = customConcat(hueTemperature_default[hue3]);
-    const minVal = min2(...hueVals);
-    const maxVal = max(...hueVals);
-    const bool = customConcat(hueTemperature_default[hue3]).some(
-      () => inRange(complementaryHue, minVal, maxVal)
-    );
-    if (bool) {
-      return hue3;
-    }
-  }).filter((val) => typeof val === "string").toString();
-  let result;
-  if (complementaryHue) {
-    result = {
-      hue: hueFamily,
-      color: toHex(setChannel(modeChannel)(color, complementaryHue))
-    };
-  } else {
-    result = { hue: "gray", color };
-  }
-  return colorObj2 && result || result["color"];
-};
-
-// converters/rgb2num.ts
-var rgb2num = (color) => {
-  const toRgb2 = useMode(definition_default);
-  const rgb4 = toRgb2(toHex(color));
-  return (255 * rgb4["r"] << 16) + (255 * rgb4["g"] << 8) + 255 * rgb4["b"];
-};
-
-// converters/ciecam.ts
-var import_ciebase_ts = __toESM(require_lib(), 1);
-var import_ciecam02_ts = __toESM(require_lib2(), 1);
-
-// fp/number/random.ts
-var random = (min3, max2) => {
-  if (min3 > max2) {
-    const mn = min3;
-    const mx = max2;
-    max2 = mn;
-    min3 = mx;
-  } else {
-    return Math.random() * (max2 - min3) + min3;
-  }
-};
-
-// fp/number/normalize.ts
-var normalize = (num3, start, end) => {
-  return num3 * (end - start);
-};
-
 // fp/number/polynomial.ts
 var polynomial = (x) => {
   return Math.sqrt(Math.sqrt((Math.pow(x, 2.25) + Math.pow(x, 4)) / 2));
+};
+
+// fp/array/min_max.ts
+var identity2 = (value) => {
+  return value;
+};
+var baseExtremum = (array, iteratee, comparator) => {
+  var index = -1, length = array.length;
+  while (++index < length) {
+    var value = array[index], current = iteratee(value);
+    if (current != null && (computed === void 0 ? current === current : comparator(current, computed))) {
+      var computed = current, result = value;
+    }
+  }
+  return result;
+};
+var min2 = (array) => {
+  return array && array.length ? baseExtremum(array, identity2, lt) : void 0;
+};
+var max = (array) => {
+  return array && array.length ? baseExtremum(array, identity2, gt) : void 0;
 };
 
 // fp/array/filteredArr.ts
@@ -5256,7 +4851,7 @@ var filteredArr = (factor2, cb4) => (colors2, start, end) => {
     result = colorObjArr(
       factor2,
       cb4
-    )(colors2).filter((color) => inRange(color[factor2], start, end)).map((color) => color["name"]);
+    )(colors2).filter((color2) => inRange(color2[factor2], start, end)).map((color2) => color2["name"]);
     return result;
   } else if (typeof start === "string") {
     const reOperator = /^(>=|<=|<|>)/;
@@ -5273,7 +4868,7 @@ var filteredArr = (factor2, cb4) => (colors2, start, end) => {
         result = mapFilter(lt);
         break;
       case ">":
-        result = mapFilter(gt2);
+        result = mapFilter(gt);
         break;
       case "<=":
         result = mapFilter(lte);
@@ -5288,9 +4883,9 @@ var filteredArr = (factor2, cb4) => (colors2, start, end) => {
 
 // palettes/hueShift.ts
 var lightnessMapper = (n) => (start1, end1) => (start2, end2) => (n - start1) / (end1 - start1) * (end2 - start2) + start2;
-var hueShift = (color, options) => {
+var hueShift = (color2, options) => {
   const toLch = useMode(definition_default8);
-  color = toLch(toHex(color));
+  color2 = toLch(toHex(color2));
   let { iterations, hueStep, minLightness: minLightness2, maxLightness: maxLightness2, easingFunc } = options || {};
   easingFunc = checkArg(easingFunc, easingSmoothstep);
   iterations = checkArg(iterations, 6) + 1;
@@ -5298,27 +4893,27 @@ var hueShift = (color, options) => {
   minLightness2 = checkArg(minLightness2, 10);
   maxLightness2 = checkArg(maxLightness2, 90);
   const tValues = samples_default(iterations);
-  const palette = [color];
+  const palette = [color2];
   for (let i = 1; i < iterations; i++) {
-    const hueDark = adjustHue(color["h"] - hueStep * i);
-    const hueLight = adjustHue(color["h"] + hueStep * i);
+    const hueDark = adjustHue(color2["h"] - hueStep * i);
+    const hueLight = adjustHue(color2["h"] + hueStep * i);
     const lightnessDark = lightnessMapper(easingFunc(tValues[i - 1]))(
       0.1,
       iterations
-    )(color["l"], minLightness2);
+    )(color2["l"], minLightness2);
     const lightnessLight = lightnessMapper(easingFunc(tValues[i - 1]))(
       0.05,
       iterations
-    )(color["l"], maxLightness2);
+    )(color2["l"], maxLightness2);
     palette.push({
       l: lightnessDark,
-      c: color["c"],
+      c: color2["c"],
       h: hueDark,
       mode: "lch"
     });
     palette.unshift({
       l: lightnessLight,
-      c: color["c"],
+      c: color2["c"],
       h: hueLight,
       mode: "lch"
     });
@@ -5327,20 +4922,20 @@ var hueShift = (color, options) => {
 };
 
 // palettes/base.ts
-var cb3 = (iterations, distance, color) => samples_default(iterations).map(
-  (val) => adjustHue((color["h"] + distance) * (val * easingSmoothstep(val)))
+var cb2 = (iterations, distance, color2) => samples_default(iterations).map(
+  (val) => adjustHue((color2["h"] + distance) * (val * easingSmoothstep(val)))
 );
-var scheme = (schemeType) => (color, easingFunc) => {
+var scheme = (schemeType) => (color2, easingFunc) => {
   schemeType = schemeType.toLowerCase();
   easingFunc = checkArg(easingFunc, easingSmoothstep);
   const lch2 = useMode(definition_default8);
-  color = lch2(color);
+  color2 = lch2(color2);
   const lowMin = 0.05, lowMax = 0.495, highMin = 0.5, highMax = 0.995;
   const targetHueSteps = {
-    analogous: cb3(3, 12, color),
-    triadic: cb3(3, 120, color),
-    tetradic: cb3(4, 90, color),
-    complementary: cb3(2, 180, color)
+    analogous: cb2(3, 12, color2),
+    triadic: cb2(3, 120, color2),
+    tetradic: cb2(4, 90, color2),
+    complementary: cb2(2, 180, color2)
   };
   for (const scheme2 of Object.keys(targetHueSteps)) {
     targetHueSteps[scheme2].map(
@@ -5348,8 +4943,8 @@ var scheme = (schemeType) => (color, easingFunc) => {
     );
   }
   const colors2 = targetHueSteps[schemeType].map((step) => ({
-    l: color["l"],
-    c: color["c"],
+    l: color2["l"],
+    c: color2["c"],
     h: step * easingFunc(1 / targetHueSteps[schemeType].length),
     mode: "lch"
   }));
@@ -5357,24 +4952,24 @@ var scheme = (schemeType) => (color, easingFunc) => {
 };
 
 // palettes/discoverPalettes.ts
-var { keys: keys2 } = Object;
+var { keys } = Object;
 var isColorEqual = (c1, c2) => {
   return c1["h"] === c2["h"] && c1["l"] === c2["l"] && c1["c"] === c2["c"];
 };
 var discoverPalettes = (colors2, schemeType) => {
   const toLch = useMode(definition_default8);
-  colors2 = colors2.map((color) => toLch(toHex(color)));
+  colors2 = colors2.map((color2) => toLch(toHex(color2)));
   const palettes = {};
   const schemeKeys = ["analogous", "triadic", "tetradic", "complementary"];
   const targetPalettes = {};
-  for (const color of colors2) {
-    schemeKeys.forEach((s) => targetPalettes[s] = scheme(s)(color));
-    for (const paletteType of keys2(targetPalettes)) {
+  for (const color2 of colors2) {
+    schemeKeys.forEach((s) => targetPalettes[s] = scheme(s)(color2));
+    for (const paletteType of keys(targetPalettes)) {
       const palette = [];
       let variance = 0;
       for (const targetColor of targetPalettes[paletteType]) {
         const availableColors = colors2.filter(
-          (color1) => !palette.some((color2) => isColorEqual(color1, color2))
+          (color1) => !palette.some((color22) => isColorEqual(color1, color22))
         );
         const match = nearest_default(
           availableColors,
@@ -5400,7 +4995,7 @@ var discoverPalettes = (colors2, schemeType) => {
 };
 
 // palettes/earthtone.ts
-var earthtone = (color, options) => {
+var earthtone = (color2, options) => {
   let {
     chromaInterpolator,
     hueFixup,
@@ -5433,7 +5028,7 @@ var earthtone = (color, options) => {
     dark: "#352a21"
   };
   const base = tones[earthtones.toLowerCase()];
-  const f3 = interpolate([base, toHex(color), easingFunc], "lch", {
+  const f3 = interpolate([base, toHex(color2), easingFunc], "lch", {
     h: {
       fixup: hueFixup,
       use: hueInterpolator
@@ -5452,8 +5047,52 @@ var earthtone = (color, options) => {
   }
 };
 
+// fp/string/expressionParser.ts
+function expressionParser(src, channel, value) {
+  const reOperator = /^(\*|\+|\-|\/)/;
+  const reValue = /[0-9]*\.?[0-9]+/;
+  const sign = reOperator.exec(value);
+  const amt = reValue.exec(value);
+  const cb4 = (amt2) => parseFloat(amt2);
+  switch (sign["0"]) {
+    case "+":
+      src[channel] += +cb4(amt["0"]);
+      break;
+    case "-":
+      src[channel] -= +cb4(amt["0"]);
+      break;
+    case "*":
+      src[channel] *= +cb4(amt["0"]);
+      break;
+    case "/":
+      src[channel] /= +cb4(amt["0"]);
+      break;
+    default:
+      src[channel] = +cb4(amt["0"]);
+  }
+  return src;
+}
+
+// getters_and_setters/set.ts
+var setChannel = (mc) => (color2, value) => {
+  const [mode2, channel] = mc.split(".");
+  const src = converter_default(mode2)(toHex(color2));
+  if (channel) {
+    if (typeof value === "number") {
+      src[channel] = value;
+    } else if (typeof value === "string") {
+      expressionParser(src, channel, value);
+    } else {
+      throw new Error(`unsupported value for setChannel`);
+    }
+    return src;
+  } else {
+    throw new Error(`unknown channel ${channel} in mode ${mode2}`);
+  }
+};
+
 // palettes/paired.ts
-var pairedScheme = (color, options) => {
+var pairedScheme = (color2, options) => {
   let {
     chromaInterpolator,
     hueFixup,
@@ -5476,13 +5115,13 @@ var pairedScheme = (color, options) => {
   via = checkArg(via, "light");
   hueStep = checkArg(hueStep, 5);
   const toLch = useMode(definition_default8);
-  color = toLch(toHex(color));
-  const derivedHue = setChannel("lch.h")(color, color["h"] + hueStep);
+  color2 = toLch(toHex(color2));
+  const derivedHue = setChannel("lch.h")(color2, color2["h"] + hueStep);
   const tones = {
     dark: "#263238",
     light: { l: 100, c: 1e-4, h: 0, mode: "lch" }
   };
-  const scale = interpolate([color, tones[via], derivedHue], "lch", {
+  const scale = interpolate([color2, tones[via], derivedHue], "lch", {
     h: {
       fixup: hueFixup,
       use: hueInterpolator
@@ -5542,15 +5181,66 @@ var pastelSample = {
   minSampleValue: min2(sampleValues),
   maxSampleValue: max(sampleValues)
 };
-var pastel = (color) => {
+var pastel = (color2) => {
   const toHsv = useMode(definition_default4);
-  color = toHsv(toHex(color));
+  color2 = toHsv(toHex(color2));
   return toHex({
-    h: color["h"],
+    h: color2["h"],
     s: pastelSample["averageSaturation"],
     v: random(pastelSample["minSampleValue"], pastelSample["maxSampleValue"]),
     mode: "hsv"
   });
+};
+
+// converters/temp2Color.ts
+var temp2Color = (kelvin, hex2 = false) => {
+  const { log } = Math;
+  const temp = kelvin / 100;
+  let r2, g, b;
+  if (temp < 66) {
+    r2 = 255;
+    g = temp < 6 ? 0 : -155.25485562709179 - 0.44596950469579133 * (g = temp - 2) + 104.49216199393888 * log(g);
+    b = temp < 20 ? 0 : -254.76935184120902 + 0.8274096064007395 * (b = temp - 10) + 115.67994401066147 * log(b);
+  } else {
+    r2 = 351.97690566805693 + 0.114206453784165 * (r2 = temp - 55) - 40.25366309332127 * log(r2);
+    g = 325.4494125711974 + 0.07943456536662342 * (g = temp - 50) - 28.0852963507957 * log(g);
+    b = 255;
+  }
+  const result = {
+    r: r2 / 255,
+    g: g / 255,
+    b: b / 255,
+    mode: "rgb"
+  };
+  if (hex2) {
+    return toHex(result);
+  } else {
+    return result;
+  }
+};
+
+// converters/getTemp.ts
+var getTemp = (color2) => {
+  const { round: round2 } = Math;
+  const toRgb2 = useMode(definition_default10);
+  const rgb4 = toRgb2(toHex(color2));
+  let channelArr = [];
+  channelArr[0] = rgb4["r"];
+  channelArr[1] = rgb4["b"];
+  let minTemp2 = 1e3;
+  let maxTemp2 = 4e4;
+  const eps = 0.4;
+  let temp;
+  while (maxTemp2 - minTemp2 > eps) {
+    temp = (maxTemp2 + minTemp2) * 0.5;
+    const rgb5 = temp2Color(temp, false);
+    if (rgb5["b"] / rgb5["r"] >= channelArr[1] / channelArr[0]) {
+      maxTemp2 = temp;
+    } else {
+      minTemp2 = temp;
+    }
+  }
+  return round2(temp);
 };
 
 // filterBy/filterByTemp.ts
@@ -5558,31 +5248,6 @@ var filterByTemp = (colors2, startTemp = 1e3, endTemp = 6e3) => {
   const factor2 = "temp";
   const cb4 = getTemp;
   return filteredArr(factor2, cb4)(colors2, startTemp, endTemp);
-};
-
-// color-maps/samples/modeRanges.ts
-var modeRanges_default = {
-  cubehelix: {
-    s: [0, 4.614],
-    l: [0, 1]
-  },
-  lab: {
-    l: [0, 100]
-  },
-  dlch: { l: [0, 100], c: [0, 51.484] },
-  jab: {
-    j: [0, 0.222]
-  },
-  jch: {
-    j: [0, 0.221],
-    c: [0, 0.19]
-  },
-  lch: { l: [0, 100], c: [0, 150] },
-  lch65: { l: [0, 100], c: [0, 133.807] },
-  lchuv: { l: [0, 100], c: [0, 176.956] },
-  luv: { l: [0, 100] },
-  oklab: { l: [0, 1] },
-  oklch: { l: [0, 1], c: [0, 0.4] }
 };
 
 // filterBy/filterBySaturation.ts
@@ -5608,21 +5273,21 @@ var filterBySaturation = (colors2, startSaturation = 0.05, endSaturation = 1, mo
 };
 
 // getters_and_setters/luminance.ts
-var getLuminance = (color) => luminance(toHex(color));
-var { pow, abs: abs3 } = Math;
+var getLuminance = (color2) => luminance(toHex(color2));
+var { pow, abs: abs2 } = Math;
 var toRgb = useMode(definition_default);
-var setLuminance = (color, lum) => {
+var setLuminance = (color2, lum) => {
   const white = "#ffffff", black = "#000000";
   const EPS = 1e-7;
   let MAX_ITER = 20;
   if (lum !== void 0 && typeof lum == "number") {
     lum == 0 && lum || black || lum == 1 && !lum || white;
-    const cur_lum = luminance(color);
-    color = toRgb(toHex(color));
+    const cur_lum = luminance(color2);
+    color2 = toRgb(toHex(color2));
     const test = (low, high) => {
       const mid = interpolate([low, high])(0.5);
-      const lm = getLuminance(color);
-      if (abs3(lum - lm > EPS) || !MAX_ITER--) {
+      const lm = getLuminance(color2);
+      if (abs2(lum - lm > EPS) || !MAX_ITER--) {
         return mid;
       }
       if (lm > lum) {
@@ -5633,18 +5298,18 @@ var setLuminance = (color, lum) => {
     };
     let rgb4;
     if (cur_lum > lum) {
-      rgb4 = test(black, color);
+      rgb4 = test(black, color2);
     } else {
-      rgb4 = test(color, white);
+      rgb4 = test(color2, white);
     }
-    color = rgb4;
-    return color;
+    color2 = rgb4;
+    return color2;
   }
-  return rgb2luminance(color);
+  return rgb2luminance(color2);
 };
-var rgb2luminance = (color) => {
-  color = toRgb(toHex(color));
-  return 0.7152 * luminance_x(color["g"]) + 0.2126 * luminance_x(color["r"]) + 0.0722 * luminance_x(color["b"]);
+var rgb2luminance = (color2) => {
+  color2 = toRgb(toHex(color2));
+  return 0.7152 * luminance_x(color2["g"]) + 0.2126 * luminance_x(color2["r"]) + 0.0722 * luminance_x(color2["b"]);
 };
 var luminance_x = (x) => {
   x /= 255;
@@ -5679,10 +5344,13 @@ var filterByLightness = (colors2, startLightness = 5, endLightness = 100) => {
 // filterBy/filterByDistance.ts
 var filterByDistance = (colors2, against, startDistance = 0.05, endDistance, mode2, weights) => {
   const factor2 = "distance";
-  const cb4 = (against2, mode3) => (color) => differenceEuclidean(
-    mode3 || "lch",
-    weights || [1, 1, 1, 0]
-  )(...[against2, color].map(toHex));
+  against = toHex(against);
+  const cb4 = (against2, mode3) => (color2) => {
+    return differenceEuclidean(mode3 || "lch", weights || [1, 1, 1, 0])(
+      against2,
+      color2
+    );
+  };
   return filteredArr(factor2, cb4(against, mode2))(
     colors2,
     startDistance,
@@ -5690,17 +5358,22 @@ var filterByDistance = (colors2, against, startDistance = 0.05, endDistance, mod
   );
 };
 
+// getters_and_setters/contrast.ts
+var getContrast = (color2, against) => {
+  return contrast(toHex(color2), toHex(against));
+};
+
 // filterBy/filterByContrast.ts
 var filterByContrast = (colors2, against, startContrast = 0.05, endContrast) => {
   const factor2 = "contrast";
-  const cb4 = (against2) => (color) => contrast(...[color, against2].map(toHex));
+  const cb4 = (against2) => (color2) => getContrast(color2, against2);
   return filteredArr(factor2, cb4(against))(colors2, startContrast, endContrast);
 };
 
 // sortBy/sortByContrast.ts
 var sortByContrast = (colors2, against, order) => {
   const factor2 = "contrast";
-  const cb4 = (against2) => (color) => contrast(color, against2);
+  const cb4 = (against2) => (color2) => contrast(color2, against2);
   return sortedArr(factor2, cb4(against), order)(colors2);
 };
 
@@ -5710,7 +5383,9 @@ var sortByDistance = (colors2, against, order, options) => {
   mode2 = checkArg(mode2, "lchuv");
   weights = checkArg(weights, [1, 1, 1, 0]);
   const factor2 = "distance";
-  const cb4 = (against2, mode3) => (color) => differenceEuclidean(mode3, weights)(against2, color);
+  const cb4 = (against2, mode3) => (color2) => {
+    return differenceEuclidean(mode3, weights)(against2, color2);
+  };
   return sortedArr(factor2, cb4(against, mode2), order)(colors2);
 };
 
@@ -5771,7 +5446,6 @@ var ColorArray = class {
   /**
    * @function
    * @description Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
-   * @param colors The array of colors to create palettes from. Preferably use 5 or more colors for better results.
    * @param schemeType (Optional) The palette type you want to return.
    * @returns An array of colors if the scheme parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
    * @example
@@ -5801,7 +5475,6 @@ var ColorArray = class {
   /**
    *@function
    * @description Gets the largest hue value from the passed in colors.
-   * @param colors The array of colors to query the color with the largest hue value.
    * @param colorSpace The mode color space to perform the computation in.
    * @param colorObj Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.
    * @returns The largest hue value in the colors passed in or a custom object.
@@ -5814,6 +5487,14 @@ var ColorArray = class {
   // 273.54920266436477
    */
   maxHue(colorSpace, colorObj2 = false) {
+    return maxHue(this["_colors"], colorSpace, colorObj2);
+  }
+  /**
+   * Returns the current length of the resultant array of colors
+   * @returns The colors array length
+   */
+  length() {
+    return this["colors"].length;
   }
   /**
    *@function
@@ -5832,11 +5513,11 @@ var ColorArray = class {
   // 12.462831644544274
    */
   minHue(colorSpace, colorObj2 = false) {
+    return minHue(this["_colors"], colorSpace, colorObj2);
   }
   /**
    *@function
    * @description Gets the smallest lightness value from the passed in colors.
-   * @param colors The array of colors to query the color with the smallest lightness value.
    * @param colorObj Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.
    * @returns The smallest lightness value in the colors passed in or a custom object.
    * @example
@@ -5851,6 +5532,7 @@ var ColorArray = class {
   
    */
   minLightness(colorObj2 = false) {
+    return minLightness(this["_colors"], colorObj2);
   }
   /**
    *@function
@@ -5870,6 +5552,7 @@ var ColorArray = class {
   
    */
   maxLightness(colorObj2 = false) {
+    return maxLightness(this["_colors"], colorObj2);
   }
   /**
    * @experimental
@@ -5887,7 +5570,8 @@ var ColorArray = class {
   console.log(maxTemp("b2c3f1"))
   // 9570
    */
-  maxTemp(color) {
+  maxTemp(color2) {
+    return maxTemp(this["_colors"]);
   }
   /**
    * @experimental
@@ -5906,7 +5590,8 @@ var ColorArray = class {
   // 20107
    * 
    */
-  minTemp(color) {
+  minTemp(color2) {
+    return minTemp(this["_colors"]);
   }
   /**
    * @function
@@ -6466,7 +6151,355 @@ var load = (colors2) => {
   return new ColorArray(colors2);
 };
 
+// fp/object/customConcat.ts
+var customConcat = (hue3) => {
+  const res = [];
+  const { keys: keys3 } = Object;
+  if (typeof hue3 == "object") {
+    const hueKeys2 = keys3(hue3);
+    res.push(...hueKeys2.map((key) => hue3[key]));
+  }
+  return res;
+};
+
+// fp/object/customFindKey.ts
+var customFindKey = (collection, factor2) => {
+  const propKeys = Object.keys(collection);
+  const result = propKeys.filter((key) => {
+    const hueVals = customConcat(collection[key]);
+    const minVal = min2(...hueVals);
+    const maxVal = max(...hueVals);
+    return inRange(factor2, minVal, maxVal);
+  }).toString();
+  return result;
+};
+
+// colors/lightness.ts
+var lightness = "lab.l";
+var lightnessDiff = (color2) => (subtrahend) => {
+  if (getChannel(lightness)(color2) < getChannel(lightness)(subtrahend)) {
+    return getChannel(lightness)(subtrahend) - getChannel(lightness)(color2);
+  } else {
+    return getChannel(lightness)(color2) - getChannel(lightness)(subtrahend);
+  }
+};
+var getNearestLightness = (color2, colors2) => {
+  const factor2 = "lightness";
+  const cb4 = lightnessDiff(color2);
+  const sortedObjArr = sortedArr(factor2, cb4, "asc", true)(colors2);
+  return sortedObjArr[0][factor2];
+};
+var getFarthestLightness = (color2, colors2) => {
+  const factor2 = "lightness";
+  const cb4 = lightnessDiff(color2);
+  const sortedObjArr = sortedArr(factor2, cb4, "desc", true)(colors2);
+  return sortedObjArr[0][factor2];
+};
+var minLightness = (colors2, colorObj2 = false) => {
+  const factor2 = "lightness";
+  const cb4 = getChannel(lightness);
+  const result = sortedArr(
+    factor2,
+    cb4,
+    "asc",
+    true
+  )(colors2);
+  let value;
+  if (gt(result.length, 0)) {
+    if (colorObj2) {
+      value = result[0];
+    } else {
+      value = result[0][factor2];
+    }
+  }
+  return value;
+};
+var maxLightness = (colors2, colorObj2 = false) => {
+  const factor2 = "lightness";
+  const cb4 = getChannel(lightness);
+  const result = sortedArr(
+    factor2,
+    cb4,
+    "desc",
+    true
+  )(colors2);
+  let value;
+  if (gt(result.length, 0)) {
+    if (colorObj2) {
+      value = result[0];
+    } else {
+      value = result[0][factor2];
+    }
+  }
+  return value;
+};
+
+// colors/hue.ts
+var { abs: abs3 } = Math;
+var factor = "hue";
+var mode = (colorSpace) => `${colorSpace || "lch"}.h`;
+var targetHue = (color2, colorSpace) => getChannel(mode(colorSpace))(color2);
+var cb3 = (color2, colorSpace) => (subtrahend) => {
+  return abs3(
+    targetHue(color2, colorSpace) - getChannel(mode(colorSpace))(subtrahend)
+  );
+};
+var predicate2 = (colorSpace) => (color2) => {
+  return getChannel(mode(colorSpace))(color2) || void 0;
+};
+var getNearestHue = (color2, colors2, colorSpace) => {
+  return sortedArr(
+    factor,
+    cb3(color2, mode(colorSpace)),
+    "asc",
+    true
+  )(colors2).filter((el) => el[factor] !== void 0)[0][factor];
+};
+var getFarthestHue = (color2, colors2, colorSpace) => {
+  return sortedArr(
+    factor,
+    cb3(color2, mode(colorSpace)),
+    "desc",
+    true
+  )(colors2).filter((el) => el[factor] !== void 0)[0][factor];
+};
+var minHue = (colors2, colorSpace, colorObj2 = false) => {
+  const result = sortedArr(
+    factor,
+    predicate2(colorSpace),
+    "asc",
+    true
+  )(colors2).filter((el) => el[factor] !== void 0);
+  let value;
+  if (result.length > 0) {
+    if (colorObj2) {
+      value = result[0];
+    } else {
+      value = result[0][factor];
+    }
+  }
+  return value;
+};
+var maxHue = (colors2, colorSpace, colorObj2 = false) => {
+  const result = sortedArr(
+    factor,
+    predicate2(colorSpace),
+    "desc",
+    true
+  )(colors2).filter((el) => el[factor] !== void 0);
+  let value;
+  if (result.length > 0) {
+    if (colorObj2) {
+      value = result[0];
+    } else {
+      value = result[0][factor];
+    }
+  }
+  return value;
+};
+
+// color-maps/samples/hueTemperature.ts
+var hueTemperature_default = {
+  "red-purple": {
+    warm: [343, 359],
+    cool: [321, 342]
+  },
+  red: {
+    warm: [21, 40],
+    cool: [0, 20]
+  },
+  "yellow-red": {
+    warm: [41, 54],
+    cool: [55, 70]
+  },
+  yellow: {
+    warm: [71, 90],
+    cool: [91, 109]
+  },
+  "green-yellow": {
+    warm: [110, 124],
+    cool: [125, 140]
+  },
+  green: {
+    warm: [141, 160],
+    cool: [161, 180]
+  },
+  "blue-green": {
+    warm: [181, 200],
+    cool: [201, 220]
+  },
+  blue: {
+    warm: [221, 235],
+    cool: [236, 250]
+  },
+  "purple-blue": {
+    warm: [271, 290],
+    cool: [251, 270]
+  },
+  purple: {
+    warm: [316, 320],
+    cool: [291, 315]
+  }
+};
+
+// colors/achromatic.ts
+var isAchromatic = (color2) => {
+  const cb4 = (mc) => getChannel(mc)(color2);
+  const checkHsl = cb4("hsl.s");
+  const checkLch = cb4("lch.c");
+  if ((checkHsl || checkLch) === 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+// colors/overtone.ts
+var overtone = (color2) => {
+  const factor2 = getChannel("lch.h")(color2);
+  let hue3 = customFindKey(hueTemperature_default, factor2);
+  if (isAchromatic(color2)) {
+    return "gray";
+  } else if (/-/.test(hue3)) {
+    hue3 = hue3.split("-");
+    return hue3[1];
+  } else {
+    return false;
+  }
+};
+
+// colors/tailwindColors.ts
+var tailwindColors = (shade) => (val) => {
+  shade = shade.toLowerCase();
+  const { keys: keys3 } = Object;
+  let targetHue2;
+  if (keys3(tailwind_default).indexOf(shade) != -1) {
+    targetHue2 = tailwind_default[shade];
+  } else {
+    throw Error(
+      `${shade} is not a valid shade in the default Tailwind palette`
+    );
+  }
+  if (typeof val === "undefined") {
+    return keys3(targetHue2).map((value) => targetHue2[value]);
+  } else if (keys3(targetHue2).indexOf(val) > -1) {
+    return targetHue2[val];
+  } else {
+    throw Error(
+      `${val} is not a valid scale value. Values are in increments of 100 up to 900 e.g "200"`
+    );
+  }
+};
+
+// colors/temperature.ts
+var predicate3 = (factor2, temp) => {
+  const hueKeys2 = Object.keys(hueTemperature_default);
+  if (hueKeys2.some(
+    (val) => inRange(
+      floorCeil(factor2),
+      hueTemperature_default[val][temp][0],
+      hueTemperature_default[val][temp][1]
+    )
+  )) {
+    return true;
+  } else {
+    return false;
+  }
+};
+var isCool = (color2) => {
+  const factor2 = getChannel("lch.h")(color2);
+  return predicate3(factor2, "cool");
+};
+var isWarm = (color2) => {
+  const factor2 = getChannel("lch.h")(color2);
+  return predicate3(factor2, "cool");
+};
+var maxTemp = (color2) => {
+  const factor2 = getChannel("lch.h")(color2);
+  const hue3 = customFindKey(hueTemperature_default, factor2);
+  const maxHue2 = max(...customConcat(hueTemperature_default[hue3]));
+  const result = getTemp({
+    l: getChannel("lch.l")(color2),
+    c: getChannel("lch.c")(color2),
+    h: maxHue2,
+    mode: "lch"
+  });
+  return result;
+};
+var minTemp = (color2) => {
+  let factor2 = getChannel("lch.h")(color2);
+  const hue3 = customFindKey(hueTemperature_default, factor2);
+  const minHue2 = min2(...customConcat(hueTemperature_default[hue3]));
+  const result = getTemp({
+    l: getChannel("lch.l")(color2),
+    c: getChannel("lch.c")(color2),
+    h: minHue2,
+    mode: "lch"
+  });
+  return result;
+};
+
+// colors/getHue.ts
+var getHue = (color2) => {
+  const lch2 = useMode(definition_default8);
+  color2 = lch2(toHex(color2));
+  const factor2 = color2["h"];
+  const hueKeys2 = Object.keys(hueTemperature_default);
+  const hueFamily = hueKeys2.map((hue3) => {
+    const hueVals = customConcat(hueTemperature_default[hue3]);
+    const minVal = min2(...hueVals);
+    const maxVal = max(...hueVals);
+    const bool = customConcat(hueTemperature_default[hue3]).some(
+      () => inRange(factor2, minVal, maxVal)
+    );
+    if (bool) {
+      return hue3;
+    }
+  }).filter((val) => typeof val === "string").toString();
+  return hueFamily;
+};
+
+// colors/getComplimentaryHue.ts
+var { keys: keys2 } = Object;
+var hueKeys = keys2(hueTemperature_default);
+var getComplimentaryHue = (color2, colorObj2 = false) => {
+  const modeChannel = "lch.h";
+  const complementaryHue = adjustHue(
+    getChannel(modeChannel)(color2) + 180
+  );
+  const hueFamily = hueKeys.map((hue3) => {
+    const hueVals = customConcat(hueTemperature_default[hue3]);
+    const minVal = min2(...hueVals);
+    const maxVal = max(...hueVals);
+    const bool = customConcat(hueTemperature_default[hue3]).some(
+      () => inRange(complementaryHue, minVal, maxVal)
+    );
+    if (bool) {
+      return hue3;
+    }
+  }).filter((val) => typeof val === "string").toString();
+  let result;
+  if (complementaryHue) {
+    result = {
+      hue: hueFamily,
+      color: toHex(setChannel(modeChannel)(color2, complementaryHue))
+    };
+  } else {
+    result = { hue: "gray", color: color2 };
+  }
+  return colorObj2 && result || result["color"];
+};
+
+// converters/rgb2num.ts
+var rgb2num = (color2) => {
+  const toRgb2 = useMode(definition_default);
+  const rgb4 = toRgb2(toHex(color2));
+  return (255 * rgb4["r"] << 16) + (255 * rgb4["g"] << 8) + 255 * rgb4["b"];
+};
+
 // converters/ciecam.ts
+var import_ciebase_ts = __toESM(require_lib(), 1);
+var import_ciecam02_ts = __toESM(require_lib2(), 1);
 var baseCieCam = (0, import_ciecam02_ts.cam)(
   {
     whitePoint: import_ciebase_ts.illuminant["D65"],
@@ -6478,9 +6511,9 @@ var baseCieCam = (0, import_ciecam02_ts.cam)(
   (0, import_ciecam02_ts.cfs)("JCh")
 );
 var xyzConverter = (0, import_ciebase_ts.xyz)(import_ciebase_ts.workspace["WideGamutRGB"], import_ciebase_ts.illuminant["D65"]);
-var colorToCam = (color) => {
+var colorToCam = (color2) => {
   return baseCieCam.fromXyz(
-    xyzConverter.fromRgb(import_ciebase_ts.rgb.fromHex(toHex(color)))
+    xyzConverter.fromRgb(import_ciebase_ts.rgb.fromHex(toHex(color2)))
   );
 };
 var camToColor = (CAM) => {
@@ -6489,7 +6522,7 @@ var camToColor = (CAM) => {
 
 // colors/color.ts
 var IColor = class {
-  constructor(color, options) {
+  constructor(color2, options) {
     let {
       illuminant: illuminant2,
       alpha: alpha2,
@@ -6501,21 +6534,21 @@ var IColor = class {
       lightness: lightness2,
       temperature
     } = options || {};
-    color = checkArg(color, "#000");
-    this["temperature"] = checkArg(temperature, getTemp(color));
+    color2 = checkArg(color2, "#000");
+    this["temperature"] = checkArg(temperature, getTemp(color2));
     this["illuminant"] = checkArg(illuminant2, "D65");
-    this["alpha"] = checkArg(alpha2, alpha(color));
-    this["_color"] = color;
-    this["_luminance"] = checkArg(luminance2, getLuminance(color));
-    this["lightness"] = checkArg(lightness2, getChannel("lch.l")(color));
+    this["alpha"] = checkArg(alpha2, alpha(color2));
+    this["_color"] = color2;
+    this["_luminance"] = checkArg(luminance2, getLuminance(color2));
+    this["lightness"] = checkArg(lightness2, getChannel("lch.l")(color2));
     this["colorspace"] = checkArg(colorspace, "jch");
     this["_saturation"] = checkArg(
       saturation,
       getChannel(
         `${this["colorspace"]}.${matchChromaChannel(this["colorspace"])}`
-      )(color)
+      )(color2)
     );
-    this["temperature"] = checkArg(temperature, getTemp(color));
+    this["temperature"] = checkArg(temperature, getTemp(color2));
     this["lightMode"] = checkArg(lightMode, colors("gray", "100"));
     this["darkMode"] = checkArg(darkMode, colors("gray", "800"));
   }
@@ -6555,6 +6588,7 @@ var IColor = class {
     this["_color"] = darken(this["_color"], amount);
     return this;
   }
+  // Added viewing conditions options
   toCam() {
     return colorToCam(this["_color"]);
   }
@@ -6573,13 +6607,29 @@ var IColor = class {
     return this["colors"];
   }
   hueShift(options) {
-    this["colors"] = load(
-      hueShift(this["_color"], checkArg(options, {}))
-    );
-    return this["colors"];
+    options["iterations"] = checkArg(options["iterations"], 1);
+    if (options["iterations"]) {
+      return hueShift(this["_color"], options);
+    } else {
+      this["colors"] = load(
+        hueShift(this["_color"], checkArg(options, {}))
+      );
+      return this["colors"];
+    }
   }
   getComplimentaryHue(colorObj2) {
-    return getComplimentaryHue(this["_color"], checkArg(colorObj2, false));
+    if (colorObj2) {
+      return getComplimentaryHue(
+        this["_color"],
+        checkArg(colorObj2, colorObj2)
+      );
+    } else {
+      this["_color"] = getComplimentaryHue(
+        this["_color"],
+        checkArg(colorObj2, colorObj2)
+      );
+      return this["_color"];
+    }
   }
   earthtone(options) {
     options["iterations"] = checkArg(options["iterations"], 1);
@@ -6611,10 +6661,13 @@ var IColor = class {
     if (amount) {
       this["_luminance"] = amount;
       this["_color"] = setLuminance(this["_color"], this["_color"]);
-      return this["_luminance"];
+      return this;
     } else {
     }
     return getLuminance(this["_color"]);
+  }
+  output() {
+    return this["_color"];
   }
   saturation(amount) {
     this["_saturation"] = getChannel(
@@ -6690,16 +6743,17 @@ var IColor = class {
     return getHue(this["_color"]);
   }
   scheme(scheme2, easingFunc) {
-    return scheme(scheme2)(this["_color"], easingFunc);
+    return load(scheme(scheme2)(this["_color"], easingFunc));
   }
 };
+var color = (color2) => new IColor(color2);
 
 // getters_and_setters/alpha.ts
-var alpha = (color, value) => {
-  color = color || "black";
+var alpha = (color2, value) => {
+  color2 = color2 || "black";
   const channel = "alpha";
   const lch2 = useMode(definition_default8);
-  const src = lch2(toHex(color));
+  const src = lch2(toHex(color2));
   if (typeof value === "undefined" || null) {
     return src[channel];
   } else if (typeof value === "number") {
@@ -6716,31 +6770,28 @@ var alpha = (color, value) => {
 
 // getters_and_setters/darken.ts
 var toLab = useMode(definition_default6);
-var darken = (color, value) => {
-  const Kn2 = 18;
+var darken = (color2, value) => {
+  const Kn = 18;
   const channel = "l";
-  const src = toLab(toHex(color));
+  const src = toLab(toHex(color2));
   if (typeof value === "number") {
-    src["l"] -= Kn2 * smootherstep_default(value / 100);
+    src["l"] -= Kn * smootherstep_default(value / 100);
   } else if (typeof value === "string") {
     expressionParser(src, channel, value || 1);
   }
   return toHex(src);
 };
-var brighten = (color, value) => {
-  const src = toLab(toHex(color));
+var brighten = (color2, value) => {
+  const src = toLab(toHex(color2));
   const channel = "l";
   if (typeof value == "number") {
     value = Math.abs(value);
-    src["l"] -= Kn * smootherstep_default(value / 100);
+    src["l"] -= 18 * smootherstep_default(value / 100);
   } else if (typeof value == "string") {
     expressionParser(src, channel, value);
   }
   return toHex(src);
 };
-
-// getters_and_setters/contrast.ts
-var getContrast = (color, against) => contrast(color, against);
 
 // accessibility/colorDeficiency.ts
 var baseColorDeficiency = (def, col, sev) => {
@@ -6762,11 +6813,11 @@ var baseColorDeficiency = (def, col, sev) => {
   }
   return toHex(result);
 };
-var colorDeficiency = (deficiency2) => (color, severity = 1) => {
+var colorDeficiency = (deficiency2) => (color2, severity = 1) => {
   const deficiencies = ["red", "blue", "green", "monochromacy"];
-  deficiency2 = [deficiency2 || "red"].toString().toLowerCase();
+  deficiency2 = checkArg(deficiency2, "red");
   if (typeof deficiency2 === "string" && deficiencies.some((el) => el === deficiency2)) {
-    return baseColorDeficiency(deficiency2, color, severity);
+    return baseColorDeficiency(deficiency2, color2, severity);
   } else {
     throw Error(
       `Unknown color vision deficiency ${deficiency2}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
