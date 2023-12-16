@@ -76,7 +76,7 @@ console.log(maxHue(sample, 'lch'))
     colorSpace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: Color } {
-    return nativeMaxHue(this["_colors"], colorSpace, colorObj);
+    return nativeMaxHue(this["colors"], colorSpace, colorObj);
   }
 
   /**
@@ -107,7 +107,7 @@ console.log(minHue(sample, 'lch'))
     colorSpace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: Color } {
-    return nativeMinHue(this["_colors"], colorSpace, colorObj);
+    return nativeMinHue(this["colors"], colorSpace, colorObj);
   }
 
   /**
@@ -127,7 +127,7 @@ console.log(minLightness(sample, true))
 
  */
   minLightness(colorObj = false): number | { factor: number; color: Color } {
-    return nativeMinLightness(this["_colors"], colorObj);
+    return nativeMinLightness(this["colors"], colorObj);
   }
 
   /**
@@ -148,7 +148,7 @@ console.log(maxLightness(sample, true))
 
  */
   maxLightness(colorObj = false): number | { factor: number; color: Color } {
-    return nativeMaxLightness(this["_colors"], colorObj);
+    return nativeMaxLightness(this["colors"], colorObj);
   }
 
   /**
@@ -168,7 +168,7 @@ console.log(maxTemp("b2c3f1"))
 // 9570
  */
   maxTemp(color: Color): number {
-    return nativeMaxTemp(this["_colors"]);
+    return nativeMaxTemp(this["colors"]);
   }
 
   /**
@@ -189,7 +189,7 @@ console.log(minTemp("b2c3f1"))
  * 
  */
   minTemp(color: Color): number {
-    return nativeMinTemp(this["_colors"]);
+    return nativeMinTemp(this["colors"]);
   }
 
   /**
@@ -516,7 +516,7 @@ sortByLightness(sample,'desc')
 
   sortByLightness(order?: "asc" | "desc"): ColorArray {
     // @ts-ignore
-    this[this._colors] = this;
+
     this["colors"] = sortBy.sortByLightness(this["colors"], order);
     return this;
   }

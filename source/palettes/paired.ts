@@ -1,21 +1,22 @@
-// @ts-nocheck
-// From colorbrewr
+/**
+ * (c) Dean Tarisai
+ * @file pairedScheme.ts
+ * Licensed under the Apache 2.0 license
+ *
+ */
 
-import { toHex } from '../converters/toHex.ts';
-import { setChannel } from '../getters_and_setters/set.ts';
-import { Color, PairedSchemeOptions } from '../types';
+import { toHex } from "../converters/toHex.ts";
+import { setChannel } from "../getters_and_setters/set.ts";
+import { Color, PairedSchemeOptions } from "../types";
 import {
   interpolate,
   samples,
-  interpolatorSplineNatural,
-  fixupHueShorter,
-  interpolatorSplineMonotone,
-  interpolatorSplineBasisClosed,
   useMode,
   modeLch,
-  easingSmoothstep
-} from 'culori/fn';
-import { checkArg } from '../fp/misc.ts';
+  easingSmoothstep,
+} from "culori/fn";
+import { checkArg } from "../fp/misc.ts";
+import { interpolatorConfig } from "../fp/defaults.ts";
 
 /**
  * @function pairedScheme
@@ -30,56 +31,35 @@ import { checkArg } from '../fp/misc.ts';
 console.log(pairedScheme("green",{hueStep:6,iterations:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
  */
-const pairedScheme = (color: Color, options?: PairedSchemeOptions): Color[] => {
+const pairedScheme = (
+  color: Color,
+  options?: PairedSchemeOptions
+): Color[] | Color => {
   // eslint-disable-next-line prefer-const
-  let {
-    chromaInterpolator,
-    hueFixup,
-    hueInterpolator,
-    lightnessInterpolator,
-    iterations,
-    via,
-    hueStep,
-    easingFunc
-  } = options || {};
+  let { iterations, via, hueStep, easingFunc } = options || {};
 
-  easingFunc = checkArg(easingFunc, easingSmoothstep);
-  chromaInterpolator = checkArg(chromaInterpolator, interpolatorSplineNatural);
-  hueFixup = checkArg(hueFixup, fixupHueShorter);
-  hueInterpolator = checkArg(hueInterpolator, interpolatorSplineBasisClosed);
-  lightnessInterpolator = checkArg(
-    lightnessInterpolator,
-    interpolatorSplineMonotone
-  );
   iterations = checkArg(iterations, 1);
-
-  via = checkArg(via, 'light');
+  easingFunc = checkArg(easingFunc, easingSmoothstep);
+  via = checkArg(via, "light");
   hueStep = checkArg(hueStep, 5);
 
   const toLch = useMode(modeLch);
   color = toLch(toHex(color));
 
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
-  const derivedHue = setChannel('lch.h')(color, color['h'] + hueStep);
+  const derivedHue = setChannel("lch.h")(color, color["h"] + hueStep);
 
   // Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes
   const tones = {
-    dark: '#263238',
-    light: { l: 100, c: 0.0001, h: 0, mode: 'lch' }
+    dark: { l: 0, c: 0, h: 0, mode: "lch65" },
+    light: { l: 100, c: 0, h: 0, mode: "lch65" },
   };
 
-  const scale = interpolate([color, tones[via], derivedHue], 'lch', {
-    h: {
-      fixup: hueFixup,
-      use: hueInterpolator
-    },
-    c: {
-      use: chromaInterpolator
-    },
-    l: {
-      use: lightnessInterpolator
-    }
-  });
+  const scale = interpolate(
+    [color as unknown as string, tones[via as string], derivedHue, easingFunc],
+    "lch",
+    checkArg(options, interpolatorConfig)
+  );
 
   if (iterations <= 1) {
     return toHex(scale(0.5));

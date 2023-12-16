@@ -1194,31 +1194,47 @@ var discoverPalettes = (colors2, schemeType) => {
 // palettes/earthtone.ts
 import {
   interpolate,
-  samples as samples3,
+  samples as samples3
+} from "culori/fn";
+
+// fp/defaults.ts
+import {
   interpolatorSplineNatural,
   fixupHueShorter,
-  interpolatorSplineMonotone,
   interpolatorSplineBasisClosed,
-  easingSmootherstep
-} from "culori/fn";
+  interpolatorSplineMonotone
+} from "culori";
+var {
+  chromaInterpolator,
+  hueFixup,
+  hueInterpolator,
+  lightnessInterpolator
+} = {};
+chromaInterpolator = checkArg(chromaInterpolator, interpolatorSplineNatural);
+hueFixup = checkArg(hueFixup, fixupHueShorter);
+hueInterpolator = checkArg(hueInterpolator, interpolatorSplineBasisClosed);
+lightnessInterpolator = checkArg(
+  lightnessInterpolator,
+  interpolatorSplineMonotone
+);
+var interpolatorConfig = {
+  chromaInterpolator,
+  hueFixup,
+  hueInterpolator,
+  lightnessInterpolator
+};
+
+// palettes/earthtone.ts
 var earthtone = (color2, options) => {
   let {
-    chromaInterpolator,
-    hueFixup,
-    hueInterpolator,
-    lightnessInterpolator,
+    chromaInterpolator: chromaInterpolator2,
+    hueFixup: hueFixup2,
+    hueInterpolator: hueInterpolator2,
+    lightnessInterpolator: lightnessInterpolator2,
     iterations,
     earthtones,
     easingFunc
   } = options || {};
-  easingFunc = checkArg(easingFunc, easingSmootherstep);
-  chromaInterpolator = checkArg(chromaInterpolator, interpolatorSplineNatural);
-  hueFixup = checkArg(hueFixup, fixupHueShorter);
-  hueInterpolator = checkArg(hueInterpolator, interpolatorSplineBasisClosed);
-  lightnessInterpolator = checkArg(
-    lightnessInterpolator,
-    interpolatorSplineMonotone
-  );
   iterations = checkArg(iterations, 1);
   earthtones = checkArg(earthtones, "dark");
   const tones = {
@@ -1234,18 +1250,11 @@ var earthtone = (color2, options) => {
     dark: "#352a21"
   };
   const base = tones[earthtones.toLowerCase()];
-  const f = interpolate([base, toHex(color2), easingFunc], "lch", {
-    h: {
-      fixup: hueFixup,
-      use: hueInterpolator
-    },
-    c: {
-      use: chromaInterpolator
-    },
-    l: {
-      use: lightnessInterpolator
-    }
-  });
+  const f = interpolate(
+    [base, toHex(color2), easingFunc],
+    "lch",
+    checkArg(options, interpolatorConfig)
+  );
   if (iterations === 1) {
     return toHex(f(0.5));
   } else {
@@ -1305,35 +1314,24 @@ var setChannel = (mc) => (color2, value) => {
 import {
   interpolate as interpolate2,
   samples as samples4,
-  interpolatorSplineNatural as interpolatorSplineNatural2,
-  fixupHueShorter as fixupHueShorter2,
-  interpolatorSplineMonotone as interpolatorSplineMonotone2,
-  interpolatorSplineBasisClosed as interpolatorSplineBasisClosed2,
   useMode as useMode4,
   modeLch as modeLch4,
-  easingSmoothstep as easingSmoothstep3
+  easingSmoothstep as easingSmoothstep4
 } from "culori/fn";
 var pairedScheme = (color2, options) => {
   let {
-    chromaInterpolator,
-    hueFixup,
-    hueInterpolator,
-    lightnessInterpolator,
+    chromaInterpolator: chromaInterpolator2,
+    hueFixup: hueFixup2,
+    hueInterpolator: hueInterpolator2,
+    lightnessInterpolator: lightnessInterpolator2,
     iterations,
-    via,
+    via: tone,
     hueStep,
     easingFunc
   } = options || {};
-  easingFunc = checkArg(easingFunc, easingSmoothstep3);
-  chromaInterpolator = checkArg(chromaInterpolator, interpolatorSplineNatural2);
-  hueFixup = checkArg(hueFixup, fixupHueShorter2);
-  hueInterpolator = checkArg(hueInterpolator, interpolatorSplineBasisClosed2);
-  lightnessInterpolator = checkArg(
-    lightnessInterpolator,
-    interpolatorSplineMonotone2
-  );
   iterations = checkArg(iterations, 1);
-  via = checkArg(via, "light");
+  easingFunc = checkArg(easingFunc, easingSmoothstep4);
+  tone = checkArg(tone, "light");
   hueStep = checkArg(hueStep, 5);
   const toLch = useMode4(modeLch4);
   color2 = toLch(toHex(color2));
@@ -1342,18 +1340,11 @@ var pairedScheme = (color2, options) => {
     dark: "#263238",
     light: { l: 100, c: 1e-4, h: 0, mode: "lch" }
   };
-  const scale = interpolate2([color2, tones[via], derivedHue], "lch", {
-    h: {
-      fixup: hueFixup,
-      use: hueInterpolator
-    },
-    c: {
-      use: chromaInterpolator
-    },
-    l: {
-      use: lightnessInterpolator
-    }
-  });
+  const scale = interpolate2(
+    [color2, tones[tone], derivedHue, easingFunc],
+    "lch",
+    checkArg(options, interpolatorConfig)
+  );
   if (iterations <= 1) {
     return toHex(scale(0.5));
   } else {
@@ -1717,7 +1708,7 @@ var ColorArray = class {
   // 273.54920266436477
    */
   maxHue(colorSpace, colorObj2 = false) {
-    return maxHue(this["_colors"], colorSpace, colorObj2);
+    return maxHue(this["colors"], colorSpace, colorObj2);
   }
   /**
    * Returns the current length of the resultant array of colors
@@ -1743,7 +1734,7 @@ var ColorArray = class {
   // 12.462831644544274
    */
   minHue(colorSpace, colorObj2 = false) {
-    return minHue(this["_colors"], colorSpace, colorObj2);
+    return minHue(this["colors"], colorSpace, colorObj2);
   }
   /**
    *@function
@@ -1762,7 +1753,7 @@ var ColorArray = class {
   
    */
   minLightness(colorObj2 = false) {
-    return minLightness(this["_colors"], colorObj2);
+    return minLightness(this["colors"], colorObj2);
   }
   /**
    *@function
@@ -1782,7 +1773,7 @@ var ColorArray = class {
   
    */
   maxLightness(colorObj2 = false) {
-    return maxLightness(this["_colors"], colorObj2);
+    return maxLightness(this["colors"], colorObj2);
   }
   /**
    * @experimental
@@ -1801,7 +1792,7 @@ var ColorArray = class {
   // 9570
    */
   maxTemp(color2) {
-    return maxTemp(this["_colors"]);
+    return maxTemp(this["colors"]);
   }
   /**
    * @experimental
@@ -1821,7 +1812,7 @@ var ColorArray = class {
    * 
    */
   minTemp(color2) {
-    return minTemp(this["_colors"]);
+    return minTemp(this["colors"]);
   }
   /**
    * @function
@@ -2119,7 +2110,6 @@ var ColorArray = class {
   
    */
   sortByLightness(order) {
-    this[this._colors] = this;
     this["colors"] = sortByLightness(this["colors"], order);
     return this;
   }
@@ -2753,8 +2743,9 @@ var camToColor = (CAM) => {
 };
 
 // colors/color.ts
+import { interpolate as interpolate4 } from "culori/fn";
 var IColor = class {
-  constructor(color2, options) {
+  constructor(c, options) {
     let {
       illuminant: illuminant2,
       alpha: alpha2,
@@ -2766,21 +2757,21 @@ var IColor = class {
       lightness: lightness2,
       temperature
     } = options || {};
-    color2 = checkArg(color2, "#000");
-    this["temperature"] = checkArg(temperature, getTemp(color2));
+    c = checkArg(c, "#000");
+    this["temperature"] = checkArg(temperature, getTemp(c));
     this["illuminant"] = checkArg(illuminant2, "D65");
-    this["alpha"] = checkArg(alpha2, alpha(color2));
-    this["_color"] = color2;
-    this["_luminance"] = checkArg(luminance, getLuminance(color2));
-    this["lightness"] = checkArg(lightness2, getChannel("lch.l")(color2));
+    this["alpha"] = checkArg(alpha2, alpha(c));
+    this["_color"] = c;
+    this["_luminance"] = checkArg(luminance, getLuminance(c));
+    this["lightness"] = checkArg(lightness2, getChannel("lch.l")(c));
     this["colorspace"] = checkArg(colorspace, "jch");
     this["_saturation"] = checkArg(
       saturation,
       getChannel(
         `${this["colorspace"]}.${matchChromaChannel(this["colorspace"])}`
-      )(color2)
+      )(c)
     );
-    this["temperature"] = checkArg(temperature, getTemp(color2));
+    this["temperature"] = checkArg(temperature, getTemp(c));
     this["lightMode"] = checkArg(lightMode, colors("gray", "100"));
     this["darkMode"] = checkArg(darkMode, colors("gray", "800"));
   }
@@ -2811,6 +2802,14 @@ var IColor = class {
     } else {
       return getTemp(this["_color"]);
     }
+  }
+  via(origin, t, options) {
+    const result = (t2) => interpolate4(
+      [origin, this["color"]],
+      this["colorspace"],
+      checkArg(options, interpolatorConfig)
+    )(t2);
+    return toHex(result(t));
   }
   brighten(amount) {
     this["_color"] = brighten(this["_color"], amount);

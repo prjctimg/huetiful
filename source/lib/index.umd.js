@@ -41,8 +41,8 @@ var huetiful = (() => {
           100 * (1 - x - y) / y
         ];
       };
-      exports.sign = function(n) {
-        return isNaN(n) ? NaN : n > 0 ? 1 : n < 0 ? -1 : 0;
+      exports.sign = function(n3) {
+        return isNaN(n3) ? NaN : n3 > 0 ? 1 : n3 < 0 ? -1 : 0;
       };
       exports.helpers = { xyCoodinateToXYZTuple: exports.xyCoodinateToXYZTuple, sign: exports.sign };
     }
@@ -78,7 +78,7 @@ var huetiful = (() => {
     "node_modules/ciebase-ts/lib/workspace.js"(exports) {
       "use strict";
       exports.__esModule = !0;
-      var helpers_1 = require_helpers(), abs4 = Math.abs, pow2 = Math.pow;
+      var helpers_1 = require_helpers(), abs5 = Math.abs, pow2 = Math.pow;
       exports.sRgbGamma = {
         decode: function(v) {
           return v <= 0.04045 ? v / 12.92 : pow2((v + 0.055) / 1.055, 2.4);
@@ -98,10 +98,10 @@ var huetiful = (() => {
       exports.simpleGamma = function(g) {
         return {
           decode: function(v) {
-            return helpers_1.sign(v) * pow2(abs4(v), g);
+            return helpers_1.sign(v) * pow2(abs5(v), g);
           },
           encode: function(v) {
-            return helpers_1.sign(v) * pow2(abs4(v), 1 / g);
+            return helpers_1.sign(v) * pow2(abs5(v), 1 / g);
           }
         };
       };
@@ -139,38 +139,38 @@ var huetiful = (() => {
     "node_modules/ciebase-ts/lib/matrix.js"(exports) {
       "use strict";
       exports.__esModule = !0;
-      var transpose = function(M) {
+      var transpose = function(M2) {
         return [
-          [M[0][0], M[1][0], M[2][0]],
-          [M[0][1], M[1][1], M[2][1]],
-          [M[0][2], M[1][2], M[2][2]]
+          [M2[0][0], M2[1][0], M2[2][0]],
+          [M2[0][1], M2[1][1], M2[2][1]],
+          [M2[0][2], M2[1][2], M2[2][2]]
         ];
-      }, determinant = function(M) {
-        return M[0][0] * (M[2][2] * M[1][1] - M[2][1] * M[1][2]) + M[1][0] * (M[2][1] * M[0][2] - M[2][2] * M[0][1]) + M[2][0] * (M[1][2] * M[0][1] - M[1][1] * M[0][2]);
-      }, inverse = function(M) {
-        var c2 = 1 / determinant(M);
+      }, determinant = function(M2) {
+        return M2[0][0] * (M2[2][2] * M2[1][1] - M2[2][1] * M2[1][2]) + M2[1][0] * (M2[2][1] * M2[0][2] - M2[2][2] * M2[0][1]) + M2[2][0] * (M2[1][2] * M2[0][1] - M2[1][1] * M2[0][2]);
+      }, inverse = function(M2) {
+        var c4 = 1 / determinant(M2);
         return [
-          [(M[2][2] * M[1][1] - M[2][1] * M[1][2]) * c2, (M[2][1] * M[0][2] - M[2][2] * M[0][1]) * c2, (M[1][2] * M[0][1] - M[1][1] * M[0][2]) * c2],
-          [(M[2][0] * M[1][2] - M[2][2] * M[1][0]) * c2, (M[2][2] * M[0][0] - M[2][0] * M[0][2]) * c2, (M[1][0] * M[0][2] - M[1][2] * M[0][0]) * c2],
-          [(M[2][1] * M[1][0] - M[2][0] * M[1][1]) * c2, (M[2][0] * M[0][1] - M[2][1] * M[0][0]) * c2, (M[1][1] * M[0][0] - M[1][0] * M[0][1]) * c2]
+          [(M2[2][2] * M2[1][1] - M2[2][1] * M2[1][2]) * c4, (M2[2][1] * M2[0][2] - M2[2][2] * M2[0][1]) * c4, (M2[1][2] * M2[0][1] - M2[1][1] * M2[0][2]) * c4],
+          [(M2[2][0] * M2[1][2] - M2[2][2] * M2[1][0]) * c4, (M2[2][2] * M2[0][0] - M2[2][0] * M2[0][2]) * c4, (M2[1][0] * M2[0][2] - M2[1][2] * M2[0][0]) * c4],
+          [(M2[2][1] * M2[1][0] - M2[2][0] * M2[1][1]) * c4, (M2[2][0] * M2[0][1] - M2[2][1] * M2[0][0]) * c4, (M2[1][1] * M2[0][0] - M2[1][0] * M2[0][1]) * c4]
         ];
-      }, multiply = function(M, v) {
+      }, multiply = function(M2, v) {
         return [
-          M[0][0] * v[0] + M[0][1] * v[1] + M[0][2] * v[2],
-          M[1][0] * v[0] + M[1][1] * v[1] + M[1][2] * v[2],
-          M[2][0] * v[0] + M[2][1] * v[1] + M[2][2] * v[2]
+          M2[0][0] * v[0] + M2[0][1] * v[1] + M2[0][2] * v[2],
+          M2[1][0] * v[0] + M2[1][1] * v[1] + M2[1][2] * v[2],
+          M2[2][0] * v[0] + M2[2][1] * v[1] + M2[2][2] * v[2]
         ];
-      }, scalar = function(M, v) {
+      }, scalar = function(M2, v) {
         return [
-          [M[0][0] * v[0], M[0][1] * v[1], M[0][2] * v[2]],
-          [M[1][0] * v[0], M[1][1] * v[1], M[1][2] * v[2]],
-          [M[2][0] * v[0], M[2][1] * v[1], M[2][2] * v[2]]
+          [M2[0][0] * v[0], M2[0][1] * v[1], M2[0][2] * v[2]],
+          [M2[1][0] * v[0], M2[1][1] * v[1], M2[1][2] * v[2]],
+          [M2[2][0] * v[0], M2[2][1] * v[1], M2[2][2] * v[2]]
         ];
-      }, product = function(M, N) {
+      }, product = function(M2, N) {
         return [
-          [M[0][0] * N[0][0] + M[0][1] * N[1][0] + M[0][2] * N[2][0], M[0][0] * N[0][1] + M[0][1] * N[1][1] + M[0][2] * N[2][1], M[0][0] * N[0][2] + M[0][1] * N[1][2] + M[0][2] * N[2][2]],
-          [M[1][0] * N[0][0] + M[1][1] * N[1][0] + M[1][2] * N[2][0], M[1][0] * N[0][1] + M[1][1] * N[1][1] + M[1][2] * N[2][1], M[1][0] * N[0][2] + M[1][1] * N[1][2] + M[1][2] * N[2][2]],
-          [M[2][0] * N[0][0] + M[2][1] * N[1][0] + M[2][2] * N[2][0], M[2][0] * N[0][1] + M[2][1] * N[1][1] + M[2][2] * N[2][1], M[2][0] * N[0][2] + M[2][1] * N[1][2] + M[2][2] * N[2][2]]
+          [M2[0][0] * N[0][0] + M2[0][1] * N[1][0] + M2[0][2] * N[2][0], M2[0][0] * N[0][1] + M2[0][1] * N[1][1] + M2[0][2] * N[2][1], M2[0][0] * N[0][2] + M2[0][1] * N[1][2] + M2[0][2] * N[2][2]],
+          [M2[1][0] * N[0][0] + M2[1][1] * N[1][0] + M2[1][2] * N[2][0], M2[1][0] * N[0][1] + M2[1][1] * N[1][1] + M2[1][2] * N[2][1], M2[1][0] * N[0][2] + M2[1][1] * N[1][2] + M2[1][2] * N[2][2]],
+          [M2[2][0] * N[0][0] + M2[2][1] * N[1][0] + M2[2][2] * N[2][0], M2[2][0] * N[0][1] + M2[2][1] * N[1][1] + M2[2][2] * N[2][1], M2[2][0] * N[0][2] + M2[2][1] * N[1][2] + M2[2][2] * N[2][2]]
         ];
       };
       exports.matrix = {
@@ -295,11 +295,11 @@ var huetiful = (() => {
     "node_modules/ciecam02-ts/lib/helpers.js"(exports) {
       "use strict";
       exports.__esModule = !0;
-      var abs4 = Math.abs, pow2 = Math.pow, sqrt = Math.sqrt;
+      var abs5 = Math.abs, pow2 = Math.pow, sqrt = Math.sqrt;
       function corLerp(a, b, t, cor) {
         var m = cor === "h" ? 360 : cor === "H" ? 400 : void 0;
         if (m) {
-          var d = abs4(a - b);
+          var d = abs5(a - b);
           d > m / 2 && (a > b ? b += m : a += m);
         }
         return ((1 - t) * a + t * b) % (m || 1 / 0);
@@ -378,8 +378,8 @@ var huetiful = (() => {
       }
       exports.fromNotation = fromNotation;
       function toNotation(H) {
-        var _a, i = floor2(H / 100), j = (i + 1) % hueSymbols.length, p = H - i * 100;
-        return p > 50 && (_a = [j, i], i = _a[0], j = _a[1], p = 100 - p), p < 1 ? hueSymbols[i] : hueSymbols[i] + p.toFixed() + hueSymbols[j];
+        var _a, i = floor2(H / 100), j = (i + 1) % hueSymbols.length, p4 = H - i * 100;
+        return p4 > 50 && (_a = [j, i], i = _a[0], j = _a[1], p4 = 100 - p4), p4 < 1 ? hueSymbols[i] : hueSymbols[i] + p4.toFixed() + hueSymbols[j];
       }
       exports.toNotation = toNotation;
       exports.default = {
@@ -396,15 +396,15 @@ var huetiful = (() => {
     "node_modules/ciecam02-ts/lib/cam.js"(exports) {
       "use strict";
       var __assign = exports && exports.__assign || Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
+        for (var s, i = 1, n3 = arguments.length; i < n3; i++) {
           s = arguments[i];
-          for (var p in s)
-            Object.prototype.hasOwnProperty.call(s, p) && (t[p] = s[p]);
+          for (var p4 in s)
+            Object.prototype.hasOwnProperty.call(s, p4) && (t[p4] = s[p4]);
         }
         return t;
       };
       exports.__esModule = !0;
-      var ciebase_ts_1 = require_lib(), sign = ciebase_ts_1.helpers.sign, helpers_1 = require_helpers2(), hq = require_hq(), pow2 = Math.pow, sqrt = Math.sqrt, exp = Math.exp, abs4 = Math.abs, sin = Math.sin, cos = Math.cos, atan2 = Math.atan2, surrounds = {
+      var ciebase_ts_1 = require_lib(), sign = ciebase_ts_1.helpers.sign, helpers_1 = require_helpers2(), hq = require_hq(), pow2 = Math.pow, sqrt = Math.sqrt, exp = Math.exp, abs5 = Math.abs, sin = Math.sin, cos = Math.cos, atan2 = Math.atan2, surrounds = {
         average: { F: 1, c: 0.69, N_c: 1 },
         dim: { F: 0.9, c: 0.59, N_c: 0.9 },
         // tslint:disable-next-line:object-literal-sort-keys
@@ -426,7 +426,7 @@ var huetiful = (() => {
       }, defaultCorrelates = helpers_1.cfs("QJMCshH"), vitalCorrelates = helpers_1.cfs("JCh");
       function Converter(viewingConditions, correlates) {
         viewingConditions === void 0 && (viewingConditions = {}), correlates === void 0 && (correlates = defaultCorrelates), viewingConditions = __assign({}, defaultViewingConditions, viewingConditions);
-        var XYZ_w = viewingConditions.whitePoint, L_A = viewingConditions.adaptingLuminance, Y_b = viewingConditions.backgroundLuminance, _a = surrounds[viewingConditions.surroundType], F = _a.F, c2 = _a.c, N_c = _a.N_c, Y_w = XYZ_w[1], k4 = 1 / (5 * L_A + 1), F_L = 0.2 * pow2(k4, 4) * 5 * L_A + 0.1 * pow2(1 - pow2(k4, 4), 2) * pow2(5 * L_A, 1 / 3), n = Y_b / Y_w, N_bb = 0.725 * pow2(1 / n, 0.2), N_cb = N_bb, z = 1.48 + sqrt(n), D = viewingConditions.discounting ? 1 : F * (1 - 1 / 3.6 * exp(-(L_A + 42) / 92)), RGB_w = ciebase_ts_1.matrix.multiply(M_CAT02, XYZ_w), _b = RGB_w.map(function(v) {
+        var XYZ_w = viewingConditions.whitePoint, L_A = viewingConditions.adaptingLuminance, Y_b = viewingConditions.backgroundLuminance, _a = surrounds[viewingConditions.surroundType], F = _a.F, c4 = _a.c, N_c = _a.N_c, Y_w = XYZ_w[1], k4 = 1 / (5 * L_A + 1), F_L = 0.2 * pow2(k4, 4) * 5 * L_A + 0.1 * pow2(1 - pow2(k4, 4), 2) * pow2(5 * L_A, 1 / 3), n3 = Y_b / Y_w, N_bb = 0.725 * pow2(1 / n3, 0.2), N_cb = N_bb, z = 1.48 + sqrt(n3), D = viewingConditions.discounting ? 1 : F * (1 - 1 / 3.6 * exp(-(L_A + 42) / 92)), RGB_w = ciebase_ts_1.matrix.multiply(M_CAT02, XYZ_w), _b = RGB_w.map(function(v) {
           return D * Y_w / v + 1 - D;
         }), D_R = _b[0], D_G = _b[1], D_B = _b[2], RGB_cw = correspondingColors(XYZ_w), RGB_aw = adaptedResponses(RGB_cw), A_w = achromaticResponse(RGB_aw);
         function correspondingColors(XYZ) {
@@ -439,14 +439,14 @@ var huetiful = (() => {
         }
         function adaptedResponses(RGB_c) {
           return ciebase_ts_1.matrix.multiply(CAT02_to_HPE, RGB_c).map(function(v) {
-            var x = pow2(F_L * abs4(v) / 100, 0.42);
+            var x = pow2(F_L * abs5(v) / 100, 0.42);
             return sign(v) * 400 * x / (27.13 + x) + 0.1;
           });
         }
         function reverseAdaptedResponses(RGB_a) {
           return ciebase_ts_1.matrix.multiply(HPE_to_CAT02, RGB_a.map(function(v) {
             var x = v - 0.1;
-            return sign(x) * 100 / F_L * pow2(27.13 * abs4(x) / (400 - abs4(x)), 1 / 0.42);
+            return sign(x) * 100 / F_L * pow2(27.13 * abs5(x) / (400 - abs5(x)), 1 / 0.42);
           }));
         }
         function achromaticResponse(RGB_a) {
@@ -454,10 +454,10 @@ var huetiful = (() => {
           return (R_a * 2 + G_a + B_a / 20 - 0.305) * N_bb;
         }
         function brightness(J) {
-          return 4 / c2 * sqrt(J / 100) * (A_w + 4) * pow2(F_L, 0.25);
+          return 4 / c4 * sqrt(J / 100) * (A_w + 4) * pow2(F_L, 0.25);
         }
         function lightness2(Q) {
-          return 6.25 * pow2(c2 * Q / ((A_w + 4) * pow2(F_L, 0.25)), 2);
+          return 6.25 * pow2(c4 * Q / ((A_w + 4) * pow2(F_L, 0.25)), 2);
         }
         function colorfulness(C) {
           return C * pow2(F_L, 0.25);
@@ -465,23 +465,23 @@ var huetiful = (() => {
         function chromaFromSaturationBrightness(s, Q) {
           return pow2(s / 100, 2) * Q / pow2(F_L, 0.25);
         }
-        function chromaFromColorfulness(M) {
-          return M / pow2(F_L, 0.25);
+        function chromaFromColorfulness(M2) {
+          return M2 / pow2(F_L, 0.25);
         }
-        function saturation(M, Q) {
-          return 100 * sqrt(M / Q);
+        function saturation(M2, Q) {
+          return 100 * sqrt(M2 / Q);
         }
         function fillOut(someCorrelates, inputs) {
-          var J = inputs.J, C = inputs.C, s = inputs.s, h = inputs.h, H = inputs.H, M = inputs.M, Q = inputs.Q, outputs = {};
-          return someCorrelates.J && (outputs.J = isNaN(J) ? lightness2(Q) : J), someCorrelates.C && (isNaN(C) ? isNaN(M) ? (Q = isNaN(Q) ? brightness(J) : Q, outputs.C = chromaFromSaturationBrightness(s, Q)) : outputs.C = chromaFromColorfulness(M) : outputs.C = inputs.C), someCorrelates.h && (outputs.h = isNaN(h) ? hq.toHue(H) : h), someCorrelates.Q && (outputs.Q = isNaN(Q) ? brightness(J) : Q), someCorrelates.M && (outputs.M = isNaN(M) ? colorfulness(C) : M), someCorrelates.s && (isNaN(s) ? (Q = isNaN(Q) ? brightness(J) : Q, M = isNaN(M) ? colorfulness(C) : M, outputs.s = saturation(M, Q)) : outputs.s = s), someCorrelates.H && (outputs.H = isNaN(H) ? hq.fromHue(h) : H), outputs;
+          var J = inputs.J, C = inputs.C, s = inputs.s, h = inputs.h, H = inputs.H, M2 = inputs.M, Q = inputs.Q, outputs = {};
+          return someCorrelates.J && (outputs.J = isNaN(J) ? lightness2(Q) : J), someCorrelates.C && (isNaN(C) ? isNaN(M2) ? (Q = isNaN(Q) ? brightness(J) : Q, outputs.C = chromaFromSaturationBrightness(s, Q)) : outputs.C = chromaFromColorfulness(M2) : outputs.C = inputs.C), someCorrelates.h && (outputs.h = isNaN(h) ? hq.toHue(H) : h), someCorrelates.Q && (outputs.Q = isNaN(Q) ? brightness(J) : Q), someCorrelates.M && (outputs.M = isNaN(M2) ? colorfulness(C) : M2), someCorrelates.s && (isNaN(s) ? (Q = isNaN(Q) ? brightness(J) : Q, M2 = isNaN(M2) ? colorfulness(C) : M2, outputs.s = saturation(M2, Q)) : outputs.s = s), someCorrelates.H && (outputs.H = isNaN(H) ? hq.fromHue(h) : H), outputs;
         }
         function fromXyz(XYZ) {
-          var RGB_c = correspondingColors(XYZ), RGB_a = adaptedResponses(RGB_c), R_a = RGB_a[0], G_a = RGB_a[1], B_a = RGB_a[2], a = R_a - G_a * 12 / 11 + B_a / 11, b = (R_a + G_a - 2 * B_a) / 9, h_rad = atan2(b, a), h = ciebase_ts_1.degree.fromRadian(h_rad), e_t = 1 / 4 * (cos(h_rad + 2) + 3.8), A = achromaticResponse(RGB_a), J = 100 * pow2(A / A_w, c2 * z), t = 5e4 / 13 * N_c * N_cb * e_t * sqrt(a * a + b * b) / (R_a + G_a + 21 / 20 * B_a), C = pow2(t, 0.9) * sqrt(J / 100) * pow2(1.64 - pow2(0.29, n), 0.73);
+          var RGB_c = correspondingColors(XYZ), RGB_a = adaptedResponses(RGB_c), R_a = RGB_a[0], G_a = RGB_a[1], B_a = RGB_a[2], a = R_a - G_a * 12 / 11 + B_a / 11, b = (R_a + G_a - 2 * B_a) / 9, h_rad = atan2(b, a), h = ciebase_ts_1.degree.fromRadian(h_rad), e_t = 1 / 4 * (cos(h_rad + 2) + 3.8), A = achromaticResponse(RGB_a), J = 100 * pow2(A / A_w, c4 * z), t = 5e4 / 13 * N_c * N_cb * e_t * sqrt(a * a + b * b) / (R_a + G_a + 21 / 20 * B_a), C = pow2(t, 0.9) * sqrt(J / 100) * pow2(1.64 - pow2(0.29, n3), 0.73);
           return fillOut(correlates, { J, C, h });
         }
         function toXyz(CAM) {
-          var _a2 = fillOut(vitalCorrelates, CAM), J = _a2.J, C = _a2.C, h = _a2.h, h_rad = ciebase_ts_1.degree.toRadian(h), t = pow2(C / (sqrt(J / 100) * pow2(1.64 - pow2(0.29, n), 0.73)), 10 / 9), e_t = 1 / 4 * (cos(h_rad + 2) + 3.8), A = A_w * pow2(J / 100, 1 / c2 / z), p_1 = 5e4 / 13 * N_c * N_cb * e_t / t, p_2 = A / N_bb + 0.305, q_1 = p_2 * 61 / 20 * 460 / 1403, q_2 = 61 / 20 * 220 / 1403, q_3 = 21 / 20 * 6300 / 1403 - 27 / 1403, sin_h = sin(h_rad), cos_h = cos(h_rad), a, b;
-          t === 0 || isNaN(t) ? a = b = 0 : abs4(sin_h) >= abs4(cos_h) ? (b = q_1 / (p_1 / sin_h + q_2 * cos_h / sin_h + q_3), a = b * cos_h / sin_h) : (a = q_1 / (p_1 / cos_h + q_2 + q_3 * sin_h / cos_h), b = a * sin_h / cos_h);
+          var _a2 = fillOut(vitalCorrelates, CAM), J = _a2.J, C = _a2.C, h = _a2.h, h_rad = ciebase_ts_1.degree.toRadian(h), t = pow2(C / (sqrt(J / 100) * pow2(1.64 - pow2(0.29, n3), 0.73)), 10 / 9), e_t = 1 / 4 * (cos(h_rad + 2) + 3.8), A = A_w * pow2(J / 100, 1 / c4 / z), p_1 = 5e4 / 13 * N_c * N_cb * e_t / t, p_2 = A / N_bb + 0.305, q_1 = p_2 * 61 / 20 * 460 / 1403, q_2 = 61 / 20 * 220 / 1403, q_3 = 21 / 20 * 6300 / 1403 - 27 / 1403, sin_h = sin(h_rad), cos_h = cos(h_rad), a, b;
+          t === 0 || isNaN(t) ? a = b = 0 : abs5(sin_h) >= abs5(cos_h) ? (b = q_1 / (p_1 / sin_h + q_2 * cos_h / sin_h + q_3), a = b * cos_h / sin_h) : (a = q_1 / (p_1 / cos_h + q_2 + q_3 * sin_h / cos_h), b = a * sin_h / cos_h);
           var RGB_a = [
             20 / 61 * p_2 + 451 / 1403 * a + 288 / 1403 * b,
             20 / 61 * p_2 - 891 / 1403 * a - 261 / 1403 * b,
@@ -549,12 +549,12 @@ var huetiful = (() => {
         name === void 0 && (name = "UCS");
         var _a = uniformSpaces[name], K_L = _a.K_L, c_1 = _a.c_1, c_2 = _a.c_2;
         function fromCam(CAM) {
-          var J = CAM.J, M = CAM.M, h = CAM.h, h_rad = ciebase_ts_1.degree.toRadian(h), J_p = (1 + 100 * c_1) * J / (1 + c_1 * J), M_p = 1 / c_2 * log(1 + c_2 * M), a_p = M_p * cos(h_rad), b_p = M_p * sin(h_rad);
+          var J = CAM.J, M2 = CAM.M, h = CAM.h, h_rad = ciebase_ts_1.degree.toRadian(h), J_p = (1 + 100 * c_1) * J / (1 + c_1 * J), M_p = 1 / c_2 * log(1 + c_2 * M2), a_p = M_p * cos(h_rad), b_p = M_p * sin(h_rad);
           return { J_p, a_p, b_p };
         }
         function toCam(UCS) {
-          var J_p = UCS.J_p, a_p = UCS.a_p, b_p = UCS.b_p, J = -J_p / (c_1 * J_p - 100 * c_1 - 1), M_p = sqrt(pow2(a_p, 2) + pow2(b_p, 2)), M = (exp(c_2 * M_p) - 1) / c_2, h_rad = atan2(b_p, a_p), h = ciebase_ts_1.degree.fromRadian(h_rad);
-          return { J, M, h };
+          var J_p = UCS.J_p, a_p = UCS.a_p, b_p = UCS.b_p, J = -J_p / (c_1 * J_p - 100 * c_1 - 1), M_p = sqrt(pow2(a_p, 2) + pow2(b_p, 2)), M2 = (exp(c_2 * M_p) - 1) / c_2, h_rad = atan2(b_p, a_p), h = ciebase_ts_1.degree.fromRadian(h_rad);
+          return { J, M: M2, h };
         }
         function distance(UCS1, UCS2) {
           return sqrt(pow2((UCS1.J_p - UCS2.J_p) / K_L, 2) + pow2(UCS1.a_p - UCS2.a_p, 2) + pow2(UCS1.b_p - UCS2.b_p, 2));
@@ -929,20 +929,20 @@ var huetiful = (() => {
   ) : void 0, converter_default = converter;
 
   // node_modules/culori/src/modes.js
-  var converters = {}, modes = {}, parsers = [], colorProfiles = {}, identity = (v) => v, useMode = (definition18) => (converters[definition18.mode] = {
-    ...converters[definition18.mode],
-    ...definition18.toMode
-  }, Object.keys(definition18.fromMode || {}).forEach((k4) => {
-    converters[k4] || (converters[k4] = {}), converters[k4][definition18.mode] = definition18.fromMode[k4];
-  }), definition18.ranges || (definition18.ranges = {}), definition18.difference || (definition18.difference = {}), definition18.channels.forEach((channel) => {
-    if (definition18.ranges[channel] === void 0 && (definition18.ranges[channel] = [0, 1]), !definition18.interpolate[channel])
+  var converters = {}, modes = {}, parsers = [], colorProfiles = {}, identity = (v) => v, useMode = (definition28) => (converters[definition28.mode] = {
+    ...converters[definition28.mode],
+    ...definition28.toMode
+  }, Object.keys(definition28.fromMode || {}).forEach((k4) => {
+    converters[k4] || (converters[k4] = {}), converters[k4][definition28.mode] = definition28.fromMode[k4];
+  }), definition28.ranges || (definition28.ranges = {}), definition28.difference || (definition28.difference = {}), definition28.channels.forEach((channel) => {
+    if (definition28.ranges[channel] === void 0 && (definition28.ranges[channel] = [0, 1]), !definition28.interpolate[channel])
       throw new Error(`Missing interpolator for: ${channel}`);
-    typeof definition18.interpolate[channel] == "function" && (definition18.interpolate[channel] = {
-      use: definition18.interpolate[channel]
-    }), definition18.interpolate[channel].fixup || (definition18.interpolate[channel].fixup = identity);
-  }), modes[definition18.mode] = definition18, (definition18.parse || []).forEach((parser) => {
-    useParser(parser, definition18.mode);
-  }), converter_default(definition18.mode)), getMode = (mode2) => modes[mode2], useParser = (parser, mode2) => {
+    typeof definition28.interpolate[channel] == "function" && (definition28.interpolate[channel] = {
+      use: definition28.interpolate[channel]
+    }), definition28.interpolate[channel].fixup || (definition28.interpolate[channel].fixup = identity);
+  }), modes[definition28.mode] = definition28, (definition28.parse || []).forEach((parser) => {
+    useParser(parser, definition28.mode);
+  }), converter_default(definition28.mode)), getMode = (mode2) => modes[mode2], useParser = (parser, mode2) => {
     if (typeof parser == "string") {
       if (!mode2)
         throw new Error("'mode' required when 'parser' is a string");
@@ -1093,8 +1093,8 @@ var huetiful = (() => {
     if (!coords)
       return;
     let channels = getMode(mode2).channels;
-    for (let ii = 0, c2; ii < channels.length; ii++)
-      c2 = coords[ii], c2.type !== Tok.None && (res[channels[ii]] = c2.type === Tok.Number ? c2.value : c2.value / 100);
+    for (let ii = 0, c4; ii < channels.length; ii++)
+      c4 = coords[ii], c4.type !== Tok.None && (res[channels[ii]] = c4.type === Tok.Number ? c4.value : c4.value / 100);
     return res;
   }
   function consumeCoords(tokens, includeHue) {
@@ -1117,7 +1117,7 @@ var huetiful = (() => {
           return;
         coords[3] = coords[3].value;
       }
-      return coords.length === 3 && coords.push({ type: Tok.None, value: void 0 }), coords.every((c2) => c2.type !== Tok.Alpha) ? coords : void 0;
+      return coords.length === 3 && coords.push({ type: Tok.None, value: void 0 }), coords.every((c4) => c4.type !== Tok.Alpha) ? coords : void 0;
     }
   }
   function parseModernSyntax(tokens, includeHue) {
@@ -1150,7 +1150,7 @@ var huetiful = (() => {
   var parseRgb_default = parseRgb;
 
   // node_modules/culori/src/rgb/parseTransparent.js
-  var parseTransparent = (c2) => c2 === "transparent" ? { mode: "rgb", r: 0, g: 0, b: 0, alpha: 0 } : void 0, parseTransparent_default = parseTransparent;
+  var parseTransparent = (c4) => c4 === "transparent" ? { mode: "rgb", r: 0, g: 0, b: 0, alpha: 0 } : void 0, parseTransparent_default = parseTransparent;
 
   // node_modules/culori/src/interpolate/lerp.js
   var lerp = (a, b, t) => a + t * (b - a);
@@ -1203,14 +1203,14 @@ var huetiful = (() => {
   }, definition_default = definition;
 
   // node_modules/culori/src/a98/convertA98ToXyz65.js
-  var linearize = (v) => Math.pow(Math.abs(v), 2.19921875) * Math.sign(v), convertA98ToXyz65 = (a982) => {
-    let r2 = linearize(a982.r), g = linearize(a982.g), b = linearize(a982.b), res = {
+  var linearize = (v) => Math.pow(Math.abs(v), 2.19921875) * Math.sign(v), convertA98ToXyz65 = (a983) => {
+    let r2 = linearize(a983.r), g = linearize(a983.g), b = linearize(a983.b), res = {
       mode: "xyz65",
       x: 0.5766690429101305 * r2 + 0.1855582379065463 * g + 0.1882286462349947 * b,
       y: 0.297344975250536 * r2 + 0.6273635662554661 * g + 0.0752914584939979 * b,
       z: 0.0270313613864123 * r2 + 0.0706888525358272 * g + 0.9913375368376386 * b
     };
-    return a982.alpha !== void 0 && (res.alpha = a982.alpha), res;
+    return a983.alpha !== void 0 && (res.alpha = a983.alpha), res;
   }, convertA98ToXyz65_default = convertA98ToXyz65;
 
   // node_modules/culori/src/a98/convertXyz65ToA98.js
@@ -1231,9 +1231,9 @@ var huetiful = (() => {
   }, convertXyz65ToA98_default = convertXyz65ToA98;
 
   // node_modules/culori/src/lrgb/convertRgbToLrgb.js
-  var fn = (c2) => {
-    let abs4 = Math.abs(c2);
-    return abs4 <= 0.04045 ? c2 / 12.92 : (Math.sign(c2) || 1) * Math.pow((abs4 + 0.055) / 1.055, 2.4);
+  var fn = (c4) => {
+    let abs5 = Math.abs(c4);
+    return abs5 <= 0.04045 ? c4 / 12.92 : (Math.sign(c4) || 1) * Math.pow((abs5 + 0.055) / 1.055, 2.4);
   }, convertRgbToLrgb = ({ r: r2, g, b, alpha: alpha2 }) => {
     let res = {
       mode: "lrgb",
@@ -1245,8 +1245,8 @@ var huetiful = (() => {
   }, convertRgbToLrgb_default = convertRgbToLrgb;
 
   // node_modules/culori/src/xyz65/convertRgbToXyz65.js
-  var convertRgbToXyz65 = (rgb4) => {
-    let { r: r2, g, b, alpha: alpha2 } = convertRgbToLrgb_default(rgb4), res = {
+  var convertRgbToXyz65 = (rgb5) => {
+    let { r: r2, g, b, alpha: alpha2 } = convertRgbToLrgb_default(rgb5), res = {
       mode: "xyz65",
       x: 0.4123907992659593 * r2 + 0.357584339383878 * g + 0.1804807884018343 * b,
       y: 0.2126390058715102 * r2 + 0.715168678767756 * g + 0.0721923153607337 * b,
@@ -1256,9 +1256,9 @@ var huetiful = (() => {
   }, convertRgbToXyz65_default = convertRgbToXyz65;
 
   // node_modules/culori/src/lrgb/convertLrgbToRgb.js
-  var fn2 = (c2) => {
-    let abs4 = Math.abs(c2);
-    return abs4 > 31308e-7 ? (Math.sign(c2) || 1) * (1.055 * Math.pow(abs4, 0.4166666666666667) - 0.055) : c2 * 12.92;
+  var fn2 = (c4) => {
+    let abs5 = Math.abs(c4);
+    return abs5 > 31308e-7 ? (Math.sign(c4) || 1) * (1.055 * Math.pow(abs5, 0.4166666666666667) - 0.055) : c4 * 12.92;
   }, convertLrgbToRgb = ({ r: r2, g, b, alpha: alpha2 }, mode2 = "rgb") => {
     let res = {
       mode: mode2,
@@ -1305,6 +1305,27 @@ var huetiful = (() => {
     let normalized = normalizeHue_default(hue3);
     return idx === 0 || hues[idx - 1] === void 0 ? normalized : fn5(normalized - normalizeHue_default(arr[idx - 1]));
   }).reduce((acc, curr) => !acc.length || curr === void 0 || acc[acc.length - 1] === void 0 ? (acc.push(curr), acc) : (acc.push(curr + acc[acc.length - 1]), acc), []), fixupHueShorter = (arr) => hue2(arr, (d) => Math.abs(d) <= 180 ? d : d - 360 * Math.sign(d));
+
+  // node_modules/culori/src/cubehelix/constants.js
+  var M = [-0.14861, 1.78277, -0.29227, -0.90649, 1.97294, 0], degToRad = Math.PI / 180, radToDeg = 180 / Math.PI;
+
+  // node_modules/culori/src/cubehelix/convertRgbToCubehelix.js
+  var DE = M[3] * M[4], BE = M[1] * M[4], BCAD = M[1] * M[2] - M[0] * M[3], convertRgbToCubehelix = ({ r: r2, g, b, alpha: alpha2 }) => {
+    let l = (BCAD * b + r2 * DE - g * BE) / (BCAD + DE - BE), x = b - l, y = (M[4] * (g - l) - M[2] * x) / M[3], res = {
+      mode: "cubehelix",
+      l,
+      s: l === 0 || l === 1 ? void 0 : Math.sqrt(x * x + y * y) / (M[4] * l * (1 - l))
+    };
+    return res.s && (res.h = Math.atan2(y, x) * radToDeg - 120), alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertRgbToCubehelix_default = convertRgbToCubehelix;
+
+  // node_modules/culori/src/cubehelix/convertCubehelixToRgb.js
+  var convertCubehelixToRgb = ({ h, s, l, alpha: alpha2 }) => {
+    let res = { mode: "rgb" };
+    h = (h === void 0 ? 0 : h + 120) * degToRad;
+    let amp = s === void 0 ? 0 : s * l * (1 - l), cosh = Math.cos(h), sinh = Math.sin(h);
+    return res.r = l + amp * (M[0] * cosh + M[1] * sinh), res.g = l + amp * (M[2] * cosh + M[3] * sinh), res.b = l + amp * (M[4] * cosh + M[5] * sinh), alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertCubehelixToRgb_default = convertCubehelixToRgb;
 
   // node_modules/culori/src/difference.js
   var differenceHueSaturation = (std, smp) => {
@@ -1353,19 +1374,56 @@ var huetiful = (() => {
     return a.length ? a.reduce((sum, v) => sum + v, 0) / a.length : void 0;
   };
 
+  // node_modules/culori/src/cubehelix/definition.js
+  var definition3 = {
+    mode: "cubehelix",
+    channels: ["h", "s", "l", "alpha"],
+    parse: ["--cubehelix"],
+    serialize: "--cubehelix",
+    ranges: {
+      h: [0, 360],
+      s: [0, 4.614],
+      l: [0, 1]
+    },
+    fromMode: {
+      rgb: convertRgbToCubehelix_default
+    },
+    toMode: {
+      rgb: convertCubehelixToRgb_default
+    },
+    interpolate: {
+      h: {
+        use: interpolatorLinear,
+        fixup: fixupHueShorter
+      },
+      s: interpolatorLinear,
+      l: interpolatorLinear,
+      alpha: {
+        use: interpolatorLinear,
+        fixup: fixupAlpha
+      }
+    },
+    difference: {
+      h: differenceHueSaturation
+    },
+    average: {
+      h: averageAngle
+    }
+  }, definition_default3 = definition3;
+
   // node_modules/culori/src/lch/convertLabToLch.js
   var convertLabToLch = ({ l, a, b, alpha: alpha2 }, mode2 = "lch") => {
-    let c2 = Math.sqrt(a * a + b * b), res = { mode: mode2, l, c: c2 };
-    return c2 && (res.h = normalizeHue_default(Math.atan2(b, a) * 180 / Math.PI)), alpha2 !== void 0 && (res.alpha = alpha2), res;
+    let c4 = Math.sqrt(a * a + b * b), res = { mode: mode2, l, c: c4 };
+    return c4 && (res.h = normalizeHue_default(Math.atan2(b, a) * 180 / Math.PI)), alpha2 !== void 0 && (res.alpha = alpha2), res;
   }, convertLabToLch_default = convertLabToLch;
 
   // node_modules/culori/src/lch/convertLchToLab.js
-  var convertLchToLab = ({ l, c: c2, h, alpha: alpha2 }, mode2 = "lab") => {
+  var convertLchToLab = ({ l, c: c4, h, alpha: alpha2 }, mode2 = "lab") => {
     let res = {
       mode: mode2,
       l,
-      a: c2 ? c2 * Math.cos(h / 180 * Math.PI) : 0,
-      b: c2 ? c2 * Math.sin(h / 180 * Math.PI) : 0
+      a: c4 ? c4 * Math.cos(h / 180 * Math.PI) : 0,
+      b: c4 ? c4 * Math.sin(h / 180 * Math.PI) : 0
     };
     return alpha2 !== void 0 && (res.alpha = alpha2), res;
   }, convertLchToLab_default = convertLchToLab;
@@ -1396,7 +1454,7 @@ var huetiful = (() => {
   }, convertLab65ToXyz65_default = convertLab65ToXyz65;
 
   // node_modules/culori/src/lab65/convertLab65ToRgb.js
-  var convertLab65ToRgb = (lab2) => convertXyz65ToRgb_default(convertLab65ToXyz65_default(lab2)), convertLab65ToRgb_default = convertLab65ToRgb;
+  var convertLab65ToRgb = (lab3) => convertXyz65ToRgb_default(convertLab65ToXyz65_default(lab3)), convertLab65ToRgb_default = convertLab65ToRgb;
 
   // node_modules/culori/src/lab65/convertXyz65ToLab65.js
   var f = (value) => value > e ? Math.cbrt(value) : (k * value + 16) / 116, convertXyz65ToLab65 = ({ x, y, z, alpha: alpha2 }) => {
@@ -1410,10 +1468,202 @@ var huetiful = (() => {
   }, convertXyz65ToLab65_default = convertXyz65ToLab65;
 
   // node_modules/culori/src/lab65/convertRgbToLab65.js
-  var convertRgbToLab65 = (rgb4) => {
-    let res = convertXyz65ToLab65_default(convertRgbToXyz65_default(rgb4));
-    return rgb4.r === rgb4.b && rgb4.b === rgb4.g && (res.a = res.b = 0), res;
+  var convertRgbToLab65 = (rgb5) => {
+    let res = convertXyz65ToLab65_default(convertRgbToXyz65_default(rgb5));
+    return rgb5.r === rgb5.b && rgb5.b === rgb5.g && (res.a = res.b = 0), res;
   }, convertRgbToLab65_default = convertRgbToLab65;
+
+  // node_modules/culori/src/dlch/constants.js
+  var \u03B8 = 0.14444444444444443 * Math.PI, cos\u03B8 = Math.cos(\u03B8), sin\u03B8 = Math.sin(\u03B8), factor = 100 / Math.log(139 / 100);
+
+  // node_modules/culori/src/dlch/convertDlchToLab65.js
+  var convertDlchToLab65 = ({ l, c: c4, h, alpha: alpha2 }) => {
+    let res = {
+      mode: "lab65",
+      l: (Math.exp(l * 1 / factor) - 1) / 39e-4
+    };
+    if (h === void 0)
+      res.a = res.b = 0;
+    else {
+      let G = (Math.exp(0.0435 * c4 * 1 * 1) - 1) / 0.075, e4 = G * Math.cos(h / 180 * Math.PI - \u03B8), f3 = G * Math.sin(h / 180 * Math.PI - \u03B8);
+      res.a = e4 * cos\u03B8 - f3 / 0.83 * sin\u03B8, res.b = e4 * sin\u03B8 + f3 / 0.83 * cos\u03B8;
+    }
+    return alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertDlchToLab65_default = convertDlchToLab65;
+
+  // node_modules/culori/src/dlch/convertLab65ToDlch.js
+  var convertLab65ToDlch = ({ l, a, b, alpha: alpha2 }) => {
+    let e4 = a * cos\u03B8 + b * sin\u03B8, f3 = 0.83 * (b * cos\u03B8 - a * sin\u03B8), G = Math.sqrt(e4 * e4 + f3 * f3), res = {
+      mode: "dlch",
+      l: factor / 1 * Math.log(1 + 39e-4 * l),
+      c: Math.log(1 + 0.075 * G) / (0.0435 * 1 * 1)
+    };
+    return res.c && (res.h = normalizeHue_default((Math.atan2(f3, e4) + \u03B8) / Math.PI * 180)), alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertLab65ToDlch_default = convertLab65ToDlch;
+
+  // node_modules/culori/src/dlab/definition.js
+  var convertDlabToLab65 = (c4) => convertDlchToLab65_default(convertLabToLch_default(c4, "dlch")), convertLab65ToDlab = (c4) => convertLchToLab_default(convertLab65ToDlch_default(c4), "dlab"), definition4 = {
+    mode: "dlab",
+    parse: ["--din99o-lab"],
+    serialize: "--din99o-lab",
+    toMode: {
+      lab65: convertDlabToLab65,
+      rgb: (c4) => convertLab65ToRgb_default(convertDlabToLab65(c4))
+    },
+    fromMode: {
+      lab65: convertLab65ToDlab,
+      rgb: (c4) => convertLab65ToDlab(convertRgbToLab65_default(c4))
+    },
+    channels: ["l", "a", "b", "alpha"],
+    ranges: {
+      l: [0, 100],
+      a: [-40.09, 45.501],
+      b: [-40.469, 44.344]
+    },
+    interpolate: {
+      l: interpolatorLinear,
+      a: interpolatorLinear,
+      b: interpolatorLinear,
+      alpha: {
+        use: interpolatorLinear,
+        fixup: fixupAlpha
+      }
+    }
+  }, definition_default4 = definition4;
+
+  // node_modules/culori/src/dlch/definition.js
+  var definition5 = {
+    mode: "dlch",
+    parse: ["--din99o-lch"],
+    serialize: "--din99o-lch",
+    toMode: {
+      lab65: convertDlchToLab65_default,
+      dlab: (c4) => convertLchToLab_default(c4, "dlab"),
+      rgb: (c4) => convertLab65ToRgb_default(convertDlchToLab65_default(c4))
+    },
+    fromMode: {
+      lab65: convertLab65ToDlch_default,
+      dlab: (c4) => convertLabToLch_default(c4, "dlch"),
+      rgb: (c4) => convertLab65ToDlch_default(convertRgbToLab65_default(c4))
+    },
+    channels: ["l", "c", "h", "alpha"],
+    ranges: {
+      l: [0, 100],
+      c: [0, 51.484],
+      h: [0, 360]
+    },
+    interpolate: {
+      l: interpolatorLinear,
+      c: interpolatorLinear,
+      h: {
+        use: interpolatorLinear,
+        fixup: fixupHueShorter
+      },
+      alpha: {
+        use: interpolatorLinear,
+        fixup: fixupAlpha
+      }
+    },
+    difference: {
+      h: differenceHueChroma
+    },
+    average: {
+      h: averageAngle
+    }
+  }, definition_default5 = definition5;
+
+  // node_modules/culori/src/hsi/convertHsiToRgb.js
+  function convertHsiToRgb({ h, s, i, alpha: alpha2 }) {
+    h = normalizeHue_default(h);
+    let f3 = Math.abs(h / 60 % 2 - 1), res;
+    switch (Math.floor(h / 60)) {
+      case 0:
+        res = {
+          r: i * (1 + s * (3 / (2 - f3) - 1)),
+          g: i * (1 + s * (3 * (1 - f3) / (2 - f3) - 1)),
+          b: i * (1 - s)
+        };
+        break;
+      case 1:
+        res = {
+          r: i * (1 + s * (3 * (1 - f3) / (2 - f3) - 1)),
+          g: i * (1 + s * (3 / (2 - f3) - 1)),
+          b: i * (1 - s)
+        };
+        break;
+      case 2:
+        res = {
+          r: i * (1 - s),
+          g: i * (1 + s * (3 / (2 - f3) - 1)),
+          b: i * (1 + s * (3 * (1 - f3) / (2 - f3) - 1))
+        };
+        break;
+      case 3:
+        res = {
+          r: i * (1 - s),
+          g: i * (1 + s * (3 * (1 - f3) / (2 - f3) - 1)),
+          b: i * (1 + s * (3 / (2 - f3) - 1))
+        };
+        break;
+      case 4:
+        res = {
+          r: i * (1 + s * (3 * (1 - f3) / (2 - f3) - 1)),
+          g: i * (1 - s),
+          b: i * (1 + s * (3 / (2 - f3) - 1))
+        };
+        break;
+      case 5:
+        res = {
+          r: i * (1 + s * (3 / (2 - f3) - 1)),
+          g: i * (1 - s),
+          b: i * (1 + s * (3 * (1 - f3) / (2 - f3) - 1))
+        };
+        break;
+      default:
+        res = { r: i * (1 - s), g: i * (1 - s), b: i * (1 - s) };
+    }
+    return res.mode = "rgb", alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }
+
+  // node_modules/culori/src/hsi/convertRgbToHsi.js
+  function convertRgbToHsi({ r: r2, g, b, alpha: alpha2 }) {
+    let M2 = Math.max(r2, g, b), m = Math.min(r2, g, b), res = {
+      mode: "hsi",
+      s: r2 + g + b === 0 ? 0 : 1 - 3 * m / (r2 + g + b),
+      i: (r2 + g + b) / 3
+    };
+    return M2 - m !== 0 && (res.h = (M2 === r2 ? (g - b) / (M2 - m) + (g < b) * 6 : M2 === g ? (b - r2) / (M2 - m) + 2 : (r2 - g) / (M2 - m) + 4) * 60), alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }
+
+  // node_modules/culori/src/hsi/definition.js
+  var definition6 = {
+    mode: "hsi",
+    toMode: {
+      rgb: convertHsiToRgb
+    },
+    parse: ["--hsi"],
+    serialize: "--hsi",
+    fromMode: {
+      rgb: convertRgbToHsi
+    },
+    channels: ["h", "s", "i", "alpha"],
+    ranges: {
+      h: [0, 360]
+    },
+    gamut: "rgb",
+    interpolate: {
+      h: { use: interpolatorLinear, fixup: fixupHueShorter },
+      s: interpolatorLinear,
+      i: interpolatorLinear,
+      alpha: { use: interpolatorLinear, fixup: fixupAlpha }
+    },
+    difference: {
+      h: differenceHueSaturation
+    },
+    average: {
+      h: averageAngle
+    }
+  }, definition_default6 = definition6;
 
   // node_modules/culori/src/hsl/convertHslToRgb.js
   function convertHslToRgb({ h, s, l, alpha: alpha2 }) {
@@ -1446,12 +1696,12 @@ var huetiful = (() => {
 
   // node_modules/culori/src/hsl/convertRgbToHsl.js
   function convertRgbToHsl({ r: r2, g, b, alpha: alpha2 }) {
-    let M = Math.max(r2, g, b), m = Math.min(r2, g, b), res = {
+    let M2 = Math.max(r2, g, b), m = Math.min(r2, g, b), res = {
       mode: "hsl",
-      s: M === m ? 0 : (M - m) / (1 - Math.abs(M + m - 1)),
-      l: 0.5 * (M + m)
+      s: M2 === m ? 0 : (M2 - m) / (1 - Math.abs(M2 + m - 1)),
+      l: 0.5 * (M2 + m)
     };
-    return M - m !== 0 && (res.h = (M === r2 ? (g - b) / (M - m) + (g < b) * 6 : M === g ? (b - r2) / (M - m) + 2 : (r2 - g) / (M - m) + 4) * 60), alpha2 !== void 0 && (res.alpha = alpha2), res;
+    return M2 - m !== 0 && (res.h = (M2 === r2 ? (g - b) / (M2 - m) + (g < b) * 6 : M2 === g ? (b - r2) / (M2 - m) + 2 : (r2 - g) / (M2 - m) + 4) * 60), alpha2 !== void 0 && (res.alpha = alpha2), res;
   }
 
   // node_modules/culori/src/util/hue.js
@@ -1504,7 +1754,7 @@ var huetiful = (() => {
   var parseHsl_default = parseHsl;
 
   // node_modules/culori/src/hsl/definition.js
-  var definition3 = {
+  var definition7 = {
     mode: "hsl",
     toMode: {
       rgb: convertHslToRgb
@@ -1518,7 +1768,7 @@ var huetiful = (() => {
     },
     gamut: "rgb",
     parse: [parseHsl_default, parseHslLegacy_default],
-    serialize: (c2) => `hsl(${c2.h || 0} ${c2.s !== void 0 ? c2.s * 100 + "%" : "none"} ${c2.l !== void 0 ? c2.l * 100 + "%" : "none"}${c2.alpha < 1 ? ` / ${c2.alpha}` : ""})`,
+    serialize: (c4) => `hsl(${c4.h || 0} ${c4.s !== void 0 ? c4.s * 100 + "%" : "none"} ${c4.l !== void 0 ? c4.l * 100 + "%" : "none"}${c4.alpha < 1 ? ` / ${c4.alpha}` : ""})`,
     interpolate: {
       h: { use: interpolatorLinear, fixup: fixupHueShorter },
       s: interpolatorLinear,
@@ -1531,7 +1781,7 @@ var huetiful = (() => {
     average: {
       h: averageAngle
     }
-  }, definition_default3 = definition3;
+  }, definition_default7 = definition7;
 
   // node_modules/culori/src/hsv/convertHsvToRgb.js
   function convertHsvToRgb({ h, s, v, alpha: alpha2 }) {
@@ -1564,16 +1814,16 @@ var huetiful = (() => {
 
   // node_modules/culori/src/hsv/convertRgbToHsv.js
   function convertRgbToHsv({ r: r2, g, b, alpha: alpha2 }) {
-    let M = Math.max(r2, g, b), m = Math.min(r2, g, b), res = {
+    let M2 = Math.max(r2, g, b), m = Math.min(r2, g, b), res = {
       mode: "hsv",
-      s: M === 0 ? 0 : 1 - m / M,
-      v: M
+      s: M2 === 0 ? 0 : 1 - m / M2,
+      v: M2
     };
-    return M - m !== 0 && (res.h = (M === r2 ? (g - b) / (M - m) + (g < b) * 6 : M === g ? (b - r2) / (M - m) + 2 : (r2 - g) / (M - m) + 4) * 60), alpha2 !== void 0 && (res.alpha = alpha2), res;
+    return M2 - m !== 0 && (res.h = (M2 === r2 ? (g - b) / (M2 - m) + (g < b) * 6 : M2 === g ? (b - r2) / (M2 - m) + 2 : (r2 - g) / (M2 - m) + 4) * 60), alpha2 !== void 0 && (res.alpha = alpha2), res;
   }
 
   // node_modules/culori/src/hsv/definition.js
-  var definition4 = {
+  var definition8 = {
     mode: "hsv",
     toMode: {
       rgb: convertHsvToRgb
@@ -1600,7 +1850,7 @@ var huetiful = (() => {
     average: {
       h: averageAngle
     }
-  }, definition_default4 = definition4;
+  }, definition_default8 = definition8;
 
   // node_modules/culori/src/hwb/convertHwbToRgb.js
   function convertHwbToRgb({ h, w, b, alpha: alpha2 }) {
@@ -1618,15 +1868,15 @@ var huetiful = (() => {
 
   // node_modules/culori/src/hwb/convertRgbToHwb.js
   function convertRgbToHwb(rgba) {
-    let hsv2 = convertRgbToHsv(rgba);
-    if (hsv2 === void 0)
+    let hsv3 = convertRgbToHsv(rgba);
+    if (hsv3 === void 0)
       return;
     let res = {
       mode: "hwb",
-      w: (1 - hsv2.s) * hsv2.v,
-      b: 1 - hsv2.v
+      w: (1 - hsv3.s) * hsv3.v,
+      b: 1 - hsv3.v
     };
-    return hsv2.h !== void 0 && (res.h = hsv2.h), hsv2.alpha !== void 0 && (res.alpha = hsv2.alpha), res;
+    return hsv3.h !== void 0 && (res.h = hsv3.h), hsv3.alpha !== void 0 && (res.alpha = hsv3.alpha), res;
   }
 
   // node_modules/culori/src/hwb/parseHwb.js
@@ -1654,7 +1904,7 @@ var huetiful = (() => {
   var parseHwb_default = ParseHwb;
 
   // node_modules/culori/src/hwb/definition.js
-  var definition5 = {
+  var definition9 = {
     mode: "hwb",
     toMode: {
       rgb: convertHwbToRgb
@@ -1668,7 +1918,7 @@ var huetiful = (() => {
     },
     gamut: "rgb",
     parse: [parseHwb_default],
-    serialize: (c2) => `hwb(${c2.h || 0} ${c2.w * 100}% ${c2.b * 100}%${c2.alpha < 1 ? ` / ${c2.alpha}` : ""})`,
+    serialize: (c4) => `hwb(${c4.h || 0} ${c4.w * 100}% ${c4.b * 100}%${c4.alpha < 1 ? ` / ${c4.alpha}` : ""})`,
     interpolate: {
       h: { use: interpolatorLinear, fixup: fixupHueShorter },
       w: interpolatorLinear,
@@ -1681,7 +1931,130 @@ var huetiful = (() => {
     average: {
       h: averageAngle
     }
-  }, definition_default5 = definition5;
+  }, definition_default9 = definition9;
+
+  // node_modules/culori/src/jab/convertXyz65ToJab.js
+  var n = 0.1593017578125, p = 134.03437499999998, c1 = 0.8359375, c2 = 18.8515625, c3 = 18.6875, d0 = 16295499532821565e-27, pq = (v) => {
+    let vn3 = Math.pow(v / 1e4, n);
+    return Math.pow((c1 + c2 * vn3) / (1 + c3 * vn3), p) || 0;
+  }, abs = (v) => Math.max(v * 203, 0), convertXyz65ToJab = ({ x, y, z, alpha: alpha2 }) => {
+    x = abs(x), y = abs(y), z = abs(z);
+    let xp = 1.15 * x - 0.15 * z, yp = 0.66 * y + 0.34 * x, l = pq(0.41478972 * xp + 0.579999 * yp + 0.014648 * z), m = pq(-0.20151 * xp + 1.120649 * yp + 0.0531008 * z), s = pq(-0.0166008 * xp + 0.2648 * yp + 0.6684799 * z), i = (l + m) / 2, res = {
+      mode: "jab",
+      j: 0.44 * i / (1 - 0.56 * i) - d0,
+      a: 3.524 * l - 4.066708 * m + 0.542708 * s,
+      b: 0.199076 * l + 1.096799 * m - 1.295875 * s
+    };
+    return alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertXyz65ToJab_default = convertXyz65ToJab;
+
+  // node_modules/culori/src/jab/convertJabToXyz65.js
+  var n2 = 0.1593017578125, p2 = 134.03437499999998, c12 = 0.8359375, c22 = 18.8515625, c32 = 18.6875, d02 = 16295499532821565e-27, pq_inv = (v) => {
+    let vp = Math.pow(v, 1 / p2);
+    return 1e4 * Math.pow((c12 - vp) / (c32 * vp - c22), 1 / n2) || 0;
+  }, rel = (v) => v / 203, convertJabToXyz65 = ({ j, a, b, alpha: alpha2 }) => {
+    let i = (j + d02) / (0.44 + 0.56 * (j + d02)), l = pq_inv(i + 0.13860504 * a + 0.058047316 * b), m = pq_inv(i - 0.13860504 * a - 0.058047316 * b), s = pq_inv(i - 0.096019242 * a - 0.8118919 * b), res = {
+      mode: "xyz65",
+      x: rel(
+        1.661373024652174 * l - 0.914523081304348 * m + 0.23136208173913045 * s
+      ),
+      y: rel(
+        -0.3250758611844533 * l + 1.571847026732543 * m - 0.21825383453227928 * s
+      ),
+      z: rel(-0.090982811 * l - 0.31272829 * m + 1.5227666 * s)
+    };
+    return alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertJabToXyz65_default = convertJabToXyz65;
+
+  // node_modules/culori/src/jab/convertRgbToJab.js
+  var convertRgbToJab = (rgb5) => {
+    let res = convertXyz65ToJab_default(convertRgbToXyz65_default(rgb5));
+    return rgb5.r === rgb5.b && rgb5.b === rgb5.g && (res.a = res.b = 0), res;
+  }, convertRgbToJab_default = convertRgbToJab;
+
+  // node_modules/culori/src/jab/convertJabToRgb.js
+  var convertJabToRgb = (color2) => convertXyz65ToRgb_default(convertJabToXyz65_default(color2)), convertJabToRgb_default = convertJabToRgb;
+
+  // node_modules/culori/src/jab/definition.js
+  var definition10 = {
+    mode: "jab",
+    channels: ["j", "a", "b", "alpha"],
+    parse: ["--jzazbz"],
+    serialize: "--jzazbz",
+    fromMode: {
+      rgb: convertRgbToJab_default,
+      xyz65: convertXyz65ToJab_default
+    },
+    toMode: {
+      rgb: convertJabToRgb_default,
+      xyz65: convertJabToXyz65_default
+    },
+    ranges: {
+      j: [0, 0.222],
+      a: [-0.109, 0.129],
+      b: [-0.185, 0.134]
+    },
+    interpolate: {
+      j: interpolatorLinear,
+      a: interpolatorLinear,
+      b: interpolatorLinear,
+      alpha: { use: interpolatorLinear, fixup: fixupAlpha }
+    }
+  }, definition_default10 = definition10;
+
+  // node_modules/culori/src/jch/convertJabToJch.js
+  var convertJabToJch = ({ j, a, b, alpha: alpha2 }) => {
+    let c4 = Math.sqrt(a * a + b * b), res = {
+      mode: "jch",
+      j,
+      c: c4
+    };
+    return c4 && (res.h = normalizeHue_default(Math.atan2(b, a) * 180 / Math.PI)), alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertJabToJch_default = convertJabToJch;
+
+  // node_modules/culori/src/jch/convertJchToJab.js
+  var convertJchToJab = ({ j, c: c4, h, alpha: alpha2 }) => {
+    let res = {
+      mode: "jab",
+      j,
+      a: c4 ? c4 * Math.cos(h / 180 * Math.PI) : 0,
+      b: c4 ? c4 * Math.sin(h / 180 * Math.PI) : 0
+    };
+    return alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertJchToJab_default = convertJchToJab;
+
+  // node_modules/culori/src/jch/definition.js
+  var definition11 = {
+    mode: "jch",
+    parse: ["--jzczhz"],
+    serialize: "--jzczhz",
+    toMode: {
+      jab: convertJchToJab_default,
+      rgb: (c4) => convertJabToRgb_default(convertJchToJab_default(c4))
+    },
+    fromMode: {
+      rgb: (c4) => convertJabToJch_default(convertRgbToJab_default(c4)),
+      jab: convertJabToJch_default
+    },
+    channels: ["j", "c", "h", "alpha"],
+    ranges: {
+      j: [0, 0.221],
+      c: [0, 0.19],
+      h: [0, 360]
+    },
+    interpolate: {
+      h: { use: interpolatorLinear, fixup: fixupHueShorter },
+      c: interpolatorLinear,
+      j: interpolatorLinear,
+      alpha: { use: interpolatorLinear, fixup: fixupAlpha }
+    },
+    difference: {
+      h: differenceHueChroma
+    },
+    average: {
+      h: averageAngle
+    }
+  }, definition_default11 = definition11;
 
   // node_modules/culori/src/xyz50/constants.js
   var k3 = Math.pow(29, 3) / Math.pow(3, 3), e3 = Math.pow(6, 3) / Math.pow(29, 3);
@@ -1708,11 +2081,11 @@ var huetiful = (() => {
   }, convertXyz50ToRgb_default = convertXyz50ToRgb;
 
   // node_modules/culori/src/lab/convertLabToRgb.js
-  var convertLabToRgb = (lab2) => convertXyz50ToRgb_default(convertLabToXyz50_default(lab2)), convertLabToRgb_default = convertLabToRgb;
+  var convertLabToRgb = (lab3) => convertXyz50ToRgb_default(convertLabToXyz50_default(lab3)), convertLabToRgb_default = convertLabToRgb;
 
   // node_modules/culori/src/xyz50/convertRgbToXyz50.js
-  var convertRgbToXyz50 = (rgb4) => {
-    let { r: r2, g, b, alpha: alpha2 } = convertRgbToLrgb_default(rgb4), res = {
+  var convertRgbToXyz50 = (rgb5) => {
+    let { r: r2, g, b, alpha: alpha2 } = convertRgbToLrgb_default(rgb5), res = {
       mode: "xyz50",
       x: 0.436065742824811 * r2 + 0.3851514688337912 * g + 0.14307845442264197 * b,
       y: 0.22249319175623702 * r2 + 0.7168870538238823 * g + 0.06061979053616537 * b,
@@ -1733,9 +2106,9 @@ var huetiful = (() => {
   }, convertXyz50ToLab_default = convertXyz50ToLab;
 
   // node_modules/culori/src/lab/convertRgbToLab.js
-  var convertRgbToLab = (rgb4) => {
-    let res = convertXyz50ToLab_default(convertRgbToXyz50_default(rgb4));
-    return rgb4.r === rgb4.b && rgb4.b === rgb4.g && (res.a = res.b = 0), res;
+  var convertRgbToLab = (rgb5) => {
+    let res = convertXyz50ToLab_default(convertRgbToXyz50_default(rgb5));
+    return rgb5.r === rgb5.b && rgb5.b === rgb5.g && (res.a = res.b = 0), res;
   }, convertRgbToLab_default = convertRgbToLab;
 
   // node_modules/culori/src/lab/parseLab.js
@@ -1749,7 +2122,7 @@ var huetiful = (() => {
   var parseLab_default = parseLab;
 
   // node_modules/culori/src/lab/definition.js
-  var definition6 = {
+  var definition12 = {
     mode: "lab",
     toMode: {
       xyz50: convertLabToXyz50_default,
@@ -1766,18 +2139,18 @@ var huetiful = (() => {
       b: [-100, 100]
     },
     parse: [parseLab_default],
-    serialize: (c2) => `lab(${c2.l !== void 0 ? c2.l : "none"} ${c2.a !== void 0 ? c2.a : "none"} ${c2.b !== void 0 ? c2.b : "none"}${c2.alpha < 1 ? ` / ${c2.alpha}` : ""})`,
+    serialize: (c4) => `lab(${c4.l !== void 0 ? c4.l : "none"} ${c4.a !== void 0 ? c4.a : "none"} ${c4.b !== void 0 ? c4.b : "none"}${c4.alpha < 1 ? ` / ${c4.alpha}` : ""})`,
     interpolate: {
       l: interpolatorLinear,
       a: interpolatorLinear,
       b: interpolatorLinear,
       alpha: { use: interpolatorLinear, fixup: fixupAlpha }
     }
-  }, definition_default6 = definition6;
+  }, definition_default12 = definition12;
 
   // node_modules/culori/src/lab65/definition.js
-  var definition7 = {
-    ...definition_default6,
+  var definition13 = {
+    ...definition_default12,
     mode: "lab65",
     parse: ["--lab-d65"],
     serialize: "--lab-d65",
@@ -1794,21 +2167,21 @@ var huetiful = (() => {
       a: [-86.182, 98.234],
       b: [-107.86, 94.477]
     }
-  }, definition_default7 = definition7;
+  }, definition_default13 = definition13;
 
   // node_modules/culori/src/lch/parseLch.js
   function parseLch(color2, parsed) {
     if (!parsed || parsed[0] !== "lch")
       return;
-    let res = { mode: "lch" }, [, l, c2, h, alpha2] = parsed;
+    let res = { mode: "lch" }, [, l, c4, h, alpha2] = parsed;
     if (l.type !== Tok.None) {
       if (l.type === Tok.Hue)
         return;
       res.l = l.value;
     }
-    if (c2.type !== Tok.None && (res.c = Math.max(
+    if (c4.type !== Tok.None && (res.c = Math.max(
       0,
-      c2.type === Tok.Number ? c2.value : c2.value * 150 / 100
+      c4.type === Tok.Number ? c4.value : c4.value * 150 / 100
     )), h.type !== Tok.None) {
       if (h.type === Tok.Percentage)
         return;
@@ -1819,14 +2192,14 @@ var huetiful = (() => {
   var parseLch_default = parseLch;
 
   // node_modules/culori/src/lch/definition.js
-  var definition8 = {
+  var definition14 = {
     mode: "lch",
     toMode: {
       lab: convertLchToLab_default,
-      rgb: (c2) => convertLabToRgb_default(convertLchToLab_default(c2))
+      rgb: (c4) => convertLabToRgb_default(convertLchToLab_default(c4))
     },
     fromMode: {
-      rgb: (c2) => convertLabToLch_default(convertRgbToLab_default(c2)),
+      rgb: (c4) => convertLabToLch_default(convertRgbToLab_default(c4)),
       lab: convertLabToLch_default
     },
     channels: ["l", "c", "h", "alpha"],
@@ -1836,7 +2209,7 @@ var huetiful = (() => {
       h: [0, 360]
     },
     parse: [parseLch_default],
-    serialize: (c2) => `lch(${c2.l !== void 0 ? c2.l : "none"} ${c2.c !== void 0 ? c2.c : "none"} ${c2.h || 0}${c2.alpha < 1 ? ` / ${c2.alpha}` : ""})`,
+    serialize: (c4) => `lch(${c4.l !== void 0 ? c4.l : "none"} ${c4.c !== void 0 ? c4.c : "none"} ${c4.h || 0}${c4.alpha < 1 ? ` / ${c4.alpha}` : ""})`,
     interpolate: {
       h: { use: interpolatorLinear, fixup: fixupHueShorter },
       c: interpolatorLinear,
@@ -1849,31 +2222,104 @@ var huetiful = (() => {
     average: {
       h: averageAngle
     }
-  }, definition_default8 = definition8;
+  }, definition_default14 = definition14;
 
   // node_modules/culori/src/lch65/definition.js
-  var definition9 = {
-    ...definition_default8,
+  var definition15 = {
+    ...definition_default14,
     mode: "lch65",
     parse: ["--lch-d65"],
     serialize: "--lch-d65",
     toMode: {
-      lab65: (c2) => convertLchToLab_default(c2, "lab65"),
-      rgb: (c2) => convertLab65ToRgb_default(convertLchToLab_default(c2, "lab65"))
+      lab65: (c4) => convertLchToLab_default(c4, "lab65"),
+      rgb: (c4) => convertLab65ToRgb_default(convertLchToLab_default(c4, "lab65"))
     },
     fromMode: {
-      rgb: (c2) => convertLabToLch_default(convertRgbToLab65_default(c2), "lch65"),
-      lab65: (c2) => convertLabToLch_default(c2, "lch65")
+      rgb: (c4) => convertLabToLch_default(convertRgbToLab65_default(c4), "lch65"),
+      lab65: (c4) => convertLabToLch_default(c4, "lch65")
     },
     ranges: {
       l: [0, 100],
       c: [0, 133.807],
       h: [0, 360]
     }
-  }, definition_default9 = definition9;
+  }, definition_default15 = definition15;
+
+  // node_modules/culori/src/lchuv/convertLuvToLchuv.js
+  var convertLuvToLchuv = ({ l, u, v, alpha: alpha2 }) => {
+    let c4 = Math.sqrt(u * u + v * v), res = {
+      mode: "lchuv",
+      l,
+      c: c4
+    };
+    return c4 && (res.h = normalizeHue_default(Math.atan2(v, u) * 180 / Math.PI)), alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertLuvToLchuv_default = convertLuvToLchuv;
+
+  // node_modules/culori/src/lchuv/convertLchuvToLuv.js
+  var convertLchuvToLuv = ({ l, c: c4, h, alpha: alpha2 }) => {
+    let res = {
+      mode: "luv",
+      l,
+      u: c4 ? c4 * Math.cos(h / 180 * Math.PI) : 0,
+      v: c4 ? c4 * Math.sin(h / 180 * Math.PI) : 0
+    };
+    return alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertLchuvToLuv_default = convertLchuvToLuv;
+
+  // node_modules/culori/src/luv/convertXyz50ToLuv.js
+  var u_fn = (x, y, z) => 4 * x / (x + 15 * y + 3 * z), v_fn = (x, y, z) => 9 * y / (x + 15 * y + 3 * z), un = u_fn(D50.X, D50.Y, D50.Z), vn = v_fn(D50.X, D50.Y, D50.Z), l_fn = (value) => value <= e3 ? k3 * value : 116 * Math.cbrt(value) - 16, convertXyz50ToLuv = ({ x, y, z, alpha: alpha2 }) => {
+    let l = l_fn(y / D50.Y), u = u_fn(x, y, z), v = v_fn(x, y, z);
+    !isFinite(u) || !isFinite(v) ? l = u = v = 0 : (u = 13 * l * (u - un), v = 13 * l * (v - vn));
+    let res = {
+      mode: "luv",
+      l,
+      u,
+      v
+    };
+    return alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertXyz50ToLuv_default = convertXyz50ToLuv;
+
+  // node_modules/culori/src/luv/convertLuvToXyz50.js
+  var u_fn2 = (x, y, z) => 4 * x / (x + 15 * y + 3 * z), v_fn2 = (x, y, z) => 9 * y / (x + 15 * y + 3 * z), un2 = u_fn2(D50.X, D50.Y, D50.Z), vn2 = v_fn2(D50.X, D50.Y, D50.Z), convertLuvToXyz50 = ({ l, u, v, alpha: alpha2 }) => {
+    let up = u / (13 * l) + un2, vp = v / (13 * l) + vn2, y = D50.Y * (l <= 8 ? l / k3 : Math.pow((l + 16) / 116, 3)), x = y * (9 * up) / (4 * vp), z = y * (12 - 3 * up - 20 * vp) / (4 * vp), res = { mode: "xyz50", x, y, z };
+    return alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertLuvToXyz50_default = convertLuvToXyz50;
+
+  // node_modules/culori/src/lchuv/definition.js
+  var convertRgbToLchuv = (rgb5) => convertLuvToLchuv_default(convertXyz50ToLuv_default(convertRgbToXyz50_default(rgb5))), convertLchuvToRgb = (lchuv2) => convertXyz50ToRgb_default(convertLuvToXyz50_default(convertLchuvToLuv_default(lchuv2))), definition16 = {
+    mode: "lchuv",
+    toMode: {
+      luv: convertLchuvToLuv_default,
+      rgb: convertLchuvToRgb
+    },
+    fromMode: {
+      rgb: convertRgbToLchuv,
+      luv: convertLuvToLchuv_default
+    },
+    channels: ["l", "c", "h", "alpha"],
+    parse: ["--lchuv"],
+    serialize: "--lchuv",
+    ranges: {
+      l: [0, 100],
+      c: [0, 176.956],
+      h: [0, 360]
+    },
+    interpolate: {
+      h: { use: interpolatorLinear, fixup: fixupHueShorter },
+      c: interpolatorLinear,
+      l: interpolatorLinear,
+      alpha: { use: interpolatorLinear, fixup: fixupAlpha }
+    },
+    difference: {
+      h: differenceHueChroma
+    },
+    average: {
+      h: averageAngle
+    }
+  }, definition_default16 = definition16;
 
   // node_modules/culori/src/lrgb/definition.js
-  var definition10 = {
+  var definition17 = {
     ...definition_default,
     mode: "lrgb",
     toMode: {
@@ -1884,29 +2330,56 @@ var huetiful = (() => {
     },
     parse: ["srgb-linear"],
     serialize: "srgb-linear"
-  }, definition_default10 = definition10;
+  }, definition_default17 = definition17;
+
+  // node_modules/culori/src/luv/definition.js
+  var definition18 = {
+    mode: "luv",
+    toMode: {
+      xyz50: convertLuvToXyz50_default,
+      rgb: (luv2) => convertXyz50ToRgb_default(convertLuvToXyz50_default(luv2))
+    },
+    fromMode: {
+      xyz50: convertXyz50ToLuv_default,
+      rgb: (rgb5) => convertXyz50ToLuv_default(convertRgbToXyz50_default(rgb5))
+    },
+    channels: ["l", "u", "v", "alpha"],
+    parse: ["--luv"],
+    serialize: "--luv",
+    ranges: {
+      l: [0, 100],
+      u: [-84.936, 175.042],
+      v: [-125.882, 87.243]
+    },
+    interpolate: {
+      l: interpolatorLinear,
+      u: interpolatorLinear,
+      v: interpolatorLinear,
+      alpha: { use: interpolatorLinear, fixup: fixupAlpha }
+    }
+  }, definition_default18 = definition18;
 
   // node_modules/culori/src/oklab/convertLrgbToOklab.js
   var convertLrgbToOklab = ({ r: r2, g, b, alpha: alpha2 }) => {
     let L = Math.cbrt(
       0.41222147079999993 * r2 + 0.5363325363 * g + 0.0514459929 * b
-    ), M = Math.cbrt(
+    ), M2 = Math.cbrt(
       0.2119034981999999 * r2 + 0.6806995450999999 * g + 0.1073969566 * b
     ), S = Math.cbrt(
       0.08830246189999998 * r2 + 0.2817188376 * g + 0.6299787005000002 * b
     ), res = {
       mode: "oklab",
-      l: 0.2104542553 * L + 0.793617785 * M - 0.0040720468 * S,
-      a: 1.9779984951 * L - 2.428592205 * M + 0.4505937099 * S,
-      b: 0.0259040371 * L + 0.7827717662 * M - 0.808675766 * S
+      l: 0.2104542553 * L + 0.793617785 * M2 - 0.0040720468 * S,
+      a: 1.9779984951 * L - 2.428592205 * M2 + 0.4505937099 * S,
+      b: 0.0259040371 * L + 0.7827717662 * M2 - 0.808675766 * S
     };
     return alpha2 !== void 0 && (res.alpha = alpha2), res;
   }, convertLrgbToOklab_default = convertLrgbToOklab;
 
   // node_modules/culori/src/oklab/convertRgbToOklab.js
-  var convertRgbToOklab = (rgb4) => {
-    let res = convertLrgbToOklab_default(convertRgbToLrgb_default(rgb4));
-    return rgb4.r === rgb4.b && rgb4.b === rgb4.g && (res.a = res.b = 0), res;
+  var convertRgbToOklab = (rgb5) => {
+    let res = convertLrgbToOklab_default(convertRgbToLrgb_default(rgb5));
+    return rgb5.r === rgb5.b && rgb5.b === rgb5.g && (res.a = res.b = 0), res;
   }, convertRgbToOklab_default = convertRgbToOklab;
 
   // node_modules/culori/src/oklab/convertOklabToLrgb.js
@@ -1914,7 +2387,7 @@ var huetiful = (() => {
     let L = Math.pow(
       l * 0.9999999984505198 + 0.39633779217376786 * a + 0.2158037580607588 * b,
       3
-    ), M = Math.pow(
+    ), M2 = Math.pow(
       l * 1.0000000088817609 - 0.10556134232365635 * a - 0.06385417477170591 * b,
       3
     ), S = Math.pow(
@@ -1922,15 +2395,160 @@ var huetiful = (() => {
       3
     ), res = {
       mode: "lrgb",
-      r: 4.076741661347994 * L - 3.307711590408193 * M + 0.230969928729428 * S,
-      g: -1.2684380040921763 * L + 2.6097574006633715 * M - 0.3413193963102197 * S,
-      b: -0.004196086541837188 * L - 0.7034186144594493 * M + 1.7076147009309444 * S
+      r: 4.076741661347994 * L - 3.307711590408193 * M2 + 0.230969928729428 * S,
+      g: -1.2684380040921763 * L + 2.6097574006633715 * M2 - 0.3413193963102197 * S,
+      b: -0.004196086541837188 * L - 0.7034186144594493 * M2 + 1.7076147009309444 * S
     };
     return alpha2 !== void 0 && (res.alpha = alpha2), res;
   }, convertOklabToLrgb_default = convertOklabToLrgb;
 
   // node_modules/culori/src/oklab/convertOklabToRgb.js
-  var convertOklabToRgb = (c2) => convertLrgbToRgb_default(convertOklabToLrgb_default(c2)), convertOklabToRgb_default = convertOklabToRgb;
+  var convertOklabToRgb = (c4) => convertLrgbToRgb_default(convertOklabToLrgb_default(c4)), convertOklabToRgb_default = convertOklabToRgb;
+
+  // node_modules/culori/src/okhsl/helpers.js
+  function toe(x) {
+    let k_3 = 1.170873786407767;
+    return 0.5 * (k_3 * x - 0.206 + Math.sqrt((k_3 * x - 0.206) * (k_3 * x - 0.206) + 4 * 0.03 * k_3 * x));
+  }
+  function toe_inv(x) {
+    let k_3 = 1.170873786407767;
+    return (x * x + 0.206 * x) / (k_3 * (x + 0.03));
+  }
+  function compute_max_saturation(a, b) {
+    let k0, k1, k22, k32, k4, wl, wm, ws;
+    -1.88170328 * a - 0.80936493 * b > 1 ? (k0 = 1.19086277, k1 = 1.76576728, k22 = 0.59662641, k32 = 0.75515197, k4 = 0.56771245, wl = 4.0767416621, wm = -3.3077115913, ws = 0.2309699292) : 1.81444104 * a - 1.19445276 * b > 1 ? (k0 = 0.73956515, k1 = -0.45954404, k22 = 0.08285427, k32 = 0.1254107, k4 = 0.14503204, wl = -1.2684380046, wm = 2.6097574011, ws = -0.3413193965) : (k0 = 1.35733652, k1 = -915799e-8, k22 = -1.1513021, k32 = -0.50559606, k4 = 692167e-8, wl = -0.0041960863, wm = -0.7034186147, ws = 1.707614701);
+    let S = k0 + k1 * a + k22 * b + k32 * a * a + k4 * a * b, k_l = 0.3963377774 * a + 0.2158037573 * b, k_m = -0.1055613458 * a - 0.0638541728 * b, k_s = -0.0894841775 * a - 1.291485548 * b;
+    {
+      let l_ = 1 + S * k_l, m_ = 1 + S * k_m, s_ = 1 + S * k_s, l = l_ * l_ * l_, m = m_ * m_ * m_, s = s_ * s_ * s_, l_dS = 3 * k_l * l_ * l_, m_dS = 3 * k_m * m_ * m_, s_dS = 3 * k_s * s_ * s_, l_dS2 = 6 * k_l * k_l * l_, m_dS2 = 6 * k_m * k_m * m_, s_dS2 = 6 * k_s * k_s * s_, f3 = wl * l + wm * m + ws * s, f1 = wl * l_dS + wm * m_dS + ws * s_dS, f22 = wl * l_dS2 + wm * m_dS2 + ws * s_dS2;
+      S = S - f3 * f1 / (f1 * f1 - 0.5 * f3 * f22);
+    }
+    return S;
+  }
+  function find_cusp(a, b) {
+    let S_cusp = compute_max_saturation(a, b), rgb5 = convertOklabToLrgb_default({ l: 1, a: S_cusp * a, b: S_cusp * b }), L_cusp = Math.cbrt(1 / Math.max(rgb5.r, rgb5.g, rgb5.b)), C_cusp = L_cusp * S_cusp;
+    return [L_cusp, C_cusp];
+  }
+  function find_gamut_intersection(a, b, L1, C1, L0, cusp = null) {
+    cusp || (cusp = find_cusp(a, b));
+    let t;
+    if ((L1 - L0) * cusp[1] - (cusp[0] - L0) * C1 <= 0)
+      t = cusp[1] * L0 / (C1 * cusp[0] + cusp[1] * (L0 - L1));
+    else {
+      t = cusp[1] * (L0 - 1) / (C1 * (cusp[0] - 1) + cusp[1] * (L0 - L1));
+      {
+        let dL = L1 - L0, dC = C1, k_l = 0.3963377774 * a + 0.2158037573 * b, k_m = -0.1055613458 * a - 0.0638541728 * b, k_s = -0.0894841775 * a - 1.291485548 * b, l_dt = dL + dC * k_l, m_dt = dL + dC * k_m, s_dt = dL + dC * k_s;
+        {
+          let L = L0 * (1 - t) + t * L1, C = t * C1, l_ = L + C * k_l, m_ = L + C * k_m, s_ = L + C * k_s, l = l_ * l_ * l_, m = m_ * m_ * m_, s = s_ * s_ * s_, ldt = 3 * l_dt * l_ * l_, mdt = 3 * m_dt * m_ * m_, sdt = 3 * s_dt * s_ * s_, ldt2 = 6 * l_dt * l_dt * l_, mdt2 = 6 * m_dt * m_dt * m_, sdt2 = 6 * s_dt * s_dt * s_, r2 = 4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s - 1, r1 = 4.0767416621 * ldt - 3.3077115913 * mdt + 0.2309699292 * sdt, r22 = 4.0767416621 * ldt2 - 3.3077115913 * mdt2 + 0.2309699292 * sdt2, u_r = r1 / (r1 * r1 - 0.5 * r2 * r22), t_r = -r2 * u_r, g = -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s - 1, g1 = -1.2684380046 * ldt + 2.6097574011 * mdt - 0.3413193965 * sdt, g2 = -1.2684380046 * ldt2 + 2.6097574011 * mdt2 - 0.3413193965 * sdt2, u_g = g1 / (g1 * g1 - 0.5 * g * g2), t_g = -g * u_g, b2 = -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s - 1, b1 = -0.0041960863 * ldt - 0.7034186147 * mdt + 1.707614701 * sdt, b22 = -0.0041960863 * ldt2 - 0.7034186147 * mdt2 + 1.707614701 * sdt2, u_b = b1 / (b1 * b1 - 0.5 * b2 * b22), t_b = -b2 * u_b;
+          t_r = u_r >= 0 ? t_r : 1e6, t_g = u_g >= 0 ? t_g : 1e6, t_b = u_b >= 0 ? t_b : 1e6, t += Math.min(t_r, Math.min(t_g, t_b));
+        }
+      }
+    }
+    return t;
+  }
+  function get_ST_max(a_, b_, cusp = null) {
+    cusp || (cusp = find_cusp(a_, b_));
+    let L = cusp[0], C = cusp[1];
+    return [C / L, C / (1 - L)];
+  }
+  function get_Cs(L, a_, b_) {
+    let cusp = find_cusp(a_, b_), C_max = find_gamut_intersection(a_, b_, L, 1, L, cusp), ST_max = get_ST_max(a_, b_, cusp), S_mid = 0.11516993 + 1 / (7.4477897 + 4.1590124 * b_ + a_ * (-2.19557347 + 1.75198401 * b_ + a_ * (-2.13704948 - 10.02301043 * b_ + a_ * (-4.24894561 + 5.38770819 * b_ + 4.69891013 * a_)))), T_mid = 0.11239642 + 1 / (1.6132032 - 0.68124379 * b_ + a_ * (0.40370612 + 0.90148123 * b_ + a_ * (-0.27087943 + 0.6122399 * b_ + a_ * (299215e-8 - 0.45399568 * b_ - 0.14661872 * a_)))), k4 = C_max / Math.min(L * ST_max[0], (1 - L) * ST_max[1]), C_a = L * S_mid, C_b = (1 - L) * T_mid, C_mid = 0.9 * k4 * Math.sqrt(
+      Math.sqrt(
+        1 / (1 / (C_a * C_a * C_a * C_a) + 1 / (C_b * C_b * C_b * C_b))
+      )
+    );
+    return C_a = L * 0.4, C_b = (1 - L) * 0.8, [Math.sqrt(1 / (1 / (C_a * C_a) + 1 / (C_b * C_b))), C_mid, C_max];
+  }
+
+  // node_modules/culori/src/okhsl/convertOklabToOkhsl.js
+  function convertOklabToOkhsl(lab3) {
+    let ret = { mode: "okhsl", l: toe(lab3.l) };
+    lab3.alpha !== void 0 && (ret.alpha = lab3.alpha);
+    let c4 = Math.sqrt(lab3.a * lab3.a + lab3.b * lab3.b);
+    if (!c4)
+      return ret.s = 0, ret;
+    let [C_0, C_mid, C_max] = get_Cs(lab3.l, lab3.a / c4, lab3.b / c4), s;
+    if (c4 < C_mid) {
+      let k_0 = 0, k_1 = 0.8 * C_0, k_2 = 1 - k_1 / C_mid;
+      s = (c4 - k_0) / (k_1 + k_2 * (c4 - k_0)) * 0.8;
+    } else {
+      let k_0 = C_mid, k_1 = 0.2 * C_mid * C_mid * 1.25 * 1.25 / C_0, k_2 = 1 - k_1 / (C_max - C_mid);
+      s = 0.8 + 0.2 * ((c4 - k_0) / (k_1 + k_2 * (c4 - k_0)));
+    }
+    return s && (ret.s = s, ret.h = normalizeHue_default(Math.atan2(lab3.b, lab3.a) * 180 / Math.PI)), ret;
+  }
+
+  // node_modules/culori/src/okhsl/convertOkhslToOklab.js
+  function convertOkhslToOklab(hsl3) {
+    let l = toe_inv(hsl3.l), ret = { mode: "oklab", l };
+    if (hsl3.alpha !== void 0 && (ret.alpha = hsl3.alpha), !hsl3.s || hsl3.l === 1)
+      return ret.a = ret.b = 0, ret;
+    let a_ = Math.cos(hsl3.h / 180 * Math.PI), b_ = Math.sin(hsl3.h / 180 * Math.PI), [C_0, C_mid, C_max] = get_Cs(l, a_, b_), t, k_0, k_1, k_2;
+    hsl3.s < 0.8 ? (t = 1.25 * hsl3.s, k_0 = 0, k_1 = 0.8 * C_0, k_2 = 1 - k_1 / C_mid) : (t = 5 * (hsl3.s - 0.8), k_0 = C_mid, k_1 = 0.2 * C_mid * C_mid * 1.25 * 1.25 / C_0, k_2 = 1 - k_1 / (C_max - C_mid));
+    let C = k_0 + t * k_1 / (1 - k_2 * t);
+    return ret.a = C * a_, ret.b = C * b_, ret;
+  }
+
+  // node_modules/culori/src/okhsl/modeOkhsl.js
+  var modeOkhsl = {
+    ...definition_default7,
+    mode: "okhsl",
+    channels: ["h", "s", "l", "alpha"],
+    parse: ["--okhsl"],
+    serialize: "--okhsl",
+    fromMode: {
+      oklab: convertOklabToOkhsl,
+      rgb: (c4) => convertOklabToOkhsl(convertRgbToOklab_default(c4))
+    },
+    toMode: {
+      oklab: convertOkhslToOklab,
+      rgb: (c4) => convertOklabToRgb_default(convertOkhslToOklab(c4))
+    }
+  }, modeOkhsl_default = modeOkhsl;
+
+  // node_modules/culori/src/okhsv/convertOklabToOkhsv.js
+  function convertOklabToOkhsv(lab3) {
+    let c4 = Math.sqrt(lab3.a * lab3.a + lab3.b * lab3.b), l = lab3.l, a_ = c4 ? lab3.a / c4 : 1, b_ = c4 ? lab3.b / c4 : 1, [S_max, T] = get_ST_max(a_, b_), S_0 = 0.5, k4 = 1 - S_0 / S_max, t = T / (c4 + l * T), L_v = t * l, C_v = t * c4, L_vt = toe_inv(L_v), C_vt = C_v * L_vt / L_v, rgb_scale = convertOklabToLrgb_default({ l: L_vt, a: a_ * C_vt, b: b_ * C_vt }), scale_L = Math.cbrt(
+      1 / Math.max(rgb_scale.r, rgb_scale.g, rgb_scale.b, 0)
+    );
+    l = l / scale_L, c4 = c4 / scale_L * toe(l) / l, l = toe(l);
+    let ret = {
+      mode: "okhsv",
+      s: c4 ? (S_0 + T) * C_v / (T * S_0 + T * k4 * C_v) : 0,
+      v: l ? l / L_v : 0
+    };
+    return ret.s && (ret.h = normalizeHue_default(Math.atan2(lab3.b, lab3.a) * 180 / Math.PI)), lab3.alpha !== void 0 && (ret.alpha = lab3.alpha), ret;
+  }
+
+  // node_modules/culori/src/okhsv/convertOkhsvToOklab.js
+  function convertOkhsvToOklab(hsv3) {
+    let ret = { mode: "oklab" };
+    hsv3.alpha !== void 0 && (ret.alpha = hsv3.alpha);
+    let h = hsv3.h || 0, a_ = Math.cos(h / 180 * Math.PI), b_ = Math.sin(h / 180 * Math.PI), [S_max, T] = get_ST_max(a_, b_), S_0 = 0.5, k4 = 1 - S_0 / S_max, L_v = 1 - hsv3.s * S_0 / (S_0 + T - T * k4 * hsv3.s), C_v = hsv3.s * T * S_0 / (S_0 + T - T * k4 * hsv3.s), L_vt = toe_inv(L_v), C_vt = C_v * L_vt / L_v, rgb_scale = convertOklabToLrgb_default({
+      l: L_vt,
+      a: a_ * C_vt,
+      b: b_ * C_vt
+    }), scale_L = Math.cbrt(
+      1 / Math.max(rgb_scale.r, rgb_scale.g, rgb_scale.b, 0)
+    ), L_new = toe_inv(hsv3.v * L_v), C = C_v * L_new / L_v;
+    return ret.l = L_new * scale_L, ret.a = C * a_ * scale_L, ret.b = C * b_ * scale_L, ret;
+  }
+
+  // node_modules/culori/src/okhsv/modeOkhsv.js
+  var modeOkhsv = {
+    ...definition_default8,
+    mode: "okhsv",
+    channels: ["h", "s", "v", "alpha"],
+    parse: ["--okhsv"],
+    serialize: "--okhsv",
+    fromMode: {
+      oklab: convertOklabToOkhsv,
+      rgb: (c4) => convertOklabToOkhsv(convertRgbToOklab_default(c4))
+    },
+    toMode: {
+      oklab: convertOkhsvToOklab,
+      rgb: (c4) => convertOklabToRgb_default(convertOkhsvToOklab(c4))
+    }
+  }, modeOkhsv_default = modeOkhsv;
 
   // node_modules/culori/src/oklab/parseOklab.js
   function parseOklab(color2, parsed) {
@@ -1943,8 +2561,8 @@ var huetiful = (() => {
   var parseOklab_default = parseOklab;
 
   // node_modules/culori/src/oklab/definition.js
-  var definition11 = {
-    ...definition_default6,
+  var definition19 = {
+    ...definition_default12,
     mode: "oklab",
     toMode: {
       lrgb: convertOklabToLrgb_default,
@@ -1960,22 +2578,22 @@ var huetiful = (() => {
       b: [-0.4, 0.4]
     },
     parse: [parseOklab_default],
-    serialize: (c2) => `oklab(${c2.l !== void 0 ? c2.l : "none"} ${c2.a !== void 0 ? c2.a : "none"} ${c2.b !== void 0 ? c2.b : "none"}${c2.alpha < 1 ? ` / ${c2.alpha}` : ""})`
-  }, definition_default11 = definition11;
+    serialize: (c4) => `oklab(${c4.l !== void 0 ? c4.l : "none"} ${c4.a !== void 0 ? c4.a : "none"} ${c4.b !== void 0 ? c4.b : "none"}${c4.alpha < 1 ? ` / ${c4.alpha}` : ""})`
+  }, definition_default19 = definition19;
 
   // node_modules/culori/src/oklch/parseOklch.js
   function parseOklch(color2, parsed) {
     if (!parsed || parsed[0] !== "oklch")
       return;
-    let res = { mode: "oklch" }, [, l, c2, h, alpha2] = parsed;
+    let res = { mode: "oklch" }, [, l, c4, h, alpha2] = parsed;
     if (l.type !== Tok.None) {
       if (l.type === Tok.Hue)
         return;
       res.l = l.type === Tok.Number ? l.value : l.value / 100;
     }
-    if (c2.type !== Tok.None && (res.c = Math.max(
+    if (c4.type !== Tok.None && (res.c = Math.max(
       0,
-      c2.type === Tok.Number ? c2.value : c2.value * 0.4 / 100
+      c4.type === Tok.Number ? c4.value : c4.value * 0.4 / 100
     )), h.type !== Tok.None) {
       if (h.type === Tok.Percentage)
         return;
@@ -1986,29 +2604,29 @@ var huetiful = (() => {
   var parseOklch_default = parseOklch;
 
   // node_modules/culori/src/oklch/definition.js
-  var definition12 = {
-    ...definition_default8,
+  var definition20 = {
+    ...definition_default14,
     mode: "oklch",
     toMode: {
-      oklab: (c2) => convertLchToLab_default(c2, "oklab"),
-      rgb: (c2) => convertOklabToRgb_default(convertLchToLab_default(c2, "oklab"))
+      oklab: (c4) => convertLchToLab_default(c4, "oklab"),
+      rgb: (c4) => convertOklabToRgb_default(convertLchToLab_default(c4, "oklab"))
     },
     fromMode: {
-      rgb: (c2) => convertLabToLch_default(convertRgbToOklab_default(c2), "oklch"),
-      oklab: (c2) => convertLabToLch_default(c2, "oklch")
+      rgb: (c4) => convertLabToLch_default(convertRgbToOklab_default(c4), "oklch"),
+      oklab: (c4) => convertLabToLch_default(c4, "oklch")
     },
     parse: [parseOklch_default],
-    serialize: (c2) => `oklch(${c2.l !== void 0 ? c2.l : "none"} ${c2.c !== void 0 ? c2.c : "none"} ${c2.h || 0}${c2.alpha < 1 ? ` / ${c2.alpha}` : ""})`,
+    serialize: (c4) => `oklch(${c4.l !== void 0 ? c4.l : "none"} ${c4.c !== void 0 ? c4.c : "none"} ${c4.h || 0}${c4.alpha < 1 ? ` / ${c4.alpha}` : ""})`,
     ranges: {
       l: [0, 1],
       c: [0, 0.4],
       h: [0, 360]
     }
-  }, definition_default12 = definition12;
+  }, definition_default20 = definition20;
 
   // node_modules/culori/src/p3/convertP3ToXyz65.js
-  var convertP3ToXyz65 = (rgb4) => {
-    let { r: r2, g, b, alpha: alpha2 } = convertRgbToLrgb_default(rgb4), res = {
+  var convertP3ToXyz65 = (rgb5) => {
+    let { r: r2, g, b, alpha: alpha2 } = convertRgbToLrgb_default(rgb5), res = {
       mode: "xyz65",
       x: 0.486570948648216 * r2 + 0.265667693169093 * g + 0.1982172852343625 * b,
       y: 0.2289745640697487 * r2 + 0.6917385218365062 * g + 0.079286914093745 * b,
@@ -2031,7 +2649,7 @@ var huetiful = (() => {
   }, convertXyz65ToP3_default = convertXyz65ToP3;
 
   // node_modules/culori/src/p3/definition.js
-  var definition13 = {
+  var definition21 = {
     ...definition_default,
     mode: "p3",
     parse: ["display-p3"],
@@ -2044,12 +2662,12 @@ var huetiful = (() => {
       rgb: (color2) => convertXyz65ToRgb_default(convertP3ToXyz65_default(color2)),
       xyz65: convertP3ToXyz65_default
     }
-  }, definition_default13 = definition13;
+  }, definition_default21 = definition21;
 
   // node_modules/culori/src/prophoto/convertXyz50ToProphoto.js
   var gamma2 = (v) => {
-    let abs4 = Math.abs(v);
-    return abs4 >= 1953125e-9 ? Math.sign(v) * Math.pow(abs4, 0.5555555555555556) : 16 * v;
+    let abs5 = Math.abs(v);
+    return abs5 >= 1953125e-9 ? Math.sign(v) * Math.pow(abs5, 0.5555555555555556) : 16 * v;
   }, convertXyz50ToProphoto = ({ x, y, z, alpha: alpha2 }) => {
     let res = {
       mode: "prophoto",
@@ -2066,20 +2684,20 @@ var huetiful = (() => {
 
   // node_modules/culori/src/prophoto/convertProphotoToXyz50.js
   var linearize2 = (v) => {
-    let abs4 = Math.abs(v);
-    return abs4 >= 0.03125 ? Math.sign(v) * Math.pow(abs4, 1.8) : v / 16;
-  }, convertProphotoToXyz50 = (prophoto2) => {
-    let r2 = linearize2(prophoto2.r), g = linearize2(prophoto2.g), b = linearize2(prophoto2.b), res = {
+    let abs5 = Math.abs(v);
+    return abs5 >= 0.03125 ? Math.sign(v) * Math.pow(abs5, 1.8) : v / 16;
+  }, convertProphotoToXyz50 = (prophoto3) => {
+    let r2 = linearize2(prophoto3.r), g = linearize2(prophoto3.g), b = linearize2(prophoto3.b), res = {
       mode: "xyz50",
       x: 0.7977666449006423 * r2 + 0.1351812974005331 * g + 0.0313477341283922 * b,
       y: 0.2880748288194013 * r2 + 0.7118352342418731 * g + 899369387256e-16 * b,
       z: 0 * r2 + 0 * g + 0.8251046025104602 * b
     };
-    return prophoto2.alpha !== void 0 && (res.alpha = prophoto2.alpha), res;
+    return prophoto3.alpha !== void 0 && (res.alpha = prophoto3.alpha), res;
   }, convertProphotoToXyz50_default = convertProphotoToXyz50;
 
   // node_modules/culori/src/prophoto/definition.js
-  var definition14 = {
+  var definition22 = {
     ...definition_default,
     mode: "prophoto",
     parse: ["prophoto-rgb"],
@@ -2092,12 +2710,12 @@ var huetiful = (() => {
       xyz50: convertProphotoToXyz50_default,
       rgb: (color2) => convertXyz50ToRgb_default(convertProphotoToXyz50_default(color2))
     }
-  }, definition_default14 = definition14;
+  }, definition_default22 = definition22;
 
   // node_modules/culori/src/rec2020/convertXyz65ToRec2020.js
   var \u03B1 = 1.09929682680944, \u03B2 = 0.018053968510807, gamma3 = (v) => {
-    let abs4 = Math.abs(v);
-    return abs4 > \u03B2 ? (Math.sign(v) || 1) * (\u03B1 * Math.pow(abs4, 0.45) - (\u03B1 - 1)) : 4.5 * v;
+    let abs5 = Math.abs(v);
+    return abs5 > \u03B2 ? (Math.sign(v) || 1) * (\u03B1 * Math.pow(abs5, 0.45) - (\u03B1 - 1)) : 4.5 * v;
   }, convertXyz65ToRec2020 = ({ x, y, z, alpha: alpha2 }) => {
     let res = {
       mode: "rec2020",
@@ -2116,20 +2734,20 @@ var huetiful = (() => {
 
   // node_modules/culori/src/rec2020/convertRec2020ToXyz65.js
   var \u03B12 = 1.09929682680944, \u03B22 = 0.018053968510807, linearize3 = (v) => {
-    let abs4 = Math.abs(v);
-    return abs4 < \u03B22 * 4.5 ? v / 4.5 : (Math.sign(v) || 1) * Math.pow((abs4 + \u03B12 - 1) / \u03B12, 1 / 0.45);
-  }, convertRec2020ToXyz65 = (rec20202) => {
-    let r2 = linearize3(rec20202.r), g = linearize3(rec20202.g), b = linearize3(rec20202.b), res = {
+    let abs5 = Math.abs(v);
+    return abs5 < \u03B22 * 4.5 ? v / 4.5 : (Math.sign(v) || 1) * Math.pow((abs5 + \u03B12 - 1) / \u03B12, 1 / 0.45);
+  }, convertRec2020ToXyz65 = (rec20203) => {
+    let r2 = linearize3(rec20203.r), g = linearize3(rec20203.g), b = linearize3(rec20203.b), res = {
       mode: "xyz65",
       x: 0.6369580483012911 * r2 + 0.1446169035862083 * g + 0.1688809751641721 * b,
       y: 0.262700212011267 * r2 + 0.6779980715188708 * g + 0.059301716469862 * b,
       z: 0 * r2 + 0.0280726930490874 * g + 1.0609850577107909 * b
     };
-    return rec20202.alpha !== void 0 && (res.alpha = rec20202.alpha), res;
+    return rec20203.alpha !== void 0 && (res.alpha = rec20203.alpha), res;
   }, convertRec2020ToXyz65_default = convertRec2020ToXyz65;
 
   // node_modules/culori/src/rec2020/definition.js
-  var definition15 = {
+  var definition23 = {
     ...definition_default,
     mode: "rec2020",
     fromMode: {
@@ -2142,10 +2760,62 @@ var huetiful = (() => {
     },
     parse: ["rec2020"],
     serialize: "rec2020"
-  }, definition_default15 = definition15;
+  }, definition_default23 = definition23;
+
+  // node_modules/culori/src/xyb/constants.js
+  var bias = 0.0037930732552754493, bias_cbrt = Math.cbrt(bias);
+
+  // node_modules/culori/src/xyb/convertRgbToXyb.js
+  var transfer = (v) => Math.cbrt(v) - bias_cbrt, convertRgbToXyb = (color2) => {
+    let { r: r2, g, b, alpha: alpha2 } = convertRgbToLrgb_default(color2), l = transfer(0.3 * r2 + 0.622 * g + 0.078 * b + bias), m = transfer(0.23 * r2 + 0.692 * g + 0.078 * b + bias), s = transfer(
+      0.2434226892454782 * r2 + 0.2047674442449682 * g + 0.5518098665095535 * b + bias
+    ), res = {
+      mode: "xyb",
+      x: (l - m) / 2,
+      y: (l + m) / 2,
+      /* Apply default chroma from luma (subtract Y from B) */
+      b: s - (l + m) / 2
+    };
+    return alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertRgbToXyb_default = convertRgbToXyb;
+
+  // node_modules/culori/src/xyb/convertXybToRgb.js
+  var transfer2 = (v) => Math.pow(v + bias_cbrt, 3), convertXybToRgb = ({ x, y, b, alpha: alpha2 }) => {
+    let l = transfer2(x + y) - bias, m = transfer2(y - x) - bias, s = transfer2(b + y) - bias, res = convertLrgbToRgb_default({
+      r: 11.031566904639861 * l - 9.866943908131562 * m - 0.16462299650829934 * s,
+      g: -3.2541473810744237 * l + 4.418770377582723 * m - 0.16462299650829934 * s,
+      b: -3.6588512867136815 * l + 2.7129230459360922 * m + 1.9459282407775895 * s
+    });
+    return alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertXybToRgb_default = convertXybToRgb;
+
+  // node_modules/culori/src/xyb/definition.js
+  var definition24 = {
+    mode: "xyb",
+    channels: ["x", "y", "b", "alpha"],
+    parse: ["--xyb"],
+    serialize: "--xyb",
+    toMode: {
+      rgb: convertXybToRgb_default
+    },
+    fromMode: {
+      rgb: convertRgbToXyb_default
+    },
+    ranges: {
+      x: [-0.0154, 0.0281],
+      y: [0, 0.8453],
+      b: [-0.2778, 0.388]
+    },
+    interpolate: {
+      x: interpolatorLinear,
+      y: interpolatorLinear,
+      b: interpolatorLinear,
+      alpha: { use: interpolatorLinear, fixup: fixupAlpha }
+    }
+  }, definition_default24 = definition24;
 
   // node_modules/culori/src/xyz50/definition.js
-  var definition16 = {
+  var definition25 = {
     mode: "xyz50",
     parse: ["xyz-d50"],
     serialize: "xyz-d50",
@@ -2169,11 +2839,11 @@ var huetiful = (() => {
       z: interpolatorLinear,
       alpha: { use: interpolatorLinear, fixup: fixupAlpha }
     }
-  }, definition_default16 = definition16;
+  }, definition_default25 = definition25;
 
   // node_modules/culori/src/xyz65/convertXyz65ToXyz50.js
-  var convertXyz65ToXyz50 = (xyz652) => {
-    let { x, y, z, alpha: alpha2 } = xyz652, res = {
+  var convertXyz65ToXyz50 = (xyz653) => {
+    let { x, y, z, alpha: alpha2 } = xyz653, res = {
       mode: "xyz50",
       x: 1.0479298208405488 * x + 0.0229467933410191 * y - 0.0501922295431356 * z,
       y: 0.0296278156881593 * x + 0.990434484573249 * y - 0.0170738250293851 * z,
@@ -2183,8 +2853,8 @@ var huetiful = (() => {
   }, convertXyz65ToXyz50_default = convertXyz65ToXyz50;
 
   // node_modules/culori/src/xyz65/convertXyz50ToXyz65.js
-  var convertXyz50ToXyz65 = (xyz502) => {
-    let { x, y, z, alpha: alpha2 } = xyz502, res = {
+  var convertXyz50ToXyz65 = (xyz503) => {
+    let { x, y, z, alpha: alpha2 } = xyz503, res = {
       mode: "xyz65",
       x: 0.9554734527042182 * x - 0.0230985368742614 * y + 0.0632593086610217 * z,
       y: -0.0283697069632081 * x + 1.0099954580058226 * y + 0.021041398966943 * z,
@@ -2194,7 +2864,7 @@ var huetiful = (() => {
   }, convertXyz50ToXyz65_default = convertXyz50ToXyz65;
 
   // node_modules/culori/src/xyz65/definition.js
-  var definition17 = {
+  var definition26 = {
     mode: "xyz65",
     toMode: {
       rgb: convertXyz65ToRgb_default,
@@ -2218,7 +2888,53 @@ var huetiful = (() => {
       z: interpolatorLinear,
       alpha: { use: interpolatorLinear, fixup: fixupAlpha }
     }
-  }, definition_default17 = definition17;
+  }, definition_default26 = definition26;
+
+  // node_modules/culori/src/yiq/convertRgbToYiq.js
+  var convertRgbToYiq = ({ r: r2, g, b, alpha: alpha2 }) => {
+    let res = {
+      mode: "yiq",
+      y: 0.29889531 * r2 + 0.58662247 * g + 0.11448223 * b,
+      i: 0.59597799 * r2 - 0.2741761 * g - 0.32180189 * b,
+      q: 0.21147017 * r2 - 0.52261711 * g + 0.31114694 * b
+    };
+    return alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertRgbToYiq_default = convertRgbToYiq;
+
+  // node_modules/culori/src/yiq/convertYiqToRgb.js
+  var convertYiqToRgb = ({ y, i, q, alpha: alpha2 }) => {
+    let res = {
+      mode: "rgb",
+      r: y + 0.95608445 * i + 0.6208885 * q,
+      g: y - 0.27137664 * i - 0.6486059 * q,
+      b: y - 1.10561724 * i + 1.70250126 * q
+    };
+    return alpha2 !== void 0 && (res.alpha = alpha2), res;
+  }, convertYiqToRgb_default = convertYiqToRgb;
+
+  // node_modules/culori/src/yiq/definition.js
+  var definition27 = {
+    mode: "yiq",
+    toMode: {
+      rgb: convertYiqToRgb_default
+    },
+    fromMode: {
+      rgb: convertRgbToYiq_default
+    },
+    channels: ["y", "i", "q", "alpha"],
+    parse: ["--yiq"],
+    serialize: "--yiq",
+    ranges: {
+      i: [-0.595, 0.595],
+      q: [-0.522, 0.522]
+    },
+    interpolate: {
+      y: interpolatorLinear,
+      i: interpolatorLinear,
+      q: interpolatorLinear,
+      alpha: { use: interpolatorLinear, fixup: fixupAlpha }
+    }
+  }, definition_default27 = definition27;
 
   // node_modules/culori/src/round.js
   var r = (value, precision) => Math.round(value * (precision = Math.pow(10, precision))) / precision, round = (precision = 4) => (value) => typeof value == "number" ? r(value, precision) : value, round_default = round;
@@ -2235,7 +2951,7 @@ var huetiful = (() => {
     let a = fixup(color2.alpha !== void 0 ? color2.alpha : 1);
     return serializeHex(color2) + (256 | a).toString(16).slice(1);
   };
-  var formatHex = (c2) => serializeHex(converter_default("rgb")(c2)), formatHex8 = (c2) => serializeHex8(converter_default("rgb")(c2));
+  var formatHex = (c4) => serializeHex(converter_default("rgb")(c4)), formatHex8 = (c4) => serializeHex8(converter_default("rgb")(c4));
 
   // node_modules/culori/src/map.js
   var mapper = (fn5, mode2 = "rgb", preserve_mode = !1) => {
@@ -2256,7 +2972,7 @@ var huetiful = (() => {
       let prep = prepare_default(color2);
       return prep && prep.mode !== res.mode ? converter_default(prep.mode)(res) : res;
     };
-  }, mapAlphaMultiply = (v, ch, c2) => ch !== "alpha" ? (v || 0) * (c2.alpha !== void 0 ? c2.alpha : 1) : v, mapAlphaDivide = (v, ch, c2) => ch !== "alpha" && c2.alpha !== 0 ? (v || 0) / (c2.alpha !== void 0 ? c2.alpha : 1) : v;
+  }, mapAlphaMultiply = (v, ch, c4) => ch !== "alpha" ? (v || 0) * (c4.alpha !== void 0 ? c4.alpha : 1) : v, mapAlphaDivide = (v, ch, c4) => ch !== "alpha" && c4.alpha !== 0 ? (v || 0) / (c4.alpha !== void 0 ? c4.alpha : 1) : v;
 
   // node_modules/culori/src/util/normalizePositions.js
   var normalizePositions = (arr) => {
@@ -2290,29 +3006,29 @@ var huetiful = (() => {
     }, {});
     if (premap) {
       let ccolors = conv_colors.map((color2, idx) => def.channels.reduce(
-        (c2, ch) => (c2[ch] = fixed[ch][idx], c2),
+        (c4, ch) => (c4[ch] = fixed[ch][idx], c4),
         { mode: mode2 }
       ));
-      fixed = def.channels.reduce((res, ch) => (res[ch] = ccolors.map((c2) => {
-        let v = premap(c2[ch], ch, c2, mode2);
+      fixed = def.channels.reduce((res, ch) => (res[ch] = ccolors.map((c4) => {
+        let v = premap(c4[ch], ch, c4, mode2);
         return isNaN(v) ? void 0 : v;
       }), res), {});
     }
     let interpolators = def.channels.reduce((res, ch) => {
       let ifn;
       return isfn(overrides) ? ifn = overrides : isobj(overrides) && isfn(overrides[ch]) ? ifn = overrides[ch] : isobj(overrides) && isobj(overrides[ch]) && overrides[ch].use ? ifn = overrides[ch].use : isfn(def.interpolate[ch]) ? ifn = def.interpolate[ch] : isobj(def.interpolate[ch]) && (ifn = def.interpolate[ch].use), res[ch] = ifn(fixed[ch]), res;
-    }, {}), n = conv_colors.length - 1;
+    }, {}), n3 = conv_colors.length - 1;
     return (t) => {
       if (t = Math.min(Math.max(0, t), 1), t <= positions[0])
         return conv_colors[0];
-      if (t > positions[n])
-        return conv_colors[n];
+      if (t > positions[n3])
+        return conv_colors[n3];
       let idx = 0;
       for (; positions[idx] < t; )
         idx++;
       let start = positions[idx - 1], delta = positions[idx] - start, P = (t - start) / delta, fn5 = fns[idx] || fns[0];
       fn5 !== void 0 && (isnum(fn5) && (fn5 = midpoint_default((fn5 - start) / delta)), P = fn5(P));
-      let t0 = (idx - 1 + P) / n;
+      let t0 = (idx - 1 + P) / n3;
       return def.channels.reduce(
         (res, channel) => {
           let val = interpolators[channel](t0);
@@ -2355,57 +3071,57 @@ var huetiful = (() => {
 
   // node_modules/culori/src/interpolate/splineNatural.js
   var solve = (v) => {
-    let i, n = v.length - 1, c2 = new Array(n), _v = new Array(n), sol = new Array(n);
-    for (c2[1] = 1 / 4, _v[1] = (6 * v[1] - v[0]) / 4, i = 2; i < n; ++i)
-      c2[i] = 1 / (4 - c2[i - 1]), _v[i] = (6 * v[i] - (i == n - 1 ? v[n] : 0) - _v[i - 1]) * c2[i];
-    for (sol[0] = v[0], sol[n] = v[n], n - 1 > 0 && (sol[n - 1] = _v[n - 1]), i = n - 2; i > 0; --i)
-      sol[i] = _v[i] - c2[i] * sol[i + 1];
+    let i, n3 = v.length - 1, c4 = new Array(n3), _v = new Array(n3), sol = new Array(n3);
+    for (c4[1] = 1 / 4, _v[1] = (6 * v[1] - v[0]) / 4, i = 2; i < n3; ++i)
+      c4[i] = 1 / (4 - c4[i - 1]), _v[i] = (6 * v[i] - (i == n3 - 1 ? v[n3] : 0) - _v[i - 1]) * c4[i];
+    for (sol[0] = v[0], sol[n3] = v[n3], n3 - 1 > 0 && (sol[n3 - 1] = _v[n3 - 1]), i = n3 - 2; i > 0; --i)
+      sol[i] = _v[i] - c4[i] * sol[i + 1];
     return sol;
   }, interpolatorSplineNatural = (arr) => interpolatorSplineBasis(solve(arr));
 
   // node_modules/culori/src/interpolate/splineMonotone.js
-  var sgn = Math.sign, min = Math.min, abs = Math.abs, mono = (arr) => {
-    let n = arr.length - 1, s = [], p = [], yp = [];
-    for (let i = 0; i < n; i++)
-      s.push((arr[i + 1] - arr[i]) * n), p.push(i > 0 ? 0.5 * (arr[i + 1] - arr[i - 1]) * n : void 0), yp.push(
-        i > 0 ? (sgn(s[i - 1]) + sgn(s[i])) * min(abs(s[i - 1]), abs(s[i]), 0.5 * abs(p[i])) : void 0
+  var sgn = Math.sign, min = Math.min, abs2 = Math.abs, mono = (arr) => {
+    let n3 = arr.length - 1, s = [], p4 = [], yp = [];
+    for (let i = 0; i < n3; i++)
+      s.push((arr[i + 1] - arr[i]) * n3), p4.push(i > 0 ? 0.5 * (arr[i + 1] - arr[i - 1]) * n3 : void 0), yp.push(
+        i > 0 ? (sgn(s[i - 1]) + sgn(s[i])) * min(abs2(s[i - 1]), abs2(s[i]), 0.5 * abs2(p4[i])) : void 0
       );
-    return [s, p, yp];
+    return [s, p4, yp];
   }, interpolator = (arr, yp, s) => {
-    let n = arr.length - 1, n2 = n * n;
+    let n3 = arr.length - 1, n22 = n3 * n3;
     return (t) => {
       let i;
-      t >= 1 ? i = n - 1 : i = Math.max(0, Math.floor(t * n));
-      let t1 = t - i / n, t2 = t1 * t1, t3 = t2 * t1;
-      return (yp[i] + yp[i + 1] - 2 * s[i]) * n2 * t3 + (3 * s[i] - 2 * yp[i] - yp[i + 1]) * n * t2 + yp[i] * t1 + arr[i];
+      t >= 1 ? i = n3 - 1 : i = Math.max(0, Math.floor(t * n3));
+      let t1 = t - i / n3, t2 = t1 * t1, t3 = t2 * t1;
+      return (yp[i] + yp[i + 1] - 2 * s[i]) * n22 * t3 + (3 * s[i] - 2 * yp[i] - yp[i + 1]) * n3 * t2 + yp[i] * t1 + arr[i];
     };
   }, interpolatorSplineMonotone = (arr) => {
     if (arr.length < 3)
       return interpolatorLinear(arr);
-    let n = arr.length - 1, [s, , yp] = mono(arr);
-    return yp[0] = s[0], yp[n] = s[n - 1], interpolator(arr, yp, s);
+    let n3 = arr.length - 1, [s, , yp] = mono(arr);
+    return yp[0] = s[0], yp[n3] = s[n3 - 1], interpolator(arr, yp, s);
   };
 
   // node_modules/culori/src/easing/gamma.js
   var gamma4 = (\u03B3 = 1) => \u03B3 === 1 ? (t) => t : (t) => Math.pow(t, \u03B3), gamma_default = gamma4;
 
   // node_modules/culori/src/samples.js
-  var samples = (n = 2, \u03B3 = 1) => {
+  var samples = (n3 = 2, \u03B3 = 1) => {
     let ease = gamma_default(\u03B3);
-    if (n < 2)
-      return n < 1 ? [] : [ease(0.5)];
+    if (n3 < 2)
+      return n3 < 1 ? [] : [ease(0.5)];
     let res = [];
-    for (let i = 0; i < n; i++)
-      res.push(ease(i / (n - 1)));
+    for (let i = 0; i < n3; i++)
+      res.push(ease(i / (n3 - 1)));
     return res;
   }, samples_default = samples;
 
   // node_modules/culori/src/nearest.js
   var nearest = (colors2, metric = differenceEuclidean(), accessor = (d) => d) => {
-    let arr = colors2.map((c2, idx) => ({ color: accessor(c2), i: idx }));
-    return (color2, n = 1, \u03C4 = 1 / 0) => (isFinite(n) && (n = Math.max(1, Math.min(n, arr.length - 1))), arr.forEach((c2) => {
-      c2.d = metric(color2, c2.color);
-    }), arr.sort((a, b) => a.d - b.d).slice(0, n).filter((c2) => c2.d < \u03C4).map((c2) => colors2[c2.i]));
+    let arr = colors2.map((c4, idx) => ({ color: accessor(c4), i: idx }));
+    return (color2, n3 = 1, \u03C4 = 1 / 0) => (isFinite(n3) && (n3 = Math.max(1, Math.min(n3, arr.length - 1))), arr.forEach((c4) => {
+      c4.d = metric(color2, c4.color);
+    }), arr.sort((a, b) => a.d - b.d).slice(0, n3).filter((c4) => c4.d < \u03C4).map((c4) => colors2[c4.i]));
   }, nearest_default = nearest;
 
   // node_modules/culori/src/filter.js
@@ -2434,12 +3150,12 @@ var huetiful = (() => {
   var matrix = (values, mode2, preserve_mode = !1) => {
     let conv = converter_default(mode2), channels = getMode(mode2).channels;
     return (color2) => {
-      let c2 = conv(color2);
-      if (!c2)
+      let c4 = conv(color2);
+      if (!c4)
         return;
       let res = { mode: mode2 }, ch, count = channels.length;
       for (let i = 0; i < values.length; i++)
-        ch = channels[Math.floor(i / count)], c2[ch] !== void 0 && (res[ch] = (res[ch] || 0) + values[i] * (c2[channels[i % count]] || 0));
+        ch = channels[Math.floor(i / count)], c4[ch] !== void 0 && (res[ch] = (res[ch] || 0) + values[i] * (c4[channels[i % count]] || 0));
       if (!preserve_mode)
         return res;
       let prep = prepare_default(color2);
@@ -2792,16 +3508,16 @@ var huetiful = (() => {
       arr = arr.map((v, idx) => lerp(arr[idx], arr_2[idx], w));
     }
     return (color2) => {
-      let c2 = prepare_default(color2);
-      if (c2 === void 0)
+      let c4 = prepare_default(color2);
+      if (c4 === void 0)
         return;
-      let { r: r2, g, b } = rgb(c2), ret = {
+      let { r: r2, g, b } = rgb(c4), ret = {
         mode: "rgb",
         r: arr[0] * r2 + arr[1] * g + arr[2] * b,
         g: arr[3] * r2 + arr[4] * g + arr[5] * b,
         b: arr[6] * r2 + arr[7] * g + arr[8] * b
       };
-      return c2.alpha !== void 0 && (ret.alpha = c2.alpha), converter_default(c2.mode)(ret);
+      return c4.alpha !== void 0 && (ret.alpha = c4.alpha), converter_default(c4.mode)(ret);
     };
   }, filterDeficiencyProt = (severity = 1) => deficiency(PROT, severity), filterDeficiencyDeuter = (severity = 1) => deficiency(DEUTER, severity), filterDeficiencyTrit = (severity = 1) => deficiency(TRIT, severity);
 
@@ -2813,8 +3529,8 @@ var huetiful = (() => {
 
   // node_modules/culori/src/wcag.js
   function luminance(color2) {
-    let c2 = converter_default("lrgb")(color2);
-    return 0.2126 * c2.r + 0.7152 * c2.g + 0.0722 * c2.b;
+    let c4 = converter_default("lrgb")(color2);
+    return 0.2126 * c4.r + 0.7152 * c4.g + 0.0722 * c4.b;
   }
   function contrast(a, b) {
     let L1 = luminance(a), L2 = luminance(b);
@@ -2822,7 +3538,7 @@ var huetiful = (() => {
   }
 
   // node_modules/culori/src/bootstrap/css.js
-  var a98 = useMode(definition_default2), hsl = useMode(definition_default3), hsv = useMode(definition_default4), hwb = useMode(definition_default5), lab = useMode(definition_default6), lab65 = useMode(definition_default7), lch = useMode(definition_default8), lch65 = useMode(definition_default9), lrgb = useMode(definition_default10), oklab = useMode(definition_default11), oklch = useMode(definition_default12), p3 = useMode(definition_default13), prophoto = useMode(definition_default14), rec2020 = useMode(definition_default15), rgb2 = useMode(definition_default), xyz50 = useMode(definition_default16), xyz65 = useMode(definition_default17);
+  var a98 = useMode(definition_default2), hsl = useMode(definition_default7), hsv = useMode(definition_default8), hwb = useMode(definition_default9), lab = useMode(definition_default12), lab65 = useMode(definition_default13), lch = useMode(definition_default14), lch65 = useMode(definition_default15), lrgb = useMode(definition_default17), oklab = useMode(definition_default19), oklch = useMode(definition_default20), p3 = useMode(definition_default21), prophoto = useMode(definition_default22), rec2020 = useMode(definition_default23), rgb2 = useMode(definition_default), xyz50 = useMode(definition_default25), xyz65 = useMode(definition_default26);
 
   // converters/num2rgb.ts
   var num2rgb = (num3, hex2 = !1) => {
@@ -2875,26 +3591,26 @@ var huetiful = (() => {
   };
 
   // fp/object/colorObj.ts
-  var colorObj = (factor2, callback) => (color2) => ({ [factor2]: callback(color2), name: color2 });
+  var colorObj = (factor3, callback) => (color2) => ({ [factor3]: callback(color2), name: color2 });
 
   // fp/array/colorObjArr.ts
-  var colorObjArr = (factor2, callback) => (colors2) => {
-    let cb4 = colorObj(factor2, callback);
+  var colorObjArr = (factor3, callback) => (colors2) => {
+    let cb4 = colorObj(factor3, callback);
     return colors2.map((color2) => cb4(color2));
   };
 
   // fp/array/customSort.ts
-  var customSort = (order, factor2) => (factor2 = factor2 || "factor", (a, b) => {
+  var customSort = (order, factor3) => (factor3 = factor3 || "factor", (a, b) => {
     if (order === "asc")
-      return a[factor2] - b[factor2];
+      return a[factor3] - b[factor3];
     if (order === "desc")
-      return b[factor2] - a[factor2];
+      return b[factor3] - a[factor3];
   });
 
   // fp/array/sortedArr.ts
-  var sortedArr = (factor2, callback, order, colorObj2 = !1) => (colors2) => {
-    let results = colorObjArr(factor2, callback)(colors2);
-    return results.sort(customSort(order, factor2)), colorObj2 ? results : results.map((color2) => color2.name);
+  var sortedArr = (factor3, callback, order, colorObj2 = !1) => (colors2) => {
+    let results = colorObjArr(factor3, callback)(colors2);
+    return results.sort(customSort(order, factor3)), colorObj2 ? results : results.map((color2) => color2.name);
   };
 
   // colors/chroma.ts
@@ -2902,37 +3618,37 @@ var huetiful = (() => {
     let cs = matchChromaChannel(colorSpace);
     return getChannel(cs)(color2) < getChannel(cs)(subtrahend) ? getChannel(cs)(subtrahend) - getChannel(cs)(color2) : getChannel(cs)(color2) - getChannel(cs)(subtrahend);
   }, predicate = (colorSpace) => (color2) => getChannel(matchChromaChannel(colorSpace))(color2) || void 0, getNearestChroma = (color2, colors2, colorSpace) => {
-    let factor2 = "saturation", cb4 = chromaDiff(color2, colorSpace || "lch");
+    let factor3 = "saturation", cb4 = chromaDiff(color2, colorSpace || "lch");
     return sortedArr(
-      factor2,
+      factor3,
       cb4,
       "asc",
       !0
-    )(colors2).filter((el) => el[factor2] !== void 0)[0][factor2];
+    )(colors2).filter((el) => el[factor3] !== void 0)[0][factor3];
   }, getFarthestChroma = (color2, colors2, colorSpace) => {
-    let factor2 = "saturation", cb4 = chromaDiff(color2, colorSpace || "lch");
+    let factor3 = "saturation", cb4 = chromaDiff(color2, colorSpace || "lch");
     return sortedArr(
-      factor2,
+      factor3,
       cb4,
       "desc",
       !0
-    )(colors2).filter((el) => el[factor2] !== void 0)[0][factor2];
+    )(colors2).filter((el) => el[factor3] !== void 0)[0][factor3];
   }, minChroma = (colors2, colorSpace, colorObj2 = !1) => {
-    let factor2 = "saturation", result = sortedArr(
-      factor2,
+    let factor3 = "saturation", result = sortedArr(
+      factor3,
       predicate(colorSpace || "lch"),
       "asc",
       !0
-    )(colors2).filter((el) => el[factor2] !== void 0), value;
-    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor2]), value;
+    )(colors2).filter((el) => el[factor3] !== void 0), value;
+    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor3]), value;
   }, maxChroma = (colors2, colorSpace, colorObj2 = !1) => {
-    let factor2 = "saturation", result = sortedArr(
-      factor2,
+    let factor3 = "saturation", result = sortedArr(
+      factor3,
       predicate(colorSpace || "lch"),
       "desc",
       !0
-    )(colors2).filter((el) => el[factor2] !== void 0), value;
-    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor2]), value;
+    )(colors2).filter((el) => el[factor3] !== void 0), value;
+    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor3]), value;
   };
 
   // colors/colorBrewer.ts
@@ -3710,18 +4426,18 @@ var huetiful = (() => {
   }, min2 = (array) => array && array.length ? baseExtremum(array, identity2, lt) : void 0, max = (array) => array && array.length ? baseExtremum(array, identity2, gt) : void 0;
 
   // fp/array/filteredArr.ts
-  var filteredArr = (factor2, cb4) => (colors2, start, end) => {
+  var filteredArr = (factor3, cb4) => (colors2, start, end) => {
     let result;
     if (typeof start == "number")
       return result = colorObjArr(
-        factor2,
+        factor3,
         cb4
-      )(colors2).filter((color2) => inRange(color2[factor2], start, end)).map((color2) => color2.name), result;
+      )(colors2).filter((color2) => inRange(color2[factor3], start, end)).map((color2) => color2.name), result;
     if (typeof start == "string") {
       let reOperator = /^(>=|<=|<|>)/, val = /[0-9]*\.?[0-9]+/.exec(start), op = reOperator.exec(start), mapFilter = (test) => colorObjArr(
-        factor2,
+        factor3,
         cb4
-      )(colors2).filter((el) => test(el[factor2], parseFloat(val[0]))).map((el) => el.name);
+      )(colors2).filter((el) => test(el[factor3], parseFloat(val[0]))).map((el) => el.name);
       switch (op[0]) {
         case "<":
           result = mapFilter(lt);
@@ -3741,8 +4457,8 @@ var huetiful = (() => {
   };
 
   // palettes/hueShift.ts
-  var lightnessMapper = (n) => (start1, end1) => (start2, end2) => (n - start1) / (end1 - start1) * (end2 - start2) + start2, hueShift = (color2, options) => {
-    color2 = useMode(definition_default8)(toHex(color2));
+  var lightnessMapper = (n3) => (start1, end1) => (start2, end2) => (n3 - start1) / (end1 - start1) * (end2 - start2) + start2, hueShift = (color2, options) => {
+    color2 = useMode(definition_default14)(toHex(color2));
     let { iterations, hueStep, minLightness: minLightness2, maxLightness: maxLightness2, easingFunc } = options || {};
     easingFunc = checkArg(easingFunc, easingSmoothstep), iterations = checkArg(iterations, 6) + 1, hueStep = checkArg(hueStep, 5), minLightness2 = checkArg(minLightness2, 10), maxLightness2 = checkArg(maxLightness2, 90);
     let tValues = samples_default(iterations), palette = [color2];
@@ -3773,7 +4489,7 @@ var huetiful = (() => {
   var cb2 = (iterations, distance, color2) => samples_default(iterations).map(
     (val) => adjustHue((color2.h + distance) * (val * easingSmoothstep(val)))
   ), scheme = (schemeType) => (color2, easingFunc) => {
-    schemeType = schemeType.toLowerCase(), easingFunc = checkArg(easingFunc, easingSmoothstep), color2 = useMode(definition_default8)(color2);
+    schemeType = schemeType.toLowerCase(), easingFunc = checkArg(easingFunc, easingSmoothstep), color2 = useMode(definition_default14)(color2);
     let lowMin = 0.05, lowMax = 0.495, highMin = 0.5, highMax = 0.995, targetHueSteps = {
       analogous: cb2(3, 12, color2),
       triadic: cb2(3, 120, color2),
@@ -3793,8 +4509,8 @@ var huetiful = (() => {
   };
 
   // palettes/discoverPalettes.ts
-  var { keys } = Object, isColorEqual = (c1, c2) => c1.h === c2.h && c1.l === c2.l && c1.c === c2.c, discoverPalettes = (colors2, schemeType) => {
-    let toLch = useMode(definition_default8);
+  var { keys } = Object, isColorEqual = (c13, c23) => c13.h === c23.h && c13.l === c23.l && c13.c === c23.c, discoverPalettes = (colors2, schemeType) => {
+    let toLch = useMode(definition_default14);
     colors2 = colors2.map((color2) => toLch(toHex(color2)));
     let palettes = {}, schemeKeys = ["analogous", "triadic", "tetradic", "complementary"], targetPalettes = {};
     for (let color2 of colors2) {
@@ -3822,21 +4538,42 @@ var huetiful = (() => {
     );
   };
 
+  // node_modules/culori/src/index.js
+  var a982 = useMode(definition_default2), cubehelix = useMode(definition_default3), dlab = useMode(definition_default4), dlch = useMode(definition_default5), hsi = useMode(definition_default6), hsl2 = useMode(definition_default7), hsv2 = useMode(definition_default8), hwb2 = useMode(definition_default9), jab = useMode(definition_default10), jch = useMode(definition_default11), lab2 = useMode(definition_default12), lab652 = useMode(definition_default13), lch2 = useMode(definition_default14), lch652 = useMode(definition_default15), lchuv = useMode(definition_default16), lrgb2 = useMode(definition_default17), luv = useMode(definition_default18), okhsl = useMode(modeOkhsl_default), okhsv = useMode(modeOkhsv_default), oklab2 = useMode(definition_default19), oklch2 = useMode(definition_default20), p32 = useMode(definition_default21), prophoto2 = useMode(definition_default22), rec20202 = useMode(definition_default23), rgb3 = useMode(definition_default), xyb = useMode(definition_default24), xyz502 = useMode(definition_default25), xyz652 = useMode(definition_default26), yiq = useMode(definition_default27);
+
+  // fp/defaults.ts
+  var {
+    chromaInterpolator,
+    hueFixup,
+    hueInterpolator,
+    lightnessInterpolator
+  } = {};
+  chromaInterpolator = checkArg(chromaInterpolator, interpolatorSplineNatural);
+  hueFixup = checkArg(hueFixup, fixupHueShorter);
+  hueInterpolator = checkArg(hueInterpolator, interpolatorSplineBasisClosed);
+  lightnessInterpolator = checkArg(
+    lightnessInterpolator,
+    interpolatorSplineMonotone
+  );
+  var interpolatorConfig = {
+    chromaInterpolator,
+    hueFixup,
+    hueInterpolator,
+    lightnessInterpolator
+  };
+
   // palettes/earthtone.ts
   var earthtone = (color2, options) => {
     let {
-      chromaInterpolator,
-      hueFixup,
-      hueInterpolator,
-      lightnessInterpolator,
+      chromaInterpolator: chromaInterpolator2,
+      hueFixup: hueFixup2,
+      hueInterpolator: hueInterpolator2,
+      lightnessInterpolator: lightnessInterpolator2,
       iterations,
       earthtones,
       easingFunc
     } = options || {};
-    easingFunc = checkArg(easingFunc, smootherstep_default), chromaInterpolator = checkArg(chromaInterpolator, interpolatorSplineNatural), hueFixup = checkArg(hueFixup, fixupHueShorter), hueInterpolator = checkArg(hueInterpolator, interpolatorSplineBasisClosed), lightnessInterpolator = checkArg(
-      lightnessInterpolator,
-      interpolatorSplineMonotone
-    ), iterations = checkArg(iterations, 1), earthtones = checkArg(earthtones, "dark");
+    iterations = checkArg(iterations, 1), earthtones = checkArg(earthtones, "dark");
     let base = {
       "light-gray": "#e5e5e5",
       silver: "#f5f5f5",
@@ -3848,18 +4585,11 @@ var huetiful = (() => {
       cocoa: "#584a3e",
       "dark-brown": "#473b31",
       dark: "#352a21"
-    }[earthtones.toLowerCase()], f3 = interpolate([base, toHex(color2), easingFunc], "lch", {
-      h: {
-        fixup: hueFixup,
-        use: hueInterpolator
-      },
-      c: {
-        use: chromaInterpolator
-      },
-      l: {
-        use: lightnessInterpolator
-      }
-    });
+    }[earthtones.toLowerCase()], f3 = interpolate(
+      [base, toHex(color2), easingFunc],
+      "lch",
+      checkArg(options, interpolatorConfig)
+    );
     return iterations === 1 ? toHex(f3(0.5)) : samples_default(iterations).map((t) => toHex(f3(t)));
   };
 
@@ -3903,34 +4633,24 @@ var huetiful = (() => {
   // palettes/paired.ts
   var pairedScheme = (color2, options) => {
     let {
-      chromaInterpolator,
-      hueFixup,
-      hueInterpolator,
-      lightnessInterpolator,
+      chromaInterpolator: chromaInterpolator2,
+      hueFixup: hueFixup2,
+      hueInterpolator: hueInterpolator2,
+      lightnessInterpolator: lightnessInterpolator2,
       iterations,
-      via,
+      via: tone,
       hueStep,
       easingFunc
     } = options || {};
-    easingFunc = checkArg(easingFunc, easingSmoothstep), chromaInterpolator = checkArg(chromaInterpolator, interpolatorSplineNatural), hueFixup = checkArg(hueFixup, fixupHueShorter), hueInterpolator = checkArg(hueInterpolator, interpolatorSplineBasisClosed), lightnessInterpolator = checkArg(
-      lightnessInterpolator,
-      interpolatorSplineMonotone
-    ), iterations = checkArg(iterations, 1), via = checkArg(via, "light"), hueStep = checkArg(hueStep, 5), color2 = useMode(definition_default8)(toHex(color2));
-    let derivedHue = setChannel("lch.h")(color2, color2.h + hueStep), scale = interpolate([color2, {
-      dark: "#263238",
-      light: { l: 100, c: 1e-4, h: 0, mode: "lch" }
-    }[via], derivedHue], "lch", {
-      h: {
-        fixup: hueFixup,
-        use: hueInterpolator
-      },
-      c: {
-        use: chromaInterpolator
-      },
-      l: {
-        use: lightnessInterpolator
-      }
-    });
+    iterations = checkArg(iterations, 1), easingFunc = checkArg(easingFunc, easingSmoothstep), tone = checkArg(tone, "light"), hueStep = checkArg(hueStep, 5), color2 = useMode(definition_default14)(toHex(color2));
+    let derivedHue = setChannel("lch.h")(color2, color2.h + hueStep), scale = interpolate(
+      [color2, {
+        dark: "#263238",
+        light: { l: 100, c: 1e-4, h: 0, mode: "lch" }
+      }[tone], derivedHue, easingFunc],
+      "lch",
+      checkArg(options, interpolatorConfig)
+    );
     if (iterations <= 1)
       return toHex(scale(0.5));
     {
@@ -3974,7 +4694,7 @@ var huetiful = (() => {
     maxSampleSaturation: max(sampleSaturation),
     minSampleValue: min2(sampleValues),
     maxSampleValue: max(sampleValues)
-  }, pastel = (color2) => (color2 = useMode(definition_default4)(toHex(color2)), toHex({
+  }, pastel = (color2) => (color2 = useMode(definition_default8)(toHex(color2)), toHex({
     h: color2.h,
     s: pastelSample.averageSaturation,
     v: random(pastelSample.minSampleValue, pastelSample.maxSampleValue),
@@ -3996,13 +4716,13 @@ var huetiful = (() => {
 
   // converters/getTemp.ts
   var getTemp = (color2) => {
-    let { round: round2 } = Math, rgb4 = useMode(definition_default10)(toHex(color2)), channelArr = [];
-    channelArr[0] = rgb4.r, channelArr[1] = rgb4.b;
+    let { round: round2 } = Math, rgb5 = useMode(definition_default17)(toHex(color2)), channelArr = [];
+    channelArr[0] = rgb5.r, channelArr[1] = rgb5.b;
     let minTemp2 = 1e3, maxTemp2 = 4e4, eps = 0.4, temp;
     for (; maxTemp2 - minTemp2 > eps; ) {
       temp = (maxTemp2 + minTemp2) * 0.5;
-      let rgb5 = temp2Color(temp, !1);
-      rgb5.b / rgb5.r >= channelArr[1] / channelArr[0] ? maxTemp2 = temp : minTemp2 = temp;
+      let rgb6 = temp2Color(temp, !1);
+      rgb6.b / rgb6.r >= channelArr[1] / channelArr[0] ? maxTemp2 = temp : minTemp2 = temp;
     }
     return round2(temp);
   };
@@ -4012,10 +4732,10 @@ var huetiful = (() => {
 
   // filterBy/filterBySaturation.ts
   var filterBySaturation = (colors2, startSaturation = 0.05, endSaturation = 1, mode2) => {
-    let factor2 = "saturation";
+    let factor3 = "saturation";
     if (matchChromaChannel(mode2)) {
       let chromaChannel = matchChromaChannel(mode2), cb4 = getChannel(`${mode2}.${chromaChannel}`), saturationRange = getSaturationRange(modeRanges_default, mode2, chromaChannel), start = saturationRange[0], end = saturationRange[1], reDigits = /([0-9])/.exec(startSaturation)[0];
-      return filteredArr(factor2, cb4)(
+      return filteredArr(factor3, cb4)(
         colors2,
         normalize(reDigits, start, end),
         normalize(endSaturation, start, end)
@@ -4027,7 +4747,7 @@ var huetiful = (() => {
   };
 
   // getters_and_setters/luminance.ts
-  var getLuminance = (color2) => luminance(toHex(color2)), { pow, abs: abs2 } = Math, toRgb = useMode(definition_default), setLuminance = (color2, lum) => {
+  var getLuminance = (color2) => luminance(toHex(color2)), { pow, abs: abs3 } = Math, toRgb = useMode(definition_default), setLuminance = (color2, lum) => {
     let white = "#ffffff", black = "#000000", MAX_ITER = 20;
     if (lum !== void 0 && typeof lum == "number") {
       lum == 0 && lum || black || lum == 1;
@@ -4035,9 +4755,9 @@ var huetiful = (() => {
       color2 = toRgb(toHex(color2));
       let test = (low, high) => {
         let mid = interpolate([low, high])(0.5), lm = getLuminance(color2);
-        return abs2(lum - lm > 1e-7) || !MAX_ITER-- ? mid : lm > lum ? test(low, mid) : test(mid, high);
-      }, rgb4;
-      return cur_lum > lum ? rgb4 = test(black, color2) : rgb4 = test(color2, white), color2 = rgb4, color2;
+        return abs3(lum - lm > 1e-7) || !MAX_ITER-- ? mid : lm > lum ? test(low, mid) : test(mid, high);
+      }, rgb5;
+      return cur_lum > lum ? rgb5 = test(black, color2) : rgb5 = test(color2, white), color2 = rgb5, color2;
     }
     return rgb2luminance(color2);
   }, rgb2luminance = (color2) => (color2 = toRgb(toHex(color2)), 0.7152 * luminance_x(color2.g) + 0.2126 * luminance_x(color2.r) + 0.0722 * luminance_x(color2.b)), luminance_x = (x) => (x /= 255, x <= 0.03928 ? x / 12.92 : pow((x + 0.055) / 1.055, 2.4));
@@ -4047,20 +4767,20 @@ var huetiful = (() => {
 
   // filterBy/filterByHue.ts
   var filterByHue = (colors2, startHue = 0, endHue = 360) => {
-    let factor2 = "hue", cb4 = getChannel("lch.h");
-    return filteredArr(factor2, cb4)(colors2, startHue, endHue);
+    let factor3 = "hue", cb4 = getChannel("lch.h");
+    return filteredArr(factor3, cb4)(colors2, startHue, endHue);
   };
 
   // filterBy/filterByLightness.ts
   var filterByLightness = (colors2, startLightness = 5, endLightness = 100) => {
-    let factor2 = "lightness", cb4 = getChannel("lch.l");
-    return filteredArr(factor2, cb4)(colors2, startLightness, endLightness);
+    let factor3 = "lightness", cb4 = getChannel("lch.l");
+    return filteredArr(factor3, cb4)(colors2, startLightness, endLightness);
   };
 
   // filterBy/filterByDistance.ts
   var filterByDistance = (colors2, against, startDistance = 0.05, endDistance, mode2, weights) => {
-    let factor2 = "distance";
-    return against = toHex(against), filteredArr(factor2, ((against2, mode3) => (color2) => differenceEuclidean(mode3 || "lch", weights || [1, 1, 1, 0])(
+    let factor3 = "distance";
+    return against = toHex(against), filteredArr(factor3, ((against2, mode3) => (color2) => differenceEuclidean(mode3 || "lch", weights || [1, 1, 1, 0])(
       against2,
       color2
     ))(against, mode2))(
@@ -4087,18 +4807,18 @@ var huetiful = (() => {
 
   // sortBy/sortByHue.ts
   var sortByHue = (colors2, order, mode2 = "jch") => {
-    let factor2 = "hue";
+    let factor3 = "hue";
     if (/h/gi.test(mode2)) {
       let cb4 = getChannel(`${mode2}.h`);
-      return sortedArr(factor2, cb4, order)(colors2);
+      return sortedArr(factor3, cb4, order)(colors2);
     } else
       throw Error(`The color space ${mode2} has no hue channel try 'lch' instead`);
   };
 
   // sortBy/sortByLightness.ts
   var sortByLightness = (colors2, order) => {
-    let factor2 = "lightness", cb4 = getChannel("lch.l");
-    return sortedArr(factor2, cb4, order)(colors2);
+    let factor3 = "lightness", cb4 = getChannel("lch.l");
+    return sortedArr(factor3, cb4, order)(colors2);
   };
 
   // sortBy/sortByLuminance.ts
@@ -4106,10 +4826,10 @@ var huetiful = (() => {
 
   // sortBy/sortBySaturation.ts
   var sortBySaturation = (colors2, order, mode2) => {
-    let factor2 = "saturation";
+    let factor3 = "saturation";
     if (mode2 = checkArg(mode2, "jch"), matchChromaChannel(mode2)) {
       let chromaChannel = matchChromaChannel(mode2), cb4 = getChannel(`${mode2}.${chromaChannel}`);
-      return sortedArr(factor2, cb4, order)(colors2);
+      return sortedArr(factor3, cb4, order)(colors2);
     } else
       throw Error(
         `The passed in color space ${mode2} has no chroma channel. Try 'jch' instead.`
@@ -4169,7 +4889,7 @@ var huetiful = (() => {
     // 273.54920266436477
      */
     maxHue(colorSpace, colorObj2 = !1) {
-      return maxHue(this._colors, colorSpace, colorObj2);
+      return maxHue(this.colors, colorSpace, colorObj2);
     }
     /**
      * Returns the current length of the resultant array of colors
@@ -4195,7 +4915,7 @@ var huetiful = (() => {
     // 12.462831644544274
      */
     minHue(colorSpace, colorObj2 = !1) {
-      return minHue(this._colors, colorSpace, colorObj2);
+      return minHue(this.colors, colorSpace, colorObj2);
     }
     /**
      *@function
@@ -4214,7 +4934,7 @@ var huetiful = (() => {
     
      */
     minLightness(colorObj2 = !1) {
-      return minLightness(this._colors, colorObj2);
+      return minLightness(this.colors, colorObj2);
     }
     /**
      *@function
@@ -4234,7 +4954,7 @@ var huetiful = (() => {
     
      */
     maxLightness(colorObj2 = !1) {
-      return maxLightness(this._colors, colorObj2);
+      return maxLightness(this.colors, colorObj2);
     }
     /**
      * @experimental
@@ -4253,7 +4973,7 @@ var huetiful = (() => {
     // 9570
      */
     maxTemp(color2) {
-      return maxTemp(this._colors);
+      return maxTemp(this.colors);
     }
     /**
      * @experimental
@@ -4273,7 +4993,7 @@ var huetiful = (() => {
      * 
      */
     minTemp(color2) {
-      return minTemp(this._colors);
+      return minTemp(this.colors);
     }
     /**
      * @function
@@ -4564,7 +5284,7 @@ var huetiful = (() => {
     
      */
     sortByLightness(order) {
-      return this[this._colors] = this, this.colors = sortByLightness(this.colors, order), this;
+      return this.colors = sortByLightness(this.colors, order), this;
     }
     /**
      * @function
@@ -4826,65 +5546,65 @@ var huetiful = (() => {
   };
 
   // fp/object/customFindKey.ts
-  var customFindKey = (collection, factor2) => Object.keys(collection).filter((key) => {
+  var customFindKey = (collection, factor3) => Object.keys(collection).filter((key) => {
     let hueVals = customConcat(collection[key]), minVal = min2(...hueVals), maxVal = max(...hueVals);
-    return inRange(factor2, minVal, maxVal);
+    return inRange(factor3, minVal, maxVal);
   }).toString();
 
   // colors/lightness.ts
   var lightness = "lab.l", lightnessDiff = (color2) => (subtrahend) => getChannel(lightness)(color2) < getChannel(lightness)(subtrahend) ? getChannel(lightness)(subtrahend) - getChannel(lightness)(color2) : getChannel(lightness)(color2) - getChannel(lightness)(subtrahend), getNearestLightness = (color2, colors2) => {
-    let factor2 = "lightness", cb4 = lightnessDiff(color2);
-    return sortedArr(factor2, cb4, "asc", !0)(colors2)[0][factor2];
+    let factor3 = "lightness", cb4 = lightnessDiff(color2);
+    return sortedArr(factor3, cb4, "asc", !0)(colors2)[0][factor3];
   }, getFarthestLightness = (color2, colors2) => {
-    let factor2 = "lightness", cb4 = lightnessDiff(color2);
-    return sortedArr(factor2, cb4, "desc", !0)(colors2)[0][factor2];
+    let factor3 = "lightness", cb4 = lightnessDiff(color2);
+    return sortedArr(factor3, cb4, "desc", !0)(colors2)[0][factor3];
   }, minLightness = (colors2, colorObj2 = !1) => {
-    let factor2 = "lightness", cb4 = getChannel(lightness), result = sortedArr(
-      factor2,
+    let factor3 = "lightness", cb4 = getChannel(lightness), result = sortedArr(
+      factor3,
       cb4,
       "asc",
       !0
     )(colors2), value;
-    return gt(result.length, 0) && (colorObj2 ? value = result[0] : value = result[0][factor2]), value;
+    return gt(result.length, 0) && (colorObj2 ? value = result[0] : value = result[0][factor3]), value;
   }, maxLightness = (colors2, colorObj2 = !1) => {
-    let factor2 = "lightness", cb4 = getChannel(lightness), result = sortedArr(
-      factor2,
+    let factor3 = "lightness", cb4 = getChannel(lightness), result = sortedArr(
+      factor3,
       cb4,
       "desc",
       !0
     )(colors2), value;
-    return gt(result.length, 0) && (colorObj2 ? value = result[0] : value = result[0][factor2]), value;
+    return gt(result.length, 0) && (colorObj2 ? value = result[0] : value = result[0][factor3]), value;
   };
 
   // colors/hue.ts
-  var { abs: abs3 } = Math, factor = "hue", mode = (colorSpace) => `${colorSpace || "lch"}.h`, targetHue = (color2, colorSpace) => getChannel(mode(colorSpace))(color2), cb3 = (color2, colorSpace) => (subtrahend) => abs3(
+  var { abs: abs4 } = Math, factor2 = "hue", mode = (colorSpace) => `${colorSpace || "lch"}.h`, targetHue = (color2, colorSpace) => getChannel(mode(colorSpace))(color2), cb3 = (color2, colorSpace) => (subtrahend) => abs4(
     targetHue(color2, colorSpace) - getChannel(mode(colorSpace))(subtrahend)
   ), predicate2 = (colorSpace) => (color2) => getChannel(mode(colorSpace))(color2) || void 0, getNearestHue = (color2, colors2, colorSpace) => sortedArr(
-    factor,
+    factor2,
     cb3(color2, mode(colorSpace)),
     "asc",
     !0
-  )(colors2).filter((el) => el[factor] !== void 0)[0][factor], getFarthestHue = (color2, colors2, colorSpace) => sortedArr(
-    factor,
+  )(colors2).filter((el) => el[factor2] !== void 0)[0][factor2], getFarthestHue = (color2, colors2, colorSpace) => sortedArr(
+    factor2,
     cb3(color2, mode(colorSpace)),
     "desc",
     !0
-  )(colors2).filter((el) => el[factor] !== void 0)[0][factor], minHue = (colors2, colorSpace, colorObj2 = !1) => {
+  )(colors2).filter((el) => el[factor2] !== void 0)[0][factor2], minHue = (colors2, colorSpace, colorObj2 = !1) => {
     let result = sortedArr(
-      factor,
+      factor2,
       predicate2(colorSpace),
       "asc",
       !0
-    )(colors2).filter((el) => el[factor] !== void 0), value;
-    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor]), value;
+    )(colors2).filter((el) => el[factor2] !== void 0), value;
+    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor2]), value;
   }, maxHue = (colors2, colorSpace, colorObj2 = !1) => {
     let result = sortedArr(
-      factor,
+      factor2,
       predicate2(colorSpace),
       "desc",
       !0
-    )(colors2).filter((el) => el[factor] !== void 0), value;
-    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor]), value;
+    )(colors2).filter((el) => el[factor2] !== void 0), value;
+    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor2]), value;
   };
 
   // color-maps/samples/hueTemperature.ts
@@ -4939,7 +5659,7 @@ var huetiful = (() => {
 
   // colors/overtone.ts
   var overtone = (color2) => {
-    let factor2 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor2);
+    let factor3 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor3);
     return isAchromatic(color2) ? "gray" : /-/.test(hue3) ? (hue3 = hue3.split("-"), hue3[1]) : !1;
   };
 
@@ -4963,20 +5683,20 @@ var huetiful = (() => {
   };
 
   // colors/temperature.ts
-  var predicate3 = (factor2, temp) => !!Object.keys(hueTemperature_default).some(
+  var predicate3 = (factor3, temp) => !!Object.keys(hueTemperature_default).some(
     (val) => inRange(
-      floorCeil(factor2),
+      floorCeil(factor3),
       hueTemperature_default[val][temp][0],
       hueTemperature_default[val][temp][1]
     )
   ), isCool = (color2) => {
-    let factor2 = getChannel("lch.h")(color2);
-    return predicate3(factor2, "cool");
+    let factor3 = getChannel("lch.h")(color2);
+    return predicate3(factor3, "cool");
   }, isWarm = (color2) => {
-    let factor2 = getChannel("lch.h")(color2);
-    return predicate3(factor2, "cool");
+    let factor3 = getChannel("lch.h")(color2);
+    return predicate3(factor3, "cool");
   }, maxTemp = (color2) => {
-    let factor2 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor2), maxHue2 = max(...customConcat(hueTemperature_default[hue3]));
+    let factor3 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor3), maxHue2 = max(...customConcat(hueTemperature_default[hue3]));
     return getTemp({
       l: getChannel("lch.l")(color2),
       c: getChannel("lch.c")(color2),
@@ -4984,7 +5704,7 @@ var huetiful = (() => {
       mode: "lch"
     });
   }, minTemp = (color2) => {
-    let factor2 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor2), minHue2 = min2(...customConcat(hueTemperature_default[hue3]));
+    let factor3 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor3), minHue2 = min2(...customConcat(hueTemperature_default[hue3]));
     return getTemp({
       l: getChannel("lch.l")(color2),
       c: getChannel("lch.c")(color2),
@@ -4995,12 +5715,12 @@ var huetiful = (() => {
 
   // colors/getHue.ts
   var getHue = (color2) => {
-    color2 = useMode(definition_default8)(toHex(color2));
-    let factor2 = color2.h;
+    color2 = useMode(definition_default14)(toHex(color2));
+    let factor3 = color2.h;
     return Object.keys(hueTemperature_default).map((hue3) => {
       let hueVals = customConcat(hueTemperature_default[hue3]), minVal = min2(...hueVals), maxVal = max(...hueVals);
       if (customConcat(hueTemperature_default[hue3]).some(
-        () => inRange(factor2, minVal, maxVal)
+        () => inRange(factor3, minVal, maxVal)
       ))
         return hue3;
     }).filter((val) => typeof val == "string").toString();
@@ -5025,8 +5745,8 @@ var huetiful = (() => {
 
   // converters/rgb2num.ts
   var rgb2num = (color2) => {
-    let rgb4 = useMode(definition_default)(toHex(color2));
-    return (255 * rgb4.r << 16) + (255 * rgb4.g << 8) + 255 * rgb4.b;
+    let rgb5 = useMode(definition_default)(toHex(color2));
+    return (255 * rgb5.r << 16) + (255 * rgb5.g << 8) + 255 * rgb5.b;
   };
 
   // converters/ciecam.ts
@@ -5046,7 +5766,7 @@ var huetiful = (() => {
 
   // colors/color.ts
   var IColor = class {
-    constructor(color2, options) {
+    constructor(c4, options) {
       let {
         illuminant: illuminant2,
         alpha: alpha2,
@@ -5058,12 +5778,12 @@ var huetiful = (() => {
         lightness: lightness2,
         temperature
       } = options || {};
-      color2 = checkArg(color2, "#000"), this.temperature = checkArg(temperature, getTemp(color2)), this.illuminant = checkArg(illuminant2, "D65"), this.alpha = checkArg(alpha2, alpha(color2)), this._color = color2, this._luminance = checkArg(luminance2, getLuminance(color2)), this.lightness = checkArg(lightness2, getChannel("lch.l")(color2)), this.colorspace = checkArg(colorspace, "jch"), this._saturation = checkArg(
+      c4 = checkArg(c4, "#000"), this.temperature = checkArg(temperature, getTemp(c4)), this.illuminant = checkArg(illuminant2, "D65"), this.alpha = checkArg(alpha2, alpha(c4)), this._color = c4, this._luminance = checkArg(luminance2, getLuminance(c4)), this.lightness = checkArg(lightness2, getChannel("lch.l")(c4)), this.colorspace = checkArg(colorspace, "jch"), this._saturation = checkArg(
         saturation,
         getChannel(
           `${this.colorspace}.${matchChromaChannel(this.colorspace)}`
-        )(color2)
-      ), this.temperature = checkArg(temperature, getTemp(color2)), this.lightMode = checkArg(lightMode, colors("gray", "100")), this.darkMode = checkArg(darkMode, colors("gray", "800"));
+        )(c4)
+      ), this.temperature = checkArg(temperature, getTemp(c4)), this.lightMode = checkArg(lightMode, colors("gray", "100")), this.darkMode = checkArg(darkMode, colors("gray", "800"));
     }
     alpha(amount) {
       return amount ? (this._color = alpha(this._color, amount), this) : alpha(this._color);
@@ -5080,6 +5800,13 @@ var huetiful = (() => {
     }
     temperature(kelvins) {
       return kelvins ? (this._color = temp2Color(kelvins), this.temperature = getTemp(this._color), this) : getTemp(this._color);
+    }
+    via(origin, t, options) {
+      return toHex(((t2) => interpolate(
+        [origin, this.color],
+        this.colorspace,
+        checkArg(options, interpolatorConfig)
+      )(t2))(t));
     }
     brighten(amount) {
       return this._color = brighten(this._color, amount), this;
@@ -5216,12 +5943,12 @@ var huetiful = (() => {
   // getters_and_setters/alpha.ts
   var alpha = (color2, value) => {
     color2 = color2 || "black";
-    let channel = "alpha", src = useMode(definition_default8)(toHex(color2));
+    let channel = "alpha", src = useMode(definition_default14)(toHex(color2));
     return typeof value > "u" ? src[channel] : (typeof value == "number" ? inRange(value, 0, 1) ? src[channel] = value : src[channel] = value / 100 : typeof value == "string" && expressionParser(src, channel, value), toHex(src));
   };
 
   // getters_and_setters/darken.ts
-  var toLab = useMode(definition_default6), darken = (color2, value) => {
+  var toLab = useMode(definition_default12), darken = (color2, value) => {
     let channel = "l", src = toLab(toHex(color2));
     return typeof value == "number" ? src.l -= 18 * smootherstep_default(value / 100) : typeof value == "string" && expressionParser(src, channel, value || 1), toHex(src);
   }, brighten = (color2, value) => {
