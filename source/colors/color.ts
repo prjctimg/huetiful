@@ -134,13 +134,13 @@ class IColor {
     }
   }
 
-  via(origin: Color, t: number, options?: typeof interpolatorConfig) {
+  via(origin: Color, t?: number, options?: typeof interpolatorConfig) {
     const result = (t) =>
       interpolate(
         [origin, this["color"]],
         this["colorspace"],
         checkArg(options, interpolatorConfig)
-      )(t);
+      )(checkArg(t, 0.5));
 
     return nativeToHex(result(t));
   }
@@ -166,48 +166,32 @@ class IColor {
     this["_color"] = nativePastel(this["_color"]);
     return this;
   }
-  pairedScheme(options?: PairedSchemeOptions): IColor[] {
-    this["colors"] = load(
-      nativePairedScheme(this["_color"], checkArg(options, {}))
-    );
+  pairedScheme(options?: PairedSchemeOptions): Color[] {
+    // @ts-ignore
+    this["colors"] = nativePairedScheme(this["_color"], checkArg(options, {}));
+
     return this["colors"];
   }
-  hueShift(options?: HueShiftOptions): ColorArray | Color {
+  hueShift(options?: HueShiftOptions): Color[] {
     options["iterations"] = checkArg(options["iterations"], 1);
     if (options["iterations"]) {
       return nativeHueShift(this["_color"], options);
     } else {
-      this["colors"] = load(
-        nativeHueShift(this["_color"], checkArg(options, {}))
-      );
+      this["colors"] = nativeHueShift(this["_color"], checkArg(options, {}));
+
       return this["colors"];
     }
   }
   getComplimentaryHue(colorObj?: boolean): { hue: Hue; color: Color } | Color {
-    if (colorObj) {
-      return nativeGetComplimentaryHue(
-        this["_color"],
-        checkArg(colorObj, colorObj)
-      );
-    } else {
-      this["_color"] = nativeGetComplimentaryHue(
-        this["_color"],
-        checkArg(colorObj, colorObj)
-      );
-      return this["_color"];
-    }
+    this["_color"] = nativeGetComplimentaryHue(this["_color"], colorObj);
+    return this["_color"];
   }
   earthtone(options?: EarthtoneOptions): ColorArray | Color {
     options["iterations"] = checkArg(options["iterations"], 1);
 
-    if (options["iterations"] <= 1) {
-      return nativeEarthtone(this["_color"], options);
-    } else {
-      this["colors"] = load(
-        nativeEarthtone(this["_color"], checkArg(options, {}))
-      );
-      return this["colors"];
-    }
+    this["colors"] = nativeEarthtone(this["_color"], checkArg(options, {}));
+
+    return this["colors"];
   }
   contrast(against: "lightMode" | "darkMode" | IColor) {
     let result: number;
