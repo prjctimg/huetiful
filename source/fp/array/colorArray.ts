@@ -10,15 +10,15 @@ import { discoverPalettes as nativeDiscoverPalettes } from "../../palettes";
 import * as filterBy from "../../filterBy";
 import * as sortBy from "../../sortBy";
 import {
-  minChroma as nativeMinChroma,
-  maxChroma as nativeMaxChroma,
-  maxHue as nativeMaxHue,
-  minHue as nativeMinHue,
-  maxLightness as nativeMaxLightness,
-  minLightness as nativeMinLightness,
+  getNearestChroma as nativeMinChroma,
+  getFarthestChroma as nativeMaxChroma,
+  getFarthestHue as nativeMaxHue,
+  getNearestHue as nativeMinHue,
+  getNearestLightness as nativeMaxLightness,
+  getFarthestLightness as nativeMinLightness,
   minTemp as nativeMinTemp,
   maxTemp as nativeMaxTemp,
-} from "../../colors";
+} from "../../getters_and_setters";
 
 class ColorArray {
   // private _colors: ColorToken[];
@@ -72,7 +72,7 @@ let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 console.log(maxHue(sample, 'lch'))
 // 273.54920266436477
  */
-  maxHue(
+  getFarthestHue(
     colorSpace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: Color } {
@@ -103,7 +103,7 @@ let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 console.log(minHue(sample, 'lch'))
 // 12.462831644544274
  */
-  minHue(
+  getNearestHue(
     colorSpace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: Color } {
@@ -126,8 +126,11 @@ console.log(minLightness(sample, true))
 // { lightness: 72.61647882089876, name: '#a1bd2f' }
 
  */
-  minLightness(colorObj = false): number | { factor: number; color: Color } {
-    return nativeMinLightness(this["colors"], colorObj);
+  getNearestLightness(
+    mode?: HueColorSpaces,
+    colorObj = false
+  ): number | { factor: number; color: Color } {
+    return nativeMinLightness(this["colors"], mode, colorObj);
   }
 
   /**
@@ -147,8 +150,11 @@ console.log(maxLightness(sample, true))
 // { lightness: 80.94668903360088, name: '#f3bac1' }
 
  */
-  maxLightness(colorObj = false): number | { factor: number; color: Color } {
-    return nativeMaxLightness(this["colors"], colorObj);
+  getFarthestLightness(
+    mode?: HueColorSpaces,
+    colorObj = false
+  ): number | { factor: number; color: Color } {
+    return nativeMaxLightness(this["colors"], mode, colorObj);
   }
 
   /**

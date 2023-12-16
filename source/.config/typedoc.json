@@ -1,5 +1,5 @@
 {
-  "entryPoints": ["../**/index.ts", "../paramTypes.d.ts"],
+  "entryPoints": ["../**/index.ts", "../types.d.ts"],
   "entryPointStrategy": "resolve",
   "out": "../../webapp/data/temp",
   "exclude": ["../color-maps"],

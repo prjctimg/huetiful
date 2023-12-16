@@ -1,12 +1,13 @@
-import { getChannel } from '../getters_and_setters/get.ts';
-import { filteredArr } from '../fp/array/filteredArr.ts';
-import type { Color, Factor, HueColorSpaces } from '../types';
+import { getChannel } from "../getters_and_setters/get.ts";
+import { filteredArr } from "../fp/array/filteredArr.ts";
+import type { Color, Factor, HueColorSpaces } from "../types";
 import {
+  checkArg,
   getSaturationRange,
   matchChromaChannel,
-  normalize
-} from '../fp/index.ts';
-import modeRanges from '../color-maps/samples/modeRanges.ts';
+  normalize,
+} from "../fp/index.ts";
+import modeRanges from "../color-maps/samples/modeRanges.ts";
 
 /**
  *  @function
@@ -43,23 +44,24 @@ const filterBySaturation = (
   endSaturation = 1,
   mode?: HueColorSpaces
 ): Color[] => {
-  const factor: Factor = 'saturation';
+  const factor: Factor = "saturation";
 
   if (matchChromaChannel(mode)) {
-    const chromaChannel = matchChromaChannel(mode);
-    const cb = getChannel(`${mode}.${chromaChannel}`);
+    mode = checkArg(mode, "jch");
+    const modeChannel = `${mode}.${matchChromaChannel(mode)}`;
+    const cb = getChannel(`${mode}.${modeChannel}`);
 
-    const saturationRange = getSaturationRange(modeRanges, mode, chromaChannel);
+    const saturationRange = getSaturationRange(modeRanges, mode, modeChannel);
     const start = saturationRange[0];
     const end = saturationRange[1];
     // @ts-ignore
-    const reDigits: number = /([0-9])/.exec(startSaturation)['0'];
+    const reDigits: number = /([0-9])/g.exec(startSaturation)["0"];
     //  Normalize saturation ranges later
 
     return filteredArr(factor, cb)(
       colors,
-      normalize(reDigits, start, end),
-      normalize(endSaturation, start, end)
+      normalize(reDigits, modeChannel),
+      normalize(endSaturation, modeChannel)
     );
   } else {
     throw Error(

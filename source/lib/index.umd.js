@@ -4,8 +4,8 @@ var huetiful = (() => {
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __getProtoOf = Object.getPrototypeOf, __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __commonJS = (cb4, mod2) => function() {
-    return mod2 || (0, cb4[__getOwnPropNames(cb4)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
+  var __commonJS = (cb5, mod2) => function() {
+    return mod2 || (0, cb5[__getOwnPropNames(cb5)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
   };
   var __export = (target, all) => {
     for (var name in all)
@@ -594,6 +594,7 @@ var huetiful = (() => {
     baseCieCam: () => baseCieCam,
     brighten: () => brighten,
     camToColor: () => camToColor,
+    channelDifference: () => channelDifference,
     checkArg: () => checkArg,
     color: () => color,
     colorDeficiency: () => colorDeficiency,
@@ -624,10 +625,12 @@ var huetiful = (() => {
     getFarthestChroma: () => getFarthestChroma,
     getFarthestHue: () => getFarthestHue,
     getFarthestLightness: () => getFarthestLightness,
+    getFurthestContrast: () => getFurthestContrast,
     getHue: () => getHue,
     getLuminance: () => getLuminance,
     getModeChannel: () => getModeChannel,
     getNearestChroma: () => getNearestChroma,
+    getNearestContrast: () => getNearestContrast,
     getNearestHue: () => getNearestHue,
     getNearestLightness: () => getNearestLightness,
     getSaturationRange: () => getSaturationRange,
@@ -644,13 +647,16 @@ var huetiful = (() => {
     lt: () => lt,
     lte: () => lte,
     matchChromaChannel: () => matchChromaChannel,
+    matchLightnessChannel: () => matchLightnessChannel,
     max: () => max,
     maxChroma: () => maxChroma,
+    maxContrast: () => maxContrast,
     maxHue: () => maxHue,
     maxLightness: () => maxLightness,
     maxTemp: () => maxTemp,
     min: () => min2,
     minChroma: () => minChroma,
+    minContrast: () => minContrast,
     minHue: () => minHue,
     minLightness: () => minLightness,
     minTemp: () => minTemp,
@@ -3591,26 +3597,26 @@ var huetiful = (() => {
   };
 
   // fp/object/colorObj.ts
-  var colorObj = (factor3, callback) => (color2) => ({ [factor3]: callback(color2), name: color2 });
+  var colorObj = (factor5, callback) => (color2) => ({ [factor5]: callback(color2), name: color2 });
 
   // fp/array/colorObjArr.ts
-  var colorObjArr = (factor3, callback) => (colors2) => {
-    let cb4 = colorObj(factor3, callback);
-    return colors2.map((color2) => cb4(color2));
+  var colorObjArr = (factor5, callback) => (colors2) => {
+    let cb5 = colorObj(factor5, callback);
+    return colors2.map((color2) => cb5(color2));
   };
 
   // fp/array/customSort.ts
-  var customSort = (order, factor3) => (factor3 = factor3 || "factor", (a, b) => {
+  var customSort = (order, factor5) => (factor5 = factor5 || "factor", (a, b) => {
     if (order === "asc")
-      return a[factor3] - b[factor3];
+      return a[factor5] - b[factor5];
     if (order === "desc")
-      return b[factor3] - a[factor3];
+      return b[factor5] - a[factor5];
   });
 
   // fp/array/sortedArr.ts
-  var sortedArr = (factor3, callback, order, colorObj2 = !1) => (colors2) => {
-    let results = colorObjArr(factor3, callback)(colors2);
-    return results.sort(customSort(order, factor3)), colorObj2 ? results : results.map((color2) => color2.name);
+  var sortedArr = (factor5, callback, order, colorObj2 = !1) => (colors2) => {
+    let results = colorObjArr(factor5, callback)(colors2);
+    return results.sort(customSort(order, factor5)), colorObj2 ? results : results.map((color2) => color2.name);
   };
 
   // colors/chroma.ts
@@ -3618,37 +3624,37 @@ var huetiful = (() => {
     let cs = matchChromaChannel(colorSpace);
     return getChannel(cs)(color2) < getChannel(cs)(subtrahend) ? getChannel(cs)(subtrahend) - getChannel(cs)(color2) : getChannel(cs)(color2) - getChannel(cs)(subtrahend);
   }, predicate = (colorSpace) => (color2) => getChannel(matchChromaChannel(colorSpace))(color2) || void 0, getNearestChroma = (color2, colors2, colorSpace) => {
-    let factor3 = "saturation", cb4 = chromaDiff(color2, colorSpace || "lch");
+    let factor5 = "saturation", cb5 = chromaDiff(color2, colorSpace || "lch");
     return sortedArr(
-      factor3,
-      cb4,
+      factor5,
+      cb5,
       "asc",
       !0
-    )(colors2).filter((el) => el[factor3] !== void 0)[0][factor3];
+    )(colors2).filter((el) => el[factor5] !== void 0)[0][factor5];
   }, getFarthestChroma = (color2, colors2, colorSpace) => {
-    let factor3 = "saturation", cb4 = chromaDiff(color2, colorSpace || "lch");
+    let factor5 = "saturation", cb5 = chromaDiff(color2, colorSpace || "lch");
     return sortedArr(
-      factor3,
-      cb4,
+      factor5,
+      cb5,
       "desc",
       !0
-    )(colors2).filter((el) => el[factor3] !== void 0)[0][factor3];
+    )(colors2).filter((el) => el[factor5] !== void 0)[0][factor5];
   }, minChroma = (colors2, colorSpace, colorObj2 = !1) => {
-    let factor3 = "saturation", result = sortedArr(
-      factor3,
+    let factor5 = "saturation", result = sortedArr(
+      factor5,
       predicate(colorSpace || "lch"),
       "asc",
       !0
-    )(colors2).filter((el) => el[factor3] !== void 0), value;
-    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor3]), value;
+    )(colors2).filter((el) => el[factor5] !== void 0), value;
+    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor5]), value;
   }, maxChroma = (colors2, colorSpace, colorObj2 = !1) => {
-    let factor3 = "saturation", result = sortedArr(
-      factor3,
+    let factor5 = "saturation", result = sortedArr(
+      factor5,
       predicate(colorSpace || "lch"),
       "desc",
       !0
-    )(colors2).filter((el) => el[factor3] !== void 0), value;
-    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor3]), value;
+    )(colors2).filter((el) => el[factor5] !== void 0), value;
+    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor5]), value;
   };
 
   // colors/colorBrewer.ts
@@ -4415,6 +4421,12 @@ var huetiful = (() => {
   // fp/number/polynomial.ts
   var polynomial = (x) => Math.sqrt(Math.sqrt((Math.pow(x, 2.25) + Math.pow(x, 4)) / 2));
 
+  // fp/number/channelDifference.ts
+  var channelDifference = (color2, modeChannel) => (subtrahend) => {
+    let cb5 = (color3) => getChannel(modeChannel)(color3);
+    return cb5(color2) < cb5(subtrahend) ? cb5(subtrahend) - cb5(color2) : cb5(color2) - cb5(subtrahend);
+  };
+
   // fp/array/min_max.ts
   var identity2 = (value) => value, baseExtremum = (array, iteratee, comparator) => {
     for (var index = -1, length = array.length; ++index < length; ) {
@@ -4426,18 +4438,18 @@ var huetiful = (() => {
   }, min2 = (array) => array && array.length ? baseExtremum(array, identity2, lt) : void 0, max = (array) => array && array.length ? baseExtremum(array, identity2, gt) : void 0;
 
   // fp/array/filteredArr.ts
-  var filteredArr = (factor3, cb4) => (colors2, start, end) => {
+  var filteredArr = (factor5, cb5) => (colors2, start, end) => {
     let result;
     if (typeof start == "number")
       return result = colorObjArr(
-        factor3,
-        cb4
-      )(colors2).filter((color2) => inRange(color2[factor3], start, end)).map((color2) => color2.name), result;
+        factor5,
+        cb5
+      )(colors2).filter((color2) => inRange(color2[factor5], start, end)).map((color2) => color2.name), result;
     if (typeof start == "string") {
       let reOperator = /^(>=|<=|<|>)/, val = /[0-9]*\.?[0-9]+/.exec(start), op = reOperator.exec(start), mapFilter = (test) => colorObjArr(
-        factor3,
-        cb4
-      )(colors2).filter((el) => test(el[factor3], parseFloat(val[0]))).map((el) => el.name);
+        factor5,
+        cb5
+      )(colors2).filter((el) => test(el[factor5], parseFloat(val[0]))).map((el) => el.name);
       switch (op[0]) {
         case "<":
           result = mapFilter(lt);
@@ -4564,15 +4576,7 @@ var huetiful = (() => {
 
   // palettes/earthtone.ts
   var earthtone = (color2, options) => {
-    let {
-      chromaInterpolator: chromaInterpolator2,
-      hueFixup: hueFixup2,
-      hueInterpolator: hueInterpolator2,
-      lightnessInterpolator: lightnessInterpolator2,
-      iterations,
-      earthtones,
-      easingFunc
-    } = options || {};
+    let { iterations, earthtones, easingFunc } = options || {};
     iterations = checkArg(iterations, 1), earthtones = checkArg(earthtones, "dark");
     let base = {
       "light-gray": "#e5e5e5",
@@ -4595,22 +4599,22 @@ var huetiful = (() => {
 
   // fp/string/expressionParser.ts
   function expressionParser(src, channel, value) {
-    let reOperator = /^(\*|\+|\-|\/)/, reValue = /[0-9]*\.?[0-9]+/, sign = reOperator.exec(value), amt = reValue.exec(value), cb4 = (amt2) => parseFloat(amt2);
+    let reOperator = /^(\*|\+|\-|\/)/, reValue = /[0-9]*\.?[0-9]+/, sign = reOperator.exec(value), amt = reValue.exec(value), cb5 = (amt2) => parseFloat(amt2);
     switch (sign[0]) {
       case "+":
-        src[channel] += +cb4(amt[0]);
+        src[channel] += +cb5(amt[0]);
         break;
       case "-":
-        src[channel] -= +cb4(amt[0]);
+        src[channel] -= +cb5(amt[0]);
         break;
       case "*":
-        src[channel] *= +cb4(amt[0]);
+        src[channel] *= +cb5(amt[0]);
         break;
       case "/":
-        src[channel] /= +cb4(amt[0]);
+        src[channel] /= +cb5(amt[0]);
         break;
       default:
-        src[channel] = +cb4(amt[0]);
+        src[channel] = +cb5(amt[0]);
     }
     return src;
   }
@@ -4632,22 +4636,13 @@ var huetiful = (() => {
 
   // palettes/paired.ts
   var pairedScheme = (color2, options) => {
-    let {
-      chromaInterpolator: chromaInterpolator2,
-      hueFixup: hueFixup2,
-      hueInterpolator: hueInterpolator2,
-      lightnessInterpolator: lightnessInterpolator2,
-      iterations,
-      via: tone,
-      hueStep,
-      easingFunc
-    } = options || {};
-    iterations = checkArg(iterations, 1), easingFunc = checkArg(easingFunc, easingSmoothstep), tone = checkArg(tone, "light"), hueStep = checkArg(hueStep, 5), color2 = useMode(definition_default14)(toHex(color2));
+    let { iterations, via, hueStep, easingFunc } = options || {};
+    iterations = checkArg(iterations, 1), easingFunc = checkArg(easingFunc, easingSmoothstep), via = checkArg(via, "light"), hueStep = checkArg(hueStep, 5), color2 = useMode(definition_default14)(toHex(color2));
     let derivedHue = setChannel("lch.h")(color2, color2.h + hueStep), scale = interpolate(
       [color2, {
-        dark: "#263238",
-        light: { l: 100, c: 1e-4, h: 0, mode: "lch" }
-      }[tone], derivedHue, easingFunc],
+        dark: { l: 0, c: 0, h: 0, mode: "lch65" },
+        light: { l: 100, c: 0, h: 0, mode: "lch65" }
+      }[via], derivedHue, easingFunc],
       "lch",
       checkArg(options, interpolatorConfig)
     );
@@ -4732,10 +4727,10 @@ var huetiful = (() => {
 
   // filterBy/filterBySaturation.ts
   var filterBySaturation = (colors2, startSaturation = 0.05, endSaturation = 1, mode2) => {
-    let factor3 = "saturation";
+    let factor5 = "saturation";
     if (matchChromaChannel(mode2)) {
-      let chromaChannel = matchChromaChannel(mode2), cb4 = getChannel(`${mode2}.${chromaChannel}`), saturationRange = getSaturationRange(modeRanges_default, mode2, chromaChannel), start = saturationRange[0], end = saturationRange[1], reDigits = /([0-9])/.exec(startSaturation)[0];
-      return filteredArr(factor3, cb4)(
+      let chromaChannel = matchChromaChannel(mode2), cb5 = getChannel(`${mode2}.${chromaChannel}`), saturationRange = getSaturationRange(modeRanges_default, mode2, chromaChannel), start = saturationRange[0], end = saturationRange[1], reDigits = /([0-9])/.exec(startSaturation)[0];
+      return filteredArr(factor5, cb5)(
         colors2,
         normalize(reDigits, start, end),
         normalize(endSaturation, start, end)
@@ -4767,20 +4762,28 @@ var huetiful = (() => {
 
   // filterBy/filterByHue.ts
   var filterByHue = (colors2, startHue = 0, endHue = 360) => {
-    let factor3 = "hue", cb4 = getChannel("lch.h");
-    return filteredArr(factor3, cb4)(colors2, startHue, endHue);
+    let factor5 = "hue", cb5 = getChannel("lch.h");
+    return filteredArr(factor5, cb5)(colors2, startHue, endHue);
+  };
+
+  // fp/string/matchLightnessChannel.ts
+  var matchLightnessChannel = (colorSpace) => {
+    let reLightness = /(j|l)/i, ch = reLightness.exec(colorSpace);
+    if (reLightness.test(colorSpace))
+      return `${colorSpace}.${ch[0]}`;
+    throw Error(`The color space ${colorSpace} has no lightness channel.`);
   };
 
   // filterBy/filterByLightness.ts
-  var filterByLightness = (colors2, startLightness = 5, endLightness = 100) => {
-    let factor3 = "lightness", cb4 = getChannel("lch.l");
-    return filteredArr(factor3, cb4)(colors2, startLightness, endLightness);
+  var filterByLightness = (colors2, startLightness = 5, endLightness = 100, mode2) => {
+    let factor5 = "lightness", cb5 = getChannel(`${mode2}.${matchLightnessChannel(mode2)}`);
+    return filteredArr(factor5, cb5)(colors2, startLightness, endLightness);
   };
 
   // filterBy/filterByDistance.ts
   var filterByDistance = (colors2, against, startDistance = 0.05, endDistance, mode2, weights) => {
-    let factor3 = "distance";
-    return against = toHex(against), filteredArr(factor3, ((against2, mode3) => (color2) => differenceEuclidean(mode3 || "lch", weights || [1, 1, 1, 0])(
+    let factor5 = "distance";
+    return against = toHex(against), filteredArr(factor5, ((against2, mode3) => (color2) => differenceEuclidean(mode3 || "lch", weights || [1, 1, 1, 0])(
       against2,
       color2
     ))(against, mode2))(
@@ -4807,18 +4810,20 @@ var huetiful = (() => {
 
   // sortBy/sortByHue.ts
   var sortByHue = (colors2, order, mode2 = "jch") => {
-    let factor3 = "hue";
+    let factor5 = "hue";
     if (/h/gi.test(mode2)) {
-      let cb4 = getChannel(`${mode2}.h`);
-      return sortedArr(factor3, cb4, order)(colors2);
+      let cb5 = getChannel(`${mode2}.h`);
+      return sortedArr(factor5, cb5, order)(colors2);
     } else
       throw Error(`The color space ${mode2} has no hue channel try 'lch' instead`);
   };
 
   // sortBy/sortByLightness.ts
-  var sortByLightness = (colors2, order) => {
-    let factor3 = "lightness", cb4 = getChannel("lch.l");
-    return sortedArr(factor3, cb4, order)(colors2);
+  var sortByLightness = (colors2, order, mode2) => {
+    let factor5 = "lightness";
+    mode2 = checkArg(mode2, "lch65");
+    let cb5 = getChannel(`${mode2}.${matchLightnessChannel(mode2)}`);
+    return sortedArr(factor5, cb5, order)(colors2);
   };
 
   // sortBy/sortByLuminance.ts
@@ -4826,10 +4831,10 @@ var huetiful = (() => {
 
   // sortBy/sortBySaturation.ts
   var sortBySaturation = (colors2, order, mode2) => {
-    let factor3 = "saturation";
+    let factor5 = "saturation";
     if (mode2 = checkArg(mode2, "jch"), matchChromaChannel(mode2)) {
-      let chromaChannel = matchChromaChannel(mode2), cb4 = getChannel(`${mode2}.${chromaChannel}`);
-      return sortedArr(factor3, cb4, order)(colors2);
+      let chromaChannel = matchChromaChannel(mode2), cb5 = getChannel(`${mode2}.${chromaChannel}`);
+      return sortedArr(factor5, cb5, order)(colors2);
     } else
       throw Error(
         `The passed in color space ${mode2} has no chroma channel. Try 'jch' instead.`
@@ -5546,65 +5551,65 @@ var huetiful = (() => {
   };
 
   // fp/object/customFindKey.ts
-  var customFindKey = (collection, factor3) => Object.keys(collection).filter((key) => {
+  var customFindKey = (collection, factor5) => Object.keys(collection).filter((key) => {
     let hueVals = customConcat(collection[key]), minVal = min2(...hueVals), maxVal = max(...hueVals);
-    return inRange(factor3, minVal, maxVal);
+    return inRange(factor5, minVal, maxVal);
   }).toString();
 
   // colors/lightness.ts
-  var lightness = "lab.l", lightnessDiff = (color2) => (subtrahend) => getChannel(lightness)(color2) < getChannel(lightness)(subtrahend) ? getChannel(lightness)(subtrahend) - getChannel(lightness)(color2) : getChannel(lightness)(color2) - getChannel(lightness)(subtrahend), getNearestLightness = (color2, colors2) => {
-    let factor3 = "lightness", cb4 = lightnessDiff(color2);
-    return sortedArr(factor3, cb4, "asc", !0)(colors2)[0][factor3];
-  }, getFarthestLightness = (color2, colors2) => {
-    let factor3 = "lightness", cb4 = lightnessDiff(color2);
-    return sortedArr(factor3, cb4, "desc", !0)(colors2)[0][factor3];
-  }, minLightness = (colors2, colorObj2 = !1) => {
-    let factor3 = "lightness", cb4 = getChannel(lightness), result = sortedArr(
-      factor3,
-      cb4,
+  var lightness = (mode2) => (mode2 = checkArg(mode2, "jch"), `${mode2}.${matchLightnessChannel(mode2)}`), factor2 = "lightness", getNearestLightness = (color2, colors2, mode2) => {
+    let cb5 = channelDifference(color2, checkArg(mode2, "jch"));
+    return sortedArr(factor2, cb5, "asc", !0)(colors2)[0][factor2];
+  }, getFarthestLightness = (color2, colors2, mode2) => {
+    let cb5 = channelDifference(color2, checkArg(mode2, "jch"));
+    return sortedArr(factor2, cb5, "desc", !0)(colors2)[0][factor2];
+  }, minLightness = (colors2, mode2, colorObj2 = !1) => {
+    let cb5 = getChannel(lightness(mode2)), result = sortedArr(
+      factor2,
+      cb5,
       "asc",
       !0
     )(colors2), value;
-    return gt(result.length, 0) && (colorObj2 ? value = result[0] : value = result[0][factor3]), value;
-  }, maxLightness = (colors2, colorObj2 = !1) => {
-    let factor3 = "lightness", cb4 = getChannel(lightness), result = sortedArr(
-      factor3,
-      cb4,
+    return gt(result.length, 0) && (colorObj2 ? value = result[0] : value = result[0][factor2]), value;
+  }, maxLightness = (colors2, mode2, colorObj2 = !1) => {
+    let cb5 = getChannel(lightness(mode2)), result = sortedArr(
+      factor2,
+      cb5,
       "desc",
       !0
     )(colors2), value;
-    return gt(result.length, 0) && (colorObj2 ? value = result[0] : value = result[0][factor3]), value;
+    return gt(result.length, 0) && (colorObj2 ? value = result[0] : value = result[0][factor2]), value;
   };
 
   // colors/hue.ts
-  var { abs: abs4 } = Math, factor2 = "hue", mode = (colorSpace) => `${colorSpace || "lch"}.h`, targetHue = (color2, colorSpace) => getChannel(mode(colorSpace))(color2), cb3 = (color2, colorSpace) => (subtrahend) => abs4(
+  var { abs: abs4 } = Math, factor3 = "hue", mode = (colorSpace) => `${colorSpace || "lch"}.h`, targetHue = (color2, colorSpace) => getChannel(mode(colorSpace))(color2), cb3 = (color2, colorSpace) => (subtrahend) => abs4(
     targetHue(color2, colorSpace) - getChannel(mode(colorSpace))(subtrahend)
   ), predicate2 = (colorSpace) => (color2) => getChannel(mode(colorSpace))(color2) || void 0, getNearestHue = (color2, colors2, colorSpace) => sortedArr(
-    factor2,
+    factor3,
     cb3(color2, mode(colorSpace)),
     "asc",
     !0
-  )(colors2).filter((el) => el[factor2] !== void 0)[0][factor2], getFarthestHue = (color2, colors2, colorSpace) => sortedArr(
-    factor2,
+  )(colors2).filter((el) => el[factor3] !== void 0)[0][factor3], getFarthestHue = (color2, colors2, colorSpace) => sortedArr(
+    factor3,
     cb3(color2, mode(colorSpace)),
     "desc",
     !0
-  )(colors2).filter((el) => el[factor2] !== void 0)[0][factor2], minHue = (colors2, colorSpace, colorObj2 = !1) => {
+  )(colors2).filter((el) => el[factor3] !== void 0)[0][factor3], minHue = (colors2, colorSpace, colorObj2 = !1) => {
     let result = sortedArr(
-      factor2,
+      factor3,
       predicate2(colorSpace),
       "asc",
       !0
-    )(colors2).filter((el) => el[factor2] !== void 0), value;
-    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor2]), value;
+    )(colors2).filter((el) => el[factor3] !== void 0), value;
+    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor3]), value;
   }, maxHue = (colors2, colorSpace, colorObj2 = !1) => {
     let result = sortedArr(
-      factor2,
+      factor3,
       predicate2(colorSpace),
       "desc",
       !0
-    )(colors2).filter((el) => el[factor2] !== void 0), value;
-    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor2]), value;
+    )(colors2).filter((el) => el[factor3] !== void 0), value;
+    return result.length > 0 && (colorObj2 ? value = result[0] : value = result[0][factor3]), value;
   };
 
   // color-maps/samples/hueTemperature.ts
@@ -5653,13 +5658,13 @@ var huetiful = (() => {
 
   // colors/achromatic.ts
   var isAchromatic = (color2) => {
-    let cb4 = (mc) => getChannel(mc)(color2), checkHsl = cb4("hsl.s"), checkLch = cb4("lch.c");
+    let cb5 = (mc) => getChannel(mc)(color2), checkHsl = cb5("hsl.s"), checkLch = cb5("lch.c");
     return (checkHsl || checkLch) === 0;
   };
 
   // colors/overtone.ts
   var overtone = (color2) => {
-    let factor3 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor3);
+    let factor5 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor5);
     return isAchromatic(color2) ? "gray" : /-/.test(hue3) ? (hue3 = hue3.split("-"), hue3[1]) : !1;
   };
 
@@ -5683,20 +5688,20 @@ var huetiful = (() => {
   };
 
   // colors/temperature.ts
-  var predicate3 = (factor3, temp) => !!Object.keys(hueTemperature_default).some(
+  var predicate3 = (factor5, temp) => !!Object.keys(hueTemperature_default).some(
     (val) => inRange(
-      floorCeil(factor3),
+      floorCeil(factor5),
       hueTemperature_default[val][temp][0],
       hueTemperature_default[val][temp][1]
     )
   ), isCool = (color2) => {
-    let factor3 = getChannel("lch.h")(color2);
-    return predicate3(factor3, "cool");
+    let factor5 = getChannel("lch.h")(color2);
+    return predicate3(factor5, "cool");
   }, isWarm = (color2) => {
-    let factor3 = getChannel("lch.h")(color2);
-    return predicate3(factor3, "cool");
+    let factor5 = getChannel("lch.h")(color2);
+    return predicate3(factor5, "cool");
   }, maxTemp = (color2) => {
-    let factor3 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor3), maxHue2 = max(...customConcat(hueTemperature_default[hue3]));
+    let factor5 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor5), maxHue2 = max(...customConcat(hueTemperature_default[hue3]));
     return getTemp({
       l: getChannel("lch.l")(color2),
       c: getChannel("lch.c")(color2),
@@ -5704,7 +5709,7 @@ var huetiful = (() => {
       mode: "lch"
     });
   }, minTemp = (color2) => {
-    let factor3 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor3), minHue2 = min2(...customConcat(hueTemperature_default[hue3]));
+    let factor5 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor5), minHue2 = min2(...customConcat(hueTemperature_default[hue3]));
     return getTemp({
       l: getChannel("lch.l")(color2),
       c: getChannel("lch.c")(color2),
@@ -5716,11 +5721,11 @@ var huetiful = (() => {
   // colors/getHue.ts
   var getHue = (color2) => {
     color2 = useMode(definition_default14)(toHex(color2));
-    let factor3 = color2.h;
+    let factor5 = color2.h;
     return Object.keys(hueTemperature_default).map((hue3) => {
       let hueVals = customConcat(hueTemperature_default[hue3]), minVal = min2(...hueVals), maxVal = max(...hueVals);
       if (customConcat(hueTemperature_default[hue3]).some(
-        () => inRange(factor3, minVal, maxVal)
+        () => inRange(factor5, minVal, maxVal)
       ))
         return hue3;
     }).filter((val) => typeof val == "string").toString();
@@ -5806,7 +5811,7 @@ var huetiful = (() => {
         [origin, this.color],
         this.colorspace,
         checkArg(options, interpolatorConfig)
-      )(t2))(t));
+      )(checkArg(t2, 0.5)))(t));
     }
     brighten(amount) {
       return this._color = brighten(this._color, amount), this;
@@ -5825,28 +5830,16 @@ var huetiful = (() => {
       return this._color = pastel(this._color), this;
     }
     pairedScheme(options) {
-      return this.colors = load(
-        pairedScheme(this._color, checkArg(options, {}))
-      ), this.colors;
+      return this.colors = pairedScheme(this._color, checkArg(options, {})), this.colors;
     }
     hueShift(options) {
-      return options.iterations = checkArg(options.iterations, 1), options.iterations ? hueShift(this._color, options) : (this.colors = load(
-        hueShift(this._color, checkArg(options, {}))
-      ), this.colors);
+      return options.iterations = checkArg(options.iterations, 1), options.iterations ? hueShift(this._color, options) : (this.colors = hueShift(this._color, checkArg(options, {})), this.colors);
     }
     getComplimentaryHue(colorObj2) {
-      return colorObj2 ? getComplimentaryHue(
-        this._color,
-        checkArg(colorObj2, colorObj2)
-      ) : (this._color = getComplimentaryHue(
-        this._color,
-        checkArg(colorObj2, colorObj2)
-      ), this._color);
+      return this._color = getComplimentaryHue(this._color, colorObj2), this._color;
     }
     earthtone(options) {
-      return options.iterations = checkArg(options.iterations, 1), options.iterations <= 1 ? earthtone(this._color, options) : (this.colors = load(
-        earthtone(this._color, checkArg(options, {}))
-      ), this.colors);
+      return options.iterations = checkArg(options.iterations, 1), this.colors = earthtone(this._color, checkArg(options, {})), this.colors;
     }
     contrast(against) {
       let result;
@@ -5954,6 +5947,25 @@ var huetiful = (() => {
   }, brighten = (color2, value) => {
     let src = toLab(toHex(color2));
     return typeof value == "number" ? (value = Math.abs(value), src.l -= 18 * smootherstep_default(value / 100)) : typeof value == "string" && expressionParser(src, "l", value), toHex(src);
+  };
+
+  // colors/contrast.ts
+  var factor4 = "contrast", cb4 = (color2) => (against) => getContrast(color2, against), getNearestContrast = (against, colors2) => sortedArr(factor4, cb4(against), "asc", !0)(colors2)[0][factor4], getFurthestContrast = (against, colors2) => sortedArr(factor4, cb4(against), "desc", !0)(colors2)[0][factor4], maxContrast = (colors2, against, colorObj2) => {
+    let result = sortedArr(
+      factor4,
+      cb4(against),
+      "desc",
+      !0
+    )(colors2), value;
+    return gt(result.length, 0) && (colorObj2 ? value = result[0] : value = result[0][factor4]), value;
+  }, minContrast = (colors2, against, colorObj2) => {
+    let result = sortedArr(
+      factor4,
+      cb4(against),
+      "asc",
+      !0
+    )(colors2), value;
+    return gt(result.length, 0) && (colorObj2 ? value = result[0] : value = result[0][factor4]), value;
   };
 
   // accessibility/colorDeficiency.ts

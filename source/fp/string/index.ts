@@ -1,2 +1,3 @@
-export { matchChromaChannel } from './matchChromaChannel';
-export { expressionParser } from './expressionParser';
+export { matchChromaChannel } from "./matchChromaChannel";
+export { matchLightnessChannel } from "./matchLightnessChannel";
+export { expressionParser } from "./expressionParser";
