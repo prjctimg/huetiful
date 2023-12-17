@@ -1,4 +1,3 @@
-import { getTemp, temp2Color, toHex } from "../converters";
 import { load, ColorArray } from "../fp/array/colorArray";
 import { interpolate } from "culori/fn";
 import { interpolatorConfig } from "../fp/defaults";
@@ -30,11 +29,10 @@ import {
   hueShift as nativeHueShift,
   getHue as nativeGetHue,
   colorToCam,
-  getTemp as temp,
   pairedScheme as nativePairedScheme,
   earthtone as nativeEarthtone,
   getComplimentaryHue as nativeGetComplimentaryHue,
-  colorDeficiency,
+  colorDeficiency as nativeColorDeficiency,
 } from "../index";
 
 import modeRanges from "../color-maps/samples/modeRanges";
@@ -60,11 +58,8 @@ class IColor {
       lightMode,
       darkMode,
       lightness,
-      temperature,
     } = options || {};
     c = checkArg(c, "#000");
-    // if the color temperature is not passed get
-    this["temperature"] = checkArg(temperature, temp(c));
 
     // Culori has some illuminant variants for certain color spaces
     this["illuminant"] = checkArg(illuminant, "D65");
@@ -93,9 +88,6 @@ class IColor {
       )(c)
     );
 
-    // color's temperature according to the D65 illuminant
-    this["temperature"] = checkArg(temperature, temp(c));
-
     // light mode default is gray-100
     this["lightMode"] = checkArg(lightMode, colors("gray", "100"));
 
@@ -121,17 +113,6 @@ class IColor {
       `${this["colorspace"]}.${channel.toLowerCase()}`
     )(this["_color"], value);
     return this;
-  }
-
-  temperature(kelvins: number): number | IColor {
-    if (kelvins) {
-      this["_color"] = temp2Color(kelvins);
-      //@ts-ignore
-      this["temperature"] = temp(this["_color"]);
-      return this;
-    } else {
-      return getTemp(this["_color"]);
-    }
   }
 
   via(origin: Color, t?: number, options?: typeof interpolatorConfig) {
@@ -251,7 +232,7 @@ class IColor {
   /**
  * @function
  * @description Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
- * @param deficiency The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
+ * @param deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
  * @see For a deep dive on  color vision deficiency go to
  * @param color The color to return its deficiency simulated variant.
  * @param severity The intensity of the filter. The exepected value is between [0,1]. For example 0.5
@@ -272,10 +253,13 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 // #9f9f9f
  */
   deficiency(
-    deficiency?: "red" | "blue" | "green" | "monochromacy",
+    deficiencyType?: "red" | "blue" | "green" | "monochromacy",
     severity = 1
   ): Color {
-    this["_color"] = colorDeficiency(deficiency)(this["_color"], severity);
+    this["_color"] = nativeColorDeficiency(deficiencyType)(
+      this["_color"],
+      severity
+    );
     return this;
   }
 

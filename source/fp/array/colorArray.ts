@@ -16,8 +16,6 @@ import {
   getNearestHue as nativeMinHue,
   getNearestLightness as nativeMaxLightness,
   getFarthestLightness as nativeMinLightness,
-  minTemp as nativeMinTemp,
-  maxTemp as nativeMaxTemp,
 } from "../../getters_and_setters";
 
 class ColorArray {
@@ -158,47 +156,6 @@ console.log(maxLightness(sample, true))
   }
 
   /**
- * @experimental
- * @function
- * @description Checks the approximate maximum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
- * @param color The color to check its maximum temperature.
- * @returns The maximum temperature in Kelvins.
- * @example
- * 
- * import { maxTemp } from "huetiful-js"; 
- * 
- * console.log(maxTemp("#a1bd2f"))
-// 7926
-
-console.log(maxTemp("b2c3f1"))
-// 9570
- */
-  maxTemp(color: Color): number {
-    return nativeMaxTemp(this["colors"]);
-  }
-
-  /**
- * @experimental
- * @function
- * @description Checks the approximate minimum temperature that a color can have without losing its original hue. Does not take into account overtones (for now)
- * @param color The color to check its minimum temperature.
- * @returns The minimum temperature in Kelvins.
- * @example
- * 
- * import { minTemp } from 'huetiful-js'
- * 
- * console.log(minTemp("#a1bd2f"))
-// 2528
-
-console.log(minTemp("b2c3f1"))
-// 20107
- * 
- */
-  minTemp(color: Color): number {
-    return nativeMinTemp(this["colors"]);
-  }
-
-  /**
  * @function
  * @description Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
  * @param  startSaturation The minimum end of the saturation range.
@@ -321,46 +278,6 @@ console.log(filterByDistance(sample, "yellow", 0.1))
     return this;
   }
 
-  /**
- * @function
- * @description Returns an array of colors in the specified temperature range between 0 and 30,000 Kelvins.
- * @param  startTemp The minimum end of the temperature range.
- * @param  endTemp The maximum end of the temperature range.
- * @returns  Array of the filtered colors.
- * @see Based on Neil Bartlett's implementation https://github.com/neilbartlett/color-temperature
- * @example
- * 
- * import { filterByTemp } from "huetiful-js";
-let sample = [
-"#00ffdc",    
-"#00ff78",
-"#00c000",
-"#007e00",
-"#164100",
-"#ffff00",
-"#310000",
-"#3e0000",
-"#4e0000",
-"#600000",
-"#720000",
-];
-
-
-filterByTemp(sample, 1000, 20000);
-
-// [
-'#00c000', '#007e00',
-'#164100', '#ffff00',
-'#310000', '#3e0000',
-'#4e0000', '#600000',
-'#720000'
-]
- */
-
-  filterByTemp(startTemp = 1000, endTemp = 6000): ColorArray {
-    this["colors"] = filterBy.filterByTemp(this["colors"], startTemp, endTemp);
-    return this;
-  }
   /**
    * 
  * @function
@@ -749,40 +666,6 @@ console.log(sortedDescending)
   // Todo: Add the mode param so that users can select mode to work with. The default is lch
   sortByHue(order: "asc" | "desc", mode = "jch"): ColorArray {
     this["colors"] = sortBy.sortByHue(this["colors"], order, mode);
-    return this;
-  }
-  /**
- * @function
- * @description Sorts colors according to temperature value in Kelvins according to the temperatu. Achromatic colors may return awkward results.Please note that color temperature makes sense when measuring color that is nearer to white.
- * @param  colors The array of colors to sort
- * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
- * @returns  An array of the sorted color values.
- * @see Based on Neil Bartlett's implementation https://github.com/neilbartlett/color-temperature
- * @example
- * import { sortByTemp } from 'huetiful-js'
-let sample = [
-  '#00ffdc',
-  '#00ff78',
-  '#00c000',
-  '#007e00',
-  '#164100',
-  '#ffff00',
-  '#310000',
-  '#3e0000',
-  '#4e0000',
-  '#600000',
-  '#720000',
-]
-
-let sorted = sortByTemp(sample)
-console.log(sorted)
-
-let sortedDescending = sortByTemp(sample, 'desc')
-console.log(sortedDescending)
- */
-
-  sortByTemp(order?: "asc" | "desc"): ColorArray {
-    this["colors"] = sortBy.sortByTemp(this["colors"], order);
     return this;
   }
 

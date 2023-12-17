@@ -1095,7 +1095,7 @@ var getTemp = (color2) => {
   channelArr[0] = rgb2["r"];
   channelArr[1] = rgb2["b"];
   let minTemp2 = 1e3;
-  let maxTemp2 = 4e4;
+  let maxTemp2 = 65e3;
   const eps = 0.4;
   let temp;
   while (maxTemp2 - minTemp2 > eps) {
@@ -1230,7 +1230,7 @@ var channelDifference = (color2, modeChannel) => (subtrahend) => {
 
 // fp/object/colorObj.ts
 var colorObj = (factor4, callback) => (color2) => {
-  return { [factor4]: callback(color2), name: color2 };
+  return { [factor4]: callback(color2), color: color2 };
 };
 
 // fp/array/colorObjArr.ts
@@ -1604,9 +1604,6 @@ var filterBySaturation = (colors2, startSaturation = 0.05, endSaturation = 1, mo
     mode2 = checkArg(mode2, "jch");
     const modeChannel = `${mode2}.${matchChromaChannel(mode2)}`;
     const cb4 = getChannel(`${mode2}.${modeChannel}`);
-    const saturationRange = getSaturationRange(modeRanges_default, mode2, modeChannel);
-    const start = saturationRange[0];
-    const end = saturationRange[1];
     const reDigits = /([0-9])/g.exec(startSaturation)["0"];
     return filteredArr(factor4, cb4)(
       colors2,
@@ -1939,7 +1936,7 @@ var predicate2 = (factor4, temp) => {
 var baseFunc4 = (color2, extremum) => {
   const factor4 = getChannel("lch.h")(color2);
   const hue = customFindKey(hueTemperature_default, factor4);
-  const maxHue = [extremum](...customConcat(hueTemperature_default[hue]));
+  const maxHue = extremum(...customConcat(hueTemperature_default[hue]));
   const result = getTemp({
     l: getChannel("lch.l")(color2),
     c: getChannel("lch.c")(color2),
@@ -2870,7 +2867,7 @@ var IColor = class {
   /**
    * @function
    * @description Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
-   * @param deficiency The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
+   * @param deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
    * @see For a deep dive on  color vision deficiency go to
    * @param color The color to return its deficiency simulated variant.
    * @param severity The intensity of the filter. The exepected value is between [0,1]. For example 0.5
@@ -2890,8 +2887,11 @@ var IColor = class {
   console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
   // #9f9f9f
    */
-  deficiency(deficiency, severity = 1) {
-    this["_color"] = colorDeficiency(deficiency)(this["_color"], severity);
+  deficiency(deficiencyType, severity = 1) {
+    this["_color"] = colorDeficiency(deficiencyType)(
+      this["_color"],
+      severity
+    );
     return this;
   }
   getFarthestHue(colors2, colorObj2) {

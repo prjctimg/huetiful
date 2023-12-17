@@ -4466,7 +4466,7 @@ var huetiful = (() => {
   var getTemp = (color2) => {
     let { round: round2 } = Math, rgb5 = useMode(definition_default17)(toHex(color2)), channelArr = [];
     channelArr[0] = rgb5.r, channelArr[1] = rgb5.b;
-    let minTemp2 = 1e3, maxTemp2 = 4e4, eps = 0.4, temp;
+    let minTemp2 = 1e3, maxTemp2 = 65e3, eps = 0.4, temp;
     for (; maxTemp2 - minTemp2 > eps; ) {
       temp = (maxTemp2 + minTemp2) * 0.5;
       let rgb6 = temp2Color(temp, !1);
@@ -4563,7 +4563,7 @@ var huetiful = (() => {
   };
 
   // fp/object/colorObj.ts
-  var colorObj = (factor5, callback) => (color2) => ({ [factor5]: callback(color2), name: color2 });
+  var colorObj = (factor5, callback) => (color2) => ({ [factor5]: callback(color2), color: color2 });
 
   // fp/array/colorObjArr.ts
   var colorObjArr = (factor5, callback) => (colors2) => {
@@ -4833,7 +4833,7 @@ var huetiful = (() => {
     let factor5 = "saturation";
     if (matchChromaChannel(mode2)) {
       mode2 = checkArg(mode2, "jch");
-      let modeChannel = `${mode2}.${matchChromaChannel(mode2)}`, cb4 = getChannel(`${mode2}.${modeChannel}`), saturationRange = getSaturationRange(modeRanges_default, mode2, modeChannel), start = saturationRange[0], end = saturationRange[1], reDigits = /([0-9])/g.exec(startSaturation)[0];
+      let modeChannel = `${mode2}.${matchChromaChannel(mode2)}`, cb4 = getChannel(`${mode2}.${modeChannel}`), reDigits = /([0-9])/g.exec(startSaturation)[0];
       return filteredArr(factor5, cb4)(
         colors2,
         normalize(reDigits, modeChannel),
@@ -4994,7 +4994,7 @@ var huetiful = (() => {
       hueTemperature_default[val][temp][1]
     )
   ), baseFunc4 = (color2, extremum) => {
-    let factor5 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor5), maxHue = [extremum](...customConcat(hueTemperature_default[hue3]));
+    let factor5 = getChannel("lch.h")(color2), hue3 = customFindKey(hueTemperature_default, factor5), maxHue = extremum(...customConcat(hueTemperature_default[hue3]));
     return getTemp({
       l: getChannel("lch.l")(color2),
       c: getChannel("lch.c")(color2),
@@ -5829,7 +5829,7 @@ var huetiful = (() => {
     /**
      * @function
      * @description Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
-     * @param deficiency The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
+     * @param deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
      * @see For a deep dive on  color vision deficiency go to
      * @param color The color to return its deficiency simulated variant.
      * @param severity The intensity of the filter. The exepected value is between [0,1]. For example 0.5
@@ -5849,8 +5849,11 @@ var huetiful = (() => {
     console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
     // #9f9f9f
      */
-    deficiency(deficiency2, severity = 1) {
-      return this._color = colorDeficiency(deficiency2)(this._color, severity), this;
+    deficiency(deficiencyType, severity = 1) {
+      return this._color = colorDeficiency(deficiencyType)(
+        this._color,
+        severity
+      ), this;
     }
     getFarthestHue(colors2, colorObj2) {
       return getFarthestHue(colors2, this.colorspace, colorObj2);

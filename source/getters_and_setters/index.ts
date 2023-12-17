@@ -10,5 +10,5 @@ export {
 } from "./contrast";
 export { getFarthestChroma, getNearestChroma } from "./chroma";
 export { getFarthestLightness, getNearestLightness } from "./lightness";
-export { isCool, isWarm, maxTemp, minTemp } from "./temperature";
+export { isCool, isWarm } from "./temperature";
 export { getFarthestHue, getNearestHue } from "./hue";
