@@ -1,10 +1,6 @@
-![Logo](./huetiful-logo.png)
+# huetiful-js (source)
 
-#### JavaScript library for general purpose color manipulations
-
-The aim🎯 of this project is to help designers👩🏻‍🎨 and developers👩🏾‍💻 alike to  work with color🎨 more programatically using utilities based on color theory. Though not
- necessarily a requirement, a basic background of color spaces, properties of color and any other color theory related information will make the library's use cases appear more simpler.
-
+This is where the library source code lives which is distributed as an NPM package.
 
 ## Getting started⛳
 
@@ -17,12 +13,15 @@ The library🧾 is available on npm as a package📦 for use in Node:
 npm i huetiful-js
 ```
 
-You can [you can use jsdelivr]()  to load the library remotely:
+You can use a CDN in this example, jsdelivr to load the library remotely:
+
+```js
+import { //... } from 'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.esm.mjs'
 
 ```
-https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js
 
-```
+### Browser
+
 
 Or load the library as ES module in your HTML file using a `<script>` tag:
 
@@ -34,7 +33,6 @@ Or load the library as ES module in your HTML file using a `<script>` tag:
 
 ## Overview👀
 
-Below are some basic examples to show👩🏽‍🏫 how the functions can be used.
 
 ### Colors🌈
 
@@ -86,7 +84,7 @@ console.log(toHex(arrColorWithAlpha))
 
 #### TailwindCSS colors🎨
 
-As a starting point the library comes along with the default TailwindCSS palette included. This helps you get started easier when you're using [palette functions](https://huetiful-docs.vercel.app/api/palette-utilities) such as `hueShift()` and `earthtone()`
+As a starting point the library comes along with the default TailwindCSS palette included. This helps you get started easier when you're using [palette functions](https://huetiful-docs.vercel.app/api/palette-functions) such as `hueShift()` and `earthtone()`
 
 The Tailwind colors can be accessed from two wrapper functions, `tailwindColors` and `colors` , that both take the same parameters but `colors` takes both parameters at once while `tailwindColors` is curried. Here's an example showing the differences between the two functions:
 
@@ -353,19 +351,6 @@ console.log(sample.filter(isWarm))
 
 ```
 
-### Getting the temperature🌡️ right
-White light can come in different temperatures. We have the D65 standard illuminant which is at a temperature of 65,000 Kelvins. We can use these functions to check if our colors suit the temperature we
-
-```js
-import { minTemp,maxTemp } from 'huetiful-js'
-
-console.log(minTemp("#a1bd2f"))
-// 2528
-
-console.log(maxTemp("b2c3f1"))
-// 20107
-```
-
 Or maybe we want to know which color has the furthest hue distance in our sample collection against our target color 🤔:
 
 ```js
@@ -392,30 +377,27 @@ console.log(getFarthestHue('lime', sample, 'lch'))
 
 ## What's next🤷🏽‍♂️
 
-The list of functions goes on beyond this🌌. And since the library is pure JavaScript, you can hook it up with your creative👨🏻‍🎨 coding library of choice like p5js or runejs.
-The possibilities are limited by the imagination🤯 of the user.
+> The possibilities are limited by the imagination🤯 of the user._
+> ~ me :smile:
 
-[See the full docs📜](https:huetiful-docs.vercel.app)
+[See the full docs here📜](https:huetiful-docs.vercel.app)
 
 ## Need help😣 ?
 
 See some unexpected results😖? [Check the issue tracker](https://github.com/prjctimg/huetiful/issues) to open an issue or search for the problem to see if your issue already exists or has been resolved.
 
-Would like to join the chat🗣️ and share ideas💡 and suggestions💭 ? [See the discussions and just s ay hi, or share a coding meme(whatever breaks the ice🏔️)](<https://github.com/>
-prjctimg/huetiful/discussions)
+Would like to join the chat🗣️ and share ideas💡 and suggestions💭 ? [See the discussions and just say hi, or share a coding meme(whatever breaks the ice🏔️)](https://github.com/prjctimg/huetiful/discussions)
 
-## Contributing👐🏾🤝
+## Contributing👐🏾
 
-First of all, thank you🙏🏾 for using huetiful-js! Its people like you👈🏾 that make open source software better for the community👨‍👩‍👦‍👦!
-Contributions are welcome! Help make this project better and easier to use for other developers by sharing your ideas and stomping out bugs🐛 and feature suggestions💡. Please see🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
+This project is fully open source so contributions are welcome! Help make this project better by suggesting improvements or features and patching bugs🐛. See🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
 
 ## References🔗
 
 [Coloring with code: A programmatic approach by George Francis](https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/)
 
-> ## License
+> ### License
 >
 > Copyright (c) 2023,
 > Dean Tarisai and contributors
 > huetiful-js is released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license.
-
