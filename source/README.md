@@ -1,13 +1,12 @@
-# huetiful-js (source)
+# huetiful-js
 
-This is where the library source code lives which is distributed as an NPM package.
+TypeScript library for general purpose color manipulations and generating custom color scales.
 
 ## Getting started⛳
 
 ### Node
 
 The library🧾 is available on npm as a package📦 for use in Node:
-
 
 ```bash
 npm i huetiful-js
@@ -30,11 +29,6 @@ Or load the library as ES module in your HTML file using a `<script>` tag:
 
 <script type='module' src='https://cdn.jsdelivr.net/npm/huetiful-js/dist/huetiful.esm.min.mjs'></script>
 ```
-
-## Overview👀
-
-
-### Colors🌈
 
 #### What's a color 🤔?
 
@@ -396,7 +390,7 @@ This project is fully open source so contributions are welcome! Help make this p
 
 [Coloring with code: A programmatic approach by George Francis](https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/)
 
-> ### License
+> ###### License
 >
 > Copyright (c) 2023,
 > Dean Tarisai and contributors
