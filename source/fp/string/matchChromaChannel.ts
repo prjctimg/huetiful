@@ -1,4 +1,4 @@
-import { HueColorSpaces } from '../../types';
+import { HueColorSpaces } from "../../types";
 
 /**
  * @function
@@ -8,11 +8,11 @@ import { HueColorSpaces } from '../../types';
  */
 const matchChromaChannel = (colorSpace: HueColorSpaces | string): string => {
   // Matches any string with c or s
-  const reChroma = /(s|c)/;
-  const ch = reChroma.exec(colorSpace);
+  const reChroma = /(s|c)/i;
+  const ch = reChroma.exec(colorSpace)["0"];
 
   if (reChroma.test(colorSpace)) {
-    return `${colorSpace}.${ch[0]}`;
+    return `${colorSpace}.${ch}`;
   } else {
     throw Error(
       `The color space ${colorSpace} has no chroma/saturation channel.`

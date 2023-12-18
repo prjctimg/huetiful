@@ -1,7 +1,7 @@
 const customConcat = (hue: object) => {
   const res: number[] = [];
   const { keys } = Object;
-  if (typeof hue == 'object') {
+  if (typeof hue == "object") {
     const hueKeys = keys(hue);
 
     //@ts-ignore

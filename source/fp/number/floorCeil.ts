@@ -1,4 +1,4 @@
-import { isInt } from './isInt';
+import { isInteger } from "./isInteger";
 
 const { ceil, floor } = Math;
 /**
@@ -8,10 +8,8 @@ const { ceil, floor } = Math;
  * @returns An integer
  */
 const floorCeil = (num: number): number => {
-  if (isInt(num)) {
-    return num;
-  } else {
-    const strArr = num.toString().split('.');
+  if (!isInteger(num)) {
+    const strArr = num.toString().split(".");
     const float = strArr[1];
 
     //If the decimal value is .4  and below it will be rounded down else it will be rounded up.
@@ -23,6 +21,7 @@ const floorCeil = (num: number): number => {
       num = ceil(num);
     }
   }
+
   return num;
 };
 

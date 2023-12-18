@@ -1,8 +1,8 @@
 // This module has number methods
 
-export { lt, gt, gte, lte } from "./comparison";
+export { lt, gt, gte, lte, eq } from "./comparison";
 export { random } from "./random";
-export { isInt } from "./isInt";
+export { isInteger } from "./isInteger";
 export { normalize } from "./normalize";
 export { floorCeil } from "./floorCeil";
 export { adjustHue } from "./adjustHue";

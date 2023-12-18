@@ -1,4 +1,4 @@
-import { Color } from '../../types';
+import { Color } from "../../types";
 
 /**
  * Performs arithmetic operations on colors by passing the arithmetic operator from the value if it is a string. It requires the src variable to be declared in the global scope of the invoking func.
@@ -8,31 +8,31 @@ import { Color } from '../../types';
  */
 function expressionParser(src: Color, channel: string, value: string): number {
   // regExp to match arithmetic operator and the value
-  const reOperator = /^(\*|\+|\-|\/)/;
-  const reValue = /[0-9]*\.?[0-9]+/;
+  const reOperator = /^(\*|\+|\-|\/)/,
+    reValue = /[0-9]*\.?[0-9]+/;
 
   // Storing the arithmetic sign and value
-  const sign = reOperator.exec(value);
-  const amt = reValue.exec(value);
+  const sign = reOperator.exec(value)["0"];
+  const amt = reValue.exec(value)["0"];
 
-  const cb = (amt: string) => parseFloat(amt);
+  const cb = (value: string) => parseFloat(value);
 
   // Match an operator against the first truthy case and perform the relevant math operation
-  switch (sign['0']) {
-    case '+':
-      src[channel] += +cb(amt['0']);
+  switch (sign) {
+    case "+":
+      src[channel] += +cb(amt);
       break;
-    case '-':
-      src[channel] -= +cb(amt['0']);
+    case "-":
+      src[channel] -= +cb(amt);
       break;
-    case '*':
-      src[channel] *= +cb(amt['0']);
+    case "*":
+      src[channel] *= +cb(amt);
       break;
-    case '/':
-      src[channel] /= +cb(amt['0']);
+    case "/":
+      src[channel] /= +cb(amt);
       break;
     default:
-      src[channel] = +cb(amt['0']);
+      src[channel] = +cb(amt);
   }
   // @ts-ignore
   return src;

@@ -1,6 +1,6 @@
-import { inRange } from '../number/inRange.js';
-import { max, min } from '../array/min_max.js';
-import { customConcat } from './customConcat.js';
+import { inRange } from "../number/inRange.js";
+import { max, min } from "../array/min_max.js";
+import { customConcat } from "./customConcat.js";
 
 /**
 
@@ -15,7 +15,7 @@ export const customFindKey = (collection: object, factor: number) => {
   // If the color is achromatic return the string gray
   const propKeys = Object.keys(collection);
 
-  const result: string = propKeys
+  const result: string | undefined = propKeys
     .filter((key) => {
       const hueVals = customConcat(collection[key]);
       // @ts-ignore
