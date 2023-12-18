@@ -1,13 +1,14 @@
 const customConcat = (hue: object) => {
-  const res: number[] = [];
+  const res = [];
   const { keys } = Object;
   if (typeof hue == "object") {
     const hueKeys = keys(hue);
 
-    //@ts-ignore
+    //@ts-nocheck
     res.push(...hueKeys.map((key) => hue[key]));
   }
-  return res;
+  // @ts-ignore
+  return res.flat(1);
 };
 
 export { customConcat };

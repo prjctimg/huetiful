@@ -1,5 +1,7 @@
-import type { Color } from '../types';
-import { getChannel } from '../getters_and_setters/get.ts';
+import type { Color, HueColorSpaces } from "../types";
+import { getChannel } from "../getters_and_setters/get.ts";
+import { checkArg } from "../fp/misc.ts";
+import { matchChromaChannel } from "../fp/index.ts";
 
 /**
  * @function
@@ -49,21 +51,15 @@ console.log(map(grays, isAchromatic));
 ]
 
  */
-const isAchromatic = (color: Color): boolean => {
-  const cb = (mc: string) => getChannel(mc)(color);
+const isAchromatic = (color: Color, mode?: HueColorSpaces): boolean => {
+  mode = checkArg(mode, "lch");
+  const cb = (mode: string) =>
+    getChannel(`${mode}.${matchChromaChannel(mode as string)}`)(color);
 
-  // Store the value of chroma and saturation channels.
-  const checkHsl = cb('hsl.s');
-  const checkLch = cb('lch.c');
+  // Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
 
-  // 2) Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
-  //   OR
-  // 2)Check if the color's numerical represantation is within the defined ranges.
-  if ((checkHsl || checkLch) === (undefined || null || 0)) {
-    return true;
-  } else {
-    return false;
-  }
+  // @ts-ignore
+  return cb(mode) != false || 0 || NaN;
 };
 
 export { isAchromatic };

@@ -35,13 +35,11 @@ import {
   colorDeficiency as nativeColorDeficiency,
 } from "../index";
 
-import modeRanges from "../color-maps/samples/modeRanges";
 import type {
   ColorOptions,
   Color,
   EarthtoneOptions,
   Hue,
-  HueColorSpaces,
   HueShiftOptions,
   PairedSchemeOptions,
 } from "../types";

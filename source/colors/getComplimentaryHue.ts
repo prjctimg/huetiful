@@ -1,12 +1,12 @@
-import hueTempMap from '../color-maps/samples/hueTemperature.js';
-import { getChannel } from '../getters_and_setters/get.js';
-import { min, max } from '../fp/array/min_max.js';
-import { customConcat } from '../fp/object/customConcat.js';
-import { inRange } from '../fp/number/inRange.js';
-import { adjustHue } from '../fp/number/adjustHue.js';
-import { setChannel } from '../getters_and_setters/set.js';
-import type { Color } from '../types.js';
-import { toHex } from '../converters/toHex.js';
+import hueTempMap from "../color-maps/samples/hueTemperature.js";
+import { getChannel } from "../getters_and_setters/get.js";
+import { min, max } from "../fp/array/min_max.js";
+import { customConcat } from "../fp/object/customConcat.js";
+import { inRange } from "../fp/number/inRange.js";
+import { adjustHue } from "../fp/number/adjustHue.js";
+import { setChannel } from "../getters_and_setters/set.js";
+import type { Color, HueColorSpaces } from "../types.js";
+import { toHex } from "../converters/toHex.js";
 
 const { keys } = Object;
 const hueKeys = keys(hueTempMap);
@@ -29,9 +29,10 @@ console.log(getComplimentaryHue("purple"))
  */
 const getComplimentaryHue = (
   color: Color,
+  mode?: HueColorSpaces,
   colorObj = false
 ): { hue: string; color: Color } | Color => {
-  const modeChannel = 'lch.h';
+  const modeChannel = `${mode}.h`;
   // A complementary hue is 180 deg from the hue value of the passed in color
 
   const complementaryHue: number = adjustHue(
@@ -59,20 +60,20 @@ const getComplimentaryHue = (
         return hue;
       }
     })
-    .filter((val) => typeof val === 'string')
+    .filter((val) => typeof val === "string")
     .toString();
 
   let result: Color | { hue: string; color: Color };
   if (complementaryHue) {
     result = {
       hue: hueFamily,
-      color: toHex(setChannel(modeChannel)(color, complementaryHue))
+      color: toHex(setChannel(modeChannel)(color, complementaryHue)),
     };
   } else {
-    result = { hue: 'gray', color: color };
+    result = { hue: "gray", color: color };
   }
 
-  return (colorObj && result) || result['color'];
+  return (colorObj && result) || result["color"];
 };
 
 export { getComplimentaryHue };

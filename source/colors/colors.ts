@@ -1,5 +1,5 @@
-import shades from '../color-maps/swatches/tailwind.ts';
-import type { HueMap, ScaleValues, Color } from '../types';
+import shades from "../color-maps/swatches/tailwind.ts";
+import type { HueMap, ScaleValues, Color } from "../types";
 
 /**
  * @function
@@ -42,10 +42,10 @@ console.log(red100)
  */
 const colors = (
   shade: keyof HueMap | string,
-  val: ScaleValues
+  val?: ScaleValues
 ): Color | Color[] => {
   const { keys } = Object;
-  const defaultHue = 'all';
+  const defaultHue = "all";
   const hueKeys = keys(shades);
 
   shade = shade.toLowerCase();
@@ -55,13 +55,13 @@ const colors = (
   // If only the value is defined return that color value for every hue.
   // @ts-ignore
   if (shade === defaultHue) {
-    return hueKeys.map((color) => shades[color][val || '500']);
+    return hueKeys.map((color) => shades[color][val || "500"]);
   } else if (hueKeys.some((hue) => hue === shade) && val) {
     return shades[shade][val];
-  } else if (shade && typeof val == 'undefined') {
+  } else if (shade && typeof val == "undefined") {
     const keyVals = keys(shades[shade]);
     return keyVals.map((key) => shades[shade][key]);
-  } else if (typeof shade && typeof val == 'undefined') {
+  } else if (typeof shade && typeof val == "undefined") {
     throw Error(`Both shade and value cannot be undefined`);
   }
 };
