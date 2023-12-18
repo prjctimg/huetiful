@@ -1,7 +1,7 @@
-import { Factor, Color, callback } from '../../types';
-import { gt, gte, lt, lte } from '../number/comparison';
-import { inRange } from '../number/inRange';
-import { colorObjArr } from './colorObjArr';
+import { Factor, Color, callback } from "../../types";
+import { gt, gte, lt, lte } from "../number/comparison";
+import { inRange } from "../number/inRange";
+import { colorObjArr } from "./colorObjArr";
 
 /**
  * @description Filters an array according to the value of a color's queried factor
@@ -14,47 +14,45 @@ const filteredArr =
   (colors: Color[], start: number | string, end: number): Color[] => {
     let result: Color[];
 
-    if (typeof start === 'number') {
+    if (typeof start === "number") {
       result = colorObjArr(
         factor,
         cb
       )(colors)
         .filter((color) => inRange(color[factor], start, end))
-        .map((color) => color['name']);
-
-      return result;
+        .map((color) => color["color"]);
 
       // If string split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
-    } else if (typeof start === 'string') {
+    } else if (typeof start === "string") {
       //The pattern to match
       const reOperator = /^(>=|<=|<|>)/;
 
       const value = /[0-9]*\.?[0-9]+/;
 
       // Array
-      const val = value.exec(start),
-        op = reOperator.exec(start);
+      const val = value.exec(start)["0"],
+        op = reOperator.exec(start)["0"];
 
       const mapFilter = (test: (x: number, y: number) => boolean): Color[] => {
         return colorObjArr(
           factor,
           cb
         )(colors)
-          .filter((el) => test(el[factor], parseFloat(val['0'])))
-          .map((el) => el['name']);
+          .filter((el) => test(el[factor], parseFloat(val)))
+          .map((el) => el["color"]);
       };
-      switch (op['0']) {
-        case '<':
+      switch (op) {
+        case "<":
           result = mapFilter(lt);
 
           break;
-        case '>':
+        case ">":
           result = mapFilter(gt);
           break;
-        case '<=':
+        case "<=":
           result = mapFilter(lte);
           break;
-        case '>=':
+        case ">=":
           result = mapFilter(gte);
           break;
       }

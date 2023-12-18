@@ -1,9 +1,8 @@
-import { colorObj } from '../object/colorObj';
-import { Factor, Color } from '../../types';
+import { colorObj } from "../object/colorObj";
+import { Factor, Color } from "../../types";
 
 /*
  * @function
- * @private
  * Creates a custom object with a factor to pass to the predicate function.
  * @param factor The quality being queried.
  * @param cb The callback function for computing the factor's start.
@@ -12,7 +11,7 @@ import { Factor, Color } from '../../types';
  */
 export const colorObjArr =
   (factor: Factor, callback) =>
-  (colors: Color[]): Array<{ factor: Factor; name: Color }> => {
+  (colors: Color[]): Array<{ factor: Factor; color: Color }> => {
     const cb = colorObj(factor, callback);
     // @ts-ignore
     return colors.map((color) => cb(color));
