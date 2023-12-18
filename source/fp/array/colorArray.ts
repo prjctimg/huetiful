@@ -4,9 +4,13 @@ import type {
   ColorSpaces,
   Color,
   HueColorSpaces,
+  InterpolatorOptions,
 } from "../../types";
 import { checkArg } from "../index";
-import { discoverPalettes as nativeDiscoverPalettes } from "../../palettes";
+import {
+  discoverPalettes as nativeDiscoverPalettes,
+  interpolateSpline as nativeInterpolator,
+} from "../../palettes";
 import * as filterBy from "../../filterBy";
 import * as sortBy from "../../sortBy";
 import {
@@ -22,6 +26,16 @@ class ColorArray {
   // private _colors: ColorToken[];
   constructor(colors: Color[]) {
     this["colors"] = checkArg(colors, []);
+  }
+
+  interpolateSpline(
+    mode?: HueColorSpaces,
+    samples?: number,
+    kind?: "natural" | "monotone" | "basis",
+    closed?: boolean,
+    options?: InterpolatorOptions
+  ) {
+    return nativeInterpolator(this["colors"], mode, kind, closed, options);
   }
 
   /**

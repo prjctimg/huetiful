@@ -29,6 +29,15 @@ type AdaptivePaletteOptions = {
   colorBlind?: boolean;
 };
 
+export type InterpolatorOptions = Pick<
+  Options,
+  | "easingFunc"
+  | "hueInterpolator"
+  | "chromaInterpolator"
+  | "hueFixup"
+  | "lightnessInterpolator"
+>;
+
 /**
  * @type
  * @description The override parameters for palette functions.

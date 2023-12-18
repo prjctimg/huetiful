@@ -1,13 +1,11 @@
 // This module has the default options for widely used parameters.
 
 import {
-  easingSmoothstep,
   interpolatorSplineNatural,
   fixupHueShorter,
   interpolatorSplineBasisClosed,
   interpolatorSplineMonotone,
 } from "culori";
-import { checkArg } from "./misc";
 import type { Options } from "../types";
 
 let {
@@ -17,13 +15,10 @@ let {
   lightnessInterpolator,
 }: Options = {};
 
-chromaInterpolator = checkArg(chromaInterpolator, interpolatorSplineNatural);
-hueFixup = checkArg(hueFixup, fixupHueShorter);
-hueInterpolator = checkArg(hueInterpolator, interpolatorSplineBasisClosed);
-lightnessInterpolator = checkArg(
-  lightnessInterpolator,
-  interpolatorSplineMonotone
-);
+chromaInterpolator = interpolatorSplineNatural;
+hueFixup = fixupHueShorter;
+hueInterpolator = interpolatorSplineBasisClosed;
+lightnessInterpolator = interpolatorSplineMonotone;
 
 let interpolatorConfig = {
   chromaInterpolator,
