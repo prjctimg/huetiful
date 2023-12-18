@@ -34,8 +34,17 @@ class ColorArray {
     kind?: "natural" | "monotone" | "basis",
     closed?: boolean,
     options?: InterpolatorOptions
-  ) {
-    return nativeInterpolator(this["colors"], mode, kind, closed, options);
+  ): Color[] {
+    this["colors"] = nativeInterpolator(
+      this["colors"],
+      mode,
+      samples,
+      kind,
+      closed,
+      options
+    );
+    // @ts-ignore
+    return this;
   }
 
   /**

@@ -22,7 +22,6 @@ import { toHex } from "../converters";
  * @param kind The type of the spline interpolation method. Default is basis.
  * @param closed Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false
  * @param options Optional channel specific overrides.
- * @param t Any value between [0,1] which will return the color interpolation result at that point. Default is 1
  * @returns A hexadecimal representation of the resultant color.
  */
 const interpolateSpline = (
@@ -32,7 +31,7 @@ const interpolateSpline = (
   kind?: "natural" | "monotone" | "basis",
   closed = false,
   options?: InterpolatorOptions
-): Color | Color[] => {
+): Color[] => {
   let {
     chromaInterpolator,
     hueFixup,
@@ -81,11 +80,14 @@ const interpolateSpline = (
       ? samples
       : Math.ceil(Math.abs(samples));
 
+  let result: string[];
   if (samples > 1) {
-    return nativeSamples(samples).map((s) => toHex(f(s)));
+    result = nativeSamples(samples).map((s) => toHex(f(s)));
   } else {
-    return toHex(f(0.5));
+    //@ts-ignore
+    result = result.push(toHex(f(0.5)));
   }
+  return result;
 };
 
 export { interpolateSpline };
