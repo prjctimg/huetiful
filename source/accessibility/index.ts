@@ -1,1 +1,1 @@
-export { colorDeficiency } from './colorDeficiency';
+export * from "./colorDeficiency";

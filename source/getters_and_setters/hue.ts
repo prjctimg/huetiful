@@ -1,17 +1,106 @@
 //This module contains getNearestHue,getFarthestHue,getNearestHue and getFarthestHue which are collection based utils that return the color with the queried factor.
 
-import { getChannel } from "../getters_and_setters/get";
-import { sortedArr } from "../fp/array/sortedArr";
-import type { Color, HueColorSpaces, Factor } from "../types";
+import { getChannel, setChannel } from "../getters_and_setters";
+import hueTempMap from "../color-maps/samples/hueTemperature.js";
+import {
+  adjustHue,
+  sortedArr,
+  min,
+  max,
+  customConcat,
+  inRange,
+  random,
+  checkArg,
+} from "../fp";
+import type { Color, HueFamily, HueColorSpaces, Factor } from "../types.js";
+import { toHex } from "../converters/toHex.js";
 
-//  Globals
+const baseFunc2 = (factor: number) => {
+  return Object.keys(hueTempMap)
+    .map((hue) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
-const { abs } = Math;
+      const hueVals = customConcat(hueTempMap[hue]);
+      // @ts-ignore
+      const minVal = min(hueVals);
+      // @ts-ignore
+      const maxVal = max(hueVals);
+      const bool = customConcat(hueTempMap[hue]).some(() =>
+        inRange(factor, minVal, maxVal)
+      );
 
-// Use jch by default
+      if (bool) {
+        return hue;
+      }
+    })
+    .filter((val) => typeof val === "string")[0];
+};
 
-const factor: Factor = "hue";
+/**
+ * @function
+ * @description Gets the complementary hue of the passed in color. The function is internally guarded against achromatic colors.
+ * @param color The color to retrieve its complimentary hue.
+ * @param colorObj Optional boolean whether to return an object with the result color hue family or just the result color. Default is false.
+ * @returns An object with the hue family and complimentary color as keys.
+ * @example
+ *import { getComplimentaryHue } from "huetiful-js";
+ *
+ * 
+console.log(getComplimentaryHue("pink", true))
+//// { hue: 'blue-green', color: '#97dfd7ff' }
+
+console.log(getComplimentaryHue("purple"))
+// #005700ff
+ */
+const getComplimentaryHue = (
+  color: Color,
+  mode?: HueColorSpaces,
+  colorObj = false
+): { hue: string; color: Color } | Color => {
+  const modeChannel = `${mode}.h`;
+  // A complementary hue is 180 deg from the hue value of the passed in color
+
+  const complementaryHue: number = adjustHue(
+    getChannel(modeChannel)(color) + 180 * random(0.965, 1)
+  );
+
+  // eslint-disable-next-line prefer-const
+
+  let result: Color | { hue: string; color: Color };
+  if (complementaryHue) {
+    result = {
+      hue: baseFunc2(complementaryHue),
+      color: toHex(setChannel(modeChannel)(color, complementaryHue)),
+    };
+  } else {
+    result = { hue: "gray", color: color };
+  }
+
+  return (colorObj && result) || result["color"];
+};
+
+/**
+ *@function
+ @description Gets the hue family which a a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
+ * @param color The color to query its shade or hue family.
+ * @returns The name of the hue family for example red or green.
+ * @example
+ * 
+ * import { getHue } from 'huetiful-js'
+
+
+console.log(getHue("#310000"))
+// red
+ */
+const getHueFamily = (color: Color, mode?: HueColorSpaces): HueFamily => {
+  //Capture the hue value
+  const factor: number | undefined = getChannel(`${mode}.h`)(color);
+
+  return baseFunc2(factor) as HueFamily;
+};
+
 const baseFunc = (colors, colorSpace, colorObj, order) => {
+  const factor: Factor = "hue";
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     predicate(colorSpace as string),
@@ -31,10 +120,8 @@ const baseFunc = (colors, colorSpace, colorObj, order) => {
 
   return value;
 };
-const mode = (colorSpace: string): string => `${colorSpace || "lch"}.h`;
+const mode = (colorSpace: string): string => `${checkArg(colorSpace, "jch")}.h`;
 // The hue value of our color which we are using for comparison
-const targetHue = (color: Color, colorSpace: string): number =>
-  getChannel(mode(colorSpace))(color);
 
 // The callback to invoke per color in the passed in collection.
 // Return the absolute value since hue is a cyclic value which can either be  in clockwise/anti-clockwise.
@@ -92,4 +179,4 @@ const getFarthestHue = (
   return baseFunc(colors, colorSpace, colorObj, "desc");
 };
 
-export { getFarthestHue, getNearestHue };
+export { getFarthestHue, getNearestHue, getHueFamily, getComplimentaryHue };

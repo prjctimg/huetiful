@@ -1,14 +1,10 @@
-export { alpha } from "./alpha";
-export { brighten, darken } from "./darken";
-export { getChannel } from "./get";
-export { setLuminance, getLuminance } from "./luminance";
-export { setChannel } from "./set";
-export {
-  getContrast,
-  getNearestContrast,
-  getFarthestContrast,
-} from "./contrast";
-export { getFarthestChroma, getNearestChroma } from "./chroma";
-export { getFarthestLightness, getNearestLightness } from "./lightness";
-export { isCool, isWarm } from "./temperature";
-export { getFarthestHue, getNearestHue } from "./hue";
+export * from "./alpha";
+export * from "./darken";
+export * from "./get";
+export * from "./luminance";
+export * from "./set";
+export * from "./contrast";
+export * from "./chroma";
+export * from "./lightness";
+export * from "./temperature";
+export * from "./hue";

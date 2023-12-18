@@ -1,7 +1,7 @@
 {
   "include": [
     "./index.ts"
-  ],
+  ],"exclude":["./node_modules"],
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "skipLibCheck": true,

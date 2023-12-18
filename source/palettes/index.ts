@@ -1,7 +1,7 @@
-export { hueShift } from "./hueShift";
-export { discoverPalettes } from "./discoverPalettes";
-export { earthtone } from "./earthtone";
-export { pairedScheme } from "./paired";
-export { scheme } from "./base";
-export { pastel } from "./pastel";
-export { interpolateSpline } from "./interpolator";
+export * from "./hueShift";
+export * from "./discoverPalettes";
+export * from "./earthtone";
+export * from "./paired";
+export * from "./base";
+export * from "./pastel";
+export * from "./interpolator";

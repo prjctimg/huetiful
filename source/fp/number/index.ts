@@ -1,11 +1,10 @@
 // This module has number methods
 
-export { lt, gt, gte, lte, eq } from "./comparison";
-export { random } from "./random";
-export { isInteger } from "./isInteger";
-export { normalize } from "./normalize";
-export { floorCeil } from "./floorCeil";
-export { adjustHue } from "./adjustHue";
-export { inRange } from "./inRange";
-export { polynomial } from "./polynomial";
-export { channelDifference } from "./channelDifference";
+export * from "./comparison";
+export * from "./random";
+export * from "./isInteger";
+export * from "./normalize";
+export * from "./floorCeil";
+export * from "./adjustHue";
+export * from "./inRange";
+export * from "./channelDifference";

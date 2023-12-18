@@ -128,7 +128,7 @@ export type EarthtoneOptions = Omit<
 type HueShiftOptions = Omit<Options, "via" | "earthtones" | "">;
 export type Interpolator = (arr: number[]) => (t: number) => number;
 export type Tone = "light" | "dark";
-export type Hue =
+export type HueFamily =
   | "red-purple"
   | "red"
   | "yellow-red"

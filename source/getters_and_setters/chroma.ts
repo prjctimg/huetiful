@@ -23,7 +23,7 @@ const baseFunc = (colorSpace, colorObj, colors, order) => {
   const result: Array<{ factor: number; name: Color }> = sortedArr(
     factor,
     predicate(checkArg(colorSpace, "jch")),
-    "asc",
+    order,
     true
   )(colors).filter((el) => el[factor] !== undefined);
 
@@ -87,7 +87,7 @@ const getFarthestChroma = (
   colorObj = false
 ): number | { factor: number; color: Color } => {
   // @ts-ignore
-  return baseFunc(colorSpace, colorObj, colors, "asc");
+  return baseFunc(colorSpace, colorObj, colors, "desc");
 };
 
 export { getFarthestChroma, getNearestChroma };

@@ -39,7 +39,7 @@ import type {
   ColorOptions,
   Color,
   EarthtoneOptions,
-  Hue,
+  HueFamily,
   HueShiftOptions,
   PairedSchemeOptions,
 } from "../types";
@@ -161,7 +161,9 @@ class IColor {
       return this["colors"];
     }
   }
-  getComplimentaryHue(colorObj?: boolean): { hue: Hue; color: Color } | Color {
+  getComplimentaryHue(
+    colorObj?: boolean
+  ): { hue: HueFamily; color: Color } | Color {
     this["_color"] = nativeGetComplimentaryHue(this["_color"], colorObj);
     return this["_color"];
   }

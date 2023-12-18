@@ -1,6 +1,5 @@
-export { temp2Color } from "./temp2Color";
-export { toHex } from "./toHex";
-export { rgb2num } from "./rgb2num";
-export { num2rgb } from "./num2rgb";
-
-export { camToColor, colorToCam, baseCieCam } from "./ciecam";
+export * from "./temp2Color";
+export * from "./toHex";
+export * from "./rgb2num";
+export * from "./num2rgb";
+export * from "./ciecam";

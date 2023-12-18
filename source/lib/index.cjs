@@ -835,6 +835,7 @@ __export(source_exports, {
   discoverPalettes: () => discoverPalettes,
   diverging: () => diverging,
   earthtone: () => earthtone,
+  eq: () => eq,
   expressionParser: () => expressionParser,
   filterByContrast: () => filterByContrast,
   filterByDistance: () => filterByDistance,
@@ -865,7 +866,7 @@ __export(source_exports, {
   interpolateSpline: () => interpolateSpline,
   isAchromatic: () => isAchromatic,
   isCool: () => isCool,
-  isInt: () => isInt,
+  isInteger: () => isInteger,
   isWarm: () => isWarm,
   load: () => load,
   lt: () => lt,
@@ -5726,214 +5727,12 @@ var hueTemperature_default = {
   }
 };
 
-// colors/achromatic.ts
-var isAchromatic = (color2) => {
-  const cb4 = (mc) => getChannel(mc)(color2);
-  const checkHsl = cb4("hsl.s");
-  const checkLch = cb4("lch.c");
-  if ((checkHsl || checkLch) === 0) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-// fp/number/inRange.ts
-var inRange = (number, start, end) => {
-  var nativeMax = Math.max, nativeMin = Math.min;
-  return number >= nativeMin(start, end) && number < nativeMax(start, end);
-};
-
 // fp/number/comparison.ts
 var gt = (x, y) => x > y;
 var lt = (x, y) => x < y;
 var gte = (x, y) => x >= y;
 var lte = (x, y) => x <= y;
-
-// fp/array/min_max.ts
-var identity2 = (value) => {
-  return value;
-};
-var baseExtremum = (array, iteratee, comparator) => {
-  var index = -1, length = array.length;
-  while (++index < length) {
-    var value = array[index], current = iteratee(value);
-    if (current != null && (computed === void 0 ? current === current : comparator(current, computed))) {
-      var computed = current, result = value;
-    }
-  }
-  return result;
-};
-var min2 = (array) => {
-  return array && array.length ? baseExtremum(array, identity2, lt) : void 0;
-};
-var max = (array) => {
-  return array && array.length ? baseExtremum(array, identity2, gt) : void 0;
-};
-
-// fp/object/customConcat.ts
-var customConcat = (hue3) => {
-  const res = [];
-  const { keys: keys3 } = Object;
-  if (typeof hue3 == "object") {
-    const hueKeys2 = keys3(hue3);
-    res.push(...hueKeys2.map((key) => hue3[key]));
-  }
-  return res;
-};
-
-// fp/object/customFindKey.ts
-var customFindKey = (collection, factor5) => {
-  const propKeys = Object.keys(collection);
-  const result = propKeys.filter((key) => {
-    const hueVals = customConcat(collection[key]);
-    const minVal = min2(...hueVals);
-    const maxVal = max(...hueVals);
-    return inRange(factor5, minVal, maxVal);
-  }).toString();
-  return result;
-};
-
-// colors/overtone.ts
-var overtone = (color2) => {
-  const factor5 = getChannel("lch.h")(color2);
-  let hue3 = customFindKey(hueTemperature_default, factor5);
-  if (isAchromatic(color2)) {
-    return "gray";
-  } else if (/-/.test(hue3)) {
-    hue3 = hue3.split("-");
-    return hue3[1];
-  } else {
-    return false;
-  }
-};
-
-// colors/tailwindColors.ts
-var tailwindColors = (shade) => (val) => {
-  shade = shade.toLowerCase();
-  const { keys: keys3 } = Object;
-  let targetHue;
-  if (keys3(tailwind_default).indexOf(shade) != -1) {
-    targetHue = tailwind_default[shade];
-  } else {
-    throw Error(
-      `${shade} is not a valid shade in the default Tailwind palette`
-    );
-  }
-  if (typeof val === "undefined") {
-    return keys3(targetHue).map((value) => targetHue[value]);
-  } else if (keys3(targetHue).indexOf(val) > -1) {
-    return targetHue[val];
-  } else {
-    throw Error(
-      `${val} is not a valid scale value. Values are in increments of 100 up to 900 e.g "200"`
-    );
-  }
-};
-
-// colors/getHue.ts
-var getHue = (color2) => {
-  const lch3 = useMode(definition_default14);
-  color2 = lch3(toHex(color2));
-  const factor5 = color2["h"];
-  const hueKeys2 = Object.keys(hueTemperature_default);
-  const hueFamily = hueKeys2.map((hue3) => {
-    const hueVals = customConcat(hueTemperature_default[hue3]);
-    const minVal = min2(...hueVals);
-    const maxVal = max(...hueVals);
-    const bool = customConcat(hueTemperature_default[hue3]).some(
-      () => inRange(factor5, minVal, maxVal)
-    );
-    if (bool) {
-      return hue3;
-    }
-  }).filter((val) => typeof val === "string").toString();
-  return hueFamily;
-};
-
-// fp/number/adjustHue.ts
-var adjustHue = (value = 0) => {
-  if (value > 0) {
-    return value += Math.ceil(-value / 360) * 360;
-  } else {
-    return value % 360;
-  }
-};
-
-// fp/string/expressionParser.ts
-function expressionParser(src, channel, value) {
-  const reOperator = /^(\*|\+|\-|\/)/;
-  const reValue = /[0-9]*\.?[0-9]+/;
-  const sign = reOperator.exec(value);
-  const amt = reValue.exec(value);
-  const cb4 = (amt2) => parseFloat(amt2);
-  switch (sign["0"]) {
-    case "+":
-      src[channel] += +cb4(amt["0"]);
-      break;
-    case "-":
-      src[channel] -= +cb4(amt["0"]);
-      break;
-    case "*":
-      src[channel] *= +cb4(amt["0"]);
-      break;
-    case "/":
-      src[channel] /= +cb4(amt["0"]);
-      break;
-    default:
-      src[channel] = +cb4(amt["0"]);
-  }
-  return src;
-}
-
-// getters_and_setters/set.ts
-var setChannel = (mc) => (color2, value) => {
-  const [mode2, channel] = mc.split(".");
-  const src = converter_default(mode2)(toHex(color2));
-  if (channel) {
-    if (typeof value === "number") {
-      src[channel] = value;
-    } else if (typeof value === "string") {
-      expressionParser(src, channel, value);
-    } else {
-      throw new Error(`unsupported value for setChannel`);
-    }
-    return src;
-  } else {
-    throw new Error(`unknown channel ${channel} in mode ${mode2}`);
-  }
-};
-
-// colors/getComplimentaryHue.ts
-var { keys } = Object;
-var hueKeys = keys(hueTemperature_default);
-var getComplimentaryHue = (color2, colorObj2 = false) => {
-  const modeChannel = "lch.h";
-  const complementaryHue = adjustHue(
-    getChannel(modeChannel)(color2) + 180
-  );
-  const hueFamily = hueKeys.map((hue3) => {
-    const hueVals = customConcat(hueTemperature_default[hue3]);
-    const minVal = min2(...hueVals);
-    const maxVal = max(...hueVals);
-    const bool = customConcat(hueTemperature_default[hue3]).some(
-      () => inRange(complementaryHue, minVal, maxVal)
-    );
-    if (bool) {
-      return hue3;
-    }
-  }).filter((val) => typeof val === "string").toString();
-  let result;
-  if (complementaryHue) {
-    result = {
-      hue: hueFamily,
-      color: toHex(setChannel(modeChannel)(color2, complementaryHue))
-    };
-  } else {
-    result = { hue: "gray", color: color2 };
-  }
-  return colorObj2 && result || result["color"];
-};
+var eq = (x, y) => x === y;
 
 // fp/number/random.ts
 var random = (min3, max2) => {
@@ -5947,10 +5746,16 @@ var random = (min3, max2) => {
   }
 };
 
-// fp/number/isInt.ts
-var isInt = (num3) => {
+// fp/number/isInteger.ts
+var isInteger = (num3) => {
   const reInt = /^-?[0-9]+$/;
   return reInt.test(num3.toString());
+};
+
+// fp/number/inRange.ts
+var inRange = (number, start, end) => {
+  Math.min;
+  return number >= Math.min(start, end) && number < Math.max(start, end);
 };
 
 // color-maps/samples/modeRanges.ts
@@ -6000,9 +5805,7 @@ var normalize = (value, modeChannel) => {
 // fp/number/floorCeil.ts
 var { ceil, floor } = Math;
 var floorCeil = (num3) => {
-  if (isInt(num3)) {
-    return num3;
-  } else {
+  if (!isInteger(num3)) {
     const strArr = num3.toString().split(".");
     const float = strArr[1];
     const reFloorCeil = (float2) => /^[0-4]$/.test(float2.charAt(0));
@@ -6013,6 +5816,15 @@ var floorCeil = (num3) => {
     }
   }
   return num3;
+};
+
+// fp/number/adjustHue.ts
+var adjustHue = (value = 0) => {
+  if (value > 0) {
+    return value += Math.ceil(-value / 360) * 360;
+  } else {
+    return value % 360;
+  }
 };
 
 // fp/number/polynomial.ts
@@ -6028,6 +5840,27 @@ var channelDifference = (color2, modeChannel) => (subtrahend) => {
   } else {
     return cb4(color2) - cb4(subtrahend);
   }
+};
+
+// fp/array/min_max.ts
+var identity2 = (value) => {
+  return value;
+};
+var baseExtremum = (array, iteratee, comparator) => {
+  var index = -1, length = array.length;
+  while (++index < length) {
+    var value = array[index], current = iteratee(value);
+    if (current != null && (computed === void 0 ? current === current : comparator(current, computed))) {
+      var computed = current, result = value;
+    }
+  }
+  return result;
+};
+var min2 = (array) => {
+  return array && array.length ? baseExtremum(array, identity2, lt) : void 0;
+};
+var max = (array) => {
+  return array && array.length ? baseExtremum(array, identity2, gt) : void 0;
 };
 
 // fp/object/colorObj.ts
@@ -6097,30 +5930,6 @@ var sortedArr = (factor5, callback, order, colorObj2 = false) => (colors2) => {
     return results;
   } else {
     return results.map((color2) => color2["color"]);
-  }
-};
-
-// fp/string/matchChromaChannel.ts
-var matchChromaChannel = (colorSpace) => {
-  const reChroma = /(s|c)/;
-  const ch = reChroma.exec(colorSpace);
-  if (reChroma.test(colorSpace)) {
-    return `${colorSpace}.${ch[0]}`;
-  } else {
-    throw Error(
-      `The color space ${colorSpace} has no chroma/saturation channel.`
-    );
-  }
-};
-
-// fp/string/matchLightnessChannel.ts
-var matchLightnessChannel = (colorSpace) => {
-  const reLightness = /(j|l)/i;
-  const ch = reLightness.exec(colorSpace);
-  if (reLightness.test(colorSpace)) {
-    return `${colorSpace}.${ch[0]}`;
-  } else {
-    throw Error(`The color space ${colorSpace} has no lightness channel.`);
   }
 };
 
@@ -6195,7 +6004,7 @@ var scheme = (schemeType) => (color2, easingFunc) => {
 };
 
 // palettes/discoverPalettes.ts
-var { keys: keys2 } = Object;
+var { keys } = Object;
 var isColorEqual = (c13, c23) => {
   return c13["h"] === c23["h"] && c13["l"] === c23["l"] && c13["c"] === c23["c"];
 };
@@ -6207,7 +6016,7 @@ var discoverPalettes = (colors2, schemeType) => {
   const targetPalettes = {};
   for (const color2 of colors2) {
     schemeKeys.forEach((s) => targetPalettes[s] = scheme(s)(color2));
-    for (const paletteType of keys2(targetPalettes)) {
+    for (const paletteType of keys(targetPalettes)) {
       const palette = [];
       let variance = 0;
       for (const targetColor of targetPalettes[paletteType]) {
@@ -6313,6 +6122,49 @@ var earthtone = (color2, options) => {
     return toHex(f3(0.5));
   } else {
     return samples_default(terations).map((t) => toHex(f3(t)));
+  }
+};
+
+// fp/string/expressionParser.ts
+function expressionParser(src, channel, value) {
+  const reOperator = /^(\*|\+|\-|\/)/, reValue = /[0-9]*\.?[0-9]+/;
+  const sign = reOperator.exec(value)["0"];
+  const amt = reValue.exec(value)["0"];
+  const cb4 = (value2) => parseFloat(value2);
+  switch (sign) {
+    case "+":
+      src[channel] += +cb4(amt);
+      break;
+    case "-":
+      src[channel] -= +cb4(amt);
+      break;
+    case "*":
+      src[channel] *= +cb4(amt);
+      break;
+    case "/":
+      src[channel] /= +cb4(amt);
+      break;
+    default:
+      src[channel] = +cb4(amt);
+  }
+  return src;
+}
+
+// getters_and_setters/set.ts
+var setChannel = (mc) => (color2, value) => {
+  const [mode2, channel] = mc.split(".");
+  const src = converter_default(mode2)(toHex(color2));
+  if (channel) {
+    if (typeof value === "number") {
+      src[channel] = value;
+    } else if (typeof value === "string") {
+      expressionParser(src, channel, value);
+    } else {
+      throw new Error(`unsupported value for setChannel`);
+    }
+    return src;
+  } else {
+    throw new Error(`unknown channel ${channel} in mode ${mode2}`);
   }
 };
 
@@ -6579,6 +6431,17 @@ var filterByHue = (colors2, startHue = 0, endHue = 360) => {
   return filteredArr(factor5, cb4)(colors2, startHue, endHue);
 };
 
+// fp/string/matchLightnessChannel.ts
+var matchLightnessChannel = (colorSpace) => {
+  const reLightness = /(j|l)/i;
+  const ch = reLightness.exec(colorSpace)["0"];
+  if (reLightness.test(colorSpace)) {
+    return `${colorSpace}.${ch}`;
+  } else {
+    throw Error(`The color space ${colorSpace} has no lightness channel.`);
+  }
+};
+
 // filterBy/filterByLightness.ts
 var filterByLightness = (colors2, startLightness = 5, endLightness = 100, mode2) => {
   const factor5 = "lightness";
@@ -6744,6 +6607,19 @@ var brighten = (color2, value) => {
     expressionParser(src, channel, value);
   }
   return toHex(src);
+};
+
+// fp/string/matchChromaChannel.ts
+var matchChromaChannel = (colorSpace) => {
+  const reChroma = /(s|c)/i;
+  const ch = reChroma.exec(colorSpace)["0"];
+  if (reChroma.test(colorSpace)) {
+    return `${colorSpace}.${ch}`;
+  } else {
+    throw Error(
+      `The color space ${colorSpace} has no chroma/saturation channel.`
+    );
+  }
 };
 
 // getters_and_setters/chroma.ts
@@ -7470,6 +7346,123 @@ var ColorArray = class {
 };
 var load = (colors2) => {
   return new ColorArray(colors2);
+};
+
+// fp/object/customConcat.ts
+var customConcat = (hue3) => {
+  const res = [];
+  const { keys: keys3 } = Object;
+  if (typeof hue3 == "object") {
+    const hueKeys2 = keys3(hue3);
+    res.push(...hueKeys2.map((key) => hue3[key]));
+  }
+  return res.flat(1);
+};
+
+// fp/object/customFindKey.ts
+var customFindKey = (collection, factor5) => {
+  const propKeys = Object.keys(collection);
+  const result = propKeys.filter((key) => {
+    const hueVals = customConcat(collection[key]);
+    const minVal = min2(...hueVals);
+    const maxVal = max(...hueVals);
+    return inRange(factor5, minVal, maxVal);
+  }).toString();
+  return result;
+};
+
+// colors/achromatic.ts
+var isAchromatic = (color2, mode2) => {
+  mode2 = checkArg(mode2, "lch");
+  const cb4 = (mode3) => getChannel(`${mode3}.${matchChromaChannel(mode3)}`)(color2);
+  return cb4(mode2) != false || 0 || NaN;
+};
+
+// colors/overtone.ts
+var overtone = (color2) => {
+  const factor5 = getChannel("lch.h")(color2);
+  let hue3 = customFindKey(hueTemperature_default, factor5);
+  if (isAchromatic(color2)) {
+    return "gray";
+  } else if (/-/.test(hue3)) {
+    hue3 = hue3.split("-");
+    return hue3[1];
+  } else {
+    return false;
+  }
+};
+
+// colors/tailwindColors.ts
+var tailwindColors = (shade) => (val) => {
+  shade = shade.toLowerCase();
+  const { keys: keys3 } = Object;
+  let targetHue;
+  if (keys3(tailwind_default).indexOf(shade) != -1) {
+    targetHue = tailwind_default[shade];
+  } else {
+    throw Error(
+      `${shade} is not a valid shade in the default Tailwind palette`
+    );
+  }
+  if (typeof val === "undefined") {
+    return keys3(targetHue).map((value) => targetHue[value]);
+  } else if (keys3(targetHue).indexOf(val) > -1) {
+    return targetHue[val];
+  } else {
+    throw Error(
+      `${val} is not a valid scale value. Values are in increments of 100 up to 900 e.g "200"`
+    );
+  }
+};
+
+// colors/getHue.ts
+var getHue = (color2) => {
+  const lch3 = useMode(definition_default14);
+  color2 = lch3(toHex(color2));
+  const factor5 = color2["h"];
+  const hueKeys2 = Object.keys(hueTemperature_default);
+  const hueFamily = hueKeys2.map((hue3) => {
+    const hueVals = customConcat(hueTemperature_default[hue3]);
+    const minVal = min2(...hueVals);
+    const maxVal = max(...hueVals);
+    const bool = customConcat(hueTemperature_default[hue3]).some(
+      () => inRange(factor5, minVal, maxVal)
+    );
+    if (bool) {
+      return hue3;
+    }
+  }).filter((val) => typeof val === "string").toString();
+  return hueFamily;
+};
+
+// colors/getComplimentaryHue.ts
+var { keys: keys2 } = Object;
+var hueKeys = keys2(hueTemperature_default);
+var getComplimentaryHue = (color2, mode2, colorObj2 = false) => {
+  const modeChannel = `${mode2}.h`;
+  const complementaryHue = adjustHue(
+    getChannel(modeChannel)(color2) + 180 * random(0.965, 1)
+  );
+  const hueFamily = hueKeys.map((hue3) => {
+    const hueVals = customConcat(hueTemperature_default[hue3]);
+    const minVal = min2(hueVals), maxVal = max(hueVals);
+    const bool = customConcat(hueTemperature_default[hue3]).some(
+      () => inRange(complementaryHue, minVal, maxVal)
+    );
+    if (bool) {
+      return hue3;
+    }
+  }).filter((val) => typeof val === "string")[0];
+  let result;
+  if (complementaryHue) {
+    result = {
+      hue: hueFamily,
+      color: toHex(setChannel(modeChannel)(color2, complementaryHue))
+    };
+  } else {
+    result = { hue: "gray", color: color2 };
+  }
+  return colorObj2 && result || result["color"];
 };
 
 // colors/color.ts

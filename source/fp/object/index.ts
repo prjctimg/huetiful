@@ -1,5 +1,5 @@
 // This module has object methods
 
-export { colorObj } from './colorObj';
-export { customConcat } from './customConcat';
-export { customFindKey } from './customFindKey';
+export * from "./colorObj";
+export * from "./customConcat";
+export * from "./customFindKey";

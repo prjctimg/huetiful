@@ -4,10 +4,9 @@ import type { Color, Factor, HueColorSpaces } from "../types";
 import { checkArg, gt, matchLightnessChannel } from "../fp/index";
 
 // use jch
-const lightness = (mode: string) => {
-  mode = checkArg(mode, "jch");
-  return `${mode}.${matchLightnessChannel(mode)}`;
-};
+const lightness = (mode: string) =>
+  `${checkArg(mode, "jch")}.${matchLightnessChannel(mode)}`;
+
 // The subtrahend is each color in the collection
 //This means that the color object with the smallest lightness value is the  nearest lightness.
 // First check which value is greater and then act accordingly. Refactor hue.ts so that it returns negative
