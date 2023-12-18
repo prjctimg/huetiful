@@ -62,7 +62,7 @@ const earthtone = (color: Color, options?: EarthtoneOptions): Color[] => {
   if (iterations === 1) {
     return toHex(f(0.5));
   } else {
-    return samples(iterations).map((t) => toHex(f(t)));
+    return samples(terations).map((t) => toHex(f(t)));
   }
 };
 

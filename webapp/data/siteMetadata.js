@@ -6,7 +6,7 @@ const siteMetadata = {
   description: "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
   language: 'en-us',
   theme: 'dark', // system, dark or light
-  siteUrl: 'https://prjctimg.github.io/huetiful',
+  siteUrl: 'https://huetiful.vercel.app',
   siteRepo: 'https://github.com/prjctimg/huetiful',
   siteLogo: '/static/images/huetiful-logo.png',
   image: '/static/images/slowly-avatar.png',

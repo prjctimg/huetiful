@@ -1,4 +1,5 @@
 ![huetiful-js logo](./webapp/public/static/images/huetiful-logo.png)
+
 # huetiful-js
 
 ## Open source TypeScript library for general purpose color manipulations and generating custom color scales
@@ -28,7 +29,6 @@ This project is fully open source so contributions are greatly appreciated! Each
 ### References🔗
 
 Here are a few links to give you a more in depth approach to the intended goals of this project
-
 
 > ###### License
 >

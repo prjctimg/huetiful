@@ -21,7 +21,6 @@ import { //... } from 'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.esm
 
 ### Browser
 
-
 Or load the library as ES module in your HTML file using a `<script>` tag:
 
 ```html
@@ -74,7 +73,6 @@ console.log(toHex(arrColorWithAlpha))
 
 > ℹ️ [See here](https://culorijs.org/color-spaces
 )  and the expected channel ranges or [more on converter functions](https://huetiful-docs.vercel.app/api/converters) page 🔗.
-
 
 #### TailwindCSS colors🎨
 
@@ -146,7 +144,6 @@ Here are some example using the filtering and sorting functions on an array of c
 #### Sorting colors
 
 An example of sorting colors by the relative luminance as defined by the WCAG 2.0 formula
-
 
 ```js
 import { sortByLuminance } from "huetiful-js";
