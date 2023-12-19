@@ -6,7 +6,6 @@ import type {
   HueColorSpaces,
   InterpolatorOptions,
 } from "../../types";
-import { checkArg } from "../index";
 import {
   discoverPalettes as nativeDiscoverPalettes,
   interpolateSpline as nativeInterpolator,
@@ -22,10 +21,12 @@ import {
   getFarthestLightness as nativeMinLightness,
 } from "../../getters_and_setters";
 
-class ColorArray {
+class ColorArray extends Array {
   // private _colors: ColorToken[];
   constructor(colors: Color[]) {
-    this["colors"] = checkArg(colors, []);
+    super();
+    this["colors"] = colors;
+    return this;
   }
 
   interpolateSpline(
@@ -76,7 +77,8 @@ console.log(discoverPalettes(sample, "tetradic"))
   discoverPalettes(
     schemeType?: "analogous" | "triadic" | "tetradic" | "complementary"
   ): Color[] | object {
-    return nativeDiscoverPalettes(this["colors"], schemeType);
+    this["colors"] = nativeDiscoverPalettes(this["colors"], schemeType);
+    return this;
   }
 
   /**
@@ -98,14 +100,6 @@ console.log(maxHue(sample, 'lch'))
     colorObj = false
   ): number | { factor: number; color: Color } {
     return nativeMaxHue(this["colors"], colorSpace, colorObj);
-  }
-
-  /**
-   * Returns the current length of the resultant array of colors
-   * @returns The colors array length
-   */
-  length(): number {
-    return this["colors"].length;
   }
 
   /**

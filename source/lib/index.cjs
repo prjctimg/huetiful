@@ -83,7 +83,7 @@ var require_workspace = __commonJS({
     "use strict";
     exports.__esModule = true;
     var helpers_1 = require_helpers();
-    var abs5 = Math.abs;
+    var abs4 = Math.abs;
     var pow2 = Math.pow;
     exports.sRgbGamma = {
       decode: function(v) {
@@ -104,10 +104,10 @@ var require_workspace = __commonJS({
     exports.simpleGamma = function(g) {
       return {
         decode: function(v) {
-          return helpers_1.sign(v) * pow2(abs5(v), g);
+          return helpers_1.sign(v) * pow2(abs4(v), g);
         },
         encode: function(v) {
-          return helpers_1.sign(v) * pow2(abs5(v), 1 / g);
+          return helpers_1.sign(v) * pow2(abs4(v), 1 / g);
         }
       };
     };
@@ -330,13 +330,13 @@ var require_helpers2 = __commonJS({
   "node_modules/ciecam02-ts/lib/helpers.js"(exports) {
     "use strict";
     exports.__esModule = true;
-    var abs5 = Math.abs;
+    var abs4 = Math.abs;
     var pow2 = Math.pow;
     var sqrt = Math.sqrt;
     function corLerp(a, b, t, cor) {
       var m = cor === "h" ? 360 : cor === "H" ? 400 : void 0;
       if (m) {
-        var d = abs5(a - b);
+        var d = abs4(a - b);
         if (d > m / 2) {
           if (a > b) {
             b += m;
@@ -488,7 +488,7 @@ var require_cam = __commonJS({
     var pow2 = Math.pow;
     var sqrt = Math.sqrt;
     var exp = Math.exp;
-    var abs5 = Math.abs;
+    var abs4 = Math.abs;
     var sin = Math.sin;
     var cos = Math.cos;
     var atan2 = Math.atan2;
@@ -558,14 +558,14 @@ var require_cam = __commonJS({
       }
       function adaptedResponses(RGB_c) {
         return ciebase_ts_1.matrix.multiply(CAT02_to_HPE, RGB_c).map(function(v) {
-          var x = pow2(F_L * abs5(v) / 100, 0.42);
+          var x = pow2(F_L * abs4(v) / 100, 0.42);
           return sign(v) * 400 * x / (27.13 + x) + 0.1;
         });
       }
       function reverseAdaptedResponses(RGB_a) {
         return ciebase_ts_1.matrix.multiply(HPE_to_CAT02, RGB_a.map(function(v) {
           var x = v - 0.1;
-          return sign(x) * 100 / F_L * pow2(27.13 * abs5(x) / (400 - abs5(x)), 1 / 0.42);
+          return sign(x) * 100 / F_L * pow2(27.13 * abs4(x) / (400 - abs4(x)), 1 / 0.42);
         }));
       }
       function achromaticResponse(RGB_a) {
@@ -664,7 +664,7 @@ var require_cam = __commonJS({
         var b;
         if (t === 0 || isNaN(t)) {
           a = b = 0;
-        } else if (abs5(sin_h) >= abs5(cos_h)) {
+        } else if (abs4(sin_h) >= abs4(cos_h)) {
           b = q_1 / (p_1 / sin_h + q_2 * cos_h / sin_h + q_3);
           a = b * cos_h / sin_h;
         } else {
@@ -814,6 +814,7 @@ var require_lib2 = __commonJS({
 // index.ts
 var source_exports = {};
 __export(source_exports, {
+  ColorArray: () => ColorArray,
   IColor: () => IColor,
   adjustHue: () => adjustHue,
   alpha: () => alpha,
@@ -852,7 +853,7 @@ __export(source_exports, {
   getFarthestContrast: () => getFarthestContrast,
   getFarthestHue: () => getFarthestHue,
   getFarthestLightness: () => getFarthestLightness,
-  getHue: () => getHue,
+  getHueFamily: () => getHueFamily,
   getLuminance: () => getLuminance,
   getModeChannel: () => getModeChannel,
   getNearestChroma: () => getNearestChroma,
@@ -880,7 +881,6 @@ __export(source_exports, {
   overtone: () => overtone,
   pairedScheme: () => pairedScheme,
   pastel: () => pastel,
-  polynomial: () => polynomial,
   qualitative: () => qualitative,
   random: () => random,
   rgb2num: () => rgb2num,
@@ -904,8 +904,8 @@ module.exports = __toCommonJS(source_exports);
 // colors/colorBrewer.ts
 var cb = (str) => str.toLowerCase();
 var schemeMapper = (scheme2, schemesObject) => {
-  const { keys: keys3 } = Object;
-  const schemeOptions = keys3(schemesObject).map(cb);
+  const { keys: keys2 } = Object;
+  const schemeOptions = keys2(schemesObject).map(cb);
   scheme2 = cb(scheme2);
   if (schemeOptions.indexOf(scheme2) > -1) {
     return schemesObject[scheme2];
@@ -1593,16 +1593,16 @@ var tailwind_default = {
 
 // colors/colors.ts
 var colors = (shade, val) => {
-  const { keys: keys3 } = Object;
+  const { keys: keys2 } = Object;
   const defaultHue = "all";
-  const hueKeys2 = keys3(tailwind_default);
+  const hueKeys = keys2(tailwind_default);
   shade = shade.toLowerCase();
   if (shade === defaultHue) {
-    return hueKeys2.map((color2) => tailwind_default[color2][val || "500"]);
-  } else if (hueKeys2.some((hue3) => hue3 === shade) && val) {
+    return hueKeys.map((color2) => tailwind_default[color2][val || "500"]);
+  } else if (hueKeys.some((hue3) => hue3 === shade) && val) {
     return tailwind_default[shade][val];
   } else if (shade && typeof val == "undefined") {
-    const keyVals = keys3(tailwind_default[shade]);
+    const keyVals = keys2(tailwind_default[shade]);
     return keyVals.map((key) => tailwind_default[shade][key]);
   } else if (typeof val == "undefined") {
     throw Error(`Both shade and value cannot be undefined`);
@@ -2384,11 +2384,11 @@ var convertXyz65ToA98_default = convertXyz65ToA98;
 
 // node_modules/culori/src/lrgb/convertRgbToLrgb.js
 var fn = (c4) => {
-  const abs5 = Math.abs(c4);
-  if (abs5 <= 0.04045) {
+  const abs4 = Math.abs(c4);
+  if (abs4 <= 0.04045) {
     return c4 / 12.92;
   }
-  return (Math.sign(c4) || 1) * Math.pow((abs5 + 0.055) / 1.055, 2.4);
+  return (Math.sign(c4) || 1) * Math.pow((abs4 + 0.055) / 1.055, 2.4);
 };
 var convertRgbToLrgb = ({ r: r2, g, b, alpha: alpha2 }) => {
   let res = {
@@ -2421,9 +2421,9 @@ var convertRgbToXyz65_default = convertRgbToXyz65;
 
 // node_modules/culori/src/lrgb/convertLrgbToRgb.js
 var fn2 = (c4) => {
-  const abs5 = Math.abs(c4);
-  if (abs5 > 31308e-7) {
-    return (Math.sign(c4) || 1) * (1.055 * Math.pow(abs5, 1 / 2.4) - 0.055);
+  const abs4 = Math.abs(c4);
+  if (abs4 > 31308e-7) {
+    return (Math.sign(c4) || 1) * (1.055 * Math.pow(abs4, 1 / 2.4) - 0.055);
   }
   return c4 * 12.92;
 };
@@ -4429,9 +4429,9 @@ var definition_default21 = definition21;
 
 // node_modules/culori/src/prophoto/convertXyz50ToProphoto.js
 var gamma2 = (v) => {
-  let abs5 = Math.abs(v);
-  if (abs5 >= 1 / 512) {
-    return Math.sign(v) * Math.pow(abs5, 1 / 1.8);
+  let abs4 = Math.abs(v);
+  if (abs4 >= 1 / 512) {
+    return Math.sign(v) * Math.pow(abs4, 1 / 1.8);
   }
   return 16 * v;
 };
@@ -4455,9 +4455,9 @@ var convertXyz50ToProphoto_default = convertXyz50ToProphoto;
 
 // node_modules/culori/src/prophoto/convertProphotoToXyz50.js
 var linearize2 = (v) => {
-  let abs5 = Math.abs(v);
-  if (abs5 >= 16 / 512) {
-    return Math.sign(v) * Math.pow(abs5, 1.8);
+  let abs4 = Math.abs(v);
+  if (abs4 >= 16 / 512) {
+    return Math.sign(v) * Math.pow(abs4, 1.8);
   }
   return v / 16;
 };
@@ -4499,9 +4499,9 @@ var definition_default22 = definition22;
 var \u03B1 = 1.09929682680944;
 var \u03B2 = 0.018053968510807;
 var gamma3 = (v) => {
-  const abs5 = Math.abs(v);
-  if (abs5 > \u03B2) {
-    return (Math.sign(v) || 1) * (\u03B1 * Math.pow(abs5, 0.45) - (\u03B1 - 1));
+  const abs4 = Math.abs(v);
+  if (abs4 > \u03B2) {
+    return (Math.sign(v) || 1) * (\u03B1 * Math.pow(abs4, 0.45) - (\u03B1 - 1));
   }
   return 4.5 * v;
 };
@@ -4529,11 +4529,11 @@ var convertXyz65ToRec2020_default = convertXyz65ToRec2020;
 var \u03B12 = 1.09929682680944;
 var \u03B22 = 0.018053968510807;
 var linearize3 = (v) => {
-  let abs5 = Math.abs(v);
-  if (abs5 < \u03B22 * 4.5) {
+  let abs4 = Math.abs(v);
+  if (abs4 < \u03B22 * 4.5) {
     return v / 4.5;
   }
-  return (Math.sign(v) || 1) * Math.pow((abs5 + \u03B12 - 1) / \u03B12, 1 / 0.45);
+  return (Math.sign(v) || 1) * Math.pow((abs4 + \u03B12 - 1) / \u03B12, 1 / 0.45);
 };
 var convertRec2020ToXyz65 = (rec20203) => {
   let r2 = linearize3(rec20203.r);
@@ -5628,7 +5628,7 @@ var num2rgb = (num3, hex2 = false) => {
 };
 
 // fp/misc.ts
-var checkArg = (arg, def) => typeof arg === void 0 ? def : arg;
+var checkArg = (arg, def) => arg || def;
 var getModeChannel = (mode2, key) => mode2.charAt(key);
 
 // converters/toHex.ts
@@ -5827,11 +5827,6 @@ var adjustHue = (value = 0) => {
   }
 };
 
-// fp/number/polynomial.ts
-var polynomial = (x) => {
-  return Math.sqrt(Math.sqrt((Math.pow(x, 2.25) + Math.pow(x, 4)) / 2));
-};
-
 // fp/number/channelDifference.ts
 var channelDifference = (color2, modeChannel) => (subtrahend) => {
   const cb4 = (color3) => getChannel(modeChannel)(color3);
@@ -5864,45 +5859,45 @@ var max = (array) => {
 };
 
 // fp/object/colorObj.ts
-var colorObj = (factor5, callback) => (color2) => {
-  return { [factor5]: callback(color2), color: color2 };
+var colorObj = (factor4, callback) => (color2) => {
+  return { [factor4]: callback(color2), color: color2 };
 };
 
 // fp/array/colorObjArr.ts
-var colorObjArr = (factor5, callback) => (colors2) => {
-  const cb4 = colorObj(factor5, callback);
+var colorObjArr = (factor4, callback) => (colors2) => {
+  const cb4 = colorObj(factor4, callback);
   return colors2.map((color2) => cb4(color2));
 };
 
 // fp/array/customSort.ts
-var customSort = (order, factor5) => {
-  factor5 = factor5 || "factor";
+var customSort = (order, factor4) => {
+  factor4 = factor4 || "factor";
   return (a, b) => {
     if (order === "asc") {
-      return a[factor5] - b[factor5];
+      return a[factor4] - b[factor4];
     } else if (order === "desc") {
-      return b[factor5] - a[factor5];
+      return b[factor4] - a[factor4];
     }
   };
 };
 
 // fp/array/filteredArr.ts
-var filteredArr = (factor5, cb4) => (colors2, start, end) => {
+var filteredArr = (factor4, cb4) => (colors2, start, end) => {
   let result;
   if (typeof start === "number") {
     result = colorObjArr(
-      factor5,
+      factor4,
       cb4
-    )(colors2).filter((color2) => inRange(color2[factor5], start, end)).map((color2) => color2["color"]);
+    )(colors2).filter((color2) => inRange(color2[factor4], start, end)).map((color2) => color2["color"]);
   } else if (typeof start === "string") {
     const reOperator = /^(>=|<=|<|>)/;
     const value = /[0-9]*\.?[0-9]+/;
     const val = value.exec(start)["0"], op = reOperator.exec(start)["0"];
     const mapFilter = (test) => {
       return colorObjArr(
-        factor5,
+        factor4,
         cb4
-      )(colors2).filter((el) => test(el[factor5], parseFloat(val))).map((el) => el["color"]);
+      )(colors2).filter((el) => test(el[factor4], parseFloat(val))).map((el) => el["color"]);
     };
     switch (op) {
       case "<":
@@ -5923,9 +5918,9 @@ var filteredArr = (factor5, cb4) => (colors2, start, end) => {
 };
 
 // fp/array/sortedArr.ts
-var sortedArr = (factor5, callback, order, colorObj2 = false) => (colors2) => {
-  const results = colorObjArr(factor5, callback)(colors2);
-  results.sort(customSort(order, factor5));
+var sortedArr = (factor4, callback, order, colorObj2 = false) => (colors2) => {
+  const results = colorObjArr(factor4, callback)(colors2);
+  results.sort(customSort(order, factor4));
   if (colorObj2) {
     return results;
   } else {
@@ -6351,13 +6346,13 @@ var interpolateSpline = (colors2, mode2, samples2, kind, closed = false, options
 
 // filterBy/filterBySaturation.ts
 var filterBySaturation = (colors2, startSaturation = 0.05, endSaturation = 1, mode2) => {
-  const factor5 = "saturation";
+  const factor4 = "saturation";
   if (matchChromaChannel(mode2)) {
     mode2 = checkArg(mode2, "jch");
     const modeChannel = `${mode2}.${matchChromaChannel(mode2)}`;
     const cb4 = getChannel(`${mode2}.${modeChannel}`);
     const reDigits = /([0-9])/g.exec(startSaturation)["0"];
-    return filteredArr(factor5, cb4)(
+    return filteredArr(factor4, cb4)(
       colors2,
       normalize(reDigits, modeChannel),
       normalize(endSaturation, modeChannel)
@@ -6419,16 +6414,16 @@ var luminance_x = (x) => {
 
 // filterBy/filterByLuminance.ts
 var filterByLuminance = (colors2, startLuminance = 0.05, endLuminance = 1) => {
-  const factor5 = "luminance";
+  const factor4 = "luminance";
   const cb4 = getLuminance;
-  return filteredArr(factor5, cb4)(colors2, startLuminance, endLuminance);
+  return filteredArr(factor4, cb4)(colors2, startLuminance, endLuminance);
 };
 
 // filterBy/filterByHue.ts
 var filterByHue = (colors2, startHue = 0, endHue = 360) => {
-  const factor5 = "hue";
+  const factor4 = "hue";
   const cb4 = getChannel("lch.h");
-  return filteredArr(factor5, cb4)(colors2, startHue, endHue);
+  return filteredArr(factor4, cb4)(colors2, startHue, endHue);
 };
 
 // fp/string/matchLightnessChannel.ts
@@ -6444,14 +6439,14 @@ var matchLightnessChannel = (colorSpace) => {
 
 // filterBy/filterByLightness.ts
 var filterByLightness = (colors2, startLightness = 5, endLightness = 100, mode2) => {
-  const factor5 = "lightness";
+  const factor4 = "lightness";
   const cb4 = getChannel(`${mode2}.${matchLightnessChannel(mode2)}`);
-  return filteredArr(factor5, cb4)(colors2, startLightness, endLightness);
+  return filteredArr(factor4, cb4)(colors2, startLightness, endLightness);
 };
 
 // filterBy/filterByDistance.ts
 var filterByDistance = (colors2, against, startDistance = 0.05, endDistance, mode2, weights) => {
-  const factor5 = "distance";
+  const factor4 = "distance";
   against = toHex(against);
   const cb4 = (against2, mode3) => (color2) => {
     return differenceEuclidean(mode3 || "lch", weights || [1, 1, 1, 0])(
@@ -6459,7 +6454,7 @@ var filterByDistance = (colors2, against, startDistance = 0.05, endDistance, mod
       color2
     );
   };
-  return filteredArr(factor5, cb4(against, mode2))(
+  return filteredArr(factor4, cb4(against, mode2))(
     colors2,
     startDistance,
     endDistance
@@ -6498,16 +6493,16 @@ var getContrast = (color2, against) => {
 
 // filterBy/filterByContrast.ts
 var filterByContrast = (colors2, against, startContrast = 0.05, endContrast) => {
-  const factor5 = "contrast";
+  const factor4 = "contrast";
   const cb4 = (against2) => (color2) => getContrast(color2, against2);
-  return filteredArr(factor5, cb4(against))(colors2, startContrast, endContrast);
+  return filteredArr(factor4, cb4(against))(colors2, startContrast, endContrast);
 };
 
 // sortBy/sortByContrast.ts
 var sortByContrast = (colors2, against, order) => {
-  const factor5 = "contrast";
+  const factor4 = "contrast";
   const cb4 = (against2) => (color2) => contrast(color2, against2);
-  return sortedArr(factor5, cb4(against), order)(colors2);
+  return sortedArr(factor4, cb4(against), order)(colors2);
 };
 
 // sortBy/sortByDistance.ts
@@ -6515,20 +6510,20 @@ var sortByDistance = (colors2, against, order, options) => {
   let { mode: mode2, weights } = options || {};
   mode2 = checkArg(mode2, "lchuv");
   weights = checkArg(weights, [1, 1, 1, 0]);
-  const factor5 = "distance";
+  const factor4 = "distance";
   const cb4 = (against2, mode3) => (color2) => {
     return differenceEuclidean(mode3, weights)(against2, color2);
   };
-  return sortedArr(factor5, cb4(against, mode2), order)(colors2);
+  return sortedArr(factor4, cb4(against, mode2), order)(colors2);
 };
 
 // sortBy/sortByHue.ts
 var sortByHue = (colors2, order, mode2 = "jch") => {
-  const factor5 = "hue";
+  const factor4 = "hue";
   const reHue = /h/gi.test(mode2);
   if (reHue) {
     const cb4 = getChannel(`${mode2}.h`);
-    return sortedArr(factor5, cb4, order)(colors2);
+    return sortedArr(factor4, cb4, order)(colors2);
   } else {
     throw Error(`The color space ${mode2} has no hue channel try 'lch' instead`);
   }
@@ -6536,27 +6531,27 @@ var sortByHue = (colors2, order, mode2 = "jch") => {
 
 // sortBy/sortByLightness.ts
 var sortByLightness = (colors2, order, mode2) => {
-  const factor5 = "lightness";
+  const factor4 = "lightness";
   mode2 = checkArg(mode2, "lch65");
   const cb4 = getChannel(`${mode2}.${matchLightnessChannel(mode2)}`);
-  return sortedArr(factor5, cb4, order)(colors2);
+  return sortedArr(factor4, cb4, order)(colors2);
 };
 
 // sortBy/sortByLuminance.ts
 var sortByLuminance = (colors2, order) => {
-  const factor5 = "luminance";
+  const factor4 = "luminance";
   const cb4 = getLuminance;
-  return sortedArr(factor5, cb4, order)(colors2);
+  return sortedArr(factor4, cb4, order)(colors2);
 };
 
 // sortBy/sortBySaturation.ts
 var sortBySaturation = (colors2, order, mode2) => {
-  const factor5 = "saturation";
+  const factor4 = "saturation";
   mode2 = checkArg(mode2, "jch");
   if (matchChromaChannel(mode2)) {
     const chromaChannel = matchChromaChannel(mode2);
     const cb4 = getChannel(`${mode2}.${chromaChannel}`);
-    return sortedArr(factor5, cb4, order)(colors2);
+    return sortedArr(factor4, cb4, order)(colors2);
   } else {
     throw Error(
       `The passed in color space ${mode2} has no chroma channel. Try 'jch' instead.`
@@ -6625,19 +6620,19 @@ var matchChromaChannel = (colorSpace) => {
 // getters_and_setters/chroma.ts
 var predicate = (colorSpace) => (color2) => getChannel(matchChromaChannel(colorSpace))(color2) || void 0;
 var baseFunc2 = (colorSpace, colorObj2, colors2, order) => {
-  const factor5 = "saturation";
+  const factor4 = "saturation";
   const result = sortedArr(
-    factor5,
+    factor4,
     predicate(checkArg(colorSpace, "jch")),
-    "asc",
+    order,
     true
-  )(colors2).filter((el) => el[factor5] !== void 0);
+  )(colors2).filter((el) => el[factor4] !== void 0);
   let value;
   if (result.length > 0) {
     if (colorObj2) {
       value = result[0];
     } else {
-      value = result[0][factor5];
+      value = result[0][factor4];
     }
   }
   return value;
@@ -6646,14 +6641,11 @@ var getNearestChroma = (colors2, colorSpace, colorObj2 = false) => {
   return baseFunc2(colorSpace, colorObj2, colors2, "asc");
 };
 var getFarthestChroma = (colors2, colorSpace, colorObj2 = false) => {
-  return baseFunc2(colorSpace, colorObj2, colors2, "asc");
+  return baseFunc2(colorSpace, colorObj2, colors2, "desc");
 };
 
 // getters_and_setters/lightness.ts
-var lightness = (mode2) => {
-  mode2 = checkArg(mode2, "jch");
-  return `${mode2}.${matchLightnessChannel(mode2)}`;
-};
+var lightness = (mode2) => `${checkArg(mode2, "jch")}.${matchLightnessChannel(mode2)}`;
 var factor3 = "lightness";
 var baseFunc3 = (order, colors2, mode2, colorObj2) => {
   const cb4 = getChannel(lightness(mode2));
@@ -6681,11 +6673,11 @@ var getFarthestLightness = (colors2, mode2, colorObj2 = false) => {
 };
 
 // getters_and_setters/temperature.ts
-var predicate2 = (factor5, temp) => {
-  const hueKeys2 = Object.keys(hueTemperature_default);
-  if (hueKeys2.some(
+var predicate2 = (factor4, temp) => {
+  const hueKeys = Object.keys(hueTemperature_default);
+  if (hueKeys.some(
     (val) => inRange(
-      floorCeil(factor5),
+      floorCeil(factor4),
       hueTemperature_default[val][temp][0],
       hueTemperature_default[val][temp][1]
     )
@@ -6696,18 +6688,50 @@ var predicate2 = (factor5, temp) => {
   }
 };
 var isCool = (color2) => {
-  const factor5 = getChannel("lch.h")(color2);
-  return predicate2(factor5, "cool");
+  const factor4 = getChannel("lch.h")(color2);
+  return predicate2(factor4, "cool");
 };
 var isWarm = (color2) => {
-  const factor5 = getChannel("lch.h")(color2);
-  return predicate2(factor5, "cool");
+  const factor4 = getChannel("lch.h")(color2);
+  return predicate2(factor4, "cool");
 };
 
 // getters_and_setters/hue.ts
-var { abs: abs4 } = Math;
-var factor4 = "hue";
+var baseFunc22 = (factor4) => {
+  return Object.keys(hueTemperature_default).map((hue3) => {
+    const hueVals = customConcat(hueTemperature_default[hue3]);
+    const minVal = min2(hueVals);
+    const maxVal = max(hueVals);
+    const bool = customConcat(hueTemperature_default[hue3]).some(
+      () => inRange(factor4, minVal, maxVal)
+    );
+    if (bool) {
+      return hue3;
+    }
+  }).filter((val) => typeof val === "string")[0];
+};
+var getComplimentaryHue = (color2, mode2, colorObj2 = false) => {
+  const modeChannel = `${mode2}.h`;
+  const complementaryHue = adjustHue(
+    getChannel(modeChannel)(color2) + 180 * random(0.965, 1)
+  );
+  let result;
+  if (complementaryHue) {
+    result = {
+      hue: baseFunc22(complementaryHue),
+      color: toHex(setChannel(modeChannel)(color2, complementaryHue))
+    };
+  } else {
+    result = { hue: "gray", color: color2 };
+  }
+  return colorObj2 && result || result["color"];
+};
+var getHueFamily = (color2, mode2) => {
+  const factor4 = getChannel(`${mode2}.h`)(color2);
+  return baseFunc22(factor4);
+};
 var baseFunc4 = (colors2, colorSpace, colorObj2, order) => {
+  const factor4 = "hue";
   const result = sortedArr(
     factor4,
     predicate3(colorSpace),
@@ -6724,7 +6748,7 @@ var baseFunc4 = (colors2, colorSpace, colorObj2, order) => {
   }
   return value;
 };
-var mode = (colorSpace) => `${colorSpace || "lch"}.h`;
+var mode = (colorSpace) => `${checkArg(colorSpace, "jch")}.h`;
 var predicate3 = (colorSpace) => (color2) => {
   return getChannel(mode(colorSpace))(color2) || void 0;
 };
@@ -6736,10 +6760,11 @@ var getFarthestHue = (colors2, colorSpace, colorObj2 = false) => {
 };
 
 // fp/array/colorArray.ts
-var ColorArray = class {
+var ColorArray = class extends Array {
   // private _colors: ColorToken[];
   constructor(colors2) {
-    this["colors"] = checkArg(colors2, []);
+    super();
+    this["colors"] = Array(...colors2);
   }
   interpolateSpline(mode2, samples2, kind, closed, options) {
     this["colors"] = interpolateSpline(
@@ -6779,7 +6804,8 @@ var ColorArray = class {
   // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
    */
   discoverPalettes(schemeType) {
-    return discoverPalettes(this["colors"], schemeType);
+    this["colors"] = discoverPalettes(this["colors"], schemeType);
+    return this;
   }
   /**
    *@function
@@ -6797,13 +6823,6 @@ var ColorArray = class {
    */
   getFarthestHue(colorSpace, colorObj2 = false) {
     return getFarthestHue(this["colors"], colorSpace, colorObj2);
-  }
-  /**
-   * Returns the current length of the resultant array of colors
-   * @returns The colors array length
-   */
-  length() {
-    return this["colors"].length;
   }
   /**
    *@function
@@ -7351,22 +7370,22 @@ var load = (colors2) => {
 // fp/object/customConcat.ts
 var customConcat = (hue3) => {
   const res = [];
-  const { keys: keys3 } = Object;
+  const { keys: keys2 } = Object;
   if (typeof hue3 == "object") {
-    const hueKeys2 = keys3(hue3);
-    res.push(...hueKeys2.map((key) => hue3[key]));
+    const hueKeys = keys2(hue3);
+    res.push(...hueKeys.map((key) => hue3[key]));
   }
   return res.flat(1);
 };
 
 // fp/object/customFindKey.ts
-var customFindKey = (collection, factor5) => {
+var customFindKey = (collection, factor4) => {
   const propKeys = Object.keys(collection);
   const result = propKeys.filter((key) => {
     const hueVals = customConcat(collection[key]);
     const minVal = min2(...hueVals);
     const maxVal = max(...hueVals);
-    return inRange(factor5, minVal, maxVal);
+    return inRange(factor4, minVal, maxVal);
   }).toString();
   return result;
 };
@@ -7380,8 +7399,8 @@ var isAchromatic = (color2, mode2) => {
 
 // colors/overtone.ts
 var overtone = (color2) => {
-  const factor5 = getChannel("lch.h")(color2);
-  let hue3 = customFindKey(hueTemperature_default, factor5);
+  const factor4 = getChannel("lch.h")(color2);
+  let hue3 = customFindKey(hueTemperature_default, factor4);
   if (isAchromatic(color2)) {
     return "gray";
   } else if (/-/.test(hue3)) {
@@ -7395,9 +7414,9 @@ var overtone = (color2) => {
 // colors/tailwindColors.ts
 var tailwindColors = (shade) => (val) => {
   shade = shade.toLowerCase();
-  const { keys: keys3 } = Object;
+  const { keys: keys2 } = Object;
   let targetHue;
-  if (keys3(tailwind_default).indexOf(shade) != -1) {
+  if (keys2(tailwind_default).indexOf(shade) != -1) {
     targetHue = tailwind_default[shade];
   } else {
     throw Error(
@@ -7405,64 +7424,14 @@ var tailwindColors = (shade) => (val) => {
     );
   }
   if (typeof val === "undefined") {
-    return keys3(targetHue).map((value) => targetHue[value]);
-  } else if (keys3(targetHue).indexOf(val) > -1) {
+    return keys2(targetHue).map((value) => targetHue[value]);
+  } else if (keys2(targetHue).indexOf(val) > -1) {
     return targetHue[val];
   } else {
     throw Error(
       `${val} is not a valid scale value. Values are in increments of 100 up to 900 e.g "200"`
     );
   }
-};
-
-// colors/getHue.ts
-var getHue = (color2) => {
-  const lch3 = useMode(definition_default14);
-  color2 = lch3(toHex(color2));
-  const factor5 = color2["h"];
-  const hueKeys2 = Object.keys(hueTemperature_default);
-  const hueFamily = hueKeys2.map((hue3) => {
-    const hueVals = customConcat(hueTemperature_default[hue3]);
-    const minVal = min2(...hueVals);
-    const maxVal = max(...hueVals);
-    const bool = customConcat(hueTemperature_default[hue3]).some(
-      () => inRange(factor5, minVal, maxVal)
-    );
-    if (bool) {
-      return hue3;
-    }
-  }).filter((val) => typeof val === "string").toString();
-  return hueFamily;
-};
-
-// colors/getComplimentaryHue.ts
-var { keys: keys2 } = Object;
-var hueKeys = keys2(hueTemperature_default);
-var getComplimentaryHue = (color2, mode2, colorObj2 = false) => {
-  const modeChannel = `${mode2}.h`;
-  const complementaryHue = adjustHue(
-    getChannel(modeChannel)(color2) + 180 * random(0.965, 1)
-  );
-  const hueFamily = hueKeys.map((hue3) => {
-    const hueVals = customConcat(hueTemperature_default[hue3]);
-    const minVal = min2(hueVals), maxVal = max(hueVals);
-    const bool = customConcat(hueTemperature_default[hue3]).some(
-      () => inRange(complementaryHue, minVal, maxVal)
-    );
-    if (bool) {
-      return hue3;
-    }
-  }).filter((val) => typeof val === "string")[0];
-  let result;
-  if (complementaryHue) {
-    result = {
-      hue: hueFamily,
-      color: toHex(setChannel(modeChannel)(color2, complementaryHue))
-    };
-  } else {
-    result = { hue: "gray", color: color2 };
-  }
-  return colorObj2 && result || result["color"];
 };
 
 // colors/color.ts
@@ -7477,7 +7446,7 @@ var IColor = class {
       lightMode,
       darkMode,
       lightness: lightness2
-    } = options || {};
+    } = checkArg(options, {});
     c4 = checkArg(c4, "#000");
     this["illuminant"] = checkArg(illuminant2, "D65");
     this["alpha"] = checkArg(alpha2, alpha(c4));
@@ -7554,8 +7523,8 @@ var IColor = class {
       return this["colors"];
     }
   }
-  getComplimentaryHue(colorObj2) {
-    this["_color"] = getComplimentaryHue(this["_color"], colorObj2);
+  getComplimentaryHue(mode2, colorObj2) {
+    this["_color"] = getComplimentaryHue(this["_color"], mode2, colorObj2);
     return this["_color"];
   }
   earthtone(options) {
@@ -7664,7 +7633,7 @@ var IColor = class {
     return overtone(this["_color"]);
   }
   getHue() {
-    return getHue(this["_color"]);
+    return getHueFamily(this["_color"]);
   }
   scheme(scheme2, easingFunc) {
     return load(scheme(scheme2)(this["_color"], easingFunc));
@@ -7692,14 +7661,14 @@ var baseColorDeficiency = (def, col, sev) => {
   }
   return toHex(result);
 };
-var colorDeficiency = (deficiency2) => (color2, severity = 1) => {
+var colorDeficiency = (deficiencyType) => (color2, severity = 1) => {
   const deficiencies = ["red", "blue", "green", "monochromacy"];
-  deficiency2 = checkArg(deficiency2, "red");
-  if (typeof deficiency2 === "string" && deficiencies.some((el) => el === deficiency2)) {
-    return baseColorDeficiency(deficiency2, color2, severity);
+  deficiencyType = checkArg(deficiencyType, "red");
+  if (typeof deficiencyType === "string" && deficiencies.some((el) => el === deficiencyType)) {
+    return baseColorDeficiency(deficiencyType, color2, severity);
   } else {
     throw Error(
-      `Unknown color vision deficiency ${deficiency2}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
+      `Unknown color vision deficiency ${deficiencyType}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
     );
   }
 };

@@ -27,12 +27,14 @@ import {
   scheme as nativeScheme,
   pastel as nativePastel,
   hueShift as nativeHueShift,
-  getHue as nativeGetHue,
+  getHueFamily as nativeGetHue,
   colorToCam,
   pairedScheme as nativePairedScheme,
   earthtone as nativeEarthtone,
   getComplimentaryHue as nativeGetComplimentaryHue,
   colorDeficiency as nativeColorDeficiency,
+  matchLightnessChannel,
+  defaultInterpolator,
 } from "../index";
 
 import type {
@@ -42,6 +44,7 @@ import type {
   HueFamily,
   HueShiftOptions,
   PairedSchemeOptions,
+  HueColorSpaces,
 } from "../types";
 import { IJchProps } from "ciecam02-ts";
 
@@ -56,7 +59,7 @@ class IColor {
       lightMode,
       darkMode,
       lightness,
-    } = options || {};
+    } = checkArg(options, {}) as ColorOptions;
     c = checkArg(c, "#000");
 
     // Culori has some illuminant variants for certain color spaces
@@ -106,20 +109,18 @@ class IColor {
       this["_color"]
     );
   }
-  setChannel(channel: string, value: number | string): IColor {
-    this["_color"] = nativeSetChannel(
-      `${this["colorspace"]}.${channel.toLowerCase()}`
-    )(this["_color"], value);
+  setChannel(modeChannel: string, value: number | string): IColor {
+    this["_color"] = nativeSetChannel(modeChannel)(this["_color"], value);
     return this;
   }
 
   via(origin: Color, t?: number, options?: typeof interpolatorConfig) {
     const result = (t) =>
-      interpolate(
-        [origin, this["color"]],
+      defaultInterpolator(
+        [origin, this["_color"]],
         this["colorspace"],
-        checkArg(options, interpolatorConfig)
-      )(checkArg(t, 0.5));
+        options
+      );
 
     return nativeToHex(result(t));
   }
@@ -145,26 +146,22 @@ class IColor {
     this["_color"] = nativePastel(this["_color"]);
     return this;
   }
-  pairedScheme(options?: PairedSchemeOptions): Color[] {
+  pairedScheme(options?: PairedSchemeOptions): ColorArray {
     // @ts-ignore
-    this["colors"] = nativePairedScheme(this["_color"], checkArg(options, {}));
+    this["colors"] = nativePairedScheme(this["_color"], options);
 
-    return this["colors"];
+    return new ColorArray(this["colors"]);
   }
-  hueShift(options?: HueShiftOptions): Color[] {
-    options["iterations"] = checkArg(options["iterations"], 1);
-    if (options["iterations"]) {
-      return nativeHueShift(this["_color"], options);
-    } else {
-      this["colors"] = nativeHueShift(this["_color"], checkArg(options, {}));
+  hueShift(options?: HueShiftOptions): ColorArray {
+    this["colors"] = nativeHueShift(this["_color"], options);
 
-      return this["colors"];
-    }
+    return new ColorArray(this["colors"]);
   }
   getComplimentaryHue(
+    mode?: HueColorSpaces,
     colorObj?: boolean
   ): { hue: HueFamily; color: Color } | Color {
-    this["_color"] = nativeGetComplimentaryHue(this["_color"], colorObj);
+    this["_color"] = nativeGetComplimentaryHue(this["_color"], mode, colorObj);
     return this["_color"];
   }
   earthtone(options?: EarthtoneOptions): ColorArray | Color {

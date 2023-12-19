@@ -5,11 +5,13 @@ import {
   fixupHueShorter,
   interpolatorSplineBasisClosed,
   interpolatorSplineMonotone,
+  easingSmoothstep,
 } from "culori";
 import type { Options } from "../types";
 
 let {
   chromaInterpolator,
+  easingFunc,
   hueFixup,
   hueInterpolator,
   lightnessInterpolator,
@@ -18,9 +20,12 @@ let {
 chromaInterpolator = interpolatorSplineNatural;
 hueFixup = fixupHueShorter;
 hueInterpolator = interpolatorSplineBasisClosed;
+easingFunc = easingSmoothstep;
+
 lightnessInterpolator = interpolatorSplineMonotone;
 
 let interpolatorConfig = {
+  easingFunc,
   chromaInterpolator,
   hueFixup,
   hueInterpolator,

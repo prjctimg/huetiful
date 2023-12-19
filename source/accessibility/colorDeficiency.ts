@@ -2,11 +2,11 @@ import {
   filterDeficiencyDeuter,
   filterDeficiencyProt,
   filterDeficiencyTrit,
-  filterGrayscale
-} from 'culori/fn';
-import { toHex } from '../converters/toHex';
-import type { Color } from '../types';
-import { checkArg } from '../fp';
+  filterGrayscale,
+} from "culori/fn";
+import { toHex } from "../converters/toHex";
+import type { Color, DeficiencyType } from "../types";
+import { checkArg } from "../fp";
 
 // This module is focused on creating color blind safe palettes that adhere to the minimum contrast requirements
 
@@ -21,24 +21,24 @@ import { checkArg } from '../fp';
 // Read more about the minimum accepted values for palette accessibility
 
 const baseColorDeficiency = (
-  def: 'red' | 'blue' | 'green' | 'monochromacy',
+  def: "red" | "blue" | "green" | "monochromacy",
   col: Color,
   sev: number
 ) => {
   let result: Color;
   col = toHex(col);
   switch (def) {
-    case 'blue': // @ts-ignore
+    case "blue": // @ts-ignore
       result = filterDeficiencyTrit(sev)(col);
       break;
-    case 'red': // @ts-ignore
+    case "red": // @ts-ignore
       result = filterDeficiencyProt(sev)(col);
       break;
-    case 'green': // @ts-ignore
+    case "green": // @ts-ignore
       result = filterDeficiencyDeuter(sev)(col);
       break;
-    case 'monochromacy':
-      result = filterGrayscale(sev, 'lch')(col);
+    case "monochromacy":
+      result = filterGrayscale(sev, "lch")(col);
       break;
   }
 
@@ -48,7 +48,7 @@ const baseColorDeficiency = (
 /**
  * @function
  * @description Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
- * @param deficiency The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
+ * @param deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
  * @see For a deep dive on  color vision deficiency go to
  * @param color The color to return its deficiency simulated variant.
  * @param severity The intensity of the filter. The exepected value is between [0,1]. For example 0.5
@@ -69,21 +69,21 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 // #9f9f9f
  */
 const colorDeficiency =
-  (deficiency: 'red' | 'blue' | 'green' | 'monochromacy') =>
+  (deficiencyType?: DeficiencyType) =>
   (color: Color, severity = 1) => {
     // Store the keys of deficiency types
-    const deficiencies: string[] = ['red', 'blue', 'green', 'monochromacy'];
+    const deficiencies: string[] = ["red", "blue", "green", "monochromacy"];
     // Cast 'red' as the default parameter
-    deficiency = checkArg(deficiency, 'red');
+    deficiencyType = checkArg(deficiencyType, "red");
 
     if (
-      typeof deficiency === 'string' &&
-      deficiencies.some((el) => el === deficiency)
+      typeof deficiencyType === "string" &&
+      deficiencies.some((el) => el === deficiencyType)
     ) {
-      return baseColorDeficiency(deficiency, color, severity);
+      return baseColorDeficiency(deficiencyType, color, severity);
     } else {
       throw Error(
-        `Unknown color vision deficiency ${deficiency}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
+        `Unknown color vision deficiency ${deficiencyType}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
       );
     }
   };

@@ -13,6 +13,7 @@ import {
 import { checkArg, matchChromaChannel, matchLightnessChannel } from "../fp";
 import { Color, HueColorSpaces, InterpolatorOptions } from "../types";
 import { toHex } from "../converters";
+import { interpolatorConfig } from "../fp/defaults";
 
 /**
  * @function
@@ -90,4 +91,37 @@ const interpolateSpline = (
   return result;
 };
 
-export { interpolateSpline };
+const defaultInterpolator = (colors, mode, options) => {
+  let {
+    chromaInterpolator,
+    hueFixup,
+    hueInterpolator,
+    lightnessInterpolator,
+    easingFunc,
+  } = checkArg(options, {}) as InterpolatorOptions;
+  return interpolate(
+    [...colors, checkArg(easingFunc, interpolatorConfig["easingFunc"])],
+    mode,
+    {
+      //@ts-ignore
+      h: {
+        fixup: hueFixup,
+        use: checkArg(hueInterpolator, interpolatorConfig["hueInterpolator"]),
+      },
+      [matchChromaChannel(mode)]: {
+        use: checkArg(
+          chromaInterpolator,
+          interpolatorConfig["chromaInterpolator"]
+        ),
+      },
+      [matchLightnessChannel(mode)]: {
+        use: checkArg(
+          lightnessInterpolator,
+          interpolatorConfig["lightnessInterpolator"]
+        ),
+      },
+    }
+  );
+};
+
+export { interpolateSpline, defaultInterpolator };
