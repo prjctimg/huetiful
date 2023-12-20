@@ -1,8 +1,8 @@
-import { filteredArr } from '../fp/array/filteredArr.ts';
+import { filteredArr } from "../fp/array/filteredArr.ts";
 
-import type { Color, Factor } from '../types';
-import { toHex } from '../converters/toHex.ts';
-import { getContrast } from '../getters_and_setters/contrast.ts';
+import type { Color, Factor } from "../types";
+import { toHex } from "../converters/toHex.ts";
+import { getContrast } from "../getters_and_setters/contrast.ts";
 
 /**
  *  @function
@@ -34,18 +34,24 @@ console.log(filterByContrast(sample, 'green', '>=3'))
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
  */
 
-const filterByContrast = (
+function filterByContrast(
   colors: Color[],
   against: Color,
   startContrast = 0.05,
   endContrast?: number
-): Color[] => {
+): Color[] {
+  const length = colors == null ? 0 : colors.length;
+  let result = new Array(length);
   // Formatting color tokens to parseable type
   // Create an object that has the contrast and name of color as properties.
-  const factor: Factor = 'contrast';
+  const factor: Factor = "contrast";
   const cb = (against: Color) => (color: Color) => getContrast(color, against);
 
-  return filteredArr(factor, cb(against))(colors, startContrast, endContrast);
-};
+  result.concat(
+    ...filteredArr(factor, cb(against))(colors, startContrast, endContrast)
+  );
+
+  return result;
+}
 
 export { filterByContrast };

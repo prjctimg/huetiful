@@ -48,13 +48,18 @@ const filterBySaturation = (
 
     // @ts-ignore
     const reDigits: number = /([0-9])/g.exec(startSaturation)["0"];
-    //  Normalize saturation ranges later
+    const length = colors == null ? 0 : colors.length;
+    let result = new Array(length);
 
-    return filteredArr(factor, cb)(
-      colors,
-      normalize(reDigits, modeChannel),
-      normalize(endSaturation, modeChannel)
+    result = result.concat(
+      ...filteredArr(factor, cb)(
+        colors,
+        normalize(reDigits, modeChannel),
+        normalize(endSaturation, modeChannel)
+      )
     );
+
+    return result;
   } else {
     throw Error(
       `The passed in color space ${mode} has no chroma or saturation channel. Try 'jch'`

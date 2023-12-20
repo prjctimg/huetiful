@@ -91,7 +91,11 @@ const interpolateSpline = (
   return result;
 };
 
-const defaultInterpolator = (colors, mode, options) => {
+const defaultInterpolator = (
+  colors: Color[],
+  colorspace?: HueColorSpaces,
+  options?: object
+) => {
   let {
     chromaInterpolator,
     hueFixup,
@@ -101,20 +105,20 @@ const defaultInterpolator = (colors, mode, options) => {
   } = checkArg(options, {}) as InterpolatorOptions;
   return interpolate(
     [...colors, checkArg(easingFunc, interpolatorConfig["easingFunc"])],
-    mode,
+    checkArg(colorspace, "jch"),
     {
       //@ts-ignore
       h: {
         fixup: hueFixup,
         use: checkArg(hueInterpolator, interpolatorConfig["hueInterpolator"]),
       },
-      [matchChromaChannel(mode)]: {
+      [matchChromaChannel(colorspace)]: {
         use: checkArg(
           chromaInterpolator,
           interpolatorConfig["chromaInterpolator"]
         ),
       },
-      [matchLightnessChannel(mode)]: {
+      [matchLightnessChannel(colorspace)]: {
         use: checkArg(
           lightnessInterpolator,
           interpolatorConfig["lightnessInterpolator"]

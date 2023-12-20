@@ -833,6 +833,7 @@ __export(source_exports, {
   customFindKey: () => customFindKey,
   customSort: () => customSort,
   darken: () => darken,
+  defaultInterpolator: () => defaultInterpolator,
   discoverPalettes: () => discoverPalettes,
   diverging: () => diverging,
   earthtone: () => earthtone,
@@ -5933,8 +5934,8 @@ var lightnessMapper = (n3) => (start1, end1) => (start2, end2) => (n3 - start1) 
 var hueShift = (color2, options) => {
   const toLch = useMode(definition_default14);
   color2 = toLch(toHex(color2));
-  let { iterations, hueStep, minLightness, maxLightness, easingFunc } = options || {};
-  easingFunc = checkArg(easingFunc, easingSmoothstep);
+  let { iterations, hueStep, minLightness, maxLightness, easingFunc: easingFunc2 } = options || {};
+  easingFunc2 = checkArg(easingFunc2, easingSmoothstep);
   iterations = checkArg(iterations, 6) + 1;
   hueStep = checkArg(hueStep, 5);
   minLightness = checkArg(minLightness, 10);
@@ -5944,11 +5945,11 @@ var hueShift = (color2, options) => {
   for (let i = 1; i < iterations; i++) {
     const hueDark = adjustHue(color2["h"] - hueStep * i);
     const hueLight = adjustHue(color2["h"] + hueStep * i);
-    const lightnessDark = lightnessMapper(easingFunc(tValues[i - 1]))(
+    const lightnessDark = lightnessMapper(easingFunc2(tValues[i - 1]))(
       0.1,
       iterations
     )(color2["l"], minLightness);
-    const lightnessLight = lightnessMapper(easingFunc(tValues[i - 1]))(
+    const lightnessLight = lightnessMapper(easingFunc2(tValues[i - 1]))(
       0.05,
       iterations
     )(color2["l"], maxLightness);
@@ -5972,9 +5973,9 @@ var hueShift = (color2, options) => {
 var cb2 = (iterations, distance, color2) => samples_default(iterations).map(
   (val) => adjustHue((color2["h"] + distance) * (val * easingSmoothstep(val)))
 );
-var scheme = (schemeType) => (color2, easingFunc) => {
+var scheme = (schemeType) => (color2, easingFunc2) => {
   schemeType = schemeType.toLowerCase();
-  easingFunc = checkArg(easingFunc, easingSmoothstep);
+  easingFunc2 = checkArg(easingFunc2, easingSmoothstep);
   const lch3 = useMode(definition_default14);
   color2 = lch3(color2);
   const lowMin = 0.05, lowMax = 0.495, highMin = 0.5, highMax = 0.995;
@@ -5992,7 +5993,7 @@ var scheme = (schemeType) => (color2, easingFunc) => {
   const colors2 = targetHueSteps[schemeType].map((step) => ({
     l: color2["l"],
     c: color2["c"],
-    h: step * easingFunc(1 / targetHueSteps[schemeType].length),
+    h: step * easingFunc2(1 / targetHueSteps[schemeType].length),
     mode: "lch"
   }));
   return colors2.map(toHex);
@@ -6039,206 +6040,6 @@ var discoverPalettes = (colors2, schemeType) => {
       `${schemeType} is not a valid scheme. The schemes are triadic | tetradic | analogous | complementary`
     );
   }
-};
-
-// node_modules/culori/src/index.js
-var a982 = useMode(definition_default2);
-var cubehelix = useMode(definition_default3);
-var dlab = useMode(definition_default4);
-var dlch = useMode(definition_default5);
-var hsi = useMode(definition_default6);
-var hsl2 = useMode(definition_default7);
-var hsv2 = useMode(definition_default8);
-var hwb2 = useMode(definition_default9);
-var jab = useMode(definition_default10);
-var jch = useMode(definition_default11);
-var lab2 = useMode(definition_default12);
-var lab652 = useMode(definition_default13);
-var lch2 = useMode(definition_default14);
-var lch652 = useMode(definition_default15);
-var lchuv = useMode(definition_default16);
-var lrgb2 = useMode(definition_default17);
-var luv = useMode(definition_default18);
-var okhsl = useMode(modeOkhsl_default);
-var okhsv = useMode(modeOkhsv_default);
-var oklab2 = useMode(definition_default19);
-var oklch2 = useMode(definition_default20);
-var p32 = useMode(definition_default21);
-var prophoto2 = useMode(definition_default22);
-var rec20202 = useMode(definition_default23);
-var rgb3 = useMode(definition_default);
-var xyb = useMode(definition_default24);
-var xyz502 = useMode(definition_default25);
-var xyz652 = useMode(definition_default26);
-var yiq = useMode(definition_default27);
-
-// fp/defaults.ts
-var {
-  chromaInterpolator,
-  hueFixup,
-  hueInterpolator,
-  lightnessInterpolator
-} = {};
-chromaInterpolator = interpolatorSplineNatural;
-hueFixup = fixupHueShorter;
-hueInterpolator = interpolatorSplineBasisClosed;
-lightnessInterpolator = interpolatorSplineMonotone;
-var interpolatorConfig = {
-  chromaInterpolator,
-  hueFixup,
-  hueInterpolator,
-  lightnessInterpolator
-};
-
-// palettes/earthtone.ts
-var earthtone = (color2, options) => {
-  let { iterations, earthtones, easingFunc } = options || {};
-  iterations = checkArg(iterations, 1);
-  earthtones = checkArg(earthtones, "dark");
-  const tones = {
-    "light-gray": "#e5e5e5",
-    silver: "#f5f5f5",
-    sand: "#c2b2a4",
-    tupe: "#a79e8a",
-    mahogany: "#958c7c",
-    "brick-red": "#7d7065",
-    clay: "#6a5c52",
-    cocoa: "#584a3e",
-    "dark-brown": "#473b31",
-    dark: "#352a21"
-  };
-  const base = tones[earthtones.toLowerCase()];
-  const f3 = interpolate(
-    [base, toHex(color2), easingFunc],
-    "lch",
-    checkArg(options, interpolatorConfig)
-  );
-  if (iterations === 1) {
-    return toHex(f3(0.5));
-  } else {
-    return samples_default(terations).map((t) => toHex(f3(t)));
-  }
-};
-
-// fp/string/expressionParser.ts
-function expressionParser(src, channel, value) {
-  const reOperator = /^(\*|\+|\-|\/)/, reValue = /[0-9]*\.?[0-9]+/;
-  const sign = reOperator.exec(value)["0"];
-  const amt = reValue.exec(value)["0"];
-  const cb4 = (value2) => parseFloat(value2);
-  switch (sign) {
-    case "+":
-      src[channel] += +cb4(amt);
-      break;
-    case "-":
-      src[channel] -= +cb4(amt);
-      break;
-    case "*":
-      src[channel] *= +cb4(amt);
-      break;
-    case "/":
-      src[channel] /= +cb4(amt);
-      break;
-    default:
-      src[channel] = +cb4(amt);
-  }
-  return src;
-}
-
-// getters_and_setters/set.ts
-var setChannel = (mc) => (color2, value) => {
-  const [mode2, channel] = mc.split(".");
-  const src = converter_default(mode2)(toHex(color2));
-  if (channel) {
-    if (typeof value === "number") {
-      src[channel] = value;
-    } else if (typeof value === "string") {
-      expressionParser(src, channel, value);
-    } else {
-      throw new Error(`unsupported value for setChannel`);
-    }
-    return src;
-  } else {
-    throw new Error(`unknown channel ${channel} in mode ${mode2}`);
-  }
-};
-
-// palettes/paired.ts
-var pairedScheme = (color2, options) => {
-  let { iterations, via, hueStep, easingFunc } = options || {};
-  iterations = checkArg(iterations, 1);
-  easingFunc = checkArg(easingFunc, easingSmoothstep);
-  via = checkArg(via, "light");
-  hueStep = checkArg(hueStep, 5);
-  const toLch = useMode(definition_default14);
-  color2 = toLch(toHex(color2));
-  const derivedHue = setChannel("lch.h")(color2, color2["h"] + hueStep);
-  const tones = {
-    dark: { l: 0, c: 0, h: 0, mode: "lch65" },
-    light: { l: 100, c: 0, h: 0, mode: "lch65" }
-  };
-  const scale = interpolate(
-    [color2, tones[via], derivedHue, easingFunc],
-    "lch",
-    checkArg(options, interpolatorConfig)
-  );
-  if (iterations <= 1) {
-    return toHex(scale(0.5));
-  } else {
-    const smp = samples_default(iterations * 2);
-    const results = smp.map((t) => toHex(scale(easingFunc(t))));
-    return results.slice(0, results.length / 2);
-  }
-};
-
-// palettes/pastel.ts
-var samplePastelObj = [
-  {
-    color: "#fea3aa",
-    saturation: 0.35826771653543305,
-    value: 0.996078431372549
-  },
-  {
-    color: "#f8b88b",
-    saturation: 0.43951612903225806,
-    value: 0.9725490196078431
-  },
-  { color: "#faf884", saturation: 0.472, value: 0.9803921568627451 },
-  {
-    color: "#f2a2e8",
-    saturation: 0.3305785123966942,
-    value: 0.9490196078431372
-  },
-  {
-    color: "#b2cefe",
-    saturation: 0.2992125984251969,
-    value: 0.996078431372549
-  },
-  {
-    color: "#baed91",
-    saturation: 0.3881856540084388,
-    value: 0.9294117647058824
-  }
-];
-var sampleSaturation = samplePastelObj.map((el) => el["saturation"]);
-var sampleValues = samplePastelObj.map((el) => el["value"]);
-var pastelSample = {
-  averageSaturation: averageNumber(sampleValues),
-  averageValue: averageNumber(sampleSaturation),
-  minSampleSaturation: min2(sampleSaturation),
-  maxSampleSaturation: max(sampleSaturation),
-  minSampleValue: min2(sampleValues),
-  maxSampleValue: max(sampleValues)
-};
-var pastel = (color2) => {
-  const toHsv = useMode(definition_default8);
-  color2 = toHsv(toHex(color2));
-  return toHex({
-    h: color2["h"],
-    s: pastelSample["averageSaturation"],
-    v: random(pastelSample["minSampleValue"], pastelSample["maxSampleValue"]),
-    mode: "hsv"
-  });
 };
 
 // converters/temp2Color.ts
@@ -6298,6 +6099,58 @@ var camToColor = (CAM) => {
   return import_ciebase_ts.rgb.toHex(xyzConverter.toRgb(baseCieCam.toXyz(CAM)));
 };
 
+// node_modules/culori/src/index.js
+var a982 = useMode(definition_default2);
+var cubehelix = useMode(definition_default3);
+var dlab = useMode(definition_default4);
+var dlch = useMode(definition_default5);
+var hsi = useMode(definition_default6);
+var hsl2 = useMode(definition_default7);
+var hsv2 = useMode(definition_default8);
+var hwb2 = useMode(definition_default9);
+var jab = useMode(definition_default10);
+var jch = useMode(definition_default11);
+var lab2 = useMode(definition_default12);
+var lab652 = useMode(definition_default13);
+var lch2 = useMode(definition_default14);
+var lch652 = useMode(definition_default15);
+var lchuv = useMode(definition_default16);
+var lrgb2 = useMode(definition_default17);
+var luv = useMode(definition_default18);
+var okhsl = useMode(modeOkhsl_default);
+var okhsv = useMode(modeOkhsv_default);
+var oklab2 = useMode(definition_default19);
+var oklch2 = useMode(definition_default20);
+var p32 = useMode(definition_default21);
+var prophoto2 = useMode(definition_default22);
+var rec20202 = useMode(definition_default23);
+var rgb4 = useMode(definition_default);
+var xyb = useMode(definition_default24);
+var xyz502 = useMode(definition_default25);
+var xyz652 = useMode(definition_default26);
+var yiq = useMode(definition_default27);
+
+// fp/defaults.ts
+var {
+  chromaInterpolator,
+  easingFunc,
+  hueFixup,
+  hueInterpolator,
+  lightnessInterpolator
+} = {};
+chromaInterpolator = interpolatorSplineNatural;
+hueFixup = fixupHueShorter;
+hueInterpolator = interpolatorSplineBasisClosed;
+easingFunc = easingSmoothstep;
+lightnessInterpolator = interpolatorSplineMonotone;
+var interpolatorConfig = {
+  easingFunc,
+  chromaInterpolator,
+  hueFixup,
+  hueInterpolator,
+  lightnessInterpolator
+};
+
 // palettes/interpolator.ts
 var interpolateSpline = (colors2, mode2, samples2, kind, closed = false, options) => {
   let {
@@ -6305,9 +6158,9 @@ var interpolateSpline = (colors2, mode2, samples2, kind, closed = false, options
     hueFixup: hueFixup2,
     hueInterpolator: hueInterpolator2,
     lightnessInterpolator: lightnessInterpolator2,
-    easingFunc
+    easingFunc: easingFunc2
   } = checkArg(options, {});
-  easingFunc = checkArg(easingFunc, easingSmoothstep);
+  easingFunc2 = checkArg(easingFunc2, easingSmoothstep);
   kind = checkArg(kind, "basis");
   let func;
   switch (kind) {
@@ -6321,7 +6174,7 @@ var interpolateSpline = (colors2, mode2, samples2, kind, closed = false, options
       func = closed ? interpolatorSplineNaturalClosed : interpolatorSplineNatural;
       break;
   }
-  let f3 = interpolate([...colors2, easingFunc], mode2, {
+  let f3 = interpolate([...colors2, easingFunc2], mode2, {
     h: {
       //@ts-ignore
       fixup: hueFixup2,
@@ -6342,6 +6195,185 @@ var interpolateSpline = (colors2, mode2, samples2, kind, closed = false, options
     result = result.push(toHex(f3(0.5)));
   }
   return result;
+};
+var defaultInterpolator = (colors2, colorspace, options) => {
+  let {
+    chromaInterpolator: chromaInterpolator2,
+    hueFixup: hueFixup2,
+    hueInterpolator: hueInterpolator2,
+    lightnessInterpolator: lightnessInterpolator2,
+    easingFunc: easingFunc2
+  } = checkArg(options, {});
+  return interpolate(
+    [...colors2, checkArg(easingFunc2, interpolatorConfig["easingFunc"])],
+    checkArg(colorspace, "jch"),
+    {
+      //@ts-ignore
+      h: {
+        fixup: hueFixup2,
+        use: checkArg(hueInterpolator2, interpolatorConfig["hueInterpolator"])
+      },
+      [matchChromaChannel(colorspace)]: {
+        use: checkArg(
+          chromaInterpolator2,
+          interpolatorConfig["chromaInterpolator"]
+        )
+      },
+      [matchLightnessChannel(colorspace)]: {
+        use: checkArg(
+          lightnessInterpolator2,
+          interpolatorConfig["lightnessInterpolator"]
+        )
+      }
+    }
+  );
+};
+
+// palettes/earthtone.ts
+var earthtone = (color2, colorspace, options) => {
+  let { iterations, earthtones } = options || {};
+  iterations = checkArg(iterations, 1);
+  earthtones = checkArg(earthtones, "dark");
+  const tones = {
+    "light-gray": "#e5e5e5",
+    silver: "#f5f5f5",
+    sand: "#c2b2a4",
+    tupe: "#a79e8a",
+    mahogany: "#958c7c",
+    "brick-red": "#7d7065",
+    clay: "#6a5c52",
+    cocoa: "#584a3e",
+    "dark-brown": "#473b31",
+    dark: "#352a21"
+  };
+  const base = tones[earthtones.toLowerCase()];
+  const f3 = defaultInterpolator([base, toHex(color2)], colorspace);
+  if (iterations === 1) {
+    return toHex(f3(0.5));
+  } else {
+    return samples_default(terations).map((t) => toHex(f3(t)));
+  }
+};
+
+// fp/string/expressionParser.ts
+function expressionParser(src, channel, value) {
+  const reOperator = /^(\*|\+|\-|\/)/, reValue = /[0-9]*\.?[0-9]+/;
+  const sign = reOperator.exec(value)["0"];
+  const amt = reValue.exec(value)["0"];
+  const cb4 = (value2) => parseFloat(value2);
+  switch (sign) {
+    case "+":
+      src[channel] += +cb4(amt);
+      break;
+    case "-":
+      src[channel] -= +cb4(amt);
+      break;
+    case "*":
+      src[channel] *= +cb4(amt);
+      break;
+    case "/":
+      src[channel] /= +cb4(amt);
+      break;
+    default:
+      src[channel] = +cb4(amt);
+  }
+  return src;
+}
+
+// getters_and_setters/set.ts
+var setChannel = (mc) => (color2, value) => {
+  const [mode2, channel] = mc.split(".");
+  const src = converter_default(mode2)(toHex(color2));
+  if (channel) {
+    if (typeof value === "number") {
+      src[channel] = value;
+    } else if (typeof value === "string") {
+      expressionParser(src, channel, value);
+    } else {
+      throw new Error(`unsupported value for setChannel`);
+    }
+    return src;
+  } else {
+    throw new Error(`unknown channel ${channel} in mode ${mode2}`);
+  }
+};
+
+// palettes/paired.ts
+var pairedScheme = (color2, options) => {
+  let { iterations, via, hueStep, easingFunc: easingFunc2 } = options || {};
+  iterations = checkArg(iterations, 1);
+  easingFunc2 = checkArg(easingFunc2, easingSmoothstep);
+  via = checkArg(via, "light");
+  hueStep = checkArg(hueStep, 5);
+  const toLch = useMode(definition_default14);
+  color2 = toLch(toHex(color2));
+  const derivedHue = setChannel("lch.h")(color2, color2["h"] + hueStep);
+  const tones = {
+    dark: { l: 0, c: 0, h: 0, mode: "lch65" },
+    light: { l: 100, c: 0, h: 0, mode: "lch65" }
+  };
+  const scale = interpolate(
+    [color2, tones[via], derivedHue, easingFunc2],
+    "lch",
+    checkArg(options, interpolatorConfig)
+  );
+  if (iterations <= 1) {
+    return toHex(scale(0.5));
+  } else {
+    const smp = samples_default(iterations * 2);
+    const results = smp.map((t) => toHex(scale(easingFunc2(t))));
+    return results.slice(0, results.length / 2);
+  }
+};
+
+// palettes/pastel.ts
+var samplePastelObj = [
+  {
+    color: "#fea3aa",
+    saturation: 0.35826771653543305,
+    value: 0.996078431372549
+  },
+  {
+    color: "#f8b88b",
+    saturation: 0.43951612903225806,
+    value: 0.9725490196078431
+  },
+  { color: "#faf884", saturation: 0.472, value: 0.9803921568627451 },
+  {
+    color: "#f2a2e8",
+    saturation: 0.3305785123966942,
+    value: 0.9490196078431372
+  },
+  {
+    color: "#b2cefe",
+    saturation: 0.2992125984251969,
+    value: 0.996078431372549
+  },
+  {
+    color: "#baed91",
+    saturation: 0.3881856540084388,
+    value: 0.9294117647058824
+  }
+];
+var sampleSaturation = samplePastelObj.map((el) => el["saturation"]);
+var sampleValues = samplePastelObj.map((el) => el["value"]);
+var pastelSample = {
+  averageSaturation: averageNumber(sampleValues),
+  averageValue: averageNumber(sampleSaturation),
+  minSampleSaturation: min2(sampleSaturation),
+  maxSampleSaturation: max(sampleSaturation),
+  minSampleValue: min2(sampleValues),
+  maxSampleValue: max(sampleValues)
+};
+var pastel = (color2) => {
+  const toHsv = useMode(definition_default8);
+  color2 = toHsv(toHex(color2));
+  return toHex({
+    h: color2["h"],
+    s: pastelSample["averageSaturation"],
+    v: random(pastelSample["minSampleValue"], pastelSample["maxSampleValue"]),
+    mode: "hsv"
+  });
 };
 
 // filterBy/filterBySaturation.ts
@@ -6492,11 +6524,11 @@ var getContrast = (color2, against) => {
 };
 
 // filterBy/filterByContrast.ts
-var filterByContrast = (colors2, against, startContrast = 0.05, endContrast) => {
+function filterByContrast(colors2, against, startContrast = 0.05, endContrast) {
   const factor4 = "contrast";
   const cb4 = (against2) => (color2) => getContrast(color2, against2);
   return filteredArr(factor4, cb4(against))(colors2, startContrast, endContrast);
-};
+}
 
 // sortBy/sortByContrast.ts
 var sortByContrast = (colors2, against, order) => {
@@ -6764,7 +6796,8 @@ var ColorArray = class extends Array {
   // private _colors: ColorToken[];
   constructor(colors2) {
     super();
-    this["colors"] = Array(...colors2);
+    this["colors"] = colors2;
+    return this;
   }
   interpolateSpline(mode2, samples2, kind, closed, options) {
     this["colors"] = interpolateSpline(
@@ -7019,13 +7052,8 @@ var ColorArray = class extends Array {
   // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
    */
   filterByContrast(against, startContrast = 0.05, endContrast) {
-    this["colors"] = filterByContrast(
-      this["colors"],
-      against,
-      startContrast,
-      endContrast
-    );
-    return this;
+    let f3 = filterByContrast.bind(this["colors"]);
+    return f3(against, startContrast, endContrast);
   }
   /**
    * @function
@@ -7476,18 +7504,16 @@ var IColor = class {
       this["_color"]
     );
   }
-  setChannel(channel, value) {
-    this["_color"] = setChannel(
-      `${this["colorspace"]}.${channel.toLowerCase()}`
-    )(this["_color"], value);
+  setChannel(modeChannel, value) {
+    this["_color"] = setChannel(modeChannel)(this["_color"], value);
     return this;
   }
   via(origin, t, options) {
-    const result = (t2) => interpolate(
-      [origin, this["color"]],
+    const result = (t2) => defaultInterpolator(
+      [origin, this["_color"]],
       this["colorspace"],
-      checkArg(options, interpolatorConfig)
-    )(checkArg(t2, 0.5));
+      options
+    );
     return toHex(result(t));
   }
   brighten(amount) {
@@ -7511,17 +7537,12 @@ var IColor = class {
     return this;
   }
   pairedScheme(options) {
-    this["colors"] = pairedScheme(this["_color"], checkArg(options, {}));
-    return this["colors"];
+    this["colors"] = pairedScheme(this["_color"], options);
+    return new ColorArray(this["colors"]);
   }
   hueShift(options) {
-    options["iterations"] = checkArg(options["iterations"], 1);
-    if (options["iterations"]) {
-      return hueShift(this["_color"], options);
-    } else {
-      this["colors"] = hueShift(this["_color"], checkArg(options, {}));
-      return this["colors"];
-    }
+    this["colors"] = hueShift(this["_color"], options);
+    return new ColorArray(this["colors"]);
   }
   getComplimentaryHue(mode2, colorObj2) {
     this["_color"] = getComplimentaryHue(this["_color"], mode2, colorObj2);
@@ -7635,8 +7656,8 @@ var IColor = class {
   getHue() {
     return getHueFamily(this["_color"]);
   }
-  scheme(scheme2, easingFunc) {
-    return load(scheme(scheme2)(this["_color"], easingFunc));
+  scheme(scheme2, easingFunc2) {
+    return load(scheme(scheme2)(this["_color"], easingFunc2));
   }
 };
 var color = (color2) => new IColor(color2);

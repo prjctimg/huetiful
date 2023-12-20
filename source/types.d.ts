@@ -1,5 +1,5 @@
-type Illuminant = "A" | "C" | "D50" | "D55" | "D65" | "D75";
-type ColorOptions = {
+export type Illuminant = "A" | "C" | "D50" | "D55" | "D65" | "D75";
+export type ColorOptions = {
   alpha?: number;
   lightness?: number;
   temperature?: number;
@@ -14,7 +14,7 @@ type ColorOptions = {
   contrast?: number;
   colorSpace?: HueColorSpaces;
 };
-type ColorDistanceOptions = {
+export type ColorDistanceOptions = {
   weights?: [number, number, number, number];
   mode?: ColorSpaces;
 };
@@ -23,7 +23,7 @@ type ColorDistanceOptions = {
  * @type
  * @description This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.
  */
-type AdaptivePaletteOptions = {
+export type AdaptivePaletteOptions = {
   backgroundColor?: { light?: Color; dark?: Color };
   viewingConditions?: ViewingConditions;
   colorBlind?: boolean;
@@ -125,7 +125,7 @@ export type EarthtoneOptions = Omit<
   "hueStep" | "via" | "maxLightness" | "minLightness"
 >;
 
-type HueShiftOptions = Omit<Options, "via" | "earthtones" | "">;
+export type HueShiftOptions = Omit<Options, "via" | "earthtones" | "">;
 export type Interpolator = (arr: number[]) => (t: number) => number;
 export type Tone = "light" | "dark";
 export type DeficiencyType = "red" | "blue" | "green" | "monochromacy";

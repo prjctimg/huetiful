@@ -1,4 +1,3 @@
-// This utility has all the array methods on its prototype
 import type {
   ColorDistanceOptions,
   ColorSpaces,

@@ -32,18 +32,23 @@ filterByLightness(sample, 20, 80)
 // [ '#00c000', '#007e00', '#164100', '#720000' ]
  */
 
-const filterByLightness = (
+function filterByLightness(
   colors: Color[],
   startLightness = 5,
   endLightness = 100,
   mode?: HueColorSpaces
-): Color[] => {
+): Color[] {
   // Formatting color tokens to parseable type
   // Create an object that has the lightness and name of color as properties.
   const factor: Factor = "lightness";
   const cb = getChannel(`${mode}.${matchLightnessChannel(mode)}`);
+  const length = colors == null ? 0 : colors.length;
+  let result = new Array(length);
+  result = result.concat(
+    ...filteredArr(factor, cb)(colors, startLightness, endLightness)
+  );
 
-  return filteredArr(factor, cb)(colors, startLightness, endLightness);
-};
+  return result;
+}
 
 export { filterByLightness };

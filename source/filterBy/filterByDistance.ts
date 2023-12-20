@@ -1,7 +1,7 @@
-import { filteredArr } from '../fp/array/filteredArr.ts';
-import { differenceEuclidean } from 'culori/fn';
-import type { Color, Factor, ColorSpaces } from '../types';
-import { toHex } from '../converters/toHex.ts';
+import { filteredArr } from "../fp/array/filteredArr.ts";
+import { differenceEuclidean } from "culori/fn";
+import type { Color, Factor, ColorSpaces } from "../types";
+import { toHex } from "../converters/toHex.ts";
 /**
  *  @function
  * Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
@@ -29,35 +29,39 @@ console.log(filterByDistance(sample, "yellow", 0.1))
 // [ '#ffff00' ]
  */
 
-const filterByDistance = (
+function filterByDistance(
   colors: Color[],
   against: Color,
   startDistance = 0.05,
   endDistance?: number,
   mode?: ColorSpaces,
   weights?: [number, number, number, number]
-): Color[] => {
+): Color[] {
   // Formatting color tokens to parseable type
   // How do I get the distance
-
   // Create an object that has the distance and name of color as properties.
-  const factor: Factor = 'distance';
-
+  const factor: Factor = "distance";
+  const length = colors == null ? 0 : colors.length;
+  let result = new Array(length);
   against = toHex(against);
   const cb = (against, mode: ColorSpaces) => (color) => {
     // @ts-nocheck
-    return differenceEuclidean(mode || 'lch', weights || [1, 1, 1, 0])(
+    return differenceEuclidean(mode || "lch", weights || [1, 1, 1, 0])(
       against,
       color
     );
   };
 
-  return filteredArr(factor, cb(against, mode))(
-    colors,
-    startDistance,
-    endDistance
+  result = result.concat(
+    ...filteredArr(factor, cb(against, mode))(
+      colors,
+      startDistance,
+      endDistance
+    )
   );
-};
+
+  return result;
+}
 
 export { filterByDistance };
 

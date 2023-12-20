@@ -14,6 +14,7 @@ import type { Color, EarthtoneOptions } from "../types";
 import { toHex } from "../converters/toHex.ts";
 import { checkArg } from "../fp/misc.ts";
 import { interpolatorConfig } from "../fp/defaults.ts";
+import { defaultInterpolator } from "./interpolator.ts";
 //Add an overrides object with interpolation function and
 
 /**
@@ -32,8 +33,12 @@ console.log(earthtone("pink",{earthtones:'clay',iterations:5 }))
 
  */
 
-const earthtone = (color: Color, options?: EarthtoneOptions): Color[] => {
-  let { iterations, earthtones, easingFunc } = options || {};
+const earthtone = (
+  color: Color,
+  colorspace,
+  options?: EarthtoneOptions
+): Color[] => {
+  let { iterations, earthtones } = options || {};
 
   iterations = checkArg(iterations, 1);
 
@@ -53,11 +58,7 @@ const earthtone = (color: Color, options?: EarthtoneOptions): Color[] => {
 
   const base: Color = tones[earthtones.toLowerCase()];
 
-  const f = interpolate(
-    [base, toHex(color), easingFunc],
-    "lch",
-    checkArg(options, interpolatorConfig)
-  );
+  const f = defaultInterpolator([base, toHex(color)], colorspace);
 
   if (iterations === 1) {
     return toHex(f(0.5));

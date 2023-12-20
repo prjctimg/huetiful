@@ -1043,8 +1043,8 @@ var lightnessMapper = (n) => (start1, end1) => (start2, end2) => (n - start1) / 
 var hueShift = (color2, options) => {
   const toLch = useMode(modeLch);
   color2 = toLch(toHex(color2));
-  let { iterations, hueStep, minLightness, maxLightness, easingFunc } = options || {};
-  easingFunc = checkArg(easingFunc, easingSmoothstep);
+  let { iterations, hueStep, minLightness, maxLightness, easingFunc: easingFunc2 } = options || {};
+  easingFunc2 = checkArg(easingFunc2, easingSmoothstep);
   iterations = checkArg(iterations, 6) + 1;
   hueStep = checkArg(hueStep, 5);
   minLightness = checkArg(minLightness, 10);
@@ -1054,11 +1054,11 @@ var hueShift = (color2, options) => {
   for (let i = 1; i < iterations; i++) {
     const hueDark = adjustHue(color2["h"] - hueStep * i);
     const hueLight = adjustHue(color2["h"] + hueStep * i);
-    const lightnessDark = lightnessMapper(easingFunc(tValues[i - 1]))(
+    const lightnessDark = lightnessMapper(easingFunc2(tValues[i - 1]))(
       0.1,
       iterations
     )(color2["l"], minLightness);
-    const lightnessLight = lightnessMapper(easingFunc(tValues[i - 1]))(
+    const lightnessLight = lightnessMapper(easingFunc2(tValues[i - 1]))(
       0.05,
       iterations
     )(color2["l"], maxLightness);
@@ -1086,9 +1086,9 @@ import { useMode as useMode2, modeLch as modeLch2, easingSmoothstep as easingSmo
 var cb2 = (iterations, distance, color2) => samples2(iterations).map(
   (val) => adjustHue((color2["h"] + distance) * (val * easingSmoothstep2(val)))
 );
-var scheme = (schemeType) => (color2, easingFunc) => {
+var scheme = (schemeType) => (color2, easingFunc2) => {
   schemeType = schemeType.toLowerCase();
-  easingFunc = checkArg(easingFunc, easingSmoothstep2);
+  easingFunc2 = checkArg(easingFunc2, easingSmoothstep2);
   const lch = useMode2(modeLch2);
   color2 = lch(color2);
   const lowMin = 0.05, lowMax = 0.495, highMin = 0.5, highMax = 0.995;
@@ -1106,7 +1106,7 @@ var scheme = (schemeType) => (color2, easingFunc) => {
   const colors2 = targetHueSteps[schemeType].map((step) => ({
     l: color2["l"],
     c: color2["c"],
-    h: step * easingFunc(1 / targetHueSteps[schemeType].length),
+    h: step * easingFunc2(1 / targetHueSteps[schemeType].length),
     mode: "lch"
   }));
   return colors2.map(toHex);
@@ -1157,19 +1157,91 @@ var discoverPalettes = (colors2, schemeType) => {
 
 // palettes/earthtone.ts
 import {
-  interpolate,
   samples as samples3
 } from "culori/fn";
+
+// palettes/interpolator.ts
+import {
+  easingSmoothstep as easingSmoothstep4,
+  interpolate,
+  interpolatorSplineBasis,
+  interpolatorSplineBasisClosed as interpolatorSplineBasisClosed2,
+  interpolatorSplineMonotone as interpolatorSplineMonotone2,
+  interpolatorSplineMonotoneClosed,
+  interpolatorSplineNatural as interpolatorSplineNatural2,
+  interpolatorSplineNaturalClosed,
+  samples as nativeSamples
+} from "culori/fn";
+
+// converters/temp2Color.ts
+var temp2Color = (kelvin, hex = false) => {
+  const { log } = Math;
+  const temp = kelvin / 100;
+  let r, g, b;
+  if (temp < 66) {
+    r = 255;
+    g = temp < 6 ? 0 : -155.25485562709179 - 0.44596950469579133 * (g = temp - 2) + 104.49216199393888 * log(g);
+    b = temp < 20 ? 0 : -254.76935184120902 + 0.8274096064007395 * (b = temp - 10) + 115.67994401066147 * log(b);
+  } else {
+    r = 351.97690566805693 + 0.114206453784165 * (r = temp - 55) - 40.25366309332127 * log(r);
+    g = 325.4494125711974 + 0.07943456536662342 * (g = temp - 50) - 28.0852963507957 * log(g);
+    b = 255;
+  }
+  const result = {
+    r: r / 255,
+    g: g / 255,
+    b: b / 255,
+    mode: "rgb"
+  };
+  if (hex) {
+    return toHex(result);
+  } else {
+    return result;
+  }
+};
+
+// converters/rgb2num.ts
+import { useMode as useMode4, modeRgb } from "culori/fn";
+var rgb2num = (color2) => {
+  const toRgb2 = useMode4(modeRgb);
+  const rgb2 = toRgb2(toHex(color2));
+  return (255 * rgb2["r"] << 16) + (255 * rgb2["g"] << 8) + 255 * rgb2["b"];
+};
+
+// converters/ciecam.ts
+import { rgb, illuminant, xyz, workspace } from "ciebase-ts";
+import { cfs, cam } from "ciecam02-ts";
+var baseCieCam = cam(
+  {
+    whitePoint: illuminant["D65"],
+    adaptingLuminance: 40,
+    backgroundLuminance: 20,
+    surroundType: "average",
+    discounting: false
+  },
+  cfs("JCh")
+);
+var xyzConverter = xyz(workspace["WideGamutRGB"], illuminant["D65"]);
+var colorToCam = (color2) => {
+  return baseCieCam.fromXyz(
+    xyzConverter.fromRgb(rgb.fromHex(toHex(color2)))
+  );
+};
+var camToColor = (CAM) => {
+  return rgb.toHex(xyzConverter.toRgb(baseCieCam.toXyz(CAM)));
+};
 
 // fp/defaults.ts
 import {
   interpolatorSplineNatural,
   fixupHueShorter,
   interpolatorSplineBasisClosed,
-  interpolatorSplineMonotone
+  interpolatorSplineMonotone,
+  easingSmoothstep as easingSmoothstep3
 } from "culori";
 var {
   chromaInterpolator,
+  easingFunc,
   hueFixup,
   hueInterpolator,
   lightnessInterpolator
@@ -1177,17 +1249,97 @@ var {
 chromaInterpolator = interpolatorSplineNatural;
 hueFixup = fixupHueShorter;
 hueInterpolator = interpolatorSplineBasisClosed;
+easingFunc = easingSmoothstep3;
 lightnessInterpolator = interpolatorSplineMonotone;
 var interpolatorConfig = {
+  easingFunc,
   chromaInterpolator,
   hueFixup,
   hueInterpolator,
   lightnessInterpolator
 };
 
+// palettes/interpolator.ts
+var interpolateSpline = (colors2, mode2, samples5, kind, closed = false, options) => {
+  let {
+    chromaInterpolator: chromaInterpolator2,
+    hueFixup: hueFixup2,
+    hueInterpolator: hueInterpolator2,
+    lightnessInterpolator: lightnessInterpolator2,
+    easingFunc: easingFunc2
+  } = checkArg(options, {});
+  easingFunc2 = checkArg(easingFunc2, easingSmoothstep4);
+  kind = checkArg(kind, "basis");
+  let func;
+  switch (kind) {
+    case "basis":
+      func = closed ? interpolatorSplineBasisClosed2 : interpolatorSplineBasis;
+      break;
+    case "monotone":
+      func = closed ? interpolatorSplineMonotoneClosed : interpolatorSplineMonotone2;
+      break;
+    case "natural":
+      func = closed ? interpolatorSplineNaturalClosed : interpolatorSplineNatural2;
+      break;
+  }
+  let f = interpolate([...colors2, easingFunc2], mode2, {
+    h: {
+      //@ts-ignore
+      fixup: hueFixup2,
+      use: checkArg(hueInterpolator2, func)
+    },
+    [matchChromaChannel(mode2)]: {
+      use: checkArg(chromaInterpolator2, func)
+    },
+    [matchLightnessChannel(mode2)]: {
+      use: checkArg(lightnessInterpolator2, func)
+    }
+  });
+  samples5 = typeof samples5 === "number" && samples5 >= 1 ? samples5 : Math.ceil(Math.abs(samples5));
+  let result;
+  if (samples5 > 1) {
+    result = nativeSamples(samples5).map((s) => toHex(f(s)));
+  } else {
+    result = result.push(toHex(f(0.5)));
+  }
+  return result;
+};
+var defaultInterpolator = (colors2, colorspace, options) => {
+  let {
+    chromaInterpolator: chromaInterpolator2,
+    hueFixup: hueFixup2,
+    hueInterpolator: hueInterpolator2,
+    lightnessInterpolator: lightnessInterpolator2,
+    easingFunc: easingFunc2
+  } = checkArg(options, {});
+  return interpolate(
+    [...colors2, checkArg(easingFunc2, interpolatorConfig["easingFunc"])],
+    checkArg(colorspace, "jch"),
+    {
+      //@ts-ignore
+      h: {
+        fixup: hueFixup2,
+        use: checkArg(hueInterpolator2, interpolatorConfig["hueInterpolator"])
+      },
+      [matchChromaChannel(colorspace)]: {
+        use: checkArg(
+          chromaInterpolator2,
+          interpolatorConfig["chromaInterpolator"]
+        )
+      },
+      [matchLightnessChannel(colorspace)]: {
+        use: checkArg(
+          lightnessInterpolator2,
+          interpolatorConfig["lightnessInterpolator"]
+        )
+      }
+    }
+  );
+};
+
 // palettes/earthtone.ts
-var earthtone = (color2, options) => {
-  let { iterations, earthtones, easingFunc } = options || {};
+var earthtone = (color2, colorspace, options) => {
+  let { iterations, earthtones } = options || {};
   iterations = checkArg(iterations, 1);
   earthtones = checkArg(earthtones, "dark");
   const tones = {
@@ -1203,11 +1355,7 @@ var earthtone = (color2, options) => {
     dark: "#352a21"
   };
   const base = tones[earthtones.toLowerCase()];
-  const f = interpolate(
-    [base, toHex(color2), easingFunc],
-    "lch",
-    checkArg(options, interpolatorConfig)
-  );
+  const f = defaultInterpolator([base, toHex(color2)], colorspace);
   if (iterations === 1) {
     return toHex(f(0.5));
   } else {
@@ -1264,27 +1412,27 @@ var setChannel = (mc) => (color2, value) => {
 
 // palettes/paired.ts
 import {
-  interpolate as interpolate2,
+  interpolate as interpolate3,
   samples as samples4,
-  useMode as useMode4,
+  useMode as useMode5,
   modeLch as modeLch4,
-  easingSmoothstep as easingSmoothstep3
+  easingSmoothstep as easingSmoothstep5
 } from "culori/fn";
 var pairedScheme = (color2, options) => {
-  let { iterations, via, hueStep, easingFunc } = options || {};
+  let { iterations, via, hueStep, easingFunc: easingFunc2 } = options || {};
   iterations = checkArg(iterations, 1);
-  easingFunc = checkArg(easingFunc, easingSmoothstep3);
+  easingFunc2 = checkArg(easingFunc2, easingSmoothstep5);
   via = checkArg(via, "light");
   hueStep = checkArg(hueStep, 5);
-  const toLch = useMode4(modeLch4);
+  const toLch = useMode5(modeLch4);
   color2 = toLch(toHex(color2));
   const derivedHue = setChannel("lch.h")(color2, color2["h"] + hueStep);
   const tones = {
     dark: { l: 0, c: 0, h: 0, mode: "lch65" },
     light: { l: 100, c: 0, h: 0, mode: "lch65" }
   };
-  const scale = interpolate2(
-    [color2, tones[via], derivedHue, easingFunc],
+  const scale = interpolate3(
+    [color2, tones[via], derivedHue, easingFunc2],
     "lch",
     checkArg(options, interpolatorConfig)
   );
@@ -1292,13 +1440,13 @@ var pairedScheme = (color2, options) => {
     return toHex(scale(0.5));
   } else {
     const smp = samples4(iterations * 2);
-    const results = smp.map((t) => toHex(scale(easingFunc(t))));
+    const results = smp.map((t) => toHex(scale(easingFunc2(t))));
     return results.slice(0, results.length / 2);
   }
 };
 
 // palettes/pastel.ts
-import { averageNumber, modeHsv, useMode as useMode5 } from "culori/fn";
+import { averageNumber, modeHsv, useMode as useMode6 } from "culori/fn";
 var samplePastelObj = [
   {
     color: "#fea3aa",
@@ -1338,7 +1486,7 @@ var pastelSample = {
   maxSampleValue: max(sampleValues)
 };
 var pastel = (color2) => {
-  const toHsv = useMode5(modeHsv);
+  const toHsv = useMode6(modeHsv);
   color2 = toHsv(toHex(color2));
   return toHex({
     h: color2["h"],
@@ -1346,123 +1494,6 @@ var pastel = (color2) => {
     v: random(pastelSample["minSampleValue"], pastelSample["maxSampleValue"]),
     mode: "hsv"
   });
-};
-
-// palettes/interpolator.ts
-import {
-  easingSmoothstep as easingSmoothstep4,
-  interpolate as interpolate3,
-  interpolatorSplineBasis,
-  interpolatorSplineBasisClosed as interpolatorSplineBasisClosed3,
-  interpolatorSplineMonotone as interpolatorSplineMonotone3,
-  interpolatorSplineMonotoneClosed,
-  interpolatorSplineNatural as interpolatorSplineNatural3,
-  interpolatorSplineNaturalClosed,
-  samples as nativeSamples
-} from "culori/fn";
-
-// converters/temp2Color.ts
-var temp2Color = (kelvin, hex = false) => {
-  const { log } = Math;
-  const temp = kelvin / 100;
-  let r, g, b;
-  if (temp < 66) {
-    r = 255;
-    g = temp < 6 ? 0 : -155.25485562709179 - 0.44596950469579133 * (g = temp - 2) + 104.49216199393888 * log(g);
-    b = temp < 20 ? 0 : -254.76935184120902 + 0.8274096064007395 * (b = temp - 10) + 115.67994401066147 * log(b);
-  } else {
-    r = 351.97690566805693 + 0.114206453784165 * (r = temp - 55) - 40.25366309332127 * log(r);
-    g = 325.4494125711974 + 0.07943456536662342 * (g = temp - 50) - 28.0852963507957 * log(g);
-    b = 255;
-  }
-  const result = {
-    r: r / 255,
-    g: g / 255,
-    b: b / 255,
-    mode: "rgb"
-  };
-  if (hex) {
-    return toHex(result);
-  } else {
-    return result;
-  }
-};
-
-// converters/rgb2num.ts
-import { useMode as useMode6, modeRgb } from "culori/fn";
-var rgb2num = (color2) => {
-  const toRgb2 = useMode6(modeRgb);
-  const rgb2 = toRgb2(toHex(color2));
-  return (255 * rgb2["r"] << 16) + (255 * rgb2["g"] << 8) + 255 * rgb2["b"];
-};
-
-// converters/ciecam.ts
-import { rgb, illuminant, xyz, workspace } from "ciebase-ts";
-import { cfs, cam } from "ciecam02-ts";
-var baseCieCam = cam(
-  {
-    whitePoint: illuminant["D65"],
-    adaptingLuminance: 40,
-    backgroundLuminance: 20,
-    surroundType: "average",
-    discounting: false
-  },
-  cfs("JCh")
-);
-var xyzConverter = xyz(workspace["WideGamutRGB"], illuminant["D65"]);
-var colorToCam = (color2) => {
-  return baseCieCam.fromXyz(
-    xyzConverter.fromRgb(rgb.fromHex(toHex(color2)))
-  );
-};
-var camToColor = (CAM) => {
-  return rgb.toHex(xyzConverter.toRgb(baseCieCam.toXyz(CAM)));
-};
-
-// palettes/interpolator.ts
-var interpolateSpline = (colors2, mode2, samples5, kind, closed = false, options) => {
-  let {
-    chromaInterpolator: chromaInterpolator2,
-    hueFixup: hueFixup2,
-    hueInterpolator: hueInterpolator2,
-    lightnessInterpolator: lightnessInterpolator2,
-    easingFunc
-  } = checkArg(options, {});
-  easingFunc = checkArg(easingFunc, easingSmoothstep4);
-  kind = checkArg(kind, "basis");
-  let func;
-  switch (kind) {
-    case "basis":
-      func = closed ? interpolatorSplineBasisClosed3 : interpolatorSplineBasis;
-      break;
-    case "monotone":
-      func = closed ? interpolatorSplineMonotoneClosed : interpolatorSplineMonotone3;
-      break;
-    case "natural":
-      func = closed ? interpolatorSplineNaturalClosed : interpolatorSplineNatural3;
-      break;
-  }
-  let f = interpolate3([...colors2, easingFunc], mode2, {
-    h: {
-      //@ts-ignore
-      fixup: hueFixup2,
-      use: checkArg(hueInterpolator2, func)
-    },
-    [matchChromaChannel(mode2)]: {
-      use: checkArg(chromaInterpolator2, func)
-    },
-    [matchLightnessChannel(mode2)]: {
-      use: checkArg(lightnessInterpolator2, func)
-    }
-  });
-  samples5 = typeof samples5 === "number" && samples5 >= 1 ? samples5 : Math.ceil(Math.abs(samples5));
-  let result;
-  if (samples5 > 1) {
-    result = nativeSamples(samples5).map((s) => toHex(f(s)));
-  } else {
-    result = result.push(toHex(f(0.5)));
-  }
-  return result;
 };
 
 // filterBy/filterBySaturation.ts
@@ -1616,11 +1647,11 @@ var getContrast = (color2, against) => {
 };
 
 // filterBy/filterByContrast.ts
-var filterByContrast = (colors2, against, startContrast = 0.05, endContrast) => {
+function filterByContrast(colors2, against, startContrast = 0.05, endContrast) {
   const factor3 = "contrast";
   const cb4 = (against2) => (color2) => getContrast(color2, against2);
   return filteredArr(factor3, cb4(against))(colors2, startContrast, endContrast);
-};
+}
 
 // sortBy/sortByContrast.ts
 import { wcagContrast as wcagContrast2 } from "culori/fn";
@@ -1892,7 +1923,8 @@ var ColorArray = class extends Array {
   // private _colors: ColorToken[];
   constructor(colors2) {
     super();
-    this["colors"] = Array(...colors2);
+    this["colors"] = colors2;
+    return this;
   }
   interpolateSpline(mode2, samples5, kind, closed, options) {
     this["colors"] = interpolateSpline(
@@ -2147,13 +2179,8 @@ var ColorArray = class extends Array {
   // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
    */
   filterByContrast(against, startContrast = 0.05, endContrast) {
-    this["colors"] = filterByContrast(
-      this["colors"],
-      against,
-      startContrast,
-      endContrast
-    );
-    return this;
+    let f = filterByContrast.bind(this["colors"]);
+    return f(against, startContrast, endContrast);
   }
   /**
    * @function
@@ -2563,7 +2590,6 @@ var tailwindColors = (shade) => (val) => {
 };
 
 // colors/color.ts
-import { interpolate as interpolate5 } from "culori/fn";
 var IColor = class {
   constructor(c, options) {
     let {
@@ -2605,18 +2631,16 @@ var IColor = class {
       this["_color"]
     );
   }
-  setChannel(channel, value) {
-    this["_color"] = setChannel(
-      `${this["colorspace"]}.${channel.toLowerCase()}`
-    )(this["_color"], value);
+  setChannel(modeChannel, value) {
+    this["_color"] = setChannel(modeChannel)(this["_color"], value);
     return this;
   }
   via(origin, t, options) {
-    const result = (t2) => interpolate5(
-      [origin, this["color"]],
+    const result = (t2) => defaultInterpolator(
+      [origin, this["_color"]],
       this["colorspace"],
-      checkArg(options, interpolatorConfig)
-    )(checkArg(t2, 0.5));
+      options
+    );
     return toHex(result(t));
   }
   brighten(amount) {
@@ -2640,17 +2664,12 @@ var IColor = class {
     return this;
   }
   pairedScheme(options) {
-    this["colors"] = pairedScheme(this["_color"], checkArg(options, {}));
-    return this["colors"];
+    this["colors"] = pairedScheme(this["_color"], options);
+    return new ColorArray(this["colors"]);
   }
   hueShift(options) {
-    options["iterations"] = checkArg(options["iterations"], 1);
-    if (options["iterations"]) {
-      return hueShift(this["_color"], options);
-    } else {
-      this["colors"] = hueShift(this["_color"], checkArg(options, {}));
-      return this["colors"];
-    }
+    this["colors"] = hueShift(this["_color"], options);
+    return new ColorArray(this["colors"]);
   }
   getComplimentaryHue(mode2, colorObj2) {
     this["_color"] = getComplimentaryHue(this["_color"], mode2, colorObj2);
@@ -2764,8 +2783,8 @@ var IColor = class {
   getHue() {
     return getHueFamily(this["_color"]);
   }
-  scheme(scheme2, easingFunc) {
-    return load(scheme(scheme2)(this["_color"], easingFunc));
+  scheme(scheme2, easingFunc2) {
+    return load(scheme(scheme2)(this["_color"], easingFunc2));
   }
 };
 var color = (color2) => new IColor(color2);
@@ -2827,6 +2846,7 @@ export {
   customFindKey,
   customSort,
   darken,
+  defaultInterpolator,
   discoverPalettes,
   diverging,
   earthtone,

@@ -1,6 +1,6 @@
-import { filteredArr } from '../fp/array/filteredArr.ts';
-import { getLuminance } from '../getters_and_setters/luminance.ts';
-import type { Factor, Color } from '../types';
+import { filteredArr } from "../fp/array/filteredArr.ts";
+import { getLuminance } from "../getters_and_setters/luminance.ts";
+import type { Factor, Color } from "../types";
 /**
  *  @function
  * @description Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
@@ -30,17 +30,22 @@ filterByLuminance(sample, 0.4, 0.9)
 // [ '#00ffdc', '#00ff78' ]
  */
 
-const filterByLuminance = (
+function filterByLuminance(
   colors: Color[],
   startLuminance = 0.05,
   endLuminance = 1
-): Color[] => {
+): Color[] {
   // Formatting color tokens to parseable type
   // Create an object that has the luminance and name of color as properties.
-  const factor: Factor = 'luminance';
+  const factor: Factor = "luminance";
   const cb = getLuminance;
+  const length = colors == null ? 0 : colors.length;
+  let result = new Array(length);
+  result = result.concat(
+    ...filteredArr(factor, cb)(colors, startLuminance, endLuminance)
+  );
 
-  return filteredArr(factor, cb)(colors, startLuminance, endLuminance);
-};
+  return result;
+}
 
 export { filterByLuminance };
