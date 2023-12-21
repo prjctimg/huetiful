@@ -16,7 +16,7 @@ emoji.md
 # next.js
 /.next/
 /out/
-
+source/lib
 # production
 /build
 lib

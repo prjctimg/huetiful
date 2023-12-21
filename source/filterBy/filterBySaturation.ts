@@ -33,12 +33,12 @@ console.log(filterByContrast(sample, 'green', '>=3'))
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
  */
 
-const filterBySaturation = (
+function filterBySaturation(
   colors: Color[],
   startSaturation = 0.05,
   endSaturation = 1,
   mode?: HueColorSpaces
-): Color[] => {
+): Color[] {
   const factor: Factor = "saturation";
 
   if (matchChromaChannel(mode)) {
@@ -64,6 +64,6 @@ const filterBySaturation = (
       `The passed in color space ${mode} has no chroma or saturation channel. Try 'jch'`
     );
   }
-};
+}
 
 export { filterBySaturation };

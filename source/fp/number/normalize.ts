@@ -8,15 +8,15 @@ import modeRanges from "../../color-maps/samples/modeRanges";
  * @param modeChannel A string defining the mode and channel ranges to use for comparison
  * @returns The normalized channel value or the passed in value if it was within range
  */
-const normalize = (value: number, modeChannel: string): number => {
+function normalize(value: number, modeChannel: string): number {
   const [mode, channel] = modeChannel.split(".");
-  const [start, end] = modeRanges[mode][channel];
+  const [start, end]: number[] = modeRanges[mode][channel];
   const range = inRange(value, start, end);
 
   if (!range) {
     if (inRange(value, 0, 1)) {
       value = end * value;
-    } else if (inRange(value, 1)) {
+    } else if (inRange(value, 1, 100)) {
       value = end * (value / 100);
     } else {
       throw Error(
@@ -25,6 +25,6 @@ const normalize = (value: number, modeChannel: string): number => {
     }
   }
   return value;
-};
+}
 
 export { normalize };

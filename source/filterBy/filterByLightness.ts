@@ -44,7 +44,6 @@ function filterByLightness(
   // Create an object that has the lightness and name of color as properties.
   const factor: Factor = "lightness";
   const cb = getChannel(`${matchLightnessChannel(colorspace)}`);
-  const length = colors == null ? 0 : colors.length;
   let result = [];
   result = result.concat(
     ...filteredArr(factor, cb)(colors, startLightness, endLightness)
@@ -52,7 +51,5 @@ function filterByLightness(
 
   return result;
 }
-
-filterByLightness.prototype = ColorArray;
 
 export { filterByLightness };
