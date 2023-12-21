@@ -9,7 +9,7 @@ import modeRanges from "../../color-maps/samples/modeRanges";
  * @returns The normalized channel value or the passed in value if it was within range
  */
 function normalize(value: number, modeChannel: string): number {
-  const [mode, channel] = modeChannel.split(".");
+  const [mode, channel]: string[] = modeChannel.split(".");
   const [start, end]: number[] = modeRanges[mode][channel];
   const range = inRange(value, start, end);
 

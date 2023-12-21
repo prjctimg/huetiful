@@ -4355,19 +4355,19 @@ var huetiful = (() => {
   };
 
   // fp/number/normalize.ts
-  var normalize = (value, modeChannel) => {
+  function normalize(value, modeChannel) {
     let [mode2, channel] = modeChannel.split("."), [start, end] = modeRanges_default[mode2][channel];
     if (!inRange(value, start, end))
       if (inRange(value, 0, 1))
         value = end * value;
-      else if (inRange(value, 1))
+      else if (inRange(value, 1, 100))
         value = end * (value / 100);
       else
         throw Error(
           `The value ${value} is out of range for channel ${channel} of colorspace ${mode2} can only accept a value between [0,1] or [0,100] with 0.5 or 50 being half of the channel range.`
         );
     return value;
-  };
+  }
 
   // fp/number/floorCeil.ts
   var { ceil, floor } = Math, floorCeil = (num3) => {
@@ -4452,7 +4452,10 @@ var huetiful = (() => {
   };
 
   // palettes/hueShift.ts
-  var lightnessMapper = (n3) => (start1, end1) => (start2, end2) => (n3 - start1) / (end1 - start1) * (end2 - start2) + start2, hueShift = (color2, options) => {
+  function lightnessMapper(n3) {
+    return (start1, end1) => (start2, end2) => (n3 - start1) / (end1 - start1) * (end2 - start2) + start2;
+  }
+  function hueShift(color2, options) {
     color2 = useMode(definition_default14)(toHex(color2));
     let { iterations, hueStep, minLightness, maxLightness, easingFunc: easingFunc2 } = options || {};
     easingFunc2 = checkArg(easingFunc2, easingSmoothstep), iterations = checkArg(iterations, 6) + 1, hueStep = checkArg(hueStep, 5), minLightness = checkArg(minLightness, 10), maxLightness = checkArg(maxLightness, 90);
@@ -4478,7 +4481,7 @@ var huetiful = (() => {
       });
     }
     return palette.map(toHex);
-  };
+  }
 
   // palettes/base.ts
   var cb2 = (iterations, distance, color2) => samples_default(iterations).map(
@@ -4504,7 +4507,8 @@ var huetiful = (() => {
   };
 
   // palettes/discoverPalettes.ts
-  var { keys } = Object, isColorEqual = (c13, c23) => c13.h === c23.h && c13.l === c23.l && c13.c === c23.c, discoverPalettes = (colors2, schemeType) => {
+  var { keys } = Object, isColorEqual = (c13, c23) => c13.h === c23.h && c13.l === c23.l && c13.c === c23.c;
+  function discoverPalettes(colors2, schemeType) {
     let toLch = useMode(definition_default14);
     colors2 = colors2.map((color2) => toLch(toHex(color2)));
     let palettes = {}, schemeKeys = ["analogous", "triadic", "tetradic", "complementary"], targetPalettes = {};
@@ -4531,7 +4535,7 @@ var huetiful = (() => {
     throw Error(
       `${schemeType} is not a valid scheme. The schemes are triadic | tetradic | analogous | complementary`
     );
-  };
+  }
 
   // converters/temp2Color.ts
   var temp2Color = (kelvin, hex2 = !1) => {
@@ -4592,7 +4596,7 @@ var huetiful = (() => {
   };
 
   // palettes/interpolator.ts
-  var interpolateSpline = (colors2, mode2, samples2, kind, closed = !1, options) => {
+  function interpolateSpline(colors2, mode2, samples2, kind, closed = !1, options) {
     let {
       chromaInterpolator: chromaInterpolator2,
       hueFixup: hueFixup2,
@@ -4629,7 +4633,8 @@ var huetiful = (() => {
     samples2 = typeof samples2 == "number" && samples2 >= 1 ? samples2 : Math.ceil(Math.abs(samples2));
     let result;
     return samples2 > 1 ? result = samples_default(samples2).map((s) => toHex(f3(s))) : result = result.push(toHex(f3(0.5))), result;
-  }, defaultInterpolator = (colors2, colorspace, options) => {
+  }
+  var defaultInterpolator = (colors2, colorspace, options) => {
     let {
       chromaInterpolator: chromaInterpolator2,
       hueFixup: hueFixup2,
@@ -4663,7 +4668,7 @@ var huetiful = (() => {
   };
 
   // palettes/earthtone.ts
-  var earthtone = (color2, colorspace, options) => {
+  function earthtone(color2, colorspace, options) {
     let { iterations, earthtones } = options || {};
     iterations = checkArg(iterations, 1), earthtones = checkArg(earthtones, "dark");
     let base = {
@@ -4679,7 +4684,7 @@ var huetiful = (() => {
       dark: "#352a21"
     }[earthtones.toLowerCase()], f3 = defaultInterpolator([base, toHex(color2)], colorspace);
     return iterations === 1 ? toHex(f3(0.5)) : samples_default(terations).map((t) => toHex(f3(t)));
-  };
+  }
 
   // fp/string/expressionParser.ts
   function expressionParser(src, channel, value) {
@@ -4719,7 +4724,7 @@ var huetiful = (() => {
   };
 
   // palettes/paired.ts
-  var pairedScheme = (color2, options) => {
+  function pairedScheme(color2, options) {
     let { iterations, via, hueStep, easingFunc: easingFunc2 } = options || {};
     iterations = checkArg(iterations, 1), easingFunc2 = checkArg(easingFunc2, easingSmoothstep), via = checkArg(via, "light"), hueStep = checkArg(hueStep, 5), color2 = useMode(definition_default14)(toHex(color2));
     let derivedHue = setChannel("lch.h")(color2, color2.h + hueStep), scale = interpolate(
@@ -4736,7 +4741,7 @@ var huetiful = (() => {
       let results = samples_default(iterations * 2).map((t) => toHex(scale(easingFunc2(t))));
       return results.slice(0, results.length / 2);
     }
-  };
+  }
 
   // palettes/pastel.ts
   var samplePastelObj = [
@@ -4773,19 +4778,22 @@ var huetiful = (() => {
     maxSampleSaturation: max(sampleSaturation),
     minSampleValue: min2(sampleValues),
     maxSampleValue: max(sampleValues)
-  }, pastel = (color2) => (color2 = useMode(definition_default8)(toHex(color2)), toHex({
-    h: color2.h,
-    s: pastelSample.averageSaturation,
-    v: random(pastelSample.minSampleValue, pastelSample.maxSampleValue),
-    mode: "hsv"
-  }));
+  };
+  function pastel(color2) {
+    return color2 = useMode(definition_default8)(toHex(color2)), toHex({
+      h: color2.h,
+      s: pastelSample.averageSaturation,
+      v: random(pastelSample.minSampleValue, pastelSample.maxSampleValue),
+      mode: "hsv"
+    });
+  }
 
   // filterBy/filterBySaturation.ts
-  var filterBySaturation = (colors2, startSaturation = 0.05, endSaturation = 1, mode2) => {
+  function filterBySaturation(colors2, startSaturation = 0.05, endSaturation = 1, mode2) {
     let factor4 = "saturation";
     if (matchChromaChannel(mode2)) {
       mode2 = checkArg(mode2, "jch");
-      let modeChannel = `${mode2}.${matchChromaChannel(mode2)}`, cb4 = getChannel(`${mode2}.${modeChannel}`), reDigits = /([0-9])/g.exec(startSaturation)[0], length = colors2 == null ? 0 : colors2.length, result = new Array(length);
+      let modeChannel = `${mode2}.${matchChromaChannel(mode2)}`, cb4 = getChannel(`${mode2}.${modeChannel}`), reDigits = /([0-9])/g.exec(startSaturation)[0], result = [];
       return result = result.concat(
         ...filteredArr(factor4, cb4)(
           colors2,
@@ -4797,7 +4805,7 @@ var huetiful = (() => {
       throw Error(
         `The passed in color space ${mode2} has no chroma or saturation channel. Try 'jch'`
       );
-  };
+  }
 
   // getters_and_setters/luminance.ts
   var getLuminance = (color2) => luminance(toHex(color2)), { pow, abs: abs3 } = Math, toRgb = useMode(definition_default), setLuminance = (color2, lum) => {
@@ -4817,7 +4825,7 @@ var huetiful = (() => {
 
   // filterBy/filterByLuminance.ts
   function filterByLuminance(colors2, startLuminance = 0.05, endLuminance = 1) {
-    let factor4 = "luminance", cb4 = getLuminance, length = colors2 == null ? 0 : colors2.length, result = new Array(length);
+    let factor4 = "luminance", cb4 = getLuminance, result = [];
     return result = result.concat(
       ...filteredArr(factor4, cb4)(colors2, startLuminance, endLuminance)
     ), result;
@@ -4825,7 +4833,7 @@ var huetiful = (() => {
 
   // filterBy/filterByHue.ts
   function filterByHue(colors2, startHue = 0, endHue = 360) {
-    let length = colors2 == null ? 0 : colors2.length, result = new Array(length), factor4 = "hue", cb4 = getChannel("lch.h");
+    let result = [], factor4 = "hue", cb4 = getChannel("lch.h");
     return result = result.concat(...filteredArr(factor4, cb4)(colors2, startHue, endHue)), result;
   }
 
@@ -4840,16 +4848,15 @@ var huetiful = (() => {
 
   // filterBy/filterByLightness.ts
   function filterByLightness(colors2, startLightness = 5, endLightness = 100, colorspace) {
-    let factor4 = "lightness", cb4 = getChannel(`${matchLightnessChannel(colorspace)}`), length = colors2 == null ? 0 : colors2.length, result = [];
+    let factor4 = "lightness", cb4 = getChannel(`${matchLightnessChannel(colorspace)}`), result = [];
     return result = result.concat(
       ...filteredArr(factor4, cb4)(colors2, startLightness, endLightness)
     ), result;
   }
-  filterByLightness.prototype = ColorArray;
 
   // filterBy/filterByDistance.ts
   function filterByDistance(colors2, against, startDistance = 0.05, endDistance, mode2, weights) {
-    let factor4 = "distance", length = colors2 == null ? 0 : colors2.length, result = new Array(length);
+    let factor4 = "distance", result = [];
     against = toHex(against);
     let cb4 = (against2, mode3) => (color2) => differenceEuclidean(mode3 || "lch", weights || [1, 1, 1, 0])(
       against2,
@@ -4882,49 +4889,52 @@ var huetiful = (() => {
       ...filteredArr(factor4, cb4(against))(colors2, startContrast, endContrast)
     ), result;
   }
-  filterByContrast.prototype = ColorArray;
 
   // sortBy/sortByContrast.ts
-  var sortByContrast = (colors2, against, order) => sortedArr("contrast", ((against2) => (color2) => contrast(color2, against2))(against), order)(colors2);
+  function sortByContrast(colors2, against, order) {
+    return sortedArr("contrast", ((against2) => (color2) => contrast(color2, against2))(against), order)(colors2);
+  }
 
   // sortBy/sortByDistance.ts
-  var sortByDistance = (colors2, against, order, options) => {
+  function sortByDistance(colors2, against, order, options) {
     let { mode: mode2, weights } = options || {};
     return mode2 = checkArg(mode2, "lchuv"), weights = checkArg(weights, [1, 1, 1, 0]), sortedArr("distance", ((against2, mode3) => (color2) => differenceEuclidean(mode3, weights)(against2, color2))(against, mode2), order)(colors2);
-  };
+  }
 
   // sortBy/sortByHue.ts
-  var sortByHue = (colors2, order, mode2 = "jch") => {
+  function sortByHue(colors2, order, mode2 = "jch") {
     let factor4 = "hue";
     if (/h/gi.test(mode2)) {
       let cb4 = getChannel(`${mode2}.h`);
       return sortedArr(factor4, cb4, order)(colors2);
     } else
       throw Error(`The color space ${mode2} has no hue channel try 'lch' instead`);
-  };
+  }
 
   // sortBy/sortByLightness.ts
-  var sortByLightness = (colors2, order, mode2) => {
+  function sortByLightness(colors2, order, mode2) {
     let factor4 = "lightness";
     mode2 = checkArg(mode2, "lch65");
     let cb4 = getChannel(`${mode2}.${matchLightnessChannel(mode2)}`);
     return sortedArr(factor4, cb4, order)(colors2);
-  };
+  }
 
   // sortBy/sortByLuminance.ts
-  var sortByLuminance = (colors2, order) => sortedArr("luminance", getLuminance, order)(colors2);
+  function sortByLuminance(colors2, order) {
+    return sortedArr("luminance", getLuminance, order)(colors2);
+  }
 
   // sortBy/sortBySaturation.ts
-  var sortBySaturation = (colors2, order, mode2) => {
+  function sortBySaturation(colors2, order, mode2) {
     let factor4 = "saturation";
     if (mode2 = checkArg(mode2, "jch"), matchChromaChannel(mode2)) {
-      let chromaChannel = matchChromaChannel(mode2), cb4 = getChannel(`${mode2}.${chromaChannel}`);
+      let cb4 = getChannel(matchChromaChannel(mode2));
       return sortedArr(factor4, cb4, order)(colors2);
     } else
       throw Error(
         `The passed in color space ${mode2} has no chroma channel. Try 'jch' instead.`
       );
-  };
+  }
 
   // getters_and_setters/alpha.ts
   var alpha = (color2, value) => {
@@ -4943,12 +4953,13 @@ var huetiful = (() => {
   };
 
   // fp/string/matchChromaChannel.ts
-  var matchChromaChannel = (colorSpace) => {
-    let reChroma = /(s|c)/i, ch = reChroma.exec(colorSpace)[0];
-    if (reChroma.test(colorSpace))
-      return `${colorSpace}.${ch}`;
+  var matchChromaChannel = (colorspace) => {
+    colorspace = checkArg(colorspace, "jch");
+    let reChroma = /(s|c)/i, ch = reChroma.exec(colorspace)[0];
+    if (reChroma.test(colorspace))
+      return `${colorspace}.${ch}`;
     throw Error(
-      `The color space ${colorSpace} has no chroma/saturation channel.`
+      `The color space ${colorspace} has no chroma/saturation channel.`
     );
   };
 
@@ -5165,12 +5176,12 @@ var huetiful = (() => {
     // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
      */
     filterBySaturation(startSaturation = 0.05, endSaturation = 1, mode2) {
-      return filterBySaturation(
+      return this.colors = filterBySaturation(
         this.colors,
         startSaturation,
         endSaturation,
         mode2
-      );
+      ), this;
     }
     /**
      * @function
@@ -5199,13 +5210,13 @@ var huetiful = (() => {
     
     // [ '#00c000', '#007e00', '#164100', '#720000' ]
      */
-    // filterByLightness(startLightness = 5, endLightness = 100): Color[] {
-    //   return filterBy.filterByLightness(
-    //     this["colors"],
-    //     startLightness,
-    //     endLightness
-    //   );
-    // }
+    filterByLightness(startLightness = 5, endLightness = 100) {
+      return this.colors = filterByLightness(
+        this.colors,
+        startLightness,
+        endLightness
+      ), this;
+    }
     /**
      * @function
      * @description Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
@@ -5270,19 +5281,14 @@ var huetiful = (() => {
     console.log(filterByContrast(sample, 'green', '>=3'))
     // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
      */
-    // filterByContrast(
-    //   against: Color,
-    //   startContrast = 0.05,
-    //   endContrast?: number
-    // ): ColorArray {
-    //   this["colors"] = filterBy.filterByContrast(
-    //     this["colors"],
-    //     against,
-    //     startContrast,
-    //     endContrast
-    //   );
-    //   return this;
-    // }
+    filterByContrast(against, startContrast = 0.05, endContrast) {
+      return this.colors = filterByContrast(
+        this.colors,
+        against,
+        startContrast,
+        endContrast
+      ), this;
+    }
     /**
      * @function
      * @description Returns colors in the specified hue ranges between 0 to 360.

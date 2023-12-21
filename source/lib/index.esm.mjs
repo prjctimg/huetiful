@@ -893,14 +893,14 @@ var modeRanges_default = {
 };
 
 // fp/number/normalize.ts
-var normalize = (value, modeChannel) => {
+function normalize(value, modeChannel) {
   const [mode2, channel] = modeChannel.split(".");
   const [start, end] = modeRanges_default[mode2][channel];
   const range = inRange(value, start, end);
   if (!range) {
     if (inRange(value, 0, 1)) {
       value = end * value;
-    } else if (inRange(value, 1)) {
+    } else if (inRange(value, 1, 100)) {
       value = end * (value / 100);
     } else {
       throw Error(
@@ -909,7 +909,7 @@ var normalize = (value, modeChannel) => {
     }
   }
   return value;
-};
+}
 
 // fp/number/floorCeil.ts
 var { ceil, floor } = Math;
@@ -1039,8 +1039,10 @@ var sortedArr = (factor3, callback, order, colorObj2 = false) => (colors2) => {
 
 // palettes/hueShift.ts
 import { easingSmoothstep, modeLch, samples, useMode } from "culori/fn";
-var lightnessMapper = (n) => (start1, end1) => (start2, end2) => (n - start1) / (end1 - start1) * (end2 - start2) + start2;
-var hueShift = (color2, options) => {
+function lightnessMapper(n) {
+  return (start1, end1) => (start2, end2) => (n - start1) / (end1 - start1) * (end2 - start2) + start2;
+}
+function hueShift(color2, options) {
   const toLch = useMode(modeLch);
   color2 = toLch(toHex(color2));
   let { iterations, hueStep, minLightness, maxLightness, easingFunc: easingFunc2 } = options || {};
@@ -1076,7 +1078,7 @@ var hueShift = (color2, options) => {
     });
   }
   return palette.map(toHex);
-};
+}
 
 // palettes/discoverPalettes.ts
 import { nearest, differenceEuclidean, useMode as useMode3, modeLch as modeLch3 } from "culori/fn";
@@ -1117,7 +1119,7 @@ var { keys } = Object;
 var isColorEqual = (c1, c2) => {
   return c1["h"] === c2["h"] && c1["l"] === c2["l"] && c1["c"] === c2["c"];
 };
-var discoverPalettes = (colors2, schemeType) => {
+function discoverPalettes(colors2, schemeType) {
   const toLch = useMode3(modeLch3);
   colors2 = colors2.map((color2) => toLch(toHex(color2)));
   const palettes = {};
@@ -1153,7 +1155,7 @@ var discoverPalettes = (colors2, schemeType) => {
       `${schemeType} is not a valid scheme. The schemes are triadic | tetradic | analogous | complementary`
     );
   }
-};
+}
 
 // palettes/earthtone.ts
 import {
@@ -1260,7 +1262,7 @@ var interpolatorConfig = {
 };
 
 // palettes/interpolator.ts
-var interpolateSpline = (colors2, mode2, samples5, kind, closed = false, options) => {
+function interpolateSpline(colors2, mode2, samples5, kind, closed = false, options) {
   let {
     chromaInterpolator: chromaInterpolator2,
     hueFixup: hueFixup2,
@@ -1303,7 +1305,7 @@ var interpolateSpline = (colors2, mode2, samples5, kind, closed = false, options
     result = result.push(toHex(f(0.5)));
   }
   return result;
-};
+}
 var defaultInterpolator = (colors2, colorspace, options) => {
   let {
     chromaInterpolator: chromaInterpolator2,
@@ -1338,7 +1340,7 @@ var defaultInterpolator = (colors2, colorspace, options) => {
 };
 
 // palettes/earthtone.ts
-var earthtone = (color2, colorspace, options) => {
+function earthtone(color2, colorspace, options) {
   let { iterations, earthtones } = options || {};
   iterations = checkArg(iterations, 1);
   earthtones = checkArg(earthtones, "dark");
@@ -1361,7 +1363,7 @@ var earthtone = (color2, colorspace, options) => {
   } else {
     return samples3(terations).map((t) => toHex(f(t)));
   }
-};
+}
 
 // getters_and_setters/set.ts
 import { converter as converter2 } from "culori/fn";
@@ -1418,7 +1420,7 @@ import {
   modeLch as modeLch4,
   easingSmoothstep as easingSmoothstep5
 } from "culori/fn";
-var pairedScheme = (color2, options) => {
+function pairedScheme(color2, options) {
   let { iterations, via, hueStep, easingFunc: easingFunc2 } = options || {};
   iterations = checkArg(iterations, 1);
   easingFunc2 = checkArg(easingFunc2, easingSmoothstep5);
@@ -1443,7 +1445,7 @@ var pairedScheme = (color2, options) => {
     const results = smp.map((t) => toHex(scale(easingFunc2(t))));
     return results.slice(0, results.length / 2);
   }
-};
+}
 
 // palettes/pastel.ts
 import { averageNumber, modeHsv, useMode as useMode6 } from "culori/fn";
@@ -1485,7 +1487,7 @@ var pastelSample = {
   minSampleValue: min(sampleValues),
   maxSampleValue: max(sampleValues)
 };
-var pastel = (color2) => {
+function pastel(color2) {
   const toHsv = useMode6(modeHsv);
   color2 = toHsv(toHex(color2));
   return toHex({
@@ -1494,18 +1496,17 @@ var pastel = (color2) => {
     v: random(pastelSample["minSampleValue"], pastelSample["maxSampleValue"]),
     mode: "hsv"
   });
-};
+}
 
 // filterBy/filterBySaturation.ts
-var filterBySaturation = (colors2, startSaturation = 0.05, endSaturation = 1, mode2) => {
+function filterBySaturation(colors2, startSaturation = 0.05, endSaturation = 1, mode2) {
   const factor3 = "saturation";
   if (matchChromaChannel(mode2)) {
     mode2 = checkArg(mode2, "jch");
     const modeChannel = `${mode2}.${matchChromaChannel(mode2)}`;
     const cb4 = getChannel(`${mode2}.${modeChannel}`);
     const reDigits = /([0-9])/g.exec(startSaturation)["0"];
-    const length = colors2 == null ? 0 : colors2.length;
-    let result = new Array(length);
+    let result = [];
     result = result.concat(
       ...filteredArr(factor3, cb4)(
         colors2,
@@ -1519,7 +1520,7 @@ var filterBySaturation = (colors2, startSaturation = 0.05, endSaturation = 1, mo
       `The passed in color space ${mode2} has no chroma or saturation channel. Try 'jch'`
     );
   }
-};
+}
 
 // getters_and_setters/luminance.ts
 import { interpolate as interpolate4, wcagLuminance, useMode as useMode7, modeRgb as modeRgb2 } from "culori/fn";
@@ -1574,8 +1575,7 @@ var luminance_x = (x) => {
 function filterByLuminance(colors2, startLuminance = 0.05, endLuminance = 1) {
   const factor3 = "luminance";
   const cb4 = getLuminance;
-  const length = colors2 == null ? 0 : colors2.length;
-  let result = new Array(length);
+  let result = [];
   result = result.concat(
     ...filteredArr(factor3, cb4)(colors2, startLuminance, endLuminance)
   );
@@ -1584,8 +1584,7 @@ function filterByLuminance(colors2, startLuminance = 0.05, endLuminance = 1) {
 
 // filterBy/filterByHue.ts
 function filterByHue(colors2, startHue = 0, endHue = 360) {
-  const length = colors2 == null ? 0 : colors2.length;
-  let result = new Array(length);
+  let result = [];
   const factor3 = "hue";
   const cb4 = getChannel("lch.h");
   result = result.concat(...filteredArr(factor3, cb4)(colors2, startHue, endHue));
@@ -1608,21 +1607,18 @@ var matchLightnessChannel = (colorspace) => {
 function filterByLightness(colors2, startLightness = 5, endLightness = 100, colorspace) {
   const factor3 = "lightness";
   const cb4 = getChannel(`${matchLightnessChannel(colorspace)}`);
-  const length = colors2 == null ? 0 : colors2.length;
   let result = [];
   result = result.concat(
     ...filteredArr(factor3, cb4)(colors2, startLightness, endLightness)
   );
   return result;
 }
-filterByLightness.prototype = ColorArray;
 
 // filterBy/filterByDistance.ts
 import { differenceEuclidean as differenceEuclidean2 } from "culori/fn";
 function filterByDistance(colors2, against, startDistance = 0.05, endDistance, mode2, weights) {
   const factor3 = "distance";
-  const length = colors2 == null ? 0 : colors2.length;
-  let result = new Array(length);
+  let result = [];
   against = toHex(against);
   const cb4 = (against2, mode3) => (color2) => {
     return differenceEuclidean2(mode3 || "lch", weights || [1, 1, 1, 0])(
@@ -1682,19 +1678,18 @@ function filterByContrast(colors2, against, startContrast = 0.05, endContrast) {
   );
   return result;
 }
-filterByContrast.prototype = ColorArray;
 
 // sortBy/sortByContrast.ts
 import { wcagContrast as wcagContrast2 } from "culori/fn";
-var sortByContrast = (colors2, against, order) => {
+function sortByContrast(colors2, against, order) {
   const factor3 = "contrast";
   const cb4 = (against2) => (color2) => wcagContrast2(color2, against2);
   return sortedArr(factor3, cb4(against), order)(colors2);
-};
+}
 
 // sortBy/sortByDistance.ts
 import { differenceEuclidean as differenceEuclidean3 } from "culori/fn";
-var sortByDistance = (colors2, against, order, options) => {
+function sortByDistance(colors2, against, order, options) {
   let { mode: mode2, weights } = options || {};
   mode2 = checkArg(mode2, "lchuv");
   weights = checkArg(weights, [1, 1, 1, 0]);
@@ -1703,10 +1698,10 @@ var sortByDistance = (colors2, against, order, options) => {
     return differenceEuclidean3(mode3, weights)(against2, color2);
   };
   return sortedArr(factor3, cb4(against, mode2), order)(colors2);
-};
+}
 
 // sortBy/sortByHue.ts
-var sortByHue = (colors2, order, mode2 = "jch") => {
+function sortByHue(colors2, order, mode2 = "jch") {
   const factor3 = "hue";
   const reHue = /h/gi.test(mode2);
   if (reHue) {
@@ -1715,37 +1710,36 @@ var sortByHue = (colors2, order, mode2 = "jch") => {
   } else {
     throw Error(`The color space ${mode2} has no hue channel try 'lch' instead`);
   }
-};
+}
 
 // sortBy/sortByLightness.ts
-var sortByLightness = (colors2, order, mode2) => {
+function sortByLightness(colors2, order, mode2) {
   const factor3 = "lightness";
   mode2 = checkArg(mode2, "lch65");
   const cb4 = getChannel(`${mode2}.${matchLightnessChannel(mode2)}`);
   return sortedArr(factor3, cb4, order)(colors2);
-};
+}
 
 // sortBy/sortByLuminance.ts
-var sortByLuminance = (colors2, order) => {
+function sortByLuminance(colors2, order) {
   const factor3 = "luminance";
   const cb4 = getLuminance;
   return sortedArr(factor3, cb4, order)(colors2);
-};
+}
 
 // sortBy/sortBySaturation.ts
-var sortBySaturation = (colors2, order, mode2) => {
+function sortBySaturation(colors2, order, mode2) {
   const factor3 = "saturation";
   mode2 = checkArg(mode2, "jch");
   if (matchChromaChannel(mode2)) {
-    const chromaChannel = matchChromaChannel(mode2);
-    const cb4 = getChannel(`${mode2}.${chromaChannel}`);
+    const cb4 = getChannel(matchChromaChannel(mode2));
     return sortedArr(factor3, cb4, order)(colors2);
   } else {
     throw Error(
       `The passed in color space ${mode2} has no chroma channel. Try 'jch' instead.`
     );
   }
-};
+}
 
 // getters_and_setters/alpha.ts
 import { useMode as useMode8, modeLch as modeLch5 } from "culori/fn";
@@ -1795,14 +1789,15 @@ var brighten = (color2, value) => {
 };
 
 // fp/string/matchChromaChannel.ts
-var matchChromaChannel = (colorSpace) => {
+var matchChromaChannel = (colorspace) => {
+  colorspace = checkArg(colorspace, "jch");
   const reChroma = /(s|c)/i;
-  const ch = reChroma.exec(colorSpace)["0"];
-  if (reChroma.test(colorSpace)) {
-    return `${colorSpace}.${ch}`;
+  const ch = reChroma.exec(colorspace)["0"];
+  if (reChroma.test(colorspace)) {
+    return `${colorspace}.${ch}`;
   } else {
     throw Error(
-      `The color space ${colorSpace} has no chroma/saturation channel.`
+      `The color space ${colorspace} has no chroma/saturation channel.`
     );
   }
 };
@@ -2101,12 +2096,13 @@ var ColorArray = class extends Array {
   // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
    */
   filterBySaturation(startSaturation = 0.05, endSaturation = 1, mode2) {
-    return filterBySaturation(
+    this["colors"] = filterBySaturation(
       this["colors"],
       startSaturation,
       endSaturation,
       mode2
     );
+    return this;
   }
   /**
    * @function
@@ -2135,13 +2131,14 @@ var ColorArray = class extends Array {
   
   // [ '#00c000', '#007e00', '#164100', '#720000' ]
    */
-  // filterByLightness(startLightness = 5, endLightness = 100): Color[] {
-  //   return filterBy.filterByLightness(
-  //     this["colors"],
-  //     startLightness,
-  //     endLightness
-  //   );
-  // }
+  filterByLightness(startLightness = 5, endLightness = 100) {
+    this["colors"] = filterByLightness(
+      this["colors"],
+      startLightness,
+      endLightness
+    );
+    return this;
+  }
   /**
    * @function
    * @description Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
@@ -2207,19 +2204,15 @@ var ColorArray = class extends Array {
   console.log(filterByContrast(sample, 'green', '>=3'))
   // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
    */
-  // filterByContrast(
-  //   against: Color,
-  //   startContrast = 0.05,
-  //   endContrast?: number
-  // ): ColorArray {
-  //   this["colors"] = filterBy.filterByContrast(
-  //     this["colors"],
-  //     against,
-  //     startContrast,
-  //     endContrast
-  //   );
-  //   return this;
-  // }
+  filterByContrast(against, startContrast = 0.05, endContrast) {
+    this["colors"] = filterByContrast(
+      this["colors"],
+      against,
+      startContrast,
+      endContrast
+    );
+    return this;
+  }
   /**
    * @function
    * @description Returns colors in the specified hue ranges between 0 to 360.
