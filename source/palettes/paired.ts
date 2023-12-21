@@ -31,10 +31,10 @@ import { interpolatorConfig } from "../fp/defaults.ts";
 console.log(pairedScheme("green",{hueStep:6,iterations:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
  */
-const pairedScheme = (
+function pairedScheme(
   color: Color,
   options?: PairedSchemeOptions
-): Color[] | Color => {
+): Color[] | Color {
   // eslint-disable-next-line prefer-const
   let { iterations, via, hueStep, easingFunc } = options || {};
 
@@ -74,6 +74,6 @@ const pairedScheme = (
     // Return a slice of the array from the start to the half length of the array
     return results.slice(0, results.length / 2);
   }
-};
+}
 
 export { pairedScheme };

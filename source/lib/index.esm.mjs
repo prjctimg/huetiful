@@ -1504,11 +1504,16 @@ var filterBySaturation = (colors2, startSaturation = 0.05, endSaturation = 1, mo
     const modeChannel = `${mode2}.${matchChromaChannel(mode2)}`;
     const cb4 = getChannel(`${mode2}.${modeChannel}`);
     const reDigits = /([0-9])/g.exec(startSaturation)["0"];
-    return filteredArr(factor3, cb4)(
-      colors2,
-      normalize(reDigits, modeChannel),
-      normalize(endSaturation, modeChannel)
+    const length = colors2 == null ? 0 : colors2.length;
+    let result = new Array(length);
+    result = result.concat(
+      ...filteredArr(factor3, cb4)(
+        colors2,
+        normalize(reDigits, modeChannel),
+        normalize(endSaturation, modeChannel)
+      )
     );
+    return result;
   } else {
     throw Error(
       `The passed in color space ${mode2} has no chroma or saturation channel. Try 'jch'`
@@ -1566,41 +1571,58 @@ var luminance_x = (x) => {
 };
 
 // filterBy/filterByLuminance.ts
-var filterByLuminance = (colors2, startLuminance = 0.05, endLuminance = 1) => {
+function filterByLuminance(colors2, startLuminance = 0.05, endLuminance = 1) {
   const factor3 = "luminance";
   const cb4 = getLuminance;
-  return filteredArr(factor3, cb4)(colors2, startLuminance, endLuminance);
-};
+  const length = colors2 == null ? 0 : colors2.length;
+  let result = new Array(length);
+  result = result.concat(
+    ...filteredArr(factor3, cb4)(colors2, startLuminance, endLuminance)
+  );
+  return result;
+}
 
 // filterBy/filterByHue.ts
-var filterByHue = (colors2, startHue = 0, endHue = 360) => {
+function filterByHue(colors2, startHue = 0, endHue = 360) {
+  const length = colors2 == null ? 0 : colors2.length;
+  let result = new Array(length);
   const factor3 = "hue";
   const cb4 = getChannel("lch.h");
-  return filteredArr(factor3, cb4)(colors2, startHue, endHue);
-};
+  result = result.concat(...filteredArr(factor3, cb4)(colors2, startHue, endHue));
+  return result;
+}
 
 // fp/string/matchLightnessChannel.ts
-var matchLightnessChannel = (colorSpace) => {
+var matchLightnessChannel = (colorspace) => {
+  colorspace = checkArg(colorspace, "jch");
   const reLightness = /(j|l)/i;
-  const ch = reLightness.exec(colorSpace)["0"];
-  if (reLightness.test(colorSpace)) {
-    return `${colorSpace}.${ch}`;
+  const ch = reLightness.exec(colorspace)["0"];
+  if (reLightness.test(colorspace)) {
+    return `${colorspace}.${ch}`;
   } else {
-    throw Error(`The color space ${colorSpace} has no lightness channel.`);
+    throw Error(`The color space ${colorspace} has no lightness channel.`);
   }
 };
 
 // filterBy/filterByLightness.ts
-var filterByLightness = (colors2, startLightness = 5, endLightness = 100, mode2) => {
+function filterByLightness(colors2, startLightness = 5, endLightness = 100, colorspace) {
   const factor3 = "lightness";
-  const cb4 = getChannel(`${mode2}.${matchLightnessChannel(mode2)}`);
-  return filteredArr(factor3, cb4)(colors2, startLightness, endLightness);
-};
+  const cb4 = getChannel(`${matchLightnessChannel(colorspace)}`);
+  const length = colors2 == null ? 0 : colors2.length;
+  let result = [];
+  result = result.concat(
+    ...filteredArr(factor3, cb4)(colors2, startLightness, endLightness)
+  );
+  return result;
+}
+filterByLightness.prototype = ColorArray;
 
 // filterBy/filterByDistance.ts
 import { differenceEuclidean as differenceEuclidean2 } from "culori/fn";
-var filterByDistance = (colors2, against, startDistance = 0.05, endDistance, mode2, weights) => {
+function filterByDistance(colors2, against, startDistance = 0.05, endDistance, mode2, weights) {
   const factor3 = "distance";
+  const length = colors2 == null ? 0 : colors2.length;
+  let result = new Array(length);
   against = toHex(against);
   const cb4 = (against2, mode3) => (color2) => {
     return differenceEuclidean2(mode3 || "lch", weights || [1, 1, 1, 0])(
@@ -1608,12 +1630,15 @@ var filterByDistance = (colors2, against, startDistance = 0.05, endDistance, mod
       color2
     );
   };
-  return filteredArr(factor3, cb4(against, mode2))(
-    colors2,
-    startDistance,
-    endDistance
+  result = result.concat(
+    ...filteredArr(factor3, cb4(against, mode2))(
+      colors2,
+      startDistance,
+      endDistance
+    )
   );
-};
+  return result;
+}
 
 // getters_and_setters/contrast.ts
 import { wcagContrast } from "culori/fn";
@@ -1648,10 +1673,16 @@ var getContrast = (color2, against) => {
 
 // filterBy/filterByContrast.ts
 function filterByContrast(colors2, against, startContrast = 0.05, endContrast) {
+  const length = colors2 == null ? 0 : colors2.length;
+  let result = [];
   const factor3 = "contrast";
   const cb4 = (against2) => (color2) => getContrast(color2, against2);
-  return filteredArr(factor3, cb4(against))(colors2, startContrast, endContrast);
+  result = result.concat(
+    ...filteredArr(factor3, cb4(against))(colors2, startContrast, endContrast)
+  );
+  return result;
 }
+filterByContrast.prototype = ColorArray;
 
 // sortBy/sortByContrast.ts
 import { wcagContrast as wcagContrast2 } from "culori/fn";
@@ -2070,13 +2101,12 @@ var ColorArray = class extends Array {
   // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
    */
   filterBySaturation(startSaturation = 0.05, endSaturation = 1, mode2) {
-    this["colors"] = filterBySaturation(
+    return filterBySaturation(
       this["colors"],
       startSaturation,
       endSaturation,
       mode2
     );
-    return this;
   }
   /**
    * @function
@@ -2105,14 +2135,13 @@ var ColorArray = class extends Array {
   
   // [ '#00c000', '#007e00', '#164100', '#720000' ]
    */
-  filterByLightness(startLightness = 5, endLightness = 100) {
-    this["colors"] = filterByLightness(
-      this["colors"],
-      startLightness,
-      endLightness
-    );
-    return this;
-  }
+  // filterByLightness(startLightness = 5, endLightness = 100): Color[] {
+  //   return filterBy.filterByLightness(
+  //     this["colors"],
+  //     startLightness,
+  //     endLightness
+  //   );
+  // }
   /**
    * @function
    * @description Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
@@ -2178,10 +2207,19 @@ var ColorArray = class extends Array {
   console.log(filterByContrast(sample, 'green', '>=3'))
   // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
    */
-  filterByContrast(against, startContrast = 0.05, endContrast) {
-    let f = filterByContrast.bind(this["colors"]);
-    return f(against, startContrast, endContrast);
-  }
+  // filterByContrast(
+  //   against: Color,
+  //   startContrast = 0.05,
+  //   endContrast?: number
+  // ): ColorArray {
+  //   this["colors"] = filterBy.filterByContrast(
+  //     this["colors"],
+  //     against,
+  //     startContrast,
+  //     endContrast
+  //   );
+  //   return this;
+  // }
   /**
    * @function
    * @description Returns colors in the specified hue ranges between 0 to 360.

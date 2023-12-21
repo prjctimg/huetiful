@@ -25,14 +25,14 @@ import { interpolatorConfig } from "../fp/defaults";
  * @param options Optional channel specific overrides.
  * @returns A hexadecimal representation of the resultant color.
  */
-const interpolateSpline = (
+function interpolateSpline(
   colors: Color[],
   mode?: HueColorSpaces,
   samples?: number,
   kind?: "natural" | "monotone" | "basis",
   closed = false,
   options?: InterpolatorOptions
-): Color[] => {
+): Color[] {
   let {
     chromaInterpolator,
     hueFixup,
@@ -89,7 +89,7 @@ const interpolateSpline = (
     result = result.push(toHex(f(0.5)));
   }
   return result;
-};
+}
 
 const defaultInterpolator = (
   colors: Color[],

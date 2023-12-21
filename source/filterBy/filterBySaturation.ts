@@ -48,8 +48,7 @@ const filterBySaturation = (
 
     // @ts-ignore
     const reDigits: number = /([0-9])/g.exec(startSaturation)["0"];
-    const length = colors == null ? 0 : colors.length;
-    let result = new Array(length);
+    let result = [];
 
     result = result.concat(
       ...filteredArr(factor, cb)(

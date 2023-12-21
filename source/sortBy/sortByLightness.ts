@@ -53,18 +53,17 @@ sortByLightness(sample,'desc')
 
  */
 // For lightness use a different color space
-const sortByLightness = (
+function sortByLightness(
   colors: Color[],
   order: "asc" | "desc",
   mode?: HueColorSpaces
-): Color[] => {
+): Color[] {
   const factor: Factor = "lightness";
   mode = checkArg(mode, "lch65");
 
   const cb = getChannel(`${mode}.${matchLightnessChannel(mode)}`);
   //Sorting the color array of object by the 'temp' property in the specified order.
-
   return sortedArr(factor, cb, order)(colors);
-};
+}
 
 export { sortByLightness };

@@ -39,8 +39,8 @@ function filterByLuminance(
   // Create an object that has the luminance and name of color as properties.
   const factor: Factor = "luminance";
   const cb = getLuminance;
-  const length = colors == null ? 0 : colors.length;
-  let result = new Array(length);
+
+  let result = [];
   result = result.concat(
     ...filteredArr(factor, cb)(colors, startLuminance, endLuminance)
   );

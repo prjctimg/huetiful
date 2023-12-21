@@ -10,7 +10,7 @@ import {
   interpolatorSplineBasisClosed,
   easingSmootherstep,
 } from "culori/fn";
-import type { Color, EarthtoneOptions } from "../types";
+import type { Color, EarthtoneOptions, HueColorSpaces } from "../types";
 import { toHex } from "../converters/toHex.ts";
 import { checkArg } from "../fp/misc.ts";
 import { interpolatorConfig } from "../fp/defaults.ts";
@@ -33,11 +33,11 @@ console.log(earthtone("pink",{earthtones:'clay',iterations:5 }))
 
  */
 
-const earthtone = (
+function earthtone(
   color: Color,
-  colorspace,
+  colorspace?: HueColorSpaces,
   options?: EarthtoneOptions
-): Color[] => {
+): Color[] {
   let { iterations, earthtones } = options || {};
 
   iterations = checkArg(iterations, 1);
@@ -65,6 +65,6 @@ const earthtone = (
   } else {
     return samples(terations).map((t) => toHex(f(t)));
   }
-};
+}
 
 export { earthtone };

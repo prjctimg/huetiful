@@ -2,16 +2,15 @@
 // Original source from   George Francis: Coloring with Code
 // Can we also lightnessMapper palette types to create hue shifted variants per each color in the palette ?
 
-import { easingSmoothstep, modeLch, samples, useMode } from 'culori/fn';
-import type { Color, HueShiftOptions } from '../types';
-import { adjustHue } from '../fp/number/adjustHue.ts';
-import { toHex } from '../converters/toHex.ts';
-import { checkArg } from '../fp/misc.ts';
-const lightnessMapper =
-  (n: number) =>
-  (start1: number, end1: number) =>
-  (start2: number, end2: number) =>
+import { easingSmoothstep, modeLch, samples, useMode } from "culori/fn";
+import type { Color, HueShiftOptions } from "../types";
+import { adjustHue } from "../fp/number/adjustHue.ts";
+import { toHex } from "../converters/toHex.ts";
+import { checkArg } from "../fp/misc.ts";
+function lightnessMapper(n: number) {
+  return (start1: number, end1: number) => (start2: number, end2: number) =>
     ((n - start1) / (end1 - start1)) * (end2 - start2) + start2;
+}
 
 /**
  * @function
@@ -36,7 +35,7 @@ console.log(hueShiftedPalette);
 ]
  */
 
-const hueShift = (color: Color, options?: HueShiftOptions): Color[] => {
+function hueShift(color: Color, options?: HueShiftOptions): Color[] {
   const toLch = useMode(modeLch);
   color = toLch(toHex(color));
 
@@ -54,40 +53,38 @@ const hueShift = (color: Color, options?: HueShiftOptions): Color[] => {
   const palette: Color[] = [color];
 
   // Maximum number of iterations possible.
-
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
-
   for (let i = 1; i < iterations; i++) {
     //adjustHue checks hue values are clamped.
-    const hueDark = adjustHue(color['h'] - hueStep * i);
-    const hueLight = adjustHue(color['h'] + hueStep * i);
+    const hueDark = adjustHue(color["h"] - hueStep * i);
+    const hueLight = adjustHue(color["h"] + hueStep * i);
 
     // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
     const lightnessDark = lightnessMapper(easingFunc(tValues[i - 1]))(
       0.1,
       iterations
-    )(color['l'], minLightness);
+    )(color["l"], minLightness);
 
     const lightnessLight = lightnessMapper(easingFunc(tValues[i - 1]))(
       0.05,
       iterations
-    )(color['l'], maxLightness);
+    )(color["l"], maxLightness);
 
     palette.push({
       l: lightnessDark,
-      c: color['c'],
+      c: color["c"],
       h: hueDark,
-      mode: 'lch'
+      mode: "lch",
     });
 
     palette.unshift({
       l: lightnessLight,
-      c: color['c'],
+      c: color["c"],
       h: hueLight,
-      mode: 'lch'
+      mode: "lch",
     });
   }
   return palette.map(toHex);
-};
+}
 
 export { hueShift };

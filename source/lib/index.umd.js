@@ -4785,12 +4785,14 @@ var huetiful = (() => {
     let factor4 = "saturation";
     if (matchChromaChannel(mode2)) {
       mode2 = checkArg(mode2, "jch");
-      let modeChannel = `${mode2}.${matchChromaChannel(mode2)}`, cb4 = getChannel(`${mode2}.${modeChannel}`), reDigits = /([0-9])/g.exec(startSaturation)[0];
-      return filteredArr(factor4, cb4)(
-        colors2,
-        normalize(reDigits, modeChannel),
-        normalize(endSaturation, modeChannel)
-      );
+      let modeChannel = `${mode2}.${matchChromaChannel(mode2)}`, cb4 = getChannel(`${mode2}.${modeChannel}`), reDigits = /([0-9])/g.exec(startSaturation)[0], length = colors2 == null ? 0 : colors2.length, result = new Array(length);
+      return result = result.concat(
+        ...filteredArr(factor4, cb4)(
+          colors2,
+          normalize(reDigits, modeChannel),
+          normalize(endSaturation, modeChannel)
+        )
+      ), result;
     } else
       throw Error(
         `The passed in color space ${mode2} has no chroma or saturation channel. Try 'jch'`
@@ -4814,40 +4816,53 @@ var huetiful = (() => {
   }, rgb2luminance = (color2) => (color2 = toRgb(toHex(color2)), 0.7152 * luminance_x(color2.g) + 0.2126 * luminance_x(color2.r) + 0.0722 * luminance_x(color2.b)), luminance_x = (x) => (x /= 255, x <= 0.03928 ? x / 12.92 : pow((x + 0.055) / 1.055, 2.4));
 
   // filterBy/filterByLuminance.ts
-  var filterByLuminance = (colors2, startLuminance = 0.05, endLuminance = 1) => filteredArr("luminance", getLuminance)(colors2, startLuminance, endLuminance);
+  function filterByLuminance(colors2, startLuminance = 0.05, endLuminance = 1) {
+    let factor4 = "luminance", cb4 = getLuminance, length = colors2 == null ? 0 : colors2.length, result = new Array(length);
+    return result = result.concat(
+      ...filteredArr(factor4, cb4)(colors2, startLuminance, endLuminance)
+    ), result;
+  }
 
   // filterBy/filterByHue.ts
-  var filterByHue = (colors2, startHue = 0, endHue = 360) => {
-    let factor4 = "hue", cb4 = getChannel("lch.h");
-    return filteredArr(factor4, cb4)(colors2, startHue, endHue);
-  };
+  function filterByHue(colors2, startHue = 0, endHue = 360) {
+    let length = colors2 == null ? 0 : colors2.length, result = new Array(length), factor4 = "hue", cb4 = getChannel("lch.h");
+    return result = result.concat(...filteredArr(factor4, cb4)(colors2, startHue, endHue)), result;
+  }
 
   // fp/string/matchLightnessChannel.ts
-  var matchLightnessChannel = (colorSpace) => {
-    let reLightness = /(j|l)/i, ch = reLightness.exec(colorSpace)[0];
-    if (reLightness.test(colorSpace))
-      return `${colorSpace}.${ch}`;
-    throw Error(`The color space ${colorSpace} has no lightness channel.`);
+  var matchLightnessChannel = (colorspace) => {
+    colorspace = checkArg(colorspace, "jch");
+    let reLightness = /(j|l)/i, ch = reLightness.exec(colorspace)[0];
+    if (reLightness.test(colorspace))
+      return `${colorspace}.${ch}`;
+    throw Error(`The color space ${colorspace} has no lightness channel.`);
   };
 
   // filterBy/filterByLightness.ts
-  var filterByLightness = (colors2, startLightness = 5, endLightness = 100, mode2) => {
-    let factor4 = "lightness", cb4 = getChannel(`${mode2}.${matchLightnessChannel(mode2)}`);
-    return filteredArr(factor4, cb4)(colors2, startLightness, endLightness);
-  };
+  function filterByLightness(colors2, startLightness = 5, endLightness = 100, colorspace) {
+    let factor4 = "lightness", cb4 = getChannel(`${matchLightnessChannel(colorspace)}`), length = colors2 == null ? 0 : colors2.length, result = [];
+    return result = result.concat(
+      ...filteredArr(factor4, cb4)(colors2, startLightness, endLightness)
+    ), result;
+  }
+  filterByLightness.prototype = ColorArray;
 
   // filterBy/filterByDistance.ts
-  var filterByDistance = (colors2, against, startDistance = 0.05, endDistance, mode2, weights) => {
-    let factor4 = "distance";
-    return against = toHex(against), filteredArr(factor4, ((against2, mode3) => (color2) => differenceEuclidean(mode3 || "lch", weights || [1, 1, 1, 0])(
+  function filterByDistance(colors2, against, startDistance = 0.05, endDistance, mode2, weights) {
+    let factor4 = "distance", length = colors2 == null ? 0 : colors2.length, result = new Array(length);
+    against = toHex(against);
+    let cb4 = (against2, mode3) => (color2) => differenceEuclidean(mode3 || "lch", weights || [1, 1, 1, 0])(
       against2,
       color2
-    ))(against, mode2))(
-      colors2,
-      startDistance,
-      endDistance
     );
-  };
+    return result = result.concat(
+      ...filteredArr(factor4, cb4(against, mode2))(
+        colors2,
+        startDistance,
+        endDistance
+      )
+    ), result;
+  }
 
   // getters_and_setters/contrast.ts
   var factor2 = "contrast", cb3 = (color2) => (against) => getContrast(color2, against), baseFunc = (against, order, colors2, colorObj2) => {
@@ -4862,8 +4877,12 @@ var huetiful = (() => {
 
   // filterBy/filterByContrast.ts
   function filterByContrast(colors2, against, startContrast = 0.05, endContrast) {
-    return filteredArr("contrast", ((against2) => (color2) => getContrast(color2, against2))(against))(colors2, startContrast, endContrast);
+    let length = colors2 == null ? 0 : colors2.length, result = [], factor4 = "contrast", cb4 = (against2) => (color2) => getContrast(color2, against2);
+    return result = result.concat(
+      ...filteredArr(factor4, cb4(against))(colors2, startContrast, endContrast)
+    ), result;
   }
+  filterByContrast.prototype = ColorArray;
 
   // sortBy/sortByContrast.ts
   var sortByContrast = (colors2, against, order) => sortedArr("contrast", ((against2) => (color2) => contrast(color2, against2))(against), order)(colors2);
@@ -5146,12 +5165,12 @@ var huetiful = (() => {
     // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
      */
     filterBySaturation(startSaturation = 0.05, endSaturation = 1, mode2) {
-      return this.colors = filterBySaturation(
+      return filterBySaturation(
         this.colors,
         startSaturation,
         endSaturation,
         mode2
-      ), this;
+      );
     }
     /**
      * @function
@@ -5180,13 +5199,13 @@ var huetiful = (() => {
     
     // [ '#00c000', '#007e00', '#164100', '#720000' ]
      */
-    filterByLightness(startLightness = 5, endLightness = 100) {
-      return this.colors = filterByLightness(
-        this.colors,
-        startLightness,
-        endLightness
-      ), this;
-    }
+    // filterByLightness(startLightness = 5, endLightness = 100): Color[] {
+    //   return filterBy.filterByLightness(
+    //     this["colors"],
+    //     startLightness,
+    //     endLightness
+    //   );
+    // }
     /**
      * @function
      * @description Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
@@ -5251,9 +5270,19 @@ var huetiful = (() => {
     console.log(filterByContrast(sample, 'green', '>=3'))
     // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
      */
-    filterByContrast(against, startContrast = 0.05, endContrast) {
-      return filterByContrast.bind(this.colors)(against, startContrast, endContrast);
-    }
+    // filterByContrast(
+    //   against: Color,
+    //   startContrast = 0.05,
+    //   endContrast?: number
+    // ): ColorArray {
+    //   this["colors"] = filterBy.filterByContrast(
+    //     this["colors"],
+    //     against,
+    //     startContrast,
+    //     endContrast
+    //   );
+    //   return this;
+    // }
     /**
      * @function
      * @description Returns colors in the specified hue ranges between 0 to 360.

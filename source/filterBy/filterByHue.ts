@@ -31,8 +31,7 @@ filterByHue(sample, 20, 80)
  */
 
 function filterByHue(colors: Color[], startHue = 0, endHue = 360): Color[] {
-  const length = colors == null ? 0 : colors.length;
-  let result = new Array(length);
+  let result = [];
   const factor: Factor = "hue";
   const cb = getChannel("lch.h");
 

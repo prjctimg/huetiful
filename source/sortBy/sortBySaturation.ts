@@ -1,7 +1,7 @@
-import type { Factor, Color, HueColorSpaces } from '../types';
-import { getChannel } from '../getters_and_setters/get.ts';
-import { sortedArr } from '../fp/array/sortedArr.ts';
-import { checkArg, matchChromaChannel } from '../fp/index.ts';
+import type { Factor, Color, HueColorSpaces } from "../types";
+import { getChannel } from "../getters_and_setters/get.ts";
+import { sortedArr } from "../fp/array/sortedArr.ts";
+import { checkArg, matchChromaChannel } from "../fp/index.ts";
 
 /**
  * @function
@@ -51,24 +51,22 @@ console.log(sortedDescending)
 
  */
 
-const sortBySaturation = (
+function sortBySaturation(
   colors: Color[],
-  order: 'asc' | 'desc',
+  order: "asc" | "desc",
   mode?: HueColorSpaces
-): Color[] => {
-  const factor: Factor = 'saturation';
-  mode = checkArg(mode, 'jch');
+): Color[] {
+  const factor: Factor = "saturation";
+  mode = checkArg(mode, "jch");
   if (matchChromaChannel(mode)) {
-    const chromaChannel = matchChromaChannel(mode);
-    const cb = getChannel(`${mode}.${chromaChannel}`);
+    const cb = getChannel(matchChromaChannel(mode));
     //Sorting the color array of object by the 'saturation' property in the specified order.
-
     return sortedArr(factor, cb, order)(colors);
   } else {
     throw Error(
       `The passed in color space ${mode} has no chroma channel. Try 'jch' instead.`
     );
   }
-};
+}
 
 export { sortBySaturation };

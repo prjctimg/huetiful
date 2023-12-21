@@ -1,4 +1,6 @@
 import { filteredArr } from "../fp/array/filteredArr.ts";
+import { ColorArray } from "../fp/index.ts";
+import { checkArg } from "../fp/misc.ts";
 import { matchLightnessChannel } from "../fp/string/matchLightnessChannel.ts";
 import { getChannel } from "../getters_and_setters/get.ts";
 import { Color, Factor, HueColorSpaces } from "../types";
@@ -8,7 +10,7 @@ import { Color, Factor, HueColorSpaces } from "../types";
  * @param  colors The array of colors to filter.
  * @param  startLightness The minimum end of the lightness range.
  * @param  endLightness The maximum end of the lightness range.
- * @param mode The mode colorspace to retrieve the lightness value from. The default is lch65
+ * @param colorspace The mode colorspace to retrieve the lightness value from. The default is lch65
  * @returns Array of filtered colors.
  * @example
  * 
@@ -36,19 +38,21 @@ function filterByLightness(
   colors: Color[],
   startLightness = 5,
   endLightness = 100,
-  mode?: HueColorSpaces
+  colorspace?: HueColorSpaces
 ): Color[] {
   // Formatting color tokens to parseable type
   // Create an object that has the lightness and name of color as properties.
   const factor: Factor = "lightness";
-  const cb = getChannel(`${mode}.${matchLightnessChannel(mode)}`);
+  const cb = getChannel(`${matchLightnessChannel(colorspace)}`);
   const length = colors == null ? 0 : colors.length;
-  let result = new Array(length);
+  let result = [];
   result = result.concat(
     ...filteredArr(factor, cb)(colors, startLightness, endLightness)
   );
 
   return result;
 }
+
+filterByLightness.prototype = ColorArray;
 
 export { filterByLightness };

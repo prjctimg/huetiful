@@ -1,11 +1,11 @@
-import { nearest, differenceEuclidean, useMode, modeLch } from 'culori/fn';
-import { Color } from '../types';
-import { scheme } from './base.ts';
-import { toHex } from '../converters/toHex.ts';
+import { nearest, differenceEuclidean, useMode, modeLch } from "culori/fn";
+import { Color } from "../types";
+import { scheme } from "./base.ts";
+import { toHex } from "../converters/toHex.ts";
 
 const { keys } = Object;
 const isColorEqual = (c1: Color, c2: Color): boolean => {
-  return c1['h'] === c2['h'] && c1['l'] === c2['l'] && c1['c'] === c2['c'];
+  return c1["h"] === c2["h"] && c1["l"] === c2["l"] && c1["c"] === c2["c"];
 };
 
 /**
@@ -35,14 +35,14 @@ let sample = [
 console.log(discoverPalettes(sample, "tetradic"))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
  */
-const discoverPalettes = (
+function discoverPalettes(
   colors: Color[],
-  schemeType?: 'analogous' | 'triadic' | 'tetradic' | 'complementary'
-): Color[] | object => {
+  schemeType?: "analogous" | "triadic" | "tetradic" | "complementary"
+): Color[] | object {
   const toLch = useMode(modeLch);
   colors = colors.map((color) => toLch(toHex(color)));
   const palettes = {};
-  const schemeKeys = ['analogous', 'triadic', 'tetradic', 'complementary'];
+  const schemeKeys = ["analogous", "triadic", "tetradic", "complementary"];
   const targetPalettes = {};
   for (const color of colors) {
     schemeKeys.forEach((s) => (targetPalettes[s] = scheme(s)(color)));
@@ -59,11 +59,11 @@ const discoverPalettes = (
 
         const match = nearest(
           availableColors,
-          differenceEuclidean('lch')
+          differenceEuclidean("lch")
         )(targetColor)[0];
 
         // @ts-ignore
-        variance += differenceEuclidean('lch')(targetColor, match);
+        variance += differenceEuclidean("lch")(targetColor, match);
 
         palette.push(match);
       }
@@ -74,15 +74,15 @@ const discoverPalettes = (
     }
   }
 
-  if (typeof schemeType === 'string') {
+  if (typeof schemeType === "string") {
     return palettes[schemeType.toLowerCase()];
-  } else if (typeof schemeType === 'undefined') {
+  } else if (typeof schemeType === "undefined") {
     return palettes;
   } else {
     throw Error(
       `${schemeType} is not a valid scheme. The schemes are triadic | tetradic | analogous | complementary`
     );
   }
-};
+}
 
 export { discoverPalettes };

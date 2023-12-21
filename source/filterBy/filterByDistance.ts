@@ -41,8 +41,7 @@ function filterByDistance(
   // How do I get the distance
   // Create an object that has the distance and name of color as properties.
   const factor: Factor = "distance";
-  const length = colors == null ? 0 : colors.length;
-  let result = new Array(length);
+  let result = [];
   against = toHex(against);
   const cb = (against, mode: ColorSpaces) => (color) => {
     // @ts-nocheck
