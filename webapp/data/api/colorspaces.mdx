@@ -1,0 +1,104 @@
+## Channel ranges.
+
+Certain colorspaces have channel ranges that can be unintuitive to work with. For example, the `jch` colorspace has its lightness channel (`j`) in the range [0,0.221] whilst `lch` is in the range [0,100]. To make it easier to pass channel values without exceeding the supported ranges unintentionally, the library treats certain channels in specific colorspaces a bit specially, particularly the lightness and chroma channels of hue based color spaces and the RGB colorspace which has all channels normalized to [0,1] by Culori.
+
+The `normalize` function takes a lightness/saturation value and the colorspace and returns a valid value for that channel if the passed in value is not within supported range.
+
+This means that we can pass a value like `0.5` to the lightness channel of `jch` (which is greater than the maximum range) without getting awkward results. The passed in value is normalized to the supported range internally returning what you'd expect. Consider the example below:
+
+
+```js
+
+let jchColor = {
+  j: 0.5,
+  c: 60, // The c channel is in the range [0,0.190]
+  h: 180,
+  mode: "jch",
+};
+
+console.log(normalize(jchColor["j"], "jch.j"));
+// 0.1105
+
+console.log(normalize(jchColor["c"], "jch.c"));
+// 0.11399999999999999
+
+```
+
+
+Optionally, you can pass a value between [1,100] and it will normalize the value as well:
+
+```js
+
+let jchColor = {
+  j: 50, // here we pass the value as if in the range [0,100]
+  c: 0.7,
+  h: 180,
+  mode: "jch",
+};
+
+console.log(normalize(jchColor["j"], "jch.j"));
+// 0.1105
+
+console.log(normalize(jchColor["c"], "jch.c"));
+// 0.13299999999999998
+
+```
+
+The hue channel is not normalized because it has uniform ranges [0,360] for most color spaces.
+
+
+### RGB
+
+Culori does not accept RGB channel values in the range [0,255] which is what most people are used to. Consider the example below:
+
+```js
+
+import { converter, formatHex, jch } from "culori";
+
+let rgbColor = {
+  r: 0.5,
+  g: 0.1,
+  b: 0.06,
+  mode: "rgb",
+};
+
+console.log(formatHex(converter("rgb")(rgbColor)));
+//#801a0f
+
+```
+
+Now lets try to pass in the values as if in the range [0,255]. Note that a default pure white is thrown:
+
+```js
+import { converter, formatHex, jch } from "culori";
+
+let rgbColor = {
+  r: 50,
+  g: 100,
+  b: 160,
+  mode: "rgb",
+};
+
+console.log(formatHex(converter("rgb")(rgbColor)));
+// #ffffff (or pure white)
+
+
+```
+
+To address this incompatibility, `toHex` allows us to pass RGB values in any range and get the correct results:
+
+```js
+
+let rgbColor = {
+  r: 50,
+  g: 100,
+  b: 160,
+  mode: "rgb",
+};
+
+console.log(toHex(rgbColor));
+// //#801a0f
+
+```
+
+Other color spaces such as HSL,HWB,HSI are treated as is and won't be normalized.
