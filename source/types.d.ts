@@ -1,4 +1,5 @@
 export type Illuminant = "A" | "C" | "D50" | "D55" | "D65" | "D75";
+export type ChannelArray = [string, number, number, number, number?]
 export type ColorOptions = {
   alpha?: number;
   lightness?: number;
@@ -83,16 +84,16 @@ type Options = {
    * * @param earthtone The earthtone to interpolate with.
    */
   earthtones?:
-    | "light-gray"
-    | "silver"
-    | "sand"
-    | "tupe"
-    | "mahogany"
-    | "brick-red"
-    | "clay"
-    | "cocoa"
-    | "dark-brown"
-    | "dark";
+  | "light-gray"
+  | "silver"
+  | "sand"
+  | "tupe"
+  | "mahogany"
+  | "brick-red"
+  | "clay"
+  | "cocoa"
+  | "dark-brown"
+  | "dark";
 
   /**
    *@param The amount of samples to return in the result collection.
@@ -190,7 +191,7 @@ export type Color =
   | number
   | string
   | object
-  | [string, number, number, number, number?];
+  | ChannelArray
 
 /**
  * @param
