@@ -244,7 +244,19 @@ export type ColorSpaces =
   | "oklab"
   | "rgb";
 
-export type HueColorSpaces = "hsl" | "hsv" | "hsi" | "oklch" | "lch" | "hwb";
+export type HueColorSpaces =
+  | "jch"
+  | "hsl"
+  | "hsv"
+  | "hsi"
+  | "oklch"
+  | "lch"
+  | "hwb"
+  | "okhsl"
+  | "okhsv"
+  | "lch65"
+  | "lchuv"
+  | "dlch";
 
 export type ScaleValues =
   | "100"

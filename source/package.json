@@ -2,15 +2,13 @@
   "name": "huetiful-js",
   "version": "1.7.87",
   "type": "module",
-  "main": "./lib/index.cjs",
+  "main": "./lib/huetiful.cjs",
   "module": "./lib/huetiful.esm.mjs",
   "browser": "./lib/huetiful.min.js",
   "jsdelivr": "./lib/huetiful.umd.js",
   "types": "./lib/huetiful.d.ts",
   "description": "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
   "dependencies": {
-    "ciebase-ts": "^0.1.5",
-    "ciecam02-ts": "^0.1.0",
     "culori": "^3.0.1"
   },
   "devDependencies": {
@@ -33,7 +31,7 @@
     "docs": "cd .config && npx typedoc  && cd .. && node ./.scripts/docs.cjs && rm -r ../webapp/data/temp && git add .",
     "build": "node .scripts/build.cjs",
     "prepare": " npm run build && npm run types",
-    "types": "dts-bundle-generator -o ./lib/index.d.ts ./index.ts",
+    "types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./index.ts",
     "lint": "eslint --ignore-pattern .config/.eslintrc.json --ext .ts",
     "format": "prettier --config .config/.prettierrc.json \"../**/*.ts\" --write",
     "start": "nodemon app.js --watch "

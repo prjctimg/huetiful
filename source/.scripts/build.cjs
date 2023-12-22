@@ -18,7 +18,7 @@ build({
   format: "cjs",
   ...sharedConfig,
   entryPoints: [".//index.ts"],
-  outfile: "./lib/index.cjs",
+  outfile: "./lib/huetiful.cjs",
 });
 
 //Bundled ESM
@@ -26,7 +26,7 @@ build({
   ...sharedConfig,
   external: Object.keys(dependencies),
   format: "esm",
-  outfile: "./lib/index.esm.mjs",
+  outfile: "./lib/huetiful.esm.mjs",
 });
 
 //Bundled IIFE
@@ -34,7 +34,7 @@ build({
   ...sharedConfig,
   platform: "browser",
   format: "iife",
-  outfile: "./lib/index.umd.js",
+  outfile: "./lib/huetiful.umd.js",
   globalName: "huetiful",
   minifySyntax: true,
 });
@@ -43,7 +43,7 @@ build({
   ...sharedConfig,
   platform: "browser",
   format: "iife",
-  outfile: "../lib/index.umd.js",
+  outfile: "../lib/huetiful.umd.js",
   globalName: "huetiful",
   minifySyntax: true,
   minify: true,
