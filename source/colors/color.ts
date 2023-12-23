@@ -1,4 +1,4 @@
-import { load, ColorArray } from "../fp/array/colorArray";
+import { load, ColorArray } from "../colorArray";
 import { interpolate } from "culori/fn";
 import { interpolatorConfig } from "../fp/defaults";
 import {
@@ -45,7 +45,6 @@ import type {
   PairedSchemeOptions,
   HueColorSpaces,
 } from "../types";
-
 
 class IColor {
   constructor(c: Color, options?: ColorOptions) {
@@ -132,8 +131,6 @@ class IColor {
     this["_color"] = nativeDarken(this["_color"], amount);
     return this;
   }
-
-
 
   toHex(): IColor {
     this["_color"] = nativeToHex(this["_color"]);

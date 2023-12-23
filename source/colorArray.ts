@@ -4,13 +4,13 @@ import type {
   Color,
   HueColorSpaces,
   InterpolatorOptions,
-} from "../../types";
+} from "./types";
 import {
   discoverPalettes as nativeDiscoverPalettes,
   interpolateSpline as nativeInterpolator,
-} from "../../palettes";
-import * as filterBy from "../../filterBy";
-import * as sortBy from "../../sortBy";
+} from "./palettes";
+import * as filterBy from "./filterBy";
+import * as sortBy from "./sortBy";
 import {
   getNearestChroma as nativeMinChroma,
   getFarthestChroma as nativeMaxChroma,
@@ -18,7 +18,7 @@ import {
   getNearestHue as nativeMinHue,
   getNearestLightness as nativeMaxLightness,
   getFarthestLightness as nativeMinLightness,
-} from "../../getters_and_setters";
+} from "./utils";
 
 class ColorArray extends Array {
   // private _colors: ColorToken[];
