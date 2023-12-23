@@ -28,7 +28,6 @@ import {
   pastel as nativePastel,
   hueShift as nativeHueShift,
   getHueFamily as nativeGetHue,
-  colorToCam,
   pairedScheme as nativePairedScheme,
   earthtone as nativeEarthtone,
   getComplimentaryHue as nativeGetComplimentaryHue,
@@ -46,7 +45,7 @@ import type {
   PairedSchemeOptions,
   HueColorSpaces,
 } from "../types";
-import { IJchProps } from "ciecam02-ts";
+
 
 class IColor {
   constructor(c: Color, options?: ColorOptions) {
@@ -134,10 +133,8 @@ class IColor {
     return this;
   }
 
-  // Added viewing conditions options
-  toCam(): IJchProps {
-    return colorToCam(this["_color"]);
-  }
+
+
   toHex(): IColor {
     this["_color"] = nativeToHex(this["_color"]);
     return this["_color"];

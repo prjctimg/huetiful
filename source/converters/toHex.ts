@@ -18,15 +18,13 @@ console.log(toHex({ l: 50, c: 31, h: 100, alpha: 0.5, mode: "lch" }))
 console.log(toHex({ l: 50, c: 31, h: 100, mode: "lch" }))
 // #7b7941
  */
-const toHex = (color: Color): string => {
+function toHex(color: Color): string {
   // the result to return at the end of the function
   let src = {};
 
   // if its of type string and not a CSS named color then its probably hex so we don't convert it
-  if (
-    typeof color === 'string' &&
-    !Object.keys(colorsNamed).some((el) => el === color)
-  ) {
+  if (typeof color === 'string' &&
+    !Object.keys(colorsNamed).some((el) => el === color.toLowerCase())) {
     return color;
   } else {
     // If our color is an array
@@ -37,10 +35,8 @@ const toHex = (color: Color): string => {
       // set mode to a substring which trims the string at an index that is the reslt of length - 3
       const modeChannels = mode.substring(mode.length - 3);
       // Gets the channel key from the passed in mode
-
       // Store the channels excluding alpha
       const channels = (
-        src: object,
         colorArr: [string, number, number, number?]
       ) => {
         // Remove the mode element
@@ -86,6 +82,7 @@ const toHex = (color: Color): string => {
       // @ts-ignore
       src = (src['alpha'] < 1 && formatHex8(src)) || formatHex(src);
     }
+
     // if its a number use num2rgb
     else if (typeof color === 'number') {
       src = num2rgb(color, true);
@@ -96,6 +93,6 @@ const toHex = (color: Color): string => {
     // @ts-ignore
     return src;
   }
-};
+}
 
 export { toHex };

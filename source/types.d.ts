@@ -1,5 +1,5 @@
 export type Illuminant = "A" | "C" | "D50" | "D55" | "D65" | "D75";
-export type ChannelArray = [string, number, number, number, number?]
+export type ColorTuple = [string, number, number, number, number?]
 export type ColorOptions = {
   alpha?: number;
   lightness?: number;
@@ -191,7 +191,7 @@ export type Color =
   | number
   | string
   | object
-  | ChannelArray
+  | ColorTuple
 
 /**
  * @param
