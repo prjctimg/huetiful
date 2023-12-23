@@ -15,11 +15,12 @@ console.log(rgb2num("b2c3f1"))
 // 11715569
  */
 
-const rgb2num = (color: Color): number => {
-  const toRgb = useMode(modeRgb);
-  const rgb: Color = toRgb(toHex(color));
 
+
+function rgb2num(color: Color): number {
+
+  const rgb: Color = useMode(modeRgb)(toHex(color));
   return ((255 * rgb['r']) << 16) + ((255 * rgb['g']) << 8) + 255 * rgb['b'];
-};
+}
 
 export { rgb2num };

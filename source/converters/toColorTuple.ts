@@ -1,4 +1,4 @@
-import type { ColorTuple, Color, ColorSpaces } from '../types';
+import type { ColorTuple, Color, ColorSpaces, ColorObject } from '../types';
 import { toHex } from './toHex';
 import 'culori/all';
 import { converter } from 'culori/fn';
@@ -25,7 +25,10 @@ console.log(toColorTuple(rgbColor,'rgb'));
 
  */
 
+let a: ColorObject = {
+  mode: 'a98', alpha: 0.2,
 
+}
 
 function toColorTuple(color: Color, mode: ColorSpaces) {
 

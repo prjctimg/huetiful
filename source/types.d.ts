@@ -1,5 +1,11 @@
 export type Illuminant = "A" | "C" | "D50" | "D55" | "D65" | "D75";
 export type ColorTuple = [string, number, number, number, number?]
+
+
+
+// baseColor obj
+type _BaseColorObject = {}
+export type ColorObject = { 'mode': ColorSpaces; 'alpha'?: number }
 export type ColorOptions = {
   alpha?: number;
   lightness?: number;

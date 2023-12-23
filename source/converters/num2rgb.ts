@@ -1,9 +1,5 @@
 import type { Color } from '../types';
 import { toHex } from './toHex.ts';
-// If the value is a floating point then we treat the decimal value as the opacity of the color.
-
-// If the value passedin is a float then the decimal is treated as opacity
-// The outputn is rounded up when you pass in an integer
 
 /**
  * @function
@@ -17,7 +13,10 @@ import { toHex } from './toHex.ts';
 console.log(num2rgb(900, true))
 // #000384
  */
-const num2rgb = (num: number, hex = false): Color => {
+
+
+
+function num2rgb(num: number, hex = false): Color {
   if (typeof num === 'number' && num >= 0 && num <= 0xffffff) {
     const r = num >> 16;
     const g = (num >> 8) & 0xff;
@@ -27,17 +26,13 @@ const num2rgb = (num: number, hex = false): Color => {
       r: r / 255,
       g: g / 255,
       b: b / 255,
-      mode: 'rgb'
+      mode: 'lrgb'
     };
 
-    if (hex) {
-      return toHex(output);
-    } else {
-      return output;
-    }
+    return hex && toHex(output) || output;
   } else {
     throw Error('unknown num color: ' + num);
   }
-};
+}
 
 export { num2rgb };

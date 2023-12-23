@@ -17,29 +17,27 @@ import type { Color } from '../types';
 console.log(temp2Color(2542))
 // #ffa44a
  */
-const temp2Color = (kelvin: number, hex = false): Color => {
-  //Hue change starts at approx 655 Kelvins ???
-  const { log } = Math;
-  // Checking if the passed in value is within a problematic range that returns negative values on the blue channel.
-  //inRange(kelvin, 400, 650) ? (kelvin = eps) : kelvin;
-  //
+
+
+function temp2Color(kelvin: number, hex = false): Color {
+  const { log } = Math
   const temp = kelvin / 100;
 
-  let r: number, g: number, b: number;
+  var r: number, g: number, b: number;
   if (temp < 66) {
     r = 255;
     g =
       temp < 6
         ? 0
         : -155.25485562709179 -
-          0.44596950469579133 * (g = temp - 2) +
-          104.49216199393888 * log(g);
+        0.44596950469579133 * (g = temp - 2) +
+        104.49216199393888 * log(g);
     b =
       temp < 20
         ? 0
         : -254.76935184120902 +
-          0.8274096064007395 * (b = temp - 10) +
-          115.67994401066147 * log(b);
+        0.8274096064007395 * (b = temp - 10) +
+        115.67994401066147 * log(b);
   } else {
     r =
       351.97690566805693 +
@@ -63,6 +61,6 @@ const temp2Color = (kelvin: number, hex = false): Color => {
   } else {
     return result;
   }
-};
+}
 
 export { temp2Color };
