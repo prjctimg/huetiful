@@ -9,7 +9,7 @@ import {
   matchLightnessChannel,
   max,
   random,
-} from "./fp/index.js";
+} from "./helpers/index.js";
 import { toHex } from "./converters.js";
 import {
   interpolate,
@@ -21,6 +21,8 @@ import {
   wcagContrast,
   easingSmootherstep,
   modeLab,
+  nearest,
+  differenceHyab,
 } from "culori/fn";
 import "culori/css";
 import {
@@ -30,10 +32,11 @@ import {
   Order,
   callback,
   HueFamily,
+  DeficiencyType,
 } from "./types.js";
 
-import { matchChromaChannel, sortedArr, checkArg } from "./fp/index.js";
-import { isAchromatic } from "./colors/index.js";
+import { matchChromaChannel, sortedArr, checkArg } from "./helpers/index.js";
+
 /**
  *@function
  @description Gets the hue family which a a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
@@ -61,9 +64,7 @@ function getHueFamily(color: Color, mode?: HueColorSpaces): HueFamily {
         inRange(getChannel(`${mode}.h`)(color), minVal, maxVal)
       );
 
-      if (bool) {
-        return hue;
-      }
+      return bool && hue;
     })
     .filter((val) => typeof val === "string")[0] as HueFamily;
 }
@@ -738,8 +739,176 @@ function brighten(color: Color, value: number | string, colorspace): Color {
   return toHex(result);
 }
 
+/**
+ * @function
+ * @description Checks if a color is achromatic(without hue or simply grayscale).
+ * @param color The color to test if it is achromatic or not.
+ * @returns boolean Returns true if the color is achromatic else false
+ * @example 
+ * 
+ * import { isAchromatic } from "huetiful-js";
+import { formatHex8, interpolate, samples } from "culori"
+
+
+isAchromatic('pink')
+// false
+
+let sample = [
+  "#164100",
+  "#ffff00",
+  "#310000",
+  'pink'
+];
+
+console.log(map(sample, isAchromatic));
+
+// [false, false, false,false]
+
+isAchromatic('gray')
+// Returns true
+
+
+console.log(map(sample, isAchromatic));
+
+
+// we create an interpolation using black and white
+let f = interpolate(["black", "white"]);
+
+//We then create 12 evenly spaced samples and pass them to f as the `t` param required by an interpolating function.
+// Lastly we convert the color to hex for brevity for this example (otherwise color objects work fine too.)
+let grays = map(samples(12), (c) => formatHex8(f(c)));
+console.log(map(grays, isAchromatic));
+
+//
+ [ false, true, true,
+  true,  true, true,
+  true,  true, true,
+  true,  true, false
+]
+
+ */
+function isAchromatic(color: Color, mode?: HueColorSpaces): boolean {
+  const cb = (mode: string) =>
+    getChannel(`${matchChromaChannel(mode as string)}`)(color);
+
+  // Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
+  // @ts-ignore
+  return cb(mode) != false || 0 || NaN;
+}
+
+import {
+  filterDeficiencyDeuter,
+  filterDeficiencyProt,
+  filterDeficiencyTrit,
+  filterGrayscale,
+} from "culori/fn";
+import { colors, tailwindColors } from "./colors.js";
+
+// This module is focused on creating color blind safe palettes that adhere to the minimum contrast requirements
+
+// How can I achieve this ?
+// 1. First I pass the color(s) to a color vision deficiency simulation function
+// 2. Check if the color has the minimum required contrast as compared to a dark/light mode surface which can optionally be overriden
+// 3. Check the min luminance contrast ratio between the color and background.
+// 4. Find out which channels do I need to tweak in order to fix up the colors.
+// 5. Maybe provide an optional adaptive boolean which returns dark/light mode variant colors of the color blind safe palettes.
+
+// Add reference to articles
+// Read more about the minimum accepted values for palette accessibility
+
+function baseColorDeficiency(
+  def: "red" | "blue" | "green" | "monochromacy",
+  col: Color,
+  sev: number
+) {
+  let result: Color;
+  col = toHex(col);
+  switch (def) {
+    case "blue": // @ts-ignore
+      result = filterDeficiencyTrit(sev)(col);
+      break;
+    case "red": // @ts-ignore
+      result = filterDeficiencyProt(sev)(col);
+      break;
+    case "green": // @ts-ignore
+      result = filterDeficiencyDeuter(sev)(col);
+      break;
+    case "monochromacy":
+      result = filterGrayscale(sev, "lch")(col);
+      break;
+  }
+
+  return toHex(result);
+}
+
+/**
+ * @function
+ * @description Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
+ * @param deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
+ * @see For a deep dive on  color vision deficiency go to
+ * @param color The color to return its deficiency simulated variant.
+ * @param severity The intensity of the filter. The exepected value is between [0,1]. For example 0.5
+ * @returns The color as its simulated variant as a hexadecimal string.
+ * @example
+ * 
+ * import { colorDeficiency, toHex } from 'huetiful-js'
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'blue'. 
+// We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
+let tritanomaly = colorDeficiency('blue')
+console.log(tritanomaly(['rgb', 230, 100, 50, 0.5], 0.1))
+// #dd663680
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'red'. The severity is not explicitly set so it defaults to 1
+let protanopia = colorDeficiency('red')
+console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
+// #9f9f9f
+ */
+function colorDeficiency(deficiencyType?: DeficiencyType) {
+  return (color: Color, severity = 1) => {
+    // Store the keys of deficiency types
+    const deficiencies: string[] = ["red", "blue", "green", "monochromacy"];
+    // Cast 'red' as the default parameter
+    deficiencyType = checkArg(deficiencyType, "red");
+
+    if (
+      typeof deficiencyType === "string" &&
+      deficiencies.some((el) => el === deficiencyType)
+    ) {
+      return baseColorDeficiency(deficiencyType, color, severity);
+    } else {
+      throw Error(
+        `Unknown color vision deficiency ${deficiencyType}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
+      );
+    }
+  };
+}
+
+function getNearestColor(collection: Color[] | "tailwind", color: Color) {
+  const cb = (collection, color) => {
+    //
+    return nearest(collection as Color[], differenceHyab())(color as string);
+  };
+
+  switch (collection) {
+    case "tailwind":
+      cb(colors("all"), color);
+
+      break;
+    // @ts-ignore
+    case typeof collection !== "string" && collection.length:
+      cb(collection, color);
+
+      break;
+  }
+}
+
 export {
+  getNearestColor,
+  colorDeficiency,
   brighten,
+  isAchromatic,
+  alpha,
   darken,
   getFarthestLightness,
   getNearestLightness,

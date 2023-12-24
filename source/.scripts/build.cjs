@@ -4,7 +4,7 @@
 //@ts-nocheck
 
 // eslint-disable-next-line no-undef
-var { build } = require('esbuild');
+var { build } = require("esbuild");
 var { dependencies } = require("../package.json");
 
 const sharedConfig = {
@@ -24,6 +24,7 @@ build({
 //Bundled ESM
 build({
   ...sharedConfig,
+  platform: "neutral",
   external: Object.keys(dependencies),
   format: "esm",
   outfile: "./lib/huetiful.esm.mjs",
@@ -43,7 +44,7 @@ build({
   ...sharedConfig,
   platform: "browser",
   format: "iife",
-  outfile: "../lib/huetiful.umd.js",
+  outfile: "./lib/huetiful.umd.js",
   globalName: "huetiful",
   minifySyntax: true,
   minify: true,

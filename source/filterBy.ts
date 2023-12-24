@@ -9,7 +9,7 @@ import {
   normalize,
   matchLightnessChannel,
   filteredArr,
-} from "./fp";
+} from "./helpers";
 
 function baseFilterBy(factor, cb, colors, start, end) {
   return filteredArr(factor, cb)(colors, start, end);

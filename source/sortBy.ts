@@ -7,15 +7,14 @@ import type {
   callback,
   Order,
 } from "./types";
-import { sortedArr } from "./fp/array";
+import { sortedArr } from "./helpers/array";
 import { differenceEuclidean } from "culori/fn";
-import { checkArg } from "./fp/misc";
+import { checkArg } from "./helpers/misc";
 import { wcagContrast } from "culori/fn";
-import { matchLightnessChannel } from "./fp/string";
+import { matchLightnessChannel } from "./helpers/string";
 import { getLuminance, getChannel } from "./utils";
 
-
-import { matchChromaChannel } from "./fp/index";
+import { matchChromaChannel } from "./helpers/index";
 
 
 

@@ -1,5 +1,5 @@
-import { getChannel } from "../../utils";
-import { Color } from "../../types";
+import { getChannel } from "../utils";
+import { Color } from "../types";
 function adjustHue(value = 0) {
   if (value > 0) {
     return (value += Math.ceil(-value / 360) * 360);
@@ -61,7 +61,7 @@ function isInteger(num: number | string) {
   return reInt.test(num.toString());
 }
 
-import modeRanges from "../../color-maps/samples/modeRanges";
+import modeRanges from "../color-maps/samples/modeRanges";
 
 /**
  * @function

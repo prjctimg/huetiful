@@ -1,6 +1,6 @@
-import { load, ColorArray } from "../colorArray";
+import { load, ColorArray } from "./colorArray";
 import { interpolate } from "culori/fn";
-import { interpolatorConfig } from "../fp/defaults";
+import { interpolatorConfig } from "./fp/defaults";
 import {
   colors,
   alpha as nativeAlpha,
@@ -34,7 +34,7 @@ import {
   colorDeficiency as nativeColorDeficiency,
   matchLightnessChannel,
   defaultInterpolator,
-} from "../index";
+} from "./index";
 
 import type {
   ColorOptions,
@@ -44,7 +44,7 @@ import type {
   HueShiftOptions,
   PairedSchemeOptions,
   HueColorSpaces,
-} from "../types";
+} from "./types";
 
 class IColor {
   constructor(c: Color, options?: ColorOptions) {
@@ -123,8 +123,8 @@ class IColor {
     return nativeToHex(result(t));
   }
 
-  brighten(amount: number | string) {
-    this["_color"] = nativeBrighten(this["_color"], amount);
+  brighten(amount: number | string, colorspace) {
+    this["_color"] = nativeBrighten(this["_color"], amount, colorspace);
     return this;
   }
   darken(amount: number | string) {
@@ -159,8 +159,6 @@ class IColor {
     return this["_color"];
   }
   earthtone(options?: EarthtoneOptions): ColorArray | Color {
-    options["iterations"] = checkArg(options["iterations"], 1);
-
     this["colors"] = nativeEarthtone(this["_color"], checkArg(options, {}));
 
     return this["colors"];

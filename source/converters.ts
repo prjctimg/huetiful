@@ -4,7 +4,7 @@ import type { ColorTuple, ColorSpaces, Color } from './types';
 import 'culori/all';
 import 'culori/css';
 import { formatHex8, formatHex, colorsNamed } from 'culori/fn';
-import { getModeChannel } from './fp/misc';
+import { getModeChannel } from "./helpers/misc";
 
 
 /**
