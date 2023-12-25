@@ -1,5 +1,19 @@
-import tailwindHues from "./color-maps/swatches/tailwind.ts";
+/** 
+ * @license
+ * colors.ts - Colors and schemes for huetiful-js.
+ * Contains colors from TailwindCSS released under the MIT permissive licence.
+ * Contains parts of chroma.js released under the Apache-2.0 license.
+Copyright 2023 Dean Tarisai.
+This file is licensed to you under the Apache License, Version 2.0 (the 'License');
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
 
+import tailwindHues from "./color-maps/swatches/tailwind.ts";
 import type {
   SequentialScheme,
   DivergingScheme,
@@ -11,25 +25,57 @@ import type {
   Color,
   HueColorSpaces,
   InterpolatorOptions,
+  ColorOptions,
+  EarthtoneOptions,
+  HueFamily,
+  HueShiftOptions,
+  PairedSchemeOptions,
 } from "./types";
 
-import {
-  discoverPalettes as nativeDiscoverPalettes,
-  interpolateSpline as nativeInterpolator,
-} from "./generators.ts";
 import * as filterBy from "./filterBy";
 import * as sortBy from "./sortBy";
 import {
-  getNearestChroma as nativeMinChroma,
-  getFarthestChroma as nativeMaxChroma,
+  discoverPalettes as nativeDiscoverPalettes,
   getFarthestHue as nativeMaxHue,
   getNearestHue as nativeMinHue,
   getNearestLightness as nativeMaxLightness,
   getFarthestLightness as nativeMinLightness,
-} from "./utils";
+  alpha as nativeAlpha,
+  brighten as nativeBrighten,
+  darken as nativeDarken,
+  isAchromatic as nativeIsAchromatic,
+  isCool as nativeIsCool,
+  isWarm as nativeIsWarm,
+  getFarthestChroma as nativeGetFarthestChroma,
+  getFarthestHue as nativeGetFarthestHue,
+  getFarthestLightness as nativeGetFarthestLightness,
+  getNearestHue as nativeGetNearestHue,
+  getNearestChroma as nativeGetNearestChroma,
+  getNearestLightness as nativeGetNearestLightness,
+  overtone as nativeOvertone,
+  toHex as nativeToHex,
+  getChannel as nativeGetChannel,
+  getContrast,
+  getLuminance,
+  setChannel as nativeSetChannel,
+  setLuminance,
+  checkArg,
+  matchChromaChannel,
+  scheme as nativeScheme,
+  pastel as nativePastel,
+  hueShift as nativeHueShift,
+  getHueFamily as nativeGetHue,
+  pairedScheme as nativePairedScheme,
+  earthtone as nativeEarthtone,
+  getComplimentaryHue as nativeGetComplimentaryHue,
+  colorDeficiency as nativeColorDeficiency,
+  interpolator,
+  interpolateSpline as nativeInterpolatorSpline,
+} from "./index";
+
+import { interpolatorConfig } from "./helpers/defaults";
 
 class ColorArray extends Array {
-  // private _colors: ColorToken[];
   constructor(colors: Color[]) {
     super();
     this["colors"] = colors;
@@ -43,7 +89,7 @@ class ColorArray extends Array {
     closed?: boolean,
     options?: InterpolatorOptions
   ): Color[] {
-    this["colors"] = nativeInterpolator(
+    this["colors"] = nativeInterpolatorSpline(
       this["colors"],
       mode,
       samples,
@@ -78,7 +124,7 @@ let sample = [
   "#310000",
 ]
 
-console.log(discoverPalettes(sample, "tetradic"))
+console.log(load(sample).discoverPalettes(sample, "tetradic").output())
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
  */
   discoverPalettes(
@@ -96,10 +142,10 @@ console.log(discoverPalettes(sample, "tetradic"))
  * @returns The largest hue value in the colors passed in or a custom object.
  * @example
  * 
- * import { maxHue } from 'huetiful-js'
+ * import { getFarthestHue } from 'huetiful-js'
 let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 
-console.log(maxHue(sample, 'lch'))
+console.log(load(output).getFarthestHue('lch'))
 // 273.54920266436477
  */
   getFarthestHue(
@@ -118,11 +164,11 @@ console.log(maxHue(sample, 'lch'))
  * @returns The smallest hue value in the colors passed in or a custom object.
  * @example
  * 
- * import { minHue } from 'huetiful-js'
+ * import { getNearestHue } from 'huetiful-js'
 
 let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 
-console.log(minHue(sample, 'lch'))
+console.log(load(sample).getNearestHue('lch'))
 // 12.462831644544274
  */
   getNearestHue(
@@ -143,16 +189,16 @@ console.log(minHue(sample, 'lch'))
 
 let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
 
-console.log(minLightness(sample, true))
+console.log(load(sample).getNearestLightness('lch', true))
 
 // { lightness: 72.61647882089876, name: '#a1bd2f' }
 
  */
   getNearestLightness(
-    mode?: HueColorSpaces,
+    colorspace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: Color } {
-    return nativeMinLightness(this["colors"], mode, colorObj);
+    return nativeMinLightness(this["colors"], colorspace, colorObj);
   }
 
   /**
@@ -167,16 +213,16 @@ console.log(minLightness(sample, true))
 
 let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
 
-console.log(maxLightness(sample, true))
+console.log(load(sample).getFarthestLightness('lch', true))
 
 // { lightness: 80.94668903360088, name: '#f3bac1' }
 
  */
   getFarthestLightness(
-    mode?: HueColorSpaces,
+    colorspace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: Color } {
-    return nativeMaxLightness(this["colors"], mode, colorObj);
+    return nativeMaxLightness(this["colors"], colorspace, colorObj);
   }
 
   /**
@@ -711,9 +757,9 @@ console.log(sortedDescending)
  * @description A class that takes an array of colors and exposes all the utilities that handle collections of colors as methods. The methods can be chained as long as `this` being returned can be iterated on. Works like Array object.
  * @param colors An array of colors to chain the array methods on. Every element in the array will be parsed as a color token.
  */
-var load = (colors: Color[]): ColorArray => {
+function load(colors: Color[]): ColorArray {
   return new ColorArray(colors);
-};
+}
 
 //Check if the scheme object has the passed in scheme
 function schemeMapper(scheme: string, schemesObject: object): Color[] {
@@ -754,7 +800,7 @@ console.log(sequential("OrRd"))
 
 
  */
-const sequential = (scheme: SequentialScheme): Color[] => {
+function sequential(scheme: SequentialScheme): Color[] {
   const schemes = {
     OrRd: [
       "#fff7ec",
@@ -968,7 +1014,7 @@ const sequential = (scheme: SequentialScheme): Color[] => {
   };
 
   return schemeMapper(scheme, schemes);
-};
+}
 
 /**
  * @function
@@ -990,7 +1036,7 @@ console.log(diverging("Spectral"))
 ]
  */
 
-const diverging = (scheme: DivergingScheme): Color[] => {
+function diverging(scheme: DivergingScheme): Color[] {
   const schemes = {
     Spectral: [
       "#9e0142",
@@ -1112,7 +1158,7 @@ const diverging = (scheme: DivergingScheme): Color[] => {
   };
 
   return schemeMapper(scheme, schemes);
-};
+}
 
 /**
  * @function
@@ -1134,7 +1180,7 @@ console.log(qualitative("Accent"))
 
  */
 
-const qualitative = (scheme: QualitativeScheme): Color[] => {
+function qualitative(scheme: QualitativeScheme): Color[] {
   const schemes = {
     Set2: [
       "#66c2a5",
@@ -1228,7 +1274,7 @@ const qualitative = (scheme: QualitativeScheme): Color[] => {
     ],
   };
   return schemeMapper(scheme, schemes);
-};
+}
 
 /**
  * @function
@@ -1269,10 +1315,10 @@ let red100 = colors("red", 100);
 console.log(red100)
 // #fee2e2
  */
-const colors = (
+function colors(
   shade: keyof HueMap | string,
   val?: ScaleValues
-): Color | Color[] => {
+): Color | Color[] {
   const { keys } = Object;
   const defaultHue = "all";
   const hueKeys = keys(tailwindHues);
@@ -1280,7 +1326,6 @@ const colors = (
   shade = shade.toLowerCase();
   // First do an AND check on hue and val params. If true return the hue at the specified value.
   // If only the hue is defined return the whole array of hex codes for that color.
-
   // If only the value is defined return that color value for every hue.
   // @ts-ignore
   if (shade === defaultHue) {
@@ -1293,7 +1338,7 @@ const colors = (
   } else if (typeof shade && typeof val == "undefined") {
     throw Error(`Both shade and value cannot be undefined`);
   }
-};
+}
 
 /**
  * @function
@@ -1326,9 +1371,8 @@ console.log(red('900'));
 
  *
  */
-const tailwindColors =
-  (shade: keyof HueMap) =>
-  (val?: ScaleValues): string | string[] => {
+function tailwindColors(shade: keyof HueMap) {
+  return (val?: ScaleValues): string | string[] => {
     // This is a curried func that takes in the shade and returns a function that takes in a value from 100 thru 900
     // @ts-ignore
     shade = shade.toLowerCase();
@@ -1354,5 +1398,254 @@ const tailwindColors =
       );
     }
   };
+}
 
-export { diverging, qualitative, sequential, colors,tailwindColors };
+class IColor {
+  constructor(c: Color, options?: ColorOptions) {
+    let {
+      illuminant,
+      alpha,
+      colorspace,
+      luminance,
+      saturation,
+      lightMode,
+      darkMode,
+      lightness,
+    } = checkArg(options, {}) as ColorOptions;
+    c = checkArg(c, "#000");
+
+    // Culori has some illuminant variants for certain color spaces
+    this["illuminant"] = checkArg(illuminant, "D65");
+
+    // Set the alpha of the color if its not explicitly passed in.
+    this["alpha"] = checkArg(alpha, nativeAlpha(c));
+
+    // if the color is undefined we cast pure black
+
+    this["_color"] = c;
+
+    // set the color's luminance if its not explicitly passed in
+    this["_luminance"] = checkArg(luminance, getLuminance(c));
+
+    // set the color's lightness if its not explicitly passed in the default lightness is in Lch but will be refactored soon
+    this["lightness"] = checkArg(lightness, nativeGetChannel("lch.l")(c));
+
+    // set the default color space as jch if a color space is not specified. TODO: get the mode from object and array
+    this["colorspace"] = checkArg(colorspace, "jch");
+
+    // set the default saturation to that of the passed in color if the value is not explicitly set
+    this["_saturation"] = checkArg(
+      saturation,
+      nativeGetChannel(
+        `${this["colorspace"]}.${matchChromaChannel(this["colorspace"])}`
+      )(c)
+    );
+
+    // light mode default is gray-100
+    this["lightMode"] = checkArg(lightMode, colors("gray", "100"));
+
+    // dark mode default is gray-800
+    this["darkMode"] = checkArg(darkMode, colors("gray", "800"));
+  }
+
+  alpha(amount?: number | string): IColor | number {
+    if (amount) {
+      this["_color"] = nativeAlpha(this["_color"], amount);
+      return this;
+    } else {
+      return nativeAlpha(this["_color"]);
+    }
+  }
+  getChannel(channel: string) {
+    return nativeGetChannel(`${this["colorspace"]}.${channel.toLowerCase()}`)(
+      this["_color"]
+    );
+  }
+  setChannel(modeChannel: string, value: number | string): IColor {
+    this["_color"] = nativeSetChannel(modeChannel)(this["_color"], value);
+    return this;
+  }
+
+  via(origin: Color, t?: number, options?: typeof interpolatorConfig) {
+    const result = (t) =>
+      interpolator([origin, this["_color"]], this["colorspace"], options);
+
+    return nativeToHex(result(t));
+  }
+
+  brighten(amount: number | string, colorspace) {
+    this["_color"] = nativeBrighten(this["_color"], amount, colorspace);
+    return this;
+  }
+  darken(amount: number | string) {
+    this["_color"] = nativeDarken(this["_color"], amount);
+    return this;
+  }
+
+  toHex(): IColor {
+    this["_color"] = nativeToHex(this["_color"]);
+    return this["_color"];
+  }
+  pastel(): IColor {
+    this["_color"] = nativePastel(this["_color"]);
+    return this;
+  }
+  pairedScheme(options?: PairedSchemeOptions): ColorArray {
+    // @ts-ignore
+    this["colors"] = nativePairedScheme(this["_color"], options);
+
+    return new ColorArray(this["colors"]);
+  }
+  hueShift(options?: HueShiftOptions): ColorArray {
+    this["colors"] = nativeHueShift(this["_color"], options);
+
+    return new ColorArray(this["colors"]);
+  }
+  getComplimentaryHue(
+    mode?: HueColorSpaces,
+    colorObj?: boolean
+  ): { hue: HueFamily; color: Color } | Color {
+    this["_color"] = nativeGetComplimentaryHue(this["_color"], mode, colorObj);
+    return this["_color"];
+  }
+  earthtone(options?: EarthtoneOptions): ColorArray | Color {
+    this["colors"] = nativeEarthtone(this["_color"], checkArg(options, {}));
+
+    return this["colors"];
+  }
+  contrast(against: "lightMode" | "darkMode" | IColor) {
+    let result: number;
+    switch (against) {
+      case "lightMode":
+        result = getContrast(this["_color"], this["background"]["lightMode"]);
+
+        break;
+      case "darkMode":
+        result = getContrast(this["_color"], this["background"]["darkMode"]);
+        break;
+      default:
+        result = getContrast(this["_color"], this["background"]["custom"]);
+        break;
+    }
+    return result;
+  }
+  luminance(amount?: number): number {
+    if (amount) {
+      this["_luminance"] = amount;
+      this["_color"] = setLuminance(this["_color"], this["_color"]);
+      // @ts-ignore
+      return this;
+    } else {
+    }
+    return getLuminance(this["_color"]);
+  }
+
+  output() {
+    return this["_color"];
+  }
+
+  saturation(amount?: string | number) {
+    this["_saturation"] = nativeGetChannel(
+      `${this["colorspace"]}.${matchChromaChannel(this["colorspace"])}`
+    )(this["_color"]);
+    if (amount) {
+      this["_color"] = nativeSetChannel(
+        `${this["colorspace"]}.${matchChromaChannel(this["colorspace"])}`
+      )(this["_color"], amount);
+
+      return this;
+    } else {
+      return this["_saturation"];
+    }
+  }
+  isAchromatic() {
+    return nativeIsAchromatic(this["_color"]);
+  }
+  isWarm() {
+    return nativeIsWarm(this["_color"]);
+  }
+  isCool() {
+    return nativeIsCool(this["_color"]);
+  }
+
+  /**
+ * @function
+ * @description Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
+ * @param deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
+ * @see For a deep dive on  color vision deficiency go to
+ * @param color The color to return its deficiency simulated variant.
+ * @param severity The intensity of the filter. The exepected value is between [0,1]. For example 0.5
+ * @returns The color as its simulated variant as a hexadecimal string.
+ * @example
+ * 
+ * import { colorDeficiency, toHex } from 'huetiful-js'
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'blue'. 
+// We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
+let tritanomaly = colorDeficiency('blue')
+console.log(tritanomaly(['rgb', 230, 100, 50, 0.5], 0.1))
+// #dd663680
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'red'. The severity is not explicitly set so it defaults to 1
+let protanopia = colorDeficiency('red')
+console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
+// #9f9f9f
+ */
+  deficiency(
+    deficiencyType?: "red" | "blue" | "green" | "monochromacy",
+    severity = 1
+  ): Color {
+    this["_color"] = nativeColorDeficiency(deficiencyType)(
+      this["_color"],
+      severity
+    );
+    return this;
+  }
+
+  getFarthestHue(colors: Color[], colorObj?: boolean) {
+    return nativeGetFarthestHue(colors, this["colorspace"], colorObj);
+  }
+  getNearestHue(colors: Color[], colorObj?: boolean) {
+    return nativeGetNearestHue(colors, this["colorspace"], colorObj);
+  }
+  getNearestChroma(colors: Color[]) {
+    return nativeGetNearestChroma(colors, this["colorspace"]);
+  }
+  getNearestLightness(colors: Color[], colorObj?: boolean) {
+    return nativeGetNearestLightness(colors, this["colorspace"], colorObj);
+  }
+  getFarthestChroma(colors: Color[], colorObj?: boolean) {
+    return nativeGetFarthestChroma(colors, this["colorspace"], colorObj);
+  }
+  getFarthestLightness(colors: Color[], colorObj?: boolean) {
+    return nativeGetFarthestLightness(colors, this["colorspace"], colorObj);
+  }
+  ovetone() {
+    return nativeOvertone(this["_color"]);
+  }
+  getHue() {
+    return nativeGetHue(this["_color"]);
+  }
+  scheme(
+    scheme: "analogous" | "triadic" | "tetradic" | "complementary",
+    easingFunc?: (t: number) => number
+  ): Color[] | ColorArray {
+    return load(nativeScheme(scheme)(this["_color"], easingFunc));
+  }
+}
+
+function color(color: Color) {
+  return new IColor(color);
+}
+
+export {
+  diverging,
+  qualitative,
+  sequential,
+  colors,
+  tailwindColors,
+  ColorArray,
+  load,
+  IColor,
+  color,
+};

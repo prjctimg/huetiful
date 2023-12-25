@@ -1,3 +1,16 @@
+/** 
+ * @license
+ * sortBy.ts - Utilities for sorting collections of colors.
+Copyright 2023 Dean Tarisai.
+This file is licensed to you under the Apache License, Version 2.0 (the 'License');
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
 import type {
   Factor,
   Color,
@@ -16,16 +29,17 @@ import { getLuminance, getChannel } from "./utils";
 
 import { matchChromaChannel } from "./helpers/index";
 
-
-
-function baseSortBy(factor: Factor, cb: callback, order: Order, colors: Color[]) {
-
+function baseSortBy(
+  factor: Factor,
+  cb: callback,
+  order: Order,
+  colors: Color[]
+) {
   try {
     return sortedArr(factor, cb, order)(colors);
   } catch (error) {
-    throw error
+    throw error;
   }
-
 }
 
 /**
@@ -81,11 +95,13 @@ function sortBySaturation(
   order: "asc" | "desc",
   mode?: HueColorSpaces
 ): Color[] {
-  return baseSortBy('saturation', getChannel(matchChromaChannel(mode)), order, colors)
-
-
+  return baseSortBy(
+    "saturation",
+    getChannel(matchChromaChannel(mode)),
+    order,
+    colors
+  );
 }
-
 
 /**
  * @function
@@ -137,10 +153,8 @@ console.log(sortedDescending)
  */
 
 function sortByLuminance(colors: Color[], order: "asc" | "desc"): Color[] {
-
-  return baseSortBy('luminance', getLuminance, order, colors)
+  return baseSortBy("luminance", getLuminance, order, colors);
 }
-
 
 /**
  * @function
@@ -196,9 +210,13 @@ function sortByLightness(
   order?: Order,
   colorspace?: HueColorSpaces
 ): Color[] {
-  return baseSortBy('lightness', getChannel(matchLightnessChannel(colorspace)), order, colors)
+  return baseSortBy(
+    "lightness",
+    getChannel(matchLightnessChannel(colorspace)),
+    order,
+    colors
+  );
 }
-
 
 /**
  * @function
@@ -253,11 +271,17 @@ function sortByHue(
   order?: Order,
   colorspace?: HueColorSpaces
 ): Color[] {
-
-  const reHue = /h/i.test(colorspace)
-  return reHue && baseSortBy('lightness', getChannel(`${checkArg(colorspace, "jch")}.h`), order, colors,)
+  const reHue = /h/i.test(colorspace);
+  return (
+    reHue &&
+    baseSortBy(
+      "lightness",
+      getChannel(`${checkArg(colorspace, "jch")}.h`),
+      order,
+      colors
+    )
+  );
 }
-
 
 /**
  * @function
@@ -285,9 +309,8 @@ function sortByContrast(
 ): Color[] {
   // @ts-ignore
   const cb = (against: Color) => (color: Color) => wcagContrast(color, against);
-  return baseSortBy('contrast', cb(against), order, colors)
+  return baseSortBy("contrast", cb(against), order, colors);
 }
-
 
 /**
  * @function
@@ -328,14 +351,27 @@ function sortByDistance(
 ): Color[] {
   let { mode, weights } = options || {};
 
-  const cb = (against: Color, mode: ColorSpaces) => (color: Color) => {
+  const cb = (against: string, mode: ColorSpaces) => (color: string) => {
     // @ts-ignore
-    return differenceEuclidean(checkArg(mode, "lchuv"), checkArg(weights, [1, 1, 1, 0]))(against, color);
+    return differenceEuclidean(
+      checkArg(mode, "lchuv"),
+      checkArg(weights, [1, 1, 1, 0])
+    )(against, color);
   };
 
-  return baseSortBy('contrast', cb(against, checkArg(mode, 'lchuv')), order, colors)
+  return baseSortBy(
+    "contrast",
+    cb(against as string, checkArg(mode, "lchuv")),
+    order,
+    colors
+  );
 }
 
-
-
-export { sortByContrast, sortByDistance, sortByLightness, sortBySaturation, sortByHue, sortByLuminance }
+export {
+  sortByContrast,
+  sortByDistance,
+  sortByLightness,
+  sortBySaturation,
+  sortByHue,
+  sortByLuminance,
+};

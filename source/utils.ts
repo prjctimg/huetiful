@@ -884,23 +884,40 @@ function colorDeficiency(deficiencyType?: DeficiencyType) {
   };
 }
 
-function getNearestColor(collection: Color[] | "tailwind", color: Color) {
+/**
+ *
+ * @param collection The collection of colors to search for nearest colors
+ * @param color The color to use for distance comparison
+ * @param samples The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order.
+ * @returns An array of colors.
+ * @example
+ *
+ *
+ */
+function getNearestColor(
+  collection: Color[] | "tailwind",
+  color: Color,
+  samples = 1
+): Color | Color[] {
   const cb = (collection, color) => {
     //
-    return nearest(collection as Color[], differenceHyab())(color as string);
+    return nearest(collection as Color[], differenceHyab())(
+      color as string,
+      samples
+    );
   };
-
+  let result: any;
   switch (collection) {
     case "tailwind":
-      cb(colors("all"), color);
+      result = cb(colors("all"), color);
 
       break;
     // @ts-ignore
     case typeof collection !== "string" && collection.length:
-      cb(collection, color);
-
+      result = cb(collection, color);
       break;
   }
+  return result;
 }
 
 export {
