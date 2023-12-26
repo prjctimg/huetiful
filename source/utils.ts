@@ -1,4 +1,4 @@
-import hueTempMap from "./color-maps/samples/hueTemperature.js";
+import hueTempMap from './color-maps/samples/hueTemperature.js';
 import {
   adjustHue,
   customConcat,
@@ -8,9 +8,9 @@ import {
   lte,
   matchLightnessChannel,
   max,
-  random,
-} from "./helpers.js";
-import { toHex } from "./converters.js";
+  random
+} from './helpers.js';
+import { toHex } from './converters.js';
 import {
   interpolate,
   wcagLuminance,
@@ -22,9 +22,9 @@ import {
   easingSmootherstep,
   modeLab,
   nearest,
-  differenceHyab,
-} from "culori/fn";
-import "culori/css";
+  differenceHyab
+} from 'culori/fn';
+import 'culori/css';
 import {
   Color,
   HueColorSpaces,
@@ -32,10 +32,10 @@ import {
   Order,
   callback,
   HueFamily,
-  DeficiencyType,
-} from "./types.js";
+  DeficiencyType
+} from './types.js';
 
-import { matchChromaChannel, sortedArr, checkArg } from "./helpers.js";
+import { matchChromaChannel, sortedArr, checkArg } from './helpers.js';
 
 /**
  *@function
@@ -66,14 +66,14 @@ function getHueFamily(color: Color, mode?: HueColorSpaces): HueFamily {
 
       return bool && hue;
     })
-    .filter((val) => typeof val === "string")[0] as HueFamily;
+    .filter((val) => typeof val === 'string')[0] as HueFamily;
 }
 
 function lightnessPredicate(colorspace) {
   return getChannel(`${matchLightnessChannel(colorspace)}`);
 }
 
-function temperaturePredicate(factor: number, temp: "warm" | "cool"): boolean {
+function temperaturePredicate(factor: number, temp: 'warm' | 'cool'): boolean {
   const hueKeys = Object.keys(hueTempMap);
   return (
     hueKeys.some((val) =>
@@ -114,9 +114,9 @@ console.log(map(sample, isCool));
  */
 function isCool(color: Color): boolean {
   // First we need to get the hue value which we'll pass to the predicate
-  const factor = getChannel("lch.h")(color);
+  const factor = getChannel('lch.h')(color);
 
-  return temperaturePredicate(factor, "cool");
+  return temperaturePredicate(factor, 'cool');
 }
 
 /**
@@ -144,9 +144,9 @@ console.log(map(sample, isWarm));
 
  */
 function isWarm(color: Color): boolean {
-  const factor = getChannel("lch.h")(color);
+  const factor = getChannel('lch.h')(color);
 
-  return temperaturePredicate(factor, "cool");
+  return temperaturePredicate(factor, 'cool');
 }
 
 function contrastPredicate(color) {
@@ -155,7 +155,7 @@ function contrastPredicate(color) {
 
 function huePredicate(colorSpace: string) {
   return (color: Color) => {
-    return getChannel(`${checkArg(colorSpace, "jch")}.h`)(color);
+    return getChannel(`${checkArg(colorSpace, 'jch')}.h`)(color);
   };
 }
 
@@ -182,10 +182,10 @@ function getNearestContrast(
   colorObj?: boolean
 ) {
   return baseFunc(
-    "contrast",
+    'contrast',
     colors,
     contrastPredicate(against),
-    "desc",
+    'desc',
     colorObj
   );
 }
@@ -215,10 +215,10 @@ function getFarthestContrast(
   colorObj?: boolean
 ): number | { factor: number; name: Color } {
   return baseFunc(
-    "contrast",
+    'contrast',
     colors,
     contrastPredicate(against),
-    "desc",
+    'desc',
     colorObj
   );
 }
@@ -267,10 +267,10 @@ function getNearestChroma(
   colorObj = false
 ): number | { factor: number; color: Color } {
   return baseFunc(
-    "saturation",
+    'saturation',
     colors,
     chromaPredicate(colorspace),
-    "asc",
+    'asc',
     colorObj
   );
 }
@@ -296,7 +296,7 @@ function getFarthestChroma(
   colorSpace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } {
-  return baseFunc("saturation", colors, chromaPredicate, "desc", colorObj);
+  return baseFunc('saturation', colors, chromaPredicate, 'desc', colorObj);
 }
 
 /**
@@ -320,7 +320,7 @@ function getNearestHue(
   colorspace?: HueColorSpaces | string,
   colorObj = false
 ): number | { factor: number; color: Color } {
-  return baseFunc("hue", colors, huePredicate(colorspace), "asc", colorObj);
+  return baseFunc('hue', colors, huePredicate(colorspace), 'asc', colorObj);
 }
 
 /**
@@ -343,7 +343,7 @@ function getFarthestHue(
   colorspace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: Color } {
-  return baseFunc("hue", colors, huePredicate(colorspace), "desc", colorObj);
+  return baseFunc('hue', colors, huePredicate(colorspace), 'desc', colorObj);
 }
 
 /**
@@ -375,10 +375,10 @@ function getComplimentaryHue(
 
   const result: Color | { hue: string; color: Color } = (complementaryHue && {
     hue: getHueFamily(complementaryHue),
-    color: toHex(setChannel(modeChannel)(color, complementaryHue)),
-  }) || { hue: "gray", color: color };
+    color: toHex(setChannel(modeChannel)(color, complementaryHue))
+  }) || { hue: 'gray', color: color };
 
-  return (colorObj && result) || result["color"];
+  return (colorObj && result) || result['color'];
 }
 
 /**
@@ -401,14 +401,14 @@ console.log(getChannel('lch.h')(myColor))
 
 function setChannel(mc: string) {
   return (color: Color, value: number | string): Color => {
-    const [mode, channel] = mc.split(".");
+    const [mode, channel] = mc.split('.');
     // @ts-ignore
     const src: Color = converter(mode)(toHex(color));
 
     if (channel) {
-      if (typeof value === "number") {
+      if (typeof value === 'number') {
         src[channel] = value;
-      } else if (typeof value === "string") {
+      } else if (typeof value === 'string') {
         expressionParser(src, channel, value);
       } else {
         throw new Error(`unsupported value for setChannel`);
@@ -436,7 +436,7 @@ console.log(getChannel('rgb.g')('#a1bd2f'))
  * */
 function getChannel(mc: string) {
   return (color: Color): number => {
-    const [mode, channel] = mc.split(".");
+    const [mode, channel] = mc.split('.');
     // @ts-ignore
     const src = converter(mode)(toHex(color));
 
@@ -481,13 +481,13 @@ console.log(getLuminance(myColor))
 // 0.4999999136285792
  */
 function setLuminance(color: Color, lum: number): Color {
-  const white = "#ffffff",
-    black = "#000000";
+  const white = '#ffffff',
+    black = '#000000';
 
   const EPS = 1e-7;
   let MAX_ITER = 20;
 
-  if (lum !== undefined && typeof lum == "number") {
+  if (lum !== undefined && typeof lum == 'number') {
     (lum == 0 && lum) || black || (lum == 1 && !lum) || white;
 
     // compute new color using...
@@ -533,9 +533,9 @@ function rgb2luminance(color: Color): number {
   // relative luminance
   // see http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
   return (
-    0.7152 * luminance_x(color["g"]) +
-    0.2126 * luminance_x(color["r"]) +
-    0.0722 * luminance_x(color["b"])
+    0.7152 * luminance_x(color['g']) +
+    0.2126 * luminance_x(color['r']) +
+    0.0722 * luminance_x(color['b'])
   );
 }
 
@@ -567,20 +567,20 @@ console.log(myColor)
 
 function alpha(color: Color, value?: number | string): number {
   // We never perfom an operation on an undefined color. Defaults to pure black
-  color = color || "black";
+  color = color || 'black';
 
-  const channel = "alpha";
+  const channel = 'alpha';
   const lch = useMode(modeLch);
   const src: Color = lch(toHex(color));
-  if (typeof value === "undefined" || null) {
+  if (typeof value === 'undefined' || null) {
     return src[channel];
-  } else if (typeof value === "number") {
+  } else if (typeof value === 'number') {
     if (inRange(value, 0, 1)) {
       src[channel] = value;
     } else {
       src[channel] = value / 100;
     }
-  } else if (typeof value === "string") {
+  } else if (typeof value === 'string') {
     expressionParser(src, channel, value);
   }
   // @ts-ignore
@@ -623,13 +623,13 @@ console.log(overtone("blue"))
 // false
  */
 function overtone(color: Color): string | boolean {
-  const factor = getChannel("lch.h")(color);
+  const factor = getChannel('lch.h')(color);
   let hue = getHueFamily(factor);
 
   // We check if the color can be found in the defined ranges
   return (
-    (isAchromatic(color) && "gray") ||
-    (/-/.test(hue) && hue.split("-")[1]) ||
+    (isAchromatic(color) && 'gray') ||
+    (/-/.test(hue) && hue.split('-')[1]) ||
     false
   );
 }
@@ -659,7 +659,7 @@ function getNearestLightness(
 ): number | { factor: number; color: Color } {
   // @ts-ignore
 
-  return baseFunc("lightness", colors, lightnessPredicate, "asc", colorObj);
+  return baseFunc('lightness', colors, lightnessPredicate, 'asc', colorObj);
 }
 
 /**
@@ -687,7 +687,7 @@ const getFarthestLightness = (
 ): number | { factor: number; color: Color } => {
   // @ts-ignore
 
-  return baseFunc("lightness", colors, lightnessPredicate, "asc", colorObj);
+  return baseFunc('lightness', colors, lightnessPredicate, 'asc', colorObj);
 };
 
 const toLab = useMode(modeLab);
@@ -704,13 +704,13 @@ const toLab = useMode(modeLab);
  */
 function darken(color: Color, value: number | string): Color {
   const Kn = 18;
-  const channel = "l";
+  const channel = 'l';
 
   const src = toLab(toHex(color));
 
-  if (typeof value === "number") {
-    src["l"] -= Kn * easingSmootherstep(value / 100);
-  } else if (typeof value === "string") {
+  if (typeof value === 'number') {
+    src['l'] -= Kn * easingSmootherstep(value / 100);
+  } else if (typeof value === 'string') {
     // @ts-ignore
     expressionParser(src, channel, value || 1);
   }
@@ -727,11 +727,11 @@ function darken(color: Color, value: number | string): Color {
  */
 function brighten(color: Color, value: number | string, colorspace): Color {
   const src = toLab(toHex(color));
-  const [_, ch] = matchLightnessChannel(colorspace).split(".");
+  const [_, ch] = matchLightnessChannel(colorspace).split('.');
   let result = src;
-  if (typeof value == "number") {
+  if (typeof value == 'number') {
     result[ch] -= 18 * easingSmootherstep(Math.abs(value) / 100);
-  } else if (typeof value == "string") {
+  } else if (typeof value == 'string') {
     //@ts-ignore
     result = expressionParser(src, ch, value);
   }
@@ -800,9 +800,9 @@ import {
   filterDeficiencyDeuter,
   filterDeficiencyProt,
   filterDeficiencyTrit,
-  filterGrayscale,
-} from "culori/fn";
-import { colors, tailwindColors } from "./colors.js";
+  filterGrayscale
+} from 'culori/fn';
+import { colors, tailwindColors } from './colors.js';
 
 // This module is focused on creating color blind safe palettes that adhere to the minimum contrast requirements
 
@@ -817,24 +817,24 @@ import { colors, tailwindColors } from "./colors.js";
 // Read more about the minimum accepted values for palette accessibility
 
 function baseColorDeficiency(
-  def: "red" | "blue" | "green" | "monochromacy",
+  def: 'red' | 'blue' | 'green' | 'monochromacy',
   col: Color,
   sev: number
 ) {
   let result: Color;
   col = toHex(col);
   switch (def) {
-    case "blue": // @ts-ignore
+    case 'blue': // @ts-ignore
       result = filterDeficiencyTrit(sev)(col);
       break;
-    case "red": // @ts-ignore
+    case 'red': // @ts-ignore
       result = filterDeficiencyProt(sev)(col);
       break;
-    case "green": // @ts-ignore
+    case 'green': // @ts-ignore
       result = filterDeficiencyDeuter(sev)(col);
       break;
-    case "monochromacy":
-      result = filterGrayscale(sev, "lch")(col);
+    case 'monochromacy':
+      result = filterGrayscale(sev, 'lch')(col);
       break;
   }
 
@@ -867,12 +867,12 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 function colorDeficiency(deficiencyType?: DeficiencyType) {
   return (color: Color, severity = 1) => {
     // Store the keys of deficiency types
-    const deficiencies: string[] = ["red", "blue", "green", "monochromacy"];
+    const deficiencies: string[] = ['red', 'blue', 'green', 'monochromacy'];
     // Cast 'red' as the default parameter
-    deficiencyType = checkArg(deficiencyType, "red");
+    deficiencyType = checkArg(deficiencyType, 'red');
 
     if (
-      typeof deficiencyType === "string" &&
+      typeof deficiencyType === 'string' &&
       deficiencies.some((el) => el === deficiencyType)
     ) {
       return baseColorDeficiency(deficiencyType, color, severity);
@@ -895,7 +895,7 @@ function colorDeficiency(deficiencyType?: DeficiencyType) {
  *
  */
 function getNearestColor(
-  collection: Color[] | "tailwind",
+  collection: Color[] | 'tailwind',
   color: Color,
   samples = 1
 ): Color | Color[] {
@@ -908,12 +908,12 @@ function getNearestColor(
   };
   let result: any;
   switch (collection) {
-    case "tailwind":
-      result = cb(colors("all"), color);
+    case 'tailwind':
+      result = cb(colors('all'), color);
 
       break;
     // @ts-ignore
-    case typeof collection !== "string" && collection.length:
+    case typeof collection !== 'string' && collection.length:
       result = cb(collection, color);
       break;
   }
@@ -944,5 +944,5 @@ export {
   getHueFamily,
   getComplimentaryHue,
   getFarthestHue,
-  getNearestHue,
+  getNearestHue
 };

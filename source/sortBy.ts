@@ -18,16 +18,16 @@ import type {
   ColorDistanceOptions,
   HueColorSpaces,
   callback,
-  Order,
-} from "./types";
-import { sortedArr } from "./helpers/array";
-import { differenceEuclidean } from "culori/fn";
-import { checkArg } from "./helpers/misc";
-import { wcagContrast } from "culori/fn";
-import { matchLightnessChannel } from "./helpers/string";
-import { getLuminance, getChannel } from "./utils";
+  Order
+} from './types';
+import { sortedArr } from './helpers/array';
+import { differenceEuclidean } from 'culori/fn';
+import { checkArg } from './helpers/misc';
+import { wcagContrast } from 'culori/fn';
+import { matchLightnessChannel } from './helpers/string';
+import { getLuminance, getChannel } from './utils';
 
-import { matchChromaChannel } from "./helpers";
+import { matchChromaChannel } from './helpers';
 
 function baseSortBy(
   factor: Factor,
@@ -92,11 +92,11 @@ console.log(sortedDescending)
 
 function sortBySaturation(
   colors: Color[],
-  order: "asc" | "desc",
+  order: 'asc' | 'desc',
   mode?: HueColorSpaces
 ): Color[] {
   return baseSortBy(
-    "saturation",
+    'saturation',
     getChannel(matchChromaChannel(mode)),
     order,
     colors
@@ -152,8 +152,8 @@ console.log(sortedDescending)
  
  */
 
-function sortByLuminance(colors: Color[], order: "asc" | "desc"): Color[] {
-  return baseSortBy("luminance", getLuminance, order, colors);
+function sortByLuminance(colors: Color[], order: 'asc' | 'desc'): Color[] {
+  return baseSortBy('luminance', getLuminance, order, colors);
 }
 
 /**
@@ -211,7 +211,7 @@ function sortByLightness(
   colorspace?: HueColorSpaces
 ): Color[] {
   return baseSortBy(
-    "lightness",
+    'lightness',
     getChannel(matchLightnessChannel(colorspace)),
     order,
     colors
@@ -275,8 +275,8 @@ function sortByHue(
   return (
     reHue &&
     baseSortBy(
-      "lightness",
-      getChannel(`${checkArg(colorspace, "jch")}.h`),
+      'lightness',
+      getChannel(`${checkArg(colorspace, 'jch')}.h`),
       order,
       colors
     )
@@ -309,7 +309,7 @@ function sortByContrast(
 ): Color[] {
   // @ts-ignore
   const cb = (against: Color) => (color: Color) => wcagContrast(color, against);
-  return baseSortBy("contrast", cb(against), order, colors);
+  return baseSortBy('contrast', cb(against), order, colors);
 }
 
 /**
@@ -346,7 +346,7 @@ console.log(
 function sortByDistance(
   colors: Color[],
   against: Color,
-  order?: "asc" | "desc",
+  order?: 'asc' | 'desc',
   options?: ColorDistanceOptions
 ): Color[] {
   let { mode, weights } = options || {};
@@ -354,14 +354,14 @@ function sortByDistance(
   const cb = (against: string, mode: ColorSpaces) => (color: string) => {
     // @ts-ignore
     return differenceEuclidean(
-      checkArg(mode, "lchuv"),
+      checkArg(mode, 'lchuv'),
       checkArg(weights, [1, 1, 1, 0])
     )(against, color);
   };
 
   return baseSortBy(
-    "contrast",
-    cb(against as string, checkArg(mode, "lchuv")),
+    'contrast',
+    cb(against as string, checkArg(mode, 'lchuv')),
     order,
     colors
   );
@@ -373,5 +373,5 @@ export {
   sortByLightness,
   sortBySaturation,
   sortByHue,
-  sortByLuminance,
+  sortByLuminance
 };

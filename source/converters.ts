@@ -12,12 +12,12 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { useMode, modeRgb, converter } from "culori/fn";
-import type { ColorTuple, ColorSpaces, Color } from "./types";
-import "culori/all";
-import "culori/css";
-import { formatHex8, formatHex, colorsNamed } from "culori/fn";
-import { getModeChannel } from "./helpers/misc";
+import { useMode, modeRgb, converter } from 'culori/fn';
+import type { ColorTuple, ColorSpaces, Color } from './types';
+import 'culori/all';
+import 'culori/css';
+import { formatHex8, formatHex, colorsNamed } from 'culori/fn';
+import { getModeChannel } from './helpers/misc';
 
 /**
  *@function
@@ -39,7 +39,7 @@ function toHex(color: Color): string {
 
   // if its of type string and not a CSS named color then its probably hex so we don't convert it
   if (
-    typeof color === "string" &&
+    typeof color === 'string' &&
     !Object.keys(colorsNamed).some((el) => el === color.toLowerCase())
   ) {
     return color;
@@ -75,9 +75,9 @@ function toHex(color: Color): string {
         mode: string,
         colorArr: [number, number, number]
       ): number[] => {
-        src["mode"] = mode;
+        src['mode'] = mode;
         // If our mode is rgb...
-        if (src["mode"] === "rgb") {
+        if (src['mode'] === 'rgb') {
           // if our rgb values are [0,255] we normalize them to [0,1]
           // for Culori to make sense of the channel values else it defaults o white
           if (colorArr.some((ch) => Math.abs(ch) > 1)) {
@@ -91,15 +91,15 @@ function toHex(color: Color): string {
         // @ts-ignore
         return src;
       };
-      src["alpha"] = color[4] || 1;
+      src['alpha'] = color[4] || 1;
       // @ts-ignore
       src = channelMapper(src, modeChannels, channels(src, color));
       // @ts-ignore
-      src = (src["alpha"] < 1 && formatHex8(src)) || formatHex(src);
+      src = (src['alpha'] < 1 && formatHex8(src)) || formatHex(src);
     }
 
     // if its a number use num2rgb
-    else if (typeof color === "number") {
+    else if (typeof color === 'number') {
       src = num2rgb(color, true);
     } else {
       // @ts-ignore
@@ -124,7 +124,7 @@ console.log(num2rgb(900, true))
  */
 
 function num2rgb(num: number, hex = false): Color {
-  if (typeof num === "number" && num >= 0 && num <= 0xffffff) {
+  if (typeof num === 'number' && num >= 0 && num <= 0xffffff) {
     const r = num >> 16;
     const g = (num >> 8) & 0xff;
     const b = num & 0xff;
@@ -133,12 +133,12 @@ function num2rgb(num: number, hex = false): Color {
       r: r / 255,
       g: g / 255,
       b: b / 255,
-      mode: "lrgb",
+      mode: 'lrgb'
     };
 
     return (hex && toHex(output)) || output;
   } else {
-    throw Error("unknown num color: " + num);
+    throw Error('unknown num color: ' + num);
   }
 }
 
@@ -158,7 +158,7 @@ console.log(rgb2num("b2c3f1"))
 function rgb2num(color: Color): number {
   // @ts-ignore
   const rgb: Color = useMode(modeRgb)(toHex(color));
-  return ((255 * rgb["r"]) << 16) + ((255 * rgb["g"]) << 8) + 255 * rgb["b"];
+  return ((255 * rgb['r']) << 16) + ((255 * rgb['g']) << 8) + 255 * rgb['b'];
 }
 
 /* eslint-disable no-ternary */
@@ -213,7 +213,7 @@ function temp2Color(kelvin: number, hex = false): Color {
     r: r / 255,
     g: g / 255,
     b: b / 255,
-    mode: "rgb",
+    mode: 'rgb'
   };
   return (hex && toHex(result)) || result;
 }
@@ -247,7 +247,7 @@ function toColorTuple(color: Color, mode: ColorSpaces) {
     // @ts-ignore
 
     const arr: ColorTuple = Object.keys(colorObject)
-      .filter((ch) => ch !== "mode")
+      .filter((ch) => ch !== 'mode')
       .map((key) => colorObject[key]);
     arr.unshift(mode);
     return arr;

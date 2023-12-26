@@ -13,24 +13,24 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { getChannel } from "./utils";
+import { getChannel } from './utils';
 import type {
   callback,
   Factor,
   Color,
   HueColorSpaces,
   Order,
-  Options,
-} from "./types";
-import modeRanges from "./color-maps/samples/modeRanges";
+  Options
+} from './types';
+import modeRanges from './color-maps/samples/modeRanges';
 
 import {
   interpolatorSplineNatural,
   fixupHueShorter,
   interpolatorSplineBasisClosed,
   interpolatorSplineMonotone,
-  easingSmoothstep,
-} from "culori/fn";
+  easingSmoothstep
+} from 'culori/fn';
 
 /**
  * @description Returns the first truthy value.
@@ -47,7 +47,7 @@ let {
   easingFunc,
   hueFixup,
   hueInterpolator,
-  lightnessInterpolator,
+  lightnessInterpolator
 }: Options = {};
 
 chromaInterpolator = interpolatorSplineNatural;
@@ -62,7 +62,7 @@ let interpolatorConfig = {
   chromaInterpolator,
   hueFixup,
   hueInterpolator,
-  lightnessInterpolator,
+  lightnessInterpolator
 };
 
 function getModeChannel(mode: string, key: number) {
@@ -81,23 +81,23 @@ function expressionParser(src: Color, channel: string, value: string): number {
     reValue = /[0-9]*\.?[0-9]+/;
 
   // Storing the arithmetic sign and value
-  const sign = reOperator.exec(value)["0"];
-  const amt = reValue.exec(value)["0"];
+  const sign = reOperator.exec(value)['0'];
+  const amt = reValue.exec(value)['0'];
 
   const cb = (value: string) => parseFloat(value);
 
   // Match an operator against the first truthy case and perform the relevant math operation
   switch (sign) {
-    case "+":
+    case '+':
       src[channel] += +cb(amt);
       break;
-    case "-":
+    case '-':
       src[channel] -= +cb(amt);
       break;
-    case "*":
+    case '*':
       src[channel] *= +cb(amt);
       break;
-    case "/":
+    case '/':
       src[channel] /= +cb(amt);
       break;
     default:
@@ -115,9 +115,9 @@ function expressionParser(src: Color, channel: string, value: string): number {
  */
 function matchChromaChannel(colorspace: HueColorSpaces | string): string {
   // Matches any string with c or s
-  colorspace = checkArg(colorspace, "jch");
+  colorspace = checkArg(colorspace, 'jch');
   const reChroma = /(s|c)/i;
-  const ch = reChroma.exec(colorspace)["0"];
+  const ch = reChroma.exec(colorspace)['0'];
 
   if (reChroma.test(colorspace)) {
     return `${colorspace}.${ch}`;
@@ -136,9 +136,9 @@ function matchChromaChannel(colorspace: HueColorSpaces | string): string {
  */
 function matchLightnessChannel(colorspace: HueColorSpaces | string): string {
   // Matches any string with c or s
-  colorspace = checkArg(colorspace, "jch");
+  colorspace = checkArg(colorspace, 'jch');
   const reLightness = /(j|l)/i;
-  const ch = reLightness.exec(colorspace)["0"];
+  const ch = reLightness.exec(colorspace)['0'];
 
   if (reLightness.test(colorspace)) {
     // @ts-ignore
@@ -186,7 +186,7 @@ function customFindKey(collection: object, factor: number) {
 function customConcat(hue: object) {
   const res = [];
   const { keys } = Object;
-  if (typeof hue == "object") {
+  if (typeof hue == 'object') {
     const hueKeys = keys(hue);
 
     //@ts-ignore
@@ -265,7 +265,7 @@ function isInteger(num: number | string) {
  * @returns The normalized channel value or the passed in value if it was within range
  */
 function normalize(value: number, modeChannel: string): number {
-  const [mode, channel]: string[] = modeChannel.split(".");
+  const [mode, channel]: string[] = modeChannel.split('.');
   const [start, end]: number[] = modeRanges[mode][channel];
   const range = inRange(value, start, end);
 
@@ -311,7 +311,7 @@ const { ceil, floor } = Math;
 
 function floorCeil(num: number): number {
   if (!isInteger(num)) {
-    const strArr = num.toString().split(".");
+    const strArr = num.toString().split('.');
     const float = strArr[1];
 
     //If the decimal value is .4  and below it will be rounded down else it will be rounded up.
@@ -336,11 +336,11 @@ function floorCeil(num: number): number {
 function customSort(order: Order, factor?: Factor | string) {
   //  Special thanks to deechris27 on youtube
   // a-b gives asc order & b-a gives desc order
-  factor = factor || "factor";
+  factor = factor || 'factor';
   return (a, b) => {
-    if (order === "asc") {
+    if (order === 'asc') {
       return a[factor] - b[factor];
-    } else if (order === "desc") {
+    } else if (order === 'desc') {
       return b[factor] - a[factor];
     }
   };
@@ -428,7 +428,7 @@ function sortedArr(
     if (colorObj) {
       return results;
     } else {
-      return results.map((color) => color["color"]);
+      return results.map((color) => color['color']);
     }
   };
 }
@@ -444,24 +444,24 @@ const filteredArr =
   (colors: Color[], start: number | string, end: number): Color[] => {
     let result: Color[];
 
-    if (typeof start === "number") {
+    if (typeof start === 'number') {
       result = colorObjArr(
         factor,
         cb
       )(colors)
         .filter((color) => inRange(color[factor], start, end))
-        .map((color) => color["color"]);
+        .map((color) => color['color']);
 
       // If string split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
-    } else if (typeof start === "string") {
+    } else if (typeof start === 'string') {
       //The pattern to match
       const reOperator = /^(>=|<=|<|>)/;
 
       const value = /[0-9]*\.?[0-9]+/;
 
       // Array
-      const val = value.exec(start)["0"],
-        op = reOperator.exec(start)["0"];
+      const val = value.exec(start)['0'],
+        op = reOperator.exec(start)['0'];
 
       const mapFilter = (test: (x: number, y: number) => boolean): Color[] => {
         return colorObjArr(
@@ -469,20 +469,20 @@ const filteredArr =
           cb
         )(colors)
           .filter((el) => test(el[factor], parseFloat(val)))
-          .map((el) => el["color"]);
+          .map((el) => el['color']);
       };
       switch (op) {
-        case "<":
+        case '<':
           result = mapFilter(lt);
 
           break;
-        case ">":
+        case '>':
           result = mapFilter(gt);
           break;
-        case "<=":
+        case '<=':
           result = mapFilter(lte);
           break;
-        case ">=":
+        case '>=':
           result = mapFilter(gte);
           break;
       }
@@ -517,5 +517,5 @@ export {
   normalize,
   checkArg,
   getModeChannel,
-  interpolatorConfig,
+  interpolatorConfig
 };

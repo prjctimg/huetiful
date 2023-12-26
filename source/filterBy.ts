@@ -11,17 +11,17 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { differenceEuclidean } from "culori/fn";
-import { toHex } from "./converters";
-import { Color, ColorSpaces, Factor, HueColorSpaces } from "./types";
-import { getLuminance, getContrast, getChannel } from "./utils";
+import { differenceEuclidean } from 'culori/fn';
+import { toHex } from './converters';
+import { Color, ColorSpaces, Factor, HueColorSpaces } from './types';
+import { getLuminance, getContrast, getChannel } from './utils';
 import {
   checkArg,
   matchChromaChannel,
   normalize,
   matchLightnessChannel,
-  filteredArr,
-} from "./helpers";
+  filteredArr
+} from './helpers';
 
 function baseFilterBy(factor, cb, colors, start, end) {
   return filteredArr(factor, cb)(colors, start, end);
@@ -64,10 +64,10 @@ function filterBySaturation(
 ): Color[] {
   const modeChannel = matchChromaChannel(colorspace);
   const reDigits = Number(
-    /([0-9])/g.exec(startSaturation as unknown as string)["0"]
+    /([0-9])/g.exec(startSaturation as unknown as string)['0']
   );
   return baseFilterBy(
-    "saturation",
+    'saturation',
     getChannel(modeChannel),
     colors,
     normalize(reDigits, modeChannel),
@@ -110,7 +110,7 @@ function filterByLuminance(
   endLuminance = 1
 ): Color[] {
   return baseFilterBy(
-    "luminance",
+    'luminance',
     getLuminance,
     colors,
     startLuminance,
@@ -155,7 +155,7 @@ function filterByLightness(
   colorspace?: HueColorSpaces
 ): Color[] {
   return baseFilterBy(
-    "lightness",
+    'lightness',
     getChannel(matchLightnessChannel(colorspace)),
     colors,
     startLightness,
@@ -198,7 +198,7 @@ function filterByHue(
   colorspace?: HueColorSpaces
 ): Color[] {
   return baseFilterBy(
-    "hue",
+    'hue',
     getChannel(`${colorspace}.h`),
     colors,
     startHue,
@@ -243,12 +243,12 @@ function filterByDistance(
 ): Color[] {
   const cb = (against) => (color) =>
     differenceEuclidean(
-      checkArg(colorspace, "lchuv"),
+      checkArg(colorspace, 'lchuv'),
       checkArg(weights, [1, 1, 1, 0])
     )(against, color);
 
   return baseFilterBy(
-    "distance",
+    'distance',
     cb(toHex(against)),
     colors,
     startDistance,
@@ -294,7 +294,7 @@ function filterByContrast(
 ): Color[] {
   const cb = (against: Color) => (color: Color) => getContrast(color, against);
   return baseFilterBy(
-    "contrast",
+    'contrast',
     cb(against),
     colors,
     startContrast,
@@ -308,5 +308,5 @@ export {
   filterByLuminance,
   filterBySaturation,
   filterByHue,
-  filterByLightness,
+  filterByLightness
 };
