@@ -27,7 +27,7 @@ import { wcagContrast } from "culori/fn";
 import { matchLightnessChannel } from "./helpers/string";
 import { getLuminance, getChannel } from "./utils";
 
-import { matchChromaChannel } from "./helpers/index";
+import { matchChromaChannel } from "./helpers";
 
 function baseSortBy(
   factor: Factor,

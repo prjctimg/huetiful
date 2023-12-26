@@ -9,7 +9,7 @@ import {
   matchLightnessChannel,
   max,
   random,
-} from "./helpers/index.js";
+} from "./helpers.js";
 import { toHex } from "./converters.js";
 import {
   interpolate,
@@ -35,7 +35,7 @@ import {
   DeficiencyType,
 } from "./types.js";
 
-import { matchChromaChannel, sortedArr, checkArg } from "./helpers/index.js";
+import { matchChromaChannel, sortedArr, checkArg } from "./helpers.js";
 
 /**
  *@function
