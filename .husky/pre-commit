@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-git add . && cd source && npm run format
+git add . && cd source && npm run lint
 
 
 

@@ -73,25 +73,34 @@ import {
   interpolateSpline as nativeInterpolatorSpline
 } from './index';
 
-import { interpolatorConfig } from './helpers/defaults';
+import { interpolatorConfig } from "./helpers";
 
 class ColorArray extends Array {
   constructor(colors: Color[]) {
     super();
-    this['colors'] = colors;
+    this["colors"] = colors;
     return this;
   }
 
+  /**
+   * @function
+   * @description Returns a spline based interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
+   * @param colorspace The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
+   * @param kind The type of the spline interpolation method. Default is basis.
+   * @param closed Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false
+   * @param options Optional channel specific overrides.
+   * @returns A hexadecimal representation of the resultant color.
+   */
   interpolateSpline(
-    mode?: HueColorSpaces,
+    colorspace?: HueColorSpaces,
     samples?: number,
-    kind?: 'natural' | 'monotone' | 'basis',
+    kind?: "natural" | "monotone" | "basis",
     closed?: boolean,
     options?: InterpolatorOptions
   ): Color[] {
-    this['colors'] = nativeInterpolatorSpline(
-      this['colors'],
-      mode,
+    this["colors"] = nativeInterpolatorSpline(
+      this["colors"],
+      colorspace,
       samples,
       kind,
       closed,
@@ -128,9 +137,9 @@ console.log(load(sample).discoverPalettes(sample, "tetradic").output())
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
  */
   discoverPalettes(
-    schemeType?: 'analogous' | 'triadic' | 'tetradic' | 'complementary'
+    schemeType?: "analogous" | "triadic" | "tetradic" | "complementary"
   ): Color[] | object {
-    this['colors'] = nativeDiscoverPalettes(this['colors'], schemeType);
+    this["colors"] = nativeDiscoverPalettes(this["colors"], schemeType);
     return this;
   }
 
@@ -152,7 +161,7 @@ console.log(load(output).getFarthestHue('lch'))
     colorSpace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: Color } {
-    return nativeMaxHue(this['colors'], colorSpace, colorObj);
+    return nativeMaxHue(this["colors"], colorSpace, colorObj);
   }
 
   /**
@@ -175,7 +184,7 @@ console.log(load(sample).getNearestHue('lch'))
     colorSpace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: Color } {
-    return nativeMinHue(this['colors'], colorSpace, colorObj);
+    return nativeMinHue(this["colors"], colorSpace, colorObj);
   }
 
   /**
@@ -198,7 +207,7 @@ console.log(load(sample).getNearestLightness('lch', true))
     colorspace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: Color } {
-    return nativeMinLightness(this['colors'], colorspace, colorObj);
+    return nativeMinLightness(this["colors"], colorspace, colorObj);
   }
 
   /**
@@ -222,7 +231,7 @@ console.log(load(sample).getFarthestLightness('lch', true))
     colorspace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: Color } {
-    return nativeMaxLightness(this['colors'], colorspace, colorObj);
+    return nativeMaxLightness(this["colors"], colorspace, colorObj);
   }
 
   /**
@@ -260,8 +269,8 @@ console.log(filterByContrast(sample, 'green', '>=3'))
   ): ColorArray {
     // @ts-ignore
 
-    this['colors'] = filterBy.filterBySaturation(
-      this['colors'],
+    this["colors"] = filterBy.filterBySaturation(
+      this["colors"],
       startSaturation,
       endSaturation,
       mode
@@ -297,8 +306,8 @@ filterByLightness(sample, 20, 80)
 // [ '#00c000', '#007e00', '#164100', '#720000' ]
  */
   filterByLightness(startLightness = 5, endLightness = 100): ColorArray {
-    this['colors'] = filterBy.filterByLightness(
-      this['colors'],
+    this["colors"] = filterBy.filterByLightness(
+      this["colors"],
       startLightness,
       endLightness
     );
@@ -337,8 +346,8 @@ console.log(filterByDistance(sample, "yellow", 0.1))
     mode?: ColorSpaces,
     weights?: [number, number, number, number]
   ): ColorArray {
-    this['colors'] = filterBy.filterByDistance(
-      this['colors'],
+    this["colors"] = filterBy.filterByDistance(
+      this["colors"],
       against,
       startDistance,
       endDistance,
@@ -383,8 +392,8 @@ console.log(filterByContrast(sample, 'green', '>=3'))
     startContrast = 0.05,
     endContrast?: number
   ): ColorArray {
-    this['colors'] = filterBy.filterByContrast(
-      this['colors'],
+    this["colors"] = filterBy.filterByContrast(
+      this["colors"],
       against,
       startContrast,
       endContrast
@@ -419,7 +428,7 @@ filterByHue(sample, 20, 80)
  */
 
   filterByHue(startHue = 0, endHue = 360): ColorArray {
-    this['colors'] = filterBy.filterByHue(this['colors'], startHue, endHue);
+    this["colors"] = filterBy.filterByHue(this["colors"], startHue, endHue);
     return this;
   }
   /**
@@ -451,8 +460,8 @@ filterByLuminance(sample, 0.4, 0.9)
  */
 
   filterByLuminance(startLuminance = 0.05, endLuminance = 1): ColorArray {
-    this['colors'] = filterBy.filterByLuminance(
-      this['colors'],
+    this["colors"] = filterBy.filterByLuminance(
+      this["colors"],
       startLuminance,
       endLuminance
     );
@@ -507,10 +516,10 @@ sortByLightness(sample,'desc')
 
  */
 
-  sortByLightness(order?: 'asc' | 'desc'): ColorArray {
+  sortByLightness(order?: "asc" | "desc"): ColorArray {
     // @ts-ignore
 
-    this['colors'] = sortBy.sortByLightness(this['colors'], order);
+    this["colors"] = sortBy.sortByLightness(this["colors"], order);
     return this;
   }
   /**
@@ -545,11 +554,11 @@ console.log(
 
   sortByDistance(
     against: Color,
-    order?: 'asc' | 'desc',
+    order?: "asc" | "desc",
     options?: ColorDistanceOptions
   ): ColorArray {
-    this['colors'] = sortBy.sortByDistance(
-      this['colors'],
+    this["colors"] = sortBy.sortByDistance(
+      this["colors"],
       against,
       order,
       options
@@ -607,8 +616,8 @@ console.log(sortedDescending)
  
  */
 
-  sortByLuminance(order?: 'asc' | 'desc'): ColorArray {
-    this['colors'] = sortBy.sortByLuminance(this['colors'], order);
+  sortByLuminance(order?: "asc" | "desc"): ColorArray {
+    this["colors"] = sortBy.sortByLuminance(this["colors"], order);
     return this;
   }
   /**
@@ -659,8 +668,8 @@ console.log(sortedDescending)
 
  */
 
-  sortBySaturation(order: 'asc' | 'desc', mode?: HueColorSpaces): ColorArray {
-    this['colors'] = sortBy.sortBySaturation(this['colors'], order, mode);
+  sortBySaturation(order: "asc" | "desc", mode?: HueColorSpaces): ColorArray {
+    this["colors"] = sortBy.sortBySaturation(this["colors"], order, mode);
     return this;
   }
 
@@ -683,8 +692,8 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
  
  */
 
-  sortByContrast(against: Color, order?: 'asc' | 'desc'): ColorArray {
-    this['colors'] = sortBy.sortByContrast(this['colors'], against, order);
+  sortByContrast(against: Color, order?: "asc" | "desc"): ColorArray {
+    this["colors"] = sortBy.sortByContrast(this["colors"], against, order);
     return this;
   }
   /**
@@ -734,9 +743,9 @@ console.log(sortedDescending)
  */
 
   // Todo: Add the mode param so that users can select mode to work with. The default is lch
-  sortByHue(order: 'asc' | 'desc', colorspace = 'jch'): ColorArray {
-    this['colors'] = sortBy.sortByHue(
-      this['colors'],
+  sortByHue(order: "asc" | "desc", colorspace = "jch"): ColorArray {
+    this["colors"] = sortBy.sortByHue(
+      this["colors"],
       order,
       colorspace as HueColorSpaces
     );
@@ -748,7 +757,7 @@ console.log(sortedDescending)
    * @returns Returns the result value from the chain.
    */
   output(): Color {
-    return this['colors'];
+    return this["colors"];
   }
 }
 

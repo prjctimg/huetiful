@@ -13,4 +13,16 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-describe();
+
+  it(`should get the passed in color's hue family`, function () {
+    const colors = [
+      ["rgb", 60, 79, 165],
+      "ffce33",
+      { j: 0.1105, c: 0.18, h: 163, mode: "jch" },
+      679000,
+    ];
+    const hues = colors.map((el) => utils.getHueFamily(el));
+    expect(hues).toBe(colors);
+  });
+    
+

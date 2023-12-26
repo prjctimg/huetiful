@@ -16,6 +16,10 @@ governing permissions and limitations under the License.
 import {
   useMode,
   modeLch,
+  modeDlch,
+  modeLch65,
+  modeOklch,
+  modeLchuv,
   easingSmoothstep,
   samples as nativeSamples,
   modeJch,
@@ -29,8 +33,8 @@ import {
   interpolatorSplineNatural,
   interpolatorSplineNaturalClosed,
   modeHsv,
-  nearest
-} from 'culori/fn';
+  nearest,
+} from "culori/fn";
 
 import type {
   Color,
@@ -38,8 +42,9 @@ import type {
   HueColorSpaces,
   HueShiftOptions,
   InterpolatorOptions,
-  PairedSchemeOptions
-} from './types';
+  PairedSchemeOptions,
+  UniformColorSpaces,
+} from "./types";
 import {
   adjustHue,
   random,
@@ -47,11 +52,24 @@ import {
   matchChromaChannel,
   matchLightnessChannel,
   max,
-  min
-} from './helpers';
+  min,
+} from "./helpers";
 
-import { toHex } from './converters';
-import { setChannel } from './utils';
+import { toHex } from "./converters";
+import { getChannel, setChannel } from "./utils";
+
+function ucsConverter(colorspace) {
+  const ucsDefinitions = {
+    jch: modeJch,
+    lch: modeLch,
+    dlch: modeDlch,
+    lchuv: modeLchuv,
+    oklch: modeOklch,
+    lch65: modeLch65,
+  };
+
+  return useMode(ucsDefinitions[colorspace]);
+}
 
 /**
  * @function
@@ -68,12 +86,12 @@ console.log(base("triadic")("#a1bd2f", true))
  */
 
 function scheme(
-  schemeType: 'analogous' | 'triadic' | 'tetradic' | 'complementary' | string
+  schemeType: "analogous" | "triadic" | "tetradic" | "complementary" | string
 ) {
   return (color: Color, easingFunc?: (t: number) => number): Color[] => {
     const cb = (iterations: number, distance: number, color: Color) =>
       nativeSamples(iterations).map((val) =>
-        adjustHue((color['h'] + distance) * (val * easingSmoothstep(val)))
+        adjustHue((color["h"] + distance) * (val * easingSmoothstep(val)))
       );
     schemeType = schemeType.toLowerCase();
     easingFunc = checkArg(easingFunc, easingSmoothstep);
@@ -88,7 +106,7 @@ function scheme(
       analogous: cb(3, 12, color),
       triadic: cb(3, 120, color),
       tetradic: cb(4, 90, color),
-      complementary: cb(2, 180, color)
+      complementary: cb(2, 180, color),
     };
     // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
     for (const scheme of Object.keys(targetHueSteps)) {
@@ -100,10 +118,10 @@ function scheme(
     }
     // The map for steps to obtain the targeted palettes
     const colors = targetHueSteps[schemeType].map((step: number) => ({
-      l: color['l'],
-      c: color['c'],
+      l: color["l"],
+      c: color["c"],
       h: step * easingFunc(1 / targetHueSteps[schemeType].length),
-      mode: 'lch'
+      mode: "lch",
     }));
 
     return colors.map(toHex);
@@ -139,17 +157,17 @@ console.log(discoverPalettes(sample, "tetradic"))
  */
 function discoverPalettes(
   colors: Color[],
-  schemeType?: 'analogous' | 'triadic' | 'tetradic' | 'complementary'
+  schemeType?: "analogous" | "triadic" | "tetradic" | "complementary"
 ): Color[] | object {
   const { keys } = Object;
   const isColorEqual = (c1: Color, c2: Color): boolean => {
-    return c1['h'] === c2['h'] && c1['l'] === c2['l'] && c1['c'] === c2['c'];
+    return c1["h"] === c2["h"] && c1["l"] === c2["l"] && c1["c"] === c2["c"];
   };
 
   const toLch = useMode(modeLch);
   colors = colors.map((color) => toLch(toHex(color)));
   const palettes = {};
-  const schemeKeys = ['analogous', 'triadic', 'tetradic', 'complementary'];
+  const schemeKeys = ["analogous", "triadic", "tetradic", "complementary"];
   const targetPalettes = {};
   for (const color of colors) {
     schemeKeys.forEach((s) => (targetPalettes[s] = scheme(s)(color)));
@@ -166,11 +184,11 @@ function discoverPalettes(
 
         const match = nearest(
           availableColors,
-          differenceEuclidean('lch')
+          differenceEuclidean("lch")
         )(targetColor)[0];
 
         // @ts-ignore
-        variance += differenceEuclidean('lch')(targetColor, match);
+        variance += differenceEuclidean("lch")(targetColor, match);
 
         palette.push(match);
       }
@@ -181,9 +199,9 @@ function discoverPalettes(
     }
   }
 
-  if (typeof schemeType === 'string') {
+  if (typeof schemeType === "string") {
     return palettes[schemeType.toLowerCase()];
-  } else if (typeof schemeType === 'undefined') {
+  } else if (typeof schemeType === "undefined") {
     return palettes;
   } else {
     throw Error(
@@ -213,22 +231,22 @@ function earthtone(
   colorspace?: HueColorSpaces,
   options?: EarthtoneOptions
 ): Color[] {
-  let { iterations, earthtones } = options || {};
+  let { samples: iterations, earthtones } = options || {};
 
   iterations = checkArg(iterations, 1);
 
-  earthtones = checkArg(earthtones, 'dark');
+  earthtones = checkArg(earthtones, "dark");
   const tones = {
-    'light-gray': '#e5e5e5',
-    silver: '#f5f5f5',
-    sand: '#c2b2a4',
-    tupe: '#a79e8a',
-    mahogany: '#958c7c',
-    'brick-red': '#7d7065',
-    clay: '#6a5c52',
-    cocoa: '#584a3e',
-    'dark-brown': '#473b31',
-    dark: '#352a21'
+    "light-gray": "#e5e5e5",
+    silver: "#f5f5f5",
+    sand: "#c2b2a4",
+    tupe: "#a79e8a",
+    mahogany: "#958c7c",
+    "brick-red": "#7d7065",
+    clay: "#6a5c52",
+    cocoa: "#584a3e",
+    "dark-brown": "#473b31",
+    dark: "#352a21",
   };
 
   const base: Color = tones[earthtones.toLowerCase()];
@@ -262,69 +280,85 @@ console.log(hueShiftedPalette);
 ]
  */
 
-function hueShift(color: Color, options?: HueShiftOptions): Color[] {
+function hueShift(
+  color: Color,
+  colorspace?: UniformColorSpaces,
+  options?: HueShiftOptions
+): Color[] {
   const lightnessMapper =
     (n: number) =>
     (start1: number, end1: number) =>
     (start2: number, end2: number) =>
       ((n - start1) / (end1 - start1)) * (end2 - start2) + start2;
 
-  const toLch = useMode(modeLch);
-  color = toLch(toHex(color));
+  color = ucsConverter(colorspace)(toHex(color));
 
-  let { iterations, hueStep, minLightness, maxLightness, easingFunc } =
-    options || {};
+  let {
+    samples: samples,
+    hueStep,
+    minLightness,
+    maxLightness,
+    easingFunc,
+  } = options || {};
 
   // Pass default values in case the options object is overridden
   easingFunc = checkArg(easingFunc, easingSmoothstep);
-  iterations = checkArg(iterations, 6) + 1;
+  samples = checkArg(samples, 6) + 1;
   hueStep = checkArg(hueStep, 5);
   minLightness = checkArg(minLightness, 10);
   maxLightness = checkArg(maxLightness, 90);
   // Pass in default values if any of the opts is undefined
-  const tValues = nativeSamples(iterations);
-  const palette: Color[] = [color];
+  const tValues = nativeSamples(samples),
+    palette: Color[] = [color];
+
+  const finalHueAngle = adjustHue(
+    getChannel(`${colorspace}.h`)(color) + hueStep * samples
+  );
 
   // Maximum number of iterations possible.
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
-  for (let i = 1; i < iterations; i++) {
+  for (let i = 1; i < samples; i++) {
     //adjustHue checks hue values are clamped.
-    const hueDark = adjustHue(color['h'] - hueStep * i);
-    const hueLight = adjustHue(color['h'] + hueStep * i);
 
     // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
-    const lightnessDark = lightnessMapper(easingFunc(tValues[i - 1]))(
-      0.1,
-      iterations
-    )(color['l'], minLightness);
 
-    const lightnessLight = lightnessMapper(easingFunc(tValues[i - 1]))(
-      0.05,
-      iterations
-    )(color['l'], maxLightness);
-
-    palette.push({
-      l: lightnessDark,
-      c: color['c'],
-      h: hueDark,
-      mode: 'lch'
-    });
-
-    palette.unshift({
-      l: lightnessLight,
-      c: color['c'],
-      h: hueLight,
-      mode: 'lch'
-    });
+    const [colorShiftDown, colorShiftUp] = [
+      {
+        l: lightnessMapper(easingFunc(tValues[i - 1]))(0.1, samples)(
+          color["l"],
+          minLightness
+        ),
+        c: color["c"],
+        h: Math.abs(finalHueAngle - color["h"]),
+        mode: colorspace,
+      },
+      {
+        l: lightnessMapper(easingFunc(tValues[i - 1]))(0.05, samples)(
+          color["l"],
+          maxLightness
+        ),
+        c: color["c"],
+        h: finalHueAngle,
+        mode: colorspace,
+      },
+    ];
+    palette.push(colorShiftUp);
+    palette.unshift(colorShiftDown);
   }
-  return palette.map(toHex);
+  return interpolateSpline(
+    palette,
+    colorspace,
+    samples,
+    "natural",
+    true,
+    options
+  );
 }
-
 /**
  * @function
  * @description Returns a spline based interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.
  * @param colors The array of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
- * @param mode The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
+ * @param colorspace The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
  * @param kind The type of the spline interpolation method. Default is basis.
  * @param closed Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false
  * @param options Optional channel specific overrides.
@@ -332,9 +366,9 @@ function hueShift(color: Color, options?: HueShiftOptions): Color[] {
  */
 function interpolateSpline(
   colors: Color[],
-  mode?: HueColorSpaces,
+  colorspace?: HueColorSpaces,
   samples?: number,
-  kind?: 'natural' | 'monotone' | 'basis',
+  kind?: "natural" | "monotone" | "basis",
   closed = false,
   options?: InterpolatorOptions
 ): Color[] {
@@ -343,46 +377,46 @@ function interpolateSpline(
     hueFixup,
     hueInterpolator,
     lightnessInterpolator,
-    easingFunc
+    easingFunc,
   } = checkArg(options, {}) as InterpolatorOptions;
   // Set the internal defaults
   easingFunc = checkArg(easingFunc, easingSmoothstep);
-  kind = checkArg(kind, 'basis');
+  kind = checkArg(kind, "basis");
 
   let func;
   switch (kind) {
-    case 'basis':
+    case "basis":
       func = closed ? interpolatorSplineBasisClosed : interpolatorSplineBasis;
       break;
-    case 'monotone':
+    case "monotone":
       func = closed
         ? interpolatorSplineMonotoneClosed
         : interpolatorSplineMonotone;
       break;
-    case 'natural':
+    case "natural":
       func = closed
         ? interpolatorSplineNaturalClosed
         : interpolatorSplineNatural;
       break;
   }
   // @ts-ignore
-  let f = interpolate([...colors, easingFunc], mode, {
+  let f = interpolate([...colors, easingFunc], colorspace, {
     h: {
       //@ts-ignore
       fixup: hueFixup,
-      use: checkArg(hueInterpolator, func)
+      use: checkArg(hueInterpolator, func),
     },
-    [matchChromaChannel(mode as string)]: {
-      use: checkArg(chromaInterpolator, func)
+    [matchChromaChannel(colorspace as string)]: {
+      use: checkArg(chromaInterpolator, func),
     },
-    [matchLightnessChannel(mode as string)]: {
-      use: checkArg(lightnessInterpolator, func)
-    }
+    [matchLightnessChannel(colorspace as string)]: {
+      use: checkArg(lightnessInterpolator, func),
+    },
   });
 
   // make sure samples is an absolute integer
   samples =
-    typeof samples === 'number' && samples >= 1
+    typeof samples === "number" && samples >= 1
       ? samples
       : Math.ceil(Math.abs(samples));
 
@@ -406,26 +440,26 @@ function interpolator(
     hueFixup,
     hueInterpolator,
     lightnessInterpolator,
-    easingFunc
+    easingFunc,
   } = checkArg(options, {}) as InterpolatorOptions;
   return interpolate(
-    [...colors, checkArg(easingFunc, interpolator['easingFunc'])],
-    checkArg(colorspace, 'jch'),
+    [...colors, checkArg(easingFunc, interpolator["easingFunc"])],
+    checkArg(colorspace, "jch"),
     {
       //@ts-ignore
       h: {
         fixup: hueFixup,
-        use: checkArg(hueInterpolator, interpolator['hueInterpolator'])
+        use: checkArg(hueInterpolator, interpolator["hueInterpolator"]),
       },
       [matchChromaChannel(colorspace)]: {
-        use: checkArg(chromaInterpolator, interpolator['chromaInterpolator'])
+        use: checkArg(chromaInterpolator, interpolator["chromaInterpolator"]),
       },
       [matchLightnessChannel(colorspace)]: {
         use: checkArg(
           lightnessInterpolator,
-          interpolator['lightnessInterpolator']
-        )
-      }
+          interpolator["lightnessInterpolator"]
+        ),
+      },
     }
   );
 }
@@ -448,28 +482,28 @@ function pairedScheme(
   options?: PairedSchemeOptions
 ): Color[] | Color {
   // eslint-disable-next-line prefer-const
-  let { iterations, via, hueStep, easingFunc } = options || {};
+  let { samples: iterations, via, hueStep, easingFunc } = options || {};
 
   iterations = checkArg(iterations, 1);
   easingFunc = checkArg(easingFunc, easingSmoothstep);
-  via = checkArg(via, 'light');
+  via = checkArg(via, "light");
   hueStep = checkArg(hueStep, 5);
 
   const toLch = useMode(modeLch);
   color = toLch(toHex(color));
 
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
-  const derivedHue = setChannel('lch.h')(color, color['h'] + hueStep);
+  const derivedHue = setChannel("lch.h")(color, color["h"] + hueStep);
 
   // Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes
   const tones = {
-    dark: { l: 0, c: 0, h: 0, mode: 'lch65' },
-    light: { l: 100, c: 0, h: 0, mode: 'lch65' }
+    dark: { l: 0, c: 0, h: 0, mode: "lch65" },
+    light: { l: 100, c: 0, h: 0, mode: "lch65" },
   };
 
   const scale = interpolate(
     [color as unknown as string, tones[via as string], derivedHue, easingFunc],
-    'lch',
+    "lch",
     checkArg(options, interpolator)
   );
 
