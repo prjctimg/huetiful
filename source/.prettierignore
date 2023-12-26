@@ -1,5 +1,5 @@
 **/node_modules
-color-maps
-lib
+**/color-maps
+**/lib
 .scripts
 webapp
