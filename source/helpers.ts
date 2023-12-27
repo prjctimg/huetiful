@@ -20,17 +20,18 @@ import type {
   Color,
   HueColorSpaces,
   Order,
-  Options
-} from './types';
-import modeRanges from './color-maps/samples/modeRanges';
+  Options,
+  ColorSpaces,
+} from "./types";
+import modeRanges from "./color-maps/samples/modeRanges";
 
 import {
   interpolatorSplineNatural,
   fixupHueShorter,
   interpolatorSplineBasisClosed,
   interpolatorSplineMonotone,
-  easingSmoothstep
-} from 'culori/fn';
+  easingSmoothstep,
+} from "culori/fn";
 
 /**
  * @description Returns the first truthy value.
@@ -42,69 +43,86 @@ function checkArg(arg: unknown, def: unknown): any {
   return arg || def;
 }
 
+// Global interpolator options defaults
 let {
   chromaInterpolator,
   easingFunc,
   hueFixup,
   hueInterpolator,
-  lightnessInterpolator
+  lightnessInterpolator,
 }: Options = {};
 
 chromaInterpolator = interpolatorSplineNatural;
 hueFixup = fixupHueShorter;
 hueInterpolator = interpolatorSplineBasisClosed;
 easingFunc = easingSmoothstep;
-
 lightnessInterpolator = interpolatorSplineMonotone;
 
-let interpolatorConfig = {
+const interpolatorConfig = {
   easingFunc,
   chromaInterpolator,
   hueFixup,
   hueInterpolator,
-  lightnessInterpolator
+  lightnessInterpolator,
 };
 
-function getModeChannel(mode: string, key: number) {
-  return mode.charAt(key);
+/**
+ * @description Gets the clipped string of a passed in colorspace by removing non-channel characters.
+ * @param colorspace  The colorspace to get the channel keys.
+ * @param index Optional index to return a single specified channel.
+ * @returns A string.
+ * 
+ @example
+
+ console.log(getModeChannel("oklch"));
+// lch
+
+console.log(getModeChannel("okhsl", 2));
+// l
+
+ */
+function getModeChannel(colorspace: ColorSpaces | string, index?: number) {
+  const result = colorspace.substring(colorspace.length - 3);
+
+  return (index && result.charAt(index)) || result;
 }
 
 /**
  * Performs arithmetic operations on colors by passing the arithmetic operator from the value if it is a string. It requires the src variable to be declared in the global scope of the invoking func.
- * @param src The color object.
+ * @param color The color object.
  * @param channel The channel to set.
  * @param value The value to apply.
  */
-function expressionParser(src: Color, channel: string, value: string): number {
+function expressionParser(
+  color: Color,
+  channel: string,
+  value: string
+): number {
   // regExp to match arithmetic operator and the value
-  const reOperator = /^(\*|\+|\-|\/)/,
-    reValue = /[0-9]*\.?[0-9]+/;
-
-  // Storing the arithmetic sign and value
-  const sign = reOperator.exec(value)['0'];
-  const amt = reValue.exec(value)['0'];
+  const sign = /^(\*|\+|\-|\/)/.exec(value)["0"],
+    amt = /[0-9]*\.?[0-9]+/.exec(value)["0"];
 
   const cb = (value: string) => parseFloat(value);
 
   // Match an operator against the first truthy case and perform the relevant math operation
   switch (sign) {
-    case '+':
-      src[channel] += +cb(amt);
+    case "+":
+      color[channel] += +cb(amt);
       break;
-    case '-':
-      src[channel] -= +cb(amt);
+    case "-":
+      color[channel] -= +cb(amt);
       break;
-    case '*':
-      src[channel] *= +cb(amt);
+    case "*":
+      color[channel] *= +cb(amt);
       break;
-    case '/':
-      src[channel] /= +cb(amt);
+    case "/":
+      color[channel] /= +cb(amt);
       break;
     default:
-      src[channel] = +cb(amt);
+      color[channel] = +cb(amt);
   }
   // @ts-ignore
-  return src;
+  return color;
 }
 
 /**
@@ -112,6 +130,14 @@ function expressionParser(src: Color, channel: string, value: string): number {
  * Matches the chroma/saturation channel of any compliant color space
  * @param colorspace The color space to match saturation/chroma channel.
  * @returns The mode channel string passed to getChannel()
+ * @example
+ * 
+ * import { matchChromaChannel } from 'huetiful-js'
+ * console.log(matchChromaChannel("jch"));
+// jch.c
+
+console.log(matchChromaChannel("okhsl"));
+// okhsl.s
  */
 function matchChromaChannel(colorspace: HueColorSpaces | string): string {
   // Matches any string with c or s
@@ -133,6 +159,14 @@ function matchChromaChannel(colorspace: HueColorSpaces | string): string {
  * Matches the lightness channel of any compliant color space
  * @param colorspace The color space to match lightness channel.
  * @returns The mode channel string passed to getChannel
+ * 
+ * @example
+ * 
+ * console.log(matchLightnessChannel("jch"));
+// jch.j
+
+console.log(matchLightnessChannel("okhsl"));
+// okhsl.l
  */
 function matchLightnessChannel(colorspace: HueColorSpaces | string): string {
   // Matches any string with c or s
@@ -265,7 +299,7 @@ function isInteger(num: number | string) {
  * @returns The normalized channel value or the passed in value if it was within range
  */
 function normalize(value: number, modeChannel: string): number {
-  const [mode, channel]: string[] = modeChannel.split('.');
+  const [mode, channel]: string[] = modeChannel.split(".");
   const [start, end]: number[] = modeRanges[mode][channel];
   const range = inRange(value, start, end);
 

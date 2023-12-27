@@ -18,16 +18,18 @@ import type {
   ColorDistanceOptions,
   HueColorSpaces,
   callback,
-  Order
-} from './types';
-import { sortedArr } from './helpers/array';
-import { differenceEuclidean } from 'culori/fn';
-import { checkArg } from './helpers/misc';
-import { wcagContrast } from 'culori/fn';
-import { matchLightnessChannel } from './helpers/string';
-import { getLuminance, getChannel } from './utils';
+  Order,
+} from "./types";
+import {
+  checkArg,
+  sortedArr,
+  matchLightnessChannel,
+  matchChromaChannel,
+} from "./helpers";
+import { wcagContrast, differenceEuclidean } from "culori/fn";
+import { getLuminance, getChannel } from "./utils";
 
-import { matchChromaChannel } from './helpers';
+
 
 function baseSortBy(
   factor: Factor,

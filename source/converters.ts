@@ -17,7 +17,7 @@ import type { ColorTuple, ColorSpaces, Color } from './types';
 import 'culori/all';
 import 'culori/css';
 import { formatHex8, formatHex, colorsNamed } from 'culori/fn';
-import { getModeChannel } from './helpers/misc';
+import { getModeChannel } from "./helpers";
 
 /**
  *@function
@@ -39,7 +39,7 @@ function toHex(color: Color): string {
 
   // if its of type string and not a CSS named color then its probably hex so we don't convert it
   if (
-    typeof color === 'string' &&
+    typeof color === "string" &&
     !Object.keys(colorsNamed).some((el) => el === color.toLowerCase())
   ) {
     return color;
@@ -50,17 +50,14 @@ function toHex(color: Color): string {
       const mode: string = color[0];
 
       // set mode to a substring which trims the string at an index that is the reslt of length - 3
-      const modeChannels = mode.substring(mode.length - 3);
+
       // Gets the channel key from the passed in mode
       // Store the channels excluding alpha
       const channels = (colorArr: [string, number, number, number?]) => {
         // Remove the mode element
         colorArr.shift();
-        if (colorArr.length === 4) {
-          // @ts-ignore
-          colorArr = colorArr.slice(0, 3);
-        }
-        return colorArr;
+
+        return (colorArr.length === 4 && colorArr.slice(0, 3)) || colorArr;
       };
 
       /**
@@ -75,9 +72,9 @@ function toHex(color: Color): string {
         mode: string,
         colorArr: [number, number, number]
       ): number[] => {
-        src['mode'] = mode;
+        src["mode"] = mode;
         // If our mode is rgb...
-        if (src['mode'] === 'rgb') {
+        if (src["mode"] === "rgb") {
           // if our rgb values are [0,255] we normalize them to [0,1]
           // for Culori to make sense of the channel values else it defaults o white
           if (colorArr.some((ch) => Math.abs(ch) > 1)) {
@@ -91,15 +88,15 @@ function toHex(color: Color): string {
         // @ts-ignore
         return src;
       };
-      src['alpha'] = color[4] || 1;
+      src["alpha"] = color[4] || 1;
       // @ts-ignore
-      src = channelMapper(src, modeChannels, channels(src, color));
+      src = channelMapper(src, getModeChannel(mode), channels(src, color));
       // @ts-ignore
-      src = (src['alpha'] < 1 && formatHex8(src)) || formatHex(src);
+      src = (src["alpha"] < 1 && formatHex8(src)) || formatHex(src);
     }
 
     // if its a number use num2rgb
-    else if (typeof color === 'number') {
+    else if (typeof color === "number") {
       src = num2rgb(color, true);
     } else {
       // @ts-ignore
