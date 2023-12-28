@@ -1,3 +1,5 @@
+huetiful-js / [Modules](modules.md)
+
 # huetiful-js
 
 TypeScript library for general purpose color manipulations and generating custom color scales.
@@ -15,7 +17,7 @@ npm i huetiful-js
 You can use a CDN in this example, jsdelivr to load the library remotely:
 
 ```js
-import { //... } from 'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.esm.mjs'
+import { ... } from 'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.esm.mjs'
 
 ```
 
@@ -43,7 +45,6 @@ let colorObjectWithAlpha = { l: 50, c: 20, h: 40, alpha: 0.5, mode: 'lch' }
 let arrColor = ['rgb', 120, 80, 50]
 let arrColorWithAlpha = ['rgb', 120, 80, 50, 0.1]
 
-
 // Converting CSS named colors to hex
 console.log(toHex(cssNamedColor))
 // #ffc0cb
@@ -67,7 +68,6 @@ console.log(toHex(arrColor))
 // Converting an array of channel values (including the alpha channel) to an 8 character hex
 console.log(toHex(arrColorWithAlpha))
 //#7850321a
-
 
 ```
 
@@ -94,7 +94,6 @@ console.log(red());
   '#dc2626', '#b91c1c',
   '#991b1b', '#7f1d1d'
 ]
-
 
 console.log(red(100));
 // '#fee2e2'
@@ -161,8 +160,6 @@ let sample = [
   "#720000",
 ];
 
-
-
 let sorted = sortByLuminance(sample)
 console.log(sorted)
 // [
@@ -186,7 +183,6 @@ console.log(sortedDescending)
   '#4e0000', '#3e0000',
   '#310000'
 ]
-
 
 ```
 
@@ -248,8 +244,6 @@ console.log(hueShiftedPalette);
   '#3b0c3a'
 ]
 
-
-
 ```
 
 [See more palette generator functions](https://huetiful-docs.vercel.app/api/palettes)
@@ -262,7 +256,6 @@ Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? 
 
 import { isAchromatic } from "huetiful-js";
 import { formatHex8, interpolate, samples } from "culori"
-
 
 isAchromatic('pink')
 // false
@@ -280,8 +273,6 @@ console.log(map(sample, isAchromatic));
 
 isAchromatic('gray')
 // true
-
-
 
 // Here are using some of Culori's functions to demonstrate this example
 // we create an interpolation using black and white
@@ -314,14 +305,12 @@ let sample = [
   "#00c000"
 ];
 
-
 console.log(isCool(sample[0]));
 // false
 
 console.log(map(sample, isCool));
 
 // [ true,  false, true]
-
 
 ```
 
@@ -338,7 +327,6 @@ let sample = [
 
 console.log(sample.filter(isWarm))
 // [ '#00ff78' ]
-
 
 ```
 
