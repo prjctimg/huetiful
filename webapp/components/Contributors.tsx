@@ -1,1 +1,0 @@
-// component for listing project meta
