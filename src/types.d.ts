@@ -1,9 +1,6 @@
-export type UniformColorSpaces = "lch" | "jch";
-export type Illuminant = "A" | "C" | "D50" | "D55" | "D65" | "D75";
+export type UniformColorSpaces = 'lch' | 'jch';
 export type ColorTuple = [string, number, number, number, number?];
 
-// baseColor obj
-type _BaseColorObject = {};
 export type ColorObject = { mode: ColorSpaces; alpha?: number };
 export type ColorOptions = {
   alpha?: number;
@@ -12,10 +9,10 @@ export type ColorOptions = {
   colorspace?: HueColorSpaces;
   luminance?: number;
   saturation?: number;
-  illuminant?: "D50" | "D65";
+  illuminant?: 'D50' | 'D65';
 
-  lightMode?: Color;
-  darkMode?: Color;
+  lightMode?: ColorToken;
+  darkMode?: ColorToken;
 
   contrast?: number;
   colorSpace?: HueColorSpaces;
@@ -30,18 +27,18 @@ export type ColorDistanceOptions = {
  * @description This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.
  */
 export type AdaptivePaletteOptions = {
-  backgroundColor?: { light?: Color; dark?: Color };
+  backgroundColor?: { light?: ColorToken; dark?: ColorToken };
   viewingConditions?: ViewingConditions;
   colorBlind?: boolean;
 };
 
 export type InterpolatorOptions = Pick<
   Options,
-  | "easingFunc"
-  | "hueInterpolator"
-  | "chromaInterpolator"
-  | "hueFixup"
-  | "lightnessInterpolator"
+  | 'easingFunc'
+  | 'hueInterpolator'
+  | 'chromaInterpolator'
+  | 'hueFixup'
+  | 'lightnessInterpolator'
 >;
 
 /**
@@ -89,16 +86,16 @@ type Options = {
    * * @param earthtone The earthtone to interpolate with.
    */
   earthtones?:
-    | "light-gray"
-    | "silver"
-    | "sand"
-    | "tupe"
-    | "mahogany"
-    | "brick-red"
-    | "clay"
-    | "cocoa"
-    | "dark-brown"
-    | "dark";
+    | 'light-gray'
+    | 'silver'
+    | 'sand'
+    | 'tupe'
+    | 'mahogany'
+    | 'brick-red'
+    | 'clay'
+    | 'cocoa'
+    | 'dark-brown'
+    | 'dark';
 
   /**
    *@param The amount of samples to return in the result collection.
@@ -119,80 +116,81 @@ type ViewingConditions = {
   adaptingLuminance?: number;
   backgroundLuminance?: number;
   discounting?: boolean;
-  surroundType?: "dim" | "dark" | "average";
+  surroundType?: 'dim' | 'dark' | 'average';
   whitePoint?: Illuminant;
 };
 export type PairedSchemeOptions = Omit<
   Options,
-  "earthtones" | "maxLightness" | "minLightness"
+  'earthtones' | 'maxLightness' | 'minLightness'
 >;
 export type EarthtoneOptions = Omit<
   Options,
-  "hueStep" | "via" | "maxLightness" | "minLightness"
+  'hueStep' | 'via' | 'maxLightness' | 'minLightness'
 >;
 
-export type HueShiftOptions = Omit<Options, "via" | "earthtones" | ""> & InterpolatorOptions
+export type HueShiftOptions = Omit<Options, 'via' | 'earthtones' | ''> &
+  InterpolatorOptions;
 export type Interpolator = (arr: number[]) => (t: number) => number;
-export type Tone = "light" | "dark";
-export type DeficiencyType = "red" | "blue" | "green" | "monochromacy";
+export type Tone = 'light' | 'dark';
+export type DeficiencyType = 'red' | 'blue' | 'green' | 'monochromacy';
 export type HueFamily =
-  | "red-purple"
-  | "red"
-  | "yellow-red"
-  | "yellow"
-  | "green-yellow"
-  | "green"
-  | "blue-green"
-  | "blue"
-  | "purple-blue"
-  | "purple";
+  | 'red-purple'
+  | 'red'
+  | 'yellow-red'
+  | 'yellow'
+  | 'green-yellow'
+  | 'green'
+  | 'blue-green'
+  | 'blue'
+  | 'purple-blue'
+  | 'purple';
 
 export type DivergingScheme =
-  | "Spectral"
-  | "RdYlGn"
-  | "RdBu"
-  | "PiYG"
-  | "PRGn"
-  | "RdYlBu"
-  | "BrBG"
-  | "RdGy"
-  | "PuOr";
+  | 'Spectral'
+  | 'RdYlGn'
+  | 'RdBu'
+  | 'PiYG'
+  | 'PRGn'
+  | 'RdYlBu'
+  | 'BrBG'
+  | 'RdGy'
+  | 'PuOr';
 export type QualitativeScheme =
-  | "Set2"
-  | "Accent"
-  | "Set1"
-  | "Set3"
-  | "Dark2"
-  | "Paired"
-  | "Pastel2"
-  | "Pastel1";
+  | 'Set2'
+  | 'Accent'
+  | 'Set1'
+  | 'Set3'
+  | 'Dark2'
+  | 'Paired'
+  | 'Pastel2'
+  | 'Pastel1';
 
 export type SequentialScheme =
-  | "OrRd"
-  | "PuBu"
-  | "BuPu"
-  | "Oranges"
-  | "BuGn"
-  | "YlOrBr"
-  | "YlGn"
-  | "Reds"
-  | "RdPu"
-  | "Greens"
-  | "YlGnBu"
-  | "Purples"
-  | "GnBu"
-  | "Greys"
-  | "YlOrRd"
-  | "PuRd"
-  | "Blues"
-  | "PuBuGn"
-  | "Viridis";
+  | 'OrRd'
+  | 'PuBu'
+  | 'BuPu'
+  | 'Oranges'
+  | 'BuGn'
+  | 'YlOrBr'
+  | 'YlGn'
+  | 'Reds'
+  | 'RdPu'
+  | 'Greens'
+  | 'YlGnBu'
+  | 'Purples'
+  | 'GnBu'
+  | 'Greys'
+  | 'YlOrRd'
+  | 'PuRd'
+  | 'Blues'
+  | 'PuBuGn'
+  | 'Viridis';
 
 /**
  * @type
  * @description Any recognizable color token.
  */
-export type Color = number | string | object | ColorTuple;
+export type ColorToken = number | string | object | ColorTuple;
 
 /**
  * @param
@@ -204,15 +202,15 @@ export type Color = number | string | object | ColorTuple;
  * The property being queried. Used in utilities that perform operations on collections.
  */
 export type Factor =
-  | "luminance"
-  | "temp"
-  | "saturation"
-  | "contrast"
-  | "distance"
-  | "lightness"
-  | "hue";
+  | 'luminance'
+  | 'temp'
+  | 'saturation'
+  | 'contrast'
+  | 'distance'
+  | 'lightness'
+  | 'hue';
 
-type Order = "asc" | "desc";
+type Order = 'asc' | 'desc';
 
 type callback = unknown;
 
@@ -221,316 +219,316 @@ type FactorMapper = (
   callback: callback,
   order?: Order,
   colorObj?: boolean
-) => (colors: Color[]) => Color[];
+) => (colors: ColorToken[]) => ColorToken[];
 
 export type ColorSpaces =
-  | "a98"
-  | "cubehelix"
-  | "dlab"
-  | "dlch"
-  | "hsi"
-  | "hsl"
-  | "hsv"
-  | "hwb"
-  | "jab"
-  | "jch"
-  | "lab"
-  | "lab65"
-  | "lch"
-  | "lch65"
-  | "lchuv"
-  | "lrgb"
-  | "luv"
-  | "okhsl"
-  | "okhsv"
-  | "oklab"
-  | "rgb";
+  | 'a98'
+  | 'cubehelix'
+  | 'dlab'
+  | 'dlch'
+  | 'hsi'
+  | 'hsl'
+  | 'hsv'
+  | 'hwb'
+  | 'jab'
+  | 'jch'
+  | 'lab'
+  | 'lab65'
+  | 'lch'
+  | 'lch65'
+  | 'lchuv'
+  | 'lrgb'
+  | 'luv'
+  | 'okhsl'
+  | 'okhsv'
+  | 'oklab'
+  | 'rgb';
 
 export type HueColorSpaces =
-  | "jch"
-  | "hsl"
-  | "hsv"
-  | "hsi"
-  | "oklch"
-  | "lch"
-  | "hwb"
-  | "okhsl"
-  | "okhsv"
-  | "lch65"
-  | "lchuv"
-  | "dlch";
+  | 'jch'
+  | 'hsl'
+  | 'hsv'
+  | 'hsi'
+  | 'oklch'
+  | 'lch'
+  | 'hwb'
+  | 'okhsl'
+  | 'okhsv'
+  | 'lch65'
+  | 'lchuv'
+  | 'dlch';
 
 export type ScaleValues =
-  | "100"
-  | "50"
-  | "200"
-  | "300"
-  | "400"
-  | "500"
-  | "600"
-  | "700"
-  | "800"
-  | "900";
+  | '100'
+  | '50'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900';
 
 export type HueMap = {
   indigo: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
   gray: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   zinc: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   neutral: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   stone: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   red: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   orange: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   amber: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   yellow: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   lime: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   green: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   emerald: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   teal: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   sky: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   blue: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   violet: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   purple: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   fuchsia: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   pink: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 
   rose: {
-    "50": string;
-    "100": string;
-    "200": string;
-    "300": string;
-    "400": string;
-    "500": string;
-    "600": string;
-    "700": string;
-    "800": string;
-    "900": string;
+    '50': string;
+    '100': string;
+    '200': string;
+    '300': string;
+    '400': string;
+    '500': string;
+    '600': string;
+    '700': string;
+    '800': string;
+    '900': string;
   };
 };
 
-type ColorTemp = "warm" | "cool" | "daylight" | "incadescent" | "fluorescent";
+type ColorTemp = 'warm' | 'cool' | 'daylight' | 'incadescent' | 'fluorescent';

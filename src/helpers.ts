@@ -1,3 +1,4 @@
+/* eslint-disable no-ternary */
 /** 
  * @license
  * helpers.ts - Helper functions for huetiful-js.
@@ -17,29 +18,30 @@ import { getChannel } from './utils';
 import type {
   callback,
   Factor,
-  Color,
+  ColorToken,
   HueColorSpaces,
   Order,
   Options,
-  ColorSpaces,
-} from "./types";
-import modeRanges from "./color-maps/samples/modeRanges";
+  ColorSpaces
+} from './types';
+import modeRanges from './color-maps/samples/modeRanges';
 
 import {
   interpolatorSplineNatural,
   fixupHueShorter,
   interpolatorSplineBasisClosed,
   interpolatorSplineMonotone,
-  easingSmoothstep,
-} from "culori/fn";
+  easingSmoothstep
+} from 'culori/fn';
+import { ucsConverter } from './generators';
 
 /**
- * @description Returns the first truthy value.
+ *  Returns the first truthy value.
  * @param arg The value to check
  * @param def The value to cast if arg is falsy
  * @returns The first truthy value
  */
-function checkArg(arg: unknown, def: unknown): any {
+function checkArg(arg: unknown, def: unknown): unknown {
   return arg || def;
 }
 
@@ -49,7 +51,7 @@ let {
   easingFunc,
   hueFixup,
   hueInterpolator,
-  lightnessInterpolator,
+  lightnessInterpolator
 }: Options = {};
 
 chromaInterpolator = interpolatorSplineNatural;
@@ -63,11 +65,11 @@ const interpolatorConfig = {
   chromaInterpolator,
   hueFixup,
   hueInterpolator,
-  lightnessInterpolator,
+  lightnessInterpolator
 };
 
 /**
- * @description Gets the clipped string of a passed in colorspace by removing non-channel characters.
+ *  Gets the clipped string of a passed in colorspace by removing non-channel characters.
  * @param colorspace  The colorspace to get the channel keys.
  * @param index Optional index to return a single specified channel.
  * @returns A string.
@@ -88,39 +90,50 @@ function getModeChannel(colorspace: ColorSpaces | string, index?: number) {
 }
 
 /**
- * Performs arithmetic operations on colors by passing the arithmetic operator from the value if it is a string. It requires the src variable to be declared in the global scope of the invoking func.
- * @param color The color object.
- * @param channel The channel to set.
- * @param value The value to apply.
+ * Takes an arithmetic operator followed by a value and passes the result of the expression to the specified channel. Currently supports addition,subtraction,division and multiplication symbols only.
+ * @param color The color.
+ * @param modeChannel The colorspace channel to set.
+ * @param expression The expression assignment as a string.
+ * @example
+ *
+ * console.log(lch('blue'));
+// { mode: 'lch',l: 29.568297153444703,c: 131.2014771995311,h: 301.36428148973533}
+
+console.log(expressionParser('blue', 'lch.l', '*0.3'));
+// { mode: 'lch',l: 8.87048914603341,c: 131.2014771995311,h: 301.36428148973533 }
+
  */
 function expressionParser(
-  color: Color,
-  channel: string,
-  value: string
+  color: ColorToken,
+  modeChannel: string,
+  expression: string
 ): number {
   // regExp to match arithmetic operator and the value
-  const sign = /^(\*|\+|\-|\/)/.exec(value)["0"],
-    amt = /[0-9]*\.?[0-9]+/.exec(value)["0"];
+  const sign = /^(\*|\+|\-|\/)/.exec(expression)['0'],
+    value = /[0-9]*\.?[0-9]+/.exec(expression)['0'];
+  const [mode, channel] = modeChannel.split('.');
 
+  // @ts-ignore
+  color = ucsConverter(mode)(color);
   const cb = (value: string) => parseFloat(value);
 
   // Match an operator against the first truthy case and perform the relevant math operation
   switch (sign) {
-    case "+":
-      color[channel] += +cb(amt);
+    case '+':
+      color[channel] += +cb(value);
       break;
-    case "-":
-      color[channel] -= +cb(amt);
+    case '-':
+      color[channel] -= +cb(value);
       break;
-    case "*":
-      color[channel] *= +cb(amt);
+    case '*':
+      color[channel] *= +cb(value);
       break;
-    case "/":
-      color[channel] /= +cb(amt);
+    case '/':
+      color[channel] /= +cb(value);
       break;
-    default:
-      color[channel] = +cb(amt);
+    // throw error alert
   }
+
   // @ts-ignore
   return color;
 }
@@ -141,7 +154,7 @@ console.log(matchChromaChannel("okhsl"));
  */
 function matchChromaChannel(colorspace: HueColorSpaces | string): string {
   // Matches any string with c or s
-  colorspace = checkArg(colorspace, 'jch');
+  colorspace = checkArg(colorspace, 'jch') as HueColorSpaces;
   const reChroma = /(s|c)/i;
   const ch = reChroma.exec(colorspace)['0'];
 
@@ -170,7 +183,7 @@ console.log(matchLightnessChannel("okhsl"));
  */
 function matchLightnessChannel(colorspace: HueColorSpaces | string): string {
   // Matches any string with c or s
-  colorspace = checkArg(colorspace, 'jch');
+  colorspace = checkArg(colorspace, 'jch') as HueColorSpaces;
   const reLightness = /(j|l)/i;
   const ch = reLightness.exec(colorspace)['0'];
 
@@ -183,7 +196,7 @@ function matchLightnessChannel(colorspace: HueColorSpaces | string): string {
 }
 
 function colorObj(factor: Factor, callback: callback) {
-  return (color: Color) => {
+  return (color: ColorToken) => {
     // @ts-ignore
     return { [factor]: callback(color), color: color };
   };
@@ -217,7 +230,7 @@ function customFindKey(collection: object, factor: number) {
   return result;
 }
 
-function customConcat(hue: object) {
+function customConcat(hue: object): number[] {
   const res = [];
   const { keys } = Object;
   if (typeof hue == 'object') {
@@ -230,17 +243,38 @@ function customConcat(hue: object) {
   return res.flat(1);
 }
 
-function adjustHue(value = 0) {
-  if (value > 0) {
-    return (value += Math.ceil(-value / 360) * 360);
-  } else {
-    return value % 360;
-  }
+/**
+ *
+ * @param value The hue angle to normalize.
+ * @returns The normalized hue angle or passed in value if it was within [0,360]
+ *
+ * @example
+ * 
+ * console.log(adjustHue(4));
+// 4
+
+console.log(adjustHue(444));
+// 84
+ */
+function adjustHue(value: number) {
+  return (value > 0 && (value += Math.ceil(-value / 360) * 360)) || value % 360;
 }
 
-function channelDifference(color: Color, modeChannel?: string) {
-  return (subtrahend: Color) => {
-    const cb = (color) => getChannel(modeChannel as string)(color);
+/**
+ * Returns the channel value difference between the passed in colors. They are both converted to the colorspace in the modeChannel parameter before values are computed.
+ * @param color The color to subtract values from/
+ * @param modeChannel The colorspace and channel string to perform the operation in.
+ * @returns The difference between the color channel(s)
+ * @example
+ *
+ *
+ */
+function channelDifference(color: ColorToken, modeChannel: string) {
+  /**
+   * @param subtrahend The color to use as subtrahend
+   */
+  return (subtrahend: ColorToken) => {
+    const cb = (color: ColorToken) => getChannel(modeChannel)(color);
     if (cb(color) < cb(subtrahend)) {
       return cb(subtrahend) - cb(color);
     } else {
@@ -268,7 +302,7 @@ function eq(x: number, y: number): boolean {
 
 /**
  * @function
- * @description Checks if a value is within the start and end range.
+ *  Checks if a value is within the start and end range.
  * @param number The number to check.
  * @param start The minimum or starting value.
  * @param end The maximum or starting value.
@@ -282,7 +316,7 @@ function inRange(number: number, start: number, end?: number): boolean {
 }
 
 /**
- * @description Checks if a number is an integer or float.
+ *  Checks if a number is an integer or float.
  * @param num The number to query
  * @returns True if the number is an integer else false if it is a float.
  */
@@ -293,13 +327,13 @@ function isInteger(num: number | string) {
 
 /**
  * @function
- * @description Normalizes passed in channel value to a range accepted by color spaces as defined in Culori.
+ *  Normalizes passed in channel value to a range accepted by color spaces as defined in Culori.
  * @param value The value to chec if its in the accepted range for the passed in mode channel
  * @param modeChannel A string defining the mode and channel ranges to use for comparison
  * @returns The normalized channel value or the passed in value if it was within range
  */
 function normalize(value: number, modeChannel: string): number {
-  const [mode, channel]: string[] = modeChannel.split(".");
+  const [mode, channel]: string[] = modeChannel.split('.');
   const [start, end]: number[] = modeRanges[mode][channel];
   const range = inRange(value, start, end);
 
@@ -319,7 +353,7 @@ function normalize(value: number, modeChannel: string): number {
 
 /**
  * @function
- * @description Returns a random number between minimum and maximum bounds.
+ *  Returns a random number between minimum and maximum bounds.
  * @param min The lower bound.
  * @param max The upper bound.
  * @returns A number.
@@ -341,6 +375,12 @@ const { ceil, floor } = Math;
  * Rounds up or down a number based on the float value.
  * @param num The number to round up or down.
  * @returns An integer
+ * @example
+ * console.log(floorCeil(1.45));
+// 1
+console.log(floorCeil(1.501));
+// 2
+
  */
 
 function floorCeil(num: number): number {
@@ -362,7 +402,7 @@ function floorCeil(num: number): number {
 }
 
 /**
- * @description Helper function for native sorting method for arrays.
+ *  Helper function for native sorting method for arrays.
  * @param factor The property to query.
  * @param order Either ascending or descending.
  * @returns A sorted array.
@@ -385,28 +425,35 @@ function customSort(order: Order, factor?: Factor | string) {
  * Creates a custom object with a factor to pass to the predicate function.
  * @param factor The quality being queried.
  * @param cb The callback function for computing the factor's start.
- * @param colors The array of colors to iterate over.
  * @returns An array of objects.
  */
 function colorObjArr(factor: Factor, callback) {
-  return (colors: Color[]): Array<{ factor: Factor; color: Color }> => {
+  /**
+   *
+   * @param colors The array or object of colors to iterate over. If an object is passed, its values are expected to be valid color tokens.
+   */
+  return (
+    colors: ColorToken[] | object
+  ): Array<{ factor: Factor; color: ColorToken }> => {
     const cb = colorObj(factor, callback);
     // @ts-ignore
-    return colors.map((color) => cb(color));
+    return Object.keys(colors).map((color) => cb(colors[color]));
   };
 }
 
-// from the lodash implementation of _.min and _.max
-const identity = (value) => {
+/**
+ * Returns the passed in value
+ * @param value The value to return
+ * @returns
+ */
+function identity(value) {
   return value;
-};
+}
 function baseExtremum(array: number[], iteratee, comparator) {
-  var index = -1,
-    length = array.length;
+  var [index, length] = [-1, array.length];
 
   while (++index < length) {
-    var value = array[index],
-      current = iteratee(value);
+    var [value, current] = [array[index], iteratee(value)];
 
     if (
       current != null &&
@@ -421,20 +468,31 @@ function baseExtremum(array: number[], iteratee, comparator) {
   return result;
 }
 /**
- * @description Gets the smallest value in an array
+ *  Gets the smallest value in an array
  * @param array The array to retrieve minimum value
  * @returns The smallest number in the array
+ * @example
+ * console.log(min([0, 3, 4]));
+// 0
+ * 
  */
 function min(array: number[]): number {
-  return array && array.length ? baseExtremum(array, identity, lt) : undefined;
+  return (
+    (array && array.length && baseExtremum(array, identity, lt)) || undefined
+  );
 }
 /**
- * @description Gets the largest value in an array
+ *  Gets the largest value in an array
  * @param array The array to retrieve maximum value
  * @returns The largest number in the array
+ * @example
+ * console.log(max([0, 3, 4]));
+// 4
  */
 function max(array: number[]): number {
-  return array && array.length ? baseExtremum(array, identity, gt) : undefined;
+  return (
+    (array && array.length && baseExtremum(array, identity, gt)) || undefined
+  );
 }
 
 /**
@@ -449,8 +507,8 @@ function sortedArr(
   order: Order,
   colorObj = false
 ) {
-  return (colors: Color[]) => {
-    const results: Color[] | Array<{ factor: number; color: Color }> =
+  return (colors: ColorToken[]) => {
+    const results: ColorToken[] | Array<{ factor: number; color: ColorToken }> =
       colorObjArr(factor, callback)(colors);
 
     // Assign the value of colorObj to results variable
@@ -468,15 +526,15 @@ function sortedArr(
 }
 
 /**
- * @description Filters an array according to the value of a color's queried factor
+ *  Filters an array according to the value of a color's queried factor
  * @param factor The property to query and use as filtering criteria
  * @param cb The function to use for comparison
  * @returns The filtered array
  */
 const filteredArr =
   (factor: Factor, cb?: callback) =>
-  (colors: Color[], start: number | string, end: number): Color[] => {
-    let result: Color[];
+  (colors: ColorToken[], start: number | string, end: number): ColorToken[] => {
+    let result: ColorToken[];
 
     if (typeof start === 'number') {
       result = colorObjArr(
@@ -489,15 +547,14 @@ const filteredArr =
       // If string split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
     } else if (typeof start === 'string') {
       //The pattern to match
-      const reOperator = /^(>=|<=|<|>)/;
-
-      const value = /[0-9]*\.?[0-9]+/;
 
       // Array
-      const val = value.exec(start)['0'],
-        op = reOperator.exec(start)['0'];
+      const val = /[0-9]*\.?[0-9]+/.exec(start)['0'],
+        op = /^(>=|<=|<|>)/.exec(start)['0'];
 
-      const mapFilter = (test: (x: number, y: number) => boolean): Color[] => {
+      const mapFilter = (
+        test: (x: number, y: number) => boolean
+      ): ColorToken[] => {
         return colorObjArr(
           factor,
           cb

@@ -13,7 +13,7 @@ governing permissions and limitations under the License.
 
 import { differenceEuclidean } from 'culori/fn';
 import { toHex } from './converters';
-import { Color, ColorSpaces, Factor, HueColorSpaces } from './types';
+import { ColorToken, ColorSpaces, Factor, HueColorSpaces } from './types';
 import { getLuminance, getContrast, getChannel } from './utils';
 import {
   checkArg,
@@ -57,11 +57,11 @@ console.log(filterByContrast(sample, 'green', '>=3'))
  */
 
 function filterBySaturation(
-  colors: Color[],
+  colors: ColorToken[],
   startSaturation = 0.05,
   endSaturation = 1,
   colorspace?: HueColorSpaces
-): Color[] {
+): ColorToken[] {
   const modeChannel = matchChromaChannel(colorspace);
   const reDigits = Number(
     /([0-9])/g.exec(startSaturation as unknown as string)['0']
@@ -105,10 +105,10 @@ filterByLuminance(sample, 0.4, 0.9)
  */
 
 function filterByLuminance(
-  colors: Color[],
+  colors: ColorToken[],
   startLuminance = 0.05,
   endLuminance = 1
-): Color[] {
+): ColorToken[] {
   return baseFilterBy(
     'luminance',
     getLuminance,
@@ -149,11 +149,11 @@ filterByLightness(sample, 20, 80)
  */
 
 function filterByLightness(
-  colors: Color[],
+  colors: ColorToken[],
   startLightness = 5,
   endLightness = 100,
   colorspace?: HueColorSpaces
-): Color[] {
+): ColorToken[] {
   return baseFilterBy(
     'lightness',
     getChannel(matchLightnessChannel(colorspace)),
@@ -192,11 +192,11 @@ filterByHue(sample, 20, 80)
  */
 
 function filterByHue(
-  colors: Color[],
+  colors: ColorToken[],
   startHue = 0,
   endHue = 360,
   colorspace?: HueColorSpaces
-): Color[] {
+): ColorToken[] {
   return baseFilterBy(
     'hue',
     getChannel(`${colorspace}.h`),
@@ -234,13 +234,13 @@ console.log(filterByDistance(sample, "yellow", 0.1))
  */
 
 function filterByDistance(
-  colors: Color[],
-  against: Color,
+  colors: ColorToken[],
+  against: ColorToken,
   startDistance = 0.05,
   endDistance?: number,
   colorspace?: ColorSpaces,
   weights?: [number, number, number, number]
-): Color[] {
+): ColorToken[] {
   const cb = (against) => (color) =>
     differenceEuclidean(
       checkArg(colorspace, 'lchuv'),
@@ -287,12 +287,13 @@ console.log(filterByContrast(sample, 'green', '>=3'))
  */
 
 function filterByContrast(
-  colors: Color[],
-  against: Color,
+  colors: ColorToken[],
+  against: ColorToken,
   startContrast = 1,
   endContrast = 21
-): Color[] {
-  const cb = (against: Color) => (color: Color) => getContrast(color, against);
+): ColorToken[] {
+  const cb = (against: ColorToken) => (color: ColorToken) =>
+    getContrast(color, against);
   return baseFilterBy(
     'contrast',
     cb(against),

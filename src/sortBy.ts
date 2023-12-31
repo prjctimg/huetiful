@@ -13,13 +13,13 @@ governing permissions and limitations under the License.
 
 import type {
   Factor,
-  Color,
+  ColorToken,
   ColorSpaces,
   ColorDistanceOptions,
   HueColorSpaces,
   callback,
-  Order,
-} from "./types";
+  Order
+} from './types';
 import {
   checkArg,
   sortedArr,
@@ -35,7 +35,7 @@ function baseSortBy(
   factor: Factor,
   cb: callback,
   order: Order,
-  colors: Color[]
+  colors: ColorToken[]
 ) {
   try {
     return sortedArr(factor, cb, order)(colors);
@@ -93,10 +93,10 @@ console.log(sortedDescending)
  */
 
 function sortBySaturation(
-  colors: Color[],
+  colors: ColorToken[],
   order: 'asc' | 'desc',
   mode?: HueColorSpaces
-): Color[] {
+): ColorToken[] {
   return baseSortBy(
     'saturation',
     getChannel(matchChromaChannel(mode)),
@@ -154,7 +154,10 @@ console.log(sortedDescending)
  
  */
 
-function sortByLuminance(colors: Color[], order: 'asc' | 'desc'): Color[] {
+function sortByLuminance(
+  colors: ColorToken[],
+  order: 'asc' | 'desc'
+): ColorToken[] {
   return baseSortBy('luminance', getLuminance, order, colors);
 }
 
@@ -208,10 +211,10 @@ sortByLightness(sample,'desc')
  */
 // For lightness use a different color space
 function sortByLightness(
-  colors: Color[],
+  colors: ColorToken[],
   order?: Order,
   colorspace?: HueColorSpaces
-): Color[] {
+): ColorToken[] {
   return baseSortBy(
     'lightness',
     getChannel(matchLightnessChannel(colorspace)),
@@ -269,10 +272,10 @@ console.log(sortedDescending)
 
 // Todo: Add the mode param so that users can select mode to work with. The default is lch
 function sortByHue(
-  colors: Color[],
+  colors: ColorToken[],
   order?: Order,
   colorspace?: HueColorSpaces
-): Color[] {
+): ColorToken[] {
   const reHue = /h/i.test(colorspace);
   return (
     reHue &&
@@ -305,12 +308,13 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
  */
 
 function sortByContrast(
-  colors: Color[],
-  against: Color,
+  colors: ColorToken[],
+  against: ColorToken,
   order?: Order
-): Color[] {
+): ColorToken[] {
   // @ts-ignore
-  const cb = (against: Color) => (color: Color) => wcagContrast(color, against);
+  const cb = (against: ColorToken) => (color: ColorToken) =>
+    wcagContrast(color, against);
   return baseSortBy('contrast', cb(against), order, colors);
 }
 
@@ -346,11 +350,11 @@ console.log(
  */
 
 function sortByDistance(
-  colors: Color[],
-  against: Color,
+  colors: ColorToken[],
+  against: ColorToken,
   order?: 'asc' | 'desc',
   options?: ColorDistanceOptions
-): Color[] {
+): ColorToken[] {
   let { mode, weights } = options || {};
 
   const cb = (against: string, mode: ColorSpaces) => (color: string) => {

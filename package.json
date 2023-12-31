@@ -28,8 +28,8 @@
   },
   "scripts": {
     "test": "jasmine",
-    "docs": "npx typedoc  && node ./.scripts/docs.cjs && rm -r docs/temp && git add .",
-    "build": "node .scripts/build.cjs",
+    "docs": "npx typedoc && git add .",
+    "build": "node build.cjs",
     "prepare": " npm run build && npm run types && npm run docs",
     "types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
     "lint": "eslint --fix --ext .ts",
@@ -82,14 +82,11 @@
       "./src/types.d.ts"
     ],
     "entryPointStrategy": "resolve",
-    "out": "./docs/temp",
+    "out": "./docs/api",
     "exclude": [
       "./color-maps"
     ],
     "tsconfig": "./tsconfig.json",
-    "plugin": [
-      "typedoc-plugin-markdown"
-    ],
     "includeVersion": true,
     "disableSources": false
   },
