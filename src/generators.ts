@@ -58,7 +58,7 @@ import {
 } from './helpers';
 
 import { toHex } from './converters';
-import { getChannel, setChannel } from './utils';
+import { setChannel } from './utils';
 
 function ucsConverter(colorspace) {
   const ucsDefinitions = {
@@ -90,7 +90,6 @@ console.log(base("triadic")("#a1bd2f", true))
 function scheme(
   schemeType: 'analogous' | 'triadic' | 'tetradic' | 'complementary' | string
 ) {
-  
   return (
     color: ColorToken,
     easingFunc?: (t: number) => number
@@ -100,7 +99,7 @@ function scheme(
         adjustHue((color['h'] + distance) * (val * easingSmoothstep(val)))
       );
     schemeType = schemeType.toLowerCase();
-    easingFunc = checkArg(easingFunc, easingSmoothstep) as typeof easingFunc
+    easingFunc = checkArg(easingFunc, easingSmoothstep) as typeof easingFunc;
 
     // @ts-ignore
     color = useMode(modeJch)(color);
@@ -239,9 +238,9 @@ function earthtone(
 ): ColorToken[] {
   let { samples: iterations, earthtones } = options || {};
 
-  iterations = checkArg(iterations, 1) as number
+  iterations = checkArg(iterations, 1) as number;
 
-  earthtones = checkArg(earthtones, 'dark') as typeof earthtones
+  earthtones = checkArg(earthtones, 'dark') as typeof earthtones;
   const tones = {
     'light-gray': '#e5e5e5',
     silver: '#f5f5f5',
@@ -303,23 +302,18 @@ function hueShift(
     samples: samples,
     hueStep,
     minLightness,
-    maxLightness,
-    easingFunc
+    maxLightness
+    // easingFunc
   } = options || {};
-const l = matchLightnessChannel(colorspace).split('.')[1]
+  const l = matchLightnessChannel(colorspace).split('.')[1];
   // Pass default values in case the options object is overridden
-  easingFunc = checkArg(easingFunc, easingSmoothstep) as typeof easingFunc
-  samples = checkArg(samples, 6) as number + 1
-  hueStep = checkArg(hueStep, 5) as number
-  minLightness = checkArg(minLightness, 10) as number
-  maxLightness = checkArg(maxLightness, 90) as number
+  // easingFunc = checkArg(easingFunc, easingSmoothstep) as typeof easingFunc
+  samples = (checkArg(samples, 6) as number) + 1;
+  hueStep = checkArg(hueStep, 5) as number;
+  minLightness = checkArg(minLightness, 10) as number;
+  maxLightness = checkArg(maxLightness, 90) as number;
   // Pass in default values if any of the opts is undefined
-  const tValues = nativeSamples(samples),
-    palette: ColorToken[] = [color];
-
-  const finalHueAngle = adjustHue(
-    getChannel(`${colorspace}.h`)(color) + hueStep
-  );
+  const palette: ColorToken[] = [color];
 
   // Maximum number of iterations possible.
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
@@ -330,35 +324,22 @@ const l = matchLightnessChannel(colorspace).split('.')[1]
 
     const [colorShiftDown, colorShiftUp] = [
       {
-        l: lightnessMapper(easingFunc(tValues[i - 1]))(0.1, samples)(
-          color[l],
-          minLightness
-        ),
+        l: lightnessMapper(i)(0.1, samples)(color[l], minLightness),
         c: color['c'],
-        h: Math.abs(finalHueAngle - color['h']),
+        h: adjustHue(color['h'] - hueStep * i),
         mode: colorspace
       },
       {
-        l: lightnessMapper(easingFunc(tValues[i - 1]))(0.05, samples)(
-          color[l],
-          maxLightness
-        ),
+        l: lightnessMapper(i)(0.05, samples)(color[l], maxLightness),
         c: color['c'],
-        h: finalHueAngle,
+        h: adjustHue(color['h'] + hueStep * i),
         mode: colorspace
       }
     ];
     palette.push(colorShiftUp);
     palette.unshift(colorShiftDown);
   }
-  return interpolateSpline(
-    palette,
-    colorspace,
-    samples,
-    'natural',
-    true,
-    options
-  );
+  return Array.from(new Set(palette)).map(toHex);
 }
 /**
  * @function

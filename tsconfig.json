@@ -3,6 +3,8 @@
     "./src/index.ts"
   ],"exclude":["**/*/node_modules"],
   "compilerOptions": {
+    "lib":["es2015"],
+    "target":"es2015",
     "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     // "allowJs": true,

@@ -1412,10 +1412,7 @@ function tailwindColors(shade: keyof HueMap) {
 
 class Color {
   constructor(c: ColorToken, options?: ColorOptions) {
-
-    
     let {
-    
       alpha,
       colorspace,
       luminance,
@@ -1424,11 +1421,10 @@ class Color {
       darkMode,
       lightness
     } = checkArg(options, {}) as ColorOptions;
-    c = checkArg(c, '#000');
-
-   
+    c = checkArg(c, '#000') as ColorToken;
 
     // Set the alpha of the color if its not explicitly passed in.
+    //@ts-ignore
     this['alpha'] = checkArg(alpha, nativeAlpha(c));
 
     // if the color is undefined we cast pure black
@@ -1521,6 +1517,7 @@ class Color {
     return this['_color'];
   }
   earthtone(options?: EarthtoneOptions): ColorArray | ColorToken {
+    // @ts-ignore
     this['colors'] = nativeEarthtone(this['_color'], checkArg(options, {}));
 
     return this['colors'];

@@ -37,11 +37,7 @@ function baseSortBy(
   order: Order,
   colors: ColorToken[]
 ) {
-  try {
-    return sortedArr(factor, cb, order)(colors);
-  } catch (error) {
-    throw error;
-  }
+  return sortedArr(factor, cb, order)(colors);
 }
 
 /**
@@ -314,7 +310,7 @@ function sortByContrast(
 ): ColorToken[] {
   // @ts-ignore
   const cb = (against: ColorToken) => (color: ColorToken) =>
-    wcagContrast(color, against);
+    wcagContrast(color as string, against as string);
   return baseSortBy('contrast', cb(against), order, colors);
 }
 
@@ -355,19 +351,19 @@ function sortByDistance(
   order?: 'asc' | 'desc',
   options?: ColorDistanceOptions
 ): ColorToken[] {
-  let { mode, weights } = options || {};
+  var { mode, weights } = options || {};
 
   const cb = (against: string, mode: ColorSpaces) => (color: string) => {
     // @ts-ignore
     return differenceEuclidean(
-      checkArg(mode, 'lchuv'),
-      checkArg(weights, [1, 1, 1, 0])
+      checkArg(mode, 'lchuv') as typeof mode,
+      checkArg(weights, [1, 1, 1, 0]) as typeof weights
     )(against, color);
   };
 
   return baseSortBy(
     'contrast',
-    cb(against as string, checkArg(mode, 'lchuv')),
+    cb(against as string, checkArg(mode, 'lchuv') as typeof mode),
     order,
     colors
   );

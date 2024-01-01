@@ -13,23 +13,56 @@ governing permissions and limitations under the License.
 
 import { differenceEuclidean } from 'culori/fn';
 import { toHex } from './converters';
-import { ColorToken, ColorSpaces, Factor, HueColorSpaces } from './types';
+import type { ColorToken, ColorSpaces, HueColorSpaces, Factor } from './types';
 import { getLuminance, getContrast, getChannel } from './utils';
 import {
   checkArg,
   matchChromaChannel,
-  normalize,
   matchLightnessChannel,
-  filteredArr
+  filteredArr,
+  normalize,
+  matchComparator,
+  matchDigits
 } from './helpers';
 
-function baseFilterBy(factor, cb, colors, start, end) {
-  return filteredArr(factor, cb)(colors, start, end);
+/**
+ * @internal
+ *
+ * @param factor The color property in query.
+ * @param cb The predicate to get the equatable value used during comparison
+ * @param colors The collection to map over. Can either be an array or object whose values are valid color tokens.
+ * @param start The minimum end of the filtering range.
+ * @param end The maximum end of the filtering range. It can also be omitted and all colors greater than the starting value of the factor being queried will be returned.
+ * @returns An array of colors
+ */
+function baseFilterBy(
+  factor: Factor,
+  cb: (color: ColorToken) => number,
+  colors: Array<ColorToken> | object,
+  start: string | number,
+  end?: number,
+  colorspace?: HueColorSpaces
+) {
+  const obj = {
+    saturation: matchChromaChannel,
+    lightness: matchLightnessChannel
+  };
+
+  var [sym, val, normalVal] = [
+    matchComparator(start as string),
+    matchDigits(start as string),
+    normalize(Number(val), obj[factor](colorspace))
+  ];
+  start =
+    (typeof start === 'string' && sym && normalVal.toString().concat(sym)) ||
+    start;
+  end = normalize(end, obj[factor](colorspace));
+  return filteredArr(factor, cb)(colors as Array<ColorToken>, start, end);
 }
 
 /**
  *  @function
- * @description Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
+ *  Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
  * @param  colors The array of colors to filter.
  * @param  startSaturation The minimum end of the saturation range.
  * @param  endSaturation The maximum end of the saturation range.
@@ -63,21 +96,22 @@ function filterBySaturation(
   colorspace?: HueColorSpaces
 ): ColorToken[] {
   const modeChannel = matchChromaChannel(colorspace);
-  const reDigits = Number(
-    /([0-9])/g.exec(startSaturation as unknown as string)['0']
-  );
+  // Normalize properly later
+  const factor: Factor = 'saturation';
+
   return baseFilterBy(
-    'saturation',
+    factor,
     getChannel(modeChannel),
     colors,
-    normalize(reDigits, modeChannel),
-    normalize(endSaturation, modeChannel)
+    startSaturation,
+    endSaturation,
+    colorspace
   );
 }
 
 /**
  *  @function
- * @description Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
+ *  Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
  * @param  colors The array of colors to filter.
  * @param  startLuminance The minimum end of the luminance range.
  * @param  endLuminance The maximum end of the luminance range.
@@ -120,7 +154,7 @@ function filterByLuminance(
 
 /**
  *  @function
- * @description Returns an array of colors in the specified lightness range. The range is between 0 and 100.
+ *  Returns an array of colors in the specified lightness range. The range is between 0 and 100.
  * @param  colors The array of colors to filter.
  * @param  startLightness The minimum end of the lightness range.
  * @param  endLightness The maximum end of the lightness range.
@@ -154,12 +188,15 @@ function filterByLightness(
   endLightness = 100,
   colorspace?: HueColorSpaces
 ): ColorToken[] {
+  const factor: Factor = 'lightness';
+
   return baseFilterBy(
-    'lightness',
+    factor,
     getChannel(matchLightnessChannel(colorspace)),
     colors,
     startLightness,
-    endLightness
+    endLightness,
+    colorspace
   );
 }
 
@@ -243,8 +280,8 @@ function filterByDistance(
 ): ColorToken[] {
   const cb = (against) => (color) =>
     differenceEuclidean(
-      checkArg(colorspace, 'lchuv'),
-      checkArg(weights, [1, 1, 1, 0])
+      checkArg(colorspace, 'lchuv') as typeof colorspace,
+      checkArg(weights, [1, 1, 1, 0]) as typeof weights
     )(against, color);
 
   return baseFilterBy(
