@@ -84,8 +84,8 @@ class ColorArray extends Array {
   }
 
   /**
-   * @function
-   * @description Returns a spline based interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
+   * 
+   *  Returns a spline based interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
    * @param colorspace The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
    * @param kind The type of the spline interpolation method. Default is basis.
    * @param closed Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false
@@ -112,8 +112,8 @@ class ColorArray extends Array {
   }
 
   /**
- * @function
- * @description Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
+ * 
+ *  Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
  * @param schemeType (Optional) The palette type you want to return.
  * @returns An array of colors if the scheme parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
  * @example
@@ -145,8 +145,8 @@ console.log(load(sample).discoverPalettes(sample, "tetradic").output())
   }
 
   /**
- *@function
- * @description Gets the largest hue value from the passed in colors.
+ *
+ *  Gets the largest hue value from the passed in colors.
  * @param colorSpace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.
  * @returns The largest hue value in the colors passed in or a custom object.
@@ -166,8 +166,8 @@ console.log(load(output).getFarthestHue('lch'))
   }
 
   /**
- *@function
- * @description Gets the smallest hue value from the passed in colors.
+ *
+ *  Gets the smallest hue value from the passed in colors.
  * @param colors The array of colors to query the color with the smallest hue value.
  * @param colorSpace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.
@@ -189,8 +189,8 @@ console.log(load(sample).getNearestHue('lch'))
   }
 
   /**
- *@function
- * @description Gets the smallest lightness value from the passed in colors.
+ *
+ *  Gets the smallest lightness value from the passed in colors.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.
  * @returns The smallest lightness value in the colors passed in or a custom object.
  * @example
@@ -212,8 +212,8 @@ console.log(load(sample).getNearestLightness('lch', true))
   }
 
   /**
- *@function
- * @description Gets the largest lightness value from the passed in colors.
+ *
+ *  Gets the largest lightness value from the passed in colors.
  * @param colors The array of colors to query the color with the largest lightness value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.
  * @returns The largest lightness value in the colors passed in or a custom object.
@@ -236,8 +236,8 @@ console.log(load(sample).getFarthestLightness('lch', true))
   }
 
   /**
- * @function
- * @description Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
+ * 
+ *  Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
  * @param  startSaturation The minimum end of the saturation range.
  * @param  endSaturation The maximum end of the saturation range.
  * @param mode The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.
@@ -280,8 +280,8 @@ console.log(filterByContrast(sample, 'green', '>=3'))
   }
 
   /**
- * @function
- * @description Returns an array of colors in the specified lightness range. The range is between 0 and 100.
+ * 
+ *  Returns an array of colors in the specified lightness range. The range is between 0 and 100.
  * @param  startLightness The minimum end of the lightness range.
  * @param  endLightness The maximum end of the lightness range.
  * @returns Array of filtered colors.
@@ -315,8 +315,8 @@ filterByLightness(sample, 20, 80)
     return this;
   }
   /**
- * @function
- * @description Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
+ * 
+ *  Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
  * @param  startDistance The minimum end of the distance range.
  * @param  endDistance The maximum end of the distance range.
  * @param weights The weighting values to pass to the Euclidean function. Default is [1,1,1,0].
@@ -360,8 +360,8 @@ console.log(filterByDistance(sample, "yellow", 0.1))
 
   /**
    * 
- * @function
- * @description Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
+ * 
+ *  Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
  * @param  startContrast The minimum end of the contrast range.
  * @param  endContrast The maximum end of the contrast range.
  * @returns Array of filtered colors.
@@ -403,8 +403,8 @@ console.log(filterByContrast(sample, 'green', '>=3'))
     return this;
   }
   /**
- * @function
- * @description Returns colors in the specified hue ranges between 0 to 360.
+ * 
+ *  Returns colors in the specified hue ranges between 0 to 360.
  * @param  startHue The minimum end of the hue range.
  * @param  endHue The maximum end of the hue range.
  * @returns  Array of the filtered colors.
@@ -433,8 +433,8 @@ filterByHue(sample, 20, 80)
     return this;
   }
   /**
- *  @function
- * @description Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
+ *  
+ *  Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
  * @param  startLuminance The minimum end of the luminance range.
  * @param  endLuminance The maximum end of the luminance range.
  * @returns Array of filtered colors.
@@ -470,8 +470,8 @@ filterByLuminance(sample, 0.4, 0.9)
   }
 
   /**
- * @function
- * @description Sorts colors according to their lightness.
+ * 
+ *  Sorts colors according to their lightness.
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @returns An array of the sorted color values.
@@ -524,8 +524,8 @@ sortByLightness(sample,'desc')
     return this;
   }
   /**
- * @function
- * @description Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
+ * 
+ *  Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
  * @param against The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @param weights The weighting values to pass to the Euclidean function. Default is [1,1,1,0].
@@ -569,8 +569,8 @@ console.log(
   }
 
   /**
- * @function
- * @description Sorts colors according to the relative brightness as defined by WCAG definition.
+ * 
+ *  Sorts colors according to the relative brightness as defined by WCAG definition.
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @returns An array of the sorted color values.
@@ -622,8 +622,8 @@ console.log(sortedDescending)
     return this;
   }
   /**
- * @function
- * @description Sorts colors according to their saturation.
+ * 
+ *  Sorts colors according to their saturation.
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @param mode The mode color space to compute the saturation value in. The default is jch .
@@ -675,8 +675,8 @@ console.log(sortedDescending)
   }
 
   /**
- * @function
- * @description Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
+ * 
+ *  Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @returns An array of the sorted color values.
@@ -698,8 +698,8 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
     return this;
   }
   /**
- * @function
- * @description Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
+ * 
+ *  Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
  * @param order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
 * @param colorspace The color space to compute the color distances in. All colors within the collection will be converted to mode. Also note that because differences in hue mapping certain color spaces such as HSL and LCH hue values do not align. Keep such quirks in mind to avoid weird results. 
 * @returns  An array of the sorted color values.
@@ -764,7 +764,7 @@ console.log(sortedDescending)
 
 /**
  * @class
- * @description A class that takes an array of colors and exposes all the utilities that handle collections of colors as methods. The methods can be chained as long as `this` being returned can be iterated on. Works like Array object.
+ *  A class that takes an array of colors and exposes all the utilities that handle collections of colors as methods. The methods can be chained as long as `this` being returned can be iterated on. Works like Array object.
  * @param colors An array of colors to chain the array methods on. Every element in the array will be parsed as a color token.
  */
 function load(colors: ColorToken[]): ColorArray {
@@ -789,8 +789,8 @@ function schemeMapper(scheme: string, schemesObject: object): ColorToken[] {
 }
 
 /**
- * @function
- * @description A wrapper function for ColorBrewer's map of sequential color schemes.
+ * 
+ *  A wrapper function for ColorBrewer's map of sequential color schemes.
  * @param scheme The name of the scheme
  * @returns An array of colors in hex represantation.
  * @example
@@ -1027,8 +1027,8 @@ function sequential(scheme: SequentialScheme): ColorToken[] {
 }
 
 /**
- * @function
- * @description A wrapper function for ColorBrewer's map of diverging color schemes.
+ * 
+ *  A wrapper function for ColorBrewer's map of diverging color schemes.
  * @param scheme The name of the scheme.
  * @returns An array of colors in hex represantation.
  * @example
@@ -1171,8 +1171,8 @@ function diverging(scheme: DivergingScheme): ColorToken[] {
 }
 
 /**
- * @function
- * @description A wrapper function for ColorBrewer's map of qualitative color schemes.
+ * 
+ *  A wrapper function for ColorBrewer's map of qualitative color schemes.
  * @param scheme The name of the scheme
  * @returns An array of colors in hex represantation.
  * @example
@@ -1287,8 +1287,8 @@ function qualitative(scheme: QualitativeScheme): ColorToken[] {
 }
 
 /**
- * @function
- * @description A wrapper function for the default Tailwind palette. If called with both parameters it return the hex code at the specified shade and value. Else, if called with the shade parameter as "all" it will return all colors from the shades in the palette map at the specified value (if value is undefined it will default to "500"). When called with the shade parameter only it will return all the colors from 100 to 900 of the specified shade.
+ * 
+ *  A wrapper function for the default Tailwind palette. If called with both parameters it return the hex code at the specified shade and value. Else, if called with the shade parameter as "all" it will return all colors from the shades in the palette map at the specified value (if value is undefined it will default to "500"). When called with the shade parameter only it will return all the colors from 100 to 900 of the specified shade.
  * @param shade Any shade in the default TailwindCSS palette e.g amber,blue.
  * @param val Any value from 100 to 900 in increments of 100 e.g "200".
  * @returns color Returns a hex code string or array of hex codes depending on how the function is called.
@@ -1351,8 +1351,8 @@ function colors(
 }
 
 /**
- * @function
- * @description Wrapper function that returns TailwindCSS color value(s) of the specified shade. If invoked with no parameters it returns an array of colors from 100 to 900. If invoked with parameter will return the specified shade vale,
+ * 
+ *  Wrapper function that returns TailwindCSS color value(s) of the specified shade. If invoked with no parameters it returns an array of colors from 100 to 900. If invoked with parameter will return the specified shade vale,
  * @param  val The tone value of the shade. Values are in incrementals of 100. Both numeric (100) and its string equivalent ('100') are valid.
  * @returns color A hex string value or array of hex strings.
  * @example
@@ -1577,8 +1577,8 @@ class Color {
   }
 
   /**
- * @function
- * @description Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
+ * 
+ *  Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
  * @param deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
  * @see For a deep dive on  color vision deficiency go to
  * @param color The color to return its deficiency simulated variant.

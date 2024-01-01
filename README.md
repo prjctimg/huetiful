@@ -1,5 +1,5 @@
-# huetiful-js
 
+![Logo](./huetiful-logo.png)
 TypeScript library for general purpose color manipulations and generating custom color scales.
 
 ## Getting started⛳
@@ -15,18 +15,18 @@ npm i huetiful-js
 You can use a CDN in this example, jsdelivr to load the library remotely:
 
 ```js
-import { //... } from 'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.esm.mjs'
+import {...} from 'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.esm.mjs'
 
 ```
 
 ### Browser
 
-Or load the library as ES module in your HTML file using a `<script>` tag:
+Or load the library as a UMD glabal (`huetiful`) in your HTML file using a `<script>` tag:
 
 ```html
 # With script tag
 
-<script type='module' src='https://cdn.jsdelivr.net/npm/huetiful-js/dist/huetiful.esm.min.mjs'></script>
+<script src='https://cdn.jsdelivr.net/npm/huetiful-js/dist/huetiful.umd.js'></script>
 ```
 
 #### What's a color 🤔?
@@ -72,11 +72,11 @@ console.log(toHex(arrColorWithAlpha))
 ```
 
 > ℹ️ [See here](https://culorijs.org/color-spaces
-)  and the expected channel ranges or [more on converter functions](https://huetiful-docs.vercel.app/api/converters) page 🔗.
+)  and the expected channel ranges or [more on converter functions](https://prjctimg.github.io/huetiful/modules/converters.html) page 🔗.
 
 #### TailwindCSS colors🎨
 
-As a starting point the library comes along with the default TailwindCSS palette included. This helps you get started easier when you're using [palette functions](https://huetiful-docs.vercel.app/api/palette-functions) such as `hueShift()` and `earthtone()`
+As a starting point the library comes along with the default TailwindCSS palette included. This helps you get started easier when you're using [palette functions](https://prjctimg.github.io/huetiful/modules/generators.html) such as `hueShift()` and `earthtone()`
 
 The Tailwind colors can be accessed from two wrapper functions, `tailwindColors` and `colors` , that both take the same parameters but `colors` takes both parameters at once while `tailwindColors` is curried. Here's an example showing the differences between the two functions:
 
@@ -226,7 +226,7 @@ console.log(filterByHue(sample, '<=100')
 
 ```
 
-[See more about the parameter types and other filtering functions](https://huetiful-docs.vercel.app/api/sorting-color)
+[See more about the parameter types and other filtering functions](https://prjctimg.github.io/huetiful/modules/sortBy.html)
 
 ### Palette generators
 
@@ -252,7 +252,7 @@ console.log(hueShiftedPalette);
 
 ```
 
-[See more palette generator functions](https://huetiful-docs.vercel.app/api/palettes)
+[See more palette generator functions](https://prjctimg.github.io/huetiful/modules/generators.html)
 
 ### Predicates⚖️
 
@@ -371,7 +371,7 @@ console.log(getFarthestHue('lime', sample, 'lch'))
 > The possibilities are limited by the imagination🤯 of the user._
 > ~ me :smile:
 
-[See the full docs here📜](https:huetiful-docs.vercel.app)
+[See the full docs here📜](https:prjctimg.github.io/huetiful)
 
 ## Need help😣 ?
 

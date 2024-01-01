@@ -41,8 +41,8 @@ function baseSortBy(
 }
 
 /**
- * @function
- * @description Sorts colors according to their saturation.
+ * 
+ *  Sorts colors according to their saturation.
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @param mode The mode color space to compute the saturation value in. The default is jch .
@@ -102,8 +102,8 @@ function sortBySaturation(
 }
 
 /**
- * @function
- * @description Sorts colors according to the relative brightness as defined by WCAG definition.
+ * 
+ *  Sorts colors according to the relative brightness as defined by WCAG definition.
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @returns An array of the sorted color values.
@@ -158,8 +158,8 @@ function sortByLuminance(
 }
 
 /**
- * @function
- * @description Sorts colors according to their lightness.
+ * 
+ *  Sorts colors according to their lightness.
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @param colorspace The mode colorspace to use for filtering color lightness. Defaut is lch65
@@ -220,8 +220,8 @@ function sortByLightness(
 }
 
 /**
- * @function
- * @description Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
+ * 
+ *  Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
  * @param  colors The array of colors to sort
  * @param order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
 * @param colorspace The color space to compute the color distances in. All colors within the collection will be converted to mode. Also note that because differences in hue mapping certain color spaces such as HSL and LCH hue values do not align. Keep such quirks in mind to avoid weird results. 
@@ -285,8 +285,8 @@ function sortByHue(
 }
 
 /**
- * @function
- * @description Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
+ * 
+ *  Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @returns An array of the sorted color values.
@@ -315,8 +315,8 @@ function sortByContrast(
 }
 
 /**
- * @function
- * @description Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
+ * 
+ *  Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
  * @param  colors The array of colors to sort.
  * @param against The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')

@@ -17,10 +17,6 @@ governing permissions and limitations under the License.
 import {
   useMode,
   modeLch,
-  modeDlch,
-  modeLch65,
-  modeOklch,
-  modeLchuv,
   easingSmoothstep,
   samples as nativeSamples,
   modeJch,
@@ -54,30 +50,17 @@ import {
   matchChromaChannel,
   matchLightnessChannel,
   max,
-  min
+  min,
+  normalize
 } from './helpers';
 
-import { toHex } from './converters';
+import { toHex, ucsConverter } from './converters';
 import { setChannel } from './utils';
 
-function ucsConverter(colorspace) {
-  const ucsDefinitions = {
-    jch: modeJch,
-    lch: modeLch,
-    dlch: modeDlch,
-    lchuv: modeLchuv,
-    oklch: modeOklch,
-    lch65: modeLch65
-  };
-
-  return useMode(ucsDefinitions[colorspace]);
-}
-
 /**
- * @function
- * @description Generates a randomised classic color scheme from a single base color.
+ * 
+ *  Generates a randomised classic color scheme from a single base color.
  * @param  schemeType  Any classic color scheme either "analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary".
- * @param easingFunc Optional parameter to pass in a custom easing function. The default is smoothstep
  * @returns An array of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
  * @example
  * 
@@ -90,6 +73,10 @@ console.log(base("triadic")("#a1bd2f", true))
 function scheme(
   schemeType: 'analogous' | 'triadic' | 'tetradic' | 'complementary' | string
 ) {
+  /**
+   * @param color The color to use as the starting point.
+   * @param easingFunc Optional parameter to pass in a custom easing function. The default is smoothstep
+   */
   return (
     color: ColorToken,
     easingFunc?: (t: number) => number
@@ -134,8 +121,8 @@ function scheme(
 }
 
 /**
- * @function
- * @description Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
+ * 
+ *  Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
  * @param colors The array of colors to create palettes from. Preferably use 5 or more colors for better results.
  * @param schemeType (Optional) The palette type you want to return.
  * @returns An array of colors if the scheme parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
@@ -216,8 +203,8 @@ function discoverPalettes(
 }
 
 /**
- * @function
- * @description Creates a scale of a spline based interpolation between an earthtone and a color.
+ * 
+ *  Creates a scale of a spline based interpolation between an earthtone and a color.
  * @param color The color to interpolate an earth tone with.
   * @param options Optional overrides for customising interpolation and easing functions.
  * @returns The array of colors resulting from the earthtone interpolation as hex codes.
@@ -263,8 +250,8 @@ function earthtone(
 }
 
 /**
- * @function
- * @description Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme.
+ * 
+ *  Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme.
  * @param color The color to use as the base of the hueshift. Colors are internally converted to LCH.
  * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
  *@returns An array of colors in hex. The length of the resultant array is the number of iterations multiplied by 2 plus the base color passed or (iterations*2)+1
@@ -310,8 +297,14 @@ function hueShift(
   // easingFunc = checkArg(easingFunc, easingSmoothstep) as typeof easingFunc
   samples = (checkArg(samples, 6) as number) + 1;
   hueStep = checkArg(hueStep, 5) as number;
-  minLightness = checkArg(minLightness, 10) as number;
-  maxLightness = checkArg(maxLightness, 90) as number;
+  minLightness = normalize(
+    checkArg(minLightness, 10) as number,
+    matchLightnessChannel(colorspace)
+  );
+  maxLightness = normalize(
+    checkArg(maxLightness, 90) as number,
+    matchLightnessChannel(colorspace)
+  );
   // Pass in default values if any of the opts is undefined
   const palette: ColorToken[] = [color];
 
@@ -324,13 +317,19 @@ function hueShift(
 
     const [colorShiftDown, colorShiftUp] = [
       {
-        l: lightnessMapper(i)(0.1, samples)(color[l], minLightness),
+        l: lightnessMapper(i)(
+          normalize(0.1, matchLightnessChannel(colorspace)),
+          samples
+        )(color[l], minLightness),
         c: color['c'],
         h: adjustHue(color['h'] - hueStep * i),
         mode: colorspace
       },
       {
-        l: lightnessMapper(i)(0.05, samples)(color[l], maxLightness),
+        l: lightnessMapper(i)(
+          normalize(0.15, matchLightnessChannel(colorspace)),
+          samples
+        )(color[l], maxLightness),
         c: color['c'],
         h: adjustHue(color['h'] + hueStep * i),
         mode: colorspace
@@ -342,8 +341,8 @@ function hueShift(
   return Array.from(new Set(palette)).map(toHex);
 }
 /**
- * @function
- * @description Returns a spline based interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.
+ *
+ *  Returns a spline based interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.
  * @param colors The array of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
  * @param colorspace The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
  * @param kind The type of the spline interpolation method. Default is basis.
@@ -367,8 +366,8 @@ function interpolateSpline(
     easingFunc
   } = checkArg(options, {}) as InterpolatorOptions;
   // Set the internal defaults
-  easingFunc = checkArg(easingFunc, easingSmoothstep) as typeof easingFunc
-  kind = checkArg(kind, 'basis') as typeof kind
+  easingFunc = checkArg(easingFunc, easingSmoothstep) as typeof easingFunc;
+  kind = checkArg(kind, 'basis') as typeof kind;
 
   let func;
   switch (kind) {
@@ -430,7 +429,10 @@ function interpolator(
     easingFunc
   } = checkArg(options, {}) as InterpolatorOptions;
   return interpolate(
-    [...colors as Array<Color>, checkArg(easingFunc, interpolator['easingFunc']) as typeof easingFunc],
+    [
+      ...(colors as Array<Color>),
+      checkArg(easingFunc, interpolator['easingFunc']) as typeof easingFunc
+    ],
     checkArg(colorspace, 'jch') as typeof colorspace,
     {
       //@ts-ignore
@@ -454,8 +456,8 @@ function interpolator(
 }
 
 /**
- * @function pairedScheme
- * @description Creates a scheme that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black.
+ *  pairedScheme
+ *  Creates a scheme that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black.
  * @param color The color to return a paired color scheme from.
  * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
  * @returns An array containing the paired scheme.
@@ -473,10 +475,10 @@ function pairedScheme(
   // eslint-disable-next-line prefer-const
   let { samples: iterations, via, hueStep, easingFunc } = options || {};
 
-  iterations = checkArg(iterations, 1) as number
-  easingFunc = checkArg(easingFunc, easingSmoothstep) as typeof easingFunc
-  via = checkArg(via, 'light') as typeof via
-  hueStep = checkArg(hueStep, 5) as number
+  iterations = checkArg(iterations, 1) as number;
+  easingFunc = checkArg(easingFunc, easingSmoothstep) as typeof easingFunc;
+  via = checkArg(via, 'light') as typeof via;
+  hueStep = checkArg(hueStep, 5) as number;
 
   const toLch = useMode(modeLch);
   color = toLch(toHex(color));
@@ -512,8 +514,8 @@ function pairedScheme(
 }
 
 /**
- * @function
- * @description Returns a random pastel variant of the passed in color.
+ * 
+ *  Returns a random pastel variant of the passed in color.
  * @param color The color to return a pastel variant of.
  * @returns A random pastel color.
  * @example
@@ -585,5 +587,6 @@ export {
   scheme,
   interpolateSpline,
   interpolator,
-  earthtone,ucsConverter
+  earthtone,
+  ucsConverter
 };

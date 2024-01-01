@@ -61,8 +61,8 @@ function baseFilterBy(
 }
 
 /**
- *  @function
- *  Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
+ *  
+ * Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
  * @param  colors The array of colors to filter.
  * @param  startSaturation The minimum end of the saturation range.
  * @param  endSaturation The maximum end of the saturation range.
@@ -110,7 +110,7 @@ function filterBySaturation(
 }
 
 /**
- *  @function
+ *  
  *  Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
  * @param  colors The array of colors to filter.
  * @param  startLuminance The minimum end of the luminance range.
@@ -153,7 +153,7 @@ function filterByLuminance(
 }
 
 /**
- *  @function
+ *  
  *  Returns an array of colors in the specified lightness range. The range is between 0 and 100.
  * @param  colors The array of colors to filter.
  * @param  startLightness The minimum end of the lightness range.
@@ -202,7 +202,7 @@ function filterByLightness(
 
 //filterByHue takes an array of colors and
 /**
- * @function
+ * 
  * Returns colors in the specified hue ranges between 0 to 360.
  * @param colors The array of colors to filter.
  * @param  startHue The minimum end of the hue range.
@@ -244,7 +244,7 @@ function filterByHue(
 }
 
 /**
- *  @function
+ *  
  * Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
  * @param  colors The array of colors to filter.
  * @param  startDistance The minimum end of the distance range.
@@ -294,7 +294,7 @@ function filterByDistance(
 }
 
 /**
- *  @function
+ *  
  * Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
  * @param  colors The array of colors to filter.
  * @param  startContrast The minimum end of the contrast range.

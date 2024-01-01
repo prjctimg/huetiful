@@ -28,7 +28,7 @@
   },
   "scripts": {
     "test": "jasmine",
-    "docs": "npx typedoc && git add .",
+    "docs": "npx typedoc && cp -r ./huetiful-logo.png ./docs && git add .",
     "build": "node build.cjs",
     "prepare": " npm run build && npm run types && npm run docs",
     "types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
@@ -68,7 +68,7 @@
       "no-explicit-any": 0,
       "prettier/prettier": 0,
       "@typescript-eslint/ban-ts-comment": 0,
-      "no-useless-escape": 0
+      "no-useless-escape": 1
     }
   },
   "typedocOptions": {
@@ -82,15 +82,15 @@
       "./src/types.d.ts"
     ],
     "entryPointStrategy": "resolve",
-    "out": "./docs/api",
+    "out": "./docs",
     "exclude": [
       "./color-maps"
     ],
     "tsconfig": "./tsconfig.json",
-    "includeVersion": true,
-    "disableSources": false
+    "disableSources": true
   },
   "files": [
+    "src",
     "lib",
     "CHANGELOG.md",
     "CODE_OF_CONDUCT.md",
@@ -103,14 +103,15 @@
     "url": "https://github.com/prjctimg/huetiful.git"
   },
   "keywords": [
-    "d65",
-    "lchuv",
+    "chromatic adaption",
+    "functional",
+    "typescript",
     "jch",
     "lch",
     "palettes",
     "color blind",
     "color vision deficiency",
-    "color schemes",
+    "schemes",
     "color",
     "culori",
     "gradients",
@@ -118,14 +119,12 @@
     "cielab",
     "rgb",
     "hsl",
-    "rgb",
     "generator",
-    "colorbrewer",
-    "tailwindcss"
+    "color brewer"
   ],
   "author": "Dean Tarisai",
   "email": "arcaneqoder@gmail.com",
-  "homepage": "https://huetiful-docs.vercel.app",
+  "homepage": "https://prjctimg.github.io/huetiful",
   "license": "Apache-2.0",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"

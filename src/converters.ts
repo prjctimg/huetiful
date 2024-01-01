@@ -12,16 +12,48 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { useMode, modeRgb, converter } from 'culori/fn';
-import type { ColorTuple, ColorSpaces, ColorToken } from './types';
+import {
+  useMode,
+  modeRgb,
+  converter,
+  modeDlch,
+  modeJch,
+  modeLch,
+  modeLch65,
+  modeLchuv,
+  modeOklch
+} from 'culori/fn';
+import type {
+  ColorTuple,
+  ColorSpaces,
+  ColorToken,
+  UniformColorSpaces
+} from './types';
 import 'culori/all';
 import 'culori/css';
 import { formatHex8, formatHex, colorsNamed } from 'culori/fn';
 import { getModeChannel } from './helpers';
 
 /**
- *@function
- @description Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), numbers from 0 to 166,777,215 and arrays in the form of [string,number,number,number,numer?] the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
+ * Converter function with mode definitions for uniform color spaces. The function is curried to return a converter in the passed colospace.
+ * @param colorspace The mode converter to return.
+ * @returns The converter function in the mode colorspace.
+ */
+function ucsConverter(colorspace:UniformColorSpaces) {
+  const ucsDefinitions = {
+    jch: modeJch,
+    lch: modeLch,
+    dlch: modeDlch,
+    lchuv: modeLchuv,
+    oklch: modeOklch,
+    lch65: modeLch65
+  };
+
+  return useMode(ucsDefinitions[colorspace.toLowerCase()]);
+}
+/**
+ *
+  Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), numbers from 0 to 166,777,215 and arrays in the form of [string,number,number,number,numer?] the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
  * @param color The color to convert to hexadecimal. Works on color objects and CSS named colors.
  * @returns A hexadecimal representation of the passed in color.
  * @example
@@ -108,8 +140,8 @@ function toHex(color: ColorToken): string {
 }
 
 /**
- * @function
- * @description Returns the RGB color equivalent of any number between 0 and 16,777,215.
+ * 
+ *  Returns the RGB color equivalent of any number between 0 and 16,777,215.
  * @param num The number to convert to RGB
  * @returns color An RGB color object or hex string.
  * @example
@@ -140,8 +172,8 @@ function num2rgb(num: number, hex = false): ColorToken {
 }
 
 /**
- * @function
- * @description Returns the numerical equivalent of a color.
+ * 
+ *  Returns the numerical equivalent of a color.
  * @param color The color to convert to its numerical equivalent.
  * @returns value The numerical value of the color from 0 to 16,777,215.
  * @example
@@ -163,8 +195,8 @@ function rgb2num(color: ColorToken): number {
 //ported from chroma-js
 
 /**
- * @function
- * @description Converts the temperature value (in Kelvins) to an RGB color.
+ * 
+ *  Converts the temperature value (in Kelvins) to an RGB color.
  * @param kelvin The number of Kelvins. From 0 to 30,000 .
  * @param hex Optional boolean parameter to either return an RGB color object or hexadecimal string. Default is true.
  * @returns color The color as a hexadecimal  or RGB color object.
@@ -216,8 +248,8 @@ function temp2Color(kelvin: number, hex = false): ColorToken {
 }
 
 /**
- * @function
- * @description Returns an array of channel values in the mode color space.
+ * 
+ *  Returns an array of channel values in the mode color space.
  * @param color Any recognizable color token.
  * @param mode The mode color space to return channel values for
  * @returns An array of channel values with the colorspace as first element and the alpha channel if its explicitly defined in the passed in color.
@@ -257,4 +289,4 @@ function toColorTuple(color: ColorToken, mode: ColorSpaces) {
   }
 }
 
-export { num2rgb, rgb2num, temp2Color, toColorTuple, toHex };
+export { ucsConverter, num2rgb, rgb2num, temp2Color, toColorTuple, toHex };

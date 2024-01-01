@@ -39,8 +39,8 @@ import {
 import { matchChromaChannel, sortedArr, checkArg } from './helpers.js';
 
 /**
- *@function
- @description Gets the hue family which a a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
+ *
+  Gets the hue family which a a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
  * @param color The color to query its shade or hue family.
  * @returns The name of the hue family for example red or green.
  * @example
@@ -88,8 +88,8 @@ function temperaturePredicate(factor: number, temp: 'warm' | 'cool'): boolean {
 }
 
 /**
- * @function
- * @description Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.
+ * 
+ *  Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.
  * @param color The color to check the temperature.
  * @returns True or false.
  * @example
@@ -120,8 +120,8 @@ function isCool(color: ColorToken): boolean {
 }
 
 /**
- * @function
- * @description Checks if a color can be roughly classified as a warm color. Returns true if color is a warm color else false.
+ * 
+ *  Checks if a color can be roughly classified as a warm color. Returns true if color is a warm color else false.
  * @param color The color to check the temperature.
  * @returns True or false.
  * @example import { isWarm } from 'huetiful-js'
@@ -182,8 +182,8 @@ function baseFunc(
 }
 
 /**
- * @function
- * @description Gets the smallest contrast value from the passed in colors compared against a sample color.
+ * 
+ *  Gets the smallest contrast value from the passed in colors compared against a sample color.
  * @param colors The array of colors to query the color with the smallest contrast value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (contrast) and name of the color as keys. Default is false.
  * @param mode THe mode colorspace to retrieve the contrast value from.
@@ -213,8 +213,8 @@ function getNearestContrast(
 }
 
 /**
- *@function
- * @description Gets the largest contrast value from the passed in colors compared against a sample color.
+ *
+ *  Gets the largest contrast value from the passed in colors compared against a sample color.
  * @param colors The array of colors to query the color with the largest contrast value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (contrast) and name of the color as keys. Default is false.
  * @param mode THe mode colorspace to retrieve the contrast value from.
@@ -246,8 +246,8 @@ function getFarthestContrast(
 }
 
 /**
- *@function
- * @description Gets the smallest chroma/saturation value from the passed in colors.
+ *
+ *  Gets the smallest chroma/saturation value from the passed in colors.
  * @param colors The array of colors to query the color with the smallest chroma/saturation value.
  * @param colorspace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false.
@@ -276,8 +276,8 @@ function getNearestChroma(
 }
 
 /**
- *@function
- * @description Gets the largest saturation value from the passed in colors.
+ *
+ *  Gets the largest saturation value from the passed in colors.
  * @param colors The array of colors to query the color with the largest saturation value.
  * @param colorSpace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false.
@@ -299,8 +299,8 @@ function getFarthestChroma(
 }
 
 /**
- *@function
- * @description Gets the smallest hue value from the passed in colors.
+ *
+ *  Gets the smallest hue value from the passed in colors.
  * @param colors The array of colors to query the color with the smallest hue value.
  * @param colorspace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.
@@ -323,8 +323,8 @@ function getNearestHue(
 }
 
 /**
- *@function
- * @description Gets the largest hue value from the passed in colors.
+ *
+ *  Gets the largest hue value from the passed in colors.
  * @param colors The array of colors to query the color with the largest hue value.
  * @param colorspace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.
@@ -346,8 +346,8 @@ function getFarthestHue(
 }
 
 /**
- * @function
- * @description Gets the complementary hue of the passed in color. The function is internally guarded against achromatic colors.
+ * 
+ *  Gets the complementary hue of the passed in color. The function is internally guarded against achromatic colors.
  * @param color The color to retrieve its complimentary hue.
  * @param colorObj Optional boolean whether to return an object with the result color hue family or just the result color. Default is false.
  * @returns An object with the hue family and complimentary color as keys.
@@ -382,8 +382,8 @@ function getComplimentaryHue(
 }
 
 /**
- * @function
- * @description Sets the value for the specified channel in a color.
+ * 
+ *  Sets the value for the specified channel in a color.
  * @param  color Any recognizable color token.
  * @param  mc The mode and channel to work with. For example 'rgb.b'.
  * @param  value The value to set on the queried channel. Also supports expressions as strings e.g set('lch.c)("#fc23a1","*0.5")
@@ -422,8 +422,8 @@ function setChannel(mc: string) {
 }
 
 /**
- * @function
- * @description Gets the  value specifified channel on the color.
+ * 
+ *  Gets the  value specifified channel on the color.
  * @param mc The mode and channel to be retrieved. For example "rgb.b" will return the value of the blue channel in the RGB color space of that color.
  * @param color The color being queried.
  * @returns value The value of the queried channel.
@@ -466,8 +466,8 @@ function getLuminance(color: ColorToken): number {
 const { pow, abs } = Math;
 const toRgb = useMode(modeRgb);
 /**
- * @function
- * @description Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
+ * 
+ *  Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
  * @param color The color to set luminance
  * @param lum The amount of luminance to set. The value range is normalised between [0,1]
  * @returns The mutated color with the modified properties.
@@ -545,8 +545,8 @@ function luminance_x(x: number) {
 }
 
 /**
- * @function
- * @description Sets the opacity of a color. Also gets the alpha value of the color if the value param is omitted
+ * 
+ *  Sets the opacity of a color. Also gets the alpha value of the color if the value param is omitted
  * @param color The color with the targeted opacity/alpha channel.
  * @param value The value to apply to the opacity channel. The value is between [0,1]
  * @returns color The resulting color. Returns an 8 character hex code.
@@ -588,8 +588,8 @@ function alpha(color: ColorToken, value?: number | string): number {
 }
 
 /**
- * @function
- * @description Gets the contrast between the passed in colors.
+ * 
+ *  Gets the contrast between the passed in colors.
  * @param color
  * @param against
  * @returns The relative luminance of the lightest color.
@@ -605,8 +605,8 @@ function getContrast(color: ColorToken, against: ColorToken): number {
 }
 
 /**
- * @function
- * @description Returns the hue which is biasing the passed in color
+ * 
+ *  Returns the hue which is biasing the passed in color
  * @param color The color to query its overtone.
  * @returns The name of the overtone hue. If an achromatic color is passed in it return the string gray otherwise if the color has no bias it returns false.
  * @example
@@ -634,8 +634,8 @@ function overtone(color: ColorToken): string | boolean {
 }
 
 /**
- * @function
- * @description Gets the smallest lightness value from the passed in colors.
+ * 
+ *  Gets the smallest lightness value from the passed in colors.
  * @param colors The array of colors to query the color with the smallest lightness value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.
  * @param mode THe mode colorspace to retrieve the lightness value from.
@@ -668,8 +668,8 @@ function getNearestLightness(
 }
 
 /**
- * @function
- * @description Gets the largest lightness value from the passed in colors.
+ * 
+ *  Gets the largest lightness value from the passed in colors.
  * @param colors The array of colors to query the color with the largest lightness value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.
  * @param colorspace THe mode colorspace to retrieve the lightness value from.
@@ -702,8 +702,8 @@ function getFarthestLightness(
 
 const toLab = useMode(modeLab);
 /**
- * @function
- * @description Darkens the color by reducing the lightness channel. .
+ * 
+ *  Darkens the color by reducing the lightness channel. .
  * @param   color The color to darken.
  * @param value The amount to darken with. Also supports expressions as strings e.g darken("#fc23a1","*0.5")
  * @returns color The darkened color.
@@ -754,8 +754,8 @@ function brighten(
 }
 
 /**
- * @function
- * @description Checks if a color is achromatic(without hue or simply grayscale).
+ * 
+ *  Checks if a color is achromatic(without hue or simply grayscale).
  * @param color The color to test if it is achromatic or not.
  * @returns boolean Returns true if the color is achromatic else false
  * @example 
@@ -834,8 +834,8 @@ import { colors } from './colors.js';
 // Read more about the minimum accepted values for palette accessibility
 
 /**
- * @function
- * @description Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
+ * 
+ *  Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
  * @param deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
  * @see For a deep dive on  color vision deficiency go to
  * @param color The color to return its deficiency simulated variant.
