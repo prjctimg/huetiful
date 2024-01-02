@@ -4,7 +4,7 @@
   "type": "module",
   "main": "./lib/huetiful.cjs",
   "module": "./lib/huetiful.esm.mjs",
-  "browser": "./lib/huetiful.min.js",
+  "browser": "./lib/huetiful.umd.js",
   "jsdelivr": "./lib/huetiful.umd.js",
   "types": "./lib/huetiful.d.ts",
   "description": "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
@@ -80,6 +80,9 @@
       "./src/filterBy.ts",
       "./src/sortBy.ts",
       "./src/types.d.ts"
+    ],
+    "plugin": [
+      "typedoc-plugin-markdown"
     ],
     "entryPointStrategy": "resolve",
     "out": "./docs",
