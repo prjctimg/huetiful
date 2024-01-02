@@ -14,7 +14,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import tailwindHues from "./color-maps/swatches/tailwind.ts";
+import tailwindHues from './color-maps/swatches/tailwind.ts';
 import type {
   SequentialScheme,
   DivergingScheme,
@@ -33,8 +33,8 @@ import type {
   PairedSchemeOptions
 } from './types';
 
-import * as filterBy from "./filterBy";
-import * as sortBy from "./sortBy";
+import * as filterBy from './filterBy';
+import * as sortBy from './sortBy';
 import {
   discoverPalettes as nativeDiscoverPalettes,
   getFarthestHue as nativeMaxHue,
@@ -71,10 +71,10 @@ import {
   getComplimentaryHue as nativeGetComplimentaryHue,
   colorDeficiency as nativeColorDeficiency,
   interpolator,
-  interpolateSpline as nativeInterpolatorSpline,
-} from "./index";
+  interpolateSpline as nativeInterpolatorSpline
+} from './index';
 
-import { interpolatorConfig } from "./helpers";
+import { interpolatorConfig } from './helpers';
 
 class ColorArray extends Array {
   constructor(colors: ColorToken[]) {
@@ -84,7 +84,7 @@ class ColorArray extends Array {
   }
 
   /**
-   * 
+   *
    *  Returns a spline based interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
    * @param colorspace The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
    * @param kind The type of the spline interpolation method. Default is basis.
@@ -1474,8 +1474,11 @@ class Color {
   }
 
   via(origin: ColorToken, t?: number, options?: typeof interpolatorConfig) {
-    const result = 
-      interpolator([origin, this['_color']], this['colorspace'], options);
+    const result = interpolator(
+      [origin, this['_color']],
+      this['colorspace'],
+      options
+    );
 
     return nativeToHex(result(t));
   }
@@ -1544,7 +1547,7 @@ class Color {
       this['_color'] = setLuminance(this['_color'], this['_color']);
       // @ts-ignore
       return this;
-    } 
+    }
     return getLuminance(this['_color']);
   }
 
@@ -1655,5 +1658,5 @@ export {
   ColorArray,
   load,
   Color as IColor,
-  color,
+  color
 };

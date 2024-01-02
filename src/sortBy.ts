@@ -24,12 +24,10 @@ import {
   checkArg,
   sortedArr,
   matchLightnessChannel,
-  matchChromaChannel,
-} from "./helpers";
-import { wcagContrast, differenceEuclidean } from "culori/fn";
-import { getLuminance, getChannel } from "./utils";
-
-
+  matchChromaChannel
+} from './helpers';
+import { wcagContrast, differenceEuclidean } from 'culori/fn';
+import { getLuminance, getChannel } from './utils';
 
 function baseSortBy(
   factor: Factor,

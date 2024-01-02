@@ -57,7 +57,7 @@ function getHueFamily(color: ColorToken, mode?: HueColorSpaces): HueFamily {
   return Object.keys(hueTempMap)
     .map((hue) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  
+
       // @ts-ignore
       var [hueVals, minVal, maxVal] = [
         customConcat(hueTempMap[hue]),
@@ -588,7 +588,7 @@ function alpha(color: ColorToken, value?: number | string): number {
 }
 
 /**
- * 
+ *
  *  Gets the contrast between the passed in colors.
  * @param color
  * @param against
@@ -741,7 +741,7 @@ function brighten(
   colorspace
 ): ColorToken {
   const src = toLab(toHex(color));
-  const ch = matchLightnessChannel(colorspace).split('.')[1]
+  const ch = matchLightnessChannel(colorspace).split('.')[1];
   let result = src;
   if (typeof value == 'number') {
     result[ch] -= 18 * easingSmootherstep(Math.abs(value) / 100);
@@ -886,7 +886,7 @@ function colorDeficiency(deficiencyType?: DeficiencyType) {
     // Store the keys of deficiency types
     const deficiencies: string[] = ['red', 'blue', 'green', 'monochromacy'];
     // Cast 'red' as the default parameter
-    deficiencyType = checkArg(deficiencyType, 'red') as DeficiencyType
+    deficiencyType = checkArg(deficiencyType, 'red') as DeficiencyType;
 
     if (
       typeof deficiencyType === 'string' &&

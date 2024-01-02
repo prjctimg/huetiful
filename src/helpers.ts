@@ -515,12 +515,6 @@ function max(array: number[]): number {
   );
 }
 
-
-
-
-
-
-
 /**
  * @internal
  * Gets the digits in the expression string
@@ -528,11 +522,10 @@ function max(array: number[]): number {
  * @returns The matched digits, if any, as a string.
  */
 function matchDigits(s: string): string {
-  s = s.toString()
+  s = s.toString();
   var reDigits = /[0-9]*\.?[0-9]+/;
-  return reDigits.test(s) && reDigits.exec(s)['0'] || undefined
+  return (reDigits.test(s) && reDigits.exec(s)['0']) || undefined;
 }
-
 
 /**
  * @internal
@@ -544,7 +537,7 @@ function matchComparator(s: string): string {
   s = s.toString();
   var reComparator = /^(>=|<=|<|>)/;
 
-  return reComparator.test(s) && (reComparator.exec(s)['0']) || undefined
+  return (reComparator.test(s) && reComparator.exec(s)['0']) || undefined;
 }
 
 /**
@@ -666,5 +659,6 @@ export {
   checkArg,
   getModeChannel,
   interpolatorConfig,
-  matchComparator,matchDigits
+  matchComparator,
+  matchDigits
 };

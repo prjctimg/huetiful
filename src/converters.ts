@@ -39,7 +39,7 @@ import { getModeChannel } from './helpers';
  * @param colorspace The mode converter to return.
  * @returns The converter function in the mode colorspace.
  */
-function ucsConverter(colorspace:UniformColorSpaces) {
+function ucsConverter(colorspace: UniformColorSpaces) {
   const ucsDefinitions = {
     jch: modeJch,
     lch: modeLch,
