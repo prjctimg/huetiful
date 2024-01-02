@@ -6,8 +6,8 @@
 
 ### Classes
 
+- [Color](../classes/colors.Color.md)
 - [ColorArray](../classes/colors.ColorArray.md)
-- [IColor](../classes/colors.IColor.md)
 
 ### Functions:toolbox:
 
@@ -23,17 +23,21 @@
 
 ### color
 
-▸ **color**(`color`): [`IColor`](../classes/colors.IColor.md)
+▸ **color**(`color`): [`Color`](../classes/colors.Color.md)
+
+Wrapper function over the Color class that returns a new Color method chain.
 
 #### Parameters:abacus:
 
-| Name | Type |
-| :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `color` | [`ColorToken`](types.md#colortoken) | The color token to bind. |
 
 #### Returns:back:
 
-[`IColor`](../classes/colors.IColor.md)
+[`Color`](../classes/colors.Color.md)
+
+A new Color class with all the utilities that take a single color as the first parameter bound to its prototype.
 
 ___
 

@@ -36,7 +36,14 @@ const markdownHeadingEmojiMap = {
   '### Parameters': ':abacus:',
   '#### Returns': ':back:',
   '#### Defined in': ':memo:',
-  '### Modules': ':package:'
+  '### Modules': ':package:',
+  '### Constructors': ':hammer_and_wrench:',
+  '### Properties': ':microscope:',
+  '# Class:': ':card_file_box:',
+  '### Methods': ':wrench:',
+  '## Constructors': ':hammer_and_wrench:',
+  '### constructor': ':hammer_and_wrench:',
+  '### Classes': ':card_file_box:'
 };
 // webapp\data\api
 //const reHtmlComment = /(<!-- TSDOC_START -->)[\s\S]*?(<!-- TSDOC_END -->)$/gm;
@@ -90,6 +97,18 @@ for (const heading of Object.keys(markdownHeadingEmojiMap)) {
       `${heading}${markdownHeadingEmojiMap[heading]}`
     )
   );
+}
+
+for (const heading of Object.keys(markdownHeadingEmojiMap)) {
+  for (const i of ['Color.ColorArray', 'Color.Color']) {
+    writeFileSync(
+      `./docs/classes/${i}.md`,
+      fileContents('docs', 'modules').replace(
+        re(heading),
+        `${heading}${markdownHeadingEmojiMap[heading]}`
+      )
+    );
+  }
 }
 
 writeFileSync(

@@ -1,52 +1,52 @@
-[huetiful-js](../README.md) / [Modules](../modules.md) / [colors](../modules/colors.md) / IColor
+[huetiful-js](../README.md) / [Modules](../modules.md) / [colors](../modules/colors.md) / Color
 
-# Class: IColor
+# Class: Color
 
-[colors](../modules/colors.md).IColor
+[colors](../modules/colors.md).Color
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](colors.IColor.md#constructor)
+- [constructor](colors.Color.md#constructor)
 
 ### Methods
 
-- [alpha](colors.IColor.md#alpha)
-- [brighten](colors.IColor.md#brighten)
-- [contrast](colors.IColor.md#contrast)
-- [darken](colors.IColor.md#darken)
-- [deficiency](colors.IColor.md#deficiency)
-- [earthtone](colors.IColor.md#earthtone)
-- [getChannel](colors.IColor.md#getchannel)
-- [getComplimentaryHue](colors.IColor.md#getcomplimentaryhue)
-- [getFarthestChroma](colors.IColor.md#getfarthestchroma)
-- [getFarthestHue](colors.IColor.md#getfarthesthue)
-- [getFarthestLightness](colors.IColor.md#getfarthestlightness)
-- [getHue](colors.IColor.md#gethue)
-- [getNearestChroma](colors.IColor.md#getnearestchroma)
-- [getNearestHue](colors.IColor.md#getnearesthue)
-- [getNearestLightness](colors.IColor.md#getnearestlightness)
-- [hueShift](colors.IColor.md#hueshift)
-- [isAchromatic](colors.IColor.md#isachromatic)
-- [isCool](colors.IColor.md#iscool)
-- [isWarm](colors.IColor.md#iswarm)
-- [luminance](colors.IColor.md#luminance)
-- [output](colors.IColor.md#output)
-- [ovetone](colors.IColor.md#ovetone)
-- [pairedScheme](colors.IColor.md#pairedscheme)
-- [pastel](colors.IColor.md#pastel)
-- [saturation](colors.IColor.md#saturation)
-- [scheme](colors.IColor.md#scheme)
-- [setChannel](colors.IColor.md#setchannel)
-- [toHex](colors.IColor.md#tohex)
-- [via](colors.IColor.md#via)
+- [alpha](colors.Color.md#alpha)
+- [brighten](colors.Color.md#brighten)
+- [contrast](colors.Color.md#contrast)
+- [darken](colors.Color.md#darken)
+- [deficiency](colors.Color.md#deficiency)
+- [earthtone](colors.Color.md#earthtone)
+- [getChannel](colors.Color.md#getchannel)
+- [getComplimentaryHue](colors.Color.md#getcomplimentaryhue)
+- [getFarthestChroma](colors.Color.md#getfarthestchroma)
+- [getFarthestHue](colors.Color.md#getfarthesthue)
+- [getFarthestLightness](colors.Color.md#getfarthestlightness)
+- [getHue](colors.Color.md#gethue)
+- [getNearestChroma](colors.Color.md#getnearestchroma)
+- [getNearestHue](colors.Color.md#getnearesthue)
+- [getNearestLightness](colors.Color.md#getnearestlightness)
+- [hueShift](colors.Color.md#hueshift)
+- [isAchromatic](colors.Color.md#isachromatic)
+- [isCool](colors.Color.md#iscool)
+- [isWarm](colors.Color.md#iswarm)
+- [luminance](colors.Color.md#luminance)
+- [output](colors.Color.md#output)
+- [ovetone](colors.Color.md#ovetone)
+- [pairedScheme](colors.Color.md#pairedscheme)
+- [pastel](colors.Color.md#pastel)
+- [saturation](colors.Color.md#saturation)
+- [scheme](colors.Color.md#scheme)
+- [setChannel](colors.Color.md#setchannel)
+- [toHex](colors.Color.md#tohex)
+- [via](colors.Color.md#via)
 
 ## Constructors
 
 ### constructor
 
-• **new IColor**(`c`, `options?`): [`IColor`](colors.IColor.md)
+• **new Color**(`c`, `options?`): [`Color`](colors.Color.md)
 
 #### Parameters
 
@@ -57,13 +57,13 @@
 
 #### Returns
 
-[`IColor`](colors.IColor.md)
+[`Color`](colors.Color.md)
 
 ## Methods
 
 ### alpha
 
-▸ **alpha**(`amount?`): `number` \| [`IColor`](colors.IColor.md)
+▸ **alpha**(`amount?`): `number` \| [`Color`](colors.Color.md)
 
 #### Parameters
 
@@ -73,13 +73,13 @@
 
 #### Returns
 
-`number` \| [`IColor`](colors.IColor.md)
+`number` \| [`Color`](colors.Color.md)
 
 ___
 
 ### brighten
 
-▸ **brighten**(`amount`, `colorspace`): [`IColor`](colors.IColor.md)
+▸ **brighten**(`amount`, `colorspace`): [`Color`](colors.Color.md)
 
 #### Parameters
 
@@ -90,7 +90,7 @@ ___
 
 #### Returns
 
-[`IColor`](colors.IColor.md)
+[`Color`](colors.Color.md)
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `against` | [`IColor`](colors.IColor.md) \| ``"lightMode"`` \| ``"darkMode"`` |
+| `against` | [`Color`](colors.Color.md) \| ``"lightMode"`` \| ``"darkMode"`` |
 
 #### Returns
 
@@ -112,7 +112,7 @@ ___
 
 ### darken
 
-▸ **darken**(`amount`): [`IColor`](colors.IColor.md)
+▸ **darken**(`amount`): [`Color`](colors.Color.md)
 
 #### Parameters
 
@@ -122,7 +122,7 @@ ___
 
 #### Returns
 
-[`IColor`](colors.IColor.md)
+[`Color`](colors.Color.md)
 
 ___
 
@@ -428,11 +428,11 @@ ___
 
 ### pastel
 
-▸ **pastel**(): [`IColor`](colors.IColor.md)
+▸ **pastel**(): [`Color`](colors.Color.md)
 
 #### Returns
 
-[`IColor`](colors.IColor.md)
+[`Color`](colors.Color.md)
 
 ___
 
@@ -471,7 +471,7 @@ ___
 
 ### setChannel
 
-▸ **setChannel**(`modeChannel`, `value`): [`IColor`](colors.IColor.md)
+▸ **setChannel**(`modeChannel`, `value`): [`Color`](colors.Color.md)
 
 #### Parameters
 
@@ -482,17 +482,17 @@ ___
 
 #### Returns
 
-[`IColor`](colors.IColor.md)
+[`Color`](colors.Color.md)
 
 ___
 
 ### toHex
 
-▸ **toHex**(): [`IColor`](colors.IColor.md)
+▸ **toHex**(): [`Color`](colors.Color.md)
 
 #### Returns
 
-[`IColor`](colors.IColor.md)
+[`Color`](colors.Color.md)
 
 ___
 

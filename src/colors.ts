@@ -1644,6 +1644,12 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
   }
 }
 
+
+/**
+ * Wrapper function over the Color class that returns a new Color method chain.
+ * @param color The color token to bind.
+ * @returns A new Color class with all the utilities that take a single color as the first parameter bound to its prototype.
+ */
 function color(color: ColorToken) {
   return new Color(color);
 }
