@@ -1,9 +1,9 @@
 {
   "folders": [
-	{
-		"path": "."
-	}
-],
+    {
+      "path": "."
+    }
+  ],
   "settings": {
     "liveServer.settings.multiRootWorkspaceName": "huetiful"
   }

@@ -28,7 +28,7 @@
   },
   "scripts": {
     "test": "jasmine",
-    "docs": "npx typedoc && cp -r ./huetiful-logo.png ./docs && git add .",
+    "docs": "npx typedoc && node docs.cjs && cp -r ./huetiful-logo.png ./docs && git add .",
     "build": "node build.cjs",
     "prepare": " npm run build && npm run types && npm run docs",
     "types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
@@ -79,7 +79,8 @@
       "./src/converters.ts",
       "./src/filterBy.ts",
       "./src/sortBy.ts",
-      "./src/types.d.ts"
+      "./src/types.d.ts",
+      "./src/helpers.ts"
     ],
     "plugin": [
       "typedoc-plugin-markdown"

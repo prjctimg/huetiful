@@ -1,10 +1,10 @@
 [huetiful-js](../README.md) / [Modules](../modules.md) / converters
 
-# Module: converters
+# Module::package: converters
 
-## Table of contents
+## Table of contents:scroll:
 
-### Functions
+### Functions:toolbox:
 
 - [num2rgb](converters.md#num2rgb)
 - [rgb2num](converters.md#rgb2num)
@@ -21,20 +21,20 @@
 
 Returns the RGB color equivalent of any number between 0 and 16,777,215.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `num` | `number` | `undefined` | The number to convert to RGB |
 | `hex` | `boolean` | `false` | - |
 
-#### Returns
+#### Returns:back:
 
 [`ColorToken`](types.md#colortoken)
 
 color An RGB color object or hex string.
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { num2rgb } from 'huetiful-js'
@@ -51,19 +51,19 @@ ___
 
 Returns the numerical equivalent of a color.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `color` | [`ColorToken`](types.md#colortoken) | The color to convert to its numerical equivalent. |
 
-#### Returns
+#### Returns:back:
 
 `number`
 
 value The numerical value of the color from 0 to 16,777,215.
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { rgb2num } from 'huetiful-js'
@@ -80,20 +80,20 @@ ___
 
 Converts the temperature value (in Kelvins) to an RGB color.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `kelvin` | `number` | `undefined` | The number of Kelvins. From 0 to 30,000 . |
 | `hex` | `boolean` | `false` | Optional boolean parameter to either return an RGB color object or hexadecimal string. Default is true. |
 
-#### Returns
+#### Returns:back:
 
 [`ColorToken`](types.md#colortoken)
 
 color The color as a hexadecimal  or RGB color object.
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { temp2Color } from 'huetiful-js'
@@ -110,20 +110,20 @@ ___
 
 Returns an array of channel values in the mode color space.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `color` | [`ColorToken`](types.md#colortoken) | Any recognizable color token. |
 | `mode` | [`ColorSpaces`](types.md#colorspaces) | The mode color space to return channel values for |
 
-#### Returns
+#### Returns:back:
 
 [`ColorTuple`](types.md#colortuple)
 
 An array of channel values with the colorspace as first element and the alpha channel if its explicitly defined in the passed in color.
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 let rgbColor = {
@@ -145,19 +145,19 @@ ___
 
 Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), numbers from 0 to 166,777,215 and arrays in the form of [string,number,number,number,numer?] the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `color` | [`ColorToken`](types.md#colortoken) | The color to convert to hexadecimal. Works on color objects and CSS named colors. |
 
-#### Returns
+#### Returns:back:
 
 `string`
 
 A hexadecimal representation of the passed in color.
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { toHex } from "huetiful-js";
@@ -177,13 +177,13 @@ ___
 
 Converter function with mode definitions for uniform color spaces. The function is curried to return a converter in the passed colospace.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `colorspace` | [`UniformColorSpaces`](types.md#uniformcolorspaces) | The mode converter to return. |
 
-#### Returns
+#### Returns:back:
 
 `ConvertFn`\<`any`\>
 

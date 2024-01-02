@@ -1,14 +1,14 @@
 [huetiful-js](../README.md) / [Modules](../modules.md) / generators
 
-# Module: generators
+# Module::package: generators
 
-## Table of contents
+## Table of contents:scroll:
 
 ### References
 
 - [ucsConverter](generators.md#ucsconverter)
 
-### Functions
+### Functions:toolbox:
 
 - [discoverPalettes](generators.md#discoverpalettes)
 - [earthtone](generators.md#earthtone)
@@ -33,20 +33,20 @@ Re-exports [ucsConverter](converters.md#ucsconverter)
 
 Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `colors` | [`ColorToken`](types.md#colortoken)[] | The array of colors to create palettes from. Preferably use 5 or more colors for better results. |
 | `schemeType?` | ``"analogous"`` \| ``"triadic"`` \| ``"tetradic"`` \| ``"complementary"`` | (Optional) The palette type you want to return. |
 
-#### Returns
+#### Returns:back:
 
 [`ColorToken`](types.md#colortoken)[] \| `object`
 
 An array of colors if the scheme parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { discoverPalettes } from 'huetiful-js'
@@ -77,7 +77,7 @@ ___
 
 Creates a scale of a spline based interpolation between an earthtone and a color.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -85,13 +85,13 @@ Creates a scale of a spline based interpolation between an earthtone and a color
 | `colorspace?` | [`HueColorSpaces`](types.md#huecolorspaces) | - |
 | `options?` | [`EarthtoneOptions`](types.md#earthtoneoptions) | Optional overrides for customising interpolation and easing functions. |
 
-#### Returns
+#### Returns:back:
 
 [`ColorToken`](types.md#colortoken)[]
 
 The array of colors resulting from the earthtone interpolation as hex codes.
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { earthtone } from 'huetiful-js'
@@ -108,7 +108,7 @@ ___
 
 Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -116,13 +116,13 @@ Generates a palette of hue shifted colors (as a color becomes lighter, its hue s
 | `colorspace?` | [`UniformColorSpaces`](types.md#uniformcolorspaces) | - |
 | `options?` | [`HueShiftOptions`](types.md#hueshiftoptions) | The optional overrides object to customize per channel options like interpolation methods and channel fixups. |
 
-#### Returns
+#### Returns:back:
 
 [`ColorToken`](types.md#colortoken)[]
 
 An array of colors in hex. The length of the resultant array is the number of iterations multiplied by 2 plus the base color passed or (iterations*2)+1
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { hueShift } from "huetiful-js";
@@ -149,7 +149,7 @@ ___
 
 Returns a spline based interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
@@ -160,7 +160,7 @@ Returns a spline based interpolator function with customizable interpolation met
 | `closed` | `boolean` | `false` | Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false |
 | `options?` | [`InterpolatorOptions`](types.md#interpolatoroptions) | `undefined` | Optional channel specific overrides. |
 
-#### Returns
+#### Returns:back:
 
 [`ColorToken`](types.md#colortoken)[]
 
@@ -172,7 +172,7 @@ ___
 
 ▸ **interpolator**(`colors`, `colorspace?`, `options?`): `Interpolator`\<[`HueColorSpaces`](types.md#huecolorspaces)\>
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type |
 | :------ | :------ |
@@ -180,7 +180,7 @@ ___
 | `colorspace?` | [`HueColorSpaces`](types.md#huecolorspaces) |
 | `options?` | `object` |
 
-#### Returns
+#### Returns:back:
 
 `Interpolator`\<[`HueColorSpaces`](types.md#huecolorspaces)\>
 
@@ -193,20 +193,20 @@ ___
 pairedScheme
  Creates a scheme that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `color` | [`ColorToken`](types.md#colortoken) | The color to return a paired color scheme from. |
 | `options?` | [`PairedSchemeOptions`](types.md#pairedschemeoptions) | The optional overrides object to customize per channel options like interpolation methods and channel fixups. |
 
-#### Returns
+#### Returns:back:
 
 [`ColorToken`](types.md#colortoken)[] \| [`ColorToken`](types.md#colortoken)
 
 An array containing the paired scheme.
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { pairedScheme } from 'huetiful-js'
@@ -223,19 +223,19 @@ ___
 
 Returns a random pastel variant of the passed in color.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `color` | [`ColorToken`](types.md#colortoken) | The color to return a pastel variant of. |
 
-#### Returns
+#### Returns:back:
 
 [`ColorToken`](types.md#colortoken)
 
 A random pastel color.
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { pastel } from 'huetiful-js'
@@ -252,13 +252,13 @@ ___
 
 Generates a randomised classic color scheme from a single base color.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `schemeType` | `string` | Any classic color scheme either "analogous"\|"triadic"\|"tetradic"\|"complementary"\|"splitComplementary". |
 
-#### Returns
+#### Returns:back:
 
 `fn`
 
@@ -266,18 +266,18 @@ An array of 8 character hex codes. Elements in the array depend on the number of
 
 ▸ (`color`, `easingFunc?`): [`ColorToken`](types.md#colortoken)[]
 
-##### Parameters
+##### Parameters:abacus:
 
 | Name | Type |
 | :------ | :------ |
 | `color` | [`ColorToken`](types.md#colortoken) |
 | `easingFunc?` | (`t`: `number`) => `number` |
 
-##### Returns
+##### Returns:back:
 
 [`ColorToken`](types.md#colortoken)[]
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { base } from 'huetiful-js'

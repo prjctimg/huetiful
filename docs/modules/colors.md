@@ -1,15 +1,15 @@
 [huetiful-js](../README.md) / [Modules](../modules.md) / colors
 
-# Module: colors
+# Module::package: colors
 
-## Table of contents
+## Table of contents:scroll:
 
 ### Classes
 
 - [ColorArray](../classes/colors.ColorArray.md)
 - [IColor](../classes/colors.IColor.md)
 
-### Functions
+### Functions:toolbox:
 
 - [color](colors.md#color)
 - [colors](colors.md#colors)
@@ -25,13 +25,13 @@
 
 ▸ **color**(`color`): [`IColor`](../classes/colors.IColor.md)
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type |
 | :------ | :------ |
 | `color` | [`ColorToken`](types.md#colortoken) |
 
-#### Returns
+#### Returns:back:
 
 [`IColor`](../classes/colors.IColor.md)
 
@@ -43,20 +43,20 @@ ___
 
 A wrapper function for the default Tailwind palette. If called with both parameters it return the hex code at the specified shade and value. Else, if called with the shade parameter as "all" it will return all colors from the shades in the palette map at the specified value (if value is undefined it will default to "500"). When called with the shade parameter only it will return all the colors from 100 to 900 of the specified shade.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `shade` | `string` | Any shade in the default TailwindCSS palette e.g amber,blue. |
 | `val?` | [`ScaleValues`](types.md#scalevalues) | Any value from 100 to 900 in increments of 100 e.g "200". |
 
-#### Returns
+#### Returns:back:
 
 [`ColorToken`](types.md#colortoken) \| [`ColorToken`](types.md#colortoken)[]
 
 color Returns a hex code string or array of hex codes depending on how the function is called.
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { colors } from "huetiful-js";
@@ -99,19 +99,19 @@ ___
 
 A wrapper function for ColorBrewer's map of diverging color schemes.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `scheme` | [`DivergingScheme`](types.md#divergingscheme) | The name of the scheme. |
 
-#### Returns
+#### Returns:back:
 
 [`ColorToken`](types.md#colortoken)[]
 
 An array of colors in hex represantation.
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { diverging } from 'huetiful-js'
@@ -131,13 +131,13 @@ ___
 
 ▸ **load**(`colors`): [`ColorArray`](../classes/colors.ColorArray.md)
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `colors` | [`ColorToken`](types.md#colortoken)[] | An array of colors to chain the array methods on. Every element in the array will be parsed as a color token. |
 
-#### Returns
+#### Returns:back:
 
 [`ColorArray`](../classes/colors.ColorArray.md)
 
@@ -149,19 +149,19 @@ ___
 
 A wrapper function for ColorBrewer's map of qualitative color schemes.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `scheme` | [`QualitativeScheme`](types.md#qualitativescheme) | The name of the scheme |
 
-#### Returns
+#### Returns:back:
 
 [`ColorToken`](types.md#colortoken)[]
 
 An array of colors in hex represantation.
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { qualitative } from 'huetiful-js'
@@ -183,19 +183,19 @@ ___
 
 A wrapper function for ColorBrewer's map of sequential color schemes.
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `scheme` | [`SequentialScheme`](types.md#sequentialscheme) | The name of the scheme |
 
-#### Returns
+#### Returns:back:
 
 [`ColorToken`](types.md#colortoken)[]
 
 An array of colors in hex represantation.
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { sequential } from 'huetiful-js
@@ -219,13 +219,13 @@ ___
 
 Wrapper function that returns TailwindCSS color value(s) of the specified shade. If invoked with no parameters it returns an array of colors from 100 to 900. If invoked with parameter will return the specified shade vale,
 
-#### Parameters
+#### Parameters:abacus:
 
 | Name | Type |
 | :------ | :------ |
 | `shade` | keyof [`HueMap`](types.md#huemap) |
 
-#### Returns
+#### Returns:back:
 
 `fn`
 
@@ -233,17 +233,17 @@ color A hex string value or array of hex strings.
 
 ▸ (`val?`): `string` \| `string`[]
 
-##### Parameters
+##### Parameters:abacus:
 
 | Name | Type |
 | :------ | :------ |
 | `val?` | [`ScaleValues`](types.md#scalevalues) |
 
-##### Returns
+##### Returns:back:
 
 `string` \| `string`[]
 
-**`Example`**
+**`Example`** :clipboard:
 
 ```ts
 import { tailwindColors } from "huetiful-js";

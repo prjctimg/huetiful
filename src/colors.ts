@@ -76,9 +76,8 @@ import {
 
 import { interpolatorConfig } from './helpers';
 
-class ColorArray extends Array {
+class ColorArray {
   constructor(colors: ColorToken[]) {
-    super();
     this['colors'] = colors;
     return this;
   }
@@ -1657,6 +1656,6 @@ export {
   tailwindColors,
   ColorArray,
   load,
-  Color as IColor,
+  Color,
   color
 };
