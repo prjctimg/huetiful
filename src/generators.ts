@@ -31,7 +31,8 @@ import {
   interpolatorSplineNaturalClosed,
   modeHsv,
   nearest,
-  Color
+  Color,
+  samples
 } from 'culori/fn';
 
 import type {
@@ -50,8 +51,7 @@ import {
   matchChromaChannel,
   matchLightnessChannel,
   max,
-  min,
-  normalize
+  min
 } from './helpers';
 
 import { toHex, ucsConverter } from './converters';
@@ -274,7 +274,7 @@ console.log(hueShiftedPalette);
 
 function hueShift(
   color: ColorToken,
-  colorspace?: 'lch' | 'lch65' | 'oklch',
+  colorspace?: UniformColorSpaces,
   options?: HueShiftOptions
 ): ColorToken[] {
   const lightnessMapper =
@@ -283,43 +283,44 @@ function hueShift(
     (start2: number, end2: number) =>
       ((n - start1) / (end1 - start1)) * (end2 - start2) + start2;
 
-  color = ucsConverter(colorspace as UniformColorSpaces);
+  color = ucsConverter(colorspace)(color as string);
 
-  let { samples, hueStep, minLightness, maxLightness, easingFunc } =
-    options || {};
-
+  let {
+    samples: iterations,
+    hueStep,
+    minLightness,
+    maxLightness,
+    easingFunc
+  } = options || {};
+  const [l, c] = [
+    matchLightnessChannel(colorspace).split('.')[1],
+    matchChromaChannel(colorspace).split('.')[1]
+  ];
   // Pass default values in case the options object is overridden
   easingFunc = checkArg(easingFunc, easingSmoothstep) as typeof easingFunc;
-  samples = (checkArg(samples, 6) as number) + 1;
+  iterations = (checkArg(iterations, 6) as number) + 1;
   hueStep = checkArg(hueStep, 5) as number;
-  minLightness = normalize(
-    checkArg(minLightness, 10) as number,
-    matchLightnessChannel(colorspace)
-  );
-  maxLightness = normalize(
-    checkArg(maxLightness, 90) as number,
-    matchLightnessChannel(colorspace)
-  );
+  (minLightness = checkArg(minLightness, 10) as number),
+    (maxLightness = checkArg(maxLightness, 90) as number);
   // Pass in default values if any of the opts is undefined
   const palette: ColorToken[] = [color];
-
   // Maximum number of iterations possible.
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
-  for (let i = 1; i < samples; i++) {
+  for (let i = 1; i < iterations; i++) {
     //adjustHue checks hue values are clamped.
 
     // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
 
     const [colorShiftDown, colorShiftUp] = [
       {
-        l: lightnessMapper(i)(0.1, samples)(color['l'], minLightness),
-        c: color['c'],
+        [l]: lightnessMapper(i)(0.1, iterations)(color[l], minLightness),
+        [c]: color[c],
         h: adjustHue(color['h'] - hueStep * (i * easingFunc(i))),
         mode: colorspace
       },
       {
-        l: lightnessMapper(i)(0.15, samples)(color['l'], maxLightness),
-        c: color['c'],
+        [l]: lightnessMapper(i)(0.15, iterations)(color[l], maxLightness),
+        [c]: color[c],
         h: adjustHue(color['h'] + hueStep * (i * easingFunc(i))),
         mode: colorspace
       }
