@@ -1,6 +1,6 @@
 /* eslint-disable no-ternary */
 /**
- * @internal 
+ * @preserve 
  * @license
  * helpers.ts - Helper functions for huetiful-js.
  * Contains colors from TailwindCSS released under the MIT permissive licence.
@@ -118,7 +118,7 @@ function expressionParser(
   const [mode, channel] = modeChannel.split('.');
 
   // @ts-ignore
-  color = ucsConverter(mode)(color);
+  color = ucsConverter(mode.toString().toLowerCase())(color);
   const cb = (value: string) => parseFloat(value);
 
   // Match an operator against the first truthy case and perform the relevant math operation
@@ -353,7 +353,7 @@ function normalize(value: number, modeChannel: string): number {
   if (!range) {
     if (inRange(value, 0, 1)) {
       value = end * value;
-    } else if (inRange(value, 1, 100)) {
+    } else if (inRange(value, 1, 150)) {
       value = end * (value / 100);
     } else {
       throw Error(
@@ -362,6 +362,7 @@ function normalize(value: number, modeChannel: string): number {
     }
   }
   return value;
+
 }
 
 /**

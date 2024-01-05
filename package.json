@@ -68,7 +68,7 @@
       "no-explicit-any": 0,
       "prettier/prettier": 0,
       "@typescript-eslint/ban-ts-comment": 0,
-      "no-useless-escape": 1
+      "no-useless-escape": 0
     }
   },
   "typedocOptions": {

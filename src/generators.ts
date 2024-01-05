@@ -274,7 +274,7 @@ console.log(hueShiftedPalette);
 
 function hueShift(
   color: ColorToken,
-  colorspace?: UniformColorSpaces,
+  colorspace?: 'lch' | 'lch65' | 'oklch',
   options?: HueShiftOptions
 ): ColorToken[] {
   const lightnessMapper =
@@ -283,18 +283,13 @@ function hueShift(
     (start2: number, end2: number) =>
       ((n - start1) / (end1 - start1)) * (end2 - start2) + start2;
 
-  color = ucsConverter(colorspace)(toHex(color));
+  color = ucsConverter(colorspace as UniformColorSpaces);
 
-  let {
-    samples: samples,
-    hueStep,
-    minLightness,
-    maxLightness
-    // easingFunc
-  } = options || {};
-  const l = matchLightnessChannel(colorspace).split('.')[1];
+  let { samples, hueStep, minLightness, maxLightness, easingFunc } =
+    options || {};
+
   // Pass default values in case the options object is overridden
-  // easingFunc = checkArg(easingFunc, easingSmoothstep) as typeof easingFunc
+  easingFunc = checkArg(easingFunc, easingSmoothstep) as typeof easingFunc;
   samples = (checkArg(samples, 6) as number) + 1;
   hueStep = checkArg(hueStep, 5) as number;
   minLightness = normalize(
@@ -317,21 +312,15 @@ function hueShift(
 
     const [colorShiftDown, colorShiftUp] = [
       {
-        l: lightnessMapper(i)(
-          normalize(0.1, matchLightnessChannel(colorspace)),
-          samples
-        )(color[l], minLightness),
+        l: lightnessMapper(i)(0.1, samples)(color['l'], minLightness),
         c: color['c'],
-        h: adjustHue(color['h'] - hueStep * i),
+        h: adjustHue(color['h'] - hueStep * (i * easingFunc(i))),
         mode: colorspace
       },
       {
-        l: lightnessMapper(i)(
-          normalize(0.15, matchLightnessChannel(colorspace)),
-          samples
-        )(color[l], maxLightness),
+        l: lightnessMapper(i)(0.15, samples)(color['l'], maxLightness),
         c: color['c'],
-        h: adjustHue(color['h'] + hueStep * i),
+        h: adjustHue(color['h'] + hueStep * (i * easingFunc(i))),
         mode: colorspace
       }
     ];

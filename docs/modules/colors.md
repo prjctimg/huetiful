@@ -4,7 +4,7 @@
 
 ## Table of contents:scroll:
 
-### Classes
+### Classes:card_file_box:
 
 - [Color](../classes/colors.Color.md)
 - [ColorArray](../classes/colors.ColorArray.md)
