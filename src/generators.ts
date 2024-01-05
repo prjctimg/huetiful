@@ -31,8 +31,7 @@ import {
   interpolatorSplineNaturalClosed,
   modeHsv,
   nearest,
-  Color,
-  samples
+  Color
 } from 'culori/fn';
 
 import type {

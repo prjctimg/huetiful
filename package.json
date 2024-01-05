@@ -5,7 +5,7 @@
   "main": "./lib/huetiful.cjs",
   "module": "./lib/huetiful.esm.mjs",
   "browser": "./lib/huetiful.umd.js",
-  "jsdelivr": "./lib/huetiful.umd.js",
+  "jsdelivr": "./lib/huetiful.min.umd.js",
   "types": "./lib/huetiful.d.ts",
   "description": "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
   "dependencies": {
@@ -28,7 +28,7 @@
   },
   "scripts": {
     "test": "jasmine",
-    "docs": "npx typedoc && node docs.cjs && cp -r ./huetiful-logo.png ./docs && git add .",
+    "docs": "npx typedoc && cp -r ./huetiful-logo.png ./docs && git add .",
     "build": "node build.cjs",
     "prepare": " npm run build && npm run types && npm run docs",
     "types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
@@ -82,9 +82,6 @@
       "./src/types.d.ts",
       "./src/helpers.ts"
     ],
-    "plugin": [
-      "typedoc-plugin-markdown"
-    ],
     "entryPointStrategy": "resolve",
     "out": "./docs",
     "exclude": [
@@ -107,23 +104,14 @@
     "url": "https://github.com/prjctimg/huetiful.git"
   },
   "keywords": [
-    "chromatic adaption",
-    "functional",
     "typescript",
-    "jch",
-    "lch",
-    "palettes",
-    "color blind",
+    "uniform colorspaces",
     "color vision deficiency",
-    "schemes",
     "color",
     "culori",
-    "gradients",
+    "interpolation",
     "tailwind",
-    "cielab",
-    "rgb",
-    "hsl",
-    "generator",
+    "palette generator",
     "color brewer"
   ],
   "author": "Dean Tarisai",

@@ -3,8 +3,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-var { readFileSync, writeFileSync, renameSync } = require('fs');
-
+var { readFileSync, writeFileSync, renameSync, rmSync } = require('fs');
+var showdown = require('./showdown/dist/showdown');
 //// Refactor
 // 1 change folder final output output to webapp. Pick up templates from docs site
 // change path segments
@@ -87,8 +87,6 @@ for (const pathSeg of pathSegments) {
   generateDocs(pathSeg);
 }
 
-console.log(`Done`);
-
 for (const heading of Object.keys(markdownHeadingEmojiMap)) {
   writeFileSync(
     `./docs/modules.md`,
@@ -120,3 +118,15 @@ writeFileSync(
 );
 
 renameSync('./docs/modules.md', './docs/index.md');
+
+for (const pathSeg of pathSegments) {
+  // read the contents of thr template file.
+  writeFileSync(
+    `./docs/modules/${pathSeg}.html`,
+    new showdown.Converter().makeHtml(fileContents(`./docs/modules/${pathSeg}`))
+  );
+  rmSync(`./docs/modules/${pathSeg}.md`);
+}
+
+console.log(`Done`);
+
