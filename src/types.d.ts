@@ -1,4 +1,4 @@
-/**
+/*
  * @preserve 
  * @license
  * types.d.ts - Type declarations for huetiful-js.

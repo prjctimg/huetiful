@@ -66,7 +66,6 @@ console.log(toHex({ l: 50, c: 31, h: 100, mode: "lch" }))
  */
 function toHex(color: ColorToken): string {
   // the result to return at the end of the function
-  let src = {};
 
   // if its of type string and not a CSS named color then its probably hex so we don't convert it
   if (
@@ -74,67 +73,53 @@ function toHex(color: ColorToken): string {
     !Object.keys(colorsNamed).some((el) => el === color.toLowerCase())
   ) {
     return color;
+  } else if (typeof color === 'boolean') {
+    return (color !== true && '#ffffff') || '#000000';
   } else {
-    // If our color is an array
-    if (Array.isArray(color)) {
-      // capture the mode
-      const mode: string = color[0];
-
-      // set mode to a substring which trims the string at an index that is the reslt of length - 3
-
-      // Gets the channel key from the passed in mode
-      // Store the channels excluding alpha
-      const channels = (colorArr: [string, number, number, number?]) => {
-        // Remove the mode element
-        colorArr.shift();
-
-        return (colorArr.length === 4 && colorArr.slice(0, 3)) || colorArr;
-      };
-
-      /**
-       * Returns a color object with normalized RGB values or just maps value to keys and return the resultant object
-       * @param src The object to manipulate
-       * @param mode The color space.
-       * @param colorArr  The array of the color's channel values excluding the alpha/opacity channel
-       * @returns A color object
-       */
-      const channelMapper = (
-        src = {},
-        mode: string,
-        colorArr: [number, number, number]
-      ): number[] => {
-        src['mode'] = mode;
-        // If our mode is rgb...
-        if (src['mode'] === 'rgb') {
-          // if our rgb values are [0,255] we normalize them to [0,1]
-          // for Culori to make sense of the channel values else it defaults o white
-          if (colorArr.some((ch) => Math.abs(ch) > 1)) {
-            colorArr.map(
-              (ch, key) => (src[getModeChannel(mode, key)] = ch / 255)
-            );
-          }
+    var result: unknown;
+    var cb = (color, key, value) =>
+      (result[getModeChannel(color[0], key)] = value);
+    var normalizeRgb = (color: object | ColorTuple) => {
+      var mode = (Array.isArray(color) && color[0]) || color['mode'];
+      // eslint-disable-next-line no-constant-condition
+      if (mode === 'rgb' || 'lrgb') {
+        if (Array.isArray(color)) {
+          result = color
+            .slice(1, 4)
+            .map((ch, key) => cb(color, key, color[ch]));
         } else {
-          colorArr.map((ch, key) => (src[getModeChannel(mode, key)] = ch));
+          result = Object.keys(color)
+            .filter((ch) => ch !== 'mode')
+            .map((ch, key) => cb(color, key, color[ch]));
         }
-        // @ts-ignore
-        return src;
-      };
-      src['alpha'] = color[4] || 1;
-      // @ts-ignore
-      src = channelMapper(src, getModeChannel(mode), channels(src, color));
-      // @ts-ignore
-      src = (src['alpha'] < 1 && formatHex8(src)) || formatHex(src);
+        var keys = Object.keys(result);
+        if (keys.map((key) => color[key]).some((ch) => Math.abs(ch) > 1)) {
+          keys.map((ch, key) => cb(color, key, color[ch] / 255));
+        }
+      } else {
+        keys.map((ch, key) => cb(color, ch, color[key]));
+      }
+      result['mode'] = color[0] || color['mode'];
+      result['alpha'] = color[4] || color['alpha'];
+      return result;
+    };
+
+    if (Array.isArray(color) || typeof color === 'object') {
+      result = formatHex8(normalizeRgb(result as object) as string);
     }
 
-    // if its a number use num2rgb
-    else if (typeof color === 'number') {
-      src = num2rgb(color, true);
-    } else {
-      // @ts-ignore
-      src = formatHex8(color);
+    switch (typeof color) {
+      case 'number':
+        // @ts-ignore
+        result = num2rgb(color, true);
+        break;
+      case 'object':
+        result =
+          (result['alpha'] < 1 && formatHex8(result as unknown as string)) ||
+          (formatHex(result as unknown as string) as string);
     }
     // @ts-ignore
-    return src;
+    return result;
   }
 }
 
