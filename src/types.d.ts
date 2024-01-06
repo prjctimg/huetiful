@@ -1,7 +1,7 @@
 export type UniformColorSpaces = 'lch' | 'jch';
 export type ColorTuple = [string, number, number, number, number?];
 
-export type ColorObject = { mode: ColorSpaces; alpha?: number };
+export type ColorObject = { mode: Colorspaces; alpha?: number };
 export type ColorOptions = {
   alpha?: number;
   lightness?: number;
@@ -9,7 +9,6 @@ export type ColorOptions = {
   colorspace?: HueColorSpaces;
   luminance?: number;
   saturation?: number;
-  illuminant?: 'D50' | 'D65';
 
   lightMode?: ColorToken;
   darkMode?: ColorToken;
@@ -19,7 +18,7 @@ export type ColorOptions = {
 };
 export type ColorDistanceOptions = {
   weights?: [number, number, number, number];
-  mode?: ColorSpaces;
+  mode?: Colorspaces;
 };
 
 /**
@@ -112,13 +111,6 @@ type Options = {
   maxLightness?: number;
 };
 
-type ViewingConditions = {
-  adaptingLuminance?: number;
-  backgroundLuminance?: number;
-  discounting?: boolean;
-  surroundType?: 'dim' | 'dark' | 'average';
-  whitePoint?: Illuminant;
-};
 export type PairedSchemeOptions = Omit<
   Options,
   'earthtones' | 'maxLightness' | 'minLightness'
@@ -221,7 +213,7 @@ type FactorMapper = (
   colorObj?: boolean
 ) => (colors: ColorToken[]) => ColorToken[];
 
-export type ColorSpaces =
+export type Colorspaces =
   | 'a98'
   | 'cubehelix'
   | 'dlab'
@@ -259,8 +251,8 @@ export type HueColorSpaces =
   | 'dlch';
 
 export type ScaleValues =
-  | '100'
   | '50'
+  | '100'
   | '200'
   | '300'
   | '400'
@@ -270,265 +262,28 @@ export type ScaleValues =
   | '800'
   | '900';
 
-export type HueMap = {
-  indigo: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-  gray: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
+export type TailwindColorFamilies =
+  | 'indigo'
+  | 'gray'
+  | 'zinc'
+  | 'neutral'
+  | 'stone'
+  | 'red'
+  | 'orange'
+  | 'amber'
+  | 'yellow'
+  | 'lime'
+  | 'green'
+  | 'emerald'
+  | 'teal'
+  | 'sky'
+  | 'blue'
+  | 'violet'
+  | 'purple'
+  | 'fuchsia'
+  | 'pink'
+  | 'rose';
 
-  zinc: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
 
-  neutral: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
 
-  stone: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
 
-  red: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  orange: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  amber: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  yellow: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  lime: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  green: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  emerald: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  teal: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  sky: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  blue: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  violet: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  purple: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  fuchsia: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  pink: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-
-  rose: {
-    '50': string;
-    '100': string;
-    '200': string;
-    '300': string;
-    '400': string;
-    '500': string;
-    '600': string;
-    '700': string;
-    '800': string;
-    '900': string;
-  };
-};
-
-type ColorTemp = 'warm' | 'cool' | 'daylight' | 'incadescent' | 'fluorescent';

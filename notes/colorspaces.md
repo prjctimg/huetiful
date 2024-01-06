@@ -46,10 +46,7 @@ When interpolating colors, be aware that any color with an explicit channel that
 
 ```js
 
-import {
-  interpolate,
-
-} from 'culori';
+import { interpolate } from 'culori';
 
 let colorA = { l: 0.5, c: 48, h: 43.51, mode: 'lch' };
 let colorB = { l: 0.5, c: NaN, h: 43.51, mode: 'lch' };

@@ -11,12 +11,11 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { differenceEuclidean } from 'culori/fn';
+import { differenceHyab } from 'culori/fn';
 import { toHex } from './converters';
-import type { ColorToken, ColorSpaces, HueColorSpaces, Factor } from './types';
+import type { ColorToken, HueColorSpaces, Factor } from './types';
 import { getLuminance, getContrast, getChannel } from './utils';
 import {
-  checkArg,
   matchChromaChannel,
   matchLightnessChannel,
   filteredArr,
@@ -38,7 +37,7 @@ import {
 function baseFilterBy(
   factor: Factor,
   cb: (color: ColorToken) => number,
-  colors: Array<ColorToken> | object,
+  collection: ColorToken[] | object | object,
   start: string | number,
   end?: number,
   colorspace?: HueColorSpaces
@@ -57,7 +56,7 @@ function baseFilterBy(
     (typeof start === 'string' && sym && normalVal.toString().concat(sym)) ||
     start;
   end = normalize(end, obj[factor](colorspace));
-  return filteredArr(factor, cb)(colors as Array<ColorToken>, start, end);
+  return filteredArr(factor, cb)(collection as Array<ColorToken>, start, end);
 }
 
 /**
@@ -90,7 +89,7 @@ console.log(filterByContrast(sample, 'green', '>=3'))
  */
 
 function filterBySaturation(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   startSaturation = 0.05,
   endSaturation = 1,
   colorspace?: HueColorSpaces
@@ -102,7 +101,7 @@ function filterBySaturation(
   return baseFilterBy(
     factor,
     getChannel(modeChannel),
-    colors,
+    collection,
     startSaturation,
     endSaturation,
     colorspace
@@ -139,14 +138,14 @@ filterByLuminance(sample, 0.4, 0.9)
  */
 
 function filterByLuminance(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   startLuminance = 0.05,
   endLuminance = 1
 ): ColorToken[] {
   return baseFilterBy(
     'luminance',
     getLuminance,
-    colors,
+    collection,
     startLuminance,
     endLuminance
   );
@@ -183,7 +182,7 @@ filterByLightness(sample, 20, 80)
  */
 
 function filterByLightness(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   startLightness = 5,
   endLightness = 100,
   colorspace?: HueColorSpaces
@@ -193,7 +192,7 @@ function filterByLightness(
   return baseFilterBy(
     factor,
     getChannel(matchLightnessChannel(colorspace)),
-    colors,
+    collection,
     startLightness,
     endLightness,
     colorspace
@@ -229,7 +228,7 @@ filterByHue(sample, 20, 80)
  */
 
 function filterByHue(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   startHue = 0,
   endHue = 360,
   colorspace?: HueColorSpaces
@@ -237,7 +236,7 @@ function filterByHue(
   return baseFilterBy(
     'hue',
     getChannel(`${colorspace}.h`),
-    colors,
+    collection,
     startHue,
     endHue
   );
@@ -245,12 +244,10 @@ function filterByHue(
 
 /**
  *  
- * Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
+ * Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.
  * @param  colors The array of colors to filter.
  * @param  startDistance The minimum end of the distance range.
  * @param  endDistance The maximum end of the distance range.
- * @param weights The weighting values to pass to the Euclidean function. Default is [1,1,1,0].
- * @param colorspace The color space to calculate the distance in .
  * @returns Array of filtered colors.
  * @example
  * import { filterByDistance } from 'huetiful-js'
@@ -271,23 +268,17 @@ console.log(filterByDistance(sample, "yellow", 0.1))
  */
 
 function filterByDistance(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   against: ColorToken,
   startDistance = 0.05,
-  endDistance?: number,
-  colorspace?: ColorSpaces,
-  weights?: [number, number, number, number]
+  endDistance?: number
 ): ColorToken[] {
-  const cb = (against) => (color) =>
-    differenceEuclidean(
-      checkArg(colorspace, 'lchuv') as typeof colorspace,
-      checkArg(weights, [1, 1, 1, 0]) as typeof weights
-    )(against, color);
+  const cb = (against) => (color) => differenceHyab()(against, color);
 
   return baseFilterBy(
     'distance',
     cb(toHex(against)),
-    colors,
+    collection,
     startDistance,
     endDistance
   );
@@ -324,7 +315,7 @@ console.log(filterByContrast(sample, 'green', '>=3'))
  */
 
 function filterByContrast(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   against: ColorToken,
   startContrast = 1,
   endContrast = 21
@@ -334,7 +325,7 @@ function filterByContrast(
   return baseFilterBy(
     'contrast',
     cb(against),
-    colors,
+    collection,
     startContrast,
     endContrast
   );

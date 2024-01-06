@@ -153,9 +153,8 @@ function contrastPredicate(color) {
 }
 
 function huePredicate(colorSpace: string) {
-  return (color: ColorToken) => {
-    return getChannel(`${checkArg(colorSpace, 'jch')}.h`)(color);
-  };
+  return (color: ColorToken) =>
+    getChannel(`${checkArg(colorSpace, 'jch')}.h`)(color);
 }
 function chromaPredicate(colorspace) {
   return (color: ColorToken) =>
@@ -165,7 +164,7 @@ function chromaPredicate(colorspace) {
 // The baseFunc for getting specifified factor extremums
 function baseFunc(
   factor: Factor,
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   cb: callback,
   order?: Order,
   colorObj?: boolean
@@ -176,7 +175,7 @@ function baseFunc(
       cb,
       order as Order,
       colorObj
-    )(colors).filter((el) => el[factor] !== undefined);
+    )(collection).filter((el) => el[factor] !== undefined);
 
   return (colorObj && result[0]) || result[0][factor];
 }
@@ -199,7 +198,7 @@ console.log(getNearestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true))
 // { contrast: 2.4061390502133424, name: '#a1bd2f' }
  */
 function getNearestContrast(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   against: ColorToken,
   colorObj?: boolean
 ) {
@@ -232,7 +231,7 @@ console.log(getFarthestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true)
  */
 
 function getFarthestContrast(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   against: ColorToken,
   colorObj?: boolean
 ): number | { factor: number; name: ColorToken } {
@@ -262,7 +261,7 @@ console.log(getNearestChroma(sample, 'lch'))
 // 22.45669293295522
  */
 function getNearestChroma(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   colorspace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
@@ -292,7 +291,7 @@ console.log(getFarthestChroma(sample, 'lch'))
 // 67.22120855010492
  */
 function getFarthestChroma(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
   return baseFunc('saturation', colors, chromaPredicate, 'desc', colorObj);
@@ -315,7 +314,7 @@ console.log(getNearestHue(sample, 'lch'))
 // 12.462831644544274
  */
 function getNearestHue(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   colorspace?: HueColorSpaces | string,
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
@@ -338,7 +337,7 @@ console.log(getFarthestHue(sample, 'lch'))
 // 273.54920266436477
  */
 function getFarthestHue(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   colorspace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
@@ -652,7 +651,7 @@ console.log(getNearestLightness(sample, true))
 
  */
 function getNearestLightness(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   colorspace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
@@ -686,7 +685,7 @@ console.log(getFarthestLightness(sample, true))
 
  */
 function getFarthestLightness(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   colorspace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
@@ -905,7 +904,7 @@ function colorDeficiency(deficiencyType?: DeficiencyType) {
  *
  * @param collection The collection of colors to search for nearest colors
  * @param color The color to use for distance comparison
- * @param samples The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order.
+ * @param num The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the differenceHyab metric.
  * @returns An array of colors.
  * @example
  *
@@ -914,13 +913,13 @@ function colorDeficiency(deficiencyType?: DeficiencyType) {
 function getNearestColor(
   collection: ColorToken[] | 'tailwind' | 'material',
   color: ColorToken,
-  samples = 1
+  num = 1
 ): ColorToken | ColorToken[] {
   const cb = (collection, color) => {
     //
     return nearest(collection as ColorToken[], differenceHyab())(
       color as string,
-      samples
+      num
     );
   };
   let result: ColorToken;

@@ -25,7 +25,7 @@ import {
 } from 'culori/fn';
 import type {
   ColorTuple,
-  ColorSpaces,
+  Colorspaces,
   ColorToken,
   UniformColorSpaces
 } from './types';
@@ -268,7 +268,7 @@ console.log(toColorTuple(rgbColor,'rgb'));
 
  */
 
-function toColorTuple(color: ColorToken, mode: ColorSpaces) {
+function toColorTuple(color: ColorToken, mode: Colorspaces) {
   // @ts-ignore
   const colorObject: ColorToken = converter(mode)(color);
 

@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 /** 
  * @license
  * colors.ts - Colors and schemes for huetiful-js.
@@ -19,10 +18,9 @@ import type {
   SequentialScheme,
   DivergingScheme,
   QualitativeScheme,
-  HueMap,
+  TailwindColorFamilies,
   ScaleValues,
   ColorDistanceOptions,
-  ColorSpaces,
   ColorToken,
   HueColorSpaces,
   InterpolatorOptions,
@@ -342,17 +340,13 @@ console.log(filterByDistance(sample, "yellow", 0.1))
   filterByDistance(
     against: ColorToken,
     startDistance = 0.05,
-    endDistance?: number,
-    mode?: ColorSpaces,
-    weights?: [number, number, number, number]
+    endDistance?: number
   ): ColorArray {
     this['colors'] = filterBy.filterByDistance(
       this['colors'],
       against,
       startDistance,
-      endDistance,
-      mode,
-      weights
+      endDistance
     );
     return this;
   }
@@ -743,12 +737,8 @@ console.log(sortedDescending)
  */
 
   // Todo: Add the mode param so that users can select mode to work with. The default is lch
-  sortByHue(order: 'asc' | 'desc', colorspace = 'jch'): ColorArray {
-    this['colors'] = sortBy.sortByHue(
-      this['colors'],
-      order,
-      colorspace as HueColorSpaces
-    );
+  sortByHue(order: 'asc' | 'desc', colorspace: HueColorSpaces): ColorArray {
+    this['colors'] = sortBy.sortByHue(this['colors'], order, colorspace);
     return this;
   }
 
@@ -1289,7 +1279,7 @@ function qualitative(scheme: QualitativeScheme): ColorToken[] {
  * 
  *  A wrapper function for the default Tailwind palette. If called with both parameters it return the hex code at the specified shade and value. Else, if called with the shade parameter as "all" it will return all colors from the shades in the palette map at the specified value (if value is undefined it will default to "500"). When called with the shade parameter only it will return all the colors from 100 to 900 of the specified shade.
  * @param shade Any shade in the default TailwindCSS palette e.g amber,blue.
- * @param val Any value from 100 to 900 in increments of 100 e.g "200".
+ * @param value Any value from 100 to 900 in increments of 100 e.g "200".
  * @returns color Returns a hex code string or array of hex codes depending on how the function is called.
  * @example
  * 
@@ -1325,26 +1315,27 @@ console.log(red100)
 // #fee2e2
  */
 function colors(
-  shade: keyof HueMap | string,
-  val?: ScaleValues
+  shade: TailwindColorFamilies,
+  value?: ScaleValues
 ): ColorToken | ColorToken[] {
   const { keys } = Object;
   const defaultHue = 'all';
   const hueKeys = keys(tailwindHues);
 
+  // @ts-ignore
   shade = shade.toLowerCase();
   // First do an AND check on hue and val params. If true return the hue at the specified value.
   // If only the hue is defined return the whole array of hex codes for that color.
   // If only the value is defined return that color value for every hue.
   // @ts-ignore
   if (shade === defaultHue) {
-    return hueKeys.map((color) => tailwindHues[color][val || '500']);
-  } else if (hueKeys.some((hue) => hue === shade) && val) {
-    return tailwindHues[shade][val];
-  } else if (shade && typeof val == 'undefined') {
+    return hueKeys.map((color) => tailwindHues[color][value || '500']);
+  } else if (hueKeys.some((hue) => hue === shade) && value) {
+    return tailwindHues[shade][value];
+  } else if (shade && typeof value == 'undefined') {
     const keyVals = keys(tailwindHues[shade]);
     return keyVals.map((key) => tailwindHues[shade][key]);
-  } else if (typeof shade && typeof val == 'undefined') {
+  } else if (typeof shade && typeof value == 'undefined') {
     throw Error(`Both shade and value cannot be undefined`);
   }
 }
@@ -1380,7 +1371,7 @@ console.log(red('900'));
 
  *
  */
-function tailwindColors(shade: keyof HueMap) {
+function tailwindColors(shade: keyof TailwindColorFamilies) {
   return (val?: ScaleValues): string | string[] => {
     // This is a curried func that takes in the shade and returns a function that takes in a value from 100 thru 900
     // @ts-ignore
@@ -1389,11 +1380,13 @@ function tailwindColors(shade: keyof HueMap) {
     // We check if the shade is a valid Tailwind shade if not we return pure black.
     let targetHue: object;
 
-    if (keys(tailwindHues).indexOf(shade) != -1) {
+    if (keys(tailwindHues).indexOf(shade as string) != -1) {
       targetHue = tailwindHues[shade];
     } else {
       throw Error(
-        `${shade} is not a valid shade in the default Tailwind palette`
+        `${
+          shade as string
+        } is not a valid shade in the default Tailwind palette`
       );
     }
 
@@ -1643,7 +1636,6 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
     return load(nativeScheme(scheme)(this['_color'], easingFunc));
   }
 }
-
 
 /**
  * Wrapper function over the Color class that returns a new Color method chain.

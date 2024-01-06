@@ -14,7 +14,7 @@ governing permissions and limitations under the License.
 import type {
   Factor,
   ColorToken,
-  ColorSpaces,
+  Colorspaces,
   ColorDistanceOptions,
   HueColorSpaces,
   callback,
@@ -33,9 +33,9 @@ function baseSortBy(
   factor: Factor,
   cb: callback,
   order: Order,
-  colors: ColorToken[]
+  collection: ColorToken[] | object
 ) {
-  return sortedArr(factor, cb, order)(colors);
+  return sortedArr(factor, cb, order)(collection);
 }
 
 /**
@@ -87,7 +87,7 @@ console.log(sortedDescending)
  */
 
 function sortBySaturation(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   order: 'asc' | 'desc',
   mode?: HueColorSpaces
 ): ColorToken[] {
@@ -95,7 +95,7 @@ function sortBySaturation(
     'saturation',
     getChannel(matchChromaChannel(mode)),
     order,
-    colors
+    collection
   );
 }
 
@@ -149,10 +149,10 @@ console.log(sortedDescending)
  */
 
 function sortByLuminance(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   order: 'asc' | 'desc'
 ): ColorToken[] {
-  return baseSortBy('luminance', getLuminance, order, colors);
+  return baseSortBy('luminance', getLuminance, order, collection);
 }
 
 /**
@@ -205,7 +205,7 @@ sortByLightness(sample,'desc')
  */
 // For lightness use a different color space
 function sortByLightness(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   order?: Order,
   colorspace?: HueColorSpaces
 ): ColorToken[] {
@@ -213,7 +213,7 @@ function sortByLightness(
     'lightness',
     getChannel(matchLightnessChannel(colorspace)),
     order,
-    colors
+    collection
   );
 }
 
@@ -266,7 +266,7 @@ console.log(sortedDescending)
 
 // Todo: Add the mode param so that users can select mode to work with. The default is lch
 function sortByHue(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   order?: Order,
   colorspace?: HueColorSpaces
 ): ColorToken[] {
@@ -277,7 +277,7 @@ function sortByHue(
       'lightness',
       getChannel(`${checkArg(colorspace, 'jch')}.h`),
       order,
-      colors
+      collection
     )
   );
 }
@@ -302,14 +302,14 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
  */
 
 function sortByContrast(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   against: ColorToken,
   order?: Order
 ): ColorToken[] {
   // @ts-ignore
   const cb = (against: ColorToken) => (color: ColorToken) =>
     wcagContrast(color as string, against as string);
-  return baseSortBy('contrast', cb(against), order, colors);
+  return baseSortBy('contrast', cb(against), order, collection);
 }
 
 /**
@@ -344,14 +344,14 @@ console.log(
  */
 
 function sortByDistance(
-  colors: ColorToken[],
+  collection: ColorToken[] | object,
   against: ColorToken,
   order?: 'asc' | 'desc',
   options?: ColorDistanceOptions
 ): ColorToken[] {
   var { mode, weights } = options || {};
 
-  const cb = (against: string, mode: ColorSpaces) => (color: string) => {
+  const cb = (against: string, mode: Colorspaces) => (color: string) => {
     // @ts-ignore
     return differenceEuclidean(
       checkArg(mode, 'lchuv') as typeof mode,
@@ -363,7 +363,7 @@ function sortByDistance(
     'contrast',
     cb(against as string, checkArg(mode, 'lchuv') as typeof mode),
     order,
-    colors
+    collection
   );
 }
 

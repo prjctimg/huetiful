@@ -23,7 +23,7 @@ import type {
   HueColorSpaces,
   Order,
   Options,
-  ColorSpaces
+  Colorspaces
 } from './types';
 import modeRanges from './color-maps/samples/modeRanges';
 
@@ -86,7 +86,7 @@ console.log(getModeChannel("okhsl", 2));
 // l
 
  */
-function getModeChannel(colorspace: ColorSpaces | string, index?: number) {
+function getModeChannel(colorspace: Colorspaces | string, index?: number) {
   const result = colorspace.substring(colorspace.length - 3);
 
   return (index && result.charAt(index)) || result;
@@ -161,8 +161,10 @@ function matchChromaChannel(colorspace: HueColorSpaces | string): string {
   // Matches any string with c or s
   colorspace = checkArg(colorspace, 'jch') as HueColorSpaces;
   const reChroma = /(s|c)/i;
+  // @ts-ignore
   const ch = reChroma.exec(colorspace)['0'];
 
+  // @ts-ignore
   if (reChroma.test(colorspace)) {
     return `${colorspace}.${ch}`;
   } else {
@@ -191,8 +193,10 @@ function matchLightnessChannel(colorspace: HueColorSpaces | string): string {
   // Matches any string with c or s
   colorspace = checkArg(colorspace, 'jch') as HueColorSpaces;
   const reLightness = /(j|l)/i;
+  // @ts-ignore
   const ch = reLightness.exec(colorspace)['0'];
 
+  // @ts-ignore
   if (reLightness.test(colorspace)) {
     // @ts-ignore
     return `${colorspace}.${ch}`;
@@ -362,7 +366,6 @@ function normalize(value: number, modeChannel: string): number {
     }
   }
   return value;
-
 }
 
 /**
@@ -451,11 +454,11 @@ function colorObjArr(factor: Factor, callback) {
    * @param colors The array or object of colors to iterate over. If an object is passed, its values are expected to be valid color tokens.
    */
   return (
-    colors: ColorToken[] | object
+    collection: ColorToken[] | object | object
   ): Array<{ factor: Factor; color: ColorToken }> => {
     const cb = colorObj(factor, callback);
     // @ts-ignore
-    return Object.keys(colors).map((color) => cb(colors[color]));
+    return Object.keys(collection).map((color) => cb(colors[color]));
   };
 }
 
@@ -554,9 +557,9 @@ function sortedArr(
   order: Order,
   colorObj = false
 ) {
-  return (colors: ColorToken[]) => {
+  return (collection: ColorToken[] | object) => {
     const results: ColorToken[] | Array<{ factor: number; color: ColorToken }> =
-      colorObjArr(factor, callback)(colors);
+      colorObjArr(factor, callback)(collection);
 
     // Assign the value of colorObj to results variable
     // Sort the array using our customSort helper function
@@ -581,7 +584,7 @@ function sortedArr(
  */
 function filteredArr(factor: Factor, cb?: callback) {
   return (
-    colors: ColorToken[],
+    collection: ColorToken[] | object,
     start: number | string,
     end?: number
   ): ColorToken[] => {
@@ -591,7 +594,7 @@ function filteredArr(factor: Factor, cb?: callback) {
       result = colorObjArr(
         factor,
         cb
-      )(colors)
+      )(collection)
         .filter((color) => inRange(color[factor], start, end))
         .map((color) => color['color']);
 
@@ -608,7 +611,7 @@ function filteredArr(factor: Factor, cb?: callback) {
         return colorObjArr(
           factor,
           cb
-        )(colors)
+        )(collection)
           .filter((el) => test(el[factor], parseFloat(val)))
           .map((el) => el['color']);
       };

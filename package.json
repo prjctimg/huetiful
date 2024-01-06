@@ -62,6 +62,7 @@
       "prettier"
     ],
     "rules": {
+      "prefer-const": 0,
       "no-console": 1,
       "no-ternary": 2,
       "no-var": 0,
