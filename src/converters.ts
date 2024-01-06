@@ -30,7 +30,6 @@ import type {
   UniformColorSpaces
 } from './types';
 import 'culori/all';
-import 'culori/css';
 import { formatHex8, formatHex, colorsNamed } from 'culori/fn';
 import { getModeChannel } from './helpers';
 
