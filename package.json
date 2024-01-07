@@ -83,6 +83,9 @@
       "./src/types.d.ts",
       "./src/helpers.ts"
     ],
+    "plugin": [
+      "typedoc-plugin-markdown"
+    ],
     "entryPointStrategy": "resolve",
     "out": "./docs",
     "exclude": [

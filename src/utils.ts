@@ -925,6 +925,7 @@ function getNearestColor(
   let result: ColorToken;
   switch (collection) {
     case 'tailwind':
+      // @ts-ignore
       result = cb(colors('all'), color);
 
       break;
