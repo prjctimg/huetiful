@@ -76,50 +76,57 @@ function toHex(color: ColorToken): string {
   } else if (typeof color === 'boolean') {
     return (color !== true && '#ffffff') || '#000000';
   } else {
-    var result: unknown;
-    var cb = (color, key, value) =>
-      (result[getModeChannel(color[0], key)] = value);
+    var output;
+
+    // Get the mode variable
+    var mode =
+      (typeof color === 'object' &&
+        Array.isArray(color) &&
+        (color[0] as ColorTuple[0])) ||
+      (color['mode'] as Colorspaces);
+    var alpha =
+      (typeof color === 'object' &&
+        Array.isArray(color) &&
+        (color[color.length - 1] as ColorTuple[4])) ||
+      (color['alpha'] as number);
     var normalizeRgb = (color: object | ColorTuple) => {
-      var mode = (Array.isArray(color) && color[0]) || color['mode'];
+      var colorObject;
       // eslint-disable-next-line no-constant-condition
       if (mode === 'rgb' || 'lrgb') {
         if (Array.isArray(color)) {
-          result = color
+          color
             .slice(1, 4)
-            .map((ch, key) => cb(color, key, color[ch]));
-        } else {
-          result = Object.keys(color)
-            .filter((ch) => ch !== 'mode')
-            .map((ch, key) => cb(color, key, color[ch]));
+            .map((ch, key) => (colorObject[getModeChannel(mode, key)] = ch));
         }
-        var keys = Object.keys(result);
-        if (keys.map((key) => color[key]).some((ch) => Math.abs(ch) > 1)) {
-          keys.map((ch, key) => cb(color, key, color[ch] / 255));
+        var keys = Object.keys(colorObject);
+        if (
+          keys.map((key) => colorObject[key]).some((ch) => Math.abs(ch) > 1)
+        ) {
+          keys.map((key) => (colorObject[key] = colorObject[key] / 255));
         }
-      } else {
-        keys.map((ch, key) => cb(color, ch, color[key]));
       }
-      result['mode'] = color[0] || color['mode'];
-      result['alpha'] = color[4] || color['alpha'];
-      return result;
+
+      colorObject['mode'] = mode;
+      colorObject['alpha'] = alpha;
+      return colorObject;
     };
 
-    if (Array.isArray(color) || typeof color === 'object') {
-      result = formatHex8(normalizeRgb(result as object) as string);
+    if (typeof color === 'object') {
+      output = formatHex8(normalizeRgb(output as object) as string);
     }
 
     switch (typeof color) {
       case 'number':
         // @ts-ignore
-        result = num2rgb(color, true);
+        output = num2rgb(color, true);
         break;
       case 'object':
-        result =
-          (result['alpha'] < 1 && formatHex8(result as unknown as string)) ||
-          (formatHex(result as unknown as string) as string);
+        output =
+          (output['alpha'] < 1 && formatHex8(output as unknown as string)) ||
+          (formatHex(output as unknown as string) as string);
     }
     // @ts-ignore
-    return result;
+    return output;
   }
 }
 

@@ -1,10 +1,10 @@
 [huetiful-js](../README.md) / [Modules](../modules.md) / filterBy
 
-# Module: filterBy
+# Module:📦 filterBy
 
-## Table of contents
+## Table of contents📜
 
-### Functions
+### Functions🧰
 
 - [filterByContrast](filterBy.md#filterbycontrast)
 - [filterByDistance](filterBy.md#filterbydistance)
@@ -21,7 +21,7 @@
 
 Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
@@ -30,13 +30,13 @@ Returns an array of colors with the specified contrast range. The contrast is te
 | `startContrast` | `number` | `1` | The minimum end of the contrast range. |
 | `endContrast` | `number` | `21` | The maximum end of the contrast range. |
 
-#### Returns
+#### Returns🔙
 
 [`ColorToken`](types.md#colortoken)[]
 
 Array of filtered colors.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { filterByContrast } from 'huetiful-js'
@@ -67,7 +67,7 @@ ___
 
 Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
@@ -76,13 +76,13 @@ Returns an array of colors with the specified distance range. The distance is te
 | `startDistance` | `number` | `0.05` | The minimum end of the distance range. |
 | `endDistance?` | `number` | `undefined` | The maximum end of the distance range. |
 
-#### Returns
+#### Returns🔙
 
 [`ColorToken`](types.md#colortoken)[]
 
 Array of filtered colors.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { filterByDistance } from 'huetiful-js'
@@ -110,7 +110,7 @@ ___
 
 Returns colors in the specified hue ranges between 0 to 360.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
@@ -119,13 +119,13 @@ Returns colors in the specified hue ranges between 0 to 360.
 | `endHue` | `number` | `360` | The maximum end of the hue range. |
 | `colorspace?` | [`HueColorSpaces`](types.md#huecolorspaces) | `undefined` | - |
 
-#### Returns
+#### Returns🔙
 
 [`ColorToken`](types.md#colortoken)[]
 
 Array of the filtered colors.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 let sample = [
@@ -155,7 +155,7 @@ ___
 
 Returns an array of colors in the specified lightness range. The range is between 0 and 100.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
@@ -164,13 +164,13 @@ Returns an array of colors in the specified lightness range. The range is betwee
 | `endLightness` | `number` | `100` | The maximum end of the lightness range. |
 | `colorspace?` | [`HueColorSpaces`](types.md#huecolorspaces) | `undefined` | The mode colorspace to retrieve the lightness value from. The default is lch65 |
 
-#### Returns
+#### Returns🔙
 
 [`ColorToken`](types.md#colortoken)[]
 
 Array of filtered colors.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { filterByLightness } from 'huetiful-js'
@@ -201,7 +201,7 @@ ___
 
 Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
@@ -209,13 +209,13 @@ Returns an array of colors in the specified luminance range. The range is normal
 | `startLuminance` | `number` | `0.05` | The minimum end of the luminance range. |
 | `endLuminance` | `number` | `1` | The maximum end of the luminance range. |
 
-#### Returns
+#### Returns🔙
 
 [`ColorToken`](types.md#colortoken)[]
 
 Array of filtered colors.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { filterByLuminance } from 'huetiful-js'
@@ -246,7 +246,7 @@ ___
 
 Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
@@ -255,13 +255,13 @@ Returns an array of colors in the specified saturation range. The range is norma
 | `endSaturation` | `number` | `1` | The maximum end of the saturation range. |
 | `colorspace?` | [`HueColorSpaces`](types.md#huecolorspaces) | `undefined` | The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do. |
 
-#### Returns
+#### Returns🔙
 
 [`ColorToken`](types.md#colortoken)[]
 
 Array of filtered colors.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { filterByContrast } from 'huetiful-js'

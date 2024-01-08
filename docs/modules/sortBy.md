@@ -1,10 +1,10 @@
 [huetiful-js](../README.md) / [Modules](../modules.md) / sortBy
 
-# Module: sortBy
+# Module:📦 sortBy
 
-## Table of contents
+## Table of contents📜
 
-### Functions
+### Functions🧰
 
 - [sortByContrast](sortBy.md#sortbycontrast)
 - [sortByDistance](sortBy.md#sortbydistance)
@@ -21,7 +21,7 @@
 
 Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -29,13 +29,13 @@ Sorts colors according to their contrast value as defined by WCAG. The contrast 
 | `against` | [`ColorToken`](types.md#colortoken) | - |
 | `order?` | [`Order`](types.md#order) | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
-#### Returns
+#### Returns🔙
 
 [`ColorToken`](types.md#colortoken)[]
 
 An array of the sorted color values.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { sortByContrast } from 'huetiful-js'
@@ -56,7 +56,7 @@ ___
 
 Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -65,13 +65,13 @@ Sorts colors according to their Euclidean distance. The distance factor is deter
 | `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 | `options?` | [`ColorDistanceOptions`](types.md#colordistanceoptions) | - |
 
-#### Returns
+#### Returns🔙
 
 [`ColorToken`](types.md#colortoken)[]
 
 An array of the sorted color values.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { sortByDistance } from 'huetiful-js'
@@ -103,7 +103,7 @@ ___
 
 Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -111,13 +111,13 @@ Sorts colors according to hue values. It works with any color space with a hue c
 | `order?` | [`Order`](types.md#order) | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 | `colorspace?` | [`HueColorSpaces`](types.md#huecolorspaces) | The color space to compute the color distances in. All colors within the collection will be converted to mode. Also note that because differences in hue mapping certain color spaces such as HSL and LCH hue values do not align. Keep such quirks in mind to avoid weird results. |
 
-#### Returns
+#### Returns🔙
 
 [`ColorToken`](types.md#colortoken)[]
 
 An array of the sorted color values.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 let sample = [
@@ -165,7 +165,7 @@ ___
 
 Sorts colors according to their lightness.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -173,13 +173,13 @@ Sorts colors according to their lightness.
 | `order?` | [`Order`](types.md#order) | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 | `colorspace?` | [`HueColorSpaces`](types.md#huecolorspaces) | The mode colorspace to use for filtering color lightness. Defaut is lch65 |
 
-#### Returns
+#### Returns🔙
 
 [`ColorToken`](types.md#colortoken)[]
 
 An array of the sorted color values.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { sortByLightness } from "huetiful-js";
@@ -229,20 +229,20 @@ ___
 
 Sorts colors according to the relative brightness as defined by WCAG definition.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | - |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
-#### Returns
+#### Returns🔙
 
 [`ColorToken`](types.md#colortoken)[]
 
 An array of the sorted color values.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { sortByLuminance } from "huetiful-js";
@@ -291,7 +291,7 @@ ___
 
 Sorts colors according to their saturation.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -299,13 +299,13 @@ Sorts colors according to their saturation.
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 | `mode?` | [`HueColorSpaces`](types.md#huecolorspaces) | The mode color space to compute the saturation value in. The default is jch . |
 
-#### Returns
+#### Returns🔙
 
 [`ColorToken`](types.md#colortoken)[]
 
 An array of the sorted color values.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { sortBySaturation } from "huetiful-js";

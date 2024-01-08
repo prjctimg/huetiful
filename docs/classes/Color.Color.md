@@ -2,9 +2,9 @@
 
 # huetiful-js
 
-## Table of contents
+## Table of contents📜
 
-### Modules
+### Modules📦
 
 - [colors](modules/colors.md)
 - [converters](modules/converters.md)
