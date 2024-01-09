@@ -140,7 +140,7 @@ renameSync(`${rootDir}/modules.md`, `${rootDir}/index.md`);
 //   // read the contents of thr template file.
 //   writeFileSync(
 //     `./docs/modules/${pathSeg}.html`,
-//     micromark(fileContents(`${rootDir}/modules`, pathSeg))
+//     micromark(fileContents(`${rootDir}/modules`, pathSeg),)
 //   );
 
 //   rmSync(`./docs/modules/${pathSeg}.md`);

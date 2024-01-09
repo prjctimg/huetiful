@@ -1,4 +1,4 @@
-/** 
+/*
  * @license
  * converters.ts - Converter functions for huetiful-js.
  * Contains parts of chroma.js released under the same license.
@@ -21,7 +21,8 @@ import {
   modeLch,
   modeLch65,
   modeLchuv,
-  modeOklch
+  modeOklch,
+  formatHex
 } from 'culori/fn';
 import type {
   ColorTuple,
@@ -30,7 +31,7 @@ import type {
   UniformColorSpaces
 } from './types';
 import 'culori/all';
-import { formatHex8, formatHex, colorsNamed } from 'culori/fn';
+import { formatHex8, colorsNamed } from 'culori/fn';
 import { getModeChannel } from './helpers';
 
 /**
@@ -68,11 +69,11 @@ function toHex(color: ColorToken): string {
   // the result to return at the end of the function
 
   // if its of type string and not a CSS named color then its probably hex so we don't convert it
-  if (
-    typeof color === 'string' &&
-    !Object.keys(colorsNamed).some((el) => el === color.toLowerCase())
-  ) {
-    return color;
+  if (typeof color === 'string') {
+    if (!Object.keys(colorsNamed).some((el) => el === color.toLowerCase())) {
+      return color;
+    }
+    return formatHex(color);
   } else if (typeof color === 'boolean') {
     return (color !== true && '#ffffff') || '#000000';
   } else {
@@ -89,20 +90,24 @@ function toHex(color: ColorToken): string {
         Array.isArray(color) &&
         (color[color.length - 1] as ColorTuple[4])) ||
       (color['alpha'] as number);
+
     var normalizeRgb = (color: object | ColorTuple) => {
-      var colorObject;
+      var colorObject = {};
       // eslint-disable-next-line no-constant-condition
       if (mode === 'rgb' || 'lrgb') {
         if (Array.isArray(color)) {
-          color
-            .slice(1, 4)
-            .map((ch, key) => (colorObject[getModeChannel(mode, key)] = ch));
+          var channels = color.slice(1, 4);
+          for (const key of channels) {
+            colorObject[getModeChannel(mode, key)] = channels[key];
+          }
         }
         var keys = Object.keys(colorObject);
         if (
           keys.map((key) => colorObject[key]).some((ch) => Math.abs(ch) > 1)
         ) {
-          keys.map((key) => (colorObject[key] = colorObject[key] / 255));
+          for (const key in keys) {
+            colorObject[key] = colorObject[key] / 255;
+          }
         }
       }
 
@@ -113,18 +118,10 @@ function toHex(color: ColorToken): string {
 
     if (typeof color === 'object') {
       output = formatHex8(normalizeRgb(output as object) as string);
+    } else if (typeof color === 'number') {
+      output = num2rgb(color, true);
     }
 
-    switch (typeof color) {
-      case 'number':
-        // @ts-ignore
-        output = num2rgb(color, true);
-        break;
-      case 'object':
-        output =
-          (output['alpha'] < 1 && formatHex8(output as unknown as string)) ||
-          (formatHex(output as unknown as string) as string);
-    }
     // @ts-ignore
     return output;
   }
@@ -155,8 +152,8 @@ function num2rgb(num: number, hex = false): ColorToken {
       b: b / 255,
       mode: 'lrgb'
     };
-
-    return (hex && toHex(output)) || output;
+    // @ts-ignore
+    return (hex && formatHex(output)) || output;
   } else {
     throw Error('unknown num color: ' + num);
   }
