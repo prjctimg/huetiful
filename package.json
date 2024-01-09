@@ -100,7 +100,6 @@
     "disableSources": true
   },
   "files": [
-    "src",
     "lib",
     "CHANGELOG.md",
     "CODE_OF_CONDUCT.md",

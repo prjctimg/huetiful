@@ -508,7 +508,7 @@ ___
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `collection` | [`ColorToken`](types.md#colortoken)[] \| ``"tailwind"`` \| ``"material"`` | `undefined` | The collection of colors to search for nearest colors |
+| `collection` | [`ColorToken`](types.md#colortoken)[] \| ``"tailwind"`` | `undefined` | The collection of colors to search for nearest colors |
 | `color` | [`ColorToken`](types.md#colortoken) | `undefined` | The color to use for distance comparison |
 | `num` | `number` | `1` | The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the differenceHyab metric. |
 
@@ -521,7 +521,10 @@ An array of colors.
 **`Example`** 📋
 
 ```ts
+let cols = colors('all', '500')
 
+console.log(getNearestColor(cols, 'blue', 3));
+// [ '#a855f7', '#8b5cf6', '#d946ef' ]
 ```
 
 ___

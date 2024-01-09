@@ -51,7 +51,7 @@ A wrapper function for the default Tailwind palette. If called with both paramet
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `shade` | [`TailwindColorFamilies`](types.md#tailwindcolorfamilies) | Any shade in the default TailwindCSS palette e.g amber,blue. |
+| `shade` | [`TailwindColorFamilies`](types.md#tailwindcolorfamilies) \| ``"all"`` | Any shade in the default TailwindCSS palette e.g amber,blue. |
 | `value?` | [`ScaleValues`](types.md#scalevalues) | Any value from 100 to 900 in increments of 100 e.g "200". |
 
 #### Returns🔙

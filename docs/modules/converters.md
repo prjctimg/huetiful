@@ -106,20 +106,20 @@ ___
 
 ### toColorTuple
 
-▸ **toColorTuple**(`color`, `mode`): [`ColorTuple`](types.md#colortuple)
+▸ **toColorTuple**(`color`, `mode`): `any`[]
 
-Returns an array of channel values in the mode color space.
+Returns an array of channel values in the mode color space. It does not mutate the values of the passed in color token.
 
 #### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | Any recognizable color token. |
+| `color` | `string` \| `object` | Expects the color to be in hexadecimal represantation or as a plain color object. |
 | `mode` | [`Colorspaces`](types.md#colorspaces) | The mode color space to return channel values for |
 
 #### Returns🔙
 
-[`ColorTuple`](types.md#colortuple)
+`any`[]
 
 An array of channel values with the colorspace as first element and the alpha channel if its explicitly defined in the passed in color.
 
