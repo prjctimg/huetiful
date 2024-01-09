@@ -14,19 +14,19 @@ const sharedConfig = {
 };
 
 // commonJS import
-build({
-  format: 'cjs',
-  ...sharedConfig,
-  outfile: './lib/huetiful.cjs',
-  external: Object.keys(dependencies)
-});
+// build({
+//   format: 'cjs',
+//   ...sharedConfig,
+//   outfile: './lib/huetiful.cjs',
+//   external: Object.keys(dependencies)
+// });
 
 //Bundled ESM
 build({
   ...sharedConfig,
-  platform: 'neutral',
+  platform: 'browser',
   format: 'esm',
-  outfile: './lib/huetiful.esm.mjs'
+  outfile: './lib/huetiful.esm.min.mjs'
 });
 
 //Bundled IIFE
@@ -36,5 +36,15 @@ build({
   format: 'iife',
   outfile: './lib/huetiful.umd.js',
   globalName: 'huetiful',
-  minifySyntax: true
+  minifySyntax: true,
+  minify: true
+});
+
+// ESM no bundle
+build({
+  ...sharedConfig,
+  platform: 'node',
+  format: 'esm',
+  outfile: './lib/huetiful.esm.mjs',
+  external: Object.keys(dependencies)
 });
