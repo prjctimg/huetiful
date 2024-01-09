@@ -1,3 +1,4 @@
+/* eslint-disable no-ternary */
 /*
  * @license
  * converters.ts - Converter functions for huetiful-js.
@@ -81,53 +82,50 @@ function toHex(color: ColorToken): string {
     output = num2rgb(color, true) as string;
   } else {
     // Get the mode variable
-    const mode =
-      (typeof color === 'object' &&
-        Array.isArray(color) &&
-        (color[0] as ColorTuple[0])) ||
-      (color['mode'] as Colorspaces);
+    const mode = Array.isArray(color)
+      ? (color[0] as ColorTuple[0])
+      : (color['mode'] as Colorspaces);
     const alpha =
-      (typeof color === 'object' &&
-        Array.isArray(color) &&
-        (color[color.length - 1] as ColorTuple[4])) ||
-      (color['alpha'] as number);
+      Array.isArray(color) && color.length === 5
+        ? (color[color.length - 1] as ColorTuple[4])
+        : (color['alpha'] as number);
 
     var channelKeys = getModeChannel(mode).split('');
+    var colorTupleToObj = (colorTuple: number[]) => {
+      var channels = colorTuple.slice(0, 3);
 
+      if (
+        ['rgb', 'lrgb'].indexOf(mode) !== -1 &&
+        channels.some((ch: number) => 1 < Math.abs(ch))
+      ) {
+        // @ts-ignore
+        channels = channels.map((ch) => ch / 255);
+      }
+
+      let output = {
+        [channelKeys[0]]: channels[0],
+        [channelKeys[1]]: channels[1],
+        [channelKeys[2]]: channels[2],
+        mode: mode,
+        alpha: alpha
+      };
+
+      return output;
+    };
     if (mode) {
       // coerce color tuple to object
       if (Array.isArray(color)) {
-        var channels = color.slice(1, 4);
-        var res = {};
-        channelKeys.map((key, idx) => (res[key] = channels[idx]));
-        // Assign mode and alpha
-        res['mode'] = mode;
-        res['alpha'] = alpha;
-
         // @ts-ignore
-        color = res;
-      }
-      // eslint-disable-next-line no-constant-condition
-      if (mode === 'rgb' || 'lrgb') {
-        if (
-          channelKeys.map((key) => color[key]).some((ch) => Math.abs(ch) > 1)
-        ) {
-          for (const key in channelKeys) {
-            color[key] = color[key] / 255;
-          }
-          // @ts-ignore
-          output = (alpha && formatHex8(color)) || formatHex(color);
-        }
-      } else if (typeof color === 'object') {
-        // @ts-ignore
-        output = (alpha && formatHex8(color)) || formatHex(color);
+        output = colorTupleToObj(color.slice(1));
+      } else {
+        output = colorTupleToObj(
+          toColorTuple(color, mode as Colorspaces).slice(1) as number[]
+        );
       }
     }
   }
 
-  // eslint-disable-next-line no-constant-condition
-
-  return output;
+  return (output['alpha'] < 1 && formatHex8(output)) || formatHex(output);
 }
 
 // Ported from chroma-js with slight modifications
@@ -236,13 +234,15 @@ function temp2Color(kelvin: number, hex = false): ColorToken {
     b: b / 255,
     mode: 'rgb'
   };
-  return (hex && toHex(result)) || result;
+
+  // @ts-ignore
+  return (hex && formatHex(result)) || result;
 }
 
 /**
  * 
- *  Returns an array of channel values in the mode color space.
- * @param color Any recognizable color token.
+ *  Returns an array of channel values in the mode color space. It does not mutate the values of the passed in color token.
+ * @param color Expects the color to be in hexadecimal represantation or as a plain color object. 
  * @param mode The mode color space to return channel values for
  * @returns An array of channel values with the colorspace as first element and the alpha channel if its explicitly defined in the passed in color.
  * @example 
@@ -260,25 +260,16 @@ console.log(toColorTuple(rgbColor,'rgb'));
 
  */
 
-function toColorTuple(color: ColorToken, mode: Colorspaces) {
+function toColorTuple(color: string | object, mode: Colorspaces) {
   // @ts-ignore
   const colorObject: ColorToken = converter(mode)(color);
 
-  if (toHex(color)) {
-    // @ts-ignore
+  var arr = Object.keys(colorObject)
+    .filter((ch) => ch !== 'mode')
+    .map((key) => colorObject[key]);
+  arr.unshift(mode);
 
-    const arr: ColorTuple = Object.keys(colorObject)
-      .filter((ch) => ch !== 'mode')
-      .map((key) => colorObject[key]);
-    arr.unshift(mode);
-    return arr;
-  } else {
-    throw Error(
-      `${color} is not a valid color token. Try something like 'purple' or ['lch',85,60,143.5]`
-    );
-
-    // throw Error(`mode is not a valid color space`)
-  }
+  return arr;
 }
 
 export { num2rgb, rgb2num, temp2Color, toColorTuple, ucsConverter, toHex };
