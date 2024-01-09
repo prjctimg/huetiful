@@ -67,66 +67,70 @@ console.log(toHex({ l: 50, c: 31, h: 100, mode: "lch" }))
  */
 function toHex(color: ColorToken): string {
   // the result to return at the end of the function
-
+  var output;
   // if its of type string and not a CSS named color then its probably hex so we don't convert it
   if (typeof color === 'string') {
+    // @ts-ignore
     if (!Object.keys(colorsNamed).some((el) => el === color.toLowerCase())) {
       return color;
     }
     return formatHex(color);
   } else if (typeof color === 'boolean') {
     return (color !== true && '#ffffff') || '#000000';
+  } else if (typeof color === 'number') {
+    output = num2rgb(color, true) as string;
   } else {
-    var output;
-
     // Get the mode variable
-    var mode =
+    const mode =
       (typeof color === 'object' &&
         Array.isArray(color) &&
         (color[0] as ColorTuple[0])) ||
       (color['mode'] as Colorspaces);
-    var alpha =
+    const alpha =
       (typeof color === 'object' &&
         Array.isArray(color) &&
         (color[color.length - 1] as ColorTuple[4])) ||
       (color['alpha'] as number);
 
-    var normalizeRgb = (color: object | ColorTuple) => {
-      var colorObject = {};
+    var channelKeys = getModeChannel(mode).split('');
+
+    if (mode) {
+      // coerce color tuple to object
+      if (Array.isArray(color)) {
+        var channels = color.slice(1, 4);
+        var res = {};
+        channelKeys.map((key, idx) => (res[key] = channels[idx]));
+        // Assign mode and alpha
+        res['mode'] = mode;
+        res['alpha'] = alpha;
+
+        // @ts-ignore
+        color = res;
+      }
       // eslint-disable-next-line no-constant-condition
       if (mode === 'rgb' || 'lrgb') {
-        if (Array.isArray(color)) {
-          var channels = color.slice(1, 4);
-          for (const key of channels) {
-            colorObject[getModeChannel(mode, key)] = channels[key];
-          }
-        }
-        var keys = Object.keys(colorObject);
         if (
-          keys.map((key) => colorObject[key]).some((ch) => Math.abs(ch) > 1)
+          channelKeys.map((key) => color[key]).some((ch) => Math.abs(ch) > 1)
         ) {
-          for (const key in keys) {
-            colorObject[key] = colorObject[key] / 255;
+          for (const key in channelKeys) {
+            color[key] = color[key] / 255;
           }
+          // @ts-ignore
+          output = (alpha && formatHex8(color)) || formatHex(color);
         }
+      } else if (typeof color === 'object') {
+        // @ts-ignore
+        output = (alpha && formatHex8(color)) || formatHex(color);
       }
-
-      colorObject['mode'] = mode;
-      colorObject['alpha'] = alpha;
-      return colorObject;
-    };
-
-    if (typeof color === 'object') {
-      output = formatHex8(normalizeRgb(output as object) as string);
-    } else if (typeof color === 'number') {
-      output = num2rgb(color, true);
     }
-
-    // @ts-ignore
-    return output;
   }
+
+  // eslint-disable-next-line no-constant-condition
+
+  return output;
 }
 
+// Ported from chroma-js with slight modifications
 /**
  * 
  *  Returns the RGB color equivalent of any number between 0 and 16,777,215.
@@ -277,4 +281,4 @@ function toColorTuple(color: ColorToken, mode: Colorspaces) {
   }
 }
 
-export { ucsConverter, num2rgb, rgb2num, temp2Color, toColorTuple, toHex };
+export { num2rgb, rgb2num, temp2Color, toColorTuple, ucsConverter, toHex };
