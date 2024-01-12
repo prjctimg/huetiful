@@ -1,8 +1,6 @@
-[huetiful-js](../README.md) / [Modules](../modules.md) / types
+# Module:📦 types
 
-# Module: types
-
-## Table of contents
+## Table of contents📜
 
 ### Type Aliases
 
@@ -40,7 +38,7 @@
 
 Ƭ **AdaptivePaletteOptions**: `Object`
 
-**`Description`**
+**`Description`** ℹ
 
 This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.
 
@@ -107,7 +105,7 @@ ___
 
 Ƭ **ColorToken**: `number` \| `string` \| `object` \| [`ColorTuple`](types.md#colortuple)
 
-**`Description`**
+**`Description`** ℹ
 
 Any recognizable color token.
 
@@ -157,7 +155,7 @@ ___
 
 ▸ (`factor`, `callback`, `order?`, `colorObj?`): (`colors`: [`ColorToken`](types.md#colortoken)[]) => [`ColorToken`](types.md#colortoken)[]
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
@@ -166,19 +164,19 @@ ___
 | `order?` | [`Order`](types.md#order) |
 | `colorObj?` | `boolean` |
 
-##### Returns
+##### Returns🔙
 
 `fn`
 
 ▸ (`colors`): [`ColorToken`](types.md#colortoken)[]
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
 | `colors` | [`ColorToken`](types.md#colortoken)[] |
 
-##### Returns
+##### Returns🔙
 
 [`ColorToken`](types.md#colortoken)[]
 
@@ -210,25 +208,25 @@ ___
 
 ▸ (`arr`): (`t`: `number`) => `number`
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
 | `arr` | `number`[] |
 
-##### Returns
+##### Returns🔙
 
 `fn`
 
 ▸ (`t`): `number`
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
 | `t` | `number` |
 
-##### Returns
+##### Returns🔙
 
 `number`
 
@@ -244,7 +242,7 @@ ___
 
 Ƭ **Options**: `Object`
 
-**`Description`**
+**`Description`** ℹ
 
 The override parameters for palette functions.
 

@@ -908,32 +908,32 @@ function colorDeficiency(deficiencyType?: DeficiencyType) {
  * @returns An array of colors.
  * @example
  *
- *
+ * let cols = colors('all', '500')
+ * 
+console.log(getNearestColor(cols, 'blue', 3));
+ // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
 function getNearestColor(
-  collection: ColorToken[] | 'tailwind' | 'material',
+  collection: ColorToken[] | 'tailwind',
   color: ColorToken,
   num = 1
 ): ColorToken | ColorToken[] {
   const cb = (collection, color) => {
     //
-    return nearest(collection as ColorToken[], differenceHyab())(
-      color as string,
-      num
-    );
+    return nearest(
+      collection as ColorToken[],
+      differenceHyab(),
+      (color) => color as string
+    )(color as string, num);
   };
   let result: ColorToken;
-  switch (collection) {
-    case 'tailwind':
-      // @ts-ignore
-      result = cb(colors('all'), color);
 
-      break;
-    // @ts-ignore
-    case typeof collection !== 'string' && collection.length:
-      result = cb(collection, color);
-      break;
+  if (collection === 'tailwind') {
+    result = cb(colors('all'), color);
+  } else {
+    result = cb(collection, color);
   }
+
   return result;
 }
 

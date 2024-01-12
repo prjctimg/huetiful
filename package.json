@@ -1,17 +1,19 @@
 {
   "name": "huetiful-js",
-  "version": "1.7.9",
+  "version": "1.79.91",
   "type": "module",
-  "main": "./lib/huetiful.cjs",
+  "main": "./lib/huetiful.esm.mjs",
   "module": "./lib/huetiful.esm.mjs",
-  "browser": "./lib/huetiful.umd.js",
-  "jsdelivr": "./lib/huetiful.min.umd.js",
+  "browser": "./lib/huetiful.esm.mjs",
+  "jsdelivr": "./lib/huetiful.umd.js",
   "types": "./lib/huetiful.d.ts",
   "description": "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
   "dependencies": {
-    "culori": "^3.0.1"
+    "culori": "^3.0.1",
+    "huetiful-js": "file:huetiful-js-1.79.91.tgz"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
     "@types/culori": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
@@ -20,15 +22,19 @@
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "feather-icons": "^4.29.1",
+    "github-emoji": "^1.2.0",
     "husky": "^8.0.3",
     "nodemon": "^3.0.1",
+    "tailwindcss": "^3.4.1",
     "typedoc": "^0.25.3",
     "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.0.2"
   },
   "scripts": {
+    "css": "npx tailwindcss -i ./templates/index.css -o ./templates/dist/output.css --watch",
     "test": "jasmine",
-    "docs": "npx typedoc && cp -r ./huetiful-logo.png ./docs && git add .",
+    "docs": "npx typedoc --hideBreadcrumbs true   && node docs.js && git add .",
     "build": "node build.cjs",
     "prepare": " npm run build && npm run types && npm run docs",
     "types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
@@ -83,11 +89,11 @@
       "./src/types.d.ts",
       "./src/helpers.ts"
     ],
+    "entryPointStrategy": "resolve",
+    "out": "./docs/out",
     "plugin": [
       "typedoc-plugin-markdown"
     ],
-    "entryPointStrategy": "resolve",
-    "out": "./docs",
     "exclude": [
       "./color-maps"
     ],
@@ -95,7 +101,6 @@
     "disableSources": true
   },
   "files": [
-    "src",
     "lib",
     "CHANGELOG.md",
     "CODE_OF_CONDUCT.md",

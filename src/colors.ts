@@ -1,4 +1,4 @@
-/** 
+/* 
  * @license
  * colors.ts - Colors and schemes for huetiful-js.
  * Contains colors from TailwindCSS released under the MIT permissive licence.
@@ -1315,7 +1315,7 @@ console.log(red100)
 // #fee2e2
  */
 function colors(
-  shade: TailwindColorFamilies,
+  shade: TailwindColorFamilies | 'all',
   value?: ScaleValues
 ): ColorToken | ColorToken[] {
   const { keys } = Object;
