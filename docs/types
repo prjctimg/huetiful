@@ -1,0 +1,548 @@
+<!doctype html>
+<html  data-current="page" lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Types</title>
+  <meta name="description" content="Library for general purpose color manipulations and generating custom color scales.">
+  <link rel="stylesheet" href="/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
+
+  
+  
+
+  <script>function applyThemeColor(){"true"===localStorage.getItem("darkmode")||!localStorage.getItem("darkmode")&&window.matchMedia("(prefers-color-scheme: dark)").matches?(localStorage.setItem("darkmode","true"),document.documentElement.classList.add("dark")):document.documentElement.classList.remove("dark")}function activateDarkMode(){const e="true"===localStorage.getItem("darkmode")?"false":"true";localStorage.setItem("darkmode",e),applyThemeColor()}applyThemeColor();</script>
+  <script defer>function logout(){localStorage.removeItem("passphrase"),window.location.href="/"}function showNavigation(){const e=document.getElementById("navigation");e.classList.remove("hidden","sticky","pt-32"),e.classList.add("absolute","right-0","top-0","-mt-0","z-50","pt-0","bg-white","border-l","border-gray-200")}function closeNavigation(){const e=document.getElementById("navigation");e.classList.add("hidden"),e.classList.remove("absolute","right-0","z-50","bg-gray-100","border-r","border-gray-800")}function toggleLayout(e){"horizontal"===localStorage.getItem("layout")?localStorage.setItem("layout","vertical"):"vertical"===localStorage.getItem("layout")?localStorage.setItem("layout","horizontal"):localStorage.getItem("layout")||("horizontal"===e?localStorage.setItem("layout","vertical"):localStorage.setItem("layout","horizontal")),console.log(localStorage.getItem("layout"))}window.netlifyIdentity&&window.netlifyIdentity.on("init",e=>{e||window.netlifyIdentity.on("login",()=>{document.location.href="/admin/"})}),document.addEventListener("DOMContentLoaded",function(){document.getElementById("main").addEventListener("click",closeNavigation,!1)}),function(e,t){"use strict";const n=n=>{const o=e.searchIndex.search(n.target.value,{bool:"OR",expand:!0}),a=t.getElementById("searchField"),d=t.getElementById("searchResults"),i=t.getElementById("noResultsFound");t.getElementById("navigation");a.addEventListener("focus",e=>{e.target.classList.remove("hidden"),d.classList.remove("hidden")}),t.addEventListener("click",function(e){a.contains(e.target)||(console.log("hidden"),d.classList.add("hidden"),i.classList.add("hidden"),i.classList.add("hidden"))}),d.innerHTML="",""!=n.target.value?""!=o?(i.classList.add("hidden"),d.classList.add("p-4"),o.map(e=>{const{id:n,title:o,description:a}=e.doc,i=t.createElement("li",{tabindex:"-1"});d.appendChild(i);const l=t.createElement("h3");i.appendChild(l);const s=t.createElement("a");s.setAttribute("href",n),s.textContent=o,l.appendChild(s);const c=t.createElement("p");c.textContent=a,i.appendChild(c)})):i.classList.remove("hidden"):i.classList.add("hidden")};fetch("/search-index.json").then(o=>o.json().then(o=>{e.searchIndex=elasticlunr.Index.load(o),t.getElementById("searchField").addEventListener("input",n)}))}(window,document);</script>
+
+ 
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js" defer></script>
+  
+
+  
+
+</head>
+
+  <body>
+    <div id="app" class="h-screen bg-white dark:bg-gray-900">
+      <div class="fixed w-full top-0 left-0 z-10 "> 
+    <nav class="flex h-16 md:h-20 items-center bg-white dark:bg-gray-900 z-20 fixed top-0 left-0 right-0 border-b border-gray-100 px-0 py-2 dark:bg-dark dark:border-gray-800 transition-colors duration-200">
+      <div class="hidden md:block space-y-4 w-full p-4">
+        <a class="no-underline text-gray-600 hover:text-gray-800 font-bold dark:text-gray-500 items-center" href="/">
+          <span class="text-xl">huetiful-js</span>
+          
+          <span class="block mt-1 text-sm text-gray-500 hover:text-gray-600 dark:text-gray-600 font-normal text-xs sm:text-xs md:text-sm lg:text-sm w-full"> Generate color schemes and create flexible color systems with ease.</span>
+          
+         </a>
+      </div>
+      <div class="mr-2 relative w-full md:w-64">
+       
+        <input  aria-label="Search" x-data="{ isOpen: true }" x-bind:class="{ 'hidden': !isOpen }" type="search" placeholder="Search..." class="ml-2 w-60 bg-gray-50 dark:bg-gray-800 appearance-none border dark:border-gray-700 rounded py-2 px-2 placeholder-gray-300 leading-tight focus:ring-4 focus:ring-blue-200 dark:focus:ring-gray-700 ring-opacity-50 border-gray-200" id="searchField">
+        <ul tabindex="0" class="bg-white dark:bg-gray-200 z-50 shadow-md p-0 w-full list-none m-0 absolute left-0 md:right-0 bg-white rounded mt-1 top-100 z-50" id="searchResults"></ul>
+        <div class="hidden shadow-md list-none p-4 m-0 absolute left-0 md:right-0 bg-white rounded mt-1 border top-100 divide-y divide-gray-300 z-2" id="noResultsFound">
+          <p>No results found.</p>
+        </div>
+        
+      </div>
+
+      <button  aria-label="Show navigation" onclick="showNavigation()" class="block md:hidden mr-3"><svg fill="none" width="24" height="24" viewBox="0 0 24 24" class="text-gray-400 hover:text-gray-600" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+       
+      
+
+      
+    </nav>  
+    
+ </div>
+
+
+  
+      
+      <nav id="navigation" class="fixed inset-y-0 overflow-x-hidden overflow-y-auto  hidden w:64 lg:w-72 mt-20 md:block  dark:bg-gray-900  flex-none top-0  p-4 w-64 md:border-r border-b border-gray-100 dark:border-gray-800">
+        <button  name="Close navigation" onclick="closeNavigation()" class="float-right justify-end block md:hidden -mr-4 p-6">	<svg xmlns="http://www.w3.org/2000/svg" class="dark:bg-gray-500" width="18" height="18" viewBox="0 0 18 18"><path class="text-gray-100" d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/></svg></button>
+        <div class=" clear-right">
+          <a href="/">
+          <div class="block md:hidden pt-4 font-semibold text-gray-500">huetiful-js</div>
+          <div class="block md:hidden text-sm text-gray-500 mb-4">Generate color schemes and create flexible color systems with ease.</div>
+          </a>
+          <ul class="nav"><li class="item"><a href="/" class="item">Home</a></li>
+<li class="item"><a href="/colors" class="item">Colors</a></li>
+<li class="item active"><a href="/filtering-functions" class="item active">Filtering functions</a></li>
+<li class="item active"><a href="/converter-functions" class="item active">Converter functions</a></li>
+<li class="item active"><a href="/utilities" class="item active">Utility functions</a></li>
+<li class="item active"><a href="/generator-functions" class="item active">Generator functions</a></li>
+<li class="item active"><a href="/sorting-functions" class="item active">Sorting functions</a></li>
+<li class="item active"><a href="/types" class="item active">Types</a></li>
+<li class="item active"><a href="/helper-functions" class="item active">Helper functions</a></li>
+<li class="item"><a href="/about-colorspaces" class="item">About colorspaces</a></li>
+<li class="item"><a href="/quickstart" class="item">Quickstart</a></li></ul>
+        </div>
+      </nav>
+      
+      
+        <main id="main" class="dark:bg-gray-900 pt-16 sm:pt-18 md:pt-20 md:pl-64 lg:pl-72">
+           
+        
+
+    
+    <div class="flex mt-4 justify-end mr-1">
+        
+        <div class="inline-block w-auto text-xs text-gray-500 pt-1 pb-1 pl-3 mr-2 rounded ">Updated <time datetime="2024-01-13">Jan 13, 2024</time></div>
+        
+        
+        <div class="inline-block w-auto text-xs  text-gray-500 hover:bg-gray-200 pt-1 pr-4 pb-1 pl-3 rounded "><a target="_blank" rel="noopener" rel="noreferrer" href="https://github.com/prjctimg/huetiful/edit/main/./content/pages/types.md">Edit this page</a></div>
+        
+    </div>
+    
+
+ 
+<div class="flex w-full justify-center">
+    <div class="mt-4 px-6 md:px-6 lg:px-8 xl:px-12 w-full max-w-5xl">
+        <div class="wrapper flex justify-between">
+            
+             <div class="main  flex flex-col pr-0 prose sm:prose lg:prose-lg xl:prose-md text-gray-500">
+                
+                <article>
+                
+                
+                <div class="self-center adjust  dark:text-gray-400">
+                    <h1 id="module%3A%F0%9F%93%A6-types">Module:📦 types</h1>
+<h2 id="table-of-contents%F0%9F%93%9C">Table of contents📜</h2>
+<h3 id="type-aliases">Type Aliases</h3>
+<ul>
+<li><a href="types.md#AdaptivePaletteOptions" target="_blank" rel="noopener noreferrer">AdaptivePaletteOptions</a></li>
+<li><a href="types.md#ColorDistanceOptions" target="_blank" rel="noopener noreferrer">ColorDistanceOptions</a></li>
+<li><a href="types.md#ColorObject" target="_blank" rel="noopener noreferrer">ColorObject</a></li>
+<li><a href="types.md#ColorOptions" target="_blank" rel="noopener noreferrer">ColorOptions</a></li>
+<li><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer">ColorToken</a></li>
+<li><a href="types.md#ColorTuple" target="_blank" rel="noopener noreferrer">ColorTuple</a></li>
+<li><a href="types.md#Colorspaces" target="_blank" rel="noopener noreferrer">Colorspaces</a></li>
+<li><a href="types.md#DeficiencyType" target="_blank" rel="noopener noreferrer">DeficiencyType</a></li>
+<li><a href="types.md#DivergingScheme" target="_blank" rel="noopener noreferrer">DivergingScheme</a></li>
+<li><a href="types.md#EarthtoneOptions" target="_blank" rel="noopener noreferrer">EarthtoneOptions</a></li>
+<li><a href="types.md#Factor" target="_blank" rel="noopener noreferrer">Factor</a></li>
+<li><a href="types.md#FactorMapper" target="_blank" rel="noopener noreferrer">FactorMapper</a></li>
+<li><a href="types.md#HueColorSpaces" target="_blank" rel="noopener noreferrer">HueColorSpaces</a></li>
+<li><a href="types.md#HueFamily" target="_blank" rel="noopener noreferrer">HueFamily</a></li>
+<li><a href="types.md#HueShiftOptions" target="_blank" rel="noopener noreferrer">HueShiftOptions</a></li>
+<li><a href="types.md#Interpolator" target="_blank" rel="noopener noreferrer">Interpolator</a></li>
+<li><a href="types.md#InterpolatorOptions" target="_blank" rel="noopener noreferrer">InterpolatorOptions</a></li>
+<li><a href="types.md#Options" target="_blank" rel="noopener noreferrer">Options</a></li>
+<li><a href="types.md#Order" target="_blank" rel="noopener noreferrer">Order</a></li>
+<li><a href="types.md#PairedSchemeOptions" target="_blank" rel="noopener noreferrer">PairedSchemeOptions</a></li>
+<li><a href="types.md#QualitativeScheme" target="_blank" rel="noopener noreferrer">QualitativeScheme</a></li>
+<li><a href="types.md#ScaleValues" target="_blank" rel="noopener noreferrer">ScaleValues</a></li>
+<li><a href="types.md#SequentialScheme" target="_blank" rel="noopener noreferrer">SequentialScheme</a></li>
+<li><a href="types.md#TailwindColorFamilies" target="_blank" rel="noopener noreferrer">TailwindColorFamilies</a></li>
+<li><a href="types.md#Tone" target="_blank" rel="noopener noreferrer">Tone</a></li>
+<li><a href="types.md#UniformColorSpaces" target="_blank" rel="noopener noreferrer">UniformColorSpaces</a></li>
+<li><a href="types.md#callback" target="_blank" rel="noopener noreferrer">callback</a></li>
+</ul>
+<h2 id="type-aliases-2">Type Aliases</h2>
+<h3 id="adaptivepaletteoptions">AdaptivePaletteOptions</h3>
+<p>Ƭ <strong>AdaptivePaletteOptions</strong>: <code>Object</code></p>
+<p><strong><code>Description</code></strong> ℹ</p>
+<p>This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.</p>
+<h4 id="type-declaration">Type declaration</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>backgroundColor?</code></td>
+<td style="text-align:left">{ <code>dark?</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>light?</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>  }</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>backgroundColor.dark?</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>backgroundColor.light?</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorBlind?</code></td>
+<td style="text-align:left"><code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>viewingConditions?</code></td>
+<td style="text-align:left"><code>ViewingConditions</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="colordistanceoptions">ColorDistanceOptions</h3>
+<p>Ƭ <strong>ColorDistanceOptions</strong>: <code>Object</code></p>
+<h4 id="type-declaration-2">Type declaration</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>mode?</code></td>
+<td style="text-align:left"><a href="types.md#Colorspaces" target="_blank" rel="noopener noreferrer"><code>Colorspaces</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>weights?</code></td>
+<td style="text-align:left">[<code>number</code>, <code>number</code>, <code>number</code>, <code>number</code>]</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="colorobject">ColorObject</h3>
+<p>Ƭ <strong>ColorObject</strong>: <code>Object</code></p>
+<h4 id="type-declaration-3">Type declaration</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>alpha?</code></td>
+<td style="text-align:left"><code>number</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>mode</code></td>
+<td style="text-align:left"><a href="types.md#Colorspaces" target="_blank" rel="noopener noreferrer"><code>Colorspaces</code></a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="coloroptions">ColorOptions</h3>
+<p>Ƭ <strong>ColorOptions</strong>: <code>Object</code></p>
+<h4 id="type-declaration-4">Type declaration</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>alpha?</code></td>
+<td style="text-align:left"><code>number</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorSpace?</code></td>
+<td style="text-align:left"><a href="types.md#HueColorSpaces" target="_blank" rel="noopener noreferrer"><code>HueColorSpaces</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorspace?</code></td>
+<td style="text-align:left"><a href="types.md#HueColorSpaces" target="_blank" rel="noopener noreferrer"><code>HueColorSpaces</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>contrast?</code></td>
+<td style="text-align:left"><code>number</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>darkMode?</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>lightMode?</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>lightness?</code></td>
+<td style="text-align:left"><code>number</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>luminance?</code></td>
+<td style="text-align:left"><code>number</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>saturation?</code></td>
+<td style="text-align:left"><code>number</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>temperature?</code></td>
+<td style="text-align:left"><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="colortoken">ColorToken</h3>
+<p>Ƭ <strong>ColorToken</strong>: <code>number</code> | <code>string</code> | <code>object</code> | <a href="types.md#ColorTuple" target="_blank" rel="noopener noreferrer"><code>ColorTuple</code></a></p>
+<p><strong><code>Description</code></strong> ℹ</p>
+<p>Any recognizable color token.</p>
+<hr>
+<h3 id="colortuple">ColorTuple</h3>
+<p>Ƭ <strong>ColorTuple</strong>: [<code>string</code>, <code>number</code>, <code>number</code>, <code>number</code>, number?]</p>
+<hr>
+<h3 id="colorspaces">Colorspaces</h3>
+<p>Ƭ <strong>Colorspaces</strong>: <code>&quot;a98&quot;</code> | <code>&quot;cubehelix&quot;</code> | <code>&quot;dlab&quot;</code> | <code>&quot;jab&quot;</code> | <code>&quot;lab&quot;</code> | <code>&quot;lab65&quot;</code> | <code>&quot;lrgb&quot;</code> | <code>&quot;luv&quot;</code> | <code>&quot;oklab&quot;</code> | <code>&quot;rgb&quot;</code> | <a href="types.md#HueColorSpaces" target="_blank" rel="noopener noreferrer"><code>HueColorSpaces</code></a></p>
+<hr>
+<h3 id="deficiencytype">DeficiencyType</h3>
+<p>Ƭ <strong>DeficiencyType</strong>: <code>&quot;red&quot;</code> | <code>&quot;blue&quot;</code> | <code>&quot;green&quot;</code> | <code>&quot;monochromacy&quot;</code></p>
+<hr>
+<h3 id="divergingscheme">DivergingScheme</h3>
+<p>Ƭ <strong>DivergingScheme</strong>: <code>&quot;Spectral&quot;</code> | <code>&quot;RdYlGn&quot;</code> | <code>&quot;RdBu&quot;</code> | <code>&quot;PiYG&quot;</code> | <code>&quot;PRGn&quot;</code> | <code>&quot;RdYlBu&quot;</code> | <code>&quot;BrBG&quot;</code> | <code>&quot;RdGy&quot;</code> | <code>&quot;PuOr&quot;</code></p>
+<hr>
+<h3 id="earthtoneoptions">EarthtoneOptions</h3>
+<p>Ƭ <strong>EarthtoneOptions</strong>: <code>Omit</code>&lt;<a href="types.md#Options" target="_blank" rel="noopener noreferrer"><code>Options</code></a>, <code>&quot;hueStep&quot;</code> | <code>&quot;via&quot;</code> | <code>&quot;maxLightness&quot;</code> | <code>&quot;minLightness&quot;</code>&gt;</p>
+<hr>
+<h3 id="factor">Factor</h3>
+<p>Ƭ <strong>Factor</strong>: <code>&quot;luminance&quot;</code> | <code>&quot;temp&quot;</code> | <code>&quot;saturation&quot;</code> | <code>&quot;contrast&quot;</code> | <code>&quot;distance&quot;</code> | <code>&quot;lightness&quot;</code> | <code>&quot;hue&quot;</code></p>
+<hr>
+<h3 id="factormapper">FactorMapper</h3>
+<p>Ƭ <strong>FactorMapper</strong>: (<code>factor</code>: <a href="types.md#Factor" target="_blank" rel="noopener noreferrer"><code>Factor</code></a>, <code>callback</code>: <a href="types.md#callback" target="_blank" rel="noopener noreferrer"><code>callback</code></a>, <code>order?</code>: <a href="types.md#Order" target="_blank" rel="noopener noreferrer"><code>Order</code></a>, <code>colorObj?</code>: <code>boolean</code>) =&gt; (<code>colors</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]) =&gt; <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</p>
+<h4 id="type-declaration-5">Type declaration</h4>
+<p>▸ (<code>factor</code>, <code>callback</code>, <code>order?</code>, <code>colorObj?</code>): (<code>colors</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]) =&gt; <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</p>
+<h5 id="parameters%F0%9F%A7%AE">Parameters🧮</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>factor</code></td>
+<td style="text-align:left"><a href="types.md#Factor" target="_blank" rel="noopener noreferrer"><code>Factor</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>callback</code></td>
+<td style="text-align:left"><a href="types.md#callback" target="_blank" rel="noopener noreferrer"><code>callback</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>order?</code></td>
+<td style="text-align:left"><a href="types.md#Order" target="_blank" rel="noopener noreferrer"><code>Order</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorObj?</code></td>
+<td style="text-align:left"><code>boolean</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns%F0%9F%94%99">Returns🔙</h5>
+<p><code>fn</code></p>
+<p>▸ (<code>colors</code>): <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</p>
+<h5 id="parameters%F0%9F%A7%AE-2">Parameters🧮</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>colors</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns%F0%9F%94%99-2">Returns🔙</h5>
+<p><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</p>
+<hr>
+<h3 id="huecolorspaces">HueColorSpaces</h3>
+<p>Ƭ <strong>HueColorSpaces</strong>: <a href="types.md#UniformColorSpaces" target="_blank" rel="noopener noreferrer"><code>UniformColorSpaces</code></a> | <code>&quot;hsl&quot;</code> | <code>&quot;hsv&quot;</code> | <code>&quot;hsi&quot;</code> | <code>&quot;hwb&quot;</code> | <code>&quot;okhsl&quot;</code> | <code>&quot;okhsv&quot;</code></p>
+<hr>
+<h3 id="huefamily">HueFamily</h3>
+<p>Ƭ <strong>HueFamily</strong>: <code>&quot;red-purple&quot;</code> | <code>&quot;red&quot;</code> | <code>&quot;yellow-red&quot;</code> | <code>&quot;yellow&quot;</code> | <code>&quot;green-yellow&quot;</code> | <code>&quot;green&quot;</code> | <code>&quot;blue-green&quot;</code> | <code>&quot;blue&quot;</code> | <code>&quot;purple-blue&quot;</code> | <code>&quot;purple&quot;</code></p>
+<hr>
+<h3 id="hueshiftoptions">HueShiftOptions</h3>
+<p>Ƭ <strong>HueShiftOptions</strong>: <code>Omit</code>&lt;<a href="types.md#Options" target="_blank" rel="noopener noreferrer"><code>Options</code></a>, <code>&quot;via&quot;</code> | <code>&quot;earthtones&quot;</code> | <code>&quot;&quot;</code>&gt; &amp; <a href="types.md#InterpolatorOptions" target="_blank" rel="noopener noreferrer"><code>InterpolatorOptions</code></a></p>
+<hr>
+<h3 id="interpolator">Interpolator</h3>
+<p>Ƭ <strong>Interpolator</strong>: (<code>arr</code>: <code>number</code>[]) =&gt; (<code>t</code>: <code>number</code>) =&gt; <code>number</code></p>
+<h4 id="type-declaration-6">Type declaration</h4>
+<p>▸ (<code>arr</code>): (<code>t</code>: <code>number</code>) =&gt; <code>number</code></p>
+<h5 id="parameters%F0%9F%A7%AE-3">Parameters🧮</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>arr</code></td>
+<td style="text-align:left"><code>number</code>[]</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns%F0%9F%94%99-3">Returns🔙</h5>
+<p><code>fn</code></p>
+<p>▸ (<code>t</code>): <code>number</code></p>
+<h5 id="parameters%F0%9F%A7%AE-4">Parameters🧮</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>t</code></td>
+<td style="text-align:left"><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns%F0%9F%94%99-4">Returns🔙</h5>
+<p><code>number</code></p>
+<hr>
+<h3 id="interpolatoroptions">InterpolatorOptions</h3>
+<p>Ƭ <strong>InterpolatorOptions</strong>: <code>Pick</code>&lt;<a href="types.md#Options" target="_blank" rel="noopener noreferrer"><code>Options</code></a>, <code>&quot;easingFunc&quot;</code> | <code>&quot;hueInterpolator&quot;</code> | <code>&quot;chromaInterpolator&quot;</code> | <code>&quot;hueFixup&quot;</code> | <code>&quot;lightnessInterpolator&quot;</code>&gt;</p>
+<hr>
+<h3 id="options">Options</h3>
+<p>Ƭ <strong>Options</strong>: <code>Object</code></p>
+<p><strong><code>Description</code></strong> ℹ</p>
+<p>The override parameters for palette functions.</p>
+<h4 id="type-declaration-7">Type declaration</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>chromaInterpolator?</code></td>
+<td style="text-align:left"><a href="types.md#Interpolator" target="_blank" rel="noopener noreferrer"><code>Interpolator</code></a></td>
+<td style="text-align:left"><strong><code>Param</code></strong> interpolation method to use on the chroma channel.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>earthtones?</code></td>
+<td style="text-align:left"><code>&quot;light-gray&quot;</code> | <code>&quot;silver&quot;</code> | <code>&quot;sand&quot;</code> | <code>&quot;tupe&quot;</code> | <code>&quot;mahogany&quot;</code> | <code>&quot;brick-red&quot;</code> | <code>&quot;clay&quot;</code> | <code>&quot;cocoa&quot;</code> | <code>&quot;dark-brown&quot;</code> | <code>&quot;dark&quot;</code></td>
+<td style="text-align:left">* <strong><code>Param</code></strong> The earthtone to interpolate with.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>easingFunc?</code></td>
+<td style="text-align:left">(<code>t</code>: <code>number</code>) =&gt; <code>number</code></td>
+<td style="text-align:left">The easing function to use.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>hueFixup?</code></td>
+<td style="text-align:left">(<code>arr</code>: <code>number</code>[]) =&gt; <code>number</code>[]</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>hueInterpolator?</code></td>
+<td style="text-align:left"><a href="types.md#Interpolator" target="_blank" rel="noopener noreferrer"><code>Interpolator</code></a></td>
+<td style="text-align:left"><strong><code>Param</code></strong> interpolation method to use on the hue channel.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>hueStep?</code></td>
+<td style="text-align:left"><code>number</code></td>
+<td style="text-align:left"><strong><code>Param</code></strong> amount of hue angles to increment each iteration with.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>lightnessInterpolator?</code></td>
+<td style="text-align:left"><a href="types.md#Interpolator" target="_blank" rel="noopener noreferrer"><code>Interpolator</code></a></td>
+<td style="text-align:left"><strong><code>Param</code></strong> interpolation method to use on the lightness channel.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>maxLightness?</code></td>
+<td style="text-align:left"><code>number</code></td>
+<td style="text-align:left"><strong><code>Param</code></strong> Maximum lightness value (range 0-100).</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>minLightness?</code></td>
+<td style="text-align:left"><code>number</code></td>
+<td style="text-align:left">* <strong><code>Param</code></strong> Minimum lightness value (range 0-100).</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>samples?</code></td>
+<td style="text-align:left"><code>number</code></td>
+<td style="text-align:left"><strong><code>Param</code></strong> amount of samples to return in the result collection.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>via?</code></td>
+<td style="text-align:left"><a href="types.md#Tone" target="_blank" rel="noopener noreferrer"><code>Tone</code></a></td>
+<td style="text-align:left"><strong><code>Param</code></strong> color to pass through during interpolation.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="order">Order</h3>
+<p>Ƭ <strong>Order</strong>: <code>&quot;asc&quot;</code> | <code>&quot;desc&quot;</code></p>
+<hr>
+<h3 id="pairedschemeoptions">PairedSchemeOptions</h3>
+<p>Ƭ <strong>PairedSchemeOptions</strong>: <code>Omit</code>&lt;<a href="types.md#Options" target="_blank" rel="noopener noreferrer"><code>Options</code></a>, <code>&quot;earthtones&quot;</code> | <code>&quot;maxLightness&quot;</code> | <code>&quot;minLightness&quot;</code>&gt;</p>
+<hr>
+<h3 id="qualitativescheme">QualitativeScheme</h3>
+<p>Ƭ <strong>QualitativeScheme</strong>: <code>&quot;Set2&quot;</code> | <code>&quot;Accent&quot;</code> | <code>&quot;Set1&quot;</code> | <code>&quot;Set3&quot;</code> | <code>&quot;Dark2&quot;</code> | <code>&quot;Paired&quot;</code> | <code>&quot;Pastel2&quot;</code> | <code>&quot;Pastel1&quot;</code></p>
+<hr>
+<h3 id="scalevalues">ScaleValues</h3>
+<p>Ƭ <strong>ScaleValues</strong>: <code>&quot;50&quot;</code> | <code>&quot;100&quot;</code> | <code>&quot;200&quot;</code> | <code>&quot;300&quot;</code> | <code>&quot;400&quot;</code> | <code>&quot;500&quot;</code> | <code>&quot;600&quot;</code> | <code>&quot;700&quot;</code> | <code>&quot;800&quot;</code> | <code>&quot;900&quot;</code></p>
+<hr>
+<h3 id="sequentialscheme">SequentialScheme</h3>
+<p>Ƭ <strong>SequentialScheme</strong>: <code>&quot;OrRd&quot;</code> | <code>&quot;PuBu&quot;</code> | <code>&quot;BuPu&quot;</code> | <code>&quot;Oranges&quot;</code> | <code>&quot;BuGn&quot;</code> | <code>&quot;YlOrBr&quot;</code> | <code>&quot;YlGn&quot;</code> | <code>&quot;Reds&quot;</code> | <code>&quot;RdPu&quot;</code> | <code>&quot;Greens&quot;</code> | <code>&quot;YlGnBu&quot;</code> | <code>&quot;Purples&quot;</code> | <code>&quot;GnBu&quot;</code> | <code>&quot;Greys&quot;</code> | <code>&quot;YlOrRd&quot;</code> | <code>&quot;PuRd&quot;</code> | <code>&quot;Blues&quot;</code> | <code>&quot;PuBuGn&quot;</code> | <code>&quot;Viridis&quot;</code></p>
+<hr>
+<h3 id="tailwindcolorfamilies">TailwindColorFamilies</h3>
+<p>Ƭ <strong>TailwindColorFamilies</strong>: <code>&quot;indigo&quot;</code> | <code>&quot;gray&quot;</code> | <code>&quot;zinc&quot;</code> | <code>&quot;neutral&quot;</code> | <code>&quot;stone&quot;</code> | <code>&quot;red&quot;</code> | <code>&quot;orange&quot;</code> | <code>&quot;amber&quot;</code> | <code>&quot;yellow&quot;</code> | <code>&quot;lime&quot;</code> | <code>&quot;green&quot;</code> | <code>&quot;emerald&quot;</code> | <code>&quot;teal&quot;</code> | <code>&quot;sky&quot;</code> | <code>&quot;blue&quot;</code> | <code>&quot;violet&quot;</code> | <code>&quot;purple&quot;</code> | <code>&quot;fuchsia&quot;</code> | <code>&quot;pink&quot;</code> | <code>&quot;rose&quot;</code></p>
+<hr>
+<h3 id="tone">Tone</h3>
+<p>Ƭ <strong>Tone</strong>: <code>&quot;light&quot;</code> | <code>&quot;dark&quot;</code></p>
+<hr>
+<h3 id="uniformcolorspaces">UniformColorSpaces</h3>
+<p>Ƭ <strong>UniformColorSpaces</strong>: <code>&quot;lch&quot;</code> | <code>&quot;jch&quot;</code> | <code>&quot;dlch&quot;</code> | <code>&quot;lch&quot;</code> | <code>&quot;lch65&quot;</code> | <code>&quot;lchuv&quot;</code> | <code>&quot;oklch&quot;</code></p>
+<hr>
+<h3 id="callback">callback</h3>
+<p>Ƭ <strong>callback</strong>: <code>unknown</code></p>
+
+                    
+                    
+                    
+                     <ul class="footer-nav pt-4 mb-8  ml-0 pl-0 flex flex-wrap flex-row-reverse  justify-between mt-8 list-none"><li class="ml-0 pl-0"><a class="font-semibold text-gray-500 hover:text-gray-900" href="/helper-functions">Helper functions</a> <svg height="24" fill="none" viewBox="0 0 24 24" stroke="#6B7280" class="inline ml-1 flex-shrink-0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></li><li class="ml-0 pl-0"><svg height="24" fill="none" viewBox="0 0 24 24" stroke="#6B7280" class="transform rotate-180 inline mr-1 flex-shrink-0">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                     <a class="font-semibold text-gray-500 hover:text-gray-900" href="/sorting-functions">
+                    Sorting functions </a> </li>
+                    </ul>
+                    
+                </div>
+                </article>
+            </div>    
+            
+            
+        </div>
+    </div>
+</div>
+   
+
+ 
+        <div class="z-50 mt-12 h-12 flex dark:bg-gray-900 text-gray-500 dark:text-gray-400 justify-center p-2 border-t border-gray-100 dark:border-gray-800">
+ <div class="flex w-full items-center ">
+ 
+  <div class="w-6 h-6 flex-none">
+  
+  </div>
+   
+  <div class="text-gray-500 flex flex-grow justify-center text-align-center">
+     <small>
+    
+    &lt;/&gt; with ❤ in Crowhill.
+    
+    </small>
+  </div>
+  
+  
+  <div class="flex-none ml-2 float-right">
+    <a aria-label="github link" rel="noopener noreferrer" href="https://github.com/prjctimg/huetiful" target="_blank"><svg height="28" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" class="text-gray-400 dark:text-gray-400" d="M12 3C7.0275 3 3 7.12937 3 12.2276C3 16.3109 5.57625 19.7597 9.15374 20.9824C9.60374 21.0631 9.77249 20.7863 9.77249 20.5441C9.77249 20.3249 9.76125 19.5982 9.76125 18.8254C7.5 19.2522 6.915 18.2602 6.735 17.7412C6.63375 17.4759 6.19499 16.6569 5.8125 16.4378C5.4975 16.2647 5.0475 15.838 5.80124 15.8264C6.51 15.8149 7.01625 16.4954 7.18499 16.7723C7.99499 18.1679 9.28875 17.7758 9.80625 17.5335C9.885 16.9337 10.1212 16.53 10.38 16.2993C8.3775 16.0687 6.285 15.2728 6.285 11.7432C6.285 10.7397 6.63375 9.9092 7.20749 9.26326C7.1175 9.03257 6.8025 8.08674 7.2975 6.81794C7.2975 6.81794 8.05125 6.57571 9.77249 7.76377C10.4925 7.55615 11.2575 7.45234 12.0225 7.45234C12.7875 7.45234 13.5525 7.55615 14.2725 7.76377C15.9937 6.56418 16.7475 6.81794 16.7475 6.81794C17.2424 8.08674 16.9275 9.03257 16.8375 9.26326C17.4113 9.9092 17.76 10.7281 17.76 11.7432C17.76 15.2843 15.6563 16.0687 13.6537 16.2993C13.98 16.5877 14.2613 17.1414 14.2613 18.0065C14.2613 19.2407 14.25 20.2326 14.25 20.5441C14.25 20.7863 14.4188 21.0746 14.8688 20.9824C16.6554 20.364 18.2079 19.1866 19.3078 17.6162C20.4077 16.0457 20.9995 14.1611 21 12.2276C21 7.12937 16.9725 3 12 3Z" fill="currentColor"></path></svg></a>
+  </div>
+  
+</div> 
+</div>
+ 
+        </main>
+    </div>
+  </body>
+</html>

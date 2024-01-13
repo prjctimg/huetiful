@@ -1,0 +1,1223 @@
+<!doctype html>
+<html  data-current="page" lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utilities</title>
+  <meta name="description" content="Library for general purpose color manipulations and generating custom color scales.">
+  <link rel="stylesheet" href="/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
+
+  
+  
+
+  <script>function applyThemeColor(){"true"===localStorage.getItem("darkmode")||!localStorage.getItem("darkmode")&&window.matchMedia("(prefers-color-scheme: dark)").matches?(localStorage.setItem("darkmode","true"),document.documentElement.classList.add("dark")):document.documentElement.classList.remove("dark")}function activateDarkMode(){const e="true"===localStorage.getItem("darkmode")?"false":"true";localStorage.setItem("darkmode",e),applyThemeColor()}applyThemeColor();</script>
+  <script defer>function logout(){localStorage.removeItem("passphrase"),window.location.href="/"}function showNavigation(){const e=document.getElementById("navigation");e.classList.remove("hidden","sticky","pt-32"),e.classList.add("absolute","right-0","top-0","-mt-0","z-50","pt-0","bg-white","border-l","border-gray-200")}function closeNavigation(){const e=document.getElementById("navigation");e.classList.add("hidden"),e.classList.remove("absolute","right-0","z-50","bg-gray-100","border-r","border-gray-800")}function toggleLayout(e){"horizontal"===localStorage.getItem("layout")?localStorage.setItem("layout","vertical"):"vertical"===localStorage.getItem("layout")?localStorage.setItem("layout","horizontal"):localStorage.getItem("layout")||("horizontal"===e?localStorage.setItem("layout","vertical"):localStorage.setItem("layout","horizontal")),console.log(localStorage.getItem("layout"))}window.netlifyIdentity&&window.netlifyIdentity.on("init",e=>{e||window.netlifyIdentity.on("login",()=>{document.location.href="/admin/"})}),document.addEventListener("DOMContentLoaded",function(){document.getElementById("main").addEventListener("click",closeNavigation,!1)}),function(e,t){"use strict";const n=n=>{const o=e.searchIndex.search(n.target.value,{bool:"OR",expand:!0}),a=t.getElementById("searchField"),d=t.getElementById("searchResults"),i=t.getElementById("noResultsFound");t.getElementById("navigation");a.addEventListener("focus",e=>{e.target.classList.remove("hidden"),d.classList.remove("hidden")}),t.addEventListener("click",function(e){a.contains(e.target)||(console.log("hidden"),d.classList.add("hidden"),i.classList.add("hidden"),i.classList.add("hidden"))}),d.innerHTML="",""!=n.target.value?""!=o?(i.classList.add("hidden"),d.classList.add("p-4"),o.map(e=>{const{id:n,title:o,description:a}=e.doc,i=t.createElement("li",{tabindex:"-1"});d.appendChild(i);const l=t.createElement("h3");i.appendChild(l);const s=t.createElement("a");s.setAttribute("href",n),s.textContent=o,l.appendChild(s);const c=t.createElement("p");c.textContent=a,i.appendChild(c)})):i.classList.remove("hidden"):i.classList.add("hidden")};fetch("/search-index.json").then(o=>o.json().then(o=>{e.searchIndex=elasticlunr.Index.load(o),t.getElementById("searchField").addEventListener("input",n)}))}(window,document);</script>
+
+ 
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js" defer></script>
+  
+
+  
+
+</head>
+
+  <body>
+    <div id="app" class="h-screen bg-white dark:bg-gray-900">
+      <div class="fixed w-full top-0 left-0 z-10 "> 
+    <nav class="flex h-16 md:h-20 items-center bg-white dark:bg-gray-900 z-20 fixed top-0 left-0 right-0 border-b border-gray-100 px-0 py-2 dark:bg-dark dark:border-gray-800 transition-colors duration-200">
+      <div class="hidden md:block space-y-4 w-full p-4">
+        <a class="no-underline text-gray-600 hover:text-gray-800 font-bold dark:text-gray-500 items-center" href="/">
+          <span class="text-xl">huetiful-js</span>
+          
+          <span class="block mt-1 text-sm text-gray-500 hover:text-gray-600 dark:text-gray-600 font-normal text-xs sm:text-xs md:text-sm lg:text-sm w-full"> Generate color schemes and create flexible color systems with ease.</span>
+          
+         </a>
+      </div>
+      <div class="mr-2 relative w-full md:w-64">
+       
+        <input  aria-label="Search" x-data="{ isOpen: true }" x-bind:class="{ 'hidden': !isOpen }" type="search" placeholder="Search..." class="ml-2 w-60 bg-gray-50 dark:bg-gray-800 appearance-none border dark:border-gray-700 rounded py-2 px-2 placeholder-gray-300 leading-tight focus:ring-4 focus:ring-blue-200 dark:focus:ring-gray-700 ring-opacity-50 border-gray-200" id="searchField">
+        <ul tabindex="0" class="bg-white dark:bg-gray-200 z-50 shadow-md p-0 w-full list-none m-0 absolute left-0 md:right-0 bg-white rounded mt-1 top-100 z-50" id="searchResults"></ul>
+        <div class="hidden shadow-md list-none p-4 m-0 absolute left-0 md:right-0 bg-white rounded mt-1 border top-100 divide-y divide-gray-300 z-2" id="noResultsFound">
+          <p>No results found.</p>
+        </div>
+        
+      </div>
+
+      <button  aria-label="Show navigation" onclick="showNavigation()" class="block md:hidden mr-3"><svg fill="none" width="24" height="24" viewBox="0 0 24 24" class="text-gray-400 hover:text-gray-600" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+       
+      
+
+      
+    </nav>  
+    
+ </div>
+
+
+  
+      
+      <nav id="navigation" class="fixed inset-y-0 overflow-x-hidden overflow-y-auto  hidden w:64 lg:w-72 mt-20 md:block  dark:bg-gray-900  flex-none top-0  p-4 w-64 md:border-r border-b border-gray-100 dark:border-gray-800">
+        <button  name="Close navigation" onclick="closeNavigation()" class="float-right justify-end block md:hidden -mr-4 p-6">	<svg xmlns="http://www.w3.org/2000/svg" class="dark:bg-gray-500" width="18" height="18" viewBox="0 0 18 18"><path class="text-gray-100" d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/></svg></button>
+        <div class=" clear-right">
+          <a href="/">
+          <div class="block md:hidden pt-4 font-semibold text-gray-500">huetiful-js</div>
+          <div class="block md:hidden text-sm text-gray-500 mb-4">Generate color schemes and create flexible color systems with ease.</div>
+          </a>
+          <ul class="nav"><li class="item"><a href="/" class="item">Home</a></li>
+<li class="item"><a href="/colors" class="item">Colors</a></li>
+<li class="item active"><a href="/filtering-functions" class="item active">Filtering functions</a></li>
+<li class="item active"><a href="/converter-functions" class="item active">Converter functions</a></li>
+<li class="item active"><a href="/utilities" class="item active">Utility functions</a></li>
+<li class="item active"><a href="/generator-functions" class="item active">Generator functions</a></li>
+<li class="item active"><a href="/sorting-functions" class="item active">Sorting functions</a></li>
+<li class="item active"><a href="/types" class="item active">Types</a></li>
+<li class="item active"><a href="/helper-functions" class="item active">Helper functions</a></li>
+<li class="item"><a href="/about-colorspaces" class="item">About colorspaces</a></li>
+<li class="item"><a href="/quickstart" class="item">Quickstart</a></li></ul>
+        </div>
+      </nav>
+      
+      
+        <main id="main" class="dark:bg-gray-900 pt-16 sm:pt-18 md:pt-20 md:pl-64 lg:pl-72">
+           
+        
+
+    
+    <div class="flex mt-4 justify-end mr-1">
+        
+        <div class="inline-block w-auto text-xs text-gray-500 pt-1 pb-1 pl-3 mr-2 rounded ">Updated <time datetime="2024-01-13">Jan 13, 2024</time></div>
+        
+        
+        <div class="inline-block w-auto text-xs  text-gray-500 hover:bg-gray-200 pt-1 pr-4 pb-1 pl-3 rounded "><a target="_blank" rel="noopener" rel="noreferrer" href="https://github.com/prjctimg/huetiful/edit/main/./content/pages/utils.md">Edit this page</a></div>
+        
+    </div>
+    
+
+ 
+<div class="flex w-full justify-center">
+    <div class="mt-4 px-6 md:px-6 lg:px-8 xl:px-12 w-full max-w-5xl">
+        <div class="wrapper flex justify-between">
+            
+             <div class="main  flex flex-col pr-0 prose sm:prose lg:prose-lg xl:prose-md text-gray-500">
+                
+                <article>
+                
+                
+                <div class="self-center adjust  dark:text-gray-400">
+                    <h1 id="module%3A%F0%9F%93%A6-utils">Module:📦 utils</h1>
+<h2 id="table-of-contents%F0%9F%93%9C">Table of contents📜</h2>
+<h3 id="functions%F0%9F%A7%B0">Functions🧰</h3>
+<ul>
+<li><a href="utils.md#alpha" target="_blank" rel="noopener noreferrer">alpha</a></li>
+<li><a href="utils.md#brighten" target="_blank" rel="noopener noreferrer">brighten</a></li>
+<li><a href="utils.md#colorDeficiency" target="_blank" rel="noopener noreferrer">colorDeficiency</a></li>
+<li><a href="utils.md#darken" target="_blank" rel="noopener noreferrer">darken</a></li>
+<li><a href="utils.md#getChannel" target="_blank" rel="noopener noreferrer">getChannel</a></li>
+<li><a href="utils.md#getComplimentaryHue" target="_blank" rel="noopener noreferrer">getComplimentaryHue</a></li>
+<li><a href="utils.md#getContrast" target="_blank" rel="noopener noreferrer">getContrast</a></li>
+<li><a href="utils.md#getFarthestChroma" target="_blank" rel="noopener noreferrer">getFarthestChroma</a></li>
+<li><a href="utils.md#getFarthestContrast" target="_blank" rel="noopener noreferrer">getFarthestContrast</a></li>
+<li><a href="utils.md#getFarthestHue" target="_blank" rel="noopener noreferrer">getFarthestHue</a></li>
+<li><a href="utils.md#getFarthestLightness" target="_blank" rel="noopener noreferrer">getFarthestLightness</a></li>
+<li><a href="utils.md#getHueFamily" target="_blank" rel="noopener noreferrer">getHueFamily</a></li>
+<li><a href="utils.md#getLuminance" target="_blank" rel="noopener noreferrer">getLuminance</a></li>
+<li><a href="utils.md#getNearestChroma" target="_blank" rel="noopener noreferrer">getNearestChroma</a></li>
+<li><a href="utils.md#getNearestColor" target="_blank" rel="noopener noreferrer">getNearestColor</a></li>
+<li><a href="utils.md#getNearestContrast" target="_blank" rel="noopener noreferrer">getNearestContrast</a></li>
+<li><a href="utils.md#getNearestHue" target="_blank" rel="noopener noreferrer">getNearestHue</a></li>
+<li><a href="utils.md#getNearestLightness" target="_blank" rel="noopener noreferrer">getNearestLightness</a></li>
+<li><a href="utils.md#isAchromatic" target="_blank" rel="noopener noreferrer">isAchromatic</a></li>
+<li><a href="utils.md#isCool" target="_blank" rel="noopener noreferrer">isCool</a></li>
+<li><a href="utils.md#isWarm" target="_blank" rel="noopener noreferrer">isWarm</a></li>
+<li><a href="utils.md#overtone" target="_blank" rel="noopener noreferrer">overtone</a></li>
+<li><a href="utils.md#setChannel" target="_blank" rel="noopener noreferrer">setChannel</a></li>
+<li><a href="utils.md#setLuminance" target="_blank" rel="noopener noreferrer">setLuminance</a></li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="alpha">alpha</h3>
+<p>▸ <strong>alpha</strong>(<code>color</code>, <code>value?</code>): <code>number</code></p>
+<p>Sets the opacity of a color. Also gets the alpha value of the color if the value param is omitted</p>
+<h4 id="parameters%F0%9F%A7%AE">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left">The color with the targeted opacity/alpha channel.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>value?</code></td>
+<td style="text-align:left"><code>string</code> | <code>number</code></td>
+<td style="text-align:left">The value to apply to the opacity channel. The value is between [0,1]</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99">Returns🔙</h4>
+<p><code>number</code></p>
+<p>color The resulting color. Returns an 8 character hex code.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">// Getting the alpha
+console.log(alpha('#a1bd2f0d'))
+// 0.050980392156862744
+
+// Setting the alpha
+
+let myColor = alpha('b2c3f1', 0.5)
+
+console.log(myColor)
+
+// #b2c3f180
+</code></pre>
+<hr>
+<h3 id="brighten">brighten</h3>
+<p>▸ <strong>brighten</strong>(<code>color</code>, <code>value</code>, <code>colorspace</code>): <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></p>
+<h4 id="parameters%F0%9F%A7%AE-2">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left">The color to brighten.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>value</code></td>
+<td style="text-align:left"><code>string</code> | <code>number</code></td>
+<td style="text-align:left">The amount to brighten with. Also supports expressions as strings e.g darken(“#fc23a1”,“*0.5”)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorspace</code></td>
+<td style="text-align:left"><code>any</code></td>
+<td style="text-align:left">-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-2">Returns🔙</h4>
+<p><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></p>
+<hr>
+<h3 id="colordeficiency">colorDeficiency</h3>
+<p>▸ <strong>colorDeficiency</strong>(<code>deficiencyType?</code>): (<code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>, <code>severity</code>: <code>number</code>) =&gt; <code>string</code></p>
+<p>Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter’s intensity determined by the severity value.</p>
+<h4 id="parameters%F0%9F%A7%AE-3">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>deficiencyType?</code></td>
+<td style="text-align:left"><a href="types.md#DeficiencyType" target="_blank" rel="noopener noreferrer"><code>DeficiencyType</code></a></td>
+<td style="text-align:left">The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with ‘tritanopia’ are unable to perceive ‘blue’ light. Default is ‘red’ when the defeciency parameter is undefined or any falsy value.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-3">Returns🔙</h4>
+<p><code>fn</code></p>
+<p>The color as its simulated variant as a hexadecimal string.</p>
+<p>▸ (<code>color</code>, <code>severity?</code>): <code>string</code></p>
+<h5 id="parameters%F0%9F%A7%AE-4">Parameters🧮</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left"><code>undefined</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>severity</code></td>
+<td style="text-align:left"><code>number</code></td>
+<td style="text-align:left"><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns%F0%9F%94%99-4">Returns🔙</h5>
+<p><code>string</code></p>
+<p><strong><code>See</code></strong></p>
+<p>For a deep dive on  color vision deficiency go to</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { colorDeficiency, toHex } from 'huetiful-js'
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'blue'. 
+// We are passing in our color as an array of channel values in the mode &quot;rgb&quot;. The severity is set to 0.1
+let tritanomaly = colorDeficiency('blue')
+console.log(tritanomaly(['rgb', 230, 100, 50, 0.5], 0.1))
+// #dd663680
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'red'. The severity is not explicitly set so it defaults to 1
+let protanopia = colorDeficiency('red')
+console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
+// #9f9f9f
+</code></pre>
+<hr>
+<h3 id="darken">darken</h3>
+<p>▸ <strong>darken</strong>(<code>color</code>, <code>value</code>): <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></p>
+<p>Darkens the color by reducing the lightness channel. .</p>
+<h4 id="parameters%F0%9F%A7%AE-5">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left">The color to darken.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>value</code></td>
+<td style="text-align:left"><code>string</code> | <code>number</code></td>
+<td style="text-align:left">The amount to darken with. Also supports expressions as strings e.g darken(“#fc23a1”,“*0.5”)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-5">Returns🔙</h4>
+<p><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></p>
+<p>color The darkened color.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">
+</code></pre>
+<hr>
+<h3 id="getchannel">getChannel</h3>
+<p>▸ <strong>getChannel</strong>(<code>mc</code>): (<code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>) =&gt; <code>number</code></p>
+<p>Gets the  value specifified channel on the color.</p>
+<h4 id="parameters%F0%9F%A7%AE-6">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>mc</code></td>
+<td style="text-align:left"><code>string</code></td>
+<td style="text-align:left">The mode and channel to be retrieved. For example “rgb.b” will return the value of the blue channel in the RGB color space of that color.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-6">Returns🔙</h4>
+<p><code>fn</code></p>
+<p>value The value of the queried channel.</p>
+<p>▸ (<code>color</code>): <code>number</code></p>
+<h5 id="parameters%F0%9F%A7%AE-7">Parameters🧮</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns%F0%9F%94%99-7">Returns🔙</h5>
+<p><code>number</code></p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { getChannel } from 'huetiful-js'
+
+console.log(getChannel('rgb.g')('#a1bd2f'))
+// 0.7411764705882353
+</code></pre>
+<hr>
+<h3 id="getcomplimentaryhue">getComplimentaryHue</h3>
+<p>▸ <strong>getComplimentaryHue</strong>(<code>color</code>, <code>colorspace?</code>, <code>colorObj?</code>): { <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>hue</code>: <code>string</code>  } | <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></p>
+<p>Gets the complementary hue of the passed in color. The function is internally guarded against achromatic colors.</p>
+<h4 id="parameters%F0%9F%A7%AE-8">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default value</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">The color to retrieve its complimentary hue.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorspace?</code></td>
+<td style="text-align:left"><a href="types.md#HueColorSpaces" target="_blank" rel="noopener noreferrer"><code>HueColorSpaces</code></a></td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorObj</code></td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">Optional boolean whether to return an object with the result color hue family or just the result color. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-8">Returns🔙</h4>
+<p>{ <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>hue</code>: <code>string</code>  } | <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></p>
+<p>An object with the hue family and complimentary color as keys.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { getComplimentaryHue } from &quot;huetiful-js&quot;;
+
+console.log(getComplimentaryHue(&quot;pink&quot;, true))
+//// { hue: 'blue-green', color: '#97dfd7ff' }
+
+console.log(getComplimentaryHue(&quot;purple&quot;))
+// #005700ff
+</code></pre>
+<hr>
+<h3 id="getcontrast">getContrast</h3>
+<p>▸ <strong>getContrast</strong>(<code>color</code>, <code>against</code>): <code>number</code></p>
+<p>Gets the contrast between the passed in colors.</p>
+<h4 id="parameters%F0%9F%A7%AE-9">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>against</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-9">Returns🔙</h4>
+<p><code>number</code></p>
+<p>The relative luminance of the lightest color.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { getContrast } from 'huetiful-js'
+
+console.log(getContrast(&quot;black&quot;, &quot;white&quot;));
+// 21
+</code></pre>
+<hr>
+<h3 id="getfarthestchroma">getFarthestChroma</h3>
+<p>▸ <strong>getFarthestChroma</strong>(<code>collection</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the largest saturation value from the passed in colors.</p>
+<h4 id="parameters%F0%9F%A7%AE-10">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default value</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>collection</code></td>
+<td style="text-align:left"><code>object</code> | <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorObj</code></td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-10">Returns🔙</h4>
+<p><code>number</code> | { <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest saturation value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { getFarthestChroma } from 'huetiful-js'
+
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(getFarthestChroma(sample, 'lch'))
+// 67.22120855010492
+</code></pre>
+<hr>
+<h3 id="getfarthestcontrast">getFarthestContrast</h3>
+<p>▸ <strong>getFarthestContrast</strong>(<code>collection</code>, <code>against</code>, <code>colorObj?</code>): <code>number</code> | { <code>factor</code>: <code>number</code> ; <code>name</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>  }</p>
+<p>Gets the largest contrast value from the passed in colors compared against a sample color.</p>
+<h4 id="parameters%F0%9F%A7%AE-11">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>collection</code></td>
+<td style="text-align:left"><code>object</code> | <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>against</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorObj?</code></td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left">Optional boolean that makes the function return a custom object with factor (contrast) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-11">Returns🔙</h4>
+<p><code>number</code> | { <code>factor</code>: <code>number</code> ; <code>name</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>  }</p>
+<p>The largest contrast value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { getFarthestContrast } from 'huetiful-js'
+
+console.log(getFarthestContrast([&quot;b2c3f1&quot;, &quot;#a1bd2f&quot;, &quot;#f3bac1&quot;], &quot;green&quot;));
+// 3.08355493246362
+
+console.log(getFarthestContrast([&quot;b2c3f1&quot;, &quot;#a1bd2f&quot;, &quot;#f3bac1&quot;], &quot;green&quot;, true));
+// { contrast: 3.08355493246362, name: '#f3bac1' }
+</code></pre>
+<hr>
+<h3 id="getfarthesthue">getFarthestHue</h3>
+<p>▸ <strong>getFarthestHue</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the largest hue value from the passed in colors.</p>
+<h4 id="parameters%F0%9F%A7%AE-12">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default value</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>collection</code></td>
+<td style="text-align:left"><code>object</code> | <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorspace?</code></td>
+<td style="text-align:left"><a href="types.md#HueColorSpaces" target="_blank" rel="noopener noreferrer"><code>HueColorSpaces</code></a></td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">The mode color space to perform the computation in.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorObj</code></td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-12">Returns🔙</h4>
+<p><code>number</code> | { <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest hue value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { getFarthestHue } from 'huetiful-js'
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(getFarthestHue(sample, 'lch'))
+// 273.54920266436477
+</code></pre>
+<hr>
+<h3 id="getfarthestlightness">getFarthestLightness</h3>
+<p>▸ <strong>getFarthestLightness</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the largest lightness value from the passed in colors.</p>
+<h4 id="parameters%F0%9F%A7%AE-13">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default value</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>collection</code></td>
+<td style="text-align:left"><code>object</code> | <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorspace?</code></td>
+<td style="text-align:left"><a href="types.md#HueColorSpaces" target="_blank" rel="noopener noreferrer"><code>HueColorSpaces</code></a></td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">THe mode colorspace to retrieve the lightness value from.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorObj</code></td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-13">Returns🔙</h4>
+<p><code>number</code> | { <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest lightness value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { getFarthestLightness } from 'huetiful-js'
+
+let sample = [&quot;b2c3f1&quot;, &quot;#a1bd2f&quot;, &quot;#f3bac1&quot;]
+
+console.log(getFarthestLightness(sample, true))
+
+// { lightness: 80.94668903360088, name: '#f3bac1' }
+</code></pre>
+<hr>
+<h3 id="gethuefamily">getHueFamily</h3>
+<p>▸ <strong>getHueFamily</strong>(<code>color</code>, <code>mode?</code>): <a href="types.md#HueFamily" target="_blank" rel="noopener noreferrer"><code>HueFamily</code></a></p>
+<p>Gets the hue family which a a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string “gray”.</p>
+<h4 id="parameters%F0%9F%A7%AE-14">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left">The color to query its shade or hue family.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>mode?</code></td>
+<td style="text-align:left"><a href="types.md#HueColorSpaces" target="_blank" rel="noopener noreferrer"><code>HueColorSpaces</code></a></td>
+<td style="text-align:left">-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-14">Returns🔙</h4>
+<p><a href="types.md#HueFamily" target="_blank" rel="noopener noreferrer"><code>HueFamily</code></a></p>
+<p>The name of the hue family for example red or green.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { getHue } from 'huetiful-js'
+
+console.log(getHue(&quot;#310000&quot;))
+// red
+</code></pre>
+<hr>
+<h3 id="getluminance">getLuminance</h3>
+<p>▸ <strong>getLuminance</strong>(<code>color</code>): <code>number</code></p>
+<h4 id="parameters%F0%9F%A7%AE-15">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left">The color to query.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-15">Returns🔙</h4>
+<p><code>number</code></p>
+<p>value The color’s luminance value.</p>
+<p><strong><code>Alias</code></strong></p>
+<p>Gets the luminance value of that color as defined by WCAG.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { getLuminance } from 'huetiful-js'
+
+console.log(getLuminance('#a1bd2f'))
+// 0.4417749513730954
+</code></pre>
+<hr>
+<h3 id="getnearestchroma">getNearestChroma</h3>
+<p>▸ <strong>getNearestChroma</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the smallest chroma/saturation value from the passed in colors.</p>
+<h4 id="parameters%F0%9F%A7%AE-16">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default value</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>collection</code></td>
+<td style="text-align:left"><code>object</code> | <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorspace?</code></td>
+<td style="text-align:left"><a href="types.md#HueColorSpaces" target="_blank" rel="noopener noreferrer"><code>HueColorSpaces</code></a></td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">The mode color space to perform the computation in.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorObj</code></td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-16">Returns🔙</h4>
+<p><code>number</code> | { <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest chroma/saturation value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { getNearestChroma } from 'huetiful-js'
+
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(getNearestChroma(sample, 'lch'))
+// 22.45669293295522
+</code></pre>
+<hr>
+<h3 id="getnearestcolor">getNearestColor</h3>
+<p>▸ <strong>getNearestColor</strong>(<code>collection</code>, <code>color</code>, <code>num?</code>): <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> | <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</p>
+<h4 id="parameters%F0%9F%A7%AE-17">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default value</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>collection</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[] | <code>&quot;tailwind&quot;</code></td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">The collection of colors to search for nearest colors</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">The color to use for distance comparison</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>num</code></td>
+<td style="text-align:left"><code>number</code></td>
+<td style="text-align:left"><code>1</code></td>
+<td style="text-align:left">The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the differenceHyab metric.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-17">Returns🔙</h4>
+<p><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> | <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</p>
+<p>An array of colors.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">let cols = colors('all', '500')
+
+console.log(getNearestColor(cols, 'blue', 3));
+// [ '#a855f7', '#8b5cf6', '#d946ef' ]
+</code></pre>
+<hr>
+<h3 id="getnearestcontrast">getNearestContrast</h3>
+<p>▸ <strong>getNearestContrast</strong>(<code>collection</code>, <code>against</code>, <code>colorObj?</code>): <code>any</code></p>
+<p>Gets the smallest contrast value from the passed in colors compared against a sample color.</p>
+<h4 id="parameters%F0%9F%A7%AE-18">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>collection</code></td>
+<td style="text-align:left"><code>object</code> | <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>against</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorObj?</code></td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left">Optional boolean that makes the function return a custom object with factor (contrast) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-18">Returns🔙</h4>
+<p><code>any</code></p>
+<p>The smallest contrast value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { getNearestContrast } from 'huetiful-js'
+
+console.log(getNearestContrast([&quot;b2c3f1&quot;, &quot;#a1bd2f&quot;, &quot;#f3bac1&quot;], &quot;green&quot;));
+// 2.4061390502133424
+
+console.log(getNearestContrast([&quot;b2c3f1&quot;, &quot;#a1bd2f&quot;, &quot;#f3bac1&quot;], &quot;green&quot;, true));
+// { contrast: 2.4061390502133424, name: '#a1bd2f' }
+</code></pre>
+<hr>
+<h3 id="getnearesthue">getNearestHue</h3>
+<p>▸ <strong>getNearestHue</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the smallest hue value from the passed in colors.</p>
+<h4 id="parameters%F0%9F%A7%AE-19">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default value</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>collection</code></td>
+<td style="text-align:left"><code>object</code> | <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorspace?</code></td>
+<td style="text-align:left"><code>string</code></td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">The mode color space to perform the computation in.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorObj</code></td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-19">Returns🔙</h4>
+<p><code>number</code> | { <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest hue value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { getNearestHue } from 'huetiful-js'
+
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(getNearestHue(sample, 'lch'))
+// 12.462831644544274
+</code></pre>
+<hr>
+<h3 id="getnearestlightness">getNearestLightness</h3>
+<p>▸ <strong>getNearestLightness</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the smallest lightness value from the passed in colors.</p>
+<h4 id="parameters%F0%9F%A7%AE-20">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default value</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>collection</code></td>
+<td style="text-align:left"><code>object</code> | <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorspace?</code></td>
+<td style="text-align:left"><a href="types.md#HueColorSpaces" target="_blank" rel="noopener noreferrer"><code>HueColorSpaces</code></a></td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colorObj</code></td>
+<td style="text-align:left"><code>boolean</code></td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-20">Returns🔙</h4>
+<p><code>number</code> | { <code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest lightness value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { getNearestLightness } from 'huetiful-js'
+
+let sample = [&quot;b2c3f1&quot;, &quot;#a1bd2f&quot;, &quot;#f3bac1&quot;]
+
+console.log(getNearestLightness(sample, true))
+
+// { lightness: 72.61647882089876, name: '#a1bd2f' }
+</code></pre>
+<hr>
+<h3 id="isachromatic">isAchromatic</h3>
+<p>▸ <strong>isAchromatic</strong>(<code>color</code>, <code>mode?</code>): <code>boolean</code></p>
+<p>Checks if a color is achromatic(without hue or simply grayscale).</p>
+<h4 id="parameters%F0%9F%A7%AE-21">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left">The color to test if it is achromatic or not.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>mode?</code></td>
+<td style="text-align:left"><a href="types.md#HueColorSpaces" target="_blank" rel="noopener noreferrer"><code>HueColorSpaces</code></a></td>
+<td style="text-align:left">-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-21">Returns🔙</h4>
+<p><code>boolean</code></p>
+<p>boolean Returns true if the color is achromatic else false</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { isAchromatic } from &quot;huetiful-js&quot;;
+import { formatHex8, interpolate, samples } from &quot;culori&quot;
+
+isAchromatic('pink')
+// false
+
+let sample = [
+ &quot;#164100&quot;,
+ &quot;#ffff00&quot;,
+ &quot;#310000&quot;,
+ 'pink'
+];
+
+console.log(map(sample, isAchromatic));
+
+// [false, false, false,false]
+
+isAchromatic('gray')
+// Returns true
+
+console.log(map(sample, isAchromatic));
+
+// we create an interpolation using black and white
+let f = interpolate([&quot;black&quot;, &quot;white&quot;]);
+
+//We then create 12 evenly spaced samples and pass them to f as the `t` param required by an interpolating function.
+// Lastly we convert the color to hex for brevity for this example (otherwise color objects work fine too.)
+let grays = map(samples(12), (c) =&gt; formatHex8(f(c)));
+console.log(map(grays, isAchromatic));
+
+//
+[ false, true, true,
+ true,  true, true,
+ true,  true, true,
+ true,  true, false
+]
+</code></pre>
+<hr>
+<h3 id="iscool">isCool</h3>
+<p>▸ <strong>isCool</strong>(<code>color</code>): <code>boolean</code></p>
+<p>Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.</p>
+<h4 id="parameters%F0%9F%A7%AE-22">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left">The color to check the temperature.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-22">Returns🔙</h4>
+<p><code>boolean</code></p>
+<p>True or false.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { isCool } from 'huetiful-js'
+
+let sample = [
+ &quot;#00ffdc&quot;,
+ &quot;#00ff78&quot;,
+ &quot;#00c000&quot;
+];
+
+console.log(isCool(sample[2]));
+// false
+
+console.log(map(sample, isCool));
+
+// [ true,  false, true]
+</code></pre>
+<hr>
+<h3 id="iswarm">isWarm</h3>
+<p>▸ <strong>isWarm</strong>(<code>color</code>): <code>boolean</code></p>
+<p>Checks if a color can be roughly classified as a warm color. Returns true if color is a warm color else false.</p>
+<h4 id="parameters%F0%9F%A7%AE-23">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left">The color to check the temperature.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-23">Returns🔙</h4>
+<p><code>boolean</code></p>
+<p>True or false.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { isWarm } from 'huetiful-js'
+
+let sample = [
+ &quot;#00ffdc&quot;,
+ &quot;#00ff78&quot;,
+ &quot;#00c000&quot;
+];
+
+console.log(isWarm(sample[2]));
+//true
+
+console.log(map(sample, isWarm));
+
+// [ false, true,  false]
+</code></pre>
+<hr>
+<h3 id="overtone">overtone</h3>
+<p>▸ <strong>overtone</strong>(<code>color</code>): <code>string</code> | <code>boolean</code></p>
+<p>Returns the hue which is biasing the passed in color</p>
+<h4 id="parameters%F0%9F%A7%AE-24">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left">The color to query its overtone.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-24">Returns🔙</h4>
+<p><code>string</code> | <code>boolean</code></p>
+<p>The name of the overtone hue. If an achromatic color is passed in it return the string gray otherwise if the color has no bias it returns false.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { overtone } from &quot;huetiful-js&quot;;
+
+console.log(overtone(&quot;fefefe&quot;))
+// 'gray'
+
+console.log(overtone(&quot;cyan&quot;))
+// 'green'
+
+console.log(overtone(&quot;blue&quot;))
+// false
+</code></pre>
+<hr>
+<h3 id="setchannel">setChannel</h3>
+<p>▸ <strong>setChannel</strong>(<code>mc</code>): (<code>color</code>: <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a>, <code>value</code>: <code>string</code> | <code>number</code>) =&gt; <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></p>
+<p>Sets the value for the specified channel in a color.</p>
+<h4 id="parameters%F0%9F%A7%AE-25">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>mc</code></td>
+<td style="text-align:left"><code>string</code></td>
+<td style="text-align:left">The mode and channel to work with. For example ‘rgb.b’.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-25">Returns🔙</h4>
+<p><code>fn</code></p>
+<p>color The mutated color.</p>
+<p>▸ (<code>color</code>, <code>value</code>): <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></p>
+<h5 id="parameters%F0%9F%A7%AE-26">Parameters🧮</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>value</code></td>
+<td style="text-align:left"><code>string</code> | <code>number</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns%F0%9F%94%99-26">Returns🔙</h5>
+<p><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { setChannel } from 'huetiful-js'
+
+let myColor = setChannel('lch.h')('green',10)
+
+console.log(getChannel('lch.h')(myColor))
+// 10
+</code></pre>
+<hr>
+<h3 id="setluminance">setLuminance</h3>
+<p>▸ <strong>setLuminance</strong>(<code>color</code>, <code>lum</code>): <a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></p>
+<p>Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).</p>
+<h4 id="parameters%F0%9F%A7%AE-27">Parameters🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>color</code></td>
+<td style="text-align:left"><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></td>
+<td style="text-align:left">The color to set luminance</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>lum</code></td>
+<td style="text-align:left"><code>number</code></td>
+<td style="text-align:left">The amount of luminance to set. The value range is normalised between [0,1]</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns%F0%9F%94%99-27">Returns🔙</h4>
+<p><a href="types.md#ColorToken" target="_blank" rel="noopener noreferrer"><code>ColorToken</code></a></p>
+<p>The mutated color with the modified properties.</p>
+<p><strong><code>Example</code></strong> 📋</p>
+<pre><code class="language-ts">import { setLuminance, getLuminance } from 'huetiful-js'
+
+let myColor = setLuminance('#a1bd2f', 0.5)
+
+console.log(getLuminance(myColor))
+// 0.4999999136285792
+</code></pre>
+
+                    
+                    
+                    
+                     <ul class="footer-nav pt-4 mb-8  ml-0 pl-0 flex flex-wrap flex-row-reverse  justify-between mt-8 list-none"><li class="ml-0 pl-0"><a class="font-semibold text-gray-500 hover:text-gray-900" href="/generator-functions">Generator functions</a> <svg height="24" fill="none" viewBox="0 0 24 24" stroke="#6B7280" class="inline ml-1 flex-shrink-0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></li><li class="ml-0 pl-0"><svg height="24" fill="none" viewBox="0 0 24 24" stroke="#6B7280" class="transform rotate-180 inline mr-1 flex-shrink-0">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                     <a class="font-semibold text-gray-500 hover:text-gray-900" href="/converter-functions">
+                    Converter functions </a> </li>
+                    </ul>
+                    
+                </div>
+                </article>
+            </div>    
+            
+            
+        </div>
+    </div>
+</div>
+   
+
+ 
+        <div class="z-50 mt-12 h-12 flex dark:bg-gray-900 text-gray-500 dark:text-gray-400 justify-center p-2 border-t border-gray-100 dark:border-gray-800">
+ <div class="flex w-full items-center ">
+ 
+  <div class="w-6 h-6 flex-none">
+  
+  </div>
+   
+  <div class="text-gray-500 flex flex-grow justify-center text-align-center">
+     <small>
+    
+    &lt;/&gt; with ❤ in Crowhill.
+    
+    </small>
+  </div>
+  
+  
+  <div class="flex-none ml-2 float-right">
+    <a aria-label="github link" rel="noopener noreferrer" href="https://github.com/prjctimg/huetiful" target="_blank"><svg height="28" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" class="text-gray-400 dark:text-gray-400" d="M12 3C7.0275 3 3 7.12937 3 12.2276C3 16.3109 5.57625 19.7597 9.15374 20.9824C9.60374 21.0631 9.77249 20.7863 9.77249 20.5441C9.77249 20.3249 9.76125 19.5982 9.76125 18.8254C7.5 19.2522 6.915 18.2602 6.735 17.7412C6.63375 17.4759 6.19499 16.6569 5.8125 16.4378C5.4975 16.2647 5.0475 15.838 5.80124 15.8264C6.51 15.8149 7.01625 16.4954 7.18499 16.7723C7.99499 18.1679 9.28875 17.7758 9.80625 17.5335C9.885 16.9337 10.1212 16.53 10.38 16.2993C8.3775 16.0687 6.285 15.2728 6.285 11.7432C6.285 10.7397 6.63375 9.9092 7.20749 9.26326C7.1175 9.03257 6.8025 8.08674 7.2975 6.81794C7.2975 6.81794 8.05125 6.57571 9.77249 7.76377C10.4925 7.55615 11.2575 7.45234 12.0225 7.45234C12.7875 7.45234 13.5525 7.55615 14.2725 7.76377C15.9937 6.56418 16.7475 6.81794 16.7475 6.81794C17.2424 8.08674 16.9275 9.03257 16.8375 9.26326C17.4113 9.9092 17.76 10.7281 17.76 11.7432C17.76 15.2843 15.6563 16.0687 13.6537 16.2993C13.98 16.5877 14.2613 17.1414 14.2613 18.0065C14.2613 19.2407 14.25 20.2326 14.25 20.5441C14.25 20.7863 14.4188 21.0746 14.8688 20.9824C16.6554 20.364 18.2079 19.1866 19.3078 17.6162C20.4077 16.0457 20.9995 14.1611 21 12.2276C21 7.12937 16.9725 3 12 3Z" fill="currentColor"></path></svg></a>
+  </div>
+  
+</div> 
+</div>
+ 
+        </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,457 @@
+<!doctype html>
+<html  data-current="page" lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quickstart</title>
+  <meta name="description" content="Library for general purpose color manipulations and generating custom color scales.">
+  <link rel="stylesheet" href="/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
+
+  
+  
+
+  <script>function applyThemeColor(){"true"===localStorage.getItem("darkmode")||!localStorage.getItem("darkmode")&&window.matchMedia("(prefers-color-scheme: dark)").matches?(localStorage.setItem("darkmode","true"),document.documentElement.classList.add("dark")):document.documentElement.classList.remove("dark")}function activateDarkMode(){const e="true"===localStorage.getItem("darkmode")?"false":"true";localStorage.setItem("darkmode",e),applyThemeColor()}applyThemeColor();</script>
+  <script defer>function logout(){localStorage.removeItem("passphrase"),window.location.href="/"}function showNavigation(){const e=document.getElementById("navigation");e.classList.remove("hidden","sticky","pt-32"),e.classList.add("absolute","right-0","top-0","-mt-0","z-50","pt-0","bg-white","border-l","border-gray-200")}function closeNavigation(){const e=document.getElementById("navigation");e.classList.add("hidden"),e.classList.remove("absolute","right-0","z-50","bg-gray-100","border-r","border-gray-800")}function toggleLayout(e){"horizontal"===localStorage.getItem("layout")?localStorage.setItem("layout","vertical"):"vertical"===localStorage.getItem("layout")?localStorage.setItem("layout","horizontal"):localStorage.getItem("layout")||("horizontal"===e?localStorage.setItem("layout","vertical"):localStorage.setItem("layout","horizontal")),console.log(localStorage.getItem("layout"))}window.netlifyIdentity&&window.netlifyIdentity.on("init",e=>{e||window.netlifyIdentity.on("login",()=>{document.location.href="/admin/"})}),document.addEventListener("DOMContentLoaded",function(){document.getElementById("main").addEventListener("click",closeNavigation,!1)}),function(e,t){"use strict";const n=n=>{const o=e.searchIndex.search(n.target.value,{bool:"OR",expand:!0}),a=t.getElementById("searchField"),d=t.getElementById("searchResults"),i=t.getElementById("noResultsFound");t.getElementById("navigation");a.addEventListener("focus",e=>{e.target.classList.remove("hidden"),d.classList.remove("hidden")}),t.addEventListener("click",function(e){a.contains(e.target)||(console.log("hidden"),d.classList.add("hidden"),i.classList.add("hidden"),i.classList.add("hidden"))}),d.innerHTML="",""!=n.target.value?""!=o?(i.classList.add("hidden"),d.classList.add("p-4"),o.map(e=>{const{id:n,title:o,description:a}=e.doc,i=t.createElement("li",{tabindex:"-1"});d.appendChild(i);const l=t.createElement("h3");i.appendChild(l);const s=t.createElement("a");s.setAttribute("href",n),s.textContent=o,l.appendChild(s);const c=t.createElement("p");c.textContent=a,i.appendChild(c)})):i.classList.remove("hidden"):i.classList.add("hidden")};fetch("/search-index.json").then(o=>o.json().then(o=>{e.searchIndex=elasticlunr.Index.load(o),t.getElementById("searchField").addEventListener("input",n)}))}(window,document);</script>
+
+ 
+
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js" defer></script>
+  
+
+  
+
+</head>
+
+  <body>
+    <div id="app" class="h-screen bg-white dark:bg-gray-900">
+      <div class="fixed w-full top-0 left-0 z-10 "> 
+    <nav class="flex h-16 md:h-20 items-center bg-white dark:bg-gray-900 z-20 fixed top-0 left-0 right-0 border-b border-gray-100 px-0 py-2 dark:bg-dark dark:border-gray-800 transition-colors duration-200">
+      <div class="hidden md:block space-y-4 w-full p-4">
+        <a class="no-underline text-gray-600 hover:text-gray-800 font-bold dark:text-gray-500 items-center" href="/">
+          <span class="text-xl">huetiful-js</span>
+          
+          <span class="block mt-1 text-sm text-gray-500 hover:text-gray-600 dark:text-gray-600 font-normal text-xs sm:text-xs md:text-sm lg:text-sm w-full"> Generate color schemes and create flexible color systems with ease.</span>
+          
+         </a>
+      </div>
+      <div class="mr-2 relative w-full md:w-64">
+       
+        <input  aria-label="Search" x-data="{ isOpen: true }" x-bind:class="{ 'hidden': !isOpen }" type="search" placeholder="Search..." class="ml-2 w-60 bg-gray-50 dark:bg-gray-800 appearance-none border dark:border-gray-700 rounded py-2 px-2 placeholder-gray-300 leading-tight focus:ring-4 focus:ring-blue-200 dark:focus:ring-gray-700 ring-opacity-50 border-gray-200" id="searchField">
+        <ul tabindex="0" class="bg-white dark:bg-gray-200 z-50 shadow-md p-0 w-full list-none m-0 absolute left-0 md:right-0 bg-white rounded mt-1 top-100 z-50" id="searchResults"></ul>
+        <div class="hidden shadow-md list-none p-4 m-0 absolute left-0 md:right-0 bg-white rounded mt-1 border top-100 divide-y divide-gray-300 z-2" id="noResultsFound">
+          <p>No results found.</p>
+        </div>
+        
+      </div>
+
+      <button  aria-label="Show navigation" onclick="showNavigation()" class="block md:hidden mr-3"><svg fill="none" width="24" height="24" viewBox="0 0 24 24" class="text-gray-400 hover:text-gray-600" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+       
+      
+
+      
+    </nav>  
+    
+ </div>
+
+
+  
+      
+      <nav id="navigation" class="fixed inset-y-0 overflow-x-hidden overflow-y-auto  hidden w:64 lg:w-72 mt-20 md:block  dark:bg-gray-900  flex-none top-0  p-4 w-64 md:border-r border-b border-gray-100 dark:border-gray-800">
+        <button  name="Close navigation" onclick="closeNavigation()" class="float-right justify-end block md:hidden -mr-4 p-6">	<svg xmlns="http://www.w3.org/2000/svg" class="dark:bg-gray-500" width="18" height="18" viewBox="0 0 18 18"><path class="text-gray-100" d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/></svg></button>
+        <div class=" clear-right">
+          <a href="/">
+          <div class="block md:hidden pt-4 font-semibold text-gray-500">huetiful-js</div>
+          <div class="block md:hidden text-sm text-gray-500 mb-4">Generate color schemes and create flexible color systems with ease.</div>
+          </a>
+          <ul class="nav"><li class="item"><a href="/" class="item">Home</a></li>
+<li class="item"><a href="/colors" class="item">Colors</a></li>
+<li class="item"><a href="/filtering-functions" class="item">Filtering functions</a></li>
+<li class="item"><a href="/converter-functions" class="item">Converter functions</a></li>
+<li class="item"><a href="/utilities" class="item">Utility functions</a></li>
+<li class="item"><a href="/generator-functions" class="item">Generator functions</a></li>
+<li class="item"><a href="/sorting-functions" class="item">Sorting functions</a></li>
+<li class="item"><a href="/types" class="item">Types</a></li>
+<li class="item"><a href="/helper-functions" class="item">Helper functions</a></li>
+<li class="item"><a href="/about-colorspaces" class="item">About colorspaces</a></li>
+<li class="item active"><a href="/quickstart" class="item active">Quickstart</a></li></ul>
+        </div>
+      </nav>
+      
+      
+        <main id="main" class="dark:bg-gray-900 pt-16 sm:pt-18 md:pt-20 md:pl-64 lg:pl-72">
+           
+        
+
+    
+    <div class="flex mt-4 justify-end mr-1">
+        
+        <div class="inline-block w-auto text-xs text-gray-500 pt-1 pb-1 pl-3 mr-2 rounded ">Updated <time datetime="2024-01-12">Jan 12, 2024</time></div>
+        
+        
+        <div class="inline-block w-auto text-xs  text-gray-500 hover:bg-gray-200 pt-1 pr-4 pb-1 pl-3 rounded "><a target="_blank" rel="noopener" rel="noreferrer" href="https://github.com/prjctimg/huetiful/edit/main/./content/pages/quickstart.md">Edit this page</a></div>
+        
+    </div>
+    
+
+ 
+<div class="flex w-full justify-center">
+    <div class="mt-4 px-6 md:px-6 lg:px-8 xl:px-12 w-full max-w-5xl">
+        <div class="wrapper flex justify-between">
+            
+             <div class="main  flex flex-col pr-0 prose sm:prose lg:prose-lg xl:prose-md text-gray-500">
+                
+                <article>
+                
+                
+                <div class="self-center adjust  dark:text-gray-400">
+                    <h1 id="quickstart">Quickstart</h1>
+<h2 id="a-guide-to-working-with-color-programmatically">A guide to working with color programmatically</h2>
+<h4 id="what%E2%80%99s-a-color-%F0%9F%A4%94%3F">What’s a color 🤔?</h4>
+<p>A color can be defined using different data types(arrays, strings, numbers plain objects). This allows us to work with color in almost any format and flexibility in how we want to define our color. Below are some examples listing all the supported formats of passing in color values and their respective conversion functions:</p>
+<pre><code class="language-js">import { num2rgb, toHex } from 'huetiful-js'
+
+let cssNamedColor = 'pink'
+let colorNumber = 5000
+let colorObject = { l: 50, c: 20, h: 40, mode: 'lch' }
+let colorObjectWithAlpha = { l: 50, c: 20, h: 40, alpha: 0.5, mode: 'lch' }
+let arrColor = ['rgb', 120, 80, 50]
+let arrColorWithAlpha = ['rgb', 120, 80, 50, 0.1]
+
+
+// Converting CSS named colors to hex
+console.log(toHex(cssNamedColor))
+// #ffc0cb
+
+// Converting a number to an RGB object
+console.log(num2rgb(colorNumber, true))
+// #001388
+
+// Converting a color object to a 6 character hex (without the alpha value)
+console.log(toHex(colorObject))
+// #956d62
+
+// Converting a color object with an alpha property to an 8 character hex code (including the alpha channel)
+console.log(toHex(colorObjectWithAlpha))
+// #956d6280
+
+// Converting an array of channel values to a 6 character hex code.
+console.log(toHex(arrColor))
+// #785032
+
+// Converting an array of channel values (including the alpha channel) to an 8 character hex
+console.log(toHex(arrColorWithAlpha))
+//#7850321a
+
+
+</code></pre>
+<blockquote>
+<p>ℹ️ <a href="https://culorijs.org/color-spaces" target="_blank" rel="noopener noreferrer">See here</a>  and the expected channel ranges or <a href="https://prjctimg.github.io/huetiful/modules/converters.html" target="_blank" rel="noopener noreferrer">more on converter functions</a> page 🔗.</p>
+</blockquote>
+<h4 id="tailwindcss-colors%F0%9F%8E%A8">TailwindCSS colors🎨</h4>
+<p>As a starting point the library comes along with the default TailwindCSS palette included. This helps you get started easier when you’re using <a href="https://prjctimg.github.io/huetiful/modules/generators.html" target="_blank" rel="noopener noreferrer">palette functions</a> such as <code>hueShift()</code> and <code>earthtone()</code></p>
+<p>The Tailwind colors can be accessed from two wrapper functions, <code>tailwindColors</code> and <code>colors</code> , that both take the same parameters but <code>colors</code> takes both parameters at once while <code>tailwindColors</code> is curried. Here’s an example showing the differences between the two functions:</p>
+<pre><code class="language-js"> import { tailwindColors , colors } from &quot;huetiful-js&quot;;
+
+// We pass in red as the target hue.
+// It returns a function that can be called with an optional value parameter
+let red = tailwindColors(&quot;red&quot;);
+console.log(red());
+// [
+  '#fef2f2', '#fee2e2',
+  '#fecaca', '#fca5a5',
+  '#f87171', '#ef4444',
+  '#dc2626', '#b91c1c',
+  '#991b1b', '#7f1d1d'
+]
+
+
+console.log(red(100));
+// '#fee2e2'
+
+console.log(red('900'));
+// '#7f1d1d'
+
+  ////// example for colors() //////
+
+// colors() has a builtin parameter called 'all' that returns all colors at the specified value
+let all300 = colors(&quot;all&quot;, 300);
+
+console.log(all300)
+//[
+  '#cbd5e1', '#d1d5db', '#d4d4d8',
+  '#d4d4d4', '#d6d3d1', '#fca5a5',
+  '#fdba74', '#fcd34d', '#fde047',
+  '#bef264', '#86efac', '#6ee7b7',
+  '#5eead4', '#7dd3fc', '#93c5fd',
+  '#c4b5fd', '#d8b4fe', '#f0abfc',
+  '#f9a8d4', '#fda4af'
+]
+
+let red = colors(&quot;red&quot;);
+console.log(red);
+
+// [
+  '#fef2f2', '#fee2e2',
+  '#fecaca', '#fca5a5',
+  '#f87171', '#ef4444',
+  '#dc2626', '#b91c1c',
+  '#991b1b', '#7f1d1d'
+]
+
+let red100 = colors(&quot;red&quot;, 100);
+
+console.log(red100)
+// #fee2e2
+
+</code></pre>
+<h3 id="working-with-arrays-of-color%F0%9F%8E%A8">Working with arrays of color🎨</h3>
+<p>We can sort and filter colors using their property or channel values values like saturation,lightness and even contrast!<br>
+Here are some example using the filtering and sorting functions on an array of colors:</p>
+<h4 id="sorting-colors">Sorting colors</h4>
+<p>An example of sorting colors by the relative luminance as defined by the WCAG 2.0 formula</p>
+<pre><code class="language-js">import { sortByLuminance } from &quot;huetiful-js&quot;;
+let sample = [
+  &quot;#00ffdc&quot;,
+  &quot;#00ff78&quot;,
+  &quot;#00c000&quot;,
+  &quot;#007e00&quot;,
+  &quot;#164100&quot;,
+  &quot;#ffff00&quot;,
+  &quot;#310000&quot;,
+  &quot;#3e0000&quot;,
+  &quot;#4e0000&quot;,
+  &quot;#600000&quot;,
+  &quot;#720000&quot;,
+];
+
+
+
+let sorted = sortByLuminance(sample)
+console.log(sorted)
+// [
+  '#310000', '#3e0000',
+  '#4e0000', '#600000',
+  '#720000', '#164100',
+  '#007e00', '#00c000',
+  '#00ff78', '#00ffdc',
+  '#ffff00'
+]
+
+// Note that you can specify the order as either ascending (`asc`) or descending (`desc`). The default is ascending. :
+
+let sortedDescending = sortByLuminance(sample, &quot;desc&quot;);
+console.log(sortedDescending)
+// [
+  '#ffff00', '#00ffdc',
+  '#00ff78', '#00c000',
+  '#007e00', '#164100',
+  '#720000', '#600000',
+  '#4e0000', '#3e0000',
+  '#310000'
+]
+
+
+</code></pre>
+<h4 id="filtering-colors">Filtering colors</h4>
+<p>An example of filtering colors by the value of the hue angle. The function uses the Jch colorspace because of its perceptual uniformity. <a href="https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/" target="_blank" rel="noopener noreferrer">George Francis explains this phenomena in detail here.</a></p>
+<pre><code class="language-js"> let sample = [
+  '#00ffdc',
+  '#00ff78',
+  '#00c000',
+  '#007e00',
+  '#164100',
+  '#ffff00',
+  '#310000',
+  '#3e0000',
+  '#4e0000',
+  '#600000',
+  '#720000',
+]
+
+filterByHue(sample, 20, 80)
+
+// [ '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
+
+ // We can even use expressions as the condition e.g '&gt;=50' which means return the colors with a hue angle greater than or equal to 50
+
+ // Here are some examples
+console.log(filterByHue(sample, '&gt;100')
+)
+// [ '#00ffdc', '#00ff78', '#00c000', '#007e00', '#164100' ]
+
+console.log(filterByHue(sample, '&lt;=100')
+)
+// [ '#ffff00', '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
+
+</code></pre>
+<p><a href="https://prjctimg.github.io/huetiful/modules/sortBy.html" target="_blank" rel="noopener noreferrer">See more about the parameter types and other filtering functions</a></p>
+<h3 id="palette-generators">Palette generators</h3>
+<p>A few simple palette generator functions are included in the library. One of my favourites is <code>hueShift</code>  (as a color becomes lighter, its hue shifts up and darker when its hue shifts down. ) .</p>
+<pre><code class="language-js">import { hueShift } from &quot;huetiful-js&quot;;
+
+let hueShiftedPalette = hueShift(&quot;#3e0000&quot;, {}, true);
+
+console.log(hueShiftedPalette);
+
+// [
+  '#ffffe1', '#ffdca5',
+  '#ca9a70', '#935c40',
+  '#5c2418', '#3e0000',
+  '#310000', '#34000f',
+  '#38001e', '#3b002c',
+  '#3b0c3a'
+]
+
+
+
+</code></pre>
+<p><a href="https://prjctimg.github.io/huetiful/modules/generators.html" target="_blank" rel="noopener noreferrer">See more palette generator functions</a></p>
+<h3 id="predicates%E2%9A%96%EF%B8%8F">Predicates⚖️</h3>
+<p>Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? Though its easy to tell colors apart visually when they’re displayed on the screen📺 it can be a bit confusing to tell colors apart using code🔢. Below is an example showing how to determine if a color is gray or not:</p>
+<pre><code class="language-js">
+import { isAchromatic } from &quot;huetiful-js&quot;;
+import { formatHex8, interpolate, samples } from &quot;culori&quot;
+
+
+isAchromatic('pink')
+// false
+
+let sample = [
+  &quot;#164100&quot;,
+  &quot;#ffff00&quot;,
+  &quot;#310000&quot;,
+  'pink'
+];
+
+console.log(map(sample, isAchromatic));
+
+// [false, false, false,false]
+
+isAchromatic('gray')
+// true
+
+
+
+// Here are using some of Culori's functions to demonstrate this example
+// we create an interpolation using black and white
+let f = interpolate([&quot;black&quot;, &quot;white&quot;]);
+
+//We then create 12 evenly spaced samples and pass them to f as the `t` param required by an interpolating function.
+// Lastly we convert the color to hex for brevity for this example (otherwise color objects work fine too.)
+let grays = map(samples(12), (c) =&gt; formatHex8(f(c)));
+console.log(map(grays, isAchromatic));
+
+// The last two colors are false because we can't categorize black and white as achromatic.
+
+//
+ [ false, true, true,
+  true,  true, true,
+  true,  true, true,
+  true,  true, false
+]
+
+</code></pre>
+<p>Here’s an example🎆 showing how we can check if a color is cool using one of the predicate functions:</p>
+<pre><code class="language-js">import { isCool } from 'huetiful-js'
+
+let sample = [
+  &quot;#00ffdc&quot;,
+  &quot;#00ff78&quot;,
+  &quot;#00c000&quot;
+];
+
+
+console.log(isCool(sample[0]));
+// false
+
+console.log(map(sample, isCool));
+
+// [ true,  false, true]
+
+
+</code></pre>
+<p>Another use👷 case would be passing the predicate to an array method like <code>filter</code> to filter a collection of colors removing colors that return false for the passed in predicate. In the following example we use is <code>isWarm</code> to only return warm colors:</p>
+<pre><code class="language-js">import { isWarm } from 'huetiful-js'
+
+let sample = [
+  &quot;#00ffdc&quot;,
+  &quot;#00ff78&quot;,
+  &quot;#00c000&quot;
+];
+
+console.log(sample.filter(isWarm))
+// [ '#00ff78' ]
+
+
+</code></pre>
+<p>Or maybe we want to know which color has the furthest hue distance in our sample collection against our target color 🤔:</p>
+<pre><code class="language-js">
+import { getFarthestHue } from 'huetiful-js'
+let sample = [
+    '#00ffdc',
+    '#00ff78',
+    '#00c000',
+    '#007e00',
+    '#164100',
+    '#ffff00',
+    '#310000',
+    '#3e0000',
+    '#4e0000',
+    '#600000',
+    '#720000',
+]
+
+console.log(getFarthestHue('lime', sample, 'lch'))
+// 112.60431681589854
+
+</code></pre>
+
+                    
+                    
+                    
+                     <ul class="footer-nav pt-4 mb-8  ml-0 pl-0 flex flex-wrap flex-row-reverse  justify-between mt-8 list-none"><li class="ml-0 pl-0"><svg height="24" fill="none" viewBox="0 0 24 24" stroke="#6B7280" class="transform rotate-180 inline mr-1 flex-shrink-0">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                     <a class="font-semibold text-gray-500 hover:text-gray-900" href="/about-colorspaces">
+                    About colorspaces </a> </li>
+                    </ul>
+                    
+                </div>
+                </article>
+            </div>    
+            
+            
+        </div>
+    </div>
+</div>
+   
+
+ 
+        <div class="z-50 mt-12 h-12 flex dark:bg-gray-900 text-gray-500 dark:text-gray-400 justify-center p-2 border-t border-gray-100 dark:border-gray-800">
+ <div class="flex w-full items-center ">
+ 
+  <div class="w-6 h-6 flex-none">
+  
+  </div>
+   
+  <div class="text-gray-500 flex flex-grow justify-center text-align-center">
+     <small>
+    
+    &lt;/&gt; with ❤ in Crowhill.
+    
+    </small>
+  </div>
+  
+  
+  <div class="flex-none ml-2 float-right">
+    <a aria-label="github link" rel="noopener noreferrer" href="https://github.com/prjctimg/huetiful" target="_blank"><svg height="28" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" class="text-gray-400 dark:text-gray-400" d="M12 3C7.0275 3 3 7.12937 3 12.2276C3 16.3109 5.57625 19.7597 9.15374 20.9824C9.60374 21.0631 9.77249 20.7863 9.77249 20.5441C9.77249 20.3249 9.76125 19.5982 9.76125 18.8254C7.5 19.2522 6.915 18.2602 6.735 17.7412C6.63375 17.4759 6.19499 16.6569 5.8125 16.4378C5.4975 16.2647 5.0475 15.838 5.80124 15.8264C6.51 15.8149 7.01625 16.4954 7.18499 16.7723C7.99499 18.1679 9.28875 17.7758 9.80625 17.5335C9.885 16.9337 10.1212 16.53 10.38 16.2993C8.3775 16.0687 6.285 15.2728 6.285 11.7432C6.285 10.7397 6.63375 9.9092 7.20749 9.26326C7.1175 9.03257 6.8025 8.08674 7.2975 6.81794C7.2975 6.81794 8.05125 6.57571 9.77249 7.76377C10.4925 7.55615 11.2575 7.45234 12.0225 7.45234C12.7875 7.45234 13.5525 7.55615 14.2725 7.76377C15.9937 6.56418 16.7475 6.81794 16.7475 6.81794C17.2424 8.08674 16.9275 9.03257 16.8375 9.26326C17.4113 9.9092 17.76 10.7281 17.76 11.7432C17.76 15.2843 15.6563 16.0687 13.6537 16.2993C13.98 16.5877 14.2613 17.1414 14.2613 18.0065C14.2613 19.2407 14.25 20.2326 14.25 20.5441C14.25 20.7863 14.4188 21.0746 14.8688 20.9824C16.6554 20.364 18.2079 19.1866 19.3078 17.6162C20.4077 16.0457 20.9995 14.1611 21 12.2276C21 7.12937 16.9725 3 12 3Z" fill="currentColor"></path></svg></a>
+  </div>
+  
+</div> 
+</div>
+ 
+        </main>
+    </div>
+  </body>
+</html>
