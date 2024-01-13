@@ -1,11 +1,11 @@
+/* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
 // esbuild script
 //@ts-nocheck
 
 // eslint-disable-next-line no-undef
 var { build } = require('esbuild');
-var { dependencies } = require('./package.json')
-
+var { dependencies } = require('./package.json');
 
 const sharedConfig = {
   entryPoints: ['.//src/index.ts'],
@@ -13,82 +13,38 @@ const sharedConfig = {
   minify: false
 };
 
-// ***Modular imports** \\
-
-// palettes/ import
-build({
-  ...sharedConfig,
-  format: 'esm',
-  entryPoints: ['.//src/palettes/index.ts'],
-  outfile: 'dist/palettes/index.esm.mjs',
-
-
-});
-
-// filterBy/ import
-build({
-  ...sharedConfig,
-  format: 'esm',
-  outfile: 'dist/filterBy/index.esm.mjs',
-
-
-});
-
-// sortBy/ import
-build({
-  ...sharedConfig,
-  format: 'esm',
-  entryPoints: ['.//src/sortBy/index.ts'],
-  outfile: 'dist/sortBy/index.esm.mjs',
-
-});
-
-// colors/ import
-build({
-  ...sharedConfig,
-  format: 'esm',
-  entryPoints: ['.//src/colors/index.ts'],
-  outfile: 'dist/colors/index.esm.mjs',
-});
-
-
-// core-utils/ import
-build({
-  format: 'esm',
-  ...sharedConfig,
-  entryPoints: ['.//src/getters_and_setters/index.ts'],
-  outfile: 'dist/getters_and_setters/index.esm.mjs',
-
-});
-
-
+// commonJS import
+// build({
+//   format: 'cjs',
+//   ...sharedConfig,
+//   outfile: './lib/huetiful.cjs',
+//   external: Object.keys(dependencies)
+// });
 
 //Bundled ESM
 build({
   ...sharedConfig,
-  external: Object.keys(dependencies),
+  platform: 'browser',
   format: 'esm',
-  outfile: 'dist/huetiful.esm.mjs', minifySyntax: true,
-
-});
-
-//Bundled ESM minified
-build({
-  ...sharedConfig,
-  format: 'esm',
-  outfile: 'dist/huetiful.esm.min.mjs',
-  minify: true,
-
+  outfile: './lib/huetiful.esm.min.mjs'
 });
 
 //Bundled IIFE
 build({
   ...sharedConfig,
+  platform: 'browser',
   format: 'iife',
-  outfile: 'dist/huetiful.min.js',
+  outfile: './lib/huetiful.umd.js',
   globalName: 'huetiful',
+  minifySyntax: true,
   minify: true
-
 });
 
-
+// ESM no bundle
+build({
+  ...sharedConfig,
+  platform: 'node',
+  format: 'esm',
+  outfile: './lib/huetiful.esm.mjs',
+  external: Object.keys(dependencies)
+});
