@@ -2,12 +2,11 @@
 [![stability-stable](https://img.shields.io/badge/stability-stable-green.svg)](https://www.npmjs.com/package/huetiful-js)
 [![npm minzipped size](https://img.shields.io/bundlephobia/minzip/huetiful-js)](https://bundlephobia.com/package/huetiful-js)
 [![types](https://img.shields.io/npm/types/huetiful-js)](https://github.com/microsoft/TypeScript)
-
 [![styled with prettier](https://img.shields.io/badge/styled_with-Prettier-f8bc45.svg?logo=prettier)](https://github.com/prettier/prettier)
 [![linted with eslint](https://img.shields.io/badge/linted_with-ES_Lint-4B32C3.svg?logo=eslint)](https://github.com/eslint/eslint)
 [![license](https://img.shields.io/github/license/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/blob/main/LICENSE.md)
 
-[![paypal](https://img.shields.io/badge/donate-paypal-informational?logo=paypal)](https://paypal.me/dmnsgn)
+[![paypal](https://img.shields.io/badge/donate-paypal-informational?logo=paypal)](https://www.paypal.com/donate/?hosted_button_id=CRFWNCE6EW5X2)
 [![twitter](https://img.shields.io/twitter/follow/deantarisai?style=social)](https://twitter.com/deantarisai)
 
 
