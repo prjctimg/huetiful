@@ -7,6 +7,11 @@
 [![linted with eslint](https://img.shields.io/badge/linted_with-ES_Lint-4B32C3.svg?logo=eslint)](https://github.com/eslint/eslint)
 [![license](https://img.shields.io/github/license/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/blob/main/LICENSE.md)
 
+[![paypal](https://img.shields.io/badge/donate-paypal-informational?logo=paypal)](https://paypal.me/dmnsgn)
+[![twitter](https://img.shields.io/twitter/follow/deantarisai?style=social)](https://twitter.com/deantarisai)
+
+
+
 ![Logo](./huetiful-logo.png)
 TypeScript library for general purpose color manipulations and generating custom color scales.
 
