@@ -1,12 +1,3 @@
----
-title: Home
-permalink: /
-layout: layouts/page.njk
-eleventyNavigation:
-  key: Home
-  order: 0
----
-
 ![Huetiful](/content/images/huetiful-logo.png)
 
 Open source TypeScript library for general purpose color manipulations and generating custom color scales based on Culori.
@@ -42,24 +33,14 @@ Or load the library as a UMD glabal (`huetiful`) in your HTML file using a `<scr
 
 Each module has a corresponding Typescript source file [in the repository](https://github.com/prjctimg/huetiful).
 
-- [colors](/colors.html)
-- [converters](/converters.html)
-- [filterBy](/filterBy.html)
-- [generators](/generators.html)
-- [helpers](/helpers.html)
-- [sortBy](/sortBy.html)
-- [types](/types.html)
-- [utils](/utils.html)
-
-## Notes and references
-
-- [Quickstart](/quickstart.html)
-- [About generator functions](/about-generators.html)
-- [About filtering functions](/about-filtering-functions)
-- [The attributes of a color: An introduction](about-color.html)
-- [About colorspaces](/about-colorspaces.html)
-- [About common types used](/about-types.html)
-- [About utilities](/about-utils.html)
+- [colors](modules/colors.html)
+- [converters](modules/converters.html)
+- [filterBy](modules/filterBy.html)
+- [generators](modules/generators.html)
+- [helpers](modules/helpers.html)
+- [sortBy](modules/sortBy.html)
+- [types](modules/types.html)
+- [utils](modules/utils.html)
 
 ## What's next🤷🏽‍♂️
 

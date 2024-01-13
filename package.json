@@ -35,7 +35,7 @@
     "docs:start": "npm run docs:gen && cd spacebook && npm start && cd ..",
     "docs:build": "npm run docs:gen && cd spacebook && npm run build && cd .. && git add .",
     "test": "jasmine",
-    "docs:gen": "npx typedoc --preserveAnchorCasing true --hideBreadcrumbs true  && node docs.js",
+    "docs:gen": "npx typedoc && git add .",
     "code:build": "node build.cjs",
     "prepare": " npm run code:build & npm run code:types & npm run docs:build",
     "code:types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
@@ -91,15 +91,13 @@
       "./src/helpers.ts"
     ],
     "entryPointStrategy": "resolve",
-    "out": ".temp_docs",
-    "plugin": [
-      "typedoc-plugin-markdown"
-    ],
+    "out": "docs",
     "exclude": [
       "./color-maps"
     ],
     "tsconfig": "./tsconfig.json",
-    "disableSources": true
+    "disableSources": true,
+    "readme": "notes/templates/index.md"
   },
   "files": [
     "lib",
