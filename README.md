@@ -1,3 +1,12 @@
+[![npm version](https://img.shields.io/npm/v/huetiful-js)](https://www.npmjs.com/package/huetiful-js)
+[![stability-stable](https://img.shields.io/badge/stability-stable-green.svg)](https://www.npmjs.com/package/huetiful-js)
+[![npm minzipped size](https://img.shields.io/bundlephobia/minzip/huetiful-js)](https://bundlephobia.com/package/huetiful-js)
+[![dependencies](https://img.shields.io/librariesio/release/npm/huetiful-js)](https://github.com/prjctimg/huetiful/blob/main/package.json)
+[![types](https://img.shields.io/npm/types/huetiful-js)](https://github.com/microsoft/TypeScript)
+
+[![styled with prettier](https://img.shields.io/badge/styled_with-Prettier-f8bc45.svg?logo=prettier)](https://github.com/prettier/prettier)
+[![linted with eslint](https://img.shields.io/badge/linted_with-ES_Lint-4B32C3.svg?logo=eslint)](https://github.com/eslint/eslint)
+[![license](https://img.shields.io/github/license/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/blob/main/LICENSE.md)
 
 ![Logo](./huetiful-logo.png)
 TypeScript library for general purpose color manipulations and generating custom color scales.
