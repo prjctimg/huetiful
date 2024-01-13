@@ -27,16 +27,15 @@
     "nodemon": "^3.0.1",
     "tailwindcss": "^3.4.1",
     "typedoc": "^0.25.3",
+    "typedoc-material-theme": "^1.0.2",
     "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.0.2"
   },
   "scripts": {
-    "docs:start": "npm run docs:gen && cd spacebook && npm start && cd ..",
-    "docs:build": "npm run docs:gen && cd spacebook && npm run build && cd .. && git add .",
     "test": "jasmine",
-    "docs:gen": "npx typedoc && git add .",
+    "docs": "npx typedoc --themeColor '#065f46' & cp -r huetiful-logo.png docs & git add .",
     "code:build": "node build.cjs",
-    "code:prepare": " npm run code:build & npm run code:types & npm run docs:build",
+    "code:prepare": " npm run code:build & npm run code:types & npm run docs",
     "code:types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
     "code:lint": "eslint --fix --ext .ts",
     "code:format": "prettier \"./src/*.ts\" --write",
@@ -89,14 +88,17 @@
       "./src/types.d.ts",
       "./src/helpers.ts"
     ],
+    "plugin": [
+      "typedoc-material-theme"
+    ],
+    "themeColor": "#0ea5e9",
     "entryPointStrategy": "resolve",
     "out": "docs",
     "exclude": [
       "./color-maps"
     ],
     "tsconfig": "./tsconfig.json",
-    "disableSources": true,
-    "readme": "notes/templates/index.md"
+    "disableSources": true
   },
   "files": [
     "lib",

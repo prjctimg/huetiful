@@ -1,11 +1,3 @@
----
-title: Quickstart
-eleventyNavigation:
-  key: Quickstart
-  order: 99
-  title: Quickstart
----
-
 # Quickstart
 
 ## A guide to working with color programmatically

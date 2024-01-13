@@ -1,4 +1,4 @@
-![Huetiful](/content/images/huetiful-logo.png)
+![Huetiful](/huetiful-logo.png)
 
 Open source TypeScript library for general purpose color manipulations and generating custom color scales based on Culori.
 
