@@ -22,17 +22,21 @@ import {
   appendFileSync,
   rmSync,
   cpSync,
-  copyFileSync
+  copyFileSync,
+  mkdirSync,
+  rmdirSync,
+  symlinkSync,
+  symlink
 } from 'fs';
 import { stringOf } from 'github-emoji';
 import { log } from 'console';
 
 // Global paths and refs
-var pathToContent = './spacebook/content/pages';
-var rootDir = './docs/out';
+var pathToContent = 'spacebook/content/pages';
+var rootDir = '.temp_docs';
 var mainIndex = fileContents(rootDir, 'modules');
 var pathToMainIndex = String(rootDir + '/modules.md');
-var pathToTemplates = './docs' + '/templates';
+var pathToTemplates = 'notes' + '/templates';
 
 // The filenames of source files and .md files
 const pathSegments = [
@@ -101,7 +105,10 @@ const generateDocs = (filenameSegment) => {
     ''
   );
 
-  writeFileSync(`./docs/modules/${filenameSegment}.md`, typeDocMarkdownOutput);
+  writeFileSync(
+    rootDir + `/modules/${filenameSegment}.md`,
+    typeDocMarkdownOutput
+  );
 };
 
 for (const pathSeg of pathSegments) {
@@ -120,7 +127,7 @@ for (const heading of Object.keys(markdownHeadingEmojiMap)) {
 for (const i of ['Color.ColorArray', 'Color.Color']) {
   for (const heading of Object.keys(markdownHeadingEmojiMap)) {
     writeFileSync(
-      `./docs/out/classes/${i}.md`,
+      rootDir + `/classes/${i}.md`,
       fileContents(rootDir, 'modules').replace(
         re(heading),
         `${heading}${stringOf(markdownHeadingEmojiMap[heading])}`
@@ -131,13 +138,13 @@ for (const i of ['Color.ColorArray', 'Color.Color']) {
 }
 
 // Insert logo image and parse the emojis
-writeFileSync(
-  pathToMainIndex,
-  mainIndex.replace('# huetiful-js', `![Logo](./huetiful-logo.png)`)
-);
-// writeFileSync(pathToMainIndex, rawGfmToGfm('/modules.md'));
+// writeFileSync(
+//   pathToMainIndex,
+//   mainIndex.replace('# huetiful-js', `![Logo](./huetiful-logo.png)`)
+// );
+// // writeFileSync(pathToMainIndex, rawGfmToGfm('/modules.md'));
 
-renameSync(pathToMainIndex, `${rootDir}/index.md`);
+// renameSync(pathToMainIndex, `${rootDir}/index.md`);
 
 var templates = readdirSync(pathToTemplates);
 
@@ -167,9 +174,9 @@ for (let index = 0; index < pathSegments.length; index++) {
 }
 
 // Copy index file template and append data to it
-copyFileSync(pathToTemplates + '/home.md', `${pathToContent}/home.md`);
-appendFileSync(`${pathToContent}/home.md`, fileContents(rootDir, 'index'));
-log(`Generated index.md file successfully`);
+copyFileSync(pathToTemplates + '/index.md', `${pathToContent}/index.md`);
+// appendFileSync(`${pathToContent}/home.md`, fileContents(rootDir, 'index'));
+log(`Generated markdown with UTF8 emojis successfully!`);
 
 
 // var notes = readdirSync('notes').map((el) => el.split('.')[0]);

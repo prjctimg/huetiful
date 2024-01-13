@@ -1,50 +1,48 @@
 ---
-title: Helper functions.
-date: Last Modified 
-permalink: /helpers.html
+title: Helper functions
 eleventyNavigation:
   order: 8
-  title: Helpers
+  title: Helper functions
 ---
 
-# Module: helpers
+# Module:📦 helpers
 
-## Table of contents
+## Table of contents📜
 
 ### Variables
 
-- [interpolatorConfig](helpers.md#interpolatorconfig)
+- [interpolatorConfig](helpers.md#interpolatorConfig)
 
-### Functions
+### Functions🧰
 
-- [adjustHue](helpers.md#adjusthue)
-- [channelDifference](helpers.md#channeldifference)
-- [checkArg](helpers.md#checkarg)
-- [colorObj](helpers.md#colorobj)
-- [colorObjArr](helpers.md#colorobjarr)
-- [customConcat](helpers.md#customconcat)
-- [customFindKey](helpers.md#customfindkey)
-- [customSort](helpers.md#customsort)
+- [adjustHue](helpers.md#adjustHue)
+- [channelDifference](helpers.md#channelDifference)
+- [checkArg](helpers.md#checkArg)
+- [colorObj](helpers.md#colorObj)
+- [colorObjArr](helpers.md#colorObjArr)
+- [customConcat](helpers.md#customConcat)
+- [customFindKey](helpers.md#customFindKey)
+- [customSort](helpers.md#customSort)
 - [eq](helpers.md#eq)
-- [expressionParser](helpers.md#expressionparser)
-- [filteredArr](helpers.md#filteredarr)
-- [floorCeil](helpers.md#floorceil)
-- [getModeChannel](helpers.md#getmodechannel)
+- [expressionParser](helpers.md#expressionParser)
+- [filteredArr](helpers.md#filteredArr)
+- [floorCeil](helpers.md#floorCeil)
+- [getModeChannel](helpers.md#getModeChannel)
 - [gt](helpers.md#gt)
 - [gte](helpers.md#gte)
-- [inRange](helpers.md#inrange)
-- [isInteger](helpers.md#isinteger)
+- [inRange](helpers.md#inRange)
+- [isInteger](helpers.md#isInteger)
 - [lt](helpers.md#lt)
 - [lte](helpers.md#lte)
-- [matchChromaChannel](helpers.md#matchchromachannel)
-- [matchComparator](helpers.md#matchcomparator)
-- [matchDigits](helpers.md#matchdigits)
-- [matchLightnessChannel](helpers.md#matchlightnesschannel)
+- [matchChromaChannel](helpers.md#matchChromaChannel)
+- [matchComparator](helpers.md#matchComparator)
+- [matchDigits](helpers.md#matchDigits)
+- [matchLightnessChannel](helpers.md#matchLightnessChannel)
 - [max](helpers.md#max)
 - [min](helpers.md#min)
 - [normalize](helpers.md#normalize)
 - [random](helpers.md#random)
-- [sortedArr](helpers.md#sortedarr)
+- [sortedArr](helpers.md#sortedArr)
 
 ## Variables
 
@@ -56,11 +54,11 @@ eleventyNavigation:
 
 | Name | Type |
 | :------ | :------ |
-| `chromaInterpolator` | [`Interpolator`](types.md#interpolator) |
+| `chromaInterpolator` | [`Interpolator`](types.md#Interpolator) |
 | `easingFunc` | (`t`: `number`) => `number` |
 | `hueFixup` | (`arr`: `number`[]) => `number`[] |
-| `hueInterpolator` | [`Interpolator`](types.md#interpolator) |
-| `lightnessInterpolator` | [`Interpolator`](types.md#interpolator) |
+| `hueInterpolator` | [`Interpolator`](types.md#Interpolator) |
+| `lightnessInterpolator` | [`Interpolator`](types.md#Interpolator) |
 
 ## Functions
 
@@ -68,19 +66,19 @@ eleventyNavigation:
 
 ▸ **adjustHue**(`value`): `number`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `value` | `number` | The hue angle to normalize. |
 
-#### Returns
+#### Returns🔙
 
 `number`
 
 The normalized hue angle or passed in value if it was within [0,360]
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 console.log(adjustHue(4));
@@ -94,18 +92,18 @@ ___
 
 ### channelDifference
 
-▸ **channelDifference**(`color`, `modeChannel`): (`subtrahend`: [`ColorToken`](types.md#colortoken)) => `number`
+▸ **channelDifference**(`color`, `modeChannel`): (`subtrahend`: [`ColorToken`](types.md#ColorToken)) => `number`
 
 Returns the channel value difference between the passed in colors. They are both converted to the colorspace in the modeChannel parameter before values are computed.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color to subtract values from/ |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color to subtract values from/ |
 | `modeChannel` | `string` | The colorspace and channel string to perform the operation in. |
 
-#### Returns
+#### Returns🔙
 
 `fn`
 
@@ -113,17 +111,17 @@ The difference between the color channel(s)
 
 ▸ (`subtrahend`): `number`
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
-| `subtrahend` | [`ColorToken`](types.md#colortoken) |
+| `subtrahend` | [`ColorToken`](types.md#ColorToken) |
 
-##### Returns
+##### Returns🔙
 
 `number`
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 
@@ -137,14 +135,14 @@ ___
 
 Returns the first truthy value.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `arg` | `unknown` | The value to check |
 | `def` | `unknown` | The value to cast if arg is falsy |
 
-#### Returns
+#### Returns🔙
 
 `unknown`
 
@@ -154,63 +152,63 @@ ___
 
 ### colorObj
 
-▸ **colorObj**(`factor`, `callback`): (`color`: [`ColorToken`](types.md#colortoken)) => \{ `color`: [`ColorToken`](types.md#colortoken) = color }
+▸ **colorObj**(`factor`, `callback`): (`color`: [`ColorToken`](types.md#ColorToken)) => \{ `color`: [`ColorToken`](types.md#ColorToken) = color }
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
-| `factor` | [`Factor`](types.md#factor) |
+| `factor` | [`Factor`](types.md#Factor) |
 | `callback` | `unknown` |
 
-#### Returns
+#### Returns🔙
 
 `fn`
 
 ▸ (`color`): `Object`
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) |
+| `color` | [`ColorToken`](types.md#ColorToken) |
 
-##### Returns
+##### Returns🔙
 
 `Object`
 
 | Name | Type |
 | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) |
+| `color` | [`ColorToken`](types.md#ColorToken) |
 
 ___
 
 ### colorObjArr
 
-▸ **colorObjArr**(`factor`, `callback`): (`collection`: `object` \| [`ColorToken`](types.md#colortoken)[]) => \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: [`Factor`](types.md#factor)  }[]
+▸ **colorObjArr**(`factor`, `callback`): (`collection`: `object` \| [`ColorToken`](types.md#ColorToken)[]) => \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: [`Factor`](types.md#Factor)  }[]
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
-| `factor` | [`Factor`](types.md#factor) |
+| `factor` | [`Factor`](types.md#Factor) |
 | `callback` | `any` |
 
-#### Returns
+#### Returns🔙
 
 `fn`
 
-▸ (`collection`): \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: [`Factor`](types.md#factor)  }[]
+▸ (`collection`): \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: [`Factor`](types.md#Factor)  }[]
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] |
+| `collection` | `object` \| [`ColorToken`](types.md#ColorToken)[] |
 
-##### Returns
+##### Returns🔙
 
-\{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: [`Factor`](types.md#factor)  }[]
+\{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: [`Factor`](types.md#Factor)  }[]
 
 ___
 
@@ -218,13 +216,13 @@ ___
 
 ▸ **customConcat**(`hue`): `number`[]
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
 | `hue` | `object` |
 
-#### Returns
+#### Returns🔙
 
 `number`[]
 
@@ -234,14 +232,14 @@ ___
 
 ▸ **customFindKey**(`collection`, `factor`): `string`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `collection` | `object` | The collection to inspect. |
 | `factor` | `number` | The value to compare against |
 
-#### Returns
+#### Returns🔙
 
 `string`
 
@@ -255,14 +253,14 @@ ___
 
 Helper function for native sorting method for arrays.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `order` | [`Order`](types.md#order) | Either ascending or descending. |
+| `order` | [`Order`](types.md#Order) | Either ascending or descending. |
 | `factor?` | `string` | The property to query. |
 
-#### Returns
+#### Returns🔙
 
 `fn`
 
@@ -270,14 +268,14 @@ A sorted array.
 
 ▸ (`a`, `b`): `number`
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
 | `a` | `any` |
 | `b` | `any` |
 
-##### Returns
+##### Returns🔙
 
 `number`
 
@@ -287,14 +285,14 @@ ___
 
 ▸ **eq**(`x`, `y`): `boolean`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
 | `x` | `number` |
 | `y` | `number` |
 
-#### Returns
+#### Returns🔙
 
 `boolean`
 
@@ -306,19 +304,19 @@ ___
 
 Takes an arithmetic operator followed by a value and passes the result of the expression to the specified channel. Currently supports addition,subtraction,division and multiplication symbols only.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color. |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color. |
 | `modeChannel` | `string` | The colorspace channel to set. |
 | `expression` | `string` | The expression assignment as a string. |
 
-#### Returns
+#### Returns🔙
 
 `number`
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 console.log(lch('blue'));
@@ -332,36 +330,36 @@ ___
 
 ### filteredArr
 
-▸ **filteredArr**(`factor`, `cb?`): (`collection`: `object` \| [`ColorToken`](types.md#colortoken)[], `start`: `string` \| `number`, `end?`: `number`) => [`ColorToken`](types.md#colortoken)[]
+▸ **filteredArr**(`factor`, `cb?`): (`collection`: `object` \| [`ColorToken`](types.md#ColorToken)[], `start`: `string` \| `number`, `end?`: `number`) => [`ColorToken`](types.md#ColorToken)[]
 
 Filters an array according to the value of a color's queried factor
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `factor` | [`Factor`](types.md#factor) | The property to query and use as filtering criteria |
+| `factor` | [`Factor`](types.md#Factor) | The property to query and use as filtering criteria |
 | `cb?` | `unknown` | The function to use for comparison |
 
-#### Returns
+#### Returns🔙
 
 `fn`
 
 The filtered array
 
-▸ (`collection`, `start`, `end?`): [`ColorToken`](types.md#colortoken)[]
+▸ (`collection`, `start`, `end?`): [`ColorToken`](types.md#ColorToken)[]
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] |
+| `collection` | `object` \| [`ColorToken`](types.md#ColorToken)[] |
 | `start` | `string` \| `number` |
 | `end?` | `number` |
 
-##### Returns
+##### Returns🔙
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#ColorToken)[]
 
 ___
 
@@ -369,23 +367,23 @@ ___
 
 ▸ **floorCeil**(`num`): `number`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `num` | `number` | The number to round up or down. |
 
-#### Returns
+#### Returns🔙
 
 `number`
 
 An integer
 
-**`Function`**
+
 
 Rounds up or down a number based on the float value.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 console.log(floorCeil(1.45));
@@ -402,20 +400,20 @@ ___
 
 Gets the clipped string of a passed in colorspace by removing non-channel characters.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `colorspace` | `string` | The colorspace to get the channel keys. |
 | `index?` | `number` | Optional index to return a single specified channel. |
 
-#### Returns
+#### Returns🔙
 
 `string`
 
 A string.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 console.log(getModeChannel("oklch"));
@@ -431,14 +429,14 @@ ___
 
 ▸ **gt**(`x`, `y`): `boolean`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
 | `x` | `number` |
 | `y` | `number` |
 
-#### Returns
+#### Returns🔙
 
 `boolean`
 
@@ -448,14 +446,14 @@ ___
 
 ▸ **gte**(`x`, `y`): `boolean`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
 | `x` | `number` |
 | `y` | `number` |
 
-#### Returns
+#### Returns🔙
 
 `boolean`
 
@@ -465,7 +463,7 @@ ___
 
 ▸ **inRange**(`number`, `start`, `end?`): `boolean`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -473,13 +471,13 @@ ___
 | `start` | `number` | The minimum or starting value. |
 | `end?` | `number` | The maximum or starting value. |
 
-#### Returns
+#### Returns🔙
 
 `boolean`
 
 True if the number is in range else false.
 
-**`Function`**
+
 
 Checks if a value is within the start and end range.
 
@@ -491,13 +489,13 @@ ___
 
 Checks if a number is an integer or float.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `num` | `string` \| `number` | The number to query |
 
-#### Returns
+#### Returns🔙
 
 `boolean`
 
@@ -509,14 +507,14 @@ ___
 
 ▸ **lt**(`x`, `y`): `boolean`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
 | `x` | `number` |
 | `y` | `number` |
 
-#### Returns
+#### Returns🔙
 
 `boolean`
 
@@ -526,14 +524,14 @@ ___
 
 ▸ **lte**(`x`, `y`): `boolean`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
 | `x` | `number` |
 | `y` | `number` |
 
-#### Returns
+#### Returns🔙
 
 `boolean`
 
@@ -543,23 +541,23 @@ ___
 
 ▸ **matchChromaChannel**(`colorspace`): `string`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `colorspace` | `string` | The color space to match saturation/chroma channel. |
 
-#### Returns
+#### Returns🔙
 
 `string`
 
 The mode channel string passed to getChannel()
 
-**`Function`**
+
 
 Matches the chroma/saturation channel of any compliant color space
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { matchChromaChannel } from 'huetiful-js'
@@ -578,13 +576,13 @@ ___
 
 Matches the comparison symbols used in the expression string.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `s` | `string` | The string to match. |
 
-#### Returns
+#### Returns🔙
 
 `string`
 
@@ -598,13 +596,13 @@ ___
 
 Gets the digits in the expression string
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `s` | `string` | Thestring to match |
 
-#### Returns
+#### Returns🔙
 
 `string`
 
@@ -616,23 +614,23 @@ ___
 
 ▸ **matchLightnessChannel**(`colorspace`): `string`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `colorspace` | `string` | The color space to match lightness channel. |
 
-#### Returns
+#### Returns🔙
 
 `string`
 
 The mode channel string passed to getChannel
 
-**`Function`**
+
 
 Matches the lightness channel of any compliant color space
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 console.log(matchLightnessChannel("jch"));
@@ -650,19 +648,19 @@ ___
 
 Gets the largest value in an array
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `array` | `number`[] | The array to retrieve maximum value |
 
-#### Returns
+#### Returns🔙
 
 `number`
 
 The largest number in the array
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 console.log(max([0, 3, 4]));
@@ -677,19 +675,19 @@ ___
 
 Gets the smallest value in an array
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `array` | `number`[] | The array to retrieve minimum value |
 
-#### Returns
+#### Returns🔙
 
 `number`
 
 The smallest number in the array
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 console.log(min([0, 3, 4]));
@@ -702,20 +700,20 @@ ___
 
 ▸ **normalize**(`value`, `modeChannel`): `number`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `value` | `number` | The value to chec if its in the accepted range for the passed in mode channel |
 | `modeChannel` | `string` | A string defining the mode and channel ranges to use for comparison |
 
-#### Returns
+#### Returns🔙
 
 `number`
 
 The normalized channel value or the passed in value if it was within range
 
-**`Function`**
+
 
 Normalizes passed in channel value to a range accepted by color spaces as defined in Culori.
 
@@ -725,20 +723,20 @@ ___
 
 ▸ **random**(`min`, `max`): `number`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `min` | `number` | The lower bound. |
 | `max` | `number` | The upper bound. |
 
-#### Returns
+#### Returns🔙
 
 `number`
 
 A number.
 
-**`Function`**
+
 
 Returns a random number between minimum and maximum bounds.
 
@@ -746,20 +744,20 @@ ___
 
 ### sortedArr
 
-▸ **sortedArr**(`factor`, `callback`, `order`, `colorObj?`): (`collection`: `object` \| [`ColorToken`](types.md#colortoken)[]) => `any`[]
+▸ **sortedArr**(`factor`, `callback`, `order`, `colorObj?`): (`collection`: `object` \| [`ColorToken`](types.md#ColorToken)[]) => `any`[]
 
 Filters an array of color objects with a "factor"  property whose value is determined by a predicate or getter via the cb param.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `factor` | [`Factor`](types.md#factor) | `undefined` | The property to query |
+| `factor` | [`Factor`](types.md#Factor) | `undefined` | The property to query |
 | `callback` | `unknown` | `undefined` | The function to use for comparison. |
-| `order` | [`Order`](types.md#order) | `undefined` | - |
+| `order` | [`Order`](types.md#Order) | `undefined` | - |
 | `colorObj` | `boolean` | `false` | - |
 
-#### Returns
+#### Returns🔙
 
 `fn`
 
@@ -767,12 +765,12 @@ An array of colors or color objects.
 
 ▸ (`collection`): `any`[]
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] |
+| `collection` | `object` \| [`ColorToken`](types.md#ColorToken)[] |
 
-##### Returns
+##### Returns🔙
 
 `any`[]

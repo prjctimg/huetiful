@@ -1,47 +1,46 @@
 ---
-title: Converter functions.
+title: Converter functions
 date: Last Modified 
-permalink: /converters.html
 eleventyNavigation:
   order: 3
   title: Converter functions
 ---
 
-# Module: converters
+# Module:📦 converters
 
-## Table of contents
+## Table of contents📜
 
-### Functions
+### Functions🧰
 
 - [num2rgb](converters.md#num2rgb)
 - [rgb2num](converters.md#rgb2num)
-- [temp2Color](converters.md#temp2color)
-- [toColorTuple](converters.md#tocolortuple)
-- [toHex](converters.md#tohex)
-- [ucsConverter](converters.md#ucsconverter)
+- [temp2Color](converters.md#temp2Color)
+- [toColorTuple](converters.md#toColorTuple)
+- [toHex](converters.md#toHex)
+- [ucsConverter](converters.md#ucsConverter)
 
 ## Functions
 
 ### num2rgb
 
-▸ **num2rgb**(`num`, `hex?`): [`ColorToken`](types.md#colortoken)
+▸ **num2rgb**(`num`, `hex?`): [`ColorToken`](types.md#ColorToken)
 
 Returns the RGB color equivalent of any number between 0 and 16,777,215.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `num` | `number` | `undefined` | The number to convert to RGB |
 | `hex` | `boolean` | `false` | - |
 
-#### Returns
+#### Returns🔙
 
-[`ColorToken`](types.md#colortoken)
+[`ColorToken`](types.md#ColorToken)
 
 color An RGB color object or hex string.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { num2rgb } from 'huetiful-js'
@@ -58,19 +57,19 @@ ___
 
 Returns the numerical equivalent of a color.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color to convert to its numerical equivalent. |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color to convert to its numerical equivalent. |
 
-#### Returns
+#### Returns🔙
 
 `number`
 
 value The numerical value of the color from 0 to 16,777,215.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { rgb2num } from 'huetiful-js'
@@ -83,24 +82,24 @@ ___
 
 ### temp2Color
 
-▸ **temp2Color**(`kelvin`, `hex?`): [`ColorToken`](types.md#colortoken)
+▸ **temp2Color**(`kelvin`, `hex?`): [`ColorToken`](types.md#ColorToken)
 
 Converts the temperature value (in Kelvins) to an RGB color.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `kelvin` | `number` | `undefined` | The number of Kelvins. From 0 to 30,000 . |
 | `hex` | `boolean` | `false` | Optional boolean parameter to either return an RGB color object or hexadecimal string. Default is true. |
 
-#### Returns
+#### Returns🔙
 
-[`ColorToken`](types.md#colortoken)
+[`ColorToken`](types.md#ColorToken)
 
 color The color as a hexadecimal  or RGB color object.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { temp2Color } from 'huetiful-js'
@@ -117,20 +116,20 @@ ___
 
 Returns an array of channel values in the mode color space. It does not mutate the values of the passed in color token.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `color` | `string` \| `object` | Expects the color to be in hexadecimal represantation or as a plain color object. |
-| `mode` | [`Colorspaces`](types.md#colorspaces) | The mode color space to return channel values for |
+| `mode` | [`Colorspaces`](types.md#Colorspaces) | The mode color space to return channel values for |
 
-#### Returns
+#### Returns🔙
 
 `any`[]
 
 An array of channel values with the colorspace as first element and the alpha channel if its explicitly defined in the passed in color.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 let rgbColor = {
@@ -152,19 +151,19 @@ ___
 
 Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), numbers from 0 to 166,777,215 and arrays in the form of [string,number,number,number,numer?] the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color to convert to hexadecimal. Works on color objects and CSS named colors. |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color to convert to hexadecimal. Works on color objects and CSS named colors. |
 
-#### Returns
+#### Returns🔙
 
 `string`
 
 A hexadecimal representation of the passed in color.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { toHex } from "huetiful-js";
@@ -184,13 +183,13 @@ ___
 
 Converter function with mode definitions for uniform color spaces. The function is curried to return a converter in the passed colospace.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colorspace` | [`UniformColorSpaces`](types.md#uniformcolorspaces) | The mode converter to return. |
+| `colorspace` | [`UniformColorSpaces`](types.md#UniformColorSpaces) | The mode converter to return. |
 
-#### Returns
+#### Returns🔙
 
 `ConvertFn`\<`any`\>
 

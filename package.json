@@ -32,14 +32,15 @@
     "typescript": "^5.0.2"
   },
   "scripts": {
-    "css": "npx tailwindcss -i ./templates/index.css -o ./templates/dist/output.css --watch",
+    "docs:start": "npm run docs:gen && cd spacebook && npm start && cd ..",
+    "docs:build": "npm run docs:gen && cd spacebook && npm run build && cd .. && git add .",
     "test": "jasmine",
-    "docs": "npx typedoc --hideBreadcrumbs true   && node docs.js && git add .",
-    "build": "node build.cjs",
-    "prepare": " npm run build && npm run types && npm run docs",
-    "types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
-    "lint": "eslint --fix --ext .ts",
-    "format": "prettier \"./src/*.ts\" --write",
+    "docs:gen": "npx typedoc --preserveAnchorCasing true --hideBreadcrumbs true  && node docs.js",
+    "code:build": "node build.cjs",
+    "prepare": " npm run code:build & npm run code:types & npm run docs:build",
+    "code:types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
+    "code:lint": "eslint --fix --ext .ts",
+    "code:format": "prettier \"./src/*.ts\" --write",
     "start": "nodemon app.js --watch "
   },
   "husky": {
@@ -90,7 +91,7 @@
       "./src/helpers.ts"
     ],
     "entryPointStrategy": "resolve",
-    "out": "./docs/out",
+    "out": ".temp_docs",
     "plugin": [
       "typedoc-plugin-markdown"
     ],

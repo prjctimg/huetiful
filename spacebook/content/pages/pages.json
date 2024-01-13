@@ -1,3 +1,5 @@
 {
-  "layout": "layouts/page.njk"
+  "layout": "/layouts/page.njk",
+  "permalink": "/{{title | slug}}",
+  "date": "Last Modified"
 }

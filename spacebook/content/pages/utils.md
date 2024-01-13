@@ -1,43 +1,41 @@
 ---
 title: Utilities
-date: Last Modified 
-permalink: /utils.html
 eleventyNavigation:
   order: 4
-  title: Utilities for manipulating colors.
+  title: Utility functions
 ---
 
 
-# Module: utils
+# Module:📦 utils
 
-## Table of contents
+## Table of contents📜
 
-### Functions
+### Functions🧰
 
 - [alpha](utils.md#alpha)
 - [brighten](utils.md#brighten)
-- [colorDeficiency](utils.md#colordeficiency)
+- [colorDeficiency](utils.md#colorDeficiency)
 - [darken](utils.md#darken)
-- [getChannel](utils.md#getchannel)
-- [getComplimentaryHue](utils.md#getcomplimentaryhue)
-- [getContrast](utils.md#getcontrast)
-- [getFarthestChroma](utils.md#getfarthestchroma)
-- [getFarthestContrast](utils.md#getfarthestcontrast)
-- [getFarthestHue](utils.md#getfarthesthue)
-- [getFarthestLightness](utils.md#getfarthestlightness)
-- [getHueFamily](utils.md#gethuefamily)
-- [getLuminance](utils.md#getluminance)
-- [getNearestChroma](utils.md#getnearestchroma)
-- [getNearestColor](utils.md#getnearestcolor)
-- [getNearestContrast](utils.md#getnearestcontrast)
-- [getNearestHue](utils.md#getnearesthue)
-- [getNearestLightness](utils.md#getnearestlightness)
-- [isAchromatic](utils.md#isachromatic)
-- [isCool](utils.md#iscool)
-- [isWarm](utils.md#iswarm)
+- [getChannel](utils.md#getChannel)
+- [getComplimentaryHue](utils.md#getComplimentaryHue)
+- [getContrast](utils.md#getContrast)
+- [getFarthestChroma](utils.md#getFarthestChroma)
+- [getFarthestContrast](utils.md#getFarthestContrast)
+- [getFarthestHue](utils.md#getFarthestHue)
+- [getFarthestLightness](utils.md#getFarthestLightness)
+- [getHueFamily](utils.md#getHueFamily)
+- [getLuminance](utils.md#getLuminance)
+- [getNearestChroma](utils.md#getNearestChroma)
+- [getNearestColor](utils.md#getNearestColor)
+- [getNearestContrast](utils.md#getNearestContrast)
+- [getNearestHue](utils.md#getNearestHue)
+- [getNearestLightness](utils.md#getNearestLightness)
+- [isAchromatic](utils.md#isAchromatic)
+- [isCool](utils.md#isCool)
+- [isWarm](utils.md#isWarm)
 - [overtone](utils.md#overtone)
-- [setChannel](utils.md#setchannel)
-- [setLuminance](utils.md#setluminance)
+- [setChannel](utils.md#setChannel)
+- [setLuminance](utils.md#setLuminance)
 
 ## Functions
 
@@ -47,20 +45,20 @@ eleventyNavigation:
 
 Sets the opacity of a color. Also gets the alpha value of the color if the value param is omitted
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color with the targeted opacity/alpha channel. |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color with the targeted opacity/alpha channel. |
 | `value?` | `string` \| `number` | The value to apply to the opacity channel. The value is between [0,1] |
 
-#### Returns
+#### Returns🔙
 
 `number`
 
 color The resulting color. Returns an 8 character hex code.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 // Getting the alpha
@@ -80,35 +78,35 @@ ___
 
 ### brighten
 
-▸ **brighten**(`color`, `value`, `colorspace`): [`ColorToken`](types.md#colortoken)
+▸ **brighten**(`color`, `value`, `colorspace`): [`ColorToken`](types.md#ColorToken)
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color to brighten. |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color to brighten. |
 | `value` | `string` \| `number` | The amount to brighten with. Also supports expressions as strings e.g darken("#fc23a1","*0.5") |
 | `colorspace` | `any` | - |
 
-#### Returns
+#### Returns🔙
 
-[`ColorToken`](types.md#colortoken)
+[`ColorToken`](types.md#ColorToken)
 
 ___
 
 ### colorDeficiency
 
-▸ **colorDeficiency**(`deficiencyType?`): (`color`: [`ColorToken`](types.md#colortoken), `severity`: `number`) => `string`
+▸ **colorDeficiency**(`deficiencyType?`): (`color`: [`ColorToken`](types.md#ColorToken), `severity`: `number`) => `string`
 
 Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `deficiencyType?` | [`DeficiencyType`](types.md#deficiencytype) | The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value. |
+| `deficiencyType?` | [`DeficiencyType`](types.md#DeficiencyType) | The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value. |
 
-#### Returns
+#### Returns🔙
 
 `fn`
 
@@ -116,14 +114,14 @@ The color as its simulated variant as a hexadecimal string.
 
 ▸ (`color`, `severity?`): `string`
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | `undefined` |
+| `color` | [`ColorToken`](types.md#ColorToken) | `undefined` |
 | `severity` | `number` | `1` |
 
-##### Returns
+##### Returns🔙
 
 `string`
 
@@ -131,7 +129,7 @@ The color as its simulated variant as a hexadecimal string.
 
 For a deep dive on  color vision deficiency go to
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { colorDeficiency, toHex } from 'huetiful-js'
@@ -152,24 +150,24 @@ ___
 
 ### darken
 
-▸ **darken**(`color`, `value`): [`ColorToken`](types.md#colortoken)
+▸ **darken**(`color`, `value`): [`ColorToken`](types.md#ColorToken)
 
 Darkens the color by reducing the lightness channel. .
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color to darken. |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color to darken. |
 | `value` | `string` \| `number` | The amount to darken with. Also supports expressions as strings e.g darken("#fc23a1","*0.5") |
 
-#### Returns
+#### Returns🔙
 
-[`ColorToken`](types.md#colortoken)
+[`ColorToken`](types.md#ColorToken)
 
 color The darkened color.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 
@@ -179,17 +177,17 @@ ___
 
 ### getChannel
 
-▸ **getChannel**(`mc`): (`color`: [`ColorToken`](types.md#colortoken)) => `number`
+▸ **getChannel**(`mc`): (`color`: [`ColorToken`](types.md#ColorToken)) => `number`
 
 Gets the  value specifified channel on the color.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `mc` | `string` | The mode and channel to be retrieved. For example "rgb.b" will return the value of the blue channel in the RGB color space of that color. |
 
-#### Returns
+#### Returns🔙
 
 `fn`
 
@@ -197,17 +195,17 @@ value The value of the queried channel.
 
 ▸ (`color`): `number`
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) |
+| `color` | [`ColorToken`](types.md#ColorToken) |
 
-##### Returns
+##### Returns🔙
 
 `number`
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { getChannel } from 'huetiful-js'
@@ -220,25 +218,25 @@ ___
 
 ### getComplimentaryHue
 
-▸ **getComplimentaryHue**(`color`, `colorspace?`, `colorObj?`): \{ `color`: [`ColorToken`](types.md#colortoken) ; `hue`: `string`  } \| [`ColorToken`](types.md#colortoken)
+▸ **getComplimentaryHue**(`color`, `colorspace?`, `colorObj?`): \{ `color`: [`ColorToken`](types.md#ColorToken) ; `hue`: `string`  } \| [`ColorToken`](types.md#ColorToken)
 
 Gets the complementary hue of the passed in color. The function is internally guarded against achromatic colors.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | `undefined` | The color to retrieve its complimentary hue. |
-| `colorspace?` | [`HueColorSpaces`](types.md#huecolorspaces) | `undefined` | - |
+| `color` | [`ColorToken`](types.md#ColorToken) | `undefined` | The color to retrieve its complimentary hue. |
+| `colorspace?` | [`HueColorSpaces`](types.md#HueColorSpaces) | `undefined` | - |
 | `colorObj` | `boolean` | `false` | Optional boolean whether to return an object with the result color hue family or just the result color. Default is false. |
 
-#### Returns
+#### Returns🔙
 
-\{ `color`: [`ColorToken`](types.md#colortoken) ; `hue`: `string`  } \| [`ColorToken`](types.md#colortoken)
+\{ `color`: [`ColorToken`](types.md#ColorToken) ; `hue`: `string`  } \| [`ColorToken`](types.md#ColorToken)
 
 An object with the hue family and complimentary color as keys.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { getComplimentaryHue } from "huetiful-js";
@@ -258,20 +256,20 @@ ___
 
 Gets the contrast between the passed in colors.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) |
-| `against` | [`ColorToken`](types.md#colortoken) |
+| `color` | [`ColorToken`](types.md#ColorToken) |
+| `against` | [`ColorToken`](types.md#ColorToken) |
 
-#### Returns
+#### Returns🔙
 
 `number`
 
 The relative luminance of the lightest color.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { getContrast } from 'huetiful-js'
@@ -284,24 +282,24 @@ ___
 
 ### getFarthestChroma
 
-▸ **getFarthestChroma**(`collection`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
+▸ **getFarthestChroma**(`collection`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: `number`  }
 
 Gets the largest saturation value from the passed in colors.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | `undefined` | - |
+| `collection` | `object` \| [`ColorToken`](types.md#ColorToken)[] | `undefined` | - |
 | `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false. |
 
-#### Returns
+#### Returns🔙
 
-`number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
+`number` \| \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: `number`  }
 
 The largest saturation value in the colors passed in or a custom object.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { getFarthestChroma } from 'huetiful-js'
@@ -316,25 +314,25 @@ ___
 
 ### getFarthestContrast
 
-▸ **getFarthestContrast**(`collection`, `against`, `colorObj?`): `number` \| \{ `factor`: `number` ; `name`: [`ColorToken`](types.md#colortoken)  }
+▸ **getFarthestContrast**(`collection`, `against`, `colorObj?`): `number` \| \{ `factor`: `number` ; `name`: [`ColorToken`](types.md#ColorToken)  }
 
 Gets the largest contrast value from the passed in colors compared against a sample color.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | - |
-| `against` | [`ColorToken`](types.md#colortoken) | - |
+| `collection` | `object` \| [`ColorToken`](types.md#ColorToken)[] | - |
+| `against` | [`ColorToken`](types.md#ColorToken) | - |
 | `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (contrast) and name of the color as keys. Default is false. |
 
-#### Returns
+#### Returns🔙
 
-`number` \| \{ `factor`: `number` ; `name`: [`ColorToken`](types.md#colortoken)  }
+`number` \| \{ `factor`: `number` ; `name`: [`ColorToken`](types.md#ColorToken)  }
 
 The largest contrast value in the colors passed in or a custom object.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { getFarthestContrast } from 'huetiful-js'
@@ -350,25 +348,25 @@ ___
 
 ### getFarthestHue
 
-▸ **getFarthestHue**(`collection`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
+▸ **getFarthestHue**(`collection`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: `number`  }
 
 Gets the largest hue value from the passed in colors.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | `undefined` | - |
-| `colorspace?` | [`HueColorSpaces`](types.md#huecolorspaces) | `undefined` | The mode color space to perform the computation in. |
+| `collection` | `object` \| [`ColorToken`](types.md#ColorToken)[] | `undefined` | - |
+| `colorspace?` | [`HueColorSpaces`](types.md#HueColorSpaces) | `undefined` | The mode color space to perform the computation in. |
 | `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false. |
 
-#### Returns
+#### Returns🔙
 
-`number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
+`number` \| \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: `number`  }
 
 The largest hue value in the colors passed in or a custom object.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { getFarthestHue } from 'huetiful-js'
@@ -382,25 +380,25 @@ ___
 
 ### getFarthestLightness
 
-▸ **getFarthestLightness**(`collection`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
+▸ **getFarthestLightness**(`collection`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: `number`  }
 
 Gets the largest lightness value from the passed in colors.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | `undefined` | - |
-| `colorspace?` | [`HueColorSpaces`](types.md#huecolorspaces) | `undefined` | THe mode colorspace to retrieve the lightness value from. |
+| `collection` | `object` \| [`ColorToken`](types.md#ColorToken)[] | `undefined` | - |
+| `colorspace?` | [`HueColorSpaces`](types.md#HueColorSpaces) | `undefined` | THe mode colorspace to retrieve the lightness value from. |
 | `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false. |
 
-#### Returns
+#### Returns🔙
 
-`number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
+`number` \| \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: `number`  }
 
 The largest lightness value in the colors passed in or a custom object.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { getFarthestLightness } from 'huetiful-js'
@@ -416,24 +414,24 @@ ___
 
 ### getHueFamily
 
-▸ **getHueFamily**(`color`, `mode?`): [`HueFamily`](types.md#huefamily)
+▸ **getHueFamily**(`color`, `mode?`): [`HueFamily`](types.md#HueFamily)
 
 Gets the hue family which a a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color to query its shade or hue family. |
-| `mode?` | [`HueColorSpaces`](types.md#huecolorspaces) | - |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color to query its shade or hue family. |
+| `mode?` | [`HueColorSpaces`](types.md#HueColorSpaces) | - |
 
-#### Returns
+#### Returns🔙
 
-[`HueFamily`](types.md#huefamily)
+[`HueFamily`](types.md#HueFamily)
 
 The name of the hue family for example red or green.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { getHue } from 'huetiful-js'
@@ -448,13 +446,13 @@ ___
 
 ▸ **getLuminance**(`color`): `number`
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color to query. |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color to query. |
 
-#### Returns
+#### Returns🔙
 
 `number`
 
@@ -464,7 +462,7 @@ value The color's luminance value.
 
 Gets the luminance value of that color as defined by WCAG.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { getLuminance } from 'huetiful-js'
@@ -477,25 +475,25 @@ ___
 
 ### getNearestChroma
 
-▸ **getNearestChroma**(`collection`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
+▸ **getNearestChroma**(`collection`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: `number`  }
 
 Gets the smallest chroma/saturation value from the passed in colors.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | `undefined` | - |
-| `colorspace?` | [`HueColorSpaces`](types.md#huecolorspaces) | `undefined` | The mode color space to perform the computation in. |
+| `collection` | `object` \| [`ColorToken`](types.md#ColorToken)[] | `undefined` | - |
+| `colorspace?` | [`HueColorSpaces`](types.md#HueColorSpaces) | `undefined` | The mode color space to perform the computation in. |
 | `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false. |
 
-#### Returns
+#### Returns🔙
 
-`number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
+`number` \| \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: `number`  }
 
 The smallest chroma/saturation value in the colors passed in or a custom object.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { getNearestChroma } from 'huetiful-js'
@@ -510,23 +508,23 @@ ___
 
 ### getNearestColor
 
-▸ **getNearestColor**(`collection`, `color`, `num?`): [`ColorToken`](types.md#colortoken) \| [`ColorToken`](types.md#colortoken)[]
+▸ **getNearestColor**(`collection`, `color`, `num?`): [`ColorToken`](types.md#ColorToken) \| [`ColorToken`](types.md#ColorToken)[]
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `collection` | [`ColorToken`](types.md#colortoken)[] \| ``"tailwind"`` | `undefined` | The collection of colors to search for nearest colors |
-| `color` | [`ColorToken`](types.md#colortoken) | `undefined` | The color to use for distance comparison |
+| `collection` | [`ColorToken`](types.md#ColorToken)[] \| ``"tailwind"`` | `undefined` | The collection of colors to search for nearest colors |
+| `color` | [`ColorToken`](types.md#ColorToken) | `undefined` | The color to use for distance comparison |
 | `num` | `number` | `1` | The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the differenceHyab metric. |
 
-#### Returns
+#### Returns🔙
 
-[`ColorToken`](types.md#colortoken) \| [`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#ColorToken) \| [`ColorToken`](types.md#ColorToken)[]
 
 An array of colors.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 let cols = colors('all', '500')
@@ -543,21 +541,21 @@ ___
 
 Gets the smallest contrast value from the passed in colors compared against a sample color.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | - |
-| `against` | [`ColorToken`](types.md#colortoken) | - |
+| `collection` | `object` \| [`ColorToken`](types.md#ColorToken)[] | - |
+| `against` | [`ColorToken`](types.md#ColorToken) | - |
 | `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (contrast) and name of the color as keys. Default is false. |
 
-#### Returns
+#### Returns🔙
 
 `any`
 
 The smallest contrast value in the colors passed in or a custom object.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { getNearestContrast } from 'huetiful-js'
@@ -573,25 +571,25 @@ ___
 
 ### getNearestHue
 
-▸ **getNearestHue**(`collection`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
+▸ **getNearestHue**(`collection`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: `number`  }
 
 Gets the smallest hue value from the passed in colors.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | `undefined` | - |
+| `collection` | `object` \| [`ColorToken`](types.md#ColorToken)[] | `undefined` | - |
 | `colorspace?` | `string` | `undefined` | The mode color space to perform the computation in. |
 | `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false. |
 
-#### Returns
+#### Returns🔙
 
-`number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
+`number` \| \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: `number`  }
 
 The smallest hue value in the colors passed in or a custom object.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { getNearestHue } from 'huetiful-js'
@@ -606,25 +604,25 @@ ___
 
 ### getNearestLightness
 
-▸ **getNearestLightness**(`collection`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
+▸ **getNearestLightness**(`collection`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: `number`  }
 
 Gets the smallest lightness value from the passed in colors.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | `undefined` | - |
-| `colorspace?` | [`HueColorSpaces`](types.md#huecolorspaces) | `undefined` | - |
+| `collection` | `object` \| [`ColorToken`](types.md#ColorToken)[] | `undefined` | - |
+| `colorspace?` | [`HueColorSpaces`](types.md#HueColorSpaces) | `undefined` | - |
 | `colorObj` | `boolean` | `false` | Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false. |
 
-#### Returns
+#### Returns🔙
 
-`number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
+`number` \| \{ `color`: [`ColorToken`](types.md#ColorToken) ; `factor`: `number`  }
 
 The smallest lightness value in the colors passed in or a custom object.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { getNearestLightness } from 'huetiful-js'
@@ -644,20 +642,20 @@ ___
 
 Checks if a color is achromatic(without hue or simply grayscale).
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color to test if it is achromatic or not. |
-| `mode?` | [`HueColorSpaces`](types.md#huecolorspaces) | - |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color to test if it is achromatic or not. |
+| `mode?` | [`HueColorSpaces`](types.md#HueColorSpaces) | - |
 
-#### Returns
+#### Returns🔙
 
 `boolean`
 
 boolean Returns true if the color is achromatic else false
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { isAchromatic } from "huetiful-js";
@@ -706,19 +704,19 @@ ___
 
 Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color to check the temperature. |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color to check the temperature. |
 
-#### Returns
+#### Returns🔙
 
 `boolean`
 
 True or false.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { isCool } from 'huetiful-js'
@@ -745,19 +743,19 @@ ___
 
 Checks if a color can be roughly classified as a warm color. Returns true if color is a warm color else false.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color to check the temperature. |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color to check the temperature. |
 
-#### Returns
+#### Returns🔙
 
 `boolean`
 
 True or false.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { isWarm } from 'huetiful-js'
@@ -784,19 +782,19 @@ ___
 
 Returns the hue which is biasing the passed in color
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color to query its overtone. |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color to query its overtone. |
 
-#### Returns
+#### Returns🔙
 
 `string` \| `boolean`
 
 The name of the overtone hue. If an achromatic color is passed in it return the string gray otherwise if the color has no bias it returns false.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { overtone } from "huetiful-js";
@@ -815,36 +813,36 @@ ___
 
 ### setChannel
 
-▸ **setChannel**(`mc`): (`color`: [`ColorToken`](types.md#colortoken), `value`: `string` \| `number`) => [`ColorToken`](types.md#colortoken)
+▸ **setChannel**(`mc`): (`color`: [`ColorToken`](types.md#ColorToken), `value`: `string` \| `number`) => [`ColorToken`](types.md#ColorToken)
 
 Sets the value for the specified channel in a color.
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `mc` | `string` | The mode and channel to work with. For example 'rgb.b'. |
 
-#### Returns
+#### Returns🔙
 
 `fn`
 
 color The mutated color.
 
-▸ (`color`, `value`): [`ColorToken`](types.md#colortoken)
+▸ (`color`, `value`): [`ColorToken`](types.md#ColorToken)
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) |
+| `color` | [`ColorToken`](types.md#ColorToken) |
 | `value` | `string` \| `number` |
 
-##### Returns
+##### Returns🔙
 
-[`ColorToken`](types.md#colortoken)
+[`ColorToken`](types.md#ColorToken)
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { setChannel } from 'huetiful-js'
@@ -859,24 +857,24 @@ ___
 
 ### setLuminance
 
-▸ **setLuminance**(`color`, `lum`): [`ColorToken`](types.md#colortoken)
+▸ **setLuminance**(`color`, `lum`): [`ColorToken`](types.md#ColorToken)
 
 Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
 
-#### Parameters
+#### Parameters🧮
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color to set luminance |
+| `color` | [`ColorToken`](types.md#ColorToken) | The color to set luminance |
 | `lum` | `number` | The amount of luminance to set. The value range is normalised between [0,1] |
 
-#### Returns
+#### Returns🔙
 
-[`ColorToken`](types.md#colortoken)
+[`ColorToken`](types.md#ColorToken)
 
 The mutated color with the modified properties.
 
-**`Example`**
+**`Example`** 📋
 
 ```ts
 import { setLuminance, getLuminance } from 'huetiful-js'

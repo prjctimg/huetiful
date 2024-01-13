@@ -1,44 +1,42 @@
 ---
-title: Types.
-date: Last Modified 
-permalink: /types.html
+title: Types
 eleventyNavigation:
   order: 7
-  title: Type declarations.
+  title: Types
 ---
 
-# Module: types
+# Module:📦 types
 
-## Table of contents
+## Table of contents📜
 
 ### Type Aliases
 
-- [AdaptivePaletteOptions](types.md#adaptivepaletteoptions)
-- [ColorDistanceOptions](types.md#colordistanceoptions)
-- [ColorObject](types.md#colorobject)
-- [ColorOptions](types.md#coloroptions)
-- [ColorToken](types.md#colortoken)
-- [ColorTuple](types.md#colortuple)
-- [Colorspaces](types.md#colorspaces)
-- [DeficiencyType](types.md#deficiencytype)
-- [DivergingScheme](types.md#divergingscheme)
-- [EarthtoneOptions](types.md#earthtoneoptions)
-- [Factor](types.md#factor)
-- [FactorMapper](types.md#factormapper)
-- [HueColorSpaces](types.md#huecolorspaces)
-- [HueFamily](types.md#huefamily)
-- [HueShiftOptions](types.md#hueshiftoptions)
-- [Interpolator](types.md#interpolator)
-- [InterpolatorOptions](types.md#interpolatoroptions)
-- [Options](types.md#options)
-- [Order](types.md#order)
-- [PairedSchemeOptions](types.md#pairedschemeoptions)
-- [QualitativeScheme](types.md#qualitativescheme)
-- [ScaleValues](types.md#scalevalues)
-- [SequentialScheme](types.md#sequentialscheme)
-- [TailwindColorFamilies](types.md#tailwindcolorfamilies)
-- [Tone](types.md#tone)
-- [UniformColorSpaces](types.md#uniformcolorspaces)
+- [AdaptivePaletteOptions](types.md#AdaptivePaletteOptions)
+- [ColorDistanceOptions](types.md#ColorDistanceOptions)
+- [ColorObject](types.md#ColorObject)
+- [ColorOptions](types.md#ColorOptions)
+- [ColorToken](types.md#ColorToken)
+- [ColorTuple](types.md#ColorTuple)
+- [Colorspaces](types.md#Colorspaces)
+- [DeficiencyType](types.md#DeficiencyType)
+- [DivergingScheme](types.md#DivergingScheme)
+- [EarthtoneOptions](types.md#EarthtoneOptions)
+- [Factor](types.md#Factor)
+- [FactorMapper](types.md#FactorMapper)
+- [HueColorSpaces](types.md#HueColorSpaces)
+- [HueFamily](types.md#HueFamily)
+- [HueShiftOptions](types.md#HueShiftOptions)
+- [Interpolator](types.md#Interpolator)
+- [InterpolatorOptions](types.md#InterpolatorOptions)
+- [Options](types.md#Options)
+- [Order](types.md#Order)
+- [PairedSchemeOptions](types.md#PairedSchemeOptions)
+- [QualitativeScheme](types.md#QualitativeScheme)
+- [ScaleValues](types.md#ScaleValues)
+- [SequentialScheme](types.md#SequentialScheme)
+- [TailwindColorFamilies](types.md#TailwindColorFamilies)
+- [Tone](types.md#Tone)
+- [UniformColorSpaces](types.md#UniformColorSpaces)
 - [callback](types.md#callback)
 
 ## Type Aliases
@@ -47,7 +45,7 @@ eleventyNavigation:
 
 Ƭ **AdaptivePaletteOptions**: `Object`
 
-**`Description`**
+**`Description`** ℹ
 
 This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.
 
@@ -55,9 +53,9 @@ This object returns the lightMode and darkMode optimized version of a color with
 
 | Name | Type |
 | :------ | :------ |
-| `backgroundColor?` | \{ `dark?`: [`ColorToken`](types.md#colortoken) ; `light?`: [`ColorToken`](types.md#colortoken)  } |
-| `backgroundColor.dark?` | [`ColorToken`](types.md#colortoken) |
-| `backgroundColor.light?` | [`ColorToken`](types.md#colortoken) |
+| `backgroundColor?` | \{ `dark?`: [`ColorToken`](types.md#ColorToken) ; `light?`: [`ColorToken`](types.md#ColorToken)  } |
+| `backgroundColor.dark?` | [`ColorToken`](types.md#ColorToken) |
+| `backgroundColor.light?` | [`ColorToken`](types.md#ColorToken) |
 | `colorBlind?` | `boolean` |
 | `viewingConditions?` | `ViewingConditions` |
 
@@ -71,7 +69,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `mode?` | [`Colorspaces`](types.md#colorspaces) |
+| `mode?` | [`Colorspaces`](types.md#Colorspaces) |
 | `weights?` | [`number`, `number`, `number`, `number`] |
 
 ___
@@ -85,7 +83,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `alpha?` | `number` |
-| `mode` | [`Colorspaces`](types.md#colorspaces) |
+| `mode` | [`Colorspaces`](types.md#Colorspaces) |
 
 ___
 
@@ -98,11 +96,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `alpha?` | `number` |
-| `colorSpace?` | [`HueColorSpaces`](types.md#huecolorspaces) |
-| `colorspace?` | [`HueColorSpaces`](types.md#huecolorspaces) |
+| `colorSpace?` | [`HueColorSpaces`](types.md#HueColorSpaces) |
+| `colorspace?` | [`HueColorSpaces`](types.md#HueColorSpaces) |
 | `contrast?` | `number` |
-| `darkMode?` | [`ColorToken`](types.md#colortoken) |
-| `lightMode?` | [`ColorToken`](types.md#colortoken) |
+| `darkMode?` | [`ColorToken`](types.md#ColorToken) |
+| `lightMode?` | [`ColorToken`](types.md#ColorToken) |
 | `lightness?` | `number` |
 | `luminance?` | `number` |
 | `saturation?` | `number` |
@@ -112,9 +110,9 @@ ___
 
 ### ColorToken
 
-Ƭ **ColorToken**: `number` \| `string` \| `object` \| [`ColorTuple`](types.md#colortuple)
+Ƭ **ColorToken**: `number` \| `string` \| `object` \| [`ColorTuple`](types.md#ColorTuple)
 
-**`Description`**
+**`Description`** ℹ
 
 Any recognizable color token.
 
@@ -128,7 +126,7 @@ ___
 
 ### Colorspaces
 
-Ƭ **Colorspaces**: ``"a98"`` \| ``"cubehelix"`` \| ``"dlab"`` \| ``"jab"`` \| ``"lab"`` \| ``"lab65"`` \| ``"lrgb"`` \| ``"luv"`` \| ``"oklab"`` \| ``"rgb"`` \| [`HueColorSpaces`](types.md#huecolorspaces)
+Ƭ **Colorspaces**: ``"a98"`` \| ``"cubehelix"`` \| ``"dlab"`` \| ``"jab"`` \| ``"lab"`` \| ``"lab65"`` \| ``"lrgb"`` \| ``"luv"`` \| ``"oklab"`` \| ``"rgb"`` \| [`HueColorSpaces`](types.md#HueColorSpaces)
 
 ___
 
@@ -146,7 +144,7 @@ ___
 
 ### EarthtoneOptions
 
-Ƭ **EarthtoneOptions**: `Omit`\<[`Options`](types.md#options), ``"hueStep"`` \| ``"via"`` \| ``"maxLightness"`` \| ``"minLightness"``\>
+Ƭ **EarthtoneOptions**: `Omit`\<[`Options`](types.md#Options), ``"hueStep"`` \| ``"via"`` \| ``"maxLightness"`` \| ``"minLightness"``\>
 
 ___
 
@@ -158,42 +156,42 @@ ___
 
 ### FactorMapper
 
-Ƭ **FactorMapper**: (`factor`: [`Factor`](types.md#factor), `callback`: [`callback`](types.md#callback), `order?`: [`Order`](types.md#order), `colorObj?`: `boolean`) => (`colors`: [`ColorToken`](types.md#colortoken)[]) => [`ColorToken`](types.md#colortoken)[]
+Ƭ **FactorMapper**: (`factor`: [`Factor`](types.md#Factor), `callback`: [`callback`](types.md#callback), `order?`: [`Order`](types.md#Order), `colorObj?`: `boolean`) => (`colors`: [`ColorToken`](types.md#ColorToken)[]) => [`ColorToken`](types.md#ColorToken)[]
 
 #### Type declaration
 
-▸ (`factor`, `callback`, `order?`, `colorObj?`): (`colors`: [`ColorToken`](types.md#colortoken)[]) => [`ColorToken`](types.md#colortoken)[]
+▸ (`factor`, `callback`, `order?`, `colorObj?`): (`colors`: [`ColorToken`](types.md#ColorToken)[]) => [`ColorToken`](types.md#ColorToken)[]
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
-| `factor` | [`Factor`](types.md#factor) |
+| `factor` | [`Factor`](types.md#Factor) |
 | `callback` | [`callback`](types.md#callback) |
-| `order?` | [`Order`](types.md#order) |
+| `order?` | [`Order`](types.md#Order) |
 | `colorObj?` | `boolean` |
 
-##### Returns
+##### Returns🔙
 
 `fn`
 
-▸ (`colors`): [`ColorToken`](types.md#colortoken)[]
+▸ (`colors`): [`ColorToken`](types.md#ColorToken)[]
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
-| `colors` | [`ColorToken`](types.md#colortoken)[] |
+| `colors` | [`ColorToken`](types.md#ColorToken)[] |
 
-##### Returns
+##### Returns🔙
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#ColorToken)[]
 
 ___
 
 ### HueColorSpaces
 
-Ƭ **HueColorSpaces**: [`UniformColorSpaces`](types.md#uniformcolorspaces) \| ``"hsl"`` \| ``"hsv"`` \| ``"hsi"`` \| ``"hwb"`` \| ``"okhsl"`` \| ``"okhsv"``
+Ƭ **HueColorSpaces**: [`UniformColorSpaces`](types.md#UniformColorSpaces) \| ``"hsl"`` \| ``"hsv"`` \| ``"hsi"`` \| ``"hwb"`` \| ``"okhsl"`` \| ``"okhsv"``
 
 ___
 
@@ -205,7 +203,7 @@ ___
 
 ### HueShiftOptions
 
-Ƭ **HueShiftOptions**: `Omit`\<[`Options`](types.md#options), ``"via"`` \| ``"earthtones"`` \| ``""``\> & [`InterpolatorOptions`](types.md#interpolatoroptions)
+Ƭ **HueShiftOptions**: `Omit`\<[`Options`](types.md#Options), ``"via"`` \| ``"earthtones"`` \| ``""``\> & [`InterpolatorOptions`](types.md#InterpolatorOptions)
 
 ___
 
@@ -217,25 +215,25 @@ ___
 
 ▸ (`arr`): (`t`: `number`) => `number`
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
 | `arr` | `number`[] |
 
-##### Returns
+##### Returns🔙
 
 `fn`
 
 ▸ (`t`): `number`
 
-##### Parameters
+##### Parameters🧮
 
 | Name | Type |
 | :------ | :------ |
 | `t` | `number` |
 
-##### Returns
+##### Returns🔙
 
 `number`
 
@@ -243,7 +241,7 @@ ___
 
 ### InterpolatorOptions
 
-Ƭ **InterpolatorOptions**: `Pick`\<[`Options`](types.md#options), ``"easingFunc"`` \| ``"hueInterpolator"`` \| ``"chromaInterpolator"`` \| ``"hueFixup"`` \| ``"lightnessInterpolator"``\>
+Ƭ **InterpolatorOptions**: `Pick`\<[`Options`](types.md#Options), ``"easingFunc"`` \| ``"hueInterpolator"`` \| ``"chromaInterpolator"`` \| ``"hueFixup"`` \| ``"lightnessInterpolator"``\>
 
 ___
 
@@ -251,7 +249,7 @@ ___
 
 Ƭ **Options**: `Object`
 
-**`Description`**
+**`Description`** ℹ
 
 The override parameters for palette functions.
 
@@ -259,17 +257,17 @@ The override parameters for palette functions.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `chromaInterpolator?` | [`Interpolator`](types.md#interpolator) | **`Param`** interpolation method to use on the chroma channel. |
+| `chromaInterpolator?` | [`Interpolator`](types.md#Interpolator) | **`Param`** interpolation method to use on the chroma channel. |
 | `earthtones?` | ``"light-gray"`` \| ``"silver"`` \| ``"sand"`` \| ``"tupe"`` \| ``"mahogany"`` \| ``"brick-red"`` \| ``"clay"`` \| ``"cocoa"`` \| ``"dark-brown"`` \| ``"dark"`` | * **`Param`** The earthtone to interpolate with. |
 | `easingFunc?` | (`t`: `number`) => `number` | The easing function to use. |
 | `hueFixup?` | (`arr`: `number`[]) => `number`[] |  |
-| `hueInterpolator?` | [`Interpolator`](types.md#interpolator) | **`Param`** interpolation method to use on the hue channel. |
+| `hueInterpolator?` | [`Interpolator`](types.md#Interpolator) | **`Param`** interpolation method to use on the hue channel. |
 | `hueStep?` | `number` | **`Param`** amount of hue angles to increment each iteration with. |
-| `lightnessInterpolator?` | [`Interpolator`](types.md#interpolator) | **`Param`** interpolation method to use on the lightness channel. |
+| `lightnessInterpolator?` | [`Interpolator`](types.md#Interpolator) | **`Param`** interpolation method to use on the lightness channel. |
 | `maxLightness?` | `number` | **`Param`** Maximum lightness value (range 0-100). |
 | `minLightness?` | `number` | * **`Param`** Minimum lightness value (range 0-100). |
 | `samples?` | `number` | **`Param`** amount of samples to return in the result collection. |
-| `via?` | [`Tone`](types.md#tone) | **`Param`** color to pass through during interpolation. |
+| `via?` | [`Tone`](types.md#Tone) | **`Param`** color to pass through during interpolation. |
 
 ___
 
@@ -281,7 +279,7 @@ ___
 
 ### PairedSchemeOptions
 
-Ƭ **PairedSchemeOptions**: `Omit`\<[`Options`](types.md#options), ``"earthtones"`` \| ``"maxLightness"`` \| ``"minLightness"``\>
+Ƭ **PairedSchemeOptions**: `Omit`\<[`Options`](types.md#Options), ``"earthtones"`` \| ``"maxLightness"`` \| ``"minLightness"``\>
 
 ___
 
