@@ -43,7 +43,7 @@ Or load the library as a UMD glabal (`huetiful`) in your HTML file using a `<scr
 
 ## Quickstart
 
-[See the Quickstart page](https://prjctimg.github.io/huetiful/notes/quickstart.md) to see some examples and demonstrations of the library.
+[See the Quickstart page](/notes/quickstart.md) to see some examples and demonstrations of the library.
 
 ## What's next🤷🏽‍♂️
 
