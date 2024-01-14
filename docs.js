@@ -2,7 +2,7 @@
 
 /*
  * @license
- * docs.js - Custom documentation generator script for huetiful-js.
+ * docs.js - Script for post-processing typedoc-plugin-markdown output by inserting UTF8 emojis.
 Copyright 2023 Dean Tarisai.
 This file is licensed to you under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License. You may obtain a copy
@@ -17,17 +17,10 @@ governing permissions and limitations under the License.
 import {
   readFileSync,
   writeFileSync,
-  renameSync,
   readdirSync,
   appendFileSync,
   rmSync,
-  cpSync,
-  copyFileSync,
-  mkdirSync,
-  rmdirSync,
-  symlinkSync,
-  symlink
-} from 'fs';
+  copyFileSync} from 'fs';
 import { stringOf } from 'github-emoji';
 import { log } from 'console';
 

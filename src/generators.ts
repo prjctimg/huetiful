@@ -576,6 +576,5 @@ export {
   scheme,
   interpolateSpline,
   interpolator,
-  earthtone,
-  ucsConverter
+  earthtone
 };
