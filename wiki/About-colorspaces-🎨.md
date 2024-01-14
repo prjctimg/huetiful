@@ -1,3 +1,5 @@
+<!-- toc -->
+
 # About colorspaces
 
 This library makes use of the predefined colorspaces provided by Culori. Information about the expected channel ranges, supported colorspaces and other related information on how the library handles them  [can be found here](https://culorijs.org/color-spaces/)
