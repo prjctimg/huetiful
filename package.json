@@ -33,9 +33,9 @@
   },
   "scripts": {
     "test": "jasmine",
-    "docs": "npx typedoc --themeColor '#065f46' & cp -r huetiful-logo.png docs & git add .",
+    "docs": "npx typedoc & git add .",
     "code:build": "node build.cjs",
-    "code:prepare": " npm run code:build & npm run code:types & npm run docs",
+    "prepare": " npm run code:build & npm run code:types & npm run docs",
     "code:types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
     "code:lint": "eslint --fix --ext .ts",
     "code:format": "prettier \"./src/*.ts\" --write",
@@ -91,7 +91,7 @@
     "plugin": [
       "typedoc-material-theme"
     ],
-    "themeColor": "#0ea5e9",
+    "themeColor": "#065f46",
     "entryPointStrategy": "resolve",
     "out": "docs",
     "exclude": [

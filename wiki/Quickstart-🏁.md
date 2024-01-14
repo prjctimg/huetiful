@@ -1,4 +1,4 @@
-# Quickstart
+
 
 ## A guide to working with color programmatically
 
