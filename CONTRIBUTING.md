@@ -39,9 +39,18 @@ Install the necessary dependencies📦 needed to setup the development environme
 ```bash
 npm install --save-dev
 
-npm run build
+```
+
+## Live testing
+
+This project uses Nodemon for testing code as you develop it. You can start a live server that outputs to the terminal. Note that it currently supports JavaScript only. In the root directory, open the file named `app.js`:
+
+```sh
+npm start
 
 ```
+
+This will watch the `app.js` file for any changes when you save it.
 
 ## Coding conventions📐 and task automation🤖
 
