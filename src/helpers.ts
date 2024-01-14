@@ -34,7 +34,7 @@ import {
   interpolatorSplineMonotone,
   easingSmoothstep
 } from 'culori/fn';
-import { ucsConverter } from './generators';
+import { ucsConverter } from './converters';
 
 /**
  * @internal
