@@ -91,9 +91,9 @@ See🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how t
 
 ##### License⚖️
 
-<h6 norefer align='center'>
+<code align='center'>
 Released under the Apache-2.0 license
-</h6>
+</code>
 <code align='center'>&copy; 2023 Dean Tarisai
 </code>
 <code align='center'>&lt;/&gt; with ♥ in Crowhill
