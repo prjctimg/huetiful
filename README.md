@@ -91,10 +91,10 @@ See🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how t
 
 ##### License⚖️
 
-<h6 align='center'>
+<h6 norefer align='center'>
 Released under the Apache-2.0 license
 </h6>
-<h6 align='center'>&copy; 2023 Dean Tarisai
-</h6>
-<h6 align='center'>&lt;/&gt; with ♥ in Crowhill
-</h6>
+<code align='center'>&copy; 2023 Dean Tarisai
+</code>
+<code align='center'>&lt;/&gt; with ♥ in Crowhill
+</code>
