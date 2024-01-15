@@ -83,24 +83,17 @@ Would like to join the chat🗣️ and share ideas💡 and suggestions💭 ? [Se
 
 See some unexpected results😖? [Check the issue tracker](https://github.com/prjctimg/huetiful/issues) to open an issue or search for the problem to see if your issue already exists or has been resolved.
 
-#### 🎁 Contributing
+#### Contributing
 
-This project is fully open source! Contributions of any kind are greatly appreciated! See🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
-
-### 👏 Sponsoring issues
-
-**Sponsored issues have higher priority over non-critical issues**.<br>
-
-You can either request a new feature or a bug fix then fund it.
-
-<br>
-<br>
-
-**The money will be transparently split with an issue's assignees.**
+See🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
 
 ### References🔗
 
 [Coloring with code: A programmatic approach by George Francis](https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/)
+
+[![Stargazers repo roster for @prjctimg/huetiful](https://reporoster.com/stars/dark/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/stargazers)
+
+[![Forkers repo roster for @prjctimg/huetiful](https://reporoster.com/forks/dark/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/network/members)
 
 ##### License
 
