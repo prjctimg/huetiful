@@ -13,13 +13,13 @@
 <p align='center'>TypeScript library for general purpose color manipulations and generating custom color scales.
 <br>
 <br>
- <a href="#demo">📜 Docs</a>
+ <a href="https://prjctimg.github.io/huetiful">📜 Docs</a>
     ·
     <a href="https://github.com/prjctimg/prjctimg/issues/new?template=---bug-report.md">🐞 Report Bug</a>
     ·
     <a href="https://github.com/prjctimg/huetiful/issues/new?template=---feature-request.md">🍩 Request Feature</a>
     ·
-    <a href="https://github.com/prjctimg/huetiful/issues/new?template=---question.md">🧠 Wiki </a>
+    <a href="https://github.com/prjctimg/huetiful/wiki">🧠 Wiki </a>
 </p>
 
 ### Table of Contents
@@ -68,7 +68,7 @@ Or load the library as a UMD glabal (`huetiful`) in your HTML file using a `<scr
 [See the Quickstart section on the Wiki](https://github.com/prjctimg/huetiful/wiki/Quickstart-%F0%9F%8F%81) to see some examples and demonstrations of the library.
 
 ##### Documentation 📜
-
+With 50+ utilities for querying, setting and manipulating collections of color, the power to take your creative coding skills is at your finger tips! 
 Want to explore the full API? [See the full docs here](https:prjctimg.github.io/huetiful)
 <br>
 
@@ -91,10 +91,10 @@ See🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how t
 
 ##### License⚖️
 
-<p align='center'>&lt;/&gt; with ♥ in Crowhill
-</p>
 <h6 align='center'>
 Released under the Apache-2.0 license
 </h6>
 <h6 align='center'>&copy; 2023 Dean Tarisai
+</h6>
+<h6 align='center'>&lt;/&gt; with ♥ in Crowhill
 </h6>
