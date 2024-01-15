@@ -84,10 +84,9 @@ See some unexpected results😖? [Check the issue tracker](https://github.com/pr
 
 See🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
 
+[![Forkers repo roster for @prjctimg/huetiful](https://reporoster.com/forks/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/network/members)
 
-[![Stargazers repo roster for @prjctimg/huetiful](https://reporoster.com/stars/dark/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/stargazers)
-
-[![Forkers for @prjctimg/huetiful](https://reporoster.com/forks/dark/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/network/members)
+[![Stargazers repo roster for @prjctimg/huetiful](https://reporoster.com/stars/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/stargazers)
 
 ##### License⚖️
 
