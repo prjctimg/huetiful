@@ -1,0 +1,133 @@
+{
+  "name": "huetiful-js",
+  "version": "0.0.1-alpha",
+  "type": "module",
+  "main": "./lib/huetiful.esm.mjs",
+  "module": "./lib/huetiful.esm.mjs",
+  "browser": "./lib/huetiful.esm.mjs",
+  "jsdelivr": "./lib/huetiful.umd.js",
+  "types": "./lib/huetiful.d.ts",
+  "description": "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
+  "dependencies": {
+    "culori": "^3.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/culori": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "dts-bundle-generator": "^8.0.1",
+    "esbuild": "^0.17.19",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "github-emoji": "^1.2.0",
+    "husky": "^8.0.3",
+    "nodemon": "^3.0.1",
+    "typedoc": "^0.25.3",
+    "typedoc-material-theme": "^1.0.2",
+    "typescript": "^5.0.2"
+  },
+  "scripts": {
+    "test": "jasmine",
+    "docs": "npx typedoc & git add .",
+    "code:build": "node build.cjs",
+    "code:prepare": " npm run code:build & npm run code:types & npm run docs",
+    "code:types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
+    "code:lint": "eslint --fix --ext .ts",
+    "code:format": "prettier \"./src/*.ts\" --write",
+    "start": "nodemon app.js --watch "
+  },
+  "husky": {
+    "hooks": {}
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "trailingComma": "none",
+    "bracketSpacing": true
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint",
+      "prettier"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
+    ],
+    "rules": {
+      "prefer-const": 0,
+      "no-console": 1,
+      "no-ternary": 2,
+      "no-var": 0,
+      "no-explicit-any": 0,
+      "prettier/prettier": 0,
+      "@typescript-eslint/ban-ts-comment": 0,
+      "no-useless-escape": 0
+    }
+  },
+  "typedocOptions": {
+    "entryPoints": [
+      "./src/generators.ts",
+      "./src/utils.ts",
+      "./src/colors.ts",
+      "./src/converters.ts",
+      "./src/filterBy.ts",
+      "./src/sortBy.ts",
+      "./src/types.d.ts",
+      "./src/helpers.ts"
+    ],
+    "plugin": [
+      "typedoc-material-theme"
+    ],
+    "themeColor": "#065f46",
+    "entryPointStrategy": "resolve",
+    "out": "docs",
+    "exclude": [
+      "./color-maps"
+    ],
+    "tsconfig": "./tsconfig.json",
+    "disableSources": true
+  },
+  "files": [
+    "lib",
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "README.md",
+    "CONTRIBUTING.md",
+    "LICENSE.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prjctimg/huetiful.git"
+  },
+  "keywords": [
+    "typescript",
+    "uniform colorspaces",
+    "color vision deficiency",
+    "color",
+    "culori",
+    "interpolation",
+    "tailwind",
+    "palette generator",
+    "color brewer"
+  ],
+  "author": "Dean Tarisai",
+  "email": "arcaneqoder@gmail.com",
+  "homepage": "https://prjctimg.github.io/huetiful",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/prjctimg/huetiful/issues"
+  }
+}

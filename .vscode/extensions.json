@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "github.vscode-pull-request-github",
+        "github.remotehub",
+        "ms-vscode.remote-repositories",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+    ]
+}

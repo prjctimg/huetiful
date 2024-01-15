@@ -1,0 +1,9 @@
+[submodule "wiki"]
+	path = wiki
+	url = https://github.com/prjctimg/huetiful.wiki.git
+[submodule "app"]
+	path = app
+	url = https://github.com/prjctimg/huetiful.app.git
+[submodule "src"]
+	path = src
+	url = https://github.com/prjctimg/huetiful.src.git
