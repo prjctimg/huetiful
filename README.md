@@ -92,12 +92,16 @@ See🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how t
 
 [![Stargazers repo roster for @prjctimg/huetiful](http://reporoster.com/stars/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/stargazers)
 
-##### License⚖️
-
-<code align='center'>
+<h5 align='left'>License⚖️</h5>
+<blockquote>
+  <h6 align='center'>
+&copy;2023, Dean Tarisai and contributors
+</h6> <h6 align='center'>
 Released under the Apache-2.0 license
-</code>
-<code align='center'>&copy; 2023 Dean Tarisai
-</code>
-<code align='center'>&lt;/&gt; with ♥ in Crowhill
-</code>
+</h6>
+
+<h6 align='center'>&lt;/&gt; with ♥ in Crowhill,ZW
+</h6>
+
+  
+</blockquote>
