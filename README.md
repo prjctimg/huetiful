@@ -7,7 +7,7 @@
 
 
   <p align='center'>
-    <img alt="logo" title="huetiful-js" src=".github/logo.png">
+    <img alt="logo" title="huetiful-js" src="https://github.com/prjctimg/huetiful/blob/main/.github/logo.png">
   </p>
 <h3 align='center'>huetiful-js</h3>
 
