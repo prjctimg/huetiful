@@ -14,13 +14,13 @@
 <p align='center'>TypeScript library for general purpose color manipulations and generating custom color scales.
 <br>
 <br>
- <a href="#demo">📜 Docs</a>
+ <a href="https://prjctimg.github.io/huetiful">📜 Docs</a>
     ·
     <a href="https://github.com/prjctimg/prjctimg/issues/new?template=---bug-report.md">🐞 Report Bug</a>
     ·
     <a href="https://github.com/prjctimg/huetiful/issues/new?template=---feature-request.md">🍩 Request Feature</a>
     ·
-    <a href="https://github.com/prjctimg/huetiful/issues/new?template=---question.md">🧠 Wiki </a>
+    <a href="https://github.com/prjctimg/huetiful/wiki>🧠 Wiki </a>
 </p>
 
 ### Table of Contents

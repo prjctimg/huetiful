@@ -31,7 +31,7 @@
   },
   "scripts": {
     "test": "jasmine",
-    "docs": "npx typedoc & git add .",
+    "docs": "npx typedoc && git add . && git commit -a -m 'Updated docs'",
     "code:build": "node build.cjs",
     "code:prepare": " npm run code:build & npm run code:types & npm run docs",
     "code:types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
