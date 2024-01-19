@@ -146,7 +146,7 @@ function expressionParser(
  * @internal
  * @function
  * Matches the chroma/saturation channel of any compliant color space
- * @param colorspace The color space to match saturation/chroma channel.
+ * @param colorspace The color space to match saturation/chroma channel. Default is Lch
  * @returns The mode channel string passed to getChannel()
  * @example
  * 
@@ -159,7 +159,7 @@ console.log(matchChromaChannel("okhsl"));
  */
 function matchChromaChannel(colorspace: HueColorSpaces | string): string {
   // Matches any string with c or s
-  colorspace = checkArg(colorspace, 'jch') as HueColorSpaces;
+  colorspace = checkArg(colorspace, 'lch') as HueColorSpaces;
   const reChroma = /(s|c)/i;
   // @ts-ignore
   const ch = reChroma.exec(colorspace)['0'];
@@ -178,7 +178,7 @@ function matchChromaChannel(colorspace: HueColorSpaces | string): string {
  * @internal
  * @function
  * Matches the lightness channel of any compliant color space
- * @param colorspace The color space to match lightness channel.
+ * @param colorspace The color space to match lightness channel. Default is Lch
  * @returns The mode channel string passed to getChannel
  * 
  * @example
@@ -191,7 +191,7 @@ console.log(matchLightnessChannel("okhsl"));
  */
 function matchLightnessChannel(colorspace: HueColorSpaces | string): string {
   // Matches any string with c or s
-  colorspace = checkArg(colorspace, 'jch') as HueColorSpaces;
+  colorspace = checkArg(colorspace, 'lch') as HueColorSpaces;
   const reLightness = /(j|l)/i;
   // @ts-ignore
   const ch = reLightness.exec(colorspace)['0'];
