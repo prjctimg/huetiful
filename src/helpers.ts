@@ -313,6 +313,9 @@ function lte(x: number, y: number): boolean {
 function eq(x: number, y: number): boolean {
   return x === y;
 }
+function neq(x: number, y: number): boolean {
+  return !(x === y);
+}
 
 /**
  * @internal
@@ -355,11 +358,11 @@ function normalize(value: number, modeChannel: string): number {
   const range = inRange(value, start, end);
 
   if (!range) {
-    if (lte(value,1)) {
+    if (lte(value, 1)) {
       value = end * value;
     } else {
       value = (lte(end, 100) && end * (value / 100)) || end * (value / end);
-    } 
+    }
   }
   return value;
 }
@@ -601,30 +604,29 @@ function filteredArr(factor: Factor, cb?: callback) {
       const val = matchDigits(start),
         op = matchComparator(start);
 
-      const mapFilter = (
-        test: (x: number, y: number) => boolean
-      ): ColorToken[] => {
-        return colorObjArr(
-          factor,
-          cb
-        )(collection)
-          .filter((el) => test(el[factor], parseFloat(val.toString())))
-          .map((el) => el['color']);
-      };
-      switch (op) {
-        case '<':
-          result = mapFilter(lt);
-
-          break;
-        case '>':
-          result = mapFilter(gt);
-          break;
-        case '<=':
-          result = mapFilter(lte);
-          break;
-        case '>=':
-          result = mapFilter(gte);
-          break;
+      if (op) {
+        const mapFilter = (
+          test: (x: number, y: number) => boolean
+        ): ColorToken[] => {
+          return colorObjArr(
+            factor,
+            cb
+          )(collection)
+            .filter((el) => test(el[factor], parseFloat(val.toString())))
+            .map((el) => el['color']);
+        };
+        // object with comparison symbols as keys
+        var comparisonSymbols = {
+          '!=': neq,
+          '==': eq,
+          '>=': gte,
+          '<=': lte,
+          '>': gt,
+          '<': lt,
+          '===': eq,
+          '!==': neq
+        };
+        result = mapFilter(comparisonSymbols[op]);
       }
     }
     return result;
@@ -651,6 +653,7 @@ export {
   adjustHue,
   channelDifference,
   lt,
+  neq,
   gt,
   gte,
   lte,

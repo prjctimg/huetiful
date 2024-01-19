@@ -48,32 +48,26 @@ function baseFilterBy(
     lightness: matchLightnessChannel
   };
 
-
   // make case insensitive
-factor = factor.toLowerCase();
-// @ts-ignore
-colorspace= checkArg(colorspace,'lch65').toLowerCase()
-
+  factor = factor.toLowerCase();
+  // @ts-ignore
+  colorspace = checkArg(colorspace, 'lch65').toLowerCase();
 
   var [sym, startVal] = [
     matchComparator(start as string),
-    matchDigits(start as string),
-
+    matchDigits(start as string)
   ];
-  
 
-if(normalizableFactors[factor]){
+  if (normalizableFactors[factor]) {
+    startVal = normalize(startVal, normalizableFactors[factor](colorspace));
+    end = normalize(end, normalizableFactors[factor](colorspace));
+  }
 
-startVal = normalize(startVal,normalizableFactors[factor](colorspace))
-end = normalize(end,normalizableFactors[factor](colorspace))
-}
+  if (typeof start === 'string' && sym) {
+    // @ts-ignore
+    startVal = sym.concat(startVal.toString());
+  }
 
-if (typeof start === 'string' && sym) {
-
-  // @ts-ignore
-  startVal = sym+startVal.toString()
-}
- 
   return filteredArr(factor, cb)(collection, startVal, end);
 }
 
