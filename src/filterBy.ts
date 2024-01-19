@@ -78,7 +78,7 @@ function baseFilterBy(
  * The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
  * This means a value in the range `[0,1]` will return, for example if you pass startSaturation as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range `[0,100]` and will return the normalized value.
  * @param  collection The collection of colors to filter.
- * @param  startSaturation The minimum end of the saturation range.
+ * @param  startSaturation The minimum end of the saturation range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
  * @param  endSaturation The maximum end of the saturation range.
  * @param colorspace The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.
  * @returns Collection of filtered colors.
@@ -129,7 +129,7 @@ function filterBySaturation(
  *  
  *  Returns an array of colors in the specified luminance range.
  * @param  collection The collection of colors to filter.
- * @param  startLuminance The minimum end of the luminance range.
+ * @param  startLuminance The minimum end of the luminance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
  * @param  endLuminance The maximum end of the luminance range.
  * @returns Collection of filtered colors.
  * @example
@@ -175,7 +175,7 @@ function filterByLuminance(
  * The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
  * This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
  * @param  collection The collection of colors to filter.
- * @param  startLightness The minimum end of the lightness range.
+ * @param  startLightness The minimum end of the lightness range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
  * @param  endLightness The maximum end of the lightness range.
  * @param colorspace The mode colorspace to retrieve the lightness value from. The default is lch65
  * @returns Collection of filtered colors.
@@ -224,7 +224,7 @@ function filterByLightness(
  * 
  * Returns colors in the specified hue ranges between 0 to 360.
  * @param collection The collection of colors to filter.
- * @param  startHue The minimum end of the hue range.
+ * @param  startHue The minimum end of the hue range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
  * @param  endHue The maximum end of the hue range.
  * @returns  Array of the filtered colors.
  * @example
@@ -266,7 +266,7 @@ function filterByHue(
  *  
  * Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.
  * @param  collection The collection of colors to filter.
- * @param  startDistance The minimum end of the distance range.
+ * @param  startDistance The minimum end of the distance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
  * @param  endDistance The maximum end of the distance range.
  * @returns Collection of filtered colors.
  * @example
@@ -308,7 +308,7 @@ function filterByDistance(
  *  
  * Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
  * @param  collection The collection of colors to filter.
- * @param  startContrast The minimum end of the contrast range.
+ * @param  startContrast The minimum end of the contrast range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
  * @param  endContrast The maximum end of the contrast range.
  * @returns Collection of filtered colors.
  * 
