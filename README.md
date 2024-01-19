@@ -101,6 +101,9 @@ You can either request a new feature or a bug fix then fund it.
 ### References🔗
 
 [Coloring with code: A programmatic approach by George Francis](https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/)
+[Programming Design Systems: Rune Madsen]()
+[Introducing Adaptive Color Palettes]()
+[Culori API docs](https://culorijs.org/api/)
 
 ##### License
 

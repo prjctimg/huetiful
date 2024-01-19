@@ -35,7 +35,7 @@ All the above options are optional but can be tweaked to get a more customized o
 
 ## Uniform colorspaces
 
-Perceptually uniform colorspaces make mapping the hue channel easier since the hue range taken by each hue family is more or less more equal than RGB based color models such as HSL or HWB. And on that note, the lightness of the colors is more consistent throughout the hue families. [George Francis explains this in his blogpost]()
+Perceptually uniform colorspaces make mapping the hue channel easier since the hue range taken by each hue family is more or less more equal than RGB based color models such as HSL or HWB. And on that note, the lightness of the colors is more consistent throughout the hue families. [George Francis explains this in his blogpost](https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/)
 
 All generator functions use the LCH colorspace with the D50 standard illuminant by default. This can be changed by tweaking the `colorspace` parameter.
 
@@ -45,35 +45,18 @@ All generator functions use the LCH colorspace with the D50 standard illuminant 
 
 In most cases, you're more likely to get pleasing results if you adjust the default options. The library depends on the creativity of the user to exploit the best possible end results.
 
-```js
-// Code
-
-```
-
 ### Subtle adjustments usually yield better results
 
 For example, you may want to keep options like `hueStep` value low so that the colors produced are more harmonious and less clashing.
-
-```js
-// Code
-
-```
 
 ### Use a base scheme
 
 If you want to explore the best possible color palettes consider starting from a base palette using `scheme()` and then mapping through the result array passing each color to a generator function. For example lets use `earthtone()`:
 
-```js
-// Code
-```
-
 ## Gotchas
 
-There are scenarios where the generator functions may return duplicate colors in the returned result array. Let's take for instance the `hueShift` function:
+There are scenarios where the generator functions may return duplicate colors in the returned result array.
 
-```js
-// Code goes here
-```
 
 If the `hueStep` multiplied by the number of `iterations` is greater than 360, the function will try to deduplicate the result array by converting it to an ES6  `Set()` object first. This may return fewer colors than expected from the passed in `iterations`. Caution and descretion should be kept in mind to minimize funky results.
 
