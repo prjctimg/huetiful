@@ -7,8 +7,10 @@
 
 
   <p align='center'>
-    <img alt="logo" title="huetiful-js" src="https://github.com/prjctimg/huetiful/blob/main/.github/logo.png">
+    <img alt="logo" title="sine_cos_rotation" src="https://github.com/prjctimg/huetiful/blob/main/.github/logo.png">
+    
   </p>
+  <cite>*Image made by Rune.js using sine and cosine rotation with hueshifted colors</cite>
 <h3 align='center'>huetiful-js</h3>
 
 <p align='center'>TypeScript library for general purpose color manipulations and generating custom color scales.
@@ -87,23 +89,14 @@ See some unexpected results😖? [Check the issue tracker](https://github.com/pr
 
 This project is fully open source! Contributions of any kind are greatly appreciated! See🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
 
-### 👏 Sponsoring issues
-
-**Sponsored issues have higher priority over non-critical issues**.<br>
-
-You can either request a new feature or a bug fix then fund it.
-
-<br>
-<br>
-
-**The money will be transparently split with an issue's assignees.**
-
 ### References🔗
 
 [Coloring with code: A programmatic approach by George Francis](https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/)
 [Programming Design Systems: Rune Madsen]()
 [Introducing Adaptive Color Palettes]()
 [Culori API docs](https://culorijs.org/api/)
+
+<img alt="logo" title="huetiful-js" src="https://github.com/prjctimg/huetiful/blob/main/.github/logo_v1.png">
 
 ##### License
 
