@@ -236,7 +236,8 @@ export type UniformColorSpaces =
   | 'lch'
   | 'lch65'
   | 'lchuv'
-  | 'oklch'|string
+  | 'oklch'
+  | string;
 export type Colorspaces =
   | 'a98'
   | 'cubehelix'

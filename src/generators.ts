@@ -422,6 +422,7 @@ function interpolator(
       ...(colors as Array<Color>),
       checkArg(easingFunc, interpolator['easingFunc']) as typeof easingFunc
     ],
+    // @ts-ignore
     checkArg(colorspace, 'jch') as typeof colorspace,
     {
       //@ts-ignore

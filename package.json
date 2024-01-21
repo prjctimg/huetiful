@@ -33,7 +33,7 @@
     "test": "jasmine",
     "docs": "npx typedoc & git add .",
     "code:build": "node build.cjs",
-    "code:prepare": " npm run code:build & npm run code:types & npm run docs",
+    "code:prepare": "npm run code:lint & npm run code:format & npm run code:build & npm run code:types & npm run docs",
     "code:types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
     "code:lint": "eslint --fix --ext .ts",
     "code:format": "prettier \"./src/*.ts\" --write",

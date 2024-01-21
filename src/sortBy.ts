@@ -354,6 +354,7 @@ function sortByDistance(
   const cb = (against: string, mode: Colorspaces) => (color: string) => {
     // @ts-ignore
     return differenceEuclidean(
+      // @ts-ignore
       checkArg(mode, 'lchuv') as typeof mode,
       checkArg(weights, [1, 1, 1, 0]) as typeof weights
     )(against, color);
