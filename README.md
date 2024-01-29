@@ -35,8 +35,6 @@
 - [Community](#community)
   - [😣 Need help ?](#-need-help-)
   - [🎁 Contributing](#-contributing)
-- [👏 Sponsoring issues](#-sponsoring-issues)
-- [References🔗](#references)
   - [License](#license)
 
 <br>
@@ -88,13 +86,6 @@ See some unexpected results😖? [Check the issue tracker](https://github.com/pr
 #### 🎁 Contributing
 
 This project is fully open source! Contributions of any kind are greatly appreciated! See🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
-
-### References🔗
-
-- [Coloring with code: A programmatic approach by George Francis](https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/)
-- [Programming Design Systems: Rune Madsen]()
-- [Introducing Adaptive Color Palettes]()
-- [Culori API docs](https://culorijs.org/api/)
 
 <img alt="logo" title="huetiful-js" src="./logo_v1.png">
 

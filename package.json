@@ -9,8 +9,7 @@
   "types": "./lib/huetiful.d.ts",
   "description": "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
   "dependencies": {
-    "culori": "^3.0.1",
-    "huetiful-js": "^1.79.95"
+    "culori": "^3.0.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
@@ -89,7 +88,7 @@
     "plugin": [
       "typedoc-material-theme"
     ],
-    "themeColor": "#000000",
+    "themeColor": "#f3ab1c",
     "entryPointStrategy": "resolve",
     "out": "docs",
     "exclude": [
@@ -114,6 +113,7 @@
     "url": "https://github.com/prjctimg/huetiful.git"
   },
   "keywords": [
+    "generative art",
     "typescript",
     "uniform colorspaces",
     "color vision deficiency",
