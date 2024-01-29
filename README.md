@@ -73,7 +73,7 @@ Or load the library as a UMD glabal (`huetiful`) in your HTML file using a `<scr
 
 ##### Documentation 📜
 
-Want to explore the full API? [See the full docs here](https:prjctimg.github.io/huetiful)
+Want to explore the full API? [See the full docs here](https://prjctimg.github.io/huetiful)
 <br>
 
 ### Community
