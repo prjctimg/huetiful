@@ -35,6 +35,7 @@
 - [Community](#community)
   - [😣 Need help ?](#-need-help-)
   - [🎁 Contributing](#-contributing)
+  - [References 🔗](#references-)
   - [License](#license)
 
 <br>
@@ -87,7 +88,22 @@ See some unexpected results😖? [Check the issue tracker](https://github.com/pr
 
 This project is fully open source! Contributions of any kind are greatly appreciated! See🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
 
+##### Forkers 🔬
+
+[![Forkers repo roster for @prjctimg/huetiful](http://reporoster.com/forks/notext/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/network/members)
+
+##### Stargazers 🔮✨
+
+[![Stargazers repo roster for @prjctimg/huetiful](http://reporoster.com/stars/notext/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/stargazers)
+
 <img alt="logo" title="huetiful-js" src="./logo_v1.png">
+
+#### References 🔗
+
+- [Coloring with code: A programmatic approach by George Francis](https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/)
+- [Programming Design Systems: Rune Madsen](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://programmingdesignsystems.com/&ved=2ahUKEwi42O3hy-6DAxXqV0EAHTmpCqEQFnoECBsQAQ&usg=AOvVaw0l2PlWPxOi8UrhBYO1mc9q)
+- [Introducing Adaptive Color Palettes](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://medium.com/thinking-design/introducing-adaptive-color-palettes-111b5842fc88&ved=2ahUKEwj5xNSuy-6DAxV8REEAHVKaAMwQFnoECB0QAQ&usg=AOvVaw2ufCwph7oofZCFawA0WPr-)
+- [Culori API docs](https://culorijs.org/api/)
 
 ##### License
 
