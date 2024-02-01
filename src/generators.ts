@@ -31,7 +31,8 @@ import {
   interpolatorSplineNaturalClosed,
   modeHsv,
   nearest,
-  Color
+  Color,
+  differenceHyab
 } from 'culori/fn';
 
 import type {
@@ -148,11 +149,20 @@ console.log(discoverPalettes(sample, "tetradic"))
  */
 function discoverPalettes(
   colors: ColorToken[],
-  schemeType?: 'analogous' | 'triadic' | 'tetradic' | 'complementary'
+  schemeType?: 'analogous' | 'triadic' | 'tetradic' | 'complementary',
+  colorspace?: UniformColorSpaces
 ): ColorToken[] | object {
-  const { keys } = Object;
+  const [lightness, chroma] = [
+    matchLightnessChannel(colorspace).split('.')[1],
+    matchChromaChannel(colorspace).split('.')[1]
+  ];
+
   const isColorEqual = (c1: ColorToken, c2: ColorToken): boolean => {
-    return c1['h'] === c2['h'] && c1['l'] === c2['l'] && c1['c'] === c2['c'];
+    return (
+      c1['h'] === c2['h'] &&
+      c1[lightness] === c2[lightness] &&
+      c1[chroma] === c2[chroma]
+    );
   };
 
   const toLch = useMode(modeLch);
@@ -163,7 +173,7 @@ function discoverPalettes(
   for (const color of colors) {
     schemeKeys.forEach((s) => (targetPalettes[s] = scheme(s)(color)));
 
-    for (const paletteType of keys(targetPalettes)) {
+    for (const paletteType of Object.keys(targetPalettes)) {
       const palette = [];
       let variance = 0;
 
@@ -179,7 +189,7 @@ function discoverPalettes(
         )(targetColor)[0];
 
         // @ts-ignore
-        variance += differenceEuclidean('lch')(targetColor, match);
+        variance += differenceHyab()(targetColor, match);
 
         palette.push(match);
       }
@@ -189,16 +199,18 @@ function discoverPalettes(
       }
     }
   }
-
+  var result: object | ColorToken[];
   if (typeof schemeType === 'string') {
-    return palettes[schemeType.toLowerCase()];
+    result = palettes[schemeType.toLowerCase()];
   } else if (typeof schemeType === 'undefined') {
-    return palettes;
+    result = palettes;
   } else {
     throw Error(
       `${schemeType} is not a valid scheme. The schemes are triadic | tetradic | analogous | complementary`
     );
   }
+
+  return result;
 }
 
 /**
@@ -423,7 +435,7 @@ function interpolator(
       checkArg(easingFunc, interpolator['easingFunc']) as typeof easingFunc
     ],
     // @ts-ignore
-    checkArg(colorspace, 'jch') as typeof colorspace,
+    checkArg(colorspace, 'lch') as typeof colorspace,
     {
       //@ts-ignore
       h: {
@@ -546,8 +558,10 @@ function pastel(color: ColorToken): ColorToken {
     }
   ];
 
-  const sampleSaturation = samplePastelObj.map((el) => el['saturation']);
-  const sampleValues = samplePastelObj.map((el) => el['value']);
+  const [sampleSaturation, sampleValues] = [
+    samplePastelObj.map((el) => el['saturation']),
+    samplePastelObj.map((el) => el['value'])
+  ];
 
   const pastelSample = {
     averageSaturation: averageNumber(sampleValues),
@@ -558,8 +572,7 @@ function pastel(color: ColorToken): ColorToken {
     maxSampleValue: max(sampleValues)
   };
 
-  const toHsv = useMode(modeHsv);
-  color = toHsv(toHex(color));
+  color = useMode(modeHsv)(toHex(color));
   // For now we're simply returning an hsv object with the s and v channel set to the averages
   return toHex({
     h: color['h'],

@@ -77,15 +77,14 @@ import { interpolatorConfig } from './helpers';
 class ColorArray {
   constructor(colors: ColorToken[]) {
     this['colors'] = colors;
-    return this;
   }
 
   /**
    *
    *  Returns a spline based interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
-   * @param colorspace The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
+   * @param colorspace The colorspace to perform the interpolation in. Prefer uniform color spaces for better results such as Lch or Jch.
    * @param kind The type of the spline interpolation method. Default is basis.
-   * @param closed Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false
+   * @param closed Optional parameter to return the `closed` variant of the `kind` of interpolation method which can be useful for cyclical color scales. Default is false
    * @param options Optional channel specific overrides.
    * @returns A hexadecimal representation of the resultant color.
    */
@@ -1371,7 +1370,7 @@ console.log(red('900'));
 
  *
  */
-function tailwindColors(shade: keyof TailwindColorFamilies) {
+function tailwindColors(shade: TailwindColorFamilies) {
   return (val?: ScaleValues): string | string[] => {
     // This is a curried func that takes in the shade and returns a function that takes in a value from 100 thru 900
     // @ts-ignore
