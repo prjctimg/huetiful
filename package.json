@@ -4,8 +4,8 @@
   "type": "module",
   "main": "./lib/huetiful.esm.mjs",
   "module": "./lib/huetiful.esm.mjs",
-  "browser": "./lib/huetiful.esm.mjs",
-  "jsdelivr": "./lib/huetiful.umd.js",
+  "browser": "./lib/huetiful.umd.js",
+  "jsdelivr": "./lib/huetiful.esm.min.mjs",
   "types": "./lib/huetiful.d.ts",
   "description": "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
   "dependencies": {
