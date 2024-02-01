@@ -205,7 +205,22 @@ function matchLightnessChannel(colorspace: HueColorSpaces | string): string {
   }
 }
 
+/**
+ * 
+ * @param factor The factor being queried
+ * @param callback The function to compute the factor value. It must have an arity of one and take a color as its argument.
+ * @example
+
+ let col = 'purple';
+console.log(colorObj('saturation', getChannel('lch.c'))(col));
+// { saturation: 66.82572352143816, color: 'purple' }
+
+ */
 function colorObj(factor: Factor, callback: callback) {
+  /**
+   * @param color The color to query its factor
+   * @returns An object
+   */
   return (color: ColorToken) => {
     // @ts-ignore
     return { [factor]: callback(color), color: color };
@@ -214,13 +229,10 @@ function colorObj(factor: Factor, callback: callback) {
 
 /**
  * @internal
-
- *
- * @private
- * @param {Array|Object} collection The collection to inspect.
- * @param {Function} predicate The function invoked per iteration.
- * @param {number} factor The value to compare against
- * @returns {*} Returns the found element or its key, else `undefined`.
+ * @param collection The collection to inspect.
+ * @param predicate The function invoked per iteration.
+ * @param factor The value to compare against
+ * @returns Returns the found element or its key, else `undefined`.
  */
 function customFindKey(collection: object, factor: number) {
   // If the color is achromatic return the string gray
@@ -277,15 +289,16 @@ function adjustHue(value: number) {
  * Returns the channel value difference between the passed in colors. They are both converted to the colorspace in the modeChannel parameter before values are computed.
  * @param color The color to subtract values from/
  * @param modeChannel The colorspace and channel string to perform the operation in.
- * @returns The difference between the color channel(s)
  * @example
  *
+console.log(channelDifference('blue', 'okhsl.l')('pink'));
+// 0.4794739863155694
  *
  */
 function channelDifference(color: ColorToken, modeChannel: string) {
   /**
-   * @internal
    * @param subtrahend The color to use as subtrahend
+   * @returns The difference between the color channel(s)
    */
   return (subtrahend: ColorToken) => {
     const cb = (color: ColorToken) => getChannel(modeChannel)(color);
@@ -298,33 +311,122 @@ function channelDifference(color: ColorToken, modeChannel: string) {
 }
 
 // Comparison operators
+
+/**
+ * Checks if x is greater than y
+ * @param x The value to compare
+ * @param y The value to compare against
+ * @returns True if x is greater than y else false.
+ *
+ * @example
+ *
+ * gt(5,10)
+ * // false
+ */
 function gt(x: number, y: number): boolean {
   return x > y;
 }
+
+/**
+ * Checks if x is less than y.
+ * @param x The value to compare
+ * @param y The value to compare against
+ * @returns True if x is less than y else false.
+ *
+ * @example
+ * lt(2,8)
+ * // true
+ */
 function lt(x: number, y: number): boolean {
   return x < y;
 }
+
+/**
+ * Checks if x is greater than or equal to y.
+ * @param x The value to compare
+ * @param y The value to compare against
+ * @returns True if x is greater than or equal to x else false.
+ *
+ * @example
+ * gte(5,5)
+ * // true
+ *
+ * gte(6,5)
+ * // true
+ *
+ * gte(4,5)
+ * // false
+ */
 function gte(x: number, y: number): boolean {
   return x >= y;
 }
+
+/**
+ * Checks if x is less than or equal to y.
+ * @param x The value to compare
+ * @param y The value to compare against
+ * @returns True if x is less than or equal to y else false.
+ *
+ * @example
+ *
+ * lte(5,5)
+ * // true
+ *
+ * lte(6,5)
+ * // false
+ *
+ * lte(4,5)
+ * // true
+ */
 function lte(x: number, y: number): boolean {
   return x <= y;
 }
+
+/**
+ * Checks if x is equal to y
+ * @param x The value to compare
+ * @param y The value to compare against
+ * @returns True if x is equal to y else false.
+ *
+ * eq(4,5)
+ * // false
+ */
 function eq(x: number, y: number): boolean {
   return x === y;
 }
+
+/**
+ * Checks if x is not equal to y. The inverse of `eq`
+ * @param x The value to compare
+ * @param y The value to compare against
+ * @returns True if x is not equal to y else false.
+ *
+ * @example
+ * neq(5,5)
+ * // false
+ *
+ * neq(4,5)
+ * // true
+ */
 function neq(x: number, y: number): boolean {
   return !(x === y);
 }
 
 /**
  * @internal
- * @function
- *  Checks if a value is within the start and end range.
+ * Checks if a value is within the start and end range.
  * @param number The number to check.
  * @param start The minimum or starting value.
  * @param end The maximum or starting value.
  * @returns True if the number is in range else false.
+ *
+ * @example
+ *
+ * inRange(5,6,10)
+ * // true
+ *
+ * inRange(-3,0)
+ * // false
  */
 
 function inRange(number: number, start: number, end?: number): boolean {
@@ -335,9 +437,17 @@ function inRange(number: number, start: number, end?: number): boolean {
 
 /**
  * @internal
- *  Checks if a number is an integer or float.
+ * Checks if a number is an integer or float.
  * @param num The number to query
  * @returns True if the number is an integer else false if it is a float.
+ *
+ * @example
+ *
+ * isInteger(2)
+ * // true
+ *
+ * isInteger(2.01)
+ * // false
  */
 function isInteger(num: number | string) {
   const reInt = /^-?[0-9]+$/;
@@ -346,11 +456,11 @@ function isInteger(num: number | string) {
 
 /**
  * @internal
- * @function
- *  Normalizes passed in channel value to a range accepted by color spaces as defined in Culori.
+ * Normalizes passed in channel value to a range accepted by color spaces as defined in Culori.
  * @param value The value to chec if its in the accepted range for the passed in mode channel
  * @param modeChannel A string defining the mode and channel ranges to use for comparison
  * @returns The normalized channel value or the passed in value if it was within range
+ *
  */
 function normalize(value: number, modeChannel: string): number {
   const [mode, channel]: string[] = modeChannel.split('.');
@@ -369,11 +479,15 @@ function normalize(value: number, modeChannel: string): number {
 
 /**
  * @internal
- * @function
- *  Returns a random number between minimum and maximum bounds.
+ * Returns a random number between minimum and maximum bounds.
  * @param min The lower bound.
  * @param max The upper bound.
  * @returns A number.
+ *
+ * @example
+ *
+ * random(5,15)
+ * // 6
  */
 function random(min: number, max: number): number {
   if (min > max) {
@@ -386,14 +500,13 @@ function random(min: number, max: number): number {
   }
 }
 
-const { ceil, floor } = Math;
 /**
  * @internal
- * @function
  * Rounds up or down a number based on the float value.
  * @param num The number to round up or down.
  * @returns An integer
  * @example
+ * 
  * console.log(floorCeil(1.45));
 // 1
 console.log(floorCeil(1.501));
@@ -410,9 +523,9 @@ function floorCeil(num: number): number {
     const reFloorCeil = (float: string) => /^[0-4]$/.test(float.charAt(0));
 
     if (reFloorCeil(float)) {
-      num = floor(num);
+      num = Math.floor(num);
     } else {
-      num = ceil(num);
+      num = Math.ceil(num);
     }
   }
 
@@ -421,16 +534,15 @@ function floorCeil(num: number): number {
 
 /**
  * @internal
- *  Helper function for native sorting method for arrays.
+ * Helper function for native sorting method for arrays.
  * @param factor The property to query.
  * @param order Either ascending or descending.
  * @returns A sorted array.
  */
 function customSort(order: Order, factor?: Factor | string) {
-  //  Special thanks to deechris27 on youtube
   // a-b gives asc order & b-a gives desc order
   factor = factor || 'factor';
-  return (a, b) => {
+  return (a: { [x: string]: number }, b: { [x: string]: number }) => {
     if (order === 'asc') {
       return a[factor] - b[factor];
     } else if (order === 'desc') {
@@ -448,8 +560,6 @@ function customSort(order: Order, factor?: Factor | string) {
  */
 function colorObjArr(factor: Factor, callback) {
   /**
-   * @internal
-   *
    * @param collection The array or object of colors to iterate over. If an object is passed, its values are expected to be valid color tokens.
    */
   return (
