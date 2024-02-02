@@ -26,6 +26,7 @@ build({
   ...sharedConfig,
   platform: 'browser',
   format: 'esm',
+  minify: true,
   outfile: './lib/huetiful.esm.min.mjs'
 });
 
