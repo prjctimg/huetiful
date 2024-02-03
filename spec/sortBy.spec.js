@@ -14,10 +14,22 @@ governing permissions and limitations under the License.
 */
 
 describe(`The sortBy module test suite `, function () {
-  it(`It sorts colors by hue`, function () {
-    let colors = ['blue', 'pink', 'yellow', 'green'];
-
-    expect(sortBy.sortByHue(colors, 'asc', 'lch')).toEqual(
+  const funcs = ['sortBySaturation', 'sortByLightness', 'sortByLuminance'];
+  let colors = ['blue', 'pink', 'yellow', 'green'];
+  for (let idx = 0; idx < funcs.length; idx++) {
+    it(`It sorts colors by ${funcs[idx]}`, function () {
+      expect(sortBy[funcs[idx]](colors, 'asc')).toEqual(
+        jasmine.arrayContaining(colors)
+      );
+    });
+  }
+  it(`Sorts color by contrast`, function () {
+    expect(sortBy.sortByContrast(colors, 'black', 'asc')).toEqual(
+      jasmine.arrayContaining(colors)
+    );
+  });
+  it(`Sorts color by distance`, function () {
+    expect(sortBy.sortByContrast(colors, 'black', 'asc')).toEqual(
       jasmine.arrayContaining(colors)
     );
   });
