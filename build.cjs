@@ -27,8 +27,7 @@ for (let idx = 0; idx < moduleNames.length; idx++) {
     outfile: `./lib/${moduleNames[idx]}.esm.mjs`,
     external: Object.keys(dependencies),
     entryPoints: [`./src/${moduleNames[idx]}.ts`],
-    minify: false,
-    minifySyntax: true
+    minify: false
   });
 
   //Bundled ESM
@@ -51,7 +50,6 @@ build({
   format: 'iife',
   outfile: './lib/huetiful.umd.js',
   globalName: 'huetiful',
-  minifySyntax: true,
   minify: true
 });
 console.log(`[info] UMD build successful`);
