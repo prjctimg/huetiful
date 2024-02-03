@@ -40,8 +40,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "",
-      "pre-commit": ""
+      "push": "pre-push",
+      "commit": "pre-commit"
     }
   },
   "prettier": {
