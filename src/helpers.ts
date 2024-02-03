@@ -573,33 +573,6 @@ function colorObjArr(factor: Factor, callback) {
 
 /**
  * @internal
- * Returns the passed in value
- * @param value The value to return
- * @returns
- */
-function identity(value) {
-  return value;
-}
-function baseExtremum(array: number[], iteratee, comparator) {
-  var [index, length] = [-1, array.length];
-
-  while (++index < length) {
-    var [value, current] = [array[index], iteratee(value)];
-
-    if (
-      current != null &&
-      (computed === undefined
-        ? current === current
-        : comparator(current, computed))
-    ) {
-      var computed = current,
-        result = value;
-    }
-  }
-  return result;
-}
-/**
- * @internal
  *  Gets the smallest value in an array
  * @param array The array to retrieve minimum value
  * @returns The smallest number in the array
@@ -609,9 +582,9 @@ function baseExtremum(array: number[], iteratee, comparator) {
  * 
  */
 function min(array: number[]): number {
-  return (
-    (array && array.length && baseExtremum(array, identity, lt)) || undefined
-  );
+  // @ts-ignore
+  array = checkArg(array, []);
+  return array.reduce((a, b) => Math.min(a, b), Infinity);
 }
 /**
  * @internal
@@ -623,9 +596,9 @@ function min(array: number[]): number {
 // 4
  */
 function max(array: number[]): number {
-  return (
-    (array && array.length && baseExtremum(array, identity, gt)) || undefined
-  );
+  // @ts-ignore
+  array = checkArg(array, []);
+  return array.reduce((a, b) => Math.max(a, b), -Infinity);
 }
 
 /**

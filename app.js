@@ -47,12 +47,10 @@ let sample = [
 //  [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
 console.log(getHueFamily('purple'));
 console.log(
-  max(
+  min(
     customConcat({
       warm: [343, 359],
       cool: [321, 342]
     })
   )
 );
-
-console.log(lt(3, 7));
