@@ -1,6 +1,6 @@
 /* eslint-disable no-ternary */
 /**
- * @preserve 
+ * @module
  * @license
  * helpers.ts - Helper functions for huetiful-js.
  * Contains colors from TailwindCSS released under the MIT permissive licence.
@@ -431,8 +431,8 @@ function neq(x: number, y: number): boolean {
 
 function inRange(number: number, start: number, end?: number): boolean {
   /* Built-in method references for those with the same name as other `lodash` methods. */
-  Math.min;
-  return number >= Math.min(start, end) && number < Math.max(start, end);
+
+  return gte(number, Math.min(start, end)) && lt(number, Math.max(start, end));
 }
 
 /**

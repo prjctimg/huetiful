@@ -1,3 +1,4 @@
+/* eslint-disable no-ternary */
 import hueTempMap from './color-maps/samples/hueTemperature.js';
 import {
   adjustHue,
@@ -11,8 +12,15 @@ import {
   min,
   random
 } from './helpers.js';
+
+import { colors } from './colors.js';
+
 import { toHex } from './converters.js';
 import {
+  filterDeficiencyDeuter,
+  filterDeficiencyProt,
+  filterDeficiencyTrit,
+  filterGrayscale,
   interpolate,
   wcagLuminance,
   modeRgb,
@@ -45,32 +53,36 @@ import { matchChromaChannel, sortedArr, checkArg } from './helpers.js';
  * @returns The name of the hue family for example red or green.
  * @example
  * 
- * import { getHue } from 'huetiful-js'
+ * import { getHueFamily } from 'huetiful-js'
 
 
-console.log(getHue("#310000"))
+console.log(getHueFamily("#310000"))
 // red
  */
-function getHueFamily(color: ColorToken, mode?: HueColorSpaces): HueFamily {
+function getHueFamily(color: ColorToken): HueFamily {
   //Capture the hue value
 
-  return Object.keys(hueTempMap)
-    .map((hue) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  let result: HueFamily;
+  for (
+    var [idx, hueKeys] = [0, Object.keys(hueTempMap)];
+    idx < hueKeys.length;
+    idx++
+  ) {
+    var [current, hueVals, minVal, maxVal] = [
+      hueKeys[idx],
+      customConcat(hueTempMap[current]),
+      min(hueVals),
+      max(hueVals)
+    ];
 
-      // @ts-ignore
-      var [hueVals, minVal, maxVal] = [
-        customConcat(hueTempMap[hue]),
-        min(hueVals),
-        max(hueVals)
-      ];
-      const bool = customConcat(hueTempMap[hue]).some(() =>
-        inRange(getChannel(`${mode}.h`)(color), minVal, maxVal)
-      );
+    if (
+      hueVals.some(() => inRange(getChannel(`lch.h`)(color), minVal, maxVal))
+    ) {
+      result = current;
+    }
+  }
 
-      return bool && hue;
-    })
-    .filter((val) => typeof val === 'string')[0] as HueFamily;
+  return result;
 }
 
 function lightnessPredicate(colorspace) {
@@ -183,7 +195,7 @@ function baseFunc(
 /**
  * 
  *  Gets the smallest contrast value from the passed in colors compared against a sample color.
- * @param colors The array of colors to query the color with the smallest contrast value.
+ * @param collection The array or object of colors to query the color with the smallest contrast value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (contrast) and name of the color as keys. Default is false.
  * @param mode THe mode colorspace to retrieve the contrast value from.
  * @returns The smallest contrast value in the colors passed in or a custom object.
@@ -204,7 +216,7 @@ function getNearestContrast(
 ) {
   return baseFunc(
     'contrast',
-    colors,
+    collection,
     contrastPredicate(against),
     'desc',
     colorObj
@@ -214,7 +226,7 @@ function getNearestContrast(
 /**
  *
  *  Gets the largest contrast value from the passed in colors compared against a sample color.
- * @param colors The array of colors to query the color with the largest contrast value.
+ * @param collection The array or object of colors to query the color with the largest contrast value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (contrast) and name of the color as keys. Default is false.
  * @param mode THe mode colorspace to retrieve the contrast value from.
  * @returns The largest contrast value in the colors passed in or a custom object.
@@ -237,7 +249,7 @@ function getFarthestContrast(
 ): number | { factor: number; name: ColorToken } {
   return baseFunc(
     'contrast',
-    colors,
+    collection,
     contrastPredicate(against),
     'desc',
     colorObj
@@ -247,7 +259,7 @@ function getFarthestContrast(
 /**
  *
  *  Gets the smallest chroma/saturation value from the passed in colors.
- * @param colors The array of colors to query the color with the smallest chroma/saturation value.
+ * @param collection The array or object of colors to query the color with the smallest chroma/saturation value.
  * @param colorspace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false.
  * @returns The smallest chroma/saturation value in the colors passed in or a custom object.
@@ -267,7 +279,7 @@ function getNearestChroma(
 ): number | { factor: number; color: ColorToken } {
   return baseFunc(
     'saturation',
-    colors,
+    collection,
     chromaPredicate(colorspace),
     'asc',
     colorObj
@@ -277,7 +289,7 @@ function getNearestChroma(
 /**
  *
  *  Gets the largest saturation value from the passed in colors.
- * @param colors The array of colors to query the color with the largest saturation value.
+ * @param colors The array or object of colors to query the color with the largest saturation value.
  * @param colorSpace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false.
  * @returns The largest saturation value in the colors passed in or a custom object.
@@ -294,13 +306,13 @@ function getFarthestChroma(
   collection: ColorToken[] | object,
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
-  return baseFunc('saturation', colors, chromaPredicate, 'desc', colorObj);
+  return baseFunc('saturation', collection, chromaPredicate, 'desc', colorObj);
 }
 
 /**
  *
  *  Gets the smallest hue value from the passed in colors.
- * @param colors The array of colors to query the color with the smallest hue value.
+ * @param colors The array or object of colors to query the color with the smallest hue value.
  * @param colorspace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.
  * @returns The smallest hue value in the colors passed in or a custom object.
@@ -318,7 +330,7 @@ function getNearestHue(
   colorspace?: HueColorSpaces | string,
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
-  return baseFunc('hue', colors, huePredicate(colorspace), 'asc', colorObj);
+  return baseFunc('hue', collection, huePredicate(colorspace), 'asc', colorObj);
 }
 
 /**
@@ -341,7 +353,13 @@ function getFarthestHue(
   colorspace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
-  return baseFunc('hue', colors, huePredicate(colorspace), 'desc', colorObj);
+  return baseFunc(
+    'hue',
+    collection,
+    huePredicate(colorspace),
+    'desc',
+    colorObj
+  );
 }
 
 /**
@@ -354,7 +372,7 @@ function getFarthestHue(
  *import { getComplimentaryHue } from "huetiful-js";
  *
  * 
-console.log(getComplimentaryHue("pink", true))
+console.log(getComplimentaryHue("pink",'lch', true))
 //// { hue: 'blue-green', color: '#97dfd7ff' }
 
 console.log(getComplimentaryHue("purple"))
@@ -365,7 +383,7 @@ function getComplimentaryHue(
   colorspace?: HueColorSpaces,
   colorObj = false
 ): { hue: string; color: ColorToken } | ColorToken {
-  const modeChannel = `${colorspace}.h`;
+  const modeChannel = `${checkArg(colorspace, 'lch')}.h`;
 
   const complementaryHue: number = adjustHue(
     getChannel(modeChannel)(color) + 180 * random(0.965, 1)
@@ -456,7 +474,7 @@ function getChannel(mc: string) {
  * import { getLuminance,colors } from 'huetiful-js'
 
 console.log(getLuminance('#a1bd2f'))
-// 0.4417749513730954
+// 0.4417749513730954 
 
 console.log(colors('all', '400').map(getLuminance));
 
@@ -650,7 +668,7 @@ function overtone(color: ColorToken): string | boolean {
 /**
  * 
  *  Gets the smallest lightness value from the passed in colors.
- * @param colors The array of colors to query the color with the smallest lightness value.
+ * @param collection The array or object of colors to query the color with the smallest lightness value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.
  * @param mode THe mode colorspace to retrieve the lightness value from.
  * @returns The smallest lightness value in the colors passed in or a custom object.
@@ -660,7 +678,7 @@ function overtone(color: ColorToken): string | boolean {
 
 let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
 
-console.log(getNearestLightness(sample, true))
+console.log(getNearestLightness(sample, 'lch',true))
 
 // { lightness: 72.61647882089876, name: '#a1bd2f' }
 
@@ -674,7 +692,7 @@ function getNearestLightness(
 
   return baseFunc(
     'lightness',
-    colors,
+    collection,
     lightnessPredicate(colorspace),
     'asc',
     colorObj
@@ -684,7 +702,7 @@ function getNearestLightness(
 /**
  * 
  *  Gets the largest lightness value from the passed in colors.
- * @param colors The array of colors to query the color with the largest lightness value.
+ * @param collection The array or object of colors to query the color with the largest lightness value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.
  * @param colorspace THe mode colorspace to retrieve the lightness value from.
  * @returns The largest lightness value in the colors passed in or a custom object.
@@ -694,7 +712,7 @@ function getNearestLightness(
 
 let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
 
-console.log(getFarthestLightness(sample, true))
+console.log(getFarthestLightness(sample, 'lch',true))
 
 // { lightness: 80.94668903360088, name: '#f3bac1' }
 
@@ -707,7 +725,7 @@ function getFarthestLightness(
   // @ts-ignore
   return baseFunc(
     'lightness',
-    colors,
+    collection,
     lightnessPredicate(colorspace),
     'asc',
     colorObj
@@ -818,22 +836,16 @@ console.log(map(grays, isAchromatic));
 function isAchromatic(color: ColorToken, mode?: HueColorSpaces): boolean {
   // If a color has no lightness then it has no hue so its technically achromatic
   const props = {
-    lightness: getChannel(`${matchLightnessChannel(mode as string)}`),
+    lightness: getChannel(`${matchLightnessChannel(mode as string)}`)(color),
     chroma: getChannel(`${matchChromaChannel(mode as string)}`)(color)
   };
 
   // Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
   // @ts-ignore
-  return (props['chroma'] && props['lightness'] !== false) || 0 || NaN;
+  return props['chroma'] && props['lightness'] !== (false || NaN || undefined)
+    ? false
+    : true;
 }
-
-import {
-  filterDeficiencyDeuter,
-  filterDeficiencyProt,
-  filterDeficiencyTrit,
-  filterGrayscale
-} from 'culori/fn';
-import { colors } from './colors.js';
 
 // This module is focused on creating color blind safe palettes that adhere to the minimum contrast requirements
 

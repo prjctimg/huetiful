@@ -13,7 +13,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-describe(`The filterBy module test suite `, function () {
+describe(`The filterBy module test suite `, () => {
   // For utils that take a colorspace param the default is 'lch'
   var data = {
     filterBySaturation: {
@@ -69,9 +69,12 @@ describe(`The filterBy module test suite `, function () {
     '#600000'
   );
   for (let idx = 0; idx < funcs.length; idx++) {
-    var current = funcs[idx];
-    var [start, end] = [data[current]['start'], data[current]['end']];
-    it(`It filters colors by ${current}`, function () {
+    var [current, start, end] = [
+      funcs[idx],
+      data[current]['start'],
+      data[current]['end']
+    ];
+    it(`It filters colors by ${current}`, () => {
       expect(filterBy[current](colors, start, end)).toEqual(jasmine.anything());
     });
   }

@@ -1,5 +1,6 @@
 //
 import {
+  inRange,
   colors,
   filterBySaturation,
   getLuminance,
@@ -8,7 +9,13 @@ import {
   getChannel,
   channelDifference,
   filterByLuminance,
-  normalize
+  normalize,
+  isAchromatic,
+  getHueFamily,
+  customConcat,
+  min,
+  max,
+  lt
 } from './lib/huetiful.esm.mjs';
 
 // // import Rune from 'rune.js';
@@ -33,8 +40,19 @@ let sample = [
   '#720000'
 ];
 
-console.log(filterByLuminance(['blue', 'yellow', 'red', 'pink', 'green'], 0.3));
+//console.log(filterByLuminance(['blue', 'yellow', 'red', 'pink', 'green'], 0.3));
 
-//console.log(filterByLuminance(sample, 0.4));
-console.log(sample.map(getChannel('lch.c')));
+// //console.log(filterByLuminance(sample, 0.4));
+// console.log(sample.map(getChannel('lch.c')));
 //  [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
+console.log(getHueFamily('purple'));
+console.log(
+  max(
+    customConcat({
+      warm: [343, 359],
+      cool: [321, 342]
+    })
+  )
+);
+
+console.log(lt(3, 7));
