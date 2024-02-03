@@ -36,10 +36,7 @@ jobs:
           npm install @microsoft/eslint-formatter-sarif@2.1.7
 
       - name: Run ESLint
-        run: npx eslint .
-          --ext .ts,
-          --format @microsoft/eslint-formatter-sarif
-          --output-file eslint-results.sarif
+        run: npx eslint
         continue-on-error: true
 
       - name: Upload analysis results to GitHub
