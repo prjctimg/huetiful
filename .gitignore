@@ -45,9 +45,6 @@ debug.log
 next-env.d.ts
 /_site
 
-
-
-app.js
 *.code-worspace
 /leonardo-main
 source/lib
