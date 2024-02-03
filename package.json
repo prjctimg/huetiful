@@ -39,10 +39,7 @@
     "start": "nodemon app.js --watch "
   },
   "husky": {
-    "hooks": {
-      "push": "pre-push",
-      "commit": "pre-commit"
-    }
+    "hooks": {}
   },
   "prettier": {
     "semi": true,
