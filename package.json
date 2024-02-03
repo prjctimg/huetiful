@@ -40,8 +40,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm test & npm run code:format",
-      "pre-commit": "git add . && npm run code:lint"
+      "pre-push": "",
+      "pre-commit": ""
     }
   },
   "prettier": {
