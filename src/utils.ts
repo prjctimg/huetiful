@@ -6,6 +6,7 @@ import {
   expressionParser,
   floorCeil,
   inRange,
+  lt,
   lte,
   matchLightnessChannel,
   max,
@@ -63,22 +64,21 @@ function getHueFamily(color: ColorToken): HueFamily {
   //Capture the hue value
 
   let result: HueFamily;
+  var dist;
   for (
     var [idx, hueKeys] = [0, Object.keys(hueTempMap)];
     idx < hueKeys.length;
     idx++
   ) {
-    var [current, hueVals, minVal, maxVal] = [
+    var [current, hueVals, currentHue] = [
       hueKeys[idx],
       customConcat(hueTempMap[current]),
-      min(hueVals),
-      max(hueVals)
+      getChannel(`hsl.h`)(color)
     ];
 
-    if (
-      hueVals.some(() => inRange(getChannel(`lch.h`)(color), minVal, maxVal))
-    ) {
-      result = current;
+    if (inRange(currentHue, min(hueVals), max(hueVals))) {
+      dist = currentHue - max(hueVals);
+      result = lt(currentHue - max(hueVals), dist) && current;
     }
   }
 
