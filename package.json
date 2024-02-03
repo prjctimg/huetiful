@@ -39,7 +39,10 @@
     "start": "nodemon app.js --watch "
   },
   "husky": {
-    "hooks": {}
+    "hooks": {
+      "push": "npm test & npm run code:format",
+      "commit": "git add . && npm run code:lint"
+    }
   },
   "prettier": {
     "semi": true,
