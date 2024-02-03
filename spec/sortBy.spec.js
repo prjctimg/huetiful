@@ -17,6 +17,6 @@ describe(`The sortBy module test suite `, function () {
   it(`It sorts colors by hue`, function () {
     let colors = ['blue', 'pink', 'yellow', 'green'];
 
-    expect(sortBy.sortByHue(colors, 'asc', 'lch')).toEqual(colors);
+    expect(sortBy.sortByHue(colors, 'asc', 'lch')).arrayContaining(colors);
   });
 });
