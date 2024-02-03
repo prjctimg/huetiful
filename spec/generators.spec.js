@@ -1,4 +1,4 @@
-import * as sortBy from "../lib/huetiful.esm.mjs";
+import * as generators from '../lib/generators.esm.mjs';
 
 /** 
  * @license
