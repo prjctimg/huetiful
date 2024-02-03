@@ -44,7 +44,7 @@ describe(`The filterBy module test suite `, function () {
 
   // Exclude funcs that take special params
   const funcs = Object.keys(data).filter(
-    (func) => func !== 'filterByContrast' || 'filterByDistance'
+    (func) => !'filterByContrast' || !'filterByDistance'
   );
   let colors = [
     '#00ffdc',
