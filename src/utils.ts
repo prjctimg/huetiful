@@ -10,7 +10,6 @@ import {
   lte,
   matchLightnessChannel,
   max,
-  min,
   random
 } from './helpers.js';
 
@@ -61,28 +60,20 @@ console.log(getHueFamily("#310000"))
 // red
  */
 function getHueFamily(color: ColorToken): HueFamily {
-  //Capture the hue value
-
-  let result: HueFamily;
-  var dist;
-  for (
-    var [idx, hueKeys] = [0, Object.keys(hueTempMap)];
-    idx < hueKeys.length;
-    idx++
-  ) {
-    var [current, hueVals, currentHue] = [
-      hueKeys[idx],
-      customConcat(hueTempMap[current]),
-      getChannel(`hsl.h`)(color)
+  var [nearestKey, nearestDiff] = ['', Infinity];
+  for (let [idx, value] of Object.entries(hueTempMap)) {
+    var [hueVals, currentHue, difference] = [
+      customConcat(value),
+      getChannel(`lch.h`)(color),
+      Math.abs(max(hueVals) - currentHue)
     ];
-
-    if (inRange(currentHue, min(hueVals), max(hueVals))) {
-      dist = currentHue - max(hueVals);
-      result = lt(currentHue - max(hueVals), dist) && current;
+    if (lt(difference, nearestDiff)) {
+      nearestKey = idx;
+      nearestDiff = difference;
     }
   }
 
-  return result;
+  return (nearestKey as HueFamily) || null;
 }
 
 function lightnessPredicate(colorspace) {

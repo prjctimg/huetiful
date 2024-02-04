@@ -45,7 +45,7 @@ let sample = [
 // //console.log(filterByLuminance(sample, 0.4));
 // console.log(sample.map(getChannel('lch.c')));
 //  [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
-console.log(getHueFamily('purple'));
+console.log(getHueFamily('blue'));
 // console.log(
 //   min(
 //     customConcat({
