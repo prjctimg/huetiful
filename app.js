@@ -15,9 +15,10 @@ import {
   customConcat,
   min,
   max,
-  lt
+  lt,
+  interpolateSpline,
+  earthtone
 } from './lib/huetiful.esm.mjs';
-import { darken, getNearestChroma } from './lib/utils.esm.mjs';
 
 // // import Rune from 'rune.js';
 
@@ -58,3 +59,11 @@ let sample = [
 
 //console.log(getNearestChroma(['b2c3f1', '#a1bd2f', '#f3bac1'], 'lch'));
 // console.log(darken('purple', '*0.5'));
+
+console.log(hueShift('#3e0000'));
+console.log(
+  earthtone({ l: 50, c: 76, h: 65, mode: 'lch' }, 'lch', {
+    earthtones: 'dark',
+    samples: 5
+  })
+);

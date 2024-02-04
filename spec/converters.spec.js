@@ -12,7 +12,7 @@ the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR REPRESENTA
 OF ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under the License.
 */
-describe(`This test suite tests to see the converters are returning values`, () => {
+describe(`This test suite checks the converter functions. `, () => {
   var data = {
     color2hex: {
       params: [{ l: 50, c: 31, h: 100, alpha: 0.5, mode: 'lch' }],

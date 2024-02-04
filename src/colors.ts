@@ -25,7 +25,7 @@ import type {
   HueColorSpaces,
   InterpolatorOptions,
   ColorOptions,
-  EarthtoneOptions,
+  //  EarthtoneOptions,
   HueFamily,
   HueShiftOptions,
   PairedSchemeOptions
@@ -63,7 +63,7 @@ import {
   hueShift as nativeHueShift,
   getHueFamily as nativeGetHue,
   pairedScheme as nativePairedScheme,
-  earthtone as nativeEarthtone,
+  //  earthtone as nativeEarthtone,
   getComplimentaryHue as nativeGetComplimentaryHue,
   colorDeficiency as nativeColorDeficiency,
   interpolator,
@@ -1481,7 +1481,7 @@ class Color {
   //   return this;
   // }
 
-  toHex(): Color {
+  color2hex(): Color {
     this['_color'] = nativeToHex(this['_color']);
     return this['_color'];
   }
@@ -1508,12 +1508,12 @@ class Color {
     this['_color'] = nativeGetComplimentaryHue(this['_color'], mode, colorObj);
     return this['_color'];
   }
-  earthtone(options?: EarthtoneOptions): ColorArray | ColorToken {
-    // @ts-ignore
-    this['colors'] = nativeEarthtone(this['_color'], checkArg(options, {}));
+  // earthtone(options?: EarthtoneOptions): ColorArray | ColorToken {
+  //   // @ts-ignore
+  //   this['colors'] = nativeEarthtone(this['_color'], checkArg(options, {}));
 
-    return this['colors'];
-  }
+  //   return this['colors'];
+  // }
   contrast(against: 'lightMode' | 'darkMode' | Color) {
     let result: number;
     switch (against) {
