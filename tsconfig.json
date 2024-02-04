@@ -1,7 +1,7 @@
 {
   "include": [
     "./src/index.ts"
-  ],"exclude":["**/*/node_modules"],
+  ],"exclude":["**/*/node_modules","./src/color-maps"],
   "compilerOptions": {
     "lib":["esnext"],
     "target":"esnext",

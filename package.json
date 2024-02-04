@@ -6,7 +6,17 @@
   "module": "./lib/huetiful.esm.mjs",
   "browser": "./lib/huetiful.umd.js",
   "jsdelivr": "./lib/huetiful.esm.min.mjs",
-  "types": "./lib/huetiful.d.ts",
+  "types": "./types",
+  "exports": {
+    "./generators": "./lib/generators.esm.mjs",
+    "./colors": "./lib/colors.esm.mjs",
+    "./utils": "./lib/utils.esm.mjs",
+    "./sortBy": "./lib/sortBy.esm.mjs",
+    "./filterBy": "./lib/filterBy.esm.mjs",
+    "./helpers": "./lib/helpers.esm.mjs",
+    "./converters": "./lib/converters",
+    ".": "./lib/huetiful.esm.mjs"
+  },
   "description": "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
   "dependencies": {
     "culori": "^3.0.1"
@@ -33,7 +43,7 @@
     "docs": "npx typedoc && cp -r ./logo.png ./docs && cp -r ./logo_v1.png ./docs && git add .",
     "code:build": "node build.cjs",
     "code:prepare": "npm run code:lint & npm run code:format & npm run code:build & npm run code:types & npm run docs",
-    "code:types": "dts-bundle-generator -o ./lib/huetiful.d.ts ./src/index.ts",
+    "code:types": "dts-bundle-generator -o ./types/huetiful.d.ts ./src/index.ts && npx tsc",
     "code:lint": "eslint --fix --ext .ts",
     "code:format": "prettier \"./src/*.ts\" --write",
     "start": "nodemon app.js --watch "
@@ -99,6 +109,7 @@
     "gitRemote": "main"
   },
   "files": [
+    "types",
     "lib",
     "CHANGELOG.md",
     "CODE_OF_CONDUCT.md",
