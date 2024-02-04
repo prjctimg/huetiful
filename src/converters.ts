@@ -33,7 +33,7 @@ import type {
 } from './types';
 import 'culori/all';
 import { formatHex8, colorsNamed } from 'culori/fn';
-import { getModeChannel } from './helpers';
+import { checkArg, getModeChannel } from './helpers';
 
 /**
  * Converter function with mode definitions for uniform color spaces. The function is curried to return a converter in the passed colospace.
@@ -58,15 +58,15 @@ function ucsConverter(colorspace: UniformColorSpaces) {
  * @param color The color to convert to hexadecimal. Works on color objects and CSS named colors.
  * @returns A hexadecimal representation of the passed in color.
  * @example
- * import { toHex } from "huetiful-js";
+ * import { color2hex } from "huetiful-js";
  * 
-console.log(toHex({ l: 50, c: 31, h: 100, alpha: 0.5, mode: "lch" }))
+console.log(color2hex({ l: 50, c: 31, h: 100, alpha: 0.5, mode: "lch" }))
 // #7b794180
 
-console.log(toHex({ l: 50, c: 31, h: 100, mode: "lch" }))
+console.log(color2hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 // #7b7941
  */
-function toHex(color: ColorToken): string {
+function color2hex(color: ColorToken): string {
   // the result to return at the end of the function
   var output;
   // if its of type string and not a CSS named color then its probably hex so we don't convert it
@@ -79,7 +79,7 @@ function toHex(color: ColorToken): string {
   } else if (typeof color === 'boolean') {
     return (color !== true && '#ffffff') || '#000000';
   } else if (typeof color === 'number') {
-    output = num2rgb(color, true) as string;
+    output = num2color(color);
   } else {
     // Get the mode variable
     const mode = Array.isArray(color)
@@ -119,7 +119,7 @@ function toHex(color: ColorToken): string {
         output = colorTupleToObj(color.slice(1));
       } else {
         output = colorTupleToObj(
-          toColorTuple(color, mode as Colorspaces).slice(1) as number[]
+          color2tuple(color, mode as Colorspaces).slice(1) as number[]
         );
       }
     }
@@ -136,26 +136,27 @@ function toHex(color: ColorToken): string {
  * @returns color An RGB color object or hex string.
  * @example
  * 
- * import { num2rgb } from 'huetiful-js'
+ * import { num2color } from 'huetiful-js'
 
-console.log(num2rgb(900, true))
+console.log(num2color(900, true))
 // #000384
  */
 
-function num2rgb(num: number, hex = false): ColorToken {
+function num2color(num: number, colorspace?: Colorspaces): ColorToken {
+  colorspace = (colorspace && colorspace.toLowerCase()) || colorspace;
   if (typeof num === 'number' && num >= 0 && num <= 0xffffff) {
     const r = num >> 16;
     const g = (num >> 8) & 0xff;
     const b = num & 0xff;
 
-    const output = {
+    const _rgb = {
       r: r / 255,
       g: g / 255,
       b: b / 255,
       mode: 'lrgb'
     };
     // @ts-ignore
-    return (hex && formatHex(output)) || output;
+    return (colorspace && useMode(colorspace)(_rgb)) || formatHex(_rgb);
   } else {
     throw Error('unknown num color: ' + num);
   }
@@ -168,15 +169,15 @@ function num2rgb(num: number, hex = false): ColorToken {
  * @returns value The numerical value of the color from 0 to 16,777,215.
  * @example
  * 
- * import { rgb2num } from 'huetiful-js'
+ * import { color2num } from 'huetiful-js'
 
-console.log(rgb2num("b2c3f1"))
+console.log(color2num("b2c3f1"))
 // 11715569
  */
 
-function rgb2num(color: ColorToken): number {
+function color2num(color: ColorToken): number {
   // @ts-ignore
-  const rgb: ColorToken = useMode(modeRgb)(toHex(color));
+  const rgb: ColorToken = useMode(modeRgb)(color2hex(color));
   return ((255 * rgb['r']) << 16) + ((255 * rgb['g']) << 8) + 255 * rgb['b'];
 }
 
@@ -192,16 +193,16 @@ function rgb2num(color: ColorToken): number {
  * @returns color The color as a hexadecimal  or RGB color object.
  * @example
  * 
- * import { temp2Color } from 'huetiful-js'
+ * import { temp2color } from 'huetiful-js'
 
-console.log(temp2Color(2542))
+console.log(temp2color(2542))
 // #ffa44a
  */
 
-function temp2Color(kelvin: number, hex = false): ColorToken {
+function temp2color(kelvin: number, colorspace?: Colorspaces): ColorToken {
   const { log } = Math;
   const temp = kelvin / 100;
-
+  colorspace = (colorspace && colorspace.toLowerCase()) || colorspace;
   var r: number, g: number, b: number;
   if (temp < 66) {
     r = 255;
@@ -236,14 +237,14 @@ function temp2Color(kelvin: number, hex = false): ColorToken {
   };
 
   // @ts-ignore
-  return (hex && formatHex(result)) || result;
+  return (colorspace && useMode(colorspace)(result)) || formatHex(result);
 }
 
 /**
  * 
  *  Returns an array of channel values in the mode color space. It does not mutate the values of the passed in color token.
- * @param color Expects the color to be in hexadecimal represantation or as a plain color object. 
- * @param mode The mode color space to return channel values for
+ * @param color Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g `num2color`.
+ * @param colorspace The mode color space to return channel values for
  * @returns An array of channel values with the colorspace as first element and the alpha channel if its explicitly defined in the passed in color.
  * @example 
  * 
@@ -254,22 +255,31 @@ let rgbColor = {
   b: 0.7,
   mode: "rgb",
 };
-console.log(toColorTuple(rgbColor,'rgb'));
+console.log(color2tuple(rgbColor));
 
 // [ 'rgb', 0.4, 0.3, 0.7 ]
 
  */
 
-function toColorTuple(color: string | object, mode: Colorspaces) {
+function color2tuple(color: string | object, colorspace?: Colorspaces) {
+  colorspace = color['mode'] || checkArg(colorspace, 'rgb');
+
   // @ts-ignore
-  const colorObject: ColorToken = converter(mode)(color);
+  const colorObject: ColorToken = converter(colorspace)(color);
 
   var arr = Object.keys(colorObject)
     .filter((ch) => ch !== 'mode')
     .map((key) => colorObject[key]);
-  arr.unshift(mode);
+  arr.unshift(colorspace);
 
   return arr;
 }
 
-export { num2rgb, rgb2num, temp2Color, toColorTuple, ucsConverter, toHex };
+export {
+  num2color,
+  color2num,
+  temp2color,
+  color2tuple,
+  ucsConverter,
+  color2hex
+};

@@ -12,7 +12,7 @@ governing permissions and limitations under the License.
 */
 
 import { differenceHyab } from 'culori/fn';
-import { toHex } from './converters';
+import { color2hex } from './converters';
 import type { ColorToken, HueColorSpaces, Factor } from './types';
 import { getLuminance, getContrast, getChannel } from './utils';
 import {
@@ -314,7 +314,7 @@ function filterByDistance(
 
   return baseFilterBy(
     'distance',
-    cb(toHex(against)),
+    cb(color2hex(against)),
     collection,
     startDistance,
     endDistance

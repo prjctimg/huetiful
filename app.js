@@ -17,6 +17,7 @@ import {
   max,
   lt
 } from './lib/huetiful.esm.mjs';
+import { darken, getNearestChroma } from './lib/utils.esm.mjs';
 
 // // import Rune from 'rune.js';
 
@@ -45,7 +46,7 @@ let sample = [
 // //console.log(filterByLuminance(sample, 0.4));
 // console.log(sample.map(getChannel('lch.c')));
 //  [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
-console.log(getHueFamily('blue'));
+//console.log(getHueFamily('blue'));
 // console.log(
 //   min(
 //     customConcat({
@@ -55,4 +56,5 @@ console.log(getHueFamily('blue'));
 //   )
 // );
 
-console.log(getChannel('hsl.h')('purple'));
+//console.log(getNearestChroma(['b2c3f1', '#a1bd2f', '#f3bac1'], 'lch'));
+// console.log(darken('purple', '*0.5'));

@@ -15,7 +15,7 @@ import {
 
 import { colors } from './colors.js';
 
-import { toHex } from './converters.js';
+import { color2hex } from './converters.js';
 import {
   filterDeficiencyDeuter,
   filterDeficiencyProt,
@@ -28,8 +28,6 @@ import {
   modeLch,
   converter,
   wcagContrast,
-  easingSmootherstep,
-  modeLab,
   nearest,
   differenceHyab
 } from 'culori/fn';
@@ -177,7 +175,7 @@ function baseFunc(
       factor,
       cb,
       order as Order,
-      colorObj
+      true
     )(collection).filter((el) => el[factor] !== undefined);
 
   return (colorObj && result[0]) || result[0][factor];
@@ -205,11 +203,12 @@ function getNearestContrast(
   against: ColorToken,
   colorObj?: boolean
 ) {
+  const factor: Factor = 'contrast';
   return baseFunc(
-    'contrast',
+    factor,
     collection,
     contrastPredicate(against),
-    'desc',
+    'asc',
     colorObj
   );
 }
@@ -238,8 +237,9 @@ function getFarthestContrast(
   against: ColorToken,
   colorObj?: boolean
 ): number | { factor: number; name: ColorToken } {
+  const factor: Factor = 'contrast';
   return baseFunc(
-    'contrast',
+    factor,
     collection,
     contrastPredicate(against),
     'desc',
@@ -268,8 +268,9 @@ function getNearestChroma(
   colorspace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
+  const factor: Factor = 'saturation';
   return baseFunc(
-    'saturation',
+    factor,
     collection,
     chromaPredicate(colorspace),
     'asc',
@@ -281,7 +282,7 @@ function getNearestChroma(
  *
  *  Gets the largest saturation value from the passed in colors.
  * @param colors The array or object of colors to query the color with the largest saturation value.
- * @param colorSpace The mode color space to perform the computation in.
+ * @param colorspace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false.
  * @returns The largest saturation value in the colors passed in or a custom object.
  * @example 
@@ -295,9 +296,17 @@ console.log(getFarthestChroma(sample, 'lch'))
  */
 function getFarthestChroma(
   collection: ColorToken[] | object,
+  colorspace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
-  return baseFunc('saturation', collection, chromaPredicate, 'desc', colorObj);
+  const factor: Factor = 'chroma';
+  return baseFunc(
+    factor,
+    collection,
+    chromaPredicate(colorspace),
+    'desc',
+    colorObj
+  );
 }
 
 /**
@@ -321,7 +330,14 @@ function getNearestHue(
   colorspace?: HueColorSpaces | string,
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
-  return baseFunc('hue', collection, huePredicate(colorspace), 'asc', colorObj);
+  const factor: Factor = 'hue';
+  return baseFunc(
+    factor,
+    collection,
+    huePredicate(colorspace),
+    'asc',
+    colorObj
+  );
 }
 
 /**
@@ -344,8 +360,9 @@ function getFarthestHue(
   colorspace?: HueColorSpaces,
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
+  const factor: Factor = 'hue';
   return baseFunc(
-    'hue',
+    factor,
     collection,
     huePredicate(colorspace),
     'desc',
@@ -383,7 +400,7 @@ function getComplimentaryHue(
   const result: ColorToken | { hue: string; color: ColorToken } =
     (complementaryHue && {
       hue: getHueFamily(complementaryHue),
-      color: toHex(setChannel(modeChannel)(color, complementaryHue))
+      color: color2hex(setChannel(modeChannel)(color, complementaryHue))
     }) || { hue: 'gray', color: color };
 
   return (colorObj && result) || result['color'];
@@ -411,7 +428,7 @@ function setChannel(mc: string) {
   return (color: ColorToken, value: number | string): ColorToken => {
     const [mode, channel] = mc.split('.');
     // @ts-ignore
-    const src: ColorToken = converter(mode)(toHex(color));
+    const src: ColorToken = converter(mode)(color2hex(color));
 
     if (channel) {
       if (typeof value === 'number') {
@@ -446,7 +463,7 @@ function getChannel(mc: string) {
   return (color: ColorToken): number => {
     const [mode, channel] = mc.split('.');
     // @ts-ignore
-    const src = converter(mode)(toHex(color));
+    const src = converter(mode)(color2hex(color));
 
     if (channel) {
       return src[channel];
@@ -483,7 +500,7 @@ console.log(colors('all', '400').map(getLuminance));
 ]
  */
 function getLuminance(color: ColorToken): number {
-  return wcagLuminance(toHex(color));
+  return wcagLuminance(color2hex(color));
 }
 
 const { pow, abs } = Math;
@@ -517,7 +534,7 @@ function setLuminance(color: ColorToken, lum: number): ColorToken {
     // @ts-ignore
     const cur_lum = wcagLuminance(color);
 
-    color = toRgb(toHex(color));
+    color = toRgb(color2hex(color));
 
     const test = (low: ColorToken, high: ColorToken) => {
       //Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
@@ -551,7 +568,7 @@ function setLuminance(color: ColorToken, lum: number): ColorToken {
 }
 
 function rgb2luminance(color: ColorToken): number {
-  color = toRgb(toHex(color));
+  color = toRgb(color2hex(color));
 
   // relative luminance
   // see http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
@@ -594,7 +611,7 @@ function alpha(color: ColorToken, value?: number | string): number {
 
   const channel = 'alpha';
   const lch = useMode(modeLch);
-  var src: ColorToken = lch(toHex(color));
+  var src: ColorToken = lch(color2hex(color));
   if (typeof value === 'undefined' || null) {
     return src[channel];
   } else if (typeof value === 'number') {
@@ -607,7 +624,7 @@ function alpha(color: ColorToken, value?: number | string): number {
     expressionParser(src, channel, value);
   }
   // @ts-ignore
-  return toHex(src);
+  return color2hex(src);
 }
 
 /**
@@ -624,7 +641,7 @@ function alpha(color: ColorToken, value?: number | string): number {
  * // 21
  */
 function getContrast(color: ColorToken, against: ColorToken): number {
-  return wcagContrast(toHex(color), toHex(against));
+  return wcagContrast(color2hex(color), color2hex(against));
 }
 
 /**
@@ -680,9 +697,9 @@ function getNearestLightness(
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
   // @ts-ignore
-
+  const factor: Factor = 'lightness';
   return baseFunc(
-    'lightness',
+    factor,
     collection,
     lightnessPredicate(colorspace),
     'asc',
@@ -714,16 +731,16 @@ function getFarthestLightness(
   colorObj = false
 ): number | { factor: number; color: ColorToken } {
   // @ts-ignore
+  const factor: Factor = 'lightness';
   return baseFunc(
-    'lightness',
+    factor,
     collection,
     lightnessPredicate(colorspace),
-    'asc',
+    'desc',
     colorObj
   );
 }
 
-const toLab = useMode(modeLab);
 /**
  * 
  *  Darkens the color by reducing the lightness channel. .
@@ -735,21 +752,21 @@ const toLab = useMode(modeLab);
  * 
 
  */
-function darken(color: ColorToken, value: number | string): ColorToken {
-  const Kn = 18;
-  const channel = 'l';
+// function darken(color: ColorToken, value: number | string): ColorToken {
+//   const Kn = 18;
+//   const channel = 'l';
 
-  const src = toLab(toHex(color));
+//   const src = toLab(color2hex(color));
 
-  if (typeof value === 'number') {
-    src['l'] -= Kn * easingSmootherstep(value / 100);
-  } else if (typeof value === 'string') {
-    // @ts-ignore
-    expressionParser(src, channel, value || 1);
-  }
+//   if (typeof value === 'number') {
+//     src['l'] -= Kn * easingSmootherstep(value / 100);
+//   } else if (typeof value === 'string') {
+//     // @ts-ignore
+//     expressionParser(src, src['mode'] + '.l', value || 1);
+//   }
 
-  return toHex(src);
-}
+//   return color2hex(src);
+// }
 
 /**
  *
@@ -758,23 +775,23 @@ function darken(color: ColorToken, value: number | string): ColorToken {
  * @param mode The color space to compute the color in. Any color space with a lightness channel will do (including HWB)
  * @returns
  */
-function brighten(
-  color: ColorToken,
-  value: number | string,
-  colorspace
-): ColorToken {
-  const src = toLab(toHex(color));
-  const ch = matchLightnessChannel(colorspace).split('.')[1];
-  let result = src;
-  if (typeof value == 'number') {
-    result[ch] -= 18 * easingSmootherstep(Math.abs(value) / 100);
-  } else if (typeof value == 'string') {
-    //@ts-ignore
-    result = expressionParser(src, ch, value);
-  }
+// function brighten(
+//   color: ColorToken,
+//   value: number | string,
+//   colorspace
+// ): ColorToken {
+//   const src = toLab(color2hex(color));
+//   const ch = matchLightnessChannel(colorspace).split('.')[1];
+//   let result = src;
+//   if (typeof value == 'number') {
+//     result[ch] -= 18 * easingSmootherstep(Math.abs(value) / 100);
+//   } else if (typeof value == 'string') {
+//     //@ts-ignore
+//     result = expressionParser(src, ch, value);
+//   }
 
-  return toHex(result);
-}
+//   return color2hex(result);
+// }
 
 /**
  * 
@@ -854,13 +871,12 @@ function isAchromatic(color: ColorToken, mode?: HueColorSpaces): boolean {
  * 
  *  Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
  * @param deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
- * @see For a deep dive on  color vision deficiency go to
  * @param color The color to return its deficiency simulated variant.
  * @param severity The intensity of the filter. The exepected value is between [0,1]. For example 0.5
  * @returns The color as its simulated variant as a hexadecimal string.
  * @example
  * 
- * import { colorDeficiency, toHex } from 'huetiful-js'
+ * import { colorDeficiency, color2hex } from 'huetiful-js'
 
 // Here we are simulating color blindness of tritanomaly or we can't see 'blue'. 
 // We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
@@ -880,7 +896,7 @@ function colorDeficiency(deficiencyType?: DeficiencyType) {
     sev: number
   ) => {
     let result: ColorToken;
-    col = toHex(col);
+    col = color2hex(col);
     switch (def) {
       case 'blue': // @ts-ignore
         result = filterDeficiencyTrit(sev)(col);
@@ -896,7 +912,7 @@ function colorDeficiency(deficiencyType?: DeficiencyType) {
         break;
     }
 
-    return toHex(result);
+    return color2hex(result);
   };
 
   return (color: ColorToken, severity = 1) => {
@@ -958,10 +974,8 @@ function getNearestColor(
 export {
   getNearestColor,
   colorDeficiency,
-  brighten,
   isAchromatic,
   alpha,
-  darken,
   getFarthestLightness,
   getNearestLightness,
   overtone,

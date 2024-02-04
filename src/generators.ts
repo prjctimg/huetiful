@@ -54,7 +54,7 @@ import {
   min
 } from './helpers';
 
-import { toHex, ucsConverter } from './converters';
+import { color2hex, ucsConverter } from './converters';
 import { setChannel } from './utils';
 
 /**
@@ -116,7 +116,7 @@ function scheme(
       mode: 'lch'
     }));
 
-    return colors.map(toHex);
+    return colors.map(color2hex);
   };
 }
 
@@ -166,7 +166,7 @@ function discoverPalettes(
   };
 
   const toLch = useMode(modeLch);
-  colors = colors.map((color) => toLch(toHex(color)));
+  colors = colors.map((color) => toLch(color2hex(color)));
   const palettes = {};
   const schemeKeys = ['analogous', 'triadic', 'tetradic', 'complementary'];
   const targetPalettes = {};
@@ -195,7 +195,7 @@ function discoverPalettes(
       }
 
       if (!palettes[paletteType] || variance < palettes[paletteType].variance) {
-        palettes[paletteType] = palette.map(toHex);
+        palettes[paletteType] = palette.map(color2hex);
       }
     }
   }
@@ -254,10 +254,10 @@ function earthtone(
 
   const base: ColorToken = tones[earthtones.toLowerCase()];
 
-  const f = interpolator([base, toHex(color)], colorspace);
+  const f = interpolator([base, color2hex(color)], colorspace);
 
-  return ((iterations === 1 && toHex(f(0.5))) ||
-    nativeSamples(iterations).map((t) => toHex(f(t)))) as ColorToken[];
+  return ((iterations === 1 && color2hex(f(0.5))) ||
+    nativeSamples(iterations).map((t) => color2hex(f(t)))) as ColorToken[];
 }
 
 /**
@@ -339,7 +339,7 @@ function hueShift(
     palette.push(colorShiftUp);
     palette.unshift(colorShiftDown);
   }
-  return Array.from(new Set(palette)).map(toHex);
+  return Array.from(new Set(palette)).map(color2hex);
 }
 /**
  *
@@ -409,10 +409,10 @@ function interpolateSpline(
 
   let result: string[];
   if (samples > 1) {
-    result = nativeSamples(samples).map((s) => toHex(f(s)));
+    result = nativeSamples(samples).map((s) => color2hex(f(s)));
   } else {
     //@ts-ignore
-    result = result.push(toHex(f(0.5)));
+    result = result.push(color2hex(f(0.5)));
   }
   return result;
 }
@@ -483,7 +483,7 @@ function pairedScheme(
   hueStep = checkArg(hueStep, 5) as number;
 
   const toLch = useMode(modeLch);
-  color = toLch(toHex(color));
+  color = toLch(color2hex(color));
 
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
   const derivedHue = setChannel('lch.h')(color, color['h'] + hueStep);
@@ -501,7 +501,7 @@ function pairedScheme(
   );
 
   if (iterations <= 1) {
-    return toHex(scale(0.5));
+    return color2hex(scale(0.5));
   } else {
     // Declare the num of iterations in samples() which will be used as the t value
     // Since the interpolation returns half duplicate values we double the sample value
@@ -509,7 +509,9 @@ function pairedScheme(
     const smp = nativeSamples(iterations * 2);
 
     //The array to capture the different iterations
-    const results: ColorToken[] = smp.map((t) => toHex(scale(easingFunc(t))));
+    const results: ColorToken[] = smp.map((t) =>
+      color2hex(scale(easingFunc(t)))
+    );
     // Return a slice of the array from the start to the half length of the array
     return results.slice(0, results.length / 2);
   }
@@ -572,9 +574,9 @@ function pastel(color: ColorToken): ColorToken {
     maxSampleValue: max(sampleValues)
   };
 
-  color = useMode(modeHsv)(toHex(color));
+  color = useMode(modeHsv)(color2hex(color));
   // For now we're simply returning an hsv object with the s and v channel set to the averages
-  return toHex({
+  return color2hex({
     h: color['h'],
     s: pastelSample['averageSaturation'],
     v: random(pastelSample['minSampleValue'], pastelSample['maxSampleValue']),

@@ -15,7 +15,13 @@ governing permissions and limitations under the License.
 */
 describe(`Test suite for utils`, () => {
   var [col, sample] = ['#310000', ['b2c3f1', '#a1bd2f', '#f3bac1']];
-
+  var data = {
+    getHueFamily: {
+      params: [],
+      description: '',
+      expect: 0
+    }
+  };
   it(`Gets the color's hue family`, () => {
     expect(utils.getHueFamily('cyan')).toBe('blue-green');
   });
@@ -36,8 +42,8 @@ describe(`Test suite for utils`, () => {
   });
 
   it(`Gets the nearest/farthest lightness in a collection against the passed in color`, () => {
-    expect(utils.getNearestLightness(sample, 'lch')).toBe(67.22120855010492);
-    expect(utils.getFarthestLightness(sample, 'lch')).toBe(22.45669293295522);
+    expect(utils.getNearestLightness(sample, 'lch')).toBe(72.61647882089876);
+    expect(utils.getFarthestLightness(sample, 'lch')).toBe(80.94668903360088);
   });
 
   it(`Checks if a color is achromatic or not`, () => {
@@ -51,8 +57,8 @@ describe(`Test suite for utils`, () => {
   // });
 
   it(`Gets the nearest/farthest chroma in a collection against the passed in color`, () => {
-    expect(utils.getNearestChroma(sample, 'lch')).toBe(67.22120855010492);
-    expect(utils.getFarthestChroma(sample, 'lch')).toBe(22.45669293295522);
+    expect(utils.getNearestChroma(sample, 'lch')).toBe(22.45669293295522);
+    expect(utils.getFarthestChroma(sample, 'lch')).toBe(67.22120855010492);
   });
   it(`Gets the nearest/farthest hue angle in a collection against the passed in color`, function () {
     expect(utils.getNearestHue(sample, 'lch')).toBe(12.462831644544274);
