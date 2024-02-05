@@ -1,4 +1,4 @@
-[![npm version](https://img.shields.io/npm/v/huetiful-js)](https://www.npmjs.com/package/huetiful-js)
+[![Deploy GitHub Pages](https://github.com/prjctimg/huetiful/actions/workflows/static.yml/badge.svg?branch=main)](https://github.com/prjctimg/huetiful/actions/workflows/static.yml)
 [![NPM publish 📦](https://github.com/prjctimg/huetiful/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/prjctimg/huetiful/actions/workflows/npm-publish.yml)
 [![npm minzipped size](https://img.shields.io/bundlephobia/minzip/huetiful-js)](https://bundlephobia.com/package/huetiful-js)
 [![paypal](https://img.shields.io/badge/donate-paypal-informational?logo=paypal)](https://www.paypal.com/donate/?hosted_button_id=CRFWNCE6EW5X2)
