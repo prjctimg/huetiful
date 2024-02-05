@@ -36,10 +36,11 @@
     "nodemon": "^3.0.1",
     "typedoc": "^0.25.3",
     "typedoc-material-theme": "^1.0.2",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "jasmine":"5.1.0"
   },
   "scripts": {
-    "test": "jasmine",
+    "test": "npx jasmine",
     "docs": "npx typedoc && cp -r ./logo.png ./docs && cp -r ./logo_v1.png ./docs && git add .",
     "code:build": "node build.cjs",
     "code:prepare": "npm run code:lint & npm run code:format & npm run code:build & npm run code:types & npm run docs",
