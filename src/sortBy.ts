@@ -40,7 +40,7 @@ function baseSortBy(
 
 /**
  * 
- *  Sorts colors according to their saturation.
+ * Sorts colors according to their saturation.
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @param mode The mode color space to compute the saturation value in. The default is jch .

@@ -1,8 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/no-var-requires */
-// esbuild script
-//@ts-nocheck
-
 // eslint-disable-next-line no-undef
 var { build } = require('esbuild');
 var { dependencies } = require('./package.json');
@@ -13,22 +8,40 @@ const sharedConfig = {
   minify: false
 };
 
-// commonJS import
-// build({
-//   format: 'cjs',
-//   ...sharedConfig,
-//   outfile: './lib/huetiful.cjs',
-//   external: Object.keys(dependencies)
-// });
+var moduleNames = [
+  'sortBy',
+  'filterBy',
+  'colors',
+  'generators',
+  'utils',
+  'helpers',
+  'converters'
+];
 
-//Bundled ESM
-build({
-  ...sharedConfig,
-  platform: 'browser',
-  format: 'esm',
-  minify: true,
-  outfile: './lib/huetiful.esm.min.mjs'
-});
+for (let idx = 0; idx < moduleNames.length; idx++) {
+  // ESM builds
+  build({
+    entryPoints: [`./src/${moduleNames[idx]}.ts`],
+    format: 'esm',
+    bundle: true,
+    outfile: `./lib/${moduleNames[idx]}.esm.mjs`,
+    external: Object.keys(dependencies),
+    entryPoints: [`./src/${moduleNames[idx]}.ts`],
+    minify: false
+  });
+
+  //Bundled ESM
+  build({
+    entryPoints: [`./src/${moduleNames[idx]}.ts`],
+    bundle: true,
+    platform: 'browser',
+    format: 'esm',
+    minify: true,
+    outfile: `./lib/${moduleNames[idx]}.esm.min.mjs`
+  });
+
+  console.log(`[info] ${moduleNames[idx]}.ts has been built`);
+}
 
 //Bundled IIFE
 build({
@@ -37,9 +50,20 @@ build({
   format: 'iife',
   outfile: './lib/huetiful.umd.js',
   globalName: 'huetiful',
-  minifySyntax: true,
   minify: true
 });
+console.log(`[info] UMD build successful`);
+
+//Bundled ESM
+build({
+  entryPoints: [`./src/index.ts`],
+  bundle: true,
+  platform: 'browser',
+  format: 'esm',
+  minify: true,
+  outfile: `./lib/huetiful.esm.min.mjs`
+});
+console.log(`[info] ESM build (bundled & minified) successful`);
 
 // ESM no bundle
 build({
@@ -49,3 +73,6 @@ build({
   outfile: './lib/huetiful.esm.mjs',
   external: Object.keys(dependencies)
 });
+console.log(`[info] ESM build (no bundle) successful`);
+
+console.log(`Build completed successfully`);

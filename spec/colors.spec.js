@@ -1,8 +1,8 @@
-import * as sortBy from "../lib/huetiful.esm.mjs";
+import * as colors from '../lib/colors.esm.mjs';
 
 /** 
  * @license
- * sortBy.ts - Test suite for huetiful-js color sorting module. 
+ * colors.ts - Test suite for huetiful-js colors module. 
 Copyright 2023 Dean Tarisai.
 This file is licensed to you under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License. You may obtain a copy

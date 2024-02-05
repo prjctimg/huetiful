@@ -1,10 +1,10 @@
 {
   "include": [
     "./src/index.ts"
-  ],"exclude":["**/*/node_modules"],
+  ],"exclude":["**/*/node_modules","./src/color-maps"],
   "compilerOptions": {
-    "lib":["es2015"],
-    "target":"es2015",
+    "lib":["esnext"],
+    "target":"esnext",
     "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     // "allowJs": true,

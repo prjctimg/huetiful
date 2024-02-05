@@ -12,7 +12,7 @@ governing permissions and limitations under the License.
 */
 
 import { differenceHyab } from 'culori/fn';
-import { toHex } from './converters';
+import { color2hex } from './converters';
 import type { ColorToken, HueColorSpaces, Factor } from './types';
 import { getLuminance, getContrast, getChannel } from './utils';
 import {
@@ -24,10 +24,11 @@ import {
   matchDigits,
   checkArg
 } from './helpers';
+import modeRanges from './color-maps/samples/modeRanges';
 
 /**
  * @internal
- *
+ * Base implementation of the filterBy functionss
  * @param factor The color property in query.
  * @param cb The predicate to get the equatable value used during comparison
  * @param colors The collection to map over. Can either be an array or object whose values are valid color tokens.
@@ -50,6 +51,7 @@ function baseFilterBy(
 
   // make case insensitive
   factor = factor.toLowerCase();
+
   // @ts-ignore
   colorspace = checkArg(colorspace, 'lch65').toLowerCase();
 
@@ -108,12 +110,18 @@ console.log(filterBySaturation(sample, 0.1));
 function filterBySaturation(
   collection: ColorToken[] | object,
   startSaturation = 0.05,
-  endSaturation = 1,
+  endSaturation?: number,
   colorspace?: HueColorSpaces
 ): ColorToken[] {
   const modeChannel = matchChromaChannel(colorspace);
 
   const factor: Factor = 'saturation';
+  // eslint-disable-next-line no-ternary
+  endSaturation = !endSaturation
+    ? modeRanges[checkArg(colorspace, 'lch') as string][
+        modeChannel.split('.')[1]
+      ][1]
+    : endSaturation;
 
   return baseFilterBy(
     factor,
@@ -204,10 +212,19 @@ filterByLightness(sample, 20, 80)
 function filterByLightness(
   collection: ColorToken[] | object,
   startLightness = 5,
-  endLightness = 100,
+  endLightness?: number,
   colorspace?: HueColorSpaces
 ): ColorToken[] {
   const factor: Factor = 'lightness';
+
+  const modeChannel = matchChromaChannel(colorspace);
+
+  // eslint-disable-next-line no-ternary
+  endLightness = !endLightness
+    ? modeRanges[checkArg(colorspace, 'lch') as string][
+        modeChannel.split('.')[1]
+      ][1]
+    : endLightness;
 
   return baseFilterBy(
     factor,
@@ -297,7 +314,7 @@ function filterByDistance(
 
   return baseFilterBy(
     'distance',
-    cb(toHex(against)),
+    cb(color2hex(against)),
     collection,
     startDistance,
     endDistance

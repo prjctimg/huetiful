@@ -37,7 +37,7 @@ import {
 
 import type {
   ColorToken,
-  EarthtoneOptions,
+  // EarthtoneOptions,
   HueColorSpaces,
   HueShiftOptions,
   InterpolatorOptions,
@@ -54,19 +54,19 @@ import {
   min
 } from './helpers';
 
-import { toHex, ucsConverter } from './converters';
+import { color2hex, ucsConverter } from './converters';
 import { setChannel } from './utils';
 
 /**
  * 
- *  Generates a randomised classic color scheme from a single base color.
+ *  Generates a randomised classic color scheme from a single scheme color.
  * @param  schemeType  Any classic color scheme either "analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary".
  * @returns An array of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
  * @example
  * 
- import { base } from 'huetiful-js'
+ import { scheme } from 'huetiful-js'
 
-console.log(base("triadic")("#a1bd2f", true))
+console.log(scheme("triadic")("#a1bd2f", true))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
  */
 
@@ -116,7 +116,7 @@ function scheme(
       mode: 'lch'
     }));
 
-    return colors.map(toHex);
+    return colors.map(color2hex);
   };
 }
 
@@ -166,7 +166,7 @@ function discoverPalettes(
   };
 
   const toLch = useMode(modeLch);
-  colors = colors.map((color) => toLch(toHex(color)));
+  colors = colors.map((color) => toLch(color2hex(color)));
   const palettes = {};
   const schemeKeys = ['analogous', 'triadic', 'tetradic', 'complementary'];
   const targetPalettes = {};
@@ -195,7 +195,7 @@ function discoverPalettes(
       }
 
       if (!palettes[paletteType] || variance < palettes[paletteType].variance) {
-        palettes[paletteType] = palette.map(toHex);
+        palettes[paletteType] = palette.map(color2hex);
       }
     }
   }
@@ -215,7 +215,7 @@ function discoverPalettes(
 
 /**
  * 
- *  Creates a scale of a spline based interpolation between an earthtone and a color.
+ *  Creates a scale of a spline interpolation between an earthtone and a color.
  * @param color The color to interpolate an earth tone with.
   * @param options Optional overrides for customising interpolation and easing functions.
  * @returns The array of colors resulting from the earthtone interpolation as hex codes.
@@ -224,48 +224,48 @@ function discoverPalettes(
  * import { earthtone } from 'huetiful-js'
 
 
-console.log(earthtone("pink",{earthtones:'clay',iterations:5 }))
+console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 // [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
 
  */
 
-function earthtone(
-  color: ColorToken,
-  colorspace?: HueColorSpaces,
-  options?: EarthtoneOptions
-): ColorToken[] {
-  let { samples: iterations, earthtones } = options || {};
+// function earthtone(
+//   color: ColorToken,
+//   colorspace?: HueColorSpaces,
+//   options?: EarthtoneOptions
+// ): ColorToken[] {
+//   let { samples, earthtones } = options || {};
 
-  iterations = checkArg(iterations, 1) as number;
+//   samples = checkArg(samples, 1) as number;
+//   colorspace = checkArg(colorspace, 'lch') as HueColorSpaces;
+//   earthtones = checkArg(earthtones, 'dark') as typeof earthtones;
+//   const tones = {
+//     'light-gray': '#e5e5e5',
+//     silver: '#f5f5f5',
+//     sand: '#c2b2a4',
+//     tupe: '#a79e8a',
+//     mahogany: '#958c7c',
+//     'brick-red': '#7d7065',
+//     clay: '#6a5c52',
+//     cocoa: '#584a3e',
+//     'dark-brown': '#473b31',
+//     dark: '#352a21'
+//   };
 
-  earthtones = checkArg(earthtones, 'dark') as typeof earthtones;
-  const tones = {
-    'light-gray': '#e5e5e5',
-    silver: '#f5f5f5',
-    sand: '#c2b2a4',
-    tupe: '#a79e8a',
-    mahogany: '#958c7c',
-    'brick-red': '#7d7065',
-    clay: '#6a5c52',
-    cocoa: '#584a3e',
-    'dark-brown': '#473b31',
-    dark: '#352a21'
-  };
+//   const scheme: ColorToken = tones[earthtones.toLowerCase()];
 
-  const base: ColorToken = tones[earthtones.toLowerCase()];
+//   const f = interpolator([scheme, color2hex(color)], colorspace);
 
-  const f = interpolator([base, toHex(color)], colorspace);
-
-  return ((iterations === 1 && toHex(f(0.5))) ||
-    nativeSamples(iterations).map((t) => toHex(f(t)))) as ColorToken[];
-}
+//   return ((samples === 1 && color2hex(f(0.5))) ||
+//     nativeSamples(samples).map((t) => color2hex(f(t)))) as ColorToken[];
+// }
 
 /**
  * 
- *  Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down. ) from a single base color. Min and max lightness value determine how light or dark our colour will be at either extreme.
- * @param color The color to use as the base of the hueshift. Colors are internally converted to LCH.
+ *  Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down) from a single scheme color. Min and max lightness value determine how light or dark our colour will be at either extreme.
+ * @param color The color to use as the scheme of the hueshift. Colors are internally converted to LCH.
  * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
- *@returns An array of colors in hex. The length of the resultant array is the number of iterations multiplied by 2 plus the base color passed or (iterations*2)+1
+ *@returns An array of colors in hex. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or (iterations*2)+1
  * @example
  * import { hueShift } from "huetiful-js";
 
@@ -293,8 +293,8 @@ function hueShift(
     (start1: number, end1: number) =>
     (start2: number, end2: number) =>
       ((n - start1) / (end1 - start1)) * (end2 - start2) + start2;
-
-  color = ucsConverter(colorspace)(color as string);
+  colorspace = checkArg(colorspace, 'lch') as UniformColorSpaces;
+  color = ucsConverter(colorspace.toLowerCase())(color as string);
 
   let {
     samples: iterations,
@@ -339,17 +339,20 @@ function hueShift(
     palette.push(colorShiftUp);
     palette.unshift(colorShiftDown);
   }
-  return Array.from(new Set(palette)).map(toHex);
+  return Array.from(new Set(palette)).map(color2hex);
 }
 /**
  *
- *  Returns a spline based interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.
+ *  Returns a spline interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.
  * @param colors The array of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
  * @param colorspace The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
  * @param kind The type of the spline interpolation method. Default is basis.
  * @param closed Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false
  * @param options Optional channel specific overrides.
  * @returns A hexadecimal representation of the resultant color.
+ *
+ * @example
+ *
  */
 function interpolateSpline(
   colors: ColorToken[],
@@ -409,19 +412,23 @@ function interpolateSpline(
 
   let result: string[];
   if (samples > 1) {
-    result = nativeSamples(samples).map((s) => toHex(f(s)));
+    result = nativeSamples(samples).map((s) => color2hex(f(s)));
   } else {
     //@ts-ignore
-    result = result.push(toHex(f(0.5)));
+    result = result.push(color2hex(f(0.5)));
   }
   return result;
 }
 
+/**
+ * @internal
+ */
 function interpolator(
   colors: ColorToken[],
   colorspace?: HueColorSpaces,
   options?: object
 ) {
+  colorspace = checkArg(colorspace, 'lch') as typeof colorspace;
   let {
     chromaInterpolator,
     hueFixup,
@@ -429,13 +436,18 @@ function interpolator(
     lightnessInterpolator,
     easingFunc
   } = checkArg(options, {}) as InterpolatorOptions;
+  var [l, c] = [
+    matchLightnessChannel(colorspace).split('.')[1],
+    matchChromaChannel(colorspace).split('.')[1]
+  ];
+
   return interpolate(
     [
       ...(colors as Array<Color>),
       checkArg(easingFunc, interpolator['easingFunc']) as typeof easingFunc
     ],
     // @ts-ignore
-    checkArg(colorspace, 'lch') as typeof colorspace,
+    colorspace,
     {
       //@ts-ignore
       h: {
@@ -444,10 +456,10 @@ function interpolator(
         // @ts-ignore
         use: checkArg(hueInterpolator, interpolator['hueInterpolator'])
       },
-      [matchChromaChannel(colorspace)]: {
+      [c]: {
         use: checkArg(chromaInterpolator, interpolator['chromaInterpolator'])
       },
-      [matchLightnessChannel(colorspace)]: {
+      [l]: {
         use: checkArg(
           lightnessInterpolator,
           interpolator['lightnessInterpolator']
@@ -458,8 +470,7 @@ function interpolator(
 }
 
 /**
- *  pairedScheme
- *  Creates a scheme that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black.
+ *  Creates a scheme that consists of a scheme color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black.
  * @param color The color to return a paired color scheme from.
  * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
  * @returns An array containing the paired scheme.
@@ -467,7 +478,7 @@ function interpolator(
  * 
  * import { pairedScheme } from 'huetiful-js'
 
-console.log(pairedScheme("green",{hueStep:6,iterations:4,tone:'dark'}))
+console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
  */
 function pairedScheme(
@@ -475,15 +486,15 @@ function pairedScheme(
   options?: PairedSchemeOptions
 ): ColorToken[] | ColorToken {
   // eslint-disable-next-line prefer-const
-  let { samples: iterations, via, hueStep, easingFunc } = options || {};
+  let { samples, via, hueStep, easingFunc } = options || {};
 
-  iterations = checkArg(iterations, 1) as number;
+  samples = checkArg(samples, 1) as number;
   easingFunc = checkArg(easingFunc, easingSmoothstep) as typeof easingFunc;
   via = checkArg(via, 'light') as typeof via;
   hueStep = checkArg(hueStep, 5) as number;
 
   const toLch = useMode(modeLch);
-  color = toLch(toHex(color));
+  color = toLch(color2hex(color));
 
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
   const derivedHue = setChannel('lch.h')(color, color['h'] + hueStep);
@@ -500,16 +511,18 @@ function pairedScheme(
     checkArg(options, interpolator)
   );
 
-  if (iterations <= 1) {
-    return toHex(scale(0.5));
+  if (samples <= 1) {
+    return color2hex(scale(0.5));
   } else {
     // Declare the num of iterations in samples() which will be used as the t value
     // Since the interpolation returns half duplicate values we double the sample value
     // Guard the num param against negative values and floats
-    const smp = nativeSamples(iterations * 2);
+    const smp = nativeSamples(samples * 2);
 
     //The array to capture the different iterations
-    const results: ColorToken[] = smp.map((t) => toHex(scale(easingFunc(t))));
+    const results: ColorToken[] = smp.map((t) =>
+      color2hex(scale(easingFunc(t)))
+    );
     // Return a slice of the array from the start to the half length of the array
     return results.slice(0, results.length / 2);
   }
@@ -572,9 +585,9 @@ function pastel(color: ColorToken): ColorToken {
     maxSampleValue: max(sampleValues)
   };
 
-  color = useMode(modeHsv)(toHex(color));
+  color = useMode(modeHsv)(color2hex(color));
   // For now we're simply returning an hsv object with the s and v channel set to the averages
-  return toHex({
+  return color2hex({
     h: color['h'],
     s: pastelSample['averageSaturation'],
     v: random(pastelSample['minSampleValue'], pastelSample['maxSampleValue']),
@@ -589,6 +602,6 @@ export {
   pastel,
   scheme,
   interpolateSpline,
-  interpolator,
-  earthtone
+  interpolator
+  // earthtone
 };
