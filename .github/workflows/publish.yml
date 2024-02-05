@@ -5,7 +5,7 @@ name: NPM publish 📦
 
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   build:
@@ -28,6 +28,8 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - run: npm ci
+      - run: npm run code:build
+      - run: npm run code:types
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH}}
