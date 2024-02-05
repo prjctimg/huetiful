@@ -1,7 +1,6 @@
 [![npm version](https://img.shields.io/npm/v/huetiful-js)](https://www.npmjs.com/package/huetiful-js)
-[![stability](https://img.shields.io/badge/stability-stable-green.svg)](https://www.npmjs.com/package/huetiful-js)
+[![NPM publish 📦](https://github.com/prjctimg/huetiful/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/prjctimg/huetiful/actions/workflows/npm-publish.yml)
 [![npm minzipped size](https://img.shields.io/bundlephobia/minzip/huetiful-js)](https://bundlephobia.com/package/huetiful-js)
-[![linted with eslint](https://img.shields.io/badge/linted_with-ES_Lint-4B32C3.svg?logo=eslint)](https://github.com/eslint/eslint)
 [![paypal](https://img.shields.io/badge/donate-paypal-informational?logo=paypal)](https://www.paypal.com/donate/?hosted_button_id=CRFWNCE6EW5X2)
 [![twitter](https://img.shields.io/twitter/follow/deantarisai?style=social)](https://twitter.com/deantarisai)
 
