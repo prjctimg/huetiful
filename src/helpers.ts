@@ -22,7 +22,6 @@ import type {
   ColorToken,
   HueColorSpaces,
   Order,
-  Options,
   Colorspaces
 } from './types';
 import modeRanges from './color-maps/samples/modeRanges';
@@ -32,7 +31,8 @@ import {
   fixupHueShorter,
   interpolatorSplineBasisClosed,
   interpolatorSplineMonotone,
-  easingSmoothstep
+  easingSmoothstep,
+  interpolatorLinear
 } from 'culori/fn';
 import { ucsConverter } from './converters';
 
@@ -43,31 +43,25 @@ import { ucsConverter } from './converters';
  * @param def The value to cast if arg is falsy
  * @returns The first truthy value
  */
-function checkArg(arg: unknown, def: unknown): unknown {
+function or(arg: unknown, def: unknown): unknown {
   return arg || def;
 }
 
 // Global interpolator options defaults
-let {
-  chromaInterpolator,
-  easingFunc,
-  hueFixup,
-  hueInterpolator,
-  lightnessInterpolator
-}: Options = {};
-
-chromaInterpolator = interpolatorSplineNatural;
-hueFixup = fixupHueShorter;
-hueInterpolator = interpolatorSplineBasisClosed;
-easingFunc = easingSmoothstep;
-lightnessInterpolator = interpolatorSplineMonotone;
+let [ci, ef, hf, hi, li] = [
+  interpolatorSplineNatural,
+  easingSmoothstep,
+  fixupHueShorter,
+  interpolatorSplineBasisClosed,
+  interpolatorLinear
+];
 
 const interpolatorConfig = {
-  easingFunc,
-  chromaInterpolator,
-  hueFixup,
-  hueInterpolator,
-  lightnessInterpolator
+  ef,
+  ci,
+  hf,
+  hi,
+  li
 };
 
 /**
@@ -87,53 +81,52 @@ console.log(getModeChannel("okhsl", 2));
 
  */
 function getModeChannel(colorspace: Colorspaces | string, index?: number) {
-  const result = colorspace.substring(colorspace.length - 3);
+  const res = colorspace.substring(colorspace.length - 3);
 
-  return (index && result.charAt(index)) || result;
+  return (index && res.charAt(index)) || res;
 }
 
 /**
  * @internal
  * Takes an arithmetic operator followed by a value and passes the result of the expression to the specified channel. Currently supports addition,subtraction,division and multiplication symbols only.
  * @param color The color.
- * @param modeChannel The colorspace channel to set.
- * @param expression The expression assignment as a string.
+ * @param mc The colorspace channel to set.
+ * @param expr The expression assignment as a string.
  * @example
  *
  * console.log(lch('blue'));
 // { mode: 'lch',l: 29.568297153444703,c: 131.2014771995311,h: 301.36428148973533}
 
-console.log(expressionParser('blue', 'lch.l', '*0.3'));
+console.log(exprParser('blue', 'lch.l', '*0.3'));
 // { mode: 'lch',l: 8.87048914603341,c: 131.2014771995311,h: 301.36428148973533 }
 
  */
-function expressionParser(
-  color: ColorToken,
-  modeChannel: string,
-  expression: string
-): number {
+function exprParser(color: ColorToken, mc: string, expr: string): number {
   // regExp to match arithmetic operator and the value
-  const sign = /^(\*|\+|\-|\/)/.exec(expression)['0'],
-    value = /[0-9]*\.?[0-9]+/.exec(expression)['0'];
-  const [mode, channel] = modeChannel.split('.');
+
+  var [mode, chn, op, val] = [
+    ...mc.split('.'),
+    /^(\*|\+|\-|\/)/.exec(expr)['0'],
+    /[0-9]*\.?[0-9]+/.exec(expr)['0']
+  ];
 
   // @ts-ignore
   color = ucsConverter(mode.toString().toLowerCase())(color);
   const cb = (value: string) => parseFloat(value);
 
   // Match an operator against the first truthy case and perform the relevant math operation
-  switch (sign) {
+  switch (op) {
     case '+':
-      color[channel] += +cb(value);
+      color[chn] += +cb(val);
       break;
     case '-':
-      color[channel] -= +cb(value);
+      color[chn] -= +cb(val);
       break;
     case '*':
-      color[channel] *= +cb(value);
+      color[chn] *= +cb(val);
       break;
     case '/':
-      color[channel] /= +cb(value);
+      color[chn] /= +cb(val);
       break;
     // throw error alert
   }
@@ -144,22 +137,21 @@ function expressionParser(
 
 /**
  * @internal
- * @function
  * Matches the chroma/saturation channel of any compliant color space
  * @param colorspace The color space to match saturation/chroma channel. Default is Lch
  * @returns The mode channel string passed to getChannel()
  * @example
  * 
- * import { matchChromaChannel } from 'huetiful-js'
- * console.log(matchChromaChannel("jch"));
+ * import { mcc } from 'huetiful-js'
+ * console.log(mcc("jch"));
 // jch.c
 
-console.log(matchChromaChannel("okhsl"));
+console.log(mcc("okhsl"));
 // okhsl.s
  */
-function matchChromaChannel(colorspace: HueColorSpaces | string): string {
+function mcchn(colorspace: HueColorSpaces | string): string {
   // Matches any string with c or s
-  colorspace = checkArg(colorspace, 'lch') as HueColorSpaces;
+  colorspace = or(colorspace, 'lch') as HueColorSpaces;
   const reChroma = /(s|c)/i;
   // @ts-ignore
   const ch = reChroma.exec(colorspace)['0'];
@@ -189,9 +181,9 @@ function matchChromaChannel(colorspace: HueColorSpaces | string): string {
 console.log(matchLightnessChannel("okhsl"));
 // okhsl.l
  */
-function matchLightnessChannel(colorspace: HueColorSpaces | string): string {
+function mlchn(colorspace: HueColorSpaces | string): string {
   // Matches any string with c or s
-  colorspace = checkArg(colorspace, 'lch') as HueColorSpaces;
+  colorspace = or(colorspace, 'lch') as HueColorSpaces;
   const reLightness = /(j|l)/i;
   // @ts-ignore
   const ch = reLightness.exec(colorspace)['0'];
@@ -291,11 +283,12 @@ function adjustHue(value: number) {
  * @param modeChannel The colorspace and channel string to perform the operation in.
  * @example
  *
-console.log(channelDifference('blue', 'okhsl.l')('pink'));
+console.log(chnDiff
+  ('blue', 'okhsl.l')('pink'));
 // 0.4794739863155694
  *
  */
-function channelDifference(color: ColorToken, modeChannel: string) {
+function chnDiff(color: ColorToken, modeChannel: string) {
   /**
    * @param subtrahend The color to use as subtrahend
    * @returns The difference between the color channel(s)
@@ -443,13 +436,13 @@ function inRange(number: number, start: number, end?: number): boolean {
  *
  * @example
  *
- * isInteger(2)
+ * isInt(2)
  * // true
  *
- * isInteger(2.01)
+ * isInt(2.01)
  * // false
  */
-function isInteger(num: number | string) {
+function isInt(num: number | string) {
   const reInt = /^-?[0-9]+$/;
   return reInt.test(num.toString());
 }
@@ -462,9 +455,9 @@ function isInteger(num: number | string) {
  * @returns The normalized channel value or the passed in value if it was within range
  *
  */
-function normalize(value: number, modeChannel: string): number {
-  const [mode, channel]: string[] = modeChannel.split('.');
-  const [start, end]: number[] = modeRanges[mode][channel];
+function norm(value: number, modeChannel: string): number {
+  const [mode, chn]: string[] = modeChannel.split('.');
+  const [start, end]: number[] = modeRanges[mode][chn];
   const range = inRange(value, start, end);
 
   if (!range) {
@@ -486,13 +479,12 @@ function normalize(value: number, modeChannel: string): number {
  *
  * @example
  *
- * random(5,15)
+ * rand(5,15)
  * // 6
  */
-function random(min: number, max: number): number {
+function rand(min: number, max: number): number {
   if (min > max) {
-    const mn = min;
-    const mx = max;
+    var [mn, mx] = [min, max];
     max = mn;
     min = mx;
   } else {
@@ -515,7 +507,7 @@ console.log(floorCeil(1.501));
  */
 
 function floorCeil(num: number): number {
-  if (!isInteger(num)) {
+  if (!isInt(num)) {
     const strArr = num.toString().split('.');
     const float = strArr[1];
 
@@ -583,7 +575,7 @@ function colorObjArr(factor: Factor, callback) {
  */
 function min(array: number[]): number {
   // @ts-ignore
-  array = checkArg(array, []);
+  array = or(array, []);
   return array.reduce((a, b) => Math.min(a, b), Infinity);
 }
 /**
@@ -597,7 +589,7 @@ function min(array: number[]): number {
  */
 function max(array: number[]): number {
   // @ts-ignore
-  array = checkArg(array, []);
+  array = or(array, []);
   return array.reduce((a, b) => Math.max(a, b), -Infinity);
 }
 
@@ -607,7 +599,7 @@ function max(array: number[]): number {
  * @param s The string to match
  * @returns The matched digits, if any, as a number.
  */
-function matchDigits(s: string): number {
+function reNum(s: string): number {
   s = s.toString();
   var reDigits = /[0-9]*\.?[0-9]+/;
   return (reDigits.test(s) && Number(reDigits.exec(s)['0'])) || undefined;
@@ -619,7 +611,7 @@ function matchDigits(s: string): number {
  * @param s The string to match.
  * @returns The matched comparator, if any, as a string.
  */
-function matchComparator(s: string): string {
+function reOp(s: string): string {
   s = s.toString();
   var reComparator = /^(>=|<=|<|>|={1,2}|!={0,2})/;
 
@@ -684,8 +676,8 @@ function filteredArr(factor: Factor, cb?: callback) {
     } else if (typeof start === 'string') {
       //The patterns to match
 
-      const val = matchDigits(start),
-        op = matchComparator(start);
+      const val = reNum(start),
+        op = reOp(start);
 
       if (op) {
         const mapFilter = (
@@ -717,9 +709,9 @@ function filteredArr(factor: Factor, cb?: callback) {
 }
 
 export {
-  expressionParser,
-  matchLightnessChannel,
-  matchChromaChannel,
+  exprParser,
+  mlchn,
+  mcchn,
   min,
   max,
   customSort,
@@ -730,21 +722,21 @@ export {
   colorObj,
   customConcat,
   inRange,
-  random,
-  isInteger,
+  rand,
+  isInt,
   floorCeil,
   adjustHue,
-  channelDifference,
+  chnDiff,
   lt,
   neq,
   gt,
   gte,
   lte,
   eq,
-  normalize,
-  checkArg,
+  norm,
+  or,
   getModeChannel,
   interpolatorConfig,
-  matchComparator,
-  matchDigits
+  reOp,
+  reNum
 };

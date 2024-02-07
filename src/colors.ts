@@ -34,66 +34,76 @@ import type {
 import * as filterBy from './filterBy';
 import * as sortBy from './sortBy';
 import {
-  discoverPalettes as nativeDiscoverPalettes,
-  getFarthestHue as nativeMaxHue,
-  getNearestHue as nativeMinHue,
-  getNearestLightness as nativeMaxLightness,
-  getFarthestLightness as nativeMinLightness,
-  alpha as nativeAlpha,
-  isAchromatic as nativeIsAchromatic,
-  isCool as nativeIsCool,
-  isWarm as nativeIsWarm,
-  getFarthestChroma as nativeGetFarthestChroma,
-  getFarthestHue as nativeGetFarthestHue,
-  getFarthestLightness as nativeGetFarthestLightness,
-  getNearestHue as nativeGetNearestHue,
-  getNearestChroma as nativeGetNearestChroma,
-  getNearestLightness as nativeGetNearestLightness,
-  overtone as nativeOvertone,
-  color2hex as nativeToHex,
-  getChannel as nativeGetChannel,
-  getContrast,
-  getLuminance,
-  setChannel as nativeSetChannel,
-  setLuminance,
-  checkArg,
-  matchChromaChannel,
-  scheme as nativeScheme,
-  pastel as nativePastel,
-  hueShift as nativeHueShift,
-  getHueFamily as nativeGetHue,
-  pairedScheme as nativePairedScheme,
-  //  earthtone as nativeEarthtone,
-  getComplimentaryHue as nativeGetComplimentaryHue,
-  colorDeficiency as nativeColorDeficiency,
-  interpolator,
-  interpolateSpline as nativeInterpolatorSpline
+  discoverPalettes as _dp,
+  getFarthestHue as _maxhue,
+  getNearestHue as _minhue,
+  getNearestLightness as _maxl,
+  getFarthestLightness as _minl,
+  alpha as _alpha,
+  isAchromatic as _ia,
+  isCool as _icool,
+  isWarm as _iwarm,
+  getFarthestChroma as _gfc,
+  getFarthestHue as _gfh,
+  getFarthestLightness as _gfl,
+  getNearestHue as _gnh,
+  getNearestChroma as _gnc,
+  getNearestLightness as _gnl,
+  overtone as _ot,
+  color2hex as _hex,
+  getChannel as _gchn,
+  getContrast as _gctrst,
+  getLuminance as _glmnce,
+  setChannel as _schn,
+  setLuminance as _slmnce,
+  or,
+  mcchn,
+  scheme as schm,
+  pastel as pstl,
+  hueShift as hshift,
+  getHueFamily as _ghue,
+  pairedScheme as _pdschm,
+  //  earthtone as _Earthtone,
+  getComplimentaryHue as gch,
+  colorDeficiency as cds,
+  interpolator as _pltr,
+  interpolateSpline as _pltrspln
 } from './index';
 
 import { interpolatorConfig } from './helpers';
 
+/**
+ * Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
+ */
 class ColorArray {
-  constructor(colors: ColorToken[]) {
-    this['colors'] = colors;
-  }
-
   /**
    *
-   *  Returns a spline based interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
-   * @param colorspace The colorspace to perform the interpolation in. Prefer uniform color spaces for better results such as Lch or Jch.
+   * @param colors The collection of colors to bind.
+   */
+  constructor(colors: ColorToken[] | object) {
+    this['colors'] = colors;
+  }
+  /**
+   *
+   *  Returns a spline interpolator function with customizable interpolation methods (by selecting the `kind` of ), with support for generating color scales for cyclic data (by setting the `closed` parameter to `true`) and optional channel specific overrides.
+   * @param colors The array of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
+   * @param colorspace The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
    * @param kind The type of the spline interpolation method. Default is basis.
-   * @param closed Optional parameter to return the `closed` variant of the `kind` of interpolation method which can be useful for cyclical color scales. Default is false
+   * @param closed Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false
    * @param options Optional channel specific overrides.
    * @returns A hexadecimal representation of the resultant color.
+   *
+   * @example
+   *
    */
   interpolateSpline(
     colorspace?: HueColorSpaces,
     samples?: number,
     kind?: 'natural' | 'monotone' | 'basis',
     closed?: boolean,
-    options?: InterpolatorOptions
+    options?: Pick<InterpolatorOptions, 'hueFixup' | 'easingFn'>
   ): ColorToken[] {
-    this['colors'] = nativeInterpolatorSpline(
+    this['colors'] = _pltrspln(
       this['colors'],
       colorspace,
       samples,
@@ -107,7 +117,7 @@ class ColorArray {
 
   /**
  * 
- *  Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
+ * Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
  * @param schemeType (Optional) The palette type you want to return.
  * @returns An array of colors if the scheme parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
  * @example
@@ -134,7 +144,7 @@ console.log(load(sample).discoverPalettes(sample, "tetradic").output())
   discoverPalettes(
     schemeType?: 'analogous' | 'triadic' | 'tetradic' | 'complementary'
   ): ColorToken[] | object {
-    this['colors'] = nativeDiscoverPalettes(this['colors'], schemeType);
+    this['colors'] = _dp(this['colors'], schemeType);
     return this;
   }
 
@@ -156,7 +166,7 @@ console.log(load(output).getFarthestHue('lch'))
     colorSpace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: ColorToken } {
-    return nativeMaxHue(this['colors'], colorSpace, colorObj);
+    return _maxhue(this['colors'], colorSpace, colorObj);
   }
 
   /**
@@ -179,7 +189,7 @@ console.log(load(sample).getNearestHue('lch'))
     colorSpace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: ColorToken } {
-    return nativeMinHue(this['colors'], colorSpace, colorObj);
+    return _minhue(this['colors'], colorSpace, colorObj);
   }
 
   /**
@@ -202,7 +212,7 @@ console.log(load(sample).getNearestLightness('lch', true))
     colorspace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: ColorToken } {
-    return nativeMinLightness(this['colors'], colorspace, colorObj);
+    return _minl(this['colors'], colorspace, colorObj);
   }
 
   /**
@@ -226,7 +236,7 @@ console.log(load(sample).getFarthestLightness('lch', true))
     colorspace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: ColorToken } {
-    return nativeMaxLightness(this['colors'], colorspace, colorObj);
+    return _maxl(this['colors'], colorspace, colorObj);
   }
 
   /**
@@ -758,7 +768,7 @@ function load(colors: ColorToken[]): ColorArray {
 }
 
 //Check if the scheme object has the passed in scheme
-function schemeMapper(scheme: string, schemesObject: object): ColorToken[] {
+function hasScheme(scheme: string, schemesObject: object): ColorToken[] {
   const cb = (str: string) => str.toLowerCase();
   const { keys } = Object;
   // Map all schemes keys to lower case
@@ -1009,7 +1019,7 @@ function sequential(scheme: SequentialScheme): ColorToken[] {
     ]
   };
 
-  return schemeMapper(scheme, schemes);
+  return hasScheme(scheme, schemes);
 }
 
 /**
@@ -1153,7 +1163,7 @@ function diverging(scheme: DivergingScheme): ColorToken[] {
     ]
   };
 
-  return schemeMapper(scheme, schemes);
+  return hasScheme(scheme, schemes);
 }
 
 /**
@@ -1269,7 +1279,7 @@ function qualitative(scheme: QualitativeScheme): ColorToken[] {
       '#f2f2f2'
     ]
   };
-  return schemeMapper(scheme, schemes);
+  return hasScheme(scheme, schemes);
 }
 
 /**
@@ -1409,95 +1419,89 @@ class Color {
       lightMode,
       darkMode,
       lightness
-    } = checkArg(options, {}) as ColorOptions;
-    c = checkArg(c, '#000') as ColorToken;
+    } = or(options, {}) as ColorOptions;
+    c = or(c, '#000') as ColorToken;
 
     // Set the alpha of the color if its not explicitly passed in.
     //@ts-ignore
-    this['alpha'] = checkArg(alpha, nativeAlpha(c));
+    this['alpha'] = or(alpha, _alpha(c));
 
     // if the color is undefined we cast pure black
 
     this['_color'] = c;
 
     // set the color's luminance if its not explicitly passed in
-    this['_luminance'] = checkArg(luminance, getLuminance(c));
+    this['_luminance'] = or(luminance, _glmnce(c));
 
     // set the color's lightness if its not explicitly passed in the default lightness is in Lch but will be refactored soon
-    this['lightness'] = checkArg(lightness, nativeGetChannel('lch.l')(c));
+    this['lightness'] = or(lightness, _gchn('lch.l')(c));
 
     // set the default color space as jch if a color space is not specified. TODO: get the mode from object and array
-    this['colorspace'] = checkArg(colorspace, 'jch');
+    this['colorspace'] = or(colorspace, 'jch');
 
     // set the default saturation to that of the passed in color if the value is not explicitly set
-    this['_saturation'] = checkArg(
+    this['_saturation'] = or(
       saturation,
-      nativeGetChannel(
-        `${this['colorspace']}.${matchChromaChannel(this['colorspace'])}`
-      )(c)
+      _gchn(`${this['colorspace']}.${mcchn(this['colorspace'])}`)(c)
     );
 
     // light mode default is gray-100
-    this['lightMode'] = checkArg(lightMode, colors('gray', '100'));
+    this['lightMode'] = or(lightMode, colors('gray', '100'));
 
     // dark mode default is gray-800
-    this['darkMode'] = checkArg(darkMode, colors('gray', '800'));
+    this['darkMode'] = or(darkMode, colors('gray', '800'));
   }
 
   alpha(amount?: number | string): Color | number {
     if (amount) {
-      this['_color'] = nativeAlpha(this['_color'], amount);
+      this['_color'] = _alpha(this['_color'], amount);
       return this;
     } else {
-      return nativeAlpha(this['_color']);
+      return _alpha(this['_color']);
     }
   }
   getChannel(channel: string) {
-    return nativeGetChannel(`${this['colorspace']}.${channel.toLowerCase()}`)(
+    return _gchn(`${this['colorspace']}.${channel.toLowerCase()}`)(
       this['_color']
     );
   }
   setChannel(modeChannel: string, value: number | string): Color {
-    this['_color'] = nativeSetChannel(modeChannel)(this['_color'], value);
+    this['_color'] = _schn(modeChannel)(this['_color'], value);
     return this;
   }
 
   via(origin: ColorToken, t?: number, options?: typeof interpolatorConfig) {
-    const result = interpolator(
-      [origin, this['_color']],
-      this['colorspace'],
-      options
-    );
+    const result = _pltr([origin, this['_color']], this['colorspace'], options);
 
-    return nativeToHex(result(t));
+    return _hex(result(t));
   }
 
   // brighten(amount: number | string, colorspace) {
-  //   this['_color'] = nativeBrighten(this['_color'], amount, colorspace);
+  //   this['_color'] = _Brighten(this['_color'], amount, colorspace);
   //   return this;
   // }
   // darken(amount: number | string) {
-  //   this['_color'] = nativeDarken(this['_color'], amount);
+  //   this['_color'] = _Darken(this['_color'], amount);
   //   return this;
   // }
 
   color2hex(): Color {
-    this['_color'] = nativeToHex(this['_color']);
+    this['_color'] = _hex(this['_color']);
     return this['_color'];
   }
   pastel(): Color {
-    this['_color'] = nativePastel(this['_color']);
+    this['_color'] = pstl(this['_color']);
     return this;
   }
   pairedScheme(options?: PairedSchemeOptions): ColorArray {
     // @ts-ignore
-    this['colors'] = nativePairedScheme(this['_color'], options);
+    this['colors'] = _pdschm(this['_color'], options);
 
     return new ColorArray(this['colors']);
   }
   hueShift(options?: HueShiftOptions): ColorArray {
     // @ts-ignore
-    this['colors'] = nativeHueShift(this['_color'], options);
+    this['colors'] = hshift(this['_color'], options);
 
     return new ColorArray(this['colors']);
   }
@@ -1505,12 +1509,12 @@ class Color {
     mode?: HueColorSpaces,
     colorObj?: boolean
   ): { hue: HueFamily; color: ColorToken } | ColorToken {
-    this['_color'] = nativeGetComplimentaryHue(this['_color'], mode, colorObj);
+    this['_color'] = gch(this['_color'], mode, colorObj);
     return this['_color'];
   }
   // earthtone(options?: EarthtoneOptions): ColorArray | ColorToken {
   //   // @ts-ignore
-  //   this['colors'] = nativeEarthtone(this['_color'], checkArg(options, {}));
+  //   this['colors'] = _Earthtone(this['_color'], or(options, {}));
 
   //   return this['colors'];
   // }
@@ -1518,14 +1522,14 @@ class Color {
     let result: number;
     switch (against) {
       case 'lightMode':
-        result = getContrast(this['_color'], this['background']['lightMode']);
+        result = _gctrst(this['_color'], this['background']['lightMode']);
 
         break;
       case 'darkMode':
-        result = getContrast(this['_color'], this['background']['darkMode']);
+        result = _gctrst(this['_color'], this['background']['darkMode']);
         break;
       default:
-        result = getContrast(this['_color'], this['background']['custom']);
+        result = _gctrst(this['_color'], this['background']['custom']);
         break;
     }
     return result;
@@ -1533,11 +1537,11 @@ class Color {
   luminance(amount?: number): number {
     if (amount) {
       this['_luminance'] = amount;
-      this['_color'] = setLuminance(this['_color'], this['_color']);
+      this['_color'] = _slmnce(this['_color'], this['_color']);
       // @ts-ignore
       return this;
     }
-    return getLuminance(this['_color']);
+    return _glmnce(this['_color']);
   }
 
   output() {
@@ -1545,12 +1549,12 @@ class Color {
   }
 
   saturation(amount?: string | number) {
-    this['_saturation'] = nativeGetChannel(
-      `${this['colorspace']}.${matchChromaChannel(this['colorspace'])}`
+    this['_saturation'] = _gchn(
+      `${this['colorspace']}.${mcchn(this['colorspace'])}`
     )(this['_color']);
     if (amount) {
-      this['_color'] = nativeSetChannel(
-        `${this['colorspace']}.${matchChromaChannel(this['colorspace'])}`
+      this['_color'] = _schn(
+        `${this['colorspace']}.${mcchn(this['colorspace'])}`
       )(this['_color'], amount);
 
       return this;
@@ -1559,13 +1563,13 @@ class Color {
     }
   }
   isAchromatic() {
-    return nativeIsAchromatic(this['_color']);
+    return _ia(this['_color']);
   }
   isWarm() {
-    return nativeIsWarm(this['_color']);
+    return _iwarm(this['_color']);
   }
   isCool() {
-    return nativeIsCool(this['_color']);
+    return _icool(this['_color']);
   }
 
   /**
@@ -1595,42 +1599,39 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
     deficiencyType?: 'red' | 'blue' | 'green' | 'monochromacy',
     severity = 1
   ): ColorToken {
-    this['_color'] = nativeColorDeficiency(deficiencyType)(
-      this['_color'],
-      severity
-    );
+    this['_color'] = cds(deficiencyType)(this['_color'], severity);
     return this;
   }
 
   getFarthestHue(colors: ColorToken[], colorObj?: boolean) {
-    return nativeGetFarthestHue(colors, this['colorspace'], colorObj);
+    return _gfh(colors, this['colorspace'], colorObj);
   }
   getNearestHue(colors: ColorToken[], colorObj?: boolean) {
-    return nativeGetNearestHue(colors, this['colorspace'], colorObj);
+    return _gnh(colors, this['colorspace'], colorObj);
   }
   getNearestChroma(colors: ColorToken[], colorObj?: boolean) {
-    return nativeGetNearestChroma(colors, this['colorspace'], colorObj);
+    return _gnc(colors, this['colorspace'], colorObj);
   }
   getNearestLightness(colors: ColorToken[], colorObj?: boolean) {
-    return nativeGetNearestLightness(colors, this['colorspace'], colorObj);
+    return _gnl(colors, this['colorspace'], colorObj);
   }
   getFarthestChroma(colors: ColorToken[], colorObj?: boolean) {
-    return nativeGetFarthestChroma(colors, this['colorspace'], colorObj);
+    return _gfc(colors, this['colorspace'], colorObj);
   }
   getFarthestLightness(colors: ColorToken[], colorObj?: boolean) {
-    return nativeGetFarthestLightness(colors, this['colorspace'], colorObj);
+    return _gfl(colors, this['colorspace'], colorObj);
   }
   ovetone() {
-    return nativeOvertone(this['_color']);
+    return _ot(this['_color']);
   }
   getHueFamily() {
-    return nativeGetHue(this['_color']);
+    return _ghue(this['_color']);
   }
   scheme(
     scheme: 'analogous' | 'triadic' | 'tetradic' | 'complementary',
     easingFunc?: (t: number) => number
   ): ColorToken[] | ColorArray {
-    return load(nativeScheme(scheme)(this['_color'], easingFunc));
+    return load(schm(scheme)(this['_color'], easingFunc));
   }
 }
 

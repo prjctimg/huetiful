@@ -48,7 +48,7 @@ export type AdaptivePaletteOptions = {
 
 export type InterpolatorOptions = Pick<
   Options,
-  | 'easingFunc'
+  | 'easingFn'
   | 'hueInterpolator'
   | 'chromaInterpolator'
   | 'hueFixup'
@@ -65,7 +65,7 @@ type Options = {
    * @param t Any value between 0 and 1
    * @returns A number.
    */
-  easingFunc?: (t: number) => number;
+  easingFn?: (t: number) => number;
 
   /**
    *@param The interpolation method to use on the hue channel.
@@ -114,7 +114,7 @@ type Options = {
   /**
    *@param The amount of samples to return in the result collection.
    */
-  samples?: number;
+  iterations?: number;
 
   /**
    * * @param minLightness  Minimum lightness value (range 0-100).
