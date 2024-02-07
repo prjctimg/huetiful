@@ -1,0 +1,39 @@
+{
+  "compilationOptions": {
+    "preferredConfigPath": "./tsconfig.json"
+  },
+  "entries": [
+    {
+      "filePath": "./src/utils.ts",
+      "outFile": "./lib/utils.d.ts"
+    },
+    {
+      "filePath": "./src/colors.ts",
+      "outFile": "./lib/colors.d.ts"
+    },
+    {
+      "filePath": "./src/index.ts",
+      "outFile": "./lib/huetiful.d.ts"
+    },
+    {
+      "filePath": "./src/sortBy.ts",
+      "outFile": "./lib/sortBy.d.ts"
+    },
+    {
+      "filePath": "./src/filterBy.ts",
+      "outFile": "./lib/filterBy.d.ts"
+    },
+    {
+      "filePath": "./src/generators.ts",
+      "outFile": "./lib/generators.d.ts"
+    },
+    {
+      "filePath": "./src/helpers.ts",
+      "outFile": "./lib/helpers.d.ts"
+    },
+    {
+      "filePath": "./src/converters.ts",
+      "outFile": "./lib/converters.d.ts"
+    }
+  ]
+}

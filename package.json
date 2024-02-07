@@ -6,20 +6,45 @@
   "module": "./lib/huetiful.esm.mjs",
   "browser": "./lib/huetiful.umd.js",
   "jsdelivr": "./lib/huetiful.esm.min.mjs",
-  "types": "./types",
   "exports": {
-    "./generators": "./lib/generators.esm.mjs",
-    "./colors": "./lib/colors.esm.mjs",
-    "./utils": "./lib/utils.esm.mjs",
-    "./sortBy": "./lib/sortBy.esm.mjs",
-    "./filterBy": "./lib/filterBy.esm.mjs",
-    "./helpers": "./lib/helpers.esm.mjs",
-    "./converters": "./lib/converters",
-    ".": "./lib/huetiful.esm.mjs"
+    "./generators": {
+      "browser": "./lib/generators.esm.min.mjs",
+      "import": "./lib/generators.esm.mjs"
+    },
+    "./colors": {
+      "browser": "./lib/colors.esm.min.mjs",
+      "import": "./lib/colors.esm.mjs"
+    },
+    "./utils": {
+      "browser": "./lib/utils.esm.min.mjs",
+      "import": "./lib/utils.esm.mjs"
+    },
+    "./sortBy": {
+      "browser": "./lib/sortBy.esm.min.mjs",
+      "import": "./lib/sortBy.esm.mjs"
+    },
+    "./filterBy": {
+      "browser": "./lib/filterBy.esm.min.mjs",
+      "import": "./lib/filterBy.esm.mjs"
+    },
+    "./converters": {
+      "browser": "./lib/converters.esm.min.mjs",
+      "import": "./lib/sortBy.esm.mjs"
+    },
+    "./helpers": {
+      "browser": "./lib/helpers.esm.min.mjs",
+      "import": "./lib/helpers.esm.mjs"
+    },
+    ".": {
+      "browser": "./lib/huetiful.esm.min.mjs",
+      "import": "./lib/huetiful.esm.mjs"
+    }
   },
+  "types": "./lib/huetiful.d.ts",
   "description": "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
   "dependencies": {
-    "culori": "^3.0.1"
+    "culori": "^3.0.1",
+    "huetiful-js": "file:huetiful-js-1.79.98.tgz"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
@@ -32,7 +57,6 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "github-emoji": "^1.2.0",
-    "huetiful-js": "file:huetiful-js-1.79.98.tgz",
     "husky": "^8.0.3",
     "nodemon": "^3.0.1",
     "typedoc": "^0.25.3",
@@ -43,8 +67,9 @@
     "test": "jasmine",
     "docs": "npx typedoc && cp -r ./logo.png ./docs && cp -r ./logo_v1.png ./docs && git add .",
     "code:build": "node build.cjs",
-    "code:prepare": "npm run code:lint & npm run code:format & npm run code:build & npm run code:types & npm run docs",
-    "code:types": "dts-bundle-generator -o ./types/huetiful.d.ts ./src/index.ts && npx tsc",
+    "code:prepare": "npm run code:lint & npm run code:format",
+    "code:publish": "npm run code:build & npm run code:types",
+    "code:types": "dts-bundle-generator --config ./types.json",
     "code:lint": "eslint --fix --ext .ts",
     "code:format": "prettier \"./src/*.ts\" --write",
     "start": "nodemon app.js --watch "
@@ -110,7 +135,6 @@
     "gitRemote": "main"
   },
   "files": [
-    "types",
     "lib",
     "CHANGELOG.md",
     "CODE_OF_CONDUCT.md",
