@@ -33,7 +33,7 @@ import type {
 } from './types';
 import 'culori/all';
 import { formatHex8, colorsNamed } from 'culori/fn';
-import { checkArg, getModeChannel } from './helpers';
+import { or, getModeChannel } from './helpers';
 
 /**
  * Converter function with mode definitions for uniform color spaces. The function is curried to return a converter in the passed colospace.
@@ -262,7 +262,7 @@ console.log(color2tuple(rgbColor));
  */
 
 function color2tuple(color: string | object, colorspace?: Colorspaces) {
-  colorspace = color['mode'] || checkArg(colorspace, 'rgb');
+  colorspace = color['mode'] || or(colorspace, 'rgb');
 
   // @ts-ignore
   const colorObject: ColorToken = converter(colorspace)(color);

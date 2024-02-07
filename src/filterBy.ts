@@ -15,15 +15,7 @@ import { differenceHyab } from 'culori/fn';
 import { color2hex } from './converters';
 import type { ColorToken, HueColorSpaces, Factor } from './types';
 import { getLuminance, getContrast, getChannel } from './utils';
-import {
-  matchChromaChannel,
-  matchLightnessChannel,
-  filteredArr,
-  normalize,
-  matchComparator,
-  matchDigits,
-  checkArg
-} from './helpers';
+import { mcchn, mlchn, filteredArr, norm, reOp, reNum, or } from './helpers';
 import modeRanges from './color-maps/samples/modeRanges';
 
 /**
@@ -45,24 +37,21 @@ function baseFilterBy(
   colorspace?: HueColorSpaces
 ) {
   const normalizableFactors = {
-    saturation: matchChromaChannel,
-    lightness: matchLightnessChannel
+    saturation: mcchn,
+    lightness: mlchn
   };
 
   // make case insensitive
   factor = factor.toLowerCase();
 
   // @ts-ignore
-  colorspace = checkArg(colorspace, 'lch65').toLowerCase();
+  colorspace = or(colorspace, 'lch65').toLowerCase();
 
-  var [sym, startVal] = [
-    matchComparator(start as string),
-    matchDigits(start as string)
-  ];
+  var [sym, startVal] = [reOp(start as string), reNum(start as string)];
 
   if (normalizableFactors[factor]) {
-    startVal = normalize(startVal, normalizableFactors[factor](colorspace));
-    end = normalize(end, normalizableFactors[factor](colorspace));
+    startVal = norm(startVal, normalizableFactors[factor](colorspace));
+    end = norm(end, normalizableFactors[factor](colorspace));
   }
 
   if (typeof start === 'string' && sym) {
@@ -113,14 +102,12 @@ function filterBySaturation(
   endSaturation?: number,
   colorspace?: HueColorSpaces
 ): ColorToken[] {
-  const modeChannel = matchChromaChannel(colorspace);
+  const modeChannel = mcchn(colorspace);
 
   const factor: Factor = 'saturation';
   // eslint-disable-next-line no-ternary
   endSaturation = !endSaturation
-    ? modeRanges[checkArg(colorspace, 'lch') as string][
-        modeChannel.split('.')[1]
-      ][1]
+    ? modeRanges[or(colorspace, 'lch') as string][modeChannel.split('.')[1]][1]
     : endSaturation;
 
   return baseFilterBy(
@@ -217,18 +204,16 @@ function filterByLightness(
 ): ColorToken[] {
   const factor: Factor = 'lightness';
 
-  const modeChannel = matchChromaChannel(colorspace);
+  const modeChannel = mcchn(colorspace);
 
   // eslint-disable-next-line no-ternary
   endLightness = !endLightness
-    ? modeRanges[checkArg(colorspace, 'lch') as string][
-        modeChannel.split('.')[1]
-      ][1]
+    ? modeRanges[or(colorspace, 'lch') as string][modeChannel.split('.')[1]][1]
     : endLightness;
 
   return baseFilterBy(
     factor,
-    getChannel(matchLightnessChannel(colorspace)),
+    getChannel(mlchn(colorspace)),
     collection,
     startLightness,
     endLightness,

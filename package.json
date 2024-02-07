@@ -32,6 +32,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "github-emoji": "^1.2.0",
+    "huetiful-js": "file:huetiful-js-1.79.98.tgz",
     "husky": "^8.0.3",
     "nodemon": "^3.0.1",
     "typedoc": "^0.25.3",
@@ -76,7 +77,7 @@
     "rules": {
       "prefer-const": 0,
       "no-console": 1,
-      "no-ternary": 2,
+      "no-ternary": 0,
       "no-var": 0,
       "no-explicit-any": 0,
       "prettier/prettier": 0,
