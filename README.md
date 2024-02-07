@@ -1,9 +1,8 @@
 [![Deploy GitHub Pages](https://github.com/prjctimg/huetiful/actions/workflows/static.yml/badge.svg?branch=main)](https://github.com/prjctimg/huetiful/actions/workflows/static.yml)
 [![NPM publish 📦](https://github.com/prjctimg/huetiful/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/prjctimg/huetiful/actions/workflows/npm-publish.yml)
 [![npm minzipped size](https://img.shields.io/bundlephobia/minzip/huetiful-js)](https://bundlephobia.com/package/huetiful-js)
-[![paypal](https://img.shields.io/badge/donate-paypal-informational?logo=paypal)](https://www.paypal.com/donate/?hosted_button_id=CRFWNCE6EW5X2)
-[![twitter](https://img.shields.io/twitter/follow/deantarisai?style=social)](https://twitter.com/deantarisai)
 
+[![twitter](https://img.shields.io/twitter/follow/deantarisai?style=social)](https://twitter.com/deantarisai)
 
   <p align='center'>
     <img alt="logo" title="sine_cos_rotation" src="./logo.png">
@@ -21,23 +20,42 @@
     ·
     <a href="https://github.com/prjctimg/huetiful/issues/new?template=---feature-request.md">🍩 Request Feature</a>
     ·
-    <a href="https://github.com/prjctimg/huetiful/wiki>🧠 Wiki </a>
+    <a href="https://github.com/prjctimg/huetiful/wiki">🧠 Wiki </a>
 </p>
 
 ### Table of Contents
 
-- [Installation and usage](#installation-and-usage)
-  - [Node](#node)
-  - [Browser](#browser)
-  - [Quickstart](#quickstart)
-  - [Documentation 📜](#documentation-)
+  - [What's this ?](#whats-this-)
+  - [What does it do ?](#what-does-it-do-)
+  - [Installation and usage](#installation-and-usage)
+    - [Node](#node)
+    - [Browser](#browser)
+    - [Quickstart](#quickstart)
+    - [Documentation 📜](#documentation-)
 - [Community](#community)
-  - [😣 Need help ?](#-need-help-)
-  - [🎁 Contributing](#-contributing)
+  - [Contributing](#contributing)
   - [References 🔗](#references-)
-  - [License](#license)
+    - [License](#license)
 
 <br>
+
+#### What's this ?
+
+This project builds off Culori's function oriented API to provide you with a rich collection of utilities for manipulating color. It is a Typescript library for color manipulations that works both in Node and the browser.
+
+#### What does it do ?
+
+Some of the key features include methods for:
+
+- Sorting and filtering collections of colors using their properties
+- Querying and setting color properties
+- Fetching values of statistical significance (i.e the smallest hue angle in a collection)
+- Generating custom color scales using spline interpolation methods, easings and with support for creating `closed` color scales for cyclic data
+- Referencing the default TailwindCSS palette and ColorBrewer color scales
+- Converting colors from a wide range of data types like arrays,strings,numbers and plain objects to a widely recognized format like hex
+- And more...
+
+The library is function oriented and tries to be as generic as possible to allow usage in wider contexts for example the collection methods take both objects and arrays. It also has a lazy chain wrapper similar to the Lodash `_.chain` utility that binds collection methods to the passed in collection allowing you to overload operations before calling the final output. With a focus on applying color theory reasoning, this library can be a Swiss army knife allowing you to work with color in a more programmatic way.
 
 #### Installation and usage
 
@@ -79,21 +97,9 @@ Or load the library as a UMD glabal (`huetiful`) in your HTML file using a `<scr
 
 [See the discussions and just say hi, or share a coding meme(whatever breaks the ice🏔️)](https://github.com/prjctimg/huetiful/discussions)
 
-#### 😣 Need help ?
-
-See some unexpected results😖? [Check the issue tracker](https://github.com/prjctimg/huetiful/issues) to open an issue or search for the problem to see if your issue already exists or has been resolved.
-
-#### 🎁 Contributing
+#### Contributing
 
 This project is fully open source! Contributions of any kind are greatly appreciated! See🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
-
-##### Forkers 🔬
-
-[![Forkers repo roster for @prjctimg/huetiful](http://reporoster.com/forks/notext/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/network/members)
-
-##### Stargazers 🔮✨
-
-[![Stargazers repo roster for @prjctimg/huetiful](http://reporoster.com/stars/notext/prjctimg/huetiful)](https://github.com/prjctimg/huetiful/stargazers)
 
 <img alt="logo" title="huetiful-js" src="./logo_v1.png">
 

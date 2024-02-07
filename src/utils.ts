@@ -3,14 +3,14 @@ import hueTempMap from './color-maps/samples/hueTemperature.js';
 import {
   adjustHue,
   customConcat,
-  expressionParser,
+  exprParser,
   floorCeil,
   inRange,
   lt,
   lte,
-  matchLightnessChannel,
+  mlchn,
   max,
-  random
+  rand
 } from './helpers.js';
 
 import { colors } from './colors.js';
@@ -42,7 +42,7 @@ import {
   DeficiencyType
 } from './types.js';
 
-import { matchChromaChannel, sortedArr, checkArg } from './helpers.js';
+import { mcchn, sortedArr, or } from './helpers.js';
 
 /**
  *
@@ -75,7 +75,7 @@ function getHueFamily(color: ColorToken): HueFamily {
 }
 
 function lightnessPredicate(colorspace) {
-  return getChannel(`${matchLightnessChannel(colorspace)}`);
+  return getChannel(`${mlchn(colorspace)}`);
 }
 
 function temperaturePredicate(factor: number, temp: 'warm' | 'cool'): boolean {
@@ -154,12 +154,10 @@ function contrastPredicate(color) {
 }
 
 function huePredicate(colorSpace: string) {
-  return (color: ColorToken) =>
-    getChannel(`${checkArg(colorSpace, 'jch')}.h`)(color);
+  return (color: ColorToken) => getChannel(`${or(colorSpace, 'jch')}.h`)(color);
 }
 function chromaPredicate(colorspace) {
-  return (color: ColorToken) =>
-    getChannel(matchChromaChannel(colorspace))(color);
+  return (color: ColorToken) => getChannel(mcchn(colorspace))(color);
 }
 
 // The baseFunc for getting specifified factor extremums
@@ -391,10 +389,10 @@ function getComplimentaryHue(
   colorspace?: HueColorSpaces,
   colorObj = false
 ): { hue: string; color: ColorToken } | ColorToken {
-  const modeChannel = `${checkArg(colorspace, 'lch')}.h`;
+  const modeChannel = `${or(colorspace, 'lch')}.h`;
 
   const complementaryHue: number = adjustHue(
-    getChannel(modeChannel)(color) + 180 * random(0.965, 1)
+    getChannel(modeChannel)(color) + 180 * rand(0.965, 1)
   );
 
   const result: ColorToken | { hue: string; color: ColorToken } =
@@ -434,7 +432,7 @@ function setChannel(mc: string) {
       if (typeof value === 'number') {
         src[channel] = value;
       } else if (typeof value === 'string') {
-        expressionParser(src, channel, value);
+        exprParser(src, channel, value);
       } else {
         throw new Error(`unsupported value for setChannel`);
       }
@@ -621,7 +619,7 @@ function alpha(color: ColorToken, value?: number | string): number {
       src[channel] = value / 100;
     }
   } else if (typeof value === 'string') {
-    expressionParser(src, channel, value);
+    exprParser(src, channel, value);
   }
   // @ts-ignore
   return color2hex(src);
@@ -781,7 +779,7 @@ function getFarthestLightness(
 //   colorspace
 // ): ColorToken {
 //   const src = toLab(color2hex(color));
-//   const ch = matchLightnessChannel(colorspace).split('.')[1];
+//   const ch = mlchn(colorspace).split('.')[1];
 //   let result = src;
 //   if (typeof value == 'number') {
 //     result[ch] -= 18 * easingSmootherstep(Math.abs(value) / 100);
@@ -844,8 +842,8 @@ console.log(map(grays, isAchromatic));
 function isAchromatic(color: ColorToken, mode?: HueColorSpaces): boolean {
   // If a color has no lightness then it has no hue so its technically achromatic
   const props = {
-    lightness: getChannel(`${matchLightnessChannel(mode as string)}`)(color),
-    chroma: getChannel(`${matchChromaChannel(mode as string)}`)(color)
+    lightness: getChannel(`${mlchn(mode as string)}`)(color),
+    chroma: getChannel(`${mcchn(mode as string)}`)(color)
   };
 
   // Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
@@ -919,7 +917,7 @@ function colorDeficiency(deficiencyType?: DeficiencyType) {
     // Store the keys of deficiency types
     const deficiencies: string[] = ['red', 'blue', 'green', 'monochromacy'];
     // Cast 'red' as the default parameter
-    deficiencyType = checkArg(deficiencyType, 'red') as DeficiencyType;
+    deficiencyType = or(deficiencyType, 'red') as DeficiencyType;
 
     if (
       typeof deficiencyType === 'string' &&

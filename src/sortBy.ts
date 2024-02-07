@@ -20,12 +20,7 @@ import type {
   callback,
   Order
 } from './types';
-import {
-  checkArg,
-  sortedArr,
-  matchLightnessChannel,
-  matchChromaChannel
-} from './helpers';
+import { or, sortedArr, mlchn, mcchn } from './helpers';
 import { wcagContrast, differenceEuclidean } from 'culori/fn';
 import { getLuminance, getChannel } from './utils';
 
@@ -91,12 +86,7 @@ function sortBySaturation(
   order: 'asc' | 'desc',
   mode?: HueColorSpaces
 ): ColorToken[] {
-  return baseSortBy(
-    'saturation',
-    getChannel(matchChromaChannel(mode)),
-    order,
-    collection
-  );
+  return baseSortBy('saturation', getChannel(mcchn(mode)), order, collection);
 }
 
 /**
@@ -211,7 +201,7 @@ function sortByLightness(
 ): ColorToken[] {
   return baseSortBy(
     'lightness',
-    getChannel(matchLightnessChannel(colorspace)),
+    getChannel(mlchn(colorspace)),
     order,
     collection
   );
@@ -275,7 +265,7 @@ function sortByHue(
     reHue &&
     baseSortBy(
       'lightness',
-      getChannel(`${checkArg(colorspace, 'jch')}.h`),
+      getChannel(`${or(colorspace, 'jch')}.h`),
       order,
       collection
     )
@@ -355,14 +345,14 @@ function sortByDistance(
     // @ts-ignore
     return differenceEuclidean(
       // @ts-ignore
-      checkArg(mode, 'lchuv') as typeof mode,
-      checkArg(weights, [1, 1, 1, 0]) as typeof weights
+      or(mode, 'lchuv') as typeof mode,
+      or(weights, [1, 1, 1, 0]) as typeof weights
     )(against, color);
   };
 
   return baseSortBy(
     'contrast',
-    cb(against as string, checkArg(mode, 'lchuv') as typeof mode),
+    cb(against as string, or(mode, 'lchuv') as typeof mode),
     order,
     collection
   );

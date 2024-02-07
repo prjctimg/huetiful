@@ -1,7 +1,7 @@
 {
   "include": [
-    "./src/index.ts"
-  ],"exclude":["**/*/node_modules","./src/color-maps"],
+    "./src/*.ts"
+  ],"exclude":["**/*/node_modules","./src/color-maps","./src/index.ts"],
   "compilerOptions": {
     "lib":["esnext"],
     "target":"esnext",
@@ -14,7 +14,7 @@
     "emitDeclarationOnly": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
-    "declarationDir": "./types",
+    "declarationDir": "./lib",
   // "rootDir":"./src"
   }
 }

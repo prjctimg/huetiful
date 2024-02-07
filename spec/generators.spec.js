@@ -36,12 +36,12 @@ describe(`This test suite checks the generators. `, () => {
         'Takes an array of colors and finds the best matches for a set of predefined palettes.',
       expect: ['#310000', '#3e0000', '#4e0000', '#164100']
     },
-    // earthtone: {
-    //   params: ['pink', 'lch', { earthtones: 'clay', samples: 5 }],
-    //   description:
-    //     'Creates a scale of a spline interpolation between an earthtone and a color.',
-    //   expect: ['#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff']
-    // },
+    earthtone: {
+      params: ['pink', 'lch', { earthtones: 'clay', iterations: 5 }],
+      description:
+        'Creates a scale of a spline interpolation between an earthtone and a color.',
+      expect: ['#6a5c52', '#816a63', '#b38d86', '#e6b0ac', '#ffc1be']
+    },
     hueShift: {
       params: ['#3e0000'],
       description: 'Generates a palette of hue shifted colors',
@@ -67,17 +67,17 @@ describe(`This test suite checks the generators. `, () => {
         'Returns a spline interpolator function with customizable interpolation methods',
       expect: [
         '#b2c3f1',
-        '#5ccdec',
-        '#22d1b0',
-        '#76c85b',
-        '#c5b73d',
-        '#f1ac6c',
-        '#fdae9d',
+        '#2dd0f5',
+        '#00d5ae',
+        '#6aca4c',
+        '#c5b722',
+        '#fba859',
+        '#ffa995',
         '#f3bac1'
       ]
     },
     pairedScheme: {
-      params: ['green', { hueStep: 6, samples: 4, tone: 'dark' }],
+      params: ['green', { hueStep: 6, iterations: 4, tone: 'dark' }],
       description:
         'Creates a scheme that consists of a scheme color that is incremented by a hueStep to get the final hue to pair with',
       expect: ['#008000', '#348e2a', '#79b36f', '#cfe4cb']
@@ -89,4 +89,7 @@ describe(`This test suite checks the generators. `, () => {
       expect(generators[func](...args['params'])).toEqual(args['expect']);
     });
   }
+  it(`Returns a random pastel version of the passed in color`, () => {
+    expect(generators.pastel('blue')).toEqual(jasmine.anything());
+  });
 });
