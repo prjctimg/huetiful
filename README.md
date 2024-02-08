@@ -112,5 +112,8 @@ This project is fully open source! Contributions of any kind are greatly appreci
 
 ##### License
 
-> Copyright (c) 2024,Dean Tarisai
-> <h6 align='center'>Released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license.</h6>
+> `(c) 2024,Dean Tarisai`
+>
+> huetiful-js ~ Library for color manipulation and custom color scale generators.
+> <h6 align='center'>Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h6>
+> 🧪 with ☕ in Crowhill,ZW
