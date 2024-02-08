@@ -112,8 +112,10 @@ This project is fully open source! Contributions of any kind are greatly appreci
 
 ##### License
 
-> `(c) 2024,Dean Tarisai`
+
+> <h4 align='center' >huetiful-js ~ Library for color manipulation and custom color scale generators.</h4>
+> <h5 align='center'>Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h5>
+> 
+> <h6 align='center'> 🧪 & 🔬 with 🥃 in Crowhill,ZW</h6>
 >
-> huetiful-js ~ Library for color manipulation and custom color scale generators.
-> <h6 align='center'>Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h6>
-> 🧪 with ☕ in Crowhill,ZW
+> `(c) 2024,Dean Tarisai`
