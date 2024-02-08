@@ -113,4 +113,4 @@ This project is fully open source! Contributions of any kind are greatly appreci
 ##### License
 
 > Copyright (c) 2024,Dean Tarisai
-> Released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license.
+> <h6 align='center'>Released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license.</h6>
