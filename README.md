@@ -118,4 +118,4 @@ This project is fully open source! Contributions of any kind are greatly appreci
 
  <h6 align='center'> 🧪 & 🔬 with 🥃 in Crowhill,ZW</h6>
 
- <h6>(c) 2024,Dean Tarisai`<h6></pre>
+ <p align='center'>(c) 2024,Dean Tarisai`<p></pre>
