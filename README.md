@@ -110,12 +110,12 @@ This project is fully open source! Contributions of any kind are greatly appreci
 - [Introducing Adaptive Color Palettes](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://medium.com/thinking-design/introducing-adaptive-color-palettes-111b5842fc88&ved=2ahUKEwj5xNSuy-6DAxV8REEAHVKaAMwQFnoECB0QAQ&usg=AOvVaw2ufCwph7oofZCFawA0WPr-)
 - [Culori API docs](https://culorijs.org/api/)
 
-##### License
+##### License ⚖️
 
 
-> <h4 align='center' >huetiful-js ~ Library for color manipulation and custom color scale generators.</h4>
+> <h4 align='center' >huetiful-js ~ Library for general purpose color manipulations and custom color scale generators.</h4>
 > <h5 align='center'>Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h5>
 > 
 > <h6 align='center'> 🧪 & 🔬 with 🥃 in Crowhill,ZW</h6>
 >
-> `(c) 2024,Dean Tarisai`
+> <h6><pre>(c) 2024,Dean Tarisai`</pre><h6>
