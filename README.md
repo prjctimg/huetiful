@@ -93,7 +93,7 @@ Or load the library as a UMD glabal (`huetiful`) in your HTML file using a `<scr
 [See the full docs here](https://prjctimg.github.io/huetiful)
 <br>
 
-### Community
+#### Community
 
 [See the discussions and just say hi, or share a coding meme(whatever breaks the ice🏔️)](https://github.com/prjctimg/huetiful/discussions)
 
@@ -112,6 +112,5 @@ This project is fully open source! Contributions of any kind are greatly appreci
 
 ##### License
 
-> Copyright (c) 2023,
-> Dean Tarisai and contributors
-> huetiful-js is released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license.
+> Copyright (c) 2024,Dean Tarisai
+> Released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license.
