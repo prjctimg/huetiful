@@ -1,4 +1,5 @@
 import * as converters from '../lib/converters.esm.mjs';
+import iterator from './helpers/iterator.js';
 
 /** 
  * @license
@@ -52,9 +53,5 @@ describe(`This test suite checks the converter functions. `, () => {
     }
   };
 
-  for (const [func, args] of Object.entries(data)) {
-    it(args['description'], () => {
-      expect(converters[func](...args['params'])).toEqual(args['expect']);
-    });
-  }
+  iterator(converters, data);
 });

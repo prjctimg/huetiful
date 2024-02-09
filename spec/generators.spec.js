@@ -1,4 +1,5 @@
 import * as generators from '../lib/generators.esm.mjs';
+import iterator from './helpers/iterator.js';
 
 /** 
  * @license
@@ -81,15 +82,13 @@ describe(`This test suite checks the generators. `, () => {
       description:
         'Creates a scheme that consists of a scheme color that is incremented by a hueStep to get the final hue to pair with',
       expect: ['#008000', '#348e2a', '#79b36f', '#cfe4cb']
+    },
+    pastel: {
+      params: ['green'],
+      description: 'Creates a pastel variant of a color',
+      expect: jasmine.anything()
     }
   };
 
-  for (const [func, args] of Object.entries(data)) {
-    it(args['description'], () => {
-      expect(generators[func](...args['params'])).toEqual(args['expect']);
-    });
-  }
-  it(`Returns a random pastel version of the passed in color`, () => {
-    expect(generators.pastel('blue')).toEqual(jasmine.anything());
-  });
+  iterator(generators, data);
 });

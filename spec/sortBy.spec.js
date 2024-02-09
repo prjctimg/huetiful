@@ -1,4 +1,5 @@
 import * as sortBy from '../lib/sortBy.esm.mjs';
+import iterator from './helpers/iterator.js';
 
 /** 
  * @license
@@ -14,23 +15,39 @@ governing permissions and limitations under the License.
 */
 
 describe(`The sortBy module test suite `, function () {
-  const funcs = ['sortBySaturation', 'sortByLightness', 'sortByLuminance'];
   let colors = ['blue', 'pink', 'yellow', 'green'];
-  for (let idx = 0; idx < funcs.length; idx++) {
-    it(`It sorts colors by ${funcs[idx]}`, function () {
-      expect(sortBy[funcs[idx]](colors, 'asc')).toEqual(
-        jasmine.arrayContaining(colors)
-      );
-    });
-  }
-  it(`Sorts color by contrast`, function () {
-    expect(sortBy.sortByContrast(colors, 'black', 'asc')).toEqual(
-      jasmine.arrayContaining(colors)
-    );
-  });
-  it(`Sorts color by distance`, function () {
-    expect(sortBy.sortByContrast(colors, 'black', 'asc')).toEqual(
-      jasmine.arrayContaining(colors)
-    );
-  });
+  var data = {
+    sortBySaturation: {
+      params: [colors, 'asc', 'lch'],
+      description: 'Sorts colors by saturation value in `asc` order',
+      expect: jasmine.arrayContaining(colors)
+    },
+    sortByLightness: {
+      params: [colors, 'asc', 'lch'],
+      description: 'Sorts colors by lightness value in `asc` order',
+      expect: jasmine.arrayContaining(colors)
+    },
+    sortByLuminance: {
+      params: [colors, 'asc'],
+      description: 'Sorts colors by luminance value in `asc` order',
+      expect: jasmine.arrayContaining(colors)
+    },
+    sortByDistance: {
+      params: [colors, 'brown', 'asc'],
+      description: 'Sorts colors by distance value in `asc` order',
+      expect: jasmine.arrayContaining(colors)
+    },
+    sortByContrast: {
+      params: [colors, 'black', 'asc'],
+      description: 'Sorts colors by distance value in `asc` order',
+      expect: jasmine.arrayContaining(colors)
+    },
+    sortByHue: {
+      params: [colors, 'asc', 'lch'],
+      description: 'Sorts colors by hue angle in `asc` order',
+      expect: jasmine.arrayContaining(colors)
+    }
+  };
+
+  iterator(sortBy, data);
 });

@@ -36,7 +36,7 @@ function baseFilterBy(
   end?: number,
   colorspace?: HueColorSpaces
 ) {
-  const normalizableFactors = {
+  const normFacts = {
     saturation: mcchn,
     lightness: mlchn
   };
@@ -49,9 +49,9 @@ function baseFilterBy(
 
   var [sym, startVal] = [reOp(start as string), reNum(start as string)];
 
-  if (normalizableFactors[factor]) {
-    startVal = norm(startVal, normalizableFactors[factor](colorspace));
-    end = norm(end, normalizableFactors[factor](colorspace));
+  if (normFacts[factor]) {
+    startVal = norm(startVal, normFacts[factor](colorspace));
+    end = norm(end, normFacts[factor](colorspace));
   }
 
   if (typeof start === 'string' && sym) {
