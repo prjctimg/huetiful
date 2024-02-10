@@ -7,7 +7,6 @@ import {
   floorCeil,
   inRange,
   lt,
-  lte,
   mlchn,
   max,
   rand
@@ -29,7 +28,8 @@ import {
   converter,
   wcagContrast,
   nearest,
-  differenceHyab
+  differenceHyab,
+  formatHex
 } from 'culori/fn';
 import 'culori/css';
 import {
@@ -501,7 +501,7 @@ function getLuminance(color: ColorToken): number {
   return wcagLuminance(color2hex(color));
 }
 
-const { pow, abs } = Math;
+const { abs } = Math;
 const toRgb = useMode(modeRgb);
 /**
  * 
@@ -559,27 +559,9 @@ function setLuminance(color: ColorToken, lum: number): ColorToken {
       rgb = test(color, white);
     }
     color = rgb;
-    return color;
   }
-  //   spreading the array values (r,g,b)
-  return rgb2luminance(color);
-}
 
-function rgb2luminance(color: ColorToken): number {
-  color = toRgb(color2hex(color));
-
-  // relative luminance
-  // see http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
-  return (
-    0.7152 * luminance_x(color['g']) +
-    0.2126 * luminance_x(color['r']) +
-    0.0722 * luminance_x(color['b'])
-  );
-}
-
-function luminance_x(x: number) {
-  x /= 255;
-  return (lte(x, 0.03928) && x / 12.92) || pow((x + 0.055) / 1.055, 2.4);
+  return formatHex(color as string);
 }
 
 /**

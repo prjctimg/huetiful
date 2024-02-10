@@ -1,6 +1,6 @@
 {
   "name": "huetiful-js",
-  "version": "1.79.99",
+  "version": "1.80.0",
   "type": "module",
   "main": "./lib/huetiful.esm.mjs",
   "module": "./lib/huetiful.esm.mjs",
@@ -60,13 +60,12 @@
     "typedoc": "^0.25.3",
     "typedoc-material-theme": "^1.0.2",
     "typescript": "^5.0.2",
-    "jasmine":"5.1.0"
+    "jasmine": "5.1.0"
   },
   "scripts": {
     "test": "npx jasmine",
-    "docs": "npx typedoc && cp -r ./logo.png ./docs && cp -r ./logo_v1.png ./docs && git add .",
+    "docs": "npx typedoc && cp -r ./logo.png ./docs && cp -r ./logo_v1.png ./docs",
     "code:build": "node build.cjs",
-    "code:prepare": "npm run code:lint & npm run code:format",
     "code:publish": "npm run code:build & npm run code:types",
     "code:types": "dts-bundle-generator --config ./types.json",
     "code:lint": "eslint --fix --ext .ts",
@@ -117,13 +116,12 @@
       "./src/converters.ts",
       "./src/filterBy.ts",
       "./src/sortBy.ts",
-      "./src/types.d.ts",
-      "./src/helpers.ts"
+      "./src/types.d.ts"
     ],
     "plugin": [
       "typedoc-material-theme"
     ],
-    "themeColor": "#f3ab1c",
+    "themeColor": "#ffc300",
     "entryPointStrategy": "resolve",
     "out": "docs",
     "exclude": [
@@ -131,7 +129,9 @@
     ],
     "tsconfig": "./tsconfig.json",
     "disableSources": false,
-    "gitRemote": "main"
+    "gitRemote": "main",
+    "excludeInternal": true,
+    "includeVersion": true
   },
   "files": [
     "lib",

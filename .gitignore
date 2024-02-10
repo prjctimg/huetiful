@@ -1,4 +1,6 @@
-git clone https://github.com/prjctimg/huetiful.wiki.git
+huetiful.code-workspaceOD
+
+package-lock.json
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 /app
 # dependencies
