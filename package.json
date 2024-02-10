@@ -121,7 +121,7 @@
     "plugin": [
       "typedoc-material-theme"
     ],
-    "themeColor": "#ffc300",
+    "themeColor": "#bfc300",
     "entryPointStrategy": "resolve",
     "out": "docs",
     "exclude": [
@@ -131,7 +131,7 @@
     "disableSources": false,
     "gitRemote": "main",
     "excludeInternal": true,
-    "includeVersion": true
+    "includeVersion":false
   },
   "files": [
     "lib",
