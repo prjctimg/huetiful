@@ -27,7 +27,8 @@ for (let idx = 0; idx < moduleNames.length; idx++) {
     outfile: `./lib/${moduleNames[idx]}.esm.mjs`,
     external: Object.keys(dependencies),
     entryPoints: [`./src/${moduleNames[idx]}.ts`],
-    minify: false
+    minify: false,
+    keepNames: true
   });
 
   //Bundled ESM
