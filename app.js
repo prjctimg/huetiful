@@ -1,5 +1,6 @@
 import { getLuminance, setLuminance } from 'huetiful-js';
 import { color2hex } from './lib/converters.esm.mjs';
+import { darken } from './lib/utils.esm.mjs';
 
 console.log(getLuminance('#ffc300'));
 // 0.6029021347719574
@@ -256,4 +257,6 @@ var d = {
   }
 };
 
-console.log(Object.keys(d.amber).map((k) => k.toString()));
+// console.log(Object.keys(d.amber).map((k) => k.toString()));
+
+console.log(darken('blue', 0.3, 'lch'));

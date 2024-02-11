@@ -14,7 +14,7 @@ import {
 
 import { tailwindColors } from './colors.js';
 
-import { color2hex } from './converters.js';
+import { color2hex, ucsConverter } from './converters.js';
 import {
   filterDeficiencyDeuter,
   filterDeficiencyProt,
@@ -29,7 +29,8 @@ import {
   wcagContrast,
   nearest,
   differenceHyab,
-  formatHex
+  formatHex,
+  easingSmootherstep
 } from 'culori/fn';
 import 'culori/css';
 import {
@@ -39,10 +40,12 @@ import {
   Order,
   callback,
   HueFamily,
-  DeficiencyType
+  DeficiencyType,
+  UniformColorSpaces
 } from './types.js';
 
 import { mcchn, sortedArr, or } from './helpers.js';
+import _rnges from './color-maps/samples/modeRanges.js';
 
 /**
  *
@@ -655,7 +658,7 @@ function overtone(color: ColorToken): string | boolean {
 
 /**
  * 
- *  Gets the smallest lightness value from the passed in colors.
+ * Gets the smallest lightness value from the passed in colors.
  * @param collection The array or object of colors to query the color with the smallest lightness value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.
  * @param mode THe mode colorspace to retrieve the lightness value from.
@@ -725,28 +728,38 @@ function getFarthestLightness(
  * 
  *  Darkens the color by reducing the lightness channel. .
  * @param   color The color to darken.
- * @param value The amount to darken with. Also supports expressions as strings e.g darken("#fc23a1","*0.5")
- * @returns color The darkened color.
+ * @param value The amount to darken with. The value is expected to be in the range `[0,100]`
+ * @param colorspace The mode colorspace to darken the color in. Only uniform colorspaces are supported 
+ * @returns color The darkened color as a hex string
  * @example
  * 
- * 
+ *  import { darken } from "huetiful-js";
+console.log(darken('blue', 0.3, 'lch'));
+//#464646
 
  */
-// function darken(color: ColorToken, value: number | string): ColorToken {
-//   const Kn = 18;
-//   const channel = 'l';
+function darken(
+  color: ColorToken,
+  value: number | string,
+  colorspace?: UniformColorSpaces
+): string {
+  const chn = mlchn(colorspace)[1];
+  colorspace = or(colorspace, 'lch') as UniformColorSpaces;
+  const src = ucsConverter(colorspace)(color2hex(color));
+  // @ts-ignore
+  var [l, end] = [src[chn], _rnges[colorspace][chn][0]];
 
-//   const src = toLab(color2hex(color));
+  if (typeof value === 'number' && inRange(value, 0, 100)) {
+    // darken by value of the current channel as a percentage
 
-//   if (typeof value === 'number') {
-//     src['l'] -= Kn * easingSmootherstep(value / 100);
-//   } else if (typeof value === 'string') {
-//     // @ts-ignore
-//     expressionParser(src, src['mode'] + '.l', value || 1);
-//   }
+    // @ts-ignore
+    src[chn] = l * ((value / 100) * (end * 0.1));
+  } else {
+    Error(`Darken accepts a number in the range [0,100] but got ${value}`);
+  }
 
-//   return color2hex(src);
-// }
+  return color2hex(src);
+}
 
 /**
  *
@@ -952,6 +965,7 @@ function getNearestColor(
 }
 
 export {
+  darken,
   getNearestColor,
   colorDeficiency,
   isAchromatic,
