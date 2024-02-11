@@ -1,5 +1,5 @@
 import * as generators from '../lib/generators.esm.mjs';
-import iterator from './helpers/iterator.js';
+import _iterator from './helpers/iterator.js';
 
 /** 
  * @license
@@ -90,5 +90,5 @@ describe(`This test suite checks the generators. `, () => {
     }
   };
 
-  iterator(generators, data);
+  _iterator(generators, data);
 });

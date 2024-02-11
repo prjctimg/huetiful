@@ -1,5 +1,5 @@
 import * as converters from '../lib/converters.esm.mjs';
-import iterator from './helpers/iterator.js';
+import _iterator from './helpers/iterator.js';
 
 /** 
  * @license
@@ -53,5 +53,5 @@ describe(`This test suite checks the converter functions. `, () => {
     }
   };
 
-  iterator(converters, data);
+  _iterator(converters, data);
 });

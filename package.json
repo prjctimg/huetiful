@@ -131,7 +131,6 @@
     "tsconfig": "./tsconfig.json",
     "disableSources": false,
     "gitRemote": "main",
-    "excludeInternal": true,
     "includeVersion": false
   },
   "files": [

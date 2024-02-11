@@ -12,7 +12,7 @@ import {
   rand
 } from './helpers.js';
 
-import { colors } from './colors.js';
+import { tailwindColors } from './colors.js';
 
 import { color2hex } from './converters.js';
 import {
@@ -943,7 +943,7 @@ function getNearestColor(
   let result: ColorToken;
 
   if (collection === 'tailwind') {
-    result = cb(colors('all'), color);
+    result = cb(tailwindColors('all'), color);
   } else {
     result = cb(collection, color);
   }

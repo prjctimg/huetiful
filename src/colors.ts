@@ -3,7 +3,7 @@
  * colors.ts - Colors and schemes for huetiful-js.
  * Contains colors from TailwindCSS released under the MIT permissive licence.
  * Contains parts of chroma.js released under the Apache-2.0 license.
-Copyright 2023 Dean Tarisai.
+Copyright 2024 Dean Tarisai.
 This file is licensed to you under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License. You may obtain a copy
 of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -35,14 +35,14 @@ import * as filterBy from './filterBy';
 import * as sortBy from './sortBy';
 import {
   discoverPalettes as _dp,
-  getFarthestHue as _maxhue,
-  getNearestHue as _minhue,
-  getNearestLightness as _maxl,
-  getFarthestLightness as _minl,
-  alpha as _alpha,
+  getFarthestHue as _mxh,
+  getNearestHue as _mnh,
+  getNearestLightness as _mxl,
+  getFarthestLightness as _mnl,
+  alpha as _opac,
   isAchromatic as _ia,
-  isCool as _icool,
-  isWarm as _iwarm,
+  isCool as _icl,
+  isWarm as _iwm,
   getFarthestChroma as _gfc,
   getFarthestHue as _gfh,
   getFarthestLightness as _gfl,
@@ -55,17 +55,17 @@ import {
   getContrast as _gctrst,
   getLuminance as _glmnce,
   setChannel as _schn,
-  setLuminance as _slmnce,
+  setLuminance as _slm,
   or,
   mcchn,
-  scheme as schm,
-  pastel as pstl,
-  hueShift as hshift,
-  getHueFamily as _ghue,
-  pairedScheme as _pdschm,
+  scheme as _schm,
+  pastel as _pstl,
+  hueShift as _hshft,
+  getHueFamily as _ghf,
+  pairedScheme as _ps,
   //  earthtone as _Earthtone,
-  getComplimentaryHue as gch,
-  colorDeficiency as cds,
+  getComplimentaryHue as _gch,
+  colorDeficiency as _cds,
   interpolator as _pltr,
   interpolateSpline as _pltrspln
 } from './index';
@@ -166,7 +166,7 @@ console.log(load(output).getFarthestHue('lch'))
     colorSpace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: ColorToken } {
-    return _maxhue(this['colors'], colorSpace, colorObj);
+    return _mxh(this['colors'], colorSpace, colorObj);
   }
 
   /**
@@ -189,7 +189,7 @@ console.log(load(sample).getNearestHue('lch'))
     colorSpace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: ColorToken } {
-    return _minhue(this['colors'], colorSpace, colorObj);
+    return _mnh(this['colors'], colorSpace, colorObj);
   }
 
   /**
@@ -212,7 +212,7 @@ console.log(load(sample).getNearestLightness('lch', true))
     colorspace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: ColorToken } {
-    return _minl(this['colors'], colorspace, colorObj);
+    return _mnl(this['colors'], colorspace, colorObj);
   }
 
   /**
@@ -236,7 +236,7 @@ console.log(load(sample).getFarthestLightness('lch', true))
     colorspace?: HueColorSpaces,
     colorObj = false
   ): number | { factor: number; color: ColorToken } {
-    return _maxl(this['colors'], colorspace, colorObj);
+    return _mxl(this['colors'], colorspace, colorObj);
   }
 
   /**
@@ -1284,71 +1284,6 @@ function qualitative(scheme: QualitativeScheme): ColorToken[] {
 
 /**
  * 
- *  A wrapper function for the default Tailwind palette. If called with both parameters it return the hex code at the specified shade and value. Else, if called with the shade parameter as "all" it will return all colors from the shades in the palette map at the specified value (if value is undefined it will default to "500"). When called with the shade parameter only it will return all the colors from 100 to 900 of the specified shade.
- * @param shade Any shade in the default TailwindCSS palette e.g amber,blue.
- * @param value Any value from 100 to 900 in increments of 100 e.g "200".
- * @returns color Returns a hex code string or array of hex codes depending on how the function is called.
- * @example
- * 
- * import { colors } from "huetiful-js";
-
-let all300 = colors("all", 300);
-
-console.log(all300)
-//[
-  '#cbd5e1', '#d1d5db', '#d4d4d8',
-  '#d4d4d4', '#d6d3d1', '#fca5a5',
-  '#fdba74', '#fcd34d', '#fde047',
-  '#bef264', '#86efac', '#6ee7b7',
-  '#5eead4', '#7dd3fc', '#93c5fd',
-  '#c4b5fd', '#d8b4fe', '#f0abfc',
-  '#f9a8d4', '#fda4af'
-]
-
-let red = colors("red");
-console.log(red);
-
-// [
-  '#fef2f2', '#fee2e2',
-  '#fecaca', '#fca5a5',
-  '#f87171', '#ef4444',
-  '#dc2626', '#b91c1c',
-  '#991b1b', '#7f1d1d'
-]
-
-let red100 = colors("red", 100);
-
-console.log(red100)
-// #fee2e2
- */
-function colors(
-  shade: TailwindColorFamilies | 'all',
-  value?: ScaleValues
-): ColorToken | ColorToken[] {
-  const { keys } = Object;
-  const defaultHue = 'all';
-  const hueKeys = keys(tailwindHues);
-
-  // @ts-ignore
-  shade = shade.toLowerCase();
-  // First do an AND check on hue and val params. If true return the hue at the specified value.
-  // If only the hue is defined return the whole array of hex codes for that color.
-  // If only the value is defined return that color value for every hue.
-  // @ts-ignore
-  if (shade === defaultHue) {
-    return hueKeys.map((color) => tailwindHues[color][value || '500']);
-  } else if (hueKeys.some((hue) => hue === shade) && value) {
-    return tailwindHues[shade][value];
-  } else if (shade && typeof value == 'undefined') {
-    const keyVals = keys(tailwindHues[shade]);
-    return keyVals.map((key) => tailwindHues[shade][key]);
-  } else if (typeof shade && typeof value == 'undefined') {
-    throw Error(`Both shade and value cannot be undefined`);
-  }
-}
-
-/**
- * 
  *  Wrapper function that returns TailwindCSS color value(s) of the specified shade. If invoked with no parameters it returns an array of colors from 100 to 900. If invoked with parameter will return the specified shade vale,
  * @param  val The tone value of the shade. Values are in incrementals of 100. Both numeric (100) and its string equivalent ('100') are valid.
  * @returns color A hex string value or array of hex strings.
@@ -1378,35 +1313,50 @@ console.log(red('900'));
 
  *
  */
-function tailwindColors(shade: TailwindColorFamilies) {
-  return (val?: ScaleValues): string | string[] => {
-    // This is a curried func that takes in the shade and returns a function that takes in a value from 100 thru 900
-    // @ts-ignore
-    shade = shade.toLowerCase();
-    const { keys } = Object;
-    // We check if the shade is a valid Tailwind shade if not we return pure black.
-    let targetHue: object;
+function tailwindColors(
+  shade: TailwindColorFamilies | 'all',
+  value?: ScaleValues
+): string | Array<string> {
+  var [defaultHue, hueKeys] = ['all', Object.keys(tailwindHues)];
 
-    if (keys(tailwindHues).indexOf(shade as string) != -1) {
-      targetHue = tailwindHues[shade];
-    } else {
-      throw Error(
-        `${
-          shade as string
-        } is not a valid shade in the default Tailwind palette`
-      );
-    }
+  var [hasHue, hasVal] = [
+    (h) => hueKeys.includes(h),
+    (val) =>
+      [
+        '50',
+        '100',
+        '200',
+        '300',
+        '400',
+        '500',
+        '600',
+        '700',
+        '800',
+        '900'
+      ].includes(val.toString())
+  ];
 
-    if (typeof val === 'undefined') {
-      return keys(targetHue).map((value) => targetHue[value]);
-    } else if (keys(targetHue).indexOf(val) > -1) {
-      return targetHue[val];
+  // @ts-ignore
+  shade = shade.toLowerCase();
+
+  // @ts-ignore
+  if (shade === defaultHue) {
+    if (value) {
+      // @ts-ignore
+      return hueKeys.map((hue) => tailwindHues[hue][value]);
     } else {
-      throw Error(
-        `${val} is not a valid scale value. Values are in increments of 100 up to 900 e.g "200"`
-      );
+      // @ts-ignore
+      return hueKeys.map((key) => Object.values(tailwindHues[key])).flat(2);
     }
-  };
+  } else if (hasHue(shade)) {
+    if (hasVal(value)) {
+      return tailwindHues[shade][value];
+    } else {
+      return Object.values(tailwindHues[shade]);
+    }
+  } else if (!shade && !value === void 0) {
+    throw Error(`Both shade and value cannot be undefined`);
+  }
 }
 
 class Color {
@@ -1424,7 +1374,7 @@ class Color {
 
     // Set the alpha of the color if its not explicitly passed in.
     //@ts-ignore
-    this['alpha'] = or(alpha, _alpha(c));
+    this['alpha'] = or(alpha, _opac(c));
 
     // if the color is undefined we cast pure black
 
@@ -1446,18 +1396,18 @@ class Color {
     );
 
     // light mode default is gray-100
-    this['lightMode'] = or(lightMode, colors('gray', '100'));
+    this['lightMode'] = or(lightMode, tailwindColors('gray', '100'));
 
     // dark mode default is gray-800
-    this['darkMode'] = or(darkMode, colors('gray', '800'));
+    this['darkMode'] = or(darkMode, tailwindColors('gray', '800'));
   }
 
   alpha(amount?: number | string): Color | number {
     if (amount) {
-      this['_color'] = _alpha(this['_color'], amount);
+      this['_color'] = _opac(this['_color'], amount);
       return this;
     } else {
-      return _alpha(this['_color']);
+      return _opac(this['_color']);
     }
   }
   getChannel(channel: string) {
@@ -1490,18 +1440,18 @@ class Color {
     return this['_color'];
   }
   pastel(): Color {
-    this['_color'] = pstl(this['_color']);
+    this['_color'] = _pstl(this['_color']);
     return this;
   }
   pairedScheme(options?: PairedSchemeOptions): ColorArray {
     // @ts-ignore
-    this['colors'] = _pdschm(this['_color'], options);
+    this['colors'] = _ps(this['_color'], options);
 
     return new ColorArray(this['colors']);
   }
   hueShift(options?: HueShiftOptions): ColorArray {
     // @ts-ignore
-    this['colors'] = hshift(this['_color'], options);
+    this['colors'] = _hshft(this['_color'], options);
 
     return new ColorArray(this['colors']);
   }
@@ -1509,7 +1459,7 @@ class Color {
     mode?: HueColorSpaces,
     colorObj?: boolean
   ): { hue: HueFamily; color: ColorToken } | ColorToken {
-    this['_color'] = gch(this['_color'], mode, colorObj);
+    this['_color'] = _gch(this['_color'], mode, colorObj);
     return this['_color'];
   }
   // earthtone(options?: EarthtoneOptions): ColorArray | ColorToken {
@@ -1537,7 +1487,7 @@ class Color {
   luminance(amount?: number): number {
     if (amount) {
       this['_luminance'] = amount;
-      this['_color'] = _slmnce(this['_color'], this['_color']);
+      this['_color'] = _slm(this['_color'], this['_color']);
       // @ts-ignore
       return this;
     }
@@ -1566,10 +1516,10 @@ class Color {
     return _ia(this['_color']);
   }
   isWarm() {
-    return _iwarm(this['_color']);
+    return _iwm(this['_color']);
   }
   isCool() {
-    return _icool(this['_color']);
+    return _icl(this['_color']);
   }
 
   /**
@@ -1599,7 +1549,7 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
     deficiencyType?: 'red' | 'blue' | 'green' | 'monochromacy',
     severity = 1
   ): ColorToken {
-    this['_color'] = cds(deficiencyType)(this['_color'], severity);
+    this['_color'] = _cds(deficiencyType)(this['_color'], severity);
     return this;
   }
 
@@ -1625,13 +1575,13 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
     return _ot(this['_color']);
   }
   getHueFamily() {
-    return _ghue(this['_color']);
+    return _ghf(this['_color']);
   }
   scheme(
     scheme: 'analogous' | 'triadic' | 'tetradic' | 'complementary',
     easingFunc?: (t: number) => number
   ): ColorToken[] | ColorArray {
-    return load(schm(scheme)(this['_color'], easingFunc));
+    return load(_schm(scheme)(this['_color'], easingFunc));
   }
 }
 
@@ -1648,7 +1598,6 @@ export {
   diverging,
   qualitative,
   sequential,
-  colors,
   tailwindColors,
   ColorArray,
   load,

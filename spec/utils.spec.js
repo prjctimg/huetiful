@@ -1,5 +1,5 @@
 import * as utils from '../lib/utils.esm.mjs';
-import iterator from './helpers/iterator.js';
+import _iterator from './helpers/iterator.js';
 
 /** 
  * @module
@@ -99,7 +99,7 @@ describe(`Test suite for utils`, () => {
       expect: '#ffe180'
     }
   };
-  iterator(utils, data);
+  _iterator(utils, data);
   // it(`Brightens/darkens the passed in color`, () => {
   //   expect(utils.darken(col, 0.5)).toBe(67.22120855010492);
   //   expect(utils.brighten(sample, '*0.3')).toBe(22.45669293295522);
