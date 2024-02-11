@@ -127,11 +127,12 @@
     "exclude": [
       "./color-maps"
     ],
+    "readme": "docs-readme.md",
     "tsconfig": "./tsconfig.json",
     "disableSources": false,
     "gitRemote": "main",
     "excludeInternal": true,
-    "includeVersion":false
+    "includeVersion": false
   },
   "files": [
     "lib",
