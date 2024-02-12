@@ -28,7 +28,8 @@ import type {
   //  EarthtoneOptions,
   HueFamily,
   HueShiftOptions,
-  PairedSchemeOptions
+  PairedSchemeOptions,
+  EarthtoneOptions
 } from './types';
 
 import * as filterBy from './filterBy';
@@ -70,10 +71,18 @@ import {
   interpolateSpline as _pltrspln
 } from './index';
 
-import { interpolatorConfig } from './helpers';
-
 /**
  * Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
+ * @example
+ * import { ColorArray } from 'huetiful-js'
+ * 
+let sample = ['blue', 'pink', 'yellow', 'green'];
+let wrapper = new ColorArray(sample);
+// We can even chain the methods and get the result by calling output()
+
+console.log(wrapper.sortByHue('desc', 'lch').output());
+
+// [ 'blue', 'green', 'yellow', 'pink' ]
  */
 class ColorArray {
   /**
@@ -82,6 +91,7 @@ class ColorArray {
    */
   constructor(colors: ColorToken[] | object) {
     this['colors'] = colors;
+    return this;
   }
   /**
    *
@@ -94,6 +104,17 @@ class ColorArray {
    * @returns A hexadecimal representation of the resultant color.
    *
    * @example
+   * 
+   * import { interpolateSpline } from 'huetiful-js';
+
+console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
+
+// [
+  '#ffc0cb', '#ff9ebe',
+  '#f97bbb', '#ed57bf',
+  '#d830c9', '#b800d9',
+  '#8700eb', '#0000ff'
+]
    *
    */
   interpolateSpline(
@@ -102,7 +123,7 @@ class ColorArray {
     kind?: 'natural' | 'monotone' | 'basis',
     closed?: boolean,
     options?: Pick<InterpolatorOptions, 'hueFixup' | 'easingFn'>
-  ): ColorToken[] {
+  ): Array<string> {
     this['colors'] = _pltrspln(
       this['colors'],
       colorspace,
@@ -143,7 +164,7 @@ console.log(load(sample).discoverPalettes(sample, "tetradic").output())
  */
   discoverPalettes(
     schemeType?: 'analogous' | 'triadic' | 'tetradic' | 'complementary'
-  ): ColorToken[] | object {
+  ): Array<string> | object {
     this['colors'] = _dp(this['colors'], schemeType);
     return this;
   }
@@ -241,15 +262,19 @@ console.log(load(sample).getFarthestLightness('lch', true))
 
   /**
  * 
- *  Returns an array of colors in the specified saturation range. The range is normalised to [0,1].
- * @param  startSaturation The minimum end of the saturation range.
+* Returns an array of colors in the specified saturation range. 
+ * 
+ * The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
+ * This means a value in the range `[0,1]` will return, for example if you pass startSaturation as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range `[0,100]` and will return the normalized value.
+ * @param  collection The collection of colors to filter.
+ * @param  startSaturation The minimum end of the saturation range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
  * @param  endSaturation The maximum end of the saturation range.
- * @param mode The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.
+ * @param colorspace The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.
  * @returns Array of filtered colors.
  * @example
- * import { filterByContrast } from 'huetiful-js'
-
-let sample = [
+ * import { filterBySaturation } from 'huetiful-js'
+ * 
+ let sample = [
   '#00ffdc',
   '#00ff78',
   '#00c000',
@@ -260,17 +285,19 @@ let sample = [
   '#3e0000',
   '#4e0000',
   '#600000',
-  '#720000',
-]
+  '#720000'
+];
 
-console.log(filterByContrast(sample, 'green', '>=3'))
-// [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
+console.log(filterBySaturation(sample, 0.1));
+
+// [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
+
  */
 
   filterBySaturation(
     startSaturation = 0.05,
     endSaturation = 1,
-    mode?: HueColorSpaces
+    colorspace?: Omit<HueColorSpaces, 'hwb'>
   ): ColorArray {
     // @ts-ignore
 
@@ -278,7 +305,7 @@ console.log(filterByContrast(sample, 'green', '>=3'))
       this['colors'],
       startSaturation,
       endSaturation,
-      mode
+      colorspace as string
     );
     return this;
   }
@@ -432,6 +459,7 @@ filterByHue(sample, 20, 80)
     this['colors'] = filterBy.filterByHue(this['colors'], startHue, endHue);
     return this;
   }
+
   /**
  *  
  *  Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
@@ -471,7 +499,7 @@ filterByLuminance(sample, 0.4, 0.9)
 
   /**
  * 
- *  Sorts colors according to their lightness.
+ * Sorts colors according to their lightness.
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @returns An array of the sorted color values.
@@ -676,8 +704,7 @@ console.log(sortedDescending)
 
   /**
  * 
- *  Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
- * @param  colors The array of colors to sort
+ * Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @returns An array of the sorted color values.
  * @example
@@ -744,7 +771,7 @@ console.log(sortedDescending)
  */
 
   // Todo: Add the mode param so that users can select mode to work with. The default is lch
-  sortByHue(order: 'asc' | 'desc', colorspace: HueColorSpaces): ColorArray {
+  sortByHue(order?: 'asc' | 'desc', colorspace?: HueColorSpaces): ColorArray {
     this['colors'] = sortBy.sortByHue(this['colors'], order, colorspace);
     return this;
   }
@@ -759,11 +786,10 @@ console.log(sortedDescending)
 }
 
 /**
- * @class
- *  A class that takes an array of colors and exposes all the utilities that handle collections of colors as methods. The methods can be chained as long as `this` being returned can be iterated on. Works like Array object.
+ * A wrapper function over the `ColorArray` class which returns a new instance of the class. Use it to invoke the class without using the `new` keyword
  * @param colors An array of colors to chain the array methods on. Every element in the array will be parsed as a color token.
  */
-function load(colors: ColorToken[]): ColorArray {
+function load(colors: ColorToken[] | object): ColorArray {
   return new ColorArray(colors);
 }
 
@@ -1359,6 +1385,17 @@ function tailwindColors(
   }
 }
 
+/**
+ * Creates a lazy chain wrapper over a single color token that has all the functions that take a `ColorToken` as their first argument.
+ *
+ * @example
+ * import { Color } from 'huetiful-js'
+ * 
+ *let wrapper = new Color('pink');
+
+console.log(wrapper.color2hex());
+// #ffc0cb
+ */
 class Color {
   constructor(c: ColorToken, options?: ColorOptions) {
     let {
@@ -1420,7 +1457,14 @@ class Color {
     return this;
   }
 
-  via(origin: ColorToken, t?: number, options?: typeof interpolatorConfig) {
+  /**
+   * Interpolates the bound color via the `origin` at the point `t`. Call `output()` to get the results.
+   * @param origin The color to interpolate via.
+   * @param t The point in the interpolation to return. Expected value is in the range [0,1]
+   * @param options Overrides object to customize the easing and the interpolation method /fixups.
+   * @returns The result of the interpolation as a hexadecimal string.
+   */
+  via(origin: ColorToken, t?: number, options?: InterpolatorOptions): string {
     const result = _pltr([origin, this['_color']], this['colorspace'], options);
 
     return _hex(result(t));
@@ -1435,26 +1479,85 @@ class Color {
   //   return this;
   // }
 
+  /**
+   * Converts any color token to hexadecimal.
+   * @returns string
+   */
   color2hex(): Color {
     this['_color'] = _hex(this['_color']);
     return this['_color'];
   }
+
+  /**
+   * Returns the pastel variant of the bound color token.
+   * @returns string
+   */
   pastel(): Color {
     this['_color'] = _pstl(this['_color']);
     return this;
   }
+  /**
+ * Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color. Call `output()` to get the final result.
+ * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
+ * @returns An array containing the paired scheme.
+ * @example 
+ * 
+ * import { pairedScheme } from 'huetiful-js'
+
+console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
+// [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
+ */
+
   pairedScheme(options?: PairedSchemeOptions): ColorArray {
     // @ts-ignore
     this['colors'] = _ps(this['_color'], options);
 
     return new ColorArray(this['colors']);
   }
+
+  /**
+ * Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down) from a single scheme color. Min and max lightness value determine how light or dark our colour will be at either extreme. Call `output()` to get the result.
+ * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
+ *@returns An array of colors in hexadecimal. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or `(iterations * 2) + 1`
+ * @example
+ * import { hueShift } from "huetiful-js";
+
+let hueShiftedPalette = hueShift("#3e0000");
+
+console.log(hueShiftedPalette);
+
+// [
+  '#ffffe1', '#ffdca5',
+  '#ca9a70', '#935c40',
+  '#5c2418', '#3e0000',
+  '#310000', '#34000f',
+  '#38001e', '#3b002c',
+  '#3b0c3a'
+]
+ */
+
   hueShift(options?: HueShiftOptions): ColorArray {
     // @ts-ignore
     this['colors'] = _hshft(this['_color'], options);
 
     return new ColorArray(this['colors']);
   }
+
+  /**
+ * 
+ * Gets the complementary hue of the passed in color. The function is internally guarded against achromatic colors.
+ * @param colorObj Optional boolean whether to return an object with the result color hue family or just the result color. Default is false.
+ * @returns An object with the hue family and complimentary color as keys.
+ * @example
+ *import { getComplimentaryHue } from "huetiful-js";
+ *
+ * 
+console.log(getComplimentaryHue("pink",'lch', true))
+//// { hue: 'blue-green', color: '#97dfd7ff' }
+
+console.log(getComplimentaryHue("purple"))
+// #005700ff
+ */
   getComplimentaryHue(
     mode?: HueColorSpaces,
     colorObj?: boolean
@@ -1462,12 +1565,19 @@ class Color {
     this['_color'] = _gch(this['_color'], mode, colorObj);
     return this['_color'];
   }
-  // earthtone(options?: EarthtoneOptions): ColorArray | ColorToken {
-  //   // @ts-ignore
-  //   this['colors'] = _Earthtone(this['_color'], or(options, {}));
 
-  //   return this['colors'];
-  // }
+  /**
+   * Creates a scale of a spline interpolation between an earthtone and a color. Call `output()` to get the results.
+   * @param color The color to interpolate an earth tone with.
+   * @param options Optional overrides for customising interpolation and easing functions.
+   * @returns The array of colors resulting from the earthtone interpolation as hex codes.
+   */
+  earthtone(options?: EarthtoneOptions): ColorArray | ColorToken {
+    // @ts-ignore
+    this['colors'] = _Earthtone(this['_color'], or(options, {}));
+
+    return new ColorArray(this['colors']);
+  }
   contrast(against: 'lightMode' | 'darkMode' | Color) {
     let result: number;
     switch (against) {

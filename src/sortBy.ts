@@ -38,7 +38,7 @@ function baseSortBy(
  * Sorts colors according to their saturation.
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
- * @param mode The mode color space to compute the saturation value in. The default is jch .
+ * @param mode The mode color space to compute the saturation value in. The default is lch .
  * @returns An array of the sorted color values.
  * @example
  * import { sortBySaturation } from "huetiful-js";
@@ -264,8 +264,8 @@ function sortByHue(
   return (
     reHue &&
     baseSortBy(
-      'lightness',
-      getChannel(`${or(colorspace, 'jch')}.h`),
+      'hue',
+      getChannel(`${or(colorspace, 'lch')}.h`),
       order,
       collection
     )
@@ -351,7 +351,7 @@ function sortByDistance(
   };
 
   return baseSortBy(
-    'contrast',
+    'distance',
     cb(against as string, or(mode, 'lchuv') as typeof mode),
     order,
     collection

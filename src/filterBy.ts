@@ -126,7 +126,7 @@ function filterBySaturation(
  * @param  collection The collection of colors to filter.
  * @param  startLuminance The minimum end of the luminance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
  * @param  endLuminance The maximum end of the luminance range.
- * @returns Collection of filtered colors.
+ * @returns Array of filtered colors.
  * @example
  * 
  * import { filterByLuminance } from 'huetiful-js'

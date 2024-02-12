@@ -362,16 +362,27 @@ function hueShift(
  * @returns A hexadecimal representation of the resultant color.
  *
  * @example
+ * 
+ * import { interpolateSpline } from 'huetiful-js';
+
+console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
+
+// [
+  '#ffc0cb', '#ff9ebe',
+  '#f97bbb', '#ed57bf',
+  '#d830c9', '#b800d9',
+  '#8700eb', '#0000ff'
+]
  *
  */
 function interpolateSpline(
-  colors: ColorToken[],
+  colors: ColorToken[] | object,
   colorspace?: HueColorSpaces,
   iterations?: number,
   kind?: 'natural' | 'monotone' | 'basis',
   closed = false,
   options?: Pick<InterpolatorOptions, 'hueFixup' | 'easingFn'>
-): ColorToken[] {
+): Array<string> {
   var { hueFixup, easingFn } = or(options, {}) as InterpolatorOptions;
   // Set the internal defaults
   easingFn = or(easingFn, pltrconfig['ef']) as typeof easingFn;
@@ -394,6 +405,8 @@ function interpolateSpline(
         interpolatorSplineNatural;
       break;
   }
+
+  colors = Object.values(colors);
   // @ts-ignore
   let f = interpolate([...colors, easingFn], colorspace, {
     h: {

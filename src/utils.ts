@@ -30,7 +30,7 @@ import {
   nearest,
   differenceHyab,
   formatHex,
-  easingSmootherstep
+  easingSmootherstep as _ess
 } from 'culori/fn';
 import 'culori/css';
 import {
@@ -45,7 +45,6 @@ import {
 } from './types.js';
 
 import { mcchn, sortedArr, or } from './helpers.js';
-import _rnges from './color-maps/samples/modeRanges.js';
 
 /**
  *
@@ -728,7 +727,7 @@ function getFarthestLightness(
  * 
  *  Darkens the color by reducing the lightness channel. .
  * @param   color The color to darken.
- * @param value The amount to darken with. The value is expected to be in the range `[0,100]`
+ * @param amount The amount to darken with. The value is expected to be in the range `[0,1]`
  * @param colorspace The mode colorspace to darken the color in. Only uniform colorspaces are supported 
  * @returns color The darkened color as a hex string
  * @example
@@ -740,51 +739,48 @@ console.log(darken('blue', 0.3, 'lch'));
  */
 function darken(
   color: ColorToken,
-  value: number | string,
+  amount: number | string,
   colorspace?: UniformColorSpaces
 ): string {
   const chn = mlchn(colorspace)[1];
   colorspace = or(colorspace, 'lch') as UniformColorSpaces;
   const src = ucsConverter(colorspace)(color2hex(color));
   // @ts-ignore
-  var [l, end] = [src[chn], _rnges[colorspace][chn][0]];
+  var l = src[chn];
 
-  if (typeof value === 'number' && inRange(value, 0, 100)) {
+  if (typeof amount === 'number' && inRange(amount, 0, 1)) {
     // darken by value of the current channel as a percentage
 
     // @ts-ignore
-    src[chn] = l * ((value / 100) * (end * 0.1));
+    src[chn] = l * (end - start * _ess(amount));
   } else {
-    Error(`Darken accepts a number in the range [0,100] but got ${value}`);
+    Error(`Darken accepts a number in the range [0,1] but got ${amount}`);
   }
 
   return color2hex(src);
 }
 
 /**
- *
- * @param color The color to brighten.
- * @param value The amount to brighten with. Also supports expressions as strings e.g darken("#fc23a1","*0.5")
- * @param mode The color space to compute the color in. Any color space with a lightness channel will do (including HWB)
- * @returns
- */
-// function brighten(
-//   color: ColorToken,
-//   value: number | string,
-//   colorspace
-// ): ColorToken {
-//   const src = toLab(color2hex(color));
-//   const ch = mlchn(colorspace).split('.')[1];
-//   let result = src;
-//   if (typeof value == 'number') {
-//     result[ch] -= 18 * easingSmootherstep(Math.abs(value) / 100);
-//   } else if (typeof value == 'string') {
-//     //@ts-ignore
-//     result = expressionParser(src, ch, value);
-//   }
+ * 
+ *  The inverse of `darken`. It brightens the passed in color`.
+ * @param   color The color to brighten.
+ * @param amount The amount to brighten with. The value is expected to be in the range `[0,100]`
+ * @param colorspace The mode colorspace to brighten the color in. Only uniform colorspaces are supported 
+ * @returns color The brightened color as a hex string
+ * @example
+ * 
+ *  import { brighten } from "huetiful-js";
+console.log(brighten('blue', 0.3, 'lch'));
+//#464646
 
-//   return color2hex(result);
-// }
+ */
+function brighten(
+  color: ColorToken,
+  amount = 1,
+  colorspace?: UniformColorSpaces
+): string {
+  return darken(color, +amount, colorspace);
+}
 
 /**
  * 
@@ -965,6 +961,7 @@ function getNearestColor(
 }
 
 export {
+  brighten,
   darken,
   getNearestColor,
   colorDeficiency,
