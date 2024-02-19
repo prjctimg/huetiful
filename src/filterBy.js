@@ -13,7 +13,7 @@ governing permissions and limitations under the License.
 
 import { differenceHyab } from 'culori/fn';
 import { color2hex } from './converters';
-import type { ColorToken, HueColorSpaces, Factor } from './types';
+import { ColorToken, HueColorSpaces, Factor } from './types';
 import { getLuminance, getContrast, getChannel } from './utils';
 import { mcchn, mlchn, filteredArr, norm, reOp, reNum, or } from './helpers';
 import modeRanges from './color-maps/samples/modeRanges';
@@ -21,20 +21,21 @@ import modeRanges from './color-maps/samples/modeRanges';
 /**
  * @internal
  * Base implementation of the filterBy functionss
- * @param factor The color property in query.
- * @param cb The predicate to get the equatable value used during comparison
- * @param colors The collection to map over. Can either be an array or object whose values are valid color tokens.
- * @param start The minimum end of the filtering range.
- * @param end The maximum end of the filtering range. It can also be omitted and all colors greater than the starting value of the factor being queried will be returned.
+ * @param  factor {Factor} The color property in query.
+ * @param cb {(color: ColorToken) => number} The predicate to get the equatable value used during comparison
+ * @param colors {ColorToken[] | object | object} The collection to map over. Can either be an array or object whose values are valid color tokens.
+ * @param start {string | number} The minimum end of the filtering range.
+ * @param end {number} The maximum end of the filtering range. It can also be omitted and all colors greater than the starting value of the factor being queried will be returned.
+ * @param colorspace {HueColorSpaces} The colorspace to work in.
  * @returns The collection of colors. Its generic and will return Maps for collections passed as objects.
  */
 function baseFilterBy(
-  factor: Factor,
-  cb: (color: ColorToken) => number,
-  collection: ColorToken[] | object | object,
-  start: string | number,
-  end?: number,
-  colorspace?: HueColorSpaces
+  factor,
+  cb,
+  collection,
+  start = 0,
+  end = 1,
+  colorspace = 'lch'
 ) {
   const normFacts = {
     saturation: mcchn,
@@ -47,7 +48,7 @@ function baseFilterBy(
   // @ts-ignore
   colorspace = or(colorspace, 'lch65').toLowerCase();
 
-  var [sym, startVal] = [reOp(start as string), reNum(start as string)];
+  var [sym, startVal] = [reOp(start), reNum(start)];
 
   if (normFacts[factor]) {
     startVal = norm(startVal, normFacts[factor](colorspace));
@@ -68,10 +69,10 @@ function baseFilterBy(
  * 
  * The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
  * This means a value in the range `[0,1]` will return, for example if you pass startSaturation as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range `[0,100]` and will return the normalized value.
- * @param  collection The collection of colors to filter.
- * @param  startSaturation The minimum end of the saturation range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
- * @param  endSaturation The maximum end of the saturation range.
- * @param colorspace The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.
+ * @param  collection {ColorToken[] | object} The collection of colors to filter.
+ * @param  startSaturation {number|string} The minimum end of the saturation range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
+ * @param  endSaturation {number} The maximum end of the saturation range.
+ * @param colorspace {HueColorSpaces} The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do. Default is lch.
  * @returns Collection of filtered colors.
  * @example
  * import { filterBySaturation } from 'huetiful-js'
@@ -97,17 +98,17 @@ console.log(filterBySaturation(sample, 0.1));
  */
 
 function filterBySaturation(
-  collection: ColorToken[] | object,
+  collection,
   startSaturation = 0.05,
-  endSaturation?: number,
-  colorspace?: HueColorSpaces
-): ColorToken[] {
+  endSaturation,
+  colorspace
+) {
   const modeChannel = mcchn(colorspace);
 
-  const factor: Factor = 'saturation';
+  const factor = 'saturation';
   // eslint-disable-next-line no-ternary
   endSaturation = !endSaturation
-    ? modeRanges[or(colorspace, 'lch') as string][modeChannel.split('.')[1]][1]
+    ? modeRanges[or(colorspace, 'lch')][modeChannel.split('.')[1]][1]
     : endSaturation;
 
   return baseFilterBy(
@@ -123,9 +124,9 @@ function filterBySaturation(
 /**
  *  
  *  Returns an array of colors in the specified luminance range.
- * @param  collection The collection of colors to filter.
- * @param  startLuminance The minimum end of the luminance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
- * @param  endLuminance The maximum end of the luminance range.
+ * @param  collection {ColorToken[] | object} The collection of colors to filter.
+ * @param  startLuminance {number|string} The minimum end of the luminance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
+ * @param  endLuminance {number} The maximum end of the luminance range.
  * @returns Array of filtered colors.
  * @example
  * 
@@ -150,10 +151,10 @@ filterByLuminance(sample, 0.4, 0.9)
  */
 
 function filterByLuminance(
-  collection: ColorToken[] | object,
+  collection,
   startLuminance = 0.05,
   endLuminance = 1
-): ColorToken[] {
+) {
   return baseFilterBy(
     'luminance',
     getLuminance,
@@ -169,11 +170,11 @@ function filterByLuminance(
  * 
  * The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
  * This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
- * @param  collection The collection of colors to filter.
- * @param  startLightness The minimum end of the lightness range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
- * @param  endLightness The maximum end of the lightness range.
- * @param colorspace The mode colorspace to retrieve the lightness value from. The default is lch65
- * @returns Collection of filtered colors.
+ * @param  collection {ColorToken[] | object} The collection of colors to filter.
+ * @param  startLightness {number} The minimum end of the lightness range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
+ * @param  endLightness {number} The maximum end of the lightness range.
+* @param colorspace {HueColorSpaces} The color space to fetch the lightness value from. Any color space with a lightness channel e.g 'lch' or 'hsl' will do. Default is lch.
+ * @returns { ColorToken[]} Collection of filtered colors.
  * @example
  * 
  * import { filterByLightness } from 'huetiful-js'
@@ -197,22 +198,22 @@ filterByLightness(sample, 20, 80)
  */
 
 function filterByLightness(
-  collection: ColorToken[] | object,
-  startLightness = 5,
-  endLightness?: number,
-  colorspace?: HueColorSpaces
-): ColorToken[] {
-  const factor: Factor = 'lightness';
+  collection,
+  startLightness = 0.05,
+  endLightness,
+  colorspace = 'lch'
+) {
+  const fct = 'lightness';
 
   const modeChannel = mcchn(colorspace);
 
   // eslint-disable-next-line no-ternary
   endLightness = !endLightness
-    ? modeRanges[or(colorspace, 'lch') as string][modeChannel.split('.')[1]][1]
+    ? modeRanges[or(colorspace, 'lch')][modeChannel.split('.')[1]][1]
     : endLightness;
 
   return baseFilterBy(
-    factor,
+    fct,
     getChannel(mlchn(colorspace)),
     collection,
     startLightness,
@@ -225,10 +226,11 @@ function filterByLightness(
 /**
  * 
  * Returns colors in the specified hue ranges between 0 to 360.
- * @param collection The collection of colors to filter.
- * @param  startHue The minimum end of the hue range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
- * @param  endHue The maximum end of the hue range.
- * @returns  Array of the filtered colors.
+ * @param collection {ColorToken[] | object} The collection of colors to filter.
+ * @param  startHue {number} The minimum end of the hue range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
+ * @param  endHue {number} The maximum end of the hue range.
+ * @param colorspace { HueColorSpaces} The colorspace to fetch the hue value from.
+ * @returns {Array<ColorToken>}  Array of the filtered colors.
  * @example
  * let sample = [
   '#00ffdc',
@@ -249,12 +251,7 @@ filterByHue(sample, 20, 80)
 // [ '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
  */
 
-function filterByHue(
-  collection: ColorToken[] | object,
-  startHue = 0,
-  endHue = 360,
-  colorspace?: HueColorSpaces
-): ColorToken[] {
+function filterByHue(collection, startHue = 0, endHue = 360, colorspace) {
   return baseFilterBy(
     'hue',
     getChannel(`${colorspace}.h`),
@@ -267,10 +264,12 @@ function filterByHue(
 /**
  *  
  * Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.
- * @param  collection The collection of colors to filter.
- * @param  startDistance The minimum end of the distance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
- * @param  endDistance The maximum end of the distance range.
- * @returns Collection of filtered colors.
+ * 
+ * @param { object | Array<ColorToken> } collection The collection of colors to filter.
+ * @param {ColorToken} against The color whose distance is used as the subtrahend for each color in the collection.
+ * @param {string | number} startDistance The minimum end of the distance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
+ * @param  {number} endDistance  The maximum end of the distance range.
+ * @returns {Array<ColorToken> | object} Collection of filtered colors.
  * @example
  * import { filterByDistance } from 'huetiful-js'
 
@@ -290,11 +289,11 @@ console.log(filterByDistance(sample, "yellow", 0.1))
  */
 
 function filterByDistance(
-  collection: ColorToken[] | object,
-  against: ColorToken,
+  collection,
+  against,
   startDistance = 0.05,
-  endDistance?: number
-): ColorToken[] {
+  endDistance
+) {
   const cb = (against) => (color) => differenceHyab()(against, color);
 
   return baseFilterBy(
@@ -309,10 +308,11 @@ function filterByDistance(
 /**
  *  
  * Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
- * @param  collection The collection of colors to filter.
- * @param  startContrast The minimum end of the contrast range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
- * @param  endContrast The maximum end of the contrast range.
- * @returns Collection of filtered colors.
+ * @param {Array<ColorToken> | object} collection The collection of colors to filter.
+ * @param {ColorToken} against The color whose contrast is used as the subtrahend for each color in the collection 
+ * @param  {string|number} startContrast The minimum end of the contrast range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >` 
+ * @param {number} endContrast The maximum end of the contrast range.
+ * @returns {Array<ColorToken>|object} Collection of filtered colors.
  * 
  * @example
  * 
@@ -337,13 +337,12 @@ console.log(filterByContrast(sample, 'green', '>=3'))
  */
 
 function filterByContrast(
-  collection: ColorToken[] | object,
-  against: ColorToken,
+  collection,
+  against,
   startContrast = 1,
   endContrast = 21
-): ColorToken[] {
-  const cb = (against: ColorToken) => (color: ColorToken) =>
-    getContrast(color, against);
+) {
+  const cb = (against) => (color) => getContrast(color, against);
   return baseFilterBy(
     'contrast',
     cb(against),
