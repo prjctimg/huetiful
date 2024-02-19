@@ -1,20 +1,26 @@
 {
   "include": [
-    "./src/*.ts"
-  ],"exclude":["**/*/node_modules","./src/color-maps","./src/index.ts"],
+      "./lib/generators.d.ts",
+      "./lib/utils.d.ts",
+      "./lib/colors.d.ts",
+      "./lib/converters.d.ts",
+      "./lib/filterBy.d.ts",
+      "./lib/sortBy.d.ts"
+      
+    ],"exclude":["**/*/node_modules","./src/color-maps","./src/index.ts"],
   "compilerOptions": {
     "lib":["esnext"],
     "target":"esnext",
     "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     // "allowJs": true,
-   // "checkJs": true,
+    "checkJs": true,
     "declaration": true,
     // "declarationMap": true,
     "emitDeclarationOnly": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
-    "declarationDir": "./lib",
+    "declarationDir": "./li",
   // "rootDir":"./src"
   }
 }

@@ -13,14 +13,16 @@ governing permissions and limitations under the License.
 
 import { differenceHyab } from 'culori/fn';
 import { color2hex } from './converters';
+// @ts-ignore
 import { ColorToken, HueColorSpaces, Factor } from './types';
+
 import { getLuminance, getContrast, getChannel } from './utils';
 import { mcchn, mlchn, filteredArr, norm, reOp, reNum, or } from './helpers';
 import modeRanges from './color-maps/samples/modeRanges';
 
 /**
  * @internal
- * Base implementation of the filterBy functionss
+ * Base implementation of the filterBy functions
  * @param  factor {Factor} The color property in query.
  * @param cb {(color: ColorToken) => number} The predicate to get the equatable value used during comparison
  * @param colors {ColorToken[] | object | object} The collection to map over. Can either be an array or object whose values are valid color tokens.
@@ -42,12 +44,10 @@ function baseFilterBy(
     lightness: mlchn
   };
 
-  // make case insensitive
-  factor = factor.toLowerCase();
+  // @ts-ignore
+  colorspace = colorspace.toLowerCase();
 
   // @ts-ignore
-  colorspace = or(colorspace, 'lch65').toLowerCase();
-
   var [sym, startVal] = [reOp(start), reNum(start)];
 
   if (normFacts[factor]) {
@@ -101,14 +101,14 @@ function filterBySaturation(
   collection,
   startSaturation = 0.05,
   endSaturation,
-  colorspace
+  colorspace = 'lch'
 ) {
   const modeChannel = mcchn(colorspace);
 
   const factor = 'saturation';
   // eslint-disable-next-line no-ternary
   endSaturation = !endSaturation
-    ? modeRanges[or(colorspace, 'lch')][modeChannel.split('.')[1]][1]
+    ? modeRanges[colorspace][modeChannel.split('.')[1]][1]
     : endSaturation;
 
   return baseFilterBy(
@@ -209,7 +209,7 @@ function filterByLightness(
 
   // eslint-disable-next-line no-ternary
   endLightness = !endLightness
-    ? modeRanges[or(colorspace, 'lch')][modeChannel.split('.')[1]][1]
+    ? modeRanges[colorspace][modeChannel.split('.')[1]][1]
     : endLightness;
 
   return baseFilterBy(

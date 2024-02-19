@@ -110,13 +110,13 @@
   },
   "typedocOptions": {
     "entryPoints": [
-      "./src/generators.ts",
-      "./src/utils.ts",
-      "./src/colors.ts",
-      "./src/converters.ts",
-      "./src/filterBy.ts",
-      "./src/sortBy.ts",
-      "./src/types.d.ts"
+      "./lib/generators.d.ts",
+      "./lib/utils.d.ts",
+      "./lib/colors.d.ts",
+      "./lib/converters.d.ts",
+      "./lib/filterBy.d.ts",
+      "./lib/sortBy.d.ts",
+      "./lib/types.d.ts"
     ],
     "plugin": [
       "typedoc-material-theme"
