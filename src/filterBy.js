@@ -1,9 +1,5 @@
-/** @type {import('./filterBy.d.ts')} */
-
 import { differenceHyab } from 'culori/fn';
 import { color2hex } from './converters';
-// @ts-ignore
-
 import { getLuminance, getContrast, getChannel } from './utils';
 import { mcchn, mlchn, filteredArr, norm, reOp, reNum, or } from './helpers';
 import modeRanges from './color-maps/samples/modeRanges';

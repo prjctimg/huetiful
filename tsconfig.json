@@ -1,11 +1,6 @@
 {
   "include": [
-      "./src/generators.d.ts",
-      "./src/utils.d.ts",
-      "./src/colors.d.ts",
-      "./src/converters.d.ts",
-      "./src/filterBy.d.ts",
-      "./src/sortBy.d.ts"
+     "types"
       
     ],"exclude":["**/*/node_modules"],
   "compilerOptions": {
