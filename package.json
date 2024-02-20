@@ -2,58 +2,32 @@
   "name": "huetiful-js",
   "version": "1.80.0",
   "type": "module",
-  "main": "./lib/huetiful.esm.mjs",
-  "module": "./lib/huetiful.esm.mjs",
+  "main": "./src/index.js",
   "browser": "./lib/huetiful.umd.js",
-  "jsdelivr": "./lib/huetiful.esm.min.mjs",
+  "jsdelivr": "./lib/huetiful.umd.js",
   "exports": {
-    "./generators": {
-      "browser": "./lib/generators.esm.min.mjs",
-      "import": "./lib/generators.esm.mjs"
-    },
-    "./colors": {
-      "browser": "./lib/colors.esm.min.mjs",
-      "import": "./lib/colors.esm.mjs"
-    },
-    "./utils": {
-      "browser": "./lib/utils.esm.min.mjs",
-      "import": "./lib/utils.esm.mjs"
-    },
-    "./sortBy": {
-      "browser": "./lib/sortBy.esm.min.mjs",
-      "import": "./lib/sortBy.esm.mjs"
-    },
-    "./filterBy": {
-      "browser": "./lib/filterBy.esm.min.mjs",
-      "import": "./lib/filterBy.esm.mjs"
-    },
-    "./converters": {
-      "browser": "./lib/converters.esm.min.mjs",
-      "import": "./lib/sortBy.esm.mjs"
-    },
-    "./helpers": {
-      "browser": "./lib/helpers.esm.min.mjs",
-      "import": "./lib/helpers.esm.mjs"
-    },
-    ".": {
-      "browser": "./lib/huetiful.esm.min.mjs",
-      "import": "./lib/huetiful.esm.mjs"
-    }
+    "./generators": "./src/generators.js",
+    "./colors": "./src/colors.js",
+    "./utils": "./src/utils.js",
+    "./sortBy": "./src/sortBy.js",
+    "./filterBy": "./src/filterBy.js",
+    "./converters": "./src/converters.js",
+    "./helpers": "./src/helpers.js",
+    ".": "./lib/index.js"
   },
   "types": "./lib/huetiful.d.ts",
   "description": "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
   "dependencies": {
     "culori": "^3.0.1"
   },
+  "bundleDependencies": [
+    "culori"
+  ],
   "devDependencies": {
     "@types/culori": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
     "dts-bundle-generator": "^8.0.1",
     "esbuild": "^0.17.19",
     "eslint": "^8.53.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
     "github-emoji": "^1.2.0",
     "husky": "^8.0.3",
     "nodemon": "^3.0.1",
@@ -67,9 +41,9 @@
     "docs": "npx typedoc && cp -r ./logo.png ./docs && cp -r ./logo_v1.png ./docs",
     "code:build": "node build.cjs",
     "code:publish": "npm run code:build & npm run code:types",
-    "code:types": "dts-bundle-generator --config ./types.json",
-    "code:lint": "eslint --fix --ext .ts",
-    "code:format": "prettier \"./src/*.ts\" --write",
+    "code:types": "dts-bundle-generator  -o  ./lib/huetiful.d.ts ./types/index.d.ts --no-banner --version true",
+    "code:lint": "eslint --fix --ext ./src/*.js",
+    "code:format": "prettier \"./src/*.js\" --write",
     "start": "nodemon app.js --watch "
   },
   "husky": {
@@ -86,37 +60,24 @@
   },
   "eslintConfig": {
     "root": true,
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint",
-      "prettier"
-    ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/eslint-recommended",
-      "plugin:@typescript-eslint/recommended",
-      "prettier"
-    ],
     "rules": {
       "prefer-const": 0,
       "no-console": 1,
       "no-ternary": 0,
       "no-var": 0,
       "no-explicit-any": 0,
-      "prettier/prettier": 0,
-      "@typescript-eslint/ban-ts-comment": 0,
       "no-useless-escape": 0
     }
   },
   "typedocOptions": {
     "entryPoints": [
-      "./lib/generators.d.ts",
-      "./lib/utils.d.ts",
-      "./lib/colors.d.ts",
-      "./lib/converters.d.ts",
-      "./lib/filterBy.d.ts",
-      "./lib/sortBy.d.ts",
-      "./lib/types.d.ts"
+      "types/generators.d.ts",
+      "types/utils.d.ts",
+      "types/colors.d.ts",
+      "types/converters.d.ts",
+      "types/filterBy.d.ts",
+      "types/sortBy.d.ts",
+      "types/types.d.ts"
     ],
     "plugin": [
       "typedoc-material-theme"
@@ -135,13 +96,12 @@
   },
   "files": [
     "lib",
+    "src",
     "CHANGELOG.md",
     "CODE_OF_CONDUCT.md",
     "README.md",
     "CONTRIBUTING.md",
-    "LICENSE.md",
-    "logo.png",
-    "logo_v1.png"
+    "LICENSE.md"
   ],
   "repository": {
     "type": "git",

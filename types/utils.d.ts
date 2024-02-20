@@ -1,5 +1,12 @@
 import 'culori/css';
-import { ColorToken, HueColorSpaces, HueFamily, DeficiencyType, UniformColorSpaces } from './types.js';
+import {
+  ColorToken,
+  HueColorSpaces,
+  HueFamily,
+  DeficiencyType,
+  UniformColorSpaces
+} from './types';
+
 /**
  *
   Gets the hue family which a a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
@@ -83,7 +90,11 @@ console.log(getNearestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green"));
 console.log(getNearestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true));
 // { contrast: 2.4061390502133424, name: '#a1bd2f' }
  */
-declare function getNearestContrast(collection: ColorToken[] | object, against: ColorToken, colorObj?: boolean): any;
+declare function getNearestContrast(
+  collection: ColorToken[] | object,
+  against: ColorToken,
+  colorObj?: boolean
+): any;
 /**
  *
  *  Gets the largest contrast value from the passed in colors compared against a sample color.
@@ -102,10 +113,16 @@ console.log(getFarthestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true)
 // { contrast: 3.08355493246362, name: '#f3bac1' }
 
  */
-declare function getFarthestContrast(collection: ColorToken[] | object, against: ColorToken, colorObj?: boolean): number | {
-    factor: number;
-    name: ColorToken;
-};
+declare function getFarthestContrast(
+  collection: ColorToken[] | object,
+  against: ColorToken,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      name: ColorToken;
+    };
 /**
  *
  *  Gets the smallest chroma/saturation value from the passed in colors.
@@ -122,10 +139,16 @@ let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 console.log(getNearestChroma(sample, 'lch'))
 // 22.45669293295522
  */
-declare function getNearestChroma(collection: ColorToken[] | object, colorspace?: HueColorSpaces, colorObj?: boolean): number | {
-    factor: number;
-    color: ColorToken;
-};
+declare function getNearestChroma(
+  collection: ColorToken[] | object,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
 /**
  *
  *  Gets the largest saturation value from the passed in colors.
@@ -142,10 +165,16 @@ let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 console.log(getFarthestChroma(sample, 'lch'))
 // 67.22120855010492
  */
-declare function getFarthestChroma(collection: ColorToken[] | object, colorspace?: HueColorSpaces, colorObj?: boolean): number | {
-    factor: number;
-    color: ColorToken;
-};
+declare function getFarthestChroma(
+  collection: ColorToken[] | object,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
 /**
  *
  *  Gets the smallest hue value from the passed in colors.
@@ -162,10 +191,16 @@ let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 console.log(getNearestHue(sample, 'lch'))
 // 12.462831644544274
  */
-declare function getNearestHue(collection: ColorToken[] | object, colorspace?: HueColorSpaces | string, colorObj?: boolean): number | {
-    factor: number;
-    color: ColorToken;
-};
+declare function getNearestHue(
+  collection: ColorToken[] | object,
+  colorspace?: HueColorSpaces | string,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
 /**
  *
  *  Gets the largest hue value from the passed in colors.
@@ -181,10 +216,16 @@ let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 console.log(getFarthestHue(sample, 'lch'))
 // 273.54920266436477
  */
-declare function getFarthestHue(collection: ColorToken[] | object, colorspace?: HueColorSpaces, colorObj?: boolean): number | {
-    factor: number;
-    color: ColorToken;
-};
+declare function getFarthestHue(
+  collection: ColorToken[] | object,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
 /**
  *
  *  Gets the complementary hue of the passed in color. The function is internally guarded against achromatic colors.
@@ -201,10 +242,16 @@ console.log(getComplimentaryHue("pink",'lch', true))
 console.log(getComplimentaryHue("purple"))
 // #005700ff
  */
-declare function getComplimentaryHue(color: ColorToken, colorspace?: HueColorSpaces, colorObj?: boolean): {
-    hue: string;
-    color: ColorToken;
-} | ColorToken;
+declare function getComplimentaryHue(
+  color: ColorToken,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | {
+      hue: string;
+      color: ColorToken;
+    }
+  | ColorToken;
 /**
  *
  *  Sets the value for the specified channel in a color.
@@ -222,7 +269,9 @@ let myColor = setChannel('lch.h')('green',10)
 console.log(getChannel('lch.h')(myColor))
 // 10
  */
-declare function setChannel(mc: string): (color: ColorToken, value: number | string) => ColorToken;
+declare function setChannel(
+  mc: string
+): (color: ColorToken, value: number | string) => ColorToken;
 /**
  *
  *  Gets the  value specifified channel on the color.
@@ -352,10 +401,16 @@ console.log(getNearestLightness(sample, 'lch',true))
 // { lightness: 72.61647882089876, name: '#a1bd2f' }
 
  */
-declare function getNearestLightness(collection: ColorToken[] | object, colorspace?: HueColorSpaces, colorObj?: boolean): number | {
-    factor: number;
-    color: ColorToken;
-};
+declare function getNearestLightness(
+  collection: ColorToken[] | object,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
 /**
  *
  *  Gets the largest lightness value from the passed in colors.
@@ -374,10 +429,16 @@ console.log(getFarthestLightness(sample, 'lch',true))
 // { lightness: 80.94668903360088, name: '#f3bac1' }
 
  */
-declare function getFarthestLightness(collection: ColorToken[] | object, colorspace?: HueColorSpaces, colorObj?: boolean): number | {
-    factor: number;
-    color: ColorToken;
-};
+declare function getFarthestLightness(
+  collection: ColorToken[] | object,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
 /**
  *
  *  Darkens the color by reducing the lightness channel. .
@@ -392,7 +453,11 @@ console.log(darken('blue', 0.3, 'lch'));
 //#464646
 
  */
-declare function darken(color: ColorToken, amount: number | string, colorspace?: UniformColorSpaces): string;
+declare function darken(
+  color: ColorToken,
+  amount: number | string,
+  colorspace?: UniformColorSpaces
+): string;
 /**
  *
  *  The inverse of `darken`. It brightens the passed in color`.
@@ -407,7 +472,11 @@ console.log(brighten('blue', 0.3, 'lch'));
 //#464646
 
  */
-declare function brighten(color: ColorToken, amount?: number, colorspace?: UniformColorSpaces): string;
+declare function brighten(
+  color: ColorToken,
+  amount?: number,
+  colorspace?: UniformColorSpaces
+): string;
 /**
  *
  *  Checks if a color is achromatic(without hue or simply grayscale).
@@ -456,7 +525,10 @@ console.log(map(grays, isAchromatic));
 ]
 
  */
-declare function isAchromatic(color: ColorToken, mode?: HueColorSpaces): boolean;
+declare function isAchromatic(
+  color: ColorToken,
+  mode?: HueColorSpaces
+): boolean;
 /**
  *
  *  Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
@@ -479,7 +551,9 @@ let protanopia = colorDeficiency('red')
 console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 // #9f9f9f
  */
-declare function colorDeficiency(deficiencyType?: DeficiencyType): (color: ColorToken, severity?: number) => string;
+declare function colorDeficiency(
+  deficiencyType?: DeficiencyType
+): (color: ColorToken, severity?: number) => string;
 /**
  *
  * @param collection The collection of colors to search for nearest colors
@@ -493,5 +567,34 @@ declare function colorDeficiency(deficiencyType?: DeficiencyType): (color: Color
 console.log(getNearestColor(cols, 'blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
-declare function getNearestColor(collection: ColorToken[] | 'tailwind', color: ColorToken, num?: number): ColorToken | ColorToken[];
-export { brighten, darken, getNearestColor, colorDeficiency, isAchromatic, alpha, getFarthestLightness, getNearestLightness, overtone, getFarthestChroma, getNearestChroma, setChannel, setLuminance, getChannel, getLuminance, getContrast, getFarthestContrast, getNearestContrast, isCool, isWarm, getHueFamily, getComplimentaryHue, getFarthestHue, getNearestHue };
+declare function getNearestColor(
+  collection: ColorToken[] | 'tailwind',
+  color: ColorToken,
+  num?: number
+): ColorToken | ColorToken[];
+export {
+  brighten,
+  darken,
+  getNearestColor,
+  colorDeficiency,
+  isAchromatic,
+  alpha,
+  getFarthestLightness,
+  getNearestLightness,
+  overtone,
+  getFarthestChroma,
+  getNearestChroma,
+  setChannel,
+  setLuminance,
+  getChannel,
+  getLuminance,
+  getContrast,
+  getFarthestContrast,
+  getNearestContrast,
+  isCool,
+  isWarm,
+  getHueFamily,
+  getComplimentaryHue,
+  getFarthestHue,
+  getNearestHue
+};
