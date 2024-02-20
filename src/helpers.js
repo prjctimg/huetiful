@@ -16,21 +16,13 @@ governing permissions and limitations under the License.
 */
 
 import { getChannel } from './utils';
-import type {
-  callback,
-  Factor,
-  ColorToken,
-  HueColorSpaces,
-  Order,
-  Colorspaces
-} from './types';
+
 import modeRanges from './color-maps/samples/modeRanges';
 
 import {
   interpolatorSplineNatural,
   fixupHueShorter,
   interpolatorSplineBasisClosed,
-  interpolatorSplineMonotone,
   easingSmoothstep,
   interpolatorLinear
 } from 'culori/fn';
@@ -43,7 +35,7 @@ import { ucsConverter } from './converters';
  * @param def The value to cast if arg is falsy
  * @returns The first truthy value
  */
-function or(arg: unknown, def: unknown): unknown {
+function or(arg, def) {
   return arg || def;
 }
 
@@ -67,8 +59,8 @@ const interpolatorConfig = {
 /**
  * @internal
  *  Gets the clipped string of a passed in colorspace by removing non-channel characters.
- * @param colorspace  The colorspace to get the channel keys.
- * @param index Optional index to return a single specified channel.
+ * @param cspace  The colorspace to get the channel keys.
+ * @param idx Optional index to return a single specified channel.
  * @returns A string.
  * 
  @example
@@ -80,10 +72,10 @@ console.log(getModeChannel("okhsl", 2));
 // l
 
  */
-function getModeChannel(colorspace: Colorspaces | string, index?: number) {
-  const res = colorspace.substring(colorspace.length - 3);
+function getModeChannel(cspace, idx) {
+  const res = cspace.substring(cspace.length - 3);
 
-  return (index && res.charAt(index)) || res;
+  return (idx && res.charAt(idx)) || res;
 }
 
 /**
@@ -101,7 +93,7 @@ console.log(exprParser('blue', 'lch.l', '*0.3'));
 // { mode: 'lch',l: 8.87048914603341,c: 131.2014771995311,h: 301.36428148973533 }
 
  */
-function exprParser(color: ColorToken, mc: string, expr: string): number {
+function exprParser(color = '#000', mc = '', expr = '') {
   // regExp to match arithmetic operator and the value
 
   var [mode, chn, op, val] = [
@@ -112,7 +104,7 @@ function exprParser(color: ColorToken, mc: string, expr: string): number {
 
   // @ts-ignore
   color = ucsConverter(mode.toString().toLowerCase())(color);
-  const cb = (value: string) => parseFloat(value);
+  const cb = (value) => parseFloat(value);
 
   // Match an operator against the first truthy case and perform the relevant math operation
   switch (op) {
@@ -149,9 +141,9 @@ function exprParser(color: ColorToken, mc: string, expr: string): number {
 console.log(mcc("okhsl"));
 // okhsl.s
  */
-function mcchn(colorspace: HueColorSpaces | string): string {
+function mcchn(colorspace) {
   // Matches any string with c or s
-  colorspace = or(colorspace, 'lch') as HueColorSpaces;
+  colorspace = or(colorspace, 'lch');
   const reChroma = /(s|c)/i;
   // @ts-ignore
   const ch = reChroma.exec(colorspace)['0'];
@@ -181,9 +173,9 @@ function mcchn(colorspace: HueColorSpaces | string): string {
 console.log(matchLightnessChannel("okhsl"));
 // okhsl.l
  */
-function mlchn(colorspace: HueColorSpaces | string): string {
+function mlchn(colorspace) {
   // Matches any string with c or s
-  colorspace = or(colorspace, 'lch') as HueColorSpaces;
+  colorspace = or(colorspace, 'lch');
   const reLightness = /(j|l)/i;
   // @ts-ignore
   const ch = reLightness.exec(colorspace)['0'];
@@ -208,12 +200,12 @@ console.log(colorObj('saturation', getChannel('lch.c'))(col));
 // { saturation: 66.82572352143816, color: 'purple' }
 
  */
-function colorObj(factor: Factor, callback: callback) {
+function colorObj(factor, callback) {
   /**
    * @param color The color to query its factor
    * @returns An object
    */
-  return (color: ColorToken) => {
+  return (color) => {
     // @ts-ignore
     return { [factor]: callback(color), color: color };
   };
@@ -226,11 +218,11 @@ function colorObj(factor: Factor, callback: callback) {
  * @param factor The value to compare against
  * @returns Returns the found element or its key, else `undefined`.
  */
-function customFindKey(collection: object, factor: number) {
+function customFindKey(collection, factor) {
   // If the color is achromatic return the string gray
   const propKeys = Object.keys(collection);
 
-  const result: string | undefined = propKeys
+  const result = propKeys
     .filter((key) => {
       const hueVals = customConcat(collection[key]);
       // @ts-ignore
@@ -245,7 +237,7 @@ function customFindKey(collection: object, factor: number) {
   return result;
 }
 
-function customConcat(hue: object): number[] {
+function customConcat(hue) {
   const res = [];
   const { keys } = Object;
   if (typeof hue == 'object') {
@@ -272,7 +264,7 @@ function customConcat(hue: object): number[] {
 console.log(adjustHue(444));
 // 84
  */
-function adjustHue(value: number) {
+function adjustHue(value) {
   return (value > 0 && (value += Math.ceil(-value / 360) * 360)) || value % 360;
 }
 
@@ -288,13 +280,13 @@ console.log(chnDiff
 // 0.4794739863155694
  *
  */
-function chnDiff(color: ColorToken, modeChannel: string) {
+function chnDiff(color, modeChannel) {
   /**
    * @param subtrahend The color to use as subtrahend
    * @returns The difference between the color channel(s)
    */
-  return (subtrahend: ColorToken) => {
-    const cb = (color: ColorToken) => getChannel(modeChannel)(color);
+  return (subtrahend) => {
+    const cb = (color) => getChannel(modeChannel)(color);
     if (cb(color) < cb(subtrahend)) {
       return cb(subtrahend) - cb(color);
     } else {
@@ -316,7 +308,7 @@ function chnDiff(color: ColorToken, modeChannel: string) {
  * gt(5,10)
  * // false
  */
-function gt(x: number, y: number): boolean {
+function gt(x, y) {
   return x > y;
 }
 
@@ -330,7 +322,7 @@ function gt(x: number, y: number): boolean {
  * lt(2,8)
  * // true
  */
-function lt(x: number, y: number): boolean {
+function lt(x, y) {
   return x < y;
 }
 
@@ -350,7 +342,7 @@ function lt(x: number, y: number): boolean {
  * gte(4,5)
  * // false
  */
-function gte(x: number, y: number): boolean {
+function gte(x, y) {
   return x >= y;
 }
 
@@ -371,7 +363,7 @@ function gte(x: number, y: number): boolean {
  * lte(4,5)
  * // true
  */
-function lte(x: number, y: number): boolean {
+function lte(x, y) {
   return x <= y;
 }
 
@@ -384,7 +376,7 @@ function lte(x: number, y: number): boolean {
  * eq(4,5)
  * // false
  */
-function eq(x: number, y: number): boolean {
+function eq(x, y) {
   return x === y;
 }
 
@@ -401,7 +393,7 @@ function eq(x: number, y: number): boolean {
  * neq(4,5)
  * // true
  */
-function neq(x: number, y: number): boolean {
+function neq(x, y) {
   return !(x === y);
 }
 
@@ -422,7 +414,7 @@ function neq(x: number, y: number): boolean {
  * // false
  */
 
-function inRange(number: number, start: number, end?: number): boolean {
+function inRange(number, start, end) {
   /* Built-in method references for those with the same name as other `lodash` methods. */
 
   return gte(number, Math.min(start, end)) && lt(number, Math.max(start, end));
@@ -442,7 +434,7 @@ function inRange(number: number, start: number, end?: number): boolean {
  * isInt(2.01)
  * // false
  */
-function isInt(num: number | string) {
+function isInt(num) {
   const reInt = /^-?[0-9]+$/;
   return reInt.test(num.toString());
 }
@@ -455,9 +447,9 @@ function isInt(num: number | string) {
  * @returns The normalized channel value or the passed in value if it was within range
  *
  */
-function norm(value: number, modeChannel: string): number {
-  const [mode, chn]: string[] = modeChannel.split('.');
-  const [start, end]: number[] = modeRanges[mode][chn];
+function norm(value, modeChannel) {
+  const [mode, chn] = modeChannel.split('.');
+  const [start, end] = modeRanges[mode][chn];
   const range = inRange(value, start, end);
 
   if (!range) {
@@ -482,7 +474,7 @@ function norm(value: number, modeChannel: string): number {
  * rand(5,15)
  * // 6
  */
-function rand(min: number, max: number): number {
+function rand(min, max) {
   if (min > max) {
     var [mn, mx] = [min, max];
     max = mn;
@@ -506,13 +498,13 @@ console.log(floorCeil(1.501));
 
  */
 
-function floorCeil(num: number): number {
+function floorCeil(num) {
   if (!isInt(num)) {
     const strArr = num.toString().split('.');
     const float = strArr[1];
 
     //If the decimal value is .4  and below it will be rounded down else it will be rounded up.
-    const reFloorCeil = (float: string) => /^[0-4]$/.test(float.charAt(0));
+    const reFloorCeil = (float) => /^[0-4]$/.test(float.charAt(0));
 
     if (reFloorCeil(float)) {
       num = Math.floor(num);
@@ -531,10 +523,10 @@ function floorCeil(num: number): number {
  * @param order Either ascending or descending.
  * @returns A sorted array.
  */
-function customSort(order: Order, factor?: Factor | string) {
+function customSort(order = 'asc', factor = 'factor') {
   // a-b gives asc order & b-a gives desc order
-  factor = factor || 'factor';
-  return (a: { [x: string]: number }, b: { [x: string]: number }) => {
+
+  return (a, b) => {
     if (order === 'asc') {
       return a[factor] - b[factor];
     } else if (order === 'desc') {
@@ -550,13 +542,11 @@ function customSort(order: Order, factor?: Factor | string) {
  * @param cb The callback function for computing the factor's start.
  * @returns An array of objects.
  */
-function colorObjArr(factor: Factor, callback) {
+function colorObjArr(factor, callback) {
   /**
    * @param collection The array or object of colors to iterate over. If an object is passed, its values are expected to be valid color tokens.
    */
-  return (
-    collection: ColorToken[] | object | object
-  ): Array<{ factor: Factor; color: ColorToken }> => {
+  return (collection) => {
     const cb = colorObj(factor, callback);
     // @ts-ignore
     return Object.keys(collection).map((color) => cb(collection[color]));
@@ -573,9 +563,7 @@ function colorObjArr(factor: Factor, callback) {
 // 0
  * 
  */
-function min(array: number[]): number {
-  // @ts-ignore
-  array = or(array, []);
+function min(array = []) {
   return array.reduce((a, b) => Math.min(a, b), Infinity);
 }
 /**
@@ -587,7 +575,7 @@ function min(array: number[]): number {
  * console.log(max([0, 3, 4]));
 // 4
  */
-function max(array: number[]): number {
+function max(array = []) {
   // @ts-ignore
   array = or(array, []);
   return array.reduce((a, b) => Math.max(a, b), -Infinity);
@@ -599,7 +587,7 @@ function max(array: number[]): number {
  * @param s The string to match
  * @returns The matched digits, if any, as a number.
  */
-function reNum(s: string): number {
+function reNum(s) {
   s = s.toString();
   var reDigits = /[0-9]*\.?[0-9]+/;
   return (reDigits.test(s) && Number(reDigits.exec(s)['0'])) || undefined;
@@ -611,7 +599,7 @@ function reNum(s: string): number {
  * @param s The string to match.
  * @returns The matched comparator, if any, as a string.
  */
-function reOp(s: string): string {
+function reOp(s) {
   s = s.toString();
   var reComparator = /^(>=|<=|<|>|={1,2}|!={0,2})/;
 
@@ -626,14 +614,13 @@ function reOp(s: string): string {
  * @returns An array of colors or color objects.
  */
 function sortedArr(
-  factor: Factor,
-  callback: callback,
-  order: Order,
+  factor = 'factor',
+  callback,
+  order = 'asc',
   colorObj = false
 ) {
-  return (collection: ColorToken[] | object) => {
-    const results: ColorToken[] | Array<{ factor: number; color: ColorToken }> =
-      colorObjArr(factor, callback)(collection);
+  return (collection) => {
+    const results = colorObjArr(factor, callback)(collection);
 
     // Assign the value of colorObj to results variable
     // Sort the array using our customSort helper function
@@ -656,13 +643,9 @@ function sortedArr(
  * @param cb The function to use for comparison
  * @returns The filtered array
  */
-function filteredArr(factor: Factor, cb?: callback) {
-  return (
-    collection: ColorToken[] | object,
-    start: number | string,
-    end?: number
-  ): ColorToken[] => {
-    let result: ColorToken[];
+function filteredArr(factor, cb) {
+  return (collection, start, end) => {
+    let result;
 
     if (typeof start === 'number') {
       result = colorObjArr(
@@ -680,9 +663,7 @@ function filteredArr(factor: Factor, cb?: callback) {
         op = reOp(start);
 
       if (op) {
-        const mapFilter = (
-          test: (x: number, y: number) => boolean
-        ): ColorToken[] => {
+        const mapFilter = (test) => {
           return colorObjArr(
             factor,
             cb

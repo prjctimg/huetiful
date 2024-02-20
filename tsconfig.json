@@ -1,13 +1,13 @@
 {
   "include": [
-      "./lib/generators.d.ts",
-      "./lib/utils.d.ts",
-      "./lib/colors.d.ts",
-      "./lib/converters.d.ts",
-      "./lib/filterBy.d.ts",
-      "./lib/sortBy.d.ts"
+      "./src/generators.d.ts",
+      "./src/utils.d.ts",
+      "./src/colors.d.ts",
+      "./src/converters.d.ts",
+      "./src/filterBy.d.ts",
+      "./src/sortBy.d.ts"
       
-    ],"exclude":["**/*/node_modules","./src/color-maps","./src/index.ts"],
+    ],"exclude":["**/*/node_modules"],
   "compilerOptions": {
     "lib":["esnext"],
     "target":"esnext",
