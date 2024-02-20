@@ -1,4 +1,4 @@
-import * as converters from '../lib/converters.esm.mjs';
+import * as converters from '../src/converters.js';
 import _iterator from './helpers/iterator.js';
 
 /** 

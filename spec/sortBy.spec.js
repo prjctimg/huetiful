@@ -1,4 +1,4 @@
-import * as sortBy from '../lib/sortBy.esm.mjs';
+import * as sortBy from '../src/sortBy.js';
 import _iterator from './helpers/iterator.js';
 
 /** 

@@ -1,4 +1,4 @@
-import * as colors from '../lib/colors.esm.mjs';
+import * as colors from '../src/colors.js';
 import _iterator from './helpers/iterator.js';
 /** 
  * @license

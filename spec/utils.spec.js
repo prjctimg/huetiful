@@ -1,4 +1,4 @@
-import * as utils from '../lib/utils.esm.mjs';
+import * as utils from '../src/utils.js';
 import _iterator from './helpers/iterator.js';
 
 /** 

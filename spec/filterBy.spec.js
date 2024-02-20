@@ -1,4 +1,4 @@
-import * as filterBy from '../lib/filterBy.esm.mjs';
+import * as filterBy from '../src/filterBy.js';
 import _iterator from './helpers/iterator.js';
 
 /** 

@@ -37,7 +37,7 @@ import {
   colorDeficiency as _cds,
   interpolator as _pltr,
   interpolateSpline as _pltrspln
-} from './index';
+} from './index.js';
 
 class ColorArray {
   constructor(colors) {

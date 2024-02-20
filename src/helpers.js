@@ -15,9 +15,9 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { getChannel } from './utils';
+import { getChannel } from './utils.js';
 
-import modeRanges from './color-maps/samples/modeRanges';
+import modeRanges from './color-maps/samples/modeRanges.js';
 
 import {
   interpolatorSplineNatural,
@@ -26,7 +26,7 @@ import {
   easingSmoothstep,
   interpolatorLinear
 } from 'culori/fn';
-import { ucsConverter } from './converters';
+import { ucsConverter } from './converters.js';
 
 /**
  * @internal

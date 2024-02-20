@@ -29,10 +29,10 @@ import {
   interpolatorConfig as pltrconfg,
   gt,
   gte
-} from './helpers';
+} from './helpers.js';
 
-import { color2hex, ucsConverter } from './converters';
-import { setChannel } from './utils';
+import { color2hex, ucsConverter } from './converters.js';
+import { setChannel } from './utils.js';
 
 function scheme(schemeType) {
   return (color, easingFunc) => {
@@ -183,8 +183,8 @@ function hueShift(color, colorspace = 'lch', options = {}) {
   // Pass default values in case the options object is overridden
   easingFunc = or(easingFunc, easingSmoothstep);
   iterations = or(iterations, 6) + 1;
-  (hueStep = or(hueStep, 5)((minLightness = or(minLightness, 10)))),
-    (maxLightness = or(maxLightness, 90));
+  hueStep = or(hueStep, 5);
+  (minLightness = or(minLightness, 10)), (maxLightness = or(maxLightness, 90));
   // Pass in default values if any of the opts is undefined
   const palette = [color];
   // Maximum number of iterations possible.
@@ -223,7 +223,7 @@ function interpolateSpline(
 ) {
   var { hueFixup, easingFn } = options;
   // Set the internal defaults
-  easingFn = or(easingFn, pltrconfig['ef']);
+  easingFn = or(easingFn, pltrconfg['ef']);
 
   let func;
   switch (kind) {
@@ -247,13 +247,13 @@ function interpolateSpline(
   let f = interpolate([...colors, easingFn], colorspace, {
     h: {
       fixup: hueFixup,
-      use: or(func, pltrconfig['hi'])
+      use: or(func, pltrconfg['hi'])
     },
     [mcchn(colorspace)[1]]: {
-      use: or(func, pltrconfig['ci'])
+      use: or(func, pltrconfg['ci'])
     },
     [mlchn(colorspace)[1]]: {
-      use: or(func, pltrconfig['li'])
+      use: or(func, pltrconfg['li'])
     }
   });
 

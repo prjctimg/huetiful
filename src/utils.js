@@ -50,7 +50,7 @@ function getHueFamily(color) {
     }
   }
 
-  return (nearestKey ) || null;
+  return nearestKey || null;
 }
 
 function lightnessPredicate(cspace) {
@@ -59,11 +59,7 @@ function lightnessPredicate(cspace) {
 
 function temperaturePredicate(fctr, temp) {
   return Object.keys(hueTempMap).some((val) =>
-    inRange(
-      floorCeil(fctr),
-      hueTempMap[val][temp][0],
-      hueTempMap[val][temp][1]
-    )
+    inRange(floorCeil(fctr), hueTempMap[val][temp][0], hueTempMap[val][temp][1])
   );
 }
 
@@ -88,32 +84,21 @@ function chromaPredicate(colorspace) {
 }
 
 // The baseFunc for getting specifified factor extremums
-function baseFunc(
-  fctr,
-  collection,
-  cb,
-  order,
-  colorObj
-) {
-  const result=
-    sortedArr(
-      fctr,
-      cb,
-      order,
-      true
-    )(collection).filter((el) => el[fctr] !== undefined);
+function baseFunc(fctr, collection, cb, order, colorObj) {
+  const result = sortedArr(
+    fctr,
+    cb,
+    order,
+    true
+  )(collection).filter((el) => el[fctr] !== undefined);
 
   return (colorObj && result[0]) || result[0][fctr];
 }
 
-function getNearestContrast(
-  collection,
-  against,
-  colorObj
-) {
+function getNearestContrast(collection, against, colorObj) {
   const fctr = 'contrast';
   return baseFunc(
-    factor,
+    fctr,
     collection,
     contrastPredicate(against),
     'asc',
@@ -121,14 +106,10 @@ function getNearestContrast(
   );
 }
 
-function getFarthestContrast(
-  collection,
-  against,
-  colorObj
-)  {
+function getFarthestContrast(collection, against, colorObj) {
   const fctr = 'contrast';
   return baseFunc(
-    factor,
+    fctr,
     collection,
     contrastPredicate(against),
     'desc',
@@ -136,14 +117,10 @@ function getFarthestContrast(
   );
 }
 
-function getNearestChroma(
-  collection,
-  colorspace,
-  colorObj = false
-)  {
-  const fctr= 'saturation';
+function getNearestChroma(collection, colorspace, colorObj = false) {
+  const fctr = 'saturation';
   return baseFunc(
-    factor,
+    fctr,
     collection,
     chromaPredicate(colorspace),
     'asc',
@@ -151,64 +128,35 @@ function getNearestChroma(
   );
 }
 
-function getFarthestChroma(
-  collection,
-  colorspace,
-  colorObj = false
-)  {
-  const fctr= 'chroma';
+function getFarthestChroma(collection, colorspace, colorObj = false) {
+  const fctr = 'chroma';
   return baseFunc(
-    factor,
+    fctr,
     collection,
     chromaPredicate(colorspace),
     'desc',
     colorObj
   );
 }
-function getNearestHue(
-  collection,
-  colorspace,
-  colorObj = false
-)  {
+function getNearestHue(collection, colorspace, colorObj = false) {
   const fctr = 'hue';
-  return baseFunc(
-    factor,
-    collection,
-    huePredicate(colorspace),
-    'asc',
-    colorObj
-  );
+  return baseFunc(fctr, collection, huePredicate(colorspace), 'asc', colorObj);
 }
-function getFarthestHue(
-  collection,
-  colorspace,
-  colorObj = false
-)  {
-  const fctr= 'hue';
-  return baseFunc(
-    factor,
-    collection,
-    huePredicate(colorspace),
-    'desc',
-    colorObj
-  );
+function getFarthestHue(collection, colorspace, colorObj = false) {
+  const fctr = 'hue';
+  return baseFunc(fctr, collection, huePredicate(colorspace), 'desc', colorObj);
 }
-function getComplimentaryHue(
-  color,
-  colorspace,
-  colorObj = false
-){
+function getComplimentaryHue(color, colorspace, colorObj = false) {
   const modeChannel = `${or(colorspace, 'lch')}.h`;
 
   const complementaryHue = adjustHue(
     getChannel(modeChannel)(color) + 180 * rand(0.965, 1)
   );
 
-  const result =
-    (complementaryHue && {
-      hue: getHueFamily(complementaryHue),
-      color: color2hex(setChannel(modeChannel)(color, complementaryHue))
-    }) || { hue: 'gray', color: color };
+  const result = (complementaryHue && {
+    hue: getHueFamily(complementaryHue),
+    color: color2hex(setChannel(modeChannel)(color, complementaryHue))
+  }) || { hue: 'gray', color: color };
 
   return (colorObj && result) || result['color'];
 }
@@ -216,7 +164,7 @@ function getComplimentaryHue(
 function setChannel(mc) {
   return (color, value) => {
     const [mode, channel] = mc.split('.');
-    
+
     const src = converter(mode)(color2hex(color));
 
     if (channel) {
@@ -238,7 +186,7 @@ function setChannel(mc) {
 function getChannel(mc) {
   return (color) => {
     const [mode, channel] = mc.split('.');
-    
+
     const src = converter(mode)(color2hex(color));
 
     if (channel) {
@@ -253,11 +201,10 @@ function getLuminance(color) {
   return wcagLuminance(color2hex(color));
 }
 
-
 function setLuminance(color, lum) {
   const white = '#ffffff',
     black = '#000000';
-const toRgb = useMode(modeRgb);
+  const toRgb = useMode(modeRgb);
   const EPS = 1e-7;
   let MAX_ITER = 20;
 
@@ -265,18 +212,18 @@ const toRgb = useMode(modeRgb);
     (lum == 0 && lum) || black || (lum == 1 && !lum) || white;
 
     // compute new color using...
-    
+
     const cur_lum = wcagLuminance(color);
 
     color = toRgb(color2hex(color));
 
     const test = (low, high) => {
       //Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
-      
+
       const mid = interpolate([low, high])(0.5);
       const lm = getLuminance(color);
-      
-      if (abs(lum - lm > EPS) || !MAX_ITER--) {
+
+      if (Math.abs(lum - lm > EPS) || !MAX_ITER--) {
         // close enough
         return mid;
       }
@@ -300,10 +247,8 @@ const toRgb = useMode(modeRgb);
   return formatHex(color);
 }
 
-function alpha(color='#000', value) {
+function alpha(color = '#000', value) {
   // We never perfom an operation on an undefined color. Defaults to pure black
-  ;
-
   const channel = 'alpha';
   const lch = useMode(modeLch);
   var src = lch(color2hex(color));
@@ -318,14 +263,13 @@ function alpha(color='#000', value) {
   } else if (typeof value === 'string') {
     exprParser(src, channel, value);
   }
-  
+
   return color2hex(src);
 }
 
 function getContrast(color, against) {
   return wcagContrast(color2hex(color), color2hex(against));
 }
-
 
 function overtone(color) {
   var hue = getHueFamily(color);
@@ -337,15 +281,10 @@ function overtone(color) {
     false
   );
 }
-function getNearestLightness(
-  collection,
-  colorspace,
-  colorObj = false
-)  {
-  
+function getNearestLightness(collection, colorspace, colorObj = false) {
   const fctr = 'lightness';
   return baseFunc(
-    factor,
+    fctr,
     collection,
     lightnessPredicate(colorspace),
     'asc',
@@ -353,15 +292,10 @@ function getNearestLightness(
   );
 }
 
-function getFarthestLightness(
-  collection,
-  colorspace,
-  colorObj = false
-)  {
-  
-  const fctr= 'lightness';
+function getFarthestLightness(collection, colorspace, colorObj = false) {
+  const fctr = 'lightness';
   return baseFunc(
-    factor,
+    fctr,
     collection,
     lightnessPredicate(colorspace),
     'desc',
@@ -369,21 +303,16 @@ function getFarthestLightness(
   );
 }
 
-function darken(
-  color='#fff',
-  amount ,
-  colorspace
-) {
+function darken(color = '#fff', amount, colorspace) {
   const chn = mlchn(colorspace)[1];
   colorspace = or(colorspace, 'lch');
   const src = ucsConverter(colorspace)(color2hex(color));
-  
+
   var l = src[chn];
 
   if (typeof amount === 'number' && inRange(amount, 0, 1)) {
     // darken by value of the current channel as a percentage
 
-    
     src[chn] = l * (end - start * _ess(amount));
   } else {
     Error(`Darken accepts a number in the range [0,1] but got ${amount}`);
@@ -391,11 +320,7 @@ function darken(
 
   return color2hex(src);
 }
-function brighten(
-  color,
-  amount = 1,
-  colorspace
-) {
+function brighten(color, amount = 1, colorspace) {
   return darken(color, +amount, colorspace);
 }
 
@@ -407,7 +332,7 @@ function isAchromatic(color, mode) {
   };
 
   // Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
-  
+
   return props['chroma'] && props['lightness'] !== (false || NaN || undefined)
     ? false
     : true;
@@ -426,21 +351,17 @@ function isAchromatic(color, mode) {
 // Read more about the minimum accepted values for palette accessibility
 
 function colorDeficiency(deficiencyType) {
-  const baseColorDeficiency = (
-    def,
-    col,
-    sev
-  ) => {
+  const baseColorDeficiency = (def, col, sev) => {
     let result;
     col = color2hex(col);
     switch (def) {
-      case 'blue': 
+      case 'blue':
         result = filterDeficiencyTrit(sev)(col);
         break;
-      case 'red': 
+      case 'red':
         result = filterDeficiencyProt(sev)(col);
         break;
-      case 'green': 
+      case 'green':
         result = filterDeficiencyDeuter(sev)(col);
         break;
       case 'monochromacy':
@@ -469,13 +390,8 @@ function colorDeficiency(deficiencyType) {
     }
   };
 }
-function getNearestColor(
-  collection,
-  color,
-  num = 1
-)  {
+function getNearestColor(collection, color, num = 1) {
   const cb = (collection, color) => {
-    
     return nearest(
       Object.values(collection),
       differenceHyab(),

@@ -1,8 +1,8 @@
 import { differenceHyab } from 'culori/fn';
-import { color2hex } from './converters';
-import { getLuminance, getContrast, getChannel } from './utils';
-import { mcchn, mlchn, filteredArr, norm, reOp, reNum, or } from './helpers';
-import modeRanges from './color-maps/samples/modeRanges';
+import { color2hex } from './converters.js';
+import { getLuminance, getContrast, getChannel } from './utils.js';
+import { mcchn, mlchn, filteredArr, norm, reOp, reNum } from './helpers.js';
+import modeRanges from './color-maps/samples/modeRanges.js';
 
 function baseFilterBy(
   factor,

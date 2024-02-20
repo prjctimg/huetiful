@@ -1,4 +1,4 @@
-import * as generators from '../lib/generators.esm.mjs';
+import * as generators from '../src/generators.js';
 import _iterator from './helpers/iterator.js';
 
 /** 

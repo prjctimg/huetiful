@@ -8,12 +8,13 @@ import {
   modeLch65,
   modeLchuv,
   modeOklch,
-  formatHex
+  formatHex,
+  formatHex8,
+  colorsNamed
 } from 'culori/fn';
 
 import 'culori/all';
-import { formatHex8, colorsNamed } from 'culori/fn';
-import { or, getModeChannel } from './helpers';
+import { or, getModeChannel } from './helpers.js';
 
 function ucsConverter(colorspace = 'lch') {
   const ucsDefinitions = {
@@ -111,10 +112,10 @@ function color2num(color) {
 
 //ported from chroma-js
 
-function temp2color(kelvin = 1000, colorspace = 'lch') {
+function temp2color(kelvin = 1000, colorspace = '') {
   const { log } = Math;
   const temp = kelvin / 100;
-  colorspace = (colorspace && colorspace.toLowerCase()) || colorspace;
+
   var r, g, b;
   if (temp < 66) {
     r = 255;
@@ -148,7 +149,10 @@ function temp2color(kelvin = 1000, colorspace = 'lch') {
     mode: 'rgb'
   };
 
-  return (colorspace && useMode(colorspace)(result)) || formatHex(result);
+  return (
+    (colorspace && useMode(colorspace.toLowerCase())(result)) ||
+    formatHex(result)
+  );
 }
 
 function color2tuple(color, colorspace) {
