@@ -40,6 +40,7 @@
   },
   "scripts": {
     "test": "npx jasmine",
+    "css": "npx tailwindcss -i ./docs/assets/css/index.css -o ./docs/assets/css/huetiful.css --watch",
     "docs": "npx typedoc && cp -r ./logo.png ./docs && cp -r ./logo_v1.png ./docs",
     "code:build": "node build.cjs",
     "code:publish": "npm run code:build & npm run code:types",

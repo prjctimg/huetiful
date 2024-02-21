@@ -1,4 +1,4 @@
-/**
+/*
  * @license huetiful-js Documentation script using showdown.js,Typedoc and github-markdown-css .  
  * Copyright 2024 Dean Tarisai.
 This file is licensed to you under the Apache License, Version 2.0 (the 'License');
@@ -11,7 +11,7 @@ governing permissions and limitations under the License.
 
  */
 
-var showdown = require('./assets/showdown.cjs');
+var showdown = require('../docs/assets/js/showdown.cjs');
 var { readdirSync, readFileSync, writeFileSync } = require('node:fs');
 
 var $ = new showdown.Converter({
