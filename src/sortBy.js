@@ -36,14 +36,14 @@ function sortByHue(collection, order, colorspace) {
 }
 
 function sortByContrast(collection, against, order) {
-  // @ts-ignore
+  
   const cb = (against) => (color) => wcagContrast(color, against);
   return baseSortBy('contrast', cb(against), order, collection);
 }
 
 function sortByDistance(collection, against, order) {
   const cb = (against) => (color) => {
-    // @ts-ignore
+    
     return differenceHyab()(against, color);
   };
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-ternary */
 /**
  * @module
  * @license
@@ -56,43 +55,12 @@ const interpolatorConfig = {
   li
 };
 
-/**
- * @internal
- *  Gets the clipped string of a passed in colorspace by removing non-channel characters.
- * @param cspace  The colorspace to get the channel keys.
- * @param idx Optional index to return a single specified channel.
- * @returns A string.
- * 
- @example
-
- console.log(getModeChannel("oklch"));
-// lch
-
-console.log(getModeChannel("okhsl", 2));
-// l
-
- */
 function getModeChannel(cspace, idx) {
   const res = cspace.substring(cspace.length - 3);
 
   return (idx && res.charAt(idx)) || res;
 }
 
-/**
- * @internal
- * Takes an arithmetic operator followed by a value and passes the result of the expression to the specified channel. Currently supports addition,subtraction,division and multiplication symbols only.
- * @param color The color.
- * @param mc The colorspace channel to set.
- * @param expr The expression assignment as a string.
- * @example
- *
- * console.log(lch('blue'));
-// { mode: 'lch',l: 29.568297153444703,c: 131.2014771995311,h: 301.36428148973533}
-
-console.log(exprParser('blue', 'lch.l', '*0.3'));
-// { mode: 'lch',l: 8.87048914603341,c: 131.2014771995311,h: 301.36428148973533 }
-
- */
 function exprParser(color = '#000', mc = '', expr = '') {
   // regExp to match arithmetic operator and the value
 
@@ -102,7 +70,6 @@ function exprParser(color = '#000', mc = '', expr = '') {
     /[0-9]*\.?[0-9]+/.exec(expr)['0']
   ];
 
-  // @ts-ignore
   color = ucsConverter(mode.toString().toLowerCase())(color);
   const cb = (value) => parseFloat(value);
 
@@ -123,32 +90,16 @@ function exprParser(color = '#000', mc = '', expr = '') {
     // throw error alert
   }
 
-  // @ts-ignore
   return color;
 }
 
-/**
- * @internal
- * Matches the chroma/saturation channel of any compliant color space
- * @param colorspace The color space to match saturation/chroma channel. Default is Lch
- * @returns The mode channel string passed to getChannel()
- * @example
- * 
- * import { mcc } from 'huetiful-js'
- * console.log(mcc("jch"));
-// jch.c
-
-console.log(mcc("okhsl"));
-// okhsl.s
- */
 function mcchn(colorspace) {
   // Matches any string with c or s
   colorspace = or(colorspace, 'lch');
   const reChroma = /(s|c)/i;
-  // @ts-ignore
+
   const ch = reChroma.exec(colorspace)['0'];
 
-  // @ts-ignore
   if (reChroma.test(colorspace)) {
     return `${colorspace}.${ch}`;
   } else {
@@ -158,66 +109,26 @@ function mcchn(colorspace) {
   }
 }
 
-/**
- * @internal
- * @function
- * Matches the lightness channel of any compliant color space
- * @param colorspace The color space to match lightness channel. Default is Lch
- * @returns The mode channel string passed to getChannel
- * 
- * @example
- * 
- * console.log(matchLightnessChannel("jch"));
-// jch.j
-
-console.log(matchLightnessChannel("okhsl"));
-// okhsl.l
- */
 function mlchn(colorspace) {
   // Matches any string with c or s
   colorspace = or(colorspace, 'lch');
   const reLightness = /(j|l)/i;
-  // @ts-ignore
+
   const ch = reLightness.exec(colorspace)['0'];
 
-  // @ts-ignore
   if (reLightness.test(colorspace)) {
-    // @ts-ignore
     return `${colorspace}.${ch}`;
   } else {
     throw Error(`The color space ${colorspace} has no lightness channel.`);
   }
 }
 
-/**
- * 
- * @param factor The factor being queried
- * @param callback The function to compute the factor value. It must have an arity of one and take a color as its argument.
- * @example
-
- let col = 'purple';
-console.log(colorObj('saturation', getChannel('lch.c'))(col));
-// { saturation: 66.82572352143816, color: 'purple' }
-
- */
 function colorObj(factor, callback) {
-  /**
-   * @param color The color to query its factor
-   * @returns An object
-   */
   return (color) => {
-    // @ts-ignore
     return { [factor]: callback(color), color: color };
   };
 }
 
-/**
- * @internal
- * @param collection The collection to inspect.
- * @param predicate The function invoked per iteration.
- * @param factor The value to compare against
- * @returns Returns the found element or its key, else `undefined`.
- */
 function customFindKey(collection, factor) {
   // If the color is achromatic return the string gray
   const propKeys = Object.keys(collection);
@@ -225,9 +136,9 @@ function customFindKey(collection, factor) {
   const result = propKeys
     .filter((key) => {
       const hueVals = customConcat(collection[key]);
-      // @ts-ignore
+
       const minVal = min(...hueVals);
-      // @ts-ignore
+
       const maxVal = max(...hueVals);
       // Capture the min and max values and see if the passed in color is within that range
       return inRange(factor, minVal, maxVal);
@@ -246,45 +157,15 @@ function customConcat(hue) {
     //@ts-ignore
     res.push(...hueKeys.map((key) => hue[key]));
   }
-  // @ts-ignore
+
   return res.flat(1);
 }
 
-/**
- * @internal
- *
- * @param value The hue angle to normalize.
- * @returns The normalized hue angle or passed in value if it was within [0,360]
- *
- * @example
- * 
- * console.log(adjustHue(4));
-// 4
-
-console.log(adjustHue(444));
-// 84
- */
 function adjustHue(value) {
   return (value > 0 && (value += Math.ceil(-value / 360) * 360)) || value % 360;
 }
 
-/**
- * @internal
- * Returns the channel value difference between the passed in colors. They are both converted to the colorspace in the modeChannel parameter before values are computed.
- * @param color The color to subtract values from/
- * @param modeChannel The colorspace and channel string to perform the operation in.
- * @example
- *
-console.log(chnDiff
-  ('blue', 'okhsl.l')('pink'));
-// 0.4794739863155694
- *
- */
 function chnDiff(color, modeChannel) {
-  /**
-   * @param subtrahend The color to use as subtrahend
-   * @returns The difference between the color channel(s)
-   */
   return (subtrahend) => {
     const cb = (color) => getChannel(modeChannel)(color);
     if (cb(color) < cb(subtrahend)) {
@@ -297,122 +178,29 @@ function chnDiff(color, modeChannel) {
 
 // Comparison operators
 
-/**
- * Checks if x is greater than y
- * @param x The value to compare
- * @param y The value to compare against
- * @returns True if x is greater than y else false.
- *
- * @example
- *
- * gt(5,10)
- * // false
- */
 function gt(x, y) {
   return x > y;
 }
 
-/**
- * Checks if x is less than y.
- * @param x The value to compare
- * @param y The value to compare against
- * @returns True if x is less than y else false.
- *
- * @example
- * lt(2,8)
- * // true
- */
 function lt(x, y) {
   return x < y;
 }
 
-/**
- * Checks if x is greater than or equal to y.
- * @param x The value to compare
- * @param y The value to compare against
- * @returns True if x is greater than or equal to x else false.
- *
- * @example
- * gte(5,5)
- * // true
- *
- * gte(6,5)
- * // true
- *
- * gte(4,5)
- * // false
- */
 function gte(x, y) {
   return x >= y;
 }
 
-/**
- * Checks if x is less than or equal to y.
- * @param x The value to compare
- * @param y The value to compare against
- * @returns True if x is less than or equal to y else false.
- *
- * @example
- *
- * lte(5,5)
- * // true
- *
- * lte(6,5)
- * // false
- *
- * lte(4,5)
- * // true
- */
 function lte(x, y) {
   return x <= y;
 }
 
-/**
- * Checks if x is equal to y
- * @param x The value to compare
- * @param y The value to compare against
- * @returns True if x is equal to y else false.
- *
- * eq(4,5)
- * // false
- */
 function eq(x, y) {
   return x === y;
 }
 
-/**
- * Checks if x is not equal to y. The inverse of `eq`
- * @param x The value to compare
- * @param y The value to compare against
- * @returns True if x is not equal to y else false.
- *
- * @example
- * neq(5,5)
- * // false
- *
- * neq(4,5)
- * // true
- */
 function neq(x, y) {
   return !(x === y);
 }
-
-/**
- * @internal
- * Checks if a value is within the start and end range.
- * @param number The number to check.
- * @param start The minimum or starting value.
- * @param end The maximum or starting value.
- * @returns True if the number is in range else false.
- *
- * @example
- *
- * inRange(5,6,10)
- * // true
- *
- * inRange(-3,0)
- * // false
- */
 
 function inRange(number, start, end) {
   /* Built-in method references for those with the same name as other `lodash` methods. */
@@ -420,33 +208,11 @@ function inRange(number, start, end) {
   return gte(number, Math.min(start, end)) && lt(number, Math.max(start, end));
 }
 
-/**
- * @internal
- * Checks if a number is an integer or float.
- * @param num The number to query
- * @returns True if the number is an integer else false if it is a float.
- *
- * @example
- *
- * isInt(2)
- * // true
- *
- * isInt(2.01)
- * // false
- */
 function isInt(num) {
   const reInt = /^-?[0-9]+$/;
   return reInt.test(num.toString());
 }
 
-/**
- * @internal
- * Normalizes passed in channel value to a range accepted by color spaces as defined in Culori.
- * @param value The value to chec if its in the accepted range for the passed in mode channel
- * @param modeChannel A string defining the mode and channel ranges to use for comparison
- * @returns The normalized channel value or the passed in value if it was within range
- *
- */
 function norm(value, modeChannel) {
   const [mode, chn] = modeChannel.split('.');
   const [start, end] = modeRanges[mode][chn];
@@ -462,18 +228,6 @@ function norm(value, modeChannel) {
   return value;
 }
 
-/**
- * @internal
- * Returns a random number between minimum and maximum bounds.
- * @param min The lower bound.
- * @param max The upper bound.
- * @returns A number.
- *
- * @example
- *
- * rand(5,15)
- * // 6
- */
 function rand(min, max) {
   if (min > max) {
     var [mn, mx] = [min, max];
@@ -483,20 +237,6 @@ function rand(min, max) {
     return Math.random() * (max - min) + min;
   }
 }
-
-/**
- * @internal
- * Rounds up or down a number based on the float value.
- * @param num The number to round up or down.
- * @returns An integer
- * @example
- * 
- * console.log(floorCeil(1.45));
-// 1
-console.log(floorCeil(1.501));
-// 2
-
- */
 
 function floorCeil(num) {
   if (!isInt(num)) {
@@ -516,13 +256,6 @@ function floorCeil(num) {
   return num;
 }
 
-/**
- * @internal
- * Helper function for native sorting method for arrays.
- * @param factor The property to query.
- * @param order Either ascending or descending.
- * @returns A sorted array.
- */
 function customSort(order = 'asc', factor = 'factor') {
   // a-b gives asc order & b-a gives desc order
 
@@ -535,84 +268,38 @@ function customSort(order = 'asc', factor = 'factor') {
   };
 }
 
-/*
- * @function
- * Creates a custom object with a factor to pass to the predicate function.
- * @param factor The quality being queried.
- * @param cb The callback function for computing the factor's start.
- * @returns An array of objects.
- */
 function colorObjArr(factor, callback) {
   /**
    * @param collection The array or object of colors to iterate over. If an object is passed, its values are expected to be valid color tokens.
    */
   return (collection) => {
     const cb = colorObj(factor, callback);
-    // @ts-ignore
+
     return Object.keys(collection).map((color) => cb(collection[color]));
   };
 }
 
-/**
- * @internal
- *  Gets the smallest value in an array
- * @param array The array to retrieve minimum value
- * @returns The smallest number in the array
- * @example
- * console.log(min([0, 3, 4]));
-// 0
- * 
- */
 function min(array = []) {
   return array.reduce((a, b) => Math.min(a, b), Infinity);
 }
-/**
- * @internal
- *  Gets the largest value in an array
- * @param array The array to retrieve maximum value
- * @returns The largest number in the array
- * @example
- * console.log(max([0, 3, 4]));
-// 4
- */
+
 function max(array = []) {
-  // @ts-ignore
   array = or(array, []);
   return array.reduce((a, b) => Math.max(a, b), -Infinity);
 }
 
-/**
- * @internal
- * Gets the digits in the expression string
- * @param s The string to match
- * @returns The matched digits, if any, as a number.
- */
 function reNum(s) {
   s = s.toString();
   var reDigits = /[0-9]*\.?[0-9]+/;
   return (reDigits.test(s) && Number(reDigits.exec(s)['0'])) || undefined;
 }
 
-/**
- * @internal
- * Matches the comparison symbols used in the expression string.
- * @param s The string to match.
- * @returns The matched comparator, if any, as a string.
- */
 function reOp(s) {
   s = s.toString();
   var reComparator = /^(>=|<=|<|>|={1,2}|!={0,2})/;
 
   return (reComparator.test(s) && reComparator.exec(s)['0']) || undefined;
 }
-
-/**
- * @internal
- *  Filters an array of color objects with a "factor"  property whose value is determined by a predicate or getter via the cb param.
- * @param factor The property to query
- * @param callback The function to use for comparison.
- * @returns An array of colors or color objects.
- */
 function sortedArr(
   factor = 'factor',
   callback,
@@ -636,13 +323,6 @@ function sortedArr(
   };
 }
 
-/**
- * @internal
- *  Filters an array according to the value of a color's queried factor
- * @param factor The property to query and use as filtering criteria
- * @param cb The function to use for comparison
- * @returns The filtered array
- */
 function filteredArr(factor, cb) {
   return (collection, start, end) => {
     let result;
