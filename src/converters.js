@@ -25,17 +25,23 @@ import {
   formatHex,
   formatHex8,
   colorsNamed,
-  modeLuv
+  modeLuv,
+  modeRec2020,
+  modeProphoto,
+  modeP3,
+  modeA98,
+  modeYiq
 } from 'culori/fn';
 
 import { or, getModeChannel } from './helpers.js';
+import { modeJab } from 'culori';
 
 function toOk(colorspace = 'oklch') {
   var cspaces = new Map([
-    ['lab', modeOklab],
-    ['lch', modeOklch],
-    ['hsl', modeOkhsl],
-    ['hsv', modeOkhsv]
+    ['oklab', modeOklab],
+    ['oklch', modeOklch],
+    ['okhsl', modeOkhsl],
+    ['okhsv', modeOkhsv]
   ]);
   return (color) => useMode(cspaces[colorspace])(color);
 }
@@ -44,21 +50,38 @@ function toCubehelix(color = '#000') {
   return useMode(modeCubehelix)(color);
 }
 
-function toSRGB(colorspace = 'rgb') {
+function toRGB(colorspace = 'rgb') {
   var cspaces = new Map([
     ['lrgb', modeLrgb],
     ['hwb', modeHwb],
     ['hsl', modeHsl],
     ['hsi', modeHsi],
     ['hsv', modeHsv],
-    ['rgb', modeRgb]
+    ['rgb', modeRgb],
+    ['rec2020', modeRec2020],
+    ['prophoto', modeProphoto],
+    ['p3', modeP3],
+    ['a98', modeA98],
+    ['xyb', modeXyb],
+    ['yiq',modeYiq]
   ]);
 
   return useMode(cspaces[colorspace])(color);
 }
 
+
+function toJab(color) {
+  return useMode(modeJab)(color);
+}
+
+
+
+function toJch(color) {
+  return useMode(modeJch)(color);
+}
+
 function toITP(color) {
-  return useMode('itp')(color);
+  return useMode(modeItp)(color);
 }
 
 function toCIE(colorspace = 'lch') {
@@ -245,7 +268,7 @@ export {
   toCIE,
   toCubehelix,
   toDIN99,
-  toSRGB,
+  toRGB,
   toOk,
-  toITP
+  toITP,toJab,toJch
 };

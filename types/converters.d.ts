@@ -1,11 +1,83 @@
 import type { Colorspaces, ColorToken, UniformColorSpaces } from './types';
-import 'culori/all';
+
 /**
  * Converter function with mode definitions for uniform color spaces. The function is curried to return a converter in the passed colospace.
  * @param colorspace The mode converter to return.
  * @returns The converter function in the mode colorspace.
  */
-declare function ucsConverter(colorspace: UniformColorSpaces): import("culori/src/converter").ConvertFn<any>;
+declare function ucsConverter(
+  colorspace: UniformColorSpaces
+): import('culori/src/converter').ConvertFn<any>;
+
+/**
+ * Returns the passed in color as a plain object in the specified Ok colorspace.
+ * @param colorspace The Ok colorspace to use.
+ * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
+ * @see https://culorijs.org/color-spaces/
+ */
+declare function toOk(
+  colorspace?: UniformColorSpaces
+): (color: string) => object;
+
+/**
+ * Returns the passed in color as a plain object in the specified CIE colorspace.
+ * @param colorspace The CIE colorspace to use.
+ * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
+ * @see https://culorijs.org/color-spaces/
+ */
+declare function toCIE(
+  colorspace?: Pick<
+    Colorspaces,
+    'lab' | 'lch' | 'lch65' | 'lab65',
+    'xyz50',
+    'xyz65'
+  >
+): (color: string) => object;
+
+/**
+ * Returns the passed in color as a plain object in the specified RGB based colorspace.
+ * @param colorspace The RGB colorspace to use.
+ * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
+ * @see https://culorijs.org/color-spaces/
+ */
+declare function toRGB(
+  colorspace?: Omit<
+    Colorspaces,
+    UniformColorSpaces | 'okhsl' | 'dlab' | 'luv' | 'jab'
+  >
+): (color: string) => object;
+
+/**
+ * Returns the passed in color as a plain object in the specified DIN99 colorspace.
+ * @param colorspace The DIN99 colorspace to use.
+ * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
+ * @see https://culorijs.org/color-spaces/
+ */
+declare function toDIN99(
+  colorspace?: Pick<Colorspaces, 'dlch' | 'dlab'>
+): (color: string) => object;
+
+/**
+ * Returns the passed in color as a plain object in the ITP colorspace.
+ * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
+ * @see https://culorijs.org/color-spaces/ For expected ranges and channels.
+ */
+declare function toITP(color: string): object;
+
+/**
+ * Returns the passed in color as a plain object in the Jch colorspace.
+ * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
+ * @see https://culorijs.org/color-spaces/ For expected ranges and channels.
+ */
+declare function toJch(color: string): object;
+
+/**
+ * Returns the passed in color as a plain object in the Jab colorspace.
+ * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
+ * @see https://culorijs.org/color-spaces/ For expected ranges and channels.
+ */
+declare function toJab(color: string): object;
+
 /**
  *
   Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), numbers from 0 to 166,777,215 and arrays in the form of [string,number,number,number,numer?] the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
@@ -60,7 +132,10 @@ declare function color2num(color: ColorToken): number;
 console.log(temp2color(2542))
 // #ffa44a
  */
-declare function temp2color(kelvin: number, colorspace?: Colorspaces): ColorToken;
+declare function temp2color(
+  kelvin: number,
+  colorspace?: Colorspaces
+): ColorToken;
 /**
  *
  *  Returns an array of channel values in the mode color space. It does not mutate the values of the passed in color token.
@@ -81,5 +156,21 @@ console.log(color2tuple(rgbColor));
 // [ 'rgb', 0.4, 0.3, 0.7 ]
 
  */
-declare function color2tuple(color: string | object, colorspace?: Colorspaces): any[];
-export { num2color, color2num, temp2color, color2tuple, ucsConverter, color2hex };
+declare function color2tuple(
+  color: string | object,
+  colorspace?: Colorspaces
+): any[];
+export {
+  num2color,
+  color2num,
+  temp2color,
+  color2tuple,
+  ucsConverter,
+  color2hex,
+  toCIE,
+  toDIN99,
+  toITP,
+  toOk,
+  toJab,
+  toJch
+};
