@@ -24,6 +24,7 @@
     "culori"
   ],
   "devDependencies": {
+    "@fontsource-variable/space-grotesk": "^5.0.16",
     "@types/culori": "^2.0.0",
     "dts-bundle-generator": "^8.0.1",
     "esbuild": "^0.17.19",
@@ -81,11 +82,10 @@
       "types/types.d.ts"
     ],
     "plugin": [
-      "typedoc-material-theme"
+      "typedoc-plugin-markdown"
     ],
-    "themeColor": "#bfc300",
     "entryPointStrategy": "resolve",
-    "out": "docs",
+    "out": "docs/assets/markdown",
     "exclude": [
       "./color-maps"
     ],

@@ -1,6 +1,12 @@
 {
   "include": [
-     "./types/types.d.ts"
+     "types/generators.d.ts",
+      "types/utils.d.ts",
+      "types/colors.d.ts",
+      "types/converters.d.ts",
+      "types/filterBy.d.ts",
+      "types/sortBy.d.ts",
+      "types/types.d.ts"
       
     ],"exclude":["**/*/node_modules"],
   "compilerOptions": {
