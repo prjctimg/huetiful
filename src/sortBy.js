@@ -2,7 +2,7 @@ import { or, sortedArr, mlchn, mcchn } from './helpers.js';
 import { wcagContrast, differenceHyab } from 'culori/fn';
 import { getLuminance, getChannel } from './utils.js';
 
-function baseSortBy(factor = 'factor', cb, order = 'lch', collection = []) {
+function baseSortBy(factor = 'factor', cb, order = 'asc', collection = []) {
   return sortedArr(factor, cb, order)(collection);
 }
 

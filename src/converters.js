@@ -1,6 +1,20 @@
 import {
   useMode,
   modeRgb,
+  modeHsv,
+  modeLab,
+  modeLab65,
+  modeHwb,
+  modeHsl,
+  modeCubehelix,
+  modeDlab,
+  modeOkhsl,
+  modeOkhsv,
+  modeHsi,
+  modeLrgb,
+  modeXyz50,
+  modeXyz65,
+  modeOklab,
   converter,
   modeDlch,
   modeJch,
@@ -10,11 +24,64 @@ import {
   modeOklch,
   formatHex,
   formatHex8,
-  colorsNamed
+  colorsNamed,
+  modeLuv
 } from 'culori/fn';
 
-import 'culori/all';
 import { or, getModeChannel } from './helpers.js';
+
+function toOk(colorspace = 'oklch') {
+  var cspaces = new Map([
+    ['lab', modeOklab],
+    ['lch', modeOklch],
+    ['hsl', modeOkhsl],
+    ['hsv', modeOkhsv]
+  ]);
+  return (color) => useMode(cspaces[colorspace])(color);
+}
+
+function toCubehelix(color = '#000') {
+  return useMode(modeCubehelix)(color);
+}
+
+function toSRGB(colorspace = 'rgb') {
+  var cspaces = new Map([
+    ['lrgb', modeLrgb],
+    ['hwb', modeHwb],
+    ['hsl', modeHsl],
+    ['hsi', modeHsi],
+    ['hsv', modeHsv],
+    ['rgb', modeRgb]
+  ]);
+
+  return useMode(cspaces[colorspace])(color);
+}
+
+function toITP(color) {
+  return useMode('itp')(color);
+}
+
+function toCIE(colorspace = 'lch') {
+  var cspaces = new Map([
+    ['xyz65', modeXyz65],
+    ['xyz50', modeXyz50],
+    ['lab', modeLab],
+    ['lab65', modeLab65],
+    ['luv', modeLuv],
+    ['lchuv', modeLchuv],
+    ['lch', modeLch],
+    ['lch65', modeLch65]
+  ]);
+  return (color) => useMode(cspaces[colorspace.toLowerCase()])(color);
+}
+
+function toDIN99(colorspace = 'dlch') {
+  var cspaces = new Map([
+    ['dlab', modeDlab],
+    ['lch', modeDlch]
+  ]);
+  return (color) => useMode(cspaces[colorspace.toLowerCase()])(color);
+}
 
 function ucsConverter(colorspace = 'lch') {
   const ucsDefinitions = {
@@ -174,5 +241,11 @@ export {
   temp2color,
   color2tuple,
   ucsConverter,
-  color2hex
+  color2hex,
+  toCIE,
+  toCubehelix,
+  toDIN99,
+  toSRGB,
+  toOk,
+  toITP
 };
