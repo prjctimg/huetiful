@@ -1,3 +1,5 @@
+#!/usr/bin / env node
+
 /*
  * @license huetiful-js Documentation script using showdown.js,Typedoc and github-markdown-css .  
  * Copyright 2024 Dean Tarisai.
@@ -11,8 +13,9 @@ governing permissions and limitations under the License.
 
  */
 
+var { readFileSync, writeFileSync, readdirSync } = require('node:fs');
+
 var showdown = require('../docs/assets/js/showdown.cjs');
-var { readdirSync, readFileSync, writeFileSync } = require('node:fs');
 
 var $ = new showdown.Converter({
     emoji: true,
@@ -22,20 +25,37 @@ var $ = new showdown.Converter({
     simplifiedAutoLink: true,
     tables: true,
     tasklists: true
-  }).setFlavor('github'),
-  PATH_TO_MARKDOWN_FILES = './docs/assets/markdown';
+  }),
+  PATH_TO_MARKDOWN_FILES = './docs/assets/markdown/modules';
 
-/**
- * All the markdown pages in the `./docs/markdown` directory.
- */
-var pages = readdirSync(PATH_TO_MARKDOWN_FILES);
+function generateDocs(source = PATH_TO_MARKDOWN_FILES) {
+  return function (
+    outputDir = './docs',
+    pathToTemplate = './docs/assets/fragments/post.html'
+  ) {
+    for (const file of readdirSync(source, {
+      encoding: 'utf-8'
+    })) {
+      // The html comment to match before injecting data
+      const reHtmlComment =
+        /(<!-- TSDOC_START -->)[\s\S]*?(<!-- TSDOC_END -->)$/gm;
+      const injectMarkdownInHtmlComment = (data) =>
+        `<!-- TSDOC_START -->\n${data}\n<!-- TSDOC_END -->`;
+      const current = readFileSync(source + '/' + file, 'utf-8');
+      writeFileSync(
+        `${outputDir}/${file.split('.')[0] + '.html'}`,
+        readFileSync(pathToTemplate, 'utf-8').replace(
+          reHtmlComment,
+          injectMarkdownInHtmlComment($.makeHtml(current))
+        ),
+        'utf-8'
+      );
+    }
 
-/*
- For each page:
-1.Inject default classes for theme customization using Tailwind
-2. Convert the Markdown to HTML
-3. Inject into an HTML file with page layout. Put the HTML file into the root of docs
-4 Use HTMX to swap the page being rendered (Using JS)
+    console.info(
+      `[md-emoji] Done. Generated HTML docs at ${outputDir} successfully. on ${new Date().getFullYear()}`
+    );
+  };
+}
 
- */
-for (let page = 0; page < pages.length; page++) {}
+generateDocs()();

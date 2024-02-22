@@ -1,0 +1,545 @@
+<section class="min-h-screen">
+  <div id="page-meta" class="flex justify-start px-3 pb-5">
+    <div class="flex-col space-y-0.5 justify-start align-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon"
+      >
+        <polyline points="16 18 22 12 16 6"></polyline>
+        <polyline points="8 6 2 12 8 18"></polyline>
+      </svg>
+      <p class="text-sm text-gray-500">Source</p>
+    </div>
+    <div class="flex-col space-y-0.5 justify-start align-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon"
+      >
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      <p class="text-sm text-gray-500">Reading time</p>
+    </div>
+    <div class="flex-col space-y-0.5 justify-start align-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon"
+      >
+        <path
+          d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+        ></path>
+        <path
+          d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+        ></path>
+      </svg>
+      <p class="text-sm text-gray-500">Edit</p>
+    </div>
+  </div>
+
+  <!-- TSDOC_START -->
+<p><a href="../README.md">huetiful-js</a> / <a href="../modules.md">Modules</a> / converters</p>
+<h1 id="module-converters">Module: converters</h1>
+<h2 id="table-of-contents">Table of contents</h2>
+<h3 id="functions">Functions</h3>
+<ul>
+<li><a href="converters.md#color2hex">color2hex</a></li>
+<li><a href="converters.md#color2num">color2num</a></li>
+<li><a href="converters.md#color2tuple">color2tuple</a></li>
+<li><a href="converters.md#num2color">num2color</a></li>
+<li><a href="converters.md#temp2color">temp2color</a></li>
+<li><a href="converters.md#tocie">toCIE</a></li>
+<li><a href="converters.md#todin99">toDIN99</a></li>
+<li><a href="converters.md#toitp">toITP</a></li>
+<li><a href="converters.md#tojab">toJab</a></li>
+<li><a href="converters.md#tojch">toJch</a></li>
+<li><a href="converters.md#took">toOk</a></li>
+<li><a href="converters.md#ucsconverter">ucsConverter</a></li>
+</ul>
+<h2 id="functions-1">Functions</h2>
+<h3 id="color2hex">color2hex</h3>
+<p>▸ <strong>color2hex</strong>(<code>color</code>): <code>string</code></p>
+<p>Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), numbers from 0 to 166,777,215 and arrays in the form of [string,number,number,number,numer?] the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.</p>
+<h4 id="parameters">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to convert to hexadecimal. Works on color objects and CSS named colors.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns">Returns</h4>
+<p><code>string</code></p>
+<p>A hexadecimal representation of the passed in color.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color2hex } from "huetiful-js";
+
+console.log(color2hex({ l: 50, c: 31, h: 100, alpha: 0.5, mode: "lch" }))
+// #7b794180
+
+console.log(color2hex({ l: 50, c: 31, h: 100, mode: "lch" }))
+// #7b7941
+</code></pre>
+<h4 id="defined-in">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/converters.d.ts#L95">converters.d.ts:95</a></p>
+<hr />
+<h3 id="color2num">color2num</h3>
+<p>▸ <strong>color2num</strong>(<code>color</code>): <code>number</code></p>
+<p>Returns the numerical equivalent of a color.</p>
+<h4 id="parameters-1">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to convert to its numerical equivalent.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-1">Returns</h4>
+<p><code>number</code></p>
+<p>value The numerical value of the color from 0 to 16,777,215.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color2num } from 'huetiful-js'
+
+console.log(color2num("b2c3f1"))
+// 11715569
+</code></pre>
+<h4 id="defined-in-1">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/converters.d.ts#L121">converters.d.ts:121</a></p>
+<hr />
+<h3 id="color2tuple">color2tuple</h3>
+<p>▸ <strong>color2tuple</strong>(<code>color</code>, <code>colorspace?</code>): <code>any</code>[]</p>
+<p>Returns an array of channel values in the mode color space. It does not mutate the values of the passed in color token.</p>
+<h4 id="parameters-2">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><code>string</code> | <code>object</code></td>
+<td style="text-align:left;">Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g <code>num2color</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The mode color space to return channel values for. You can omit this parameter if you pass in a color object with the <code>mode</code> property.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-2">Returns</h4>
+<p><code>any</code>[]</p>
+<p>An array of channel values with the colorspace as first element and the alpha channel if its explicitly defined in the passed in color.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">let rgbColor = {
+ r: 0.4,
+ g: 0.3,
+ b: 0.7,
+ mode: "rgb",
+};
+console.log(color2tuple(rgbColor));
+
+// [ 'rgb', 0.4, 0.3, 0.7 ]
+</code></pre>
+<h4 id="defined-in-2">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/converters.d.ts#L159">converters.d.ts:159</a></p>
+<hr />
+<h3 id="num2color">num2color</h3>
+<p>▸ <strong>num2color</strong>(<code>num</code>, <code>colorspace?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>Returns the color equivalent of any number between 0 and 16,777,215 as a hexadecimal string or color object if the <code>colorspace</code> is specified.</p>
+<h4 id="parameters-3">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>num</code></td>
+<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;">The number to convert.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-3">Returns</h4>
+<p><a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>color A color object or hex string.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { num2color } from 'huetiful-js'
+
+console.log(num2color(900))
+// #000384
+</code></pre>
+<h4 id="defined-in-3">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/converters.d.ts#L108">converters.d.ts:108</a></p>
+<hr />
+<h3 id="temp2color">temp2color</h3>
+<p>▸ <strong>temp2color</strong>(<code>kelvin</code>, <code>colorspace?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>Converts the temperature value (in Kelvins) to a color as a hexadecimal string else a color object in the mode <code>colorspace</code>.</p>
+<h4 id="parameters-4">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>kelvin</code></td>
+<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;">The number of Kelvins. From 0 to 30,000 .</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">Optional parameter to return a color object in the mode <code>colorspace</code> hexadecimal string. Default is <code>'rgb'</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-4">Returns</h4>
+<p><a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>color The color as a hexadecimal  or RGB color object.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { temp2color } from 'huetiful-js'
+
+console.log(temp2color(2542))
+// #ffa44a
+</code></pre>
+<h4 id="defined-in-4">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/converters.d.ts#L135">converters.d.ts:135</a></p>
+<hr />
+<h3 id="tocie">toCIE</h3>
+<p>▸ <strong>toCIE</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
+<p>Returns the passed in color as a plain object in the specified CIE colorspace.</p>
+<h4 id="parameters-5">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>any</code></td>
+<td style="text-align:left;">The CIE colorspace to use.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-5">Returns</h4>
+<p><code>fn</code></p>
+<p>▸ (<code>color</code>): <code>object</code></p>
+<h5 id="parameters-6">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns-6">Returns</h5>
+<p><code>object</code></p>
+<p><strong><code>See</code></strong></p>
+<p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
+<h4 id="defined-in-5">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/converters.d.ts#L28">converters.d.ts:28</a></p>
+<hr />
+<h3 id="todin99">toDIN99</h3>
+<p>▸ <strong>toDIN99</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
+<p>Returns the passed in color as a plain object in the specified DIN99 colorspace.</p>
+<h4 id="parameters-7">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>Pick</code>\&lt;<code>string</code>, <code>"dlch"</code> | <code>"dlab"</code>></td>
+<td style="text-align:left;">The DIN99 colorspace to use.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-7">Returns</h4>
+<p><code>fn</code></p>
+<p>▸ (<code>color</code>): <code>object</code></p>
+<h5 id="parameters-8">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns-8">Returns</h5>
+<p><code>object</code></p>
+<p><strong><code>See</code></strong></p>
+<p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
+<h4 id="defined-in-6">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/converters.d.ts#L56">converters.d.ts:56</a></p>
+<hr />
+<h3 id="toitp">toITP</h3>
+<p>▸ <strong>toITP</strong>(<code>color</code>): <code>object</code></p>
+<p>Returns the passed in color as a plain object in the ITP colorspace.</p>
+<h4 id="parameters-9">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by <code>color2hex</code> which extends supported color formats.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-9">Returns</h4>
+<p><code>object</code></p>
+<p><strong><code>See</code></strong></p>
+<p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For expected ranges and channels.</p>
+<h4 id="defined-in-7">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/converters.d.ts#L65">converters.d.ts:65</a></p>
+<hr />
+<h3 id="tojab">toJab</h3>
+<p>▸ <strong>toJab</strong>(<code>color</code>): <code>object</code></p>
+<p>Returns the passed in color as a plain object in the Jab colorspace.</p>
+<h4 id="parameters-10">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by <code>color2hex</code> which extends supported color formats.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-10">Returns</h4>
+<p><code>object</code></p>
+<p><strong><code>See</code></strong></p>
+<p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For expected ranges and channels.</p>
+<h4 id="defined-in-8">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/converters.d.ts#L79">converters.d.ts:79</a></p>
+<hr />
+<h3 id="tojch">toJch</h3>
+<p>▸ <strong>toJch</strong>(<code>color</code>): <code>object</code></p>
+<p>Returns the passed in color as a plain object in the Jch colorspace.</p>
+<h4 id="parameters-11">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by <code>color2hex</code> which extends supported color formats.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-11">Returns</h4>
+<p><code>object</code></p>
+<p><strong><code>See</code></strong></p>
+<p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For expected ranges and channels.</p>
+<h4 id="defined-in-9">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/converters.d.ts#L72">converters.d.ts:72</a></p>
+<hr />
+<h3 id="took">toOk</h3>
+<p>▸ <strong>toOk</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
+<p>Returns the passed in color as a plain object in the specified Ok colorspace.</p>
+<h4 id="parameters-12">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The Ok colorspace to use.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-12">Returns</h4>
+<p><code>fn</code></p>
+<p>▸ (<code>color</code>): <code>object</code></p>
+<h5 id="parameters-13">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns-13">Returns</h5>
+<p><code>object</code></p>
+<p><strong><code>See</code></strong></p>
+<p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
+<h4 id="defined-in-10">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/converters.d.ts#L18">converters.d.ts:18</a></p>
+<hr />
+<h3 id="ucsconverter">ucsConverter</h3>
+<p>▸ <strong>ucsConverter</strong>(<code>colorspace</code>): <code>ConvertFn</code></p>
+<p>Converter function with mode definitions for uniform color spaces. The function is curried to return a converter in the passed colospace.</p>
+<h4 id="parameters-14">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>colorspace</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The mode converter to return.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-14">Returns</h4>
+<p><code>ConvertFn</code></p>
+<p>The converter function in the mode colorspace.</p>
+<h4 id="defined-in-11">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/converters.d.ts#L8">converters.d.ts:8</a></p>
+<!-- TSDOC_END -->
+
+  <div id="page-footer" class="flex justify-between">
+    <div class="flex space-x-1">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon"
+      >
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <p>Previous page <span class="inline"></span></p>
+    </div>
+    <div class="flex space-x-1">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon"
+      >
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <p>Up next<span class="inline">Page Name</span></p>
+    </div>
+  </div>
+</section>

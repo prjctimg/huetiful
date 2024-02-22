@@ -1,0 +1,1213 @@
+<section class="min-h-screen">
+  <div id="page-meta" class="flex justify-start px-3 pb-5">
+    <div class="flex-col space-y-0.5 justify-start align-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon"
+      >
+        <polyline points="16 18 22 12 16 6"></polyline>
+        <polyline points="8 6 2 12 8 18"></polyline>
+      </svg>
+      <p class="text-sm text-gray-500">Source</p>
+    </div>
+    <div class="flex-col space-y-0.5 justify-start align-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon"
+      >
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      <p class="text-sm text-gray-500">Reading time</p>
+    </div>
+    <div class="flex-col space-y-0.5 justify-start align-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon"
+      >
+        <path
+          d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+        ></path>
+        <path
+          d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+        ></path>
+      </svg>
+      <p class="text-sm text-gray-500">Edit</p>
+    </div>
+  </div>
+
+  <!-- TSDOC_START -->
+<p><a href="../README.md">huetiful-js</a> / <a href="../modules.md">Modules</a> / utils</p>
+<h1 id="module-utils">Module: utils</h1>
+<h2 id="table-of-contents">Table of contents</h2>
+<h3 id="functions">Functions</h3>
+<ul>
+<li><a href="utils.md#alpha">alpha</a></li>
+<li><a href="utils.md#brighten">brighten</a></li>
+<li><a href="utils.md#colordeficiency">colorDeficiency</a></li>
+<li><a href="utils.md#darken">darken</a></li>
+<li><a href="utils.md#getchannel">getChannel</a></li>
+<li><a href="utils.md#getcomplimentaryhue">getComplimentaryHue</a></li>
+<li><a href="utils.md#getcontrast">getContrast</a></li>
+<li><a href="utils.md#getfarthestchroma">getFarthestChroma</a></li>
+<li><a href="utils.md#getfarthestcontrast">getFarthestContrast</a></li>
+<li><a href="utils.md#getfarthesthue">getFarthestHue</a></li>
+<li><a href="utils.md#getfarthestlightness">getFarthestLightness</a></li>
+<li><a href="utils.md#gethuefamily">getHueFamily</a></li>
+<li><a href="utils.md#getluminance">getLuminance</a></li>
+<li><a href="utils.md#getnearestchroma">getNearestChroma</a></li>
+<li><a href="utils.md#getnearestcolor">getNearestColor</a></li>
+<li><a href="utils.md#getnearestcontrast">getNearestContrast</a></li>
+<li><a href="utils.md#getnearesthue">getNearestHue</a></li>
+<li><a href="utils.md#getnearestlightness">getNearestLightness</a></li>
+<li><a href="utils.md#isachromatic">isAchromatic</a></li>
+<li><a href="utils.md#iscool">isCool</a></li>
+<li><a href="utils.md#iswarm">isWarm</a></li>
+<li><a href="utils.md#overtone">overtone</a></li>
+<li><a href="utils.md#setchannel">setChannel</a></li>
+<li><a href="utils.md#setluminance">setLuminance</a></li>
+</ul>
+<h2 id="functions-1">Functions</h2>
+<h3 id="alpha">alpha</h3>
+<p>▸ <strong>alpha</strong>(<code>color</code>, <code>value?</code>): <code>number</code></p>
+<p>Sets the opacity of a color. Also gets the alpha value of the color if the value param is omitted</p>
+<h4 id="parameters">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color with the targeted opacity/alpha channel.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>value?</code></td>
+<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;">The value to apply to the opacity channel. The value is between [0,1]</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns">Returns</h4>
+<p><code>number</code></p>
+<p>color The resulting color. Returns an 8 character hex code.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">// Getting the alpha
+console.log(alpha('#a1bd2f0d'))
+// 0.050980392156862744
+
+// Setting the alpha
+
+let myColor = alpha('b2c3f1', 0.5)
+
+console.log(myColor)
+
+// #b2c3f180
+</code></pre>
+<h4 id="defined-in">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L352">utils.d.ts:352</a></p>
+<hr />
+<h3 id="brighten">brighten</h3>
+<p>▸ <strong>brighten</strong>(<code>color</code>, <code>amount?</code>, <code>colorspace?</code>): <code>string</code></p>
+<p>The inverse of <code>darken</code>. It brightens the passed in color<code>.
+@param   color The color to brighten.
+@param amount The amount to brighten with. The value is expected to be in the range</code>[0,100]`</p>
+<h4 id="parameters-1">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>amount?</code></td>
+<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The mode colorspace to brighten the color in. Only uniform colorspaces are supported</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-1">Returns</h4>
+<p><code>string</code></p>
+<p>color The brightened color as a hex string</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { brighten } from "huetiful-js";
+console.log(brighten('blue', 0.3, 'lch'));
+//#464646
+</code></pre>
+<h4 id="defined-in-1">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L475">utils.d.ts:475</a></p>
+<hr />
+<h3 id="colordeficiency">colorDeficiency</h3>
+<p>▸ <strong>colorDeficiency</strong>(<code>deficiencyType?</code>): (<code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a>, <code>severity?</code>: <code>number</code>) =&gt; <code>string</code></p>
+<p>Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.</p>
+<h4 id="parameters-2">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>deficiencyType?</code></td>
+<td style="text-align:left;"><a href="types.md#deficiencytype"><code>DeficiencyType</code></a></td>
+<td style="text-align:left;">The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-2">Returns</h4>
+<p><code>fn</code></p>
+<p>The color as its simulated variant as a hexadecimal string.</p>
+<p>▸ (<code>color</code>, <code>severity?</code>): <code>string</code></p>
+<h5 id="parameters-3">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>severity?</code></td>
+<td style="text-align:left;"><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns-3">Returns</h5>
+<p><code>string</code></p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { colorDeficiency, color2hex } from 'huetiful-js'
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
+// We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
+let tritanomaly = colorDeficiency('blue')
+console.log(tritanomaly(['rgb', 230, 100, 50, 0.5], 0.1))
+// #dd663680
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'red'. The severity is not explicitly set so it defaults to 1
+let protanopia = colorDeficiency('red')
+console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
+// #9f9f9f
+</code></pre>
+<h4 id="defined-in-2">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L554">utils.d.ts:554</a></p>
+<hr />
+<h3 id="darken">darken</h3>
+<p>▸ <strong>darken</strong>(<code>color</code>, <code>amount</code>, <code>colorspace?</code>): <code>string</code></p>
+<p>Darkens the color by reducing the lightness channel. .</p>
+<h4 id="parameters-4">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to darken.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>amount</code></td>
+<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;">The amount to darken with. The value is expected to be in the range <code>[0,1]</code></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The mode colorspace to darken the color in. Only uniform colorspaces are supported</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-4">Returns</h4>
+<p><code>string</code></p>
+<p>color The darkened color as a hex string</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { darken } from "huetiful-js";
+console.log(darken('blue', 0.3, 'lch'));
+//#464646
+</code></pre>
+<h4 id="defined-in-3">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L456">utils.d.ts:456</a></p>
+<hr />
+<h3 id="getchannel">getChannel</h3>
+<p>▸ <strong>getChannel</strong>(<code>mc</code>): (<code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a>) =&gt; <code>number</code></p>
+<p>Gets the  value specifified channel on the color.</p>
+<h4 id="parameters-5">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>mc</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The mode and channel to be retrieved. For example "rgb.b" will return the value of the blue channel in the RGB color space of that color.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-5">Returns</h4>
+<p><code>fn</code></p>
+<p>value The value of the queried channel.</p>
+<p>▸ (<code>color</code>): <code>number</code></p>
+<h5 id="parameters-6">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns-6">Returns</h5>
+<p><code>number</code></p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getChannel } from 'huetiful-js'
+
+console.log(getChannel('rgb.g')('#a1bd2f'))
+// 0.7411764705882353
+</code></pre>
+<h4 id="defined-in-4">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L288">utils.d.ts:288</a></p>
+<hr />
+<h3 id="getcomplimentaryhue">getComplimentaryHue</h3>
+<p>▸ <strong>getComplimentaryHue</strong>(<code>color</code>, <code>colorspace?</code>, <code>colorObj?</code>): { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>hue</code>: <code>string</code>  } | <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>Gets the complementary hue of the passed in color. The function is internally guarded against achromatic colors.</p>
+<h4 id="parameters-7">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to retrieve its complimentary hue.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean whether to return an object with the result color hue family or just the result color. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-7">Returns</h4>
+<p>{ <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>hue</code>: <code>string</code>  } | <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>An object with the hue family and complimentary color as keys.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getComplimentaryHue } from "huetiful-js";
+
+console.log(getComplimentaryHue("pink",'lch', true))
+//// { hue: 'blue-green', color: '#97dfd7ff' }
+
+console.log(getComplimentaryHue("purple"))
+// #005700ff
+</code></pre>
+<h4 id="defined-in-5">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L245">utils.d.ts:245</a></p>
+<hr />
+<h3 id="getcontrast">getContrast</h3>
+<p>▸ <strong>getContrast</strong>(<code>color</code>, <code>against</code>): <code>number</code></p>
+<p>Gets the contrast between the passed in colors.</p>
+<h4 id="parameters-8">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-8">Returns</h4>
+<p><code>number</code></p>
+<p>The relative luminance of the lightest color.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getContrast } from 'huetiful-js'
+
+console.log(getContrast("black", "white"));
+// 21
+</code></pre>
+<h4 id="defined-in-6">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L366">utils.d.ts:366</a></p>
+<hr />
+<h3 id="getfarthestchroma">getFarthestChroma</h3>
+<p>▸ <strong>getFarthestChroma</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the largest saturation value from the passed in colors.</p>
+<h4 id="parameters-9">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>collection</code></td>
+<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The mode color space to perform the computation in.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-9">Returns</h4>
+<p><code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest saturation value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getFarthestChroma } from 'huetiful-js'
+
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(getFarthestChroma(sample, 'lch'))
+// 67.22120855010492
+</code></pre>
+<h4 id="defined-in-7">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L168">utils.d.ts:168</a></p>
+<hr />
+<h3 id="getfarthestcontrast">getFarthestContrast</h3>
+<p>▸ <strong>getFarthestContrast</strong>(<code>collection</code>, <code>against</code>, <code>colorObj?</code>): <code>number</code> | { <code>factor</code>: <code>number</code> ; <code>name</code>: <a href="types.md#colortoken"><code>ColorToken</code></a>  }</p>
+<p>Gets the largest contrast value from the passed in colors compared against a sample color.</p>
+<h4 id="parameters-10">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>collection</code></td>
+<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;">The array or object of colors to query the color with the largest contrast value.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (contrast) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-10">Returns</h4>
+<p><code>number</code> | { <code>factor</code>: <code>number</code> ; <code>name</code>: <a href="types.md#colortoken"><code>ColorToken</code></a>  }</p>
+<p>The largest contrast value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getFarthestContrast } from 'huetiful-js'
+
+console.log(getFarthestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green"));
+// 3.08355493246362
+
+console.log(getFarthestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true));
+// { contrast: 3.08355493246362, name: '#f3bac1' }
+</code></pre>
+<h4 id="defined-in-8">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L116">utils.d.ts:116</a></p>
+<hr />
+<h3 id="getfarthesthue">getFarthestHue</h3>
+<p>▸ <strong>getFarthestHue</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the largest hue value from the passed in colors.</p>
+<h4 id="parameters-11">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>collection</code></td>
+<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The mode color space to perform the computation in.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-11">Returns</h4>
+<p><code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest hue value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getFarthestHue } from 'huetiful-js'
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(getFarthestHue(sample, 'lch'))
+// 273.54920266436477
+</code></pre>
+<h4 id="defined-in-9">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L219">utils.d.ts:219</a></p>
+<hr />
+<h3 id="getfarthestlightness">getFarthestLightness</h3>
+<p>▸ <strong>getFarthestLightness</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the largest lightness value from the passed in colors.</p>
+<h4 id="parameters-12">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>collection</code></td>
+<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;">The array or object of colors to query the color with the largest lightness value.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">THe mode colorspace to retrieve the lightness value from.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-12">Returns</h4>
+<p><code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest lightness value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getFarthestLightness } from 'huetiful-js'
+
+let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
+
+console.log(getFarthestLightness(sample, 'lch',true))
+
+// { lightness: 80.94668903360088, name: '#f3bac1' }
+</code></pre>
+<h4 id="defined-in-10">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L432">utils.d.ts:432</a></p>
+<hr />
+<h3 id="gethuefamily">getHueFamily</h3>
+<p>▸ <strong>getHueFamily</strong>(<code>color</code>): <a href="types.md#huefamily"><code>HueFamily</code></a></p>
+<p>Gets the hue family which a a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".</p>
+<h4 id="parameters-13">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to query its shade or hue family.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-13">Returns</h4>
+<p><a href="types.md#huefamily"><code>HueFamily</code></a></p>
+<p>The name of the hue family for example red or green.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getHueFamily } from 'huetiful-js'
+
+console.log(getHueFamily("#310000"))
+// red
+</code></pre>
+<h4 id="defined-in-11">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L23">utils.d.ts:23</a></p>
+<hr />
+<h3 id="getluminance">getLuminance</h3>
+<p>▸ <strong>getLuminance</strong>(<code>color</code>): <code>number</code></p>
+<h4 id="parameters-14">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to query.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-14">Returns</h4>
+<p><code>number</code></p>
+<p>value The color's luminance value.</p>
+<p><strong><code>Alias</code></strong></p>
+<p>Gets the luminance value of that color as defined by WCAG.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getLuminance,colors } from 'huetiful-js'
+
+console.log(getLuminance('#a1bd2f'))
+// 0.4417749513730954
+
+console.log(colors('all', '400').map(getLuminance));
+
+// [
+  0.3595097699638928,  0.3635745068550118,
+  0.3596908494424909,  0.3662525955988395,
+ 0.36634113914916244, 0.32958967582076004,
+ 0.41393242740130043,  0.5789820793721787,
+  0.6356386777636567,  0.6463720036841869,
+  0.5525691083297639,  0.4961850321908156,
+  0.5140644334784611,  0.4401325598899415,
+ 0.36299191043315415,  0.3358285501372504,
+ 0.34737270839643575, 0.37670102542883394,
+  0.3464512307705231, 0.34012939384198054
+]
+</code></pre>
+<h4 id="defined-in-12">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L315">utils.d.ts:315</a></p>
+<hr />
+<h3 id="getnearestchroma">getNearestChroma</h3>
+<p>▸ <strong>getNearestChroma</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the smallest chroma/saturation value from the passed in colors.</p>
+<h4 id="parameters-15">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>collection</code></td>
+<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;">The array or object of colors to query the color with the smallest chroma/saturation value.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The mode color space to perform the computation in.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-15">Returns</h4>
+<p><code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest chroma/saturation value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getNearestChroma } from 'huetiful-js'
+
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(getNearestChroma(sample, 'lch'))
+// 22.45669293295522
+</code></pre>
+<h4 id="defined-in-13">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L142">utils.d.ts:142</a></p>
+<hr />
+<h3 id="getnearestcolor">getNearestColor</h3>
+<p>▸ <strong>getNearestColor</strong>(<code>collection</code>, <code>color</code>, <code>num?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<h4 id="parameters-16">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>collection</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>"tailwind"</code></td>
+<td style="text-align:left;">The collection of colors to search for nearest colors</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to use for distance comparison</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>num?</code></td>
+<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;">The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the differenceHyab metric.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-16">Returns</h4>
+<p><a href="types.md#colortoken"><code>ColorToken</code></a> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<p>An array of colors.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">let cols = colors('all', '500')
+
+console.log(getNearestColor(cols, 'blue', 3));
+// [ '#a855f7', '#8b5cf6', '#d946ef' ]
+</code></pre>
+<h4 id="defined-in-14">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L570">utils.d.ts:570</a></p>
+<hr />
+<h3 id="getnearestcontrast">getNearestContrast</h3>
+<p>▸ <strong>getNearestContrast</strong>(<code>collection</code>, <code>against</code>, <code>colorObj?</code>): <code>any</code></p>
+<p>Gets the smallest contrast value from the passed in colors compared against a sample color.</p>
+<h4 id="parameters-17">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>collection</code></td>
+<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;">The array or object of colors to query the color with the smallest contrast value.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (contrast) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-17">Returns</h4>
+<p><code>any</code></p>
+<p>The smallest contrast value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getNearestContrast } from 'huetiful-js'
+
+console.log(getNearestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green"));
+// 2.4061390502133424
+
+console.log(getNearestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true));
+// { contrast: 2.4061390502133424, name: '#a1bd2f' }
+</code></pre>
+<h4 id="defined-in-15">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L93">utils.d.ts:93</a></p>
+<hr />
+<h3 id="getnearesthue">getNearestHue</h3>
+<p>▸ <strong>getNearestHue</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the smallest hue value from the passed in colors.</p>
+<h4 id="parameters-18">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>collection</code></td>
+<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The mode color space to perform the computation in.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-18">Returns</h4>
+<p><code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest hue value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getNearestHue } from 'huetiful-js'
+
+let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
+
+console.log(getNearestHue(sample, 'lch'))
+// 12.462831644544274
+</code></pre>
+<h4 id="defined-in-16">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L194">utils.d.ts:194</a></p>
+<hr />
+<h3 id="getnearestlightness">getNearestLightness</h3>
+<p>▸ <strong>getNearestLightness</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the smallest lightness value from the passed in colors.</p>
+<h4 id="parameters-19">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>collection</code></td>
+<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;">The array or object of colors to query the color with the smallest lightness value.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-19">Returns</h4>
+<p><code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest lightness value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getNearestLightness } from 'huetiful-js'
+
+let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
+
+console.log(getNearestLightness(sample, 'lch',true))
+
+// { lightness: 72.61647882089876, name: '#a1bd2f' }
+</code></pre>
+<h4 id="defined-in-17">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L404">utils.d.ts:404</a></p>
+<hr />
+<h3 id="isachromatic">isAchromatic</h3>
+<p>▸ <strong>isAchromatic</strong>(<code>color</code>, <code>mode?</code>): <code>boolean</code></p>
+<p>Checks if a color is achromatic(without hue or simply grayscale).</p>
+<h4 id="parameters-20">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to test if it is achromatic or not.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>mode?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-20">Returns</h4>
+<p><code>boolean</code></p>
+<p>boolean Returns true if the color is achromatic else false</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { isAchromatic } from "huetiful-js";
+import { formatHex8, interpolate, samples } from "culori"
+
+isAchromatic('pink')
+// false
+
+let sample = [
+ "#164100",
+ "#ffff00",
+ "#310000",
+ 'pink'
+];
+
+console.log(map(sample, isAchromatic));
+
+// [false, false, false,false]
+
+isAchromatic('gray')
+// Returns true
+
+console.log(map(sample, isAchromatic));
+
+// we create an interpolation using black and white
+let f = interpolate(["black", "white"]);
+
+//We then create 12 evenly spaced samples and pass them to f as the `t` param required by an interpolating function.
+// Lastly we convert the color to hex for brevity for this example (otherwise color objects work fine too.)
+let grays = map(samples(12), (c) =&gt; formatHex8(f(c)));
+console.log(map(grays, isAchromatic));
+
+//
+[ false, true, true,
+ true,  true, true,
+ true,  true, true,
+ true,  true, false
+]
+</code></pre>
+<h4 id="defined-in-18">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L528">utils.d.ts:528</a></p>
+<hr />
+<h3 id="iscool">isCool</h3>
+<p>▸ <strong>isCool</strong>(<code>color</code>): <code>boolean</code></p>
+<p>Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.</p>
+<h4 id="parameters-21">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to check the temperature.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-21">Returns</h4>
+<p><code>boolean</code></p>
+<p>True or false.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { isCool } from 'huetiful-js'
+
+let sample = [
+ "#00ffdc",
+ "#00ff78",
+ "#00c000"
+];
+
+console.log(isCool(sample[2]));
+// false
+
+console.log(map(sample, isCool));
+
+// [ true,  false, true]
+</code></pre>
+<h4 id="defined-in-19">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L50">utils.d.ts:50</a></p>
+<hr />
+<h3 id="iswarm">isWarm</h3>
+<p>▸ <strong>isWarm</strong>(<code>color</code>): <code>boolean</code></p>
+<p>Checks if a color can be roughly classified as a warm color. Returns true if color is a warm color else false.</p>
+<h4 id="parameters-22">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to check the temperature.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-22">Returns</h4>
+<p><code>boolean</code></p>
+<p>True or false.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { isWarm } from 'huetiful-js'
+
+let sample = [
+ "#00ffdc",
+ "#00ff78",
+ "#00c000"
+];
+
+console.log(isWarm(sample[2]));
+//true
+
+console.log(map(sample, isWarm));
+
+// [ false, true,  false]
+</code></pre>
+<h4 id="defined-in-20">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L75">utils.d.ts:75</a></p>
+<hr />
+<h3 id="overtone">overtone</h3>
+<p>▸ <strong>overtone</strong>(<code>color</code>): <code>string</code> | <code>boolean</code></p>
+<p>Returns the hue which is biasing the passed in color</p>
+<h4 id="parameters-23">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to query its overtone.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-23">Returns</h4>
+<p><code>string</code> | <code>boolean</code></p>
+<p>The name of the overtone hue. If an achromatic color is passed in it return the string gray otherwise if the color has no bias it returns false.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { overtone } from "huetiful-js";
+
+console.log(overtone("fefefe"))
+// 'gray'
+
+console.log(overtone("cyan"))
+// 'green'
+
+console.log(overtone("blue"))
+// false
+</code></pre>
+<h4 id="defined-in-21">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L385">utils.d.ts:385</a></p>
+<hr />
+<h3 id="setchannel">setChannel</h3>
+<p>▸ <strong>setChannel</strong>(<code>mc</code>): (<code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a>, <code>value</code>: <code>number</code> | <code>string</code>) =&gt; <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>Sets the value for the specified channel in a color.</p>
+<h4 id="parameters-24">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>mc</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The mode and channel to work with. For example 'rgb.b'.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-24">Returns</h4>
+<p><code>fn</code></p>
+<p>color The mutated color.</p>
+<p>▸ (<code>color</code>, <code>value</code>): <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<h5 id="parameters-25">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>value</code></td>
+<td style="text-align:left;"><code>number</code> | <code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns-25">Returns</h5>
+<p><a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { setChannel } from 'huetiful-js'
+
+let myColor = setChannel('lch.h')('green',10)
+
+console.log(getChannel('lch.h')(myColor))
+// 10
+</code></pre>
+<h4 id="defined-in-22">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L272">utils.d.ts:272</a></p>
+<hr />
+<h3 id="setluminance">setLuminance</h3>
+<p>▸ <strong>setLuminance</strong>(<code>color</code>, <code>lum</code>): <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).</p>
+<h4 id="parameters-26">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to set luminance</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>lum</code></td>
+<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;">The amount of luminance to set. The value range is normalised between [0,1]</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-26">Returns</h4>
+<p><a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>The mutated color with the modified properties.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { setLuminance, getLuminance } from 'huetiful-js'
+
+let myColor = setLuminance('#a1bd2f', 0.5)
+
+console.log(getLuminance(myColor))
+// 0.4999999136285792
+</code></pre>
+<h4 id="defined-in-23">Defined in</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/eea65ba/types/utils.d.ts#L331">utils.d.ts:331</a></p>
+<!-- TSDOC_END -->
+
+  <div id="page-footer" class="flex justify-between">
+    <div class="flex space-x-1">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon"
+      >
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <p>Previous page <span class="inline"></span></p>
+    </div>
+    <div class="flex space-x-1">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon"
+      >
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <p>Up next<span class="inline">Page Name</span></p>
+    </div>
+  </div>
+</section>
