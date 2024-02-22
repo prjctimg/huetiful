@@ -13,7 +13,12 @@ governing permissions and limitations under the License.
 
  */
 
-var { readFileSync, writeFileSync, readdirSync } = require('node:fs');
+var {
+  readFileSync,
+  writeFileSync,
+  readdirSync,
+  renameSync
+} = require('node:fs');
 
 var showdown = require('../docs/assets/js/showdown.cjs');
 
@@ -44,10 +49,13 @@ function generateDocs(source = PATH_TO_MARKDOWN_FILES) {
       const current = readFileSync(source + '/' + file, 'utf-8');
       writeFileSync(
         `${outputDir}/${file.split('.')[0] + '.html'}`,
-        readFileSync(pathToTemplate, 'utf-8').replace(
-          reHtmlComment,
-          injectMarkdownInHtmlComment($.makeHtml(current))
-        ),
+        readFileSync(pathToTemplate, 'utf-8')
+          .replace(
+            reHtmlComment,
+            injectMarkdownInHtmlComment($.makeHtml(current))
+          )
+          .replace(new RegExp('README.md', 'gm'), 'modules.html')
+          .replace(new RegExp('modules.md', 'gm'), 'modules.html'),
         'utf-8'
       );
     }
@@ -59,3 +67,39 @@ function generateDocs(source = PATH_TO_MARKDOWN_FILES) {
 }
 
 generateDocs()();
+
+var navigatoryFiles = ['modules.md', 'README.md'];
+
+for (const file of navigatoryFiles) {
+  var current = readFileSync('docs/assets/markdown/' + file, 'utf-8');
+  if (file === navigatoryFiles[0]) {
+    var modulePaths = [
+      'colors.md',
+      'types.md',
+      'converters.md',
+      'generators.md',
+      'utils.md',
+      'filterBy.md',
+      'sortBy.md'
+    ];
+
+    for (const path of modulePaths) {
+      current = current.replace(
+        new RegExp('modules/' + path, 'gm'),
+        path.split('.')[0] + '.html'
+      );
+    }
+  }
+
+  writeFileSync(
+    './docs/' + file.split('.')[0] + '.html',
+    $.makeHtml(
+      current
+        .replace(new RegExp('README.md', 'gm'), 'modules.html')
+        .replace(new RegExp('modules.md', 'gm'), 'modules.html')
+    )
+  );
+}
+
+renameSync('./docs/README.html', './docs/home.html');
+console.log(`Generated navigatory files successfully`);
