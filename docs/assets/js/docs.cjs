@@ -20,7 +20,7 @@ var {
   renameSync
 } = require('node:fs');
 
-var showdown = require('../docs/assets/js/showdown.cjs');
+var showdown = require('./showdown.cjs');
 
 var $ = new showdown.Converter({
     emoji: true,
@@ -33,6 +33,10 @@ var $ = new showdown.Converter({
   }),
   PATH_TO_MARKDOWN_FILES = './docs/assets/markdown/modules';
 
+// The html comment to match before injecting data
+const reHtmlComment = /(<!-- DOC_START -->)[\s\S]*?(<!-- DOC_END -->)$/gm;
+const injectMarkdownInHtmlComment = (data) =>
+  `<!-- DOC_START -->\n${data}\n<!-- DOC_END -->`;
 function generateDocs(source = PATH_TO_MARKDOWN_FILES) {
   return function (
     outputDir = './docs',
@@ -41,11 +45,6 @@ function generateDocs(source = PATH_TO_MARKDOWN_FILES) {
     for (const file of readdirSync(source, {
       encoding: 'utf-8'
     })) {
-      // The html comment to match before injecting data
-      const reHtmlComment =
-        /(<!-- TSDOC_START -->)[\s\S]*?(<!-- TSDOC_END -->)$/gm;
-      const injectMarkdownInHtmlComment = (data) =>
-        `<!-- TSDOC_START -->\n${data}\n<!-- TSDOC_END -->`;
       const current = readFileSync(source + '/' + file, 'utf-8');
       writeFileSync(
         `${outputDir}/${file.split('.')[0] + '.html'}`,
@@ -101,5 +100,17 @@ for (const file of navigatoryFiles) {
   );
 }
 
-renameSync('./docs/README.html', './docs/home.html');
+for (const page of navigatoryFiles) {
+  writeFileSync(
+    './docs/' + page.split('.')[0] + '.html',
+    readFileSync('./docs/assets/fragments/post.html', 'utf-8').replace(
+      reHtmlComment,
+      injectMarkdownInHtmlComment(
+        readFileSync('./docs/' + page.split('.')[0] + '.html')
+      )
+    )
+  );
+}
+
+renameSync('./docs/README.html', './docs/index.html');
 console.log(`Generated navigatory files successfully`);

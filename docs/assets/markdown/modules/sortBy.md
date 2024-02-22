@@ -50,7 +50,7 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 
 #### Defined in
 
-[sortBy.d.ts:225](https://github.com/prjctimg/huetiful/blob/eea65ba/types/sortBy.d.ts#L225)
+[sortBy.d.ts:225](https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L225)
 
 ___
 
@@ -101,7 +101,7 @@ console.log(
 
 #### Defined in
 
-[sortBy.d.ts:256](https://github.com/prjctimg/huetiful/blob/eea65ba/types/sortBy.d.ts#L256)
+[sortBy.d.ts:256](https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L256)
 
 ___
 
@@ -167,7 +167,7 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:206](https://github.com/prjctimg/huetiful/blob/eea65ba/types/sortBy.d.ts#L206)
+[sortBy.d.ts:206](https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L206)
 
 ___
 
@@ -235,7 +235,7 @@ sortByLightness(sample,'desc')
 
 #### Defined in
 
-[sortBy.d.ts:159](https://github.com/prjctimg/huetiful/blob/eea65ba/types/sortBy.d.ts#L159)
+[sortBy.d.ts:159](https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L159)
 
 ___
 
@@ -301,7 +301,7 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:110](https://github.com/prjctimg/huetiful/blob/eea65ba/types/sortBy.d.ts#L110)
+[sortBy.d.ts:110](https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L110)
 
 ___
 
@@ -369,4 +369,4 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:61](https://github.com/prjctimg/huetiful/blob/eea65ba/types/sortBy.d.ts#L61)
+[sortBy.d.ts:61](https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L61)

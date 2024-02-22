@@ -1,3 +1,6 @@
+
+![](assets/images/logo.png)
+
 ## It's not just another library about color
 
 The current color manipulation libraries out there focus on working with one color token at a time. But we don't have time and we need you to sort and curate 16,000 color samples:

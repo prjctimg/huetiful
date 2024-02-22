@@ -41,7 +41,7 @@
   "scripts": {
     "test": "npx jasmine",
     "css": "npx tailwindcss -i ./docs/assets/css/index.css -o ./docs/assets/css/huetiful.css --watch",
-    "docs": "npx typedoc && cp -r ./logo.png ./docs && cp -r ./logo_v1.png ./docs",
+    "docs": "npx typedoc && node docs/assets/js/docs.cjs",
     "code:build": "node build.cjs",
     "code:publish": "npm run code:build & npm run code:types",
     "code:types": "dts-bundle-generator  -o  ./lib/huetiful.d.ts ./types/index.d.ts --no-banner --version true",
@@ -90,7 +90,7 @@
     "exclude": [
       "./color-maps"
     ],
-    "readme": "docs-readme.md",
+    "readme": "docs/assets/pages/home.md",
     "tsconfig": "./tsconfig.json",
     "disableSources": false,
     "gitRemote": "main",

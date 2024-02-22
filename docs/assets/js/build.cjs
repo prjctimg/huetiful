@@ -1,9 +1,9 @@
 // eslint-disable-next-line no-undef
 var { build } = require('esbuild');
-var { dependencies } = require('./package.json');
+var { dependencies } = require('../../../package.json');
 
 build({
-  legalComments: 'eof',
+  legalComments: 'inline',
   entryPoints: [`./src/index.js`],
   format: 'esm',
   bundle: true,

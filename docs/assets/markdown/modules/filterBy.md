@@ -61,7 +61,7 @@ console.log(filterByContrast(sample, 'green', '>=3'))
 
 #### Defined in
 
-[filterBy.d.ts:191](https://github.com/prjctimg/huetiful/blob/eea65ba/types/filterBy.d.ts#L191)
+[filterBy.d.ts:191](https://github.com/prjctimg/huetiful/blob/e369fbd/types/filterBy.d.ts#L191)
 
 ___
 
@@ -108,7 +108,7 @@ console.log(filterByDistance(sample, "yellow", 0.1))
 
 #### Defined in
 
-[filterBy.d.ts:161](https://github.com/prjctimg/huetiful/blob/eea65ba/types/filterBy.d.ts#L161)
+[filterBy.d.ts:161](https://github.com/prjctimg/huetiful/blob/e369fbd/types/filterBy.d.ts#L161)
 
 ___
 
@@ -157,7 +157,7 @@ filterByHue(sample, 20, 80)
 
 #### Defined in
 
-[filterBy.d.ts:136](https://github.com/prjctimg/huetiful/blob/eea65ba/types/filterBy.d.ts#L136)
+[filterBy.d.ts:136](https://github.com/prjctimg/huetiful/blob/e369fbd/types/filterBy.d.ts#L136)
 
 ___
 
@@ -210,7 +210,7 @@ filterByLightness(sample, 20, 80)
 
 #### Defined in
 
-[filterBy.d.ts:109](https://github.com/prjctimg/huetiful/blob/eea65ba/types/filterBy.d.ts#L109)
+[filterBy.d.ts:109](https://github.com/prjctimg/huetiful/blob/e369fbd/types/filterBy.d.ts#L109)
 
 ___
 
@@ -259,7 +259,7 @@ filterByLuminance(sample, 0.4, 0.9)
 
 #### Defined in
 
-[filterBy.d.ts:76](https://github.com/prjctimg/huetiful/blob/eea65ba/types/filterBy.d.ts#L76)
+[filterBy.d.ts:76](https://github.com/prjctimg/huetiful/blob/e369fbd/types/filterBy.d.ts#L76)
 
 ___
 
@@ -313,4 +313,4 @@ console.log(filterBySaturation(sample, 0.1));
 
 #### Defined in
 
-[filterBy.d.ts:47](https://github.com/prjctimg/huetiful/blob/eea65ba/types/filterBy.d.ts#L47)
+[filterBy.d.ts:47](https://github.com/prjctimg/huetiful/blob/e369fbd/types/filterBy.d.ts#L47)
