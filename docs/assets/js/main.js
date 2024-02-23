@@ -1,17 +1,28 @@
 /**
- * Script for the huetiful-js docs site
+ * Script for the huetiful-js docs site. Contains JS powered perks
  */
 
-// Capture all elements with events to react to
+// Reading progress
 
-// Load the Readme page on first load as the home page
+var [progressBar, body, html] = [
+  document.getElementById('progress-bar'),
+  document.body,
+  document.documentElement
+];
+var height = Math.max(
+  body.scrollHeight,
+  body.offsetHeight,
+  html.clientHeight,
+  html.scrollHeight,
+  html.offsetHeight
+);
 
-/*For each module API inject it into a template partial with these addons
-1. Edit button
-2. Reading progress
-3. Estimated reading time
-4. Link to next/prev page
+function setProgress() {
+  var scrollFromTop = (html.scrollTop || body.scrollTop) + html.clientHeight;
+  var width = (scrollFromTop / height) * 100 + '%';
+  progressBar.style.width = width;
+}
 
-*/
+window.addEventListener('scroll', setProgress);
 
-// Create a common handler that injects html into the body from the markdown source
+setProgress();

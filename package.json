@@ -41,7 +41,9 @@
   "scripts": {
     "test": "npx jasmine",
     "css": "npx tailwindcss -i ./docs/assets/css/index.css -o ./docs/assets/css/huetiful.css --watch",
-    "docs": "npx typedoc && node docs/assets/js/docs.cjs",
+    "docs:compile": "npx typedoc",
+    "docs:publish": "npm run docs:compile && npm run docs:build",
+    "docs:build": "node docs/assets/js/docs.cjs",
     "code:build": "node build.cjs",
     "code:publish": "npm run code:build & npm run code:types",
     "code:types": "dts-bundle-generator  -o  ./lib/huetiful.d.ts ./types/index.d.ts --no-banner --version true",

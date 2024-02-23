@@ -275,7 +275,7 @@ function colorObjArr(factor, callback) {
   return (collection) => {
     const cb = colorObj(factor, callback);
 
-    return Object.keys(collection).map((color) => cb(collection[color]));
+    return Object.values(collection).map(cb);
   };
 }
 
