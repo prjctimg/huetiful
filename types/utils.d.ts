@@ -572,6 +572,79 @@ declare function getNearestColor(
   color: ColorToken,
   num?: number
 ): ColorToken | ColorToken[];
+
+declare function getFarthestChromaFrom(
+  collection: Array<ColorToken> | object,
+  against: ColorToken,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
+
+declare function getNearestChromaFrom(
+  collection: Array<ColorToken> | object,
+  against: ColorToken,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
+
+declare function getFarthestHueFrom(
+  collection: Array<ColorToken> | object,
+  against: ColorToken,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
+
+declare function getNearestHueFrom(
+  collection: Array<ColorToken> | object,
+  against: ColorToken,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
+
+declare function getFarthestLightnessFrom(
+  collection: Array<ColorToken> | object,
+  against: ColorToken,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
+
+declare function getNearestLightnessFrom(
+  collection: Array<ColorToken> | object,
+  against: ColorToken,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
+
 export {
   brighten,
   darken,

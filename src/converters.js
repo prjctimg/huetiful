@@ -30,11 +30,11 @@ import {
   modeProphoto,
   modeP3,
   modeA98,
-  modeYiq
+  modeYiq,
+  modeJab
 } from 'culori/fn';
 
 import { or, getModeChannel } from './helpers.js';
-import { modeJab } from 'culori';
 
 function toOk(colorspace = 'oklch') {
   var cspaces = new Map([
@@ -63,18 +63,15 @@ function toRGB(colorspace = 'rgb') {
     ['p3', modeP3],
     ['a98', modeA98],
     ['xyb', modeXyb],
-    ['yiq',modeYiq]
+    ['yiq', modeYiq]
   ]);
 
   return useMode(cspaces[colorspace])(color);
 }
 
-
 function toJab(color) {
   return useMode(modeJab)(color);
 }
-
-
 
 function toJch(color) {
   return useMode(modeJch)(color);
@@ -245,8 +242,8 @@ function temp2color(kelvin = 1000, colorspace = '') {
   );
 }
 
-function color2tuple(color, colorspace) {
-  colorspace = color['mode'] || or(colorspace, 'rgb');
+function color2tuple(color, colorspace = 'rgb') {
+  colorspace = color['mode'] || colorspace;
 
   const colorObject = converter(colorspace)(color);
 
@@ -270,5 +267,7 @@ export {
   toDIN99,
   toRGB,
   toOk,
-  toITP,toJab,toJch
+  toITP,
+  toJab,
+  toJch
 };

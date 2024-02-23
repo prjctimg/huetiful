@@ -1,4 +1,3 @@
-/* eslint-disable no-ternary */
 import hueTempMap from './color-maps/samples/hueTemperature.js';
 import {
   adjustHue,
