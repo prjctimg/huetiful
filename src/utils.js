@@ -408,6 +408,48 @@ function getNearestColor(collection, color, num = 1) {
   return result;
 }
 
+function getFarthestChromaFrom(
+  collection = [],
+  against = '#fff',
+  colorspace = 'lch',
+  colorObj = false
+) {}
+
+function getFarthestHueFrom(
+  collection = [],
+  against = '#fff',
+  colorspace = 'lch',
+  colorObj = false
+) {}
+
+function getFarthestLightnessFrom(
+  collection = [],
+  against = '#fff',
+  colorspace = 'lch',
+  colorObj = false
+) {}
+
+function getNearestChromaFrom(
+  collection = [],
+  against = '#fff',
+  colorspace = 'lch',
+  colorObj = false
+) {}
+
+function getNearestHueFrom(
+  collection = [],
+  against = '#fff',
+  colorspace = 'lch',
+  colorObj = false
+) {}
+
+function getNearestLightnessFrom(
+  collection = [],
+  against = '#fff',
+  colorspace = 'lch',
+  colorObj = false
+) {}
+
 export {
   brighten,
   darken,
@@ -432,5 +474,11 @@ export {
   getHueFamily,
   getComplimentaryHue,
   getFarthestHue,
-  getNearestHue
+  getNearestHue,
+  getFarthestChromaFrom,
+  getFarthestHueFrom,
+  getFarthestLightnessFrom,
+  getNearestChromaFrom,
+  getNearestHueFrom,
+  getNearestLightnessFrom
 };

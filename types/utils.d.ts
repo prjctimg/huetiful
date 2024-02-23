@@ -669,5 +669,11 @@ export {
   getHueFamily,
   getComplimentaryHue,
   getFarthestHue,
-  getNearestHue
+  getNearestHue,
+  getFarthestChromaFrom,
+  getFarthestHueFrom,
+  getFarthestLightnessFrom,
+  getNearestChromaFrom,
+  getNearestHueFrom,
+  getNearestLightnessFrom
 };
