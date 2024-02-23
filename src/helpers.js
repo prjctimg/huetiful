@@ -268,14 +268,28 @@ function customSort(order = 'asc', factor = 'factor') {
   };
 }
 
-function colorObjArr(factor, callback) {
+function colorObjColl(factor = 'factor', callback = (arg) => arg.toString()) {
+  var cb = colorObj(factor, callback),
+    res;
   /**
    * @param collection The array or object of colors to iterate over. If an object is passed, its values are expected to be valid color tokens.
    */
   return (collection) => {
-    const cb = colorObj(factor, callback);
+    // Check if the collection is an array else treat it like a plain object
+    // Convert object into a Map which remembers sorting order in a more predictable way
 
-    return Object.values(collection).map(cb);
+    if (Array.isArray(collection) && gte(collection.length, 1)) {
+      res = collection.map(cb);
+    } else if (typeof collection === 'object') {
+      res = new Map();
+
+      for (const [key, klr] of Object.entries(collection)) {
+        res.set(key, cb(klr));
+      }
+    } else {
+      throw new Error(`The type of ${typeof collection} is not iterable`);
+    }
+    return res;
   };
 }
 
@@ -307,7 +321,7 @@ function sortedArr(
   colorObj = false
 ) {
   return (collection) => {
-    const results = colorObjArr(factor, callback)(collection);
+    const results = colorObjColl(factor, callback)(collection);
 
     // Assign the value of colorObj to results variable
     // Sort the array using our customSort helper function
@@ -315,7 +329,7 @@ function sortedArr(
 
     // colorObj parameter is true return the array of color objects
     // else just return the color's name value.
-    if (colorObj) {
+    if (colorObj === true) {
       return results;
     } else {
       return results.map((color) => color['color']);
@@ -328,7 +342,7 @@ function filteredArr(factor, cb) {
     let result;
 
     if (typeof start === 'number') {
-      result = colorObjArr(
+      result = colorObjColl(
         factor,
         cb
       )(collection)
@@ -344,7 +358,7 @@ function filteredArr(factor, cb) {
 
       if (op) {
         const mapFilter = (test) => {
-          return colorObjArr(
+          return colorObjColl(
             factor,
             cb
           )(collection)
@@ -376,7 +390,7 @@ export {
   min,
   max,
   customSort,
-  colorObjArr,
+  colorObjColl,
   sortedArr,
   filteredArr,
   customFindKey,
