@@ -323,17 +323,30 @@ function sortedArr(
   return (collection) => {
     const results = colorObjColl(factor, callback)(collection);
 
-    // Assign the value of colorObj to results variable
+    // If the collection is not an Array  insert the sorted elements
     // Sort the array using our customSort helper function
-    results.sort(customSort(order, factor));
+
+    if (Array.isArray(collection)) {
+      var res = results.sort(customSort(order, factor));
+
+      return (colorObj === true && res) || res.map((color) => color['color']);
+    } else {
+      var res = new Map();
+      results.sort(customSort(order, factor)).map((val, key) => {
+        var [k, v] = Object.entries(collection)[key];
+        if (val === v) {
+          res.set(k, val);
+        }
+      });
+
+      return (
+        (colorObj === true && Object.values(res)) ||
+        Object.values(res).map((color) => color['color'])
+      );
+    }
 
     // colorObj parameter is true return the array of color objects
     // else just return the color's name value.
-    if (colorObj === true) {
-      return results;
-    } else {
-      return results.map((color) => color['color']);
-    }
   };
 }
 
