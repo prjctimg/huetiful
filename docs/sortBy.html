@@ -31,9 +31,9 @@
   
   </head>
   <body class="markdown-body">
-    <header class="pb-8 fixed top-0 left-0  w-full text-gray-700">
+    <header class="pb-8 sticky top-0 left-0  w-full text-gray-700">
       <nav
-        class=" flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white dark:bg-slate-800 dark:text-gray-200 shadow-lg shadow-gray-300 dark:shadow-black"
+        class=" flex flex-wrap items-center justify-between w-full py-4.html:py-0 px-4 text-lg text-gray-700 bg-white dark:bg-slate-800 dark:text-gray-200 shadow-lg shadow-gray-300 dark:shadow-black"
       >
       
         <a class="inline-flex space-y-1 items-center font-medium text-base"
@@ -101,16 +101,16 @@
 <h2 id="table-of-contents">Table of contents</h2>
 <h3 id="functions">Functions</h3>
 <ul>
-<li><a href="sortBy.md#sortbycontrast">sortByContrast</a></li>
-<li><a href="sortBy.md#sortbydistance">sortByDistance</a></li>
-<li><a href="sortBy.md#sortbyhue">sortByHue</a></li>
-<li><a href="sortBy.md#sortbylightness">sortByLightness</a></li>
-<li><a href="sortBy.md#sortbyluminance">sortByLuminance</a></li>
-<li><a href="sortBy.md#sortbysaturation">sortBySaturation</a></li>
+<li><a href="sortBy.html#sortbycontrast">sortByContrast</a></li>
+<li><a href="sortBy.html#sortbydistance">sortByDistance</a></li>
+<li><a href="sortBy.html#sortbyhue">sortByHue</a></li>
+<li><a href="sortBy.html#sortbylightness">sortByLightness</a></li>
+<li><a href="sortBy.html#sortbyluminance">sortByLuminance</a></li>
+<li><a href="sortBy.html#sortbysaturation">sortBySaturation</a></li>
 </ul>
 <h2 id="functions-1">Functions</h2>
 <h3 id="sortbycontrast">sortByContrast</h3>
-<p>▸ <strong>sortByContrast</strong>(<code>collection</code>, <code>against</code>, <code>order?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>sortByContrast</strong>(<code>collection</code>, <code>against</code>, <code>order?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)</p>
 <h4 id="parameters">Parameters</h4>
 <table>
@@ -124,23 +124,23 @@
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><a href="types.html#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>order?</code></td>
-<td style="text-align:left;"><a href="types.md#order"><code>Order</code></a></td>
+<td style="text-align:left;"><code>"asc"</code> | <code>"desc"</code></td>
 <td style="text-align:left;">The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns">Returns</h4>
-<p><a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>An array of the sorted color values.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { sortByContrast } from 'huetiful-js'
@@ -153,10 +153,10 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 // [ 'purple', 'brown', 'green', 'red' ]
 </code></pre>
 <h4 id="defined-in">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L225">sortBy.d.ts:225</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L245">sortBy.d.ts:245</a></p>
 <hr />
 <h3 id="sortbydistance">sortByDistance</h3>
-<p>▸ <strong>sortByDistance</strong>(<code>collection</code>, <code>against</code>, <code>order?</code>, <code>options?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>sortByDistance</strong>(<code>collection</code>, <code>against</code>, <code>order?</code>, <code>options?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist</p>
 <h4 id="parameters-1">Parameters</h4>
 <table>
@@ -170,12 +170,12 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><a href="types.html#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.</td>
 </tr>
 <tr>
@@ -185,13 +185,13 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 </tr>
 <tr>
 <td style="text-align:left;"><code>options?</code></td>
-<td style="text-align:left;"><a href="types.md#colordistanceoptions"><code>ColorDistanceOptions</code></a></td>
+<td style="text-align:left;"><a href="types.html#colordistanceoptions"><code>ColorDistanceOptions</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-1">Returns</h4>
-<p><a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>An array of the sorted color values.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { sortByDistance } from 'huetiful-js'
@@ -215,10 +215,10 @@ console.log(
 // [ 'green', 'brown', 'red', 'purple' ]
 </code></pre>
 <h4 id="defined-in-1">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L256">sortBy.d.ts:256</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L280">sortBy.d.ts:280</a></p>
 <hr />
 <h3 id="sortbyhue">sortByHue</h3>
-<p>▸ <strong>sortByHue</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>sortByHue</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported</p>
 <h4 id="parameters-2">Parameters</h4>
 <table>
@@ -232,12 +232,12 @@ console.log(
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>order?</code></td>
-<td style="text-align:left;"><a href="types.md#order"><code>Order</code></a></td>
+<td style="text-align:left;"><code>"asc"</code> | <code>"desc"</code></td>
 <td style="text-align:left;">The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')</td>
 </tr>
 <tr>
@@ -248,7 +248,7 @@ console.log(
 </tbody>
 </table>
 <h4 id="returns-2">Returns</h4>
-<p><a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>An array of the sorted color values.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">let sample = [
@@ -288,10 +288,10 @@ console.log(sortedDescending)
 ]
 </code></pre>
 <h4 id="defined-in-2">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L206">sortBy.d.ts:206</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L222">sortBy.d.ts:222</a></p>
 <hr />
 <h3 id="sortbylightness">sortByLightness</h3>
-<p>▸ <strong>sortByLightness</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>sortByLightness</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their lightness.</p>
 <h4 id="parameters-3">Parameters</h4>
 <table>
@@ -305,12 +305,12 @@ console.log(sortedDescending)
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>order?</code></td>
-<td style="text-align:left;"><a href="types.md#order"><code>Order</code></a></td>
+<td style="text-align:left;"><code>"asc"</code> | <code>"desc"</code></td>
 <td style="text-align:left;">The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')</td>
 </tr>
 <tr>
@@ -321,7 +321,7 @@ console.log(sortedDescending)
 </tbody>
 </table>
 <h4 id="returns-3">Returns</h4>
-<p><a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>An array of the sorted color values.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { sortByLightness } from "huetiful-js";
@@ -363,10 +363,10 @@ sortByLightness(sample,'desc')
 ]
 </code></pre>
 <h4 id="defined-in-3">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L159">sortBy.d.ts:159</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L171">sortBy.d.ts:171</a></p>
 <hr />
 <h3 id="sortbyluminance">sortByLuminance</h3>
-<p>▸ <strong>sortByLuminance</strong>(<code>collection</code>, <code>order</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>sortByLuminance</strong>(<code>collection</code>, <code>order</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to the relative brightness as defined by WCAG definition.</p>
 <h4 id="parameters-4">Parameters</h4>
 <table>
@@ -380,7 +380,7 @@ sortByLightness(sample,'desc')
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
@@ -391,7 +391,7 @@ sortByLightness(sample,'desc')
 </tbody>
 </table>
 <h4 id="returns-4">Returns</h4>
-<p><a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>An array of the sorted color values.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { sortByLuminance } from "huetiful-js";
@@ -432,10 +432,10 @@ console.log(sortedDescending)
 ]
 </code></pre>
 <h4 id="defined-in-4">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L110">sortBy.d.ts:110</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L119">sortBy.d.ts:119</a></p>
 <hr />
 <h3 id="sortbysaturation">sortBySaturation</h3>
-<p>▸ <strong>sortBySaturation</strong>(<code>collection</code>, <code>order</code>, <code>mode?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>sortBySaturation</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their saturation.</p>
 <h4 id="parameters-5">Parameters</h4>
 <table>
@@ -449,23 +449,23 @@ console.log(sortedDescending)
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>order</code></td>
+<td style="text-align:left;"><code>order?</code></td>
 <td style="text-align:left;"><code>"asc"</code> | <code>"desc"</code></td>
 <td style="text-align:left;">The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>mode?</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
 <td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The mode color space to compute the saturation value in. The default is lch .</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-5">Returns</h4>
-<p><a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
+<p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>An array of the sorted color values.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { sortBySaturation } from "huetiful-js";
@@ -507,7 +507,7 @@ console.log(sortedDescending)
 ]
 </code></pre>
 <h4 id="defined-in-5">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L61">sortBy.d.ts:61</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L66">sortBy.d.ts:66</a></p>
 <!-- DOC_END -->
 
 

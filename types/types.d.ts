@@ -14,7 +14,7 @@ governing permissions and limitations under the License.
 */
 
 // Color token types
-export type ColorTuple = [string, number, number, number, number?];
+export type ColorTuple = [Colorspaces, number, number, number, number?];
 
 export type ColorObject = { mode: Colorspaces; alpha?: number };
 export type ColorOptions = {

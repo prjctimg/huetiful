@@ -17,7 +17,7 @@
 
 ### sortByContrast
 
-▸ **sortByContrast**(`collection`, `against`, `order?`): [`ColorToken`](types.md#colortoken)[]
+▸ **sortByContrast**(`collection`, `against`, `order?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
 Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
 
@@ -25,13 +25,13 @@ Sorts colors according to their contrast value as defined by WCAG. The contrast 
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | - |
+| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
 | `against` | [`ColorToken`](types.md#colortoken) | - |
-| `order?` | [`Order`](types.md#order) | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+| `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
 An array of the sorted color values.
 
@@ -50,13 +50,13 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 
 #### Defined in
 
-[sortBy.d.ts:225](https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L225)
+[sortBy.d.ts:245](https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L245)
 
 ___
 
 ### sortByDistance
 
-▸ **sortByDistance**(`collection`, `against`, `order?`, `options?`): [`ColorToken`](types.md#colortoken)[]
+▸ **sortByDistance**(`collection`, `against`, `order?`, `options?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
 Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
 
@@ -64,14 +64,14 @@ Sorts colors according to their Euclidean distance. The distance factor is deter
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | - |
+| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
 | `against` | [`ColorToken`](types.md#colortoken) | The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array. |
 | `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 | `options?` | [`ColorDistanceOptions`](types.md#colordistanceoptions) | - |
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
 An array of the sorted color values.
 
@@ -101,13 +101,13 @@ console.log(
 
 #### Defined in
 
-[sortBy.d.ts:256](https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L256)
+[sortBy.d.ts:280](https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L280)
 
 ___
 
 ### sortByHue
 
-▸ **sortByHue**(`collection`, `order?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[]
+▸ **sortByHue**(`collection`, `order?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
 Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
 
@@ -115,13 +115,13 @@ Sorts colors according to hue values. It works with any color space with a hue c
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | - |
-| `order?` | [`Order`](types.md#order) | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
+| `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 | `colorspace?` | `string` | The color space to compute the color distances in. All colors within the collection will be converted to mode. Also note that because differences in hue mapping certain color spaces such as HSL and LCH hue values do not align. Keep such quirks in mind to avoid weird results. |
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
 An array of the sorted color values.
 
@@ -167,13 +167,13 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:206](https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L206)
+[sortBy.d.ts:222](https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L222)
 
 ___
 
 ### sortByLightness
 
-▸ **sortByLightness**(`collection`, `order?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[]
+▸ **sortByLightness**(`collection`, `order?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
 Sorts colors according to their lightness.
 
@@ -181,13 +181,13 @@ Sorts colors according to their lightness.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | - |
-| `order?` | [`Order`](types.md#order) | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
+| `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 | `colorspace?` | `string` | The mode colorspace to use for filtering color lightness. Defaut is lch65 |
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
 An array of the sorted color values.
 
@@ -235,13 +235,13 @@ sortByLightness(sample,'desc')
 
 #### Defined in
 
-[sortBy.d.ts:159](https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L159)
+[sortBy.d.ts:171](https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L171)
 
 ___
 
 ### sortByLuminance
 
-▸ **sortByLuminance**(`collection`, `order`): [`ColorToken`](types.md#colortoken)[]
+▸ **sortByLuminance**(`collection`, `order`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
 Sorts colors according to the relative brightness as defined by WCAG definition.
 
@@ -249,12 +249,12 @@ Sorts colors according to the relative brightness as defined by WCAG definition.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | - |
+| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
 | `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
 An array of the sorted color values.
 
@@ -301,13 +301,13 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:110](https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L110)
+[sortBy.d.ts:119](https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L119)
 
 ___
 
 ### sortBySaturation
 
-▸ **sortBySaturation**(`collection`, `order`, `mode?`): [`ColorToken`](types.md#colortoken)[]
+▸ **sortBySaturation**(`collection`, `order?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
 Sorts colors according to their saturation.
 
@@ -315,13 +315,13 @@ Sorts colors according to their saturation.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | - |
-| `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
-| `mode?` | `string` | The mode color space to compute the saturation value in. The default is lch . |
+| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
+| `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+| `colorspace?` | `string` | The mode color space to compute the saturation value in. The default is lch . |
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
 An array of the sorted color values.
 
@@ -369,4 +369,4 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:61](https://github.com/prjctimg/huetiful/blob/e369fbd/types/sortBy.d.ts#L61)
+[sortBy.d.ts:66](https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L66)

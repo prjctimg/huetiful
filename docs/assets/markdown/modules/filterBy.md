@@ -17,7 +17,7 @@
 
 ### filterByContrast
 
-▸ **filterByContrast**(`collection`, `against`, `startContrast?`, `endContrast?`): [`ColorToken`](types.md#colortoken)[]
+▸ **filterByContrast**(`collection`, `against`, `startContrast?`, `endContrast?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
 
 Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
 
@@ -25,14 +25,14 @@ Returns an array of colors with the specified contrast range. The contrast is te
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | The collection of colors to filter. |
+| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to filter. |
 | `against` | [`ColorToken`](types.md#colortoken) | - |
 | `startContrast?` | `number` | The minimum end of the contrast range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== \| === \| != \| !== \| >= \| <= \| < \| >` |
 | `endContrast?` | `number` | The maximum end of the contrast range. |
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
 
 Collection of filtered colors.
 
@@ -61,13 +61,13 @@ console.log(filterByContrast(sample, 'green', '>=3'))
 
 #### Defined in
 
-[filterBy.d.ts:191](https://github.com/prjctimg/huetiful/blob/e369fbd/types/filterBy.d.ts#L191)
+[filterBy.d.ts:215](https://github.com/prjctimg/huetiful/blob/c14365d/types/filterBy.d.ts#L215)
 
 ___
 
 ### filterByDistance
 
-▸ **filterByDistance**(`collection`, `against`, `startDistance?`, `endDistance?`): [`ColorToken`](types.md#colortoken)[]
+▸ **filterByDistance**(`collection`, `against`, `startDistance?`, `endDistance?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
 
 Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.
 
@@ -75,14 +75,14 @@ Returns an array of colors with the specified distance range. The distance is te
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | The collection of colors to filter. |
+| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to filter. |
 | `against` | [`ColorToken`](types.md#colortoken) | - |
 | `startDistance?` | `number` | The minimum end of the distance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== \| === \| != \| !== \| >= \| <= \| < \| >` |
 | `endDistance?` | `number` | The maximum end of the distance range. |
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
 
 Collection of filtered colors.
 
@@ -108,13 +108,13 @@ console.log(filterByDistance(sample, "yellow", 0.1))
 
 #### Defined in
 
-[filterBy.d.ts:161](https://github.com/prjctimg/huetiful/blob/e369fbd/types/filterBy.d.ts#L161)
+[filterBy.d.ts:180](https://github.com/prjctimg/huetiful/blob/c14365d/types/filterBy.d.ts#L180)
 
 ___
 
 ### filterByHue
 
-▸ **filterByHue**(`collection`, `startHue?`, `endHue?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[]
+▸ **filterByHue**(`collection`, `startHue?`, `endHue?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
 
 Returns colors in the specified hue ranges between 0 to 360.
 
@@ -122,14 +122,14 @@ Returns colors in the specified hue ranges between 0 to 360.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | The collection of colors to filter. |
+| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to filter. |
 | `startHue?` | `number` | The minimum end of the hue range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== \| === \| != \| !== \| >= \| <= \| < \| >` |
 | `endHue?` | `number` | The maximum end of the hue range. |
 | `colorspace?` | `string` | - |
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
 
 Array of the filtered colors.
 
@@ -157,13 +157,13 @@ filterByHue(sample, 20, 80)
 
 #### Defined in
 
-[filterBy.d.ts:136](https://github.com/prjctimg/huetiful/blob/e369fbd/types/filterBy.d.ts#L136)
+[filterBy.d.ts:150](https://github.com/prjctimg/huetiful/blob/c14365d/types/filterBy.d.ts#L150)
 
 ___
 
 ### filterByLightness
 
-▸ **filterByLightness**(`collection`, `startLightness?`, `endLightness?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[]
+▸ **filterByLightness**(`collection`, `startLightness?`, `endLightness?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
 
 Returns an array of colors in the specified lightness range.
 
@@ -174,14 +174,14 @@ This means a value in the range `[0,1]` will return, for example if you pass `st
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | The collection of colors to filter. |
+| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to filter. |
 | `startLightness?` | `number` | The minimum end of the lightness range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== \| === \| != \| !== \| >= \| <= \| < \| >` |
 | `endLightness?` | `number` | The maximum end of the lightness range. |
 | `colorspace?` | `string` | The mode colorspace to retrieve the lightness value from. The default is lch65 |
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
 
 Collection of filtered colors.
 
@@ -210,13 +210,13 @@ filterByLightness(sample, 20, 80)
 
 #### Defined in
 
-[filterBy.d.ts:109](https://github.com/prjctimg/huetiful/blob/e369fbd/types/filterBy.d.ts#L109)
+[filterBy.d.ts:118](https://github.com/prjctimg/huetiful/blob/c14365d/types/filterBy.d.ts#L118)
 
 ___
 
 ### filterByLuminance
 
-▸ **filterByLuminance**(`collection`, `startLuminance?`, `endLuminance?`): [`ColorToken`](types.md#colortoken)[]
+▸ **filterByLuminance**(`collection`, `startLuminance?`, `endLuminance?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
 
 Returns an array of colors in the specified luminance range.
 
@@ -224,13 +224,13 @@ Returns an array of colors in the specified luminance range.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | The collection of colors to filter. |
+| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to filter. |
 | `startLuminance?` | `number` | The minimum end of the luminance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== \| === \| != \| !== \| >= \| <= \| < \| >` |
 | `endLuminance?` | `number` | The maximum end of the luminance range. |
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
 
 Array of filtered colors.
 
@@ -259,13 +259,13 @@ filterByLuminance(sample, 0.4, 0.9)
 
 #### Defined in
 
-[filterBy.d.ts:76](https://github.com/prjctimg/huetiful/blob/e369fbd/types/filterBy.d.ts#L76)
+[filterBy.d.ts:81](https://github.com/prjctimg/huetiful/blob/c14365d/types/filterBy.d.ts#L81)
 
 ___
 
 ### filterBySaturation
 
-▸ **filterBySaturation**(`collection`, `startSaturation?`, `endSaturation?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[]
+▸ **filterBySaturation**(`collection`, `startSaturation?`, `endSaturation?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
 
 Returns an array of colors in the specified saturation range.
 
@@ -276,14 +276,14 @@ This means a value in the range `[0,1]` will return, for example if you pass sta
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] | The collection of colors to filter. |
+| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to filter. |
 | `startSaturation?` | `number` | The minimum end of the saturation range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== \| === \| != \| !== \| >= \| <= \| < \| >` |
 | `endSaturation?` | `number` | The maximum end of the saturation range. |
 | `colorspace?` | `string` | The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do. |
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
 
 Collection of filtered colors.
 
@@ -313,4 +313,4 @@ console.log(filterBySaturation(sample, 0.1));
 
 #### Defined in
 
-[filterBy.d.ts:47](https://github.com/prjctimg/huetiful/blob/e369fbd/types/filterBy.d.ts#L47)
+[filterBy.d.ts:47](https://github.com/prjctimg/huetiful/blob/c14365d/types/filterBy.d.ts#L47)

@@ -54,7 +54,8 @@ function generateDocs(source = PATH_TO_MARKDOWN_FILES) {
             injectMarkdownInHtmlComment($.makeHtml(current))
           )
           .replace(new RegExp('README.md', 'gm'), 'modules.html')
-          .replace(new RegExp('modules.md', 'gm'), 'modules.html'),
+          .replace(new RegExp('modules.md', 'gm'), 'modules.html')
+          .replace(new RegExp('.md', 'gm'), '.html'),
         'utf-8'
       );
     }

@@ -66,7 +66,7 @@ console.log(wrapper.sortByHue('desc', 'lch').output());
 
 #### Defined in
 
-[colors.d.ts:20](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L20)
+[colors.d.ts:35](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L35)
 
 ## Methods
 
@@ -113,7 +113,7 @@ console.log(load(sample).discoverPalettes(sample, "tetradic").output())
 
 #### Defined in
 
-[colors.d.ts:72](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L72)
+[colors.d.ts:93](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L93)
 
 ___
 
@@ -162,7 +162,7 @@ console.log(filterByContrast(sample, 'green', '>=3'))
 
 #### Defined in
 
-[colors.d.ts:269](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L269)
+[colors.d.ts:320](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L320)
 
 ___
 
@@ -208,7 +208,7 @@ console.log(filterByDistance(sample, "yellow", 0.1))
 
 #### Defined in
 
-[colors.d.ts:239](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L239)
+[colors.d.ts:286](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L286)
 
 ___
 
@@ -255,7 +255,7 @@ filterByHue(sample, 20, 80)
 
 #### Defined in
 
-[colors.d.ts:295](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L295)
+[colors.d.ts:350](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L350)
 
 ___
 
@@ -303,7 +303,7 @@ filterByLightness(sample, 20, 80)
 
 #### Defined in
 
-[colors.d.ts:213](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L213)
+[colors.d.ts:260](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L260)
 
 ___
 
@@ -351,7 +351,7 @@ filterByLuminance(sample, 0.4, 0.9)
 
 #### Defined in
 
-[colors.d.ts:323](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L323)
+[colors.d.ts:378](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L378)
 
 ___
 
@@ -404,7 +404,7 @@ console.log(filterBySaturation(sample, 0.1));
 
 #### Defined in
 
-[colors.d.ts:185](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L185)
+[colors.d.ts:228](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L228)
 
 ___
 
@@ -439,7 +439,7 @@ console.log(load(output).getFarthestHue('lch'))
 
 #### Defined in
 
-[colors.d.ts:87](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L87)
+[colors.d.ts:110](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L110)
 
 ___
 
@@ -476,7 +476,7 @@ console.log(load(sample).getFarthestLightness('lch', true))
 
 #### Defined in
 
-[colors.d.ts:148](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L148)
+[colors.d.ts:186](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L186)
 
 ___
 
@@ -512,7 +512,7 @@ console.log(load(sample).getNearestHue('lch'))
 
 #### Defined in
 
-[colors.d.ts:107](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L107)
+[colors.d.ts:135](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L135)
 
 ___
 
@@ -549,7 +549,7 @@ console.log(load(sample).getNearestLightness('lch', true))
 
 #### Defined in
 
-[colors.d.ts:127](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L127)
+[colors.d.ts:160](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L160)
 
 ___
 
@@ -592,7 +592,7 @@ console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 
 #### Defined in
 
-[colors.d.ts:45](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L45)
+[colors.d.ts:60](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L60)
 
 ___
 
@@ -610,7 +610,7 @@ Returns the result value from the chain.
 
 #### Defined in
 
-[colors.d.ts:567](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L567)
+[colors.d.ts:626](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L626)
 
 ___
 
@@ -648,7 +648,7 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 
 #### Defined in
 
-[colors.d.ts:516](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L516)
+[colors.d.ts:575](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L575)
 
 ___
 
@@ -698,7 +698,7 @@ console.log(
 
 #### Defined in
 
-[colors.d.ts:401](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L401)
+[colors.d.ts:456](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L456)
 
 ___
 
@@ -763,7 +763,7 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[colors.d.ts:562](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L562)
+[colors.d.ts:621](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L621)
 
 ___
 
@@ -829,7 +829,7 @@ sortByLightness(sample,'desc')
 
 #### Defined in
 
-[colors.d.ts:371](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L371)
+[colors.d.ts:426](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L426)
 
 ___
 
@@ -894,7 +894,7 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[colors.d.ts:450](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L450)
+[colors.d.ts:509](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L509)
 
 ___
 
@@ -961,4 +961,4 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[colors.d.ts:498](https://github.com/prjctimg/huetiful/blob/e369fbd/types/colors.d.ts#L498)
+[colors.d.ts:557](https://github.com/prjctimg/huetiful/blob/c14365d/types/colors.d.ts#L557)

@@ -62,7 +62,7 @@ console.log(discoverPalettes(sample, "tetradic"))
 
 #### Defined in
 
-[generators.d.ts:66](https://github.com/prjctimg/huetiful/blob/e369fbd/types/generators.d.ts#L66)
+[generators.d.ts:66](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L66)
 
 ___
 
@@ -97,7 +97,7 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 
 #### Defined in
 
-[generators.d.ts:86](https://github.com/prjctimg/huetiful/blob/e369fbd/types/generators.d.ts#L86)
+[generators.d.ts:86](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L86)
 
 ___
 
@@ -142,7 +142,7 @@ console.log(hueShiftedPalette);
 
 #### Defined in
 
-[generators.d.ts:112](https://github.com/prjctimg/huetiful/blob/e369fbd/types/generators.d.ts#L112)
+[generators.d.ts:112](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L112)
 
 ___
 
@@ -186,7 +186,7 @@ console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 
 #### Defined in
 
-[generators.d.ts:141](https://github.com/prjctimg/huetiful/blob/e369fbd/types/generators.d.ts#L141)
+[generators.d.ts:141](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L141)
 
 ___
 
@@ -220,7 +220,7 @@ ___
 
 #### Defined in
 
-[generators.d.ts:152](https://github.com/prjctimg/huetiful/blob/e369fbd/types/generators.d.ts#L152)
+[generators.d.ts:152](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L152)
 
 ___
 
@@ -254,7 +254,7 @@ console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
 
 #### Defined in
 
-[generators.d.ts:200](https://github.com/prjctimg/huetiful/blob/e369fbd/types/generators.d.ts#L200)
+[generators.d.ts:200](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L200)
 
 ___
 
@@ -287,7 +287,7 @@ console.log(pastel("green"))
 
 #### Defined in
 
-[generators.d.ts:217](https://github.com/prjctimg/huetiful/blob/e369fbd/types/generators.d.ts#L217)
+[generators.d.ts:217](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L217)
 
 ___
 
@@ -333,4 +333,4 @@ console.log(scheme("triadic")("#a1bd2f", true))
 
 #### Defined in
 
-[generators.d.ts:36](https://github.com/prjctimg/huetiful/blob/e369fbd/types/generators.d.ts#L36)
+[generators.d.ts:36](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L36)

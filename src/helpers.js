@@ -350,7 +350,7 @@ function sortedColl(
   };
 }
 
-function filteredArr(factor, cb) {
+function filteredColl(factor, cb) {
   return (collection, start, end) => {
     let result;
 
@@ -362,7 +362,7 @@ function filteredArr(factor, cb) {
         .filter((color) => inRange(color[factor], start, end))
         .map((color) => color['color']);
 
-      // If string split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
+      // If string, split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
     } else if (typeof start === 'string') {
       //The patterns to match
 
@@ -405,7 +405,7 @@ export {
   customSort,
   colorObjColl,
   sortedColl,
-  filteredArr,
+  filteredColl,
   customFindKey,
   colorObj,
   customConcat,

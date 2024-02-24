@@ -1,4 +1,19 @@
-import type { SequentialScheme, DivergingScheme, QualitativeScheme, TailwindColorFamilies, ScaleValues, ColorDistanceOptions, ColorToken, HueColorSpaces, InterpolatorOptions, ColorOptions, HueFamily, HueShiftOptions, PairedSchemeOptions, EarthtoneOptions } from './types';
+import type {
+  SequentialScheme,
+  DivergingScheme,
+  QualitativeScheme,
+  TailwindColorFamilies,
+  ScaleValues,
+  ColorDistanceOptions,
+  ColorToken,
+  HueColorSpaces,
+  InterpolatorOptions,
+  ColorOptions,
+  HueFamily,
+  HueShiftOptions,
+  PairedSchemeOptions,
+  EarthtoneOptions
+} from './types';
 /**
  * Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
  * @example
@@ -13,12 +28,12 @@ console.log(wrapper.sortByHue('desc', 'lch').output());
 // [ 'blue', 'green', 'yellow', 'pink' ]
  */
 declare class ColorArray {
-    /**
-     *
-     * @param colors The collection of colors to bind.
-     */
-    constructor(colors: ColorToken[] | object);
-    /**
+  /**
+   *
+   * @param colors The collection of colors to bind.
+   */
+  constructor(colors: ColorToken[] | object);
+  /**
      *
      *  Returns a spline interpolator function with customizable interpolation methods (by selecting the `kind` of ), with support for generating color scales for cyclic data (by setting the `closed` parameter to `true`) and optional channel specific overrides.
      * @param colors The array of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
@@ -42,8 +57,14 @@ declare class ColorArray {
   ]
      *
      */
-    interpolateSpline(colorspace?: HueColorSpaces, samples?: number, kind?: 'natural' | 'monotone' | 'basis', closed?: boolean, options?: Pick<InterpolatorOptions, 'hueFixup' | 'easingFn'>): Array<string>;
-    /**
+  interpolateSpline(
+    colorspace?: HueColorSpaces,
+    samples?: number,
+    kind?: 'natural' | 'monotone' | 'basis',
+    closed?: boolean,
+    options?: Pick<InterpolatorOptions, 'hueFixup' | 'easingFn'>
+  ): Array<string>;
+  /**
    *
    * Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
    * @param schemeType (Optional) The palette type you want to return.
@@ -69,8 +90,10 @@ declare class ColorArray {
   console.log(load(sample).discoverPalettes(sample, "tetradic").output())
   // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
    */
-    discoverPalettes(schemeType?: 'analogous' | 'triadic' | 'tetradic' | 'complementary'): Array<string> | object;
-    /**
+  discoverPalettes(
+    schemeType?: 'analogous' | 'triadic' | 'tetradic' | 'complementary'
+  ): Array<string> | object;
+  /**
    *
    *  Gets the largest hue value from the passed in colors.
    * @param colorSpace The mode color space to perform the computation in.
@@ -84,11 +107,16 @@ declare class ColorArray {
   console.log(load(output).getFarthestHue('lch'))
   // 273.54920266436477
    */
-    getFarthestHue(colorSpace?: HueColorSpaces, colorObj?: boolean): number | {
+  getFarthestHue(
+    colorSpace?: HueColorSpaces,
+    colorObj?: boolean
+  ):
+    | number
+    | {
         factor: number;
         color: ColorToken;
-    };
-    /**
+      };
+  /**
    *
    *  Gets the smallest hue value from the passed in colors.
    * @param colors The array of colors to query the color with the smallest hue value.
@@ -104,11 +132,16 @@ declare class ColorArray {
   console.log(load(sample).getNearestHue('lch'))
   // 12.462831644544274
    */
-    getNearestHue(colorSpace?: HueColorSpaces, colorObj?: boolean): number | {
+  getNearestHue(
+    colorSpace?: HueColorSpaces,
+    colorObj?: boolean
+  ):
+    | number
+    | {
         factor: number;
         color: ColorToken;
-    };
-    /**
+      };
+  /**
    *
    *  Gets the smallest lightness value from the passed in colors.
    * @param colorObj Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.
@@ -124,11 +157,16 @@ declare class ColorArray {
   // { lightness: 72.61647882089876, name: '#a1bd2f' }
   
    */
-    getNearestLightness(colorspace?: HueColorSpaces, colorObj?: boolean): number | {
+  getNearestLightness(
+    colorspace?: HueColorSpaces,
+    colorObj?: boolean
+  ):
+    | number
+    | {
         factor: number;
         color: ColorToken;
-    };
-    /**
+      };
+  /**
    *
    *  Gets the largest lightness value from the passed in colors.
    * @param colors The array of colors to query the color with the largest lightness value.
@@ -145,11 +183,16 @@ declare class ColorArray {
   // { lightness: 80.94668903360088, name: '#f3bac1' }
   
    */
-    getFarthestLightness(colorspace?: HueColorSpaces, colorObj?: boolean): number | {
+  getFarthestLightness(
+    colorspace?: HueColorSpaces,
+    colorObj?: boolean
+  ):
+    | number
+    | {
         factor: number;
         color: ColorToken;
-    };
-    /**
+      };
+  /**
    *
   * Returns an array of colors in the specified saturation range.
    *
@@ -182,8 +225,12 @@ declare class ColorArray {
   // [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
   
    */
-    filterBySaturation(startSaturation?: number, endSaturation?: number, colorspace?: Omit<HueColorSpaces, 'hwb'>): ColorArray;
-    /**
+  filterBySaturation(
+    startSaturation?: number,
+    endSaturation?: number,
+    colorspace?: Omit<HueColorSpaces, 'hwb'>
+  ): ColorArray;
+  /**
    *
    *  Returns an array of colors in the specified lightness range. The range is between 0 and 100.
    * @param  startLightness The minimum end of the lightness range.
@@ -210,8 +257,8 @@ declare class ColorArray {
   
   // [ '#00c000', '#007e00', '#164100', '#720000' ]
    */
-    filterByLightness(startLightness?: number, endLightness?: number): ColorArray;
-    /**
+  filterByLightness(startLightness?: number, endLightness?: number): ColorArray;
+  /**
    *
    *  Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
    * @param  startDistance The minimum end of the distance range.
@@ -236,8 +283,12 @@ declare class ColorArray {
   console.log(filterByDistance(sample, "yellow", 0.1))
   // [ '#ffff00' ]
    */
-    filterByDistance(against: ColorToken, startDistance?: number, endDistance?: number): ColorArray;
-    /**
+  filterByDistance(
+    against: ColorToken,
+    startDistance?: number,
+    endDistance?: number
+  ): ColorArray;
+  /**
      *
    *
    *  Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
@@ -266,8 +317,12 @@ declare class ColorArray {
   console.log(filterByContrast(sample, 'green', '>=3'))
   // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
    */
-    filterByContrast(against: ColorToken, startContrast?: number, endContrast?: number): ColorArray;
-    /**
+  filterByContrast(
+    against: ColorToken,
+    startContrast?: number,
+    endContrast?: number
+  ): ColorArray;
+  /**
    *
    *  Returns colors in the specified hue ranges between 0 to 360.
    * @param  startHue The minimum end of the hue range.
@@ -292,8 +347,8 @@ declare class ColorArray {
   
   // [ '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
    */
-    filterByHue(startHue?: number, endHue?: number): ColorArray;
-    /**
+  filterByHue(startHue?: number, endHue?: number): ColorArray;
+  /**
    *
    *  Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
    * @param  startLuminance The minimum end of the luminance range.
@@ -320,8 +375,8 @@ declare class ColorArray {
   
   // [ '#00ffdc', '#00ff78' ]
    */
-    filterByLuminance(startLuminance?: number, endLuminance?: number): ColorArray;
-    /**
+  filterByLuminance(startLuminance?: number, endLuminance?: number): ColorArray;
+  /**
    *
    * Sorts colors according to their lightness.
    * @param  colors The array of colors to sort
@@ -368,8 +423,8 @@ declare class ColorArray {
   ]
   
    */
-    sortByLightness(order?: 'asc' | 'desc'): ColorArray;
-    /**
+  sortByLightness(order?: 'asc' | 'desc'): ColorArray;
+  /**
    *
    *  Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
    * @param against The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.
@@ -398,8 +453,12 @@ declare class ColorArray {
   
   // [ 'green', 'brown', 'red', 'purple' ]
    */
-    sortByDistance(against: ColorToken, order?: 'asc' | 'desc', options?: ColorDistanceOptions): ColorArray;
-    /**
+  sortByDistance(
+    against: ColorToken,
+    order?: 'asc' | 'desc',
+    options?: ColorDistanceOptions
+  ): ColorArray;
+  /**
    *
    *  Sorts colors according to the relative brightness as defined by WCAG definition.
    * @param  colors The array of colors to sort
@@ -447,8 +506,8 @@ declare class ColorArray {
   
    
    */
-    sortByLuminance(order?: 'asc' | 'desc'): ColorArray;
-    /**
+  sortByLuminance(order?: 'asc' | 'desc'): ColorArray;
+  /**
    *
    *  Sorts colors according to their saturation.
    * @param  colors The array of colors to sort
@@ -495,8 +554,8 @@ declare class ColorArray {
   ]
   
    */
-    sortBySaturation(order: 'asc' | 'desc', mode?: HueColorSpaces): ColorArray;
-    /**
+  sortBySaturation(order: 'asc' | 'desc', mode?: HueColorSpaces): ColorArray;
+  /**
    *
    * Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
    * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
@@ -513,8 +572,8 @@ declare class ColorArray {
   // [ 'purple', 'brown', 'green', 'red' ]
    
    */
-    sortByContrast(against: ColorToken, order?: 'asc' | 'desc'): ColorArray;
-    /**
+  sortByContrast(against: ColorToken, order?: 'asc' | 'desc'): ColorArray;
+  /**
    *
    *  Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
    * @param order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
@@ -559,12 +618,12 @@ declare class ColorArray {
   ]
   
    */
-    sortByHue(order?: 'asc' | 'desc', colorspace?: HueColorSpaces): ColorArray;
-    /**
-     * @method
-     * @returns Returns the result value from the chain.
-     */
-    output(): ColorToken;
+  sortByHue(order?: 'asc' | 'desc', colorspace?: HueColorSpaces): ColorArray;
+  /**
+   * @method
+   * @returns Returns the result value from the chain.
+   */
+  output(): ColorToken;
 }
 /**
  * A wrapper function over the `ColorArray` class which returns a new instance of the class. Use it to invoke the class without using the `new` keyword
@@ -665,7 +724,10 @@ console.log(red('900'));
 
  *
  */
-declare function tailwindColors(shade: TailwindColorFamilies | 'all', value?: ScaleValues): string | Array<string>;
+declare function tailwindColors(
+  shade: TailwindColorFamilies | 'all',
+  value?: ScaleValues
+): string | Array<string>;
 /**
  * Creates a lazy chain wrapper over a single color token that has all the functions that take a `ColorToken` as their first argument.
  *
@@ -678,29 +740,29 @@ console.log(wrapper.color2hex());
 // #ffc0cb
  */
 declare class Color {
-    constructor(c: ColorToken, options?: ColorOptions);
-    alpha(amount?: number | string): Color | number;
-    getChannel(channel: string): number;
-    setChannel(modeChannel: string, value: number | string): Color;
-    /**
-     * Interpolates the bound color via the `origin` at the point `t`. Call `output()` to get the results.
-     * @param origin The color to interpolate via.
-     * @param t The point in the interpolation to return. Expected value is in the range [0,1]
-     * @param options Overrides object to customize the easing and the interpolation method /fixups.
-     * @returns The result of the interpolation as a hexadecimal string.
-     */
-    via(origin: ColorToken, t?: number, options?: InterpolatorOptions): string;
-    /**
-     * Converts any color token to hexadecimal.
-     * @returns string
-     */
-    color2hex(): Color;
-    /**
-     * Returns the pastel variant of the bound color token.
-     * @returns string
-     */
-    pastel(): Color;
-    /**
+  constructor(c: ColorToken, options?: ColorOptions);
+  alpha(amount?: number | string): Color | number;
+  getChannel(channel: string): number;
+  setChannel(modeChannel: string, value: number | string): Color;
+  /**
+   * Interpolates the bound color via the `origin` at the point `t`. Call `output()` to get the results.
+   * @param origin The color to interpolate via.
+   * @param t The point in the interpolation to return. Expected value is in the range [0,1]
+   * @param options Overrides object to customize the easing and the interpolation method /fixups.
+   * @returns The result of the interpolation as a hexadecimal string.
+   */
+  via(origin: ColorToken, t?: number, options?: InterpolatorOptions): string;
+  /**
+   * Converts any color token to hexadecimal.
+   * @returns string
+   */
+  color2hex(): Color;
+  /**
+   * Returns the pastel variant of the bound color token.
+   * @returns string
+   */
+  pastel(): Color;
+  /**
    * Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color. Call `output()` to get the final result.
    * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
    * @returns An array containing the paired scheme.
@@ -711,8 +773,8 @@ declare class Color {
   console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
   // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
    */
-    pairedScheme(options?: PairedSchemeOptions): ColorArray;
-    /**
+  pairedScheme(options?: PairedSchemeOptions): ColorArray;
+  /**
    * Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down) from a single scheme color. Min and max lightness value determine how light or dark our colour will be at either extreme. Call `output()` to get the result.
    * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
    *@returns An array of colors in hexadecimal. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or `(iterations * 2) + 1`
@@ -732,8 +794,8 @@ declare class Color {
     '#3b0c3a'
   ]
    */
-    hueShift(options?: HueShiftOptions): ColorArray;
-    /**
+  hueShift(options?: HueShiftOptions): ColorArray;
+  /**
    *
    * Gets the complementary hue of the passed in color. The function is internally guarded against achromatic colors.
    * @param colorObj Optional boolean whether to return an object with the result color hue family or just the result color. Default is false.
@@ -748,25 +810,30 @@ declare class Color {
   console.log(getComplimentaryHue("purple"))
   // #005700ff
    */
-    getComplimentaryHue(mode?: HueColorSpaces, colorObj?: boolean): {
+  getComplimentaryHue(
+    mode?: HueColorSpaces,
+    colorObj?: boolean
+  ):
+    | {
         hue: HueFamily;
         color: ColorToken;
-    } | ColorToken;
-    /**
-     * Creates a scale of a spline interpolation between an earthtone and a color. Call `output()` to get the results.
-     * @param color The color to interpolate an earth tone with.
-     * @param options Optional overrides for customising interpolation and easing functions.
-     * @returns The array of colors resulting from the earthtone interpolation as hex codes.
-     */
-    earthtone(options?: EarthtoneOptions): ColorArray | ColorToken;
-    contrast(against: 'lightMode' | 'darkMode' | Color): number;
-    luminance(amount?: number): number;
-    output(): any;
-    saturation(amount?: string | number): any;
-    isAchromatic(): boolean;
-    isWarm(): boolean;
-    isCool(): boolean;
-    /**
+      }
+    | ColorToken;
+  /**
+   * Creates a scale of a spline interpolation between an earthtone and a color. Call `output()` to get the results.
+   * @param color The color to interpolate an earth tone with.
+   * @param options Optional overrides for customising interpolation and easing functions.
+   * @returns The array of colors resulting from the earthtone interpolation as hex codes.
+   */
+  earthtone(options?: EarthtoneOptions): ColorArray | ColorToken;
+  contrast(against: 'lightMode' | 'darkMode' | Color): number;
+  luminance(amount?: number): number;
+  output(): any;
+  saturation(amount?: string | number): any;
+  isAchromatic(): boolean;
+  isWarm(): boolean;
+  isCool(): boolean;
+  /**
    *
    *  Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
    * @param deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
@@ -789,34 +856,70 @@ declare class Color {
   console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
   // #9f9f9f
    */
-    deficiency(deficiencyType?: 'red' | 'blue' | 'green' | 'monochromacy', severity?: number): ColorToken;
-    getFarthestHue(colors: ColorToken[], colorObj?: boolean): number | {
+  deficiency(
+    deficiencyType?: 'red' | 'blue' | 'green' | 'monochromacy',
+    severity?: number
+  ): ColorToken;
+  getFarthestHue(
+    colors: ColorToken[],
+    colorObj?: boolean
+  ):
+    | number
+    | {
         factor: number;
         color: ColorToken;
-    };
-    getNearestHue(colors: ColorToken[], colorObj?: boolean): number | {
+      };
+  getNearestHue(
+    colors: ColorToken[],
+    colorObj?: boolean
+  ):
+    | number
+    | {
         factor: number;
         color: ColorToken;
-    };
-    getNearestChroma(colors: ColorToken[], colorObj?: boolean): number | {
+      };
+  getNearestChroma(
+    colors: ColorToken[],
+    colorObj?: boolean
+  ):
+    | number
+    | {
         factor: number;
         color: ColorToken;
-    };
-    getNearestLightness(colors: ColorToken[], colorObj?: boolean): number | {
+      };
+  getNearestLightness(
+    colors: ColorToken[],
+    colorObj?: boolean
+  ):
+    | number
+    | {
         factor: number;
         color: ColorToken;
-    };
-    getFarthestChroma(colors: ColorToken[], colorObj?: boolean): number | {
+      };
+  getFarthestChroma(
+    colors: ColorToken[],
+    colorObj?: boolean
+  ):
+    | number
+    | {
         factor: number;
         color: ColorToken;
-    };
-    getFarthestLightness(colors: ColorToken[], colorObj?: boolean): number | {
+      };
+  getFarthestLightness(
+    colors: ColorToken[],
+    colorObj?: boolean
+  ):
+    | number
+    | {
         factor: number;
         color: ColorToken;
-    };
-    ovetone(): string | boolean;
-    getHueFamily(): HueFamily;
-    scheme(scheme: 'analogous' | 'triadic' | 'tetradic' | 'complementary', easingFunc?: (t: number) => number): ColorToken[] | ColorArray;
+      };
+  ovetone(): string | boolean;
+  getHueFamily(): HueFamily;
+  scheme(
+    scheme: 'analogous' | 'triadic' | 'tetradic' | 'complementary',
+    easingFunc?: (t: number) => number
+  ): ColorToken[] | ColorArray;
 }
 /**
  * Wrapper function over the Color class that returns a new Color method chain.
@@ -824,4 +927,13 @@ declare class Color {
  * @returns A new Color class with all the utilities that take a single color as the first parameter bound to its prototype.
  */
 declare function color(color: ColorToken): Color;
-export { diverging, qualitative, sequential, tailwindColors, ColorArray, load, Color, color };
+export {
+  diverging,
+  qualitative,
+  sequential,
+  tailwindColors,
+  ColorArray,
+  load,
+  Color,
+  color
+};
