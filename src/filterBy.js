@@ -1,7 +1,7 @@
 import { differenceHyab } from 'culori/fn';
 import { color2hex } from './converters.js';
 import { getLuminance, getContrast, getChannel } from './utils.js';
-import { mcchn, mlchn, filteredArr, norm, reOp, reNum } from './helpers.js';
+import { mcchn, mlchn, filteredColl, norm, reOp, reNum } from './helpers.js';
 import modeRanges from './color-maps/samples/modeRanges.js';
 
 function baseFilterBy(
@@ -30,7 +30,7 @@ function baseFilterBy(
     startVal = sym.concat(startVal.toString());
   }
 
-  return filteredArr(factor, cb)(collection, startVal, end);
+  return filteredColl(factor, cb)(collection, startVal, end);
 }
 
 function filterBySaturation(

@@ -8,7 +8,9 @@ import {
   lt,
   mlchn,
   max,
-  rand
+  rand,
+  chnDiff,
+  getModeChannel
 } from './helpers.js';
 
 import { tailwindColors } from './colors.js';
@@ -184,15 +186,27 @@ function setChannel(mc) {
 
 function getChannel(mc) {
   return (color) => {
-    const [mode, channel] = mc.split('.');
+    const [mode, channel] = (mc || color[0] || color['mode']).split('.');
+    var res, src;
+    if (Array.isArray(color) || typeof color === 'object') {
+      if (mode === (color[0] || color['mode'])) {
+        if (Array.isArray(color)) {
+          res = color[mode.indexOf(channel)];
+        }
+        res = color[channel];
+      } else {
+        res = converter(mode)(color2hex(color))[channel];
+      }
 
-    const src = converter(mode)(color2hex(color));
-
-    if (channel) {
-      return src[channel];
+      // if (Array.isArray(color)) {
+      //   res=
+      // }
+    } else if (typeof color === 'number' || typeof color === 'string') {
+      res = converter(mode)(color2hex(color))[channel];
     } else {
       throw Error(`unknown channel ${channel} in mode ${mode}`);
     }
+    return res;
   };
 }
 
@@ -408,15 +422,26 @@ function getNearestColor(collection, color, num = 1) {
   return result;
 }
 
+// the baseFunc could be channelDiff
+
 function getFarthestChromaFrom(
-  collection = [],
-  against = '#fff',
+  collection,
+  against,
   colorspace = 'lch',
   colorObj = false
-) {}
+) {
+  const fctr = 'saturation';
+  return baseFunc(
+    fctr,
+    collection,
+    chnDiff(against, mcchn(colorspace)),
+    'desc',
+    colorObj
+  );
+}
 
 function getFarthestHueFrom(
-  collection = [],
+  collection,
   against = '#fff',
   colorspace = 'lch',
   colorObj = false

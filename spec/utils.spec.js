@@ -17,6 +17,19 @@ governing permissions and limitations under the License.
 describe(`Test suite for utils`, () => {
   var [col, sample] = ['#310000', ['b2c3f1', '#a1bd2f', '#f3bac1']];
   var data = {
+    getFarthestChromaFrom: {
+      params: [
+        [
+          { l: 10, c: 20, h: 80, mode: 'lch' },
+          { l: 10, c: 10, h: 80, mode: 'lch' },
+          { l: 10, c: 40, h: 80, mode: 'lch' }
+        ],
+        { l: 10, c: 5, h: 80, mode: 'lch' },
+        'lch'
+      ],
+      description: `Gets the largest chroma distance between the colors in a collection against the specified color`,
+      expect: 35
+    },
     getHueFamily: {
       params: ['cyan'],
       description: `Gets the color's hue family`,
@@ -108,7 +121,7 @@ describe(`Test suite for utils`, () => {
   // Not in the map because these funcs are curried
   it(`Sets/Gets the specified channel of the passed in color`, () => {
     expect(utils.getChannel('lch.h')(utils.setChannel('lch.h')(col, 10))).toBe(
-      10.695425416490899
+      10
     );
   });
 });
