@@ -23,9 +23,9 @@ import type {
 } from './types';
 /**
  *
- *  Generates a randomised classic color scheme from a single scheme color.
- * @param  schemeType  Any classic color scheme either "analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary".
- * @returns An array of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
+ *  Generates a randomised classic color scheme from a single color.
+ * @param  schemeType  Any classic color scheme either `"analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary"`.
+ * @returns A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
  * @example
  *
  import { scheme } from 'huetiful-js'
@@ -35,13 +35,16 @@ console.log(scheme("triadic")("#a1bd2f", true))
  */
 declare function scheme(
   schemeType: 'analogous' | 'triadic' | 'tetradic' | 'complementary' | string
-): (color: ColorToken, easingFunc?: (t: number) => number) => ColorToken[];
+): (
+  color: ColorToken,
+  easingFunc?: (t: number) => number
+) => ArrayLike<ColorToken>;
 /**
  *
- * Takes a collection of colors and finds the nearest matches using the `differenceHyab()` difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use `isAchromatic` to filter grays from your collection before passing it to the function.
+ * Takes a collection of colors and finds the nearest matches using the `differenceHyab()` difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use `isAchromatic` to filter grays from your collection in the mode `colorspace` before passing it to the function.
  * @param colors The collection of colors to create palettes from. Preferably use 6 or more colors for better results.
  * @param schemeType (Optional) The palette type you want to return.
- * @returns An array of colors if the scheme parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
+ * @returns An array of colors if the `schemeType` parameter is specified else it returns a `Map` object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
  * @example
  *
  * import { discoverPalettes } from 'huetiful-js'
@@ -64,16 +67,16 @@ console.log(discoverPalettes(sample, "tetradic"))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
  */
 declare function discoverPalettes(
-  colors: ColorToken[] | object,
+  colors: ArrayLike<ColorToken> | object,
   schemeType?: 'analogous' | 'triadic' | 'tetradic' | 'complementary',
   colorspace?: UniformColorSpaces
-): ColorToken[] | object;
+): ArrayLike<ColorToken> | object;
 /**
  *
  *  Creates a scale of a spline interpolation between an earthtone and a color.
  * @param color The color to interpolate an earth tone with.
   * @param options Optional overrides for customising interpolation and easing functions.
- * @returns The array of colors resulting from the earthtone interpolation as hex codes.
+ * @returns Collection of colors resulting from the earthtone interpolation as hex codes.
  * @example
  *
  * import { earthtone } from 'huetiful-js'
@@ -87,9 +90,9 @@ declare function earthtone(
   color: ColorToken,
   colorspace?: HueColorSpaces,
   options?: EarthtoneOptions
-): ColorToken[];
+): ArrayLike<ColorToken>;
 /**
- * Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down) from a single scheme color. Min and max lightness value determine how light or dark our colour will be at either extreme.
+ * Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts down) from a single color. Min and max lightness values determine how light or dark our colour will be at either extreme.
  * @param color The color to use as the scheme of the hueshift. Colors are internally converted to LCH.
  * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
  *@returns An array of colors in hexadecimal. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or `(iterations * 2) + 1`
@@ -113,16 +116,16 @@ declare function hueShift(
   color: ColorToken,
   colorspace?: UniformColorSpaces,
   options?: HueShiftOptions
-): ColorToken[];
+): ArrayLike<ColorToken>;
 /**
  *
  *  Returns a spline interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.
- * @param colors The array of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
+ * @param colors The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
  * @param colorspace The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
  * @param kind The type of the spline interpolation method. Default is basis.
- * @param closed Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false
+ * @param closed Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is `false`
  * @param options Optional channel specific overrides.
- * @returns A hexadecimal representation of the resultant color.
+ * @returns An array hexadecimal string of the resultant color.
  *
  * @example
  *
@@ -139,7 +142,7 @@ console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
  *
  */
 declare function interpolateSpline(
-  colors: ColorToken[] | object,
+  colors: ArrayLike<ColorToken> | object,
   colorspace?: HueColorSpaces,
   iterations?: number,
   kind?: 'natural' | 'monotone' | 'basis',
@@ -150,7 +153,7 @@ declare function interpolateSpline(
  * @internal
  */
 declare function pltr(
-  colors: ColorToken[],
+  colors: ArrayLike<ColorToken>,
   colorspace?: HueColorSpaces,
   options?: object
 ): (
@@ -200,7 +203,7 @@ console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
 declare function pairedScheme(
   color: ColorToken,
   options?: PairedSchemeOptions
-): ColorToken[] | ColorToken;
+): ArrayLike<ColorToken> | ColorToken;
 /**
  *
  *  Returns a random pastel variant of the passed in color.
