@@ -1,74 +1,58 @@
 # Changelog
-Some of the major notable changes in the past releases.Please note that the list of changes is not final and is still a work in progress. More information will be updated from the Git commit history.
+
+Please note that the list of changes is not final and is still a work in progress. More information will (or may) be updated from the Git commit history in the future.
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [2.0.0 (stable)](#200-stable)
+    - [Notable changes](#notable-changes)
+    - [New features :toolbox:](#new-features-toolbox)
+    - [Enhancements :pill:](#enhancements-pill)
+    - [Bug fixes :snail:](#bug-fixes-snail)
+
+<!-- /code_chunk_output -->
 
 
-### v0.0.5
 
-First publish, lots of broken code. Basically nothing worked well in this release. Deprecated
+### 2.0.0 (stable)
 
-### v0.0.8
+##### Notable changes
 
-Rewrote the codebase in TypeScript. Eliminated dependancy on chroma-js. Finished the core-utils.
-Added Tailwind colors as wrapper functions.
+- Stylish new look on the docs :rocket: . [See the updated docs :scroll: here][home]
+- The codebase is now pure JavaScript. Types now live seperately in `.d.ts` files. This is eliminate the need for a build step just to be able to test our code. It will also make it possible to run this library on [NPM+Runkit][npm]
+- More automated workflow. Testing,publishing to NPM and deploying the docs is all automated via GitHub Actions
+- Full test coverage of the public API with Jasmine :herb:
+- Updated the contributing guidelines. See the [CONTRIBUTING :open_hands: file](./CONTRIBUTING.md) here
+- Wiki with some example use cases and in depth explanations of some the library behaviours.
 
-### v0.0.10
+##### New features :toolbox:
 
-Added `filterBy` and `sortBy` modules for filtering and sorting collections of colors respectively. Released first beta documentation.
+- **Added 6 utilities:** 
 
-### 1.0.0
+1. `getFarthestChromaFrom`
+2. `getFarthestHueFrom`
+3. `getFarthestLightnessFrom`
+4. `getNearestChromaFrom`
+5. `getNearestHueFrom`
+6. `getNearestLightnessFrom`
 
-Stable `core-utils` .
-Fixed runtime crashes in outdated modules
+Which are similar to i.e `getNearestChroma` but take an additional against param which takes every color in the collection as a subtrahend and returning the specified extremum of the factor being queried.
 
-### 1.2.1
+##### Enhancements :pill:
 
-Added `types` . NPM package now has full Typescript/IntelliSense support
+- The array methods for example any function that took an array as the first argument now accepts any `ArrayLike` objects as well as plain objects and `Map` objects. In short its fully generic. If a plain object is passed as the collection it returns a `Map`. This is true for in `filterBy` functions which will return a `Map` with the falsy colors removed. In `sortBy` functions, an ordered `Map` is returned because this object remembers insertion order and is more effecient if you want to perform frequent actions on the collection.
+- Converters have been enhanced to take an additional `colorspace` parameter for example `num2rgb`. [See the updated converters here][converters]
+- `isAchromatic` now checks if a color is achromatic in additional colorspaces as well. This is optional via a second param `colorspace`. The default colorspace is 'lch'
 
-### 1.5.3
+##### Bug fixes :snail:
 
-Palette utilities stable.
-Added the `earthtone` and `pairedScheme` utilities
-All utilities guarded to convert all input to hex
-Added better type definitions for richer IntelliSense in the editor
-Changed docs to docsify
+- Fixed precision issue when working with color tokens as plain objects. by first converting all colors to hex.
 
-### 1.7.9 (unstable)
+... And more!!!
 
-- Fully treeshakable
-- Core-utils directory was split to submodules.
-- Added the `load()` utility to create read-manipulate-output chain with all the utilities that take a collection of colos as first input. The chain is lazy.
-- Added the Color class which is aliased as `color()` which has all the utilities that take a color as the first argument bound to its prototype as methods. Calling color() simply calls `new Color()` under the hood.
-- Added the `toHex` utility which parses all known color tokens similar to chroma-js `chroma()` constructor.
-- Eliminated dependancy on lodash.
-- Used treeshaken Culori modules to reduce bundle size. Only 20KB when minified!
-- Created the `fp` directory with helper functions used in the library grouped by input type.
-- More modular codebase
-- Simplified code to make it more readable and easier to understand for other developers who may want to contribute
-Over 50 utilities in the API now!
-- All palette functions (generators) have easing function support.
-Updated the docs!
-- All palette functions now take an optional overrides object to fine tune parameters like easing methods, fixups etc.
-- Rewrote the README and CONTRIBUTING. Added missing licenses for borrowed code.
 
-### 1.79.92
-
-- Deprecated temperature based utilities due to inconsistent results.
-- Rewrote the type declarations to make them simpler and more generic.
-- Lightness and chroma channels are now normalized against passed in extremums in the filtering utilities.
-- `toHex` now supports RGB channel in the [0,255] range and [0,1] as well. Values above 1 are normalized using a simple formula. `ch / 255`.
-- Removed unnecessary submodules and joined them into grouped modules
-- Added Typedoc as the documentation generator of choice.
-- New simpler docs writen in GFM.
-- Added `getNearestColor` which uses the differenceHyab metric to get the nearest color against a collection.
-- Collection based utilities that took  arrays of colors are now generic! If an object is passed its keys are passsed as an index and the values are treated as valid color tokens. Objects can only have a depth of 1 ie nested properties are not supported (yet).
-- Added color vision deficiency simulation support (stable)
-- Added a ColorArray class that has all collection based methods on its prototype as methods. The chain is lazy and requires `output()` to be called to retun the final result. Its aliased as `load()` which simply wraps around the class and invoking a new instance under the hood.
--Added some notes to the docs explaining how some of the utilities work as well as other behaviours of the library.
-- Slimmer bundle size.
-- Fixed import errors. The library is now fully ESM with a UMD build for CDN and minified version for browser.
-- Added support for more uniform colorspaces in hueShift. Jch is currently unsupported because of lightness mapping issues. Support is coming soon though.
-- Removed cyclic dependencies that caused a stackoverflow error.
-
-### 1.79.96
-
-- filterBy and sortBy modules now support normalization of passed in ranges. This allows us to pass in the same value and still get the same relative percentage or fraction of the range of the factor being queried.
+[npm]: https://npmjs.org/package/huetiful-js
+[home]: https://prjctimg.io/huetiful
+[converters]: https://prjctimg.io/huetiful/converters.html
