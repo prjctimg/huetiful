@@ -33,7 +33,7 @@ import {
 } from 'culori/fn';
 import 'culori/css';
 
-import { mcchn, sortedArr, or } from './helpers.js';
+import { mcchn, sortedColl, or } from './helpers.js';
 
 function getHueFamily(color) {
   var [nearestKey, nearestDiff] = ['', Infinity];
@@ -84,7 +84,7 @@ function chromaPredicate(colorspace) {
 
 // The baseFunc for getting specifified factor extremums
 function baseFunc(fctr, collection, cb, order, colorObj) {
-  const result = sortedArr(
+  const result = sortedColl(
     fctr,
     cb,
     order,

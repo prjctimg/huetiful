@@ -314,39 +314,39 @@ function reOp(s) {
 
   return (reComparator.test(s) && reComparator.exec(s)['0']) || undefined;
 }
-function sortedArr(
+function sortedColl(
   factor = 'factor',
   callback,
   order = 'asc',
   colorObj = false
 ) {
   return (collection) => {
-    const results = colorObjColl(factor, callback)(collection);
+    var objColl = colorObjColl(factor, callback)(collection),
+      res;
 
     // If the collection is not an Array  insert the sorted elements
     // Sort the array using our customSort helper function
 
     if (Array.isArray(collection)) {
-      var res = results.sort(customSort(order, factor));
+      res = objColl.sort(customSort(order, factor));
 
       return (colorObj === true && res) || res.map((color) => color['color']);
     } else {
-      var res = new Map();
-      results.sort(customSort(order, factor)).map((val, key) => {
-        var [k, v] = Object.entries(collection)[key];
-        if (val === v) {
-          res.set(k, val);
-        }
-      });
+      res = new Map();
+      Object.values(objColl)
+        .sort(customSort(order, factor))
+        .map((val, key) => {
+          var [k, v] = Object.entries(collection)[key];
+          if (val === v) {
+            res.set(k, val);
+          }
+        });
 
-      return (
-        (colorObj === true && Object.values(res)) ||
-        Object.values(res).map((color) => color['color'])
-      );
+      if (colorObj === false) {
+        Object.entries(res).map((v) => res.set(v[0], v[1]['color']));
+      }
     }
-
-    // colorObj parameter is true return the array of color objects
-    // else just return the color's name value.
+    return res;
   };
 }
 
@@ -404,7 +404,7 @@ export {
   max,
   customSort,
   colorObjColl,
-  sortedArr,
+  sortedColl,
   filteredArr,
   customFindKey,
   colorObj,

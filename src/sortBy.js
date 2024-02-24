@@ -1,9 +1,9 @@
-import { or, sortedArr, mlchn, mcchn } from './helpers.js';
+import { or, sortedColl, mlchn, mcchn } from './helpers.js';
 import { wcagContrast, differenceHyab } from 'culori/fn';
 import { getLuminance, getChannel } from './utils.js';
 
-function baseSortBy(factor = 'factor', cb, order = 'asc', collection = []) {
-  return sortedArr(factor, cb, order)(collection);
+function baseSortBy(factor, cb, order, collection) {
+  return sortedColl(factor, cb, order)(collection);
 }
 
 function sortBySaturation(collection, order, mode) {

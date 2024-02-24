@@ -687,7 +687,7 @@ class Color {
     this['lightness'] = or(lightness, _gchn('lch.l')(c));
 
     // set the default color space as jch if a color space is not specified. TODO: get the mode from object and array
-    this['colorspace'] = or(colorspace, 'jch');
+    this['colorspace'] = or(colorspace, 'lch');
 
     // set the default saturation to that of the passed in color if the value is not explicitly set
     this['_saturation'] = or(
