@@ -1,6 +1,6 @@
 /**
  * @license
- * filterBy.ts - Utilities for filtering collections of colors.
+ * filterBy.js - Utilities for filtering collections of colors.
 Copyright 2023 Dean Tarisai.
 This file is licensed to you under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License. You may obtain a copy
@@ -13,10 +13,10 @@ governing permissions and limitations under the License.
 import type { ColorToken, HueColorSpaces } from './types';
 /**
  *
- * Returns an array of colors in the specified saturation range.
+ * Returns colors in the specified saturation range.
  *
- * The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
- * This means a value in the range `[0,1]` will return, for example if you pass startSaturation as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range `[0,100]` and will return the normalized value.
+ * @ The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
+ * This means a value in the range `[0,1]` will return, for example if you pass `startSaturation` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range `[0,100]` and will return the normalized value.
  * @param  collection The collection of colors to filter.
  * @param  startSaturation The minimum end of the saturation range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param  endSaturation The maximum end of the saturation range.
@@ -45,14 +45,14 @@ console.log(filterBySaturation(sample, 0.1));
 // [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
  */
 declare function filterBySaturation(
-  collection: Array<ColorToken> | object | Map<any, ColorToken>,
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   startSaturation?: number,
   endSaturation?: number,
   colorspace?: HueColorSpaces
-): Array<ColorToken> | Map<any, ColorToken>;
+): ArrayLike<ColorToken> | Map<any, ColorToken>;
 /**
  *
- *  Returns an array of colors in the specified luminance range.
+ *  Returns colors in the specified luminance range.
  * @param  collection The collection of colors to filter.
  * @param  startLuminance The minimum end of the luminance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param  endLuminance The maximum end of the luminance range.
@@ -79,13 +79,13 @@ filterByLuminance(sample, 0.4, 0.9)
 // [ '#00ffdc', '#00ff78' ]
  */
 declare function filterByLuminance(
-  collection: Array<ColorToken> | object | Map<any, ColorToken>,
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   startLuminance?: number,
   endLuminance?: number
-): Array<ColorToken> | Map<any, ColorToken>;
+): ArrayLike<ColorToken> | Map<any, ColorToken>;
 /**
  *
- *  Returns an array of colors in the specified lightness range.
+ * Returns colors in the specified lightness range.
  *
  * The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
  * This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
@@ -116,11 +116,11 @@ filterByLightness(sample, 20, 80)
 // [ '#00c000', '#007e00', '#164100', '#720000' ]
  */
 declare function filterByLightness(
-  collection: Array<ColorToken> | object | Map<any, ColorToken>,
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   startLightness?: number,
   endLightness?: number,
   colorspace?: HueColorSpaces
-): Array<ColorToken> | Map<any, ColorToken>;
+): ArrayLike<ColorToken> | Map<any, ColorToken>;
 /**
  *
  * Returns colors in the specified hue ranges between 0 to 360.
@@ -148,14 +148,14 @@ filterByHue(sample, 20, 80)
 // [ '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
  */
 declare function filterByHue(
-  collection: Array<ColorToken> | object | Map<any, ColorToken>,
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   startHue?: number,
   endHue?: number,
   colorspace?: HueColorSpaces
-): Array<ColorToken> | Map<any, ColorToken>;
+): ArrayLike<ColorToken> | Map<any, ColorToken>;
 /**
  *
- * Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.
+ * Returns colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.
  * @param  collection The collection of colors to filter.
  * @param  startDistance The minimum end of the distance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param  endDistance The maximum end of the distance range.
@@ -178,14 +178,14 @@ console.log(filterByDistance(sample, "yellow", 0.1))
 // [ '#ffff00' ]
  */
 declare function filterByDistance(
-  collection: Array<ColorToken> | object | Map<any, ColorToken>,
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
   startDistance?: number,
   endDistance?: number
-): Array<ColorToken> | Map<any, ColorToken>;
+): ArrayLike<ColorToken> | Map<any, ColorToken>;
 /**
  *
- * Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
+ * Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
  * @param  collection The collection of colors to filter.
  * @param  startContrast The minimum end of the contrast range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param  endContrast The maximum end of the contrast range.
@@ -213,11 +213,11 @@ console.log(filterByContrast(sample, 'green', '>=3'))
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
  */
 declare function filterByContrast(
-  collection: Array<ColorToken> | object | Map<any, ColorToken>,
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
   startContrast?: number,
   endContrast?: number
-): Array<ColorToken> | Map<any, ColorToken>;
+): ArrayLike<ColorToken> | Map<any, ColorToken>;
 export {
   filterByContrast,
   filterByDistance,
