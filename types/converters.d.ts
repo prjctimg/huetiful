@@ -49,7 +49,7 @@ declare function toRGB(
 
 /**
  * Returns the passed in color as a plain object in the specified DIN99 colorspace.
- * @param colorspace The DIN99 colorspace to use.
+ * @param colorspace The DIN99 colorspace variant (either cartesian/dlab or polar/dlch) to use.
  * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
  * @see https://culorijs.org/color-spaces/
  */
@@ -80,7 +80,7 @@ declare function toJab(color: string): object;
 
 /**
  *
-  Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), numbers from 0 to 166,777,215 and arrays in the form of [string,number,number,number,numer?] the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
+  Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), any `number` from 0 to 166,777,215 and arrays in the form of `[string,number,number,number,numer?]` the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
  * @param color The color to convert to hexadecimal. Works on color objects and CSS named colors.
  * @returns A hexadecimal representation of the passed in color.
  * @example
@@ -95,7 +95,7 @@ console.log(color2hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 declare function color2hex(color: ColorToken): string;
 /**
  *
- *  Returns the color equivalent of any number between 0 and 16,777,215 as a hexadecimal string or color object if the `colorspace` is specified.
+ *  Returns the color equivalent of any `number` between 0 and 16,777,215 as a hexadecimal string or color object if the `colorspace` is specified.
  * @param num The number to convert.
  * @returns color A color object or hex string.
  * @example
@@ -124,7 +124,7 @@ declare function color2num(color: ColorToken): number;
  *  Converts the temperature value (in Kelvins) to a color as a hexadecimal string else a color object in the mode `colorspace`.
  * @param kelvin The number of Kelvins. From 0 to 30,000 .
  * @param colorspace Optional parameter to return a color object in the mode `colorspace` hexadecimal string. Default is `'rgb'`
- * @returns color The color as a hexadecimal  or RGB color object.
+ * @returns color The color as a hexadecimal  or plain color object.
  * @example
  *
  * import { temp2color } from 'huetiful-js'
@@ -139,9 +139,10 @@ declare function temp2color(
 /**
  *
  *  Returns an array of channel values in the mode color space. It does not mutate the values of the passed in color token.
- * @param color Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g `num2color`.
+ * @param color Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g `num2color` if you want tonevrt the number to supported color token.
  * @param colorspace The mode color space to return channel values for. You can omit this parameter if you pass in a color object with the `mode` property.
- * @returns An array of channel values with the colorspace as first element and the alpha channel if its explicitly defined in the passed in color.
+ * @param omitMode optional boolean to exclude the mode from the final tuple. Default is `false`.
+ * @returns An array of channel values with the colorspace as first element and the alpha channel as the fifth element in the array if its explicitly defined in the passed in color.
  * @example
  *
  *
