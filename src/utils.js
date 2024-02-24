@@ -192,8 +192,9 @@ function getChannel(mc) {
       if (mode === (color[0] || color['mode'])) {
         if (Array.isArray(color)) {
           res = color[mode.indexOf(channel)];
+        } else {
+          res = color[channel];
         }
-        res = color[channel];
       } else {
         res = converter(mode)(color2hex(color))[channel];
       }
@@ -425,14 +426,13 @@ function getNearestColor(collection, color, num = 1) {
 // the baseFunc could be channelDiff
 
 function getFarthestChromaFrom(
-  collection,
-  against,
+  collection = [],
+  against = '#fff',
   colorspace = 'lch',
   colorObj = false
 ) {
-  const fctr = 'saturation';
   return baseFunc(
-    fctr,
+    'saturation',
     collection,
     chnDiff(against, mcchn(colorspace)),
     'desc',
@@ -441,39 +441,79 @@ function getFarthestChromaFrom(
 }
 
 function getFarthestHueFrom(
-  collection,
+  collection = [],
   against = '#fff',
   colorspace = 'lch',
   colorObj = false
-) {}
+) {
+  return baseFunc(
+    'hue',
+    collection,
+    chnDiff(against, mcchn(colorspace)),
+    'desc',
+    colorObj
+  );
+}
 
 function getFarthestLightnessFrom(
   collection = [],
   against = '#fff',
   colorspace = 'lch',
   colorObj = false
-) {}
+) {
+  return baseFunc(
+    'lightness',
+    collection,
+    chnDiff(against, mcchn(colorspace)),
+    'desc',
+    colorObj
+  );
+}
 
 function getNearestChromaFrom(
   collection = [],
   against = '#fff',
   colorspace = 'lch',
   colorObj = false
-) {}
+) {
+  return baseFunc(
+    'saturation',
+    collection,
+    chnDiff(against, mcchn(colorspace)),
+    'asc',
+    colorObj
+  );
+}
 
 function getNearestHueFrom(
   collection = [],
   against = '#fff',
   colorspace = 'lch',
   colorObj = false
-) {}
+) {
+  return baseFunc(
+    'hue',
+    collection,
+    chnDiff(against, mcchn(colorspace)),
+    'asc',
+    colorObj
+  );
+}
 
 function getNearestLightnessFrom(
   collection = [],
   against = '#fff',
   colorspace = 'lch',
   colorObj = false
-) {}
+) {
+  return baseFunc(
+    'lightness',
+    collection,
+    chnDiff(against, mcchn(colorspace)),
+    'asc',
+    colorObj
+  );
+}
 
 export {
   brighten,

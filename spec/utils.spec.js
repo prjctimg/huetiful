@@ -17,17 +17,82 @@ governing permissions and limitations under the License.
 describe(`Test suite for utils`, () => {
   var [col, sample] = ['#310000', ['b2c3f1', '#a1bd2f', '#f3bac1']];
   var data = {
-    getFarthestChromaFrom: {
+    getNearestHueFrom: {
       params: [
         [
-          { l: 10, c: 20, h: 80, mode: 'lch' },
-          { l: 10, c: 10, h: 80, mode: 'lch' },
-          { l: 10, c: 40, h: 80, mode: 'lch' }
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        { l: 5, c: 5, h: 5, mode: 'lch' },
+        'lch'
+      ],
+      description: `Gets the smallest hue distance between the colors in a collection against the specified color`,
+      expect: 5
+    },
+    getNearestChromaFrom: {
+      params: [
+        [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        { l: 5, c: 5, h: 5, mode: 'lch' },
+        'lch'
+      ],
+      description: `Gets the smallest chroma distance between the colors in a collection against the specified color`,
+      expect: 5
+    },
+    getNearestLightnessFrom: {
+      params: [
+        [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        { l: 5, c: 5, h: 5, mode: 'lch' },
+        'lch'
+      ],
+      description: `Gets the smallest lightness distance between the colors in a collection against the specified color`,
+      expect: 5
+    },
+    getFarthestHueFrom: {
+      params: [
+        [
+          { l: 20, c: 20, h: 20, mode: 'lch' },
+          { l: 10, c: 10, h: 10, mode: 'lch' },
+          { l: 40, c: 40, h: 40, mode: 'lch' }
         ],
         { l: 10, c: 5, h: 80, mode: 'lch' },
         'lch'
       ],
+      description: `Gets the largest hue angle distance between the colors in a collection against the specified color`,
+      expect: 35
+    },
+    getFarthestChromaFrom: {
+      params: [
+        [
+          { l: 20, c: 20, h: 20, mode: 'lch' },
+          { l: 10, c: 10, h: 10, mode: 'lch' },
+          { l: 40, c: 40, h: 40, mode: 'lch' }
+        ],
+        { l: 5, c: 5, h: 5, mode: 'lch' },
+        'lch'
+      ],
       description: `Gets the largest chroma distance between the colors in a collection against the specified color`,
+      expect: 35
+    },
+    getFarthestLightnessFrom: {
+      params: [
+        [
+          { l: 20, c: 20, h: 20, mode: 'lch' },
+          { l: 10, c: 10, h: 10, mode: 'lch' },
+          { l: 40, c: 40, h: 40, mode: 'lch' }
+        ],
+        { l: 5, c: 5, h: 5, mode: 'lch' },
+        'lch'
+      ],
+      description: `Gets the largest lightness distance between the colors in a collection against the specified color`,
       expect: 35
     },
     getHueFamily: {
