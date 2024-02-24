@@ -10,13 +10,18 @@ the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR REPRESENTA
 OF ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under the License.
 */
-import type { ColorToken, ColorDistanceOptions, HueColorSpaces, Order } from './types';
+import type {
+  ColorToken,
+  ColorDistanceOptions,
+  HueColorSpaces,
+  Order
+} from './types';
 /**
  *
  * Sorts colors according to their saturation.
  * @param  colors The array of colors to sort
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
- * @param mode The mode color space to compute the saturation value in. The default is lch .
+ * @param colorspace The mode color space to compute the saturation value in. The default is lch .
  * @returns An array of the sorted color values.
  * @example
  * import { sortBySaturation } from "huetiful-js";
@@ -58,7 +63,11 @@ console.log(sortedDescending)
 ]
 
  */
-declare function sortBySaturation(collection: ColorToken[] | object, order: 'asc' | 'desc', mode?: HueColorSpaces): ColorToken[];
+declare function sortBySaturation(
+  collection: Array<ColorToken> | Map<any, ColorToken> | object,
+  order?: 'asc' | 'desc',
+  colorspace?: HueColorSpaces
+): Array<ColorToken> | Map<any, ColorToken> | object;
 /**
  *
  *  Sorts colors according to the relative brightness as defined by WCAG definition.
@@ -107,7 +116,10 @@ console.log(sortedDescending)
 
  
  */
-declare function sortByLuminance(collection: ColorToken[] | object, order: 'asc' | 'desc'): ColorToken[];
+declare function sortByLuminance(
+  collection: Array<ColorToken> | Map<any, ColorToken> | object,
+  order: 'asc' | 'desc'
+): Array<ColorToken> | Map<any, ColorToken> | object;
 /**
  *
  *  Sorts colors according to their lightness.
@@ -156,7 +168,11 @@ sortByLightness(sample,'desc')
 ]
 
  */
-declare function sortByLightness(collection: ColorToken[] | object, order?: Order, colorspace?: HueColorSpaces): ColorToken[];
+declare function sortByLightness(
+  collection: Array<ColorToken> | Map<any, ColorToken> | object,
+  order?: 'asc' | 'desc',
+  colorspace?: HueColorSpaces
+): Array<ColorToken> | Map<any, ColorToken> | object;
 /**
  *
  *  Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
@@ -203,7 +219,11 @@ console.log(sortedDescending)
 ]
 
  */
-declare function sortByHue(collection: ColorToken[] | object, order?: Order, colorspace?: HueColorSpaces): ColorToken[];
+declare function sortByHue(
+  collection: Array<ColorToken> | Map<any, ColorToken> | object,
+  order?: 'asc' | 'desc',
+  colorspace?: HueColorSpaces
+): Array<ColorToken> | Map<any, ColorToken> | object;
 /**
  *
  *  Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
@@ -222,7 +242,11 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 // [ 'purple', 'brown', 'green', 'red' ]
  
  */
-declare function sortByContrast(collection: ColorToken[] | object, against: ColorToken, order?: Order): ColorToken[];
+declare function sortByContrast(
+  collection: Array<ColorToken> | Map<any, ColorToken> | object,
+  against: ColorToken,
+  order?: 'asc' | 'desc'
+): Array<ColorToken> | Map<any, ColorToken> | object;
 /**
  *
  *  Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
@@ -230,7 +254,7 @@ declare function sortByContrast(collection: ColorToken[] | object, against: Colo
  * @param against The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.
  * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
  * @param weights The weighting values to pass to the Euclidean function. Default is [1,1,1,0].
- * @param mode The color space to calculate the distance in . The default is the cylindrical variant of the CIELUV colorspace ('lchuv')
+ * @param colorspace The color space to calculate the distance in . The default is the cylindrical variant of the CIELUV colorspace ('lchuv')
  * @returns An array of the sorted color values.
  * @example
  * import { sortByDistance } from 'huetiful-js'
@@ -253,5 +277,17 @@ console.log(
 
 // [ 'green', 'brown', 'red', 'purple' ]
  */
-declare function sortByDistance(collection: ColorToken[] | object, against: ColorToken, order?: 'asc' | 'desc', options?: ColorDistanceOptions): ColorToken[];
-export { sortByContrast, sortByDistance, sortByLightness, sortBySaturation, sortByHue, sortByLuminance };
+declare function sortByDistance(
+  collection: Array<ColorToken> | Map<any, ColorToken> | object,
+  against: ColorToken,
+  order?: 'asc' | 'desc',
+  options?: ColorDistanceOptions
+): Array<ColorToken> | Map<any, ColorToken> | object;
+export {
+  sortByContrast,
+  sortByDistance,
+  sortByLightness,
+  sortBySaturation,
+  sortByHue,
+  sortByLuminance
+};

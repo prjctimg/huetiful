@@ -44,7 +44,12 @@ console.log(filterBySaturation(sample, 0.1));
 
 // [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
  */
-declare function filterBySaturation(collection: ColorToken[] | object, startSaturation?: number, endSaturation?: number, colorspace?: HueColorSpaces): ColorToken[];
+declare function filterBySaturation(
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
+  startSaturation?: number,
+  endSaturation?: number,
+  colorspace?: HueColorSpaces
+): Array<ColorToken> | Map<any, ColorToken>;
 /**
  *
  *  Returns an array of colors in the specified luminance range.
@@ -73,7 +78,11 @@ filterByLuminance(sample, 0.4, 0.9)
 
 // [ '#00ffdc', '#00ff78' ]
  */
-declare function filterByLuminance(collection: ColorToken[] | object, startLuminance?: number, endLuminance?: number): ColorToken[];
+declare function filterByLuminance(
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
+  startLuminance?: number,
+  endLuminance?: number
+): Array<ColorToken> | Map<any, ColorToken>;
 /**
  *
  *  Returns an array of colors in the specified lightness range.
@@ -106,7 +115,12 @@ filterByLightness(sample, 20, 80)
 
 // [ '#00c000', '#007e00', '#164100', '#720000' ]
  */
-declare function filterByLightness(collection: ColorToken[] | object, startLightness?: number, endLightness?: number, colorspace?: HueColorSpaces): ColorToken[];
+declare function filterByLightness(
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
+  startLightness?: number,
+  endLightness?: number,
+  colorspace?: HueColorSpaces
+): Array<ColorToken> | Map<any, ColorToken>;
 /**
  *
  * Returns colors in the specified hue ranges between 0 to 360.
@@ -133,7 +147,12 @@ filterByHue(sample, 20, 80)
 
 // [ '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
  */
-declare function filterByHue(collection: ColorToken[] | object, startHue?: number, endHue?: number, colorspace?: HueColorSpaces): ColorToken[];
+declare function filterByHue(
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
+  startHue?: number,
+  endHue?: number,
+  colorspace?: HueColorSpaces
+): Array<ColorToken> | Map<any, ColorToken>;
 /**
  *
  * Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.
@@ -158,7 +177,12 @@ let sample = [
 console.log(filterByDistance(sample, "yellow", 0.1))
 // [ '#ffff00' ]
  */
-declare function filterByDistance(collection: ColorToken[] | object, against: ColorToken, startDistance?: number, endDistance?: number): ColorToken[];
+declare function filterByDistance(
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
+  against: ColorToken,
+  startDistance?: number,
+  endDistance?: number
+): Array<ColorToken> | Map<any, ColorToken>;
 /**
  *
  * Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
@@ -188,5 +212,17 @@ let sample = [
 console.log(filterByContrast(sample, 'green', '>=3'))
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
  */
-declare function filterByContrast(collection: ColorToken[] | object, against: ColorToken, startContrast?: number, endContrast?: number): ColorToken[];
-export { filterByContrast, filterByDistance, filterByLuminance, filterBySaturation, filterByHue, filterByLightness };
+declare function filterByContrast(
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
+  against: ColorToken,
+  startContrast?: number,
+  endContrast?: number
+): Array<ColorToken> | Map<any, ColorToken>;
+export {
+  filterByContrast,
+  filterByDistance,
+  filterByLuminance,
+  filterBySaturation,
+  filterByHue,
+  filterByLightness
+};

@@ -91,7 +91,7 @@ console.log(getNearestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true))
 // { contrast: 2.4061390502133424, name: '#a1bd2f' }
  */
 declare function getNearestContrast(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
   colorObj?: boolean
 ):
@@ -119,7 +119,7 @@ console.log(getFarthestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true)
 
  */
 declare function getFarthestContrast(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
   colorObj?: boolean
 ):
@@ -145,7 +145,7 @@ console.log(getNearestChroma(sample, 'lch'))
 // 22.45669293295522
  */
 declare function getNearestChroma(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
 ):
@@ -171,7 +171,7 @@ console.log(getFarthestChroma(sample, 'lch'))
 // 67.22120855010492
  */
 declare function getFarthestChroma(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
 ):
@@ -197,7 +197,7 @@ console.log(getNearestHue(sample, 'lch'))
 // 12.462831644544274
  */
 declare function getNearestHue(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   colorspace?: HueColorSpaces | string,
   colorObj?: boolean
 ):
@@ -222,7 +222,7 @@ console.log(getFarthestHue(sample, 'lch'))
 // 273.54920266436477
  */
 declare function getFarthestHue(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
 ):
@@ -406,7 +406,7 @@ console.log(getNearestLightness(sample, 'lch',true))
 
  */
 declare function getNearestLightness(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
 ):
@@ -434,7 +434,7 @@ console.log(getFarthestLightness(sample, 'lch',true))
 
  */
 declare function getFarthestLightness(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
 ):
@@ -578,7 +578,7 @@ declare function getNearestColor(
 ): ColorToken | ColorToken[];
 
 declare function getFarthestChromaFrom(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
@@ -590,7 +590,7 @@ declare function getFarthestChromaFrom(
     };
 
 declare function getNearestChromaFrom(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
@@ -602,7 +602,7 @@ declare function getNearestChromaFrom(
     };
 
 declare function getFarthestHueFrom(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
@@ -614,7 +614,7 @@ declare function getFarthestHueFrom(
     };
 
 declare function getNearestHueFrom(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
@@ -626,7 +626,7 @@ declare function getNearestHueFrom(
     };
 
 declare function getFarthestLightnessFrom(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
@@ -638,7 +638,7 @@ declare function getFarthestLightnessFrom(
     };
 
 declare function getNearestLightnessFrom(
-  collection: Array<ColorToken> | object,
+  collection: Array<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
