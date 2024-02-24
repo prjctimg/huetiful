@@ -91,10 +91,15 @@ console.log(getNearestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true))
 // { contrast: 2.4061390502133424, name: '#a1bd2f' }
  */
 declare function getNearestContrast(
-  collection: ColorToken[] | object,
+  collection: Array<ColorToken> | object,
   against: ColorToken,
   colorObj?: boolean
-): any;
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
 /**
  *
  *  Gets the largest contrast value from the passed in colors compared against a sample color.
@@ -114,14 +119,14 @@ console.log(getFarthestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true)
 
  */
 declare function getFarthestContrast(
-  collection: ColorToken[] | object,
+  collection: Array<ColorToken> | object,
   against: ColorToken,
   colorObj?: boolean
 ):
   | number
   | {
       factor: number;
-      name: ColorToken;
+      color: ColorToken;
     };
 /**
  *
@@ -140,7 +145,7 @@ console.log(getNearestChroma(sample, 'lch'))
 // 22.45669293295522
  */
 declare function getNearestChroma(
-  collection: ColorToken[] | object,
+  collection: Array<ColorToken> | object,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
 ):
@@ -166,7 +171,7 @@ console.log(getFarthestChroma(sample, 'lch'))
 // 67.22120855010492
  */
 declare function getFarthestChroma(
-  collection: ColorToken[] | object,
+  collection: Array<ColorToken> | object,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
 ):
@@ -192,7 +197,7 @@ console.log(getNearestHue(sample, 'lch'))
 // 12.462831644544274
  */
 declare function getNearestHue(
-  collection: ColorToken[] | object,
+  collection: Array<ColorToken> | object,
   colorspace?: HueColorSpaces | string,
   colorObj?: boolean
 ):
@@ -217,7 +222,7 @@ console.log(getFarthestHue(sample, 'lch'))
 // 273.54920266436477
  */
 declare function getFarthestHue(
-  collection: ColorToken[] | object,
+  collection: Array<ColorToken> | object,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
 ):
@@ -244,7 +249,6 @@ console.log(getComplimentaryHue("purple"))
  */
 declare function getComplimentaryHue(
   color: ColorToken,
-  colorspace?: HueColorSpaces,
   colorObj?: boolean
 ):
   | {
@@ -402,7 +406,7 @@ console.log(getNearestLightness(sample, 'lch',true))
 
  */
 declare function getNearestLightness(
-  collection: ColorToken[] | object,
+  collection: Array<ColorToken> | object,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
 ):
@@ -430,7 +434,7 @@ console.log(getFarthestLightness(sample, 'lch',true))
 
  */
 declare function getFarthestLightness(
-  collection: ColorToken[] | object,
+  collection: Array<ColorToken> | object,
   colorspace?: HueColorSpaces,
   colorObj?: boolean
 ):
