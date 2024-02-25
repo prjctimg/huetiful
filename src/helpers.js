@@ -47,7 +47,7 @@ let [ci, ef, hf, hi, li] = [
   interpolatorLinear
 ];
 
-const interpolatorConfig = {
+const pltrconfg = {
   ef,
   ci,
   hf,
@@ -424,7 +424,7 @@ export {
   norm,
   or,
   getModeChannel,
-  interpolatorConfig,
+  pltrconfg,
   reOp,
   reNum
 };

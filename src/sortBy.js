@@ -18,7 +18,7 @@ function sortBySaturation(collection, order, colorspace = 'lch') {
 function sortByLuminance(collection, order) {
   return baseSortBy('luminance', getLuminance, order, collection);
 }
-new Set().leng;
+
 function sortByLightness(collection, order, colorspace = 'lch') {
   return baseSortBy(
     'lightness',
