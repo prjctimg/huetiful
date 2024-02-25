@@ -6,15 +6,20 @@ function baseSortBy(factor, cb, order, collection) {
   return sortedColl(factor, cb, order)(collection);
 }
 
-function sortBySaturation(collection, order, mode) {
-  return baseSortBy('saturation', getChannel(mcchn(mode)), order, collection);
+function sortBySaturation(collection, order, colorspace = 'lch') {
+  return baseSortBy(
+    'saturation',
+    getChannel(mcchn(colorspace)),
+    order,
+    collection
+  );
 }
 
 function sortByLuminance(collection, order) {
   return baseSortBy('luminance', getLuminance, order, collection);
 }
-
-function sortByLightness(collection, order, colorspace) {
+new Set().leng;
+function sortByLightness(collection, order, colorspace = 'lch') {
   return baseSortBy(
     'lightness',
     getChannel(mlchn(colorspace)),
@@ -22,26 +27,20 @@ function sortByLightness(collection, order, colorspace) {
     collection
   );
 }
-function sortByHue(collection, order, colorspace) {
-  const reHue = /h/i.test(colorspace);
+function sortByHue(collection, order, colorspace = 'lch') {
+  var reHue = /h/i.test(colorspace);
   return (
-    reHue &&
-    baseSortBy(
-      'hue',
-      getChannel(`${or(colorspace, 'lch')}.h`),
-      order,
-      collection
-    )
+    reHue && baseSortBy('hue', getChannel(`${colorspace}.h`), order, collection)
   );
 }
 
 function sortByContrast(collection, against, order) {
-  const cb = (against) => (color) => wcagContrast(color, against);
+  var cb = (against) => (color) => wcagContrast(color, against);
   return baseSortBy('contrast', cb(against), order, collection);
 }
 
 function sortByDistance(collection, against, order) {
-  const cb = (against) => (color) => {
+  var cb = (against) => (color) => {
     return differenceHyab()(against, color);
   };
 

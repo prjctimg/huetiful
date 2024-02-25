@@ -18,11 +18,11 @@ import type {
 } from './types';
 /**
  *
- * Sorts colors according to their saturation.
- * @param  colors The array of colors to sort
- * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
- * @param colorspace The mode color space to compute the saturation value in. The default is lch .
- * @returns An array of the sorted color values.
+ * Sorts colors according to the amount of saturation channel in the specified `colorspace`.
+ * @param  collection The `collection` of colors to sort.
+ * @param  order The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
+ * @param colorspace The `mode` colorspace to compute the saturation value in. The default is lch .
+ * @returns The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
  * @example
  * import { sortBySaturation } from "huetiful-js";
 let sample = [
@@ -64,16 +64,16 @@ console.log(sortedDescending)
 
  */
 declare function sortBySaturation(
-  collection: Array<ColorToken> | Map<any, ColorToken> | object,
+  collection: ArrayLike<ColorToken> | Map<any, ColorToken> | object,
   order?: 'asc' | 'desc',
   colorspace?: HueColorSpaces
 ): Array<ColorToken> | Map<any, ColorToken> | object;
 /**
  *
- *  Sorts colors according to the relative brightness as defined by WCAG definition.
- * @param  colors The array of colors to sort
- * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
- * @returns An array of the sorted color values.
+ *  Sorts colors according to their relative brightness as defined by the WCAG3 definition.
+ * @param  collection The `collection` of colors to sort.
+ * @param  order The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
+ * @returns The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
  * @example
  * import { sortByLuminance } from "huetiful-js";
 let sample = [
@@ -117,16 +117,16 @@ console.log(sortedDescending)
  
  */
 declare function sortByLuminance(
-  collection: Array<ColorToken> | Map<any, ColorToken> | object,
+  collection: ArrayLike<ColorToken> | Map<any, ColorToken> | object,
   order: 'asc' | 'desc'
 ): Array<ColorToken> | Map<any, ColorToken> | object;
 /**
  *
  *  Sorts colors according to their lightness.
- * @param  colors The array of colors to sort
- * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
+ * @param  collection The `collection` of colors to sort.
+ * @param  order The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
  * @param colorspace The mode colorspace to use for filtering color lightness. Defaut is lch65
- * @returns An array of the sorted color values.
+ * @returns The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
  * @example
  * import { sortByLightness } from "huetiful-js";
 
@@ -169,17 +169,17 @@ sortByLightness(sample,'desc')
 
  */
 declare function sortByLightness(
-  collection: Array<ColorToken> | Map<any, ColorToken> | object,
+  collection: ArrayLike<ColorToken> | Map<any, ColorToken> | object,
   order?: 'asc' | 'desc',
   colorspace?: HueColorSpaces
 ): Array<ColorToken> | Map<any, ColorToken> | object;
 /**
  *
- *  Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
- * @param  colors The array of colors to sort
- * @param order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
-* @param colorspace The color space to compute the color distances in. All colors within the collection will be converted to mode. Also note that because differences in hue mapping certain color spaces such as HSL and LCH hue values do not align. Keep such quirks in mind to avoid weird results.
-* @returns  An array of the sorted color values.
+ *  Sorts colors according to their hue angle values. It works with any `colorspace` with a hue channel.
+ * @param  collection The `collection` of colors to sort. Achromatic colors are not supported because when displayed on the screen, the colors would be grayscale (so visually, there's no sign of hue). This behaviour is because the `hue` channel is dependant on the `lightness` and `saturation / chroma` channels . For example, a falsy value like `0` or `undefined` turns the color  grayscale whilst lightness at both extremes renders a color totally white (max) or black (min).
+ * @param order The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
+* @param colorspace The mode `colorspace` to compute the color distances in. All colors within the collection will be converted to mode. Note that hue values between modes like `hsl` and `lch` do not align so you may get weird results if you mix colors with different colorspaces.
+* @returns  The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
  * @example
  * let sample = [
   "#00ffdc",
@@ -220,16 +220,16 @@ console.log(sortedDescending)
 
  */
 declare function sortByHue(
-  collection: Array<ColorToken> | Map<any, ColorToken> | object,
+  collection: ArrayLike<ColorToken> | Map<any, ColorToken> | object,
   order?: 'asc' | 'desc',
   colorspace?: HueColorSpaces
 ): Array<ColorToken> | Map<any, ColorToken> | object;
 /**
  *
- *  Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
- * @param  colors The array of colors to sort
- * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
- * @returns An array of the sorted color values.
+ *  Sorts colors according to their contrast value as defined by WCAG. The contrast is tested `against` a comparison color.
+ * @param  collection The `collection` of colors to sort.
+ * @param  order The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
+ * @returns The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
  * @example
  *
  * import { sortByContrast } from 'huetiful-js'
@@ -243,19 +243,19 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
  
  */
 declare function sortByContrast(
-  collection: Array<ColorToken> | Map<any, ColorToken> | object,
+  collection: ArrayLike<ColorToken> | Map<any, ColorToken> | object,
   against: ColorToken,
   order?: 'asc' | 'desc'
 ): Array<ColorToken> | Map<any, ColorToken> | object;
 /**
  *
- *  Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
- * @param  colors The array of colors to sort.
+ *  Sorts colors according to their distance. The distance factor is determined by the colorspace used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the collection.
+ * @param  collection The `collection` of colors to sort..
  * @param against The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.
- * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
+ * @param  order The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
  * @param weights The weighting values to pass to the Euclidean function. Default is [1,1,1,0].
- * @param colorspace The color space to calculate the distance in . The default is the cylindrical variant of the CIELUV colorspace ('lchuv')
- * @returns An array of the sorted color values.
+ * @param colorspace The color space to calculate the distance in . The default is `'lchuv'`
+ * @returns The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
  * @example
  * import { sortByDistance } from 'huetiful-js'
 
@@ -278,7 +278,7 @@ console.log(
 // [ 'green', 'brown', 'red', 'purple' ]
  */
 declare function sortByDistance(
-  collection: Array<ColorToken> | Map<any, ColorToken> | object,
+  collection: ArrayLike<ColorToken> | Map<any, ColorToken> | object,
   against: ColorToken,
   order?: 'asc' | 'desc',
   options?: ColorDistanceOptions
