@@ -587,6 +587,22 @@ declare function getNearestColor(
  * @returns The largest chroma/saturation difference in the colors passed in or a custom object.
  *
  * @example
+ * 
+ * import { getFarthestChromaFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+        mode='lch'
+
+        console.log(getFarthestChromaFrom(sample,against,mode))
+
+        // 35
+
+
  */
 declare function getFarthestChromaFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
@@ -609,6 +625,23 @@ declare function getFarthestChromaFrom(
  * @returns The smallest chroma/saturation difference in the colors passed in or a custom object.
  *
  * @example
+ * 
+ * 
+ * import { getNearestChromaFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+        mode='lch'
+
+        console.log(getNearestChromaFrom(sample,against,mode))
+
+        // 5
+
+
  */
 declare function getNearestChromaFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
@@ -631,6 +664,20 @@ declare function getNearestChromaFrom(
  * @returns The largest hue angle difference in the colors passed in or a custom object.
  *
  * @example
+ * 
+ * import { getFarthestHueFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+        mode='lch'
+
+        console.log(getFarthestHueFrom(sample,against,mode))
+
+        // 35
  */
 declare function getFarthestHueFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
@@ -653,6 +700,21 @@ declare function getFarthestHueFrom(
  * @returns The smallest hue angle difference in the colors passed in or a custom object.
  *
  * @example
+ * import { getNearestHueFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+        mode='lch'
+
+        console.log(getNearestHueFrom(sample,against,mode))
+
+        // 5
+
+
  */
 declare function getNearestHueFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
@@ -675,7 +737,24 @@ declare function getNearestHueFrom(
  * @returns The largest lightness difference in the colors passed in or a custom object.
  *
  * @example
+ * 
+ * import { getFarthestLightnessFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+        mode='lch'
+
+        console.log(getFarthestLightnessFrom(sample,against,mode))
+
+        // 35
+
+
  */
+
 declare function getFarthestLightnessFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
@@ -697,6 +776,20 @@ declare function getFarthestLightnessFrom(
  * @returns The smallest lightness difference in the colors passed in or a custom object.
  *
  * @example
+ * import { getNearestLightnessFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+        mode='lch'
+
+        console.log(getNearestLightnessFrom(sample,against,mode))
+
+        // 5
+
  */
 declare function getNearestLightnessFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
