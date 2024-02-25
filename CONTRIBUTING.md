@@ -1,16 +1,22 @@
-# Contributing👐🏾🤝
+# Contributing :blue_heart:
+
+Thank you :smile: for contributing to this project. Follow the steps below to get started with the part of the project you wish to contribute to.
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
 
 - [Setup⛳](#setup)
-  - [Installing dependencies](#installing-dependencies)
   - [Cloning the repository](#cloning-the-repository)
+    - [Installing dependencies](#installing-dependencies)
 - [Coding conventions📐 and task automation🤖](#coding-conventions-and-task-automation)
+- [Contributing to the documentation](#contributing-to-the-documentation)
+- [Testing :test_tube:](#testing-test_tube)
+  - [Adding a test/ Running tests](#adding-a-test-running-tests)
 - [Issue tracking🙋🏽‍♂️](#issue-tracking️)
   - [Pull Requests](#pull-requests)
-- [Discussions🗣️💭](#discussions️)
 
-Thank you for empowering💪🏾🏋🏽‍♂️ open source by using our project! It's people like you that keep the software community thriving🌱 and relevant. Your contribution means a lot to us💙!
-
-Our documentation site runs on
+<!-- /code_chunk_output -->
 
 ## Setup⛳
 
@@ -41,20 +47,31 @@ npm install --save-dev
 
 ```
 
-## Live testing
-
-This project uses Nodemon for testing code as you develop it. You can start a live server that outputs to the terminal. Note that it currently supports JavaScript only. In the root directory, open the file named `app.js`:
-
-```sh
-npm start
-
-```
-
-This will watch the `app.js` file for any changes when you save it.
 
 ## Coding conventions📐 and task automation🤖
 
 This project uses Husky🐶 for Git hooks. For example, the code can only be committed if it passes linting tests which are done using 🧐ESLint. For the code to be pushed to the remote branch it must build without errors‼️ on your local machine. This helps reduce chances of introducing buggy🐞 code in the project. All code is automatically formatted using Prettier when you run `git push` as a pre-push hook.
+
+## Contributing to the documentation
+
+The API documentation is compiled from `.d.ts` files in the `types/` directory using [TypeDoc][typedoc] and [typedoc-plugin-markdown][markdown-plugin]. This is then converted to HTML pages with various tweaks. Check out the `docs/assets` to see all the resources used to build the docs.
+
+## Testing :test_tube:
+
+The library has full test coverage for every function on the public API using [Jasmine][jasmine]
+
+### Adding a test/ Running tests
+
+To run tests simply type this into your terminal:
+
+```sh
+npm test
+
+```
+
+If you wish to add or inspect the test files go to `spec` and open the module you want. A test file has a `.spec.js` suffix. Each test file has a `data` object which has the function name as key for an object containing parameters as an array, description and the expected value. This makes it easy to extend tests for future functions and keeps the spec files as DRY as possible.
+
+Tests must pass before a package is deployed on NPM.
 
 ## Issue tracking🙋🏽‍♂️
 
@@ -85,3 +102,8 @@ Our issues are partly managed by GitHub Actions. For example when you open a new
 6. Open a pull request
 
 Happy hacking 🚀!
+
+
+[typedoc]:[https://npmjs.com/package/typedoc]
+[markdown-plugin]:[https://npmjs.com/package/typedoc-plugin-markdown]
+[jasmine]:[https://npmjs.com/package/jasmine]
