@@ -42,7 +42,6 @@ export type ColorDistanceOptions = {
  */
 export type AdaptivePaletteOptions = {
   backgroundColor?: { light?: ColorToken; dark?: ColorToken };
-  viewingConditions?: ViewingConditions;
   colorBlind?: boolean;
 };
 
@@ -218,16 +217,7 @@ export type Factor =
   | 'hue'
   | string;
 
-type Order = 'asc' | 'desc';
-
 type callback = unknown;
-
-type FactorMapper = (
-  factor: Factor,
-  callback: callback,
-  order?: Order,
-  colorObj?: boolean
-) => (colors: ColorToken[]) => ColorToken[];
 
 export type UniformColorSpaces =
   | 'lch'
@@ -261,7 +251,7 @@ export type HueColorSpaces =
   | 'okhsv';
 
 export type ScaleValues =
-  | '50'
+  | '050'
   | '100'
   | '200'
   | '300'
@@ -270,7 +260,8 @@ export type ScaleValues =
   | '600'
   | '700'
   | '800'
-  | '900';
+  | '900'
+  | '950';
 
 export type TailwindColorFamilies =
   | 'indigo'
