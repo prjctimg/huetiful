@@ -26,7 +26,7 @@ import {
   mlchn,
   max,
   min,
-  interpolatorConfig as pltrconfg,
+   pltrconfg,
   gt,
   gte
 } from './helpers.js';
