@@ -49,7 +49,7 @@ declare function filterBySaturation(
   startSaturation?: number,
   endSaturation?: number,
   colorspace?: HueColorSpaces
-): ArrayLike<ColorToken> | Map<any, ColorToken>;
+): Array<ColorToken> | Map<any, ColorToken>;
 /**
  *
  *  Returns colors in the specified luminance range.
@@ -82,7 +82,7 @@ declare function filterByLuminance(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   startLuminance?: number,
   endLuminance?: number
-): ArrayLike<ColorToken> | Map<any, ColorToken>;
+): Array<ColorToken> | Map<any, ColorToken>;
 /**
  *
  * Returns colors in the specified lightness range.
@@ -120,7 +120,7 @@ declare function filterByLightness(
   startLightness?: number,
   endLightness?: number,
   colorspace?: HueColorSpaces
-): ArrayLike<ColorToken> | Map<any, ColorToken>;
+): Array<ColorToken> | Map<any, ColorToken>;
 /**
  *
  * Returns colors in the specified hue ranges between 0 to 360.
@@ -152,7 +152,7 @@ declare function filterByHue(
   startHue?: number,
   endHue?: number,
   colorspace?: HueColorSpaces
-): ArrayLike<ColorToken> | Map<any, ColorToken>;
+): Array<ColorToken> | Map<any, ColorToken>;
 /**
  *
  * Returns colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.
@@ -182,7 +182,7 @@ declare function filterByDistance(
   against: ColorToken,
   startDistance?: number,
   endDistance?: number
-): ArrayLike<ColorToken> | Map<any, ColorToken>;
+): Array<ColorToken> | Map<any, ColorToken>;
 /**
  *
  * Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
@@ -217,7 +217,7 @@ declare function filterByContrast(
   against: ColorToken,
   startContrast?: number,
   endContrast?: number
-): ArrayLike<ColorToken> | Map<any, ColorToken>;
+): Array<ColorToken> | Map<any, ColorToken>;
 export {
   filterByContrast,
   filterByDistance,
