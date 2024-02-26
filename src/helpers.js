@@ -55,7 +55,7 @@ const pltrconfg = {
   li
 };
 
-function getModeChannel(cspace, idx) {
+function gmchn(cspace, idx) {
   const res = cspace.substring(cspace.length - 3);
 
   return (idx && res.charAt(idx)) || res;
@@ -423,7 +423,7 @@ export {
   eq,
   norm,
   or,
-  getModeChannel,
+  gmchn,
   pltrconfg,
   reOp,
   reNum

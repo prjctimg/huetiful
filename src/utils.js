@@ -10,7 +10,7 @@ import {
   max,
   rand,
   chnDiff,
-  getModeChannel
+  gmchn
 } from './helpers.js';
 
 import { tailwindColors } from './colors.js';

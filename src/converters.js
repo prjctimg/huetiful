@@ -36,7 +36,7 @@ import {
   modeJab
 } from 'culori/fn';
 
-import { getModeChannel } from './helpers.js';
+import { gmchn } from './helpers.js';
 
 function toOk(colorspace = 'oklch') {
   var cspaces = new Map([
@@ -139,7 +139,7 @@ function color2hex(color) {
         ? color[color.length - 1]
         : color['alpha'];
 
-    var channelKeys = getModeChannel(mode).split('');
+    var channelKeys = gmchn(mode).split('');
     var colorTupleToObj = (colorTuple) => {
       var channels = colorTuple.slice(0, 3);
 
@@ -257,14 +257,10 @@ function color2tuple(color, colorspace = 'rgb') {
   return arr;
 }
 
-function tuple2map(color, colorspace) {
-  if (typeof arguments[1] === 'undefined') {
-    colorspace = 'lch';
-  }
-  converter(colorspace)(color);
-}
-
+function tuple2object(arr = [], targetMode) {
+ }
 export {
+  tuple2object,
   num2color,
   color2num,
   temp2color,
