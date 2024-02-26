@@ -222,7 +222,7 @@ function temp2color(kelvin = 1000, colorspace = '') {
   );
 }
 
-function color2tuple(color, colorspace = 'rgb') {
+function color2tuple(color, colorspace = 'rgb', omitMode = false) {
   colorspace = color['mode'] || colorspace;
   var o;
 
@@ -237,7 +237,8 @@ function color2tuple(color, colorspace = 'rgb') {
   var arr = Object.keys(o)
     .filter((ch) => ch !== 'mode')
     .map((key) => o[key]);
-  arr.unshift(colorspace);
+
+  omitMode ? arr : arr.unshift(colorspace);
 
   return arr;
 }
