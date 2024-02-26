@@ -98,8 +98,8 @@
   <!-- DOC_START -->
 <p><a href="../modules.html">huetiful-js</a> / <a href="../modules.html">Modules</a> / sortBy</p>
 <h1 id="module-sortby">Module: sortBy</h1>
-<h2 id="table-of-contents">Table of contents</h2>
-<h3 id="functions">Functions</h3>
+<h2 id="table-of-contents-📑">Table of contents 📑</h2>
+<h3 id="functions-🧰">Functions 🧰</h3>
 <ul>
 <li><a href="sortBy.html#sortbycontrast">sortByContrast</a></li>
 <li><a href="sortBy.html#sortbydistance">sortByDistance</a></li>
@@ -108,11 +108,11 @@
 <li><a href="sortBy.html#sortbyluminance">sortByLuminance</a></li>
 <li><a href="sortBy.html#sortbysaturation">sortBySaturation</a></li>
 </ul>
-<h2 id="functions-1">Functions</h2>
+<h2 id="functions">Functions</h2>
 <h3 id="sortbycontrast">sortByContrast</h3>
 <p>▸ <strong>sortByContrast</strong>(<code>collection</code>, <code>against</code>, <code>order?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their contrast value as defined by WCAG. The contrast is tested <code>against</code> a comparison color.</p>
-<h4 id="parameters">Parameters</h4>
+<h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -139,7 +139,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="returns">Returns</h4>
+<h4 id="returns-🔙">Returns 🔙</h4>
 <p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
 <p><strong><code>Example</code></strong></p>
@@ -152,13 +152,13 @@ console.log(sortByContrast(sample, 'yellow'))
 console.log(sortByContrast(sample, 'yellow', 'desc'))
 // [ 'purple', 'brown', 'green', 'red' ]
 </code></pre>
-<h4 id="defined-in">Defined in</h4>
+<h4 id="defined-in-🔬">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L245">sortBy.d.ts:245</a></p>
 <hr />
 <h3 id="sortbydistance">sortByDistance</h3>
 <p>▸ <strong>sortByDistance</strong>(<code>collection</code>, <code>against</code>, <code>order?</code>, <code>options?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their distance. The distance factor is determined by the colorspace used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the collection.</p>
-<h4 id="parameters-1">Parameters</h4>
+<h4 id="parameters-🧮-1">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -190,7 +190,7 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 </tr>
 </tbody>
 </table>
-<h4 id="returns-1">Returns</h4>
+<h4 id="returns-🔙-1">Returns 🔙</h4>
 <p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
 <p><strong><code>Example</code></strong></p>
@@ -214,13 +214,13 @@ console.log(
 
 // [ 'green', 'brown', 'red', 'purple' ]
 </code></pre>
-<h4 id="defined-in-1">Defined in</h4>
+<h4 id="defined-in-🔬-1">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L280">sortBy.d.ts:280</a></p>
 <hr />
 <h3 id="sortbyhue">sortByHue</h3>
 <p>▸ <strong>sortByHue</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their hue angle values. It works with any <code>colorspace</code> with a hue channel.</p>
-<h4 id="parameters-2">Parameters</h4>
+<h4 id="parameters-🧮-2">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -247,7 +247,7 @@ console.log(
 </tr>
 </tbody>
 </table>
-<h4 id="returns-2">Returns</h4>
+<h4 id="returns-🔙-2">Returns 🔙</h4>
 <p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
 <p><strong><code>Example</code></strong></p>
@@ -287,13 +287,13 @@ console.log(sortedDescending)
  '#310000'
 ]
 </code></pre>
-<h4 id="defined-in-2">Defined in</h4>
+<h4 id="defined-in-🔬-2">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L222">sortBy.d.ts:222</a></p>
 <hr />
 <h3 id="sortbylightness">sortByLightness</h3>
 <p>▸ <strong>sortByLightness</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their lightness.</p>
-<h4 id="parameters-3">Parameters</h4>
+<h4 id="parameters-🧮-3">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -320,7 +320,7 @@ console.log(sortedDescending)
 </tr>
 </tbody>
 </table>
-<h4 id="returns-3">Returns</h4>
+<h4 id="returns-🔙-3">Returns 🔙</h4>
 <p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
 <p><strong><code>Example</code></strong></p>
@@ -362,13 +362,13 @@ sortByLightness(sample,'desc')
  '#310000'
 ]
 </code></pre>
-<h4 id="defined-in-3">Defined in</h4>
+<h4 id="defined-in-🔬-3">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L171">sortBy.d.ts:171</a></p>
 <hr />
 <h3 id="sortbyluminance">sortByLuminance</h3>
 <p>▸ <strong>sortByLuminance</strong>(<code>collection</code>, <code>order</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their relative brightness as defined by the WCAG3 definition.</p>
-<h4 id="parameters-4">Parameters</h4>
+<h4 id="parameters-🧮-4">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -390,7 +390,7 @@ sortByLightness(sample,'desc')
 </tr>
 </tbody>
 </table>
-<h4 id="returns-4">Returns</h4>
+<h4 id="returns-🔙-4">Returns 🔙</h4>
 <p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
 <p><strong><code>Example</code></strong></p>
@@ -431,13 +431,13 @@ console.log(sortedDescending)
  '#310000'
 ]
 </code></pre>
-<h4 id="defined-in-4">Defined in</h4>
+<h4 id="defined-in-🔬-4">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L119">sortBy.d.ts:119</a></p>
 <hr />
 <h3 id="sortbysaturation">sortBySaturation</h3>
 <p>▸ <strong>sortBySaturation</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to the amount of saturation channel in the specified <code>colorspace</code>.</p>
-<h4 id="parameters-5">Parameters</h4>
+<h4 id="parameters-🧮-5">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -464,7 +464,7 @@ console.log(sortedDescending)
 </tr>
 </tbody>
 </table>
-<h4 id="returns-5">Returns</h4>
+<h4 id="returns-🔙-5">Returns 🔙</h4>
 <p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
 <p><strong><code>Example</code></strong></p>
@@ -506,7 +506,7 @@ console.log(sortedDescending)
  '#310000'
 ]
 </code></pre>
-<h4 id="defined-in-5">Defined in</h4>
+<h4 id="defined-in-🔬-5">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L66">sortBy.d.ts:66</a></p>
 <!-- DOC_END -->
 

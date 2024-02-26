@@ -1,2 +1,3 @@
-let a = 'abc'.split('');
-console.log(a);
+import { lstatSync } from 'node:fs';
+
+console.log(lstatSync('./README.md'));

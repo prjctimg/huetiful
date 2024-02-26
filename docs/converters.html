@@ -98,8 +98,8 @@
   <!-- DOC_START -->
 <p><a href="../modules.html">huetiful-js</a> / <a href="../modules.html">Modules</a> / converters</p>
 <h1 id="module-converters">Module: converters</h1>
-<h2 id="table-of-contents">Table of contents</h2>
-<h3 id="functions">Functions</h3>
+<h2 id="table-of-contents-📑">Table of contents 📑</h2>
+<h3 id="functions-🧰">Functions 🧰</h3>
 <ul>
 <li><a href="converters.html#color2hex">color2hex</a></li>
 <li><a href="converters.html#color2num">color2num</a></li>
@@ -114,11 +114,11 @@
 <li><a href="converters.html#took">toOk</a></li>
 <li><a href="converters.html#ucsconverter">ucsConverter</a></li>
 </ul>
-<h2 id="functions-1">Functions</h2>
+<h2 id="functions">Functions</h2>
 <h3 id="color2hex">color2hex</h3>
 <p>▸ <strong>color2hex</strong>(<code>color</code>): <code>string</code></p>
 <p>Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), any <code>number</code> from 0 to 166,777,215 and arrays in the form of <code>[string,number,number,number,numer?]</code> the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.</p>
-<h4 id="parameters">Parameters</h4>
+<h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -135,7 +135,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="returns">Returns</h4>
+<h4 id="returns-🔙">Returns 🔙</h4>
 <p><code>string</code></p>
 <p>A hexadecimal representation of the passed in color.</p>
 <p><strong><code>Example</code></strong></p>
@@ -147,13 +147,13 @@ console.log(color2hex({ l: 50, c: 31, h: 100, alpha: 0.5, mode: "lch" }))
 console.log(color2hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 // #7b7941
 </code></pre>
-<h4 id="defined-in">Defined in</h4>
+<h4 id="defined-in-🔬">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L95">converters.d.ts:95</a></p>
 <hr />
 <h3 id="color2num">color2num</h3>
 <p>▸ <strong>color2num</strong>(<code>color</code>): <code>number</code></p>
 <p>Returns the numerical equivalent of a color.</p>
-<h4 id="parameters-1">Parameters</h4>
+<h4 id="parameters-🧮-1">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -170,7 +170,7 @@ console.log(color2hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 </tr>
 </tbody>
 </table>
-<h4 id="returns-1">Returns</h4>
+<h4 id="returns-🔙-1">Returns 🔙</h4>
 <p><code>number</code></p>
 <p>value The numerical value of the color from 0 to 16,777,215.</p>
 <p><strong><code>Example</code></strong></p>
@@ -179,13 +179,13 @@ console.log(color2hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 console.log(color2num("b2c3f1"))
 // 11715569
 </code></pre>
-<h4 id="defined-in-1">Defined in</h4>
+<h4 id="defined-in-🔬-1">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L121">converters.d.ts:121</a></p>
 <hr />
 <h3 id="color2tuple">color2tuple</h3>
 <p>▸ <strong>color2tuple</strong>(<code>color</code>, <code>colorspace?</code>): <code>any</code>[]</p>
 <p>Returns an array of channel values in the mode color space. It does not mutate the values of the passed in color token.</p>
-<h4 id="parameters-2">Parameters</h4>
+<h4 id="parameters-🧮-2">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -207,7 +207,7 @@ console.log(color2num("b2c3f1"))
 </tr>
 </tbody>
 </table>
-<h4 id="returns-2">Returns</h4>
+<h4 id="returns-🔙-2">Returns 🔙</h4>
 <p><code>any</code>[]</p>
 <p>An array of channel values with the colorspace as first element and the alpha channel as the fifth element in the array if its explicitly defined in the passed in color.</p>
 <p><strong><code>Example</code></strong></p>
@@ -221,13 +221,13 @@ console.log(color2tuple(rgbColor));
 
 // [ 'rgb', 0.4, 0.3, 0.7 ]
 </code></pre>
-<h4 id="defined-in-2">Defined in</h4>
+<h4 id="defined-in-🔬-2">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L160">converters.d.ts:160</a></p>
 <hr />
 <h3 id="num2color">num2color</h3>
 <p>▸ <strong>num2color</strong>(<code>num</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a></p>
 <p>Returns the color equivalent of any <code>number</code> between 0 and 16,777,215 as a hexadecimal string or color object if the <code>colorspace</code> is specified.</p>
-<h4 id="parameters-3">Parameters</h4>
+<h4 id="parameters-🧮-3">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -249,7 +249,7 @@ console.log(color2tuple(rgbColor));
 </tr>
 </tbody>
 </table>
-<h4 id="returns-3">Returns</h4>
+<h4 id="returns-🔙-3">Returns 🔙</h4>
 <p><a href="types.html#colortoken"><code>ColorToken</code></a></p>
 <p>color A color object or hex string.</p>
 <p><strong><code>Example</code></strong></p>
@@ -258,13 +258,13 @@ console.log(color2tuple(rgbColor));
 console.log(num2color(900))
 // #000384
 </code></pre>
-<h4 id="defined-in-3">Defined in</h4>
+<h4 id="defined-in-🔬-3">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L108">converters.d.ts:108</a></p>
 <hr />
 <h3 id="temp2color">temp2color</h3>
 <p>▸ <strong>temp2color</strong>(<code>kelvin</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a></p>
 <p>Converts the temperature value (in Kelvins) to a color as a hexadecimal string else a color object in the mode <code>colorspace</code>.</p>
-<h4 id="parameters-4">Parameters</h4>
+<h4 id="parameters-🧮-4">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -286,7 +286,7 @@ console.log(num2color(900))
 </tr>
 </tbody>
 </table>
-<h4 id="returns-4">Returns</h4>
+<h4 id="returns-🔙-4">Returns 🔙</h4>
 <p><a href="types.html#colortoken"><code>ColorToken</code></a></p>
 <p>color The color as a hexadecimal  or plain color object.</p>
 <p><strong><code>Example</code></strong></p>
@@ -295,13 +295,13 @@ console.log(num2color(900))
 console.log(temp2color(2542))
 // #ffa44a
 </code></pre>
-<h4 id="defined-in-4">Defined in</h4>
+<h4 id="defined-in-🔬-4">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L135">converters.d.ts:135</a></p>
 <hr />
 <h3 id="tocie">toCIE</h3>
 <p>▸ <strong>toCIE</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
 <p>Returns the passed in color as a plain object in the specified CIE colorspace.</p>
-<h4 id="parameters-5">Parameters</h4>
+<h4 id="parameters-🧮-5">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -318,10 +318,10 @@ console.log(temp2color(2542))
 </tr>
 </tbody>
 </table>
-<h4 id="returns-5">Returns</h4>
+<h4 id="returns-🔙-5">Returns 🔙</h4>
 <p><code>fn</code></p>
 <p>▸ (<code>color</code>): <code>object</code></p>
-<h5 id="parameters-6">Parameters</h5>
+<h5 id="parameters-🧮-6">Parameters 🧮</h5>
 <table>
 <thead>
 <tr>
@@ -336,17 +336,17 @@ console.log(temp2color(2542))
 </tr>
 </tbody>
 </table>
-<h5 id="returns-6">Returns</h5>
+<h5 id="returns-🔙-6">Returns 🔙</h5>
 <p><code>object</code></p>
 <p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
-<h4 id="defined-in-5">Defined in</h4>
+<h4 id="defined-in-🔬-5">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L28">converters.d.ts:28</a></p>
 <hr />
 <h3 id="todin99">toDIN99</h3>
 <p>▸ <strong>toDIN99</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
 <p>Returns the passed in color as a plain object in the specified DIN99 colorspace.</p>
-<h4 id="parameters-7">Parameters</h4>
+<h4 id="parameters-🧮-7">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -363,10 +363,10 @@ console.log(temp2color(2542))
 </tr>
 </tbody>
 </table>
-<h4 id="returns-7">Returns</h4>
+<h4 id="returns-🔙-7">Returns 🔙</h4>
 <p><code>fn</code></p>
 <p>▸ (<code>color</code>): <code>object</code></p>
-<h5 id="parameters-8">Parameters</h5>
+<h5 id="parameters-🧮-8">Parameters 🧮</h5>
 <table>
 <thead>
 <tr>
@@ -381,17 +381,17 @@ console.log(temp2color(2542))
 </tr>
 </tbody>
 </table>
-<h5 id="returns-8">Returns</h5>
+<h5 id="returns-🔙-8">Returns 🔙</h5>
 <p><code>object</code></p>
 <p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
-<h4 id="defined-in-6">Defined in</h4>
+<h4 id="defined-in-🔬-6">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L56">converters.d.ts:56</a></p>
 <hr />
 <h3 id="toitp">toITP</h3>
 <p>▸ <strong>toITP</strong>(<code>color</code>): <code>object</code></p>
 <p>Returns the passed in color as a plain object in the ITP colorspace.</p>
-<h4 id="parameters-9">Parameters</h4>
+<h4 id="parameters-🧮-9">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -408,17 +408,17 @@ console.log(temp2color(2542))
 </tr>
 </tbody>
 </table>
-<h4 id="returns-9">Returns</h4>
+<h4 id="returns-🔙-9">Returns 🔙</h4>
 <p><code>object</code></p>
 <p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For expected ranges and channels.</p>
-<h4 id="defined-in-7">Defined in</h4>
+<h4 id="defined-in-🔬-7">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L65">converters.d.ts:65</a></p>
 <hr />
 <h3 id="tojab">toJab</h3>
 <p>▸ <strong>toJab</strong>(<code>color</code>): <code>object</code></p>
 <p>Returns the passed in color as a plain object in the Jab colorspace.</p>
-<h4 id="parameters-10">Parameters</h4>
+<h4 id="parameters-🧮-10">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -435,17 +435,17 @@ console.log(temp2color(2542))
 </tr>
 </tbody>
 </table>
-<h4 id="returns-10">Returns</h4>
+<h4 id="returns-🔙-10">Returns 🔙</h4>
 <p><code>object</code></p>
 <p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For expected ranges and channels.</p>
-<h4 id="defined-in-8">Defined in</h4>
+<h4 id="defined-in-🔬-8">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L79">converters.d.ts:79</a></p>
 <hr />
 <h3 id="tojch">toJch</h3>
 <p>▸ <strong>toJch</strong>(<code>color</code>): <code>object</code></p>
 <p>Returns the passed in color as a plain object in the Jch colorspace.</p>
-<h4 id="parameters-11">Parameters</h4>
+<h4 id="parameters-🧮-11">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -462,17 +462,17 @@ console.log(temp2color(2542))
 </tr>
 </tbody>
 </table>
-<h4 id="returns-11">Returns</h4>
+<h4 id="returns-🔙-11">Returns 🔙</h4>
 <p><code>object</code></p>
 <p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For expected ranges and channels.</p>
-<h4 id="defined-in-9">Defined in</h4>
+<h4 id="defined-in-🔬-9">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L72">converters.d.ts:72</a></p>
 <hr />
 <h3 id="took">toOk</h3>
 <p>▸ <strong>toOk</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
 <p>Returns the passed in color as a plain object in the specified Ok colorspace.</p>
-<h4 id="parameters-12">Parameters</h4>
+<h4 id="parameters-🧮-12">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -489,10 +489,10 @@ console.log(temp2color(2542))
 </tr>
 </tbody>
 </table>
-<h4 id="returns-12">Returns</h4>
+<h4 id="returns-🔙-12">Returns 🔙</h4>
 <p><code>fn</code></p>
 <p>▸ (<code>color</code>): <code>object</code></p>
-<h5 id="parameters-13">Parameters</h5>
+<h5 id="parameters-🧮-13">Parameters 🧮</h5>
 <table>
 <thead>
 <tr>
@@ -507,17 +507,17 @@ console.log(temp2color(2542))
 </tr>
 </tbody>
 </table>
-<h5 id="returns-13">Returns</h5>
+<h5 id="returns-🔙-13">Returns 🔙</h5>
 <p><code>object</code></p>
 <p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
-<h4 id="defined-in-10">Defined in</h4>
+<h4 id="defined-in-🔬-10">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L18">converters.d.ts:18</a></p>
 <hr />
 <h3 id="ucsconverter">ucsConverter</h3>
 <p>▸ <strong>ucsConverter</strong>(<code>colorspace</code>): <code>ConvertFn</code></p>
 <p>Converter function with mode definitions for uniform color spaces. The function is curried to return a converter in the passed colospace.</p>
-<h4 id="parameters-14">Parameters</h4>
+<h4 id="parameters-🧮-14">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -534,10 +534,10 @@ console.log(temp2color(2542))
 </tr>
 </tbody>
 </table>
-<h4 id="returns-14">Returns</h4>
+<h4 id="returns-🔙-14">Returns 🔙</h4>
 <p><code>ConvertFn</code></p>
 <p>The converter function in the mode colorspace.</p>
-<h4 id="defined-in-11">Defined in</h4>
+<h4 id="defined-in-🔬-11">Defined in 🔬</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L8">converters.d.ts:8</a></p>
 <!-- DOC_END -->
 
