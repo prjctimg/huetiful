@@ -167,9 +167,12 @@ declare function color2tuple(
   colorspace?: Colorspaces
 ): any[];
 
-declare function tuple2map(
+declare function tuple2object(
   color: ColorTuple
-): Map<Colorspaces, { [chn: string]: number | undefined; alpha?: number }>;
+):  { [chn: string]: number | undefined; alpha?: number }
+
+
+
 
 export {
   num2color,

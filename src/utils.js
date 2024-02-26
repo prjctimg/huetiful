@@ -97,9 +97,8 @@ function baseFunc(fctr, collection, cb, order, colorObj) {
 }
 
 function getNearestContrast(collection, against, colorObj) {
-  const fctr = 'contrast';
   return baseFunc(
-    fctr,
+    'contrast',
     collection,
     contrastPredicate(against),
     'asc',
@@ -108,9 +107,8 @@ function getNearestContrast(collection, against, colorObj) {
 }
 
 function getFarthestContrast(collection, against, colorObj) {
-  const fctr = 'contrast';
   return baseFunc(
-    fctr,
+    'contrast',
     collection,
     contrastPredicate(against),
     'desc',
