@@ -1,2 +1,2 @@
-let a = 'abc'.indexOf('b');
+let a = 'abc'.split('');
 console.log(a);

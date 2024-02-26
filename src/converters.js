@@ -258,7 +258,29 @@ function color2tuple(color, colorspace = 'rgb') {
 }
 
 function tuple2object(arr = [], targetMode) {
- }
+  // get  the needed vars
+  var [m, tm, cb] = [
+    arr[0],
+    targetMode,
+    (x, y, m) => ({
+      [x[0]]: y[0],
+      [x[1]]: y[1],
+      [x[2]]: y[2],
+      mode: m,
+      alpha: y[3] || 1
+    })
+  ];
+
+  if (m && tm) {
+    return converter(tm)(cb(gmchn(m).split(''), arr.slice(1), tm));
+  } else if ((!m && tm) || (m && !tm)) {
+    return cb(
+      (m || tm).split(''),
+      typeof arr[0] !== 'string' ? arr : arr.slice(1),
+      m || tm
+    );
+  }
+}
 export {
   tuple2object,
   num2color,

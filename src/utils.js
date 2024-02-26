@@ -117,9 +117,8 @@ function getFarthestContrast(collection, against, colorObj) {
 }
 
 function getNearestChroma(collection, colorspace, colorObj = false) {
-  const fctr = 'saturation';
   return baseFunc(
-    fctr,
+    'saturation',
     collection,
     chromaPredicate(colorspace),
     'asc',
@@ -128,9 +127,8 @@ function getNearestChroma(collection, colorspace, colorObj = false) {
 }
 
 function getFarthestChroma(collection, colorspace, colorObj = false) {
-  const fctr = 'chroma';
   return baseFunc(
-    fctr,
+    'saturation',
     collection,
     chromaPredicate(colorspace),
     'desc',
@@ -138,12 +136,16 @@ function getFarthestChroma(collection, colorspace, colorObj = false) {
   );
 }
 function getNearestHue(collection, colorspace, colorObj = false) {
-  const fctr = 'hue';
-  return baseFunc(fctr, collection, huePredicate(colorspace), 'asc', colorObj);
+  return baseFunc('hue', collection, huePredicate(colorspace), 'asc', colorObj);
 }
 function getFarthestHue(collection, colorspace, colorObj = false) {
-  const fctr = 'hue';
-  return baseFunc(fctr, collection, huePredicate(colorspace), 'desc', colorObj);
+  return baseFunc(
+    'hue',
+    collection,
+    huePredicate(colorspace),
+    'desc',
+    colorObj
+  );
 }
 function getComplimentaryHue(color, colorspace, colorObj = false) {
   const modeChannel = `${or(colorspace, 'lch')}.h`;
@@ -336,16 +338,18 @@ function brighten(color, amount = 1, colorspace) {
   return darken(color, +amount, colorspace);
 }
 
-function isAchromatic(color, mode) {
+function isAchromatic(color, colorspace) {
   // If a color has no lightness then it has no hue so its technically achromatic
-  const props = {
-    lightness: getChannel(`${mlchn(mode)}`)(color),
-    chroma: getChannel(`${mcchn(mode)}`)(color)
+  var props = {
+    lightness: getChannel(`${mlchn(colorspace)}`)(color),
+    chroma: getChannel(`${mcchn(colorspace)}`)(color)
   };
 
   // Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
 
-  return props['chroma'] && props['lightness'] !== (false || NaN || undefined)
+  return props['chroma'] &&
+    props['lightness'] !==
+      (false || NaN || undefined || void 0 || 0 || Infinity || -Infinity)
     ? false
     : true;
 }

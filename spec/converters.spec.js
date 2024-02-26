@@ -20,11 +20,11 @@ describe(`This test suite checks the converter functions. `, () => {
       description: 'Converts any color to hexadecimal',
       expect: '#7b794180'
     },
-    // tuple2object: {
-    //   params: [['lch', 50, 31, 100]],
-    //   description: 'Converts a color tuple to a Map',
-    //   expect: { l: 50, c: 31, h: 100, mode: 'lch' }
-    // },
+    tuple2object: {
+      params: [['lch', 50, 31, 100, 0.5]],
+      description: 'Converts a color tuple to an object with channels as keys',
+      expect: { l: 50, c: 31, h: 100, alpha: 0.5, mode: 'lch' }
+    },
     num2color: {
       params: [900],
       description:
