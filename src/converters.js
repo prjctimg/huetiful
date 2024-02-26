@@ -224,12 +224,19 @@ function temp2color(kelvin = 1000, colorspace = '') {
 
 function color2tuple(color, colorspace = 'rgb') {
   colorspace = color['mode'] || colorspace;
+  var o;
 
-  const colorObject = converter(colorspace)(color);
+  if (Array.isArray(color)) {
+    o = tuple2object(color, colorspace);
+  } else if (typeof color === 'number') {
+    o = num2color(colorspace, colorspace);
+  } else {
+    o = converter(colorspace)(color);
+  }
 
-  var arr = Object.keys(colorObject)
+  var arr = Object.keys(o)
     .filter((ch) => ch !== 'mode')
-    .map((key) => colorObject[key]);
+    .map((key) => o[key]);
   arr.unshift(colorspace);
 
   return arr;
