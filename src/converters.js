@@ -128,45 +128,17 @@ function color2hex(color) {
     }
     return formatHex(color);
   } else if (typeof color === 'boolean') {
-    return (color !== true && '#ffffff') || '#000000';
+    return (color === true && '#ffffff') || '#000000';
   } else if (typeof color === 'number') {
     output = num2color(color);
   } else {
     // Get the mode variable
-    const mode = Array.isArray(color) ? color[0] : color['mode'];
-    const alpha =
-      Array.isArray(color) && color.length === 5
-        ? color[color.length - 1]
-        : color['alpha'];
+    const mode = color[0] || color['mode'];
 
-    var channelKeys = gmchn(mode).split('');
-    var colorTupleToObj = (colorTuple) => {
-      var channels = colorTuple.slice(0, 3);
-
-      if (
-        ['rgb', 'lrgb'].indexOf(mode) !== -1 &&
-        channels.some((ch) => 1 < Math.abs(ch))
-      ) {
-        channels = channels.map((ch) => ch / 255);
-      }
-
-      let output = {
-        [channelKeys[0]]: channels[0],
-        [channelKeys[1]]: channels[1],
-        [channelKeys[2]]: channels[2],
-        mode: mode,
-        alpha: alpha
-      };
-
-      return output;
-    };
-    if (mode) {
-      // coerce color tuple to object
-      if (Array.isArray(color)) {
-        output = colorTupleToObj(color.slice(1));
-      } else {
-        output = colorTupleToObj(color2tuple(color, mode).slice(1));
-      }
+    if (Array.isArray(color)) {
+      output = tuple2object(color);
+    } else {
+      output = tuple2object(color2tuple(color, mode));
     }
   }
 
