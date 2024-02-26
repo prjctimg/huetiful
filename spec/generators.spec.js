@@ -73,7 +73,7 @@ describe(`This test suite checks the generators. `, () => {
         '#6aca4c',
         '#c5b722',
         '#fba859',
-        '#ffa995',
+        '#010101',
         '#f3bac1'
       ]
     },

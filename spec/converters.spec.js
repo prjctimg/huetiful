@@ -48,9 +48,9 @@ describe(`This test suite checks the converter functions. `, () => {
         {
           r: 0.4,
           g: 0.3,
-          b: 0.7,
-          mode: 'rgb'
-        }
+          b: 0.7
+        },
+        'rgb'
       ],
       description:
         'Converts a color object to an array containing channel values and the colorspace ',

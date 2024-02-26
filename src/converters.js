@@ -223,13 +223,13 @@ function temp2color(kelvin = 1000, colorspace = '') {
 }
 
 function color2tuple(color, colorspace = 'rgb', omitMode = false) {
-  colorspace = color['mode'] || colorspace;
+  colorspace = colorspace || color['mode'];
   var o;
 
   if (Array.isArray(color)) {
     o = tuple2object(color, colorspace);
   } else if (typeof color === 'number') {
-    o = num2color(colorspace, colorspace);
+    o = num2color(color, colorspace);
   } else {
     o = converter(colorspace)(color);
   }
@@ -238,6 +238,7 @@ function color2tuple(color, colorspace = 'rgb', omitMode = false) {
     .filter((ch) => ch !== 'mode')
     .map((key) => o[key]);
 
+  // dont add mode string if true
   omitMode ? arr : arr.unshift(colorspace);
 
   return arr;
