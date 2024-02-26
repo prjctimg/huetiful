@@ -1,4 +1,9 @@
-import type { Colorspaces, ColorToken, UniformColorSpaces } from './types';
+import type {
+  Colorspaces,
+  ColorToken,
+  ColorTuple,
+  UniformColorSpaces
+} from './types';
 
 /**
  * Converter function with mode definitions for uniform color spaces. The function is curried to return a converter in the passed colospace.
@@ -161,6 +166,11 @@ declare function color2tuple(
   color: string | object,
   colorspace?: Colorspaces
 ): any[];
+
+declare function tuple2map(
+  color: ColorTuple
+): Map<Colorspaces, { [chn: string]: number | undefined; alpha?: number }>;
+
 export {
   num2color,
   color2num,

@@ -1,3 +1,5 @@
+'use strict';
+
 import {
   useMode,
   modeRgb,
@@ -34,7 +36,7 @@ import {
   modeJab
 } from 'culori/fn';
 
-import { or, getModeChannel } from './helpers.js';
+import { getModeChannel } from './helpers.js';
 
 function toOk(colorspace = 'oklch') {
   var cspaces = new Map([
@@ -253,6 +255,13 @@ function color2tuple(color, colorspace = 'rgb') {
   arr.unshift(colorspace);
 
   return arr;
+}
+
+function tuple2map(color, colorspace) {
+  if (typeof arguments[1] === 'undefined') {
+    colorspace = 'lch';
+  }
+  converter(colorspace)(color);
 }
 
 export {

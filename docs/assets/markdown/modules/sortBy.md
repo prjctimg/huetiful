@@ -19,21 +19,21 @@
 
 ▸ **sortByContrast**(`collection`, `against`, `order?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
-Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
+Sorts colors according to their contrast value as defined by WCAG. The contrast is tested `against` a comparison color.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The `collection` of colors to sort. |
 | `against` | [`ColorToken`](types.md#colortoken) | - |
-| `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+| `order?` | ``"asc"`` \| ``"desc"`` | The arrangement order of the colors either `asc \| desc`. Default is ascending (`asc`) |
 
 #### Returns
 
 [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
-An array of the sorted color values.
+The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
 
 **`Example`**
 
@@ -50,7 +50,7 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 
 #### Defined in
 
-[sortBy.d.ts:245](https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L245)
+[sortBy.d.ts:245](https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L245)
 
 ___
 
@@ -58,22 +58,22 @@ ___
 
 ▸ **sortByDistance**(`collection`, `against`, `order?`, `options?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
-Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
+Sorts colors according to their distance. The distance factor is determined by the colorspace used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the collection.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The `collection` of colors to sort.. |
 | `against` | [`ColorToken`](types.md#colortoken) | The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array. |
-| `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+| `order?` | ``"asc"`` \| ``"desc"`` | The arrangement order of the colors either `asc \| desc`. Default is ascending (`asc`) |
 | `options?` | [`ColorDistanceOptions`](types.md#colordistanceoptions) | - |
 
 #### Returns
 
 [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
-An array of the sorted color values.
+The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
 
 **`Example`**
 
@@ -101,7 +101,7 @@ console.log(
 
 #### Defined in
 
-[sortBy.d.ts:280](https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L280)
+[sortBy.d.ts:280](https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L280)
 
 ___
 
@@ -109,21 +109,21 @@ ___
 
 ▸ **sortByHue**(`collection`, `order?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
-Sorts colors according to hue values. It works with any color space with a hue channel. Note that hue values between HSL and Lch do not align. Achromatic colors are not supported
+Sorts colors according to their hue angle values. It works with any `colorspace` with a hue channel.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
-| `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
-| `colorspace?` | `string` | The color space to compute the color distances in. All colors within the collection will be converted to mode. Also note that because differences in hue mapping certain color spaces such as HSL and LCH hue values do not align. Keep such quirks in mind to avoid weird results. |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The `collection` of colors to sort. Achromatic colors are not supported because when displayed on the screen, the colors would be grayscale (so visually, there's no sign of hue). This behaviour is because the `hue` channel is dependant on the `lightness` and `saturation / chroma` channels . For example, a falsy value like `0` or `undefined` turns the color grayscale whilst lightness at both extremes renders a color totally white (max) or black (min). |
+| `order?` | ``"asc"`` \| ``"desc"`` | The arrangement order of the colors either `asc \| desc`. Default is ascending (`asc`) |
+| `colorspace?` | `string` | The mode `colorspace` to compute the color distances in. All colors within the collection will be converted to mode. Note that hue values between modes like `hsl` and `lch` do not align so you may get weird results if you mix colors with different colorspaces. |
 
 #### Returns
 
 [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
-An array of the sorted color values.
+The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
 
 **`Example`**
 
@@ -167,7 +167,7 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:222](https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L222)
+[sortBy.d.ts:222](https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L222)
 
 ___
 
@@ -181,15 +181,15 @@ Sorts colors according to their lightness.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
-| `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The `collection` of colors to sort. |
+| `order?` | ``"asc"`` \| ``"desc"`` | The arrangement order of the colors either `asc \| desc`. Default is ascending (`asc`) |
 | `colorspace?` | `string` | The mode colorspace to use for filtering color lightness. Defaut is lch65 |
 
 #### Returns
 
 [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
-An array of the sorted color values.
+The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
 
 **`Example`**
 
@@ -235,7 +235,7 @@ sortByLightness(sample,'desc')
 
 #### Defined in
 
-[sortBy.d.ts:171](https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L171)
+[sortBy.d.ts:171](https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L171)
 
 ___
 
@@ -243,20 +243,20 @@ ___
 
 ▸ **sortByLuminance**(`collection`, `order`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
-Sorts colors according to the relative brightness as defined by WCAG definition.
+Sorts colors according to their relative brightness as defined by the WCAG3 definition.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
-| `order` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The `collection` of colors to sort. |
+| `order` | ``"asc"`` \| ``"desc"`` | The arrangement order of the colors either `asc \| desc`. Default is ascending (`asc`) |
 
 #### Returns
 
 [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
-An array of the sorted color values.
+The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
 
 **`Example`**
 
@@ -301,7 +301,7 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:119](https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L119)
+[sortBy.d.ts:119](https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L119)
 
 ___
 
@@ -309,21 +309,21 @@ ___
 
 ▸ **sortBySaturation**(`collection`, `order?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
-Sorts colors according to their saturation.
+Sorts colors according to the amount of saturation channel in the specified `colorspace`.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
-| `order?` | ``"asc"`` \| ``"desc"`` | The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc') |
-| `colorspace?` | `string` | The mode color space to compute the saturation value in. The default is lch . |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The `collection` of colors to sort. |
+| `order?` | ``"asc"`` \| ``"desc"`` | The arrangement order of the colors either `asc \| desc`. Default is ascending (`asc`) |
+| `colorspace?` | `string` | The `mode` colorspace to compute the saturation value in. The default is lch . |
 
 #### Returns
 
 [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
 
-An array of the sorted color values.
+The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
 
 **`Example`**
 
@@ -369,4 +369,4 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:66](https://github.com/prjctimg/huetiful/blob/c14365d/types/sortBy.d.ts#L66)
+[sortBy.d.ts:66](https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L66)

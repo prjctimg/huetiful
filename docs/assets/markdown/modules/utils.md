@@ -76,31 +76,30 @@ console.log(myColor)
 
 #### Defined in
 
-[utils.d.ts:356](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L356)
+[utils.d.ts:354](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L354)
 
 ___
 
 ### brighten
 
-▸ **brighten**(`color`, `amount?`, `colorspace?`): `string`
+▸ **brighten**(`color`, `amount?`, `colorspace?`, `hex?`): `string` \| `object`
 
-The inverse of `darken`. It brightens the passed in color`.
-@param   color The color to brighten.
-@param amount The amount to brighten with. The value is expected to be in the range `[0,100]`
+The inverse of `darken`. It brightens the passed in color by increasing the lightness channel.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | - |
-| `amount?` | `number` | - |
-| `colorspace?` | `string` | The mode colorspace to brighten the color in. Only uniform colorspaces are supported |
+| `color` | [`ColorToken`](types.md#colortoken) | The color to brighten. |
+| `amount?` | `number` | The amount to brighten with. The value is expected to be in the range `[0,100]` |
+| `colorspace?` | `string` | The mode colorspace to brighten the color in. Only uniform colorspaces are supported. |
+| `hex?` | `boolean` | Optional boolean to return a hex string (if `true`) or a color obect in the mode `colorspace`. |
 
 #### Returns
 
-`string`
+`string` \| `object`
 
-color The brightened color as a hex string
+The brightened color as a hex string or color object in the colorspace specified if `hex` is set to `false`.
 
 **`Example`**
 
@@ -112,7 +111,7 @@ console.log(brighten('blue', 0.3, 'lch'));
 
 #### Defined in
 
-[utils.d.ts:479](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L479)
+[utils.d.ts:478](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L478)
 
 ___
 
@@ -120,7 +119,7 @@ ___
 
 ▸ **colorDeficiency**(`deficiencyType?`): (`color`: [`ColorToken`](types.md#colortoken), `severity?`: `number`) => `string`
 
-Returns the color as a simulation of the passed in type of color vision deficiency with the deficiency filter's intensity determined by the severity value.
+Returns the color as a simulation of the passed in `defeciencyType` of color vision deficiency with the deficiency filter's intensity determined by the `severity` value.
 
 #### Parameters
 
@@ -166,7 +165,7 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 
 #### Defined in
 
-[utils.d.ts:558](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L558)
+[utils.d.ts:559](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L559)
 
 ___
 
@@ -200,7 +199,7 @@ console.log(darken('blue', 0.3, 'lch'));
 
 #### Defined in
 
-[utils.d.ts:460](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L460)
+[utils.d.ts:458](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L458)
 
 ___
 
@@ -245,7 +244,7 @@ console.log(getChannel('rgb.g')('#a1bd2f'))
 
 #### Defined in
 
-[utils.d.ts:292](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L292)
+[utils.d.ts:290](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L290)
 
 ___
 
@@ -282,7 +281,7 @@ console.log(getComplimentaryHue("purple"))
 
 #### Defined in
 
-[utils.d.ts:250](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L250)
+[utils.d.ts:248](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L248)
 
 ___
 
@@ -316,7 +315,7 @@ console.log(getContrast("black", "white"));
 
 #### Defined in
 
-[utils.d.ts:370](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L370)
+[utils.d.ts:368](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L368)
 
 ___
 
@@ -330,9 +329,9 @@ Gets the largest saturation value from the passed in colors.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
-| `colorspace?` | `string` | The mode color space to perform the computation in. |
-| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false. |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
+| `colorspace?` | `string` | The mode `colorspace` to perform the computation in. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is false. |
 
 #### Returns
 
@@ -353,7 +352,7 @@ console.log(getFarthestChroma(sample, 'lch'))
 
 #### Defined in
 
-[utils.d.ts:173](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L173)
+[utils.d.ts:171](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L171)
 
 ___
 
@@ -361,22 +360,44 @@ ___
 
 ▸ **getFarthestChromaFrom**(`collection`, `against`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
+Gets the largest chroma/saturation difference between the colors in a collection `against` a comparison color.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> |
-| `against` | [`ColorToken`](types.md#colortoken) |
-| `colorspace?` | `string` |
-| `colorObj?` | `boolean` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to query. |
+| `against` | [`ColorToken`](types.md#colortoken) | The color to compare against. This color is used as a subtrahend against each color in the collection. |
+| `colorspace?` | `string` | The mode colorspace to retrieve the channel being queried. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is false. |
 
 #### Returns
 
 `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
+The largest chroma/saturation difference in the colors passed in or a custom object.
+
+**`Example`**
+
+```ts
+import { getFarthestChromaFrom } from 'huetiful-js'
+
+var sample =  [
+         { l: 40, c: 20, h: 40, mode: 'lch' },
+         { l: 20, c: 10, h: 20, mode: 'lch' },
+         { l: 10, c: 40, h: 10, mode: 'lch' }
+       ],
+       against = { l: 5, c: 5, h: 5, mode: 'lch' },
+       mode='lch'
+
+       console.log(getFarthestChromaFrom(sample,against,mode))
+
+       // 35
+```
+
 #### Defined in
 
-[utils.d.ts:580](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L580)
+[utils.d.ts:607](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L607)
 
 ___
 
@@ -390,9 +411,9 @@ Gets the largest contrast value from the passed in colors compared against a sam
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The array or object of colors to query the color with the largest contrast value. |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to query the color with the largest contrast value. |
 | `against` | [`ColorToken`](types.md#colortoken) | - |
-| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (contrast) and name of the color as keys. Default is false. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`contrast`) and name of the color as keys. Default is false. |
 
 #### Returns
 
@@ -414,7 +435,7 @@ console.log(getFarthestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true)
 
 #### Defined in
 
-[utils.d.ts:121](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L121)
+[utils.d.ts:119](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L119)
 
 ___
 
@@ -422,15 +443,15 @@ ___
 
 ▸ **getFarthestHue**(`collection`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
-Gets the largest hue value from the passed in colors.
+Gets the largest hue angle from the passed in colors.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
 | `colorspace?` | `string` | The mode color space to perform the computation in. |
-| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is false. |
 
 #### Returns
 
@@ -450,7 +471,7 @@ console.log(getFarthestHue(sample, 'lch'))
 
 #### Defined in
 
-[utils.d.ts:224](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L224)
+[utils.d.ts:222](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L222)
 
 ___
 
@@ -458,22 +479,44 @@ ___
 
 ▸ **getFarthestHueFrom**(`collection`, `against`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
+Gets the largest hue angle difference between the colors in a collection `against` a comparison color.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> |
-| `against` | [`ColorToken`](types.md#colortoken) |
-| `colorspace?` | `string` |
-| `colorObj?` | `boolean` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to query. |
+| `against` | [`ColorToken`](types.md#colortoken) | The color to compare against. This color is used as a subtrahend against each color in the collection. |
+| `colorspace?` | `string` | The mode colorspace to retrieve the channel being queried. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is false. |
 
 #### Returns
 
 `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
+The largest hue angle difference in the colors passed in or a custom object.
+
+**`Example`**
+
+```ts
+import { getFarthestHueFrom } from 'huetiful-js'
+
+var sample =  [
+         { l: 40, c: 20, h: 40, mode: 'lch' },
+         { l: 20, c: 10, h: 20, mode: 'lch' },
+         { l: 10, c: 40, h: 10, mode: 'lch' }
+       ],
+       against = { l: 5, c: 5, h: 5, mode: 'lch' },
+       mode='lch'
+
+       console.log(getFarthestHueFrom(sample,against,mode))
+
+       // 35
+```
+
 #### Defined in
 
-[utils.d.ts:604](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L604)
+[utils.d.ts:682](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L682)
 
 ___
 
@@ -487,9 +530,9 @@ Gets the largest lightness value from the passed in colors.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The array or object of colors to query the color with the largest lightness value. |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to query the color with the largest lightness value. |
 | `colorspace?` | `string` | THe mode colorspace to retrieve the lightness value from. |
-| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is false. |
 
 #### Returns
 
@@ -511,7 +554,7 @@ console.log(getFarthestLightness(sample, 'lch',true))
 
 #### Defined in
 
-[utils.d.ts:436](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L436)
+[utils.d.ts:434](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L434)
 
 ___
 
@@ -519,22 +562,44 @@ ___
 
 ▸ **getFarthestLightnessFrom**(`collection`, `against`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
+Gets the largest lightness difference between the colors in a collection `against` a comparison color.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> |
-| `against` | [`ColorToken`](types.md#colortoken) |
-| `colorspace?` | `string` |
-| `colorObj?` | `boolean` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to query. |
+| `against` | [`ColorToken`](types.md#colortoken) | The color to compare against. This color is used as a subtrahend against each color in the collection. |
+| `colorspace?` | `string` | The mode colorspace to retrieve the channel being queried. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is false. |
 
 #### Returns
 
 `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
+The largest lightness difference in the colors passed in or a custom object.
+
+**`Example`**
+
+```ts
+import { getFarthestLightnessFrom } from 'huetiful-js'
+
+var sample =  [
+         { l: 40, c: 20, h: 40, mode: 'lch' },
+         { l: 20, c: 10, h: 20, mode: 'lch' },
+         { l: 10, c: 40, h: 10, mode: 'lch' }
+       ],
+       against = { l: 5, c: 5, h: 5, mode: 'lch' },
+       mode='lch'
+
+       console.log(getFarthestLightnessFrom(sample,against,mode))
+
+       // 35
+```
+
 #### Defined in
 
-[utils.d.ts:628](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L628)
+[utils.d.ts:758](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L758)
 
 ___
 
@@ -542,7 +607,7 @@ ___
 
 ▸ **getHueFamily**(`color`): [`HueFamily`](types.md#huefamily)
 
-Gets the hue family which a a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
+Gets the hue family which a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
 
 #### Parameters
 
@@ -554,7 +619,7 @@ Gets the hue family which a a color belongs to with the overtone included (if it
 
 [`HueFamily`](types.md#huefamily)
 
-The name of the hue family for example red or green.
+The name of the hue family for example `red` or `blue-green`.
 
 **`Example`**
 
@@ -567,7 +632,7 @@ console.log(getHueFamily("#310000"))
 
 #### Defined in
 
-[utils.d.ts:23](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L23)
+[utils.d.ts:23](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L23)
 
 ___
 
@@ -617,7 +682,7 @@ console.log(colors('all', '400').map(getLuminance));
 
 #### Defined in
 
-[utils.d.ts:319](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L319)
+[utils.d.ts:317](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L317)
 
 ___
 
@@ -631,9 +696,9 @@ Gets the smallest chroma/saturation value from the passed in colors.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The array or object of colors to query the color with the smallest chroma/saturation value. |
-| `colorspace?` | `string` | The mode color space to perform the computation in. |
-| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (saturation) and name of the color as keys. Default is false. |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to query the color with the smallest chroma/saturation value. |
+| `colorspace?` | `string` | The mode `colorspace` to retrieve saturation/chroma values. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is false. |
 
 #### Returns
 
@@ -654,7 +719,7 @@ console.log(getNearestChroma(sample, 'lch'))
 
 #### Defined in
 
-[utils.d.ts:147](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L147)
+[utils.d.ts:145](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L145)
 
 ___
 
@@ -662,36 +727,60 @@ ___
 
 ▸ **getNearestChromaFrom**(`collection`, `against`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
+Gets the smallest chroma/saturation difference between the colors in a collection `against` a comparison color.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> |
-| `against` | [`ColorToken`](types.md#colortoken) |
-| `colorspace?` | `string` |
-| `colorObj?` | `boolean` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to query. |
+| `against` | [`ColorToken`](types.md#colortoken) | The color to compare against. This color is used as a subtrahend against each color in the collection. |
+| `colorspace?` | `string` | The mode colorspace to retrieve the channel being queried. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is false. |
 
 #### Returns
 
 `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
+The smallest chroma/saturation difference in the colors passed in or a custom object.
+
+**`Example`**
+
+```ts
+import { getNearestChromaFrom } from 'huetiful-js'
+
+var sample =  [
+         { l: 40, c: 20, h: 40, mode: 'lch' },
+         { l: 20, c: 10, h: 20, mode: 'lch' },
+         { l: 10, c: 40, h: 10, mode: 'lch' }
+       ],
+       against = { l: 5, c: 5, h: 5, mode: 'lch' },
+       mode='lch'
+
+       console.log(getNearestChromaFrom(sample,against,mode))
+
+       // 5
+```
+
 #### Defined in
 
-[utils.d.ts:592](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L592)
+[utils.d.ts:646](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L646)
 
 ___
 
 ### getNearestColor
 
-▸ **getNearestColor**(`collection`, `color`, `num?`): [`ColorToken`](types.md#colortoken) \| [`ColorToken`](types.md#colortoken)[]
+▸ **getNearestColor**(`collection`, `against`, `num?`): [`ColorToken`](types.md#colortoken) \| [`ColorToken`](types.md#colortoken)[]
+
+Returns the nearest color(s) in a collection against
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `collection` | [`ColorToken`](types.md#colortoken)[] \| ``"tailwind"`` | The collection of colors to search for nearest colors |
-| `color` | [`ColorToken`](types.md#colortoken) | The color to use for distance comparison |
-| `num?` | `number` | The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the differenceHyab metric. |
+| `against` | [`ColorToken`](types.md#colortoken) | The color to use for distance comparison. |
+| `num?` | `number` | The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric. |
 
 #### Returns
 
@@ -710,7 +799,7 @@ console.log(getNearestColor(cols, 'blue', 3));
 
 #### Defined in
 
-[utils.d.ts:574](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L574)
+[utils.d.ts:575](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L575)
 
 ___
 
@@ -724,9 +813,9 @@ Gets the smallest contrast value from the passed in colors compared against a sa
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The array or object of colors to query the color with the smallest contrast value. |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to query the color with the smallest contrast value. |
 | `against` | [`ColorToken`](types.md#colortoken) | - |
-| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (contrast) and name of the color as keys. Default is false. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`contrast`) and name of the color as keys. Default is false. |
 
 #### Returns
 
@@ -748,7 +837,7 @@ console.log(getNearestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true))
 
 #### Defined in
 
-[utils.d.ts:93](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L93)
+[utils.d.ts:92](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L92)
 
 ___
 
@@ -756,15 +845,15 @@ ___
 
 ▸ **getNearestHue**(`collection`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
-Gets the smallest hue value from the passed in colors.
+Gets the smallest hue angle from the passed in colors.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
-| `colorspace?` | `string` | The mode color space to perform the computation in. |
-| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false. |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | - |
+| `colorspace?` | `string` | The mode `colorspace` to perform the computation in. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is false. |
 
 #### Returns
 
@@ -785,7 +874,7 @@ console.log(getNearestHue(sample, 'lch'))
 
 #### Defined in
 
-[utils.d.ts:199](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L199)
+[utils.d.ts:197](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L197)
 
 ___
 
@@ -793,22 +882,44 @@ ___
 
 ▸ **getNearestHueFrom**(`collection`, `against`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
+Gets the smallest hue angle difference between the colors in a collection `against` a comparison color.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> |
-| `against` | [`ColorToken`](types.md#colortoken) |
-| `colorspace?` | `string` |
-| `colorObj?` | `boolean` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to query. |
+| `against` | [`ColorToken`](types.md#colortoken) | The color to compare against. This color is used as a subtrahend against each color in the collection. |
+| `colorspace?` | `string` | The mode colorspace to retrieve the channel being queried. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is false. |
 
 #### Returns
 
 `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
+The smallest hue angle difference in the colors passed in or a custom object.
+
+**`Example`**
+
+```ts
+import { getNearestHueFrom } from 'huetiful-js'
+
+var sample =  [
+         { l: 40, c: 20, h: 40, mode: 'lch' },
+         { l: 20, c: 10, h: 20, mode: 'lch' },
+         { l: 10, c: 40, h: 10, mode: 'lch' }
+       ],
+       against = { l: 5, c: 5, h: 5, mode: 'lch' },
+       mode='lch'
+
+       console.log(getNearestHueFrom(sample,against,mode))
+
+       // 5
+```
+
 #### Defined in
 
-[utils.d.ts:616](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L616)
+[utils.d.ts:719](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L719)
 
 ___
 
@@ -822,9 +933,9 @@ Gets the smallest lightness value from the passed in colors.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The array or object of colors to query the color with the smallest lightness value. |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to query the color with the smallest lightness value. |
 | `colorspace?` | `string` | - |
-| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is false. |
 
 #### Returns
 
@@ -846,7 +957,7 @@ console.log(getNearestLightness(sample, 'lch',true))
 
 #### Defined in
 
-[utils.d.ts:408](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L408)
+[utils.d.ts:406](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L406)
 
 ___
 
@@ -854,28 +965,50 @@ ___
 
 ▸ **getNearestLightnessFrom**(`collection`, `against`, `colorspace?`, `colorObj?`): `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
+Gets the smallest lightness difference between the colors in a collection `against` a comparison color.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `collection` | `object` \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> |
-| `against` | [`ColorToken`](types.md#colortoken) |
-| `colorspace?` | `string` |
-| `colorObj?` | `boolean` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The collection of colors to query. |
+| `against` | [`ColorToken`](types.md#colortoken) | The color to compare against. This color is used as a subtrahend against each color in the collection. |
+| `colorspace?` | `string` | The mode colorspace to retrieve the channel being queried. |
+| `colorObj?` | `boolean` | Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is false. |
 
 #### Returns
 
 `number` \| \{ `color`: [`ColorToken`](types.md#colortoken) ; `factor`: `number`  }
 
+The smallest lightness difference in the colors passed in or a custom object.
+
+**`Example`**
+
+```ts
+import { getNearestLightnessFrom } from 'huetiful-js'
+
+var sample =  [
+         { l: 40, c: 20, h: 40, mode: 'lch' },
+         { l: 20, c: 10, h: 20, mode: 'lch' },
+         { l: 10, c: 40, h: 10, mode: 'lch' }
+       ],
+       against = { l: 5, c: 5, h: 5, mode: 'lch' },
+       mode='lch'
+
+       console.log(getNearestLightnessFrom(sample,against,mode))
+
+       // 5
+```
+
 #### Defined in
 
-[utils.d.ts:640](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L640)
+[utils.d.ts:794](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L794)
 
 ___
 
 ### isAchromatic
 
-▸ **isAchromatic**(`color`, `mode?`): `boolean`
+▸ **isAchromatic**(`color`, `colorspace?`): `boolean`
 
 Checks if a color is achromatic(without hue or simply grayscale).
 
@@ -884,13 +1017,13 @@ Checks if a color is achromatic(without hue or simply grayscale).
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `color` | [`ColorToken`](types.md#colortoken) | The color to test if it is achromatic or not. |
-| `mode?` | `string` | - |
+| `colorspace?` | `string` | The colorspace to use when checking if the `color` is grayscale or not. |
 
 #### Returns
 
 `boolean`
 
-boolean Returns true if the color is achromatic else false
+True if the color is achromatic else false.
 
 **`Example`**
 
@@ -935,7 +1068,7 @@ console.log(map(grays, isAchromatic));
 
 #### Defined in
 
-[utils.d.ts:532](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L532)
+[utils.d.ts:533](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L533)
 
 ___
 
@@ -955,7 +1088,7 @@ Checks if a color can be roughly classified as a cool color. Returns true if col
 
 `boolean`
 
-True or false.
+True if the color is cool else false.
 
 **`Example`**
 
@@ -978,7 +1111,7 @@ console.log(map(sample, isCool));
 
 #### Defined in
 
-[utils.d.ts:50](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L50)
+[utils.d.ts:50](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L50)
 
 ___
 
@@ -998,7 +1131,7 @@ Checks if a color can be roughly classified as a warm color. Returns true if col
 
 `boolean`
 
-True or false.
+True if the color is warm else false.
 
 **`Example`**
 
@@ -1021,7 +1154,7 @@ console.log(map(sample, isWarm));
 
 #### Defined in
 
-[utils.d.ts:75](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L75)
+[utils.d.ts:75](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L75)
 
 ___
 
@@ -1041,7 +1174,7 @@ Returns the hue which is biasing the passed in color
 
 `string` \| `boolean`
 
-The name of the overtone hue. If an achromatic color is passed in it return the string gray otherwise if the color has no bias it returns false.
+The name of the overtone hue. If an achromatic color is passed in it return the string `'gray'` otherwise if the color has no bias it returns false.
 
 **`Example`**
 
@@ -1060,7 +1193,7 @@ console.log(overtone("blue"))
 
 #### Defined in
 
-[utils.d.ts:389](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L389)
+[utils.d.ts:387](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L387)
 
 ___
 
@@ -1108,7 +1241,7 @@ console.log(getChannel('lch.h')(myColor))
 
 #### Defined in
 
-[utils.d.ts:276](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L276)
+[utils.d.ts:274](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L274)
 
 ___
 
@@ -1144,4 +1277,4 @@ console.log(getLuminance(myColor))
 
 #### Defined in
 
-[utils.d.ts:335](https://github.com/prjctimg/huetiful/blob/c14365d/types/utils.d.ts#L335)
+[utils.d.ts:333](https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L333)

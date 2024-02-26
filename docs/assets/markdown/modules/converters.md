@@ -25,7 +25,7 @@
 
 ▸ **color2hex**(`color`): `string`
 
-Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), numbers from 0 to 166,777,215 and arrays in the form of [string,number,number,number,numer?] the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
+Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), any `number` from 0 to 166,777,215 and arrays in the form of `[string,number,number,number,numer?]` the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
 
 #### Parameters
 
@@ -53,7 +53,7 @@ console.log(color2hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 
 #### Defined in
 
-[converters.d.ts:95](https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L95)
+[converters.d.ts:95](https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L95)
 
 ___
 
@@ -86,7 +86,7 @@ console.log(color2num("b2c3f1"))
 
 #### Defined in
 
-[converters.d.ts:121](https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L121)
+[converters.d.ts:121](https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L121)
 
 ___
 
@@ -100,14 +100,14 @@ Returns an array of channel values in the mode color space. It does not mutate t
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `string` \| `object` | Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g `num2color`. |
+| `color` | `string` \| `object` | Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g `num2color` if you want tonevrt the number to supported color token. |
 | `colorspace?` | `string` | The mode color space to return channel values for. You can omit this parameter if you pass in a color object with the `mode` property. |
 
 #### Returns
 
 `any`[]
 
-An array of channel values with the colorspace as first element and the alpha channel if its explicitly defined in the passed in color.
+An array of channel values with the colorspace as first element and the alpha channel as the fifth element in the array if its explicitly defined in the passed in color.
 
 **`Example`**
 
@@ -125,7 +125,7 @@ console.log(color2tuple(rgbColor));
 
 #### Defined in
 
-[converters.d.ts:159](https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L159)
+[converters.d.ts:160](https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L160)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 ▸ **num2color**(`num`, `colorspace?`): [`ColorToken`](types.md#colortoken)
 
-Returns the color equivalent of any number between 0 and 16,777,215 as a hexadecimal string or color object if the `colorspace` is specified.
+Returns the color equivalent of any `number` between 0 and 16,777,215 as a hexadecimal string or color object if the `colorspace` is specified.
 
 #### Parameters
 
@@ -159,7 +159,7 @@ console.log(num2color(900))
 
 #### Defined in
 
-[converters.d.ts:108](https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L108)
+[converters.d.ts:108](https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L108)
 
 ___
 
@@ -180,7 +180,7 @@ Converts the temperature value (in Kelvins) to a color as a hexadecimal string e
 
 [`ColorToken`](types.md#colortoken)
 
-color The color as a hexadecimal  or RGB color object.
+color The color as a hexadecimal  or plain color object.
 
 **`Example`**
 
@@ -193,7 +193,7 @@ console.log(temp2color(2542))
 
 #### Defined in
 
-[converters.d.ts:135](https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L135)
+[converters.d.ts:135](https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L135)
 
 ___
 
@@ -231,7 +231,7 @@ https://culorijs.org/color-spaces/
 
 #### Defined in
 
-[converters.d.ts:28](https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L28)
+[converters.d.ts:28](https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L28)
 
 ___
 
@@ -245,7 +245,7 @@ Returns the passed in color as a plain object in the specified DIN99 colorspace.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colorspace?` | `Pick`\<`string`, ``"dlch"`` \| ``"dlab"``\> | The DIN99 colorspace to use. |
+| `colorspace?` | `Pick`\<`string`, ``"dlch"`` \| ``"dlab"``\> | The DIN99 colorspace variant (either cartesian/dlab or polar/dlch) to use. |
 
 #### Returns
 
@@ -269,7 +269,7 @@ https://culorijs.org/color-spaces/
 
 #### Defined in
 
-[converters.d.ts:56](https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L56)
+[converters.d.ts:56](https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L56)
 
 ___
 
@@ -295,7 +295,7 @@ https://culorijs.org/color-spaces/ For expected ranges and channels.
 
 #### Defined in
 
-[converters.d.ts:65](https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L65)
+[converters.d.ts:65](https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L65)
 
 ___
 
@@ -321,7 +321,7 @@ https://culorijs.org/color-spaces/ For expected ranges and channels.
 
 #### Defined in
 
-[converters.d.ts:79](https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L79)
+[converters.d.ts:79](https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L79)
 
 ___
 
@@ -347,7 +347,7 @@ https://culorijs.org/color-spaces/ For expected ranges and channels.
 
 #### Defined in
 
-[converters.d.ts:72](https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L72)
+[converters.d.ts:72](https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L72)
 
 ___
 
@@ -385,7 +385,7 @@ https://culorijs.org/color-spaces/
 
 #### Defined in
 
-[converters.d.ts:18](https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L18)
+[converters.d.ts:18](https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L18)
 
 ___
 
@@ -409,4 +409,4 @@ The converter function in the mode colorspace.
 
 #### Defined in
 
-[converters.d.ts:8](https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L8)
+[converters.d.ts:8](https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L8)

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/huetiful.css" />
-    <link rel="stylesheet" href="./assets/css/github-markdown.css" />
+    <link rel="stylesheet" href="./assets/css/github-markdown-light.css" />
     <style>
       .markdown-body {
         box-sizing: border-box;
@@ -33,7 +33,7 @@
   <body class="markdown-body">
     <header class="pb-8 sticky top-0 left-0  w-full text-gray-700">
       <nav
-        class=" flex flex-wrap items-center justify-between w-full py-4.html:py-0 px-4 text-lg text-gray-700 bg-white dark:bg-slate-800 dark:text-gray-200 shadow-lg shadow-gray-300 dark:shadow-black"
+        class="py-4 flex flex-wrap items-center justify-between w-full py-4.html:py-0 px-4 text-lg text-gray-700 bg-white dark:bg-slate-800 dark:text-gray-200 shadow-lg shadow-gray-300 dark:shadow-black"
       >
       
         <a class="inline-flex space-y-1 items-center font-medium text-base"
@@ -92,7 +92,7 @@
       </nav>
       <div id="progress-bar" class="progress bg-gradient-to-r from-blue-600 via-pink-600 to-green-600"/>
     </header>
-    <section class="min-h-screen">
+    <section>
  
 
   <!-- DOC_START -->
@@ -112,8 +112,8 @@
 </ul>
 <h2 id="functions-1">Functions</h2>
 <h3 id="discoverpalettes">discoverPalettes</h3>
-<p>▸ <strong>discoverPalettes</strong>(<code>colors</code>, <code>schemeType?</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>object</code></p>
-<p>Takes a collection of colors and finds the nearest matches using the <code>differenceHyab()</code> difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use <code>isAchromatic</code> to filter grays from your collection before passing it to the function.</p>
+<p>▸ <strong>discoverPalettes</strong>(<code>colors</code>, <code>schemeType?</code>, <code>colorspace?</code>): <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>Takes a collection of colors and finds the nearest matches using the <code>differenceHyab()</code> difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use <code>isAchromatic</code> to filter grays from your collection in the mode <code>colorspace</code> before passing it to the function.</p>
 <h4 id="parameters">Parameters</h4>
 <table>
 <thead>
@@ -126,7 +126,7 @@
 <tbody>
 <tr>
 <td style="text-align:left;"><code>colors</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to create palettes from. Preferably use 6 or more colors for better results.</td>
 </tr>
 <tr>
@@ -142,8 +142,8 @@
 </tbody>
 </table>
 <h4 id="returns">Returns</h4>
-<p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>object</code></p>
-<p>An array of colors if the scheme parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.</p>
+<p><code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>An array of colors if the <code>schemeType</code> parameter is specified else it returns a <code>Map</code> object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { discoverPalettes } from 'huetiful-js'
 
@@ -165,10 +165,10 @@ console.log(discoverPalettes(sample, "tetradic"))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
 </code></pre>
 <h4 id="defined-in">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L66">generators.d.ts:66</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L69">generators.d.ts:69</a></p>
 <hr />
 <h3 id="earthtone">earthtone</h3>
-<p>▸ <strong>earthtone</strong>(<code>color</code>, <code>colorspace?</code>, <code>options?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>earthtone</strong>(<code>color</code>, <code>colorspace?</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>></p>
 <p>Creates a scale of a spline interpolation between an earthtone and a color.</p>
 <h4 id="parameters-1">Parameters</h4>
 <table>
@@ -198,8 +198,8 @@ console.log(discoverPalettes(sample, "tetradic"))
 </tbody>
 </table>
 <h4 id="returns-1">Returns</h4>
-<p><a href="types.html#colortoken"><code>ColorToken</code></a>[]</p>
-<p>The array of colors resulting from the earthtone interpolation as hex codes.</p>
+<p><code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>></p>
+<p>Collection of colors resulting from the earthtone interpolation as hex codes.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { earthtone } from 'huetiful-js'
 
@@ -207,11 +207,11 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 // [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
 </code></pre>
 <h4 id="defined-in-1">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L86">generators.d.ts:86</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L89">generators.d.ts:89</a></p>
 <hr />
 <h3 id="hueshift">hueShift</h3>
-<p>▸ <strong>hueShift</strong>(<code>color</code>, <code>colorspace?</code>, <code>options?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[]</p>
-<p>Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down) from a single scheme color. Min and max lightness value determine how light or dark our colour will be at either extreme.</p>
+<p>▸ <strong>hueShift</strong>(<code>color</code>, <code>colorspace?</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>></p>
+<p>Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts down) from a single color. Min and max lightness values determine how light or dark our colour will be at either extreme.</p>
 <h4 id="parameters-2">Parameters</h4>
 <table>
 <thead>
@@ -240,7 +240,7 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 </tbody>
 </table>
 <h4 id="returns-2">Returns</h4>
-<p><a href="types.html#colortoken"><code>ColorToken</code></a>[]</p>
+<p><code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>></p>
 <p>An array of colors in hexadecimal. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or <code>(iterations * 2) + 1</code></p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { hueShift } from "huetiful-js";
@@ -259,7 +259,7 @@ console.log(hueShiftedPalette);
 ]
 </code></pre>
 <h4 id="defined-in-2">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L112">generators.d.ts:112</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L115">generators.d.ts:115</a></p>
 <hr />
 <h3 id="interpolatespline">interpolateSpline</h3>
 <p>▸ <strong>interpolateSpline</strong>(<code>colors</code>, <code>colorspace?</code>, <code>iterations?</code>, <code>kind?</code>, <code>closed?</code>, <code>options?</code>): <code>string</code>[]</p>
@@ -276,8 +276,8 @@ console.log(hueShiftedPalette);
 <tbody>
 <tr>
 <td style="text-align:left;"><code>colors</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[]</td>
-<td style="text-align:left;">The array of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.</td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.</td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>colorspace?</code></td>
@@ -297,7 +297,7 @@ console.log(hueShiftedPalette);
 <tr>
 <td style="text-align:left;"><code>closed?</code></td>
 <td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false</td>
+<td style="text-align:left;">Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is <code>false</code></td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>options?</code></td>
@@ -308,7 +308,7 @@ console.log(hueShiftedPalette);
 </table>
 <h4 id="returns-3">Returns</h4>
 <p><code>string</code>[]</p>
-<p>A hexadecimal representation of the resultant color.</p>
+<p>An array hexadecimal string of the resultant color.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { interpolateSpline } from 'huetiful-js';
 
@@ -322,7 +322,7 @@ console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 ]
 </code></pre>
 <h4 id="defined-in-3">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L141">generators.d.ts:141</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L144">generators.d.ts:144</a></p>
 <hr />
 <h3 id="interpolator">interpolator</h3>
 <p>▸ <strong>interpolator</strong>(<code>colors</code>, <code>colorspace?</code>, <code>options?</code>): (<code>t</code>: <code>number</code>) =&gt; <code>FindColorByMode</code></p>
@@ -337,7 +337,7 @@ console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 <tbody>
 <tr>
 <td style="text-align:left;"><code>colors</code></td>
-<td style="text-align:left;"><a href="types.html#colortoken"><code>ColorToken</code></a>[]</td>
+<td style="text-align:left;"><code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>colorspace?</code></td>
@@ -370,10 +370,10 @@ console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 <h5 id="returns-5">Returns</h5>
 <p><code>FindColorByMode</code></p>
 <h4 id="defined-in-4">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L152">generators.d.ts:152</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L155">generators.d.ts:155</a></p>
 <hr />
 <h3 id="pairedscheme">pairedScheme</h3>
-<p>▸ <strong>pairedScheme</strong>(<code>color</code>, <code>options?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <a href="types.html#colortoken"><code>ColorToken</code></a></p>
+<p>▸ <strong>pairedScheme</strong>(<code>color</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>> | <a href="types.html#colortoken"><code>ColorToken</code></a></p>
 <p>Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative <code>hueStep</code> will pick a color that is <code>hueStep</code> degrees behind the base color.</p>
 <h4 id="parameters-6">Parameters</h4>
 <table>
@@ -398,7 +398,7 @@ console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 </tbody>
 </table>
 <h4 id="returns-6">Returns</h4>
-<p><a href="types.html#colortoken"><code>ColorToken</code></a>[] | <a href="types.html#colortoken"><code>ColorToken</code></a></p>
+<p><code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>> | <a href="types.html#colortoken"><code>ColorToken</code></a></p>
 <p>An array containing the paired scheme.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { pairedScheme } from 'huetiful-js'
@@ -407,7 +407,7 @@ console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
 </code></pre>
 <h4 id="defined-in-5">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L200">generators.d.ts:200</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L203">generators.d.ts:203</a></p>
 <hr />
 <h3 id="pastel">pastel</h3>
 <p>▸ <strong>pastel</strong>(<code>color</code>): <a href="types.html#colortoken"><code>ColorToken</code></a></p>
@@ -439,11 +439,11 @@ console.log(pastel("green"))
 // #036103ff
 </code></pre>
 <h4 id="defined-in-6">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L217">generators.d.ts:217</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L220">generators.d.ts:220</a></p>
 <hr />
 <h3 id="scheme">scheme</h3>
-<p>▸ <strong>scheme</strong>(<code>schemeType</code>): (<code>color</code>: <a href="types.html#colortoken"><code>ColorToken</code></a>, <code>easingFunc?</code>: (<code>t</code>: <code>number</code>) =&gt; <code>number</code>) =&gt; <a href="types.html#colortoken"><code>ColorToken</code></a>[]</p>
-<p>Generates a randomised classic color scheme from a single scheme color.</p>
+<p>▸ <strong>scheme</strong>(<code>schemeType</code>): (<code>color</code>: <a href="types.html#colortoken"><code>ColorToken</code></a>, <code>easingFunc?</code>: (<code>t</code>: <code>number</code>) =&gt; <code>number</code>) =&gt; <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>></p>
+<p>Generates a randomised classic color scheme from a single color.</p>
 <h4 id="parameters-8">Parameters</h4>
 <table>
 <thead>
@@ -457,14 +457,14 @@ console.log(pastel("green"))
 <tr>
 <td style="text-align:left;"><code>schemeType</code></td>
 <td style="text-align:left;"><code>string</code></td>
-<td style="text-align:left;">Any classic color scheme either "analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary".</td>
+<td style="text-align:left;">Any classic color scheme either <code>"analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary"</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-8">Returns</h4>
 <p><code>fn</code></p>
-<p>An array of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.</p>
-<p>▸ (<code>color</code>, <code>easingFunc?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[]</p>
+<p>A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.</p>
+<p>▸ (<code>color</code>, <code>easingFunc?</code>): <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>></p>
 <h5 id="parameters-9">Parameters</h5>
 <table>
 <thead>
@@ -485,7 +485,7 @@ console.log(pastel("green"))
 </tbody>
 </table>
 <h5 id="returns-9">Returns</h5>
-<p><a href="types.html#colortoken"><code>ColorToken</code></a>[]</p>
+<p><code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>></p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { scheme } from 'huetiful-js'
 
@@ -493,7 +493,7 @@ console.log(scheme("triadic")("#a1bd2f", true))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
 </code></pre>
 <h4 id="defined-in-7">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L36">generators.d.ts:36</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L36">generators.d.ts:36</a></p>
 <!-- DOC_END -->
 
 

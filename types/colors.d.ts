@@ -15,6 +15,7 @@ import type {
   EarthtoneOptions
 } from './types';
 /**
+ * @internal
  * Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
  * @example
  * import { ColorArray } from 'huetiful-js'
@@ -729,6 +730,7 @@ declare function tailwindColors(
   value?: ScaleValues
 ): string | Array<string>;
 /**
+ * @internal
  * Creates a lazy chain wrapper over a single color token that has all the functions that take a `ColorToken` as their first argument.
  *
  * @example

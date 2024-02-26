@@ -65,57 +65,6 @@ describe(`This test suite is for the colors module`, () => {
   };
 
   _iterator(colors, _data);
-
-  it(`Returns the output of the bound array`, () => {
-    expect(
-      new colors.ColorArray([
-        '#cbd5e1',
-        '#d1d5db',
-        '#d4d4d8',
-        '#d4d4d4',
-        '#d6d3d1',
-        '#fca5a5',
-        '#fdba74',
-        '#fcd34d',
-        '#fde047',
-        '#bef264',
-        '#86efac',
-        '#6ee7b7',
-        '#5eead4',
-        '#7dd3fc',
-        '#93c5fd',
-        '#c4b5fd',
-        '#d8b4fe',
-        '#f0abfc',
-        '#f9a8d4',
-        '#fda4af'
-      ]).output()
-    ).toEqual([
-      '#cbd5e1',
-      '#d1d5db',
-      '#d4d4d8',
-      '#d4d4d4',
-      '#d6d3d1',
-      '#fca5a5',
-      '#fdba74',
-      '#fcd34d',
-      '#fde047',
-      '#bef264',
-      '#86efac',
-      '#6ee7b7',
-      '#5eead4',
-      '#7dd3fc',
-      '#93c5fd',
-      '#c4b5fd',
-      '#d8b4fe',
-      '#f0abfc',
-      '#f9a8d4',
-      '#fda4af'
-    ]);
-  });
-  it(`Returns the bound color token`, () => {
-    expect(new colors.Color('pink').output()).toEqual('pink');
-  });
 });
 
 //

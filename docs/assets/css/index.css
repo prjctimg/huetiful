@@ -2,3 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+
+
+@layer base {
+    html{
+        
+    }
+}
+ @font-face {
+        font-family: Raleway;
+        src: url(../fonts/Raleway-VariableFont_wght.ttf);
+      }
+
+
+      .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+      }
+
+      @media (max-width: 767px) {
+        .markdown-body {
+          padding: 15px;
+        }
+      }
+      .progress {
+        position: relative;
+        height: 4px;
+        z-index: 1000;
+        top: 0;
+      }

@@ -878,13 +878,4 @@ function color(color) {
   return new Color(color);
 }
 
-export {
-  diverging,
-  qualitative,
-  sequential,
-  tailwindColors,
-  ColorArray,
-  load,
-  Color,
-  color
-};
+export { diverging, qualitative, sequential, tailwindColors, load, color };

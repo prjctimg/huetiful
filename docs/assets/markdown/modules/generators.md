@@ -19,23 +19,23 @@
 
 ### discoverPalettes
 
-▸ **discoverPalettes**(`colors`, `schemeType?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[] \| `object`
+▸ **discoverPalettes**(`colors`, `schemeType?`, `colorspace?`): `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `object`
 
-Takes a collection of colors and finds the nearest matches using the `differenceHyab()` difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use `isAchromatic` to filter grays from your collection before passing it to the function.
+Takes a collection of colors and finds the nearest matches using the `differenceHyab()` difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use `isAchromatic` to filter grays from your collection in the mode `colorspace` before passing it to the function.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `object` \| [`ColorToken`](types.md#colortoken)[] | The collection of colors to create palettes from. Preferably use 6 or more colors for better results. |
+| `colors` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> | The collection of colors to create palettes from. Preferably use 6 or more colors for better results. |
 | `schemeType?` | ``"analogous"`` \| ``"triadic"`` \| ``"tetradic"`` \| ``"complementary"`` | (Optional) The palette type you want to return. |
 | `colorspace?` | `string` | - |
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[] \| `object`
+`ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `object`
 
-An array of colors if the scheme parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
+An array of colors if the `schemeType` parameter is specified else it returns a `Map` object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
 
 **`Example`**
 
@@ -62,13 +62,13 @@ console.log(discoverPalettes(sample, "tetradic"))
 
 #### Defined in
 
-[generators.d.ts:66](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L66)
+[generators.d.ts:69](https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L69)
 
 ___
 
 ### earthtone
 
-▸ **earthtone**(`color`, `colorspace?`, `options?`): [`ColorToken`](types.md#colortoken)[]
+▸ **earthtone**(`color`, `colorspace?`, `options?`): `ArrayLike`\<[`ColorToken`](types.md#colortoken)\>
 
 Creates a scale of a spline interpolation between an earthtone and a color.
 
@@ -82,9 +82,9 @@ Creates a scale of a spline interpolation between an earthtone and a color.
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+`ArrayLike`\<[`ColorToken`](types.md#colortoken)\>
 
-The array of colors resulting from the earthtone interpolation as hex codes.
+Collection of colors resulting from the earthtone interpolation as hex codes.
 
 **`Example`**
 
@@ -97,15 +97,15 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 
 #### Defined in
 
-[generators.d.ts:86](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L86)
+[generators.d.ts:89](https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L89)
 
 ___
 
 ### hueShift
 
-▸ **hueShift**(`color`, `colorspace?`, `options?`): [`ColorToken`](types.md#colortoken)[]
+▸ **hueShift**(`color`, `colorspace?`, `options?`): `ArrayLike`\<[`ColorToken`](types.md#colortoken)\>
 
-Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down) from a single scheme color. Min and max lightness value determine how light or dark our colour will be at either extreme.
+Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts down) from a single color. Min and max lightness values determine how light or dark our colour will be at either extreme.
 
 #### Parameters
 
@@ -117,7 +117,7 @@ Generates a palette of hue shifted colors (as a color becomes lighter, its hue s
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+`ArrayLike`\<[`ColorToken`](types.md#colortoken)\>
 
 An array of colors in hexadecimal. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or `(iterations * 2) + 1`
 
@@ -142,7 +142,7 @@ console.log(hueShiftedPalette);
 
 #### Defined in
 
-[generators.d.ts:112](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L112)
+[generators.d.ts:115](https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L115)
 
 ___
 
@@ -156,18 +156,18 @@ Returns a spline interpolator function with customizable interpolation methods (
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `object` \| [`ColorToken`](types.md#colortoken)[] | The array of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result. |
+| `colors` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> | The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result. |
 | `colorspace?` | `string` | The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch. |
 | `iterations?` | `number` | - |
 | `kind?` | ``"natural"`` \| ``"monotone"`` \| ``"basis"`` | The type of the spline interpolation method. Default is basis. |
-| `closed?` | `boolean` | Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false |
+| `closed?` | `boolean` | Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is `false` |
 | `options?` | `Pick`\<[`InterpolatorOptions`](types.md#interpolatoroptions), ``"easingFn"`` \| ``"hueFixup"``\> | Optional channel specific overrides. |
 
 #### Returns
 
 `string`[]
 
-A hexadecimal representation of the resultant color.
+An array hexadecimal string of the resultant color.
 
 **`Example`**
 
@@ -186,7 +186,7 @@ console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 
 #### Defined in
 
-[generators.d.ts:141](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L141)
+[generators.d.ts:144](https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L144)
 
 ___
 
@@ -198,7 +198,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `colors` | [`ColorToken`](types.md#colortoken)[] |
+| `colors` | `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> |
 | `colorspace?` | `string` |
 | `options?` | `object` |
 
@@ -220,13 +220,13 @@ ___
 
 #### Defined in
 
-[generators.d.ts:152](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L152)
+[generators.d.ts:155](https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L155)
 
 ___
 
 ### pairedScheme
 
-▸ **pairedScheme**(`color`, `options?`): [`ColorToken`](types.md#colortoken)[] \| [`ColorToken`](types.md#colortoken)
+▸ **pairedScheme**(`color`, `options?`): `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| [`ColorToken`](types.md#colortoken)
 
 Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color.
 
@@ -239,7 +239,7 @@ Creates a palette that consists of a base color that is incremented by a hueStep
 
 #### Returns
 
-[`ColorToken`](types.md#colortoken)[] \| [`ColorToken`](types.md#colortoken)
+`ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| [`ColorToken`](types.md#colortoken)
 
 An array containing the paired scheme.
 
@@ -254,7 +254,7 @@ console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
 
 #### Defined in
 
-[generators.d.ts:200](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L200)
+[generators.d.ts:203](https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L203)
 
 ___
 
@@ -287,29 +287,29 @@ console.log(pastel("green"))
 
 #### Defined in
 
-[generators.d.ts:217](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L217)
+[generators.d.ts:220](https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L220)
 
 ___
 
 ### scheme
 
-▸ **scheme**(`schemeType`): (`color`: [`ColorToken`](types.md#colortoken), `easingFunc?`: (`t`: `number`) => `number`) => [`ColorToken`](types.md#colortoken)[]
+▸ **scheme**(`schemeType`): (`color`: [`ColorToken`](types.md#colortoken), `easingFunc?`: (`t`: `number`) => `number`) => `ArrayLike`\<[`ColorToken`](types.md#colortoken)\>
 
-Generates a randomised classic color scheme from a single scheme color.
+Generates a randomised classic color scheme from a single color.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `schemeType` | `string` | Any classic color scheme either "analogous"\|"triadic"\|"tetradic"\|"complementary"\|"splitComplementary". |
+| `schemeType` | `string` | Any classic color scheme either `"analogous"\|"triadic"\|"tetradic"\|"complementary"\|"splitComplementary"`. |
 
 #### Returns
 
 `fn`
 
-An array of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
+A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
 
-▸ (`color`, `easingFunc?`): [`ColorToken`](types.md#colortoken)[]
+▸ (`color`, `easingFunc?`): `ArrayLike`\<[`ColorToken`](types.md#colortoken)\>
 
 ##### Parameters
 
@@ -320,7 +320,7 @@ An array of 8 character hex codes. Elements in the array depend on the number of
 
 ##### Returns
 
-[`ColorToken`](types.md#colortoken)[]
+`ArrayLike`\<[`ColorToken`](types.md#colortoken)\>
 
 **`Example`**
 
@@ -333,4 +333,4 @@ console.log(scheme("triadic")("#a1bd2f", true))
 
 #### Defined in
 
-[generators.d.ts:36](https://github.com/prjctimg/huetiful/blob/c14365d/types/generators.d.ts#L36)
+[generators.d.ts:36](https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L36)

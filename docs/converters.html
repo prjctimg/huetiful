@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/huetiful.css" />
-    <link rel="stylesheet" href="./assets/css/github-markdown.css" />
+    <link rel="stylesheet" href="./assets/css/github-markdown-light.css" />
     <style>
       .markdown-body {
         box-sizing: border-box;
@@ -26,15 +26,14 @@
         top: 0;
         
       }
-      
     </style>
 
   
   </head>
   <body class="markdown-body">
     <header class="pb-8 sticky top-0 left-0  w-full text-gray-700">
-      <nav 
-        class=" py-4 flex flex-wrap items-center justify-between w-full py-4.html:py-0 px-4 text-lg text-gray-700 bg-white dark:bg-slate-800 dark:text-gray-200 shadow-lg shadow-gray-300 dark:shadow-black"
+      <nav
+        class="py-4 flex flex-wrap items-center justify-between w-full py-4.html:py-0 px-4 text-lg text-gray-700 bg-white dark:bg-slate-800 dark:text-gray-200 shadow-lg shadow-gray-300 dark:shadow-black"
       >
       
         <a class="inline-flex space-y-1 items-center font-medium text-base"
@@ -118,7 +117,7 @@
 <h2 id="functions-1">Functions</h2>
 <h3 id="color2hex">color2hex</h3>
 <p>▸ <strong>color2hex</strong>(<code>color</code>): <code>string</code></p>
-<p>Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), numbers from 0 to 166,777,215 and arrays in the form of [string,number,number,number,numer?] the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.</p>
+<p>Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), any <code>number</code> from 0 to 166,777,215 and arrays in the form of <code>[string,number,number,number,numer?]</code> the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.</p>
 <h4 id="parameters">Parameters</h4>
 <table>
 <thead>
@@ -149,7 +148,7 @@ console.log(color2hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 // #7b7941
 </code></pre>
 <h4 id="defined-in">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L95">converters.d.ts:95</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L95">converters.d.ts:95</a></p>
 <hr />
 <h3 id="color2num">color2num</h3>
 <p>▸ <strong>color2num</strong>(<code>color</code>): <code>number</code></p>
@@ -181,7 +180,7 @@ console.log(color2num("b2c3f1"))
 // 11715569
 </code></pre>
 <h4 id="defined-in-1">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L121">converters.d.ts:121</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L121">converters.d.ts:121</a></p>
 <hr />
 <h3 id="color2tuple">color2tuple</h3>
 <p>▸ <strong>color2tuple</strong>(<code>color</code>, <code>colorspace?</code>): <code>any</code>[]</p>
@@ -199,7 +198,7 @@ console.log(color2num("b2c3f1"))
 <tr>
 <td style="text-align:left;"><code>color</code></td>
 <td style="text-align:left;"><code>string</code> | <code>object</code></td>
-<td style="text-align:left;">Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g <code>num2color</code>.</td>
+<td style="text-align:left;">Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g <code>num2color</code> if you want tonevrt the number to supported color token.</td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>colorspace?</code></td>
@@ -210,7 +209,7 @@ console.log(color2num("b2c3f1"))
 </table>
 <h4 id="returns-2">Returns</h4>
 <p><code>any</code>[]</p>
-<p>An array of channel values with the colorspace as first element and the alpha channel if its explicitly defined in the passed in color.</p>
+<p>An array of channel values with the colorspace as first element and the alpha channel as the fifth element in the array if its explicitly defined in the passed in color.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">let rgbColor = {
  r: 0.4,
@@ -223,11 +222,11 @@ console.log(color2tuple(rgbColor));
 // [ 'rgb', 0.4, 0.3, 0.7 ]
 </code></pre>
 <h4 id="defined-in-2">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L159">converters.d.ts:159</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L160">converters.d.ts:160</a></p>
 <hr />
 <h3 id="num2color">num2color</h3>
 <p>▸ <strong>num2color</strong>(<code>num</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a></p>
-<p>Returns the color equivalent of any number between 0 and 16,777,215 as a hexadecimal string or color object if the <code>colorspace</code> is specified.</p>
+<p>Returns the color equivalent of any <code>number</code> between 0 and 16,777,215 as a hexadecimal string or color object if the <code>colorspace</code> is specified.</p>
 <h4 id="parameters-3">Parameters</h4>
 <table>
 <thead>
@@ -260,7 +259,7 @@ console.log(num2color(900))
 // #000384
 </code></pre>
 <h4 id="defined-in-3">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L108">converters.d.ts:108</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L108">converters.d.ts:108</a></p>
 <hr />
 <h3 id="temp2color">temp2color</h3>
 <p>▸ <strong>temp2color</strong>(<code>kelvin</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a></p>
@@ -289,7 +288,7 @@ console.log(num2color(900))
 </table>
 <h4 id="returns-4">Returns</h4>
 <p><a href="types.html#colortoken"><code>ColorToken</code></a></p>
-<p>color The color as a hexadecimal  or RGB color object.</p>
+<p>color The color as a hexadecimal  or plain color object.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { temp2color } from 'huetiful-js'
 
@@ -297,7 +296,7 @@ console.log(temp2color(2542))
 // #ffa44a
 </code></pre>
 <h4 id="defined-in-4">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L135">converters.d.ts:135</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L135">converters.d.ts:135</a></p>
 <hr />
 <h3 id="tocie">toCIE</h3>
 <p>▸ <strong>toCIE</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
@@ -342,7 +341,7 @@ console.log(temp2color(2542))
 <p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
 <h4 id="defined-in-5">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L28">converters.d.ts:28</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L28">converters.d.ts:28</a></p>
 <hr />
 <h3 id="todin99">toDIN99</h3>
 <p>▸ <strong>toDIN99</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
@@ -360,7 +359,7 @@ console.log(temp2color(2542))
 <tr>
 <td style="text-align:left;"><code>colorspace?</code></td>
 <td style="text-align:left;"><code>Pick</code>\&lt;<code>string</code>, <code>"dlch"</code> | <code>"dlab"</code>></td>
-<td style="text-align:left;">The DIN99 colorspace to use.</td>
+<td style="text-align:left;">The DIN99 colorspace variant (either cartesian/dlab or polar/dlch) to use.</td>
 </tr>
 </tbody>
 </table>
@@ -387,7 +386,7 @@ console.log(temp2color(2542))
 <p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
 <h4 id="defined-in-6">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L56">converters.d.ts:56</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L56">converters.d.ts:56</a></p>
 <hr />
 <h3 id="toitp">toITP</h3>
 <p>▸ <strong>toITP</strong>(<code>color</code>): <code>object</code></p>
@@ -414,7 +413,7 @@ console.log(temp2color(2542))
 <p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For expected ranges and channels.</p>
 <h4 id="defined-in-7">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L65">converters.d.ts:65</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L65">converters.d.ts:65</a></p>
 <hr />
 <h3 id="tojab">toJab</h3>
 <p>▸ <strong>toJab</strong>(<code>color</code>): <code>object</code></p>
@@ -441,7 +440,7 @@ console.log(temp2color(2542))
 <p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For expected ranges and channels.</p>
 <h4 id="defined-in-8">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L79">converters.d.ts:79</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L79">converters.d.ts:79</a></p>
 <hr />
 <h3 id="tojch">toJch</h3>
 <p>▸ <strong>toJch</strong>(<code>color</code>): <code>object</code></p>
@@ -468,7 +467,7 @@ console.log(temp2color(2542))
 <p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For expected ranges and channels.</p>
 <h4 id="defined-in-9">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L72">converters.d.ts:72</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L72">converters.d.ts:72</a></p>
 <hr />
 <h3 id="took">toOk</h3>
 <p>▸ <strong>toOk</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
@@ -513,7 +512,7 @@ console.log(temp2color(2542))
 <p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
 <h4 id="defined-in-10">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L18">converters.d.ts:18</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L18">converters.d.ts:18</a></p>
 <hr />
 <h3 id="ucsconverter">ucsConverter</h3>
 <p>▸ <strong>ucsConverter</strong>(<code>colorspace</code>): <code>ConvertFn</code></p>
@@ -539,7 +538,7 @@ console.log(temp2color(2542))
 <p><code>ConvertFn</code></p>
 <p>The converter function in the mode colorspace.</p>
 <h4 id="defined-in-11">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/converters.d.ts#L8">converters.d.ts:8</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/converters.d.ts#L8">converters.d.ts:8</a></p>
 <!-- DOC_END -->
 
 

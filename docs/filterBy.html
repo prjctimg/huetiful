@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/huetiful.css" />
-    <link rel="stylesheet" href="./assets/css/github-markdown.css" />
+    <link rel="stylesheet" href="./assets/css/github-markdown-light.css" />
     <style>
       .markdown-body {
         box-sizing: border-box;
@@ -33,7 +33,7 @@
   <body class="markdown-body">
     <header class="pb-8 sticky top-0 left-0  w-full text-gray-700">
       <nav
-        class=" flex flex-wrap items-center justify-between w-full py-4.html:py-0 px-4 text-lg text-gray-700 bg-white dark:bg-slate-800 dark:text-gray-200 shadow-lg shadow-gray-300 dark:shadow-black"
+        class="py-4 flex flex-wrap items-center justify-between w-full py-4.html:py-0 px-4 text-lg text-gray-700 bg-white dark:bg-slate-800 dark:text-gray-200 shadow-lg shadow-gray-300 dark:shadow-black"
       >
       
         <a class="inline-flex space-y-1 items-center font-medium text-base"
@@ -92,7 +92,7 @@
       </nav>
       <div id="progress-bar" class="progress bg-gradient-to-r from-blue-600 via-pink-600 to-green-600"/>
     </header>
-    <section class="min-h-screen">
+    <section>
  
 
   <!-- DOC_START -->
@@ -111,7 +111,7 @@
 <h2 id="functions-1">Functions</h2>
 <h3 id="filterbycontrast">filterByContrast</h3>
 <p>▸ <strong>filterByContrast</strong>(<code>collection</code>, <code>against</code>, <code>startContrast?</code>, <code>endContrast?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></p>
-<p>Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.</p>
+<p>Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.</p>
 <h4 id="parameters">Parameters</h4>
 <table>
 <thead>
@@ -124,7 +124,7 @@
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
@@ -168,11 +168,11 @@ console.log(filterByContrast(sample, 'green', '&gt;=3'))
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
 </code></pre>
 <h4 id="defined-in">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/filterBy.d.ts#L215">filterBy.d.ts:215</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/filterBy.d.ts#L215">filterBy.d.ts:215</a></p>
 <hr />
 <h3 id="filterbydistance">filterByDistance</h3>
 <p>▸ <strong>filterByDistance</strong>(<code>collection</code>, <code>against</code>, <code>startDistance?</code>, <code>endDistance?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></p>
-<p>Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.</p>
+<p>Returns colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.</p>
 <h4 id="parameters-1">Parameters</h4>
 <table>
 <thead>
@@ -185,7 +185,7 @@ console.log(filterByContrast(sample, 'green', '&gt;=3'))
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
@@ -226,7 +226,7 @@ console.log(filterByDistance(sample, "yellow", 0.1))
 // [ '#ffff00' ]
 </code></pre>
 <h4 id="defined-in-1">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/filterBy.d.ts#L180">filterBy.d.ts:180</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/filterBy.d.ts#L180">filterBy.d.ts:180</a></p>
 <hr />
 <h3 id="filterbyhue">filterByHue</h3>
 <p>▸ <strong>filterByHue</strong>(<code>collection</code>, <code>startHue?</code>, <code>endHue?</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></p>
@@ -243,7 +243,7 @@ console.log(filterByDistance(sample, "yellow", 0.1))
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
@@ -286,11 +286,11 @@ filterByHue(sample, 20, 80)
 // [ '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
 </code></pre>
 <h4 id="defined-in-2">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/filterBy.d.ts#L150">filterBy.d.ts:150</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/filterBy.d.ts#L150">filterBy.d.ts:150</a></p>
 <hr />
 <h3 id="filterbylightness">filterByLightness</h3>
 <p>▸ <strong>filterByLightness</strong>(<code>collection</code>, <code>startLightness?</code>, <code>endLightness?</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></p>
-<p>Returns an array of colors in the specified lightness range.</p>
+<p>Returns colors in the specified lightness range.</p>
 <p>The range is internally normalized to the supported ranges by the <code>colorspace</code> in use if it is out of range.
 This means a value in the range <code>[0,1]</code> will return, for example if you pass <code>startLightness</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either start or end is above 1 AND the <code>colorspace</code> in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
 <h4 id="parameters-3">Parameters</h4>
@@ -305,7 +305,7 @@ This means a value in the range <code>[0,1]</code> will return, for example if y
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
@@ -349,11 +349,11 @@ filterByLightness(sample, 20, 80)
 // [ '#00c000', '#007e00', '#164100', '#720000' ]
 </code></pre>
 <h4 id="defined-in-3">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/filterBy.d.ts#L118">filterBy.d.ts:118</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/filterBy.d.ts#L118">filterBy.d.ts:118</a></p>
 <hr />
 <h3 id="filterbyluminance">filterByLuminance</h3>
 <p>▸ <strong>filterByLuminance</strong>(<code>collection</code>, <code>startLuminance?</code>, <code>endLuminance?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></p>
-<p>Returns an array of colors in the specified luminance range.</p>
+<p>Returns colors in the specified luminance range.</p>
 <h4 id="parameters-4">Parameters</h4>
 <table>
 <thead>
@@ -366,7 +366,7 @@ filterByLightness(sample, 20, 80)
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
@@ -405,13 +405,13 @@ filterByLuminance(sample, 0.4, 0.9)
 // [ '#00ffdc', '#00ff78' ]
 </code></pre>
 <h4 id="defined-in-4">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/filterBy.d.ts#L81">filterBy.d.ts:81</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/filterBy.d.ts#L81">filterBy.d.ts:81</a></p>
 <hr />
 <h3 id="filterbysaturation">filterBySaturation</h3>
 <p>▸ <strong>filterBySaturation</strong>(<code>collection</code>, <code>startSaturation?</code>, <code>endSaturation?</code>, <code>colorspace?</code>): <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></p>
-<p>Returns an array of colors in the specified saturation range.</p>
-<p>The range is internally normalized to the supported ranges by the <code>colorspace</code> in use if it is out of range.
-This means a value in the range <code>[0,1]</code> will return, for example if you pass startSaturation as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either start or end is above 1 AND the <code>colorspace</code> in use has an end range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
+<p>Returns colors in the specified saturation range.</p>
+<p>@ The range is internally normalized to the supported ranges by the <code>colorspace</code> in use if it is out of range.
+This means a value in the range <code>[0,1]</code> will return, for example if you pass <code>startSaturation</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either start or end is above 1 AND the <code>colorspace</code> in use has an end range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
 <h4 id="parameters-5">Parameters</h4>
 <table>
 <thead>
@@ -424,7 +424,7 @@ This means a value in the range <code>[0,1]</code> will return, for example if y
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <a href="types.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="types.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
@@ -469,7 +469,7 @@ console.log(filterBySaturation(sample, 0.1));
 // [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
 </code></pre>
 <h4 id="defined-in-5">Defined in</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/c14365d/types/filterBy.d.ts#L47">filterBy.d.ts:47</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/filterBy.d.ts#L47">filterBy.d.ts:47</a></p>
 <!-- DOC_END -->
 
 
