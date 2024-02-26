@@ -143,7 +143,9 @@ function color2hex(color) {
         formatHex8(color);
       break;
     default:
-      c = ((color['alpha'] < 1 && formatHex8) || formatHex)(color);
+      c = ((color['alpha'] < 1 && formatHex8) || formatHex)(
+        tuple2object(color2tuple(color))
+      );
   }
 
   return c;
