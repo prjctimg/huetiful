@@ -119,30 +119,34 @@ function ucsConverter(colorspace = 'lch') {
 }
 
 function color2hex(color) {
-  // the result to return at the end of the function
-  var output;
   // if its of type string and not a CSS named color then its probably hex so we don't convert it
-  if (typeof color === 'string') {
-    if (!Object.keys(colorsNamed).some((el) => el === color.toLowerCase())) {
-      return color;
-    }
-    return formatHex(color);
-  } else if (typeof color === 'boolean') {
-    return (color === true && '#ffffff') || '#000000';
-  } else if (typeof color === 'number') {
-    output = num2color(color);
-  } else {
-    // Get the mode variable
-    const mode = color[0] || color['mode'];
+  var c;
+  switch (typeof color) {
+    case 'boolean':
+      c = (color === true && '#ffffff') || '#000000';
 
-    if (Array.isArray(color)) {
-      output = tuple2object(color);
-    } else {
-      output = tuple2object(color2tuple(color, mode));
-    }
+      break;
+    case 'number':
+      c = num2color(color);
+
+      break;
+    case 'object' && color.length:
+      c = ((color.length === 5 && formatHex8) || formatHex)(
+        tuple2object(color)
+      );
+
+      break;
+    case 'string':
+      c =
+        (!Object.keys(colorsNamed).some((el) => el === color.toLowerCase()) &&
+          color) ||
+        formatHex8(color);
+      break;
+    default:
+      c = ((color['alpha'] < 1 && formatHex8) || formatHex)(color);
   }
 
-  return (output['alpha'] < 1 && formatHex8(output)) || formatHex(output);
+  return c;
 }
 
 // Ported from chroma-js with slight modifications
@@ -243,6 +247,12 @@ function tuple2object(arr = [], targetMode) {
         alpha: y[3] || 1
       })
     ];
+
+    if ((m || tm) === ('rgb' || 'lrgb') && arr.some((ch) => 1 < Math.abs(ch))) {
+      arr = ((typeof arr[0] == 'string' && arr.slice(1)) || arr).map(
+        (ch) => ch / 255
+      );
+    }
 
     if (m && tm) {
       return converter(tm)(cb(gmchn(m).split(''), arr.slice(1), tm));
