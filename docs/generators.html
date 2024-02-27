@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/huetiful.css" />
@@ -19,19 +19,74 @@
           padding: 15px;
         }
       }
-      .progress{
-        position:relative;
-        height: 4px;
-        z-index: 1000;
-        top: 0;
-        
-      }
-    </style>
 
-  
+    </style>
   </head>
   <body class="markdown-body">
     <header class="pb-8 sticky top-0 left-0  w-full text-gray-700">
+      <nav
+        class="py-4 flex flex-wrap items-center justify-between w-full py-4.html:py-0 px-4 text-lg text-gray-700 bg-white dark:bg-slate-800 dark:text-gray-200 shadow-lg shadow-gray-300 dark:shadow-black"
+      >
+      
+        <a class="inline-flex space-y-1 items-center font-medium text-base"
+          href="./index.html"
+          id="home"
+        ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span 
+            >Home</span>
+          
+        </a>
+        
+        <a href="./modules.html" id="docs-link" class="inline-flex space-y-1 items-center font-medium text-base">
+         <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="inline-block mr-1"
+            >
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path
+                d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"
+              ></path></svg><span>Docs</span>
+        </a>
+        <a class="inline-flex space-y-1 items-center font-medium text-base"href="https://github.com/prjctimg/huetiful/wiki" id="wiki-link">
+         <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="inline-block mr-1"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path
+                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+              ></path></svg>
+               <span>Wiki</span
+          >
+        </a>
+        <a class="inline-flex space-y-1 items-center font-medium text-base" href="https://github.com/prjctimg/huetiful" id="source-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> <span>Source</span
+          >
+        </a>
+        
+      </nav>
+    </header>
+<div>
+    <title>generators</title>
+   <body>
+       <header class="pb-8 sticky top-0 left-0  w-full text-gray-700">
       <nav
         class="py-4 flex flex-wrap items-center justify-between w-full py-4.html:py-0 px-4 text-lg text-gray-700 bg-white dark:bg-slate-800 dark:text-gray-200 shadow-lg shadow-gray-300 dark:shadow-black"
       >
@@ -90,38 +145,600 @@
         </a>
         
       </nav>
-      <div id="progress-bar" class="progress bg-gradient-to-r from-blue-600 via-pink-600 to-green-600"/>
+      
     </header>
-    
- 
-<title>Generators</title>
-<body>
-  
+    <article class='markdown-body'>
+    <div class="flex justify-start w-fit p-4 space-x-2"> 
+    <a href=https://github.com/prjctimg/huetiful/src/main/blob/generators.js class="px 2"> View source <span class="inline-block ml-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></span></a>
+    <a href=https://github.com/prjctimg/huetiful/types/main/blob/generators.d.ts class="px 2"> Edit this page <span class="inline-block ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+</span></a>
+<h6 class='block mt-1'>last updated Sun, Feb 25, 2024, at night</h6>
+</article>
+<!-- main content injected here -->
+<div class="bg-blue-200 p-3 w-full h-fit flex flex-col">
 
-    <div class="flex w-full -scroll-mt-6 rounded-lg justify-end w-fit px-0 space-x-2"> 
-    
+
+  <h4 class="">This module has functions for generating custom color scales and create palettes from a set of defined constraints applied to targeted color channels</h4>
+
+
+</div>
+<p><a href="../README.md">huetiful-js</a> / <a href="../modules.md">Modules</a> / generators</p>
+<h1 id="module-generators">Module: generators</h1>
+<h2 id="table-of-contents-📑">Table of contents 📑</h2>
+<h3 id="functions-🧰">Functions 🧰</h3>
+<ul>
+<li><a href="generators.md#discoverpalettes">discoverPalettes</a></li>
+<li><a href="generators.md#earthtone">earthtone</a></li>
+<li><a href="generators.md#hueshift">hueShift</a></li>
+<li><a href="generators.md#interpolatespline">interpolateSpline</a></li>
+<li><a href="generators.md#interpolator">interpolator</a></li>
+<li><a href="generators.md#pairedscheme">pairedScheme</a></li>
+<li><a href="generators.md#pastel">pastel</a></li>
+<li><a href="generators.md#scheme">scheme</a></li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="discoverpalettes">discoverPalettes</h3>
+<p>▸ <strong>discoverPalettes</strong>(<code>colors</code>, <code>schemeType?</code>, <code>colorspace?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>Takes a collection of colors and finds the nearest matches using the <code>differenceHyab()</code> difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use <code>isAchromatic</code> to filter grays from your collection in the mode <code>colorspace</code> before passing it to the function.</p>
+<h4 id="parameters-🧮">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>colors</code></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The collection of colors to create palettes from. Preferably use 6 or more colors for better results.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>schemeType?</code></td>
+<td style="text-align:left;"><code>"analogous"</code> | <code>"triadic"</code> | <code>"tetradic"</code> | <code>"complementary"</code></td>
+<td style="text-align:left;">(Optional) The palette type you want to return.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙">Returns 🔙</h4>
+<p><code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>An array of colors if the <code>schemeType</code> parameter is specified else it returns a <code>Map</code> object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { discoverPalettes } from 'huetiful-js'
+
+let sample = [
+ "#ffff00",
+ "#00ffdc",
+ "#00ff78",
+ "#00c000",
+ "#007e00",
+ "#164100",
+ "#720000",
+ "#600000",
+ "#4e0000",
+ "#3e0000",
+ "#310000",
+]
+
+console.log(discoverPalettes(sample, "tetradic"))
+// [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
+</code></pre>
+<h4 id="defined-in-📝">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L69">generators.d.ts:69</a></p>
+<hr />
+<h3 id="earthtone">earthtone</h3>
+<p>▸ <strong>earthtone</strong>(<code>color</code>, <code>colorspace?</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Creates a scale of a spline interpolation between an earthtone and a color.</p>
+<h4 id="parameters-🧮-1">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to interpolate an earth tone with. *</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>options?</code></td>
+<td style="text-align:left;"><a href="types.md#earthtoneoptions"><code>EarthtoneOptions</code></a></td>
+<td style="text-align:left;">Optional overrides for customising interpolation and easing functions.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-1">Returns 🔙</h4>
+<p><code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Collection of colors resulting from the earthtone interpolation as hex codes.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { earthtone } from 'huetiful-js'
+
+console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
+// [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
+</code></pre>
+<h4 id="defined-in-📝-1">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L89">generators.d.ts:89</a></p>
+<hr />
+<h3 id="hueshift">hueShift</h3>
+<p>▸ <strong>hueShift</strong>(<code>color</code>, <code>colorspace?</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts down) from a single color. Min and max lightness values determine how light or dark our colour will be at either extreme.</p>
+<h4 id="parameters-🧮-2">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to use as the scheme of the hueshift. Colors are internally converted to LCH.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>options?</code></td>
+<td style="text-align:left;"><a href="types.md#hueshiftoptions"><code>HueShiftOptions</code></a></td>
+<td style="text-align:left;">The optional overrides object to customize per channel options like interpolation methods and channel fixups.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-2">Returns 🔙</h4>
+<p><code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>An array of colors in hexadecimal. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or <code>(iterations * 2) + 1</code></p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { hueShift } from "huetiful-js";
+
+let hueShiftedPalette = hueShift("#3e0000");
+
+console.log(hueShiftedPalette);
+
+// [
+ '#ffffe1', '#ffdca5',
+ '#ca9a70', '#935c40',
+ '#5c2418', '#3e0000',
+ '#310000', '#34000f',
+ '#38001e', '#3b002c',
+ '#3b0c3a'
+]
+</code></pre>
+<h4 id="defined-in-📝-2">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L115">generators.d.ts:115</a></p>
+<hr />
+<h3 id="interpolatespline">interpolateSpline</h3>
+<p>▸ <strong>interpolateSpline</strong>(<code>colors</code>, <code>colorspace?</code>, <code>iterations?</code>, <code>kind?</code>, <code>closed?</code>, <code>options?</code>): <code>string</code>[]</p>
+<p>Returns a spline interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.</p>
+<h4 id="parameters-🧮-3">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>colors</code></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>iterations?</code></td>
+<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>kind?</code></td>
+<td style="text-align:left;"><code>"natural"</code> | <code>"monotone"</code> | <code>"basis"</code></td>
+<td style="text-align:left;">The type of the spline interpolation method. Default is basis.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>closed?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is <code>false</code></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>options?</code></td>
+<td style="text-align:left;"><code>Pick</code>\&lt;<a href="types.md#interpolatoroptions"><code>InterpolatorOptions</code></a>, <code>"easingFn"</code> | <code>"hueFixup"</code>></td>
+<td style="text-align:left;">Optional channel specific overrides.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-3">Returns 🔙</h4>
+<p><code>string</code>[]</p>
+<p>An array hexadecimal string of the resultant color.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { interpolateSpline } from 'huetiful-js';
+
+console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
+
+// [
+ '#ffc0cb', '#ff9ebe',
+ '#f97bbb', '#ed57bf',
+ '#d830c9', '#b800d9',
+ '#8700eb', '#0000ff'
+]
+</code></pre>
+<h4 id="defined-in-📝-3">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L144">generators.d.ts:144</a></p>
+<hr />
+<h3 id="interpolator">interpolator</h3>
+<p>▸ <strong>interpolator</strong>(<code>colors</code>, <code>colorspace?</code>, <code>options?</code>): (<code>t</code>: <code>number</code>) =&gt; <code>FindColorByMode</code></p>
+<h4 id="parameters-🧮-4">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>colors</code></td>
+<td style="text-align:left;"><code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>options?</code></td>
+<td style="text-align:left;"><code>object</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-4">Returns 🔙</h4>
+<p><code>fn</code></p>
+<p>▸ (<code>t</code>): <code>FindColorByMode</code></p>
+<h5 id="parameters-🧮-5">Parameters 🧮</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>t</code></td>
+<td style="text-align:left;"><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns-🔙-5">Returns 🔙</h5>
+<p><code>FindColorByMode</code></p>
+<h4 id="defined-in-📝-4">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L155">generators.d.ts:155</a></p>
+<hr />
+<h3 id="pairedscheme">pairedScheme</h3>
+<p>▸ <strong>pairedScheme</strong>(<code>color</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative <code>hueStep</code> will pick a color that is <code>hueStep</code> degrees behind the base color.</p>
+<h4 id="parameters-🧮-6">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to return a paired color scheme from.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>options?</code></td>
+<td style="text-align:left;"><a href="types.md#pairedschemeoptions"><code>PairedSchemeOptions</code></a></td>
+<td style="text-align:left;">The optional overrides object to customize per channel options like interpolation methods and channel fixups.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-6">Returns 🔙</h4>
+<p><code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>An array containing the paired scheme.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { pairedScheme } from 'huetiful-js'
+
+console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
+// [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
+</code></pre>
+<h4 id="defined-in-📝-5">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L203">generators.d.ts:203</a></p>
+<hr />
+<h3 id="pastel">pastel</h3>
+<p>▸ <strong>pastel</strong>(<code>color</code>): <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>Returns a random pastel variant of the passed in color.</p>
+<h4 id="parameters-🧮-7">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to return a pastel variant of.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-7">Returns 🔙</h4>
+<p><a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>A random pastel color.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { pastel } from 'huetiful-js'
+
+console.log(pastel("green"))
+// #036103ff
+</code></pre>
+<h4 id="defined-in-📝-6">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L220">generators.d.ts:220</a></p>
+<hr />
+<h3 id="scheme">scheme</h3>
+<p>▸ <strong>scheme</strong>(<code>schemeType</code>): (<code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a>, <code>easingFunc?</code>: (<code>t</code>: <code>number</code>) =&gt; <code>number</code>) =&gt; <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Generates a randomised classic color scheme from a single color.</p>
+<h4 id="parameters-🧮-8">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>schemeType</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">Any classic color scheme either <code>"analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary"</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-8">Returns 🔙</h4>
+<p><code>fn</code></p>
+<p>A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.</p>
+<p>▸ (<code>color</code>, <code>easingFunc?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<h5 id="parameters-🧮-9">Parameters 🧮</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code>ColorToken</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>easingFunc?</code></td>
+<td style="text-align:left;">(<code>t</code>: <code>number</code>) =&gt; <code>number</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns-🔙-9">Returns 🔙</h5>
+<p><code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { scheme } from 'huetiful-js'
+
+console.log(scheme("triadic")("#a1bd2f", true))
+// [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
+</code></pre>
+<h4 id="defined-in-📝-7">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/generators.d.ts#L36">generators.d.ts:36</a></p>
+<!-- Next/Prev pages -->
+<div class="flex w-full justify-between px-2 py-2">
+
+
+<a href=./generators.html>
+  <button>Previous page</button>
+  <h5>converters</h5>
+</a>
+<a href=./generators.html>
+ <button>Next page</button>
+ <h5>converters</h5>
+</a>
+
+
+
+</div>
+
+<!-- References for further reading -->
+<div id='references'>
+
+
+</div>
+ </article>
    
-    <button class="flex text-sm font-sans font-semibold px-2 py-1.5 border-[2.75px] rounded-lg bg-sky-300"> Edit page <span class="inline-block ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-</span></button>
+   </body>
+   </div>
+        <footer class=" flex-inline flex-wrap p-4">
+    
+ <div class="flex-col">
+   <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
+        <!-- Use icons instead of text -->
+        <a href="https://github.com/prjctimg/huetiful"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="gray"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-github"
+          >
+            <path
+              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+            ></path></svg
+        ></a>
+        <a href="https://twitter.com/deantarisai"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="gray"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-twitter"
+          >
+            <path
+              d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+            ></path></svg
+        ></a>
+        <a href="https://npmjs.com/package/huetiful-js"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="gray"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-package"
+          >
+            <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+            ></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line></svg
+        ></a>
+        <a href="mailto:prjctimg@outlook.com"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="gray"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-mail"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            ></path>
+            <polyline points="22,6 12,13 2,6"></polyline></svg
+        ></a>
+        <a href="https://kofi.com/prjctimg"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="gray"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-coffee"
+          >
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+            <line x1="6" y1="1" x2="6" y2="4"></line>
+            <line x1="10" y1="1" x2="10" y2="4"></line>
+            <line x1="14" y1="1" x2="14" y2="4"></line></svg
+        ></a>
+      
+      </div>
 
-<button class="flex text-sm font-sans font-semibold px-2 py-1.5 border-[2.75px] rounded-lg bg-gray-300"> View source <span class="inline-block ml-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></span></button>
     </div>
-        
- 
-   
+     
+    
+      <div class="pt-2">
+        <blockquote class="inline-block text-sm outline-yellow-500">
+          <p class="text-sm">
+            <span class="inline-block"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="gray"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-code"
+              >
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline></svg
+            ></span>
+            with
+            <span class="inline-block"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="animate-pulse stroke-none fill-red-800"
+              >
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                ></path></svg
+            ></span>
+            in Crowhill,ZW
+          </p>
+          &copy;2024,Dean Tarisai
+          <br />
+          Released under the Apache-2.0 permissive license.
+        </blockquote>
+               
+      </div>
+    </footer>
+  </body>
 
 
      <script src="assets/js/main.js"></script>
   </body>
 </html>
- 
- 
- 
- 
- 
- 
-
-
-
-
-
+    
+    

@@ -28,7 +28,8 @@ function postFragment({
   declFile = '',
   specFile = '',
   description = '',
-  page = {}
+  page = {},
+  references = []
 }) {
   return `
     <title>${title}</title>
@@ -102,9 +103,11 @@ function postFragment({
 <h6 class='block mt-1'>last updated ${lastUpdated}</h6>
 </article>
 <!-- main content injected here -->
-<div>
+<div class="bg-blue-200 p-3 w-full h-fit flex flex-col">
 
-${description}
+
+  <h4 class="">${description}</h4>
+
 
 </div>
 ${mainContent}
@@ -126,8 +129,10 @@ ${mainContent}
 </div>
 
 <!-- References for further reading -->
-<div>
-
+<div id='references'>
+${references.map(
+  (ref) => `\n <a href=${ref.href} class='block '>${ref.title}</a>`
+)}
 
 </div>
  </article>

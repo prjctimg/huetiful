@@ -14,16 +14,17 @@ governing permissions and limitations under the License.
  */
 
 var {
-  readFileSync,
-  writeFileSync,
-  readdirSync,
-  renameSync,
-  lstatSync
-} = require('node:fs');
-var ge = require('github-emoji');
-var showdown = require('./showdown.cjs');
-var postFragment = require('../fragments/post.cjs');
-var data = require('./data.cjs');
+    readFileSync,
+    writeFileSync,
+    readdirSync,
+    renameSync,
+    lstatSync
+  } = require('node:fs'),
+  ge = require('github-emoji'),
+  showdown = require('./showdown.cjs'),
+  postFragment = require('./xml-shards/post.cjs'),
+  data = require('./data.cjs'),
+  layoutFragment = require('./xml-shards/layout.cjs');
 var $ = new showdown.Converter({
     emoji: true,
     ghCompatibleHeaderId: true,
@@ -34,14 +35,14 @@ var $ = new showdown.Converter({
     tasklists: true
   }),
   PATH_TO_MARKDOWN_FILES = './docs/assets/markdown/modules',
-  modulePaths = [
-    // 'colors.md',
-    // 'types.md',
-    'converters.md'
-    // 'generators.md',
-    // 'utils.md',
-    // 'filterBy.md',
-    // 'sortBy.md'
+  _moduleNames = [
+    'colors',
+    'types',
+    'converters',
+    'generators',
+    'utils',
+    'filterBy',
+    'sortBy'
   ];
 
 // The html comment to match before injecting data
@@ -74,54 +75,56 @@ function generateDocs(source) {
   current
     .replace(new RegExp('README.md', 'gm'), 'modules.html')
     .replace(new RegExp('modules.md', 'gm'), 'modules.html')
-    .replace(new RegExp('.md', 'gm'), '.html'),
-    console.info(`[prjctimg] Done. Generated HTML docs successfully.}`);
+    .replace(new RegExp('.md', 'gm'), '.html');
 
   return $.makeHtml(current);
 }
 // Loop through the markdown files for modules
 
-for (const [k, v] of Object.entries(modulePaths)) {
-  var c = data.converters,
+for (const [k, v] of Object.entries(_moduleNames)) {
+  var c = data[v],
     m = new Intl.DateTimeFormat('en-US', {
       weekday: 'short',
       year: 'numeric',
       month: 'short',
       day: 'numeric',
       dayPeriod: 'short'
-    }).format(lstatSync(`./types/${v.split('.')[0]}.d.ts`).mtime);
+    }).format(lstatSync('./types/' + v + '.d.ts').mtime);
+
+  var cb = (s, x, y) =>
+    `https://github.com/prjctimg/huetiful/${s}/main/blob/${x}.${y}`;
 
   var page = postFragment({
-    title: c.title,
-    description: c.description,
-    mainContent: generateDocs(PATH_TO_MARKDOWN_FILES + '/' + v),
+    title: `${v}`,
+    description: c['description'],
+    mainContent: generateDocs(PATH_TO_MARKDOWN_FILES + '/' + v + '.md'),
     lastUpdated: m,
-    srcFile: c.srcFile,
-    specFile: c.specFile,
-    wikiPage: c.wikiPage,
-    declFile: c.declFile,
+    srcFile: cb('src', v, 'js'),
+    specFile: cb('spec', v, 'spec.js'),
+    wikiPage: cb('wiki'),
+    declFile: cb('types', v, 'd.ts'),
     page: {
       previous: {
         title:
           parseInt(k) !== 0
-            ? modulePaths[parseInt(k) - 1].split('.')[0]
+            ? _moduleNames[parseInt(k) - 1]
             : `Go back to the home page ?`,
-        href: k !== 0 ? `./${v.split('.')[0]}.html` : './index.html'
+        href: k !== 0 ? `./${v}.html` : './index.html'
       },
       next: {
         title:
-          k !== modulePaths.length - 1
-            ? modulePaths[parseInt(k) + 1].split('.')[0]
+          k !== _moduleNames.length - 1
+            ? _moduleNames[parseInt(k) + 1]
             : `Learn more on our Wiki`,
         href:
-          parseInt(k) !== modulePaths.length - 1
-            ? `./${v.split('.')[0]}.html`
+          parseInt(k) !== _moduleNames.length - 1
+            ? `./${v}.html`
             : 'https://github.com/prjctimg/huetiful/wiki'
       }
     }
   });
 
-  writeFileSync(`./docs/${v.split('.')[0]}.html`, page);
+  writeFileSync(`./docs/${v}.html`, layoutFragment(page));
 }
 
 // var navigatoryFiles = ['modules.md', 'README.md'];
@@ -161,3 +164,4 @@ for (const [k, v] of Object.entries(modulePaths)) {
 
 // renameSync('./docs/README.html', './docs/index.html');
 // console.log(`Generated navigatory files successfully`);
+console.info(`[prjctimg] Done. Generated HTML docs successfully.}`);
