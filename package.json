@@ -87,6 +87,7 @@
     "plugin": [
       "typedoc-plugin-markdown"
     ],
+    "hideBreadcrumbs": true,
     "entryPointStrategy": "resolve",
     "out": "docs/assets/markdown",
     "exclude": [
