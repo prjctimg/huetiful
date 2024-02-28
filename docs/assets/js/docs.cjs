@@ -21,11 +21,20 @@ var {
     lstatSync
   } = require('node:fs'),
   ge = require('github-emoji'),
-  showdown = require('./showdown.cjs'),
-  postFragment = require('./xml-shards/post.cjs'),
-  data = require('./data.cjs'),
-  layoutFragment = require('./xml-shards/layout.cjs');
-var $ = new showdown.Converter({
+  defaultClasses = {
+    blockquote: ' border-l-blue-400 bg-blue-200'
+  },
+  injectClasses = Object.keys(defaultClasses).map((key) => ({
+    type: 'output',
+    regex: new RegExp(`<${key}(.*)>`, 'g'),
+    replace: `<${key} class='${defaultClasses[key]}' $1>`
+  }));
+(showdown = require('./showdown.cjs')),
+  (postFragment = require('./xml-shards/post.cjs')),
+  (data = require('./data.cjs')),
+  (layoutFragment = require('./xml-shards/layout.cjs')),
+  ($ = new showdown.Converter({
+    extensions: [...injectClasses],
     emoji: true,
     ghCompatibleHeaderId: true,
     ghMentions: true,
@@ -33,9 +42,9 @@ var $ = new showdown.Converter({
     simplifiedAutoLink: true,
     tables: true,
     tasklists: true
-  }),
-  PATH_TO_MARKDOWN_FILES = './docs/assets/markdown/modules',
-  _moduleNames = [
+  })),
+  (PATH_TO_MARKDOWN_FILES = './docs/assets/markdown/modules'),
+  (_moduleNames = [
     'colors',
     'types',
     'converters',
@@ -43,7 +52,7 @@ var $ = new showdown.Converter({
     'utils',
     'filterBy',
     'sortBy'
-  ];
+  ]);
 
 // The html comment to match before injecting data
 // const reHtmlComment = /(<!-- DOC_START -->)[\s\S]*?(<!-- DOC_END -->)$/gm;
@@ -55,7 +64,7 @@ function generateDocs(source) {
     readFileSync(source, 'utf-8'),
     {
       '### Functions': 'toolbox',
-      '## Module': 'package',
+      '# Module': 'package',
       '## Table of contents': 'bookmark_tabs',
       '### Parameters': 'abacus',
       '#### Returns': 'back',
@@ -84,7 +93,6 @@ function generateDocs(source) {
 for (const [k, v] of Object.entries(_moduleNames)) {
   var c = data[v],
     m = new Intl.DateTimeFormat('en-US', {
-      weekday: 'short',
       year: 'numeric',
       month: 'short',
       day: 'numeric',
@@ -92,7 +100,7 @@ for (const [k, v] of Object.entries(_moduleNames)) {
     }).format(lstatSync('./types/' + v + '.d.ts').mtime);
 
   var cb = (s, x, y) =>
-    `https://github.com/prjctimg/huetiful/${s}/main/blob/${x}.${y}`;
+    `https://github.com/prjctimg/huetiful/blob/main/${s}/${x}.${y}`;
 
   var page = postFragment({
     title: `${v}`,
@@ -101,23 +109,23 @@ for (const [k, v] of Object.entries(_moduleNames)) {
     lastUpdated: m,
     srcFile: cb('src', v, 'js'),
     specFile: cb('spec', v, 'spec.js'),
-    wikiPage: cb('wiki'),
+    wikiPage: `https://github.com/prjctimg/huetiful/wiki/${v}`,
     declFile: cb('types', v, 'd.ts'),
     page: {
       previous: {
         title:
-          parseInt(k) !== 0
+          parseInt(k) > 0
             ? _moduleNames[parseInt(k) - 1]
             : `Go back to the home page ?`,
-        href: k !== 0 ? `./${v}.html` : './index.html'
+        href: k > 0 ? `./${v}.html` : './index.html'
       },
       next: {
         title:
-          k !== _moduleNames.length - 1
+          parseInt(k) < _moduleNames.length - 1
             ? _moduleNames[parseInt(k) + 1]
             : `Learn more on our Wiki`,
         href:
-          parseInt(k) !== _moduleNames.length - 1
+          parseInt(k) < _moduleNames.length - 1
             ? `./${v}.html`
             : 'https://github.com/prjctimg/huetiful/wiki'
       }

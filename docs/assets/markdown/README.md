@@ -1,5 +1,3 @@
-huetiful-js / [Modules](modules.md)
-
 ![](assets/images/logo.png)
 
 <h1 class="font-extralight ">It's not just <span class="text-pink-600">another library</span>  about <span class="text-sky-600">color.</span></h1>

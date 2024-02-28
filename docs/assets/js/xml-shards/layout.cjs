@@ -16,16 +16,16 @@ ${headFragment()}
     
  <div class="flex-col">
    <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
-        <!-- Use icons instead of text -->
+      
         <a href="https://github.com/prjctimg/huetiful"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-github"
@@ -37,12 +37,12 @@ ${headFragment()}
         <a href="https://twitter.com/deantarisai"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-twitter"
@@ -54,12 +54,12 @@ ${headFragment()}
         <a href="https://npmjs.com/package/huetiful-js"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-package"
@@ -74,12 +74,12 @@ ${headFragment()}
         <a href="mailto:prjctimg@outlook.com"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-mail"
@@ -92,12 +92,12 @@ ${headFragment()}
         <a href="https://kofi.com/prjctimg"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-coffee"
@@ -120,12 +120,12 @@ ${headFragment()}
             <span class="inline-block"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="14"
+                width="12"
                 height="14"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="gray"
-                stroke-width="2"
+                stroke-width="1.75"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="feather feather-code"
@@ -137,12 +137,12 @@ ${headFragment()}
             <span class="inline-block"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="14"
+                width="12"
                 height="14"
                 viewBox="0 0 24 24"
                 
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="1.75"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="animate-pulse stroke-none fill-red-800"
@@ -160,7 +160,7 @@ ${headFragment()}
                
       </div>
     </footer>
-  </body>
+  
 
 
      <script src="assets/js/main.js"></script>

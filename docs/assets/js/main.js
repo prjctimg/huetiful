@@ -53,3 +53,12 @@ if (lightSwitches.length > 0) {
     });
   });
 }
+
+/* Icon styling; stroke-width and stroke */
+
+var icons = document.querySelectorAll('svg');
+
+for (const icon of icons) {
+  icon.style.strokeWidth = '1.75px';
+  icon.style.stroke = '#6b7280';
+}

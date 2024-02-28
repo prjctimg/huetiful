@@ -1,5 +1,3 @@
-[huetiful-js](../README.md) / [Modules](../modules.md) / sortBy
-
 # Module: sortBy
 
 ## Table of contents
@@ -50,7 +48,7 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 
 #### Defined in
 
-[sortBy.d.ts:245](https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L245)
+[sortBy.d.ts:245](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/sortBy.d.ts#L245)
 
 ___
 
@@ -101,7 +99,7 @@ console.log(
 
 #### Defined in
 
-[sortBy.d.ts:280](https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L280)
+[sortBy.d.ts:280](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/sortBy.d.ts#L280)
 
 ___
 
@@ -167,7 +165,7 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:222](https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L222)
+[sortBy.d.ts:222](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/sortBy.d.ts#L222)
 
 ___
 
@@ -235,7 +233,7 @@ sortByLightness(sample,'desc')
 
 #### Defined in
 
-[sortBy.d.ts:171](https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L171)
+[sortBy.d.ts:171](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/sortBy.d.ts#L171)
 
 ___
 
@@ -301,7 +299,7 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:119](https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L119)
+[sortBy.d.ts:119](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/sortBy.d.ts#L119)
 
 ___
 
@@ -369,4 +367,4 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:66](https://github.com/prjctimg/huetiful/blob/9939ea7/types/sortBy.d.ts#L66)
+[sortBy.d.ts:66](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/sortBy.d.ts#L66)

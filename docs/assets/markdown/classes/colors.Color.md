@@ -1,5 +1,3 @@
-[huetiful-js](../README.md) / [Modules](../modules.md) / [colors](../modules/colors.md) / Color
-
 # Class: Color
 
 [colors](../modules/colors.md).Color
@@ -72,7 +70,7 @@ console.log(wrapper.color2hex());
 
 #### Defined in
 
-[colors.d.ts:745](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L745)
+[colors.d.ts:745](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L745)
 
 ## Methods
 
@@ -92,7 +90,7 @@ console.log(wrapper.color2hex());
 
 #### Defined in
 
-[colors.d.ts:746](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L746)
+[colors.d.ts:746](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L746)
 
 ___
 
@@ -110,7 +108,7 @@ string
 
 #### Defined in
 
-[colors.d.ts:761](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L761)
+[colors.d.ts:761](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L761)
 
 ___
 
@@ -130,7 +128,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:831](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L831)
+[colors.d.ts:831](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L831)
 
 ___
 
@@ -176,7 +174,7 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 
 #### Defined in
 
-[colors.d.ts:861](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L861)
+[colors.d.ts:861](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L861)
 
 ___
 
@@ -200,7 +198,7 @@ The array of colors resulting from the earthtone interpolation as hex codes.
 
 #### Defined in
 
-[colors.d.ts:830](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L830)
+[colors.d.ts:830](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L830)
 
 ___
 
@@ -220,7 +218,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:747](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L747)
+[colors.d.ts:747](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L747)
 
 ___
 
@@ -257,7 +255,7 @@ console.log(getComplimentaryHue("purple"))
 
 #### Defined in
 
-[colors.d.ts:815](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L815)
+[colors.d.ts:815](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L815)
 
 ___
 
@@ -278,7 +276,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:901](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L901)
+[colors.d.ts:901](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L901)
 
 ___
 
@@ -299,7 +297,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:865](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L865)
+[colors.d.ts:865](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L865)
 
 ___
 
@@ -320,7 +318,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:910](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L910)
+[colors.d.ts:910](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L910)
 
 ___
 
@@ -334,7 +332,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:920](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L920)
+[colors.d.ts:920](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L920)
 
 ___
 
@@ -355,7 +353,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:883](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L883)
+[colors.d.ts:883](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L883)
 
 ___
 
@@ -376,7 +374,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:874](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L874)
+[colors.d.ts:874](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L874)
 
 ___
 
@@ -397,7 +395,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:892](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L892)
+[colors.d.ts:892](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L892)
 
 ___
 
@@ -440,7 +438,7 @@ console.log(hueShiftedPalette);
 
 #### Defined in
 
-[colors.d.ts:799](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L799)
+[colors.d.ts:799](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L799)
 
 ___
 
@@ -454,7 +452,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:835](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L835)
+[colors.d.ts:835](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L835)
 
 ___
 
@@ -468,7 +466,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:837](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L837)
+[colors.d.ts:837](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L837)
 
 ___
 
@@ -482,7 +480,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:836](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L836)
+[colors.d.ts:836](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L836)
 
 ___
 
@@ -502,7 +500,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:832](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L832)
+[colors.d.ts:832](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L832)
 
 ___
 
@@ -516,7 +514,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:833](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L833)
+[colors.d.ts:833](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L833)
 
 ___
 
@@ -530,7 +528,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:919](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L919)
+[colors.d.ts:919](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L919)
 
 ___
 
@@ -563,7 +561,7 @@ console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
 
 #### Defined in
 
-[colors.d.ts:778](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L778)
+[colors.d.ts:778](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L778)
 
 ___
 
@@ -581,7 +579,7 @@ string
 
 #### Defined in
 
-[colors.d.ts:766](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L766)
+[colors.d.ts:766](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L766)
 
 ___
 
@@ -601,7 +599,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:834](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L834)
+[colors.d.ts:834](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L834)
 
 ___
 
@@ -622,7 +620,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:921](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L921)
+[colors.d.ts:921](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L921)
 
 ___
 
@@ -643,7 +641,7 @@ ___
 
 #### Defined in
 
-[colors.d.ts:748](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L748)
+[colors.d.ts:748](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L748)
 
 ___
 
@@ -669,4 +667,4 @@ The result of the interpolation as a hexadecimal string.
 
 #### Defined in
 
-[colors.d.ts:756](https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L756)
+[colors.d.ts:756](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L756)

@@ -19,6 +19,15 @@ function headFragment() {
         }
       }
 
+      .progress{
+        position:fixed;
+        top:0;
+        left:0;
+        width:0%;
+        height:4px;
+        z-index:1000;
+      }
+
     </style>
   </head>`;
 }

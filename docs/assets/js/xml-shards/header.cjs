@@ -58,6 +58,7 @@ function headerFragment() {
         </a>
         
       </nav>
+      <div id='progress-bar' class='progress bg-gradient-to-r from-orange-600 via-purple-600 to-emerald-600'/>
     </header>`;
 }
 module.exports = headerFragment;

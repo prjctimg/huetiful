@@ -1,5 +1,3 @@
-[huetiful-js](../README.md) / [Modules](../modules.md) / filterBy
-
 # Module: filterBy
 
 ## Table of contents
@@ -61,7 +59,7 @@ console.log(filterByContrast(sample, 'green', '>=3'))
 
 #### Defined in
 
-[filterBy.d.ts:215](https://github.com/prjctimg/huetiful/blob/9939ea7/types/filterBy.d.ts#L215)
+[filterBy.d.ts:215](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/filterBy.d.ts#L215)
 
 ___
 
@@ -108,7 +106,7 @@ console.log(filterByDistance(sample, "yellow", 0.1))
 
 #### Defined in
 
-[filterBy.d.ts:180](https://github.com/prjctimg/huetiful/blob/9939ea7/types/filterBy.d.ts#L180)
+[filterBy.d.ts:180](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/filterBy.d.ts#L180)
 
 ___
 
@@ -157,7 +155,7 @@ filterByHue(sample, 20, 80)
 
 #### Defined in
 
-[filterBy.d.ts:150](https://github.com/prjctimg/huetiful/blob/9939ea7/types/filterBy.d.ts#L150)
+[filterBy.d.ts:150](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/filterBy.d.ts#L150)
 
 ___
 
@@ -210,7 +208,7 @@ filterByLightness(sample, 20, 80)
 
 #### Defined in
 
-[filterBy.d.ts:118](https://github.com/prjctimg/huetiful/blob/9939ea7/types/filterBy.d.ts#L118)
+[filterBy.d.ts:118](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/filterBy.d.ts#L118)
 
 ___
 
@@ -259,7 +257,7 @@ filterByLuminance(sample, 0.4, 0.9)
 
 #### Defined in
 
-[filterBy.d.ts:81](https://github.com/prjctimg/huetiful/blob/9939ea7/types/filterBy.d.ts#L81)
+[filterBy.d.ts:81](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/filterBy.d.ts#L81)
 
 ___
 
@@ -313,4 +311,4 @@ console.log(filterBySaturation(sample, 0.1));
 
 #### Defined in
 
-[filterBy.d.ts:47](https://github.com/prjctimg/huetiful/blob/9939ea7/types/filterBy.d.ts#L47)
+[filterBy.d.ts:47](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/filterBy.d.ts#L47)

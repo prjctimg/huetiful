@@ -20,6 +20,15 @@
         }
       }
 
+      .progress{
+        position:fixed;
+        top:0;
+        left:0;
+        width:0%;
+        height:4px;
+        z-index:1000;
+      }
+
     </style>
   </head>
   <body class="markdown-body">
@@ -82,88 +91,50 @@
         </a>
         
       </nav>
+      <div id='progress-bar' class='progress bg-gradient-to-r from-orange-600 via-purple-600 to-emerald-600'/>
     </header>
 <div>
     <title>utils</title>
    <body>
-       <header class="pb-8 sticky top-0 left-0  w-full text-gray-700">
-      <nav
-        class="py-4 flex flex-wrap items-center justify-between w-full py-4.html:py-0 px-4 text-lg text-gray-700 bg-white dark:bg-slate-800 dark:text-gray-200 shadow-lg shadow-gray-300 dark:shadow-black"
-      >
+     
       
-        <a class="inline-flex space-y-1 items-center font-medium text-base"
-          href="./index.html"
-          id="home"
-        ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-          <span 
-            >Home</span>
-          
-        </a>
-        
-        <a href="./modules.html" id="docs-link" class="inline-flex space-y-1 items-center font-medium text-base">
-         <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="inline-block mr-1"
-            >
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-              <path
-                d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"
-              ></path></svg> <span>Docs</span>
-        </a>
-        <a class="inline-flex space-y-1 items-center font-medium text-base"href="https://github.com/prjctimg/huetiful/wiki" id="wiki-link">
-         <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="inline-block mr-1"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path
-                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-              ></path></svg>
-               <span>Wiki</span
-          >
-        </a>
-        <a class="inline-flex space-y-1 items-center font-medium text-base" href="https://github.com/prjctimg/huetiful" id="source-link">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> <span>Source</span
-          >
-        </a>
-        
-      </nav>
-      
-    </header>
+    
     <article class='markdown-body'>
-    <div class="flex justify-start w-fit p-4 space-x-2"> 
-    <a href=https://github.com/prjctimg/huetiful/src/main/blob/utils.js class="px 2"> View source <span class="inline-block ml-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></span></a>
-    <a href=https://github.com/prjctimg/huetiful/types/main/blob/utils.d.ts class="px 2"> Edit this page <span class="inline-block ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-</span></a>
-<h6 class='block mt-1'>last updated Sun, Feb 25, 2024, in the morning</h6>
-</article>
-<!-- main content injected here -->
-<div class="bg-blue-200 p-3 w-full h-fit flex flex-col">
+    <div class="flex justify-start w-full space-x-2"> 
+
+<div class='flex flex-col'>
 
 
-  <h4 class="">This module has functions for querying and setting color properties. This includes fetching values (these can also be color tokens) of statistical significance from collections.</h4>
+<a href=https://github.com/prjctimg/huetiful/blob/main/types/utils.d.ts class="p-2.5 bg-blue-300  rounded-md shadow-sm"> Edit this page <span class="inline-block ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
 
+    </span></a>
+
+<div class='block text-slate-600 text-xs font-mono font-semibold'> <span class='font-normal text-sm text-slate-500'>last updated</span> Feb 25, 2024, in the morning</div>
 
 </div>
-<p><a href="../README.md">huetiful-js</a> / <a href="../modules.md">Modules</a> / utils</p>
-<h1 id="module-utils">Module: utils</h1>
+
+    
+</div>
+
+
+
+
+<div class="flex flex-row space-x-1 pt-8 pb-1 w-fit">
+<a href=https://github.com/prjctimg/huetiful/blob/main/spec/utils.spec.js class="flex">
+    <span>Tests 🧪</span>
+    
+    
+</a>
+<a href=https://github.com/prjctimg/huetiful/blob/main/src/utils.js class="flex">
+    <span>Source 📜</span>
+</a>
+</div>
+
+</article>
+
+<!-- main content injected here -->
+
+<h1 id="module-📦-utils">Module 📦: utils</h1>
 <h2 id="table-of-contents-📑">Table of contents 📑</h2>
 <h3 id="functions-🧰">Functions 🧰</h3>
 <ul>
@@ -241,7 +212,7 @@ console.log(myColor)
 // #b2c3f180
 </code></pre>
 <h4 id="defined-in-📝">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L354">utils.d.ts:354</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L354">utils.d.ts:354</a></p>
 <hr />
 <h3 id="brighten">brighten</h3>
 <p>▸ <strong>brighten</strong>(<code>color</code>, <code>amount?</code>, <code>colorspace?</code>, <code>hex?</code>): <code>string</code> | <code>object</code></p>
@@ -287,7 +258,7 @@ console.log(brighten('blue', 0.3, 'lch'));
 //#464646
 </code></pre>
 <h4 id="defined-in-📝-1">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L478">utils.d.ts:478</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L478">utils.d.ts:478</a></p>
 <hr />
 <h3 id="colordeficiency">colorDeficiency</h3>
 <p>▸ <strong>colorDeficiency</strong>(<code>deficiencyType?</code>): (<code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a>, <code>severity?</code>: <code>number</code>) =&gt; <code>string</code></p>
@@ -349,7 +320,7 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 // #9f9f9f
 </code></pre>
 <h4 id="defined-in-📝-2">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L559">utils.d.ts:559</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L559">utils.d.ts:559</a></p>
 <hr />
 <h3 id="darken">darken</h3>
 <p>▸ <strong>darken</strong>(<code>color</code>, <code>amount</code>, <code>colorspace?</code>): <code>string</code></p>
@@ -390,7 +361,7 @@ console.log(darken('blue', 0.3, 'lch'));
 //#464646
 </code></pre>
 <h4 id="defined-in-📝-3">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L458">utils.d.ts:458</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L458">utils.d.ts:458</a></p>
 <hr />
 <h3 id="getchannel">getChannel</h3>
 <p>▸ <strong>getChannel</strong>(<code>mc</code>): (<code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a>) =&gt; <code>number</code></p>
@@ -440,7 +411,7 @@ console.log(getChannel('rgb.g')('#a1bd2f'))
 // 0.7411764705882353
 </code></pre>
 <h4 id="defined-in-📝-4">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L290">utils.d.ts:290</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L290">utils.d.ts:290</a></p>
 <hr />
 <h3 id="getcomplimentaryhue">getComplimentaryHue</h3>
 <p>▸ <strong>getComplimentaryHue</strong>(<code>color</code>, <code>colorObj?</code>): { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>hue</code>: <code>string</code>  } | <a href="types.md#colortoken"><code>ColorToken</code></a></p>
@@ -480,7 +451,7 @@ console.log(getComplimentaryHue("purple"))
 // #005700ff
 </code></pre>
 <h4 id="defined-in-📝-5">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L248">utils.d.ts:248</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L248">utils.d.ts:248</a></p>
 <hr />
 <h3 id="getcontrast">getContrast</h3>
 <p>▸ <strong>getContrast</strong>(<code>color</code>, <code>against</code>): <code>number</code></p>
@@ -514,7 +485,7 @@ console.log(getContrast("black", "white"));
 // 21
 </code></pre>
 <h4 id="defined-in-📝-6">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L368">utils.d.ts:368</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L368">utils.d.ts:368</a></p>
 <hr />
 <h3 id="getfarthestchroma">getFarthestChroma</h3>
 <p>▸ <strong>getFarthestChroma</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -558,7 +529,7 @@ console.log(getFarthestChroma(sample, 'lch'))
 // 67.22120855010492
 </code></pre>
 <h4 id="defined-in-📝-7">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L171">utils.d.ts:171</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L171">utils.d.ts:171</a></p>
 <hr />
 <h3 id="getfarthestchromafrom">getFarthestChromaFrom</h3>
 <p>▸ <strong>getFarthestChromaFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -614,7 +585,7 @@ var sample =  [
        // 35
 </code></pre>
 <h4 id="defined-in-📝-8">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L607">utils.d.ts:607</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L607">utils.d.ts:607</a></p>
 <hr />
 <h3 id="getfarthestcontrast">getFarthestContrast</h3>
 <p>▸ <strong>getFarthestContrast</strong>(<code>collection</code>, <code>against</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -659,7 +630,7 @@ console.log(getFarthestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true)
 // { contrast: 3.08355493246362, name: '#f3bac1' }
 </code></pre>
 <h4 id="defined-in-📝-9">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L119">utils.d.ts:119</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L119">utils.d.ts:119</a></p>
 <hr />
 <h3 id="getfarthesthue">getFarthestHue</h3>
 <p>▸ <strong>getFarthestHue</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -702,7 +673,7 @@ console.log(getFarthestHue(sample, 'lch'))
 // 273.54920266436477
 </code></pre>
 <h4 id="defined-in-📝-10">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L222">utils.d.ts:222</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L222">utils.d.ts:222</a></p>
 <hr />
 <h3 id="getfarthesthuefrom">getFarthestHueFrom</h3>
 <p>▸ <strong>getFarthestHueFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -758,7 +729,7 @@ var sample =  [
        // 35
 </code></pre>
 <h4 id="defined-in-📝-11">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L682">utils.d.ts:682</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L682">utils.d.ts:682</a></p>
 <hr />
 <h3 id="getfarthestlightness">getFarthestLightness</h3>
 <p>▸ <strong>getFarthestLightness</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -803,7 +774,7 @@ console.log(getFarthestLightness(sample, 'lch',true))
 // { lightness: 80.94668903360088, name: '#f3bac1' }
 </code></pre>
 <h4 id="defined-in-📝-12">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L434">utils.d.ts:434</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L434">utils.d.ts:434</a></p>
 <hr />
 <h3 id="getfarthestlightnessfrom">getFarthestLightnessFrom</h3>
 <p>▸ <strong>getFarthestLightnessFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -859,7 +830,7 @@ var sample =  [
        // 35
 </code></pre>
 <h4 id="defined-in-📝-13">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L758">utils.d.ts:758</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L758">utils.d.ts:758</a></p>
 <hr />
 <h3 id="gethuefamily">getHueFamily</h3>
 <p>▸ <strong>getHueFamily</strong>(<code>color</code>): <a href="types.md#huefamily"><code>HueFamily</code></a></p>
@@ -891,7 +862,7 @@ console.log(getHueFamily("#310000"))
 // red
 </code></pre>
 <h4 id="defined-in-📝-14">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L23">utils.d.ts:23</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L23">utils.d.ts:23</a></p>
 <hr />
 <h3 id="getluminance">getLuminance</h3>
 <p>▸ <strong>getLuminance</strong>(<code>color</code>): <code>number</code></p>
@@ -939,7 +910,7 @@ console.log(colors('all', '400').map(getLuminance));
 ]
 </code></pre>
 <h4 id="defined-in-📝-15">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L317">utils.d.ts:317</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L317">utils.d.ts:317</a></p>
 <hr />
 <h3 id="getnearestchroma">getNearestChroma</h3>
 <p>▸ <strong>getNearestChroma</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -983,7 +954,7 @@ console.log(getNearestChroma(sample, 'lch'))
 // 22.45669293295522
 </code></pre>
 <h4 id="defined-in-📝-16">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L145">utils.d.ts:145</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L145">utils.d.ts:145</a></p>
 <hr />
 <h3 id="getnearestchromafrom">getNearestChromaFrom</h3>
 <p>▸ <strong>getNearestChromaFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -1039,7 +1010,7 @@ var sample =  [
        // 5
 </code></pre>
 <h4 id="defined-in-📝-17">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L646">utils.d.ts:646</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L646">utils.d.ts:646</a></p>
 <hr />
 <h3 id="getnearestcolor">getNearestColor</h3>
 <p>▸ <strong>getNearestColor</strong>(<code>collection</code>, <code>against</code>, <code>num?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a> | <a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
@@ -1081,7 +1052,7 @@ console.log(getNearestColor(cols, 'blue', 3));
 // [ '#a855f7', '#8b5cf6', '#d946ef' ]
 </code></pre>
 <h4 id="defined-in-📝-18">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L575">utils.d.ts:575</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L575">utils.d.ts:575</a></p>
 <hr />
 <h3 id="getnearestcontrast">getNearestContrast</h3>
 <p>▸ <strong>getNearestContrast</strong>(<code>collection</code>, <code>against</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -1126,7 +1097,7 @@ console.log(getNearestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true))
 // { contrast: 2.4061390502133424, name: '#a1bd2f' }
 </code></pre>
 <h4 id="defined-in-📝-19">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L92">utils.d.ts:92</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L92">utils.d.ts:92</a></p>
 <hr />
 <h3 id="getnearesthue">getNearestHue</h3>
 <p>▸ <strong>getNearestHue</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -1170,7 +1141,7 @@ console.log(getNearestHue(sample, 'lch'))
 // 12.462831644544274
 </code></pre>
 <h4 id="defined-in-📝-20">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L197">utils.d.ts:197</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L197">utils.d.ts:197</a></p>
 <hr />
 <h3 id="getnearesthuefrom">getNearestHueFrom</h3>
 <p>▸ <strong>getNearestHueFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -1226,7 +1197,7 @@ var sample =  [
        // 5
 </code></pre>
 <h4 id="defined-in-📝-21">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L719">utils.d.ts:719</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L719">utils.d.ts:719</a></p>
 <hr />
 <h3 id="getnearestlightness">getNearestLightness</h3>
 <p>▸ <strong>getNearestLightness</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -1271,7 +1242,7 @@ console.log(getNearestLightness(sample, 'lch',true))
 // { lightness: 72.61647882089876, name: '#a1bd2f' }
 </code></pre>
 <h4 id="defined-in-📝-22">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L406">utils.d.ts:406</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L406">utils.d.ts:406</a></p>
 <hr />
 <h3 id="getnearestlightnessfrom">getNearestLightnessFrom</h3>
 <p>▸ <strong>getNearestLightnessFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
@@ -1327,7 +1298,7 @@ var sample =  [
        // 5
 </code></pre>
 <h4 id="defined-in-📝-23">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L794">utils.d.ts:794</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L794">utils.d.ts:794</a></p>
 <hr />
 <h3 id="isachromatic">isAchromatic</h3>
 <p>▸ <strong>isAchromatic</strong>(<code>color</code>, <code>colorspace?</code>): <code>boolean</code></p>
@@ -1396,7 +1367,7 @@ console.log(map(grays, isAchromatic));
 ]
 </code></pre>
 <h4 id="defined-in-📝-24">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L533">utils.d.ts:533</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L533">utils.d.ts:533</a></p>
 <hr />
 <h3 id="iscool">isCool</h3>
 <p>▸ <strong>isCool</strong>(<code>color</code>): <code>boolean</code></p>
@@ -1438,7 +1409,7 @@ console.log(map(sample, isCool));
 // [ true,  false, true]
 </code></pre>
 <h4 id="defined-in-📝-25">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L50">utils.d.ts:50</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L50">utils.d.ts:50</a></p>
 <hr />
 <h3 id="iswarm">isWarm</h3>
 <p>▸ <strong>isWarm</strong>(<code>color</code>): <code>boolean</code></p>
@@ -1480,7 +1451,7 @@ console.log(map(sample, isWarm));
 // [ false, true,  false]
 </code></pre>
 <h4 id="defined-in-📝-26">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L75">utils.d.ts:75</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L75">utils.d.ts:75</a></p>
 <hr />
 <h3 id="overtone">overtone</h3>
 <p>▸ <strong>overtone</strong>(<code>color</code>): <code>string</code> | <code>boolean</code></p>
@@ -1518,7 +1489,7 @@ console.log(overtone("blue"))
 // false
 </code></pre>
 <h4 id="defined-in-📝-27">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L387">utils.d.ts:387</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L387">utils.d.ts:387</a></p>
 <hr />
 <h3 id="setchannel">setChannel</h3>
 <p>▸ <strong>setChannel</strong>(<code>mc</code>): (<code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a>, <code>value</code>: <code>number</code> | <code>string</code>) =&gt; <a href="types.md#colortoken"><code>ColorToken</code></a></p>
@@ -1574,7 +1545,7 @@ console.log(getChannel('lch.h')(myColor))
 // 10
 </code></pre>
 <h4 id="defined-in-📝-28">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L274">utils.d.ts:274</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L274">utils.d.ts:274</a></p>
 <hr />
 <h3 id="setluminance">setLuminance</h3>
 <p>▸ <strong>setLuminance</strong>(<code>color</code>, <code>lum</code>): <a href="types.md#colortoken"><code>ColorToken</code></a></p>
@@ -1613,7 +1584,7 @@ console.log(getLuminance(myColor))
 // 0.4999999136285792
 </code></pre>
 <h4 id="defined-in-📝-29">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/utils.d.ts#L333">utils.d.ts:333</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/utils.d.ts#L333">utils.d.ts:333</a></p>
 <!-- Next/Prev pages -->
 <div class="flex w-full justify-between px-2 py-2">
 
@@ -1648,12 +1619,12 @@ console.log(getLuminance(myColor))
         <a href="https://github.com/prjctimg/huetiful"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-github"
@@ -1665,12 +1636,12 @@ console.log(getLuminance(myColor))
         <a href="https://twitter.com/deantarisai"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-twitter"
@@ -1682,12 +1653,12 @@ console.log(getLuminance(myColor))
         <a href="https://npmjs.com/package/huetiful-js"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-package"
@@ -1702,12 +1673,12 @@ console.log(getLuminance(myColor))
         <a href="mailto:prjctimg@outlook.com"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-mail"
@@ -1720,12 +1691,12 @@ console.log(getLuminance(myColor))
         <a href="https://kofi.com/prjctimg"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-coffee"
@@ -1748,12 +1719,12 @@ console.log(getLuminance(myColor))
             <span class="inline-block"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="14"
+                width="12"
                 height="14"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="gray"
-                stroke-width="2"
+                stroke-width="1.75"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="feather feather-code"
@@ -1765,12 +1736,12 @@ console.log(getLuminance(myColor))
             <span class="inline-block"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="14"
+                width="12"
                 height="14"
                 viewBox="0 0 24 24"
                 
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="1.75"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="animate-pulse stroke-none fill-red-800"

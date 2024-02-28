@@ -20,6 +20,15 @@
         }
       }
 
+      .progress{
+        position:fixed;
+        top:0;
+        left:0;
+        width:0%;
+        height:4px;
+        z-index:1000;
+      }
+
     </style>
   </head>
   <body class="markdown-body">
@@ -82,88 +91,50 @@
         </a>
         
       </nav>
+      <div id='progress-bar' class='progress bg-gradient-to-r from-orange-600 via-purple-600 to-emerald-600'/>
     </header>
 <div>
     <title>colors</title>
    <body>
-       <header class="pb-8 sticky top-0 left-0  w-full text-gray-700">
-      <nav
-        class="py-4 flex flex-wrap items-center justify-between w-full py-4.html:py-0 px-4 text-lg text-gray-700 bg-white dark:bg-slate-800 dark:text-gray-200 shadow-lg shadow-gray-300 dark:shadow-black"
-      >
+     
       
-        <a class="inline-flex space-y-1 items-center font-medium text-base"
-          href="./index.html"
-          id="home"
-        ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-          <span 
-            >Home</span>
-          
-        </a>
-        
-        <a href="./modules.html" id="docs-link" class="inline-flex space-y-1 items-center font-medium text-base">
-         <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="inline-block mr-1"
-            >
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-              <path
-                d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"
-              ></path></svg> <span>Docs</span>
-        </a>
-        <a class="inline-flex space-y-1 items-center font-medium text-base"href="https://github.com/prjctimg/huetiful/wiki" id="wiki-link">
-         <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="inline-block mr-1"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path
-                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-              ></path></svg>
-               <span>Wiki</span
-          >
-        </a>
-        <a class="inline-flex space-y-1 items-center font-medium text-base" href="https://github.com/prjctimg/huetiful" id="source-link">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> <span>Source</span
-          >
-        </a>
-        
-      </nav>
-      
-    </header>
+    
     <article class='markdown-body'>
-    <div class="flex justify-start w-fit p-4 space-x-2"> 
-    <a href=https://github.com/prjctimg/huetiful/src/main/blob/colors.js class="px 2"> View source <span class="inline-block ml-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></span></a>
-    <a href=https://github.com/prjctimg/huetiful/types/main/blob/colors.d.ts class="px 2"> Edit this page <span class="inline-block ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-</span></a>
-<h6 class='block mt-1'>last updated Sun, Feb 25, 2024, noon</h6>
-</article>
-<!-- main content injected here -->
-<div class="bg-blue-200 p-3 w-full h-fit flex flex-col">
+    <div class="flex justify-start w-full space-x-2"> 
+
+<div class='flex flex-col'>
 
 
-  <h4 class="">This module has wrapper functions for different color maps. The `Color` and `ColorArray` classes which bind methods to color tokens and collections respectively are declared in this module.</h4>
+<a href=https://github.com/prjctimg/huetiful/blob/main/types/colors.d.ts class="p-2.5 bg-blue-300  rounded-md shadow-sm"> Edit this page <span class="inline-block ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
 
+    </span></a>
+
+<div class='block text-slate-600 text-xs font-mono font-semibold'> <span class='font-normal text-sm text-slate-500'>last updated</span> Feb 25, 2024, noon</div>
 
 </div>
-<p><a href="../README.md">huetiful-js</a> / <a href="../modules.md">Modules</a> / colors</p>
-<h1 id="module-colors">Module: colors</h1>
+
+    
+</div>
+
+
+
+
+<div class="flex flex-row space-x-1 pt-8 pb-1 w-fit">
+<a href=https://github.com/prjctimg/huetiful/blob/main/spec/colors.spec.js class="flex">
+    <span>Tests 🧪</span>
+    
+    
+</a>
+<a href=https://github.com/prjctimg/huetiful/blob/main/src/colors.js class="flex">
+    <span>Source 📜</span>
+</a>
+</div>
+
+</article>
+
+<!-- main content injected here -->
+
+<h1 id="module-📦-colors">Module 📦: colors</h1>
 <h2 id="table-of-contents-📑">Table of contents 📑</h2>
 <h3 id="classes">Classes</h3>
 <ul>
@@ -204,7 +175,7 @@
 <p><a href="../classes/colors.Color.md"><code>Color</code></a></p>
 <p>A new Color class with all the utilities that take a single color as the first parameter bound to its prototype.</p>
 <h4 id="defined-in-📝">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L931">colors.d.ts:931</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L931">colors.d.ts:931</a></p>
 <hr />
 <h3 id="diverging">diverging</h3>
 <p>▸ <strong>diverging</strong>(<code>scheme</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
@@ -241,7 +212,7 @@ console.log(diverging("Spectral"))
 ]
 </code></pre>
 <h4 id="defined-in-📝-1">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L676">colors.d.ts:676</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L676">colors.d.ts:676</a></p>
 <hr />
 <h3 id="load">load</h3>
 <p>▸ <strong>load</strong>(<code>colors</code>): <a href="../classes/colors.ColorArray.md"><code>ColorArray</code></a></p>
@@ -266,7 +237,7 @@ console.log(diverging("Spectral"))
 <h4 id="returns-🔙-2">Returns 🔙</h4>
 <p><a href="../classes/colors.ColorArray.md"><code>ColorArray</code></a></p>
 <h4 id="defined-in-📝-2">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L633">colors.d.ts:633</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L633">colors.d.ts:633</a></p>
 <hr />
 <h3 id="qualitative">qualitative</h3>
 <p>▸ <strong>qualitative</strong>(<code>scheme</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
@@ -303,7 +274,7 @@ console.log(qualitative("Accent"))
 ]
 </code></pre>
 <h4 id="defined-in-📝-3">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L696">colors.d.ts:696</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L696">colors.d.ts:696</a></p>
 <hr />
 <h3 id="sequential">sequential</h3>
 <p>▸ <strong>sequential</strong>(<code>scheme</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[]</p>
@@ -342,7 +313,7 @@ console.log(sequential("OrRd"))
 ]
 </code></pre>
 <h4 id="defined-in-📝-4">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L656">colors.d.ts:656</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L656">colors.d.ts:656</a></p>
 <hr />
 <h3 id="tailwindcolors">tailwindColors</h3>
 <p>▸ <strong>tailwindColors</strong>(<code>shade</code>, <code>value?</code>): <code>string</code> | <code>string</code>[]</p>
@@ -391,7 +362,7 @@ console.log(red('900'));
 // '#7f1d1d'
 </code></pre>
 <h4 id="defined-in-📝-5">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/9939ea7/types/colors.d.ts#L728">colors.d.ts:728</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/0fffa9d/types/colors.d.ts#L728">colors.d.ts:728</a></p>
 <!-- Next/Prev pages -->
 <div class="flex w-full justify-between px-2 py-2">
 
@@ -426,12 +397,12 @@ console.log(red('900'));
         <a href="https://github.com/prjctimg/huetiful"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-github"
@@ -443,12 +414,12 @@ console.log(red('900'));
         <a href="https://twitter.com/deantarisai"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-twitter"
@@ -460,12 +431,12 @@ console.log(red('900'));
         <a href="https://npmjs.com/package/huetiful-js"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-package"
@@ -480,12 +451,12 @@ console.log(red('900'));
         <a href="mailto:prjctimg@outlook.com"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-mail"
@@ -498,12 +469,12 @@ console.log(red('900'));
         <a href="https://kofi.com/prjctimg"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
+            width="22"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="gray"
-            stroke-width="2"
+            stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-coffee"
@@ -526,12 +497,12 @@ console.log(red('900'));
             <span class="inline-block"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="14"
+                width="12"
                 height="14"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="gray"
-                stroke-width="2"
+                stroke-width="1.75"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="feather feather-code"
@@ -543,12 +514,12 @@ console.log(red('900'));
             <span class="inline-block"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="14"
+                width="12"
                 height="14"
                 viewBox="0 0 24 24"
                 
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="1.75"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="animate-pulse stroke-none fill-red-800"

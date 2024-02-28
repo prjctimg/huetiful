@@ -1,5 +1,3 @@
-[huetiful-js](README.md) / Modules
-
 # huetiful-js
 
 ## Table of contents
