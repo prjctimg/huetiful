@@ -285,7 +285,6 @@ export {
   toDIN99,
   toRGB,
   toOk,
-  toITP,
   toJab,
   toJch
 };
