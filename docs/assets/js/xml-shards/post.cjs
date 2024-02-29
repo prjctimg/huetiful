@@ -43,7 +43,7 @@ function postFragment({
 <div class='flex flex-row w-full justify-end'>
 
 
-<a class='flex w-fit align-bottom' href=${declFile} ><button class="px-2 py-2 border-2 border-blue-600  rounded-md shadow-sm text-sm">Edit this page</button><span class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+<a class='flex w-fit align-bottom' href=${declFile} ><button class="px-2 py-2 bg-none border-none text-sm">Edit this page</button><span class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
 
     </span></a>
 
@@ -58,12 +58,12 @@ function postFragment({
 
 
 <div class="flex flex-row space-x-2 pt-8 pb-1 mb-4 w-fit">
-<a href=${specFile} class="flex border-[2px] border-gray-400 p-1 no-underline">
+<a href=${specFile} class="flex space-x-1">
     <span>Tests ${emoji.stringOf('test_tube')}</span>
     
     
 </a>
-<a href=${srcFile} class="flex border-[2px] border-gray-400 p-1 no-underline">
+<a href=${srcFile} class="flex space-x-1">
     <span>Source ${emoji.stringOf('scroll')}</span>
 </a>
 </div>

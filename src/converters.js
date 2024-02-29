@@ -79,10 +79,6 @@ function toJch(color) {
   return useMode(modeJch)(color);
 }
 
-function toITP(color) {
-  return useMode(modeItp)(color);
-}
-
 function toCIE(colorspace = 'lch') {
   var cspaces = new Map([
     ['xyz65', modeXyz65],

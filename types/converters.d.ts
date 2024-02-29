@@ -63,13 +63,6 @@ declare function toDIN99(
 ): (color: string) => object;
 
 /**
- * Returns the passed in color as a plain object in the ITP colorspace.
- * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
- * @see https://culorijs.org/color-spaces/ For expected ranges and channels.
- */
-declare function toITP(color: string): object;
-
-/**
  * Returns the passed in color as a plain object in the Jch colorspace.
  * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
  * @see https://culorijs.org/color-spaces/ For expected ranges and channels.
@@ -110,7 +103,10 @@ declare function color2hex(color: ColorToken): string;
 console.log(num2color(900))
 // #000384
  */
-declare function num2color(num: number, colorspace?: Colorspaces): ColorToken;
+declare function num2color(
+  num: number,
+  colorspace?: Colorspaces
+): string | object;
 /**
  *
  *  Returns the numerical equivalent of a color.
@@ -140,7 +136,7 @@ console.log(temp2color(2542))
 declare function temp2color(
   kelvin: number,
   colorspace?: Colorspaces
-): ColorToken;
+): string | object;
 /**
  *
  *  Returns an array of channel values in the mode color space. It does not mutate the values of the passed in color token.
@@ -164,15 +160,14 @@ console.log(color2tuple(rgbColor));
  */
 declare function color2tuple(
   color: string | object,
-  colorspace?: Colorspaces
-): any[];
+  colorspace?: Colorspaces,
+  omitMode?: boolean
+): Array<number> | [string, number, number, number, number?];
 
-declare function tuple2object(
-  color: ColorTuple
-):  { [chn: string]: number | undefined; alpha?: number }
-
-
-
+declare function tuple2object(color: ColorTuple): {
+  [chn: string]: number | undefined;
+  alpha?: number;
+};
 
 export {
   num2color,
