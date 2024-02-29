@@ -51,7 +51,7 @@ This object returns the lightMode and darkMode optimized version of a color with
 
 #### Defined in
 
-[types.d.ts:43](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L43)
+[types.d.ts:43](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L43)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:34](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L34)
+[types.d.ts:34](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L34)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:19](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L19)
+[types.d.ts:19](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L19)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:20](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L20)
+[types.d.ts:20](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L20)
 
 ___
 
@@ -124,7 +124,7 @@ Any recognizable color token.
 
 #### Defined in
 
-[types.d.ts:199](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L199)
+[types.d.ts:199](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L199)
 
 ___
 
@@ -134,7 +134,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:17](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L17)
+[types.d.ts:17](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L17)
 
 ___
 
@@ -144,7 +144,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:231](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L231)
+[types.d.ts:231](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L231)
 
 ___
 
@@ -154,7 +154,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:141](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L141)
+[types.d.ts:141](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L141)
 
 ___
 
@@ -164,7 +164,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:154](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L154)
+[types.d.ts:154](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L154)
 
 ___
 
@@ -174,7 +174,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:132](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L132)
+[types.d.ts:132](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L132)
 
 ___
 
@@ -184,7 +184,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:210](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L210)
+[types.d.ts:210](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L210)
 
 ___
 
@@ -194,7 +194,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:244](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L244)
+[types.d.ts:244](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L244)
 
 ___
 
@@ -204,7 +204,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:142](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L142)
+[types.d.ts:142](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L142)
 
 ___
 
@@ -214,7 +214,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:137](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L137)
+[types.d.ts:137](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L137)
 
 ___
 
@@ -250,7 +250,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:139](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L139)
+[types.d.ts:139](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L139)
 
 ___
 
@@ -260,7 +260,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:48](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L48)
+[types.d.ts:48](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L48)
 
 ___
 
@@ -290,7 +290,7 @@ The override parameters for palette functions.
 
 #### Defined in
 
-[types.d.ts:61](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L61)
+[types.d.ts:61](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L61)
 
 ___
 
@@ -300,7 +300,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:128](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L128)
+[types.d.ts:128](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L128)
 
 ___
 
@@ -310,7 +310,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:164](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L164)
+[types.d.ts:164](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L164)
 
 ___
 
@@ -320,7 +320,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:253](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L253)
+[types.d.ts:253](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L253)
 
 ___
 
@@ -330,7 +330,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:174](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L174)
+[types.d.ts:174](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L174)
 
 ___
 
@@ -340,7 +340,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:266](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L266)
+[types.d.ts:266](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L266)
 
 ___
 
@@ -350,7 +350,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:140](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L140)
+[types.d.ts:140](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L140)
 
 ___
 
@@ -360,7 +360,7 @@ ___
 
 #### Defined in
 
-[types.d.ts:222](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L222)
+[types.d.ts:222](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L222)
 
 ___
 
@@ -370,4 +370,4 @@ ___
 
 #### Defined in
 
-[types.d.ts:220](https://github.com/prjctimg/huetiful/blob/0fffa9d/types/types.d.ts#L220)
+[types.d.ts:220](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/types.d.ts#L220)
