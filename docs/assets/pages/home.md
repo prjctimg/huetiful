@@ -318,10 +318,6 @@ If you wish to explore more examples and reasoning behind this library, [you can
 Contributions are welcome thanks :blue_heart: !
 See how to get started with contributing to this project.
 
-### License
-
-&copy; 2024, [Dean Tarisai](https://twitter.com/deantarisai)
-Released under the permissive Apache-2.0 license.
 
 [sortBy]:[https://prjctimg.github.io/huetiful/sortBy.html]
 [filterBy]:[https://prjctimg.github.io/huetiful/filterBy.html]

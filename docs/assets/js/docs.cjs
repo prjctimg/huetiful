@@ -83,12 +83,11 @@ function generateDocs(source) {
   }
 
   // Fixing links and extensions
-  current
+
+  return $.makeHtml(current)
     .replace(new RegExp('README.md', 'gm'), 'modules.html')
     .replace(new RegExp('modules.md', 'gm'), 'modules.html')
     .replace(new RegExp('.md', 'gm'), '.html');
-
-  return $.makeHtml(current);
 }
 // Loop through the markdown files for modules
 
@@ -106,7 +105,6 @@ for (const [k, v] of Object.entries(_moduleNames)) {
 
   var page = postFragment({
     title: `${v}`,
-    description: c['description'],
     mainContent: generateDocs(PATH_TO_MARKDOWN_FILES + '/' + v + '.md'),
     lastUpdated: m,
     srcFile: cb('src', v, 'js'),
@@ -137,7 +135,12 @@ for (const [k, v] of Object.entries(_moduleNames)) {
     }
   });
 
-  writeFileSync(`./docs/${v}.html`, layoutFragment(page));
+  writeFileSync(
+    `./docs/${v}.html`,
+    layoutFragment(
+      page.replace(new RegExp(`modules/${v}.html`, 'gm'), `${v}.html`)
+    )
+  );
 }
 
 var navigatoryFiles = ['modules.md', 'README.md'];
@@ -145,9 +148,8 @@ var navigatoryFiles = ['modules.md', 'README.md'];
 for (const page of navigatoryFiles) {
   writeFileSync(
     './docs/' + page.split('.')[0] + '.html',
-    layoutFragment(
-      generateDocs(readFileSync('./docs/assets/markdown/' + page, 'utf-8'))
-    )
+    layoutFragment(generateDocs('./docs/assets/markdown/' + page)),
+    'utf-8'
   );
 
   if (page === 'README.md') {

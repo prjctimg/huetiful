@@ -48,7 +48,7 @@
     "docs:dev": "nodemon",
     "code:build": "node build.cjs",
     "code:publish": "npm run code:build & npm run code:types",
-    "code:types": "dts-bundle-generator  -o  ./lib/huetiful.d.ts ./types/index.d.ts --no-banner --version true",
+    "code:types": "dts-bundle-generator  -o  ./lib/huetiful.d.ts ./types/index.d.ts --no-banner",
     "code:lint": "eslint --fix --ext ./src/*.js",
     "code:format": "prettier \"./src/*.js\" --write",
     "start": "nodemon app.js --watch "

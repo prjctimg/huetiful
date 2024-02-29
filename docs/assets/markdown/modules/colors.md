@@ -38,7 +38,7 @@ A new Color class with all the utilities that take a single color as the first p
 
 #### Defined in
 
-[colors.d.ts:931](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/colors.d.ts#L931)
+[colors.d.ts:931](https://github.com/prjctimg/huetiful/blob/9362350/types/colors.d.ts#L931)
 
 ___
 
@@ -76,7 +76,7 @@ console.log(diverging("Spectral"))
 
 #### Defined in
 
-[colors.d.ts:676](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/colors.d.ts#L676)
+[colors.d.ts:676](https://github.com/prjctimg/huetiful/blob/9362350/types/colors.d.ts#L676)
 
 ___
 
@@ -98,7 +98,7 @@ A wrapper function over the `ColorArray` class which returns a new instance of t
 
 #### Defined in
 
-[colors.d.ts:633](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/colors.d.ts#L633)
+[colors.d.ts:633](https://github.com/prjctimg/huetiful/blob/9362350/types/colors.d.ts#L633)
 
 ___
 
@@ -136,7 +136,7 @@ console.log(qualitative("Accent"))
 
 #### Defined in
 
-[colors.d.ts:696](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/colors.d.ts#L696)
+[colors.d.ts:696](https://github.com/prjctimg/huetiful/blob/9362350/types/colors.d.ts#L696)
 
 ___
 
@@ -176,7 +176,7 @@ console.log(sequential("OrRd"))
 
 #### Defined in
 
-[colors.d.ts:656](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/colors.d.ts#L656)
+[colors.d.ts:656](https://github.com/prjctimg/huetiful/blob/9362350/types/colors.d.ts#L656)
 
 ___
 
@@ -225,4 +225,4 @@ console.log(red('900'));
 
 #### Defined in
 
-[colors.d.ts:728](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/colors.d.ts#L728)
+[colors.d.ts:728](https://github.com/prjctimg/huetiful/blob/9362350/types/colors.d.ts#L728)
