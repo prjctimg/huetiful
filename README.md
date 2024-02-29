@@ -6,8 +6,9 @@
 
 [![Deploy GitHub Pages](https://github.com/prjctimg/huetiful/actions/workflows/static.yml/badge.svg?branch=main)](https://github.com/prjctimg/huetiful/actions/workflows/static.yml)
 [![NPM publish 📦](https://github.com/prjctimg/huetiful/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/prjctimg/huetiful/actions/workflows/npm-publish.yml)
-[![npm minzipped size](https://img.shields.io/bundlephobia/minzip/huetiful-js)](https://bundlephobia.com/package/huetiful-js)
-
+![NPM Downloads](https://img.shields.io/npm/dm/huetiful-js?style=social&logo=npm&link=https%3A%2F%2Fnpmjs.com%2Fpackage%2Fhuetiful-js%20)
+![GitHub Repo stars](https://img.shields.io/github/stars/prjctimg/huetiful?style=social&logo=github)
+[![npm minzipped size](https://img.shields.io/bundlephobia/minzip/huetiful-js?style=social)](https://bundlephobia.com/package/huetiful-js)
 [![twitter](https://img.shields.io/twitter/follow/deantarisai?style=social)](https://twitter.com/deantarisai)
 
   <p align='center'>
