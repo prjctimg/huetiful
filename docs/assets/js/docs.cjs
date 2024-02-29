@@ -28,12 +28,12 @@ var {
     type: 'output',
     regex: new RegExp(`<${key}(.*)>`, 'g'),
     replace: `<${key} class='${defaultClasses[key]}' $1>`
-  }));
-(showdown = require('./showdown.cjs')),
-  (postFragment = require('./xml-shards/post.cjs')),
-  (data = require('./data.cjs')),
-  (layoutFragment = require('./xml-shards/layout.cjs')),
-  ($ = new showdown.Converter({
+  })),
+  showdown = require('./showdown.cjs'),
+  postFragment = require('./xml-shards/post.cjs'),
+  data = require('./data.cjs'),
+  layoutFragment = require('./xml-shards/layout.cjs'),
+  $ = new showdown.Converter({
     extensions: [...injectClasses],
     emoji: true,
     ghCompatibleHeaderId: true,
@@ -42,9 +42,9 @@ var {
     simplifiedAutoLink: true,
     tables: true,
     tasklists: true
-  })),
-  (PATH_TO_MARKDOWN_FILES = './docs/assets/markdown/modules'),
-  (_moduleNames = [
+  }),
+  PATH_TO_MARKDOWN_FILES = './docs/assets/markdown/modules',
+  _moduleNames = [
     'colors',
     'types',
     'converters',
@@ -52,7 +52,7 @@ var {
     'utils',
     'filterBy',
     'sortBy'
-  ]);
+  ];
 
 // The html comment to match before injecting data
 // const reHtmlComment = /(<!-- DOC_START -->)[\s\S]*?(<!-- DOC_END -->)$/gm;
@@ -93,9 +93,10 @@ function generateDocs(source) {
 for (const [k, v] of Object.entries(_moduleNames)) {
   var c = data[v],
     m = new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
+      weekday: 'long',
       month: 'short',
       day: 'numeric',
+
       dayPeriod: 'short'
     }).format(lstatSync('./types/' + v + '.d.ts').mtime);
 
@@ -117,7 +118,10 @@ for (const [k, v] of Object.entries(_moduleNames)) {
           parseInt(k) > 0
             ? _moduleNames[parseInt(k) - 1]
             : `Go back to the home page ?`,
-        href: k > 0 ? `./${v}.html` : './index.html'
+        href:
+          parseInt(k) > 0
+            ? `./${_moduleNames[parseInt(k) - 1]}.html`
+            : './index.html'
       },
       next: {
         title:
@@ -126,8 +130,8 @@ for (const [k, v] of Object.entries(_moduleNames)) {
             : `Learn more on our Wiki`,
         href:
           parseInt(k) < _moduleNames.length - 1
-            ? `./${v}.html`
-            : 'https://github.com/prjctimg/huetiful/wiki'
+            ? `./${_moduleNames[v + 1]}.html`
+            : 'https://github.com/prjctimg/huetiful/wiki/welcome'
       }
     }
   });
@@ -135,41 +139,37 @@ for (const [k, v] of Object.entries(_moduleNames)) {
   writeFileSync(`./docs/${v}.html`, layoutFragment(page));
 }
 
-// var navigatoryFiles = ['modules.md', 'README.md'];
+var navigatoryFiles = ['modules.md', 'README.md'];
 
-// for (const file of navigatoryFiles) {
-//   var current = readFileSync('docs/assets/markdown/' + file, 'utf-8');
-//   if (file === navigatoryFiles[0]) {
-//     for (const path of modulePaths) {
-//       current = current.replace(
-//         new RegExp('modules/' + path, 'gm'),
-//         path.split('.')[0] + '.html'
-//       );
-//     }
-//   }
+for (const file of navigatoryFiles) {
+  var current = readFileSync('docs/assets/markdown/' + file, 'utf-8');
+  if (file === navigatoryFiles[0]) {
+    for (const path of modulePaths) {
+      current = current.replace(
+        new RegExp('modules/' + path, 'gm'),
+        path.split('.')[0] + '.html'
+      );
+    }
+  }
 
-//   writeFileSync(
-//     './docs/' + file.split('.')[0] + '.html',
-//     $.makeHtml(
-//       current
-//         .replace(new RegExp('README.md', 'gm'), 'modules.html')
-//         .replace(new RegExp('modules.md', 'gm'), 'modules.html')
-//     )
-//   );
-// }
+  var page = $.makeHtml(
+    current
+      .replace(new RegExp('README.md', 'gm'), 'index.html')
+      .replace(new RegExp('modules.md', 'gm'), 'modules.html')
+  );
+  writeFileSync('./docs/' + file.split('.')[0] + '.html', layoutFragment(page));
+}
 
-// for (const page of navigatoryFiles) {
-//   writeFileSync(
-//     './docs/' + page.split('.')[0] + '.html',
-//     readFileSync('./docs/assets/fragments/post.html', 'utf-8').replace(
-//       reHtmlComment,
-//       injectMarkdownInHtmlComment(
-//         readFileSync('./docs/' + page.split('.')[0] + '.html')
-//       )
-//     )
-//   );
-// }
+for (const page of navigatoryFiles) {
+  writeFileSync(
+    './docs/' + page.split('.')[0] + '.html',
+    layoutFragment($.makeHtml(readFileSync('./docs/assets/markdown/' + page)))
+  );
 
-// renameSync('./docs/README.html', './docs/index.html');
-// console.log(`Generated navigatory files successfully`);
+  if (page === 'README.md') {
+    renameSync('./docs/README.html', './docs/index.html');
+  }
+}
+
+console.log(`Generated navigatory files successfully`);
 console.info(`[prjctimg] Done. Generated HTML docs successfully.}`);
