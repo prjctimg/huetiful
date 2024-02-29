@@ -1,8 +1,4 @@
-<style>
-  pre,code{
-    text-wrap:wrap;
-  }
-</style>
+
 
 [![Deploy GitHub Pages](https://github.com/prjctimg/huetiful/actions/workflows/static.yml/badge.svg?branch=main)](https://github.com/prjctimg/huetiful/actions/workflows/static.yml)
 [![NPM publish 📦](https://github.com/prjctimg/huetiful/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/prjctimg/huetiful/actions/workflows/npm-publish.yml)
