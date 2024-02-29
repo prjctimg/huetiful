@@ -18,7 +18,7 @@
   "types": "./lib/huetiful.d.ts",
   "description": "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
   "dependencies": {
-    "culori": "^3.3.0"
+    "culori": "^4.0.1"
   },
   "bundleDependencies": [
     "culori"
