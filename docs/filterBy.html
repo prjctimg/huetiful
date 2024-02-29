@@ -94,7 +94,7 @@
       <div id='progress-bar' class='progress bg-gradient-to-r from-orange-600 via-purple-600 to-emerald-600'/>
     </header>
 <div>
-    <title>filterBy</title>
+    <title class='first-letter:uppercase'>filterBy</title>
    
      
       
@@ -102,14 +102,14 @@
     <article class='markdown-body'>
     <div class="flex justify-start w-full space-x-2"> 
 
-<div class='flex flex-col'>
+<div class='flex flex-row w-full justify-end'>
 
 
-<a href=https://github.com/prjctimg/huetiful/blob/main/types/filterBy.d.ts class="p-2.5 bg-blue-300  rounded-md shadow-sm"> Edit this page <span class="inline-block ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+<a href=https://github.com/prjctimg/huetiful/blob/main/types/filterBy.d.ts ><button class="p-2.5 bg-blue-400  rounded-md shadow-sm"></button> Edit this page <span class="inline-block ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
 
     </span></a>
 
-<div class='block text-slate-600 text-xs font-mono font-semibold'> <span class='font-normal text-sm text-slate-500'>last updated</span> Feb 25, 2024, in the morning</div>
+<div class='block text-slate-600 text-xs font-sans font-semibold'> <span class='font-normal text-sm text-slate-500'>last updated</span class='font-normal'> Sunday, Feb 25, in the morning</div>
 
 </div>
 
@@ -205,7 +205,7 @@ console.log(filterByContrast(sample, 'green', '&gt;=3'))
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
 </code></pre>
 <h4 id="defined-in-📝">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/abe8d6c/types/filterBy.d.ts#L215">filterBy.d.ts:215</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/b7fc63c/types/filterBy.d.ts#L215">filterBy.d.ts:215</a></p>
 <hr />
 <h3 id="filterbydistance">filterByDistance</h3>
 <p>▸ <strong>filterByDistance</strong>(<code>collection</code>, <code>against</code>, <code>startDistance?</code>, <code>endDistance?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
@@ -263,7 +263,7 @@ console.log(filterByDistance(sample, "yellow", 0.1))
 // [ '#ffff00' ]
 </code></pre>
 <h4 id="defined-in-📝-1">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/abe8d6c/types/filterBy.d.ts#L180">filterBy.d.ts:180</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/b7fc63c/types/filterBy.d.ts#L180">filterBy.d.ts:180</a></p>
 <hr />
 <h3 id="filterbyhue">filterByHue</h3>
 <p>▸ <strong>filterByHue</strong>(<code>collection</code>, <code>startHue?</code>, <code>endHue?</code>, <code>colorspace?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
@@ -323,7 +323,7 @@ filterByHue(sample, 20, 80)
 // [ '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
 </code></pre>
 <h4 id="defined-in-📝-2">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/abe8d6c/types/filterBy.d.ts#L150">filterBy.d.ts:150</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/b7fc63c/types/filterBy.d.ts#L150">filterBy.d.ts:150</a></p>
 <hr />
 <h3 id="filterbylightness">filterByLightness</h3>
 <p>▸ <strong>filterByLightness</strong>(<code>collection</code>, <code>startLightness?</code>, <code>endLightness?</code>, <code>colorspace?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
@@ -386,7 +386,7 @@ filterByLightness(sample, 20, 80)
 // [ '#00c000', '#007e00', '#164100', '#720000' ]
 </code></pre>
 <h4 id="defined-in-📝-3">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/abe8d6c/types/filterBy.d.ts#L118">filterBy.d.ts:118</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/b7fc63c/types/filterBy.d.ts#L118">filterBy.d.ts:118</a></p>
 <hr />
 <h3 id="filterbyluminance">filterByLuminance</h3>
 <p>▸ <strong>filterByLuminance</strong>(<code>collection</code>, <code>startLuminance?</code>, <code>endLuminance?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
@@ -442,7 +442,7 @@ filterByLuminance(sample, 0.4, 0.9)
 // [ '#00ffdc', '#00ff78' ]
 </code></pre>
 <h4 id="defined-in-📝-4">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/abe8d6c/types/filterBy.d.ts#L81">filterBy.d.ts:81</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/b7fc63c/types/filterBy.d.ts#L81">filterBy.d.ts:81</a></p>
 <hr />
 <h3 id="filterbysaturation">filterBySaturation</h3>
 <p>▸ <strong>filterBySaturation</strong>(<code>collection</code>, <code>startSaturation?</code>, <code>endSaturation?</code>, <code>colorspace?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
@@ -506,18 +506,18 @@ console.log(filterBySaturation(sample, 0.1));
 // [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
 </code></pre>
 <h4 id="defined-in-📝-5">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/abe8d6c/types/filterBy.d.ts#L47">filterBy.d.ts:47</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/b7fc63c/types/filterBy.d.ts#L47">filterBy.d.ts:47</a></p>
 <!-- Next/Prev pages -->
 <div class="flex w-full justify-between px-2 py-2">
 
 
-<a href=./filterBy.html>
+<a href=./utils.html class='inline-flex space-x-2 p-4'>
   <button><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg><span>Previous page</span></button>
   <h5>utils</h5>
 </a>
 <div class='divide-y-1 divide-slate-700 ' />
-<a href=./filterBy.html>
- <button>Next page</button>
+<a href=./undefined.html class='inline-flex space-x-2 p-4'>
+ <button>Next page <spa><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></span></button>
  <h5>utils</h5>
 </a>
 

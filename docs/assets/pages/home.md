@@ -13,8 +13,8 @@
     - [Working with collections of color](#working-with-collections-of-color)
   - [Palette generators](#palette-generators)
   - [Predicates⚖️](#predicates️)
-    - [Tip :information:](#tip-information)
     - [Querying properties of color and their values of statistical significance](#querying-properties-of-color-and-their-values-of-statistical-significance)
+  - [Functional with a hint of OOP via method chaining](#functional-with-a-hint-of-oop-via-method-chaining)
   - [There's more](#theres-more)
   - [Contributing](#contributing)
   - [License](#license)
@@ -240,7 +240,7 @@ console.log(map(sample, isCool));
 
 <br/>
 
-> #### Tip :information:
+> **Tip** 
 >
 > Another use👷 case would be passing the predicate to an array method like `filter` to filter a collection of colors removing colors that return false for the passed in predicate. In the following example we use is `isWarm` to only return warm colors:
 
@@ -288,6 +288,35 @@ console.log(getFarthestHueFrom(sample, 'lime', 'lch'))
 ```
 
 [See more examples here from the utils module][utils]
+
+### Functional with a hint of OOP via method chaining
+
+Libraries like chroma.js popularized the read-manipulate-output chains when working with color. This library extends that idea by chaining collection methods to a `ColorArray` class. The actual class is not publicly exported because its still experimental but you can access it via the `load` wrapper function which simply takes the collection to bind to the `new ColorArray`. Color tokens also have a chain for binding them to all functions that take a single color as the initial parameter. This chain returns a `new Color` instance that's accessible via the `color` function. See the example below:
+
+```js
+
+import { load, color } from 'huetiful-js';
+
+var myLazyChain = load([
+  'blue',
+  '#ff3c00',
+  ['rgb', 200, 30, 50],
+  { l: 5, c: 10, h: 60, mode: 'lch' }
+])
+  .sortByHue('desc')
+  .output();
+
+console.log(myLazyChain);
+
+//['blue', ['rgb', 200, 30, 50], { l: 5, c: 10, h: 60, mode: 'lch' }, '#ff3c00'];
+
+var myLazyChainTwo = color(['hsl', 100, 0, 43]).isAchromatic();
+
+console.log(myLazyChainTwo);
+
+// true
+
+```
 
 ### There's more
 

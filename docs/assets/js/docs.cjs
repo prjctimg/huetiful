@@ -43,16 +43,17 @@ var {
     tables: true,
     tasklists: true
   }),
-  PATH_TO_MARKDOWN_FILES = './docs/assets/markdown/modules',
-  _moduleNames = [
-    'colors',
-    'types',
-    'converters',
-    'generators',
-    'utils',
-    'filterBy',
-    'sortBy'
-  ];
+  PATH_TO_MARKDOWN_FILES = './docs/assets/markdown/modules';
+
+var _moduleNames = [
+  'colors',
+  'types',
+  'converters',
+  'generators',
+  'utils',
+  'filterBy',
+  'sortBy'
+];
 
 // The html comment to match before injecting data
 // const reHtmlComment = /(<!-- DOC_START -->)[\s\S]*?(<!-- DOC_END -->)$/gm;
@@ -91,14 +92,13 @@ function generateDocs(source) {
 // Loop through the markdown files for modules
 
 for (const [k, v] of Object.entries(_moduleNames)) {
-  var c = data[v],
-    m = new Intl.DateTimeFormat('en-US', {
-      weekday: 'long',
-      month: 'short',
-      day: 'numeric',
+  var m = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    month: 'short',
+    day: 'numeric',
 
-      dayPeriod: 'short'
-    }).format(lstatSync('./types/' + v + '.d.ts').mtime);
+    dayPeriod: 'short'
+  }).format(lstatSync('./types/' + v + '.d.ts').mtime);
 
   var cb = (s, x, y) =>
     `https://github.com/prjctimg/huetiful/blob/main/${s}/${x}.${y}`;
@@ -115,11 +115,11 @@ for (const [k, v] of Object.entries(_moduleNames)) {
     page: {
       previous: {
         title:
-          parseInt(k) > 0
+          _moduleNames.length - k > 0
             ? _moduleNames[parseInt(k) - 1]
             : `Go back to the home page ?`,
         href:
-          parseInt(k) > 0
+          parseInt(k) !== 0 && parseInt(k) < _moduleNames.length - 1
             ? `./${_moduleNames[parseInt(k) - 1]}.html`
             : './index.html'
       },
@@ -141,29 +141,12 @@ for (const [k, v] of Object.entries(_moduleNames)) {
 
 var navigatoryFiles = ['modules.md', 'README.md'];
 
-for (const file of navigatoryFiles) {
-  var current = readFileSync('docs/assets/markdown/' + file, 'utf-8');
-  if (file === navigatoryFiles[0]) {
-    for (const path of modulePaths) {
-      current = current.replace(
-        new RegExp('modules/' + path, 'gm'),
-        path.split('.')[0] + '.html'
-      );
-    }
-  }
-
-  var page = $.makeHtml(
-    current
-      .replace(new RegExp('README.md', 'gm'), 'index.html')
-      .replace(new RegExp('modules.md', 'gm'), 'modules.html')
-  );
-  writeFileSync('./docs/' + file.split('.')[0] + '.html', layoutFragment(page));
-}
-
 for (const page of navigatoryFiles) {
   writeFileSync(
     './docs/' + page.split('.')[0] + '.html',
-    layoutFragment($.makeHtml(readFileSync('./docs/assets/markdown/' + page)))
+    layoutFragment(
+      generateDocs(readFileSync('./docs/assets/markdown/' + page, 'utf-8'))
+    )
   );
 
   if (page === 'README.md') {

@@ -4,6 +4,7 @@ function headFragment() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/huetiful.css" />
     <link rel="stylesheet" href="./assets/css/github-markdown-light.css" />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css'/>
     <style>
       .markdown-body {
         box-sizing: border-box;

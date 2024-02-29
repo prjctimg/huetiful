@@ -51,7 +51,7 @@ console.log(color2hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 
 #### Defined in
 
-[converters.d.ts:100](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/converters.d.ts#L100)
+[converters.d.ts:100](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/converters.d.ts#L100)
 
 ___
 
@@ -84,7 +84,7 @@ console.log(color2num("b2c3f1"))
 
 #### Defined in
 
-[converters.d.ts:126](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/converters.d.ts#L126)
+[converters.d.ts:126](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/converters.d.ts#L126)
 
 ___
 
@@ -123,7 +123,7 @@ console.log(color2tuple(rgbColor));
 
 #### Defined in
 
-[converters.d.ts:165](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/converters.d.ts#L165)
+[converters.d.ts:165](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/converters.d.ts#L165)
 
 ___
 
@@ -157,7 +157,7 @@ console.log(num2color(900))
 
 #### Defined in
 
-[converters.d.ts:113](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/converters.d.ts#L113)
+[converters.d.ts:113](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/converters.d.ts#L113)
 
 ___
 
@@ -191,7 +191,7 @@ console.log(temp2color(2542))
 
 #### Defined in
 
-[converters.d.ts:140](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/converters.d.ts#L140)
+[converters.d.ts:140](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/converters.d.ts#L140)
 
 ___
 
@@ -229,7 +229,7 @@ https://culorijs.org/color-spaces/
 
 #### Defined in
 
-[converters.d.ts:33](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/converters.d.ts#L33)
+[converters.d.ts:33](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/converters.d.ts#L33)
 
 ___
 
@@ -267,7 +267,7 @@ https://culorijs.org/color-spaces/
 
 #### Defined in
 
-[converters.d.ts:61](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/converters.d.ts#L61)
+[converters.d.ts:61](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/converters.d.ts#L61)
 
 ___
 
@@ -293,7 +293,7 @@ https://culorijs.org/color-spaces/ For expected ranges and channels.
 
 #### Defined in
 
-[converters.d.ts:70](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/converters.d.ts#L70)
+[converters.d.ts:70](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/converters.d.ts#L70)
 
 ___
 
@@ -319,7 +319,7 @@ https://culorijs.org/color-spaces/ For expected ranges and channels.
 
 #### Defined in
 
-[converters.d.ts:84](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/converters.d.ts#L84)
+[converters.d.ts:84](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/converters.d.ts#L84)
 
 ___
 
@@ -345,7 +345,7 @@ https://culorijs.org/color-spaces/ For expected ranges and channels.
 
 #### Defined in
 
-[converters.d.ts:77](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/converters.d.ts#L77)
+[converters.d.ts:77](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/converters.d.ts#L77)
 
 ___
 
@@ -383,7 +383,7 @@ https://culorijs.org/color-spaces/
 
 #### Defined in
 
-[converters.d.ts:23](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/converters.d.ts#L23)
+[converters.d.ts:23](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/converters.d.ts#L23)
 
 ___
 
@@ -407,4 +407,4 @@ The converter function in the mode colorspace.
 
 #### Defined in
 
-[converters.d.ts:13](https://github.com/prjctimg/huetiful/blob/abe8d6c/types/converters.d.ts#L13)
+[converters.d.ts:13](https://github.com/prjctimg/huetiful/blob/b7fc63c/types/converters.d.ts#L13)
