@@ -1,5 +1,5 @@
-import * as utils from '../lib/utils.esm.mjs';
-import iterator from './helpers/iterator.js';
+import * as utils from '../src/utils.js';
+import _iterator from './helpers/iterator.js';
 
 /** 
  * @module
@@ -17,6 +17,84 @@ governing permissions and limitations under the License.
 describe(`Test suite for utils`, () => {
   var [col, sample] = ['#310000', ['b2c3f1', '#a1bd2f', '#f3bac1']];
   var data = {
+    getNearestHueFrom: {
+      params: [
+        [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        { l: 5, c: 5, h: 5, mode: 'lch' },
+        'lch'
+      ],
+      description: `Gets the smallest hue distance between the colors in a collection against the specified color`,
+      expect: 5
+    },
+    getNearestChromaFrom: {
+      params: [
+        [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        { l: 5, c: 5, h: 5, mode: 'lch' },
+        'lch'
+      ],
+      description: `Gets the smallest chroma distance between the colors in a collection against the specified color`,
+      expect: 5
+    },
+    getNearestLightnessFrom: {
+      params: [
+        [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        { l: 5, c: 5, h: 5, mode: 'lch' },
+        'lch'
+      ],
+      description: `Gets the smallest lightness distance between the colors in a collection against the specified color`,
+      expect: 5
+    },
+    getFarthestHueFrom: {
+      params: [
+        [
+          { l: 20, c: 20, h: 20, mode: 'lch' },
+          { l: 10, c: 10, h: 10, mode: 'lch' },
+          { l: 40, c: 40, h: 40, mode: 'lch' }
+        ],
+        { l: 10, c: 5, h: 80, mode: 'lch' },
+        'lch'
+      ],
+      description: `Gets the largest hue angle distance between the colors in a collection against the specified color`,
+      expect: 35
+    },
+    getFarthestChromaFrom: {
+      params: [
+        [
+          { l: 20, c: 20, h: 20, mode: 'lch' },
+          { l: 10, c: 10, h: 10, mode: 'lch' },
+          { l: 40, c: 40, h: 40, mode: 'lch' }
+        ],
+        { l: 5, c: 5, h: 5, mode: 'lch' },
+        'lch'
+      ],
+      description: `Gets the largest chroma distance between the colors in a collection against the specified color`,
+      expect: 35
+    },
+    getFarthestLightnessFrom: {
+      params: [
+        [
+          { l: 20, c: 20, h: 20, mode: 'lch' },
+          { l: 10, c: 10, h: 10, mode: 'lch' },
+          { l: 40, c: 40, h: 40, mode: 'lch' }
+        ],
+        { l: 5, c: 5, h: 5, mode: 'lch' },
+        'lch'
+      ],
+      description: `Gets the largest lightness distance between the colors in a collection against the specified color`,
+      expect: 35
+    },
     getHueFamily: {
       params: ['cyan'],
       description: `Gets the color's hue family`,
@@ -99,7 +177,7 @@ describe(`Test suite for utils`, () => {
       expect: '#ffe180'
     }
   };
-  iterator(utils, data);
+  _iterator(utils, data);
   // it(`Brightens/darkens the passed in color`, () => {
   //   expect(utils.darken(col, 0.5)).toBe(67.22120855010492);
   //   expect(utils.brighten(sample, '*0.3')).toBe(22.45669293295522);
@@ -108,7 +186,7 @@ describe(`Test suite for utils`, () => {
   // Not in the map because these funcs are curried
   it(`Sets/Gets the specified channel of the passed in color`, () => {
     expect(utils.getChannel('lch.h')(utils.setChannel('lch.h')(col, 10))).toBe(
-      10.695425416490899
+      10
     );
   });
 });

@@ -4,6 +4,7 @@
         "github.remotehub",
         "ms-vscode.remote-repositories",
         "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "ronnidc.nunjucks"
     ]
 }

@@ -1,5 +1,5 @@
-import * as filterBy from '../lib/filterBy.esm.mjs';
-import iterator from './helpers/iterator.js';
+import * as filterBy from '../src/filterBy.js';
+import _iterator from './helpers/iterator.js';
 
 /** 
  * @license
@@ -70,5 +70,5 @@ describe(`The filterBy module test suite `, () => {
     }
   };
 
-  iterator(filterBy, data);
+  _iterator(filterBy, data);
 });

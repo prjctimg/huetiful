@@ -1,5 +1,5 @@
-import * as sortBy from '../lib/sortBy.esm.mjs';
-import iterator from './helpers/iterator.js';
+import * as sortBy from '../src/sortBy.js';
+import _iterator from './helpers/iterator.js';
 
 /** 
  * @license
@@ -49,5 +49,5 @@ describe(`The sortBy module test suite `, function () {
     }
   };
 
-  iterator(sortBy, data);
+  _iterator(sortBy, data);
 });

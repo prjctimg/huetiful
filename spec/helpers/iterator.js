@@ -1,9 +1,9 @@
-function iterator(mod, data) {
-  for (const [func, args] of Object.entries(data)) {
-    it(args['description'], () => {
-      expect(mod[func](...args['params'])).toEqual(args['expect']);
+function _iterator(_module = {}, _data = {}) {
+  for (const [func, args] of Object.entries(_data)) {
+    it(args['description'], function () {
+      expect(_module[func](...args['params'])).toEqual(args['expect']);
     });
   }
 }
 
-export default iterator;
+export default _iterator;

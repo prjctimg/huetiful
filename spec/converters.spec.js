@@ -1,10 +1,10 @@
-import * as converters from '../lib/converters.esm.mjs';
-import iterator from './helpers/iterator.js';
+import * as converters from '../src/converters.js';
+import _iterator from './helpers/iterator.js';
 
 /** 
  * @license
- * converters.ts - Test suite for huetiful-js converters module. 
-Copyright 2023 Dean Tarisai.
+ * converters.js - Test suite for huetiful-js converters module. 
+Copyright 2024 Dean Tarisai.
 This file is licensed to you under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License. You may obtain a copy
 of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -19,6 +19,11 @@ describe(`This test suite checks the converter functions. `, () => {
       params: [{ l: 50, c: 31, h: 100, alpha: 0.5, mode: 'lch' }],
       description: 'Converts any color to hexadecimal',
       expect: '#7b794180'
+    },
+    tuple2object: {
+      params: [['lch', 50, 31, 100, 0.5]],
+      description: 'Converts a color tuple to an object with channels as keys',
+      expect: { l: 50, c: 31, h: 100, alpha: 0.5, mode: 'lch' }
     },
     num2color: {
       params: [900],
@@ -43,9 +48,9 @@ describe(`This test suite checks the converter functions. `, () => {
         {
           r: 0.4,
           g: 0.3,
-          b: 0.7,
-          mode: 'rgb'
-        }
+          b: 0.7
+        },
+        'rgb'
       ],
       description:
         'Converts a color object to an array containing channel values and the colorspace ',
@@ -53,5 +58,5 @@ describe(`This test suite checks the converter functions. `, () => {
     }
   };
 
-  iterator(converters, data);
+  _iterator(converters, data);
 });
