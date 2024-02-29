@@ -87,7 +87,8 @@ function generateDocs(source) {
   return $.makeHtml(current)
     .replace(new RegExp('README.md', 'gm'), 'modules.html')
     .replace(new RegExp('modules.md', 'gm'), 'modules.html')
-    .replace(new RegExp('.md', 'gm'), '.html');
+    .replace(new RegExp('.md', 'gm'), '.html')
+    .replace(new RegExp(`modules/`, 'g'), './');
 }
 // Loop through the markdown files for modules
 
@@ -135,12 +136,7 @@ for (const [k, v] of Object.entries(_moduleNames)) {
     }
   });
 
-  writeFileSync(
-    `./docs/${v}.html`,
-    layoutFragment(
-      page.replace(new RegExp(`modules/${v}.html`, 'gm'), `${v}.html`)
-    )
-  );
+  writeFileSync(`./docs/${v}.html`, layoutFragment(page));
 }
 
 var navigatoryFiles = ['modules.md', 'README.md'];
