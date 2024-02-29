@@ -22,7 +22,8 @@ var {
   } = require('node:fs'),
   ge = require('github-emoji'),
   defaultClasses = {
-    blockquote: ' border-l-blue-400 bg-blue-200'
+    blockquote: ' border-l-blue-400 bg-blue-200',
+    code: 'rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'
   },
   injectClasses = Object.keys(defaultClasses).map((key) => ({
     type: 'output',
