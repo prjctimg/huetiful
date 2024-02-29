@@ -2,31 +2,23 @@
 
 ## Table of contents
 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [Table of contents](#table-of-contents)
 - [What is this ?](#what-is-this-)
   - [How does it work ?](#how-does-it-work-)
     - [Type diversity for color tokens](#type-diversity-for-color-tokens)
     - [Working with collections of color](#working-with-collections-of-color)
   - [Palette generators](#palette-generators)
-  - [Predicates⚖️](#predicates️)
+  - [Predicates](#predicates)
     - [Querying properties of color and their values of statistical significance](#querying-properties-of-color-and-their-values-of-statistical-significance)
   - [Functional with a hint of OOP via method chaining](#functional-with-a-hint-of-oop-via-method-chaining)
   - [There's more](#theres-more)
   - [Contributing](#contributing)
   - [License](#license)
 
-<!-- /code_chunk_output -->
-
-
 ## What is this ?
 
-This library aims to make it simple and straight forward to manipulate color either as individual tokens or collections of tokens. It builds off where libraries like chroma.js and d3-color leave their APIs by adding collection methods for sorting/filtering,querying values of statistical significance (i.e the farthest hue angle in a collection as compared to an `against` color token)
+This library aims to make it simple and straight forward to manipulate color either as individual tokens or collections of tokens. It builds off where libraries like chroma.js and d3-color leave their APIs by adding collection methods for sorting/filtering ,querying values of statistical significance and setting/getting different property values of color.
 
-Its like a lodash for dealing with color in an FP inspired approach. It uses Culori under the hood for color conversions and other color related bells and whistles. It is written in JavaScript but has type declarations for common built-in parameters and function signatures.
+Its like a lodash for dealing with color . It uses Culori under the hood for color conversions and other color related bells and whistles. It is written in JavaScript but has type declarations for common built-in parameters and function signatures.
 
 Consider the typical parameter signature of a filtering function:
 
@@ -41,7 +33,7 @@ declare function filterBySaturation(
 
 ```
 
-Focus on the `collection` parameter and the return type. All functions that took a collection color as an array prior v1.78.x can now take this overload as well for collections. These functions retain the structure of the passed in collection which was different in the previous versions since we'd only return arrays by default.
+Focus on the `collection` parameter and the return type of the above function declaration. All functions that took a collection color as an array prior v1.78.x can support this overload as well for collections. These functions retain the structure of the passed in collection which was different in the previous versions since we'd only return arrays by default. This means if you pass in an object as a collection the function will return a `Map`. See more about this behavior on the [collection methods page on our wiki][collection-methods-wiki]
 
 ### How does it work ?
 
@@ -50,7 +42,7 @@ Focus on the `collection` parameter and the return type. All functions that took
 Culori accepts color tokens as plain objects, hexadecimal strings and CSS recognized named/serialized colors only. This package extends the data types which can be treated as valid tokens namely arrays/array-like objects, `Map`s , numbers and even boolean values.
 
 ```js
-import { num2rgb, toHex } from 'huetiful-js'
+import { num2color, color2hex } from 'huetiful-js'
 
 let cssNamedColor = 'pink'
 let colorNumber = 5000
@@ -61,27 +53,27 @@ let arrColorWithAlpha = ['rgb', 120, 80, 50, 0.1]
 
 
 // Converting CSS named colors to hex
-console.log(toHex(cssNamedColor))
+console.log(color2hex(cssNamedColor))
 // #ffc0cb
 
-// Converting a number to an RGB object
-console.log(num2rgb(colorNumber, true))
+// Converting a number to hexadecimal
+console.log(num2color(colorNumber))
 // #001388
 
 // Converting a color object to a 6 character hex (without the alpha value)
-console.log(toHex(colorObject))
+console.log(color2hex(colorObject))
 // #956d62
 
 // Converting a color object with an alpha property to an 8 character hex code (including the alpha channel)
-console.log(toHex(colorObjectWithAlpha))
+console.log(color2hex(colorObjectWithAlpha))
 // #956d6280
 
 // Converting an array of channel values to a 6 character hex code.
-console.log(toHex(arrColor))
+console.log(color2hex(arrColor))
 // #785032
 
 // Converting an array of channel values (including the alpha channel) to an 8 character hex
-console.log(toHex(arrColorWithAlpha))
+console.log(color2hex(arrColorWithAlpha))
 //#7850321a
 
 
@@ -92,7 +84,6 @@ By widening the options for valid color tokens, we can get a bit more creative s
 #### Working with collections of color
 
 Think of a scenario where we have collection of color tokens that we may want to filter by contrast and then have the result returned sorted by each color's hue angle in ascending order. In this example we will simply sort colors by luminance:
-
 
 ```js
 
@@ -167,7 +158,7 @@ console.log(hueShiftedPalette);
 
 [See more palette generator functions][generators]
 
-### Predicates⚖️
+### Predicates
 
 Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? Though its easy to tell colors apart visually when they're displayed on the screen📺 it can be a bit confusing to tell colors apart using code🔢. Below is an example showing how to determine if a color is gray or not:
 
