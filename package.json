@@ -16,7 +16,7 @@
     ".": "./lib/index.js"
   },
   "types": "./lib/huetiful.d.ts",
-  "description": "Open source TypeScript library for general purpose color manipulations and generating custom color scales.",
+  "description": "JavaScript library for color manipulation 🧪",
   "dependencies": {
     "culori": "^4.0.1"
   },
