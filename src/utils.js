@@ -339,7 +339,7 @@ function brighten(color, amount = 1, colorspace) {
 }
 
 function isAchromatic(color, colorspace) {
-  // If a color has no lightness then it has no hue so its technically achromatic
+  // If a color has no lightness then it has no hue so its technically not achromatic since white and black are not grayscale
   var props = {
     lightness: getChannel(`${mlchn(colorspace)}`)(color),
     chroma: getChannel(`${mcchn(colorspace)}`)(color)
