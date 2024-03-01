@@ -1,6 +1,6 @@
 {
   "name": "huetiful-js",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "type": "module",
   "main": "./src/index.js",
   "browser": "./lib/huetiful.umd.js",
