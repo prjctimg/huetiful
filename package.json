@@ -46,7 +46,7 @@
     "docs:publish": "npm run docs:compile && npm run docs:build && npm run css:build",
     "docs:build": "node docs/assets/js/docs.cjs",
     "docs:dev": "nodemon",
-    "code:build": "node build.cjs",
+    "code:build": "node ./docs/assets/js/build.cjs",
     "code:publish": "npm run code:build & npm run code:types",
     "code:types": "dts-bundle-generator  -o  ./lib/huetiful.d.ts ./types/index.d.ts --no-banner",
     "code:lint": "eslint --fix --ext ./src/*.js",
@@ -118,7 +118,7 @@
   },
   "keywords": [
     "generative art",
-    "typescript",
+    "javascript",
     "uniform colorspaces",
     "color vision deficiency",
     "color",
