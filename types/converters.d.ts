@@ -31,23 +31,7 @@ declare function toOk(
  * @see https://culorijs.org/color-spaces/
  */
 declare function toCIE(
-  colorspace?: Pick<
-    Colorspaces,
-    'lab' | 'lch' | 'lch65' | 'lab65' | 'xyz50' | 'xyz65'
-  >
-): (color: string) => object;
-
-/**
- * Returns the passed in color as a plain object in the specified RGB based colorspace.
- * @param colorspace The RGB colorspace to use.
- * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
- * @see https://culorijs.org/color-spaces/
- */
-declare function toRGB(
-  colorspace?: Omit<
-    Colorspaces,
-    UniformColorSpaces | 'okhsl' | 'dlab' | 'luv' | 'jab'
-  >
+  colorspace?: 'lab' | 'lch' | 'lch65' | 'lab65' | 'xyz50' | 'xyz65'
 ): (color: string) => object;
 
 /**
@@ -57,7 +41,7 @@ declare function toRGB(
  * @see https://culorijs.org/color-spaces/
  */
 declare function toDIN99(
-  colorspace?: Pick<Colorspaces, 'dlch' | 'dlab'>
+  colorspace?: 'dlch' | 'dlab'
 ): (color: string) => object;
 
 /**
@@ -162,11 +146,6 @@ declare function color2tuple(
   omitMode?: boolean
 ): Array<number> | [string, number, number, number, number?];
 
-declare function tuple2object(color: ColorTuple): {
-  [chn: string]: number | undefined;
-  alpha?: number;
-};
-
 export {
   num2color,
   color2num,
@@ -176,7 +155,6 @@ export {
   color2hex,
   toCIE,
   toDIN99,
-  toITP,
   toOk,
   toJab,
   toJch
