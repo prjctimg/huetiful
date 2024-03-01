@@ -33,9 +33,7 @@ declare function toOk(
 declare function toCIE(
   colorspace?: Pick<
     Colorspaces,
-    'lab' | 'lch' | 'lch65' | 'lab65',
-    'xyz50',
-    'xyz65'
+    'lab' | 'lch' | 'lch65' | 'lab65' | 'xyz50' | 'xyz65'
   >
 ): (color: string) => object;
 
