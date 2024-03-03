@@ -9,10 +9,9 @@
     <img alt="logo" title="sine_cos_rotation" src="./docs/assets/images/logo.png">
   
   </p>
-  <h6>*Image wih by Rune.js using sine and cosine rotation with hueshifted colors</h6>
-<h3 align='center'>huetiful-js</h3>
+  
 
-<p align='center'>TypeScript library for general purpose color manipulations and generating custom color scales.
+<p align='center'> JavaScript library for color manipulation 🧪
 <br>
 <br>
  <a href="https://prjctimg.github.io/huetiful">📜 Docs</a>
@@ -24,17 +23,15 @@
     <a href="https://github.com/prjctimg/huetiful/wiki">🧠 Wiki </a>
 </p>
 
-
-
 ![](assets/images/logo.png)
 
 ## Table of contents
 
 - [What is this ?](#what-is-this-)
-    - [Installation and usage](#installation-and-usage)
-      - [Node](#node)
-      - [Browser](#browser)
-      - [Quickstart](#quickstart)
+  - [Installation and usage](#installation-and-usage)
+    - [Node](#node)
+    - [Browser](#browser)
+    - [Quickstart](#quickstart)
   - [How does it work ?](#how-does-it-work-)
     - [Type diversity for color tokens](#type-diversity-for-color-tokens)
     - [Working with collections of color](#working-with-collections-of-color)
@@ -47,9 +44,6 @@
     - [Contributing](#contributing)
     - [References 🔗](#references-)
       - [License ⚖️](#license-️)
-
-
-
 
 ## What is this ?
 
@@ -102,7 +96,6 @@ Or load the library as a UMD glabal (`huetiful`) in your HTML file using a `<scr
 ##### Quickstart
 
 [See the Quickstart section on the Wiki](https://github.com/prjctimg/huetiful/wiki/Quickstart-%F0%9F%8F%81) to see some examples and demonstrations of the library.
-
 
 ### How does it work ?
 
@@ -199,7 +192,8 @@ console.log(sortedDescending)
 
 ```
 
-[See the filterBy module][filterBy] for examples on filtering colors and the sortBy module for sorting functions.
+[See the filterBy module](<https://prjctimg.github.io/huetiful/filterBy.html>]
+[modules) for examples on filtering colors and the sortBy module for sorting functions.
 
 ### Palette generators
 
@@ -225,11 +219,11 @@ console.log(hueShiftedPalette);
 
 ```
 
-[See more palette generator functions][generators]
+[See more palette generator functions](generators]:[https://prjctimg.github.io/huetiful/generators.html)
 
 ### Predicates
 
-Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? Though its easy to tell colors apart visually when they're displayed on the screen📺 it can be a bit confusing to tell colors apart using code🔢. Below is an example showing how to determine if a color is gray or not:
+Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? Though its easy to tell colors apart visually when they're displayed on the screen📺 it can be a bit confusing to tell colors apart using code. Below is an example showing how to determine if a color is gray or not:
 
 ```js
 
@@ -256,7 +250,7 @@ isAchromatic('gray')
 
 
 
-// Here are using some of Culori's functions to demonstrate this example
+// Here we are using some of Culori's functions to demonstrate this example
 // we create an interpolation using black and white
 let f = interpolate(["black", "white"]);
 
@@ -347,7 +341,7 @@ console.log(getFarthestHueFrom(sample, 'lime', 'lch'))
 
 ```
 
-[See more examples here from the utils module][utils]
+[See more examples here from the utils module](https://prjctimg.github.io/huetiful/utils.html)
 
 ### Functional with a hint of OOP via method chaining
 
@@ -380,7 +374,7 @@ console.log(myLazyChainTwo);
 
 ### There's more
 
-If you wish to explore more examples and reasoning behind this library, [you can check out the wiki][wiki]. [Or head over to the docs][modules] to play around with the API
+If you wish to explore more examples and reasoning behind this library, [you can check out the wiki](https://prjctimg.github.io/huetiful/wiki) [Or head over to the docs](https://prjctimg.github.io/huetiful/modules.html) to play around with the API
 
 #### Community
 
@@ -394,31 +388,15 @@ This project is fully open source! Contributions of any kind are greatly appreci
 
 #### References 🔗
 
-- [Coloring with code: A programmatic approach by George Francis][inspiration-post]
+- [Coloring with code: A programmatic approach by George Francis](https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/)
 - [Programming Design Systems: Rune Madsen][programming-design-systems]
-- [Introducing Adaptive Color Palettes][adaptive-palettes-blog]
+- [Introducing Adaptive Color Palettes][https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://medium.com/thinking-design/introducing-adaptive-color-palettes-111b5842fc88&ved=2ahUKEwj5xNSuy-6DAxV8REEAHVKaAMwQFnoECB0QAQ&usg=AOvVaw2ufCwph7oofZCFawA0WPr-]
 - [Culori API docs](https://culorijs.org/api/)
 
 ##### License ⚖️
 
- 
  <pre>
  © 2024,Dean Tarisai
  Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h5>
  🧪 & 🔬 with 🥃 in Crowhill,ZW</pre>
 
-[adaptive-palettes-blog]:[https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://medium.com/thinking-design/introducing-adaptive-color-palettes-111b5842fc88&ved=2ahUKEwj5xNSuy-6DAxV8REEAHVKaAMwQFnoECB0QAQ&usg=AOvVaw2ufCwph7oofZCFawA0WPr-]
-[generators]:[https://prjctimg.github.io/huetiful/generators.html]
-[converters]:[https://prjctimg.github.io/huetiful/utils.html]
-[programming-design-systems]:[https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://programmingdesignsystems.com/&ved=2ahUKEwi42O3hy-6DAxXqV0EAHTmpCqEQFnoECBsQAQ&usg=AOvVaw0l2PlWPxOi8UrhBYO1mc9q]
-[inspiration-post]:[https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/]
-[colortoken]:[https://prjctimg.github.io/huetiful/types.html#colortoken]
-[hueshift]:[https://prjctimg.github.io/huetiful/generators.html#hueshift]
-[filterBy]:[https://prjctimg.github.io/huetiful/filterBy.html]
-[generators]:[https://prjctimg.github.io/huetiful/generators.html]
-[colors]:[https://prjctimg.github.io/huetiful/colors.html]
-[converters]:[https://prjctimg.github.io/huetiful/converters.html]
-[modules]:[https://prjctimg.github.io/huetiful/modules.html]
-[wiki]:[https://prjctimg.github.io/huetiful/wiki]
-[utils]:[https://prjctimg.github.io/huetiful/utils.html]
- 
