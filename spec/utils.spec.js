@@ -17,6 +17,17 @@ governing permissions and limitations under the License.
 describe(`Test suite for utils`, () => {
   var [col, sample] = ['#310000', ['b2c3f1', '#a1bd2f', '#f3bac1']];
   var data = {
+    getMeanLuminance: {
+      params: [
+        [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 30, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 30, mode: 'lch' }
+        ]
+      ],
+      description: `Gets the mean luminance from the collection of colors.`,
+      expect: 1
+    },
     getMeanContrast: {
       params: [
         [
