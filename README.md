@@ -55,7 +55,7 @@ Consider the typical parameter signature of a filtering function:
 
 ```ts
 
-declare function filterBySaturation(
+declare function filterByChroma(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   startSaturation?: number,
   endSaturation?: number,

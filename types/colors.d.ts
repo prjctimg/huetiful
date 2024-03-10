@@ -205,7 +205,7 @@ declare class ColorArray {
    * @param colorspace The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.
    * @returns Array of filtered colors.
    * @example
-   * import { filterBySaturation } from 'huetiful-js'
+   * import { filterByChroma } from 'huetiful-js'
    *
    let sample = [
     '#00ffdc',
@@ -221,12 +221,12 @@ declare class ColorArray {
     '#720000'
   ];
   
-  console.log(filterBySaturation(sample, 0.1));
+  console.log(filterByChroma(sample, 0.1));
   
   // [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
   
    */
-  filterBySaturation(
+  filterByChroma(
     startSaturation?: number,
     endSaturation?: number,
     colorspace?: Omit<HueColorSpaces, 'hwb'>

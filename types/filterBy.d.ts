@@ -23,7 +23,7 @@ import type { ColorToken, HueColorSpaces } from './types';
  * @param colorspace The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.
  * @returns Collection of filtered colors.
  * @example
- * import { filterBySaturation } from 'huetiful-js'
+ * import { filterByChroma } from 'huetiful-js'
 
 
 let sample = [
@@ -40,11 +40,11 @@ let sample = [
   '#720000'
 ];
 
-console.log(filterBySaturation(sample, 0.1));
+console.log(filterByChroma(sample, 0.1));
 
 // [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
  */
-declare function filterBySaturation(
+declare function filterByChroma(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   startSaturation?: number,
   endSaturation?: number,
@@ -222,7 +222,7 @@ export {
   filterByContrast,
   filterByDistance,
   filterByLuminance,
-  filterBySaturation,
+  filterByChroma,
   filterByHue,
   filterByLightness
 };

@@ -20,7 +20,7 @@ import {
 console.log(getHueFamily("#310000"))
 // red
  */
-declare function getHueFamily(color: ColorToken): HueFamily;
+declare function getHueFamily(color: ColorToken): string;
 /**
  *
  *  Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.
@@ -802,6 +802,30 @@ declare function getNearestLightnessFrom(
       factor: number;
       color: ColorToken;
     };
+
+declare function getMeanChroma(
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
+): number;
+
+declare function getMeanLightness(
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
+): number;
+
+declare function getMeanHue(
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
+): number;
+
+declare function getMeanLuminance(
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
+): number;
+
+declare function getMeanDistance(
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
+): number;
+
+declare function getMeanContrast(
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
+): number;
 
 export {
   brighten,

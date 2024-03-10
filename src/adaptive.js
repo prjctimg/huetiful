@@ -8,10 +8,10 @@
 // -> Adaptive color is meant to adjust to luminance changes in the surrounding colors (or simply background)
 
 // 2. What makes color adaptive
-// -> Being able to look perceptually similar between different themes or backgrounds. For example a certain color looks over saturated in a dark theme. We can change the color's luminance to compensate for this shortfall whilt maintaining the hue and saturation constraints in our design system.
+// -> Being able to look perceptually similar between different themes or backgrounds. For example a certain color looks over saturated in a dark theme. We can change the color's luminance to compensate for this shortfall whilst maintaining the hue and saturation constraints in our design system.
 
 // 3. What is contrast and how does it affect adaptive color
-// -> Contrast is the perceived difference in color i.e the ability of one color to stand out from another. This allows colors to be readible on different backgrounds.
+// -> Contrast is the perceived difference in color i.e the ability of one color to stand out from another. This allows colors to be legible on different backgrounds.
 
 // 4. What are the specifics of contrast ratio in relation to design elements
 // -> Contrast ratios allow us to define the contrast relationship between the colors we're working with. For example certain text must meet a minimum contrast ratio in order for it to be easily viewable to a wider userbase.
@@ -54,23 +54,9 @@
 
 // The relative luminance returned should be compliant to the defined ratio
 
-// The correlates are channels in short  "QJMCshH"
-
-// First convert cam to xyz then rgb
-
-const adaptivePalette = (colors, options) => {
-  // return customMystery;
-};
-
-//   let { light, dark } = undefined || {};
-// let  = options
-//   light = checkArg(light, tailwindColors('gray')('100'));
-
-//   // First get the contrast between the passed in color and the backgrounds
-//   dark = checkArg(dark, tailwindColors('stone')('800'));
-//   const lightContrast = getContrast(colors, light);
-//   const darkContrast = getContrast(colors, dark);
-//   const colorLuminance = getLuminance(color);
-//   const lightLuminance = getLuminance(light);
-//   const darkLuminance = getLuminance(dark);
-//   colors = colors.map((color) => toJch(color));
+function adaptive(color, theme = { light: '#fff', dark: '#000' }) {
+  var min_c,
+    par = 0.5;
+  
+  
+}

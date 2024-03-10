@@ -18,13 +18,13 @@ import type {
 } from './types';
 /**
  *
- * Sorts colors according to the amount of saturation channel in the specified `colorspace`.
+ * Sorts colors according to the intensity of their `chroma` in the specified `colorspace`.
  * @param  collection The `collection` of colors to sort.
  * @param  order The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
  * @param colorspace The `mode` colorspace to compute the saturation value in. The default is lch .
  * @returns The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
  * @example
- * import { sortBySaturation } from "huetiful-js";
+ * import { sortByChroma } from "huetiful-js";
 let sample = [
   "#00ffdc",
   "#00ff78",
@@ -39,7 +39,7 @@ let sample = [
   "#720000",
 ];
 
-let sorted = sortBySaturation(sample);
+let sorted = sortByChroma(sample);
 console.log(sorted);
 
 // [
@@ -51,7 +51,7 @@ console.log(sorted);
   '#ffff00'
 ]
 
-let sortedDescending = sortBySaturation(sample,'desc');
+let sortedDescending = sortByChroma(sample,'desc');
 console.log(sortedDescending)
 // [
   '#ffff00', '#00c000',
@@ -63,7 +63,7 @@ console.log(sortedDescending)
 ]
 
  */
-declare function sortBySaturation(
+declare function sortByChroma(
   collection: ArrayLike<ColorToken> | Map<any, ColorToken> | object,
   order?: 'asc' | 'desc',
   colorspace?: HueColorSpaces
@@ -287,7 +287,7 @@ export {
   sortByContrast,
   sortByDistance,
   sortByLightness,
-  sortBySaturation,
+  sortByChroma,
   sortByHue,
   sortByLuminance
 };
