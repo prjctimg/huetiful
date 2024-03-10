@@ -32,7 +32,8 @@ import {
   differenceHyab,
   formatHex,
   easingSmootherstep as _ess,
-  averageNumber
+  averageNumber,
+  averageAngle
 } from 'culori/fn';
 import 'culori/css';
 
@@ -520,7 +521,17 @@ function getNearestLightnessFrom(
 
 function getMeanChroma(collection = [], colorspace = 'lch') {
   var cb = getChannel(mcchn(colorspace));
-  return averageNumber(collection.map(cb));
+  return averageNumber(Object.values(collection).map(cb));
+}
+
+function getMeanHue(collection, colorspace = 'lch') {
+  var cb = (cb = getChannel(`${colorspace}.h`));
+  return averageAngle(Object.values(collection).map(cb));
+}
+
+function getMeanDistance(collection, against = '#fff') {
+  var cb = (x) => (y) => differenceHyab()(x, y);
+  return averageNumber(Object.values(collection).map(cb(against)));
 }
 
 export {
@@ -554,5 +565,7 @@ export {
   getNearestChromaFrom,
   getNearestHueFrom,
   getNearestLightnessFrom,
-  getMeanChroma
+  getMeanChroma,
+  getMeanHue,
+  getMeanDistance
 };
