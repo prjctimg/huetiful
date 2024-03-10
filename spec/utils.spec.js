@@ -17,6 +17,19 @@ governing permissions and limitations under the License.
 describe(`Test suite for utils`, () => {
   var [col, sample] = ['#310000', ['b2c3f1', '#a1bd2f', '#f3bac1']];
   var data = {
+    getMeanChroma: {
+      params: [
+        [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 30, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        'lch'
+      ],
+      description: `Gets the mean chroma value from the collection of colors in the specified colorspace`,
+      expect: 30
+    },
+
     getNearestHueFrom: {
       params: [
         [
