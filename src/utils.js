@@ -36,6 +36,7 @@ import {
 import 'culori/css';
 
 import { mcchn, sortedColl, or } from './helpers.js';
+import { average } from 'culori';
 
 function getHueFamily(color) {
   var [nearestKey, nearestDiff] = ['', Infinity];
@@ -515,6 +516,26 @@ function getNearestLightnessFrom(
     'asc',
     colorObj
   );
+}
+
+function getMeanFactor(factor, colorspace = 'lch') {
+  switch (factor) {
+    case 'chroma':
+      break;
+
+    case 'hue':
+      break;
+
+    case 'lightness':
+      break;
+
+    default:
+      break;
+  }
+
+  return function (collection = []) {};
+
+  // A mean or average is the sum of all elements divided by the num of elements. That's simple math, right ?
 }
 
 export {
