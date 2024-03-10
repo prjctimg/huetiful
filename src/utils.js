@@ -524,6 +524,11 @@ function getMeanChroma(collection = [], colorspace = 'lch') {
   return averageNumber(Object.values(collection).map(cb));
 }
 
+function getMeanLightness(collection = [], colorspace = 'lch') {
+  var cb = getChannel(mlchn(colorspace));
+  return averageNumber(Object.values(collection).map(cb));
+}
+
 function getMeanHue(collection, colorspace = 'lch') {
   var cb = (cb = getChannel(`${colorspace}.h`));
   return averageAngle(Object.values(collection).map(cb));
@@ -579,5 +584,6 @@ export {
   getMeanHue,
   getMeanDistance,
   getMeanContrast,
-  getMeanLuminance
+  getMeanLuminance,
+  getMeanLightness
 };

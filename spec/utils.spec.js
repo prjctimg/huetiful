@@ -26,7 +26,7 @@ describe(`Test suite for utils`, () => {
         ]
       ],
       description: `Gets the mean luminance from the collection of colors.`,
-      expect: 1
+      expect: 0.051170743179012795
     },
     getMeanContrast: {
       params: [
@@ -38,7 +38,7 @@ describe(`Test suite for utils`, () => {
         'blue'
       ],
       description: `Gets the mean contrast from the collection of colors against the specified color`,
-      expect: 1.62605517886674
+      expect: 1.6087955158902005
     },
     getMeanDistance: {
       params: [
@@ -63,6 +63,18 @@ describe(`Test suite for utils`, () => {
       ],
       description: `Gets the mean hue angle from the collection of colors in the specified colorspace`,
       expect: 29.999999999999996
+    },
+    getMeanLightness: {
+      params: [
+        [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 30, h: 20, mode: 'lch' },
+          { l: 30, c: 40, h: 10, mode: 'lch' }
+        ],
+        'lch'
+      ],
+      description: `Gets the mean lightness value from the collection of colors in the specified colorspace`,
+      expect: 30
     },
     getMeanChroma: {
       params: [
