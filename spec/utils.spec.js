@@ -17,6 +17,18 @@ governing permissions and limitations under the License.
 describe(`Test suite for utils`, () => {
   var [col, sample] = ['#310000', ['b2c3f1', '#a1bd2f', '#f3bac1']];
   var data = {
+    getMeanContrast: {
+      params: [
+        [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 30, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 30, mode: 'lch' }
+        ],
+        'blue'
+      ],
+      description: `Gets the mean contrast from the collection of colors against the specified color`,
+      expect: 1.62605517886674
+    },
     getMeanDistance: {
       params: [
         [
@@ -26,7 +38,7 @@ describe(`Test suite for utils`, () => {
         ],
         'blue'
       ],
-      description: `Gets the mean distance from the collection of colors in the specified colorspace`,
+      description: `Gets the mean distance from the collection of colors using the differenceHyab metric`,
       expect: 147.44699388822093
     },
     getMeanHue: {

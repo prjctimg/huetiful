@@ -534,6 +534,12 @@ function getMeanDistance(collection, against = '#fff') {
   return averageNumber(Object.values(collection).map(cb(against)));
 }
 
+function getMeanContrast(collection, against = '#fff') {
+  var cb = (x) => (y) => wcagContrast(x, y);
+
+  return averageNumber(Object.values(collection).map(cb(against)));
+}
+
 export {
   brighten,
   darken,
@@ -567,5 +573,6 @@ export {
   getNearestLightnessFrom,
   getMeanChroma,
   getMeanHue,
-  getMeanDistance
+  getMeanDistance,
+  getMeanContrast
 };
