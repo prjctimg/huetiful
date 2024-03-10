@@ -803,28 +803,88 @@ declare function getNearestLightnessFrom(
       color: ColorToken;
     };
 
+/**
+ * Returns the average `chroma` from the passed in `collection` of colors. Achromatic colors (or colors with a falsy `chroma` channel) will be excluded from the sum.
+ * @param collection The collection of color tokens to query.
+ * @param colorspace The colorspace to fetch the `chroma` channel value from.
+ * @returns The average `chroma` in the passed in `collection` or undefined if no color in the `collection` has a valid `chroma` channel.
+ * @example
+ *
+ * import { } from 'huetiful-js'
+ */
 declare function getMeanChroma(
-  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
-): number;
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  colorspace?: HueColorSpaces
+): number | undefined;
 
+/**
+ * Returns the average `lightness` from the passed in `collection` of colors.
+ * @param collection The collection of color tokens to query.
+ * @param colorspace The colorspace to fetch the `lightness` channel value from.
+ * @returns The average `lightness` in the passed in `collection`.
+ * @example
+ *
+ * import { } from 'huetiful-js'
+ */
 declare function getMeanLightness(
-  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  colorspace?: HueColorSpaces
 ): number;
 
+/**
+ * Returns the average `hue` from the passed in `collection` of colors. Achromatic colors (or colors with a falsy `chroma` channel) will be excluded from the sum if `excludeGreys` is `true`. This can help make your color scales make more 'visual sense since the `hue` channel depends on the `chroma` channel to look colorful. This will also alter the final average hue angle returned.
+ * @param collection The collection of color tokens to query.
+ * @param colorspace The colorspace to fetch the `hue` channel value from.
+ * @param excludeGreys Optional boolean to filter out achromatic colors from the passed in `collection`.
+ * @returns The average `hue` angle in the passed in `collection`.
+ * @example
+ *
+ * import { } from 'huetiful-js'
+ */
 declare function getMeanHue(
-  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  colorspace?: HueColorSpaces,
+  excludeGreys?: boolean
 ): number;
 
+/**
+ * Returns the average relative `luminance` from the passed in `collection` of colors.
+ * @param collection The collection of color tokens to query.
+ * @returns The average relative `luminance` in the passed in `collection` or undefined if no color in the `collection` has a valid `chroma` channel.
+ * @example
+ *
+ * import { } from 'huetiful-js'
+ */
 declare function getMeanLuminance(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
 ): number;
 
+/**
+ * Returns the average `distance` from the passed in `collection` of colors using the `differenceHyab` metric. In the future, an option to specify the metric to use when querying the `distance` factor.
+ * @param collection The collection of color tokens to query.
+ * @param against The color to compare the distance from. Used by the metric function for each color in the `collection`. Default is `black`.
+ * @returns The average `distance` in the passed in `collection` .
+ * @example
+ *
+ * import { } from 'huetiful-js'
+ */
 declare function getMeanDistance(
-  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  against?: ColorToken
 ): number;
 
+/**
+ * Returns the average `contrast` from the passed in `collection` of colors.
+ * @param collection The collection of color tokens to query.
+ * @param against The color to compare the `contrast` against. Used by the `getContrast` function for each color in the `collection`. Default is `black`
+ * @returns The average `distance` in the passed in `collection` .
+ * @example
+ *
+ * import { } from 'huetiful-js'
+ */
 declare function getMeanContrast(
-  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  against?: ColorToken
 ): number;
 
 export {
