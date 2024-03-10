@@ -147,7 +147,7 @@ declare function interpolateSpline(
   iterations?: number,
   kind?: 'natural' | 'monotone' | 'basis',
   closed?: boolean,
-  options?: Pick<InterpolatorOptions, 'hueFixup' | 'easingFn'>
+  options?: Pick<InterpolatorOptions, 'hueFixup' | 'easingFn' | 'domain'>
 ): Array<string>;
 /**
  * @internal

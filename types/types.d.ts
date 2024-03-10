@@ -52,6 +52,7 @@ export type InterpolatorOptions = Pick<
   | 'chromaInterpolator'
   | 'hueFixup'
   | 'lightnessInterpolator'
+  | 'domain'
 >;
 
 /**
@@ -123,6 +124,11 @@ type Options = {
    * @param maxLightness  Maximum lightness value (range 0-100).
    */
   maxLightness?: number;
+
+  /**
+   * @param domain The color stops in the range [0,1] passed in as an array. The color scale returned is from the start (which is element at index 0) up to the optional end which defaults to 1.
+   */
+  domain?: [number, number?];
 };
 
 export type PairedSchemeOptions = Omit<
@@ -196,7 +202,14 @@ export type SequentialScheme =
  * @type
  * @description Any recognizable color token.
  */
-export type ColorToken = number | string | object | ColorTuple;
+export type ColorToken = number | string | ColorObject | ColorTuple;
+
+export type ColorObject = {
+  [channel: string]: number | undefined;
+
+  alpha?: number;
+  mode: Colorspaces;
+};
 
 /**
  * @param
