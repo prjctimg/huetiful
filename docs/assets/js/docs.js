@@ -1,7 +1,7 @@
 #!/usr/bin / env node
 
 /*
- * @license huetiful-js Documentation script using showdown.js,Typedoc and github-markdown-css .  
+ * @license xml-wizard/huetiful-docs Documentation script using showdown.js,Typedoc and github-markdown-css .  
  * Copyright 2024 Dean Tarisai.
 This file is licensed to you under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License. You may obtain a copy
@@ -13,13 +13,7 @@ governing permissions and limitations under the License.
 
  */
 
-var {
-    readFileSync,
-    writeFileSync,
-    readdirSync,
-    renameSync,
-    lstatSync
-  } = require('node:fs'),
+var { readFileSync, lstatSync } = require('node:fs'),
   ge = require('github-emoji'),
   defaultClasses = {
     blockquote: ' border-l-blue-400 bg-blue-200',
@@ -31,9 +25,6 @@ var {
     replace: `<${key} class='${defaultClasses[key]}' $1>`
   })),
   showdown = require('./showdown.cjs'),
-  postFragment = require('./xml-shards/post.cjs'),
-  data = require('./data.cjs'),
-  layoutFragment = require('./xml-shards/layout.cjs'),
   $ = new showdown.Converter({
     extensions: [...injectClasses],
     emoji: true,
@@ -44,17 +35,7 @@ var {
     tables: true,
     tasklists: true
   }),
-  PATH_TO_MARKDOWN_FILES = './docs/assets/markdown/modules';
-
-var _moduleNames = [
-  'colors',
-  'types',
-  'converters',
-  'generators',
-  'utils',
-  'filterBy',
-  'sortBy'
-];
+  PATH_TO_MARKDOWN_FILES = './markdown/modules';
 
 // The html comment to match before injecting data
 // const reHtmlComment = /(<!-- DOC_START -->)[\s\S]*?(<!-- DOC_END -->)$/gm;
@@ -92,66 +73,43 @@ function generateDocs(source) {
 }
 // Loop through the markdown files for modules
 
-for (const [k, v] of Object.entries(_moduleNames)) {
+function buildDataObject(sourceModule) {
   var m = new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
     month: 'short',
     day: 'numeric',
 
     dayPeriod: 'short'
-  }).format(lstatSync('./types/' + v + '.d.ts').mtime);
+  }).format(lstatSync('./types/' + sourceModule + '.d.ts').mtime);
 
   var cb = (s, x, y) =>
     `https://github.com/prjctimg/huetiful/blob/main/${s}/${x}.${y}`;
 
-  var page = postFragment({
-    title: `${v}`,
-    mainContent: generateDocs(PATH_TO_MARKDOWN_FILES + '/' + v + '.md'),
+  return {
+    title: `${sourceModule}`,
+    mainContent: generateDocs(
+      PATH_TO_MARKDOWN_FILES + '/' + sourceModule + '.md'
+    ),
     lastUpdated: m,
-    srcFile: cb('src', v, 'js'),
-    specFile: cb('spec', v, 'spec.js'),
-    wikiPage: `https://github.com/prjctimg/huetiful/wiki/${v}`,
-    declFile: cb('types', v, 'd.ts'),
-    page: {
-      previous: {
-        title:
-          _moduleNames.length - k > 0
-            ? _moduleNames[parseInt(k) - 1]
-            : `Go back to the home page ?`,
-        href:
-          parseInt(k) !== 0 && parseInt(k) < _moduleNames.length - 1
-            ? `./${_moduleNames[parseInt(k) - 1]}.html`
-            : './index.html'
-      },
-      next: {
-        title:
-          parseInt(k) < _moduleNames.length - 1
-            ? _moduleNames[parseInt(k) + 1]
-            : `Learn more on our Wiki`,
-        href:
-          parseInt(k) < _moduleNames.length - 1
-            ? `./${_moduleNames[v + 1]}.html`
-            : 'https://github.com/prjctimg/huetiful/wiki/welcome'
-      }
-    }
-  });
-
-  writeFileSync(`./docs/${v}.html`, layoutFragment(page));
+    srcFile: cb('src', sourceModule, 'js'),
+    specFile: cb('spec', sourceModule, 'spec.js'),
+    wikiPage: `https://github.com/prjctimg/huetiful/wiki/${sourceModule}`,
+    declFile: cb('types', sourceModule, 'd.ts')
+  };
 }
 
-var navigatoryFiles = ['modules.md', 'README.md'];
+// var navigatoryFiles = ['modules.md', 'README.md'];
 
-for (const page of navigatoryFiles) {
-  writeFileSync(
-    './docs/' + page.split('.')[0] + '.html',
-    layoutFragment(generateDocs('./docs/assets/markdown/' + page)),
-    'utf-8'
-  );
+// for (const page of navigatoryFiles) {
+//   writeFileSync(
+//     './docs/' + page.split('.')[0] + '.html',
+//     layoutFragment(generateDocs('./docs/assets/markdown/' + page)),
+//     'utf-8'
+//   );
 
-  if (page === 'README.md') {
-    renameSync('./docs/README.html', './docs/index.html');
-  }
-}
+//   if (page === 'README.md') {
+//     renameSync('./docs/README.html', './docs/index.html');
+//   }
+// }
 
-console.log(`Generated navigatory files successfully`);
-console.info(`[prjctimg] Done. Generated HTML docs successfully.}`);
+export { buildDataObject, generateDocs };
