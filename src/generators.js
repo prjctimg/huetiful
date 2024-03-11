@@ -26,7 +26,7 @@ import {
   mlchn,
   max,
   min,
-   pltrconfg,
+  pltrconfg,
   gt,
   gte
 } from './helpers.js';
