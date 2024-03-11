@@ -4,7 +4,7 @@
   "type": "module",
   "main": "./src/index.js",
   "browser": "./lib/huetiful.umd.js",
-  "jsdelivr": "./lib/huetiful.umd.js",
+  "jsdelivr": "./lib/huetiful.min.umd.js",
   "exports": {
     "./generators": "./src/generators.js",
     "./colors": "./src/colors.js",
@@ -24,7 +24,6 @@
     "culori"
   ],
   "devDependencies": {
-    "@fontsource-variable/space-grotesk": "^5.0.16",
     "@types/culori": "^2.0.0",
     "dts-bundle-generator": "^8.0.1",
     "esbuild": "^0.17.19",
