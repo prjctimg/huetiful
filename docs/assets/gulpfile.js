@@ -1,7 +1,8 @@
 import gulp from 'gulp';
 import _njk from 'gulp-nunjucks-render';
 import { readdirSync } from 'node:fs';
-import { generateDocs, buildDataObject } from './js/docs.js';
+import { buildDataObject } from './js/docs.js';
+import * as emoji from 'github-emoji';
 var { src, dest, series, watch } = gulp;
 
 function manageEnv(source) {
@@ -10,7 +11,7 @@ function manageEnv(source) {
 
 function njk() {
   var PATH_TO_MD_FILES = './markdown';
-  var moduleNames = readdirSync(PATH_TO_MD_FILES, 'utf-8').map(
+  var moduleNames = readdirSync(PATH_TO_MD_FILES + '/modules', 'utf-8').map(
     (s) => s.split('.')[0]
   );
 
