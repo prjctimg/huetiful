@@ -25,6 +25,7 @@ var { readFileSync, lstatSync, writeFileSync } = require('node:fs'),
     replace: `<${key} class='${defaultClasses[key]}' $1>`
   })),
   showdown = require('./vendor/showdown.cjs'),
+  url = require('url'),
   $ = new showdown.Converter({
     extensions: [...injectClasses],
     emoji: true,
@@ -36,6 +37,18 @@ var { readFileSync, lstatSync, writeFileSync } = require('node:fs'),
     tasklists: true
   }),
   PATH_TO_MARKDOWN_FILES = './markdown/modules';
+
+function rel2absURL(baseUrl, html) {
+  const parsedBaseUrl = new url.URL(baseUrl);
+  return html.replace(
+    /href="([^"]+-)"|src="([^"]+-)"/g,
+    (match, relativeUrl) => {
+      if (!relativeUrl) return match;
+      const absoluteUrl = new url.URL(relativeUrl, parsedBaseUrl);
+      return match.replace(relativeUrl, absoluteUrl.toString());
+    }
+  );
+}
 
 // The html comment to match before injecting data
 // const reHtmlComment = /(<!-- DOC_START -->)[\s\S]*?(<!-- DOC_END -->)$/gm;
@@ -114,5 +127,6 @@ function createIndexPages() {
 
 module.exports = {
   buildDataObject,
-  createIndexPages
+  createIndexPages,
+  rel2absURL
 };

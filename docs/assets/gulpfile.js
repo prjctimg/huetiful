@@ -1,6 +1,7 @@
 import gulp from 'gulp';
 import _njk from 'gulp-nunjucks-render';
 import {
+  readFileSync,
   readdirSync,
   renameSync,
   rmSync,
@@ -18,6 +19,19 @@ var moduleNames = readdirSync(PATH_TO_MD_FILES + '/modules', 'utf-8').map(
 
 function manageEnv(source) {
   return (env) => env.addGlobal('data', _.buildDataObject(source));
+}
+
+export async function links() {
+  var BASE_URL = 'https://huetiful-js.com/';
+  moduleNames.map((srcFile) =>
+    writeFileSync(
+      `../www/api/${srcFile}/index.html`,
+      _.rel2absURL(
+        BASE_URL,
+        readFileSync(`../www/api/${srcFile}/index.html`, 'utf-8')
+      )
+    )
+  );
 }
 
 export async function xml() {
