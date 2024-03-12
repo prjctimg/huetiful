@@ -3,10 +3,11 @@
     <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/assets/css/huetiful.css" />
-    <link rel="stylesheet" href="/assets/css/github.min.css" />
-    <link rel="stylesheet" href="/assets/css/github-markdown-light.css" />
+
     
+    <link rel="stylesheet" type="text/css" href="./assets/css/huetiful.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/github.min.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/github-markdown-light.css" />
 
     
     <style>
@@ -131,379 +132,379 @@
 
 
 
-    &lt;h1 id=&quot;module-📦-filterby&quot;&gt;Module 📦: filterBy&lt;/h1&gt;
-&lt;h2 id=&quot;table-of-contents-📑&quot;&gt;Table of contents 📑&lt;/h2&gt;
-&lt;h3 id=&quot;functions-🧰&quot;&gt;Functions 🧰&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;filterBy.md#filterbycontrast&quot;&gt;filterByContrast&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;filterBy.md#filterbydistance&quot;&gt;filterByDistance&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;filterBy.md#filterbyhue&quot;&gt;filterByHue&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;filterBy.md#filterbylightness&quot;&gt;filterByLightness&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;filterBy.md#filterbyluminance&quot;&gt;filterByLuminance&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;filterBy.md#filterbysaturation&quot;&gt;filterBySaturation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;functions&quot;&gt;Functions&lt;/h2&gt;
-&lt;h3 id=&quot;filterbycontrast&quot;&gt;filterByContrast&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;filterByContrast&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;collection&lt;/code&gt;, &lt;code&gt;against&lt;/code&gt;, &lt;code&gt;startContrast?&lt;/code&gt;, &lt;code&gt;endContrast?&lt;/code&gt;): &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;[] | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Returns colors with the specified contrast range. The contrast is tested against a comparison color (the &#39;against&#39; param) and the specified contrast ranges.&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;collection&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;object&lt;/code&gt; | &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt; | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The collection of colors to filter.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;against&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;startContrast?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The minimum end of the contrast range.Supports expression strings e.g &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&#39;&amp;gt;=0.5&#39;&lt;/code&gt;. The supported symbols are &lt;code&gt;== | === | != | !== | &amp;gt;= | &amp;lt;= | &amp;lt; | &amp;gt;&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;endContrast?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The maximum end of the contrast range.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;[] | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Collection of filtered colors.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { filterByContrast } from &#39;huetiful-js&#39;
+    <h1 id="module-📦-filterby">Module 📦: filterBy</h1>
+<h2 id="table-of-contents-📑">Table of contents 📑</h2>
+<h3 id="functions-🧰">Functions 🧰</h3>
+<ul>
+<li><a href="filterBy.md#filterbycontrast">filterByContrast</a></li>
+<li><a href="filterBy.md#filterbydistance">filterByDistance</a></li>
+<li><a href="filterBy.md#filterbyhue">filterByHue</a></li>
+<li><a href="filterBy.md#filterbylightness">filterByLightness</a></li>
+<li><a href="filterBy.md#filterbyluminance">filterByLuminance</a></li>
+<li><a href="filterBy.md#filterbysaturation">filterBySaturation</a></li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="filterbycontrast">filterByContrast</h3>
+<p>▸ <strong>filterByContrast</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>against</code>, <code>startContrast?</code>, <code>endContrast?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.</p>
+<h4 id="parameters-🧮">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The collection of colors to filter.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >against</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >startContrast?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;">The minimum end of the contrast range.Supports expression strings e.g <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >endContrast?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;">The maximum end of the contrast range.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙">Returns 🔙</h4>
+<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Collection of filtered colors.</p>
+<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { filterByContrast } from 'huetiful-js'
 
 let sample = [
- &#39;#00ffdc&#39;,
- &#39;#00ff78&#39;,
- &#39;#00c000&#39;,
- &#39;#007e00&#39;,
- &#39;#164100&#39;,
- &#39;#ffff00&#39;,
- &#39;#310000&#39;,
- &#39;#3e0000&#39;,
- &#39;#4e0000&#39;,
- &#39;#600000&#39;,
- &#39;#720000&#39;,
+ '#00ffdc',
+ '#00ff78',
+ '#00c000',
+ '#007e00',
+ '#164100',
+ '#ffff00',
+ '#310000',
+ '#3e0000',
+ '#4e0000',
+ '#600000',
+ '#720000',
 ]
 
-console.log(filterByContrast(sample, &#39;green&#39;, &#39;&amp;gt;=3&#39;))
-// [ &#39;#00ffdc&#39;, &#39;#00ff78&#39;, &#39;#ffff00&#39;, &#39;#310000&#39;, &#39;#3e0000&#39;, &#39;#4e0000&#39; ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;defined-in-📝&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L215&quot;&gt;filterBy.d.ts:215&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&quot;filterbydistance&quot;&gt;filterByDistance&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;filterByDistance&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;collection&lt;/code&gt;, &lt;code&gt;against&lt;/code&gt;, &lt;code&gt;startDistance?&lt;/code&gt;, &lt;code&gt;endDistance?&lt;/code&gt;): &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;[] | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Returns colors with the specified distance range. The distance is tested against a comparison color (the &#39;against&#39; param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮-1&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;collection&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;object&lt;/code&gt; | &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt; | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The collection of colors to filter.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;against&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;startDistance?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The minimum end of the distance range.Supports expression strings e.g &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&#39;&amp;gt;=0.5&#39;&lt;/code&gt;. The supported symbols are &lt;code&gt;== | === | != | !== | &amp;gt;= | &amp;lt;= | &amp;lt; | &amp;gt;&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;endDistance?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The maximum end of the distance range.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙-1&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;[] | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Collection of filtered colors.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { filterByDistance } from &#39;huetiful-js&#39;
+console.log(filterByContrast(sample, 'green', '&gt;=3'))
+// [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
+</code></pre>
+<h4 id="defined-in-📝">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L215">filterBy.d.ts:215</a></p>
+<hr />
+<h3 id="filterbydistance">filterByDistance</h3>
+<p>▸ <strong>filterByDistance</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>against</code>, <code>startDistance?</code>, <code>endDistance?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.</p>
+<h4 id="parameters-🧮-1">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The collection of colors to filter.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >against</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >startDistance?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;">The minimum end of the distance range.Supports expression strings e.g <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >endDistance?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;">The maximum end of the distance range.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-1">Returns 🔙</h4>
+<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Collection of filtered colors.</p>
+<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { filterByDistance } from 'huetiful-js'
 
 let sample = [
- &quot;#ffff00&quot;,
- &quot;#00ffdc&quot;,
- &quot;#00ff78&quot;,
- &quot;#00c000&quot;,
- &quot;#007e00&quot;,
- &quot;#164100&quot;,
- &quot;#720000&quot;,
- &quot;#600000&quot;,
+ "#ffff00",
+ "#00ffdc",
+ "#00ff78",
+ "#00c000",
+ "#007e00",
+ "#164100",
+ "#720000",
+ "#600000",
 ]
 
-console.log(filterByDistance(sample, &quot;yellow&quot;, 0.1))
-// [ &#39;#ffff00&#39; ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;defined-in-📝-1&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L180&quot;&gt;filterBy.d.ts:180&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&quot;filterbyhue&quot;&gt;filterByHue&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;filterByHue&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;collection&lt;/code&gt;, &lt;code&gt;startHue?&lt;/code&gt;, &lt;code&gt;endHue?&lt;/code&gt;, &lt;code&gt;colorspace?&lt;/code&gt;): &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;[] | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Returns colors in the specified hue ranges between 0 to 360.&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮-2&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;collection&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;object&lt;/code&gt; | &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt; | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The collection of colors to filter.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;startHue?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The minimum end of the hue range. Supports expression strings e.g &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&#39;&amp;gt;=0.5&#39;&lt;/code&gt;. The supported symbols are &lt;code&gt;== | === | != | !== | &amp;gt;= | &amp;lt;= | &amp;lt; | &amp;gt;&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;endHue?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The maximum end of the hue range.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colorspace?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;string&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙-2&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;[] | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Array of the filtered colors.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;let sample = [
- &#39;#00ffdc&#39;,
- &#39;#00ff78&#39;,
- &#39;#00c000&#39;,
- &#39;#007e00&#39;,
- &#39;#164100&#39;,
- &#39;#ffff00&#39;,
- &#39;#310000&#39;,
- &#39;#3e0000&#39;,
- &#39;#4e0000&#39;,
- &#39;#600000&#39;,
- &#39;#720000&#39;,
+console.log(filterByDistance(sample, "yellow", 0.1))
+// [ '#ffff00' ]
+</code></pre>
+<h4 id="defined-in-📝-1">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L180">filterBy.d.ts:180</a></p>
+<hr />
+<h3 id="filterbyhue">filterByHue</h3>
+<p>▸ <strong>filterByHue</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>startHue?</code>, <code>endHue?</code>, <code>colorspace?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns colors in the specified hue ranges between 0 to 360.</p>
+<h4 id="parameters-🧮-2">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The collection of colors to filter.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >startHue?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;">The minimum end of the hue range. Supports expression strings e.g <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >endHue?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;">The maximum end of the hue range.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-2">Returns 🔙</h4>
+<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Array of the filtered colors.</p>
+<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">let sample = [
+ '#00ffdc',
+ '#00ff78',
+ '#00c000',
+ '#007e00',
+ '#164100',
+ '#ffff00',
+ '#310000',
+ '#3e0000',
+ '#4e0000',
+ '#600000',
+ '#720000',
 ]
 
 filterByHue(sample, 20, 80)
 
-// [ &#39;#310000&#39;, &#39;#3e0000&#39;, &#39;#4e0000&#39;, &#39;#600000&#39;, &#39;#720000&#39; ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;defined-in-📝-2&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L150&quot;&gt;filterBy.d.ts:150&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&quot;filterbylightness&quot;&gt;filterByLightness&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;filterByLightness&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;collection&lt;/code&gt;, &lt;code&gt;startLightness?&lt;/code&gt;, &lt;code&gt;endLightness?&lt;/code&gt;, &lt;code&gt;colorspace?&lt;/code&gt;): &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;[] | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Returns colors in the specified lightness range.&lt;/p&gt;
-&lt;p&gt;The range is internally normalized to the supported ranges by the &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colorspace&lt;/code&gt; in use if it is out of range.
-This means a value in the range &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;[0,1]&lt;/code&gt; will return, for example if you pass &lt;code&gt;startLightness&lt;/code&gt; as &lt;code&gt;0.3&lt;/code&gt; it means &lt;code&gt;0.3 (or 30%)&lt;/code&gt; of the channel&#39;s supported range. But if the value of either start or end is above 1 AND the &lt;code&gt;colorspace&lt;/code&gt; in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range &lt;code&gt;[0,100]&lt;/code&gt; and will return the normalized value.&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮-3&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;collection&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;object&lt;/code&gt; | &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt; | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The collection of colors to filter.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;startLightness?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The minimum end of the lightness range. Supports expression strings e.g &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&#39;&amp;gt;=0.5&#39;&lt;/code&gt;. The supported symbols are &lt;code&gt;== | === | != | !== | &amp;gt;= | &amp;lt;= | &amp;lt; | &amp;gt;&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;endLightness?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The maximum end of the lightness range.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colorspace?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;string&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The mode colorspace to retrieve the lightness value from. The default is lch65&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙-3&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;[] | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Collection of filtered colors.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { filterByLightness } from &#39;huetiful-js&#39;
+// [ '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
+</code></pre>
+<h4 id="defined-in-📝-2">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L150">filterBy.d.ts:150</a></p>
+<hr />
+<h3 id="filterbylightness">filterByLightness</h3>
+<p>▸ <strong>filterByLightness</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>startLightness?</code>, <code>endLightness?</code>, <code>colorspace?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns colors in the specified lightness range.</p>
+<p>The range is internally normalized to the supported ranges by the <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace</code> in use if it is out of range.
+This means a value in the range <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >[0,1]</code> will return, for example if you pass <code>startLightness</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either start or end is above 1 AND the <code>colorspace</code> in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
+<h4 id="parameters-🧮-3">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The collection of colors to filter.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >startLightness?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;">The minimum end of the lightness range. Supports expression strings e.g <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >endLightness?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;">The maximum end of the lightness range.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;">The mode colorspace to retrieve the lightness value from. The default is lch65</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-3">Returns 🔙</h4>
+<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Collection of filtered colors.</p>
+<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { filterByLightness } from 'huetiful-js'
 let sample = [
- &#39;#00ffdc&#39;,
- &#39;#00ff78&#39;,
- &#39;#00c000&#39;,
- &#39;#007e00&#39;,
- &#39;#164100&#39;,
- &#39;#ffff00&#39;,
- &#39;#310000&#39;,
- &#39;#3e0000&#39;,
- &#39;#4e0000&#39;,
- &#39;#600000&#39;,
- &#39;#720000&#39;,
+ '#00ffdc',
+ '#00ff78',
+ '#00c000',
+ '#007e00',
+ '#164100',
+ '#ffff00',
+ '#310000',
+ '#3e0000',
+ '#4e0000',
+ '#600000',
+ '#720000',
 ]
 
 filterByLightness(sample, 20, 80)
 
-// [ &#39;#00c000&#39;, &#39;#007e00&#39;, &#39;#164100&#39;, &#39;#720000&#39; ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;defined-in-📝-3&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L118&quot;&gt;filterBy.d.ts:118&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&quot;filterbyluminance&quot;&gt;filterByLuminance&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;filterByLuminance&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;collection&lt;/code&gt;, &lt;code&gt;startLuminance?&lt;/code&gt;, &lt;code&gt;endLuminance?&lt;/code&gt;): &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;[] | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Returns colors in the specified luminance range.&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮-4&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;collection&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;object&lt;/code&gt; | &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt; | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The collection of colors to filter.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;startLuminance?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The minimum end of the luminance range.Supports expression strings e.g &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&#39;&amp;gt;=0.5&#39;&lt;/code&gt;. The supported symbols are &lt;code&gt;== | === | != | !== | &amp;gt;= | &amp;lt;= | &amp;lt; | &amp;gt;&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;endLuminance?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The maximum end of the luminance range.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙-4&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;[] | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Array of filtered colors.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { filterByLuminance } from &#39;huetiful-js&#39;
+// [ '#00c000', '#007e00', '#164100', '#720000' ]
+</code></pre>
+<h4 id="defined-in-📝-3">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L118">filterBy.d.ts:118</a></p>
+<hr />
+<h3 id="filterbyluminance">filterByLuminance</h3>
+<p>▸ <strong>filterByLuminance</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>startLuminance?</code>, <code>endLuminance?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns colors in the specified luminance range.</p>
+<h4 id="parameters-🧮-4">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The collection of colors to filter.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >startLuminance?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;">The minimum end of the luminance range.Supports expression strings e.g <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >endLuminance?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;">The maximum end of the luminance range.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-4">Returns 🔙</h4>
+<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Array of filtered colors.</p>
+<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { filterByLuminance } from 'huetiful-js'
 let sample = [
- &#39;#00ffdc&#39;,
- &#39;#00ff78&#39;,
- &#39;#00c000&#39;,
- &#39;#007e00&#39;,
- &#39;#164100&#39;,
- &#39;#ffff00&#39;,
- &#39;#310000&#39;,
- &#39;#3e0000&#39;,
- &#39;#4e0000&#39;,
- &#39;#600000&#39;,
- &#39;#720000&#39;,
+ '#00ffdc',
+ '#00ff78',
+ '#00c000',
+ '#007e00',
+ '#164100',
+ '#ffff00',
+ '#310000',
+ '#3e0000',
+ '#4e0000',
+ '#600000',
+ '#720000',
 ]
 
 filterByLuminance(sample, 0.4, 0.9)
 
-// [ &#39;#00ffdc&#39;, &#39;#00ff78&#39; ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;defined-in-📝-4&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L81&quot;&gt;filterBy.d.ts:81&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&quot;filterbysaturation&quot;&gt;filterBySaturation&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;filterBySaturation&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;collection&lt;/code&gt;, &lt;code&gt;startSaturation?&lt;/code&gt;, &lt;code&gt;endSaturation?&lt;/code&gt;, &lt;code&gt;colorspace?&lt;/code&gt;): &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;[] | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Returns colors in the specified saturation range.&lt;/p&gt;
-&lt;p&gt;@ The range is internally normalized to the supported ranges by the &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colorspace&lt;/code&gt; in use if it is out of range.
-This means a value in the range &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;[0,1]&lt;/code&gt; will return, for example if you pass &lt;code&gt;startSaturation&lt;/code&gt; as &lt;code&gt;0.3&lt;/code&gt; it means &lt;code&gt;0.3 (or 30%)&lt;/code&gt; of the channel&#39;s supported range. But if the value of either start or end is above 1 AND the &lt;code&gt;colorspace&lt;/code&gt; in use has an end range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range &lt;code&gt;[0,100]&lt;/code&gt; and will return the normalized value.&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮-5&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;collection&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;object&lt;/code&gt; | &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt; | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The collection of colors to filter.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;startSaturation?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The minimum end of the saturation range. Supports expression strings e.g &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&#39;&amp;gt;=0.5&#39;&lt;/code&gt;. The supported symbols are &lt;code&gt;== | === | != | !== | &amp;gt;= | &amp;lt;= | &amp;lt; | &amp;gt;&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;endSaturation?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The maximum end of the saturation range.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colorspace?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;string&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The color space to fetch the saturation value from. Any color space with a chroma channel e.g &#39;lch&#39; or &#39;hsl&#39; will do.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙-5&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;[] | &lt;code&gt;Map&lt;/code&gt;&#92;&amp;lt;&lt;code&gt;any&lt;/code&gt;, &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Collection of filtered colors.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { filterBySaturation } from &#39;huetiful-js&#39;
+// [ '#00ffdc', '#00ff78' ]
+</code></pre>
+<h4 id="defined-in-📝-4">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L81">filterBy.d.ts:81</a></p>
+<hr />
+<h3 id="filterbysaturation">filterBySaturation</h3>
+<p>▸ <strong>filterBySaturation</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>startSaturation?</code>, <code>endSaturation?</code>, <code>colorspace?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns colors in the specified saturation range.</p>
+<p>@ The range is internally normalized to the supported ranges by the <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace</code> in use if it is out of range.
+This means a value in the range <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >[0,1]</code> will return, for example if you pass <code>startSaturation</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either start or end is above 1 AND the <code>colorspace</code> in use has an end range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
+<h4 id="parameters-🧮-5">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The collection of colors to filter.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >startSaturation?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;">The minimum end of the saturation range. Supports expression strings e.g <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >endSaturation?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;">The maximum end of the saturation range.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;">The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-5">Returns 🔙</h4>
+<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Collection of filtered colors.</p>
+<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { filterBySaturation } from 'huetiful-js'
 
 let sample = [
- &#39;#00ffdc&#39;,
- &#39;#00ff78&#39;,
- &#39;#00c000&#39;,
- &#39;#007e00&#39;,
- &#39;#164100&#39;,
- &#39;#ffff00&#39;,
- &#39;#310000&#39;,
- &#39;#3e0000&#39;,
- &#39;#4e0000&#39;,
- &#39;#600000&#39;,
- &#39;#720000&#39;
+ '#00ffdc',
+ '#00ff78',
+ '#00c000',
+ '#007e00',
+ '#164100',
+ '#ffff00',
+ '#310000',
+ '#3e0000',
+ '#4e0000',
+ '#600000',
+ '#720000'
 ];
 
 console.log(filterBySaturation(sample, 0.1));
 
-// [ &#39;#00ff78&#39;, &#39;#00c000&#39;, &#39;#007e00&#39;, &#39;#ffff00&#39; ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;defined-in-📝-5&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L47&quot;&gt;filterBy.d.ts:47&lt;/a&gt;&lt;/p&gt;
+// [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
+</code></pre>
+<h4 id="defined-in-📝-5">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L47">filterBy.d.ts:47</a></p>
 
     </article>
 
@@ -590,9 +591,9 @@ console.log(filterBySaturation(sample, 0.1));
         </footer>
 
 
-        <script src='assets/vendors/highlight.min.js'></script>
-        <script>hljs.highlightAll();</script>
-        <script src="assets/js/main.js"></script>
+        <script src='./assets/vendor/highlight.min.js'></script>
+        <script type="text/javascript">hljs.highlightAll();</script>
+        <script src="./assets/js/main.js"></script>
     </body>
 
 </html>

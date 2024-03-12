@@ -2,6 +2,13 @@
 
 {% extends "layouts/base.njk" %}
 
+{% block cssLinks %}
+<link rel="stylesheet" href="../../assets/huetiful.css">
+<link rel="stylesheet" href="../../assets/github.min.css">
+<link rel="stylesheet" href="../../assets/huetiful.css">
+<link rel="stylesheet" href="../../assets/github-markdown-light.css">
+{% endblock cssLinks %}
+
 {% block content %}
 <div>
     <article class='markdown-body'>
@@ -48,7 +55,7 @@
 
 
 
-    {{data.mainContent}}
+    {{data.mainContent|safe}}
 
     </article>
 

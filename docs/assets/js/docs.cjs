@@ -66,9 +66,9 @@ function generateDocs(source) {
   // Fixing links and extensions
 
   return $.makeHtml(current)
-    .replace(new RegExp('README.md', 'gm'), 'modules.html')
-    .replace(new RegExp('modules.md', 'gm'), 'modules.html')
-    .replace(new RegExp(/.md$/, 'gm'), '.html')
+    .replace(new RegExp('README.md', 'gm'), '')
+    .replace(new RegExp('modules.md', 'gm'), 'modules')
+    .replace(new RegExp('.md', 'gm'), '')
     .replace(new RegExp(`modules/`, 'g'), './');
 }
 // Loop through the markdown files for modules

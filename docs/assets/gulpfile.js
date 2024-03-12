@@ -28,7 +28,6 @@ async function njk() {
     src(`./xml/views/post.njk`)
       .pipe(
         _njk({
-          autoescape: false,
           path: ['./xml/'],
           manageEnv: manageEnv(srcFile),
 

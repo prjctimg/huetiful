@@ -3,10 +3,11 @@
     <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/assets/css/huetiful.css" />
-    <link rel="stylesheet" href="/assets/css/github.min.css" />
-    <link rel="stylesheet" href="/assets/css/github-markdown-light.css" />
+
     
+    <link rel="stylesheet" type="text/css" href="./assets/css/huetiful.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/github.min.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/github-markdown-light.css" />
 
     
     <style>
@@ -131,403 +132,403 @@
 
 
 
-    &lt;h1 id=&quot;module-📦-generators&quot;&gt;Module 📦: generators&lt;/h1&gt;
-&lt;h2 id=&quot;table-of-contents-📑&quot;&gt;Table of contents 📑&lt;/h2&gt;
-&lt;h3 id=&quot;functions-🧰&quot;&gt;Functions 🧰&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;generators.md#discoverpalettes&quot;&gt;discoverPalettes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;generators.md#earthtone&quot;&gt;earthtone&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;generators.md#hueshift&quot;&gt;hueShift&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;generators.md#interpolatespline&quot;&gt;interpolateSpline&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;generators.md#interpolator&quot;&gt;interpolator&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;generators.md#pairedscheme&quot;&gt;pairedScheme&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;generators.md#pastel&quot;&gt;pastel&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;generators.md#scheme&quot;&gt;scheme&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;functions&quot;&gt;Functions&lt;/h2&gt;
-&lt;h3 id=&quot;discoverpalettes&quot;&gt;discoverPalettes&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;discoverPalettes&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colors&lt;/code&gt;, &lt;code&gt;schemeType?&lt;/code&gt;, &lt;code&gt;colorspace?&lt;/code&gt;): &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt; | &lt;code&gt;object&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Takes a collection of colors and finds the nearest matches using the &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;differenceHyab()&lt;/code&gt; difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use &lt;code&gt;isAchromatic&lt;/code&gt; to filter grays from your collection in the mode &lt;code&gt;colorspace&lt;/code&gt; before passing it to the function.&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colors&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;object&lt;/code&gt; | &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The collection of colors to create palettes from. Preferably use 6 or more colors for better results.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;schemeType?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;analogous&quot;&lt;/code&gt; | &lt;code&gt;&quot;triadic&quot;&lt;/code&gt; | &lt;code&gt;&quot;tetradic&quot;&lt;/code&gt; | &lt;code&gt;&quot;complementary&quot;&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;(Optional) The palette type you want to return.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colorspace?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;string&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt; | &lt;code&gt;object&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;An array of colors if the &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;schemeType&lt;/code&gt; parameter is specified else it returns a &lt;code&gt;Map&lt;/code&gt; object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { discoverPalettes } from &#39;huetiful-js&#39;
+    <h1 id="module-📦-generators">Module 📦: generators</h1>
+<h2 id="table-of-contents-📑">Table of contents 📑</h2>
+<h3 id="functions-🧰">Functions 🧰</h3>
+<ul>
+<li><a href="generators.md#discoverpalettes">discoverPalettes</a></li>
+<li><a href="generators.md#earthtone">earthtone</a></li>
+<li><a href="generators.md#hueshift">hueShift</a></li>
+<li><a href="generators.md#interpolatespline">interpolateSpline</a></li>
+<li><a href="generators.md#interpolator">interpolator</a></li>
+<li><a href="generators.md#pairedscheme">pairedScheme</a></li>
+<li><a href="generators.md#pastel">pastel</a></li>
+<li><a href="generators.md#scheme">scheme</a></li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="discoverpalettes">discoverPalettes</h3>
+<p>▸ <strong>discoverPalettes</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colors</code>, <code>schemeType?</code>, <code>colorspace?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>Takes a collection of colors and finds the nearest matches using the <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >differenceHyab()</code> difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use <code>isAchromatic</code> to filter grays from your collection in the mode <code>colorspace</code> before passing it to the function.</p>
+<h4 id="parameters-🧮">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colors</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The collection of colors to create palettes from. Preferably use 6 or more colors for better results.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >schemeType?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >"analogous"</code> | <code>"triadic"</code> | <code>"tetradic"</code> | <code>"complementary"</code></td>
+<td style="text-align:left;">(Optional) The palette type you want to return.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙">Returns 🔙</h4>
+<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>An array of colors if the <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >schemeType</code> parameter is specified else it returns a <code>Map</code> object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.</p>
+<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { discoverPalettes } from 'huetiful-js'
 
 let sample = [
- &quot;#ffff00&quot;,
- &quot;#00ffdc&quot;,
- &quot;#00ff78&quot;,
- &quot;#00c000&quot;,
- &quot;#007e00&quot;,
- &quot;#164100&quot;,
- &quot;#720000&quot;,
- &quot;#600000&quot;,
- &quot;#4e0000&quot;,
- &quot;#3e0000&quot;,
- &quot;#310000&quot;,
+ "#ffff00",
+ "#00ffdc",
+ "#00ff78",
+ "#00c000",
+ "#007e00",
+ "#164100",
+ "#720000",
+ "#600000",
+ "#4e0000",
+ "#3e0000",
+ "#310000",
 ]
 
-console.log(discoverPalettes(sample, &quot;tetradic&quot;))
-// [ &#39;#ffff00ff&#39;, &#39;#00ffdcff&#39;, &#39;#310000ff&#39;, &#39;#720000ff&#39; ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;defined-in-📝&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L69&quot;&gt;generators.d.ts:69&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&quot;earthtone&quot;&gt;earthtone&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;earthtone&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;color&lt;/code&gt;, &lt;code&gt;colorspace?&lt;/code&gt;, &lt;code&gt;options?&lt;/code&gt;): &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Creates a scale of a spline interpolation between an earthtone and a color.&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮-1&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;color&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The color to interpolate an earth tone with. *&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colorspace?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;string&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;options?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#earthtoneoptions&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;EarthtoneOptions&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;Optional overrides for customising interpolation and easing functions.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙-1&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Collection of colors resulting from the earthtone interpolation as hex codes.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { earthtone } from &#39;huetiful-js&#39;
+console.log(discoverPalettes(sample, "tetradic"))
+// [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
+</code></pre>
+<h4 id="defined-in-📝">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L69">generators.d.ts:69</a></p>
+<hr />
+<h3 id="earthtone">earthtone</h3>
+<p>▸ <strong>earthtone</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code>, <code>colorspace?</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Creates a scale of a spline interpolation between an earthtone and a color.</p>
+<h4 id="parameters-🧮-1">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;">The color to interpolate an earth tone with. *</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
+<td style="text-align:left;"><a href="types.md#earthtoneoptions"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >EarthtoneOptions</code></a></td>
+<td style="text-align:left;">Optional overrides for customising interpolation and easing functions.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-1">Returns 🔙</h4>
+<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Collection of colors resulting from the earthtone interpolation as hex codes.</p>
+<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { earthtone } from 'huetiful-js'
 
-console.log(earthtone(&quot;pink&quot;,&#39;lch&#39;,{earthtones:&#39;clay&#39;,samples:5 }))
-// [ &#39;#6a5c52ff&#39;, &#39;#8d746aff&#39;, &#39;#b38d86ff&#39;, &#39;#d9a6a6ff&#39;, &#39;#ffc0cbff&#39; ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;defined-in-📝-1&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L89&quot;&gt;generators.d.ts:89&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&quot;hueshift&quot;&gt;hueShift&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;hueShift&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;color&lt;/code&gt;, &lt;code&gt;colorspace?&lt;/code&gt;, &lt;code&gt;options?&lt;/code&gt;): &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts down) from a single color. Min and max lightness values determine how light or dark our colour will be at either extreme.&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮-2&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;color&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The color to use as the scheme of the hueshift. Colors are internally converted to LCH.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colorspace?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;string&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;options?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#hueshiftoptions&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;HueShiftOptions&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The optional overrides object to customize per channel options like interpolation methods and channel fixups.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙-2&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;An array of colors in hexadecimal. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;(iterations * 2) + 1&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { hueShift } from &quot;huetiful-js&quot;;
+console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
+// [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
+</code></pre>
+<h4 id="defined-in-📝-1">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L89">generators.d.ts:89</a></p>
+<hr />
+<h3 id="hueshift">hueShift</h3>
+<p>▸ <strong>hueShift</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code>, <code>colorspace?</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts down) from a single color. Min and max lightness values determine how light or dark our colour will be at either extreme.</p>
+<h4 id="parameters-🧮-2">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;">The color to use as the scheme of the hueshift. Colors are internally converted to LCH.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
+<td style="text-align:left;"><a href="types.md#hueshiftoptions"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >HueShiftOptions</code></a></td>
+<td style="text-align:left;">The optional overrides object to customize per channel options like interpolation methods and channel fixups.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-2">Returns 🔙</h4>
+<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>An array of colors in hexadecimal. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >(iterations * 2) + 1</code></p>
+<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { hueShift } from "huetiful-js";
 
-let hueShiftedPalette = hueShift(&quot;#3e0000&quot;);
+let hueShiftedPalette = hueShift("#3e0000");
 
 console.log(hueShiftedPalette);
 
 // [
- &#39;#ffffe1&#39;, &#39;#ffdca5&#39;,
- &#39;#ca9a70&#39;, &#39;#935c40&#39;,
- &#39;#5c2418&#39;, &#39;#3e0000&#39;,
- &#39;#310000&#39;, &#39;#34000f&#39;,
- &#39;#38001e&#39;, &#39;#3b002c&#39;,
- &#39;#3b0c3a&#39;
+ '#ffffe1', '#ffdca5',
+ '#ca9a70', '#935c40',
+ '#5c2418', '#3e0000',
+ '#310000', '#34000f',
+ '#38001e', '#3b002c',
+ '#3b0c3a'
 ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;defined-in-📝-2&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L115&quot;&gt;generators.d.ts:115&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&quot;interpolatespline&quot;&gt;interpolateSpline&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;interpolateSpline&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colors&lt;/code&gt;, &lt;code&gt;colorspace?&lt;/code&gt;, &lt;code&gt;iterations?&lt;/code&gt;, &lt;code&gt;kind?&lt;/code&gt;, &lt;code&gt;closed?&lt;/code&gt;, &lt;code&gt;options?&lt;/code&gt;): &lt;code&gt;string&lt;/code&gt;[]&lt;/p&gt;
-&lt;p&gt;Returns a spline interpolator function with customizable interpolation methods (passed in as &#39;kind&#39;) and optional channel specific overrides.&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮-3&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colors&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;object&lt;/code&gt; | &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colorspace?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;string&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;iterations?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;kind?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;natural&quot;&lt;/code&gt; | &lt;code&gt;&quot;monotone&quot;&lt;/code&gt; | &lt;code&gt;&quot;basis&quot;&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The type of the spline interpolation method. Default is basis.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;closed?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;boolean&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;Optional parameter to return the &#39;closed&#39; variant of the &#39;kind&#39; of interpolation method which can be useful for cyclical color scales. Default is &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;false&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;options?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Pick&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#interpolatoroptions&quot;&gt;&lt;code&gt;InterpolatorOptions&lt;/code&gt;&lt;/a&gt;, &lt;code&gt;&quot;easingFn&quot;&lt;/code&gt; | &lt;code&gt;&quot;hueFixup&quot;&lt;/code&gt;&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;Optional channel specific overrides.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙-3&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;string&lt;/code&gt;[]&lt;/p&gt;
-&lt;p&gt;An array hexadecimal string of the resultant color.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { interpolateSpline } from &#39;huetiful-js&#39;;
+</code></pre>
+<h4 id="defined-in-📝-2">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L115">generators.d.ts:115</a></p>
+<hr />
+<h3 id="interpolatespline">interpolateSpline</h3>
+<p>▸ <strong>interpolateSpline</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colors</code>, <code>colorspace?</code>, <code>iterations?</code>, <code>kind?</code>, <code>closed?</code>, <code>options?</code>): <code>string</code>[]</p>
+<p>Returns a spline interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.</p>
+<h4 id="parameters-🧮-3">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colors</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;">The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >iterations?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >kind?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >"natural"</code> | <code>"monotone"</code> | <code>"basis"</code></td>
+<td style="text-align:left;">The type of the spline interpolation method. Default is basis.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >closed?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >boolean</code></td>
+<td style="text-align:left;">Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >false</code></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Pick</code>\&lt;<a href="types.md#interpolatoroptions"><code>InterpolatorOptions</code></a>, <code>"easingFn"</code> | <code>"hueFixup"</code>></td>
+<td style="text-align:left;">Optional channel specific overrides.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-3">Returns 🔙</h4>
+<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code>[]</p>
+<p>An array hexadecimal string of the resultant color.</p>
+<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { interpolateSpline } from 'huetiful-js';
 
-console.log(interpolateSpline([&#39;pink&#39;, &#39;blue&#39;], &#39;lch&#39;, 8));
+console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 
 // [
- &#39;#ffc0cb&#39;, &#39;#ff9ebe&#39;,
- &#39;#f97bbb&#39;, &#39;#ed57bf&#39;,
- &#39;#d830c9&#39;, &#39;#b800d9&#39;,
- &#39;#8700eb&#39;, &#39;#0000ff&#39;
+ '#ffc0cb', '#ff9ebe',
+ '#f97bbb', '#ed57bf',
+ '#d830c9', '#b800d9',
+ '#8700eb', '#0000ff'
 ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;defined-in-📝-3&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L144&quot;&gt;generators.d.ts:144&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&quot;interpolator&quot;&gt;interpolator&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;interpolator&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colors&lt;/code&gt;, &lt;code&gt;colorspace?&lt;/code&gt;, &lt;code&gt;options?&lt;/code&gt;): (&lt;code&gt;t&lt;/code&gt;: &lt;code&gt;number&lt;/code&gt;) =&amp;gt; &lt;code&gt;FindColorByMode&lt;/code&gt;&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮-4&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colors&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colorspace?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;string&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;options?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;object&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙-4&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;fn&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;▸ (&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;t&lt;/code&gt;): &lt;code&gt;FindColorByMode&lt;/code&gt;&lt;/p&gt;
-&lt;h5 id=&quot;parameters-🧮-5&quot;&gt;Parameters 🧮&lt;/h5&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;t&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h5 id=&quot;returns-🔙-5&quot;&gt;Returns 🔙&lt;/h5&gt;
-&lt;p&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;FindColorByMode&lt;/code&gt;&lt;/p&gt;
-&lt;h4 id=&quot;defined-in-📝-4&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L155&quot;&gt;generators.d.ts:155&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&quot;pairedscheme&quot;&gt;pairedScheme&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;pairedScheme&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;color&lt;/code&gt;, &lt;code&gt;options?&lt;/code&gt;): &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt; | &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;hueStep&lt;/code&gt; will pick a color that is &lt;code&gt;hueStep&lt;/code&gt; degrees behind the base color.&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮-6&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;color&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The color to return a paired color scheme from.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;options?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#pairedschemeoptions&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;PairedSchemeOptions&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The optional overrides object to customize per channel options like interpolation methods and channel fixups.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙-6&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt; | &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;An array containing the paired scheme.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { pairedScheme } from &#39;huetiful-js&#39;
+</code></pre>
+<h4 id="defined-in-📝-3">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L144">generators.d.ts:144</a></p>
+<hr />
+<h3 id="interpolator">interpolator</h3>
+<p>▸ <strong>interpolator</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colors</code>, <code>colorspace?</code>, <code>options?</code>): (<code>t</code>: <code>number</code>) =&gt; <code>FindColorByMode</code></p>
+<h4 id="parameters-🧮-4">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colors</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-4">Returns 🔙</h4>
+<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >fn</code></p>
+<p>▸ (<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >t</code>): <code>FindColorByMode</code></p>
+<h5 id="parameters-🧮-5">Parameters 🧮</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >t</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns-🔙-5">Returns 🔙</h5>
+<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >FindColorByMode</code></p>
+<h4 id="defined-in-📝-4">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L155">generators.d.ts:155</a></p>
+<hr />
+<h3 id="pairedscheme">pairedScheme</h3>
+<p>▸ <strong>pairedScheme</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >hueStep</code> will pick a color that is <code>hueStep</code> degrees behind the base color.</p>
+<h4 id="parameters-🧮-6">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;">The color to return a paired color scheme from.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
+<td style="text-align:left;"><a href="types.md#pairedschemeoptions"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >PairedSchemeOptions</code></a></td>
+<td style="text-align:left;">The optional overrides object to customize per channel options like interpolation methods and channel fixups.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-6">Returns 🔙</h4>
+<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>An array containing the paired scheme.</p>
+<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { pairedScheme } from 'huetiful-js'
 
-console.log(pairedScheme(&quot;green&quot;,{hueStep:6,samples:4,tone:&#39;dark&#39;}))
-// [ &#39;#008116ff&#39;, &#39;#006945ff&#39;, &#39;#184b4eff&#39;, &#39;#007606ff&#39; ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;defined-in-📝-5&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L203&quot;&gt;generators.d.ts:203&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&quot;pastel&quot;&gt;pastel&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;pastel&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;color&lt;/code&gt;): &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Returns a random pastel variant of the passed in color.&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮-7&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;color&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;The color to return a pastel variant of.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙-7&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;A random pastel color.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { pastel } from &#39;huetiful-js&#39;
+console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
+// [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
+</code></pre>
+<h4 id="defined-in-📝-5">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L203">generators.d.ts:203</a></p>
+<hr />
+<h3 id="pastel">pastel</h3>
+<p>▸ <strong>pastel</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code>): <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>Returns a random pastel variant of the passed in color.</p>
+<h4 id="parameters-🧮-7">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;">The color to return a pastel variant of.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-7">Returns 🔙</h4>
+<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></p>
+<p>A random pastel color.</p>
+<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { pastel } from 'huetiful-js'
 
-console.log(pastel(&quot;green&quot;))
+console.log(pastel("green"))
 // #036103ff
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;defined-in-📝-6&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L220&quot;&gt;generators.d.ts:220&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&quot;scheme&quot;&gt;scheme&lt;/h3&gt;
-&lt;p&gt;▸ &lt;strong&gt;scheme&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;schemeType&lt;/code&gt;): (&lt;code&gt;color&lt;/code&gt;: &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;, &lt;code&gt;easingFunc?&lt;/code&gt;: (&lt;code&gt;t&lt;/code&gt;: &lt;code&gt;number&lt;/code&gt;) =&amp;gt; &lt;code&gt;number&lt;/code&gt;) =&amp;gt; &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;Generates a randomised classic color scheme from a single color.&lt;/p&gt;
-&lt;h4 id=&quot;parameters-🧮-8&quot;&gt;Parameters 🧮&lt;/h4&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;schemeType&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;string&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;Any classic color scheme either &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;analogous&quot;|&quot;triadic&quot;|&quot;tetradic&quot;|&quot;complementary&quot;|&quot;splitComplementary&quot;&lt;/code&gt;.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;returns-🔙-8&quot;&gt;Returns 🔙&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;fn&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.&lt;/p&gt;
-&lt;p&gt;▸ (&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;color&lt;/code&gt;, &lt;code&gt;easingFunc?&lt;/code&gt;): &lt;code&gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;h5 id=&quot;parameters-🧮-9&quot;&gt;Parameters 🧮&lt;/h5&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;color&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;easingFunc?&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:left;&quot;&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;t&lt;/code&gt;: &lt;code&gt;number&lt;/code&gt;) =&amp;gt; &lt;code&gt;number&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h5 id=&quot;returns-🔙-9&quot;&gt;Returns 🔙&lt;/h5&gt;
-&lt;p&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ArrayLike&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { scheme } from &#39;huetiful-js&#39;
+</code></pre>
+<h4 id="defined-in-📝-6">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L220">generators.d.ts:220</a></p>
+<hr />
+<h3 id="scheme">scheme</h3>
+<p>▸ <strong>scheme</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >schemeType</code>): (<code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a>, <code>easingFunc?</code>: (<code>t</code>: <code>number</code>) =&gt; <code>number</code>) =&gt; <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>Generates a randomised classic color scheme from a single color.</p>
+<h4 id="parameters-🧮-8">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >schemeType</code></td>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;">Any classic color scheme either <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >"analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary"</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-8">Returns 🔙</h4>
+<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >fn</code></p>
+<p>A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.</p>
+<p>▸ (<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code>, <code>easingFunc?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<h5 id="parameters-🧮-9">Parameters 🧮</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code></td>
+<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >easingFunc?</code></td>
+<td style="text-align:left;">(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >t</code>: <code>number</code>) =&gt; <code>number</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns-🔙-9">Returns 🔙</h5>
+<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { scheme } from 'huetiful-js'
 
-console.log(scheme(&quot;triadic&quot;)(&quot;#a1bd2f&quot;, true))
-// [ &#39;#a1bd2fff&#39;, &#39;#00caffff&#39;, &#39;#ff78c9ff&#39; ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;defined-in-📝-7&quot;&gt;Defined in 📝&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L36&quot;&gt;generators.d.ts:36&lt;/a&gt;&lt;/p&gt;
+console.log(scheme("triadic")("#a1bd2f", true))
+// [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
+</code></pre>
+<h4 id="defined-in-📝-7">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L36">generators.d.ts:36</a></p>
 
     </article>
 
@@ -614,9 +615,9 @@ console.log(scheme(&quot;triadic&quot;)(&quot;#a1bd2f&quot;, true))
         </footer>
 
 
-        <script src='assets/vendors/highlight.min.js'></script>
-        <script>hljs.highlightAll();</script>
-        <script src="assets/js/main.js"></script>
+        <script src='./assets/vendor/highlight.min.js'></script>
+        <script type="text/javascript">hljs.highlightAll();</script>
+        <script src="./assets/js/main.js"></script>
     </body>
 
 </html>
