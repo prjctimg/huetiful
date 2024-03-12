@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/huetiful.css" />
+    <link rel="stylesheet" href="/assets/css/github.min.css" />
+    <link rel="stylesheet" href="/assets/css/github-markdown-light.css" />
+    
+
+    
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+    <body class="markdown-body">
+        <header class="pb-8 sticky top-0 left-0  w-full text-slate-700">
+    <nav
+        class="py-4 flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-slate-700 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-lg shadow-gray-300 dark:shadow-black">
+
+        <a class="inline-flex space-y-1 items-center font-medium text-base" href="./index.html" id="home"><svg
+                xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="inline-block mr-1">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
+
+        </a>
+
+        <a href="./modules.html" id="docs-link" class="inline-flex space-y-1 items-center font-medium text-base">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="inline-block mr-1">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg><span>Docs</span>
+        </a>
+        <a class="inline-flex space-y-1 items-center font-medium text-base"
+            href="https://github.com/prjctimg/huetiful/wiki" id="wiki-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="inline-block mr-1">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                </path>
+            </svg>
+            <span>Wiki</span>
+        </a>
+        <a class="inline-flex space-y-1 items-center font-medium text-base" href="https://github.com/prjctimg/huetiful"
+            id="source-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="inline-block mr-1">
+                <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+            </svg> <span>Source</span>
+        </a>
+
+    </nav>
+    <div id='progress-bar' class='progress bg-gradient-to-r from-orange-600 via-purple-600 to-emerald-600' />
+</header>
+        
+<div>
+    <article class='markdown-body'>
+        <div class="flex justify-start w-full space-x-2">
+
+            <div class='flex flex-row w-full justify-end'>
+
+
+                <a class='flex w-fit align-middle' href=https://github.com/prjctimg/xml-wizard/blob/main/types/types.d.ts><button
+                        class="px-2 py-2 bg-none border-none text-sm">Edit this page</button><span
+                        class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+
+                        </span></a>
+
+                <div class='flex flex-col'><span class='font-normal text-sm text-slate-500'>last updated</span'>
+                        <p class='text-slate-600 text-xs font-sans font-semibold'>Sunday, Mar 10, in the afternoon</p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="flex flex-row space-x-2 pt-8 pb-1 mb-4 w-fit">
+            <a href="https://github.com/prjctimg/xml-wizard/blob/main/spec/types.spec.js" class="flex space-x-1">
+                <span>Tests 🧪</span>
+
+
+            </a>
+            <a href="https://github.com/prjctimg/xml-wizard/blob/main/src/types.js" class="flex space-x-1">
+                <span>Source 🧾</span>
+            </a>
+        </div>
+
+    </article>
+
+
+
+    &lt;h1 id=&quot;module-📦-types&quot;&gt;Module 📦: types&lt;/h1&gt;
+&lt;h2 id=&quot;table-of-contents-📑&quot;&gt;Table of contents 📑&lt;/h2&gt;
+&lt;h3 id=&quot;type-aliases&quot;&gt;Type Aliases&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#adaptivepaletteoptions&quot;&gt;AdaptivePaletteOptions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#colordistanceoptions&quot;&gt;ColorDistanceOptions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#colorobject&quot;&gt;ColorObject&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#coloroptions&quot;&gt;ColorOptions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;ColorToken&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#colortuple&quot;&gt;ColorTuple&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#colorspaces&quot;&gt;Colorspaces&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#deficiencytype&quot;&gt;DeficiencyType&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#divergingscheme&quot;&gt;DivergingScheme&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#earthtoneoptions&quot;&gt;EarthtoneOptions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#factor&quot;&gt;Factor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#huecolorspaces&quot;&gt;HueColorSpaces&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#huefamily&quot;&gt;HueFamily&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#hueshiftoptions&quot;&gt;HueShiftOptions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#interpolator&quot;&gt;Interpolator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#interpolatoroptions&quot;&gt;InterpolatorOptions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#options&quot;&gt;Options&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#pairedschemeoptions&quot;&gt;PairedSchemeOptions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#qualitativescheme&quot;&gt;QualitativeScheme&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#scalevalues&quot;&gt;ScaleValues&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#sequentialscheme&quot;&gt;SequentialScheme&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#tailwindcolorfamilies&quot;&gt;TailwindColorFamilies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#tone&quot;&gt;Tone&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#uniformcolorspaces&quot;&gt;UniformColorSpaces&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;types.md#callback&quot;&gt;callback&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;type-aliases-1&quot;&gt;Type Aliases&lt;/h2&gt;
+&lt;h3 id=&quot;adaptivepaletteoptions&quot;&gt;AdaptivePaletteOptions&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;AdaptivePaletteOptions&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Object&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Description&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.&lt;/p&gt;
+&lt;h4 id=&quot;type-declaration&quot;&gt;Type declaration&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;backgroundColor?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;{ &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;dark?&lt;/code&gt;: &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt; ; &lt;code&gt;light?&lt;/code&gt;: &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;  }&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;backgroundColor.dark?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;backgroundColor.light?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colorBlind?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;boolean&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;defined-in-📝&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L43&quot;&gt;types.d.ts:43&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;colordistanceoptions&quot;&gt;ColorDistanceOptions&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;ColorDistanceOptions&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Object&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;type-declaration-1&quot;&gt;Type declaration&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;mode?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colorspaces&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Colorspaces&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;weights?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;[&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;, &lt;code&gt;number&lt;/code&gt;, &lt;code&gt;number&lt;/code&gt;, &lt;code&gt;number&lt;/code&gt;]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;defined-in-📝-1&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L34&quot;&gt;types.d.ts:34&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;colorobject&quot;&gt;ColorObject&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;ColorObject&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Object&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;type-declaration-2&quot;&gt;Type declaration&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;alpha?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;mode&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colorspaces&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Colorspaces&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;defined-in-📝-2&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L19&quot;&gt;types.d.ts:19&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;coloroptions&quot;&gt;ColorOptions&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;ColorOptions&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Object&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;type-declaration-3&quot;&gt;Type declaration&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;alpha?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colorSpace?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#huecolorspaces&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;HueColorSpaces&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colorspace?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#huecolorspaces&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;HueColorSpaces&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;contrast?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;darkMode?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;lightMode?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;lightness?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;luminance?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;saturation?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;temperature?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;defined-in-📝-3&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L20&quot;&gt;types.d.ts:20&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;colortoken&quot;&gt;ColorToken&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;ColorToken&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt; | &lt;code&gt;string&lt;/code&gt; | &lt;code&gt;object&lt;/code&gt; | &lt;a href=&quot;types.md#colortuple&quot;&gt;&lt;code&gt;ColorTuple&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Description&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Any recognizable color token.&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-4&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L199&quot;&gt;types.d.ts:199&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;colortuple&quot;&gt;ColorTuple&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;ColorTuple&lt;/strong&gt;: [&lt;a href=&quot;types.md#colorspaces&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Colorspaces&lt;/code&gt;&lt;/a&gt;, &lt;code&gt;number&lt;/code&gt;, &lt;code&gt;number&lt;/code&gt;, &lt;code&gt;number&lt;/code&gt;, number?]&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-5&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L17&quot;&gt;types.d.ts:17&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;colorspaces&quot;&gt;Colorspaces&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;Colorspaces&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;a98&quot;&lt;/code&gt; | &lt;code&gt;&quot;cubehelix&quot;&lt;/code&gt; | &lt;code&gt;&quot;dlab&quot;&lt;/code&gt; | &lt;code&gt;&quot;jab&quot;&lt;/code&gt; | &lt;code&gt;&quot;lab&quot;&lt;/code&gt; | &lt;code&gt;&quot;lab65&quot;&lt;/code&gt; | &lt;code&gt;&quot;lrgb&quot;&lt;/code&gt; | &lt;code&gt;&quot;luv&quot;&lt;/code&gt; | &lt;code&gt;&quot;oklab&quot;&lt;/code&gt; | &lt;code&gt;&quot;rgb&quot;&lt;/code&gt; | &lt;a href=&quot;types.md#huecolorspaces&quot;&gt;&lt;code&gt;HueColorSpaces&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-6&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L231&quot;&gt;types.d.ts:231&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;deficiencytype&quot;&gt;DeficiencyType&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;DeficiencyType&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;red&quot;&lt;/code&gt; | &lt;code&gt;&quot;blue&quot;&lt;/code&gt; | &lt;code&gt;&quot;green&quot;&lt;/code&gt; | &lt;code&gt;&quot;monochromacy&quot;&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-7&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L141&quot;&gt;types.d.ts:141&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;divergingscheme&quot;&gt;DivergingScheme&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;DivergingScheme&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;Spectral&quot;&lt;/code&gt; | &lt;code&gt;&quot;RdYlGn&quot;&lt;/code&gt; | &lt;code&gt;&quot;RdBu&quot;&lt;/code&gt; | &lt;code&gt;&quot;PiYG&quot;&lt;/code&gt; | &lt;code&gt;&quot;PRGn&quot;&lt;/code&gt; | &lt;code&gt;&quot;RdYlBu&quot;&lt;/code&gt; | &lt;code&gt;&quot;BrBG&quot;&lt;/code&gt; | &lt;code&gt;&quot;RdGy&quot;&lt;/code&gt; | &lt;code&gt;&quot;PuOr&quot;&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-8&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L154&quot;&gt;types.d.ts:154&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;earthtoneoptions&quot;&gt;EarthtoneOptions&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;EarthtoneOptions&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Omit&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#options&quot;&gt;&lt;code&gt;Options&lt;/code&gt;&lt;/a&gt;, &lt;code&gt;&quot;hueStep&quot;&lt;/code&gt; | &lt;code&gt;&quot;via&quot;&lt;/code&gt; | &lt;code&gt;&quot;maxLightness&quot;&lt;/code&gt; | &lt;code&gt;&quot;minLightness&quot;&lt;/code&gt;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-9&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L132&quot;&gt;types.d.ts:132&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;factor&quot;&gt;Factor&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;Factor&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;luminance&quot;&lt;/code&gt; | &lt;code&gt;&quot;temp&quot;&lt;/code&gt; | &lt;code&gt;&quot;saturation&quot;&lt;/code&gt; | &lt;code&gt;&quot;contrast&quot;&lt;/code&gt; | &lt;code&gt;&quot;distance&quot;&lt;/code&gt; | &lt;code&gt;&quot;lightness&quot;&lt;/code&gt; | &lt;code&gt;&quot;hue&quot;&lt;/code&gt; | &lt;code&gt;string&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-10&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L210&quot;&gt;types.d.ts:210&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;huecolorspaces&quot;&gt;HueColorSpaces&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;HueColorSpaces&lt;/strong&gt;: &lt;a href=&quot;types.md#uniformcolorspaces&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;UniformColorSpaces&lt;/code&gt;&lt;/a&gt; | &lt;code&gt;&quot;hsl&quot;&lt;/code&gt; | &lt;code&gt;&quot;hsv&quot;&lt;/code&gt; | &lt;code&gt;&quot;hsi&quot;&lt;/code&gt; | &lt;code&gt;&quot;hwb&quot;&lt;/code&gt; | &lt;code&gt;&quot;okhsl&quot;&lt;/code&gt; | &lt;code&gt;&quot;okhsv&quot;&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-11&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L244&quot;&gt;types.d.ts:244&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;huefamily&quot;&gt;HueFamily&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;HueFamily&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;red-purple&quot;&lt;/code&gt; | &lt;code&gt;&quot;red&quot;&lt;/code&gt; | &lt;code&gt;&quot;yellow-red&quot;&lt;/code&gt; | &lt;code&gt;&quot;yellow&quot;&lt;/code&gt; | &lt;code&gt;&quot;green-yellow&quot;&lt;/code&gt; | &lt;code&gt;&quot;green&quot;&lt;/code&gt; | &lt;code&gt;&quot;blue-green&quot;&lt;/code&gt; | &lt;code&gt;&quot;blue&quot;&lt;/code&gt; | &lt;code&gt;&quot;purple-blue&quot;&lt;/code&gt; | &lt;code&gt;&quot;purple&quot;&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-12&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L142&quot;&gt;types.d.ts:142&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;hueshiftoptions&quot;&gt;HueShiftOptions&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;HueShiftOptions&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Omit&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#options&quot;&gt;&lt;code&gt;Options&lt;/code&gt;&lt;/a&gt;, &lt;code&gt;&quot;via&quot;&lt;/code&gt; | &lt;code&gt;&quot;earthtones&quot;&lt;/code&gt; | &lt;code&gt;&quot;&quot;&lt;/code&gt;&gt; &amp;amp; &lt;a href=&quot;types.md#interpolatoroptions&quot;&gt;&lt;code&gt;InterpolatorOptions&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-13&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L137&quot;&gt;types.d.ts:137&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;interpolator&quot;&gt;Interpolator&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;Interpolator&lt;/strong&gt;: (&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;arr&lt;/code&gt;: &lt;code&gt;number&lt;/code&gt;[]) =&amp;gt; (&lt;code&gt;t&lt;/code&gt;: &lt;code&gt;number&lt;/code&gt;) =&amp;gt; &lt;code&gt;number&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;type-declaration-4&quot;&gt;Type declaration&lt;/h4&gt;
+&lt;p&gt;▸ (&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;arr&lt;/code&gt;): (&lt;code&gt;t&lt;/code&gt;: &lt;code&gt;number&lt;/code&gt;) =&amp;gt; &lt;code&gt;number&lt;/code&gt;&lt;/p&gt;
+&lt;h5 id=&quot;parameters-🧮&quot;&gt;Parameters 🧮&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;arr&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;[]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5 id=&quot;returns-🔙&quot;&gt;Returns 🔙&lt;/h5&gt;
+&lt;p&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;fn&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;▸ (&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;t&lt;/code&gt;): &lt;code&gt;number&lt;/code&gt;&lt;/p&gt;
+&lt;h5 id=&quot;parameters-🧮-1&quot;&gt;Parameters 🧮&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;t&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5 id=&quot;returns-🔙-1&quot;&gt;Returns 🔙&lt;/h5&gt;
+&lt;p&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-14&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L139&quot;&gt;types.d.ts:139&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;interpolatoroptions&quot;&gt;InterpolatorOptions&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;InterpolatorOptions&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Pick&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#options&quot;&gt;&lt;code&gt;Options&lt;/code&gt;&lt;/a&gt;, &lt;code&gt;&quot;easingFn&quot;&lt;/code&gt; | &lt;code&gt;&quot;hueInterpolator&quot;&lt;/code&gt; | &lt;code&gt;&quot;chromaInterpolator&quot;&lt;/code&gt; | &lt;code&gt;&quot;hueFixup&quot;&lt;/code&gt; | &lt;code&gt;&quot;lightnessInterpolator&quot;&lt;/code&gt;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-15&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L48&quot;&gt;types.d.ts:48&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;options&quot;&gt;Options&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;Options&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Object&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Description&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The override parameters for palette functions.&lt;/p&gt;
+&lt;h4 id=&quot;type-declaration-5&quot;&gt;Type declaration&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;chromaInterpolator?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#interpolator&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Interpolator&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Param&lt;/code&gt;&lt;/strong&gt; interpolation method to use on the chroma channel.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;earthtones?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;light-gray&quot;&lt;/code&gt; | &lt;code&gt;&quot;silver&quot;&lt;/code&gt; | &lt;code&gt;&quot;sand&quot;&lt;/code&gt; | &lt;code&gt;&quot;tupe&quot;&lt;/code&gt; | &lt;code&gt;&quot;mahogany&quot;&lt;/code&gt; | &lt;code&gt;&quot;brick-red&quot;&lt;/code&gt; | &lt;code&gt;&quot;clay&quot;&lt;/code&gt; | &lt;code&gt;&quot;cocoa&quot;&lt;/code&gt; | &lt;code&gt;&quot;dark-brown&quot;&lt;/code&gt; | &lt;code&gt;&quot;dark&quot;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;* &lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Param&lt;/code&gt;&lt;/strong&gt; The earthtone to interpolate with.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;easingFn?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;t&lt;/code&gt;: &lt;code&gt;number&lt;/code&gt;) =&amp;gt; &lt;code&gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;The easing function to use.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;hueFixup?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;arr&lt;/code&gt;: &lt;code&gt;number&lt;/code&gt;[]) =&amp;gt; &lt;code&gt;number&lt;/code&gt;[]&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;hueInterpolator?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#interpolator&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Interpolator&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Param&lt;/code&gt;&lt;/strong&gt; interpolation method to use on the hue channel.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;hueStep?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Param&lt;/code&gt;&lt;/strong&gt; amount of hue angles to increment each iteration with.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;iterations?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Param&lt;/code&gt;&lt;/strong&gt; amount of samples to return in the result collection.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;lightnessInterpolator?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#interpolator&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Interpolator&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Param&lt;/code&gt;&lt;/strong&gt; interpolation method to use on the lightness channel.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;maxLightness?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Param&lt;/code&gt;&lt;/strong&gt; Maximum lightness value (range 0-100).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;minLightness?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;* &lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Param&lt;/code&gt;&lt;/strong&gt; Minimum lightness value (range 0-100).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;via?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#tone&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Tone&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Param&lt;/code&gt;&lt;/strong&gt; color to pass through during interpolation.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;defined-in-📝-16&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L61&quot;&gt;types.d.ts:61&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;pairedschemeoptions&quot;&gt;PairedSchemeOptions&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;PairedSchemeOptions&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Omit&lt;/code&gt;&#92;&amp;lt;&lt;a href=&quot;types.md#options&quot;&gt;&lt;code&gt;Options&lt;/code&gt;&lt;/a&gt;, &lt;code&gt;&quot;earthtones&quot;&lt;/code&gt; | &lt;code&gt;&quot;maxLightness&quot;&lt;/code&gt; | &lt;code&gt;&quot;minLightness&quot;&lt;/code&gt;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-17&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L128&quot;&gt;types.d.ts:128&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;qualitativescheme&quot;&gt;QualitativeScheme&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;QualitativeScheme&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;Set2&quot;&lt;/code&gt; | &lt;code&gt;&quot;Accent&quot;&lt;/code&gt; | &lt;code&gt;&quot;Set1&quot;&lt;/code&gt; | &lt;code&gt;&quot;Set3&quot;&lt;/code&gt; | &lt;code&gt;&quot;Dark2&quot;&lt;/code&gt; | &lt;code&gt;&quot;Paired&quot;&lt;/code&gt; | &lt;code&gt;&quot;Pastel2&quot;&lt;/code&gt; | &lt;code&gt;&quot;Pastel1&quot;&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-18&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L164&quot;&gt;types.d.ts:164&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;scalevalues&quot;&gt;ScaleValues&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;ScaleValues&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;050&quot;&lt;/code&gt; | &lt;code&gt;&quot;100&quot;&lt;/code&gt; | &lt;code&gt;&quot;200&quot;&lt;/code&gt; | &lt;code&gt;&quot;300&quot;&lt;/code&gt; | &lt;code&gt;&quot;400&quot;&lt;/code&gt; | &lt;code&gt;&quot;500&quot;&lt;/code&gt; | &lt;code&gt;&quot;600&quot;&lt;/code&gt; | &lt;code&gt;&quot;700&quot;&lt;/code&gt; | &lt;code&gt;&quot;800&quot;&lt;/code&gt; | &lt;code&gt;&quot;900&quot;&lt;/code&gt; | &lt;code&gt;&quot;950&quot;&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-19&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L253&quot;&gt;types.d.ts:253&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;sequentialscheme&quot;&gt;SequentialScheme&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;SequentialScheme&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;OrRd&quot;&lt;/code&gt; | &lt;code&gt;&quot;PuBu&quot;&lt;/code&gt; | &lt;code&gt;&quot;BuPu&quot;&lt;/code&gt; | &lt;code&gt;&quot;Oranges&quot;&lt;/code&gt; | &lt;code&gt;&quot;BuGn&quot;&lt;/code&gt; | &lt;code&gt;&quot;YlOrBr&quot;&lt;/code&gt; | &lt;code&gt;&quot;YlGn&quot;&lt;/code&gt; | &lt;code&gt;&quot;Reds&quot;&lt;/code&gt; | &lt;code&gt;&quot;RdPu&quot;&lt;/code&gt; | &lt;code&gt;&quot;Greens&quot;&lt;/code&gt; | &lt;code&gt;&quot;YlGnBu&quot;&lt;/code&gt; | &lt;code&gt;&quot;Purples&quot;&lt;/code&gt; | &lt;code&gt;&quot;GnBu&quot;&lt;/code&gt; | &lt;code&gt;&quot;Greys&quot;&lt;/code&gt; | &lt;code&gt;&quot;YlOrRd&quot;&lt;/code&gt; | &lt;code&gt;&quot;PuRd&quot;&lt;/code&gt; | &lt;code&gt;&quot;Blues&quot;&lt;/code&gt; | &lt;code&gt;&quot;PuBuGn&quot;&lt;/code&gt; | &lt;code&gt;&quot;Viridis&quot;&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-20&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L174&quot;&gt;types.d.ts:174&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;tailwindcolorfamilies&quot;&gt;TailwindColorFamilies&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;TailwindColorFamilies&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;indigo&quot;&lt;/code&gt; | &lt;code&gt;&quot;gray&quot;&lt;/code&gt; | &lt;code&gt;&quot;zinc&quot;&lt;/code&gt; | &lt;code&gt;&quot;neutral&quot;&lt;/code&gt; | &lt;code&gt;&quot;stone&quot;&lt;/code&gt; | &lt;code&gt;&quot;red&quot;&lt;/code&gt; | &lt;code&gt;&quot;orange&quot;&lt;/code&gt; | &lt;code&gt;&quot;amber&quot;&lt;/code&gt; | &lt;code&gt;&quot;yellow&quot;&lt;/code&gt; | &lt;code&gt;&quot;lime&quot;&lt;/code&gt; | &lt;code&gt;&quot;green&quot;&lt;/code&gt; | &lt;code&gt;&quot;emerald&quot;&lt;/code&gt; | &lt;code&gt;&quot;teal&quot;&lt;/code&gt; | &lt;code&gt;&quot;sky&quot;&lt;/code&gt; | &lt;code&gt;&quot;blue&quot;&lt;/code&gt; | &lt;code&gt;&quot;violet&quot;&lt;/code&gt; | &lt;code&gt;&quot;purple&quot;&lt;/code&gt; | &lt;code&gt;&quot;fuchsia&quot;&lt;/code&gt; | &lt;code&gt;&quot;pink&quot;&lt;/code&gt; | &lt;code&gt;&quot;rose&quot;&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-21&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L266&quot;&gt;types.d.ts:266&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;tone&quot;&gt;Tone&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;Tone&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;light&quot;&lt;/code&gt; | &lt;code&gt;&quot;dark&quot;&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-22&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L140&quot;&gt;types.d.ts:140&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;uniformcolorspaces&quot;&gt;UniformColorSpaces&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;UniformColorSpaces&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;&quot;lch&quot;&lt;/code&gt; | &lt;code&gt;&quot;jch&quot;&lt;/code&gt; | &lt;code&gt;&quot;dlch&quot;&lt;/code&gt; | &lt;code&gt;&quot;lch&quot;&lt;/code&gt; | &lt;code&gt;&quot;lch65&quot;&lt;/code&gt; | &lt;code&gt;&quot;lchuv&quot;&lt;/code&gt; | &lt;code&gt;&quot;oklch&quot;&lt;/code&gt; | &lt;code&gt;string&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-23&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L222&quot;&gt;types.d.ts:222&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;callback&quot;&gt;callback&lt;/h3&gt;
+&lt;p&gt;Ƭ &lt;strong&gt;callback&lt;/strong&gt;: &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;unknown&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-24&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L220&quot;&gt;types.d.ts:220&lt;/a&gt;&lt;/p&gt;
+
+    </article>
+
+</div>
+
+
+
+        <footer class=" flex-inline flex-wrap p-4">
+
+            <div class="flex-col">
+                <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
+
+                    <a href="https://github.com/prjctimg/huetiful"><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-github">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg></a>
+                    <a href="https://twitter.com/deantarisai"><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter">
+                            <path
+                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                            </path>
+                        </svg></a>
+                    <a href="https://npmjs.com/package/huetiful-js"><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-package">
+                            <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                            </path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg></a>
+                    <a href="mailto:prjctimg@outlook.com"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-mail">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg></a>
+                    <a href="https://kofi.com/prjctimg"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-coffee">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                            <line x1="6" y1="1" x2="6" y2="4"></line>
+                            <line x1="10" y1="1" x2="10" y2="4"></line>
+                            <line x1="14" y1="1" x2="14" y2="4"></line>
+                        </svg></a>
+
+                </div>
+
+            </div>
+
+
+            <div class="pt-2">
+                <blockquote class="inline-block text-sm outline-yellow-500">
+                    <p class="text-sm">
+                        <span class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="14"
+                                viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-code">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg></span>
+                        with
+                        <span class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="14"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                                stroke-linejoin="round" class="animate-pulse stroke-none fill-red-800">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg></span>
+                        in Crowhill,ZW
+                    </p>
+                    &copy;2024,Dean Tarisai
+                    <br />
+                    Released under the Apache-2.0 permissive license.
+                </blockquote>
+
+            </div>
+        </footer>
+
+
+        <script src='assets/vendors/highlight.min.js'></script>
+        <script>hljs.highlightAll();</script>
+        <script src="assets/js/main.js"></script>
+    </body>
+
+</html>

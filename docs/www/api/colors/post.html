@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/huetiful.css" />
+    <link rel="stylesheet" href="/assets/css/github.min.css" />
+    <link rel="stylesheet" href="/assets/css/github-markdown-light.css" />
+    
+
+    
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+    <body class="markdown-body">
+        <header class="pb-8 sticky top-0 left-0  w-full text-slate-700">
+    <nav
+        class="py-4 flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-slate-700 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-lg shadow-gray-300 dark:shadow-black">
+
+        <a class="inline-flex space-y-1 items-center font-medium text-base" href="./index.html" id="home"><svg
+                xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="inline-block mr-1">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
+
+        </a>
+
+        <a href="./modules.html" id="docs-link" class="inline-flex space-y-1 items-center font-medium text-base">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="inline-block mr-1">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg><span>Docs</span>
+        </a>
+        <a class="inline-flex space-y-1 items-center font-medium text-base"
+            href="https://github.com/prjctimg/huetiful/wiki" id="wiki-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="inline-block mr-1">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                </path>
+            </svg>
+            <span>Wiki</span>
+        </a>
+        <a class="inline-flex space-y-1 items-center font-medium text-base" href="https://github.com/prjctimg/huetiful"
+            id="source-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="inline-block mr-1">
+                <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+            </svg> <span>Source</span>
+        </a>
+
+    </nav>
+    <div id='progress-bar' class='progress bg-gradient-to-r from-orange-600 via-purple-600 to-emerald-600' />
+</header>
+        
+<div>
+    <article class='markdown-body'>
+        <div class="flex justify-start w-full space-x-2">
+
+            <div class='flex flex-row w-full justify-end'>
+
+
+                <a class='flex w-fit align-middle' href=https://github.com/prjctimg/xml-wizard/blob/main/types/colors.d.ts><button
+                        class="px-2 py-2 bg-none border-none text-sm">Edit this page</button><span
+                        class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+
+                        </span></a>
+
+                <div class='flex flex-col'><span class='font-normal text-sm text-slate-500'>last updated</span'>
+                        <p class='text-slate-600 text-xs font-sans font-semibold'>Sunday, Mar 10, in the morning</p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="flex flex-row space-x-2 pt-8 pb-1 mb-4 w-fit">
+            <a href="https://github.com/prjctimg/xml-wizard/blob/main/spec/colors.spec.js" class="flex space-x-1">
+                <span>Tests 🧪</span>
+
+
+            </a>
+            <a href="https://github.com/prjctimg/xml-wizard/blob/main/src/colors.js" class="flex space-x-1">
+                <span>Source 🧾</span>
+            </a>
+        </div>
+
+    </article>
+
+
+
+    &lt;h1 id=&quot;module-📦-colors&quot;&gt;Module 📦: colors&lt;/h1&gt;
+&lt;h2 id=&quot;table-of-contents-📑&quot;&gt;Table of contents 📑&lt;/h2&gt;
+&lt;h3 id=&quot;classes&quot;&gt;Classes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;../classes/colors.Color.md&quot;&gt;Color&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;../classes/colors.ColorArray.md&quot;&gt;ColorArray&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;functions-🧰&quot;&gt;Functions 🧰&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;colors.md#color&quot;&gt;color&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;colors.md#diverging&quot;&gt;diverging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;colors.md#load&quot;&gt;load&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;colors.md#qualitative&quot;&gt;qualitative&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;colors.md#sequential&quot;&gt;sequential&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;colors.md#tailwindcolors&quot;&gt;tailwindColors&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;functions&quot;&gt;Functions&lt;/h2&gt;
+&lt;h3 id=&quot;color&quot;&gt;color&lt;/h3&gt;
+&lt;p&gt;▸ &lt;strong&gt;color&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;color&lt;/code&gt;): &lt;a href=&quot;../classes/colors.Color.md&quot;&gt;&lt;code&gt;Color&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Wrapper function over the Color class that returns a new Color method chain.&lt;/p&gt;
+&lt;h4 id=&quot;parameters-🧮&quot;&gt;Parameters 🧮&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;color&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;The color token to bind.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;returns-🔙&quot;&gt;Returns 🔙&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;../classes/colors.Color.md&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Color&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;A new Color class with all the utilities that take a single color as the first parameter bound to its prototype.&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L931&quot;&gt;colors.d.ts:931&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;diverging&quot;&gt;diverging&lt;/h3&gt;
+&lt;p&gt;▸ &lt;strong&gt;diverging&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;scheme&lt;/code&gt;): &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;[]&lt;/p&gt;
+&lt;p&gt;A wrapper function for ColorBrewer&#39;s map of diverging color schemes.&lt;/p&gt;
+&lt;h4 id=&quot;parameters-🧮-1&quot;&gt;Parameters 🧮&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;scheme&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#divergingscheme&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;DivergingScheme&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;The name of the scheme.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;returns-🔙-1&quot;&gt;Returns 🔙&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;[]&lt;/p&gt;
+&lt;p&gt;An array of colors in hex represantation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { diverging } from &#39;huetiful-js&#39;
+
+console.log(diverging(&quot;Spectral&quot;))
+//[
+ &#39;#7fc97f&#39;, &#39;#beaed4&#39;,
+ &#39;#fdc086&#39;, &#39;#ffff99&#39;,
+ &#39;#386cb0&#39;, &#39;#f0027f&#39;,
+ &#39;#bf5b17&#39;, &#39;#666666&#39;
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;defined-in-📝-1&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L676&quot;&gt;colors.d.ts:676&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;load&quot;&gt;load&lt;/h3&gt;
+&lt;p&gt;▸ &lt;strong&gt;load&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colors&lt;/code&gt;): &lt;a href=&quot;../classes/colors.ColorArray.md&quot;&gt;&lt;code&gt;ColorArray&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;A wrapper function over the &lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorArray&lt;/code&gt; class which returns a new instance of the class. Use it to invoke the class without using the &lt;code&gt;new&lt;/code&gt; keyword&lt;/p&gt;
+&lt;h4 id=&quot;parameters-🧮-2&quot;&gt;Parameters 🧮&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;colors&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;object&lt;/code&gt; | &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;[]&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;An array of colors to chain the array methods on. Every element in the array will be parsed as a color token.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;returns-🔙-2&quot;&gt;Returns 🔙&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;../classes/colors.ColorArray.md&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorArray&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;defined-in-📝-2&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L633&quot;&gt;colors.d.ts:633&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;qualitative&quot;&gt;qualitative&lt;/h3&gt;
+&lt;p&gt;▸ &lt;strong&gt;qualitative&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;scheme&lt;/code&gt;): &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;[]&lt;/p&gt;
+&lt;p&gt;A wrapper function for ColorBrewer&#39;s map of qualitative color schemes.&lt;/p&gt;
+&lt;h4 id=&quot;parameters-🧮-3&quot;&gt;Parameters 🧮&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;scheme&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#qualitativescheme&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;QualitativeScheme&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;The name of the scheme&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;returns-🔙-3&quot;&gt;Returns 🔙&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;[]&lt;/p&gt;
+&lt;p&gt;An array of colors in hex represantation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { qualitative } from &#39;huetiful-js&#39;
+
+console.log(qualitative(&quot;Accent&quot;))
+// [
+ &#39;#7fc97f&#39;, &#39;#beaed4&#39;,
+ &#39;#fdc086&#39;, &#39;#ffff99&#39;,
+ &#39;#386cb0&#39;, &#39;#f0027f&#39;,
+ &#39;#bf5b17&#39;, &#39;#666666&#39;
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;defined-in-📝-3&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L696&quot;&gt;colors.d.ts:696&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;sequential&quot;&gt;sequential&lt;/h3&gt;
+&lt;p&gt;▸ &lt;strong&gt;sequential&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;scheme&lt;/code&gt;): &lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code&gt;ColorToken&lt;/code&gt;&lt;/a&gt;[]&lt;/p&gt;
+&lt;p&gt;A wrapper function for ColorBrewer&#39;s map of sequential color schemes.&lt;/p&gt;
+&lt;h4 id=&quot;parameters-🧮-4&quot;&gt;Parameters 🧮&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;scheme&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#sequentialscheme&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;SequentialScheme&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;The name of the scheme&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;returns-🔙-4&quot;&gt;Returns 🔙&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;types.md#colortoken&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ColorToken&lt;/code&gt;&lt;/a&gt;[]&lt;/p&gt;
+&lt;p&gt;An array of colors in hex represantation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { sequential } from &#39;huetiful-js
+
+console.log(sequential(&quot;OrRd&quot;))
+
+// [
+ &#39;#fff7ec&#39;, &#39;#fee8c8&#39;,
+ &#39;#fdd49e&#39;, &#39;#fdbb84&#39;,
+ &#39;#fc8d59&#39;, &#39;#ef6548&#39;,
+ &#39;#d7301f&#39;, &#39;#b30000&#39;,
+ &#39;#7f0000&#39;
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;defined-in-📝-4&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L656&quot;&gt;colors.d.ts:656&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;tailwindcolors&quot;&gt;tailwindColors&lt;/h3&gt;
+&lt;p&gt;▸ &lt;strong&gt;tailwindColors&lt;/strong&gt;(&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;shade&lt;/code&gt;, &lt;code&gt;value?&lt;/code&gt;): &lt;code&gt;string&lt;/code&gt; | &lt;code&gt;string&lt;/code&gt;[]&lt;/p&gt;
+&lt;p&gt;Wrapper function that returns TailwindCSS color value(s) of the specified shade. If invoked with no parameters it returns an array of colors from 100 to 900. If invoked with parameter will return the specified shade vale,&lt;/p&gt;
+&lt;h4 id=&quot;parameters-🧮-5&quot;&gt;Parameters 🧮&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;shade&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#tailwindcolorfamilies&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;TailwindColorFamilies&lt;/code&gt;&lt;/a&gt; | &lt;code&gt;&quot;all&quot;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;value?&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt;&lt;a href=&quot;types.md#scalevalues&quot;&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;ScaleValues&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;returns-🔙-5&quot;&gt;Returns 🔙&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;string&lt;/code&gt; | &lt;code&gt;string&lt;/code&gt;[]&lt;/p&gt;
+&lt;p&gt;color A hex string value or array of hex strings.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39; &gt;Example&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#39;rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300&#39;  class=&quot;ts language-ts&quot;&gt;import { tailwindColors } from &quot;huetiful-js&quot;;
+
+// We pass in red as the target hue.
+// It returns a function that can be called with an optional value parameter
+let red = tailwindColors(&quot;red&quot;);
+console.log(red());
+// [
+ &#39;#fef2f2&#39;, &#39;#fee2e2&#39;,
+ &#39;#fecaca&#39;, &#39;#fca5a5&#39;,
+ &#39;#f87171&#39;, &#39;#ef4444&#39;,
+ &#39;#dc2626&#39;, &#39;#b91c1c&#39;,
+ &#39;#991b1b&#39;, &#39;#7f1d1d&#39;
+]
+
+console.log(red(100));
+// &#39;#fee2e2&#39;
+
+console.log(red(&#39;900&#39;));
+// &#39;#7f1d1d&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;defined-in-📝-5&quot;&gt;Defined in 📝&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L728&quot;&gt;colors.d.ts:728&lt;/a&gt;&lt;/p&gt;
+
+    </article>
+
+</div>
+
+
+
+        <footer class=" flex-inline flex-wrap p-4">
+
+            <div class="flex-col">
+                <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
+
+                    <a href="https://github.com/prjctimg/huetiful"><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-github">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg></a>
+                    <a href="https://twitter.com/deantarisai"><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter">
+                            <path
+                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                            </path>
+                        </svg></a>
+                    <a href="https://npmjs.com/package/huetiful-js"><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-package">
+                            <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                            </path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg></a>
+                    <a href="mailto:prjctimg@outlook.com"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-mail">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg></a>
+                    <a href="https://kofi.com/prjctimg"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-coffee">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                            <line x1="6" y1="1" x2="6" y2="4"></line>
+                            <line x1="10" y1="1" x2="10" y2="4"></line>
+                            <line x1="14" y1="1" x2="14" y2="4"></line>
+                        </svg></a>
+
+                </div>
+
+            </div>
+
+
+            <div class="pt-2">
+                <blockquote class="inline-block text-sm outline-yellow-500">
+                    <p class="text-sm">
+                        <span class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="14"
+                                viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-code">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg></span>
+                        with
+                        <span class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="14"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                                stroke-linejoin="round" class="animate-pulse stroke-none fill-red-800">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg></span>
+                        in Crowhill,ZW
+                    </p>
+                    &copy;2024,Dean Tarisai
+                    <br />
+                    Released under the Apache-2.0 permissive license.
+                </blockquote>
+
+            </div>
+        </footer>
+
+
+        <script src='assets/vendors/highlight.min.js'></script>
+        <script>hljs.highlightAll();</script>
+        <script src="assets/js/main.js"></script>
+    </body>
+
+</html>

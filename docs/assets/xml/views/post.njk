@@ -1,8 +1,8 @@
-{% extends "./layouts/base.njk" %}
-
 <title class='first-letter:uppercase'>{{data.title}}</title>
 
-{% block mainContent %}
+{% extends "layouts/base.njk" %}
+
+{% block content %}
 <div>
     <article class='markdown-body'>
         <div class="flex justify-start w-full space-x-2">
@@ -34,12 +34,12 @@
 
 
         <div class="flex flex-row space-x-2 pt-8 pb-1 mb-4 w-fit">
-            <a href={{data.specFile}} class="flex space-x-1">
+            <a href="{{data.specFile}}" class="flex space-x-1">
                 <span>Tests 🧪</span>
 
 
             </a>
-            <a href={{data.srcFile}} class="flex space-x-1">
+            <a href="{{data.srcFile}}" class="flex space-x-1">
                 <span>Source 🧾</span>
             </a>
         </div>
@@ -53,4 +53,4 @@
     </article>
 
 </div>
-{% endblock mainContent %}
+{% endblock content %}

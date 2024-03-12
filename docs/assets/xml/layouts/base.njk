@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-    {% extends "../partials/head.njk" %}
+    {% include "partials/head.njk" %}
 
     <body class="markdown-body">
-        {% include "../partials/navbar.njk" %}
-        {% block mainContent %}
-
-        {% endblock mainContent %}
+        {% include "partials/navbar.njk" %}
+        {% block content %} {% endblock content %}
 
 
         <footer class=" flex-inline flex-wrap p-4">

@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "css:build": "npx tailwindcss -i ./css/_/index.css -o ../www/assets/css/huetiful.css ",
-    "css:dev": "npx tailwindcss -i ./_/css/index.css -o ..www/assets/css/huetiful.css --watch"
+    "css:dev": "npx tailwindcss -i ./css/_/index.css -o ..www/assets/css/huetiful.css --watch"
   },
   "author": "Dean Tarisai",
   "license": "Apache-2.0",

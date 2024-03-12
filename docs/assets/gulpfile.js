@@ -1,9 +1,17 @@
 import gulp from 'gulp';
 import _njk from 'gulp-nunjucks-render';
-import { readdirSync, renameSync, rmSync, unlinkSync } from 'node:fs';
+import {
+  readdirSync,
+  rename,
+  renameSync,
+  rm,
+  rmSync,
+  unlinkSync
+} from 'node:fs';
 import buildDataObject from './js/docs.cjs';
+import { setTimeout } from 'node:timers';
 
-var { src, dest, series, watch } = gulp;
+var { src, dest, series, watch, parallel } = gulp;
 
 var PATH_TO_MD_FILES = './markdown';
 var moduleNames = readdirSync(PATH_TO_MD_FILES + '/modules', 'utf-8').map(
@@ -17,11 +25,11 @@ function manageEnv(source) {
 async function njk() {
   // Making the documentation per module
   moduleNames.map((srcFile) =>
-    src(`xml/views/post.njk`)
+    src(`./xml/views/post.njk`)
       .pipe(
         _njk({
           autoescape: false,
-          path: ['xml'],
+          path: ['./xml/'],
           manageEnv: manageEnv(srcFile),
 
           ext: '.html',
@@ -36,17 +44,12 @@ async function njk() {
 }
 
 async function renameFiles() {
-  try {
-    moduleNames.map((srcFile) =>
-      renameSync(
-        `../www/api/${srcFile}/post.html`,
-        `../www/api/${srcFile}/index.html`
-      )
-    );
-  } catch (error) {
-  } finally {
-    process.exitCode;
-  }
+  moduleNames.map((srcFile) =>
+    renameSync(
+      `../www/api/${srcFile}/post.html`,
+      `../www/api/${srcFile}/index.html`
+    )
+  );
 }
 
 async function deleteFiles() {
@@ -54,12 +57,12 @@ async function deleteFiles() {
     rmSync(`../www/api/${srcFile}/post.html`, {
       force: true,
       recursive: true,
-      retryDelay: 1000
+      retryDelay: 1500
     })
   );
 }
 
-function watchFiles() {
+async function watchFiles() {
   return watch(['./**/*+(njk|svg|ttf|otf|js)'], njk);
 }
 
@@ -67,17 +70,17 @@ function fonts() {
   return src('*fonts/*.ttf').pipe(dest('../www/assets'));
 }
 
-function js() {
+async function js() {
   return src('*js/**/*.js').pipe(dest('../www/assets'));
 }
-function css() {
+async function css() {
   return src('*css/*.css').pipe(dest('../www/assets'));
 }
 
-function img() {
+async function img() {
   return src('*img/*').pipe(dest('../www/assets'));
 }
 
-export const dev = series(njk, css, renameFiles, js, deleteFiles, watchFiles);
+export const dev = series(njk, css, js, watchFiles);
 const build = series(njk, css, js, fonts, img);
 export default build;

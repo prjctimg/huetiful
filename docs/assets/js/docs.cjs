@@ -72,7 +72,6 @@ function generateDocs(source) {
     .replace(new RegExp(`modules/`, 'g'), './');
 }
 // Loop through the markdown files for modules
-
 function buildDataObject(sourceModule) {
   var m = new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
@@ -83,7 +82,7 @@ function buildDataObject(sourceModule) {
   }).format(lstatSync('../../types/' + sourceModule + '.d.ts').mtime);
 
   var cb = (s, x, y) =>
-    `https://github.com/prjctimg/huetiful/blob/main/${s}/${x}.${y}`;
+    `https://github.com/prjctimg/xml-wizard/blob/main/${s}/${x}.${y}`;
 
   return {
     title: `${sourceModule}`,
@@ -93,7 +92,7 @@ function buildDataObject(sourceModule) {
     lastUpdated: m,
     srcFile: cb('src', sourceModule, 'js'),
     specFile: cb('spec', sourceModule, 'spec.js'),
-    wikiPage: `https://github.com/prjctimg/huetiful/wiki/${sourceModule}`,
+    wikiPage: `https://github.com/xml-wizard/huetiful/wiki/${sourceModule}`,
     declFile: cb('types', sourceModule, 'd.ts')
   };
 }
