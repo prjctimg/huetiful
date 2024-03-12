@@ -95,7 +95,7 @@
 
 
                 <a class='flex w-fit align-middle' href=https://github.com/prjctimg/xml-wizard/blob/main/types/generators.d.ts><button
-                        class="px-2 py-2 bg-none border-none text-sm">Edit this page</button><span
+                        class="px-2 py-2 bg-sky-500 border-none text-sm text-slate-800">Edit this page</button><span
                         class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
                                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
@@ -106,7 +106,7 @@
                         </span></a>
 
                 <div class='flex flex-col'><span class='font-normal text-sm text-slate-500'>last updated</span'>
-                        <p class='text-slate-600 text-xs font-sans font-semibold'>Sunday, Mar 10, in the afternoon</p>
+                        <p class='text-slate-600 text-xs font-sans font-semibold'>Tuesday, Mar 12, at night</p>
                 </div>
 
             </div>
@@ -136,19 +136,19 @@
 <h2 id="table-of-contents-📑">Table of contents 📑</h2>
 <h3 id="functions-🧰">Functions 🧰</h3>
 <ul>
-<li><a href="generators.md#discoverpalettes">discoverPalettes</a></li>
-<li><a href="generators.md#earthtone">earthtone</a></li>
-<li><a href="generators.md#hueshift">hueShift</a></li>
-<li><a href="generators.md#interpolatespline">interpolateSpline</a></li>
-<li><a href="generators.md#interpolator">interpolator</a></li>
-<li><a href="generators.md#pairedscheme">pairedScheme</a></li>
-<li><a href="generators.md#pastel">pastel</a></li>
-<li><a href="generators.md#scheme">scheme</a></li>
+<li><a href="generators#discoverpalettes">discoverPalettes</a></li>
+<li><a href="generators#earthtone">earthtone</a></li>
+<li><a href="generators#hueshift">hueShift</a></li>
+<li><a href="generators#interpolatespline">interpolateSpline</a></li>
+<li><a href="generators#interpolator">interpolator</a></li>
+<li><a href="generators#pairedscheme">pairedScheme</a></li>
+<li><a href="generators#pastel">pastel</a></li>
+<li><a href="generators#scheme">scheme</a></li>
 </ul>
 <h2 id="functions">Functions</h2>
 <h3 id="discoverpalettes">discoverPalettes</h3>
-<p>▸ <strong>discoverPalettes</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colors</code>, <code>schemeType?</code>, <code>colorspace?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
-<p>Takes a collection of colors and finds the nearest matches using the <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >differenceHyab()</code> difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use <code>isAchromatic</code> to filter grays from your collection in the mode <code>colorspace</code> before passing it to the function.</p>
+<p>▸ <strong>discoverPalettes</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colors</code>, <code>schemeType?</code>, <code>colorspace?</code>): <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>Takes a collection of colors and finds the nearest matches using the <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >differenceHyab()</code> difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use <code>isAchromatic</code> to filter grays from your collection in the mode <code>colorspace</code> before passing it to the function.</p>
 <h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
 <thead>
@@ -160,27 +160,27 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colors</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colors</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to create palettes from. Preferably use 6 or more colors for better results.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >schemeType?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >"analogous"</code> | <code>"triadic"</code> | <code>"tetradic"</code> | <code>"complementary"</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >schemeType?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"analogous"</code> | <code>"triadic"</code> | <code>"tetradic"</code> | <code>"complementary"</code></td>
 <td style="text-align:left;">(Optional) The palette type you want to return.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙">Returns 🔙</h4>
-<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
-<p>An array of colors if the <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >schemeType</code> parameter is specified else it returns a <code>Map</code> object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.</p>
-<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { discoverPalettes } from 'huetiful-js'
+<p><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>An array of colors if the <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >schemeType</code> parameter is specified else it returns a <code>Map</code> object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { discoverPalettes } from 'huetiful-js'
 
 let sample = [
  "#ffff00",
@@ -203,7 +203,7 @@ console.log(discoverPalettes(sample, "tetradic"))
 <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L69">generators.d.ts:69</a></p>
 <hr />
 <h3 id="earthtone">earthtone</h3>
-<p>▸ <strong>earthtone</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code>, <code>colorspace?</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>▸ <strong>earthtone</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >color</code>, <code>colorspace?</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>></p>
 <p>Creates a scale of a spline interpolation between an earthtone and a color.</p>
 <h4 id="parameters-🧮-1">Parameters 🧮</h4>
 <table>
@@ -216,27 +216,27 @@ console.log(discoverPalettes(sample, "tetradic"))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code></td>
-<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >color</code></td>
+<td style="text-align:left;"><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to interpolate an earth tone with. *</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
-<td style="text-align:left;"><a href="types.md#earthtoneoptions"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >EarthtoneOptions</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
+<td style="text-align:left;"><a href="types#earthtoneoptions"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >EarthtoneOptions</code></a></td>
 <td style="text-align:left;">Optional overrides for customising interpolation and easing functions.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-1">Returns 🔙</h4>
-<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>></p>
 <p>Collection of colors resulting from the earthtone interpolation as hex codes.</p>
-<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { earthtone } from 'huetiful-js'
+<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { earthtone } from 'huetiful-js'
 
 console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 // [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
@@ -245,7 +245,7 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L89">generators.d.ts:89</a></p>
 <hr />
 <h3 id="hueshift">hueShift</h3>
-<p>▸ <strong>hueShift</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code>, <code>colorspace?</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>▸ <strong>hueShift</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >color</code>, <code>colorspace?</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>></p>
 <p>Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts down) from a single color. Min and max lightness values determine how light or dark our colour will be at either extreme.</p>
 <h4 id="parameters-🧮-2">Parameters 🧮</h4>
 <table>
@@ -258,27 +258,27 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code></td>
-<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >color</code></td>
+<td style="text-align:left;"><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to use as the scheme of the hueshift. Colors are internally converted to LCH.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
-<td style="text-align:left;"><a href="types.md#hueshiftoptions"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >HueShiftOptions</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
+<td style="text-align:left;"><a href="types#hueshiftoptions"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >HueShiftOptions</code></a></td>
 <td style="text-align:left;">The optional overrides object to customize per channel options like interpolation methods and channel fixups.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-2">Returns 🔙</h4>
-<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
-<p>An array of colors in hexadecimal. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >(iterations * 2) + 1</code></p>
-<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { hueShift } from "huetiful-js";
+<p><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>></p>
+<p>An array of colors in hexadecimal. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >(iterations * 2) + 1</code></p>
+<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { hueShift } from "huetiful-js";
 
 let hueShiftedPalette = hueShift("#3e0000");
 
@@ -297,7 +297,7 @@ console.log(hueShiftedPalette);
 <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L115">generators.d.ts:115</a></p>
 <hr />
 <h3 id="interpolatespline">interpolateSpline</h3>
-<p>▸ <strong>interpolateSpline</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colors</code>, <code>colorspace?</code>, <code>iterations?</code>, <code>kind?</code>, <code>closed?</code>, <code>options?</code>): <code>string</code>[]</p>
+<p>▸ <strong>interpolateSpline</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colors</code>, <code>colorspace?</code>, <code>iterations?</code>, <code>kind?</code>, <code>closed?</code>, <code>options?</code>): <code>string</code>[]</p>
 <p>Returns a spline interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.</p>
 <h4 id="parameters-🧮-3">Parameters 🧮</h4>
 <table>
@@ -310,42 +310,42 @@ console.log(hueShiftedPalette);
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colors</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colors</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >string</code></td>
 <td style="text-align:left;">The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >iterations?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >iterations?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >kind?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >"natural"</code> | <code>"monotone"</code> | <code>"basis"</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >kind?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"natural"</code> | <code>"monotone"</code> | <code>"basis"</code></td>
 <td style="text-align:left;">The type of the spline interpolation method. Default is basis.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >closed?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >boolean</code></td>
-<td style="text-align:left;">Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >false</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >closed?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >boolean</code></td>
+<td style="text-align:left;">Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >false</code></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Pick</code>\&lt;<a href="types.md#interpolatoroptions"><code>InterpolatorOptions</code></a>, <code>"easingFn"</code> | <code>"hueFixup"</code>></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Pick</code>\&lt;<a href="types#interpolatoroptions"><code>InterpolatorOptions</code></a>, <code>"easingFn"</code> | <code>"hueFixup"</code>></td>
 <td style="text-align:left;">Optional channel specific overrides.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-3">Returns 🔙</h4>
-<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code>[]</p>
+<p><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >string</code>[]</p>
 <p>An array hexadecimal string of the resultant color.</p>
-<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { interpolateSpline } from 'huetiful-js';
+<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { interpolateSpline } from 'huetiful-js';
 
 console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 
@@ -360,7 +360,7 @@ console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L144">generators.d.ts:144</a></p>
 <hr />
 <h3 id="interpolator">interpolator</h3>
-<p>▸ <strong>interpolator</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colors</code>, <code>colorspace?</code>, <code>options?</code>): (<code>t</code>: <code>number</code>) =&gt; <code>FindColorByMode</code></p>
+<p>▸ <strong>interpolator</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colors</code>, <code>colorspace?</code>, <code>options?</code>): (<code>t</code>: <code>number</code>) =&gt; <code>FindColorByMode</code></p>
 <h4 id="parameters-🧮-4">Parameters 🧮</h4>
 <table>
 <thead>
@@ -371,22 +371,22 @@ console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colors</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colors</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >string</code></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-4">Returns 🔙</h4>
-<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >fn</code></p>
-<p>▸ (<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >t</code>): <code>FindColorByMode</code></p>
+<p><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >fn</code></p>
+<p>▸ (<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >t</code>): <code>FindColorByMode</code></p>
 <h5 id="parameters-🧮-5">Parameters 🧮</h5>
 <table>
 <thead>
@@ -397,19 +397,19 @@ console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >t</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >t</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="returns-🔙-5">Returns 🔙</h5>
-<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >FindColorByMode</code></p>
+<p><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >FindColorByMode</code></p>
 <h4 id="defined-in-📝-4">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L155">generators.d.ts:155</a></p>
 <hr />
 <h3 id="pairedscheme">pairedScheme</h3>
-<p>▸ <strong>pairedScheme</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <a href="types.md#colortoken"><code>ColorToken</code></a></p>
-<p>Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >hueStep</code> will pick a color that is <code>hueStep</code> degrees behind the base color.</p>
+<p>▸ <strong>pairedScheme</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >color</code>, <code>options?</code>): <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <a href="types#colortoken"><code>ColorToken</code></a></p>
+<p>Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >hueStep</code> will pick a color that is <code>hueStep</code> degrees behind the base color.</p>
 <h4 id="parameters-🧮-6">Parameters 🧮</h4>
 <table>
 <thead>
@@ -421,22 +421,22 @@ console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code></td>
-<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >color</code></td>
+<td style="text-align:left;"><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to return a paired color scheme from.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
-<td style="text-align:left;"><a href="types.md#pairedschemeoptions"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >PairedSchemeOptions</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
+<td style="text-align:left;"><a href="types#pairedschemeoptions"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >PairedSchemeOptions</code></a></td>
 <td style="text-align:left;">The optional overrides object to customize per channel options like interpolation methods and channel fixups.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-6">Returns 🔙</h4>
-<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <a href="types#colortoken"><code>ColorToken</code></a></p>
 <p>An array containing the paired scheme.</p>
-<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { pairedScheme } from 'huetiful-js'
+<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { pairedScheme } from 'huetiful-js'
 
 console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
@@ -445,7 +445,7 @@ console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
 <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L203">generators.d.ts:203</a></p>
 <hr />
 <h3 id="pastel">pastel</h3>
-<p>▸ <strong>pastel</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code>): <a href="types.md#colortoken"><code>ColorToken</code></a></p>
+<p>▸ <strong>pastel</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >color</code>): <a href="types#colortoken"><code>ColorToken</code></a></p>
 <p>Returns a random pastel variant of the passed in color.</p>
 <h4 id="parameters-🧮-7">Parameters 🧮</h4>
 <table>
@@ -458,17 +458,17 @@ console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code></td>
-<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >color</code></td>
+<td style="text-align:left;"><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to return a pastel variant of.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-7">Returns 🔙</h4>
-<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></p>
+<p><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></p>
 <p>A random pastel color.</p>
-<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { pastel } from 'huetiful-js'
+<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { pastel } from 'huetiful-js'
 
 console.log(pastel("green"))
 // #036103ff
@@ -477,7 +477,7 @@ console.log(pastel("green"))
 <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L220">generators.d.ts:220</a></p>
 <hr />
 <h3 id="scheme">scheme</h3>
-<p>▸ <strong>scheme</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >schemeType</code>): (<code>color</code>: <a href="types.md#colortoken"><code>ColorToken</code></a>, <code>easingFunc?</code>: (<code>t</code>: <code>number</code>) =&gt; <code>number</code>) =&gt; <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>▸ <strong>scheme</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >schemeType</code>): (<code>color</code>: <a href="types#colortoken"><code>ColorToken</code></a>, <code>easingFunc?</code>: (<code>t</code>: <code>number</code>) =&gt; <code>number</code>) =&gt; <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>></p>
 <p>Generates a randomised classic color scheme from a single color.</p>
 <h4 id="parameters-🧮-8">Parameters 🧮</h4>
 <table>
@@ -490,16 +490,16 @@ console.log(pastel("green"))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >schemeType</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
-<td style="text-align:left;">Any classic color scheme either <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >"analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary"</code>.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >schemeType</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;">Any classic color scheme either <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary"</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-8">Returns 🔙</h4>
-<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >fn</code></p>
+<p><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >fn</code></p>
 <p>A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.</p>
-<p>▸ (<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code>, <code>easingFunc?</code>): <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
+<p>▸ (<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >color</code>, <code>easingFunc?</code>): <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>></p>
 <h5 id="parameters-🧮-9">Parameters 🧮</h5>
 <table>
 <thead>
@@ -510,19 +510,19 @@ console.log(pastel("green"))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >color</code></td>
-<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >color</code></td>
+<td style="text-align:left;"><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >easingFunc?</code></td>
-<td style="text-align:left;">(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >t</code>: <code>number</code>) =&gt; <code>number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >easingFunc?</code></td>
+<td style="text-align:left;">(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >t</code>: <code>number</code>) =&gt; <code>number</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="returns-🔙-9">Returns 🔙</h5>
-<p><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>></p>
-<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { scheme } from 'huetiful-js'
+<p><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>></p>
+<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { scheme } from 'huetiful-js'
 
 console.log(scheme("triadic")("#a1bd2f", true))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]

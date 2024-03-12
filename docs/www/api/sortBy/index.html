@@ -95,7 +95,7 @@
 
 
                 <a class='flex w-fit align-middle' href=https://github.com/prjctimg/xml-wizard/blob/main/types/sortBy.d.ts><button
-                        class="px-2 py-2 bg-none border-none text-sm">Edit this page</button><span
+                        class="px-2 py-2 bg-sky-500 border-none text-sm text-slate-800">Edit this page</button><span
                         class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
                                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
@@ -106,7 +106,7 @@
                         </span></a>
 
                 <div class='flex flex-col'><span class='font-normal text-sm text-slate-500'>last updated</span'>
-                        <p class='text-slate-600 text-xs font-sans font-semibold'>Sunday, Mar 10, at night</p>
+                        <p class='text-slate-600 text-xs font-sans font-semibold'>Tuesday, Mar 12, at night</p>
                 </div>
 
             </div>
@@ -136,17 +136,17 @@
 <h2 id="table-of-contents-📑">Table of contents 📑</h2>
 <h3 id="functions-🧰">Functions 🧰</h3>
 <ul>
-<li><a href="sortBy.md#sortbycontrast">sortByContrast</a></li>
-<li><a href="sortBy.md#sortbydistance">sortByDistance</a></li>
-<li><a href="sortBy.md#sortbyhue">sortByHue</a></li>
-<li><a href="sortBy.md#sortbylightness">sortByLightness</a></li>
-<li><a href="sortBy.md#sortbyluminance">sortByLuminance</a></li>
-<li><a href="sortBy.md#sortbysaturation">sortBySaturation</a></li>
+<li><a href="sortBy#sortbycontrast">sortByContrast</a></li>
+<li><a href="sortBy#sortbydistance">sortByDistance</a></li>
+<li><a href="sortBy#sortbyhue">sortByHue</a></li>
+<li><a href="sortBy#sortbylightness">sortByLightness</a></li>
+<li><a href="sortBy#sortbyluminance">sortByLuminance</a></li>
+<li><a href="sortBy#sortbysaturation">sortBySaturation</a></li>
 </ul>
 <h2 id="functions">Functions</h2>
 <h3 id="sortbycontrast">sortByContrast</h3>
-<p>▸ <strong>sortByContrast</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>against</code>, <code>order?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
-<p>Sorts colors according to their contrast value as defined by WCAG. The contrast is tested <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >against</code> a comparison color.</p>
+<p>▸ <strong>sortByContrast</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>against</code>, <code>order?</code>): <a href="types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>Sorts colors according to their contrast value as defined by WCAG. The contrast is tested <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >against</code> a comparison color.</p>
 <h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
 <thead>
@@ -158,27 +158,27 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></td>
-<td style="text-align:left;">The <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code> of colors to sort.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code> of colors to sort.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >against</code></td>
-<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >against</code></td>
+<td style="text-align:left;"><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >order?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >"asc"</code> | <code>"desc"</code></td>
-<td style="text-align:left;">The arrangement order of the colors either <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >asc | desc</code>. Default is ascending (<code>asc</code>)</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >order?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"asc"</code> | <code>"desc"</code></td>
+<td style="text-align:left;">The arrangement order of the colors either <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >asc | desc</code>. Default is ascending (<code>asc</code>)</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙">Returns 🔙</h4>
-<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
-<p>The collection of sorted colors. If a plain <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
-<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { sortByContrast } from 'huetiful-js'
+<p><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>The collection of sorted colors. If a plain <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { sortByContrast } from 'huetiful-js'
 
 let sample = ['purple', 'green', 'red', 'brown']
 console.log(sortByContrast(sample, 'yellow'))
@@ -191,7 +191,7 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/sortBy.d.ts#L245">sortBy.d.ts:245</a></p>
 <hr />
 <h3 id="sortbydistance">sortByDistance</h3>
-<p>▸ <strong>sortByDistance</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>against</code>, <code>order?</code>, <code>options?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>▸ <strong>sortByDistance</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>against</code>, <code>order?</code>, <code>options?</code>): <a href="types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their distance. The distance factor is determined by the colorspace used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the collection.</p>
 <h4 id="parameters-🧮-1">Parameters 🧮</h4>
 <table>
@@ -204,32 +204,32 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></td>
-<td style="text-align:left;">The <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code> of colors to sort..</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code> of colors to sort..</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >against</code></td>
-<td style="text-align:left;"><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >against</code></td>
+<td style="text-align:left;"><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >order?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >"asc"</code> | <code>"desc"</code></td>
-<td style="text-align:left;">The arrangement order of the colors either <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >asc | desc</code>. Default is ascending (<code>asc</code>)</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >order?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"asc"</code> | <code>"desc"</code></td>
+<td style="text-align:left;">The arrangement order of the colors either <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >asc | desc</code>. Default is ascending (<code>asc</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
-<td style="text-align:left;"><a href="types.md#colordistanceoptions"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorDistanceOptions</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >options?</code></td>
+<td style="text-align:left;"><a href="types#colordistanceoptions"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorDistanceOptions</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-1">Returns 🔙</h4>
-<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
-<p>The collection of sorted colors. If a plain <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
-<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { sortByDistance } from 'huetiful-js'
+<p><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>The collection of sorted colors. If a plain <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { sortByDistance } from 'huetiful-js'
 
 let sample = ['purple', 'green', 'red', 'brown']
 console.log(
@@ -253,8 +253,8 @@ console.log(
 <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/sortBy.d.ts#L280">sortBy.d.ts:280</a></p>
 <hr />
 <h3 id="sortbyhue">sortByHue</h3>
-<p>▸ <strong>sortByHue</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
-<p>Sorts colors according to their hue angle values. It works with any <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace</code> with a hue channel.</p>
+<p>▸ <strong>sortByHue</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>Sorts colors according to their hue angle values. It works with any <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace</code> with a hue channel.</p>
 <h4 id="parameters-🧮-2">Parameters 🧮</h4>
 <table>
 <thead>
@@ -266,27 +266,27 @@ console.log(
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></td>
-<td style="text-align:left;">The <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code> of colors to sort. Achromatic colors are not supported because when displayed on the screen, the colors would be grayscale (so visually, there's no sign of hue). This behaviour is because the <code>hue</code> channel is dependant on the <code>lightness</code> and <code>saturation / chroma</code> channels . For example, a falsy value like <code>0</code> or <code>undefined</code> turns the color grayscale whilst lightness at both extremes renders a color totally white (max) or black (min).</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code> of colors to sort. Achromatic colors are not supported because when displayed on the screen, the colors would be grayscale (so visually, there's no sign of hue). This behaviour is because the <code>hue</code> channel is dependant on the <code>lightness</code> and <code>saturation / chroma</code> channels . For example, a falsy value like <code>0</code> or <code>undefined</code> turns the color grayscale whilst lightness at both extremes renders a color totally white (max) or black (min).</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >order?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >"asc"</code> | <code>"desc"</code></td>
-<td style="text-align:left;">The arrangement order of the colors either <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >asc | desc</code>. Default is ascending (<code>asc</code>)</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >order?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"asc"</code> | <code>"desc"</code></td>
+<td style="text-align:left;">The arrangement order of the colors either <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >asc | desc</code>. Default is ascending (<code>asc</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
-<td style="text-align:left;">The mode <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace</code> to compute the color distances in. All colors within the collection will be converted to mode. Note that hue values between modes like <code>hsl</code> and <code>lch</code> do not align so you may get weird results if you mix colors with different colorspaces.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;">The mode <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace</code> to compute the color distances in. All colors within the collection will be converted to mode. Note that hue values between modes like <code>hsl</code> and <code>lch</code> do not align so you may get weird results if you mix colors with different colorspaces.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-2">Returns 🔙</h4>
-<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
-<p>The collection of sorted colors. If a plain <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
-<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">let sample = [
+<p><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>The collection of sorted colors. If a plain <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">let sample = [
  "#00ffdc",
  "#00ff78",
  "#00c000",
@@ -326,7 +326,7 @@ console.log(sortedDescending)
 <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/sortBy.d.ts#L222">sortBy.d.ts:222</a></p>
 <hr />
 <h3 id="sortbylightness">sortByLightness</h3>
-<p>▸ <strong>sortByLightness</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>▸ <strong>sortByLightness</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their lightness.</p>
 <h4 id="parameters-🧮-3">Parameters 🧮</h4>
 <table>
@@ -339,27 +339,27 @@ console.log(sortedDescending)
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></td>
-<td style="text-align:left;">The <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code> of colors to sort.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code> of colors to sort.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >order?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >"asc"</code> | <code>"desc"</code></td>
-<td style="text-align:left;">The arrangement order of the colors either <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >asc | desc</code>. Default is ascending (<code>asc</code>)</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >order?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"asc"</code> | <code>"desc"</code></td>
+<td style="text-align:left;">The arrangement order of the colors either <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >asc | desc</code>. Default is ascending (<code>asc</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >string</code></td>
 <td style="text-align:left;">The mode colorspace to use for filtering color lightness. Defaut is lch65</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-3">Returns 🔙</h4>
-<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
-<p>The collection of sorted colors. If a plain <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
-<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { sortByLightness } from "huetiful-js";
+<p><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>The collection of sorted colors. If a plain <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { sortByLightness } from "huetiful-js";
 
 let sample = [
  "#00ffdc",
@@ -401,7 +401,7 @@ sortByLightness(sample,'desc')
 <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/sortBy.d.ts#L171">sortBy.d.ts:171</a></p>
 <hr />
 <h3 id="sortbyluminance">sortByLuminance</h3>
-<p>▸ <strong>sortByLuminance</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>order</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>▸ <strong>sortByLuminance</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>order</code>): <a href="types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their relative brightness as defined by the WCAG3 definition.</p>
 <h4 id="parameters-🧮-4">Parameters 🧮</h4>
 <table>
@@ -414,22 +414,22 @@ sortByLightness(sample,'desc')
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></td>
-<td style="text-align:left;">The <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code> of colors to sort.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code> of colors to sort.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >order</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >"asc"</code> | <code>"desc"</code></td>
-<td style="text-align:left;">The arrangement order of the colors either <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >asc | desc</code>. Default is ascending (<code>asc</code>)</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >order</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"asc"</code> | <code>"desc"</code></td>
+<td style="text-align:left;">The arrangement order of the colors either <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >asc | desc</code>. Default is ascending (<code>asc</code>)</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-4">Returns 🔙</h4>
-<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
-<p>The collection of sorted colors. If a plain <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
-<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { sortByLuminance } from "huetiful-js";
+<p><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>The collection of sorted colors. If a plain <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { sortByLuminance } from "huetiful-js";
 let sample = [
  "#00ffdc",
  "#00ff78",
@@ -470,8 +470,8 @@ console.log(sortedDescending)
 <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/sortBy.d.ts#L119">sortBy.d.ts:119</a></p>
 <hr />
 <h3 id="sortbysaturation">sortBySaturation</h3>
-<p>▸ <strong>sortBySaturation</strong>(<code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types.md#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
-<p>Sorts colors according to the amount of saturation channel in the specified <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace</code>.</p>
+<p>▸ <strong>sortBySaturation</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>Sorts colors according to the amount of saturation channel in the specified <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace</code>.</p>
 <h4 id="parameters-🧮-5">Parameters 🧮</h4>
 <table>
 <thead>
@@ -483,27 +483,27 @@ console.log(sortedDescending)
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>></td>
-<td style="text-align:left;">The <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >collection</code> of colors to sort.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code> of colors to sort.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >order?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >"asc"</code> | <code>"desc"</code></td>
-<td style="text-align:left;">The arrangement order of the colors either <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >asc | desc</code>. Default is ascending (<code>asc</code>)</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >order?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"asc"</code> | <code>"desc"</code></td>
+<td style="text-align:left;">The arrangement order of the colors either <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >asc | desc</code>. Default is ascending (<code>asc</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >string</code></td>
-<td style="text-align:left;">The <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >mode</code> colorspace to compute the saturation value in. The default is lch .</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;">The <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >mode</code> colorspace to compute the saturation value in. The default is lch .</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-5">Returns 🔙</h4>
-<p><a href="types.md#colortoken"><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types.md#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
-<p>The collection of sorted colors. If a plain <code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
-<p><strong><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { sortBySaturation } from "huetiful-js";
+<p><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>The collection of sorted colors. If a plain <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { sortBySaturation } from "huetiful-js";
 let sample = [
  "#00ffdc",
  "#00ff78",
