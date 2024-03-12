@@ -24,7 +24,7 @@ var { readFileSync, lstatSync } = require('node:fs'),
     regex: new RegExp(`<${key}(.*)>`, 'g'),
     replace: `<${key} class='${defaultClasses[key]}' $1>`
   })),
-  showdown = require('./showdown.cjs'),
+  showdown = require('./vendor/showdown.cjs'),
   $ = new showdown.Converter({
     extensions: [...injectClasses],
     emoji: true,
@@ -68,7 +68,7 @@ function generateDocs(source) {
   return $.makeHtml(current)
     .replace(new RegExp('README.md', 'gm'), 'modules.html')
     .replace(new RegExp('modules.md', 'gm'), 'modules.html')
-    .replace(new RegExp('.md', 'gm'), '.html')
+    .replace(new RegExp(/.md$/, 'gm'), '.html')
     .replace(new RegExp(`modules/`, 'g'), './');
 }
 // Loop through the markdown files for modules
@@ -80,7 +80,7 @@ function buildDataObject(sourceModule) {
     day: 'numeric',
 
     dayPeriod: 'short'
-  }).format(lstatSync('./types/' + sourceModule + '.d.ts').mtime);
+  }).format(lstatSync('../../types/' + sourceModule + '.d.ts').mtime);
 
   var cb = (s, x, y) =>
     `https://github.com/prjctimg/huetiful/blob/main/${s}/${x}.${y}`;
@@ -112,4 +112,4 @@ function buildDataObject(sourceModule) {
 //   }
 // }
 
-export { buildDataObject, generateDocs };
+module.exports = buildDataObject;

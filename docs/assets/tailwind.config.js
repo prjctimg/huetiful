@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./docs/**/*.{js,cjs,md}'],
+  content: ['./*.{js,md,njk}'],
   presets: [],
-  darkMode: 'selector', // or 'class'
+  darkMode: 'class', // or 'class'
   theme: {
     accentColor: ({ theme }) => ({
       ...theme('colors'),

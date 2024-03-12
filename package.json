@@ -38,8 +38,6 @@
   },
   "scripts": {
     "test": "npx jasmine",
-    "css:build": "npx tailwindcss -i ./docs/assets/css/index.css -o ./docs/assets/css/huetiful.css ",
-    "css:dev": "npx tailwindcss -i ./docs/assets/css/index.css -o ./docs/assets/css/huetiful.css --watch",
     "docs:compile": "npx typedoc --hideBreadcrumbs true",
     "docs:publish": "npm run docs:compile && npm run docs:build && npm run css:build",
     "docs:build": "node docs/assets/js/docs.cjs",

@@ -1,5 +1,8 @@
-<title class='first-letter:uppercase'>{{title}}</title>
+{% extends "./layouts/base.njk" %}
 
+<title class='first-letter:uppercase'>{{data.title}}</title>
+
+{% block mainContent %}
 <div>
     <article class='markdown-body'>
         <div class="flex justify-start w-full space-x-2">
@@ -7,7 +10,7 @@
             <div class='flex flex-row w-full justify-end'>
 
 
-                <a class='flex w-fit align-bottom' href={{declFile}}><button
+                <a class='flex w-fit align-middle' href={{data.declFile}}><button
                         class="px-2 py-2 bg-none border-none text-sm">Edit this page</button><span
                         class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
@@ -19,7 +22,7 @@
                         </span></a>
 
                 <div class='flex flex-col'><span class='font-normal text-sm text-slate-500'>last updated</span'>
-                        <p class='text-slate-600 text-xs font-sans font-semibold'>{{lastUpdated}}</p>
+                        <p class='text-slate-600 text-xs font-sans font-semibold'>{{data.lastUpdated}}</p>
                 </div>
 
             </div>
@@ -31,13 +34,13 @@
 
 
         <div class="flex flex-row space-x-2 pt-8 pb-1 mb-4 w-fit">
-            <a href={{specFile}} class="flex space-x-1">
-                <span>Tests ${emoji.stringOf('test_tube')}</span>
+            <a href={{data.specFile}} class="flex space-x-1">
+                <span>Tests 🧪</span>
 
 
             </a>
-            <a href={{srcFile}} class="flex space-x-1">
-                <span>Source ${emoji.stringOf('scroll')}</span>
+            <a href={{data.srcFile}} class="flex space-x-1">
+                <span>Source 🧾</span>
             </a>
         </div>
 
@@ -45,8 +48,9 @@
 
 
 
-    {{mainContent}}
+    {{data.mainContent}}
 
     </article>
 
 </div>
+{% endblock mainContent %}
