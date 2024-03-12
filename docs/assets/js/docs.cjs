@@ -13,7 +13,7 @@ governing permissions and limitations under the License.
 
  */
 
-var { readFileSync, lstatSync } = require('node:fs'),
+var { readFileSync, lstatSync, writeFileSync } = require('node:fs'),
   ge = require('github-emoji'),
   defaultClasses = {
     blockquote: ' border-l-blue-400 bg-blue-200',
@@ -97,18 +97,22 @@ function buildDataObject(sourceModule) {
   };
 }
 
-// var navigatoryFiles = ['modules.md', 'README.md'];
+var navigatoryFiles = ['modules.md', 'README.md'];
 
-// for (const page of navigatoryFiles) {
-//   writeFileSync(
-//     './docs/' + page.split('.')[0] + '.html',
-//     layoutFragment(generateDocs('./docs/assets/markdown/' + page)),
-//     'utf-8'
-//   );
+function createIndexPages() {
+  writeFileSync(
+    '../www/api/index.html',
+    readFileSync('./markdown/modules.md', 'utf-8'),
+    'utf-8'
+  );
+  writeFileSync(
+    '../www/index.html',
+    readFileSync('./markdown/README.md', 'utf-8'),
+    'utf-8'
+  );
+}
 
-//   if (page === 'README.md') {
-//     renameSync('./docs/README.html', './docs/index.html');
-//   }
-// }
-
-module.exports = buildDataObject;
+module.exports = {
+  buildDataObject,
+  createIndexPages
+};
