@@ -19,130 +19,104 @@ function baseFilterBy(
 
   colorspace = colorspace.toLowerCase();
 
-  var [sym, startVal] = [reOp(start), reNum(start)];
+  var [sym1, startVal, endVal, sym2] = [
+    reOp(start),
+    reNum(start),
+    reNum(end),
+    reOp(end)
+  ];
 
   if (normFacts[factor]) {
     startVal = norm(startVal, normFacts[factor](colorspace));
     end = norm(end, normFacts[factor](colorspace));
   }
 
-  if (typeof start === 'string' && sym) {
-    startVal = sym.concat(startVal.toString());
+  if (typeof start === 'string' && sym1) {
+    startVal = sym1.concat(startVal.toString());
   }
 
-  return filteredColl(factor, cb)(collection, startVal, end);
+  if (typeof end === 'string' && sym2) {
+    endVal = sym2.concat(endVal.toString());
+  }
+
+  return filteredColl(factor, cb)(collection, startVal, endVal);
 }
 
-function filterBySaturation(
+function filterByChroma(
   collection,
-  startSaturation = 0.05,
-  endSaturation,
+  start = 0.05,
+  end = 100,
   colorspace = 'lch'
 ) {
   const modeChannel = mcchn(colorspace);
 
   const factor = 'saturation';
   // eslint-disable-next-line no-ternary
-  endSaturation = !endSaturation
-    ? modeRanges[colorspace][modeChannel.split('.')[1]][1]
-    : endSaturation;
+  end = !end ? modeRanges[colorspace][modeChannel.split('.')[1]][1] : end;
 
   return baseFilterBy(
     factor,
     getChannel(modeChannel),
     collection,
-    startSaturation,
-    endSaturation,
+    start,
+    end,
     colorspace
   );
 }
 
-function filterByLuminance(
-  collection,
-  startLuminance = 0.05,
-  endLuminance = 1
-) {
-  return baseFilterBy(
-    'luminance',
-    getLuminance,
-    collection,
-    startLuminance,
-    endLuminance
-  );
+function filterByLuminance(collection, start = 0.05, end = 1) {
+  return baseFilterBy('luminance', getLuminance, collection, start, end);
 }
 
-function filterByLightness(
-  collection,
-  startLightness = 0.05,
-  endLightness,
-  colorspace = 'lch'
-) {
+function filterByLightness(collection, start = 0.05, end, colorspace = 'lch') {
   const fct = 'lightness';
 
   const modeChannel = mcchn(colorspace);
 
   // eslint-disable-next-line no-ternary
-  endLightness = !endLightness
-    ? modeRanges[colorspace][modeChannel.split('.')[1]][1]
-    : endLightness;
+  end = !end ? modeRanges[colorspace][modeChannel.split('.')[1]][1] : end;
 
   return baseFilterBy(
     fct,
     getChannel(mlchn(colorspace)),
     collection,
-    startLightness,
-    endLightness,
+    start,
+    end,
     colorspace
   );
 }
-function filterByHue(collection, startHue = 0, endHue = 360, colorspace) {
+function filterByHue(collection, start = 0, end = 360, colorspace) {
   return baseFilterBy(
     'hue',
     getChannel(`${colorspace}.h`),
     collection,
-    startHue,
-    endHue
+    start,
+    end
   );
 }
 
-function filterByDistance(
-  collection,
-  against,
-  startDistance = 0.05,
-  endDistance
-) {
+function filterByDistance(collection, against, start = 0.05, end) {
   const cb = (against) => (color) => differenceHyab()(against, color);
 
   return baseFilterBy(
     'distance',
     cb(color2hex(against)),
     collection,
-    startDistance,
-    endDistance
+    start,
+    end
   );
 }
 
-function filterByContrast(
-  collection,
-  against,
-  startContrast = 1,
-  endContrast = 21
-) {
+function filterByContrast(collection, against, start = 1, end = 21) {
   const cb = (against) => (color) => getContrast(color, against);
-  return baseFilterBy(
-    'contrast',
-    cb(against),
-    collection,
-    startContrast,
-    endContrast
-  );
+  return baseFilterBy('contrast', cb(against), collection, start, end);
 }
 
 export {
   filterByContrast,
   filterByDistance,
   filterByLuminance,
-  filterBySaturation,
+  filterByChroma,
   filterByHue,
   filterByLightness,
   baseFilterBy
