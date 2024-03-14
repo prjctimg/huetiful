@@ -41,15 +41,17 @@ import {
   getNearestChromaFrom as _gncf,
   getFarthestHueFrom as _gfhf,
   getNearestHueFrom as _gnhf,
+  getFarthestLuminanceFrom as _gflmncef,
+  getNearestLuminanceFrom as _gnlmncef,
   getNearestLightnessFrom as _gnlf,
   getFarthestLightnessFrom as _gflf,
-  getMeanLuminance as _gml,
+  getMeanLuminance as _gmlmnce,
   getMeanHue as _gmh,
-  getMeanContrast as _gmc,
+  getMeanContrast as _gmctrst,
   getMeanDistance as _gmd,
   getMeanChroma as _gmc,
   getMeanLightness as _gml,
-  getFarthestContrast as _gfctrst,getNea,
+  getFarthestContrast as _gfctrst,
   getNearestContrast as _gnctrst
 } from './index.js';
 
@@ -59,21 +61,46 @@ class ColorArray {
     return this;
   }
 
-  getFarthestChromaFrom(against, colorspace, colorObj)
-  getNearestChromaFrom(against, colorspace, colorObj)
-  getFarthestChromaFrom(against, colorspace, colorObj)
-  getFarthestLightnessFrom(against, colorspace, colorObj)
-  getNearestLightnessFrom(against, colorspace, colorObj)
-  getNearestHueFrom(against, colorspace, colorObj)
-  getFarthestHueFrom(against, colorspace, colorObj)
-  getNearestLuminanceFrom(against, colorspace, colorObj)
-  getFarthestLuminanceFrom(against, colorspace, colorObj)
-  getMeanChroma()
-  getMeanContrast()
-  getMeanLightness()
-  getMeanHue()
-  getMeanLuminance()
-  getMeanDistance()
+  getFarthestChromaFrom(against, colorspace, colorObj) {
+    return _gfcf(this['colors'], against, colorspace, colorObj);
+  }
+  getNearestChromaFrom(against, colorspace, colorObj) {
+    return _gncf(this['colors'], against, colorspace, colorObj);
+  }
+  getFarthestLightnessFrom(against, colorspace, colorObj) {
+    return _gflf(this['colors'], against, colorspace, colorObj);
+  }
+  getNearestLightnessFrom(against, colorspace, colorObj) {
+    return _gnlf(this['colors'], against, colorspace, colorObj);
+  }
+  getNearestHueFrom(against, colorspace, colorObj) {
+    return _gnhf(this['colors'], against, colorspace, colorObj);
+  }
+  getFarthestHueFrom(against, colorspace, colorObj) {
+    return _gfhf(this['colors'], against, colorspace, colorObj);
+  }
+  getNearestLuminanceFrom(against, colorObj) {
+    return _gnlmncef(this['colors'], against, colorObj);
+  }
+  getFarthestLuminanceFrom(against, colorObj) {
+    return _gflmncef(this['colors'], against, colorObj);
+  }
+  getMeanChroma(colorspace) {
+    return _gmc(this['colors'], colorspace);
+  }
+  getMeanContrast(against) {
+    return _gmctrst(this['colors'], against);
+  }
+  getMeanLightness() {
+    return _gml(this['colors']);
+  }
+  getMeanHue(colorspace) {
+    return _gmh(this['colors'], colorspace);
+  }
+  getMeanLuminance() {}
+  getMeanDistance(against) {
+    return _gmd(this['colors'], against);
+  }
 
   interpolateSpline(colorspace, samples, kind, closed, options) {
     this['colors'] = _pltrspln(

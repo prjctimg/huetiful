@@ -66,7 +66,7 @@ let sample = [
 console.log(isWarm(sample[2]));
 //true
 
-console.log(map(sample, isWarm));
+console.log(sample.map(isWarm));
 
 
 // [ false, true,  false]
@@ -77,8 +77,8 @@ declare function isWarm(color: ColorToken): boolean;
  *
  * Gets the smallest contrast value from the passed in colors compared against a sample color.
  * @param collection The collection of colors to query the color with the smallest contrast value.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`contrast`) and name of the color as keys. Default is false.
- * @returns The smallest contrast value in the colors passed in or a custom object.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`contrast`) and name of the color as keys. Default is `false`.
+ * @returns The smallest contrast value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
  * import { getNearestContrast } from 'huetiful-js'
@@ -103,8 +103,8 @@ declare function getNearestContrast(
  *
  *  Gets the largest contrast value from the passed in colors compared against a sample color.
  * @param collection The collection of colors to query the color with the largest contrast value.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`contrast`) and name of the color as keys. Default is false.
- * @returns The largest contrast value in the colors passed in or a custom object.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`contrast`) and name of the color as keys. Default is `false`.
+ * @returns The largest contrast value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
 import { getFarthestContrast } from 'huetiful-js'
@@ -131,8 +131,8 @@ declare function getFarthestContrast(
  * Gets the smallest chroma/saturation value from the passed in colors.
  * @param collection The collection of colors to query the color with the smallest chroma/saturation value.
  * @param colorspace The mode `colorspace` to retrieve saturation/chroma values.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is false.
- * @returns The smallest chroma/saturation value in the colors passed in or a custom object.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is `false`.
+ * @returns The smallest chroma/saturation value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
  * import { getNearestChroma } from 'huetiful-js'
@@ -157,8 +157,8 @@ declare function getNearestChroma(
  * Gets the largest saturation value from the passed in colors.
  * @param colors The collection of colors to query the color with the largest saturation value.
  * @param colorspace The mode `colorspace` to perform the computation in.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is false.
- * @returns The largest saturation value in the colors passed in or a custom object.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is `false`.
+ * @returns The largest saturation value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
  * import { getFarthestChroma } from 'huetiful-js'
@@ -183,8 +183,8 @@ declare function getFarthestChroma(
  *  Gets the smallest hue angle from the passed in colors.
  * @param colors The collection of colors to query the color with the smallest hue value.
  * @param colorspace The mode `colorspace` to perform the computation in.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is false.
- * @returns The smallest hue value in the colors passed in or a custom object.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
+ * @returns The smallest hue value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
  * import { getNearestHue } from 'huetiful-js'
@@ -209,8 +209,8 @@ declare function getNearestHue(
  * Gets the largest hue angle from the passed in colors.
  * @param colors The array of colors to query the color with the largest hue value.
  * @param colorspace The mode color space to perform the computation in.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is false.
- * @returns The largest hue value in the colors passed in or a custom object.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
+ * @returns The largest hue value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
  * import { getFarthestHue } from 'huetiful-js'
@@ -233,7 +233,7 @@ declare function getFarthestHue(
  *
  * Gets the complementary hue of the passed in color. The function is internally guarded against achromatic colors.
  * @param color The color to retrieve its complimentary hue.
- * @param colorObj Optional boolean whether to return an object with the result color hue family or just the result color. Default is false.
+ * @param colorObj Optional boolean whether to return an object with the result color hue family or just the result color. Default is `false`.
  * @returns An object with the hue family and complimentary color as keys.
  * @example
  *import { getComplimentaryHue } from "huetiful-js";
@@ -389,9 +389,9 @@ declare function overtone(color: ColorToken): string | boolean;
  *
  * Gets the smallest lightness value from the passed in colors.
  * @param collection The collection of colors to query the color with the smallest lightness value.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is false.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
  * @param mode THe mode colorspace to retrieve the lightness value from.
- * @returns The smallest lightness value in the colors passed in or a custom object.
+ * @returns The smallest lightness value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
  * import { getNearestLightness } from 'huetiful-js'
@@ -417,9 +417,9 @@ declare function getNearestLightness(
  *
  *  Gets the largest lightness value from the passed in colors.
  * @param collection The collection of colors to query the color with the largest lightness value.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is false.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
  * @param colorspace THe mode colorspace to retrieve the lightness value from.
- * @returns The largest lightness value in the colors passed in or a custom object.
+ * @returns The largest lightness value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
  * import { getFarthestLightness } from 'huetiful-js'
@@ -503,7 +503,7 @@ let sample = [
   'pink'
 ];
 
-console.log(map(sample, isAchromatic));
+console.log(sample.map(isAchromatic));
 
 // [false, false, false,false]
 
@@ -511,16 +511,14 @@ isAchromatic('gray')
 // Returns true
 
 
-console.log(map(sample, isAchromatic));
-
 
 // we create an interpolation using black and white
 let f = interpolate(["black", "white"]);
 
 //We then create 12 evenly spaced samples and pass them to f as the `t` param required by an interpolating function.
 // Lastly we convert the color to hex for brevity for this example (otherwise color objects work fine too.)
-let grays = map(samples(12), (c) => formatHex8(f(c)));
-console.log(map(grays, isAchromatic));
+let grays = samples(12).map((c) => formatHex8(f(c)));
+console.log(grays.map(isAchromatic));
 
 //
  [ false, true, true,
@@ -583,8 +581,8 @@ declare function getNearestColor(
  * @param collection The collection of colors to query.
  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param colorspace The mode colorspace to retrieve the channel being queried.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is false.
- * @returns The largest chroma/saturation difference in the colors passed in or a custom object.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is `false`.
+ * @returns The largest chroma/saturation difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
  * 
@@ -621,8 +619,8 @@ declare function getFarthestChromaFrom(
  * @param collection The collection of colors to query.
  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param colorspace The mode colorspace to retrieve the channel being queried.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is false.
- * @returns The smallest chroma/saturation difference in the colors passed in or a custom object.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is `false`.
+ * @returns The smallest chroma/saturation difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
  * 
@@ -660,8 +658,8 @@ declare function getNearestChromaFrom(
  * @param collection The collection of colors to query.
  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param colorspace The mode colorspace to retrieve the channel being queried.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is false.
- * @returns The largest hue angle difference in the colors passed in or a custom object.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
+ * @returns The largest hue angle difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
  * 
@@ -696,8 +694,8 @@ declare function getFarthestHueFrom(
  * @param collection The collection of colors to query.
  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param colorspace The mode colorspace to retrieve the channel being queried.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is false.
- * @returns The smallest hue angle difference in the colors passed in or a custom object.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
+ * @returns The smallest hue angle difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
  * import { getNearestHueFrom } from 'huetiful-js'
@@ -733,8 +731,8 @@ declare function getNearestHueFrom(
  * @param collection The collection of colors to query.
  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param colorspace The mode colorspace to retrieve the channel being queried.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is false.
- * @returns The largest lightness difference in the colors passed in or a custom object.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
+ * @returns The largest lightness difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
  * 
@@ -768,12 +766,12 @@ declare function getFarthestLightnessFrom(
     };
 
 /**
- * Gets the smallest lightness difference between the colors in a collection `against` a comparison color.
+ * Gets the smallest `lightness` difference between the colors in a collection `against` a comparison color.
  * @param collection The collection of colors to query.
  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param colorspace The mode colorspace to retrieve the channel being queried.
- * @param colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is false.
- * @returns The smallest lightness difference in the colors passed in or a custom object.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
+ * @returns The smallest` lightness` difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
  * import { getNearestLightnessFrom } from 'huetiful-js'
@@ -803,6 +801,28 @@ declare function getNearestLightnessFrom(
       color: ColorToken;
     };
 
+/**
+ * Gets the smallest `luminance` difference between the colors in a collection `against` a comparison color.
+ * @param collection The collection of colors to query.
+ * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`luminance`) and name of the color as keys. Default is `false`.
+ * @returns The smallest `luminance` difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
+ *
+ * @example
+ * import { getNearestLuminanceFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+
+      console.log(getNearestLuminanceFrom(sample, against));
+
+// 0.00831940271523677
+
+ */
 declare function getNearestLuminanceFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
@@ -814,6 +834,29 @@ declare function getNearestLuminanceFrom(
       factor: number;
       color: ColorToken;
     };
+
+/**
+ * Gets the largest `luminance` difference between the colors in a collection `against` a comparison color.
+ * @param collection The collection of colors to query.
+ * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
+ * @returns The largest lightness difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
+ *
+ * @example
+ * 
+ * import { getFarthestLuminanceFrom } from 'huetiful-js'
+ * var sample = [
+    { l: 40, c: 20, h: 40, mode: 'lch' },
+    { l: 20, c: 10, h: 20, mode: 'lch' },
+    { l: 10, c: 40, h: 10, mode: 'lch' }
+  ],
+  against = { l: 5, c: 5, h: 5, mode: 'lch' };
+
+console.log(getFarthestLuminanceFrom(sample, against));
+// 0.10644205738623673
+
+
+ */
 
 declare function getFarthestLuminanceFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,

@@ -44,14 +44,14 @@ import { setChannel } from './utils.js';
 
 function scheme(schemeType) {
   return (color, easingFunc) => {
-    const cb = (iterations, distance, color) =>
-      _smp(iterations).map((val) =>
-        adjustHue((color['h'] + distance) * (val * easingSmoothstep(val)))
-      );
     schemeType = schemeType.toLowerCase();
     easingFunc = or(easingFunc, easingSmoothstep);
+    const cb = (iterations, distance, color) =>
+      _smp(iterations).map((val) =>
+        adjustHue((color['h'] + distance) * (val * easingFunc(val)))
+      );
 
-    color = useMode(modeJch)(color);
+    color = useMode(modeLch)(color);
     const lowMin = 0.05,
       lowMax = 0.495,
       highMin = 0.5,

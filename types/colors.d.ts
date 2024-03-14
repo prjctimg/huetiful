@@ -168,6 +168,71 @@ declare class ColorArray {
         color: ColorToken;
       };
   /**
+ * Gets the smallest `luminance` difference between the colors in a collection `against` a comparison color.
+ * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`luminance`) and name of the color as keys. Default is `false`.
+ * @returns The smallest `luminance` difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
+ *
+ * @example
+ * import { getNearestLuminanceFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+
+      console.log(getNearestLuminanceFrom(sample, against));
+
+// 0.00831940271523677
+
+ */
+  getNearestLuminanceFrom(
+    against: ColorToken,
+    colorspace?: HueColorSpaces,
+    colorObj?: boolean
+  ):
+    | number
+    | {
+        factor: number;
+        color: ColorToken;
+      };
+
+  /**
+ * Gets the largest `luminance` difference between the colors in a collection `against` a comparison color.
+ * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
+ * @returns The largest lightness difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
+ *
+ * @example
+ * 
+ * import { getFarthestLuminanceFrom } from 'huetiful-js'
+ * var sample = [
+    { l: 40, c: 20, h: 40, mode: 'lch' },
+    { l: 20, c: 10, h: 20, mode: 'lch' },
+    { l: 10, c: 40, h: 10, mode: 'lch' }
+  ],
+  against = { l: 5, c: 5, h: 5, mode: 'lch' };
+
+console.log(getFarthestLuminanceFrom(sample, against));
+// 0.10644205738623673
+
+
+ */
+
+  getFarthestLuminanceFrom(
+    against: ColorToken,
+    colorspace?: HueColorSpaces,
+    colorObj?: boolean
+  ):
+    | number
+    | {
+        factor: number;
+        color: ColorToken;
+      };
+
+  /**
    *
    *  Gets the largest `lightness` value from the passed in colors.
    * @param colors The array of colors to query the color with the largest lightness value.
@@ -1182,12 +1247,128 @@ declare class Color {
    * @returns The array of colors resulting from the earthtone interpolation as hex codes.
    */
   earthtone(options?: EarthtoneOptions): ColorArray | ColorToken;
+
+  /**
+   * Gets the bound color's  and `against` comparison color contrast value.
+   * @returns The contrast between the two colors.
+   * @param against The color to use for comparison.
+   */
   contrast(against: ColorToken): number;
-  luminance(amount?: number): number;
+
+  /**
+   * Gets or sets the value of the bound color.
+   * @param amount The luminace value to set on the bound color.
+   * @returns The luminance value if the method is called with no arguments else it returns a color with its luminance value mutated.
+   */
+  luminance(amount?: number): number | ColorToken;
+
+  /**
+   * Returns the final value from the chain.
+   */
   output(): any;
+
+  /**
+   * Gets or sets the saturation value of the bound color.
+   * @param amount The amount of saturation to set on the bound color token.
+   * @returns The `saturation` value if the method is called with no arguments else it returns a color with its `saturation` value mutated.
+   */
   saturation(amount?: string | number): any;
+
+  /**
+ *
+ * Checks if a color is achromatic(without hue or simply grayscale).
+ * @param colorspace The colorspace to use when checking if the `color` is grayscale or not.
+ * @returns True if the color is achromatic else false.
+ * @example
+ *
+ * import { color } from "huetiful-js";
+import { formatHex8, interpolate, samples } from "culori"
+
+var test = c => color(c).isAchromatic()
+
+
+test('pink')
+// false
+
+let sample = [
+  "#164100",
+  "#ffff00",
+  "#310000",
+  'pink'
+];
+
+console.log(sample.map(test));
+
+// [false, false, false,false]
+
+test('gray')
+// Returns true
+
+
+
+// we create an interpolation using black and white
+let f = interpolate(["black", "white"]);
+
+//We then create 12 evenly spaced samples and pass them to f as the `t` param required by an interpolating function.
+// Lastly we convert the color to hex for brevity for this example (otherwise color objects work fine too.)
+let grays = samples(12).map((c) => formatHex8(f(c)));
+console.log(grays.map(test));
+
+//
+ [ false, true, true,
+  true,  true, true,
+  true,  true, true,
+  true,  true, false
+]
+
+ */
   isAchromatic(): boolean;
+  /**
+ *
+ *  Checks if a color can be roughly classified as a warm color. Returns true if color is a warm color else false.
+ * @param color The color to check the temperature.
+ * @returns True if the color is warm else false.
+ * 
+ * @example 
+ * import { color } from 'huetiful-js'
+
+let sample = [
+  "#00ffdc",
+  "#00ff78",
+  "#00c000"
+];
+
+
+
+console.log(color(sample[2]).isWarm());
+//true
+
+
+ */
   isWarm(): boolean;
+
+  /**
+ *
+ *  Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.
+ * @returns True if the color is cool else false.
+ * @example
+ *
+ * import { color } from 'huetiful-js'
+
+let sample = [
+  "#00ffdc",
+  "#00ff78",
+  "#00c000"
+];
+
+
+console.log(color(sample[2]).isCool());
+// false
+
+
+
+
+ */
   isCool(): boolean;
   /**
    *
@@ -1202,13 +1383,13 @@ declare class Color {
   
   // Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
   // We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
-  let tritanomaly = colorDeficiency('blue')
-  console.log(tritanomaly(['rgb', 230, 100, 50, 0.5], 0.1))
+  let tritanomaly = color(['rgb', 230, 100, 50, 0.5]).colorDeficiency('blue',0.1)
+  console.log(tritanomaly)
   // #dd663680
   
   // Here we are simulating color blindness of tritanomaly or we can't see 'red'. The severity is not explicitly set so it defaults to 1
-  let protanopia = colorDeficiency('red')
-  console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
+  let protanopia = color({ h: 20, w: 50, b: 30, mode: 'hwb' }).colorDeficiency('red')
+  console.log(protanopia)
   // #9f9f9f
    */
   deficiency(
@@ -1216,10 +1397,52 @@ declare class Color {
     severity?: number
   ): ColorToken;
 
+  /**
+ *
+ * Returns the hue which is biasing the passed in color.
+ * @returns The name of the overtone hue. If an achromatic color is passed in it return the string `'gray'` otherwise if the color has no bias it returns false.
+ * @example
+ *
+console.log(color("fefefe").overtone())
+// 'gray'
+
+console.log(color("cyan").overtone())
+// 'green'
+
+console.log(color.("blue").overtone())
+// false
+ */
   ovetone(): string | boolean;
+
+  /**
+ *
+ * Gets the hue family which a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
+ * @returns The name of the hue family for example `red` or `blue-green`.
+ * @example
+ *
+ * import { color } from 'huetiful-js'
+
+
+console.log(color("#310000").getHueFamily())
+// red
+ */
   getHueFamily(): string;
+  /**
+ *
+ *  Generates a randomised classic color scheme from a single color.
+ * @param  schemeType  Any classic color scheme either `"analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary"`.
+@param easingFn The easing function to apply to the palette. It's applied on the `hue` channel.
+ * @returns A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
+ * @example
+ *
+ import {  } from 'huetiful-js'
+
+console.log(color.scheme("triadic")("#a1bd2f"))
+// [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
+ */
+
   scheme(
-    scheme: 'analogous' | 'triadic' | 'tetradic' | 'complementary',
+    schemeType: 'analogous' | 'triadic' | 'tetradic' | 'complementary',
     easingFunc?: (t: number) => number
   ): ColorArray;
 }

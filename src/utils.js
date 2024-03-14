@@ -519,6 +519,16 @@ function getNearestLightnessFrom(
   );
 }
 
+function getFarthestLuminanceFrom(collection, against, colorObj) {
+  var cb = (a) => (b) => Math.abs(getLuminance(a) - getLuminance(b));
+  return baseFunc('luminance', collection, cb(against), 'desc', colorObj);
+}
+
+function getNearestLuminanceFrom(collection, against, colorObj) {
+  var cb = (a) => (b) => Math.abs(getLuminance(a) - getLuminance(b));
+  return baseFunc('luminance', collection, cb(against), 'asc', colorObj);
+}
+
 function getMeanChroma(collection = [], colorspace = 'lch') {
   var cb = getChannel(mcchn(colorspace));
   return averageNumber(Object.values(collection).map(cb));
@@ -580,6 +590,8 @@ export {
   getNearestChromaFrom,
   getNearestHueFrom,
   getNearestLightnessFrom,
+  getFarthestLuminanceFrom,
+  getNearestLuminanceFrom,
   getMeanChroma,
   getMeanHue,
   getMeanDistance,

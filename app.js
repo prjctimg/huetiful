@@ -1,16 +1,18 @@
 import {
   getMeanContrast,
   getMeanDistance,
-  getMeanLuminance
+  getMeanLuminance,
+  getNearestLuminanceFrom,
+  getFarthestLuminanceFrom
 } from './src/utils.js';
 
 var sample = [
     { l: 40, c: 20, h: 40, mode: 'lch' },
-    { l: 20, c: 30, h: 20, mode: 'lch' },
+    { l: 20, c: 10, h: 20, mode: 'lch' },
     { l: 10, c: 40, h: 10, mode: 'lch' }
   ],
-  against = 'blue';
+  against = { l: 5, c: 5, h: 5, mode: 'lch' };
 
-console.log(getMeanContrast(sample, against));
+console.log(getFarthestLuminanceFrom(sample, against));
 
-// 142.7183074639663
+console.log(getNearestLuminanceFrom(sample, against));
