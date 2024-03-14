@@ -803,6 +803,30 @@ declare function getNearestLightnessFrom(
       color: ColorToken;
     };
 
+declare function getNearestLuminanceFrom(
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  against: ColorToken,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
+
+declare function getFarthestLuminanceFrom(
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  against: ColorToken,
+  colorspace?: HueColorSpaces,
+  colorObj?: boolean
+):
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
+
 /**
  * Returns the average `chroma` from the passed in `collection` of colors. Achromatic colors (or colors with a falsy `chroma` channel) will be excluded from the sum.
  * @param collection The collection of color tokens to query.
@@ -983,5 +1007,13 @@ export {
   getFarthestLightnessFrom,
   getNearestChromaFrom,
   getNearestHueFrom,
-  getNearestLightnessFrom
+  getNearestLightnessFrom,
+  getFarthestLuminanceFrom,
+  getNearestLuminanceFrom,
+  getMeanChroma,
+  getMeanContrast,
+  getMeanDistance,
+  getMeanHue,
+  getMeanLightness,
+  getMeanLuminance
 };

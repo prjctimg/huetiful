@@ -36,7 +36,21 @@ import {
   getComplimentaryHue as _gch,
   colorDeficiency as _cds,
   interpolator as _pltr,
-  interpolateSpline as _pltrspln
+  interpolateSpline as _pltrspln,
+  getFarthestChromaFrom as _gfcf,
+  getNearestChromaFrom as _gncf,
+  getFarthestHueFrom as _gfhf,
+  getNearestHueFrom as _gnhf,
+  getNearestLightnessFrom as _gnlf,
+  getFarthestLightnessFrom as _gflf,
+  getMeanLuminance as _gml,
+  getMeanHue as _gmh,
+  getMeanContrast as _gmc,
+  getMeanDistance as _gmd,
+  getMeanChroma as _gmc,
+  getMeanLightness as _gml,
+  getFarthestContrast as _gfctrst,getNea,
+  getNearestContrast as _gnctrst
 } from './index.js';
 
 class ColorArray {
@@ -44,6 +58,23 @@ class ColorArray {
     this['colors'] = colors;
     return this;
   }
+
+  getFarthestChromaFrom(against, colorspace, colorObj)
+  getNearestChromaFrom(against, colorspace, colorObj)
+  getFarthestChromaFrom(against, colorspace, colorObj)
+  getFarthestLightnessFrom(against, colorspace, colorObj)
+  getNearestLightnessFrom(against, colorspace, colorObj)
+  getNearestHueFrom(against, colorspace, colorObj)
+  getFarthestHueFrom(against, colorspace, colorObj)
+  getNearestLuminanceFrom(against, colorspace, colorObj)
+  getFarthestLuminanceFrom(against, colorspace, colorObj)
+  getMeanChroma()
+  getMeanContrast()
+  getMeanLightness()
+  getMeanHue()
+  getMeanLuminance()
+  getMeanDistance()
+
   interpolateSpline(colorspace, samples, kind, closed, options) {
     this['colors'] = _pltrspln(
       this['colors'],

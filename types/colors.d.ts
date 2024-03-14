@@ -1090,7 +1090,7 @@ declare function tailwindColors(
  * @example
  * import { Color } from 'huetiful-js'
  *
- *let wrapper = new Color('pink');
+ * let wrapper = new Color('pink');
 
 console.log(wrapper.color2hex());
 // #ffc0cb
@@ -1098,7 +1098,7 @@ console.log(wrapper.color2hex());
 declare class Color {
   constructor(c: ColorToken, options?: ColorOptions);
   alpha(amount?: number | string): Color | number;
-  getChannel(channel: string): number;
+  getChannel(modeChannel: string): number;
   setChannel(modeChannel: string, value: number | string): Color;
   /**
    * Interpolates the bound color via the `origin` at the point `t`. Call `output()` to get the results.
@@ -1182,7 +1182,7 @@ declare class Color {
    * @returns The array of colors resulting from the earthtone interpolation as hex codes.
    */
   earthtone(options?: EarthtoneOptions): ColorArray | ColorToken;
-  contrast(against: 'lightMode' | 'darkMode' | Color): number;
+  contrast(against: ColorToken): number;
   luminance(amount?: number): number;
   output(): any;
   saturation(amount?: string | number): any;
@@ -1215,42 +1215,7 @@ declare class Color {
     deficiencyType?: 'red' | 'blue' | 'green' | 'monochromacy',
     severity?: number
   ): ColorToken;
-  getFarthestHue(colorObj?: boolean):
-    | number
-    | {
-        factor: number;
-        color: ColorToken;
-      };
-  getNearestHue(colorObj?: boolean):
-    | number
-    | {
-        factor: number;
-        color: ColorToken;
-      };
-  getNearestChroma(colorObj?: boolean):
-    | number
-    | {
-        factor: number;
-        color: ColorToken;
-      };
-  getNearestLightness(colorObj?: boolean):
-    | number
-    | {
-        factor: number;
-        color: ColorToken;
-      };
-  getFarthestChroma(colorObj?: boolean):
-    | number
-    | {
-        factor: number;
-        color: ColorToken;
-      };
-  getFarthestLightness(colorObj?: boolean):
-    | number
-    | {
-        factor: number;
-        color: ColorToken;
-      };
+
   ovetone(): string | boolean;
   getHueFamily(): string;
   scheme(

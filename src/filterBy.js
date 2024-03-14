@@ -28,7 +28,7 @@ function baseFilterBy(
 
   if (normFacts[factor]) {
     startVal = norm(startVal, normFacts[factor](colorspace));
-    end = norm(end, normFacts[factor](colorspace));
+    end = norm(endVal, normFacts[factor](colorspace));
   }
 
   if (typeof start === 'string' && sym1) {
