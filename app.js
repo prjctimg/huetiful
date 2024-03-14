@@ -1,5 +1,16 @@
-var a = [0, 1];
-var b = { a: 0, b: 7 };
-var c = 'abc';
-console.log(typeof a);
-console.log(typeof b.length);
+import {
+  getMeanContrast,
+  getMeanDistance,
+  getMeanLuminance
+} from './src/utils.js';
+
+var sample = [
+    { l: 40, c: 20, h: 40, mode: 'lch' },
+    { l: 20, c: 30, h: 20, mode: 'lch' },
+    { l: 10, c: 40, h: 10, mode: 'lch' }
+  ],
+  against = 'blue';
+
+console.log(getMeanContrast(sample, against));
+
+// 142.7183074639663

@@ -848,6 +848,132 @@ console.log(getNearestColor(cols, 'blue', 3));
       };
 
   /**
+ * Returns the average `chroma` from the passed in `collection` of colors. Achromatic colors (or colors with a falsy `chroma` channel) will be excluded from the sum.
+ * @param colorspace The colorspace to fetch the `chroma` channel value from.
+ * @returns The average `chroma` in the passed in `collection` or undefined if no color in the `collection` has a valid `chroma` channel.
+ * @example
+ *
+* import { getMeanChroma } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 30, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ]
+
+        console.log(getMeanChroma(sample))
+
+        // 30
+
+ */
+  getMeanChroma(colorspace?: HueColorSpaces): number | undefined;
+
+  /**
+ * Returns the average `lightness` from the passed in `collection` of colors.
+ * @param colorspace The colorspace to fetch the `lightness` channel value from.
+ * @returns The average `lightness` in the passed in `collection`.
+ * @example
+ *
+ * import { getMeanLightness } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 30, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ]
+
+        console.log(getMeanLightness(sample))
+
+        // 20
+ */
+  getMeanLightness(colorspace?: HueColorSpaces): number;
+
+  /**
+ * Returns the average `hue` from the passed in `collection` of colors. Achromatic colors (or colors with a falsy `chroma` channel) will be excluded from the sum if `excludeGreys` is `true`. This can help make your color scales make more 'visual sense since the `hue` channel depends on the `chroma` channel to look colorful. This will also alter the final average hue angle returned.
+ * @param colorspace The colorspace to fetch the `hue` channel value from.
+ * @param excludeGreys Optional boolean to filter out achromatic colors from the passed in `collection`.
+ * @returns The average `hue` angle in the passed in `collection`.
+ * @example
+ *
+* import { getMeanHue } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 10, mode: 'lch' },
+          { l: 20, c: 30, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 6, mode: 'lch' }
+        ]
+
+        console.log(getMeanHue(sample))
+
+        // 12
+ */
+  getMeanHue(colorspace?: HueColorSpaces, excludeGreys?: boolean): number;
+
+  /**
+ * Returns the average relative `luminance` from the passed in `collection` of colors.
+ * @returns The average relative `luminance` in the passed in `collection` or undefined if no color in the `collection` has a valid `chroma` channel.
+ * @example
+ *
+ * import { getMeanLuminance } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 30, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ]
+
+        console.log(getMeanLuminance(sample))
+
+        // 0.05158704622405754
+ */
+  getMeanLuminance(): number;
+
+  /**
+ * Returns the average `distance` from the passed in `collection` of colors using the `differenceHyab` metric. In the future, an option to specify the metric to use when querying the `distance` factor.
+ * @param against The color to compare the distance from. Used by the metric function for each color in the `collection`. Default is `black`.
+ * @returns The average `distance` in the passed in `collection` .
+ * @example
+ * import { getMeanDistance } from 'huetiful-js'
+ * 
+
+var sample = [
+    { l: 40, c: 20, h: 40, mode: 'lch' },
+    { l: 20, c: 30, h: 20, mode: 'lch' },
+    { l: 10, c: 40, h: 10, mode: 'lch' }
+  ],
+  against = 'blue';
+
+console.log(getMeanDistance(sample, against));
+
+
+// 142.7183074639663
+ */
+  getMeanDistance(against?: ColorToken): number;
+
+  /**
+ * Returns the average `contrast` from the passed in `collection` of colors.
+ * @param against The color to compare the `contrast` against. Used by the `getContrast` function for each color in the `collection`. Default is `black`
+ * @returns The average `distance` in the passed in `collection` .
+ * @example
+ *
+ * import { getMeanContrast } from 'huetiful-js'
+ * 
+ * 
+var sample = [
+    { l: 40, c: 20, h: 40, mode: 'lch' },
+    { l: 20, c: 30, h: 20, mode: 'lch' },
+    { l: 10, c: 40, h: 10, mode: 'lch' }
+  ],
+  against = 'blue';
+
+console.log(getMeanContrast(sample, against));
+
+// 1.5960886749927419
+
+ */
+  getMeanContrast(against?: ColorToken): number;
+
+  /**
    * @returns Returns the result value from the chain.
    */
   output(): ColorToken;

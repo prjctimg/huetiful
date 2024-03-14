@@ -810,7 +810,18 @@ declare function getNearestLightnessFrom(
  * @returns The average `chroma` in the passed in `collection` or undefined if no color in the `collection` has a valid `chroma` channel.
  * @example
  *
- * import { } from 'huetiful-js'
+* import { getMeanChroma } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 30, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ]
+
+        console.log(getMeanChroma(sample))
+
+        // 30
+
  */
 declare function getMeanChroma(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
@@ -824,7 +835,17 @@ declare function getMeanChroma(
  * @returns The average `lightness` in the passed in `collection`.
  * @example
  *
- * import { } from 'huetiful-js'
+ * import { getMeanLightness } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 30, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ]
+
+        console.log(getMeanLightness(sample))
+
+        // 20
  */
 declare function getMeanLightness(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
@@ -839,7 +860,17 @@ declare function getMeanLightness(
  * @returns The average `hue` angle in the passed in `collection`.
  * @example
  *
- * import { } from 'huetiful-js'
+* import { getMeanHue } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 10, mode: 'lch' },
+          { l: 20, c: 30, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 6, mode: 'lch' }
+        ]
+
+        console.log(getMeanHue(sample))
+
+        // 12
  */
 declare function getMeanHue(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
@@ -853,7 +884,17 @@ declare function getMeanHue(
  * @returns The average relative `luminance` in the passed in `collection` or undefined if no color in the `collection` has a valid `chroma` channel.
  * @example
  *
- * import { } from 'huetiful-js'
+ * import { getMeanLuminance } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 30, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ]
+
+        console.log(getMeanLuminance(sample))
+
+        // 0.05158704622405754
  */
 declare function getMeanLuminance(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
@@ -865,8 +906,20 @@ declare function getMeanLuminance(
  * @param against The color to compare the distance from. Used by the metric function for each color in the `collection`. Default is `black`.
  * @returns The average `distance` in the passed in `collection` .
  * @example
- *
- * import { } from 'huetiful-js'
+ * import { getMeanDistance } from 'huetiful-js'
+ * 
+
+var sample = [
+    { l: 40, c: 20, h: 40, mode: 'lch' },
+    { l: 20, c: 30, h: 20, mode: 'lch' },
+    { l: 10, c: 40, h: 10, mode: 'lch' }
+  ],
+  against = 'blue';
+
+console.log(getMeanDistance(sample, against));
+
+
+// 142.7183074639663
  */
 declare function getMeanDistance(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
@@ -880,7 +933,20 @@ declare function getMeanDistance(
  * @returns The average `distance` in the passed in `collection` .
  * @example
  *
- * import { } from 'huetiful-js'
+ * import { getMeanContrast } from 'huetiful-js'
+ * 
+ * 
+var sample = [
+    { l: 40, c: 20, h: 40, mode: 'lch' },
+    { l: 20, c: 30, h: 20, mode: 'lch' },
+    { l: 10, c: 40, h: 10, mode: 'lch' }
+  ],
+  against = 'blue';
+
+console.log(getMeanContrast(sample, against));
+
+// 1.5960886749927419
+
  */
 declare function getMeanContrast(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
