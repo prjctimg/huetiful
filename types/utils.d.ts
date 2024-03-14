@@ -576,7 +576,7 @@ declare function getNearestColor(
   collection: ColorToken[] | 'tailwind',
   against: ColorToken,
   num?: number
-): ColorToken | ColorToken[];
+): ColorToken | Array<ColorToken> | Map<any, ColorToken>;
 
 /**
  * Gets the largest chroma/saturation difference between the colors in a collection `against` a comparison color.

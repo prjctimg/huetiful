@@ -155,7 +155,7 @@ declare function filterByHue(
 ): Array<ColorToken> | Map<any, ColorToken>;
 /**
  *
- * Returns colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.
+ * Returns colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the `differenceHyab` metric for calculating the distances.
  * @param  collection The collection of colors to filter.
  * @param  start The minimum end of the distance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param  end The maximum end of the distance range.

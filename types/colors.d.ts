@@ -149,7 +149,7 @@ declare class ColorArray {
    * @returns The smallest `lightness` value in the colors passed in or a custom object.
    * @example
    *
-   * import { minLightness } from 'huetiful-js'
+   * import { getNeareastLightness } from 'huetiful-js'
   
   let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
   
@@ -175,7 +175,7 @@ declare class ColorArray {
    * @returns The largest `lightness` value in the colors passed in or a custom object.
    * @example
    *
-   * import { maxLightness } from 'huetiful-js'
+   * import { getFarthestLightness } from 'huetiful-js'
   
   let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
   
@@ -195,15 +195,14 @@ declare class ColorArray {
       };
   /**
    *
-  * Returns an array of colors in the specified saturation range.
+   * Returns a `collection` of colors in the specified `saturation/chroma` range.
    *
    * The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
    * This means a value in the range `[0,1]` will return, for example if you pass start as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range `[0,100]` and will return the normalized value.
-   * @param  collection The collection of colors to filter.
-   * @param  start Thstring|e minimum end of the saturation range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
-   * @param  end The maximum end of the saturation range.
+   * @param  start The minimum end of the `saturation/chroma` range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
+   * @param  end The maximum end of the `saturation/chroma` range.
    * @param colorspace The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.
-   * @returns Array of filtered colors.
+   * @returns Collection of filtered colors.
    * @example
    * import { filterByChroma } from 'huetiful-js'
    *
@@ -233,10 +232,10 @@ declare class ColorArray {
   ): ColorArray;
   /**
    *
-   *  Returns an array of colors in the specified lightness range. The range is between 0 and 100.
-   * @param  start The minimum end of the lightness range.
-   * @param  end The maximum end of the lightness range.
-   * @returns Array of filtered colors.
+   *  Returns a `collection` of colors in the specified `lightness` range. The range is between 0 and 100.
+   * @param  start The minimum end of the `lightness` range.
+   * @param  end The maximum end of the `lightness` range.
+   * @returns Collection of filtered colors.
    * @example
    *
    * import { filterByLightness } from 'huetiful-js'
@@ -262,11 +261,11 @@ declare class ColorArray {
   /**
    *
    *  Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
-   * @param  start T string|he minimum end of the distance range.
+   * @param  start  The minimum end of the distance range.
    * @param  end The maximum end of the distance range.
    * @param weights The weighting values to pass to the Euclidean function. Default is [1,1,1,0].
    * @param mode The color space to calculate the distance in .
-   * @returns Array of filtered colors.
+   * @returns Collection of filtered colors.
    * @example
    * import { filterByDistance } from 'huetiful-js'
   
@@ -290,12 +289,12 @@ declare class ColorArray {
     end?: number
   ): ColorArray;
   /**
-     *
+   *
    *
    *  Returns an array of colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
    * @param  start The minimum end of the contrast range.
    * @param  end The maximum end of the contrast range.
-   * @returns Array of filtered colors.
+   * @returns Collection of filtered colors.
    *
    * @example
    *
@@ -351,10 +350,10 @@ declare class ColorArray {
   filterByHue(start?: number, end?: number): ColorArray;
   /**
    *
-   *  Returns an array of colors in the specified luminance range. The range is normalised to [0,1].
+   *  Returns a `collection` of colors in the specified luminance range. The range is normalised to [0,1].
    * @param  start The minimum end of the luminance range.
    * @param  end The maximum end of the luminance range.
-   * @returns Array of filtered colors.
+   * @returns Collection of filtered colors.
    * @example
    *
    * import { filterByLuminance } from 'huetiful-js'
@@ -382,7 +381,7 @@ declare class ColorArray {
    * Sorts colors according to their lightness.
    * @param  colors The array of colors to sort
    * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
-   * @returns An array of the sorted color values.
+  * @returns The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
    * @example
    * import { sortByLightness } from "huetiful-js";
   
@@ -430,9 +429,7 @@ declare class ColorArray {
    *  Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
    * @param against The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.
    * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
-   * @param weights The weighting values to pass to the Euclidean function. Default is [1,1,1,0].
-   * @param mode The color space to calculate the distance in . The default is the cylindrical variant of the CIELUV colorspace ('lchuv')
-   * @returns An array of the sorted color values.
+  * @returns The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
    * @example
    * import { sortByDistance } from 'huetiful-js'
   
@@ -454,17 +451,13 @@ declare class ColorArray {
   
   // [ 'green', 'brown', 'red', 'purple' ]
    */
-  sortByDistance(
-    against: ColorToken,
-    order?: 'asc' | 'desc',
-    options?: ColorDistanceOptions
-  ): ColorArray;
+  sortByDistance(against: ColorToken, order?: 'asc' | 'desc'): ColorArray;
   /**
    *
    *  Sorts colors according to the relative brightness as defined by WCAG definition.
    * @param  colors The array of colors to sort
    * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
-   * @returns An array of the sorted color values.
+  * @returns The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
    * @example
    * import { sortByLuminance } from "huetiful-js";
   let sample = [
@@ -513,8 +506,8 @@ declare class ColorArray {
    *  Sorts colors according to their saturation.
    * @param  colors The array of colors to sort
    * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
-   * @param mode The mode color space to compute the saturation value in. The default is jch .
-   * @returns An array of the sorted color values.
+   * @param colorspace The mode color space to compute the saturation value in. The default is jch .
+  * @returns The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
    * @example
    * import { sortByChroma } from "huetiful-js";
   let sample = [
@@ -555,12 +548,12 @@ declare class ColorArray {
   ]
   
    */
-  sortByChroma(order: 'asc' | 'desc', mode?: HueColorSpaces): ColorArray;
+  sortByChroma(order: 'asc' | 'desc', colorspace?: HueColorSpaces): ColorArray;
   /**
    *
    * Sorts colors according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
    * @param  order The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
-   * @returns An array of the sorted color values.
+   * @returns The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
    * @example
    *
    * import { sortByContrast } from 'huetiful-js'
@@ -620,17 +613,252 @@ declare class ColorArray {
   
    */
   sortByHue(order?: 'asc' | 'desc', colorspace?: HueColorSpaces): ColorArray;
+
   /**
-   * @method
+ * Returns the nearest color(s) in a collection against
+  * @param against The color to use for distance comparison.
+ * @param num The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric.
+ * @returns An array of colors.
+ * @example
+ *
+ * let cols = colors('all', '500')
+ *
+console.log(getNearestColor(cols, 'blue', 3));
+ // [ '#a855f7', '#8b5cf6', '#d946ef' ]
+ */
+  getNearestColor(
+    against: ColorToken,
+    num?: number
+  ): ColorToken | Array<ColorToken> | Map<any, ColorToken>;
+
+  /**
+ * Gets the largest chroma/saturation difference between the colors in a collection `against` a comparison color.
+ * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param colorspace The mode colorspace to retrieve the channel being queried.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is false.
+ * @returns The largest chroma/saturation difference in the colors passed in or a custom object.
+ *
+ * @example
+ * 
+ * import { getFarthestChromaFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+        mode='lch'
+
+        console.log(getFarthestChromaFrom(sample,against,mode))
+
+        // 35
+
+
+ */
+  getFarthestChromaFrom(
+    against: ColorToken,
+    colorspace?: HueColorSpaces,
+    colorObj?: boolean
+  ):
+    | number
+    | {
+        factor: number;
+        color: ColorToken;
+      };
+
+  /**
+ * Gets the smallest chroma/saturation difference between the colors in a collection `against` a comparison color.
+ * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param colorspace The mode colorspace to retrieve the channel being queried.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is false.
+ * @returns The smallest chroma/saturation difference in the colors passed in or a custom object.
+ *
+ * @example
+ * 
+ * 
+ * import { getNearestChromaFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+        mode='lch'
+
+        console.log(getNearestChromaFrom(sample,against,mode))
+
+        // 5
+
+
+ */
+  getNearestChromaFrom(
+    against: ColorToken,
+    colorspace?: HueColorSpaces,
+    colorObj?: boolean
+  ):
+    | number
+    | {
+        factor: number;
+        color: ColorToken;
+      };
+
+  /**
+ * Gets the largest hue angle difference between the colors in a collection `against` a comparison color.
+ * @param collection The collection of colors to query.
+ * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param colorspace The mode colorspace to retrieve the channel being queried.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is false.
+ * @returns The largest hue angle difference in the colors passed in or a custom object.
+ *
+ * @example
+ * 
+ * import { getFarthestHueFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+        mode='lch'
+
+        console.log(getFarthestHueFrom(sample,against,mode))
+
+        // 35
+ */
+  getFarthestHueFrom(
+    against: ColorToken,
+    colorspace?: HueColorSpaces,
+    colorObj?: boolean
+  ):
+    | number
+    | {
+        factor: number;
+        color: ColorToken;
+      };
+
+  /**
+ * Gets the smallest hue angle difference between the colors in a collection `against` a comparison color.
+  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param colorspace The mode colorspace to retrieve the channel being queried.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is false.
+ * @returns The smallest hue angle difference in the colors passed in or a custom object.
+ *
+ * @example
+ * import { getNearestHueFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+        mode='lch'
+
+        console.log(getNearestHueFrom(sample,against,mode))
+
+        // 5
+
+
+ */
+  getNearestHueFrom(
+    against: ColorToken,
+    colorspace?: HueColorSpaces,
+    colorObj?: boolean
+  ):
+    | number
+    | {
+        factor: number;
+        color: ColorToken;
+      };
+
+  /**
+ * Gets the largest lightness difference between the colors in a collection `against` a comparison color.
+ * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param colorspace The mode colorspace to retrieve the channel being queried.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is false.
+ * @returns The largest lightness difference in the colors passed in or a custom object.
+ *
+ * @example
+ * 
+ * import { getFarthestLightnessFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+        mode='lch'
+
+        console.log(getFarthestLightnessFrom(sample,against,mode))
+
+        // 35
+
+
+ */
+
+  getFarthestLightnessFrom(
+    against: ColorToken,
+    colorspace?: HueColorSpaces,
+    colorObj?: boolean
+  ):
+    | number
+    | {
+        factor: number;
+        color: ColorToken;
+      };
+
+  /**
+ * Gets the smallest lightness difference between the colors in a collection `against` a comparison color.
+ * @param collection The collection of colors to query.
+ * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param colorspace The mode colorspace to retrieve the channel being queried.
+ * @param colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is false.
+ * @returns The smallest lightness difference in the colors passed in or a custom object.
+ *
+ * @example
+ * import { getNearestLightnessFrom } from 'huetiful-js'
+ * 
+ * var sample =  [
+          { l: 40, c: 20, h: 40, mode: 'lch' },
+          { l: 20, c: 10, h: 20, mode: 'lch' },
+          { l: 10, c: 40, h: 10, mode: 'lch' }
+        ],
+        against = { l: 5, c: 5, h: 5, mode: 'lch' },
+        mode='lch'
+
+        console.log(getNearestLightnessFrom(sample,against,mode))
+
+        // 5
+
+ */
+
+  getNearestLightnessFrom(
+    against: ColorToken,
+    colorspace?: HueColorSpaces,
+    colorObj?: boolean
+  ):
+    | number
+    | {
+        factor: number;
+        color: ColorToken;
+      };
+
+  /**
    * @returns Returns the result value from the chain.
    */
   output(): ColorToken;
 }
 /**
  * A wrapper function over the `ColorArray` class which returns a new instance of the class. Use it to invoke the class without using the `new` keyword
- * @param colors An array of colors to chain the array methods on. Every element in the array will be parsed as a color token.
+ * @param colors A collection of colors to chain the array methods on. Every element in the array will be parsed as a color token.
  */
-declare function load(colors: ColorToken[] | object): ColorArray;
+declare function load(
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>
+): ColorArray;
 /**
  *
  *  A wrapper function for ColorBrewer's map of sequential color schemes.
