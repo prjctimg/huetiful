@@ -793,34 +793,15 @@ class Color {
   //   return this;
   // }
 
-  /**
-   * Converts any color token to hexadecimal.
-   * @returns string
-   */
   color2hex() {
     this['_color'] = _hex(this['_color']);
     return this['_color'];
   }
 
-  /**
-   * Returns the pastel variant of the bound color token.
-   * @returns string
-   */
   pastel() {
     this['_color'] = _pstl(this['_color']);
     return this;
   }
-  /**
- * Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color. Call `output()` to get the final result.
- * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
- * @returns An array containing the paired scheme.
- * @example 
- * 
- * import { pairedScheme } from 'huetiful-js'
-
-console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
-// [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
- */
 
   pairedScheme(options) {
     this['colors'] = _ps(this['_color'], options);
@@ -866,9 +847,8 @@ console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
   }
   luminance(amount) {
     if (amount) {
-      this['_luminance'] = amount;
       this['_color'] = _slm(this['_color'], this['_color']);
-
+      this['_luminance'] = _glmnce(this['_color']);
       return this;
     }
     return _glmnce(this['_color']);
@@ -879,9 +859,6 @@ console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
   }
 
   saturation(amount) {
-    this['_saturation'] = _gchn(
-      `${this['colorspace']}.${mcchn(this['colorspace'])}`
-    )(this['_color']);
     if (amount) {
       this['_color'] = _schn(
         `${this['colorspace']}.${mcchn(this['colorspace'])}`
@@ -889,6 +866,9 @@ console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
 
       return this;
     } else {
+      this['_saturation'] = _gchn(
+        `${this['colorspace']}.${mcchn(this['colorspace'])}`
+      )(this['_color']);
       return this['_saturation'];
     }
   }
