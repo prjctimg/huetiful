@@ -49,11 +49,12 @@ console.log(map(sample, isCool));
  */
 declare function isCool(color: ColorToken): boolean;
 /**
- *
- *  Checks if a color can be roughly classified as a warm color. Returns true if color is a warm color else false.
+ * @experimental
+ * Checks if a color can be roughly classified as a warm color. Returns true if color is a warm color else false.
  * @param color The color to check the temperature.
  * @returns True if the color is warm else false.
- * @example import { isWarm } from 'huetiful-js'
+ * @example 
+ * import { isWarm } from 'huetiful-js'
 
 let sample = [
   "#00ffdc",
@@ -74,8 +75,8 @@ console.log(sample.map(isWarm));
  */
 declare function isWarm(color: ColorToken): boolean;
 /**
- *
- * Gets the smallest contrast value from the passed in colors compared against a sample color.
+ * @experimental
+ * Returns the smallest contrast value from the passed in colors compared against a sample color.
  * @param collection The collection of colors to query the color with the smallest contrast value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (`contrast`) and name of the color as keys. Default is `false`.
  * @returns The smallest contrast value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
@@ -101,7 +102,7 @@ declare function getNearestContrast(
     };
 /**
  *
- *  Gets the largest contrast value from the passed in colors compared against a sample color.
+ * Returns the largest contrast value from the passed in colors compared against a sample color.
  * @param collection The collection of colors to query the color with the largest contrast value.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (`contrast`) and name of the color as keys. Default is `false`.
  * @returns The largest contrast value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
@@ -128,7 +129,7 @@ declare function getFarthestContrast(
     };
 /**
  *
- * Gets the smallest chroma/saturation value from the passed in colors.
+ * Returns the smallest `chroma` / `saturation` value from the passed in colors.
  * @param collection The collection of colors to query the color with the smallest chroma/saturation value.
  * @param colorspace The mode `colorspace` to retrieve saturation/chroma values.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is `false`.
@@ -180,7 +181,7 @@ declare function getFarthestChroma(
     };
 /**
  *
- *  Gets the smallest hue angle from the passed in colors.
+ * Returns the smallest hue angle from the passed in colors.
  * @param colors The collection of colors to query the color with the smallest hue value.
  * @param colorspace The mode `colorspace` to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
@@ -206,7 +207,7 @@ declare function getNearestHue(
     };
 /**
  *
- * Gets the largest hue angle from the passed in colors.
+ * Returns the largest hue angle from the passed in colors.
  * @param colors The array of colors to query the color with the largest hue value.
  * @param colorspace The mode color space to perform the computation in.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
@@ -231,7 +232,7 @@ declare function getFarthestHue(
     };
 /**
  *
- * Gets the complementary hue of the passed in color. The function is internally guarded against achromatic colors.
+ * Returns the complementary hue of the passed in color. The function is internally guarded against achromatic colors.
  * @param color The color to retrieve its complimentary hue.
  * @param colorObj Optional boolean whether to return an object with the result color hue family or just the result color. Default is `false`.
  * @returns An object with the hue family and complimentary color as keys.
@@ -260,7 +261,7 @@ declare function getComplimentaryHue(
  * @param  color Any recognizable color token.
  * @param  mc The mode and channel to work with. For example 'rgb.b'.
  * @param  value The value to set on the queried channel. Also supports expressions as strings e.g set('lch.c)("#fc23a1","*0.5")
- * @returns color The mutated color.
+ * @returns color The mutated color. Preserves the `ColorToken` type of the passed in color.
  *
  * @example
  *
@@ -320,7 +321,7 @@ declare function getLuminance(color: ColorToken): number;
  *  Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
  * @param color The color to set luminance
  * @param lum The amount of luminance to set. The value range is normalised between [0,1]
- * @returns The mutated color with the modified properties.
+ * @returns The mutated color with the modified properties. Preserves the `ColorToken` type of the passed in color.
  * @example
  *
  * import { setLuminance, getLuminance } from 'huetiful-js'
@@ -336,7 +337,7 @@ declare function setLuminance(color: ColorToken, lum: number): ColorToken;
  * Sets the opacity of a color. Also gets the alpha value of the color if the value param is omitted
  * @param color The color with the targeted opacity/alpha channel.
  * @param value The value to apply to the opacity channel. The value is between [0,1]
- * @returns color The resulting color. Returns an 8 character hex code.
+ * @returns color. Preserves the `ColorToken` type of the pased in color.
  * @example
  *
  * // Getting the alpha
@@ -447,7 +448,7 @@ declare function getFarthestLightness(
  * @param color The color to darken.
  * @param amount The amount to darken with. The value is expected to be in the range `[0,1]`
  * @param colorspace The mode colorspace to darken the color in. Only uniform colorspaces are supported
- * @returns color The darkened color as a hex string
+ * @returns color The darkened color. Preserves the `ColorToken` type of the pased in color.
  * @example
  *
  *  import { darken } from "huetiful-js";
@@ -467,7 +468,7 @@ declare function darken(
  * @param amount The amount to brighten with. The value is expected to be in the range `[0,100]`
  * @param colorspace The mode colorspace to brighten the color in. Only uniform colorspaces are supported.
  * @param hex Optional boolean to return a hex string (if `true`) or a color obect in the mode `colorspace`.
- * @returns The brightened color as a hex string or color object in the colorspace specified if `hex` is set to `false`.
+ * @returns The brightened color. Preserves the `ColorToken` type of the pased in color.
  * @example
  *
  *  import { brighten } from "huetiful-js";
@@ -478,8 +479,7 @@ console.log(brighten('blue', 0.3, 'lch'));
 declare function brighten(
   color: ColorToken,
   amount?: number,
-  colorspace?: UniformColorSpaces,
-  hex?: boolean
+  colorspace?: UniformColorSpaces
 ): string | object;
 /**
  *
@@ -535,10 +535,10 @@ declare function isAchromatic(
 /**
  *
  * Returns the color as a simulation of the passed in `defeciencyType` of color vision deficiency with the deficiency filter's intensity determined by the `severity` value.
- * @param deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is 'red' when the defeciency parameter is undefined or any falsy value.
+ * @param deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is `'red'` when the defeciency parameter is undefined or any falsy value.
  * @param color The color to return its simulated variant.
  * @param severity The intensity of the filter. The exepected value is between [0,1]. For example 0.5
- * @returns The color as its simulated variant as a hexadecimal string.
+ * @returns The color as its simulated variant. Preserves the `ColorToken` type of the pased in color.
  * @example
  *
  * import { colorDeficiency, color2hex } from 'huetiful-js'
@@ -562,7 +562,7 @@ declare function colorDeficiency(
  * @param collection The collection of colors to search for nearest colors
  * @param against The color to use for distance comparison.
  * @param num The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric.
- * @returns An array of colors.
+ * @returns An cllection of colors.
  * @example
  *
  * let cols = colors('all', '500')
@@ -577,7 +577,7 @@ declare function getNearestColor(
 ): ColorToken | Array<ColorToken> | Map<any, ColorToken>;
 
 /**
- * Gets the largest chroma/saturation difference between the colors in a collection `against` a comparison color.
+ * Returns the largest chroma/saturation difference between the colors in a collection `against` a comparison color.
  * @param collection The collection of colors to query.
  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param colorspace The mode colorspace to retrieve the channel being queried.
@@ -615,7 +615,7 @@ declare function getFarthestChromaFrom(
     };
 
 /**
- * Gets the smallest chroma/saturation difference between the colors in a collection `against` a comparison color.
+ * Returns the smallest chroma/saturation difference between the colors in a collection `against` a comparison color.
  * @param collection The collection of colors to query.
  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param colorspace The mode colorspace to retrieve the channel being queried.
@@ -690,7 +690,7 @@ declare function getFarthestHueFrom(
     };
 
 /**
- * Gets the smallest hue angle difference between the colors in a collection `against` a comparison color.
+ * Returns the smallest hue angle difference between the colors in a collection `against` a comparison color.
  * @param collection The collection of colors to query.
  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param colorspace The mode colorspace to retrieve the channel being queried.
@@ -727,7 +727,7 @@ declare function getNearestHueFrom(
     };
 
 /**
- * Gets the largest lightness difference between the colors in a collection `against` a comparison color.
+ * Returns the largest lightness difference between the colors in a collection `against` a comparison color.
  * @param collection The collection of colors to query.
  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param colorspace The mode colorspace to retrieve the channel being queried.
@@ -766,7 +766,7 @@ declare function getFarthestLightnessFrom(
     };
 
 /**
- * Gets the smallest `lightness` difference between the colors in a collection `against` a comparison color.
+ * Returns the smallest `lightness` difference between the colors in a collection `against` a comparison color.
  * @param collection The collection of colors to query.
  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param colorspace The mode colorspace to retrieve the channel being queried.
@@ -802,7 +802,7 @@ declare function getNearestLightnessFrom(
     };
 
 /**
- * Gets the smallest `luminance` difference between the colors in a collection `against` a comparison color.
+ * REturns the smallest `luminance` difference between the colors in a collection `against` a comparison color.
  * @param collection The collection of colors to query.
  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (`luminance`) and name of the color as keys. Default is `false`.
@@ -836,7 +836,7 @@ declare function getNearestLuminanceFrom(
     };
 
 /**
- * Gets the largest `luminance` difference between the colors in a collection `against` a comparison color.
+ * Returns the largest `luminance` difference between the colors in a collection `against` a comparison color.
  * @param collection The collection of colors to query.
  * @param against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.

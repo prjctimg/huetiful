@@ -13,14 +13,15 @@ governing permissions and limitations under the License.
 import type { ColorToken, HueColorSpaces } from './types';
 /**
  *
- * Returns colors in the specified saturation range.
- *
- * @ The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
- * This means a value in the range `[0,1]` will return, for example if you pass `startSaturation` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range `[0,100]` and will return the normalized value.
- * @param  collection The collection of colors to filter.
- * @param  start The minimum end of the saturation range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
- * @param  end The maximum end of the saturation range.
- * @param colorspace The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.
+ * Returns colors in the specified `saturation` or `chroma` range. The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
+ * This means a value in the range `[0,1]` will return, for example if you pass `start` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either `start` or `end` is above 1 AND the `colorspace` in use has an `end` range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range `[0,100]` and will return the normalized value.
+   * 
+   * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
+   * 
+   * @param  start The minimum end of the `chroma` range.
+   * @param  end The maximum end of the `chroma` range.
+   * @see https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
+ * @param colorspace The color space to fetch the `chroma` value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.
  * @returns Collection of filtered colors.
  * @example
  * import { filterByChroma } from 'huetiful-js'
@@ -53,8 +54,10 @@ declare function filterByChroma(
 /**
  *
  *  Returns colors in the specified luminance range.
+ * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
+
  * @param  collection The collection of colors to filter.
- * @param  start The minimum end of the luminance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
+ * @param  start The minimum end of the luminance range.
  * @param  end The maximum end of the luminance range.
  * @returns Array of filtered colors.
  * @example
@@ -89,6 +92,7 @@ declare function filterByLuminance(
  *
  * The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
  * This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
+  * @see https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
  * @param  collection The collection of colors to filter.
  * @param  start The minimum end of the lightness range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param  end The maximum end of the lightness range.
@@ -124,8 +128,9 @@ declare function filterByLightness(
 /**
  *
  * Returns colors in the specified hue ranges between 0 to 360.
+ * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param collection The collection of colors to filter.
- * @param  start The minimum end of the hue range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
+ * @param  start The minimum end of the 'hue' range. 
  * @param  end The maximum end of the hue range.
  * @returns  Array of the filtered colors.
  * @example
@@ -155,10 +160,11 @@ declare function filterByHue(
 ): Array<ColorToken> | Map<any, ColorToken>;
 /**
  *
- * Returns colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the `differenceHyab` metric for calculating the distances.
+ * Returns colors with the specified `distance` range. The `distance` is tested against a comparison color (the 'against' param) and the specified `distance` ranges. Uses the `differenceHyab` metric for calculating the distances.
+ * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param  collection The collection of colors to filter.
- * @param  start The minimum end of the distance range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
- * @param  end The maximum end of the distance range.
+ * @param  start The minimum end of the `distance` range.
+ * @param  end The maximum end of the `distance` range.
  * @returns Collection of filtered colors.
  * @example
  * import { filterByDistance } from 'huetiful-js'
@@ -186,8 +192,9 @@ declare function filterByDistance(
 /**
  *
  * Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
+ * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param  collection The collection of colors to filter.
- * @param  start The minimum end of the contrast range.Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
+ * @param  start The minimum end of the contrast range.
  * @param  end The maximum end of the contrast range.
  * @returns Collection of filtered colors.
  *

@@ -128,13 +128,15 @@ declare function temp2color(
  * @returns An array of channel values with the colorspace as first element and the alpha channel as the fifth element in the array if its explicitly defined in the passed in color.
  * @example
  *
- *
+ * import { color2tuple } from 'huetiful-js'
+ * 
 let rgbColor = {
   r: 0.4,
   g: 0.3,
   b: 0.7,
   mode: "rgb",
 };
+
 console.log(color2tuple(rgbColor));
 
 // [ 'rgb', 0.4, 0.3, 0.7 ]

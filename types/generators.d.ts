@@ -26,8 +26,8 @@ import type {
  *  Generates a randomised classic color scheme from a single color.
  * @param  schemeType  Any classic color scheme either `"analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary"`.
 * @param color The color to use as a base for the palette.
-@param easingFn The easing function to apply to the palette. It's applied on the `hue` channel.
- * @returns A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
+* @param easingFunc The easing function to apply to the palette. It's applied on the `hue` channel.
+* @returns A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme. Preserves the `ColorToken` type of the pased in color.
  * @example
  *
  import { scheme } from 'huetiful-js'
@@ -78,7 +78,7 @@ declare function discoverPalettes(
  *  Creates a scale of a spline interpolation between an earthtone and a color.
  * @param color The color to interpolate an earth tone with.
   * @param options Optional overrides for customising interpolation and easing functions.
- * @returns Collection of colors resulting from the earthtone interpolation as hex codes.
+ * @returns Collection of colors resulting from the earthtone interpolation. Preserves the `ColorToken` type of the passed in color.
  * @example
  *
  * import { earthtone } from 'huetiful-js'
@@ -97,7 +97,7 @@ declare function earthtone(
  * Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts down) from a single color. Min and max lightness values determine how light or dark our colour will be at either extreme.
  * @param color The color to use as the scheme of the hueshift. Colors are internally converted to LCH.
  * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
- *@returns An array of colors in hexadecimal. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or `(iterations * 2) + 1`
+ *@returns A collection of the hueshifted colors. The length of the resultant array is the number of `iterations` multiplied by 2 plus the scheme color passed or `(iterations * 2) + 1`. Preserves the `ColorToken` type of the passed in color.
  * @example
  * import { hueShift } from "huetiful-js";
 
@@ -127,7 +127,7 @@ declare function hueShift(
  * @param kind The type of the spline interpolation method. Default is basis.
  * @param closed Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is `false`
  * @param options Optional channel specific overrides.
- * @returns An array hexadecimal string of the resultant color.
+ * @returns A collection of colors resulting from the interpolation. Preserves the `ColorToken` type of the passed in color.
  *
  * @example
  *
@@ -194,7 +194,7 @@ declare function pltr(
  * Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color.
  * @param color The color to return a paired color scheme from.
  * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
- * @returns An array containing the paired scheme.
+ * @returns An array containing the paired scheme.Preserves the `ColorToken` type of the passed in color.
  * @example
  *
  * import { pairedScheme } from 'huetiful-js'
@@ -210,9 +210,8 @@ declare function pairedScheme(
  *
  *  Returns a random pastel variant of the passed in color.
  * @param color The color to return a pastel variant of.
- * @returns A random pastel color.
+ * @returns A random pastel color. Preserves the `ColorToken` type of the pased in color.
  * @example
- *
  *
 import { pastel } from 'huetiful-js'
 

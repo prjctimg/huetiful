@@ -15,6 +15,7 @@ import type {
   EarthtoneOptions
 } from './types';
 /**
+ * @experimental
  * @internal
  * Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
  * @example
@@ -33,7 +34,7 @@ declare class ColorArray {
    *
    * @param colors The collection of colors to bind.
    */
-  constructor(colors: ColorToken[] | object);
+  constructor(colors: ArrayLike<ColorToken> | object | Map<any, ColorToken>);
   /**
      *
      *  Returns a spline interpolator function with customizable interpolation methods (by selecting the `kind` of ), with support for generating color scales for cyclic data (by setting the `closed` parameter to `true`) and optional channel specific overrides.
@@ -334,7 +335,7 @@ console.log(getFarthestLuminanceFrom(sample, against));
   filterByLightness(start?: number, end?: number): ColorArray;
   /**
    *
-   *  Returns an array of colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
+   *  Returns colors with the specified distance range from the bound `collection`. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
    * 
    * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
    * @param  start  The minimum end of the distance range.
