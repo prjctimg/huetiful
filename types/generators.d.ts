@@ -217,6 +217,7 @@ declare function pairedScheme(
 import { pastel } from 'huetiful-js'
 
 console.log(pastel("green"))
+
 // #036103ff
  */
 declare function pastel(color: ColorToken): ColorToken;

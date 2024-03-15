@@ -1,3 +1,4 @@
+import { color } from './src/index.js';
 import {
   getMeanContrast,
   getMeanDistance,
@@ -6,13 +7,22 @@ import {
   getFarthestLuminanceFrom
 } from './src/utils.js';
 
-var sample = [
-    { l: 40, c: 20, h: 40, mode: 'lch' },
-    { l: 20, c: 10, h: 20, mode: 'lch' },
-    { l: 10, c: 40, h: 10, mode: 'lch' }
-  ],
-  against = { l: 5, c: 5, h: 5, mode: 'lch' };
+let myColor = 'green';
+console.log(color(myColor).luminance());
+// 0.1543834296814607
 
-console.log(getFarthestLuminanceFrom(sample, against));
+console.log(color(myColor).luminance(0.5));
 
-console.log(getNearestLuminanceFrom(sample, against));
+// Color {
+//   alpha: 1,
+//   _color: '#008000',
+//   _luminance: 0.5,
+//   lightness: 46.27770902748027,
+//   colorspace: 'lch',
+//   _saturation: undefined,
+//   lightMode: '#f3f4f6',
+//   darkMode: '#1f2937'
+// }
+
+let hueShiftedPalette = color('#3e0000').hueShift({ iterations: 1 });
+console.log(hueshiftedPalette);

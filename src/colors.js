@@ -702,7 +702,7 @@ function tailwindColors(shade, value) {
   shade = shade.toLowerCase();
 
   if (shade === defaultHue) {
-    if (value) {
+    if (hasVal(value)) {
       return hueKeys.map((hue) => tailwindHues[hue][value]);
     } else {
       return hueKeys.map((key) => Object.values(tailwindHues[key])).flat(2);
@@ -713,8 +713,8 @@ function tailwindColors(shade, value) {
     } else {
       return Object.values(tailwindHues[shade]);
     }
-  } else if (!shade && !value === void 0) {
-    throw Error(`Both shade and value cannot be undefined`);
+  } else if (!shade || (!shade && !value)) {
+    return hueKeys.map((h) => tailwindHues[H]);
   }
 }
 
@@ -840,7 +840,11 @@ console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
   }
 
   earthtone(options) {
-    this['colors'] = _rthtn(this['_color'], or(options, {}));
+    this['colors'] = _rthtn(
+      this['_color'],
+      this['colorspace'],
+      or(options, {})
+    );
 
     return new ColorArray(this['colors']);
   }
@@ -855,7 +859,7 @@ console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
         result = _gctrst(this['_color'], this['background']['darkMode']);
         break;
       default:
-        result = _gctrst(this['_color'], this['background']['custom']);
+        result = _gctrst(this['_color'], against);
         break;
     }
     return result;

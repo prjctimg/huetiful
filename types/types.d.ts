@@ -16,7 +16,6 @@ governing permissions and limitations under the License.
 // Color token types
 export type ColorTuple = [Colorspaces, number, number, number, number?];
 
-export type ColorObject = { mode: Colorspaces; alpha?: number };
 export type ColorOptions = {
   alpha?: number;
   lightness?: number;
@@ -208,7 +207,8 @@ export type ColorObject = {
   [channel: string]: number | undefined;
 
   alpha?: number;
-  mode: Colorspaces;
+  // @ts-ignore
+  colorspace: Colorspaces;
 };
 
 /**

@@ -184,10 +184,8 @@ function hueShift(color, colorspace = 'lch', options = {}) {
   color = ucsConverter(colorspace.toLowerCase())(color);
 
   let { iterations, hueStep, minLightness, maxLightness, easingFunc } = options;
-  const [l, c] = [
-    mlchn(colorspace).split('.')[1],
-    mcchn(colorspace).split('.')[1]
-  ];
+  const [l, c] = [mlchn, mcchn].map((e) => e(colorspace).split('.')[1]);
+
   // Pass default values in case the options object is overridden
   easingFunc = or(easingFunc, easingSmoothstep);
   iterations = or(iterations, 6) + 1;

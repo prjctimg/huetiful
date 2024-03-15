@@ -2,8 +2,8 @@ import * as colors from '../src/colors.js';
 import _iterator from './helpers/iterator.js';
 /** 
  * @license
- * colors.ts - Test suite for huetiful-js colors module. 
-Copyright 2023 Dean Tarisai.
+ * colors.js - Test suite for huetiful-js `colors` module. 
+Copyright 2024 Dean Tarisai.
 This file is licensed to you under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License. You may obtain a copy
 of the License at http://www.apache.org/licenses/LICENSE-2.0
