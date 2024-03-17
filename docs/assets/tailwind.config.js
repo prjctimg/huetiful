@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: {
-    files: ['./*.{js,md,njk}'],
+    files: ['./*.{js,md,njk,html}', '../www/*.html'],
     relative: true,
     transform: (content) => content.replace(/taos:/g, '')
   },

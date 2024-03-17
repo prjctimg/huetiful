@@ -9,9 +9,7 @@ import {
   writeFileSync
 } from 'node:fs';
 import * as _ from './js/docs.cjs';
-import convertRelativeToAbsolute from './js/rel2abs.js';
-import * as specData from '../../spec/helpers/specData.js';
-import demo from './json/demo.json';
+import _demo from './json/demo.json' assert { type: 'json' };
 
 var { src, dest, series, watch } = gulp;
 
@@ -21,31 +19,24 @@ var moduleNames = readdirSync(PATH_TO_MD_FILES + '/modules', 'utf-8').map(
 );
 
 // generate demo pages
-async function demoPages() {
-  for (const [k, v] of Object.entries(JSON.parse(demo))) {
-    src(`./xml/views/demo.njk`)
-      .pipe(
-        _njk({
-          path: ['./xml/'],
-          manageEnv: demoDocsEnv(v),
+export async function demo() {
+  src(`./xml/views/demo.njk`)
+    .pipe(
+      _njk({
+        path: ['./xml/'],
+        manageEnv: demoDocsEnv(Object(_demo)),
 
-          ext: '.html',
-          inheritExtension: false,
-          envOptions: {
-            watch: true
-          }
-        })
-      )
-      .pipe(dest(`../www/api/${k}/demo`));
-  }
+        ext: '.html',
+        inheritExtension: false
+      })
+    )
+    .pipe(dest(`../www`));
 }
 
-function demoDocsEnv(spec, moduleName, moduleDescription) {
+function demoDocsEnv(spec) {
   return (env) => {
-    env.addGlobal('spec', spec);
-
-    env.addGlobal('moduleName', moduleName);
-    env.addGlobal('moduledescription', moduleDescription);
+    env.addGlobal('demoData', spec);
+    env.addGlobal('isColorCollection', _.isColorCollection);
   };
 }
 

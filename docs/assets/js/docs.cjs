@@ -13,7 +13,7 @@ governing permissions and limitations under the License.
 
  */
 
-import { colorsNamed } from 'culori';
+var { colorsNamed } = require('culori');
 
 var { readFileSync, lstatSync, writeFileSync } = require('node:fs'),
   ge = require('github-emoji'),
@@ -145,5 +145,6 @@ function createIndexPages() {
 module.exports = {
   buildDataObject,
   createIndexPages,
-  rel2absURL
+  rel2absURL,
+  isColorCollection
 };

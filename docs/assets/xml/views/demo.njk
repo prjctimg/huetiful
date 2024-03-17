@@ -1,27 +1,29 @@
-{# Render components to display output visually. Make it pretty #}
-{% block demo %}{% endblock demo %}
+{% extends "./layouts/base.njk" %}
 
-<section>
 
-    <h3>{{moduleName}}</h3>
+{% block content %}
+{% for mod,prop in demoData %}
+<section class="flex-col p-4 bg-slate-100 my-3 shadow-md">
 
-    <p>{{moduleDescription}}</p>
+    <h3 class="px-8 font-sans text-xl font-semibold text-slate-800">{{mod}}</h3>
 
-    {% for func,props in spec %}
-    <p>{{func}}</p>
-    <p>{{props.description}}</p>
-    {% if isColorCollection(func.expect) %}
-    {% for color in func.expect %}
-    <div class="flex-col space-y-2">
+    <p class="pb-6 font-sans text-slate-500 text-base font-normal">{{prop.description}}</p>
+
+    {% for func,props in prop.specs %}
+    <h4 class="font-sans text-slate-700 text-lg">{{func}}</h4>
+    <p class="pt-3 font-sans text-slate-500 text-base ">{{props.description}}</p>
+    {% if isColorCollection(props.expect) %}
+    {% for color in props.expect %}
+    <div class="flex-col space-y-2 align-middle">
         <div class="w-8 h-8 rounded-md shadow-md bg-[{{color}}]"></div>
-        <p class="text-sm text-slate-400">{{color}}</p>
+        <p class="text-xs text-slate-400">{{color}}</p>
 
     </div>
     {% endfor %}
     {% else %}
     <div class="flex-col space-y-2">
-        <p class="text-sm">{{func.expect}}</p>
-        <div class="w-8 h-8 rounded-md shadow-md bg-[{{func.expect}}]"></div>
+        <p class="text-sm">{{props.expect}}</p>
+        <div class="w-8 h-8 rounded-md shadow-md bg-[{{props.expect}}]"></div>
     </div>
 
     {% endif %}
@@ -30,3 +32,5 @@
     {% endfor %}
 
 </section>
+{% endfor %}
+{% endblock content %}
