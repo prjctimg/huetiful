@@ -10,3 +10,5 @@ function convertRelativeToAbsolute(baseUrl, html) {
     }
   );
 }
+
+export default convertRelativeToAbsolute;

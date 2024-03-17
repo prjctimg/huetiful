@@ -3,18 +3,19 @@
 
 <section>
 
-    <h3>{{spec.name}}</h3>
+    <h3>{{moduleName}}</h3>
 
-    <p>{{spec.description}}</p>
+    <p>{{moduleDescription}}</p>
 
-    {% for func in spec.data %}
-    <p>{{func.description}}</p>
-
-    {% if Array.isArray(func.expect) %}
+    {% for func,props in spec %}
+    <p>{{func}}</p>
+    <p>{{props.description}}</p>
+    {% if isColorCollection(func.expect) %}
     {% for color in func.expect %}
     <div class="flex-col space-y-2">
-        <p class="text-sm">{{color}}</p>
         <div class="w-8 h-8 rounded-md shadow-md bg-[{{color}}]"></div>
+        <p class="text-sm text-slate-400">{{color}}</p>
+
     </div>
     {% endfor %}
     {% else %}

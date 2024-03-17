@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "type": "module",
   "description": "The documentation webapp for huetiful-js",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "css:build": "npx tailwindcss -i ./css/_/index.css -o ../www/assets/css/huetiful.css ",
@@ -20,6 +19,10 @@
     "htmx.org": "^1.9.10",
     "nunjucks": "^3.2.4",
     "showdown": "^2.1.0",
-    "tailwindcss": "^3.4.1"
+    "tailwind-heropatterns": "^0.0.8",
+    "tailwindcss": "^3.4.1",
+    "tailwindcss-border-gradients": "^2.0.3",
+    "tailwindcss-gradients": "^3.0.0",
+    "taos": "^1.0.5"
   }
 }

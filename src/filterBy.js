@@ -26,10 +26,10 @@ function baseFilterBy(
     reOp(end)
   ];
 
-  if (normFacts[factor]) {
-    startVal = norm(startVal, normFacts[factor](colorspace));
-    end = norm(endVal, normFacts[factor](colorspace));
-  }
+  // if (normFacts[factor]) {
+  //   startVal = norm(startVal, normFacts[factor](colorspace));
+  //   end = norm(endVal, normFacts[factor](colorspace));
+  // }
 
   if (typeof start === 'string' && sym1) {
     startVal = sym1.concat(startVal.toString());
@@ -85,7 +85,7 @@ function filterByLightness(collection, start = 0.05, end, colorspace = 'lch') {
     colorspace
   );
 }
-function filterByHue(collection, start = 0, end = 360, colorspace) {
+function filterByHue(collection, start = 0, end = 360, colorspace = 'lch') {
   return baseFilterBy(
     'hue',
     getChannel(`${colorspace}.h`),
@@ -95,7 +95,7 @@ function filterByHue(collection, start = 0, end = 360, colorspace) {
   );
 }
 
-function filterByDistance(collection, against, start = 0.05, end) {
+function filterByDistance(collection, against, start = 0.05, end = Infinity) {
   const cb = (against) => (color) => differenceHyab()(against, color);
 
   return baseFilterBy(
@@ -107,7 +107,12 @@ function filterByDistance(collection, against, start = 0.05, end) {
   );
 }
 
-function filterByContrast(collection, against, start = 1, end = 21) {
+function filterByContrast(
+  collection = [],
+  against = '#fff',
+  start = 1,
+  end = 21
+) {
   const cb = (against) => (color) => getContrast(color, against);
   return baseFilterBy('contrast', cb(against), collection, start, end);
 }

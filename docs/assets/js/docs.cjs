@@ -13,6 +13,8 @@ governing permissions and limitations under the License.
 
  */
 
+import { colorsNamed } from 'culori';
+
 var { readFileSync, lstatSync, writeFileSync } = require('node:fs'),
   ge = require('github-emoji'),
   defaultClasses = {
@@ -37,6 +39,21 @@ var { readFileSync, lstatSync, writeFileSync } = require('node:fs'),
     tasklists: true
   }),
   PATH_TO_MARKDOWN_FILES = './markdown/modules';
+
+function isColorCollection(arg) {
+  if (
+    Array.isArray(arg) &&
+    arg.some(
+      (e) =>
+        (typeof e === 'string' && (e.startsWith('#') || colorsNamed[e])) ||
+        typeof e === 'object' ||
+        Array.isArray(e)
+    )
+  ) {
+    return true;
+  }
+  return false;
+}
 
 function rel2absURL(baseUrl, html) {
   const parsedBaseUrl = new url.URL(baseUrl);

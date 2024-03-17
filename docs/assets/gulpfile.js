@@ -9,6 +9,9 @@ import {
   writeFileSync
 } from 'node:fs';
 import * as _ from './js/docs.cjs';
+import convertRelativeToAbsolute from './js/rel2abs.js';
+import * as specData from '../../spec/helpers/specData.js';
+import demo from './json/demo.json';
 
 var { src, dest, series, watch } = gulp;
 
@@ -17,7 +20,36 @@ var moduleNames = readdirSync(PATH_TO_MD_FILES + '/modules', 'utf-8').map(
   (s) => s.split('.')[0]
 );
 
-function manageEnv(source) {
+// generate demo pages
+async function demoPages() {
+  for (const [k, v] of Object.entries(JSON.parse(demo))) {
+    src(`./xml/views/demo.njk`)
+      .pipe(
+        _njk({
+          path: ['./xml/'],
+          manageEnv: demoDocsEnv(v),
+
+          ext: '.html',
+          inheritExtension: false,
+          envOptions: {
+            watch: true
+          }
+        })
+      )
+      .pipe(dest(`../www/api/${k}/demo`));
+  }
+}
+
+function demoDocsEnv(spec, moduleName, moduleDescription) {
+  return (env) => {
+    env.addGlobal('spec', spec);
+
+    env.addGlobal('moduleName', moduleName);
+    env.addGlobal('moduledescription', moduleDescription);
+  };
+}
+
+function ApiDocsEnv(source) {
   return (env) => env.addGlobal('data', _.buildDataObject(source));
 }
 
@@ -41,7 +73,7 @@ export async function xml() {
       .pipe(
         _njk({
           path: ['./xml/'],
-          manageEnv: manageEnv(srcFile),
+          manageEnv: ApiDocsEnv(srcFile),
 
           ext: '.html',
           inheritExtension: false,

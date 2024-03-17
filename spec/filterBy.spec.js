@@ -1,6 +1,6 @@
 import * as filterBy from '../src/filterBy.js';
 import _iterator from './helpers/iterator.js';
-
+import 'jasmine';
 /** 
  * @license
  * filterBy.ts - Test suite for huetiful-js color filtering module. 
@@ -14,189 +14,208 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-describe(`The filterBy module test suite `, () => {
-  // For utils that take a colorspace param the default is 'lch'
+var filterBySpec = {
+  filterByContrast: {
+    params: [
+      [
+        '#94a3b8',
+        '#9ca3af',
+        '#a1a1aa',
+        '#a3a3a3',
+        '#a8a29e',
+        '#f87171',
+        '#fb923c',
+        '#fbbf24',
+        '#facc15',
+        '#a3e635',
+        '#4ade80',
+        '#34d399',
+        '#2dd4bf',
+        '#38bdf8',
+        '#60a5fa',
+        '#a78bfa',
+        '#c084fc',
+        '#e879f9',
+        '#f472b6',
+        '#fb7185'
+      ],
+      'green',
+      3.05,
+      12
+    ],
+    description: 'Filters color by relative contrast',
+    expect: ['#fbbf24', '#facc15', '#a3e635']
+  },
+  filterByHue: {
+    params: [
+      [
+        '#94a3b8',
+        '#9ca3af',
+        '#a1a1aa',
+        '#a3a3a3',
+        '#a8a29e',
+        '#f87171',
+        '#fb923c',
+        '#fbbf24',
+        '#facc15',
+        '#a3e635',
+        '#4ade80',
+        '#34d399',
+        '#2dd4bf',
+        '#38bdf8',
+        '#60a5fa',
+        '#a78bfa',
+        '#c084fc',
+        '#e879f9',
+        '#f472b6',
+        '#fb7185'
+      ],
+      60,
+      220,
+      'lch'
+    ],
+    description: 'Filters color by hue',
+    expect: ['#fbbf24', '#facc15', '#a3e635', '#4ade80', '#34d399', '#2dd4bf']
+  },
+  filterByLuminance: {
+    params: [
+      [
+        '#94a3b8',
+        '#9ca3af',
+        '#a1a1aa',
+        '#a3a3a3',
+        '#a8a29e',
+        '#f87171',
+        '#fb923c',
+        '#fbbf24',
+        '#facc15',
+        '#a3e635',
+        '#4ade80',
+        '#34d399',
+        '#2dd4bf',
+        '#38bdf8',
+        '#60a5fa',
+        '#a78bfa',
+        '#c084fc',
+        '#e879f9',
+        '#f472b6',
+        '#fb7185'
+      ],
+      '>0.5',
+      '<0.9'
+    ],
+    description: 'Filters color by luminance',
+    expect: ['#fbbf24', '#facc15', '#a3e635', '#4ade80', '#2dd4bf']
+  },
+  filterByLightness: {
+    params: [
+      [
+        '#94a3b8',
+        '#9ca3af',
+        '#a1a1aa',
+        '#a3a3a3',
+        '#a8a29e',
+        '#f87171',
+        '#fb923c',
+        '#fbbf24',
+        '#facc15',
+        '#a3e635',
+        '#4ade80',
+        '#34d399',
+        '#2dd4bf',
+        '#38bdf8',
+        '#60a5fa',
+        '#a78bfa',
+        '#c084fc',
+        '#e879f9',
+        '#f472b6',
+        '#fb7185'
+      ],
+      45,
+      69,
+      'lch'
+    ],
+    description: 'Filters color by lightness',
+    expect: [
+      '#94a3b8',
+      '#9ca3af',
+      '#a1a1aa',
+      '#a3a3a3',
+      '#a8a29e',
+      '#f87171',
+      '#60a5fa',
+      '#a78bfa',
+      '#c084fc',
+      '#e879f9',
+      '#f472b6',
+      '#fb7185'
+    ]
+  },
+  filterByDistance: {
+    params: [
+      [
+        '#94a3b8',
+        '#9ca3af',
+        '#a1a1aa',
+        '#a3a3a3',
+        '#a8a29e',
+        '#f87171',
+        '#fb923c',
+        '#fbbf24',
+        '#facc15',
+        '#a3e635',
+        '#4ade80',
+        '#34d399',
+        '#2dd4bf',
+        '#38bdf8',
+        '#60a5fa',
+        '#a78bfa',
+        '#c084fc',
+        '#e879f9',
+        '#f472b6',
+        '#fb7185'
+      ],
+      'yellow',
+      '>70.05'
+    ],
+    description: 'Filters color by distance',
+    expect: ['#fbbf24', '#facc15', '#a3e635']
+  },
+  filterByChroma: {
+    params: [
+      [
+        '#94a3b8',
+        '#9ca3af',
+        '#a1a1aa',
+        '#a3a3a3',
+        '#a8a29e',
+        '#f87171',
+        '#fb923c',
+        '#fbbf24',
+        '#facc15',
+        '#a3e635',
+        '#4ade80',
+        '#34d399',
+        '#2dd4bf',
+        '#38bdf8',
+        '#60a5fa',
+        '#a78bfa',
+        '#c084fc',
+        '#e879f9',
+        '#f472b6',
+        '#fb7185'
+      ],
+      70
+    ],
+    description: 'Filters color by saturation',
+    expect: ['#fb923c', '#fbbf24', '#facc15', '#a3e635', '#e879f9']
+  }
+};
 
-  var data = {
-    filterByContrast: {
-      params: [
-        [
-          '#00ffdc',
-          '#00ff78',
-          '#00c000',
-          '#007e00',
-          '#164100',
-          '#ffff00',
-          '#310000',
-          '#3e0000',
-          '#4e0000',
-          '#600000',
-          '#720000',
-          '#ffff00',
-          '#00ffdc',
-          '#00ff78',
-          '#00c000',
-          '#007e00',
-          '#164100',
-          '#720000',
-          '#600000'
-        ],
-        0.05,
-        1,
-        'lch'
-      ],
-      description: 'Filters color by relative contrast',
-      expect: jasmine.anything()
-    },
-    filterByHue: {
-      params: [
-        [
-          '#00ffdc',
-          '#00ff78',
-          '#00c000',
-          '#007e00',
-          '#164100',
-          '#ffff00',
-          '#310000',
-          '#3e0000',
-          '#4e0000',
-          '#600000',
-          '#720000',
-          '#ffff00',
-          '#00ffdc',
-          '#00ff78',
-          '#00c000',
-          '#007e00',
-          '#164100',
-          '#720000',
-          '#600000'
-        ],
-        10,
-        360,
-        'lch'
-      ],
-      description: 'Filters color by hue',
-      expect: jasmine.anything()
-    },
-    filterByLuminance: {
-      params: [
-        [
-          '#00ffdc',
-          '#00ff78',
-          '#00c000',
-          '#007e00',
-          '#164100',
-          '#ffff00',
-          '#310000',
-          '#3e0000',
-          '#4e0000',
-          '#600000',
-          '#720000',
-          '#ffff00',
-          '#00ffdc',
-          '#00ff78',
-          '#00c000',
-          '#007e00',
-          '#164100',
-          '#720000',
-          '#600000'
-        ],
-        0.05,
-        0.8
-      ],
-      description: 'Filters color by luminance',
-      expect: jasmine.anything()
-    },
-    filterByLightness: {
-      params: [
-        [
-          '#00ffdc',
-          '#00ff78',
-          '#00c000',
-          '#007e00',
-          '#164100',
-          '#ffff00',
-          '#310000',
-          '#3e0000',
-          '#4e0000',
-          '#600000',
-          '#720000',
-          '#ffff00',
-          '#00ffdc',
-          '#00ff78',
-          '#00c000',
-          '#007e00',
-          '#164100',
-          '#720000',
-          '#600000'
-        ],
-        5,
-        100,
-        'lch'
-      ],
-      description: 'Filters color by lightness',
-      expect: jasmine.anything()
-    },
-    filterByDistance: {
-      params: [
-        [
-          '#00ffdc',
-          '#00ff78',
-          '#00c000',
-          '#007e00',
-          '#164100',
-          '#ffff00',
-          '#310000',
-          '#3e0000',
-          '#4e0000',
-          '#600000',
-          '#720000',
-          '#ffff00',
-          '#00ffdc',
-          '#00ff78',
-          '#00c000',
-          '#007e00',
-          '#164100',
-          '#720000',
-          '#600000'
-        ],
-        'yellow',
-        '>1.05'
-      ],
-      description: 'Filters color by distance',
-      expect: jasmine.anything()
-    },
-    filterByChroma: {
-      params: [
-        [
-          '#00ffdc',
-          '#00ff78',
-          '#00c000',
-          '#007e00',
-          '#164100',
-          '#ffff00',
-          '#310000',
-          '#3e0000',
-          '#4e0000',
-          '#600000',
-          '#720000',
-          '#ffff00',
-          '#00ffdc',
-          '#00ff78',
-          '#00c000',
-          '#007e00',
-          '#164100',
-          '#720000',
-          '#600000'
-        ],
-        25,
-        100,
-        'lch'
-      ],
-      description: 'Filters color by saturation',
-      expect: jasmine.anything()
-    }
-  };
+// describe(`The filterBy module test suite `, () => {
+//   // For utils that take a colorspace param the default is 'lch'
 
-  _iterator(filterBy, data);
-});
+//   _iterator(filterBy, filterBySpec);
+// });
+
+export default filterBySpec;

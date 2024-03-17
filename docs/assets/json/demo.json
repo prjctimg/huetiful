@@ -1,0 +1,336 @@
+{
+  "sortBySpec": {
+    "sortBySaturation": {
+      "params": [["blue", "pink", "yellow", "green"], "asc", "lch"],
+      "description": "Sorts colors by saturation value in `asc` order",
+      "expect": ["pink", "green", "yellow", "blue"]
+    },
+    "sortByLightness": {
+      "params": [["blue", "pink", "yellow", "green"], "asc", "lch"],
+      "description": "Sorts colors by lightness value in `asc` order",
+      "expect": ["blue", "green", "pink", "yellow"]
+    },
+    "sortByLuminance": {
+      "params": [["blue", "pink", "yellow", "green"], "asc"],
+      "description": "Sorts colors by luminance value in `asc` order",
+      "expect": ["blue", "green", "pink", "yellow"]
+    },
+    "sortByDistance": {
+      "params": [["blue", "pink", "yellow", "green"], "brown", "asc"],
+      "description": "Sorts colors by distance value in `asc` order",
+      "expect": ["pink", "green", "blue", "yellow"]
+    },
+    "sortByContrast": {
+      "params": [["blue", "pink", "yellow", "green"], "black", "asc"],
+      "description": "Sorts colors by distance value in `asc` order",
+      "expect": ["blue", "green", "pink", "yellow"]
+    },
+    "sortByHue": {
+      "params": [["blue", "pink", "yellow", "green"], "asc", "lch"],
+      "description": "Sorts colors by hue angle in `asc` order",
+      "expect": ["pink", "yellow", "green", "blue"]
+    }
+  },
+  "colorsSpec": {
+    "tailwindColors": {
+      "params": ["all", "300"],
+      "description": "Returns the swatches of color families at 300",
+      "expect": [
+        "#cbd5e1",
+        "#d1d5db",
+        "#d4d4d8",
+        "#d4d4d4",
+        "#d6d3d1",
+        "#fca5a5",
+        "#fdba74",
+        "#fcd34d",
+        "#fde047",
+        "#bef264",
+        "#86efac",
+        "#6ee7b7",
+        "#5eead4",
+        "#7dd3fc",
+        "#93c5fd",
+        "#c4b5fd",
+        "#d8b4fe",
+        "#f0abfc",
+        "#f9a8d4",
+        "#fda4af"
+      ]
+    }
+  },
+  "filterBySpec": {
+    "filterByContrast": {
+      "params": [
+        [
+          "#94a3b8",
+          "#9ca3af",
+          "#a1a1aa",
+          "#a3a3a3",
+          "#a8a29e",
+          "#f87171",
+          "#fb923c",
+          "#fbbf24",
+          "#facc15",
+          "#a3e635",
+          "#4ade80",
+          "#34d399",
+          "#2dd4bf",
+          "#38bdf8",
+          "#60a5fa",
+          "#a78bfa",
+          "#c084fc",
+          "#e879f9",
+          "#f472b6",
+          "#fb7185"
+        ],
+        "green",
+        3.05,
+        12
+      ],
+      "description": "Filters color by relative contrast",
+      "expect": ["#fbbf24", "#facc15", "#a3e635"]
+    },
+    "filterByHue": {
+      "params": [
+        [
+          "#94a3b8",
+          "#9ca3af",
+          "#a1a1aa",
+          "#a3a3a3",
+          "#a8a29e",
+          "#f87171",
+          "#fb923c",
+          "#fbbf24",
+          "#facc15",
+          "#a3e635",
+          "#4ade80",
+          "#34d399",
+          "#2dd4bf",
+          "#38bdf8",
+          "#60a5fa",
+          "#a78bfa",
+          "#c084fc",
+          "#e879f9",
+          "#f472b6",
+          "#fb7185"
+        ],
+        60,
+        220,
+        "lch"
+      ],
+      "description": "Filters color by hue",
+      "expect": [
+        "#fbbf24",
+        "#facc15",
+        "#a3e635",
+        "#4ade80",
+        "#34d399",
+        "#2dd4bf"
+      ]
+    },
+    "filterByLuminance": {
+      "params": [
+        [
+          "#94a3b8",
+          "#9ca3af",
+          "#a1a1aa",
+          "#a3a3a3",
+          "#a8a29e",
+          "#f87171",
+          "#fb923c",
+          "#fbbf24",
+          "#facc15",
+          "#a3e635",
+          "#4ade80",
+          "#34d399",
+          "#2dd4bf",
+          "#38bdf8",
+          "#60a5fa",
+          "#a78bfa",
+          "#c084fc",
+          "#e879f9",
+          "#f472b6",
+          "#fb7185"
+        ],
+        ">0.5",
+        "<0.9"
+      ],
+      "description": "Filters color by luminance",
+      "expect": ["#fbbf24", "#facc15", "#a3e635", "#4ade80", "#2dd4bf"]
+    },
+    "filterByLightness": {
+      "params": [
+        [
+          "#94a3b8",
+          "#9ca3af",
+          "#a1a1aa",
+          "#a3a3a3",
+          "#a8a29e",
+          "#f87171",
+          "#fb923c",
+          "#fbbf24",
+          "#facc15",
+          "#a3e635",
+          "#4ade80",
+          "#34d399",
+          "#2dd4bf",
+          "#38bdf8",
+          "#60a5fa",
+          "#a78bfa",
+          "#c084fc",
+          "#e879f9",
+          "#f472b6",
+          "#fb7185"
+        ],
+        45,
+        69,
+        "lch"
+      ],
+      "description": "Filters color by lightness",
+      "expect": [
+        "#94a3b8",
+        "#9ca3af",
+        "#a1a1aa",
+        "#a3a3a3",
+        "#a8a29e",
+        "#f87171",
+        "#60a5fa",
+        "#a78bfa",
+        "#c084fc",
+        "#e879f9",
+        "#f472b6",
+        "#fb7185"
+      ]
+    },
+    "filterByDistance": {
+      "params": [
+        [
+          "#94a3b8",
+          "#9ca3af",
+          "#a1a1aa",
+          "#a3a3a3",
+          "#a8a29e",
+          "#f87171",
+          "#fb923c",
+          "#fbbf24",
+          "#facc15",
+          "#a3e635",
+          "#4ade80",
+          "#34d399",
+          "#2dd4bf",
+          "#38bdf8",
+          "#60a5fa",
+          "#a78bfa",
+          "#c084fc",
+          "#e879f9",
+          "#f472b6",
+          "#fb7185"
+        ],
+        "yellow",
+        ">70.05"
+      ],
+      "description": "Filters color by distance",
+      "expect": ["#fbbf24", "#facc15", "#a3e635"]
+    },
+    "filterByChroma": {
+      "params": [
+        [
+          "#94a3b8",
+          "#9ca3af",
+          "#a1a1aa",
+          "#a3a3a3",
+          "#a8a29e",
+          "#f87171",
+          "#fb923c",
+          "#fbbf24",
+          "#facc15",
+          "#a3e635",
+          "#4ade80",
+          "#34d399",
+          "#2dd4bf",
+          "#38bdf8",
+          "#60a5fa",
+          "#a78bfa",
+          "#c084fc",
+          "#e879f9",
+          "#f472b6",
+          "#fb7185"
+        ],
+        70
+      ],
+      "description": "Filters color by saturation",
+      "expect": ["#fb923c", "#fbbf24", "#facc15", "#a3e635", "#e879f9"]
+    }
+  },
+  "generatorsSpec": {
+    "discoverPalettes": {
+      "params": [
+        [
+          "#ffff00",
+          "#00ffdc",
+          "#00ff78",
+          "#00c000",
+          "#007e00",
+          "#164100",
+          "#720000",
+          "#600000",
+          "#4e0000",
+          "#3e0000",
+          "#310000"
+        ],
+        "tetradic"
+      ],
+      "description": "Takes an array of colors and finds the best matches for a set of predefined palettes.",
+      "expect": ["#310000", "#3e0000", "#4e0000", "#164100"]
+    },
+    "earthtone": {
+      "params": ["pink", "lch", { "earthtones": "clay", "iterations": 5 }],
+      "description": "Creates a scale of a spline interpolation between an earthtone and a color.",
+      "expect": ["#6a5c52", "#816a63", "#b38d86", "#e6b0ac", "#ffc1be"]
+    },
+    "hueShift": {
+      "params": ["#3e0000"],
+      "description": "Generates a palette of hue shifted colors",
+      "expect": [
+        "#3f0101",
+        "#2b1800",
+        "#002620",
+        "#2f1500",
+        "#321300",
+        "#3f0007",
+        "#3e0000",
+        "#561a17",
+        "#743356",
+        "#915077",
+        "#268fad",
+        "#cb8ebe",
+        "#fcaca7"
+      ]
+    },
+    "interpolateSpline": {
+      "params": [["b2c3f1", "#a1bd2f", "#f3bac1"], "lch", 8, "natural"],
+      "description": "Returns a spline interpolator function with customizable interpolation methods",
+      "expect": [
+        "#b2c3f1",
+        "#2dd0f5",
+        "#00d5ae",
+        "#6aca4c",
+        "#c5b722",
+        "#fba859",
+        "#010101",
+        "#f3bac1"
+      ]
+    },
+    "pairedScheme": {
+      "params": ["green", { "hueStep": 6, "iterations": 4, "tone": "dark" }],
+      "description": "Creates a scheme that consists of a scheme color that is incremented by a hueStep to get the final hue to pair with",
+      "expect": ["#008000", "#348e2a", "#79b36f", "#cfe4cb"]
+    },
+    "pastel": {
+      "params": ["green"],
+      "description": "Creates a pastel variant of a color",
+      "expect": ""
+    }
+  }
+}
