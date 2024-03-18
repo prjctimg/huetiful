@@ -18,156 +18,6 @@ governing permissions and limitations under the License.
 */
 
 var utilsSpec = {
-  getMeanLuminance: {
-    params: [
-      [
-        { l: 40, c: 20, h: 40, mode: 'lch' },
-        { l: 20, c: 30, h: 20, mode: 'lch' },
-        { l: 10, c: 40, h: 30, mode: 'lch' }
-      ]
-    ],
-    description: `Gets the mean luminance from the collection of colors.`,
-    expect: 0.051170743179012795
-  },
-  getMeanContrast: {
-    params: [
-      [
-        { l: 40, c: 20, h: 40, mode: 'lch' },
-        { l: 20, c: 30, h: 20, mode: 'lch' },
-        { l: 10, c: 40, h: 30, mode: 'lch' }
-      ],
-      'blue'
-    ],
-    description: `Gets the mean contrast from the collection of colors against the specified color`,
-    expect: 1.6087955158902005
-  },
-  getMeanDistance: {
-    params: [
-      [
-        { l: 40, c: 20, h: 40, mode: 'lch' },
-        { l: 20, c: 30, h: 20, mode: 'lch' },
-        { l: 10, c: 40, h: 30, mode: 'lch' }
-      ],
-      'blue'
-    ],
-    description: `Gets the mean distance from the collection of colors using the differenceHyab metric`,
-    expect: 147.44699388822093
-  },
-  getMeanHue: {
-    params: [
-      [
-        { l: 40, c: 20, h: 40, mode: 'lch' },
-        { l: 20, c: 30, h: 20, mode: 'lch' },
-        { l: 10, c: 40, h: 30, mode: 'lch' }
-      ],
-      'lch'
-    ],
-    description: `Gets the mean hue angle from the collection of colors in the specified colorspace`,
-    expect: 29.999999999999996
-  },
-  getMeanLightness: {
-    params: [
-      [
-        { l: 40, c: 20, h: 40, mode: 'lch' },
-        { l: 20, c: 30, h: 20, mode: 'lch' },
-        { l: 30, c: 40, h: 10, mode: 'lch' }
-      ],
-      'lch'
-    ],
-    description: `Gets the mean lightness value from the collection of colors in the specified colorspace`,
-    expect: 30
-  },
-  getMeanChroma: {
-    params: [
-      [
-        { l: 40, c: 20, h: 40, mode: 'lch' },
-        { l: 20, c: 30, h: 20, mode: 'lch' },
-        { l: 10, c: 40, h: 10, mode: 'lch' }
-      ],
-      'lch'
-    ],
-    description: `Gets the mean chroma value from the collection of colors in the specified colorspace`,
-    expect: 30
-  },
-
-  getNearestHueFrom: {
-    params: [
-      [
-        { l: 40, c: 20, h: 40, mode: 'lch' },
-        { l: 20, c: 10, h: 20, mode: 'lch' },
-        { l: 10, c: 40, h: 10, mode: 'lch' }
-      ],
-      { l: 5, c: 5, h: 5, mode: 'lch' },
-      'lch'
-    ],
-    description: `Gets the smallest hue distance between the colors in a collection against the specified color`,
-    expect: 5
-  },
-  getNearestChromaFrom: {
-    params: [
-      [
-        { l: 40, c: 20, h: 40, mode: 'lch' },
-        { l: 20, c: 10, h: 20, mode: 'lch' },
-        { l: 10, c: 40, h: 10, mode: 'lch' }
-      ],
-      { l: 5, c: 5, h: 5, mode: 'lch' },
-      'lch'
-    ],
-    description: `Gets the smallest chroma distance between the colors in a collection against the specified color`,
-    expect: 5
-  },
-  getNearestLightnessFrom: {
-    params: [
-      [
-        { l: 40, c: 20, h: 40, mode: 'lch' },
-        { l: 20, c: 10, h: 20, mode: 'lch' },
-        { l: 10, c: 40, h: 10, mode: 'lch' }
-      ],
-      { l: 5, c: 5, h: 5, mode: 'lch' },
-      'lch'
-    ],
-    description: `Gets the smallest lightness distance between the colors in a collection against the specified color`,
-    expect: 5
-  },
-  getFarthestHueFrom: {
-    params: [
-      [
-        { l: 20, c: 20, h: 20, mode: 'lch' },
-        { l: 10, c: 10, h: 10, mode: 'lch' },
-        { l: 40, c: 40, h: 40, mode: 'lch' }
-      ],
-      { l: 10, c: 5, h: 80, mode: 'lch' },
-      'lch'
-    ],
-    description: `Gets the largest hue angle distance between the colors in a collection against the specified color`,
-    expect: 35
-  },
-  getFarthestChromaFrom: {
-    params: [
-      [
-        { l: 20, c: 20, h: 20, mode: 'lch' },
-        { l: 10, c: 10, h: 10, mode: 'lch' },
-        { l: 40, c: 40, h: 40, mode: 'lch' }
-      ],
-      { l: 5, c: 5, h: 5, mode: 'lch' },
-      'lch'
-    ],
-    description: `Gets the largest chroma distance between the colors in a collection against the specified color`,
-    expect: 35
-  },
-  getFarthestLightnessFrom: {
-    params: [
-      [
-        { l: 20, c: 20, h: 20, mode: 'lch' },
-        { l: 10, c: 10, h: 10, mode: 'lch' },
-        { l: 40, c: 40, h: 40, mode: 'lch' }
-      ],
-      { l: 5, c: 5, h: 5, mode: 'lch' },
-      'lch'
-    ],
-    description: `Gets the largest lightness distance between the colors in a collection against the specified color`,
-    expect: 35
-  },
   getHueFamily: {
     params: ['cyan'],
     description: `Gets the color's hue family`,
@@ -178,51 +28,12 @@ var utilsSpec = {
     description: `Gets the color's hue family`,
     expect: true
   },
-  getNearestContrast: {
-    params: [['b2c3f1', '#a1bd2f', '#f3bac1'], 'green'],
-    description: `Gets the nearest/farthest contrast in a collection `,
-    expect: 2.4061390502133424
-  },
-  getFarthestContrast: {
-    params: [['b2c3f1', '#a1bd2f', '#f3bac1'], 'green'],
-    description: `Gets the nearest/farthest contrast in a collection `,
-    expect: 3.08355493246362
-  },
-  getNearestLightness: {
-    params: [['b2c3f1', '#a1bd2f', '#f3bac1'], 'lch'],
-    description: `Gets the nearest/farthest lightness in a collection `,
-    expect: 72.61647882089876
-  },
-  getFarthestLightness: {
-    params: [['b2c3f1', '#a1bd2f', '#f3bac1'], 'lch'],
-    description: `Gets the nearest/farthest lightness in a collection `,
-    expect: 80.94668903360088
-  },
   isAchromatic: {
     params: ['gray'],
     description: `Checks if a color is achromatic or not`,
     expect: true
   },
-  getNearestChroma: {
-    params: [['b2c3f1', '#a1bd2f', '#f3bac1'], 'lch'],
-    description: `Gets the nearest chroma in a collection `,
-    expect: 22.45669293295522
-  },
-  getFarthestChroma: {
-    params: [['b2c3f1', '#a1bd2f', '#f3bac1'], 'lch'],
-    description: `Gets the farthest chroma in a collection `,
-    expect: 67.22120855010492
-  },
-  getNearestHue: {
-    params: [['b2c3f1', '#a1bd2f', '#f3bac1'], 'lch'],
-    description: `Gets the nearest hue angle in a collection`,
-    expect: 12.462831644544274
-  },
-  getFarthestHue: {
-    params: [['b2c3f1', '#a1bd2f', '#f3bac1'], 'lch'],
-    description: `Gets the nearest hue angle in a collection`,
-    expect: 273.54920266436477
-  },
+
   getComplimentaryHue: {
     params: ['purple'],
     description: `Gets the complimentary hue of the passed in color`,
@@ -251,20 +62,19 @@ var utilsSpec = {
   }
 };
 
-// describe(`Test suite for utils`, () => {
-//   _iterator(utils, utilsSpec);
-//   // it(`Brightens/darkens the passed in color`, () => {
-//   //   expect(utils.darken(col, 0.5)).toBe(67.22120855010492);
-//   //   expect(utils.brighten(['b2c3f1', '#a1bd2f', '#f3bac1'], '*0.3')).toBe(22.45669293295522);
-//   // });
+describe(`Test suite for utils`, () => {
+  _iterator(utils, utilsSpec);
+  // it(`Brightens/darkens the passed in color`, () => {
+  //   expect(utils.darken(col, 0.5)).toBe(67.22120855010492);
+  //   expect(utils.brighten(['b2c3f1', '#a1bd2f', '#f3bac1'], '*0.3')).toBe(22.45669293295522);
+  // });
 
-//   // Not in the map because these funcs are curried
-//   it(`Sets/Gets the specified channel of the passed in color`, () => {
-//     expect(
-//       utils.getChannel('lch.h')(utils.setChannel('lch.h')('#310000', 10))
-//     ).toBe(10);
-//   });
-// });
+  // Not in the map because these funcs are curried
+  it(`Sets/Gets the specified channel of the passed in color`, () => {
+    expect(
+      utils.getChannel('lch.h')(utils.setChannel('lch.h')('#310000', 10))
+    ).toBe(10);
+  });
+});
 
-//
 export default utilsSpec;

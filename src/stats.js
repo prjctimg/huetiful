@@ -18,7 +18,9 @@ import {
   getContrast,
   mlchn,
   mcchn,
-  chnDiff
+  chnDiff,
+  sortedColl,
+  or
 } from './index.js';
 
 function lightnessPredicate(cspace) {

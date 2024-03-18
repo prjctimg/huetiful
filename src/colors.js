@@ -941,25 +941,6 @@ function color(color) {
   return new Color(color);
 }
 
-function getNearestColor(collection, color, num = 1) {
-  const cb = (collection, color) => {
-    return nearest(
-      Object.values(collection),
-      differenceHyab(),
-      (color) => color
-    )(color, num);
-  };
-  let result;
-
-  if (collection === 'tailwind') {
-    result = cb(tailwindColors('all'), color);
-  } else {
-    result = cb(collection, color);
-  }
-
-  return result;
-}
-
 export {
   getNearestColor,
   diverging,

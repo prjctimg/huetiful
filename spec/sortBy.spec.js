@@ -15,40 +15,38 @@ governing permissions and limitations under the License.
 */
 
 describe(`The sortBy module test suite `, function () {
+  var sortBySpec = {
+    sortBySaturation: {
+      params: [['blue', 'pink', 'yellow', 'green'], 'asc', 'lch'],
+      description: 'Sorts colors by saturation value in `asc` order',
+      expect: ['pink', 'green', 'yellow', 'blue']
+    },
+    sortByLightness: {
+      params: [['blue', 'pink', 'yellow', 'green'], 'asc', 'lch'],
+      description: 'Sorts colors by lightness value in `asc` order',
+      expect: ['blue', 'green', 'pink', 'yellow']
+    },
+    sortByLuminance: {
+      params: [['blue', 'pink', 'yellow', 'green'], 'asc'],
+      description: 'Sorts colors by luminance value in `asc` order',
+      expect: ['blue', 'green', 'pink', 'yellow']
+    },
+    sortByDistance: {
+      params: [['blue', 'pink', 'yellow', 'green'], 'brown', 'asc'],
+      description: 'Sorts colors by distance value in `asc` order',
+      expect: ['pink', 'green', 'blue', 'yellow']
+    },
+    sortByContrast: {
+      params: [['blue', 'pink', 'yellow', 'green'], 'black', 'asc'],
+      description: 'Sorts colors by distance value in `asc` order',
+      expect: ['blue', 'green', 'pink', 'yellow']
+    },
+    sortByHue: {
+      params: [['blue', 'pink', 'yellow', 'green'], 'asc', 'lch'],
+      description: 'Sorts colors by hue angle in `asc` order',
+      expect: ['pink', 'yellow', 'green', 'blue']
+    }
+  };
+
   _iterator(sortBy, sortBySpec);
 });
-
-var sortBySpec = {
-  sortBySaturation: {
-    params: [['blue', 'pink', 'yellow', 'green'], 'asc', 'lch'],
-    description: 'Sorts colors by saturation value in `asc` order',
-    expect: ['pink', 'green', 'yellow', 'blue']
-  },
-  sortByLightness: {
-    params: [['blue', 'pink', 'yellow', 'green'], 'asc', 'lch'],
-    description: 'Sorts colors by lightness value in `asc` order',
-    expect: ['blue', 'green', 'pink', 'yellow']
-  },
-  sortByLuminance: {
-    params: [['blue', 'pink', 'yellow', 'green'], 'asc'],
-    description: 'Sorts colors by luminance value in `asc` order',
-    expect: ['blue', 'green', 'pink', 'yellow']
-  },
-  sortByDistance: {
-    params: [['blue', 'pink', 'yellow', 'green'], 'brown', 'asc'],
-    description: 'Sorts colors by distance value in `asc` order',
-    expect: ['pink', 'green', 'blue', 'yellow']
-  },
-  sortByContrast: {
-    params: [['blue', 'pink', 'yellow', 'green'], 'black', 'asc'],
-    description: 'Sorts colors by distance value in `asc` order',
-    expect: ['blue', 'green', 'pink', 'yellow']
-  },
-  sortByHue: {
-    params: [['blue', 'pink', 'yellow', 'green'], 'asc', 'lch'],
-    description: 'Sorts colors by hue angle in `asc` order',
-    expect: ['pink', 'yellow', 'green', 'blue']
-  }
-};
-
-export default sortBySpec;

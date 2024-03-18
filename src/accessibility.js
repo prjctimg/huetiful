@@ -56,3 +56,5 @@ function colorDeficiency(deficiencyType) {
     }
   };
 }
+
+export { colorDeficiency };
