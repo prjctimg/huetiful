@@ -55,6 +55,8 @@ import {
   getNearestContrast as _gnctrst
 } from './index.js';
 
+import { nearest, differenceHyab } from 'culori/fn';
+
 class ColorArray {
   constructor(colors) {
     this['colors'] = colors;
@@ -224,6 +226,25 @@ class ColorArray {
 
 function load(colors) {
   return new ColorArray(colors);
+}
+
+function getNearestColor(collection, color, num = 1) {
+  const cb = (collection, color) => {
+    return nearest(
+      Object.values(collection),
+      differenceHyab(),
+      (color) => color
+    )(color, num);
+  };
+  let result;
+
+  if (collection === 'tailwind') {
+    result = cb(tailwindColors('all'), color);
+  } else {
+    result = cb(collection, color);
+  }
+
+  return result;
 }
 
 //Check if the scheme object has the passed in scheme
@@ -920,4 +941,31 @@ function color(color) {
   return new Color(color);
 }
 
-export { diverging, qualitative, sequential, tailwindColors, load, color };
+function getNearestColor(collection, color, num = 1) {
+  const cb = (collection, color) => {
+    return nearest(
+      Object.values(collection),
+      differenceHyab(),
+      (color) => color
+    )(color, num);
+  };
+  let result;
+
+  if (collection === 'tailwind') {
+    result = cb(tailwindColors('all'), color);
+  } else {
+    result = cb(collection, color);
+  }
+
+  return result;
+}
+
+export {
+  getNearestColor,
+  diverging,
+  qualitative,
+  sequential,
+  tailwindColors,
+  load,
+  color
+};

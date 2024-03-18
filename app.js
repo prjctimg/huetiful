@@ -1,4 +1,5 @@
-import { color2hex, pastel } from './src/index.js';
+import { readFileSync, writeFileSync } from 'fs';
+import * as url from 'url';
 
 // var x = {
 //   sortBySpec: {
@@ -631,4 +632,12 @@ import { color2hex, pastel } from './src/index.js';
 //   }
 // };
 
-console.log(color2hex(pastel('green')));
+// console.log(color2hex(pastel('green')));
+
+let base = `https://huetiful-js.com`;
+
+writeFileSync(
+  `./out.html`,
+  convertRelativeToAbsolute(base, readFileSync(`./in.html`, 'utf-8')),
+  'utf-8'
+);

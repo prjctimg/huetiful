@@ -3,32 +3,202 @@
     "description": "Functions for sorting collections of color  using their properties.",
     "specs": {
       "sortBySaturation": {
-        "params": [["blue", "pink", "yellow", "green"], "asc", "lch"],
+        "params": [
+          [
+            "#94a3b8",
+            "#9ca3af",
+            "#a1a1aa",
+            "#a3a3a3",
+            "#a8a29e",
+            "#f87171",
+            "#fb923c",
+            "#fbbf24",
+            "#facc15",
+            "#a3e635",
+            "#4ade80",
+            "#34d399",
+            "#2dd4bf",
+            "#38bdf8",
+            "#60a5fa",
+            "#a78bfa",
+            "#c084fc",
+            "#e879f9",
+            "#f472b6",
+            "#fb7185"
+          ],
+          "asc",
+          "lch"
+        ],
         "description": "Sorts colors by saturation value in `asc` order",
-        "expect": ["pink", "green", "yellow", "blue"]
+        "expect": [
+          "#94a3b8",
+          "#9ca3af",
+          "#a1a1aa",
+          "#a3a3a3",
+          "#a8a29e",
+          "#f87171",
+          "#fb923c",
+          "#fbbf24",
+          "#facc15",
+          "#a3e635",
+          "#4ade80",
+          "#34d399",
+          "#2dd4bf",
+          "#38bdf8",
+          "#60a5fa",
+          "#a78bfa",
+          "#c084fc",
+          "#e879f9",
+          "#f472b6",
+          "#fb7185"
+        ]
       },
       "sortByLightness": {
-        "params": [["blue", "pink", "yellow", "green"], "asc", "lch"],
+        "params": [
+          [
+            "#94a3b8",
+            "#9ca3af",
+            "#a1a1aa",
+            "#a3a3a3",
+            "#a8a29e",
+            "#f87171",
+            "#fb923c",
+            "#fbbf24",
+            "#facc15",
+            "#a3e635",
+            "#4ade80",
+            "#34d399",
+            "#2dd4bf",
+            "#38bdf8",
+            "#60a5fa",
+            "#a78bfa",
+            "#c084fc",
+            "#e879f9",
+            "#f472b6",
+            "#fb7185"
+          ],
+          "asc",
+          "lch"
+        ],
         "description": "Sorts colors by lightness value in `asc` order",
         "expect": ["blue", "green", "pink", "yellow"]
       },
       "sortByLuminance": {
-        "params": [["blue", "pink", "yellow", "green"], "asc"],
+        "params": [
+          [
+            "#94a3b8",
+            "#9ca3af",
+            "#a1a1aa",
+            "#a3a3a3",
+            "#a8a29e",
+            "#f87171",
+            "#fb923c",
+            "#fbbf24",
+            "#facc15",
+            "#a3e635",
+            "#4ade80",
+            "#34d399",
+            "#2dd4bf",
+            "#38bdf8",
+            "#60a5fa",
+            "#a78bfa",
+            "#c084fc",
+            "#e879f9",
+            "#f472b6",
+            "#fb7185"
+          ],
+          "asc"
+        ],
         "description": "Sorts colors by luminance value in `asc` order",
         "expect": ["blue", "green", "pink", "yellow"]
       },
       "sortByDistance": {
-        "params": [["blue", "pink", "yellow", "green"], "brown", "asc"],
+        "params": [
+          [
+            "#94a3b8",
+            "#9ca3af",
+            "#a1a1aa",
+            "#a3a3a3",
+            "#a8a29e",
+            "#f87171",
+            "#fb923c",
+            "#fbbf24",
+            "#facc15",
+            "#a3e635",
+            "#4ade80",
+            "#34d399",
+            "#2dd4bf",
+            "#38bdf8",
+            "#60a5fa",
+            "#a78bfa",
+            "#c084fc",
+            "#e879f9",
+            "#f472b6",
+            "#fb7185"
+          ],
+          "brown",
+          "asc"
+        ],
         "description": "Sorts colors by distance value in `asc` order",
         "expect": ["pink", "green", "blue", "yellow"]
       },
       "sortByContrast": {
-        "params": [["blue", "pink", "yellow", "green"], "black", "asc"],
+        "params": [
+          [
+            "#94a3b8",
+            "#9ca3af",
+            "#a1a1aa",
+            "#a3a3a3",
+            "#a8a29e",
+            "#f87171",
+            "#fb923c",
+            "#fbbf24",
+            "#facc15",
+            "#a3e635",
+            "#4ade80",
+            "#34d399",
+            "#2dd4bf",
+            "#38bdf8",
+            "#60a5fa",
+            "#a78bfa",
+            "#c084fc",
+            "#e879f9",
+            "#f472b6",
+            "#fb7185"
+          ],
+          "black",
+          "asc"
+        ],
         "description": "Sorts colors by distance value in `asc` order",
         "expect": ["blue", "green", "pink", "yellow"]
       },
       "sortByHue": {
-        "params": [["blue", "pink", "yellow", "green"], "asc", "lch"],
+        "params": [
+          [
+            "#94a3b8",
+            "#9ca3af",
+            "#a1a1aa",
+            "#a3a3a3",
+            "#a8a29e",
+            "#f87171",
+            "#fb923c",
+            "#fbbf24",
+            "#facc15",
+            "#a3e635",
+            "#4ade80",
+            "#34d399",
+            "#2dd4bf",
+            "#38bdf8",
+            "#60a5fa",
+            "#a78bfa",
+            "#c084fc",
+            "#e879f9",
+            "#f472b6",
+            "#fb7185"
+          ],
+          "asc",
+          "lch"
+        ],
         "description": "Sorts colors by hue angle in `asc` order",
         "expect": ["pink", "yellow", "green", "blue"]
       }

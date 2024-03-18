@@ -309,7 +309,7 @@ export default {
     },
     fontFamily: {
       sans: [
-        'Raleway',
+        'Inter',
         'ui-sans-serif',
         'system-ui',
         'sans-serif',

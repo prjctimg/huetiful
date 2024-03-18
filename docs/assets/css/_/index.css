@@ -4,14 +4,10 @@
 @tailwind variants;
 
 
-@layer base {
-    html{
-        
-    }
-}
+
  @font-face {
-        font-family: Raleway;
-        src: url(../fonts/Raleway-VariableFont_wght.ttf);
+        font-family: Inter;
+        src: url(../fonts/Inter.ttf);
       }
 
 

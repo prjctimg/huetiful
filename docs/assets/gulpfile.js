@@ -18,21 +18,6 @@ var moduleNames = readdirSync(PATH_TO_MD_FILES + '/modules', 'utf-8').map(
   (s) => s.split('.')[0]
 );
 
-// generate demo pages
-export async function demo() {
-  src(`./xml/views/demo.njk`)
-    .pipe(
-      _njk({
-        path: ['./xml/'],
-        manageEnv: demoDocsEnv(Object(_demo)),
-
-        ext: '.html',
-        inheritExtension: false
-      })
-    )
-    .pipe(dest(`../www`));
-}
-
 function demoDocsEnv(spec) {
   return (env) => {
     env.addGlobal('demoData', spec);
@@ -45,14 +30,10 @@ function ApiDocsEnv(source) {
 }
 
 export async function links() {
-  var BASE_URL = 'https://huetiful-js.com/';
   moduleNames.map((srcFile) =>
     writeFileSync(
       `../www/api/${srcFile}/index.html`,
-      _.rel2absURL(
-        BASE_URL,
-        readFileSync(`../www/api/${srcFile}/index.html`, 'utf-8')
-      )
+      _.rel2absURL()(readFileSync(`../www/api/${srcFile}/index.html`, 'utf-8'))
     )
   );
 }
@@ -75,6 +56,18 @@ export async function xml() {
       )
       .pipe(dest(`../www/api/${srcFile}`))
   );
+
+  src(`./xml/views/demo.njk`)
+    .pipe(
+      _njk({
+        path: ['./xml/'],
+        manageEnv: demoDocsEnv(_demo),
+
+        ext: '.html',
+        inheritExtension: false
+      })
+    )
+    .pipe(dest(`../www`));
 }
 
 async function renameFiles() {
@@ -97,7 +90,7 @@ export async function deleteFiles() {
   );
 }
 
-async function _clean() {
+async function clean() {
   rmdirSync(`../www`, { recursive: true, force: true });
 }
 
@@ -121,5 +114,7 @@ export async function img() {
 }
 
 export const assets = series(css, js, fonts, img);
-export const clean = _clean;
+export const clean = clean;
 export const rename = renameFiles;
+export const dev = series(xml, assets, watchFiles);
+export const deploy = series(xml, assets, links);

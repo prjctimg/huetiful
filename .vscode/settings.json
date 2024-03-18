@@ -1,0 +1,8 @@
+{
+    "liveServer.settings.multiRootWorkspaceName": "huetiful",
+    "files.exclude": {
+        "*.code-workspace": true,
+        "**/*.wiki": true,
+        "**/docs": true
+    }
+}

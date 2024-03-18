@@ -19,7 +19,7 @@ var { readFileSync, lstatSync, writeFileSync } = require('node:fs'),
   ge = require('github-emoji'),
   defaultClasses = {
     blockquote: ' border-l-blue-400 bg-blue-200',
-    code: 'rounded-md shadow-md shadow-gray-300 dark:shadow-slate-300'
+    code: 'rounded-md shadow-md shadow-gray-300 hljs'
   },
   injectClasses = Object.keys(defaultClasses).map((key) => ({
     type: 'output',
@@ -27,7 +27,6 @@ var { readFileSync, lstatSync, writeFileSync } = require('node:fs'),
     replace: `<${key} class='${defaultClasses[key]}' $1>`
   })),
   showdown = require('./vendor/showdown.cjs'),
-  url = require('url'),
   $ = new showdown.Converter({
     extensions: [...injectClasses],
     emoji: true,
@@ -55,16 +54,15 @@ function isColorCollection(arg) {
   return false;
 }
 
-function rel2absURL(baseUrl, html) {
-  const parsedBaseUrl = new url.URL(baseUrl);
-  return html.replace(
-    /href="([^"]+-)"|src="([^"]+-)"/g,
-    (match, relativeUrl) => {
-      if (!relativeUrl) return match;
-      const absoluteUrl = new url.URL(relativeUrl, parsedBaseUrl);
-      return match.replace(relativeUrl, absoluteUrl.toString());
-    }
-  );
+function rel2absURL(baseUrl = `https://huetiful-js.com`) {
+  return (html = '') => {
+    var regex = /(src|href)="(?!http|https|ftp|mailto|data:)([^"]+)"/gi;
+
+    return html.replace(
+      regex,
+      (_, attr, relUrl) => `${attr}="${new URL(relUrl, baseUrl)}"`
+    );
+  };
 }
 
 // The html comment to match before injecting data
@@ -103,7 +101,7 @@ function generateDocs(source) {
 }
 // Loop through the markdown files for modules
 function buildDataObject(sourceModule) {
-  var m = new Intl.DateTimeFormat('en-US', {
+  var time = new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
     month: 'short',
     day: 'numeric',
@@ -112,18 +110,19 @@ function buildDataObject(sourceModule) {
   }).format(lstatSync('../../types/' + sourceModule + '.d.ts').mtime);
 
   var cb = (s, x, y) =>
-    `https://github.com/prjctimg/xml-wizard/blob/main/${s}/${x}.${y}`;
+    `https://github.com/xml-wizard/blob/main/${s}/${x}.${y}`;
 
   return {
     title: `${sourceModule}`,
     mainContent: generateDocs(
       PATH_TO_MARKDOWN_FILES + '/' + sourceModule + '.md'
     ),
-    lastUpdated: m,
+    lastUpdated: time,
     srcFile: cb('src', sourceModule, 'js'),
     specFile: cb('spec', sourceModule, 'spec.js'),
     wikiPage: `https://github.com/xml-wizard/huetiful/wiki/${sourceModule}`,
-    declFile: cb('types', sourceModule, 'd.ts')
+    declFile: cb('types', sourceModule, 'd.ts'),
+    page: { previous: { href: '', title: '' }, next: { href: '', title: '' } }
   };
 }
 
