@@ -18,13 +18,6 @@ var moduleNames = readdirSync(PATH_TO_MD_FILES + '/modules', 'utf-8').map(
   (s) => s.split('.')[0]
 );
 var BASE_URL = `https://huetiful-js.com`;
-function demoDocsEnv(spec) {
-  return (env) => {
-    return env
-      .addGlobal('isColorCollection', _.isColorCollection)
-      .addGlobal('demoData', spec);
-  };
-}
 
 export async function links() {
   moduleNames.map((srcFile) =>
@@ -43,7 +36,19 @@ export async function xml() {
       env.addGlobal('data', _.buildDataObject(source));
     };
   }
+  function demoDocsEnv(spec) {
+    return (env) => {
+      return env
+        .addGlobal('isColorCollection', _.isColorCollection)
+        .addGlobal('demoData', spec);
+    };
+  }
 
+  function indexPageEnv(env) {
+    env.addGlobal('home', {
+      content: _.generateDocs('./pages/home.md')
+    });
+  }
   // Making the documentation per module
   moduleNames.map((srcFile, idx) => {
     src(`./xml/views/post.njk`)
@@ -79,6 +84,18 @@ export async function xml() {
       _njk({
         path: ['./xml/'],
         manageEnv: demoDocsEnv(_demo),
+
+        ext: '.html',
+        inheritExtension: false
+      })
+    )
+    .pipe(dest(`../www`));
+
+  src(`./xml/views/index.njk`)
+    .pipe(
+      _njk({
+        path: ['./xml/'],
+        manageEnv: indexPageEnv,
 
         ext: '.html',
         inheritExtension: false

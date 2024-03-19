@@ -2,8 +2,8 @@
 {% import "./partials/pagination.njk" as pagination %}
 
 {% block content %}
-{{home.content}}
+{{home.content|safe}}
 
-{{pagination(home.page)}}
+
 
 {% endblock content %}

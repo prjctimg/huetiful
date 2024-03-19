@@ -39,7 +39,7 @@ var { readFileSync, lstatSync, writeFileSync } = require('node:fs'),
   }),
   PATH_TO_MARKDOWN_FILES = './markdown/modules';
 
-function isColorCollection(arg) {
+function isColorCollection(arg, cb) {
   if (
     Array.isArray(arg) &&
     arg.some(
@@ -125,24 +125,9 @@ function buildDataObject(sourceModule) {
   };
 }
 
-var navigatoryFiles = ['modules.md', 'README.md'];
-
-function createIndexPages() {
-  writeFileSync(
-    '../www/api/index.html',
-    readFileSync('./markdown/modules.md', 'utf-8'),
-    'utf-8'
-  );
-  writeFileSync(
-    '../www/index.html',
-    readFileSync('./markdown/README.md', 'utf-8'),
-    'utf-8'
-  );
-}
-
 module.exports = {
   buildDataObject,
-  createIndexPages,
   rel2absURL,
-  isColorCollection
+  isColorCollection,
+  generateDocs
 };
