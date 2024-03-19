@@ -4,3 +4,6 @@ export * from './generators';
 export * from './filterBy';
 export * from './sortBy';
 export * from './converters';
+export * from './wrappers';
+export * from './stats';
+export * from './accessibility';

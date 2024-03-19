@@ -38,11 +38,8 @@
   },
   "scripts": {
     "test": "npx jasmine",
-    "docs:compile": "npx typedoc --hideBreadcrumbs true",
-    "docs:publish": "npm run docs:compile && npm run docs:build && npm run css:build",
-    "docs:build": "node docs/assets/js/docs.cjs",
-    "docs:dev": "nodemon",
-    "code:build": "node ./docs/assets/js/build.cjs",
+    "docs": "npx typedoc --hideBreadcrumbs true",
+    "code:build": "node ./build.cjs",
     "code:publish": "npm run code:build & npm run code:types",
     "code:types": "dts-bundle-generator  -o  ./lib/huetiful.d.ts ./types/index.d.ts --no-banner",
     "code:lint": "eslint --fix --ext ./src/*.js",
@@ -76,7 +73,7 @@
     "entryPoints": [
       "types/accessibility.d.ts",
       "types/stats.d.ts",
-      "types/collections.d.ts",
+      "types/wrappers.d.ts",
       "types/generators.d.ts",
       "types/utils.d.ts",
       "types/colors.d.ts",
