@@ -4,14 +4,82 @@
 
 ### Functions
 
+- [sortByChroma](sortBy.md#sortbychroma)
 - [sortByContrast](sortBy.md#sortbycontrast)
 - [sortByDistance](sortBy.md#sortbydistance)
 - [sortByHue](sortBy.md#sortbyhue)
 - [sortByLightness](sortBy.md#sortbylightness)
 - [sortByLuminance](sortBy.md#sortbyluminance)
-- [sortBySaturation](sortBy.md#sortbysaturation)
 
 ## Functions
+
+### sortByChroma
+
+▸ **sortByChroma**(`collection`, `order?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
+
+Sorts colors according to the intensity of their `chroma` in the specified `colorspace`.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The `collection` of colors to sort. |
+| `order?` | ``"asc"`` \| ``"desc"`` | The arrangement order of the colors either `asc \| desc`. Default is ascending (`asc`) |
+| `colorspace?` | `string` | The `mode` colorspace to compute the saturation value in. The default is lch . |
+
+#### Returns
+
+[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
+
+The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
+
+**`Example`**
+
+```ts
+import { sortByChroma } from "huetiful-js";
+let sample = [
+ "#00ffdc",
+ "#00ff78",
+ "#00c000",
+ "#007e00",
+ "#164100",
+ "#ffff00",
+ "#310000",
+ "#3e0000",
+ "#4e0000",
+ "#600000",
+ "#720000",
+];
+
+let sorted = sortByChroma(sample);
+console.log(sorted);
+
+// [
+ '#310000', '#3e0000',
+ '#164100', '#4e0000',
+ '#600000', '#720000',
+ '#00ffdc', '#007e00',
+ '#00ff78', '#00c000',
+ '#ffff00'
+]
+
+let sortedDescending = sortByChroma(sample,'desc');
+console.log(sortedDescending)
+// [
+ '#ffff00', '#00c000',
+ '#00ff78', '#007e00',
+ '#00ffdc', '#720000',
+ '#600000', '#4e0000',
+ '#164100', '#3e0000',
+ '#310000'
+]
+```
+
+#### Defined in
+
+[sortBy.d.ts:61](https://github.com/prjctimg/huetiful/blob/12f39ea/types/sortBy.d.ts#L61)
+
+___
 
 ### sortByContrast
 
@@ -48,7 +116,7 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 
 #### Defined in
 
-[sortBy.d.ts:245](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/sortBy.d.ts#L245)
+[sortBy.d.ts:240](https://github.com/prjctimg/huetiful/blob/12f39ea/types/sortBy.d.ts#L240)
 
 ___
 
@@ -64,7 +132,7 @@ Sorts colors according to their distance. The distance factor is determined by t
 | :------ | :------ | :------ |
 | `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The `collection` of colors to sort.. |
 | `against` | [`ColorToken`](types.md#colortoken) | The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array. |
-| `order?` | ``"asc"`` \| ``"desc"`` | The arrangement order of the colors either `asc \| desc`. Default is ascending (`asc`) |
+| `order?` | ``"asc"`` \| ``"desc"`` | The arrangement order of the colors either `asc \| desc`. Default is ascending (`asc`). |
 | `options?` | [`ColorDistanceOptions`](types.md#colordistanceoptions) | - |
 
 #### Returns
@@ -80,26 +148,20 @@ import { sortByDistance } from 'huetiful-js'
 
 let sample = ['purple', 'green', 'red', 'brown']
 console.log(
- sortByDistance(sample, 'yellow', 'asc', {
-   mode: 'lch',
- })
+ sortByDistance(sample, 'yellow', 'asc')
 )
 
 // [ 'brown', 'red', 'green', 'purple' ]
 
 let sample = ['purple', 'green', 'red', 'brown']
-console.log(
- sortByDistance(sample, 'yellow', 'asc', {
-   mode: 'lch',
- })
-)
+console.log(sortByDistance(sample, 'yellow', 'asc'))
 
 // [ 'green', 'brown', 'red', 'purple' ]
 ```
 
 #### Defined in
 
-[sortBy.d.ts:280](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/sortBy.d.ts#L280)
+[sortBy.d.ts:267](https://github.com/prjctimg/huetiful/blob/12f39ea/types/sortBy.d.ts#L267)
 
 ___
 
@@ -165,7 +227,7 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:222](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/sortBy.d.ts#L222)
+[sortBy.d.ts:217](https://github.com/prjctimg/huetiful/blob/12f39ea/types/sortBy.d.ts#L217)
 
 ___
 
@@ -233,7 +295,7 @@ sortByLightness(sample,'desc')
 
 #### Defined in
 
-[sortBy.d.ts:171](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/sortBy.d.ts#L171)
+[sortBy.d.ts:166](https://github.com/prjctimg/huetiful/blob/12f39ea/types/sortBy.d.ts#L166)
 
 ___
 
@@ -299,72 +361,4 @@ console.log(sortedDescending)
 
 #### Defined in
 
-[sortBy.d.ts:119](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/sortBy.d.ts#L119)
-
-___
-
-### sortBySaturation
-
-▸ **sortBySaturation**(`collection`, `order?`, `colorspace?`): [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
-
-Sorts colors according to the amount of saturation channel in the specified `colorspace`.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `collection` | `object` \| `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> | The `collection` of colors to sort. |
-| `order?` | ``"asc"`` \| ``"desc"`` | The arrangement order of the colors either `asc \| desc`. Default is ascending (`asc`) |
-| `colorspace?` | `string` | The `mode` colorspace to compute the saturation value in. The default is lch . |
-
-#### Returns
-
-[`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\> \| `object`
-
-The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
-
-**`Example`**
-
-```ts
-import { sortBySaturation } from "huetiful-js";
-let sample = [
- "#00ffdc",
- "#00ff78",
- "#00c000",
- "#007e00",
- "#164100",
- "#ffff00",
- "#310000",
- "#3e0000",
- "#4e0000",
- "#600000",
- "#720000",
-];
-
-let sorted = sortBySaturation(sample);
-console.log(sorted);
-
-// [
- '#310000', '#3e0000',
- '#164100', '#4e0000',
- '#600000', '#720000',
- '#00ffdc', '#007e00',
- '#00ff78', '#00c000',
- '#ffff00'
-]
-
-let sortedDescending = sortBySaturation(sample,'desc');
-console.log(sortedDescending)
-// [
- '#ffff00', '#00c000',
- '#00ff78', '#007e00',
- '#00ffdc', '#720000',
- '#600000', '#4e0000',
- '#164100', '#3e0000',
- '#310000'
-]
-```
-
-#### Defined in
-
-[sortBy.d.ts:66](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/sortBy.d.ts#L66)
+[sortBy.d.ts:114](https://github.com/prjctimg/huetiful/blob/12f39ea/types/sortBy.d.ts#L114)

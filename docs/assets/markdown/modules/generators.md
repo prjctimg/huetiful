@@ -60,7 +60,7 @@ console.log(discoverPalettes(sample, "tetradic"))
 
 #### Defined in
 
-[generators.d.ts:69](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L69)
+[generators.d.ts:71](https://github.com/prjctimg/huetiful/blob/12f39ea/types/generators.d.ts#L71)
 
 ___
 
@@ -82,7 +82,7 @@ Creates a scale of a spline interpolation between an earthtone and a color.
 
 `ArrayLike`\<[`ColorToken`](types.md#colortoken)\>
 
-Collection of colors resulting from the earthtone interpolation as hex codes.
+Collection of colors resulting from the earthtone interpolation. Preserves the `ColorToken` type of the passed in color.
 
 **`Example`**
 
@@ -95,7 +95,7 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 
 #### Defined in
 
-[generators.d.ts:89](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L89)
+[generators.d.ts:91](https://github.com/prjctimg/huetiful/blob/12f39ea/types/generators.d.ts#L91)
 
 ___
 
@@ -117,7 +117,7 @@ Generates a palette of hue shifted colors (as a color becomes lighter, its hue s
 
 `ArrayLike`\<[`ColorToken`](types.md#colortoken)\>
 
-An array of colors in hexadecimal. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or `(iterations * 2) + 1`
+A collection of the hueshifted colors. The length of the resultant array is the number of `iterations` multiplied by 2 plus the scheme color passed or `(iterations * 2) + 1`. Preserves the `ColorToken` type of the passed in color.
 
 **`Example`**
 
@@ -140,7 +140,7 @@ console.log(hueShiftedPalette);
 
 #### Defined in
 
-[generators.d.ts:115](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L115)
+[generators.d.ts:117](https://github.com/prjctimg/huetiful/blob/12f39ea/types/generators.d.ts#L117)
 
 ___
 
@@ -159,13 +159,13 @@ Returns a spline interpolator function with customizable interpolation methods (
 | `iterations?` | `number` | - |
 | `kind?` | ``"natural"`` \| ``"monotone"`` \| ``"basis"`` | The type of the spline interpolation method. Default is basis. |
 | `closed?` | `boolean` | Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is `false` |
-| `options?` | `Pick`\<[`InterpolatorOptions`](types.md#interpolatoroptions), ``"easingFn"`` \| ``"hueFixup"``\> | Optional channel specific overrides. |
+| `options?` | `Pick`\<[`InterpolatorOptions`](types.md#interpolatoroptions), ``"easingFn"`` \| ``"hueFixup"`` \| ``"domain"``\> | Optional channel specific overrides. |
 
 #### Returns
 
 `string`[]
 
-An array hexadecimal string of the resultant color.
+A collection of colors resulting from the interpolation. Preserves the `ColorToken` type of the passed in color.
 
 **`Example`**
 
@@ -184,7 +184,7 @@ console.log(interpolateSpline(['pink', 'blue'], 'lch', 8));
 
 #### Defined in
 
-[generators.d.ts:144](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L144)
+[generators.d.ts:146](https://github.com/prjctimg/huetiful/blob/12f39ea/types/generators.d.ts#L146)
 
 ___
 
@@ -218,7 +218,7 @@ ___
 
 #### Defined in
 
-[generators.d.ts:155](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L155)
+[generators.d.ts:157](https://github.com/prjctimg/huetiful/blob/12f39ea/types/generators.d.ts#L157)
 
 ___
 
@@ -239,7 +239,7 @@ Creates a palette that consists of a base color that is incremented by a hueStep
 
 `ArrayLike`\<[`ColorToken`](types.md#colortoken)\> \| [`ColorToken`](types.md#colortoken)
 
-An array containing the paired scheme.
+An array containing the paired scheme.Preserves the `ColorToken` type of the passed in color.
 
 **`Example`**
 
@@ -252,7 +252,7 @@ console.log(pairedScheme("green",{hueStep:6,samples:4,tone:'dark'}))
 
 #### Defined in
 
-[generators.d.ts:203](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L203)
+[generators.d.ts:205](https://github.com/prjctimg/huetiful/blob/12f39ea/types/generators.d.ts#L205)
 
 ___
 
@@ -272,7 +272,7 @@ Returns a random pastel variant of the passed in color.
 
 [`ColorToken`](types.md#colortoken)
 
-A random pastel color.
+A random pastel color. Preserves the `ColorToken` type of the pased in color.
 
 **`Example`**
 
@@ -280,12 +280,13 @@ A random pastel color.
 import { pastel } from 'huetiful-js'
 
 console.log(pastel("green"))
+
 // #036103ff
 ```
 
 #### Defined in
 
-[generators.d.ts:220](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L220)
+[generators.d.ts:222](https://github.com/prjctimg/huetiful/blob/12f39ea/types/generators.d.ts#L222)
 
 ___
 
@@ -305,7 +306,7 @@ Generates a randomised classic color scheme from a single color.
 
 `fn`
 
-A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme.
+A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme. Preserves the `ColorToken` type of the pased in color.
 
 ▸ (`color`, `easingFunc?`): `ArrayLike`\<[`ColorToken`](types.md#colortoken)\>
 
@@ -325,10 +326,10 @@ A collection of 8 character hex codes. Elements in the array depend on the numbe
 ```ts
 import { scheme } from 'huetiful-js'
 
-console.log(scheme("triadic")("#a1bd2f", true))
+console.log(scheme("triadic")("#a1bd2f"))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
 ```
 
 #### Defined in
 
-[generators.d.ts:36](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/generators.d.ts#L36)
+[generators.d.ts:38](https://github.com/prjctimg/huetiful/blob/12f39ea/types/generators.d.ts#L38)

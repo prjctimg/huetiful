@@ -1,6 +1,9 @@
 {
   "include": [
-     "types/generators.d.ts",
+     
+      "types/accessibility.d.ts",
+      "types/stats.d.ts",
+      "types/wrappers.d.ts","types/generators.d.ts",
       "types/utils.d.ts",
       "types/colors.d.ts",
       "types/converters.d.ts",
