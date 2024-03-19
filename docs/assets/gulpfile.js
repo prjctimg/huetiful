@@ -26,6 +26,10 @@ export async function links() {
       _.rel2absURL()(readFileSync(`../www/api/${srcFile}/index.html`, 'utf-8'))
     )
   );
+
+  ['../www/index.html', '../www/demo.html', '../www/api/index.html'].map((f) =>
+    writeFileSync(f, _.rel2absURL()(readFileSync(f, 'utf-8')))
+  );
 }
 
 export async function xml() {
@@ -48,6 +52,8 @@ export async function xml() {
     env.addGlobal('home', {
       content: _.generateDocs('./pages/home.md')
     });
+
+    env.addGlobal('api', { content: _.generateDocs('./pages/api.md') });
   }
   // Making the documentation per module
   moduleNames.map((srcFile, idx) => {
@@ -102,33 +108,39 @@ export async function xml() {
       })
     )
     .pipe(dest(`../www`));
-}
 
-async function indexPage() {
-  src(`./xml/views/demo.njk`)
+  src(`./xml/views/api.njk`)
     .pipe(
       _njk({
         path: ['./xml/'],
-        manageEnv: demoDocsEnv(),
+        manageEnv: indexPageEnv,
 
         ext: '.html',
         inheritExtension: false
       })
     )
-    .pipe(dest(`../www`));
+    .pipe(dest(`../www/api`));
 }
 
 async function renameFiles() {
-  moduleNames.map((srcFile) =>
-    renameSync(
-      `../www/api/${srcFile}/post.html`,
-      `../www/api/${srcFile}/index.html`
-    )
+  moduleNames.map((srcFile) => {
+    writeFileSync(
+      `../www/api/${srcFile}/index.html`,
+      readFileSync(`../www/api/${srcFile}/post.html`, 'utf-8'),
+      'utf8'
+    );
+  });
+
+  writeFileSync(
+    `../www/api/index.html`,
+    readFileSync(`../www/api/api.html`, 'utf-8'),
+    'utf-8'
   );
+
   writeFileSync(`../www/.nojekyll`, '', 'utf-8');
 }
 
-export async function deleteFiles() {
+export async function clean() {
   moduleNames.map((srcFile) =>
     rmSync(`../www/api/${srcFile}/post.html`, {
       force: true,
@@ -136,11 +148,13 @@ export async function deleteFiles() {
       retryDelay: 1500
     })
   );
-}
 
-// async function clean() {
-//   rmdirSync(`../www`, { recursive: true, force: true });
-// }
+  rmSync(`../www/api/api.html`, {
+    force: true,
+    recursive: true,
+    retryDelay: 1500
+  });
+}
 
 export default async function watchFiles() {
   return watch(['./**/*+(njk|svg|ttf|otf|js)'], xml);

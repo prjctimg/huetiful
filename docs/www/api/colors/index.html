@@ -1,225 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/huetiful.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/github-markdown-light.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/atom-one-dark.css" />
+    <script defer type="text/javascript" src='assets/vendor/htmx.js></script>
+    <script defer type="text/javascript" src=' assets/vendor/highlight.min.js'></script>
+    <script defer src="https://huetiful-js.com/assets/vendor/typescript.js"></script>
+    <script>document.documentElement.classList.add('js')</script>
 
-        <link rel="stylesheet" type="text/css" href="/assets/css/huetiful.css" />
-        <link rel="stylesheet" type="text/css" href="/assets/css/github-dark-dimmed.css" />
-        <link rel="stylesheet" type="text/css" href="/assets/css/github-markdown-light.css" />
+    
 
-        <script src="/assets/js/vendor/highlight.min.js"></script>
-        <style>
-            .markdown-body {
-                box-sizing: border-box;
-                min-width: 200px;
-                max-width: 980px;
-                margin: 0 auto;
-                padding: 45px;
-            }
+</head>
 
-            @media (max-width: 767px) {
-                .markdown-body {
-                    padding: 15px;
-                }
-            }
-
-            .progress {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 0%;
-                height: 4px;
-                z-index: 1000;
-            }
-        </style>
-    </head>
-
-    <body class="markdown-body">
+    <body id="swap-content" class="markdown-body">
         <header class="pb-8 sticky top-0 left-0  w-full text-slate-700">
-            <nav
-                class="py-4 flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-slate-700 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-lg shadow-gray-300 dark:shadow-black">
+    <nav
+        class="py-4 flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-slate-700 bg-current dark:text-slate-200 shadow-lg shadow-gray-300 dark:shadow-black">
 
-                <a class="inline-flex space-y-1 items-center font-medium text-base" href="./index.html" id="home"><svg
-                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="inline-block mr-1">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                    </svg>
-                    <span>Home</span>
+        <a class="inline-flex space-y-1 items-center font-medium text-base" href="https://huetiful-js.com"
+            id="home"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="inline-block mr-1">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
 
-                </a>
+        </a>
 
-                <a href="./modules.html" id="docs-link"
-                    class="inline-flex space-y-1 items-center font-medium text-base">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="inline-block mr-1">
-                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg><span>Docs</span>
-                </a>
-                <a class="inline-flex space-y-1 items-center font-medium text-base"
-                    href="https://github.com/prjctimg/huetiful/wiki" id="wiki-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="inline-block mr-1">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="2" y1="12" x2="22" y2="12"></line>
-                        <path
-                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                        </path>
-                    </svg>
-                    <span>Wiki</span>
-                </a>
-                <a class="inline-flex space-y-1 items-center font-medium text-base"
-                    href="https://github.com/prjctimg/huetiful" id="source-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="inline-block mr-1">
-                        <path
-                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                        </path>
-                    </svg> <span>Source</span>
-                </a>
+        <a hx-get="https://huetiful-js.com/api" hx-target="#swap-content"
+            class="inline-flex space-y-1 items-center font-medium text-base">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="inline-block mr-1">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg><span>API</span>
+        </a>
+        <a class="inline-flex space-y-1 items-center font-medium text-base" hx-get="https://huetiful-js.com/demo"
+            hx-target="#swap-content">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" aria-hidden="true" class="inline-block mr-1" data-slot="icon">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+            </svg>
 
-            </nav>
-            <div id='progress-bar' class='progress bg-gradient-to-r from-orange-600 via-purple-600 to-emerald-600' />
-        </header>
+            <span>Demo</span>
+        </a>
+        <a class="inline-flex space-y-1 items-center font-medium text-base"
+            href="https://github.com/xml-wizard/huetiful/wiki" id="wiki-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="inline-block mr-1">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                </path>
+            </svg>
+            <span>Wiki</span>
+        </a>
+        <a class="inline-flex space-y-1 items-center font-medium text-base"
+            href="https://github.com/xml-wizard/huetiful" id="source-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="inline-block mr-1">
+                <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+            </svg> <span>Source</span>
+        </a>
 
-        <div>
-            <article class='markdown-body'>
-                <div class="flex justify-start w-full space-x-2">
+    </nav>
+    <div id='progress-bar' class='progress bg-gradient-to-r from-orange-600 via-purple-600 to-emerald-600' />
+</header>
+        
+<div>
+    <article class='markdown-body'>
+        <div class="flex justify-start w-full space-x-2">
 
-                    <div class='flex flex-row w-full justify-end'>
-
-
-                        <a class='flex w-fit align-middle'
-                            href=https://github.com/prjctimg/xml-wizard/blob/main/types/colors.d.ts><button
-                                class="px-2 py-2 bg-sky-500 border-none text-sm text-slate-800">Edit this
-                                page</button><span class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg"
-                                        width="16" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
-                                        class="feather feather-edit">
-                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                    </svg>
-
-                                </span></a>
-
-                        <div class='flex flex-col'><span class='font-normal text-sm text-slate-500'>last updated</span'>
-                                <p class='text-slate-600 text-xs font-sans font-semibold'>Tuesday, Mar 12, at night</p>
-                        </div>
-
-                    </div>
+            <div class='flex flex-row w-full justify-end'>
 
 
+                <a class='flex w-fit align-middle' href=https://github.com/xml-wizard/blob/main/types/colors.d.ts><button
+                        class="px-2 py-2 bg-sky-500 border-none text-sm text-slate-800">Edit this page</button><span
+                        class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+
+                        </span></a>
+
+                <div class='flex flex-col'><span class='font-normal text-sm text-slate-500'>last updated</span'>
+                        <p class='text-slate-600 text-xs font-sans font-semibold'>Tuesday, Mar 19, in the afternoon</p>
                 </div>
 
+            </div>
+
+
+        </div>
 
 
 
-                <div class="flex flex-row space-x-2 pt-8 pb-1 mb-4 w-fit">
-                    <a href="https://github.com/prjctimg/xml-wizard/blob/main/spec/colors.spec.js"
-                        class="flex space-x-1">
-                        <span>Tests 🧪</span>
+
+        <div class="flex flex-row space-x-2 pt-8 pb-1 mb-4 w-fit">
+            <a href="https://github.com/xml-wizard/blob/main/spec/colors.spec.js" class="flex space-x-1">
+                <span>Tests 🧪</span>
 
 
-                    </a>
-                    <a href="https://github.com/prjctimg/xml-wizard/blob/main/src/colors.js" class="flex space-x-1">
-                        <span>Source 🧾</span>
-                    </a>
-                </div>
+            </a>
+            <a href="https://github.com/xml-wizard/blob/main/src/colors.js" class="flex space-x-1">
+                <span>Source 🧾</span>
+            </a>
+        </div>
 
-            </article>
+    </article>
 
 
 
-            <h1 id="module-📦-colors">Module 📦: colors</h1>
-            <h2 id="table-of-contents-📑">Table of contents 📑</h2>
-            <h3 id="classes">Classes</h3>
-            <ul>
-                <li><a href="../classes/colors.Color">Color</a></li>
-                <li><a href="../classes/colors.ColorArray">ColorArray</a></li>
-            </ul>
-            <h3 id="functions-🧰">Functions 🧰</h3>
-            <ul>
-                <li><a href="colors#color">color</a></li>
-                <li><a href="colors#diverging">diverging</a></li>
-                <li><a href="colors#load">load</a></li>
-                <li><a href="colors#qualitative">qualitative</a></li>
-                <li><a href="colors#sequential">sequential</a></li>
-                <li><a href="colors#tailwindcolors">tailwindColors</a></li>
-            </ul>
-            <h2 id="functions">Functions</h2>
-            <h3 id="color">color</h3>
-            <p>▸ <strong>color</strong>(<code
-                    class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>color</code>): <a
-                    href="../classes/colors.Color"><code>Color</code></a></p>
-            <p>Wrapper function over the Color class that returns a new Color method chain.</p>
-            <h4 id="parameters-🧮">Parameters 🧮</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="text-align:left;">Name</th>
-                        <th style="text-align:left;">Type</th>
-                        <th style="text-align:left;">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="text-align:left;"><code
-                                class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>color</code></td>
-                        <td style="text-align:left;"><a href="types#colortoken"><code
-                                    class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>ColorToken</code></a>
-                        </td>
-                        <td style="text-align:left;">The color token to bind.</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h4 id="returns-🔙">Returns 🔙</h4>
-            <p><a href="../classes/colors.Color"><code
-                        class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>Color</code></a></p>
-            <p>A new Color class with all the utilities that take a single color as the first parameter bound to its
-                prototype.</p>
-            <h4 id="defined-in-📝">Defined in 📝</h4>
-            <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L931">colors.d.ts:931</a>
-            </p>
-            <hr />
-            <h3 id="diverging">diverging</h3>
-            <p>▸ <strong>diverging</strong>(<code
-                    class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>scheme</code>): <a
-                    href="types#colortoken"><code>ColorToken</code></a>[]</p>
-            <p>A wrapper function for ColorBrewer's map of diverging color schemes.</p>
-            <h4 id="parameters-🧮-1">Parameters 🧮</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="text-align:left;">Name</th>
-                        <th style="text-align:left;">Type</th>
-                        <th style="text-align:left;">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="text-align:left;"><code
-                                class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>scheme</code></td>
-                        <td style="text-align:left;"><a href="types#divergingscheme"><code
-                                    class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>DivergingScheme</code></a>
-                        </td>
-                        <td style="text-align:left;">The name of the scheme.</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h4 id="returns-🔙-1">Returns 🔙</h4>
-            <p><a href="types#colortoken"><code
-                        class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>ColorToken</code></a>[]</p>
-            <p>An array of colors in hex represantation.</p>
-            <p><strong><code class='rounded  shadow-gray-300 dark:shadow-slate-300'>Example</code></strong></p>
-            <pre><code class='rounded  shadow-gray-300 dark:shadow-slate-300 hljs'>import { diverging } from 'huetiful-js'
+    <h1 id="module-📦-colors">Module 📦: colors</h1>
+<h2 id="table-of-contents-📑">Table of contents 📑</h2>
+<h3 id="functions-🧰">Functions 🧰</h3>
+<ul>
+<li><a href="https://huetiful-js.com/colors#colordeficiency">colorDeficiency</a></li>
+<li><a href="https://huetiful-js.com/colors#diverging">diverging</a></li>
+<li><a href="https://huetiful-js.com/colors#getnearestcolor">getNearestColor</a></li>
+<li><a href="https://huetiful-js.com/colors#qualitative">qualitative</a></li>
+<li><a href="https://huetiful-js.com/colors#sequential">sequential</a></li>
+<li><a href="https://huetiful-js.com/colors#tailwindcolors">tailwindColors</a></li>
+</ul>
+<h2 id="functions">Functions</h2>
+<h3 id="colordeficiency">colorDeficiency</h3>
+<p>▸ <strong>colorDeficiency</strong>(<code class='rounded shadow shadow-gray-300 hljs' >deficiencyType?</code>): (<code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>, <code>severity?</code>: <code>number</code>) =&gt; <code>string</code></p>
+<p>Returns the color as a simulation of the passed in <code class='rounded shadow shadow-gray-300 hljs' >defeciencyType</code> of color vision deficiency with the deficiency filter's intensity determined by the <code>severity</code> value.</p>
+<h4 id="parameters-🧮">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >deficiencyType?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >DeficiencyType</code></td>
+<td style="text-align:left;">The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is <code class='rounded shadow shadow-gray-300 hljs' >'red'</code> when the defeciency parameter is undefined or any falsy value.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙">Returns 🔙</h4>
+<p><code class='rounded shadow shadow-gray-300 hljs' >fn</code></p>
+<p>The color as its simulated variant. Preserves the <code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code> type of the pased in color.</p>
+<p>▸ (<code class='rounded shadow shadow-gray-300 hljs' >color</code>, <code>severity?</code>): <code>string</code></p>
+<h5 id="parameters-🧮-1">Parameters 🧮</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >color</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >severity?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns-🔙-1">Returns 🔙</h5>
+<p><code class='rounded shadow shadow-gray-300 hljs' >string</code></p>
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { colorDeficiency, color2hex } from 'huetiful-js'
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
+// We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
+let tritanomaly = colorDeficiency('blue')
+console.log(tritanomaly(['rgb', 230, 100, 50, 0.5], 0.1))
+// #dd663680
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'red'. The severity is not explicitly set so it defaults to 1
+let protanopia = colorDeficiency('red')
+console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
+// #9f9f9f
+</code></pre>
+<h4 id="defined-in-📝">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L51">colors.d.ts:51</a></p>
+<hr />
+<h3 id="diverging">diverging</h3>
+<p>▸ <strong>diverging</strong>(<code class='rounded shadow shadow-gray-300 hljs' >scheme</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>A wrapper function for ColorBrewer's map of diverging color schemes.</p>
+<h4 id="parameters-🧮-2">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >scheme</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#divergingscheme"><code class='rounded shadow shadow-gray-300 hljs' >DivergingScheme</code></a></td>
+<td style="text-align:left;">The name of the scheme.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-2">Returns 🔙</h4>
+<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[]</p>
+<p>An array of colors in hex represantation.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { diverging } from 'huetiful-js'
 
 console.log(diverging("Spectral"))
 //[
@@ -229,76 +232,76 @@ console.log(diverging("Spectral"))
  '#bf5b17', '#666666'
 ]
 </code></pre>
-            <h4 id="defined-in-📝-1">Defined in 📝</h4>
-            <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L676">colors.d.ts:676</a>
-            </p>
-            <hr />
-            <h3 id="load">load</h3>
-            <p>▸ <strong>load</strong>(<code
-                    class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>colors</code>): <a
-                    href="../classes/colors.ColorArray"><code>ColorArray</code></a></p>
-            <p>A wrapper function over the <code
-                    class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>ColorArray</code> class which returns a
-                new instance of the class. Use it to invoke the class without using the <code>new</code> keyword</p>
-            <h4 id="parameters-🧮-2">Parameters 🧮</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="text-align:left;">Name</th>
-                        <th style="text-align:left;">Type</th>
-                        <th style="text-align:left;">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="text-align:left;"><code
-                                class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>colors</code></td>
-                        <td style="text-align:left;"><code
-                                class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>object</code> | <a
-                                href="types#colortoken"><code>ColorToken</code></a>[]</td>
-                        <td style="text-align:left;">An array of colors to chain the array methods on. Every element in
-                            the array will be parsed as a color token.</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h4 id="returns-🔙-2">Returns 🔙</h4>
-            <p><a href="../classes/colors.ColorArray"><code
-                        class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>ColorArray</code></a></p>
-            <h4 id="defined-in-📝-2">Defined in 📝</h4>
-            <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L633">colors.d.ts:633</a>
-            </p>
-            <hr />
-            <h3 id="qualitative">qualitative</h3>
-            <p>▸ <strong>qualitative</strong>(<code
-                    class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>scheme</code>): <a
-                    href="types#colortoken"><code>ColorToken</code></a>[]</p>
-            <p>A wrapper function for ColorBrewer's map of qualitative color schemes.</p>
-            <h4 id="parameters-🧮-3">Parameters 🧮</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="text-align:left;">Name</th>
-                        <th style="text-align:left;">Type</th>
-                        <th style="text-align:left;">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="text-align:left;"><code
-                                class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>scheme</code></td>
-                        <td style="text-align:left;"><a href="types#qualitativescheme"><code
-                                    class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>QualitativeScheme</code></a>
-                        </td>
-                        <td style="text-align:left;">The name of the scheme</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h4 id="returns-🔙-3">Returns 🔙</h4>
-            <p><a href="types#colortoken"><code
-                        class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>ColorToken</code></a>[]</p>
-            <p>An array of colors in hex represantation.</p>
-            <p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>Example</code></strong></p>
-            <pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { qualitative } from 'huetiful-js'
+<h4 id="defined-in-📝-1">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L97">colors.d.ts:97</a></p>
+<hr />
+<h3 id="getnearestcolor">getNearestColor</h3>
+<p>▸ <strong>getNearestColor</strong>(<code class='rounded shadow shadow-gray-300 hljs' >collection</code>, <code>against</code>, <code>num?</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> | <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns the nearest color(s) in a collection against</p>
+<h4 id="parameters-🧮-3">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >collection</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[] | <code>"tailwind"</code></td>
+<td style="text-align:left;">The collection of colors to search for nearest colors</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;">The color to use for distance comparison.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >num?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+<td style="text-align:left;">The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the <code class='rounded shadow shadow-gray-300 hljs' >differenceHyab</code> metric.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-3">Returns 🔙</h4>
+<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a> | <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
+<p>An cllection of colors.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">let cols = colors('all', '500')
+
+console.log(getNearestColor(cols, 'blue', 3));
+// [ '#a855f7', '#8b5cf6', '#d946ef' ]
+</code></pre>
+<h4 id="defined-in-📝-2">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L23">colors.d.ts:23</a></p>
+<hr />
+<h3 id="qualitative">qualitative</h3>
+<p>▸ <strong>qualitative</strong>(<code class='rounded shadow shadow-gray-300 hljs' >scheme</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>A wrapper function for ColorBrewer's map of qualitative color schemes.</p>
+<h4 id="parameters-🧮-4">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >scheme</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#qualitativescheme"><code class='rounded shadow shadow-gray-300 hljs' >QualitativeScheme</code></a></td>
+<td style="text-align:left;">The name of the scheme</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-4">Returns 🔙</h4>
+<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[]</p>
+<p>An array of colors in hex represantation.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { qualitative } from 'huetiful-js'
 
 console.log(qualitative("Accent"))
 // [
@@ -308,41 +311,34 @@ console.log(qualitative("Accent"))
  '#bf5b17', '#666666'
 ]
 </code></pre>
-            <h4 id="defined-in-📝-3">Defined in 📝</h4>
-            <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L696">colors.d.ts:696</a>
-            </p>
-            <hr />
-            <h3 id="sequential">sequential</h3>
-            <p>▸ <strong>sequential</strong>(<code
-                    class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>scheme</code>): <a
-                    href="types#colortoken"><code>ColorToken</code></a>[]</p>
-            <p>A wrapper function for ColorBrewer's map of sequential color schemes.</p>
-            <h4 id="parameters-🧮-4">Parameters 🧮</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="text-align:left;">Name</th>
-                        <th style="text-align:left;">Type</th>
-                        <th style="text-align:left;">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="text-align:left;"><code
-                                class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>scheme</code></td>
-                        <td style="text-align:left;"><a href="types#sequentialscheme"><code
-                                    class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>SequentialScheme</code></a>
-                        </td>
-                        <td style="text-align:left;">The name of the scheme</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h4 id="returns-🔙-4">Returns 🔙</h4>
-            <p><a href="types#colortoken"><code
-                        class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>ColorToken</code></a>[]</p>
-            <p>An array of colors in hex represantation.</p>
-            <p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>Example</code></strong></p>
-            <pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { sequential } from 'huetiful-js
+<h4 id="defined-in-📝-3">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L117">colors.d.ts:117</a></p>
+<hr />
+<h3 id="sequential">sequential</h3>
+<p>▸ <strong>sequential</strong>(<code class='rounded shadow shadow-gray-300 hljs' >scheme</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>A wrapper function for ColorBrewer's map of sequential color schemes.</p>
+<h4 id="parameters-🧮-5">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >scheme</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#sequentialscheme"><code class='rounded shadow shadow-gray-300 hljs' >SequentialScheme</code></a></td>
+<td style="text-align:left;">The name of the scheme</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-5">Returns 🔙</h4>
+<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[]</p>
+<p>An array of colors in hex represantation.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { sequential } from 'huetiful-js
 
 console.log(sequential("OrRd"))
 
@@ -354,49 +350,36 @@ console.log(sequential("OrRd"))
  '#7f0000'
 ]
 </code></pre>
-            <h4 id="defined-in-📝-4">Defined in 📝</h4>
-            <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L656">colors.d.ts:656</a>
-            </p>
-            <hr />
-            <h3 id="tailwindcolors">tailwindColors</h3>
-            <p>▸ <strong>tailwindColors</strong>(<code
-                    class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>shade</code>, <code>value?</code>):
-                <code>string</code> | <code>string</code>[]
-            </p>
-            <p>Wrapper function that returns TailwindCSS color value(s) of the specified shade. If invoked with no
-                parameters it returns an array of colors from 100 to 900. If invoked with parameter will return the
-                specified shade vale,</p>
-            <h4 id="parameters-🧮-5">Parameters 🧮</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="text-align:left;">Name</th>
-                        <th style="text-align:left;">Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="text-align:left;"><code
-                                class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>shade</code></td>
-                        <td style="text-align:left;"><a href="types#tailwindcolorfamilies"><code
-                                    class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>TailwindColorFamilies</code></a>
-                            | <code>"all"</code></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align:left;"><code
-                                class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>value?</code></td>
-                        <td style="text-align:left;"><a href="types#scalevalues"><code
-                                    class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>ScaleValues</code></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <h4 id="returns-🔙-5">Returns 🔙</h4>
-            <p><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>string</code> | <code>string</code>[]
-            </p>
-            <p>color A hex string value or array of hex strings.</p>
-            <p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'>Example</code></strong></p>
-            <pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { tailwindColors } from "huetiful-js";
+<h4 id="defined-in-📝-4">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L77">colors.d.ts:77</a></p>
+<hr />
+<h3 id="tailwindcolors">tailwindColors</h3>
+<p>▸ <strong>tailwindColors</strong>(<code class='rounded shadow shadow-gray-300 hljs' >shade</code>, <code>value?</code>): <code>string</code> | <code>string</code>[]</p>
+<p>Returns TailwindCSS color value(s) of the specified <code class='rounded shadow shadow-gray-300 hljs' >shade</code> from the default palette. If invoked with no parameters, it returns an array of colors from 100 to 900. If invoked with parameter will return the specified shade vale,</p>
+<h4 id="parameters-🧮-6">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >shade</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#tailwindcolorfamilies"><code class='rounded shadow shadow-gray-300 hljs' >TailwindColorFamilies</code></a> | <code>"all"</code></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >value?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#scalevalues"><code class='rounded shadow shadow-gray-300 hljs' >ScaleValues</code></a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-6">Returns 🔙</h4>
+<p><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>string</code>[]</p>
+<p>color A hex string value or array of hex strings.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { tailwindColors } from "huetiful-js";
 
 // We pass in red as the target hue.
 // It returns a function that can be called with an optional value parameter
@@ -416,22 +399,51 @@ console.log(red(100));
 console.log(red('900'));
 // '#7f1d1d'
 </code></pre>
-            <h4 id="defined-in-📝-5">Defined in 📝</h4>
-            <p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L728">colors.d.ts:728</a>
-            </p>
+<h4 id="defined-in-📝-5">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L150">colors.d.ts:150</a></p>
 
-            </article>
+    </article>
 
-        </div>
+</div>
+<section class="flex justify-between">
+    <div class="flex-col space-y-2">
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/accessibility"
+            class='flex align-middle space-x-2 p-4' id="previous-button"><svg xmlns="http://www.w3.org/2000/svg"
+                width="22" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg><span></span></button>
+        <h5>Return to home page</h5>
+
+
+    </div>
 
 
 
-        <footer class=" flex-inline flex-wrap p-4">
+
+
+    <div class="flex-col space-y-2">
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/colors" class='flex space-x-2 p-4'
+            id="next-button"><span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-chevron-right">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg></span></button>
+        <h5>converters</h5>
+
+    </div>
+
+</section>
+
+
+
+        <footer
+            class="bg-[url(assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
 
             <div class="flex-col">
                 <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
 
-                    <a href="https://github.com/prjctimg/huetiful"><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                    <a href="https://github.com/xml-wizard/huetiful"><svg xmlns="http://www.w3.org/2000/svg" width="22"
                             height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-github">
                             <path
@@ -505,9 +517,9 @@ console.log(red('900'));
         </footer>
 
 
-        <script src='./assets/vendor/highlight.min.js'></script>
+
         <script type="text/javascript">hljs.highlightAll();</script>
-        <script src="./assets/js/main.js"></script>
+        <script src="https://huetiful-js.com/assets/js/main.js"></script>
     </body>
 
 </html>

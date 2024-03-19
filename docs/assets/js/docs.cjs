@@ -15,7 +15,7 @@ governing permissions and limitations under the License.
 
 var { colorsNamed } = require('culori');
 
-var { readFileSync, lstatSync, writeFileSync } = require('node:fs'),
+var { readFileSync, lstatSync } = require('node:fs'),
   ge = require('github-emoji'),
   defaultClasses = {
     blockquote: ' border-l-blue-400 bg-blue-200',
@@ -93,11 +93,13 @@ function generateDocs(source) {
 
   // Fixing links and extensions
 
-  return $.makeHtml(current)
-    .replace(new RegExp('README.md', 'gm'), '')
-    .replace(new RegExp('modules.md', 'gm'), 'modules')
-    .replace(new RegExp('.md', 'gm'), '')
-    .replace(new RegExp(`modules/`, 'g'), './');
+  return rel2absURL()(
+    $.makeHtml(current)
+      .replace(new RegExp('README.md', 'gm'), '')
+      .replace(new RegExp('modules.md', 'gm'), 'modules')
+      .replace(new RegExp('.md', 'gm'), '')
+      .replace(new RegExp(`modules/`, 'g'), './')
+  );
 }
 // Loop through the markdown files for modules
 function buildDataObject(sourceModule) {

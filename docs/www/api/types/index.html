@@ -5,44 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     
-    <link rel="stylesheet" type="text/css" href="./assets/css/huetiful.css" />
-    <link rel="stylesheet" type="text/css" href="./assets/css/github.min.css" />
-    <link rel="stylesheet" type="text/css" href="./assets/css/github-markdown-light.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/huetiful.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/github-markdown-light.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/atom-one-dark.css" />
+    <script defer type="text/javascript" src='assets/vendor/htmx.js></script>
+    <script defer type="text/javascript" src=' assets/vendor/highlight.min.js'></script>
+    <script defer src="https://huetiful-js.com/assets/vendor/typescript.js"></script>
+    <script>document.documentElement.classList.add('js')</script>
 
     
-    <style>
-        .markdown-body {
-            box-sizing: border-box;
-            min-width: 200px;
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 45px;
-        }
 
-        @media (max-width: 767px) {
-            .markdown-body {
-                padding: 15px;
-            }
-        }
-
-        .progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            z-index: 1000;
-        }
-    </style>
 </head>
 
-    <body class="markdown-body">
+    <body id="swap-content" class="markdown-body">
         <header class="pb-8 sticky top-0 left-0  w-full text-slate-700">
     <nav
-        class="py-4 flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-slate-700 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-lg shadow-gray-300 dark:shadow-black">
+        class="py-4 flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-slate-700 bg-current dark:text-slate-200 shadow-lg shadow-gray-300 dark:shadow-black">
 
-        <a class="inline-flex space-y-1 items-center font-medium text-base" href="./index.html" id="home"><svg
-                xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+        <a class="inline-flex space-y-1 items-center font-medium text-base" href="https://huetiful-js.com"
+            id="home"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -52,16 +33,27 @@
 
         </a>
 
-        <a href="./modules.html" id="docs-link" class="inline-flex space-y-1 items-center font-medium text-base">
+        <a hx-get="https://huetiful-js.com/api" hx-target="#swap-content"
+            class="inline-flex space-y-1 items-center font-medium text-base">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
                 <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                 <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-            </svg><span>Docs</span>
+            </svg><span>API</span>
+        </a>
+        <a class="inline-flex space-y-1 items-center font-medium text-base" hx-get="https://huetiful-js.com/demo"
+            hx-target="#swap-content">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" aria-hidden="true" class="inline-block mr-1" data-slot="icon">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+            </svg>
+
+            <span>Demo</span>
         </a>
         <a class="inline-flex space-y-1 items-center font-medium text-base"
-            href="https://github.com/prjctimg/huetiful/wiki" id="wiki-link">
+            href="https://github.com/xml-wizard/huetiful/wiki" id="wiki-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
@@ -72,8 +64,8 @@
             </svg>
             <span>Wiki</span>
         </a>
-        <a class="inline-flex space-y-1 items-center font-medium text-base" href="https://github.com/prjctimg/huetiful"
-            id="source-link">
+        <a class="inline-flex space-y-1 items-center font-medium text-base"
+            href="https://github.com/xml-wizard/huetiful" id="source-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
@@ -94,7 +86,7 @@
             <div class='flex flex-row w-full justify-end'>
 
 
-                <a class='flex w-fit align-middle' href=https://github.com/prjctimg/xml-wizard/blob/main/types/types.d.ts><button
+                <a class='flex w-fit align-middle' href=https://github.com/xml-wizard/blob/main/types/types.d.ts><button
                         class="px-2 py-2 bg-sky-500 border-none text-sm text-slate-800">Edit this page</button><span
                         class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
@@ -106,7 +98,7 @@
                         </span></a>
 
                 <div class='flex flex-col'><span class='font-normal text-sm text-slate-500'>last updated</span'>
-                        <p class='text-slate-600 text-xs font-sans font-semibold'>Tuesday, Mar 12, at night</p>
+                        <p class='text-slate-600 text-xs font-sans font-semibold'>Saturday, Mar 16, in the morning</p>
                 </div>
 
             </div>
@@ -118,12 +110,12 @@
 
 
         <div class="flex flex-row space-x-2 pt-8 pb-1 mb-4 w-fit">
-            <a href="https://github.com/prjctimg/xml-wizard/blob/main/spec/types.spec.js" class="flex space-x-1">
+            <a href="https://github.com/xml-wizard/blob/main/spec/types.spec.js" class="flex space-x-1">
                 <span>Tests 🧪</span>
 
 
             </a>
-            <a href="https://github.com/prjctimg/xml-wizard/blob/main/src/types.js" class="flex space-x-1">
+            <a href="https://github.com/xml-wizard/blob/main/src/types.js" class="flex space-x-1">
                 <span>Source 🧾</span>
             </a>
         </div>
@@ -136,36 +128,36 @@
 <h2 id="table-of-contents-📑">Table of contents 📑</h2>
 <h3 id="type-aliases">Type Aliases</h3>
 <ul>
-<li><a href="types#adaptivepaletteoptions">AdaptivePaletteOptions</a></li>
-<li><a href="types#colordistanceoptions">ColorDistanceOptions</a></li>
-<li><a href="types#colorobject">ColorObject</a></li>
-<li><a href="types#coloroptions">ColorOptions</a></li>
-<li><a href="types#colortoken">ColorToken</a></li>
-<li><a href="types#colortuple">ColorTuple</a></li>
-<li><a href="types#colorspaces">Colorspaces</a></li>
-<li><a href="types#deficiencytype">DeficiencyType</a></li>
-<li><a href="types#divergingscheme">DivergingScheme</a></li>
-<li><a href="types#earthtoneoptions">EarthtoneOptions</a></li>
-<li><a href="types#factor">Factor</a></li>
-<li><a href="types#huecolorspaces">HueColorSpaces</a></li>
-<li><a href="types#huefamily">HueFamily</a></li>
-<li><a href="types#hueshiftoptions">HueShiftOptions</a></li>
-<li><a href="types#interpolator">Interpolator</a></li>
-<li><a href="types#interpolatoroptions">InterpolatorOptions</a></li>
-<li><a href="types#options">Options</a></li>
-<li><a href="types#pairedschemeoptions">PairedSchemeOptions</a></li>
-<li><a href="types#qualitativescheme">QualitativeScheme</a></li>
-<li><a href="types#scalevalues">ScaleValues</a></li>
-<li><a href="types#sequentialscheme">SequentialScheme</a></li>
-<li><a href="types#tailwindcolorfamilies">TailwindColorFamilies</a></li>
-<li><a href="types#tone">Tone</a></li>
-<li><a href="types#uniformcolorspaces">UniformColorSpaces</a></li>
-<li><a href="types#callback">callback</a></li>
+<li><a href="https://huetiful-js.com/types#adaptivepaletteoptions">AdaptivePaletteOptions</a></li>
+<li><a href="https://huetiful-js.com/types#colordistanceoptions">ColorDistanceOptions</a></li>
+<li><a href="https://huetiful-js.com/types#colorobject">ColorObject</a></li>
+<li><a href="https://huetiful-js.com/types#coloroptions">ColorOptions</a></li>
+<li><a href="https://huetiful-js.com/types#colortoken">ColorToken</a></li>
+<li><a href="https://huetiful-js.com/types#colortuple">ColorTuple</a></li>
+<li><a href="https://huetiful-js.com/types#colorspaces">Colorspaces</a></li>
+<li><a href="https://huetiful-js.com/types#deficiencytype">DeficiencyType</a></li>
+<li><a href="https://huetiful-js.com/types#divergingscheme">DivergingScheme</a></li>
+<li><a href="https://huetiful-js.com/types#earthtoneoptions">EarthtoneOptions</a></li>
+<li><a href="https://huetiful-js.com/types#factor">Factor</a></li>
+<li><a href="https://huetiful-js.com/types#huecolorspaces">HueColorSpaces</a></li>
+<li><a href="https://huetiful-js.com/types#huefamily">HueFamily</a></li>
+<li><a href="https://huetiful-js.com/types#hueshiftoptions">HueShiftOptions</a></li>
+<li><a href="https://huetiful-js.com/types#interpolator">Interpolator</a></li>
+<li><a href="https://huetiful-js.com/types#interpolatoroptions">InterpolatorOptions</a></li>
+<li><a href="https://huetiful-js.com/types#options">Options</a></li>
+<li><a href="https://huetiful-js.com/types#pairedschemeoptions">PairedSchemeOptions</a></li>
+<li><a href="https://huetiful-js.com/types#qualitativescheme">QualitativeScheme</a></li>
+<li><a href="https://huetiful-js.com/types#scalevalues">ScaleValues</a></li>
+<li><a href="https://huetiful-js.com/types#sequentialscheme">SequentialScheme</a></li>
+<li><a href="https://huetiful-js.com/types#tailwindcolorfamilies">TailwindColorFamilies</a></li>
+<li><a href="https://huetiful-js.com/types#tone">Tone</a></li>
+<li><a href="https://huetiful-js.com/types#uniformcolorspaces">UniformColorSpaces</a></li>
+<li><a href="https://huetiful-js.com/types#callback">callback</a></li>
 </ul>
 <h2 id="type-aliases-1">Type Aliases</h2>
 <h3 id="adaptivepaletteoptions">AdaptivePaletteOptions</h3>
-<p>Ƭ <strong>AdaptivePaletteOptions</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Object</code></p>
-<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Description</code></strong></p>
+<p>Ƭ <strong>AdaptivePaletteOptions</strong>: <code class='rounded shadow shadow-gray-300 hljs' >Object</code></p>
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Description</code></strong></p>
 <p>This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.</p>
 <h4 id="type-declaration">Type declaration</h4>
 <table>
@@ -177,28 +169,28 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >backgroundColor?</code></td>
-<td style="text-align:left;">{ <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >dark?</code>: <a href="types#colortoken"><code>ColorToken</code></a> ; <code>light?</code>: <a href="types#colortoken"><code>ColorToken</code></a>  }</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >backgroundColor?</code></td>
+<td style="text-align:left;">{ <code class='rounded shadow shadow-gray-300 hljs' >dark?</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>light?</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>  }</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >backgroundColor.dark?</code></td>
-<td style="text-align:left;"><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >backgroundColor.dark?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >backgroundColor.light?</code></td>
-<td style="text-align:left;"><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >backgroundColor.light?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorBlind?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >boolean</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorBlind?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="defined-in-📝">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L43">types.d.ts:43</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L42">types.d.ts:42</a></p>
 <hr />
 <h3 id="colordistanceoptions">ColorDistanceOptions</h3>
-<p>Ƭ <strong>ColorDistanceOptions</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Object</code></p>
+<p>Ƭ <strong>ColorDistanceOptions</strong>: <code class='rounded shadow shadow-gray-300 hljs' >Object</code></p>
 <h4 id="type-declaration-1">Type declaration</h4>
 <table>
 <thead>
@@ -209,20 +201,22 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >mode?</code></td>
-<td style="text-align:left;"><a href="types#colorspaces"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Colorspaces</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >mode?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#colorspaces"><code class='rounded shadow shadow-gray-300 hljs' >Colorspaces</code></a></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >weights?</code></td>
-<td style="text-align:left;">[<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code>, <code>number</code>, <code>number</code>, <code>number</code>]</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >weights?</code></td>
+<td style="text-align:left;">[<code class='rounded shadow shadow-gray-300 hljs' >number</code>, <code>number</code>, <code>number</code>, <code>number</code>]</td>
 </tr>
 </tbody>
 </table>
 <h4 id="defined-in-📝-1">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L34">types.d.ts:34</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L33">types.d.ts:33</a></p>
 <hr />
 <h3 id="colorobject">ColorObject</h3>
-<p>Ƭ <strong>ColorObject</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Object</code></p>
+<p>Ƭ <strong>ColorObject</strong>: <code class='rounded shadow shadow-gray-300 hljs' >Object</code></p>
+<h4 id="index-signature">Index signature</h4>
+<p>▪ [channel: <code class='rounded shadow shadow-gray-300 hljs' >string</code>]: <code>number</code> | <code>undefined</code></p>
 <h4 id="type-declaration-2">Type declaration</h4>
 <table>
 <thead>
@@ -233,20 +227,20 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >alpha?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >alpha?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >mode</code></td>
-<td style="text-align:left;"><a href="types#colorspaces"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Colorspaces</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#colorspaces"><code class='rounded shadow shadow-gray-300 hljs' >Colorspaces</code></a></td>
 </tr>
 </tbody>
 </table>
 <h4 id="defined-in-📝-2">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L19">types.d.ts:19</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L206">types.d.ts:206</a></p>
 <hr />
 <h3 id="coloroptions">ColorOptions</h3>
-<p>Ƭ <strong>ColorOptions</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Object</code></p>
+<p>Ƭ <strong>ColorOptions</strong>: <code class='rounded shadow shadow-gray-300 hljs' >Object</code></p>
 <h4 id="type-declaration-3">Type declaration</h4>
 <table>
 <thead>
@@ -257,106 +251,106 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >alpha?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >alpha?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorSpace?</code></td>
-<td style="text-align:left;"><a href="types#huecolorspaces"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >HueColorSpaces</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorSpace?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#huecolorspaces"><code class='rounded shadow shadow-gray-300 hljs' >HueColorSpaces</code></a></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
-<td style="text-align:left;"><a href="types#huecolorspaces"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >HueColorSpaces</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#huecolorspaces"><code class='rounded shadow shadow-gray-300 hljs' >HueColorSpaces</code></a></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >contrast?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >contrast?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >darkMode?</code></td>
-<td style="text-align:left;"><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >darkMode?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >lightMode?</code></td>
-<td style="text-align:left;"><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >lightMode?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >lightness?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >lightness?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >luminance?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >luminance?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >saturation?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >saturation?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >temperature?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >temperature?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="defined-in-📝-3">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L20">types.d.ts:20</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L19">types.d.ts:19</a></p>
 <hr />
 <h3 id="colortoken">ColorToken</h3>
-<p>Ƭ <strong>ColorToken</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code> | <code>string</code> | <code>object</code> | <a href="types#colortuple"><code>ColorTuple</code></a></p>
-<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Description</code></strong></p>
+<p>Ƭ <strong>ColorToken</strong>: <code class='rounded shadow shadow-gray-300 hljs' >number</code> | <code>string</code> | <a href="https://huetiful-js.com/types#colorobject"><code>ColorObject</code></a> | <a href="https://huetiful-js.com/types#colortuple"><code>ColorTuple</code></a></p>
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Description</code></strong></p>
 <p>Any recognizable color token.</p>
 <h4 id="defined-in-📝-4">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L199">types.d.ts:199</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L204">types.d.ts:204</a></p>
 <hr />
 <h3 id="colortuple">ColorTuple</h3>
-<p>Ƭ <strong>ColorTuple</strong>: [<a href="types#colorspaces"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Colorspaces</code></a>, <code>number</code>, <code>number</code>, <code>number</code>, number?]</p>
+<p>Ƭ <strong>ColorTuple</strong>: [<a href="https://huetiful-js.com/types#colorspaces"><code class='rounded shadow shadow-gray-300 hljs' >Colorspaces</code></a>, <code>number</code>, <code>number</code>, <code>number</code>, number?]</p>
 <h4 id="defined-in-📝-5">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L17">types.d.ts:17</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L17">types.d.ts:17</a></p>
 <hr />
 <h3 id="colorspaces">Colorspaces</h3>
-<p>Ƭ <strong>Colorspaces</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"a98"</code> | <code>"cubehelix"</code> | <code>"dlab"</code> | <code>"jab"</code> | <code>"lab"</code> | <code>"lab65"</code> | <code>"lrgb"</code> | <code>"luv"</code> | <code>"oklab"</code> | <code>"rgb"</code> | <a href="types#huecolorspaces"><code>HueColorSpaces</code></a></p>
+<p>Ƭ <strong>Colorspaces</strong>: <code class='rounded shadow shadow-gray-300 hljs' >"a98"</code> | <code>"cubehelix"</code> | <code>"dlab"</code> | <code>"jab"</code> | <code>"lab"</code> | <code>"lab65"</code> | <code>"lrgb"</code> | <code>"luv"</code> | <code>"oklab"</code> | <code>"rgb"</code> | <a href="https://huetiful-js.com/types#huecolorspaces"><code>HueColorSpaces</code></a></p>
 <h4 id="defined-in-📝-6">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L231">types.d.ts:231</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L244">types.d.ts:244</a></p>
 <hr />
 <h3 id="deficiencytype">DeficiencyType</h3>
-<p>Ƭ <strong>DeficiencyType</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"red"</code> | <code>"blue"</code> | <code>"green"</code> | <code>"monochromacy"</code></p>
+<p>Ƭ <strong>DeficiencyType</strong>: <code class='rounded shadow shadow-gray-300 hljs' >"red"</code> | <code>"blue"</code> | <code>"green"</code> | <code>"monochromacy"</code></p>
 <h4 id="defined-in-📝-7">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L141">types.d.ts:141</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L146">types.d.ts:146</a></p>
 <hr />
 <h3 id="divergingscheme">DivergingScheme</h3>
-<p>Ƭ <strong>DivergingScheme</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"Spectral"</code> | <code>"RdYlGn"</code> | <code>"RdBu"</code> | <code>"PiYG"</code> | <code>"PRGn"</code> | <code>"RdYlBu"</code> | <code>"BrBG"</code> | <code>"RdGy"</code> | <code>"PuOr"</code></p>
+<p>Ƭ <strong>DivergingScheme</strong>: <code class='rounded shadow shadow-gray-300 hljs' >"Spectral"</code> | <code>"RdYlGn"</code> | <code>"RdBu"</code> | <code>"PiYG"</code> | <code>"PRGn"</code> | <code>"RdYlBu"</code> | <code>"BrBG"</code> | <code>"RdGy"</code> | <code>"PuOr"</code></p>
 <h4 id="defined-in-📝-8">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L154">types.d.ts:154</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L159">types.d.ts:159</a></p>
 <hr />
 <h3 id="earthtoneoptions">EarthtoneOptions</h3>
-<p>Ƭ <strong>EarthtoneOptions</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Omit</code>\&lt;<a href="types#options"><code>Options</code></a>, <code>"hueStep"</code> | <code>"via"</code> | <code>"maxLightness"</code> | <code>"minLightness"</code>></p>
+<p>Ƭ <strong>EarthtoneOptions</strong>: <code class='rounded shadow shadow-gray-300 hljs' >Omit</code>\&lt;<a href="https://huetiful-js.com/types#options"><code>Options</code></a>, <code>"hueStep"</code> | <code>"via"</code> | <code>"maxLightness"</code> | <code>"minLightness"</code>></p>
 <h4 id="defined-in-📝-9">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L132">types.d.ts:132</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L137">types.d.ts:137</a></p>
 <hr />
 <h3 id="factor">Factor</h3>
-<p>Ƭ <strong>Factor</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"luminance"</code> | <code>"temp"</code> | <code>"saturation"</code> | <code>"contrast"</code> | <code>"distance"</code> | <code>"lightness"</code> | <code>"hue"</code> | <code>string</code></p>
+<p>Ƭ <strong>Factor</strong>: <code class='rounded shadow shadow-gray-300 hljs' >"luminance"</code> | <code>"temp"</code> | <code>"saturation"</code> | <code>"contrast"</code> | <code>"distance"</code> | <code>"lightness"</code> | <code>"hue"</code> | <code>string</code></p>
 <h4 id="defined-in-📝-10">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L210">types.d.ts:210</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L223">types.d.ts:223</a></p>
 <hr />
 <h3 id="huecolorspaces">HueColorSpaces</h3>
-<p>Ƭ <strong>HueColorSpaces</strong>: <a href="types#uniformcolorspaces"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >UniformColorSpaces</code></a> | <code>"hsl"</code> | <code>"hsv"</code> | <code>"hsi"</code> | <code>"hwb"</code> | <code>"okhsl"</code> | <code>"okhsv"</code></p>
+<p>Ƭ <strong>HueColorSpaces</strong>: <a href="https://huetiful-js.com/types#uniformcolorspaces"><code class='rounded shadow shadow-gray-300 hljs' >UniformColorSpaces</code></a> | <code>"hsl"</code> | <code>"hsv"</code> | <code>"hsi"</code> | <code>"hwb"</code> | <code>"okhsl"</code> | <code>"okhsv"</code></p>
 <h4 id="defined-in-📝-11">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L244">types.d.ts:244</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L257">types.d.ts:257</a></p>
 <hr />
 <h3 id="huefamily">HueFamily</h3>
-<p>Ƭ <strong>HueFamily</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"red-purple"</code> | <code>"red"</code> | <code>"yellow-red"</code> | <code>"yellow"</code> | <code>"green-yellow"</code> | <code>"green"</code> | <code>"blue-green"</code> | <code>"blue"</code> | <code>"purple-blue"</code> | <code>"purple"</code></p>
+<p>Ƭ <strong>HueFamily</strong>: <code class='rounded shadow shadow-gray-300 hljs' >"red-purple"</code> | <code>"red"</code> | <code>"yellow-red"</code> | <code>"yellow"</code> | <code>"green-yellow"</code> | <code>"green"</code> | <code>"blue-green"</code> | <code>"blue"</code> | <code>"purple-blue"</code> | <code>"purple"</code></p>
 <h4 id="defined-in-📝-12">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L142">types.d.ts:142</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L147">types.d.ts:147</a></p>
 <hr />
 <h3 id="hueshiftoptions">HueShiftOptions</h3>
-<p>Ƭ <strong>HueShiftOptions</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Omit</code>\&lt;<a href="types#options"><code>Options</code></a>, <code>"via"</code> | <code>"earthtones"</code> | <code>""</code>> &amp; <a href="types#interpolatoroptions"><code>InterpolatorOptions</code></a></p>
+<p>Ƭ <strong>HueShiftOptions</strong>: <code class='rounded shadow shadow-gray-300 hljs' >Omit</code>\&lt;<a href="https://huetiful-js.com/types#options"><code>Options</code></a>, <code>"via"</code> | <code>"earthtones"</code> | <code>""</code>> &amp; <a href="https://huetiful-js.com/types#interpolatoroptions"><code>InterpolatorOptions</code></a></p>
 <h4 id="defined-in-📝-13">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L137">types.d.ts:137</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L142">types.d.ts:142</a></p>
 <hr />
 <h3 id="interpolator">Interpolator</h3>
-<p>Ƭ <strong>Interpolator</strong>: (<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >arr</code>: <code>number</code>[]) =&gt; (<code>t</code>: <code>number</code>) =&gt; <code>number</code></p>
+<p>Ƭ <strong>Interpolator</strong>: (<code class='rounded shadow shadow-gray-300 hljs' >arr</code>: <code>number</code>[]) =&gt; (<code>t</code>: <code>number</code>) =&gt; <code>number</code></p>
 <h4 id="type-declaration-4">Type declaration</h4>
-<p>▸ (<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >arr</code>): (<code>t</code>: <code>number</code>) =&gt; <code>number</code></p>
+<p>▸ (<code class='rounded shadow shadow-gray-300 hljs' >arr</code>): (<code>t</code>: <code>number</code>) =&gt; <code>number</code></p>
 <h5 id="parameters-🧮">Parameters 🧮</h5>
 <table>
 <thead>
@@ -367,14 +361,14 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >arr</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code>[]</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >arr</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code>[]</td>
 </tr>
 </tbody>
 </table>
 <h5 id="returns-🔙">Returns 🔙</h5>
-<p><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >fn</code></p>
-<p>▸ (<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >t</code>): <code>number</code></p>
+<p><code class='rounded shadow shadow-gray-300 hljs' >fn</code></p>
+<p>▸ (<code class='rounded shadow shadow-gray-300 hljs' >t</code>): <code>number</code></p>
 <h5 id="parameters-🧮-1">Parameters 🧮</h5>
 <table>
 <thead>
@@ -385,24 +379,24 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >t</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >t</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="returns-🔙-1">Returns 🔙</h5>
-<p><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></p>
+<p><code class='rounded shadow shadow-gray-300 hljs' >number</code></p>
 <h4 id="defined-in-📝-14">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L139">types.d.ts:139</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L144">types.d.ts:144</a></p>
 <hr />
 <h3 id="interpolatoroptions">InterpolatorOptions</h3>
-<p>Ƭ <strong>InterpolatorOptions</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Pick</code>\&lt;<a href="types#options"><code>Options</code></a>, <code>"easingFn"</code> | <code>"hueInterpolator"</code> | <code>"chromaInterpolator"</code> | <code>"hueFixup"</code> | <code>"lightnessInterpolator"</code>></p>
+<p>Ƭ <strong>InterpolatorOptions</strong>: <code class='rounded shadow shadow-gray-300 hljs' >Pick</code>\&lt;<a href="https://huetiful-js.com/types#options"><code>Options</code></a>, <code>"easingFn"</code> | <code>"hueInterpolator"</code> | <code>"chromaInterpolator"</code> | <code>"hueFixup"</code> | <code>"lightnessInterpolator"</code> | <code>"domain"</code>></p>
 <h4 id="defined-in-📝-15">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L48">types.d.ts:48</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L47">types.d.ts:47</a></p>
 <hr />
 <h3 id="options">Options</h3>
-<p>Ƭ <strong>Options</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Object</code></p>
-<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Description</code></strong></p>
+<p>Ƭ <strong>Options</strong>: <code class='rounded shadow shadow-gray-300 hljs' >Object</code></p>
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Description</code></strong></p>
 <p>The override parameters for palette functions.</p>
 <h4 id="type-declaration-5">Type declaration</h4>
 <table>
@@ -415,117 +409,152 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >chromaInterpolator?</code></td>
-<td style="text-align:left;"><a href="types#interpolator"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Interpolator</code></a></td>
-<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Param</code></strong> interpolation method to use on the chroma channel.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >chromaInterpolator?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#interpolator"><code class='rounded shadow shadow-gray-300 hljs' >Interpolator</code></a></td>
+<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 hljs' >Param</code></strong> interpolation method to use on the chroma channel.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >earthtones?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"light-gray"</code> | <code>"silver"</code> | <code>"sand"</code> | <code>"tupe"</code> | <code>"mahogany"</code> | <code>"brick-red"</code> | <code>"clay"</code> | <code>"cocoa"</code> | <code>"dark-brown"</code> | <code>"dark"</code></td>
-<td style="text-align:left;">* <strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Param</code></strong> The earthtone to interpolate with.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >domain?</code></td>
+<td style="text-align:left;">[<code class='rounded shadow shadow-gray-300 hljs' >number</code>, number?]</td>
+<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 hljs' >Param</code></strong> The color stops in the range [0,1] passed in as an array. The color scale returned is from the start (which is element at index 0) up to the optional end which defaults to 1.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >easingFn?</code></td>
-<td style="text-align:left;">(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >t</code>: <code>number</code>) =&gt; <code>number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >earthtones?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >"light-gray"</code> | <code>"silver"</code> | <code>"sand"</code> | <code>"tupe"</code> | <code>"mahogany"</code> | <code>"brick-red"</code> | <code>"clay"</code> | <code>"cocoa"</code> | <code>"dark-brown"</code> | <code>"dark"</code></td>
+<td style="text-align:left;">* <strong><code class='rounded shadow shadow-gray-300 hljs' >Param</code></strong> The earthtone to interpolate with.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >easingFn?</code></td>
+<td style="text-align:left;">(<code class='rounded shadow shadow-gray-300 hljs' >t</code>: <code>number</code>) =&gt; <code>number</code></td>
 <td style="text-align:left;">The easing function to use.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >hueFixup?</code></td>
-<td style="text-align:left;">(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >arr</code>: <code>number</code>[]) =&gt; <code>number</code>[]</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >hueFixup?</code></td>
+<td style="text-align:left;">(<code class='rounded shadow shadow-gray-300 hljs' >arr</code>: <code>number</code>[]) =&gt; <code>number</code>[]</td>
 <td style="text-align:left;"></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >hueInterpolator?</code></td>
-<td style="text-align:left;"><a href="types#interpolator"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Interpolator</code></a></td>
-<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Param</code></strong> interpolation method to use on the hue channel.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >hueInterpolator?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#interpolator"><code class='rounded shadow shadow-gray-300 hljs' >Interpolator</code></a></td>
+<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 hljs' >Param</code></strong> interpolation method to use on the hue channel.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >hueStep?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
-<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Param</code></strong> amount of hue angles to increment each iteration with.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >hueStep?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 hljs' >Param</code></strong> amount of hue angles to increment each iteration with.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >iterations?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
-<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Param</code></strong> amount of samples to return in the result collection.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >iterations?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 hljs' >Param</code></strong> amount of samples to return in the result collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >lightnessInterpolator?</code></td>
-<td style="text-align:left;"><a href="types#interpolator"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Interpolator</code></a></td>
-<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Param</code></strong> interpolation method to use on the lightness channel.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >lightnessInterpolator?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#interpolator"><code class='rounded shadow shadow-gray-300 hljs' >Interpolator</code></a></td>
+<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 hljs' >Param</code></strong> interpolation method to use on the lightness channel.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >maxLightness?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
-<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Param</code></strong> Maximum lightness value (range 0-100).</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >maxLightness?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 hljs' >Param</code></strong> Maximum lightness value (range 0-100).</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >minLightness?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
-<td style="text-align:left;">* <strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Param</code></strong> Minimum lightness value (range 0-100).</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >minLightness?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+<td style="text-align:left;">* <strong><code class='rounded shadow shadow-gray-300 hljs' >Param</code></strong> Minimum lightness value (range 0-100).</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >via?</code></td>
-<td style="text-align:left;"><a href="types#tone"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Tone</code></a></td>
-<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Param</code></strong> color to pass through during interpolation.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >via?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#tone"><code class='rounded shadow shadow-gray-300 hljs' >Tone</code></a></td>
+<td style="text-align:left;"><strong><code class='rounded shadow shadow-gray-300 hljs' >Param</code></strong> color to pass through during interpolation.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="defined-in-📝-16">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L61">types.d.ts:61</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L61">types.d.ts:61</a></p>
 <hr />
 <h3 id="pairedschemeoptions">PairedSchemeOptions</h3>
-<p>Ƭ <strong>PairedSchemeOptions</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Omit</code>\&lt;<a href="types#options"><code>Options</code></a>, <code>"earthtones"</code> | <code>"maxLightness"</code> | <code>"minLightness"</code>></p>
+<p>Ƭ <strong>PairedSchemeOptions</strong>: <code class='rounded shadow shadow-gray-300 hljs' >Omit</code>\&lt;<a href="https://huetiful-js.com/types#options"><code>Options</code></a>, <code>"earthtones"</code> | <code>"maxLightness"</code> | <code>"minLightness"</code>></p>
 <h4 id="defined-in-📝-17">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L128">types.d.ts:128</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L133">types.d.ts:133</a></p>
 <hr />
 <h3 id="qualitativescheme">QualitativeScheme</h3>
-<p>Ƭ <strong>QualitativeScheme</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"Set2"</code> | <code>"Accent"</code> | <code>"Set1"</code> | <code>"Set3"</code> | <code>"Dark2"</code> | <code>"Paired"</code> | <code>"Pastel2"</code> | <code>"Pastel1"</code></p>
+<p>Ƭ <strong>QualitativeScheme</strong>: <code class='rounded shadow shadow-gray-300 hljs' >"Set2"</code> | <code>"Accent"</code> | <code>"Set1"</code> | <code>"Set3"</code> | <code>"Dark2"</code> | <code>"Paired"</code> | <code>"Pastel2"</code> | <code>"Pastel1"</code></p>
 <h4 id="defined-in-📝-18">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L164">types.d.ts:164</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L169">types.d.ts:169</a></p>
 <hr />
 <h3 id="scalevalues">ScaleValues</h3>
-<p>Ƭ <strong>ScaleValues</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"050"</code> | <code>"100"</code> | <code>"200"</code> | <code>"300"</code> | <code>"400"</code> | <code>"500"</code> | <code>"600"</code> | <code>"700"</code> | <code>"800"</code> | <code>"900"</code> | <code>"950"</code></p>
+<p>Ƭ <strong>ScaleValues</strong>: <code class='rounded shadow shadow-gray-300 hljs' >"050"</code> | <code>"100"</code> | <code>"200"</code> | <code>"300"</code> | <code>"400"</code> | <code>"500"</code> | <code>"600"</code> | <code>"700"</code> | <code>"800"</code> | <code>"900"</code> | <code>"950"</code></p>
 <h4 id="defined-in-📝-19">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L253">types.d.ts:253</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L266">types.d.ts:266</a></p>
 <hr />
 <h3 id="sequentialscheme">SequentialScheme</h3>
-<p>Ƭ <strong>SequentialScheme</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"OrRd"</code> | <code>"PuBu"</code> | <code>"BuPu"</code> | <code>"Oranges"</code> | <code>"BuGn"</code> | <code>"YlOrBr"</code> | <code>"YlGn"</code> | <code>"Reds"</code> | <code>"RdPu"</code> | <code>"Greens"</code> | <code>"YlGnBu"</code> | <code>"Purples"</code> | <code>"GnBu"</code> | <code>"Greys"</code> | <code>"YlOrRd"</code> | <code>"PuRd"</code> | <code>"Blues"</code> | <code>"PuBuGn"</code> | <code>"Viridis"</code></p>
+<p>Ƭ <strong>SequentialScheme</strong>: <code class='rounded shadow shadow-gray-300 hljs' >"OrRd"</code> | <code>"PuBu"</code> | <code>"BuPu"</code> | <code>"Oranges"</code> | <code>"BuGn"</code> | <code>"YlOrBr"</code> | <code>"YlGn"</code> | <code>"Reds"</code> | <code>"RdPu"</code> | <code>"Greens"</code> | <code>"YlGnBu"</code> | <code>"Purples"</code> | <code>"GnBu"</code> | <code>"Greys"</code> | <code>"YlOrRd"</code> | <code>"PuRd"</code> | <code>"Blues"</code> | <code>"PuBuGn"</code> | <code>"Viridis"</code></p>
 <h4 id="defined-in-📝-20">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L174">types.d.ts:174</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L179">types.d.ts:179</a></p>
 <hr />
 <h3 id="tailwindcolorfamilies">TailwindColorFamilies</h3>
-<p>Ƭ <strong>TailwindColorFamilies</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"indigo"</code> | <code>"gray"</code> | <code>"zinc"</code> | <code>"neutral"</code> | <code>"stone"</code> | <code>"red"</code> | <code>"orange"</code> | <code>"amber"</code> | <code>"yellow"</code> | <code>"lime"</code> | <code>"green"</code> | <code>"emerald"</code> | <code>"teal"</code> | <code>"sky"</code> | <code>"blue"</code> | <code>"violet"</code> | <code>"purple"</code> | <code>"fuchsia"</code> | <code>"pink"</code> | <code>"rose"</code></p>
+<p>Ƭ <strong>TailwindColorFamilies</strong>: <code class='rounded shadow shadow-gray-300 hljs' >"indigo"</code> | <code>"gray"</code> | <code>"zinc"</code> | <code>"neutral"</code> | <code>"stone"</code> | <code>"red"</code> | <code>"orange"</code> | <code>"amber"</code> | <code>"yellow"</code> | <code>"lime"</code> | <code>"green"</code> | <code>"emerald"</code> | <code>"teal"</code> | <code>"sky"</code> | <code>"blue"</code> | <code>"violet"</code> | <code>"purple"</code> | <code>"fuchsia"</code> | <code>"pink"</code> | <code>"rose"</code></p>
 <h4 id="defined-in-📝-21">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L266">types.d.ts:266</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L279">types.d.ts:279</a></p>
 <hr />
 <h3 id="tone">Tone</h3>
-<p>Ƭ <strong>Tone</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"light"</code> | <code>"dark"</code></p>
+<p>Ƭ <strong>Tone</strong>: <code class='rounded shadow shadow-gray-300 hljs' >"light"</code> | <code>"dark"</code></p>
 <h4 id="defined-in-📝-22">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L140">types.d.ts:140</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L145">types.d.ts:145</a></p>
 <hr />
 <h3 id="uniformcolorspaces">UniformColorSpaces</h3>
-<p>Ƭ <strong>UniformColorSpaces</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >"lch"</code> | <code>"jch"</code> | <code>"dlch"</code> | <code>"lch"</code> | <code>"lch65"</code> | <code>"lchuv"</code> | <code>"oklch"</code> | <code>string</code></p>
+<p>Ƭ <strong>UniformColorSpaces</strong>: <code class='rounded shadow shadow-gray-300 hljs' >"lch"</code> | <code>"jch"</code> | <code>"dlch"</code> | <code>"lch"</code> | <code>"lch65"</code> | <code>"lchuv"</code> | <code>"oklch"</code> | <code>string</code></p>
 <h4 id="defined-in-📝-23">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L222">types.d.ts:222</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L235">types.d.ts:235</a></p>
 <hr />
 <h3 id="callback">callback</h3>
-<p>Ƭ <strong>callback</strong>: <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >unknown</code></p>
+<p>Ƭ <strong>callback</strong>: <code class='rounded shadow shadow-gray-300 hljs' >unknown</code></p>
 <h4 id="defined-in-📝-24">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/types.d.ts#L220">types.d.ts:220</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/types.d.ts#L233">types.d.ts:233</a></p>
 
     </article>
 
 </div>
+<section class="flex justify-between">
+    <div class="flex-col space-y-2">
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/stats"
+            class='flex align-middle space-x-2 p-4' id="previous-button"><svg xmlns="http://www.w3.org/2000/svg"
+                width="22" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg><span></span></button>
+        <h5>sortBy</h5>
+
+
+    </div>
 
 
 
-        <footer class=" flex-inline flex-wrap p-4">
+
+
+    <div class="flex-col space-y-2">
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/stats" class='flex space-x-2 p-4'
+            id="next-button"><span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-chevron-right">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg></span></button>
+        <h5>types</h5>
+
+    </div>
+
+</section>
+
+
+
+        <footer
+            class="bg-[url(assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
 
             <div class="flex-col">
                 <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
 
-                    <a href="https://github.com/prjctimg/huetiful"><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                    <a href="https://github.com/xml-wizard/huetiful"><svg xmlns="http://www.w3.org/2000/svg" width="22"
                             height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-github">
                             <path
@@ -599,9 +628,9 @@
         </footer>
 
 
-        <script src='./assets/vendor/highlight.min.js'></script>
+
         <script type="text/javascript">hljs.highlightAll();</script>
-        <script src="./assets/js/main.js"></script>
+        <script src="https://huetiful-js.com/assets/js/main.js"></script>
     </body>
 
 </html>

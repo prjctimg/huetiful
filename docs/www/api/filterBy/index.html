@@ -5,44 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     
-    <link rel="stylesheet" type="text/css" href="./assets/css/huetiful.css" />
-    <link rel="stylesheet" type="text/css" href="./assets/css/github.min.css" />
-    <link rel="stylesheet" type="text/css" href="./assets/css/github-markdown-light.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/huetiful.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/github-markdown-light.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/atom-one-dark.css" />
+    <script defer type="text/javascript" src='assets/vendor/htmx.js></script>
+    <script defer type="text/javascript" src=' assets/vendor/highlight.min.js'></script>
+    <script defer src="https://huetiful-js.com/assets/vendor/typescript.js"></script>
+    <script>document.documentElement.classList.add('js')</script>
 
     
-    <style>
-        .markdown-body {
-            box-sizing: border-box;
-            min-width: 200px;
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 45px;
-        }
 
-        @media (max-width: 767px) {
-            .markdown-body {
-                padding: 15px;
-            }
-        }
-
-        .progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            z-index: 1000;
-        }
-    </style>
 </head>
 
-    <body class="markdown-body">
+    <body id="swap-content" class="markdown-body">
         <header class="pb-8 sticky top-0 left-0  w-full text-slate-700">
     <nav
-        class="py-4 flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-slate-700 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-lg shadow-gray-300 dark:shadow-black">
+        class="py-4 flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-slate-700 bg-current dark:text-slate-200 shadow-lg shadow-gray-300 dark:shadow-black">
 
-        <a class="inline-flex space-y-1 items-center font-medium text-base" href="./index.html" id="home"><svg
-                xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+        <a class="inline-flex space-y-1 items-center font-medium text-base" href="https://huetiful-js.com"
+            id="home"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -52,16 +33,27 @@
 
         </a>
 
-        <a href="./modules.html" id="docs-link" class="inline-flex space-y-1 items-center font-medium text-base">
+        <a hx-get="https://huetiful-js.com/api" hx-target="#swap-content"
+            class="inline-flex space-y-1 items-center font-medium text-base">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
                 <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                 <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-            </svg><span>Docs</span>
+            </svg><span>API</span>
+        </a>
+        <a class="inline-flex space-y-1 items-center font-medium text-base" hx-get="https://huetiful-js.com/demo"
+            hx-target="#swap-content">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" aria-hidden="true" class="inline-block mr-1" data-slot="icon">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+            </svg>
+
+            <span>Demo</span>
         </a>
         <a class="inline-flex space-y-1 items-center font-medium text-base"
-            href="https://github.com/prjctimg/huetiful/wiki" id="wiki-link">
+            href="https://github.com/xml-wizard/huetiful/wiki" id="wiki-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
@@ -72,8 +64,8 @@
             </svg>
             <span>Wiki</span>
         </a>
-        <a class="inline-flex space-y-1 items-center font-medium text-base" href="https://github.com/prjctimg/huetiful"
-            id="source-link">
+        <a class="inline-flex space-y-1 items-center font-medium text-base"
+            href="https://github.com/xml-wizard/huetiful" id="source-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
@@ -94,7 +86,7 @@
             <div class='flex flex-row w-full justify-end'>
 
 
-                <a class='flex w-fit align-middle' href=https://github.com/prjctimg/xml-wizard/blob/main/types/filterBy.d.ts><button
+                <a class='flex w-fit align-middle' href=https://github.com/xml-wizard/blob/main/types/filterBy.d.ts><button
                         class="px-2 py-2 bg-sky-500 border-none text-sm text-slate-800">Edit this page</button><span
                         class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
@@ -106,7 +98,7 @@
                         </span></a>
 
                 <div class='flex flex-col'><span class='font-normal text-sm text-slate-500'>last updated</span'>
-                        <p class='text-slate-600 text-xs font-sans font-semibold'>Tuesday, Mar 12, at night</p>
+                        <p class='text-slate-600 text-xs font-sans font-semibold'>Saturday, Mar 16, in the morning</p>
                 </div>
 
             </div>
@@ -118,12 +110,12 @@
 
 
         <div class="flex flex-row space-x-2 pt-8 pb-1 mb-4 w-fit">
-            <a href="https://github.com/prjctimg/xml-wizard/blob/main/spec/filterBy.spec.js" class="flex space-x-1">
+            <a href="https://github.com/xml-wizard/blob/main/spec/filterBy.spec.js" class="flex space-x-1">
                 <span>Tests 🧪</span>
 
 
             </a>
-            <a href="https://github.com/prjctimg/xml-wizard/blob/main/src/filterBy.js" class="flex space-x-1">
+            <a href="https://github.com/xml-wizard/blob/main/src/filterBy.js" class="flex space-x-1">
                 <span>Source 🧾</span>
             </a>
         </div>
@@ -136,17 +128,24 @@
 <h2 id="table-of-contents-📑">Table of contents 📑</h2>
 <h3 id="functions-🧰">Functions 🧰</h3>
 <ul>
-<li><a href="filterBy#filterbycontrast">filterByContrast</a></li>
-<li><a href="filterBy#filterbydistance">filterByDistance</a></li>
-<li><a href="filterBy#filterbyhue">filterByHue</a></li>
-<li><a href="filterBy#filterbylightness">filterByLightness</a></li>
-<li><a href="filterBy#filterbyluminance">filterByLuminance</a></li>
-<li><a href="filterBy#filterbysaturation">filterBySaturation</a></li>
+<li><a href="https://huetiful-js.com/filterBy#filterbychroma">filterByChroma</a></li>
+<li><a href="https://huetiful-js.com/filterBy#filterbycontrast">filterByContrast</a></li>
+<li><a href="https://huetiful-js.com/filterBy#filterbydistance">filterByDistance</a></li>
+<li><a href="https://huetiful-js.com/filterBy#filterbyhue">filterByHue</a></li>
+<li><a href="https://huetiful-js.com/filterBy#filterbylightness">filterByLightness</a></li>
+<li><a href="https://huetiful-js.com/filterBy#filterbyluminance">filterByLuminance</a></li>
 </ul>
 <h2 id="functions">Functions</h2>
-<h3 id="filterbycontrast">filterByContrast</h3>
-<p>▸ <strong>filterByContrast</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>against</code>, <code>startContrast?</code>, <code>endContrast?</code>): <a href="types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></p>
-<p>Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.</p>
+<h3 id="filterbychroma">filterByChroma</h3>
+<p>▸ <strong>filterByChroma</strong>(<code class='rounded shadow shadow-gray-300 hljs' >collection</code>, <code>start?</code>, <code>end?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns colors in the specified <code class='rounded shadow shadow-gray-300 hljs' >saturation</code> or <code>chroma</code> range. The range is internally normalized to the supported ranges by the <code>colorspace</code> in use if it is out of range.
+This means a value in the range <code class='rounded shadow shadow-gray-300 hljs' >[0,1]</code> will return, for example if you pass <code>start</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either <code>start</code> or <code>end</code> is above 1 AND the <code>colorspace</code> in use has an <code>end</code> range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
+<ul>
+<li><ul>
+<li>Supports expression strings e.g <code class='rounded shadow shadow-gray-300 hljs' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></li></ul></li>
+<li>
+*</li>
+</ul>
 <h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
 <thead>
@@ -158,32 +157,97 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></td>
-<td style="text-align:left;">The collection of colors to filter.</td>
-</tr>
-<tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >against</code></td>
-<td style="text-align:left;"><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >collection</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >startContrast?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
-<td style="text-align:left;">The minimum end of the contrast range.Supports expression strings e.g <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >start?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The minimum end of the <code class='rounded shadow shadow-gray-300 hljs' >chroma</code> range. *</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >endContrast?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
-<td style="text-align:left;">The maximum end of the contrast range.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >end?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The maximum end of the <code class='rounded shadow shadow-gray-300 hljs' >chroma</code> range. *</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;">The color space to fetch the <code class='rounded shadow shadow-gray-300 hljs' >chroma</code> value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙">Returns 🔙</h4>
-<p><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></p>
+<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
 <p>Collection of filtered colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { filterByContrast } from 'huetiful-js'
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >See</code></strong></p>
+<p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For the expected ranges per colorspace.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { filterByChroma } from 'huetiful-js'
+
+let sample = [
+ '#00ffdc',
+ '#00ff78',
+ '#00c000',
+ '#007e00',
+ '#164100',
+ '#ffff00',
+ '#310000',
+ '#3e0000',
+ '#4e0000',
+ '#600000',
+ '#720000'
+];
+
+console.log(filterByChroma(sample, 0.1));
+
+// [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
+</code></pre>
+<h4 id="defined-in-📝">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/filterBy.d.ts#L48">filterBy.d.ts:48</a></p>
+<hr />
+<h3 id="filterbycontrast">filterByContrast</h3>
+<p>▸ <strong>filterByContrast</strong>(<code class='rounded shadow shadow-gray-300 hljs' >collection</code>, <code>against</code>, <code>start?</code>, <code>end?</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
+Supports expression strings e.g <code class='rounded shadow shadow-gray-300 hljs' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+<h4 id="parameters-🧮-1">Parameters 🧮</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Type</th>
+<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >collection</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;">The collection of colors to filter.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;">-</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >start?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The minimum end of the contrast range.</td>
+</tr>
+<tr>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >end?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The maximum end of the contrast range.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns-🔙-1">Returns 🔙</h4>
+<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
+<p>Collection of filtered colors.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { filterByContrast } from 'huetiful-js'
 
 let sample = [
  '#00ffdc',
@@ -202,13 +266,14 @@ let sample = [
 console.log(filterByContrast(sample, 'green', '&gt;=3'))
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
 </code></pre>
-<h4 id="defined-in-📝">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L215">filterBy.d.ts:215</a></p>
+<h4 id="defined-in-📝-1">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/filterBy.d.ts#L222">filterBy.d.ts:222</a></p>
 <hr />
 <h3 id="filterbydistance">filterByDistance</h3>
-<p>▸ <strong>filterByDistance</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>against</code>, <code>startDistance?</code>, <code>endDistance?</code>): <a href="types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></p>
-<p>Returns colors with the specified distance range. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges. Uses the differenceHyab metric for calculating the distances.</p>
-<h4 id="parameters-🧮-1">Parameters 🧮</h4>
+<p>▸ <strong>filterByDistance</strong>(<code class='rounded shadow shadow-gray-300 hljs' >collection</code>, <code>against</code>, <code>start?</code>, <code>end?</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns colors with the specified <code class='rounded shadow shadow-gray-300 hljs' >distance</code> range. The <code>distance</code> is tested against a comparison color (the 'against' param) and the specified <code>distance</code> ranges. Uses the <code>differenceHyab</code> metric for calculating the distances.
+Supports expression strings e.g <code class='rounded shadow shadow-gray-300 hljs' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+<h4 id="parameters-🧮-2">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -219,32 +284,32 @@ console.log(filterByContrast(sample, 'green', '&gt;=3'))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >collection</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >against</code></td>
-<td style="text-align:left;"><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >startDistance?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
-<td style="text-align:left;">The minimum end of the distance range.Supports expression strings e.g <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >start?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The minimum end of the <code class='rounded shadow shadow-gray-300 hljs' >distance</code> range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >endDistance?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
-<td style="text-align:left;">The maximum end of the distance range.</td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >end?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The maximum end of the <code class='rounded shadow shadow-gray-300 hljs' >distance</code> range.</td>
 </tr>
 </tbody>
 </table>
-<h4 id="returns-🔙-1">Returns 🔙</h4>
-<p><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></p>
+<h4 id="returns-🔙-2">Returns 🔙</h4>
+<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
 <p>Collection of filtered colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { filterByDistance } from 'huetiful-js'
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { filterByDistance } from 'huetiful-js'
 
 let sample = [
  "#ffff00",
@@ -260,13 +325,14 @@ let sample = [
 console.log(filterByDistance(sample, "yellow", 0.1))
 // [ '#ffff00' ]
 </code></pre>
-<h4 id="defined-in-📝-1">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L180">filterBy.d.ts:180</a></p>
+<h4 id="defined-in-📝-2">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/filterBy.d.ts#L186">filterBy.d.ts:186</a></p>
 <hr />
 <h3 id="filterbyhue">filterByHue</h3>
-<p>▸ <strong>filterByHue</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>startHue?</code>, <code>endHue?</code>, <code>colorspace?</code>): <a href="types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></p>
-<p>Returns colors in the specified hue ranges between 0 to 360.</p>
-<h4 id="parameters-🧮-2">Parameters 🧮</h4>
+<p>▸ <strong>filterByHue</strong>(<code class='rounded shadow shadow-gray-300 hljs' >collection</code>, <code>start?</code>, <code>end?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns colors in the specified hue ranges between 0 to 360.
+Supports expression strings e.g <code class='rounded shadow shadow-gray-300 hljs' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+<h4 id="parameters-🧮-3">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -277,32 +343,32 @@ console.log(filterByDistance(sample, "yellow", 0.1))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >collection</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >startHue?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
-<td style="text-align:left;">The minimum end of the hue range. Supports expression strings e.g <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >start?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The minimum end of the 'hue' range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >endHue?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >end?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
 <td style="text-align:left;">The maximum end of the hue range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 </tbody>
 </table>
-<h4 id="returns-🔙-2">Returns 🔙</h4>
-<p><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></p>
+<h4 id="returns-🔙-3">Returns 🔙</h4>
+<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
 <p>Array of the filtered colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">let sample = [
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">let sample = [
  '#00ffdc',
  '#00ff78',
  '#00c000',
@@ -320,15 +386,16 @@ filterByHue(sample, 20, 80)
 
 // [ '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
 </code></pre>
-<h4 id="defined-in-📝-2">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L150">filterBy.d.ts:150</a></p>
+<h4 id="defined-in-📝-3">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/filterBy.d.ts#L155">filterBy.d.ts:155</a></p>
 <hr />
 <h3 id="filterbylightness">filterByLightness</h3>
-<p>▸ <strong>filterByLightness</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>startLightness?</code>, <code>endLightness?</code>, <code>colorspace?</code>): <a href="types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></p>
+<p>▸ <strong>filterByLightness</strong>(<code class='rounded shadow shadow-gray-300 hljs' >collection</code>, <code>start?</code>, <code>end?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
 <p>Returns colors in the specified lightness range.</p>
-<p>The range is internally normalized to the supported ranges by the <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace</code> in use if it is out of range.
-This means a value in the range <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >[0,1]</code> will return, for example if you pass <code>startLightness</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either start or end is above 1 AND the <code>colorspace</code> in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
-<h4 id="parameters-🧮-3">Parameters 🧮</h4>
+<p>The range is internally normalized to the supported ranges by the <code class='rounded shadow shadow-gray-300 hljs' >colorspace</code> in use if it is out of range.
+This means a value in the range <code class='rounded shadow shadow-gray-300 hljs' >[0,1]</code> will return, for example if you pass <code>startLightness</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either start or end is above 1 AND the <code>colorspace</code> in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.
+ *</p>
+<h4 id="parameters-🧮-4">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -339,32 +406,34 @@ This means a value in the range <code class='rounded shadow shadow-gray-300 dark
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >collection</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >startLightness?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
-<td style="text-align:left;">The minimum end of the lightness range. Supports expression strings e.g <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >start?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The minimum end of the lightness range. Supports expression strings e.g <code class='rounded shadow shadow-gray-300 hljs' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >endLightness?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >end?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
 <td style="text-align:left;">The maximum end of the lightness range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >string</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the lightness value from. The default is lch65</td>
 </tr>
 </tbody>
 </table>
-<h4 id="returns-🔙-3">Returns 🔙</h4>
-<p><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></p>
+<h4 id="returns-🔙-4">Returns 🔙</h4>
+<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
 <p>Collection of filtered colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { filterByLightness } from 'huetiful-js'
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >See</code></strong></p>
+<p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For the expected ranges per colorspace.</p>
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { filterByLightness } from 'huetiful-js'
 let sample = [
  '#00ffdc',
  '#00ff78',
@@ -383,13 +452,14 @@ filterByLightness(sample, 20, 80)
 
 // [ '#00c000', '#007e00', '#164100', '#720000' ]
 </code></pre>
-<h4 id="defined-in-📝-3">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L118">filterBy.d.ts:118</a></p>
+<h4 id="defined-in-📝-4">Defined in 📝</h4>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/filterBy.d.ts#L122">filterBy.d.ts:122</a></p>
 <hr />
 <h3 id="filterbyluminance">filterByLuminance</h3>
-<p>▸ <strong>filterByLuminance</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>startLuminance?</code>, <code>endLuminance?</code>): <a href="types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></p>
-<p>Returns colors in the specified luminance range.</p>
-<h4 id="parameters-🧮-4">Parameters 🧮</h4>
+<p>▸ <strong>filterByLuminance</strong>(<code class='rounded shadow shadow-gray-300 hljs' >collection</code>, <code>start?</code>, <code>end?</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns colors in the specified luminance range.
+Supports expression strings e.g <code class='rounded shadow shadow-gray-300 hljs' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+<h4 id="parameters-🧮-5">Parameters 🧮</h4>
 <table>
 <thead>
 <tr>
@@ -400,27 +470,27 @@ filterByLightness(sample, 20, 80)
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >collection</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >startLuminance?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
-<td style="text-align:left;">The minimum end of the luminance range.Supports expression strings e.g <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >start?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The minimum end of the luminance range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >endLuminance?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >end?</code></td>
+<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
 <td style="text-align:left;">The maximum end of the luminance range.</td>
 </tr>
 </tbody>
 </table>
-<h4 id="returns-🔙-4">Returns 🔙</h4>
-<p><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></p>
+<h4 id="returns-🔙-5">Returns 🔙</h4>
+<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
 <p>Array of filtered colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { filterByLuminance } from 'huetiful-js'
+<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
+<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { filterByLuminance } from 'huetiful-js'
 let sample = [
  '#00ffdc',
  '#00ff78',
@@ -439,85 +509,51 @@ filterByLuminance(sample, 0.4, 0.9)
 
 // [ '#00ffdc', '#00ff78' ]
 </code></pre>
-<h4 id="defined-in-📝-4">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L81">filterBy.d.ts:81</a></p>
-<hr />
-<h3 id="filterbysaturation">filterBySaturation</h3>
-<p>▸ <strong>filterBySaturation</strong>(<code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code>, <code>startSaturation?</code>, <code>endSaturation?</code>, <code>colorspace?</code>): <a href="types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></p>
-<p>Returns colors in the specified saturation range.</p>
-<p>@ The range is internally normalized to the supported ranges by the <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace</code> in use if it is out of range.
-This means a value in the range <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >[0,1]</code> will return, for example if you pass <code>startSaturation</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either start or end is above 1 AND the <code>colorspace</code> in use has an end range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
-<h4 id="parameters-🧮-5">Parameters 🧮</h4>
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">Name</th>
-<th style="text-align:left;">Type</th>
-<th style="text-align:left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >collection</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >object</code> | <code>ArrayLike</code>\&lt;<a href="types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></td>
-<td style="text-align:left;">The collection of colors to filter.</td>
-</tr>
-<tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >startSaturation?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
-<td style="text-align:left;">The minimum end of the saturation range. Supports expression strings e.g <code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
-</tr>
-<tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >endSaturation?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >number</code></td>
-<td style="text-align:left;">The maximum end of the saturation range.</td>
-</tr>
-<tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >string</code></td>
-<td style="text-align:left;">The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.</td>
-</tr>
-</tbody>
-</table>
-<h4 id="returns-🔙-5">Returns 🔙</h4>
-<p><a href="types#colortoken"><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="types#colortoken"><code>ColorToken</code></a>></p>
-<p>Collection of filtered colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 dark:shadow-slate-300'  class="ts language-ts">import { filterBySaturation } from 'huetiful-js'
-
-let sample = [
- '#00ffdc',
- '#00ff78',
- '#00c000',
- '#007e00',
- '#164100',
- '#ffff00',
- '#310000',
- '#3e0000',
- '#4e0000',
- '#600000',
- '#720000'
-];
-
-console.log(filterBySaturation(sample, 0.1));
-
-// [ '#00ff78', '#00c000', '#007e00', '#ffff00' ]
-</code></pre>
 <h4 id="defined-in-📝-5">Defined in 📝</h4>
-<p><a href="https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/filterBy.d.ts#L47">filterBy.d.ts:47</a></p>
+<p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/filterBy.d.ts#L84">filterBy.d.ts:84</a></p>
 
     </article>
 
 </div>
+<section class="flex justify-between">
+    <div class="flex-col space-y-2">
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/converters"
+            class='flex align-middle space-x-2 p-4' id="previous-button"><svg xmlns="http://www.w3.org/2000/svg"
+                width="22" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg><span></span></button>
+        <h5>colors</h5>
+
+
+    </div>
 
 
 
-        <footer class=" flex-inline flex-wrap p-4">
+
+
+    <div class="flex-col space-y-2">
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/converters" class='flex space-x-2 p-4'
+            id="next-button"><span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-chevron-right">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg></span></button>
+        <h5>filterBy</h5>
+
+    </div>
+
+</section>
+
+
+
+        <footer
+            class="bg-[url(assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
 
             <div class="flex-col">
                 <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
 
-                    <a href="https://github.com/prjctimg/huetiful"><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                    <a href="https://github.com/xml-wizard/huetiful"><svg xmlns="http://www.w3.org/2000/svg" width="22"
                             height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-github">
                             <path
@@ -591,9 +627,9 @@ console.log(filterBySaturation(sample, 0.1));
         </footer>
 
 
-        <script src='./assets/vendor/highlight.min.js'></script>
+
         <script type="text/javascript">hljs.highlightAll();</script>
-        <script src="./assets/js/main.js"></script>
+        <script src="https://huetiful-js.com/assets/js/main.js"></script>
     </body>
 
 </html>
