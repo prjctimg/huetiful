@@ -74,6 +74,9 @@
   },
   "typedocOptions": {
     "entryPoints": [
+      "types/accessibility.d.ts",
+      "types/stats.d.ts",
+      "types/collections.d.ts",
       "types/generators.d.ts",
       "types/utils.d.ts",
       "types/colors.d.ts",
