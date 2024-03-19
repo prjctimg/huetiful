@@ -15,39 +15,38 @@ governing permissions and limitations under the License.
 */
 
 describe(`The sortBy module test suite `, function () {
-  let colors = ['blue', 'pink', 'yellow', 'green'];
-  var data = {
+  var sortBySpec = {
     sortBySaturation: {
-      params: [colors, 'asc', 'lch'],
+      params: [['blue', 'pink', 'yellow', 'green'], 'asc', 'lch'],
       description: 'Sorts colors by saturation value in `asc` order',
-      expect: jasmine.arrayContaining(colors)
+      expect: ['pink', 'green', 'yellow', 'blue']
     },
     sortByLightness: {
-      params: [colors, 'asc', 'lch'],
+      params: [['blue', 'pink', 'yellow', 'green'], 'asc', 'lch'],
       description: 'Sorts colors by lightness value in `asc` order',
-      expect: jasmine.arrayContaining(colors)
+      expect: ['blue', 'green', 'pink', 'yellow']
     },
     sortByLuminance: {
-      params: [colors, 'asc'],
+      params: [['blue', 'pink', 'yellow', 'green'], 'asc'],
       description: 'Sorts colors by luminance value in `asc` order',
-      expect: jasmine.arrayContaining(colors)
+      expect: ['blue', 'green', 'pink', 'yellow']
     },
     sortByDistance: {
-      params: [colors, 'brown', 'asc'],
+      params: [['blue', 'pink', 'yellow', 'green'], 'brown', 'asc'],
       description: 'Sorts colors by distance value in `asc` order',
-      expect: jasmine.arrayContaining(colors)
+      expect: ['pink', 'green', 'blue', 'yellow']
     },
     sortByContrast: {
-      params: [colors, 'black', 'asc'],
+      params: [['blue', 'pink', 'yellow', 'green'], 'black', 'asc'],
       description: 'Sorts colors by distance value in `asc` order',
-      expect: jasmine.arrayContaining(colors)
+      expect: ['blue', 'green', 'pink', 'yellow']
     },
     sortByHue: {
-      params: [colors, 'asc', 'lch'],
+      params: [['blue', 'pink', 'yellow', 'green'], 'asc', 'lch'],
       description: 'Sorts colors by hue angle in `asc` order',
-      expect: jasmine.arrayContaining(colors)
+      expect: ['pink', 'yellow', 'green', 'blue']
     }
   };
 
-  _iterator(sortBy, data);
+  _iterator(sortBy, sortBySpec);
 });

@@ -1,0 +1,30 @@
+{
+  "name": "huetiful-docs",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "description": "The documentation webapp for huetiful-js",
+  "scripts": {
+    "deploy": "gulp xml && gulp assets && gulp rename && npm run css:build && gulp links && gulp clean",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css:build": "npx tailwindcss -i ./css/_/index.css -o ../www/assets/css/huetiful.css ",
+    "css:dev": "npx tailwindcss -i ./css/_/index.css -o ../www/assets/css/huetiful.css --watch"
+  },
+  "author": "Dean Tarisai",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "github-emoji": "^1.2.0",
+    "gulp": "^4.0.2",
+    "gulp-nunjucks": "^6.0.0",
+    "gulp-nunjucks-render": "^2.2.3",
+    "highlight.js": "^11.9.0",
+    "htmx.org": "^1.9.10",
+    "nunjucks": "^3.2.4",
+    "showdown": "^2.1.0",
+    "tailwind-heropatterns": "^0.0.8",
+    "tailwindcss": "^3.4.1",
+    "tailwindcss-border-gradients": "^2.0.3",
+    "tailwindcss-gradients": "^3.0.0",
+    "taos": "^1.0.5"
+  }
+}

@@ -2,43 +2,68 @@
 
 ## Table of contents
 
-### Classes
-
-- [Color](../classes/colors.Color.md)
-- [ColorArray](../classes/colors.ColorArray.md)
-
 ### Functions
 
-- [color](colors.md#color)
+- [colorDeficiency](colors.md#colordeficiency)
 - [diverging](colors.md#diverging)
-- [load](colors.md#load)
+- [getNearestColor](colors.md#getnearestcolor)
 - [qualitative](colors.md#qualitative)
 - [sequential](colors.md#sequential)
 - [tailwindColors](colors.md#tailwindcolors)
 
 ## Functions
 
-### color
+### colorDeficiency
 
-▸ **color**(`color`): [`Color`](../classes/colors.Color.md)
+▸ **colorDeficiency**(`deficiencyType?`): (`color`: [`ColorToken`](types.md#colortoken), `severity?`: `number`) => `string`
 
-Wrapper function over the Color class that returns a new Color method chain.
+Returns the color as a simulation of the passed in `defeciencyType` of color vision deficiency with the deficiency filter's intensity determined by the `severity` value.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](types.md#colortoken) | The color token to bind. |
+| `deficiencyType?` | `DeficiencyType` | The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is `'red'` when the defeciency parameter is undefined or any falsy value. |
 
 #### Returns
 
-[`Color`](../classes/colors.Color.md)
+`fn`
 
-A new Color class with all the utilities that take a single color as the first parameter bound to its prototype.
+The color as its simulated variant. Preserves the `ColorToken` type of the pased in color.
+
+▸ (`color`, `severity?`): `string`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `color` | [`ColorToken`](types.md#colortoken) |
+| `severity?` | `number` |
+
+##### Returns
+
+`string`
+
+**`Example`**
+
+```ts
+import { colorDeficiency, color2hex } from 'huetiful-js'
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
+// We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
+let tritanomaly = colorDeficiency('blue')
+console.log(tritanomaly(['rgb', 230, 100, 50, 0.5], 0.1))
+// #dd663680
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'red'. The severity is not explicitly set so it defaults to 1
+let protanopia = colorDeficiency('red')
+console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
+// #9f9f9f
+```
 
 #### Defined in
 
-[colors.d.ts:931](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L931)
+[colors.d.ts:51](https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L51)
 
 ___
 
@@ -76,29 +101,42 @@ console.log(diverging("Spectral"))
 
 #### Defined in
 
-[colors.d.ts:676](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L676)
+[colors.d.ts:97](https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L97)
 
 ___
 
-### load
+### getNearestColor
 
-▸ **load**(`colors`): [`ColorArray`](../classes/colors.ColorArray.md)
+▸ **getNearestColor**(`collection`, `against`, `num?`): [`ColorToken`](types.md#colortoken) \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
 
-A wrapper function over the `ColorArray` class which returns a new instance of the class. Use it to invoke the class without using the `new` keyword
+Returns the nearest color(s) in a collection against
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `object` \| [`ColorToken`](types.md#colortoken)[] | An array of colors to chain the array methods on. Every element in the array will be parsed as a color token. |
+| `collection` | [`ColorToken`](types.md#colortoken)[] \| ``"tailwind"`` | The collection of colors to search for nearest colors |
+| `against` | [`ColorToken`](types.md#colortoken) | The color to use for distance comparison. |
+| `num?` | `number` | The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric. |
 
 #### Returns
 
-[`ColorArray`](../classes/colors.ColorArray.md)
+[`ColorToken`](types.md#colortoken) \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.md#colortoken)\>
+
+An cllection of colors.
+
+**`Example`**
+
+```ts
+let cols = colors('all', '500')
+
+console.log(getNearestColor(cols, 'blue', 3));
+// [ '#a855f7', '#8b5cf6', '#d946ef' ]
+```
 
 #### Defined in
 
-[colors.d.ts:633](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L633)
+[colors.d.ts:23](https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L23)
 
 ___
 
@@ -136,7 +174,7 @@ console.log(qualitative("Accent"))
 
 #### Defined in
 
-[colors.d.ts:696](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L696)
+[colors.d.ts:117](https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L117)
 
 ___
 
@@ -176,7 +214,7 @@ console.log(sequential("OrRd"))
 
 #### Defined in
 
-[colors.d.ts:656](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L656)
+[colors.d.ts:77](https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L77)
 
 ___
 
@@ -184,7 +222,7 @@ ___
 
 ▸ **tailwindColors**(`shade`, `value?`): `string` \| `string`[]
 
-Wrapper function that returns TailwindCSS color value(s) of the specified shade. If invoked with no parameters it returns an array of colors from 100 to 900. If invoked with parameter will return the specified shade vale,
+Returns TailwindCSS color value(s) of the specified `shade` from the default palette. If invoked with no parameters, it returns an array of colors from 100 to 900. If invoked with parameter will return the specified shade vale,
 
 #### Parameters
 
@@ -225,4 +263,4 @@ console.log(red('900'));
 
 #### Defined in
 
-[colors.d.ts:728](https://github.com/prjctimg/huetiful/blob/5dc0cd4/types/colors.d.ts#L728)
+[colors.d.ts:150](https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L150)

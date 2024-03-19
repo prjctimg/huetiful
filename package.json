@@ -1,10 +1,10 @@
 {
   "name": "huetiful-js",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "type": "module",
   "main": "./src/index.js",
   "browser": "./lib/huetiful.umd.js",
-  "jsdelivr": "./lib/huetiful.umd.js",
+  "jsdelivr": "./lib/huetiful.min.umd.js",
   "exports": {
     "./generators": "./src/generators.js",
     "./colors": "./src/colors.js",
@@ -16,7 +16,7 @@
     ".": "./lib/index.js"
   },
   "types": "./lib/huetiful.d.ts",
-  "description": "JavaScript library for color manipulation 🧪",
+  "description": "Function oriented library for color manipulation 🧪",
   "dependencies": {
     "culori": "^4.0.1"
   },
@@ -24,7 +24,6 @@
     "culori"
   ],
   "devDependencies": {
-    "@fontsource-variable/space-grotesk": "^5.0.16",
     "@types/culori": "^2.0.0",
     "dts-bundle-generator": "^8.0.1",
     "esbuild": "^0.17.19",
@@ -34,19 +33,13 @@
     "jasmine": "5.1.0",
     "nodemon": "^3.0.1",
     "typedoc": "^0.25.3",
-    "typedoc-material-theme": "^1.0.2",
     "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.0.2"
   },
   "scripts": {
     "test": "npx jasmine",
-    "css:build": "npx tailwindcss -i ./docs/assets/css/index.css -o ./docs/assets/css/huetiful.css ",
-    "css:dev": "npx tailwindcss -i ./docs/assets/css/index.css -o ./docs/assets/css/huetiful.css --watch",
-    "docs:compile": "npx typedoc --hideBreadcrumbs true",
-    "docs:publish": "npm run docs:compile && npm run docs:build && npm run css:build",
-    "docs:build": "node docs/assets/js/docs.cjs",
-    "docs:dev": "nodemon",
-    "code:build": "node ./docs/assets/js/build.cjs",
+    "docs": "npx typedoc --hideBreadcrumbs true",
+    "code:build": "node ./build.cjs",
     "code:publish": "npm run code:build & npm run code:types",
     "code:types": "dts-bundle-generator  -o  ./lib/huetiful.d.ts ./types/index.d.ts --no-banner",
     "code:lint": "eslint --fix --ext ./src/*.js",
@@ -78,6 +71,9 @@
   },
   "typedocOptions": {
     "entryPoints": [
+      "types/accessibility.d.ts",
+      "types/stats.d.ts",
+      "types/wrappers.d.ts",
       "types/generators.d.ts",
       "types/utils.d.ts",
       "types/colors.d.ts",
@@ -114,28 +110,29 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/prjctimg/huetiful.git"
+    "url": "https://github.com/xml-wizard/huetiful.git"
   },
   "keywords": [
     "generative art",
     "javascript",
     "uniform colorspaces",
     "color vision deficiency",
-    "color",
+    "colors",
     "culori",
     "interpolation",
-    "tailwind",
-    "palette generator",
-    "color brewer"
+    "tailwindcss",
+    "color brewer",
+    "cielab",
+    "cielch"
   ],
   "author": "Dean Tarisai",
-  "email": "arcaneqoder@gmail.com",
-  "homepage": "https://prjctimg.github.io/huetiful",
+  "email": "prjctimg@outlook.com",
+  "homepage": "https://huetiful-js.com",
   "license": "Apache-2.0",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "bugs": {
-    "url": "https://github.com/prjctimg/huetiful/issues"
+    "url": "https://github.com/xml-wizard /huetiful/issues"
   }
 }

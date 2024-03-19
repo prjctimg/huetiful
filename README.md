@@ -1,7 +1,7 @@
-[![Deploy GitHub Pages](https://github.com/prjctimg/huetiful/actions/workflows/static.yml/badge.svg?branch=main)](https://github.com/prjctimg/huetiful/actions/workflows/static.yml)
-[![NPM publish 📦](https://github.com/prjctimg/huetiful/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/prjctimg/huetiful/actions/workflows/npm-publish.yml)
+[![Deploy GitHub Pages](https://github.com/xml-wizard/huetiful/actions/workflows/static.yml/badge.svg?branch=main)](https://github.com/xml-wizard/huetiful/actions/workflows/static.yml)
+[![NPM publish 📦](https://github.com/xml-wizard/huetiful/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/xml-wizard/huetiful/actions/workflows/npm-publish.yml)
 ![NPM Downloads](https://img.shields.io/npm/dm/huetiful-js?style=social&logo=npm&link=https%3A%2F%2Fnpmjs.com%2Fpackage%2Fhuetiful-js%20)
-![GitHub Repo stars](https://img.shields.io/github/stars/prjctimg/huetiful?style=social&logo=github)
+![GitHub Repo stars](https://img.shields.io/github/stars/xml-wizard/huetiful?style=social&logo=github)
 [![npm minzipped size](https://img.shields.io/bundlephobia/minzip/huetiful-js?style=social)](https://bundlephobia.com/package/huetiful-js)
 [![twitter](https://img.shields.io/twitter/follow/deantarisai?style=social)](https://twitter.com/deantarisai)
 
@@ -10,20 +10,19 @@
   
   </p>
   
-
 <p align='center'> JavaScript library for color manipulation 🧪
 <br>
 <br>
- <a href="https://prjctimg.github.io/huetiful">📜 Docs</a>
+ <a href="https://huetiful-js.com">📜 Docs</a>
     ·
     <a href="https://github.com/prjctimg/prjctimg/issues/new?template=---bug-report.md">🐞 Report Bug</a>
     ·
-    <a href="https://github.com/prjctimg/huetiful/issues/new?template=---feature-request.md">🍩 Request Feature</a>
+    <a href="https://github.com/xml-wizard/huetiful/issues/new?template=---feature-request.md">🍩 Request Feature</a>
     ·
-    <a href="https://github.com/prjctimg/huetiful/wiki">🧠 Wiki </a>
+    <a href="https://github.com/xml-wizard/huetiful/wiki">🧠 Wiki </a>
 </p>
 
-![](assets/images/logo.png)
+![huetiful-js logo](assets/images/logo.png)
 
 ## Table of contents
 
@@ -64,7 +63,7 @@ declare function filterByChroma(
 
 ```
 
-Focus on the `collection` parameter and the return type of the above function declaration. All functions that took a collection color as an array prior v1.78.x can support this overload as well for collections. These functions retain the structure of the passed in collection which was different in the previous versions since we'd only return arrays by default. This means if you pass in an object as a collection the function will return a `Map`. See more about this behavior on the [collection methods page on our wiki][collection-methods-wiki]
+Focus on the `collection` parameter and the return type of the above function declaration. All functions that took a collection color as an array prior v1.78.x can support this overload as well for collections. These functions retain the structure of the passed in collection which was different in the previous versions since we'd only return arrays by default. This means if you pass in an object as a collection the function will return a `Map`. See more about this behavior on the [collection methods page on our wiki](https://github.com/xml-wizard/huetiful/wiki/collection-methods)
 
 #### Installation and usage
 
@@ -78,7 +77,7 @@ npm i huetiful-js
 
 You can use a CDN in this example, jsdelivr to load the library remotely:
 
-```js
+```ts
 import {...} from 'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.esm.mjs'
 
 ```
@@ -95,7 +94,7 @@ Or load the library as a UMD glabal (`huetiful`) in your HTML file using a `<scr
 
 ##### Quickstart
 
-[See the Quickstart section on the Wiki](https://github.com/prjctimg/huetiful/wiki/Quickstart-%F0%9F%8F%81) to see some examples and demonstrations of the library.
+[See the Quickstart section on the Wiki](https://github.com/xml-wizard/huetiful/wiki/Quickstart) to see some examples and demonstrations of the library.
 
 ### How does it work ?
 
@@ -103,7 +102,7 @@ Or load the library as a UMD glabal (`huetiful`) in your HTML file using a `<scr
 
 Culori accepts color tokens as plain objects, hexadecimal strings and CSS recognized named/serialized colors only. This package extends the data types which can be treated as valid tokens namely arrays/array-like objects, `Map`s , numbers and even boolean values.
 
-```js
+```ts
 import { num2color, color2hex } from 'huetiful-js'
 
 let cssNamedColor = 'pink'
@@ -147,7 +146,7 @@ By widening the options for valid color tokens, we can get a bit more creative s
 
 Think of a scenario where we have collection of color tokens that we may want to filter by contrast and then have the result returned sorted by each color's hue angle in ascending order. In this example we will simply sort colors by luminance:
 
-```js
+```ts
 
 import { sortByLuminance } from "huetiful-js";
 let sample = [
@@ -192,14 +191,13 @@ console.log(sortedDescending)
 
 ```
 
-[See the filterBy module](<https://prjctimg.github.io/huetiful/filterBy.html>]
-[modules) for examples on filtering colors and the sortBy module for sorting functions.
+[See the filterBy module](https://huetiful-js.com/filterBy.html) for examples on filtering colors and the sortBy module for sorting functions.
 
 ### Palette generators
 
 A few simple palette generator functions are included in the library. One of my favourites is `hueShift`  (as a color becomes lighter, its hue shifts up and darker when its hue shifts down. ) .
 
-```js
+```ts
 import { hueShift } from "huetiful-js";
 
 let hueShiftedPalette = hueShift("#3e0000", {}, true);
@@ -219,13 +217,13 @@ console.log(hueShiftedPalette);
 
 ```
 
-[See more palette generator functions](generators]:[https://prjctimg.github.io/huetiful/generators.html)
+[See more palette generator functions](https://huetiful-js.com/generators.html)
 
 ### Predicates
 
 Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? Though its easy to tell colors apart visually when they're displayed on the screen📺 it can be a bit confusing to tell colors apart using code. Below is an example showing how to determine if a color is gray or not:
 
-```js
+```ts
 
 import { isAchromatic } from "huetiful-js";
 import { formatHex8, interpolate, samples } from "culori"
@@ -272,7 +270,7 @@ console.log(map(grays, isAchromatic));
 
 Here's an example🎆 showing how we can check if a color is cool using one of the predicate functions:
 
-```js
+```ts
 import { isCool } from 'huetiful-js'
 
 let sample = [
@@ -298,7 +296,7 @@ console.log(map(sample, isCool));
 >
 > Another use👷 case would be passing the predicate to an array method like `filter` to filter a collection of colors removing colors that return false for the passed in predicate. In the following example we use is `isWarm` to only return warm colors:
 
-```js
+```ts
 import { isWarm } from 'huetiful-js'
 
 let sample = [
@@ -317,7 +315,7 @@ console.log(sample.filter(isWarm))
 
 Color has different properties which our eyes take note of in order to distinguish colors from each other even when they have certain perceived similarities. For example we can get the farthest hue angle in a collection against a specified color:
 
-```js
+```ts
 
 import { getFarthestHueFrom } from 'huetiful-js'
 let sample = [
@@ -341,13 +339,13 @@ console.log(getFarthestHueFrom(sample, 'lime', 'lch'))
 
 ```
 
-[See more examples here from the utils module](https://prjctimg.github.io/huetiful/utils.html)
+[See more examples here from the utils module](https://huetiful-js.com/utils.html)
 
 ### Functional with a hint of OOP via method chaining
 
 Libraries like chroma.js popularized the read-manipulate-output chains when working with color. This library extends that idea by chaining collection methods to a `ColorArray` class. The actual class is not publicly exported because its still experimental but you can access it via the `load` wrapper function which simply takes the collection to bind to the `new ColorArray`. Color tokens also have a chain for binding them to all functions that take a single color as the initial parameter. This chain returns a `new Color` instance that's accessible via the `color` function. See the example below:
 
-```js
+```ts
 
 import { load, color } from 'huetiful-js';
 
@@ -374,11 +372,11 @@ console.log(myLazyChainTwo);
 
 ### There's more
 
-If you wish to explore more examples and reasoning behind this library, [you can check out the wiki](https://prjctimg.github.io/huetiful/wiki) [Or head over to the docs](https://prjctimg.github.io/huetiful/modules.html) to play around with the API
+If you wish to explore more examples and reasoning behind this library, [you can check out the wiki](https://huetiful-js.com/wiki) [Or head over to the docs](https://huetiful-js.com/modules.html) to play around with the API
 
 #### Community
 
-[See the discussions and just say hi, or share a coding meme(whatever breaks the ice🏔️)](https://github.com/prjctimg/huetiful/discussions)
+[See the discussions and just say hi, or share a coding meme(whatever breaks the ice🏔️)](https://github.com/xml-wizard/huetiful/discussions)
 
 #### Contributing
 
@@ -389,8 +387,7 @@ This project is fully open source! Contributions of any kind are greatly appreci
 #### References 🔗
 
 - [Coloring with code: A programmatic approach by George Francis](https://tympanus.net/codrops/2021/12/07/coloring-with-code-a-programmatic-approach-to-design/)
-- [Programming Design Systems: Rune Madsen][programming-design-systems]
-- [Introducing Adaptive Color Palettes][https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://medium.com/thinking-design/introducing-adaptive-color-palettes-111b5842fc88&ved=2ahUKEwj5xNSuy-6DAxV8REEAHVKaAMwQFnoECB0QAQ&usg=AOvVaw2ufCwph7oofZCFawA0WPr-]
+- [Introducing Adaptive Color Palettes](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://medium.com/thinking-design/introducing-adaptive-color-palettes-111b5842fc88&ved=2ahUKEwj5xNSuy-6DAxV8REEAHVKaAMwQFnoECB0QAQ&usg=AOvVaw2ufCwph7oofZCFawA0WPr-)
 - [Culori API docs](https://culorijs.org/api/)
 
 ##### License ⚖️
@@ -399,4 +396,3 @@ This project is fully open source! Contributions of any kind are greatly appreci
  © 2024,Dean Tarisai
  Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h5>
  🧪 & 🔬 with 🥃 in Crowhill,ZW</pre>
-

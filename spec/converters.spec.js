@@ -1,6 +1,5 @@
 import * as converters from '../src/converters.js';
 import _iterator from './helpers/iterator.js';
-
 /** 
  * @license
  * converters.js - Test suite for huetiful-js converters module. 
@@ -13,8 +12,9 @@ the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR REPRESENTA
 OF ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under the License.
 */
+
 describe(`This test suite checks the converter functions. `, () => {
-  var data = {
+  var convertersSpec = {
     color2hex: {
       params: [{ l: 50, c: 31, h: 100, alpha: 0.5, mode: 'lch' }],
       description: 'Converts any color to hexadecimal',
@@ -57,6 +57,5 @@ describe(`This test suite checks the converter functions. `, () => {
       expect: ['rgb', 0.4, 0.3, 0.7]
     }
   };
-
-  _iterator(converters, data);
+  _iterator(converters, convertersSpec);
 });

@@ -15,7 +15,7 @@ governing permissions and limitations under the License.
 */
 
 describe(`This test suite checks the generators. `, () => {
-  var data = {
+  var generatorsSpec = {
     discoverPalettes: {
       params: [
         [
@@ -89,6 +89,5 @@ describe(`This test suite checks the generators. `, () => {
       expect: jasmine.anything()
     }
   };
-
-  _iterator(generators, data);
+  _iterator(generators, generatorsSpec);
 });

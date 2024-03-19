@@ -28,10 +28,7 @@ function sortByLightness(collection, order, colorspace = 'lch') {
   );
 }
 function sortByHue(collection, order, colorspace = 'lch') {
-  var reHue = /h/i.test(colorspace);
-  return (
-    reHue && baseSortBy('hue', getChannel(`${colorspace}.h`), order, collection)
-  );
+  return baseSortBy('hue', getChannel(`${colorspace}.h`), order, collection);
 }
 
 function sortByContrast(collection, against, order) {

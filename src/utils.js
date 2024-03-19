@@ -1,3 +1,16 @@
+/**
+ * @license
+ * utils.js - Functions for querying and setting color properties.
+Copyright 2024 Dean Tarisai.
+This file is licensed to you under the Apache License, Version 2.0 (the 'License');
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
 import hueTempMap from './color-maps/samples/hueTemperature.js';
 import {
   adjustHue,
@@ -9,18 +22,13 @@ import {
   mlchn,
   max,
   rand,
-  chnDiff,
-  gmchn
-} from './helpers.js';
+  mcchn,
+  or,
+  color2hex,
+  ucsConverter
+} from './index.js';
 
-import { tailwindColors } from './colors.js';
-
-import { color2hex, ucsConverter } from './converters.js';
 import {
-  filterDeficiencyDeuter,
-  filterDeficiencyProt,
-  filterDeficiencyTrit,
-  filterGrayscale,
   interpolate,
   wcagLuminance,
   modeRgb,
@@ -28,16 +36,10 @@ import {
   modeLch,
   converter,
   wcagContrast,
-  nearest,
-  differenceHyab,
   formatHex,
-  easingSmootherstep as _ess,
-  averageNumber,
-  averageAngle
+  easingSmootherstep as _ess
 } from 'culori/fn';
 import 'culori/css';
-
-import { mcchn, sortedColl, or } from './helpers.js';
 
 function getHueFamily(color) {
   var [nearestKey, nearestDiff] = ['', Infinity];
@@ -56,99 +58,6 @@ function getHueFamily(color) {
   return nearestKey || null;
 }
 
-function lightnessPredicate(cspace) {
-  return getChannel(`${mlchn(cspace)}`);
-}
-
-function temperaturePredicate(fctr, temp) {
-  return Object.keys(hueTempMap).some((val) =>
-    inRange(floorCeil(fctr), hueTempMap[val][temp][0], hueTempMap[val][temp][1])
-  );
-}
-
-function isCool(color) {
-  // First we need to get the hue value which we'll pass to the predicate
-
-  return temperaturePredicate(getChannel('lch.h')(color), 'cool');
-}
-
-function isWarm(color) {
-  return temperaturePredicate(getChannel('lch.h')(color), 'cool');
-}
-function contrastPredicate(color) {
-  return (against) => getContrast(color, against);
-}
-
-function huePredicate(cspace) {
-  return (c) => getChannel(`${or(cspace, 'jch')}.h`)(c);
-}
-function chromaPredicate(colorspace) {
-  return (color) => getChannel(mcchn(colorspace))(color);
-}
-
-// The baseFunc for getting specifified factor extremums
-function baseFunc(fctr, collection, cb, order, colorObj) {
-  const result = sortedColl(
-    fctr,
-    cb,
-    order,
-    true
-  )(collection).filter((el) => el[fctr] !== undefined);
-
-  return (colorObj && result[0]) || result[0][fctr];
-}
-
-function getNearestContrast(collection, against, colorObj) {
-  return baseFunc(
-    'contrast',
-    collection,
-    contrastPredicate(against),
-    'asc',
-    colorObj
-  );
-}
-
-function getFarthestContrast(collection, against, colorObj) {
-  return baseFunc(
-    'contrast',
-    collection,
-    contrastPredicate(against),
-    'desc',
-    colorObj
-  );
-}
-
-function getNearestChroma(collection, colorspace, colorObj = false) {
-  return baseFunc(
-    'saturation',
-    collection,
-    chromaPredicate(colorspace),
-    'asc',
-    colorObj
-  );
-}
-
-function getFarthestChroma(collection, colorspace, colorObj = false) {
-  return baseFunc(
-    'saturation',
-    collection,
-    chromaPredicate(colorspace),
-    'desc',
-    colorObj
-  );
-}
-function getNearestHue(collection, colorspace, colorObj = false) {
-  return baseFunc('hue', collection, huePredicate(colorspace), 'asc', colorObj);
-}
-function getFarthestHue(collection, colorspace, colorObj = false) {
-  return baseFunc(
-    'hue',
-    collection,
-    huePredicate(colorspace),
-    'desc',
-    colorObj
-  );
-}
 function getComplimentaryHue(color, colorspace, colorObj = false) {
   const modeChannel = `${or(colorspace, 'lch')}.h`;
 
@@ -200,10 +109,6 @@ function getChannel(mc) {
       } else {
         res = converter(mode)(color2hex(color))[channel];
       }
-
-      // if (Array.isArray(color)) {
-      //   res=
-      // }
     } else if (typeof color === 'number' || typeof color === 'string') {
       res = converter(mode)(color2hex(color))[channel];
     } else {
@@ -297,26 +202,21 @@ function overtone(color) {
     false
   );
 }
-function getNearestLightness(collection, colorspace, colorObj = false) {
-  const fctr = 'lightness';
-  return baseFunc(
-    fctr,
-    collection,
-    lightnessPredicate(colorspace),
-    'asc',
-    colorObj
+
+function temperaturePredicate(fctr, temp) {
+  return Object.keys(hueTempMap).some((val) =>
+    inRange(floorCeil(fctr), hueTempMap[val][temp][0], hueTempMap[val][temp][1])
   );
 }
 
-function getFarthestLightness(collection, colorspace, colorObj = false) {
-  const fctr = 'lightness';
-  return baseFunc(
-    fctr,
-    collection,
-    lightnessPredicate(colorspace),
-    'desc',
-    colorObj
-  );
+function isCool(color) {
+  // First we need to get the hue value which we'll pass to the predicate
+
+  return temperaturePredicate(getChannel('lch.h')(color), 'cool');
+}
+
+function isWarm(color) {
+  return temperaturePredicate(getChannel('lch.h')(color), 'cool');
 }
 
 function darken(color = '#fff', amount, colorspace) {
@@ -356,234 +256,19 @@ function isAchromatic(color, colorspace) {
     : true;
 }
 
-// This module is focused on creating color blind safe palettes that adhere to the minimum contrast requirements
-
-// How can I achieve this ?
-// 1. First I pass the color(s) to a color vision deficiency simulation function
-// 2. Check if the color has the minimum required contrast as compared to a dark/light mode surface which can optionally be overriden
-// 3. Check the min luminance contrast ratio between the color and background.
-// 4. Find out which channels do I need to tweak in order to fix up the colors.
-// 5. Maybe provide an optional adaptive boolean which returns dark/light mode variant colors of the color blind safe palettes.
-
-// Add reference to articles
-// Read more about the minimum accepted values for palette accessibility
-
-function colorDeficiency(deficiencyType) {
-  const baseColorDeficiency = (def, col, sev) => {
-    let result;
-    col = color2hex(col);
-    switch (def) {
-      case 'blue':
-        result = filterDeficiencyTrit(sev)(col);
-        break;
-      case 'red':
-        result = filterDeficiencyProt(sev)(col);
-        break;
-      case 'green':
-        result = filterDeficiencyDeuter(sev)(col);
-        break;
-      case 'monochromacy':
-        result = filterGrayscale(sev, 'lch')(col);
-        break;
-    }
-
-    return color2hex(result);
-  };
-
-  return (color, severity = 1) => {
-    // Store the keys of deficiency types
-    const deficiencies = ['red', 'blue', 'green', 'monochromacy'];
-    // Cast 'red' as the default parameter
-    deficiencyType = or(deficiencyType, 'red');
-
-    if (
-      typeof deficiencyType === 'string' &&
-      deficiencies.some((el) => el === deficiencyType)
-    ) {
-      return baseColorDeficiency(deficiencyType, color, severity);
-    } else {
-      throw Error(
-        `Unknown color vision deficiency ${deficiencyType}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
-      );
-    }
-  };
-}
-function getNearestColor(collection, color, num = 1) {
-  const cb = (collection, color) => {
-    return nearest(
-      Object.values(collection),
-      differenceHyab(),
-      (color) => color
-    )(color, num);
-  };
-  let result;
-
-  if (collection === 'tailwind') {
-    result = cb(tailwindColors('all'), color);
-  } else {
-    result = cb(collection, color);
-  }
-
-  return result;
-}
-
-// the baseFunc could be channelDiff
-
-function getFarthestChromaFrom(
-  collection = [],
-  against = '#fff',
-  colorspace = 'lch',
-  colorObj = false
-) {
-  return baseFunc(
-    'saturation',
-    collection,
-    chnDiff(against, mcchn(colorspace)),
-    'desc',
-    colorObj
-  );
-}
-
-function getFarthestHueFrom(
-  collection = [],
-  against = '#fff',
-  colorspace = 'lch',
-  colorObj = false
-) {
-  return baseFunc(
-    'hue',
-    collection,
-    chnDiff(against, mcchn(colorspace)),
-    'desc',
-    colorObj
-  );
-}
-
-function getFarthestLightnessFrom(
-  collection = [],
-  against = '#fff',
-  colorspace = 'lch',
-  colorObj = false
-) {
-  return baseFunc(
-    'lightness',
-    collection,
-    chnDiff(against, mcchn(colorspace)),
-    'desc',
-    colorObj
-  );
-}
-
-function getNearestChromaFrom(
-  collection = [],
-  against = '#fff',
-  colorspace = 'lch',
-  colorObj = false
-) {
-  return baseFunc(
-    'saturation',
-    collection,
-    chnDiff(against, mcchn(colorspace)),
-    'asc',
-    colorObj
-  );
-}
-
-function getNearestHueFrom(
-  collection = [],
-  against = '#fff',
-  colorspace = 'lch',
-  colorObj = false
-) {
-  return baseFunc(
-    'hue',
-    collection,
-    chnDiff(against, mcchn(colorspace)),
-    'asc',
-    colorObj
-  );
-}
-
-function getNearestLightnessFrom(
-  collection = [],
-  against = '#fff',
-  colorspace = 'lch',
-  colorObj = false
-) {
-  return baseFunc(
-    'lightness',
-    collection,
-    chnDiff(against, mcchn(colorspace)),
-    'asc',
-    colorObj
-  );
-}
-
-function getMeanChroma(collection = [], colorspace = 'lch') {
-  var cb = getChannel(mcchn(colorspace));
-  return averageNumber(Object.values(collection).map(cb));
-}
-
-function getMeanLightness(collection = [], colorspace = 'lch') {
-  var cb = getChannel(mlchn(colorspace));
-  return averageNumber(Object.values(collection).map(cb));
-}
-
-function getMeanHue(collection, colorspace = 'lch') {
-  var cb = (cb = getChannel(`${colorspace}.h`));
-  return averageAngle(Object.values(collection).map(cb));
-}
-
-function getMeanDistance(collection, against = '#fff') {
-  var cb = (x) => (y) => differenceHyab()(x, y);
-  return averageNumber(Object.values(collection).map(cb(against)));
-}
-
-function getMeanContrast(collection, against = '#fff') {
-  var cb = (x) => (y) => getContrast(x, y);
-
-  return averageNumber(Object.values(collection).map(cb(against)));
-}
-
-function getMeanLuminance(collection) {
-  return averageNumber(Object.values(collection).map(getLuminance));
-}
-
 export {
   brighten,
   darken,
-  getNearestColor,
-  colorDeficiency,
   isAchromatic,
   alpha,
-  getFarthestLightness,
-  getNearestLightness,
   overtone,
-  getFarthestChroma,
-  getNearestChroma,
   setChannel,
   setLuminance,
   getChannel,
   getLuminance,
   getContrast,
-  getFarthestContrast,
-  getNearestContrast,
   isCool,
   isWarm,
   getHueFamily,
-  getComplimentaryHue,
-  getFarthestHue,
-  getNearestHue,
-  getFarthestChromaFrom,
-  getFarthestHueFrom,
-  getFarthestLightnessFrom,
-  getNearestChromaFrom,
-  getNearestHueFrom,
-  getNearestLightnessFrom,
-  getMeanChroma,
-  getMeanHue,
-  getMeanDistance,
-  getMeanContrast,
-  getMeanLuminance,
-  getMeanLightness
+  getComplimentaryHue
 };

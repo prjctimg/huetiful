@@ -13,7 +13,13 @@ the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR REPRESENTA
 OF ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under the License.
 */
-import type { callback, Factor, ColorToken, HueColorSpaces, Order, Colorspaces } from './types';
+import type {
+  callback,
+  Factor,
+  ColorToken,
+  HueColorSpaces,
+  Colorspaces
+} from './types';
 import { fixupHueShorter, easingSmoothstep } from 'culori/fn';
 /**
  * @internal
@@ -24,11 +30,11 @@ import { fixupHueShorter, easingSmoothstep } from 'culori/fn';
  */
 declare function or(arg: unknown, def: unknown): unknown;
 declare const interpolatorConfig: {
-    ef: typeof easingSmoothstep;
-    ci: import("culori/src/interpolate/Interpolator").Interpolator;
-    hf: typeof fixupHueShorter;
-    hi: import("culori/src/interpolate/Interpolator").Interpolator;
-    li: (arr: number[]) => (t: number) => number;
+  ef: typeof easingSmoothstep;
+  ci: import('culori/src/interpolate/Interpolator').Interpolator;
+  hf: typeof fixupHueShorter;
+  hi: import('culori/src/interpolate/Interpolator').Interpolator;
+  li: (arr: number[]) => (t: number) => number;
 };
 /**
  * @internal
@@ -46,7 +52,10 @@ console.log(getModeChannel("okhsl", 2));
 // l
 
  */
-declare function getModeChannel(colorspace: Colorspaces | string, index?: number): string;
+declare function getModeChannel(
+  colorspace: Colorspaces | string,
+  index?: number
+): string;
 /**
  * @internal
  * Takes an arithmetic operator followed by a value and passes the result of the expression to the specified channel. Currently supports addition,subtraction,division and multiplication symbols only.
@@ -62,7 +71,11 @@ console.log(exprParser('blue', 'lch.l', '*0.3'));
 // { mode: 'lch',l: 8.87048914603341,c: 131.2014771995311,h: 301.36428148973533 }
 
  */
-declare function exprParser(color: ColorToken, mc: string, expr: string): number;
+declare function exprParser(
+  color: ColorToken,
+  mc: string,
+  expr: string
+): number;
 /**
  * @internal
  * Matches the chroma/saturation channel of any compliant color space
@@ -70,11 +83,11 @@ declare function exprParser(color: ColorToken, mc: string, expr: string): number
  * @returns The mode channel string passed to getChannel()
  * @example
  *
- * import { mcc } from 'huetiful-js'
+ * import { mcchn } from 'huetiful-js'
  * console.log(mcc("jch"));
 // jch.c
 
-console.log(mcc("okhsl"));
+console.log(mcchn("okhsl"));
 // okhsl.s
  */
 declare function mcchn(colorspace: HueColorSpaces | string): string;
@@ -87,10 +100,10 @@ declare function mcchn(colorspace: HueColorSpaces | string): string;
  *
  * @example
  *
- * console.log(matchLightnessChannel("jch"));
+ * console.log(mlchn("jch"));
 // jch.j
 
-console.log(matchLightnessChannel("okhsl"));
+console.log(mlchn("okhsl"));
 // okhsl.l
  */
 declare function mlchn(colorspace: HueColorSpaces | string): string;
@@ -105,9 +118,12 @@ console.log(colorObj('saturation', getChannel('lch.c'))(col));
 // { saturation: 66.82572352143816, color: 'purple' }
 
  */
-declare function colorObj(factor: Factor, callback: callback): (color: ColorToken) => {
-    [x: string]: any;
-    color: ColorToken;
+declare function colorObj(
+  factor: Factor,
+  callback: callback
+): (color: ColorToken) => {
+  [x: string]: any;
+  color: ColorToken;
 };
 /**
  * @internal
@@ -145,7 +161,10 @@ console.log(chnDiff
 // 0.4794739863155694
  *
  */
-declare function chnDiff(color: ColorToken, modeChannel: string): (subtrahend: ColorToken) => number;
+declare function chnDiff(
+  color: ColorToken,
+  modeChannel: string
+): (subtrahend: ColorToken) => number;
 /**
  * Checks if x is greater than y
  * @param x The value to compare
@@ -303,14 +322,23 @@ declare function floorCeil(num: number): number;
  * @param order Either ascending or descending.
  * @returns A sorted array.
  */
-declare function customSort(order: Order, factor?: Factor | string): (a: {
+declare function customSort(
+  order: 'asc' | 'desc',
+  factor?: Factor | string
+): (
+  a: {
     [x: string]: number;
-}, b: {
+  },
+  b: {
     [x: string]: number;
-}) => number;
-declare function colorObjArr(factor: Factor, callback: any): (collection: ColorToken[] | object | object) => Array<{
-    factor: Factor;
-    color: ColorToken;
+  }
+) => number;
+declare function colorObjArr(
+  factor: Factor,
+  callback: any
+): (collection: ColorToken[] | object | object) => Array<{
+  factor: Factor;
+  color: ColorToken;
 }>;
 /**
  * @internal
@@ -354,7 +382,12 @@ declare function reOp(s: string): string;
  * @param callback The function to use for comparison.
  * @returns An array of colors or color objects.
  */
-declare function sortedArr(factor: Factor, callback: callback, order: Order, colorObj?: boolean): (collection: ColorToken[] | object) => any[];
+declare function sortedArr(
+  factor: Factor,
+  callback: callback,
+  order: 'asc' | 'desc',
+  colorObj?: boolean
+): (collection: ColorToken[] | object) => any[];
 /**
  * @internal
  *  Filters an array according to the value of a color's queried factor
@@ -362,5 +395,43 @@ declare function sortedArr(factor: Factor, callback: callback, order: Order, col
  * @param cb The function to use for comparison
  * @returns The filtered array
  */
-declare function filteredArr(factor: Factor, cb?: callback): (collection: ColorToken[] | object, start: number | string, end?: number) => ColorToken[];
-export { exprParser, mlchn, mcchn, min, max, customSort, colorObjArr, sortedArr, filteredArr, customFindKey, colorObj, customConcat, inRange, rand, isInt, floorCeil, adjustHue, chnDiff, lt, neq, gt, gte, lte, eq, norm, or, getModeChannel, interpolatorConfig, reOp, reNum };
+declare function filteredArr(
+  factor: Factor,
+  cb?: callback
+): (
+  collection: ColorToken[] | object,
+  start: number | string,
+  end?: number
+) => ColorToken[];
+export {
+  exprParser,
+  mlchn,
+  mcchn,
+  min,
+  max,
+  customSort,
+  colorObjArr,
+  sortedArr,
+  filteredArr,
+  customFindKey,
+  colorObj,
+  customConcat,
+  inRange,
+  rand,
+  isInt,
+  floorCeil,
+  adjustHue,
+  chnDiff,
+  lt,
+  neq,
+  gt,
+  gte,
+  lte,
+  eq,
+  norm,
+  or,
+  getModeChannel,
+  interpolatorConfig,
+  reOp,
+  reNum
+};

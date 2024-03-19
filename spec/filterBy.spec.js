@@ -1,6 +1,6 @@
 import * as filterBy from '../src/filterBy.js';
 import _iterator from './helpers/iterator.js';
-
+import 'jasmine';
 /** 
  * @license
  * filterBy.ts - Test suite for huetiful-js color filtering module. 
@@ -16,59 +16,204 @@ governing permissions and limitations under the License.
 
 describe(`The filterBy module test suite `, () => {
   // For utils that take a colorspace param the default is 'lch'
-  const colors = [
-    '#00ffdc',
-    '#00ff78',
-    '#00c000',
-    '#007e00',
-    '#164100',
-    '#ffff00',
-    '#310000',
-    '#3e0000',
-    '#4e0000',
-    '#600000',
-    '#720000',
-    '#ffff00',
-    '#00ffdc',
-    '#00ff78',
-    '#00c000',
-    '#007e00',
-    '#164100',
-    '#720000',
-    '#600000'
-  ];
-  var data = {
+
+  var filterBySpec = {
     filterByContrast: {
-      params: [colors, 0.05, 1, 'lch'],
+      params: [
+        [
+          '#94a3b8',
+          '#9ca3af',
+          '#a1a1aa',
+          '#a3a3a3',
+          '#a8a29e',
+          '#f87171',
+          '#fb923c',
+          '#fbbf24',
+          '#facc15',
+          '#a3e635',
+          '#4ade80',
+          '#34d399',
+          '#2dd4bf',
+          '#38bdf8',
+          '#60a5fa',
+          '#a78bfa',
+          '#c084fc',
+          '#e879f9',
+          '#f472b6',
+          '#fb7185'
+        ],
+        'green',
+        3.05,
+        12
+      ],
       description: 'Filters color by relative contrast',
-      expect: jasmine.anything()
+      expect: ['#fbbf24', '#facc15', '#a3e635']
     },
     filterByHue: {
-      params: [colors, 10, 360, 'lch'],
+      params: [
+        [
+          '#94a3b8',
+          '#9ca3af',
+          '#a1a1aa',
+          '#a3a3a3',
+          '#a8a29e',
+          '#f87171',
+          '#fb923c',
+          '#fbbf24',
+          '#facc15',
+          '#a3e635',
+          '#4ade80',
+          '#34d399',
+          '#2dd4bf',
+          '#38bdf8',
+          '#60a5fa',
+          '#a78bfa',
+          '#c084fc',
+          '#e879f9',
+          '#f472b6',
+          '#fb7185'
+        ],
+        60,
+        220,
+        'lch'
+      ],
       description: 'Filters color by hue',
-      expect: jasmine.anything()
+      expect: ['#fbbf24', '#facc15', '#a3e635', '#4ade80', '#34d399', '#2dd4bf']
     },
     filterByLuminance: {
-      params: [colors, 0.05, 0.8],
+      params: [
+        [
+          '#94a3b8',
+          '#9ca3af',
+          '#a1a1aa',
+          '#a3a3a3',
+          '#a8a29e',
+          '#f87171',
+          '#fb923c',
+          '#fbbf24',
+          '#facc15',
+          '#a3e635',
+          '#4ade80',
+          '#34d399',
+          '#2dd4bf',
+          '#38bdf8',
+          '#60a5fa',
+          '#a78bfa',
+          '#c084fc',
+          '#e879f9',
+          '#f472b6',
+          '#fb7185'
+        ],
+        '>0.5',
+        '<0.9'
+      ],
       description: 'Filters color by luminance',
-      expect: jasmine.anything()
+      expect: ['#fbbf24', '#facc15', '#a3e635', '#4ade80', '#2dd4bf']
     },
     filterByLightness: {
-      params: [colors, 5, 100, 'lch'],
+      params: [
+        [
+          '#94a3b8',
+          '#9ca3af',
+          '#a1a1aa',
+          '#a3a3a3',
+          '#a8a29e',
+          '#f87171',
+          '#fb923c',
+          '#fbbf24',
+          '#facc15',
+          '#a3e635',
+          '#4ade80',
+          '#34d399',
+          '#2dd4bf',
+          '#38bdf8',
+          '#60a5fa',
+          '#a78bfa',
+          '#c084fc',
+          '#e879f9',
+          '#f472b6',
+          '#fb7185'
+        ],
+        45,
+        69,
+        'lch'
+      ],
       description: 'Filters color by lightness',
-      expect: jasmine.anything()
+      expect: [
+        '#94a3b8',
+        '#9ca3af',
+        '#a1a1aa',
+        '#a3a3a3',
+        '#a8a29e',
+        '#f87171',
+        '#60a5fa',
+        '#a78bfa',
+        '#c084fc',
+        '#e879f9',
+        '#f472b6',
+        '#fb7185'
+      ]
     },
     filterByDistance: {
-      params: [colors, 'yellow', '>1.05'],
+      params: [
+        [
+          '#94a3b8',
+          '#9ca3af',
+          '#a1a1aa',
+          '#a3a3a3',
+          '#a8a29e',
+          '#f87171',
+          '#fb923c',
+          '#fbbf24',
+          '#facc15',
+          '#a3e635',
+          '#4ade80',
+          '#34d399',
+          '#2dd4bf',
+          '#38bdf8',
+          '#60a5fa',
+          '#a78bfa',
+          '#c084fc',
+          '#e879f9',
+          '#f472b6',
+          '#fb7185'
+        ],
+        'yellow',
+        '<   70.05'
+      ],
       description: 'Filters color by distance',
-      expect: jasmine.anything()
+      expect: ['#fbbf24', '#facc15', '#a3e635']
     },
-    filterBySaturation: {
-      params: [colors, 25, 100, 'lch'],
+    filterByChroma: {
+      params: [
+        [
+          '#94a3b8',
+          '#9ca3af',
+          '#a1a1aa',
+          '#a3a3a3',
+          '#a8a29e',
+          '#f87171',
+          '#fb923c',
+          '#fbbf24',
+          '#facc15',
+          '#a3e635',
+          '#4ade80',
+          '#34d399',
+          '#2dd4bf',
+          '#38bdf8',
+          '#60a5fa',
+          '#a78bfa',
+          '#c084fc',
+          '#e879f9',
+          '#f472b6',
+          '#fb7185'
+        ],
+        70
+      ],
       description: 'Filters color by saturation',
-      expect: jasmine.anything()
+      expect: ['#fb923c', '#fbbf24', '#facc15', '#a3e635', '#e879f9']
     }
   };
 
-  _iterator(filterBy, data);
+  _iterator(filterBy, filterBySpec);
 });

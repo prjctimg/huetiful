@@ -1,0 +1,41 @@
+{% extends "./layouts/base.njk" %}
+
+
+{% block content %}
+{% for mod,prop in demoData %}
+<section class="flex-col p-4 bg-slate-100 my-3 shadow-md">
+
+    <h3 class="px-8 font-sans text-lg font-semibold text-slate-800">{{mod}}</h3>
+
+    <p class="pb-6 font-sans text-slate-500 text-base font-normal">{{prop.description}}</p>
+
+    {% for func,props in prop.specs %}
+    <h4 class="font-sans text-slate-700 font-semibold text-base">{{func}}</h4>
+    <p class="pt-3 font-sans text-slate-500 text-sm ">{{props.description}}</p>
+    <div class="flex space-x-2 p-2">
+        {% if isColorCollection(props.expect) %}
+        {% for color in props.expect %}
+        <div class="flex-col space-y-2">
+            <div class="w-8 h-8 rounded-md shadow-md bg-[{{color}}]"></div>
+            <p class="text-xs font-sans font-normal text-slate-400">{{color}}</p>
+
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="flex-col space-y-2">
+            <p class="text-sm">{{props.expect}}</p>
+            <div class="w-8 h-8 rounded-md shadow-md bg-[{{props.expect}}]"></div>
+        </div>
+
+        {% endif %}
+
+
+
+    </div>
+
+
+    {% endfor %}
+
+</section>
+{% endfor %}
+{% endblock content %}

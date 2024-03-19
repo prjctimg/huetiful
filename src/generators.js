@@ -15,7 +15,9 @@ import {
   interpolatorSplineNaturalClosed,
   modeHsv,
   nearest,
-  differenceHyab
+  differenceHyab,
+  random,
+  formatHex
 } from 'culori/fn';
 
 import {
@@ -26,24 +28,30 @@ import {
   mlchn,
   max,
   min,
-   pltrconfg,
+  pltrconfg,
   gt,
   gte
 } from './helpers.js';
 
-import { color2hex, ucsConverter } from './converters.js';
+import {
+  color2hex,
+  color2num,
+  color2tuple,
+  num2color,
+  ucsConverter
+} from './converters.js';
 import { setChannel } from './utils.js';
 
 function scheme(schemeType) {
   return (color, easingFunc) => {
-    const cb = (iterations, distance, color) =>
-      _smp(iterations).map((val) =>
-        adjustHue((color['h'] + distance) * (val * easingSmoothstep(val)))
-      );
     schemeType = schemeType.toLowerCase();
     easingFunc = or(easingFunc, easingSmoothstep);
+    const cb = (iterations, distance, color) =>
+      _smp(iterations).map((val) =>
+        adjustHue((color['h'] + distance) * (val * easingFunc(val)))
+      );
 
-    color = useMode(modeJch)(color);
+    color = useMode(modeLch)(color);
     const lowMin = 0.05,
       lowMax = 0.495,
       highMin = 0.5,
@@ -176,10 +184,8 @@ function hueShift(color, colorspace = 'lch', options = {}) {
   color = ucsConverter(colorspace.toLowerCase())(color);
 
   let { iterations, hueStep, minLightness, maxLightness, easingFunc } = options;
-  const [l, c] = [
-    mlchn(colorspace).split('.')[1],
-    mcchn(colorspace).split('.')[1]
-  ];
+  const [l, c] = [mlchn, mcchn].map((e) => e(colorspace).split('.')[1]);
+
   // Pass default values in case the options object is overridden
   easingFunc = or(easingFunc, easingSmoothstep);
   iterations = or(iterations, 6) + 1;
@@ -345,7 +351,7 @@ function pairedScheme(color, options) {
 }
 
 function pastel(color) {
-  const smpObj = [
+  const smp = [
     {
       color: '#fea3aa',
       saturation: 0.35826771653543305,
@@ -375,8 +381,8 @@ function pastel(color) {
   ];
 
   const [smpSat, smpVal] = [
-    smpObj.map((el) => el['saturation']),
-    smpObj.map((el) => el['value'])
+    smp.map((el) => el['saturation']),
+    smp.map((el) => el['value'])
   ];
 
   const smp_pstl = {
@@ -389,13 +395,41 @@ function pastel(color) {
   };
 
   color = useMode(modeHsv)(color2hex(color));
-  // For now we're simply returning an hsv object with the s and v channel set to the averages
-  return color2hex({
+
+  var c = random('hsv', {
     h: color['h'],
-    s: smp_pstl['avSat'],
-    v: rand(smp_pstl['mn_smp_val'], smp_pstl['mx_smp_val']),
-    mode: 'hsv'
+    s: [smp_pstl['mn_smp_sat'], smp_pstl['mx_smp_sat']],
+    v: [smp_pstl['mn_smp_val'], smp_pstl['mx_smp_val']]
   });
+
+  switch (typeof color) {
+    case 'number':
+      color2num(color);
+      break;
+    // We're checking if it doesn't have a string method since both strings and arrays hve a length property.
+    case 'object' && !color.match && color.length:
+      c = color2tuple(c);
+      break;
+    case 'string':
+      c = formatHex(c);
+      break;
+    case 'object':
+      c = c;
+      break;
+
+    default:
+      c = color2hex(c);
+  }
+
+  return c;
+
+  // For now we're simply returning an hsv object with the s and v channel set to the averages
+  // return color2hex({
+  //   h: color['h'],
+  //   s: smp_pstl['avSat'],
+  //   v: rand(smp_pstl['mn_smp_val'], smp_pstl['mx_smp_val']),
+  //   mode: 'hsv'
+  // });
 }
 
 export {
