@@ -1,5 +1,3 @@
-{% macro pagination(page={}) %}
-
 <section class="flex justify-between">
     <div class="flex-col space-y-2">
         <button hx-trigger="click" hx-target="#swap-view" hx-get="{{page.previous.href}}"
@@ -13,7 +11,7 @@
 
     </div>
 
-    <div class='divide-y-1 divide-slate-700 ' />
+
 
 
 
@@ -29,6 +27,3 @@
     </div>
 
 </section>
-
-
-{% endmacro %}

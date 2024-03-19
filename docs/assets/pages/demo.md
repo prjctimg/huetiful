@@ -4,6 +4,8 @@ This page has some basic examples of what some of these functions will output wh
 
 The functions used in this page are the ones that return an actual `ColorToken` or `collection` of such.
 
-### Where do the examples live
+### Where do the examples live ?
 
-The data for these demos is mapped from the library's `.spec` or test files.
+The data for these demos is mapped from the library's `.spec` or test files. [See the spec files here]()
+
+

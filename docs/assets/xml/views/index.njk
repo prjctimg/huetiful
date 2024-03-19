@@ -1,0 +1,9 @@
+{% extends "./layouts/base.njk" %}
+{% import "./partials/pagination.njk" as pagination %}
+
+{% block content %}
+{{home.content}}
+
+{{pagination(home.page)}}
+
+{% endblock content %}

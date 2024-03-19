@@ -17,16 +17,13 @@ var PATH_TO_MD_FILES = './markdown';
 var moduleNames = readdirSync(PATH_TO_MD_FILES + '/modules', 'utf-8').map(
   (s) => s.split('.')[0]
 );
-
+var BASE_URL = `https://huetiful-js.com`;
 function demoDocsEnv(spec) {
   return (env) => {
-    env.addGlobal('demoData', spec);
-    env.addGlobal('isColorCollection', _.isColorCollection);
+    return env
+      .addGlobal('isColorCollection', _.isColorCollection)
+      .addGlobal('demoData', spec);
   };
-}
-
-function ApiDocsEnv(source) {
-  return (env) => env.addGlobal('data', _.buildDataObject(source));
 }
 
 export async function links() {
@@ -39,29 +36,63 @@ export async function links() {
 }
 
 export async function xml() {
+  function ApiDocsEnv(source, extra) {
+    return (env) => {
+      env.addGlobal('page', extra);
+
+      env.addGlobal('data', _.buildDataObject(source));
+    };
+  }
+
   // Making the documentation per module
-  moduleNames.map((srcFile) =>
+  moduleNames.map((srcFile, idx) => {
     src(`./xml/views/post.njk`)
       .pipe(
         _njk({
           path: ['./xml/'],
-          manageEnv: ApiDocsEnv(srcFile),
+          manageEnv: ApiDocsEnv(srcFile, {
+            previous: {
+              href: idx > 0 ? `${BASE_URL}/${moduleNames[--idx]}` : BASE_URL,
+              title: idx > 0 ? moduleNames[--idx] : `Return to home page`
+            },
+            next: {
+              href:
+                idx < moduleNames.length
+                  ? `${BASE_URL}/${moduleNames[++idx]}`
+                  : `${BASE_URL}/api`,
+              title:
+                idx < moduleNames.length
+                  ? moduleNames[++idx]
+                  : `Return to API home page`
+            }
+          }),
 
           ext: '.html',
-          inheritExtension: false,
-          envOptions: {
-            watch: true
-          }
+          inheritExtension: false
         })
       )
-      .pipe(dest(`../www/api/${srcFile}`))
-  );
+      .pipe(dest(`../www/api/${srcFile}`));
+  });
 
   src(`./xml/views/demo.njk`)
     .pipe(
       _njk({
         path: ['./xml/'],
         manageEnv: demoDocsEnv(_demo),
+
+        ext: '.html',
+        inheritExtension: false
+      })
+    )
+    .pipe(dest(`../www`));
+}
+
+async function indexPage() {
+  src(`./xml/views/demo.njk`)
+    .pipe(
+      _njk({
+        path: ['./xml/'],
+        manageEnv: demoDocsEnv(),
 
         ext: '.html',
         inheritExtension: false
@@ -90,9 +121,9 @@ export async function deleteFiles() {
   );
 }
 
-async function clean() {
-  rmdirSync(`../www`, { recursive: true, force: true });
-}
+// async function clean() {
+//   rmdirSync(`../www`, { recursive: true, force: true });
+// }
 
 export default async function watchFiles() {
   return watch(['./**/*+(njk|svg|ttf|otf|js)'], xml);
@@ -114,7 +145,7 @@ export async function img() {
 }
 
 export const assets = series(css, js, fonts, img);
-export const clean = clean;
+//export const clean = clean;
 export const rename = renameFiles;
 export const dev = series(xml, assets, watchFiles);
 export const deploy = series(xml, assets, links);

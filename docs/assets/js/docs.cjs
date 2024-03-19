@@ -121,8 +121,7 @@ function buildDataObject(sourceModule) {
     srcFile: cb('src', sourceModule, 'js'),
     specFile: cb('spec', sourceModule, 'spec.js'),
     wikiPage: `https://github.com/xml-wizard/huetiful/wiki/${sourceModule}`,
-    declFile: cb('types', sourceModule, 'd.ts'),
-    page: { previous: { href: '', title: '' }, next: { href: '', title: '' } }
+    declFile: cb('types', sourceModule, 'd.ts')
   };
 }
 

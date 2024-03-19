@@ -1,5 +1,5 @@
 <section class="flex-col w-full ">
-
+<img src='../img/starry-night-over-lake.jpg'>
   <h1 class="font-black m-4 text-center text-2xl"><span class="text-sky-500">Function oriented</span> library for color
     manipulation 🧪
   </h1>
@@ -34,43 +34,49 @@ significance](#querying-properties-of-color-and-their-values-of-statistical-sign
 
 ## What is this ?
 
-[huetiful-js](https://github.com/xml-wizard/huetiful) to makes it simple and straight forward to manipulate color either
+[huetiful-js](https://github.com/xml-wizard/huetiful) aims to makes it simple and straight forward to manipulate color either
 as individual tokens or collections. It builds off where libraries like chroma.js and d3-color leave their APIs by
 adding collection methods for
 sorting/filtering ,querying values of statistical significance and setting/getting different property values of color.
 
-Because the collection methods are generic, you can manipulate any object that has enumerable keys and it will just
+Because the collection methods are generic, you can manipulate any object that has enumerable keys (`ArrayLike` and `Map`s for example) and it will just
 treat each value as a color token. It uses [Culori](https://github.com/Evercoder/culori) under the hood for conversions
-and other color related
-bells and whistles.
+and other color related bells and whistles.
 
 It is written in JavaScript but has type declarations for common built-in parameters and function
 signatures.
 
+<hr/>
+
 ### How does it work ?
 
-Consider the typical parameter signature of a filtering function:
+Consider the type declaration signature of a filtering function, in this example we have the `filterByChroma` function:
 
 ```ts
 
 declare function filterByChroma(
 collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
-    startSaturation?: number,
-    endSaturation?: number,
+    start?: number,
+    end?: number,
     colorspace?: HueColorSpaces
     ): Array<ColorToken> | Map<any, ColorToken>;
 
 ```
 
-Focus on the `collection` parameter and the return type of the above function declaration. All functions that took a collection color as an array prior v1.78.x can support this overload as well. These functions retain the structure of the passed in collection which was different in the previous versions since we'd only return arrays by default. This means if you pass in an object as a collection the function will return  a `Map`. The reasons why a `Map` is returned instead of a plain object are :
+Focus on the `collection` parameter and the return type of the above function declaration.
 
-- `Map`s remember insertion order making it possible to sort colors and then insert them in the specified order (either ascending or descending). This behaviour is leveraged in the `sortBy` module when you pass in a plain object as a collection.
-- Compliance with ES6. Plain objects where historically used as `Map`s but that is not their actual intended use. [See this article on MDN about the behaviour of plain objects compared against `Map`]().
-- If an array (or `ArrayLike`) object is passed in to the , it will simply return a plain array.
+ All functions that took a collection of colors as an array prior v1.78.x can support this overload as well. These functions retain the structure of the passed in collection which was different in the previous versions since we'd only return arrays by default when you passed in objects as collections. This means if you pass in a plain object as a collection, the function will return  a `Map` object.
+ If an array (or `ArrayLike`) object is passed in to the , it will simply return an array or `ArrayLike` object respectively.
+ 
+ > The reason why a `Map` is returned instead of a plain object is because `Map`s remember insertion order making it possible to sort colors and then insert them in the specified order (either ascending or descending). This behaviour is leveraged in the `sortBy` module when you pass in a plain object as a collection.
+ >
+ > The difference between arrays and `Set`s is mainly because you can't store duplicate values in them unlike plain arrays. All generator functions return `Set`s to ensure the result collection has no duplicate colors.
+
+<hr/>
 
 #### Type diversity for color tokens
 
-Culori accepts color tokens as plain objects, hexadecimal strings and CSS recognized named/serialized colors only. This package extends the data types which can be treated as valid tokens namely arrays/array-like objects,`Map`s , numbers and even boolean values.
+Culori, the core dependancy of this library, accepts color tokens as plain objects, hexadecimal strings and CSS recognized named/serialized colors only. This package extends the data types which can be treated as valid tokens namely arrays/ArrayLike objects,`Map`s , numbers and even boolean values.
 
 ```js
 import { num2color, color2hex } from 'huetiful-js'
@@ -110,6 +116,8 @@ import { num2color, color2hex } from 'huetiful-js'
 ```
 
 By widening the options for valid color tokens, we can get a bit more creative since we're working with color in different flavours :smile: .
+
+<hr/>
 
 #### Working with collections of color
 
@@ -165,6 +173,8 @@ By widening the options for valid color tokens, we can get a bit more creative s
 
 [See the filterBy module](https://huetiful-js.com/api/filterBy) for examples on filtering colors and the sortBy module for sorting functions.
 
+<hr/>
+
 ### Palette generators
 
 A few simple palette generator functions are included in the library. One of my favourites is `hueShift` (as a color becomes lighter, its hue shifts up and darker when its hue shifts down.) .
@@ -187,9 +197,11 @@ let hueShiftedPalette = hueShift("#3e0000", {}, true);
 
 
 
-        ```
+```
 
 [See more palette generator functions](https://huetiful-js.com/api/generators)
+
+<hr/>
 
 ### Predicates
 
@@ -313,7 +325,7 @@ Color has different properties which our eyes take note of in order to distingui
 
 [See more examples here from the utils module](https://huetiful-js.com/api/utils)
 
-### Functional with a hint of OOP via method chaining
+### Lazy chains
 
 Libraries like chroma.js popularized the read-manipulate-output chains when working with color. This library extends that idea by chaining collection methods to a `ColorArray` class. The actual class is not publicly exported because its still experimental but you can access it via the `load` wrapper function which simply takes the collection to bind to the `new ColorArray`. Color tokens also have a chain for binding them to all functions that take a single color as the initial parameter. This chain returns a `new Color` instance that's accessible via the `color` function. See the example below:
 
@@ -346,7 +358,7 @@ var myLazyChain = load([
 
 If you wish to explore more examples and reasoning behind this library, [you can check out the wiki](https://github.com/xml-wizard/huetiful/wiki). [Or head over to the docs](https://huetiful-js.com/api/) to play around with the API
 
-### Contributing
 
-Contributions are welcome thanks :blue_heart: !
-See how to get started with contributing to this project.
+![](../img/night-sky-over-mountains.jpg)
+
+<cite> Moon over mountains :mountain: </cite>

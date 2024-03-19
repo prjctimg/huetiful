@@ -74,7 +74,7 @@
             <div class='flex flex-row w-full justify-end'>
 
 
-                <a class='flex w-fit align-middle' href=https://github.com/prjctimg/xml-wizard/blob/main/types/colors.d.ts><button
+                <a class='flex w-fit align-middle' href=https://github.com/xml-wizard/blob/main/types/colors.d.ts><button
                         class="px-2 py-2 bg-sky-500 border-none text-sm text-slate-800">Edit this page</button><span
                         class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
@@ -98,12 +98,12 @@
 
 
         <div class="flex flex-row space-x-2 pt-8 pb-1 mb-4 w-fit">
-            <a href="https://github.com/prjctimg/xml-wizard/blob/main/spec/colors.spec.js" class="flex space-x-1">
+            <a href="https://github.com/xml-wizard/blob/main/spec/colors.spec.js" class="flex space-x-1">
                 <span>Tests 🧪</span>
 
 
             </a>
-            <a href="https://github.com/prjctimg/xml-wizard/blob/main/src/colors.js" class="flex space-x-1">
+            <a href="https://github.com/xml-wizard/blob/main/src/colors.js" class="flex space-x-1">
                 <span>Source 🧾</span>
             </a>
         </div>
@@ -345,6 +345,35 @@ console.log(red('900'));
     </article>
 
 </div>
+<section class="flex justify-between">
+    <div class="flex-col space-y-2">
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com"
+            class='flex align-middle space-x-2 p-4' id="previous-button"><svg xmlns="http://www.w3.org/2000/svg"
+                width="22" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg><span>Previous page</span></button>
+        <h5>Return to home page</h5>
+
+
+    </div>
+
+
+
+
+
+    <div class="flex-col space-y-2">
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/converters" class='flex space-x-2 p-4'
+            id="next-button">Next page <span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-chevron-right">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg></span></button>
+        <h5>filterBy</h5>
+
+    </div>
+
+</section>
 
 
 
