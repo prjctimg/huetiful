@@ -179,7 +179,7 @@ describe(`The filterBy module test suite `, () => {
           '#fb7185'
         ],
         'yellow',
-        '<70.05'
+        '<   70.05'
       ],
       description: 'Filters color by distance',
       expect: ['#fbbf24', '#facc15', '#a3e635']
