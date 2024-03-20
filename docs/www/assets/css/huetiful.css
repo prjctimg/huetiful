@@ -705,10 +705,6 @@ html.js :where([class*="taos:"]:not(.taos-init)) {
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 
-.rounded {
-  border-radius: 0.25rem;
-}
-
 .rounded-md {
   border-radius: 0.375rem;
 }
@@ -1134,6 +1130,10 @@ html.js :where([class*="taos:"]:not(.taos-init)) {
 .bg-slate-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.bg-\[url\(\/assets\/img\/night-sky-over-mountains\.jpg\)\] {
+  background-image: url(/assets/img/night-sky-over-mountains.jpg);
 }
 
 .bg-\[url\(assets\/img\/night-sky-over-mountains\.jpg\)\] {

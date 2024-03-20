@@ -17,7 +17,7 @@ var PATH_TO_MD_FILES = './markdown';
 var moduleNames = readdirSync(PATH_TO_MD_FILES + '/modules', 'utf-8').map(
   (s) => s.split('.')[0]
 );
-var BASE_URL = `https://huetiful-js.com`;
+var BASE_URL = `https://huetiful-js.com/api`;
 
 export async function links() {
   moduleNames.map((srcFile) =>
@@ -37,7 +37,7 @@ export async function xml() {
     return (env) => {
       env.addGlobal('page', extra);
 
-      env.addGlobal('data', _.buildDataObject(source));
+      env.addGlobal('data', _.buildDataObject(source, _.rel2absURLAlt()));
     };
   }
   function demoDocsEnv(spec) {

@@ -8,9 +8,6 @@
     <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/huetiful.css" />
     <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/github-markdown-light.css" />
     <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/atom-one-dark.css" />
-    <script defer type="text/javascript" src='assets/vendor/htmx.js></script>
-    <script defer type="text/javascript" src=' assets/vendor/highlight.min.js'></script>
-    <script defer src="https://huetiful-js.com/assets/vendor/typescript.js"></script>
     <script>document.documentElement.classList.add('js')</script>
 
     
@@ -128,12 +125,12 @@
 <h2 id="table-of-contents-📑">Table of contents 📑</h2>
 <h3 id="functions-🧰">Functions 🧰</h3>
 <ul>
-<li><a href="https://huetiful-js.com/accessibility#colordeficiency">colorDeficiency</a></li>
+<li><a href="https://huetiful-js.com/api/accessibility/index.html#colordeficiency">colorDeficiency</a></li>
 </ul>
 <h2 id="functions">Functions</h2>
 <h3 id="colordeficiency">colorDeficiency</h3>
-<p>▸ <strong>colorDeficiency</strong>(<code class='rounded shadow shadow-gray-300 hljs' >deficiencyType?</code>): (<code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>, <code>severity?</code>: <code>number</code>) =&gt; <code>string</code></p>
-<p>Returns the color as a simulation of the passed in <code class='rounded shadow shadow-gray-300 hljs' >defeciencyType</code> of color vision deficiency with the deficiency filter's intensity determined by the <code>severity</code> value.</p>
+<p>▸ <strong>colorDeficiency</strong>(<code>deficiencyType?</code>): (<code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>, <code>severity?</code>: <code>number</code>) =&gt; <code>string</code></p>
+<p>Returns the color as a simulation of the passed in <code>defeciencyType</code> of color vision deficiency with the deficiency filter's intensity determined by the <code>severity</code> value.</p>
 <h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
 <thead>
@@ -145,16 +142,16 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >deficiencyType?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#deficiencytype"><code class='rounded shadow shadow-gray-300 hljs' >DeficiencyType</code></a></td>
-<td style="text-align:left;">The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is <code class='rounded shadow shadow-gray-300 hljs' >'red'</code> when the defeciency parameter is undefined or any falsy value.</td>
+<td style="text-align:left;"><code>deficiencyType?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#deficiencytype"><code>DeficiencyType</code></a></td>
+<td style="text-align:left;">The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is <code>'red'</code> when the defeciency parameter is undefined or any falsy value.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >fn</code></p>
-<p>The color as its simulated variant. Preserves the <code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code> type of the pased in color.</p>
-<p>▸ (<code class='rounded shadow shadow-gray-300 hljs' >color</code>, <code>severity?</code>): <code>string</code></p>
+<p><code>fn</code></p>
+<p>The color as its simulated variant. Preserves the <code>ColorToken</code> type of the pased in color.</p>
+<p>▸ (<code>color</code>, <code>severity?</code>): <code>string</code></p>
 <h5 id="parameters-🧮-1">Parameters 🧮</h5>
 <table>
 <thead>
@@ -165,19 +162,19 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >color</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >severity?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+<td style="text-align:left;"><code>severity?</code></td>
+<td style="text-align:left;"><code>number</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="returns-🔙-1">Returns 🔙</h5>
-<p><code class='rounded shadow shadow-gray-300 hljs' >string</code></p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { colorDeficiency, color2hex } from 'huetiful-js'
+<p><code>string</code></p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { colorDeficiency, color2hex } from 'huetiful-js'
 
 // Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
 // We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
@@ -198,7 +195,7 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 </div>
 <section class="flex justify-between">
     <div class="flex-col space-y-2">
-        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com"
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/api"
             class='flex align-middle space-x-2 p-4' id="previous-button"><svg xmlns="http://www.w3.org/2000/svg"
                 width="22" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
@@ -214,7 +211,7 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 
 
     <div class="flex-col space-y-2">
-        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/colors" class='flex space-x-2 p-4'
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/api/colors" class='flex space-x-2 p-4'
             id="next-button"><span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
                     class="feather feather-chevron-right">
@@ -229,7 +226,7 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 
 
         <footer
-            class="bg-[url(assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
+            class="bg-[url(/assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
 
             <div class="flex-col">
                 <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
@@ -308,6 +305,8 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
         </footer>
 
 
+        <script type="text/javascript" src='assets/vendor/htmx.js'></script>
+        <script type="text/javascript" src='assets/vendor/highlight.min.js'></script>
 
         <script type="text/javascript">hljs.highlightAll();</script>
         <script src="https://huetiful-js.com/assets/js/main.js"></script>

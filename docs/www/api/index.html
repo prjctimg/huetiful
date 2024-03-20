@@ -8,9 +8,6 @@
     <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/huetiful.css" />
     <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/github-markdown-light.css" />
     <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/atom-one-dark.css" />
-    <script defer type="text/javascript" src='assets/vendor/htmx.js></script>
-    <script defer type="text/javascript" src=' assets/vendor/highlight.min.js'></script>
-    <script defer src="https://huetiful-js.com/assets/vendor/typescript.js"></script>
     <script>document.documentElement.classList.add('js')</script>
 
     
@@ -79,7 +76,7 @@
     <div id='progress-bar' class='progress bg-gradient-to-r from-orange-600 via-purple-600 to-emerald-600' />
 </header>
         
-<p>The library is split into individual modules each with functions that have the same base functionality i.e sorting collections or querying color properties. Each module has a test (or <code class='rounded shadow shadow-gray-300 hljs' >.spec.js)</code> file where the unit tests are found and a declaration (or <code>.d.ts</code>) file where the API documentation is generated from.</p>
+<p>The library is split into individual modules each with functions that have the same base functionality i.e sorting collections or querying color properties. Each module has a test (or <code>.spec.js)</code> file where the unit tests are found and a declaration (or <code>.d.ts</code>) file where the API documentation is generated from.</p>
 <blockquote class=' border-l-blue-400 bg-blue-200' >
   <p>The reason why the types and JavaScript are in different files is because I didn't want to include a build step. As of v2.x.x the library is written in pure JS which makes testing with tools such as Jasmine easier. Also bundle size shrunk from 27Kb to just 11Kb after  removing the types from the source!</p>
 </blockquote>
@@ -103,7 +100,7 @@
 
 
         <footer
-            class="bg-[url(assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
+            class="bg-[url(/assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
 
             <div class="flex-col">
                 <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
@@ -182,6 +179,8 @@
         </footer>
 
 
+        <script type="text/javascript" src='assets/vendor/htmx.js'></script>
+        <script type="text/javascript" src='assets/vendor/highlight.min.js'></script>
 
         <script type="text/javascript">hljs.highlightAll();</script>
         <script src="https://huetiful-js.com/assets/js/main.js"></script>
