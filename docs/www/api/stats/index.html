@@ -6,19 +6,18 @@
 
     
     <link rel="stylesheet" type="text/css" href="/assets/css/huetiful.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/github-markdown-light.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/github-markdown.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/atom-one-dark.css" />
-    <script type="text/javascript" src='/assets/vendor/htmx.js'></script>
-    <script type="text/javascript" defer src='/assets/vendor/highlight.min.js'></script>
+    <script defer type="text/javascript" src='/assets/vendor/highlight.min.js'></script>
 
     
 
 </head>
 
-    <body id="swap-content" class="markdown-body">
+    <body class="markdown-body">
         <header class="pb-8 sticky top-0 left-0  w-full text-slate-700">
     <nav
-        class="py-4 flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-slate-700 bg-current dark:text-slate-200 shadow-lg shadow-gray-300 dark:shadow-black">
+        class="py-4 flex flex-wrap items-center justify-between w-full  px-4 text-lg text-slate-700 bg-slate-100 dark:text-slate-200 shadow-md shadow-gray-200 dark:shadow-black dark:bg-slate-800">
 
         <a class="inline-flex space-y-1 items-center font-medium text-base" href="https://huetiful-js.com"
             id="home"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -31,8 +30,7 @@
 
         </a>
 
-        <a hx-get="/api/index.html" hx-target="#swap-content"
-            class="inline-flex space-y-1 items-center font-medium text-base">
+        <a href="/api/index.html" class="inline-flex space-y-1 items-center font-medium text-base">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
@@ -40,28 +38,16 @@
                 <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
             </svg><span>API</span>
         </a>
-        <a class="inline-flex space-y-1 items-center font-medium text-base" hx-get="/demo.html"
-            hx-target="#swap-content">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" aria-hidden="true" class="inline-block mr-1" data-slot="icon">
+        <a class="inline-flex space-y-1 items-center font-medium text-base" href="/demo.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75"
+                stroke="currentColor" class="inline-block mr-1">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
             </svg>
 
             <span>Demo</span>
         </a>
-        <a class="inline-flex space-y-1 items-center font-medium text-base"
-            href="https://github.com/xml-wizard/huetiful/wiki">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
-                class="inline-block mr-1">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                </path>
-            </svg>
-            <span>Wiki</span>
-        </a>
+
         <a class="inline-flex space-y-1 items-center font-medium text-base"
             href="https://github.com/xml-wizard/huetiful">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -84,8 +70,8 @@
             <div class='flex flex-row w-full justify-end'>
 
 
-                <a class='flex w-fit align-middle' href=https://github.com/xml-wizard/blob/main/types/stats.d.ts><button
-                        class="px-2 py-2 bg-sky-500 border-none text-sm text-slate-800">Edit this page</button><span
+                <a class='flex w-fit items-center' href=https://github.com/xml-wizard/huetiful/blob/main/types/stats.d.ts><button
+                        class="pr-2 py-2 bg-sky-500 border-none text-sm text-white">Edit this page</button><span
                         class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
                                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
@@ -93,7 +79,8 @@
                                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                             </svg>
 
-                        </span></a>
+                        </span>
+                </a>
 
                 <div class='flex flex-col'><span class='font-normal text-sm text-slate-500'>last updated</span'>
                         <p class='text-slate-600 text-xs font-sans font-semibold'>Tuesday, Mar 19, in the afternoon</p>
@@ -108,12 +95,12 @@
 
 
         <div class="flex flex-row space-x-2 pt-8 pb-1 mb-4 w-fit">
-            <a href="https://github.com/xml-wizard/blob/main/spec/stats.spec.js" class="flex space-x-1">
+            <a href="https://github.com/xml-wizard/huetiful/blob/main/spec/stats.spec.js" class="flex space-x-1">
                 <span>Tests 🧪</span>
 
 
             </a>
-            <a href="https://github.com/xml-wizard/blob/main/src/stats.js" class="flex space-x-1">
+            <a href="https://github.com/xml-wizard/huetiful/blob/main/src/stats.js" class="flex space-x-1">
                 <span>Source 🧾</span>
             </a>
         </div>
@@ -151,7 +138,7 @@
 </ul>
 <h2 id="functions">Functions</h2>
 <h3 id="getfarthestchroma">getFarthestChroma</h3>
-<p>▸ <strong>getFarthestChroma</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>▸ <strong>getFarthestChroma</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>Gets the largest saturation value from the passed in colors.</p>
 <h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
@@ -164,27 +151,27 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
-<td style="text-align:left;">The mode <code>colorspace</code> to perform the computation in.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
+<td style="text-align:left;">The mode <code class='hljs language-typescript text-wrap' >colorspace</code> to perform the computation in.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>saturation</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >saturation</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The largest saturation value in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getFarthestChroma } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest saturation value in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getFarthestChroma } from 'huetiful-js'
 
 let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 
@@ -195,8 +182,8 @@ console.log(getFarthestChroma(sample, 'lch'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L541">stats.d.ts:541</a></p>
 <hr />
 <h3 id="getfarthestchromafrom">getFarthestChromaFrom</h3>
-<p>▸ <strong>getFarthestChromaFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Returns the largest chroma/saturation difference between the colors in a collection <code>against</code> a comparison color.</p>
+<p>▸ <strong>getFarthestChromaFrom</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Returns the largest chroma/saturation difference between the colors in a collection <code class='hljs language-typescript text-wrap' >against</code> a comparison color.</p>
 <h4 id="parameters-🧮-1">Parameters 🧮</h4>
 <table>
 <thead>
@@ -208,32 +195,32 @@ console.log(getFarthestChroma(sample, 'lch'))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to query.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the channel being queried.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>saturation</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >saturation</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-1">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The largest chroma/saturation difference in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getFarthestChromaFrom } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest chroma/saturation difference in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getFarthestChromaFrom } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -251,7 +238,7 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L30">stats.d.ts:30</a></p>
 <hr />
 <h3 id="getfarthestcontrast">getFarthestContrast</h3>
-<p>▸ <strong>getFarthestContrast</strong>(<code>collection</code>, <code>against</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>▸ <strong>getFarthestContrast</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>Returns the largest contrast value from the passed in colors compared against a sample color.</p>
 <h4 id="parameters-🧮-2">Parameters 🧮</h4>
 <table>
@@ -264,27 +251,27 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to query the color with the largest contrast value.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>contrast</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >contrast</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-2">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The largest contrast value in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getFarthestContrast } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest contrast value in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getFarthestContrast } from 'huetiful-js'
 
 console.log(getFarthestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green"));
 // 3.08355493246362
@@ -296,7 +283,7 @@ console.log(getFarthestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true)
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L489">stats.d.ts:489</a></p>
 <hr />
 <h3 id="getfarthesthue">getFarthestHue</h3>
-<p>▸ <strong>getFarthestHue</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>▸ <strong>getFarthestHue</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>Returns the largest hue angle from the passed in colors.</p>
 <h4 id="parameters-🧮-3">Parameters 🧮</h4>
 <table>
@@ -309,27 +296,27 @@ console.log(getFarthestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true)
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">The mode color space to perform the computation in.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>hue</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >hue</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-3">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The largest hue value in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getFarthestHue } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest hue value in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getFarthestHue } from 'huetiful-js'
 let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 
 console.log(getFarthestHue(sample, 'lch'))
@@ -339,8 +326,8 @@ console.log(getFarthestHue(sample, 'lch'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L592">stats.d.ts:592</a></p>
 <hr />
 <h3 id="getfarthesthuefrom">getFarthestHueFrom</h3>
-<p>▸ <strong>getFarthestHueFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Gets the largest hue angle difference between the colors in a collection <code>against</code> a comparison color.</p>
+<p>▸ <strong>getFarthestHueFrom</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the largest hue angle difference between the colors in a collection <code class='hljs language-typescript text-wrap' >against</code> a comparison color.</p>
 <h4 id="parameters-🧮-4">Parameters 🧮</h4>
 <table>
 <thead>
@@ -352,32 +339,32 @@ console.log(getFarthestHue(sample, 'lch'))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to query.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the channel being queried.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>hue</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >hue</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-4">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The largest hue angle difference in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getFarthestHueFrom } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest hue angle difference in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getFarthestHueFrom } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -395,7 +382,7 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L105">stats.d.ts:105</a></p>
 <hr />
 <h3 id="getfarthestlightness">getFarthestLightness</h3>
-<p>▸ <strong>getFarthestLightness</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>▸ <strong>getFarthestLightness</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>Gets the largest lightness value from the passed in colors.</p>
 <h4 id="parameters-🧮-5">Parameters 🧮</h4>
 <table>
@@ -408,27 +395,27 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to query the color with the largest lightness value.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">THe mode colorspace to retrieve the lightness value from.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>lightness</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >lightness</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-5">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The largest lightness value in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getFarthestLightness } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest lightness value in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getFarthestLightness } from 'huetiful-js'
 
 let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
 
@@ -440,8 +427,8 @@ console.log(getFarthestLightness(sample, 'lch',true))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L649">stats.d.ts:649</a></p>
 <hr />
 <h3 id="getfarthestlightnessfrom">getFarthestLightnessFrom</h3>
-<p>▸ <strong>getFarthestLightnessFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Returns the largest lightness difference between the colors in a collection <code>against</code> a comparison color.</p>
+<p>▸ <strong>getFarthestLightnessFrom</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Returns the largest lightness difference between the colors in a collection <code class='hljs language-typescript text-wrap' >against</code> a comparison color.</p>
 <h4 id="parameters-🧮-6">Parameters 🧮</h4>
 <table>
 <thead>
@@ -453,32 +440,32 @@ console.log(getFarthestLightness(sample, 'lch',true))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to query.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the channel being queried.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>lightness</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >lightness</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-6">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The largest lightness difference in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getFarthestLightnessFrom } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest lightness difference in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getFarthestLightnessFrom } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -496,8 +483,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L180">stats.d.ts:180</a></p>
 <hr />
 <h3 id="getfarthestluminancefrom">getFarthestLuminanceFrom</h3>
-<p>▸ <strong>getFarthestLuminanceFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Returns the largest <code>luminance</code> difference between the colors in a collection <code>against</code> a comparison color.</p>
+<p>▸ <strong>getFarthestLuminanceFrom</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Returns the largest <code class='hljs language-typescript text-wrap' >luminance</code> difference between the colors in a collection <code>against</code> a comparison color.</p>
 <h4 id="parameters-🧮-7">Parameters 🧮</h4>
 <table>
 <thead>
@@ -509,32 +496,32 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to query.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>lightness</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >lightness</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-7">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The largest lightness difference in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getFarthestLuminanceFrom } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest lightness difference in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getFarthestLuminanceFrom } from 'huetiful-js'
 var sample = [
    { l: 40, c: 20, h: 40, mode: 'lch' },
    { l: 20, c: 10, h: 20, mode: 'lch' },
@@ -549,8 +536,8 @@ console.log(getFarthestLuminanceFrom(sample, against));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L284">stats.d.ts:284</a></p>
 <hr />
 <h3 id="getmeanchroma">getMeanChroma</h3>
-<p>▸ <strong>getMeanChroma</strong>(<code>collection</code>, <code>colorspace?</code>): <code>number</code> | <code>undefined</code></p>
-<p>Returns the average <code>chroma</code> from the passed in <code>collection</code> of colors. Achromatic colors (or colors with a falsy <code>chroma</code> channel) will be excluded from the sum.</p>
+<p>▸ <strong>getMeanChroma</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>colorspace?</code>): <code>number</code> | <code>undefined</code></p>
+<p>Returns the average <code class='hljs language-typescript text-wrap' >chroma</code> from the passed in <code>collection</code> of colors. Achromatic colors (or colors with a falsy <code>chroma</code> channel) will be excluded from the sum.</p>
 <h4 id="parameters-🧮-8">Parameters 🧮</h4>
 <table>
 <thead>
@@ -562,22 +549,22 @@ console.log(getFarthestLuminanceFrom(sample, against));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of color tokens to query.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
-<td style="text-align:left;">The colorspace to fetch the <code>chroma</code> channel value from.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
+<td style="text-align:left;">The colorspace to fetch the <code class='hljs language-typescript text-wrap' >chroma</code> channel value from.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-8">Returns 🔙</h4>
-<p><code>number</code> | <code>undefined</code></p>
-<p>The average <code>chroma</code> in the passed in <code>collection</code> or undefined if no color in the <code>collection</code> has a valid <code>chroma</code> channel.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getMeanChroma } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | <code>undefined</code></p>
+<p>The average <code class='hljs language-typescript text-wrap' >chroma</code> in the passed in <code>collection</code> or undefined if no color in the <code>collection</code> has a valid <code>chroma</code> channel.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getMeanChroma } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -593,8 +580,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L316">stats.d.ts:316</a></p>
 <hr />
 <h3 id="getmeancontrast">getMeanContrast</h3>
-<p>▸ <strong>getMeanContrast</strong>(<code>collection</code>, <code>against?</code>): <code>number</code></p>
-<p>Returns the average <code>contrast</code> from the passed in <code>collection</code> of colors.</p>
+<p>▸ <strong>getMeanContrast</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against?</code>): <code>number</code></p>
+<p>Returns the average <code class='hljs language-typescript text-wrap' >contrast</code> from the passed in <code>collection</code> of colors.</p>
 <h4 id="parameters-🧮-9">Parameters 🧮</h4>
 <table>
 <thead>
@@ -606,22 +593,22 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of color tokens to query.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
-<td style="text-align:left;">The color to compare the <code>contrast</code> against. Used by the <code>getContrast</code> function for each color in the <code>collection</code>. Default is <code>black</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
+<td style="text-align:left;">The color to compare the <code class='hljs language-typescript text-wrap' >contrast</code> against. Used by the <code>getContrast</code> function for each color in the <code>collection</code>. Default is <code>black</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-9">Returns 🔙</h4>
-<p><code>number</code></p>
-<p>The average <code>distance</code> in the passed in <code>collection</code> .</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getMeanContrast } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code></p>
+<p>The average <code class='hljs language-typescript text-wrap' >distance</code> in the passed in <code>collection</code> .</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getMeanContrast } from 'huetiful-js'
 
 var sample = [
    { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -638,8 +625,8 @@ console.log(getMeanContrast(sample, against));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L441">stats.d.ts:441</a></p>
 <hr />
 <h3 id="getmeandistance">getMeanDistance</h3>
-<p>▸ <strong>getMeanDistance</strong>(<code>collection</code>, <code>against?</code>): <code>number</code></p>
-<p>Returns the average <code>distance</code> from the passed in <code>collection</code> of colors using the <code>differenceHyab</code> metric. In the future, an option to specify the metric to use when querying the <code>distance</code> factor.</p>
+<p>▸ <strong>getMeanDistance</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against?</code>): <code>number</code></p>
+<p>Returns the average <code class='hljs language-typescript text-wrap' >distance</code> from the passed in <code>collection</code> of colors using the <code>differenceHyab</code> metric. In the future, an option to specify the metric to use when querying the <code>distance</code> factor.</p>
 <h4 id="parameters-🧮-10">Parameters 🧮</h4>
 <table>
 <thead>
@@ -651,22 +638,22 @@ console.log(getMeanContrast(sample, against));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of color tokens to query.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
-<td style="text-align:left;">The color to compare the distance from. Used by the metric function for each color in the <code>collection</code>. Default is <code>black</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
+<td style="text-align:left;">The color to compare the distance from. Used by the metric function for each color in the <code class='hljs language-typescript text-wrap' >collection</code>. Default is <code>black</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-10">Returns 🔙</h4>
-<p><code>number</code></p>
-<p>The average <code>distance</code> in the passed in <code>collection</code> .</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getMeanDistance } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code></p>
+<p>The average <code class='hljs language-typescript text-wrap' >distance</code> in the passed in <code>collection</code> .</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getMeanDistance } from 'huetiful-js'
 
 var sample = [
    { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -683,8 +670,8 @@ console.log(getMeanDistance(sample, against));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L414">stats.d.ts:414</a></p>
 <hr />
 <h3 id="getmeanhue">getMeanHue</h3>
-<p>▸ <strong>getMeanHue</strong>(<code>collection</code>, <code>colorspace?</code>, <code>excludeGreys?</code>): <code>number</code></p>
-<p>Returns the average <code>hue</code> from the passed in <code>collection</code> of colors. Achromatic colors (or colors with a falsy <code>chroma</code> channel) will be excluded from the sum if <code>excludeGreys</code> is <code>true</code>. This can help make your color scales make more 'visual sense since the <code>hue</code> channel depends on the <code>chroma</code> channel to look colorful. This will also alter the final average hue angle returned.</p>
+<p>▸ <strong>getMeanHue</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>colorspace?</code>, <code>excludeGreys?</code>): <code>number</code></p>
+<p>Returns the average <code class='hljs language-typescript text-wrap' >hue</code> from the passed in <code>collection</code> of colors. Achromatic colors (or colors with a falsy <code>chroma</code> channel) will be excluded from the sum if <code>excludeGreys</code> is <code>true</code>. This can help make your color scales make more 'visual sense since the <code>hue</code> channel depends on the <code>chroma</code> channel to look colorful. This will also alter the final average hue angle returned.</p>
 <h4 id="parameters-🧮-11">Parameters 🧮</h4>
 <table>
 <thead>
@@ -696,27 +683,27 @@ console.log(getMeanDistance(sample, against));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of color tokens to query.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
-<td style="text-align:left;">The colorspace to fetch the <code>hue</code> channel value from.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
+<td style="text-align:left;">The colorspace to fetch the <code class='hljs language-typescript text-wrap' >hue</code> channel value from.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>excludeGreys?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean to filter out achromatic colors from the passed in <code>collection</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >excludeGreys?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean to filter out achromatic colors from the passed in <code class='hljs language-typescript text-wrap' >collection</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-11">Returns 🔙</h4>
-<p><code>number</code></p>
-<p>The average <code>hue</code> angle in the passed in <code>collection</code>.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getMeanHue } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code></p>
+<p>The average <code class='hljs language-typescript text-wrap' >hue</code> angle in the passed in <code>collection</code>.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getMeanHue } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 10, mode: 'lch' },
@@ -732,8 +719,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L365">stats.d.ts:365</a></p>
 <hr />
 <h3 id="getmeanlightness">getMeanLightness</h3>
-<p>▸ <strong>getMeanLightness</strong>(<code>collection</code>, <code>colorspace?</code>): <code>number</code></p>
-<p>Returns the average <code>lightness</code> from the passed in <code>collection</code> of colors.</p>
+<p>▸ <strong>getMeanLightness</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>colorspace?</code>): <code>number</code></p>
+<p>Returns the average <code class='hljs language-typescript text-wrap' >lightness</code> from the passed in <code>collection</code> of colors.</p>
 <h4 id="parameters-🧮-12">Parameters 🧮</h4>
 <table>
 <thead>
@@ -745,22 +732,22 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of color tokens to query.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
-<td style="text-align:left;">The colorspace to fetch the <code>lightness</code> channel value from.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
+<td style="text-align:left;">The colorspace to fetch the <code class='hljs language-typescript text-wrap' >lightness</code> channel value from.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-12">Returns 🔙</h4>
-<p><code>number</code></p>
-<p>The average <code>lightness</code> in the passed in <code>collection</code>.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getMeanLightness } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code></p>
+<p>The average <code class='hljs language-typescript text-wrap' >lightness</code> in the passed in <code>collection</code>.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getMeanLightness } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -776,8 +763,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L340">stats.d.ts:340</a></p>
 <hr />
 <h3 id="getmeanluminance">getMeanLuminance</h3>
-<p>▸ <strong>getMeanLuminance</strong>(<code>collection</code>): <code>number</code></p>
-<p>Returns the average relative <code>luminance</code> from the passed in <code>collection</code> of colors.</p>
+<p>▸ <strong>getMeanLuminance</strong>(<code class='hljs language-typescript text-wrap' >collection</code>): <code>number</code></p>
+<p>Returns the average relative <code class='hljs language-typescript text-wrap' >luminance</code> from the passed in <code>collection</code> of colors.</p>
 <h4 id="parameters-🧮-13">Parameters 🧮</h4>
 <table>
 <thead>
@@ -789,17 +776,17 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of color tokens to query.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-13">Returns 🔙</h4>
-<p><code>number</code></p>
-<p>The average relative <code>luminance</code> in the passed in <code>collection</code> or undefined if no color in the <code>collection</code> has a valid <code>chroma</code> channel.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getMeanLuminance } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code></p>
+<p>The average relative <code class='hljs language-typescript text-wrap' >luminance</code> in the passed in <code>collection</code> or undefined if no color in the <code>collection</code> has a valid <code>chroma</code> channel.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getMeanLuminance } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -815,8 +802,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L389">stats.d.ts:389</a></p>
 <hr />
 <h3 id="getnearestchroma">getNearestChroma</h3>
-<p>▸ <strong>getNearestChroma</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Returns the smallest <code>chroma</code> / <code>saturation</code> value from the passed in colors.</p>
+<p>▸ <strong>getNearestChroma</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Returns the smallest <code class='hljs language-typescript text-wrap' >chroma</code> / <code>saturation</code> value from the passed in colors.</p>
 <h4 id="parameters-🧮-14">Parameters 🧮</h4>
 <table>
 <thead>
@@ -828,27 +815,27 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to query the color with the smallest chroma/saturation value.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
-<td style="text-align:left;">The mode <code>colorspace</code> to retrieve saturation/chroma values.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
+<td style="text-align:left;">The mode <code class='hljs language-typescript text-wrap' >colorspace</code> to retrieve saturation/chroma values.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>saturation</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >saturation</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-14">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The smallest chroma/saturation value in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getNearestChroma } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest chroma/saturation value in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getNearestChroma } from 'huetiful-js'
 
 let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 
@@ -859,8 +846,8 @@ console.log(getNearestChroma(sample, 'lch'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L515">stats.d.ts:515</a></p>
 <hr />
 <h3 id="getnearestchromafrom">getNearestChromaFrom</h3>
-<p>▸ <strong>getNearestChromaFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Returns the smallest chroma/saturation difference between the colors in a collection <code>against</code> a comparison color.</p>
+<p>▸ <strong>getNearestChromaFrom</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Returns the smallest chroma/saturation difference between the colors in a collection <code class='hljs language-typescript text-wrap' >against</code> a comparison color.</p>
 <h4 id="parameters-🧮-15">Parameters 🧮</h4>
 <table>
 <thead>
@@ -872,32 +859,32 @@ console.log(getNearestChroma(sample, 'lch'))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to query.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the channel being queried.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>saturation</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >saturation</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-15">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The smallest chroma/saturation difference in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getNearestChromaFrom } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest chroma/saturation difference in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getNearestChromaFrom } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -915,7 +902,7 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L69">stats.d.ts:69</a></p>
 <hr />
 <h3 id="getnearestcontrast">getNearestContrast</h3>
-<p>▸ <strong>getNearestContrast</strong>(<code>collection</code>, <code>against</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>▸ <strong>getNearestContrast</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>Returns the smallest contrast value from the passed in colors compared against a sample color.</p>
 <h4 id="parameters-🧮-16">Parameters 🧮</h4>
 <table>
@@ -928,27 +915,27 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to query the color with the smallest contrast value.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>contrast</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >contrast</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-16">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The smallest contrast value in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getNearestContrast } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest contrast value in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getNearestContrast } from 'huetiful-js'
 
 console.log(getNearestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green"));
 // 2.4061390502133424
@@ -960,7 +947,7 @@ console.log(getNearestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L462">stats.d.ts:462</a></p>
 <hr />
 <h3 id="getnearesthue">getNearestHue</h3>
-<p>▸ <strong>getNearestHue</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>▸ <strong>getNearestHue</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>Returns the smallest hue angle from the passed in colors.</p>
 <h4 id="parameters-🧮-17">Parameters 🧮</h4>
 <table>
@@ -973,27 +960,27 @@ console.log(getNearestContrast(["b2c3f1", "#a1bd2f", "#f3bac1"], "green", true))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
-<td style="text-align:left;">The mode <code>colorspace</code> to perform the computation in.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
+<td style="text-align:left;">The mode <code class='hljs language-typescript text-wrap' >colorspace</code> to perform the computation in.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>hue</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >hue</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-17">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The smallest hue value in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getNearestHue } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest hue value in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getNearestHue } from 'huetiful-js'
 
 let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 
@@ -1004,8 +991,8 @@ console.log(getNearestHue(sample, 'lch'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L567">stats.d.ts:567</a></p>
 <hr />
 <h3 id="getnearesthuefrom">getNearestHueFrom</h3>
-<p>▸ <strong>getNearestHueFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Returns the smallest hue angle difference between the colors in a collection <code>against</code> a comparison color.</p>
+<p>▸ <strong>getNearestHueFrom</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Returns the smallest hue angle difference between the colors in a collection <code class='hljs language-typescript text-wrap' >against</code> a comparison color.</p>
 <h4 id="parameters-🧮-18">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1017,32 +1004,32 @@ console.log(getNearestHue(sample, 'lch'))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to query.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the channel being queried.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>hue</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >hue</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-18">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The smallest hue angle difference in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getNearestHueFrom } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest hue angle difference in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getNearestHueFrom } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -1060,7 +1047,7 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L142">stats.d.ts:142</a></p>
 <hr />
 <h3 id="getnearestlightness">getNearestLightness</h3>
-<p>▸ <strong>getNearestLightness</strong>(<code>collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>▸ <strong>getNearestLightness</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>Gets the smallest lightness value from the passed in colors.</p>
 <h4 id="parameters-🧮-19">Parameters 🧮</h4>
 <table>
@@ -1073,27 +1060,27 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to query the color with the smallest lightness value.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>lightness</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >lightness</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-19">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The smallest lightness value in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getNearestLightness } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest lightness value in the colors passed in or a custom object with the <code class='hljs language-typescript text-wrap' >factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getNearestLightness } from 'huetiful-js'
 
 let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
 
@@ -1105,8 +1092,8 @@ console.log(getNearestLightness(sample, 'lch',true))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L621">stats.d.ts:621</a></p>
 <hr />
 <h3 id="getnearestlightnessfrom">getNearestLightnessFrom</h3>
-<p>▸ <strong>getNearestLightnessFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Returns the smallest <code>lightness</code> difference between the colors in a collection <code>against</code> a comparison color.</p>
+<p>▸ <strong>getNearestLightnessFrom</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Returns the smallest <code class='hljs language-typescript text-wrap' >lightness</code> difference between the colors in a collection <code>against</code> a comparison color.</p>
 <h4 id="parameters-🧮-20">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1118,32 +1105,32 @@ console.log(getNearestLightness(sample, 'lch',true))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to query.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the channel being queried.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>lightness</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >lightness</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-20">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The smallest<code>lightness</code> difference in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getNearestLightnessFrom } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest<code class='hljs language-typescript text-wrap' >lightness</code> difference in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getNearestLightnessFrom } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -1161,8 +1148,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/stats.d.ts#L216">stats.d.ts:216</a></p>
 <hr />
 <h3 id="getnearestluminancefrom">getNearestLuminanceFrom</h3>
-<p>▸ <strong>getNearestLuminanceFrom</strong>(<code>collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>REturns the smallest <code>luminance</code> difference between the colors in a collection <code>against</code> a comparison color.</p>
+<p>▸ <strong>getNearestLuminanceFrom</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>REturns the smallest <code class='hljs language-typescript text-wrap' >luminance</code> difference between the colors in a collection <code>against</code> a comparison color.</p>
 <h4 id="parameters-🧮-21">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1174,32 +1161,32 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to query.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorObj?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>luminance</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorObj?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='hljs language-typescript text-wrap' >luminance</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-21">Returns 🔙</h4>
-<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The smallest <code>luminance</code> difference in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { getNearestLuminanceFrom } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest <code class='hljs language-typescript text-wrap' >luminance</code> difference in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { getNearestLuminanceFrom } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -1218,60 +1205,52 @@ var sample =  [
     </article>
 
 </div>
-<section class="flex justify-between">
-    <div class="flex-col space-y-2">
-        <button hx-trigger="click" hx-target="#swap-view" hx-get="/api/sortBy"
-            class='flex align-middle space-x-2 p-4' id="previous-button"><svg xmlns="http://www.w3.org/2000/svg"
+<section class="flex justify-between divide-x-[1px] divide-slate-400">
+
+    <a href="/api/sortBy" class='flex align-middle space-x-2 p-4' id="previous-button"><svg
+            xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-chevron-left">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg><span></span>
+        <h5 class="font-sans text-sm text-slate-700 tracking-tight dark:text-slate-300">generators</h5>
+    </a>
+
+    <a href="/api/sortBy" class='flex space-x-2 p-4 items-center'><span><svg xmlns="http://www.w3.org/2000/svg"
                 width="22" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
-                <polyline points="15 18 9 12 15 6"></polyline>
-            </svg><span></span></button>
-        <h5>generators</h5>
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg></span>
+        <h5 class="font-sans text-sm text-slate-700 tracking-tight dark:text-slate-300">stats</h5>
+    </a>
 
-
-    </div>
-
-
-
-
-
-    <div class="flex-col space-y-2">
-        <button hx-trigger="click" hx-target="#swap-view" hx-get="/api/sortBy" class='flex space-x-2 p-4'
-            id="next-button"><span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-chevron-right">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg></span></button>
-        <h5>stats</h5>
-
-    </div>
 
 </section>
 
 
 
         <footer
-            class="bg-[url(/assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
+            class="bg-[url(/assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4 text-white">
 
             <div class="flex-col">
-                <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
+                <div class="flex items-end justify-end space-x-4 pt-8 ">
 
                     <a href="https://github.com/xml-wizard/huetiful"><svg xmlns="http://www.w3.org/2000/svg" width="22"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75"
                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-github">
                             <path
                                 d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
                             </path>
                         </svg></a>
                     <a href="https://twitter.com/deantarisai"><svg xmlns="http://www.w3.org/2000/svg" width="22"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75"
                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter">
                             <path
                                 d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
                             </path>
                         </svg></a>
                     <a href="https://npmjs.com/package/huetiful-js"><svg xmlns="http://www.w3.org/2000/svg" width="22"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75"
                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-package">
                             <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
                             <path
@@ -1281,14 +1260,14 @@ var sample =  [
                             <line x1="12" y1="22.08" x2="12" y2="12"></line>
                         </svg></a>
                     <a href="mailto:prjctimg@outlook.com"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75" stroke-linecap="round"
+                            viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round"
                             stroke-linejoin="round" class="feather feather-mail">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
                             </path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg></a>
                     <a href="https://kofi.com/prjctimg"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75" stroke-linecap="round"
+                            viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round"
                             stroke-linejoin="round" class="feather feather-coffee">
                             <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
                             <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
@@ -1303,11 +1282,11 @@ var sample =  [
 
 
             <div class="pt-2">
-                <blockquote class="inline-block text-sm outline-yellow-500">
+                <blockquote class="inline-block text-sm">
                     <p class="text-sm">
                         <span class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="14"
-                                viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-code">
+                                viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-code">
                                 <polyline points="16 18 22 12 16 6"></polyline>
                                 <polyline points="8 6 2 12 8 18"></polyline>
                             </svg></span>
@@ -1321,7 +1300,7 @@ var sample =  [
                             </svg></span>
                         in Crowhill,ZW
                     </p>
-                    &copy;2024,Dean Tarisai
+                    &copy;2024,<a href="https://deantarisai.me">Dean Tarisai</a>
                     <br />
                     Released under the Apache-2.0 permissive license.
                 </blockquote>
@@ -1331,7 +1310,11 @@ var sample =  [
 
         <script src="/assets/js/main.js"></script>
 
-        <script type="text/javascript">hljs.highlightAll();</script>
+        <script type="text/javascript">
+            window.addEventListener('load', () => {
+                hljs.highlightAll()
+            });
+        </script>
 
     </body>
 

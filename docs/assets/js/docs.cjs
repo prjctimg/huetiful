@@ -18,7 +18,8 @@ var { colorsNamed } = require('culori');
 var { readFileSync, lstatSync } = require('node:fs'),
   ge = require('github-emoji'),
   defaultClasses = {
-    blockquote: ' border-l-blue-400 bg-blue-200'
+    blockquote: ' border-l-blue-400 bg-blue-200',
+    code: 'hljs language-typescript text-wrap'
   },
   injectClasses = Object.keys(defaultClasses).map((key) => ({
     type: 'output',
@@ -130,7 +131,7 @@ function buildDataObject(sourceModule, markupTransform = null) {
   }).format(lstatSync('../../types/' + sourceModule + '.d.ts').mtime);
 
   var cb = (s, x, y) =>
-    `https://github.com/xml-wizard/blob/main/${s}/${x}.${y}`;
+    `https://github.com/xml-wizard/huetiful/blob/main/${s}/${x}.${y}`;
 
   return {
     title: `${sourceModule}`,

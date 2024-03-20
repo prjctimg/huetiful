@@ -6,19 +6,18 @@
 
     
     <link rel="stylesheet" type="text/css" href="/assets/css/huetiful.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/github-markdown-light.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/github-markdown.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/atom-one-dark.css" />
-    <script type="text/javascript" src='/assets/vendor/htmx.js'></script>
-    <script type="text/javascript" defer src='/assets/vendor/highlight.min.js'></script>
+    <script defer type="text/javascript" src='/assets/vendor/highlight.min.js'></script>
 
     
 
 </head>
 
-    <body id="swap-content" class="markdown-body">
+    <body class="markdown-body">
         <header class="pb-8 sticky top-0 left-0  w-full text-slate-700">
     <nav
-        class="py-4 flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-slate-700 bg-current dark:text-slate-200 shadow-lg shadow-gray-300 dark:shadow-black">
+        class="py-4 flex flex-wrap items-center justify-between w-full  px-4 text-lg text-slate-700 bg-slate-100 dark:text-slate-200 shadow-md shadow-gray-200 dark:shadow-black dark:bg-slate-800">
 
         <a class="inline-flex space-y-1 items-center font-medium text-base" href="https://huetiful-js.com"
             id="home"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -31,8 +30,7 @@
 
         </a>
 
-        <a hx-get="/api/index.html" hx-target="#swap-content"
-            class="inline-flex space-y-1 items-center font-medium text-base">
+        <a href="/api/index.html" class="inline-flex space-y-1 items-center font-medium text-base">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
@@ -40,28 +38,16 @@
                 <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
             </svg><span>API</span>
         </a>
-        <a class="inline-flex space-y-1 items-center font-medium text-base" hx-get="/demo.html"
-            hx-target="#swap-content">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" aria-hidden="true" class="inline-block mr-1" data-slot="icon">
+        <a class="inline-flex space-y-1 items-center font-medium text-base" href="/demo.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75"
+                stroke="currentColor" class="inline-block mr-1">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
             </svg>
 
             <span>Demo</span>
         </a>
-        <a class="inline-flex space-y-1 items-center font-medium text-base"
-            href="https://github.com/xml-wizard/huetiful/wiki">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
-                class="inline-block mr-1">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                </path>
-            </svg>
-            <span>Wiki</span>
-        </a>
+
         <a class="inline-flex space-y-1 items-center font-medium text-base"
             href="https://github.com/xml-wizard/huetiful">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -84,8 +70,8 @@
             <div class='flex flex-row w-full justify-end'>
 
 
-                <a class='flex w-fit align-middle' href=https://github.com/xml-wizard/blob/main/types/converters.d.ts><button
-                        class="px-2 py-2 bg-sky-500 border-none text-sm text-slate-800">Edit this page</button><span
+                <a class='flex w-fit items-center' href=https://github.com/xml-wizard/huetiful/blob/main/types/converters.d.ts><button
+                        class="pr-2 py-2 bg-sky-500 border-none text-sm text-white">Edit this page</button><span
                         class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
                                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
@@ -93,7 +79,8 @@
                                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                             </svg>
 
-                        </span></a>
+                        </span>
+                </a>
 
                 <div class='flex flex-col'><span class='font-normal text-sm text-slate-500'>last updated</span'>
                         <p class='text-slate-600 text-xs font-sans font-semibold'>Saturday, Mar 16, in the morning</p>
@@ -108,12 +95,12 @@
 
 
         <div class="flex flex-row space-x-2 pt-8 pb-1 mb-4 w-fit">
-            <a href="https://github.com/xml-wizard/blob/main/spec/converters.spec.js" class="flex space-x-1">
+            <a href="https://github.com/xml-wizard/huetiful/blob/main/spec/converters.spec.js" class="flex space-x-1">
                 <span>Tests 🧪</span>
 
 
             </a>
-            <a href="https://github.com/xml-wizard/blob/main/src/converters.js" class="flex space-x-1">
+            <a href="https://github.com/xml-wizard/huetiful/blob/main/src/converters.js" class="flex space-x-1">
                 <span>Source 🧾</span>
             </a>
         </div>
@@ -140,8 +127,8 @@
 </ul>
 <h2 id="functions">Functions</h2>
 <h3 id="color2hex">color2hex</h3>
-<p>▸ <strong>color2hex</strong>(<code>color</code>): <code>string</code></p>
-<p>Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), any <code>number</code> from 0 to 166,777,215 and arrays in the form of <code>[string,number,number,number,numer?]</code> the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.</p>
+<p>▸ <strong>color2hex</strong>(<code class='hljs language-typescript text-wrap' >color</code>): <code>string</code></p>
+<p>Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), any <code class='hljs language-typescript text-wrap' >number</code> from 0 to 166,777,215 and arrays in the form of <code>[string,number,number,number,numer?]</code> the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.</p>
 <h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
 <thead>
@@ -153,17 +140,17 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>color</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >color</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to convert to hexadecimal. Works on color objects and CSS named colors.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙">Returns 🔙</h4>
-<p><code>string</code></p>
+<p><code class='hljs language-typescript text-wrap' >string</code></p>
 <p>A hexadecimal representation of the passed in color.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { color2hex } from "huetiful-js";
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { color2hex } from "huetiful-js";
 
 console.log(color2hex({ l: 50, c: 31, h: 100, alpha: 0.5, mode: "lch" }))
 // #7b794180
@@ -175,7 +162,7 @@ console.log(color2hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L75">converters.d.ts:75</a></p>
 <hr />
 <h3 id="color2num">color2num</h3>
-<p>▸ <strong>color2num</strong>(<code>color</code>): <code>number</code></p>
+<p>▸ <strong>color2num</strong>(<code class='hljs language-typescript text-wrap' >color</code>): <code>number</code></p>
 <p>Returns the numerical equivalent of a color.</p>
 <h4 id="parameters-🧮-1">Parameters 🧮</h4>
 <table>
@@ -188,17 +175,17 @@ console.log(color2hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>color</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >color</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">The color to convert to its numerical equivalent.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-1">Returns 🔙</h4>
-<p><code>number</code></p>
+<p><code class='hljs language-typescript text-wrap' >number</code></p>
 <p>value The numerical value of the color from 0 to 16,777,215.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { color2num } from 'huetiful-js'
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { color2num } from 'huetiful-js'
 
 console.log(color2num("b2c3f1"))
 // 11715569
@@ -207,7 +194,7 @@ console.log(color2num("b2c3f1"))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L104">converters.d.ts:104</a></p>
 <hr />
 <h3 id="color2tuple">color2tuple</h3>
-<p>▸ <strong>color2tuple</strong>(<code>color</code>, <code>colorspace?</code>, <code>omitMode?</code>): <code>number</code>[] | [<code>string</code>, <code>number</code>, <code>number</code>, <code>number</code>, number?]</p>
+<p>▸ <strong>color2tuple</strong>(<code class='hljs language-typescript text-wrap' >color</code>, <code>colorspace?</code>, <code>omitMode?</code>): <code>number</code>[] | [<code>string</code>, <code>number</code>, <code>number</code>, <code>number</code>, number?]</p>
 <p>Returns an array of channel values in the mode color space. It does not mutate the values of the passed in color token.</p>
 <h4 id="parameters-🧮-2">Parameters 🧮</h4>
 <table>
@@ -220,27 +207,27 @@ console.log(color2num("b2c3f1"))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>color</code></td>
-<td style="text-align:left;"><code>string</code> | <code>object</code></td>
-<td style="text-align:left;">Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g <code>num2color</code> if you want tonevrt the number to supported color token.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >color</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code> | <code>object</code></td>
+<td style="text-align:left;">Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g <code class='hljs language-typescript text-wrap' >num2color</code> if you want tonevrt the number to supported color token.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
-<td style="text-align:left;">The mode color space to return channel values for. You can omit this parameter if you pass in a color object with the <code>mode</code> property.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
+<td style="text-align:left;">The mode color space to return channel values for. You can omit this parameter if you pass in a color object with the <code class='hljs language-typescript text-wrap' >mode</code> property.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>omitMode?</code></td>
-<td style="text-align:left;"><code>boolean</code></td>
-<td style="text-align:left;">optional boolean to exclude the mode from the final tuple. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >omitMode?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >boolean</code></td>
+<td style="text-align:left;">optional boolean to exclude the mode from the final tuple. Default is <code class='hljs language-typescript text-wrap' >false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-2">Returns 🔙</h4>
-<p><code>number</code>[] | [<code>string</code>, <code>number</code>, <code>number</code>, <code>number</code>, number?]</p>
+<p><code class='hljs language-typescript text-wrap' >number</code>[] | [<code>string</code>, <code>number</code>, <code>number</code>, <code>number</code>, number?]</p>
 <p>An array of channel values with the colorspace as first element and the alpha channel as the fifth element in the array if its explicitly defined in the passed in color.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { color2tuple } from 'huetiful-js'
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { color2tuple } from 'huetiful-js'
 
 let rgbColor = {
  r: 0.4,
@@ -257,8 +244,8 @@ console.log(color2tuple(rgbColor));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L145">converters.d.ts:145</a></p>
 <hr />
 <h3 id="num2color">num2color</h3>
-<p>▸ <strong>num2color</strong>(<code>num</code>, <code>colorspace?</code>): <code>string</code> | <code>object</code></p>
-<p>Returns the color equivalent of any <code>number</code> between 0 and 16,777,215 as a hexadecimal string or color object if the <code>colorspace</code> is specified.</p>
+<p>▸ <strong>num2color</strong>(<code class='hljs language-typescript text-wrap' >num</code>, <code>colorspace?</code>): <code>string</code> | <code>object</code></p>
+<p>Returns the color equivalent of any <code class='hljs language-typescript text-wrap' >number</code> between 0 and 16,777,215 as a hexadecimal string or color object if the <code>colorspace</code> is specified.</p>
 <h4 id="parameters-🧮-3">Parameters 🧮</h4>
 <table>
 <thead>
@@ -270,22 +257,22 @@ console.log(color2tuple(rgbColor));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>num</code></td>
-<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >num</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >number</code></td>
 <td style="text-align:left;">The number to convert.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-3">Returns 🔙</h4>
-<p><code>string</code> | <code>object</code></p>
+<p><code class='hljs language-typescript text-wrap' >string</code> | <code>object</code></p>
 <p>color A color object or hex string.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { num2color } from 'huetiful-js'
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { num2color } from 'huetiful-js'
 
 console.log(num2color(900))
 // #000384
@@ -294,8 +281,8 @@ console.log(num2color(900))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L88">converters.d.ts:88</a></p>
 <hr />
 <h3 id="temp2color">temp2color</h3>
-<p>▸ <strong>temp2color</strong>(<code>kelvin</code>, <code>colorspace?</code>): <code>string</code> | <code>object</code></p>
-<p>Converts the temperature value (in Kelvins) to a color as a hexadecimal string else a color object in the mode <code>colorspace</code>.</p>
+<p>▸ <strong>temp2color</strong>(<code class='hljs language-typescript text-wrap' >kelvin</code>, <code>colorspace?</code>): <code>string</code> | <code>object</code></p>
+<p>Converts the temperature value (in Kelvins) to a color as a hexadecimal string else a color object in the mode <code class='hljs language-typescript text-wrap' >colorspace</code>.</p>
 <h4 id="parameters-🧮-4">Parameters 🧮</h4>
 <table>
 <thead>
@@ -307,22 +294,22 @@ console.log(num2color(900))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>kelvin</code></td>
-<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >kelvin</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >number</code></td>
 <td style="text-align:left;">The number of Kelvins. From 0 to 30,000 .</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
-<td style="text-align:left;">Optional parameter to return a color object in the mode <code>colorspace</code> hexadecimal string. Default is <code>'rgb'</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
+<td style="text-align:left;">Optional parameter to return a color object in the mode <code class='hljs language-typescript text-wrap' >colorspace</code> hexadecimal string. Default is <code>'rgb'</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-4">Returns 🔙</h4>
-<p><code>string</code> | <code>object</code></p>
+<p><code class='hljs language-typescript text-wrap' >string</code> | <code>object</code></p>
 <p>color The color as a hexadecimal  or plain color object.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { temp2color } from 'huetiful-js'
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { temp2color } from 'huetiful-js'
 
 console.log(temp2color(2542))
 // #ffa44a
@@ -331,7 +318,7 @@ console.log(temp2color(2542))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L118">converters.d.ts:118</a></p>
 <hr />
 <h3 id="tocie">toCIE</h3>
-<p>▸ <strong>toCIE</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
+<p>▸ <strong>toCIE</strong>(<code class='hljs language-typescript text-wrap' >colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
 <p>Returns the passed in color as a plain object in the specified CIE colorspace.</p>
 <h4 id="parameters-🧮-5">Parameters 🧮</h4>
 <table>
@@ -344,15 +331,15 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>"lch"</code> | <code>"lch65"</code> | <code>"lab"</code> | <code>"lab65"</code> | <code>"xyz50"</code> | <code>"xyz65"</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >"lch"</code> | <code>"lch65"</code> | <code>"lab"</code> | <code>"lab65"</code> | <code>"xyz50"</code> | <code>"xyz65"</code></td>
 <td style="text-align:left;">The CIE colorspace to use.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-5">Returns 🔙</h4>
-<p><code>fn</code></p>
-<p>▸ (<code>color</code>): <code>object</code></p>
+<p><code class='hljs language-typescript text-wrap' >fn</code></p>
+<p>▸ (<code class='hljs language-typescript text-wrap' >color</code>): <code>object</code></p>
 <h5 id="parameters-🧮-6">Parameters 🧮</h5>
 <table>
 <thead>
@@ -363,20 +350,20 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>color</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >color</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="returns-🔙-6">Returns 🔙</h5>
-<p><code>object</code></p>
-<p><strong><code>See</code></strong></p>
+<p><code class='hljs language-typescript text-wrap' >object</code></p>
+<p><strong><code class='hljs language-typescript text-wrap' >See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
 <h4 id="defined-in-📝-5">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L33">converters.d.ts:33</a></p>
 <hr />
 <h3 id="todin99">toDIN99</h3>
-<p>▸ <strong>toDIN99</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
+<p>▸ <strong>toDIN99</strong>(<code class='hljs language-typescript text-wrap' >colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
 <p>Returns the passed in color as a plain object in the specified DIN99 colorspace.</p>
 <h4 id="parameters-🧮-7">Parameters 🧮</h4>
 <table>
@@ -389,15 +376,15 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>"dlch"</code> | <code>"dlab"</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >"dlch"</code> | <code>"dlab"</code></td>
 <td style="text-align:left;">The DIN99 colorspace variant (either cartesian/dlab or polar/dlch) to use.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-7">Returns 🔙</h4>
-<p><code>fn</code></p>
-<p>▸ (<code>color</code>): <code>object</code></p>
+<p><code class='hljs language-typescript text-wrap' >fn</code></p>
+<p>▸ (<code class='hljs language-typescript text-wrap' >color</code>): <code>object</code></p>
 <h5 id="parameters-🧮-8">Parameters 🧮</h5>
 <table>
 <thead>
@@ -408,20 +395,20 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>color</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >color</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="returns-🔙-8">Returns 🔙</h5>
-<p><code>object</code></p>
-<p><strong><code>See</code></strong></p>
+<p><code class='hljs language-typescript text-wrap' >object</code></p>
+<p><strong><code class='hljs language-typescript text-wrap' >See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
 <h4 id="defined-in-📝-6">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L43">converters.d.ts:43</a></p>
 <hr />
 <h3 id="tojab">toJab</h3>
-<p>▸ <strong>toJab</strong>(<code>color</code>): <code>object</code></p>
+<p>▸ <strong>toJab</strong>(<code class='hljs language-typescript text-wrap' >color</code>): <code>object</code></p>
 <p>Returns the passed in color as a plain object in the Jab colorspace.</p>
 <h4 id="parameters-🧮-9">Parameters 🧮</h4>
 <table>
@@ -434,21 +421,21 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>color</code></td>
-<td style="text-align:left;"><code>string</code></td>
-<td style="text-align:left;">The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by <code>color2hex</code> which extends supported color formats.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >color</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
+<td style="text-align:left;">The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by <code class='hljs language-typescript text-wrap' >color2hex</code> which extends supported color formats.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-9">Returns 🔙</h4>
-<p><code>object</code></p>
-<p><strong><code>See</code></strong></p>
+<p><code class='hljs language-typescript text-wrap' >object</code></p>
+<p><strong><code class='hljs language-typescript text-wrap' >See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For expected ranges and channels.</p>
 <h4 id="defined-in-📝-7">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L59">converters.d.ts:59</a></p>
 <hr />
 <h3 id="tojch">toJch</h3>
-<p>▸ <strong>toJch</strong>(<code>color</code>): <code>object</code></p>
+<p>▸ <strong>toJch</strong>(<code class='hljs language-typescript text-wrap' >color</code>): <code>object</code></p>
 <p>Returns the passed in color as a plain object in the Jch colorspace.</p>
 <h4 id="parameters-🧮-10">Parameters 🧮</h4>
 <table>
@@ -461,21 +448,21 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>color</code></td>
-<td style="text-align:left;"><code>string</code></td>
-<td style="text-align:left;">The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by <code>color2hex</code> which extends supported color formats.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >color</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
+<td style="text-align:left;">The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by <code class='hljs language-typescript text-wrap' >color2hex</code> which extends supported color formats.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-10">Returns 🔙</h4>
-<p><code>object</code></p>
-<p><strong><code>See</code></strong></p>
+<p><code class='hljs language-typescript text-wrap' >object</code></p>
+<p><strong><code class='hljs language-typescript text-wrap' >See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For expected ranges and channels.</p>
 <h4 id="defined-in-📝-8">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L52">converters.d.ts:52</a></p>
 <hr />
 <h3 id="took">toOk</h3>
-<p>▸ <strong>toOk</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
+<p>▸ <strong>toOk</strong>(<code class='hljs language-typescript text-wrap' >colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
 <p>Returns the passed in color as a plain object in the specified Ok colorspace.</p>
 <h4 id="parameters-🧮-11">Parameters 🧮</h4>
 <table>
@@ -488,15 +475,15 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">The Ok colorspace to use.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-11">Returns 🔙</h4>
-<p><code>fn</code></p>
-<p>▸ (<code>color</code>): <code>object</code></p>
+<p><code class='hljs language-typescript text-wrap' >fn</code></p>
+<p>▸ (<code class='hljs language-typescript text-wrap' >color</code>): <code>object</code></p>
 <h5 id="parameters-🧮-12">Parameters 🧮</h5>
 <table>
 <thead>
@@ -507,20 +494,20 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>color</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >color</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="returns-🔙-12">Returns 🔙</h5>
-<p><code>object</code></p>
-<p><strong><code>See</code></strong></p>
+<p><code class='hljs language-typescript text-wrap' >object</code></p>
+<p><strong><code class='hljs language-typescript text-wrap' >See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
 <h4 id="defined-in-📝-9">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L23">converters.d.ts:23</a></p>
 <hr />
 <h3 id="ucsconverter">ucsConverter</h3>
-<p>▸ <strong>ucsConverter</strong>(<code>colorspace</code>): <code>ConvertFn</code></p>
+<p>▸ <strong>ucsConverter</strong>(<code class='hljs language-typescript text-wrap' >colorspace</code>): <code>ConvertFn</code></p>
 <p>Converter function with mode definitions for uniform color spaces. The function is curried to return a converter in the passed colospace.</p>
 <h4 id="parameters-🧮-13">Parameters 🧮</h4>
 <table>
@@ -533,14 +520,14 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>colorspace</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">The mode converter to return.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-13">Returns 🔙</h4>
-<p><code>ConvertFn</code></p>
+<p><code class='hljs language-typescript text-wrap' >ConvertFn</code></p>
 <p>The converter function in the mode colorspace.</p>
 <h4 id="defined-in-📝-10">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L13">converters.d.ts:13</a></p>
@@ -548,60 +535,52 @@ console.log(temp2color(2542))
     </article>
 
 </div>
-<section class="flex justify-between">
-    <div class="flex-col space-y-2">
-        <button hx-trigger="click" hx-target="#swap-view" hx-get="/api/colors"
-            class='flex align-middle space-x-2 p-4' id="previous-button"><svg xmlns="http://www.w3.org/2000/svg"
+<section class="flex justify-between divide-x-[1px] divide-slate-400">
+
+    <a href="/api/colors" class='flex align-middle space-x-2 p-4' id="previous-button"><svg
+            xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-chevron-left">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg><span></span>
+        <h5 class="font-sans text-sm text-slate-700 tracking-tight dark:text-slate-300">accessibility</h5>
+    </a>
+
+    <a href="/api/colors" class='flex space-x-2 p-4 items-center'><span><svg xmlns="http://www.w3.org/2000/svg"
                 width="22" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
-                <polyline points="15 18 9 12 15 6"></polyline>
-            </svg><span></span></button>
-        <h5>accessibility</h5>
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg></span>
+        <h5 class="font-sans text-sm text-slate-700 tracking-tight dark:text-slate-300">converters</h5>
+    </a>
 
-
-    </div>
-
-
-
-
-
-    <div class="flex-col space-y-2">
-        <button hx-trigger="click" hx-target="#swap-view" hx-get="/api/colors" class='flex space-x-2 p-4'
-            id="next-button"><span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-chevron-right">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg></span></button>
-        <h5>converters</h5>
-
-    </div>
 
 </section>
 
 
 
         <footer
-            class="bg-[url(/assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
+            class="bg-[url(/assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4 text-white">
 
             <div class="flex-col">
-                <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
+                <div class="flex items-end justify-end space-x-4 pt-8 ">
 
                     <a href="https://github.com/xml-wizard/huetiful"><svg xmlns="http://www.w3.org/2000/svg" width="22"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75"
                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-github">
                             <path
                                 d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
                             </path>
                         </svg></a>
                     <a href="https://twitter.com/deantarisai"><svg xmlns="http://www.w3.org/2000/svg" width="22"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75"
                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter">
                             <path
                                 d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
                             </path>
                         </svg></a>
                     <a href="https://npmjs.com/package/huetiful-js"><svg xmlns="http://www.w3.org/2000/svg" width="22"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75"
                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-package">
                             <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
                             <path
@@ -611,14 +590,14 @@ console.log(temp2color(2542))
                             <line x1="12" y1="22.08" x2="12" y2="12"></line>
                         </svg></a>
                     <a href="mailto:prjctimg@outlook.com"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75" stroke-linecap="round"
+                            viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round"
                             stroke-linejoin="round" class="feather feather-mail">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
                             </path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg></a>
                     <a href="https://kofi.com/prjctimg"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75" stroke-linecap="round"
+                            viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round"
                             stroke-linejoin="round" class="feather feather-coffee">
                             <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
                             <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
@@ -633,11 +612,11 @@ console.log(temp2color(2542))
 
 
             <div class="pt-2">
-                <blockquote class="inline-block text-sm outline-yellow-500">
+                <blockquote class="inline-block text-sm">
                     <p class="text-sm">
                         <span class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="14"
-                                viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="1.75" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-code">
+                                viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-code">
                                 <polyline points="16 18 22 12 16 6"></polyline>
                                 <polyline points="8 6 2 12 8 18"></polyline>
                             </svg></span>
@@ -651,7 +630,7 @@ console.log(temp2color(2542))
                             </svg></span>
                         in Crowhill,ZW
                     </p>
-                    &copy;2024,Dean Tarisai
+                    &copy;2024,<a href="https://deantarisai.me">Dean Tarisai</a>
                     <br />
                     Released under the Apache-2.0 permissive license.
                 </blockquote>
@@ -661,7 +640,11 @@ console.log(temp2color(2542))
 
         <script src="/assets/js/main.js"></script>
 
-        <script type="text/javascript">hljs.highlightAll();</script>
+        <script type="text/javascript">
+            window.addEventListener('load', () => {
+                hljs.highlightAll()
+            });
+        </script>
 
     </body>
 

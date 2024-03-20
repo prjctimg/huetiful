@@ -31,26 +31,26 @@
         ],
         "description": "Sorts colors by saturation value in `asc` order",
         "expect": [
-          "#94a3b8",
-          "#9ca3af",
-          "#a1a1aa",
           "#a3a3a3",
           "#a8a29e",
-          "#f87171",
-          "#fb923c",
-          "#fbbf24",
-          "#facc15",
-          "#a3e635",
-          "#4ade80",
-          "#34d399",
-          "#2dd4bf",
+          "#a1a1aa",
+          "#9ca3af",
+          "#94a3b8",
           "#38bdf8",
+          "#2dd4bf",
           "#60a5fa",
+          "#34d399",
+          "#f472b6",
+          "#fb7185",
+          "#f87171",
           "#a78bfa",
           "#c084fc",
+          "#4ade80",
+          "#fb923c",
           "#e879f9",
-          "#f472b6",
-          "#fb7185"
+          "#fbbf24",
+          "#facc15",
+          "#a3e635"
         ]
       },
       "sortByLightness": {
@@ -81,7 +81,28 @@
           "lch"
         ],
         "description": "Sorts colors by lightness value in `asc` order",
-        "expect": ["blue", "green", "pink", "yellow"]
+        "expect": [
+          "#a78bfa",
+          "#f87171",
+          "#c084fc",
+          "#fb7185",
+          "#f472b6",
+          "#60a5fa",
+          "#94a3b8",
+          "#a1a1aa",
+          "#9ca3af",
+          "#a3a3a3",
+          "#a8a29e",
+          "#e879f9",
+          "#fb923c",
+          "#38bdf8",
+          "#34d399",
+          "#2dd4bf",
+          "#4ade80",
+          "#fbbf24",
+          "#facc15",
+          "#a3e635"
+        ]
       },
       "sortByLuminance": {
         "params": [
@@ -110,7 +131,28 @@
           "asc"
         ],
         "description": "Sorts colors by luminance value in `asc` order",
-        "expect": ["blue", "green", "pink", "yellow"]
+        "expect": [
+          "#f87171",
+          "#a78bfa",
+          "#fb7185",
+          "#f472b6",
+          "#c084fc",
+          "#94a3b8",
+          "#a1a1aa",
+          "#60a5fa",
+          "#9ca3af",
+          "#a3a3a3",
+          "#a8a29e",
+          "#e879f9",
+          "#fb923c",
+          "#38bdf8",
+          "#34d399",
+          "#2dd4bf",
+          "#4ade80",
+          "#fbbf24",
+          "#facc15",
+          "#a3e635"
+        ]
       },
       "sortByDistance": {
         "params": [
@@ -139,8 +181,29 @@
           "brown",
           "asc"
         ],
-        "description": "Sorts colors by distance value in `asc` order",
-        "expect": ["pink", "green", "blue", "yellow"]
+        "description": "Sorts colors by the distance from 'brown' in `asc` order",
+        "expect": [
+          "#f87171",
+          "#fb7185",
+          "#fb923c",
+          "#f472b6",
+          "#a8a29e",
+          "#a3a3a3",
+          "#a1a1aa",
+          "#9ca3af",
+          "#94a3b8",
+          "#fbbf24",
+          "#e879f9",
+          "#c084fc",
+          "#a78bfa",
+          "#facc15",
+          "#60a5fa",
+          "#38bdf8",
+          "#2dd4bf",
+          "#34d399",
+          "#4ade80",
+          "#a3e635"
+        ]
       },
       "sortByContrast": {
         "params": [
@@ -169,8 +232,29 @@
           "black",
           "asc"
         ],
-        "description": "Sorts colors by distance value in `asc` order",
-        "expect": ["blue", "green", "pink", "yellow"]
+        "description": "Sorts colors by contrast value in `asc` order against black",
+        "expect": [
+          "#f87171",
+          "#a78bfa",
+          "#fb7185",
+          "#f472b6",
+          "#c084fc",
+          "#94a3b8",
+          "#a1a1aa",
+          "#60a5fa",
+          "#9ca3af",
+          "#a3a3a3",
+          "#a8a29e",
+          "#e879f9",
+          "#fb923c",
+          "#38bdf8",
+          "#34d399",
+          "#2dd4bf",
+          "#4ade80",
+          "#fbbf24",
+          "#facc15",
+          "#a3e635"
+        ]
       },
       "sortByHue": {
         "params": [
@@ -200,7 +284,28 @@
           "lch"
         ],
         "description": "Sorts colors by hue angle in `asc` order",
-        "expect": ["pink", "yellow", "green", "blue"]
+        "expect": [
+          "#fb7185",
+          "#f87171",
+          "#fb923c",
+          "#fbbf24",
+          "#facc15",
+          "#a3e635",
+          "#4ade80",
+          "#34d399",
+          "#2dd4bf",
+          "#38bdf8",
+          "#94a3b8",
+          "#9ca3af",
+          "#60a5fa",
+          "#a1a1aa",
+          "#a3a3a3",
+          "#a8a29e",
+          "#a78bfa",
+          "#c084fc",
+          "#e879f9",
+          "#f472b6"
+        ]
       }
     }
   },
