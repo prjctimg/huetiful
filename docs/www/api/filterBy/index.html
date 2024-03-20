@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/huetiful.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/github-markdown.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/atom-one-dark.css" />
-
+    <script defer type="text/javascript" src='/assets/vendor/highlight.min.js'></script>
 
     
 
@@ -122,12 +122,12 @@
 </ul>
 <h2 id="functions">Functions</h2>
 <h3 id="filterbychroma">filterByChroma</h3>
-<p>▸ <strong>filterByChroma</strong>(<code>collection</code>, <code>start?</code>, <code>end?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
-<p>Returns colors in the specified <code>saturation</code> or <code>chroma</code> range. The range is internally normalized to the supported ranges by the <code>colorspace</code> in use if it is out of range.
-This means a value in the range <code>[0,1]</code> will return, for example if you pass <code>start</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either <code>start</code> or <code>end</code> is above 1 AND the <code>colorspace</code> in use has an <code>end</code> range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
+<p>▸ <strong>filterByChroma</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>start?</code>, <code>end?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns colors in the specified <code class='hljs language-typescript text-wrap' >saturation</code> or <code>chroma</code> range. The range is internally normalized to the supported ranges by the <code>colorspace</code> in use if it is out of range.
+This means a value in the range <code class='hljs language-typescript text-wrap' >[0,1]</code> will return, for example if you pass <code>start</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either <code>start</code> or <code>end</code> is above 1 AND the <code>colorspace</code> in use has an <code>end</code> range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
 <ul>
 <li><ul>
-<li>Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></li></ul></li>
+<li>Supports expression strings e.g <code class='hljs language-typescript text-wrap' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></li></ul></li>
 <li>
 *</li>
 </ul>
@@ -142,34 +142,34 @@ This means a value in the range <code>[0,1]</code> will return, for example if y
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>start?</code></td>
-<td style="text-align:left;"><code>string</code> | <code>number</code></td>
-<td style="text-align:left;">The minimum end of the <code>chroma</code> range. *</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >start?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The minimum end of the <code class='hljs language-typescript text-wrap' >chroma</code> range. *</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>end?</code></td>
-<td style="text-align:left;"><code>string</code> | <code>number</code></td>
-<td style="text-align:left;">The maximum end of the <code>chroma</code> range. *</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >end?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The maximum end of the <code class='hljs language-typescript text-wrap' >chroma</code> range. *</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
-<td style="text-align:left;">The color space to fetch the <code>chroma</code> value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
+<td style="text-align:left;">The color space to fetch the <code class='hljs language-typescript text-wrap' >chroma</code> value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
 <p>Collection of filtered colors.</p>
-<p><strong><code>See</code></strong></p>
+<p><strong><code class='hljs language-typescript text-wrap' >See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For the expected ranges per colorspace.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { filterByChroma } from 'huetiful-js'
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { filterByChroma } from 'huetiful-js'
 
 let sample = [
  '#00ffdc',
@@ -193,9 +193,9 @@ console.log(filterByChroma(sample, 0.1));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/filterBy.d.ts#L48">filterBy.d.ts:48</a></p>
 <hr />
 <h3 id="filterbycontrast">filterByContrast</h3>
-<p>▸ <strong>filterByContrast</strong>(<code>collection</code>, <code>against</code>, <code>start?</code>, <code>end?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
+<p>▸ <strong>filterByContrast</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against</code>, <code>start?</code>, <code>end?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
 <p>Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
-Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+Supports expression strings e.g <code class='hljs language-typescript text-wrap' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
 <h4 id="parameters-🧮-1">Parameters 🧮</h4>
 <table>
 <thead>
@@ -207,32 +207,32 @@ Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols a
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>start?</code></td>
-<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >start?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code> | <code>number</code></td>
 <td style="text-align:left;">The minimum end of the contrast range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>end?</code></td>
-<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >end?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code> | <code>number</code></td>
 <td style="text-align:left;">The maximum end of the contrast range.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-1">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
 <p>Collection of filtered colors.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { filterByContrast } from 'huetiful-js'
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { filterByContrast } from 'huetiful-js'
 
 let sample = [
  '#00ffdc',
@@ -255,9 +255,9 @@ console.log(filterByContrast(sample, 'green', '&gt;=3'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/filterBy.d.ts#L222">filterBy.d.ts:222</a></p>
 <hr />
 <h3 id="filterbydistance">filterByDistance</h3>
-<p>▸ <strong>filterByDistance</strong>(<code>collection</code>, <code>against</code>, <code>start?</code>, <code>end?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
-<p>Returns colors with the specified <code>distance</code> range. The <code>distance</code> is tested against a comparison color (the 'against' param) and the specified <code>distance</code> ranges. Uses the <code>differenceHyab</code> metric for calculating the distances.
-Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+<p>▸ <strong>filterByDistance</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>against</code>, <code>start?</code>, <code>end?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
+<p>Returns colors with the specified <code class='hljs language-typescript text-wrap' >distance</code> range. The <code>distance</code> is tested against a comparison color (the 'against' param) and the specified <code>distance</code> ranges. Uses the <code>differenceHyab</code> metric for calculating the distances.
+Supports expression strings e.g <code class='hljs language-typescript text-wrap' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
 <h4 id="parameters-🧮-2">Parameters 🧮</h4>
 <table>
 <thead>
@@ -269,32 +269,32 @@ Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols a
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>start?</code></td>
-<td style="text-align:left;"><code>string</code> | <code>number</code></td>
-<td style="text-align:left;">The minimum end of the <code>distance</code> range.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >start?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The minimum end of the <code class='hljs language-typescript text-wrap' >distance</code> range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>end?</code></td>
-<td style="text-align:left;"><code>string</code> | <code>number</code></td>
-<td style="text-align:left;">The maximum end of the <code>distance</code> range.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >end?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The maximum end of the <code class='hljs language-typescript text-wrap' >distance</code> range.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-2">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
 <p>Collection of filtered colors.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { filterByDistance } from 'huetiful-js'
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { filterByDistance } from 'huetiful-js'
 
 let sample = [
  "#ffff00",
@@ -314,9 +314,9 @@ console.log(filterByDistance(sample, "yellow", 0.1))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/filterBy.d.ts#L186">filterBy.d.ts:186</a></p>
 <hr />
 <h3 id="filterbyhue">filterByHue</h3>
-<p>▸ <strong>filterByHue</strong>(<code>collection</code>, <code>start?</code>, <code>end?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
+<p>▸ <strong>filterByHue</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>start?</code>, <code>end?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
 <p>Returns colors in the specified hue ranges between 0 to 360.
-Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+Supports expression strings e.g <code class='hljs language-typescript text-wrap' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
 <h4 id="parameters-🧮-3">Parameters 🧮</h4>
 <table>
 <thead>
@@ -328,32 +328,32 @@ Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols a
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>start?</code></td>
-<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >start?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code> | <code>number</code></td>
 <td style="text-align:left;">The minimum end of the 'hue' range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>end?</code></td>
-<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >end?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code> | <code>number</code></td>
 <td style="text-align:left;">The maximum end of the hue range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-3">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
 <p>Array of the filtered colors.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">let sample = [
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">let sample = [
  '#00ffdc',
  '#00ff78',
  '#00c000',
@@ -375,10 +375,10 @@ filterByHue(sample, 20, 80)
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/filterBy.d.ts#L155">filterBy.d.ts:155</a></p>
 <hr />
 <h3 id="filterbylightness">filterByLightness</h3>
-<p>▸ <strong>filterByLightness</strong>(<code>collection</code>, <code>start?</code>, <code>end?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
+<p>▸ <strong>filterByLightness</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>start?</code>, <code>end?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
 <p>Returns colors in the specified lightness range.</p>
-<p>The range is internally normalized to the supported ranges by the <code>colorspace</code> in use if it is out of range.
-This means a value in the range <code>[0,1]</code> will return, for example if you pass <code>startLightness</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either start or end is above 1 AND the <code>colorspace</code> in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.
+<p>The range is internally normalized to the supported ranges by the <code class='hljs language-typescript text-wrap' >colorspace</code> in use if it is out of range.
+This means a value in the range <code class='hljs language-typescript text-wrap' >[0,1]</code> will return, for example if you pass <code>startLightness</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either start or end is above 1 AND the <code>colorspace</code> in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.
  *</p>
 <h4 id="parameters-🧮-4">Parameters 🧮</h4>
 <table>
@@ -391,34 +391,34 @@ This means a value in the range <code>[0,1]</code> will return, for example if y
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>start?</code></td>
-<td style="text-align:left;"><code>string</code> | <code>number</code></td>
-<td style="text-align:left;">The minimum end of the lightness range. Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >start?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code> | <code>number</code></td>
+<td style="text-align:left;">The minimum end of the lightness range. Supports expression strings e.g <code class='hljs language-typescript text-wrap' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>end?</code></td>
-<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >end?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code> | <code>number</code></td>
 <td style="text-align:left;">The maximum end of the lightness range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>colorspace?</code></td>
-<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >colorspace?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the lightness value from. The default is lch65</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-4">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
 <p>Collection of filtered colors.</p>
-<p><strong><code>See</code></strong></p>
+<p><strong><code class='hljs language-typescript text-wrap' >See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For the expected ranges per colorspace.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { filterByLightness } from 'huetiful-js'
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { filterByLightness } from 'huetiful-js'
 let sample = [
  '#00ffdc',
  '#00ff78',
@@ -441,9 +441,9 @@ filterByLightness(sample, 20, 80)
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/filterBy.d.ts#L122">filterBy.d.ts:122</a></p>
 <hr />
 <h3 id="filterbyluminance">filterByLuminance</h3>
-<p>▸ <strong>filterByLuminance</strong>(<code>collection</code>, <code>start?</code>, <code>end?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
+<p>▸ <strong>filterByLuminance</strong>(<code class='hljs language-typescript text-wrap' >collection</code>, <code>start?</code>, <code>end?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
 <p>Returns colors in the specified luminance range.
-Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+Supports expression strings e.g <code class='hljs language-typescript text-wrap' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
 <h4 id="parameters-🧮-5">Parameters 🧮</h4>
 <table>
 <thead>
@@ -455,27 +455,27 @@ Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols a
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >collection</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to filter.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>start?</code></td>
-<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >start?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code> | <code>number</code></td>
 <td style="text-align:left;">The minimum end of the luminance range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>end?</code></td>
-<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >end?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >string</code> | <code>number</code></td>
 <td style="text-align:left;">The maximum end of the luminance range.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-5">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
 <p>Array of filtered colors.</p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { filterByLuminance } from 'huetiful-js'
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { filterByLuminance } from 'huetiful-js'
 let sample = [
  '#00ffdc',
  '#00ff78',
@@ -604,8 +604,12 @@ filterByLuminance(sample, 0.4, 0.9)
         </footer>
 
         <script src="/assets/js/main.js"></script>
-        <script type="text/javascript" src='/assets/vendor/highlight.min.js'></script>
-        <script type="text/javascript">hljs.highlightAll();</script>
+
+        <script type="text/javascript">
+            window.addEventListener('load', () => {
+                hljs.highlightAll()
+            });
+        </script>
 
     </body>
 

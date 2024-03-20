@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/huetiful.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/github-markdown.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/atom-one-dark.css" />
-
+    <script defer type="text/javascript" src='/assets/vendor/highlight.min.js'></script>
 
     
 
@@ -117,8 +117,8 @@
 </ul>
 <h2 id="functions">Functions</h2>
 <h3 id="colordeficiency">colorDeficiency</h3>
-<p>▸ <strong>colorDeficiency</strong>(<code>deficiencyType?</code>): (<code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>, <code>severity?</code>: <code>number</code>) =&gt; <code>string</code></p>
-<p>Returns the color as a simulation of the passed in <code>defeciencyType</code> of color vision deficiency with the deficiency filter's intensity determined by the <code>severity</code> value.</p>
+<p>▸ <strong>colorDeficiency</strong>(<code class='hljs language-typescript text-wrap' >deficiencyType?</code>): (<code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>, <code>severity?</code>: <code>number</code>) =&gt; <code>string</code></p>
+<p>Returns the color as a simulation of the passed in <code class='hljs language-typescript text-wrap' >defeciencyType</code> of color vision deficiency with the deficiency filter's intensity determined by the <code>severity</code> value.</p>
 <h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
 <thead>
@@ -130,16 +130,16 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>deficiencyType?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#deficiencytype"><code>DeficiencyType</code></a></td>
-<td style="text-align:left;">The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is <code>'red'</code> when the defeciency parameter is undefined or any falsy value.</td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >deficiencyType?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#deficiencytype"><code class='hljs language-typescript text-wrap' >DeficiencyType</code></a></td>
+<td style="text-align:left;">The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is <code class='hljs language-typescript text-wrap' >'red'</code> when the defeciency parameter is undefined or any falsy value.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙">Returns 🔙</h4>
-<p><code>fn</code></p>
-<p>The color as its simulated variant. Preserves the <code>ColorToken</code> type of the pased in color.</p>
-<p>▸ (<code>color</code>, <code>severity?</code>): <code>string</code></p>
+<p><code class='hljs language-typescript text-wrap' >fn</code></p>
+<p>The color as its simulated variant. Preserves the <code class='hljs language-typescript text-wrap' >ColorToken</code> type of the pased in color.</p>
+<p>▸ (<code class='hljs language-typescript text-wrap' >color</code>, <code>severity?</code>): <code>string</code></p>
 <h5 id="parameters-🧮-1">Parameters 🧮</h5>
 <table>
 <thead>
@@ -150,19 +150,19 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code>color</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >color</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code class='hljs language-typescript text-wrap' >ColorToken</code></a></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code>severity?</code></td>
-<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >severity?</code></td>
+<td style="text-align:left;"><code class='hljs language-typescript text-wrap' >number</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="returns-🔙-1">Returns 🔙</h5>
-<p><code>string</code></p>
-<p><strong><code>Example</code></strong></p>
-<pre><code class="ts language-ts">import { colorDeficiency, color2hex } from 'huetiful-js'
+<p><code class='hljs language-typescript text-wrap' >string</code></p>
+<p><strong><code class='hljs language-typescript text-wrap' >Example</code></strong></p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">import { colorDeficiency, color2hex } from 'huetiful-js'
 
 // Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
 // We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
@@ -285,8 +285,12 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
         </footer>
 
         <script src="/assets/js/main.js"></script>
-        <script type="text/javascript" src='/assets/vendor/highlight.min.js'></script>
-        <script type="text/javascript">hljs.highlightAll();</script>
+
+        <script type="text/javascript">
+            window.addEventListener('load', () => {
+                hljs.highlightAll()
+            });
+        </script>
 
     </body>
 

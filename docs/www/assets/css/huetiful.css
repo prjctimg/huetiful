@@ -716,6 +716,10 @@ html.js :where([class*="taos:"]:not(.taos-init)) {
   border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
 }
 
+.text-wrap {
+  text-wrap: wrap;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
@@ -1101,26 +1105,6 @@ html.js :where([class*="taos:"]:not(.taos-init)) {
 .bg-\[\#ffc1be\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 193 190 / var(--tw-bg-opacity));
-}
-
-.bg-\[blue\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 255 / var(--tw-bg-opacity));
-}
-
-.bg-\[green\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 128 0 / var(--tw-bg-opacity));
-}
-
-.bg-\[pink\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 192 203 / var(--tw-bg-opacity));
-}
-
-.bg-\[yellow\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 0 / var(--tw-bg-opacity));
 }
 
 .bg-blue-200 {

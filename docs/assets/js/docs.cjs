@@ -18,7 +18,8 @@ var { colorsNamed } = require('culori');
 var { readFileSync, lstatSync } = require('node:fs'),
   ge = require('github-emoji'),
   defaultClasses = {
-    blockquote: ' border-l-blue-400 bg-blue-200'
+    blockquote: ' border-l-blue-400 bg-blue-200',
+    code: 'hljs language-typescript text-wrap'
   },
   injectClasses = Object.keys(defaultClasses).map((key) => ({
     type: 'output',

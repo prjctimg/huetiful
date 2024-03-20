@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/huetiful.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/github-markdown.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/atom-one-dark.css" />
-
+    <script defer type="text/javascript" src='/assets/vendor/highlight.min.js'></script>
 
     
 
@@ -74,7 +74,7 @@
         class="px-2 py-2 bg-blue-500 border-none text-sm text-white rounded">Demos</button></a>
   </a>
   </div>
-  <p class="text-slate-500 text-base leading-relaxed font-mono text-center">Filter,sort,query and generate color tokens from <code>ArrayLike</code>  and <code>Map</code> (or plain objects) collections using their attributes/properties. Also provides functions for manipulating individual color
+  <p class="text-slate-500 text-base leading-relaxed font-mono text-center">Filter,sort,query and generate color tokens from <code class='hljs language-typescript text-wrap' >ArrayLike</code>  and <code>Map</code> (or plain objects) collections using their attributes/properties. Also provides functions for manipulating individual color
     tokens too.</p>
 </section>
 <h2 id="table-of-contents-📑">Table of contents 📑</h2>
@@ -97,32 +97,32 @@ significance</a></li>
 as individual tokens or collections. It builds off where libraries like chroma.js and d3-color leave their APIs by
 adding collection methods for
 sorting/filtering ,querying values of statistical significance and setting/getting different property values of color.</p>
-<p>Because the collection methods are generic, you can manipulate any object that has enumerable keys (<code>ArrayLike</code> and <code>Map</code>s for example) and it will just
+<p>Because the collection methods are generic, you can manipulate any object that has enumerable keys (<code class='hljs language-typescript text-wrap' >ArrayLike</code> and <code>Map</code>s for example) and it will just
 treat each value as a color token. It uses <a href="https://github.com/Evercoder/culori">Culori</a> under the hood for conversions
 and other color related bells and whistles.</p>
 <p>It is written in JavaScript but has type declarations for common built-in parameters and function
 signatures.</p>
 <hr/>
 <h3 id="how-does-it-work-">How does it work ?</h3>
-<p>Consider the type declaration signature of a filtering function, in this example we have the <code>filterByChroma</code> function:</p>
-<pre><code class="ts language-ts">declare function filterByChroma(
+<p>Consider the type declaration signature of a filtering function, in this example we have the <code class='hljs language-typescript text-wrap' >filterByChroma</code> function:</p>
+<pre><code class='hljs language-typescript text-wrap'  class="ts language-ts">declare function filterByChroma(
 collection: ArrayLike&lt;ColorToken&gt; | object | Map&lt;any, ColorToken&gt;,
     start?: number,
     end?: number,
     colorspace?: HueColorSpaces
     ): Array&lt;ColorToken&gt; | Map&lt;any, ColorToken&gt;;
 </code></pre>
-<p>Focus on the <code>collection</code> parameter and the return type of the above function declaration.</p>
-<p>All functions that took a collection of colors as an array prior v1.78.x can support this overload as well. These functions retain the structure of the passed in collection which was different in the previous versions since we'd only return arrays by default when you passed in objects as collections. This means if you pass in a plain object as a collection, the function will return  a <code>Map</code> object.
- If an array (or <code>ArrayLike</code>) object is passed in to the , it will simply return an array or <code>ArrayLike</code> object respectively.</p>
+<p>Focus on the <code class='hljs language-typescript text-wrap' >collection</code> parameter and the return type of the above function declaration.</p>
+<p>All functions that took a collection of colors as an array prior v1.78.x can support this overload as well. These functions retain the structure of the passed in collection which was different in the previous versions since we'd only return arrays by default when you passed in objects as collections. This means if you pass in a plain object as a collection, the function will return  a <code class='hljs language-typescript text-wrap' >Map</code> object.
+ If an array (or <code class='hljs language-typescript text-wrap' >ArrayLike</code>) object is passed in to the , it will simply return an array or <code>ArrayLike</code> object respectively.</p>
 <blockquote class=' border-l-blue-400 bg-blue-200' >
-  <p>The reason why a <code>Map</code> is returned instead of a plain object is because <code>Map</code>s remember insertion order making it possible to sort colors and then insert them in the specified order (either ascending or descending). This behaviour is leveraged in the <code>sortBy</code> module when you pass in a plain object as a collection.</p>
-  <p>The difference between arrays and <code>Set</code>s is mainly because you can't store duplicate values in them unlike plain arrays. All generator functions return <code>Set</code>s to ensure the result collection has no duplicate colors.</p>
+  <p>The reason why a <code class='hljs language-typescript text-wrap' >Map</code> is returned instead of a plain object is because <code>Map</code>s remember insertion order making it possible to sort colors and then insert them in the specified order (either ascending or descending). This behaviour is leveraged in the <code>sortBy</code> module when you pass in a plain object as a collection.</p>
+  <p>The difference between arrays and <code class='hljs language-typescript text-wrap' >Set</code>s is mainly because you can't store duplicate values in them unlike plain arrays. All generator functions return <code>Set</code>s to ensure the result collection has no duplicate colors.</p>
 </blockquote>
 <hr/>
 <h4 id="type-diversity-for-color-tokens">Type diversity for color tokens</h4>
-<p>Culori, the core dependancy of this library, accepts color tokens as plain objects, hexadecimal strings and CSS recognized named/serialized colors only. This package extends the data types which can be treated as valid tokens namely arrays/ArrayLike objects,<code>Map</code>s , numbers and even boolean values.</p>
-<pre><code class="js language-js">import { num2color, color2hex } from 'huetiful-js'
+<p>Culori, the core dependancy of this library, accepts color tokens as plain objects, hexadecimal strings and CSS recognized named/serialized colors only. This package extends the data types which can be treated as valid tokens namely arrays/ArrayLike objects,<code class='hljs language-typescript text-wrap' >Map</code>s , numbers and even boolean values.</p>
+<pre><code class='hljs language-typescript text-wrap'  class="js language-js">import { num2color, color2hex } from 'huetiful-js'
 
   let cssNamedColor = 'pink'
   let colorNumber = 5000
@@ -161,7 +161,7 @@ collection: ArrayLike&lt;ColorToken&gt; | object | Map&lt;any, ColorToken&gt;,
 <h4 id="working-with-collections-of-color">Working with collections of color</h4>
 <p>Think of a scenario where we have collection of color tokens that we may want to filter by contrast and then
  have the result returned sorted by each color's hue angle in ascending order. In this example we will simply sort colors by luminance:</p>
-<pre><code class="js language-js">  import { sortByLuminance } from "huetiful-js";
+<pre><code class='hljs language-typescript text-wrap'  class="js language-js">  import { sortByLuminance } from "huetiful-js";
 
   let sample = [
   "#00ffdc",
@@ -207,8 +207,8 @@ collection: ArrayLike&lt;ColorToken&gt; | object | Map&lt;any, ColorToken&gt;,
 <p><a href="https://huetiful-js.com/api/filterBy">See the filterBy module</a> for examples on filtering colors and the sortBy module for sorting functions.</p>
 <hr/>
 <h3 id="palette-generators">Palette generators</h3>
-<p>A few simple palette generator functions are included in the library. One of my favourites is <code>hueShift</code> (as a color becomes lighter, its hue shifts up and darker when its hue shifts down.) .</p>
-<pre><code class="js language-js">import { hueShift } from "huetiful-js";
+<p>A few simple palette generator functions are included in the library. One of my favourites is <code class='hljs language-typescript text-wrap' >hueShift</code> (as a color becomes lighter, its hue shifts up and darker when its hue shifts down.) .</p>
+<pre><code class='hljs language-typescript text-wrap'  class="js language-js">import { hueShift } from "huetiful-js";
 
 let hueShiftedPalette = hueShift("#3e0000", {}, true);
 
@@ -228,7 +228,7 @@ let hueShiftedPalette = hueShift("#3e0000", {}, true);
 <h3 id="predicates">Predicates</h3>
 <p>Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? Though its easy to tell colors apart visually when they're displayed on the screen📺 it can be a bit confusing to tell colors apart using code🔢.</p>
 <p>Below is an example showing how to determine if a color is gray or not:</p>
-<pre><code class="js language-js">import { isAchromatic } from "huetiful-js";
+<pre><code class='hljs language-typescript text-wrap'  class="js language-js">import { isAchromatic } from "huetiful-js";
 import { formatHex8, interpolate, samples } from "culori"
 
 
@@ -281,7 +281,7 @@ import { isCool } from 'huetiful-js'</p>
         "#00ff78",
         "#00c000"
         ];</p>
-<pre><code>    console.log(isCool(sample[0]));
+<pre><code class='hljs language-typescript text-wrap' >    console.log(isCool(sample[0]));
     // false
 
     console.log(map(sample, isCool));
@@ -295,9 +295,9 @@ import { isCool } from 'huetiful-js'</p>
 </code></pre>
 <blockquote class=' border-l-blue-400 bg-blue-200' >
   <p><strong>Tip</strong></p>
-  <p>Another use👷 case would be passing the predicate to an array method like <code>filter</code> to filter a collection of colors removing colors that return false for the passed in predicate. In the following example we use is <code>isWarm</code> to only return warm colors:</p>
+  <p>Another use👷 case would be passing the predicate to an array method like <code class='hljs language-typescript text-wrap' >filter</code> to filter a collection of colors removing colors that return false for the passed in predicate. In the following example we use is <code>isWarm</code> to only return warm colors:</p>
 </blockquote>
-<pre><code class="js language-js">import { isWarm } from 'huetiful-js'
+<pre><code class='hljs language-typescript text-wrap'  class="js language-js">import { isWarm } from 'huetiful-js'
 
 let sample = [
         "#00ffdc",
@@ -310,7 +310,7 @@ let sample = [
 </code></pre>
 <h4 id="querying-properties-of-color-and-their-values-of-statistical-significance">Querying properties of color and their values of statistical significance</h4>
 <p>Color has different properties which our eyes take note of in order to distinguish colors from each other even when they have certain perceived similarities. For example we can get the farthest hue angle in a collection against a specified color:</p>
-<pre><code class="js language-js">        import { getFarthestHueFrom } from 'huetiful-js'
+<pre><code class='hljs language-typescript text-wrap'  class="js language-js">        import { getFarthestHueFrom } from 'huetiful-js'
         let sample = [
         '#00ffdc',
         '#00ff78',
@@ -330,8 +330,8 @@ let sample = [
 </code></pre>
 <p><a href="https://huetiful-js.com/api/utils">See more examples here from the utils module</a></p>
 <h3 id="lazy-chains">Lazy chains</h3>
-<p>Libraries like chroma.js popularized the read-manipulate-output chains when working with color. This library extends that idea by chaining collection methods to a <code>ColorArray</code> class. The actual class is not publicly exported because its still experimental but you can access it via the <code>load</code> wrapper function which simply takes the collection to bind to the <code>new ColorArray</code>. Color tokens also have a chain for binding them to all functions that take a single color as the initial parameter. This chain returns a <code>new Color</code> instance that's accessible via the <code>color</code> function. See the example below:</p>
-<pre><code class="js language-js">import { load, color } from 'huetiful-js';
+<p>Libraries like chroma.js popularized the read-manipulate-output chains when working with color. This library extends that idea by chaining collection methods to a <code class='hljs language-typescript text-wrap' >ColorArray</code> class. The actual class is not publicly exported because its still experimental but you can access it via the <code>load</code> wrapper function which simply takes the collection to bind to the <code>new ColorArray</code>. Color tokens also have a chain for binding them to all functions that take a single color as the initial parameter. This chain returns a <code>new Color</code> instance that's accessible via the <code>color</code> function. See the example below:</p>
+<pre><code class='hljs language-typescript text-wrap'  class="js language-js">import { load, color } from 'huetiful-js';
 
 var myLazyChain = load([
         'blue',
@@ -442,8 +442,12 @@ var myLazyChain = load([
         </footer>
 
         <script src="/assets/js/main.js"></script>
-        <script type="text/javascript" src='/assets/vendor/highlight.min.js'></script>
-        <script type="text/javascript">hljs.highlightAll();</script>
+
+        <script type="text/javascript">
+            window.addEventListener('load', () => {
+                hljs.highlightAll()
+            });
+        </script>
 
     </body>
 
