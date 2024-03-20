@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/huetiful.css" />
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/github-markdown-light.css" />
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/atom-one-dark.css" />
-    <script defer type="text/javascript" src='assets/vendor/htmx.js></script>
-    <script defer type="text/javascript" src=' assets/vendor/highlight.min.js'></script>
-    <script defer src="https://huetiful-js.com/assets/vendor/typescript.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/huetiful.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/github-markdown-light.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/atom-one-dark.css" />
     <script>document.documentElement.classList.add('js')</script>
 
     
@@ -33,7 +30,7 @@
 
         </a>
 
-        <a hx-get="https://huetiful-js.com/api" hx-target="#swap-content"
+        <a hx-get="https://huetiful-js.com/api" hx-target="https://huetiful-js.com/api//index.html$2wap-content"
             class="inline-flex space-y-1 items-center font-medium text-base">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -128,12 +125,12 @@
 <p>This module has the lazy wrappers that can bind collections of colors or individual color tokens and perform manipulations on the bound data.</p>
 <h3 id="functions-🧰">Functions 🧰</h3>
 <ul>
-<li><a href="https://huetiful-js.com/wrappers#color">color</a></li>
-<li><a href="https://huetiful-js.com/wrappers#load">load</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers#color">color</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers#load">load</a></li>
 </ul>
 <h2 id="functions">Functions</h2>
 <h3 id="color">color</h3>
-<p>▸ <strong>color</strong>(<code class='rounded shadow shadow-gray-300 hljs' >color</code>): <code>Color</code></p>
+<p>▸ <strong>color</strong>(<code>color</code>): <code>Color</code></p>
 <p>Wrapper function over the Color class that returns a new Color method chain.</p>
 <h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
@@ -146,24 +143,24 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >color</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color token to bind.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >Color</code></p>
+<p><code>Color</code></p>
 <p>A new Color class with all the utilities that take a single color as the first parameter bound to its prototype.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">
 </code></pre>
 <h4 id="defined-in-📝">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1468">wrappers.d.ts:1468</a></p>
 <hr />
 <h3 id="load">load</h3>
-<p>▸ <strong>load</strong>(<code class='rounded shadow shadow-gray-300 hljs' >collection</code>): <a href="https://huetiful-js.com/classes/wrappers.ColorArray"><code>ColorArray</code></a></p>
-<p>A wrapper function over the <code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code> class which returns a new instance of the class. Use it to invoke the class without using the <code>new</code> keyword</p>
+<p>▸ <strong>load</strong>(<code>collection</code>): <a href="https://huetiful-js.com/api/../classes/wrappers.ColorArray"><code>ColorArray</code></a></p>
+<p>A wrapper function over the <code>ColorArray</code> class which returns a new instance of the class. Use it to invoke the class without using the <code>new</code> keyword</p>
 <h4 id="parameters-🧮-1">Parameters 🧮</h4>
 <table>
 <thead>
@@ -174,20 +171,20 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >collection</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>collection</code></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>></td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-1">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/classes/wrappers.ColorArray"><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></a></p>
+<p><a href="https://huetiful-js.com/api/../classes/wrappers.ColorArray"><code>ColorArray</code></a></p>
 <h4 id="defined-in-📝-1">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1025">wrappers.d.ts:1025</a></p>
 <h3 id="class-colorarray">Class: ColorArray</h3>
-<p><a href="https://huetiful-js.com/wrappers">wrappers</a>.ColorArray</p>
+<p><a href="https://huetiful-js.com/api/../modules/wrappers">wrappers</a>.ColorArray</p>
 <p>Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { ColorArray } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { ColorArray } from 'huetiful-js'
 
 let sample = ['blue', 'pink', 'yellow', 'green'];
 let wrapper = new ColorArray(sample);
@@ -200,47 +197,47 @@ console.log(wrapper.sortByHue('desc', 'lch').output());
 <h2 id="table-of-contents-📑">Table of contents 📑</h2>
 <h3 id="constructors">Constructors</h3>
 <ul>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#constructor">constructor</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#constructor">constructor</a></li>
 </ul>
 <h3 id="methods">Methods</h3>
 <ul>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#discoverpalettes">discoverPalettes</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#filterbychroma">filterByChroma</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#filterbycontrast">filterByContrast</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#filterbydistance">filterByDistance</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#filterbyhue">filterByHue</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#filterbylightness">filterByLightness</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#filterbyluminance">filterByLuminance</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getfarthestchromafrom">getFarthestChromaFrom</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getfarthesthue">getFarthestHue</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getfarthesthuefrom">getFarthestHueFrom</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getfarthestlightness">getFarthestLightness</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getfarthestlightnessfrom">getFarthestLightnessFrom</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getfarthestluminancefrom">getFarthestLuminanceFrom</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getmeanchroma">getMeanChroma</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getmeancontrast">getMeanContrast</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getmeandistance">getMeanDistance</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getmeanhue">getMeanHue</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getmeanlightness">getMeanLightness</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getmeanluminance">getMeanLuminance</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getnearestchromafrom">getNearestChromaFrom</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getnearestcolor">getNearestColor</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getnearesthue">getNearestHue</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getnearesthuefrom">getNearestHueFrom</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getnearestlightness">getNearestLightness</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getnearestlightnessfrom">getNearestLightnessFrom</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#getnearestluminancefrom">getNearestLuminanceFrom</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#interpolatespline">interpolateSpline</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#output">output</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#sortbychroma">sortByChroma</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#sortbycontrast">sortByContrast</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#sortbydistance">sortByDistance</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#sortbyhue">sortByHue</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#sortbylightness">sortByLightness</a></li>
-<li><a href="https://huetiful-js.com/wrappers.ColorArray#sortbyluminance">sortByLuminance</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#discoverpalettes">discoverPalettes</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#filterbychroma">filterByChroma</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#filterbycontrast">filterByContrast</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#filterbydistance">filterByDistance</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#filterbyhue">filterByHue</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#filterbylightness">filterByLightness</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#filterbyluminance">filterByLuminance</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getfarthestchromafrom">getFarthestChromaFrom</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getfarthesthue">getFarthestHue</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getfarthesthuefrom">getFarthestHueFrom</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getfarthestlightness">getFarthestLightness</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getfarthestlightnessfrom">getFarthestLightnessFrom</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getfarthestluminancefrom">getFarthestLuminanceFrom</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getmeanchroma">getMeanChroma</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getmeancontrast">getMeanContrast</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getmeandistance">getMeanDistance</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getmeanhue">getMeanHue</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getmeanlightness">getMeanLightness</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getmeanluminance">getMeanLuminance</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getnearestchromafrom">getNearestChromaFrom</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getnearestcolor">getNearestColor</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getnearesthue">getNearestHue</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getnearesthuefrom">getNearestHueFrom</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getnearestlightness">getNearestLightness</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getnearestlightnessfrom">getNearestLightnessFrom</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#getnearestluminancefrom">getNearestLuminanceFrom</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#interpolatespline">interpolateSpline</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#output">output</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#sortbychroma">sortByChroma</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#sortbycontrast">sortByContrast</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#sortbydistance">sortByDistance</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#sortbyhue">sortByHue</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#sortbylightness">sortByLightness</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.ColorArray#sortbyluminance">sortByLuminance</a></li>
 </ul>
 <h3 id="constructor-NaN">constructor</h3>
-<p>• <strong>new ColorArray</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colors</code>): <code>ColorArray</code></p>
+<p>• <strong>new ColorArray</strong>(<code>colors</code>): <code>ColorArray</code></p>
 <h4 id="parameters-🧮-2">Parameters 🧮</h4>
 <table>
 <thead>
@@ -252,19 +249,19 @@ console.log(wrapper.sortByHue('desc', 'lch').output());
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colors</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>colors</code></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The collection of colors to bind.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-2">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></p>
+<p><code>ColorArray</code></p>
 <h4 id="defined-in-📝-2">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L32">wrappers.d.ts:32</a></p>
 <h2 id="methods-1">Methods</h2>
 <h3 id="discoverpalettes">discoverPalettes</h3>
-<p>▸ <strong>discoverPalettes</strong>(<code class='rounded shadow shadow-gray-300 hljs' >schemeType?</code>): <code>object</code> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>discoverPalettes</strong>(<code>schemeType?</code>): <code>object</code> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>> | <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>[]</p>
 <p>Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.</p>
 <h4 id="parameters-🧮-3">Parameters 🧮</h4>
 <table>
@@ -277,17 +274,17 @@ console.log(wrapper.sortByHue('desc', 'lch').output());
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >schemeType?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >"analogous"</code> | <code>"triadic"</code> | <code>"tetradic"</code> | <code>"complementary"</code></td>
+<td style="text-align:left;"><code>schemeType?</code></td>
+<td style="text-align:left;"><code>"analogous"</code> | <code>"triadic"</code> | <code>"tetradic"</code> | <code>"complementary"</code></td>
 <td style="text-align:left;">(Optional) The palette type you want to return.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-3">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >object</code> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[]</p>
-<p>A <code class='rounded shadow shadow-gray-300 hljs' >Set</code> of colors if the <code>schemeType</code> parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><code>object</code> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>> | <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>A <code>Set</code> of colors if the <code>schemeType</code> parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 let sample = [
  "#ffff00",
@@ -310,11 +307,11 @@ console.log(load(sample).discoverPalettes(sample, "tetradic").output())
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L89">wrappers.d.ts:89</a></p>
 <hr />
 <h3 id="filterbychroma">filterByChroma</h3>
-<p>▸ <strong>filterByChroma</strong>(<code class='rounded shadow shadow-gray-300 hljs' >start?</code>, <code>end?</code>, <code>colorspace?</code>): <code>ColorArray</code></p>
-<p>Returns a <code class='rounded shadow shadow-gray-300 hljs' >collection</code> of colors in the specified <code>saturation/chroma</code> range from the bound collection.</p>
-<p>The range is internally normalized to the supported ranges by the <code class='rounded shadow shadow-gray-300 hljs' >colorspace</code> in use if it is out of range.
-This means a value in the range <code class='rounded shadow shadow-gray-300 hljs' >[0,1]</code> will return, for example if you pass <code>start</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either <code>start</code> or <code>end</code> is above 1 AND the <code>colorspace</code> in use has an <code>end</code> range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
-<p>Supports expression strings e.g <code class='rounded shadow shadow-gray-300 hljs' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+<p>▸ <strong>filterByChroma</strong>(<code>start?</code>, <code>end?</code>, <code>colorspace?</code>): <code>ColorArray</code></p>
+<p>Returns a <code>collection</code> of colors in the specified <code>saturation/chroma</code> range from the bound collection.</p>
+<p>The range is internally normalized to the supported ranges by the <code>colorspace</code> in use if it is out of range.
+This means a value in the range <code>[0,1]</code> will return, for example if you pass <code>start</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either <code>start</code> or <code>end</code> is above 1 AND the <code>colorspace</code> in use has an <code>end</code> range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
+<p>Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
 <h4 id="parameters-🧮-4">Parameters 🧮</h4>
 <table>
 <thead>
@@ -326,29 +323,29 @@ This means a value in the range <code class='rounded shadow shadow-gray-300 hljs
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >start?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
-<td style="text-align:left;">The minimum end of the <code class='rounded shadow shadow-gray-300 hljs' >saturation/chroma</code> range.</td>
+<td style="text-align:left;"><code>start?</code></td>
+<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;">The minimum end of the <code>saturation/chroma</code> range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >end?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
-<td style="text-align:left;">The maximum end of the <code class='rounded shadow shadow-gray-300 hljs' >saturation/chroma</code> range.</td>
+<td style="text-align:left;"><code>end?</code></td>
+<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;">The maximum end of the <code>saturation/chroma</code> range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >Omit</code>\&lt;<code>string</code>, <code>"hwb"</code>></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>Omit</code>\&lt;<code>string</code>, <code>"hwb"</code>></td>
 <td style="text-align:left;">The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-4">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></p>
+<p><code>ColorArray</code></p>
 <p>Collection of filtered colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >See</code></strong></p>
+<p><strong><code>See</code></strong></p>
 <p>< a href='https://culorijs.org/color-spaces/> For the expected ranges per colorspace.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 let sample = [
  '#00ffdc',
@@ -372,9 +369,9 @@ console.log(load(sample).filterByChroma(0.1));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L289">wrappers.d.ts:289</a></p>
 <hr />
 <h3 id="filterbycontrast">filterByContrast</h3>
-<p>▸ <strong>filterByContrast</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>, <code>start?</code>, <code>end?</code>): <code>ColorArray</code></p>
-<p>Returns collection of colors within the specified contrast range. The contrast is tested against a comparison (<code class='rounded shadow shadow-gray-300 hljs' >'against'</code>) color and the specified contrast ranges.</p>
-<p>Supports expression strings e.g <code class='rounded shadow shadow-gray-300 hljs' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+<p>▸ <strong>filterByContrast</strong>(<code>against</code>, <code>start?</code>, <code>end?</code>): <code>ColorArray</code></p>
+<p>Returns collection of colors within the specified contrast range. The contrast is tested against a comparison (<code>'against'</code>) color and the specified contrast ranges.</p>
+<p>Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
 <h4 id="parameters-🧮-5">Parameters 🧮</h4>
 <table>
 <thead>
@@ -386,27 +383,27 @@ console.log(load(sample).filterByChroma(0.1));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >start?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
-<td style="text-align:left;">The minimum end of the contrast range. Default is <code class='rounded shadow shadow-gray-300 hljs' >1</code>.</td>
+<td style="text-align:left;"><code>start?</code></td>
+<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;">The minimum end of the contrast range. Default is <code>1</code>.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >end?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
-<td style="text-align:left;">The maximum end of the contrast range. The default is <code class='rounded shadow shadow-gray-300 hljs' >21</code>.</td>
+<td style="text-align:left;"><code>end?</code></td>
+<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;">The maximum end of the contrast range. The default is <code>21</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-5">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></p>
+<p><code>ColorArray</code></p>
 <p>Collection of filtered colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 let sample = [
  '#00ffdc',
@@ -429,9 +426,9 @@ console.log(load(sample).filterByContrast('green', '&gt;=3'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L391">wrappers.d.ts:391</a></p>
 <hr />
 <h3 id="filterbydistance">filterByDistance</h3>
-<p>▸ <strong>filterByDistance</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>, <code>start?</code>, <code>end?</code>): <code>ColorArray</code></p>
-<p>Returns colors with the specified distance range from the bound <code class='rounded shadow shadow-gray-300 hljs' >collection</code>. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.</p>
-<p>Supports expression strings e.g <code class='rounded shadow shadow-gray-300 hljs' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+<p>▸ <strong>filterByDistance</strong>(<code>against</code>, <code>start?</code>, <code>end?</code>): <code>ColorArray</code></p>
+<p>Returns colors with the specified distance range from the bound <code>collection</code>. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.</p>
+<p>Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
 <h4 id="parameters-🧮-6">Parameters 🧮</h4>
 <table>
 <thead>
@@ -443,27 +440,27 @@ console.log(load(sample).filterByContrast('green', '&gt;=3'))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >start?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
+<td style="text-align:left;"><code>start?</code></td>
+<td style="text-align:left;"><code>string</code> | <code>number</code></td>
 <td style="text-align:left;">The minimum end of the distance range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >end?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+<td style="text-align:left;"><code>end?</code></td>
+<td style="text-align:left;"><code>number</code></td>
 <td style="text-align:left;">The maximum end of the distance range.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-6">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></p>
+<p><code>ColorArray</code></p>
 <p>Collection of filtered colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 let sample = [
  "#ffff00",
@@ -483,9 +480,9 @@ console.log(load(sample)filterByDistance("yellow", 0.1))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L355">wrappers.d.ts:355</a></p>
 <hr />
 <h3 id="filterbyhue">filterByHue</h3>
-<p>▸ <strong>filterByHue</strong>(<code class='rounded shadow shadow-gray-300 hljs' >start?</code>, <code>end?</code>): <code>ColorArray</code></p>
+<p>▸ <strong>filterByHue</strong>(<code>start?</code>, <code>end?</code>): <code>ColorArray</code></p>
 <p>Returns colors in the specified hue ranges between 0 to 360.
-Supports expression strings for the <code class='rounded shadow shadow-gray-300 hljs' >start</code> and <code>end</code> parameters e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+Supports expression strings for the <code>start</code> and <code>end</code> parameters e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
 <h4 id="parameters-🧮-7">Parameters 🧮</h4>
 <table>
 <thead>
@@ -497,22 +494,22 @@ Supports expression strings for the <code class='rounded shadow shadow-gray-300 
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >start?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
-<td style="text-align:left;">The minimum end of the <code class='rounded shadow shadow-gray-300 hljs' >hue</code> range.</td>
+<td style="text-align:left;"><code>start?</code></td>
+<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;">The minimum end of the <code>hue</code> range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >end?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
-<td style="text-align:left;">The maximum end of the <code class='rounded shadow shadow-gray-300 hljs' >hue</code> range.</td>
+<td style="text-align:left;"><code>end?</code></td>
+<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;">The maximum end of the <code>hue</code> range.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-7">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></p>
+<p><code>ColorArray</code></p>
 <p>A collecion of the filtered colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 let sample = [
  '#00ffdc',
@@ -536,11 +533,11 @@ load(sample).filterByHue(20, 80)
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L425">wrappers.d.ts:425</a></p>
 <hr />
 <h3 id="filterbylightness">filterByLightness</h3>
-<p>▸ <strong>filterByLightness</strong>(<code class='rounded shadow shadow-gray-300 hljs' >start?</code>, <code>end?</code>): <code>ColorArray</code></p>
-<p>Returns a <code class='rounded shadow shadow-gray-300 hljs' >collection</code> of colors in the specified <code>lightness</code> range.</p>
-<p>The range is internally normalized to the supported ranges by the <code class='rounded shadow shadow-gray-300 hljs' >colorspace</code> in use if it is out of range.
-This means a value in the range <code class='rounded shadow shadow-gray-300 hljs' >[0,1]</code> will return, for example if you pass <code>start</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either <code>start</code> or <code>end</code> is above 1 AND the <code>colorspace</code> in use has an <code>end</code> range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
-<p>Supports expression strings e.g <code class='rounded shadow shadow-gray-300 hljs' >'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+<p>▸ <strong>filterByLightness</strong>(<code>start?</code>, <code>end?</code>): <code>ColorArray</code></p>
+<p>Returns a <code>collection</code> of colors in the specified <code>lightness</code> range.</p>
+<p>The range is internally normalized to the supported ranges by the <code>colorspace</code> in use if it is out of range.
+This means a value in the range <code>[0,1]</code> will return, for example if you pass <code>start</code> as <code>0.3</code> it means <code>0.3 (or 30%)</code> of the channel's supported range. But if the value of either <code>start</code> or <code>end</code> is above 1 AND the <code>colorspace</code> in use has an <code>end</code> range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range <code>[0,100]</code> and will return the normalized value.</p>
+<p>Supports expression strings e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
 <h4 id="parameters-🧮-8">Parameters 🧮</h4>
 <table>
 <thead>
@@ -552,24 +549,24 @@ This means a value in the range <code class='rounded shadow shadow-gray-300 hljs
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >start?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
-<td style="text-align:left;">The minimum end of the <code class='rounded shadow shadow-gray-300 hljs' >lightness</code> range.</td>
+<td style="text-align:left;"><code>start?</code></td>
+<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;">The minimum end of the <code>lightness</code> range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >end?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
-<td style="text-align:left;">The maximum end of the <code class='rounded shadow shadow-gray-300 hljs' >lightness</code> range.</td>
+<td style="text-align:left;"><code>end?</code></td>
+<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;">The maximum end of the <code>lightness</code> range.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-8">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></p>
+<p><code>ColorArray</code></p>
 <p>Collection of filtered colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >See</code></strong></p>
+<p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces">Culori's colorspaces page</a> for the expected ranges per colorspace.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 let sample = [
  '#00ffdc',
  '#00ff78',
@@ -592,9 +589,9 @@ load(sample).filterByLightness(20, 80)
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L329">wrappers.d.ts:329</a></p>
 <hr />
 <h3 id="filterbyluminance">filterByLuminance</h3>
-<p>▸ <strong>filterByLuminance</strong>(<code class='rounded shadow shadow-gray-300 hljs' >start?</code>, <code>end?</code>): <code>ColorArray</code></p>
-<p>Returns a <code class='rounded shadow shadow-gray-300 hljs' >collection</code> of colors in the specified luminance range. The range is normalised to [0,1].
-Supports expression strings for the <code class='rounded shadow shadow-gray-300 hljs' >start</code> and <code>end</code> parameters e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
+<p>▸ <strong>filterByLuminance</strong>(<code>start?</code>, <code>end?</code>): <code>ColorArray</code></p>
+<p>Returns a <code>collection</code> of colors in the specified luminance range. The range is normalised to [0,1].
+Supports expression strings for the <code>start</code> and <code>end</code> parameters e.g <code>'&gt;=0.5'</code>. The supported symbols are <code>== | === | != | !== | &gt;= | &lt;= | &lt; | &gt;</code></p>
 <h4 id="parameters-🧮-9">Parameters 🧮</h4>
 <table>
 <thead>
@@ -606,22 +603,22 @@ Supports expression strings for the <code class='rounded shadow shadow-gray-300 
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >start?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
+<td style="text-align:left;"><code>start?</code></td>
+<td style="text-align:left;"><code>string</code> | <code>number</code></td>
 <td style="text-align:left;">The minimum end of the luminance range.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >end?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
+<td style="text-align:left;"><code>end?</code></td>
+<td style="text-align:left;"><code>string</code> | <code>number</code></td>
 <td style="text-align:left;">The maximum end of the luminance range.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-9">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></p>
+<p><code>ColorArray</code></p>
 <p>Collection of filtered colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 let sample = [
  '#00ffdc',
  '#00ff78',
@@ -644,8 +641,8 @@ load(sample).filterByLuminance(0.4, 0.9)
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L454">wrappers.d.ts:454</a></p>
 <hr />
 <h3 id="getfarthestchromafrom">getFarthestChromaFrom</h3>
-<p>▸ <strong>getFarthestChromaFrom</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Gets the largest chroma/saturation difference between the colors in the bound collection <code class='rounded shadow shadow-gray-300 hljs' >against</code> a comparison color.</p>
+<p>▸ <strong>getFarthestChromaFrom</strong>(<code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the largest chroma/saturation difference between the colors in the bound collection <code>against</code> a comparison color.</p>
 <h4 id="parameters-🧮-10">Parameters 🧮</h4>
 <table>
 <thead>
@@ -657,27 +654,27 @@ load(sample).filterByLuminance(0.4, 0.9)
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the channel being queried.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='rounded shadow shadow-gray-300 hljs' >saturation</code>) and name of the color as keys. Default is false.</td>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>saturation</code>) and name of the color as keys. Default is false.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-10">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>The largest chroma/saturation difference in the colors passed in or a custom object.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -695,7 +692,7 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L701">wrappers.d.ts:701</a></p>
 <hr />
 <h3 id="getfarthesthue">getFarthestHue</h3>
-<p>▸ <strong>getFarthestHue</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>▸ <strong>getFarthestHue</strong>(<code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>Returns the largest hue angle from the bound collection.</p>
 <h4 id="parameters-🧮-11">Parameters 🧮</h4>
 <table>
@@ -708,22 +705,22 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The mode color space to perform the computation in.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
 <td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-11">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>The largest hue value in the colors passed in or a custom object.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 
 console.log(load(sample).getFarthestHue('lch'))
@@ -733,8 +730,8 @@ console.log(load(sample).getFarthestHue('lch'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L106">wrappers.d.ts:106</a></p>
 <hr />
 <h3 id="getfarthesthuefrom">getFarthestHueFrom</h3>
-<p>▸ <strong>getFarthestHueFrom</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Gets the largest hue angle difference between the colors in the bound collection <code class='rounded shadow shadow-gray-300 hljs' >against</code> a comparison color.</p>
+<p>▸ <strong>getFarthestHueFrom</strong>(<code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the largest hue angle difference between the colors in the bound collection <code>against</code> a comparison color.</p>
 <h4 id="parameters-🧮-12">Parameters 🧮</h4>
 <table>
 <thead>
@@ -746,27 +743,27 @@ console.log(load(sample).getFarthestHue('lch'))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the channel being queried.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='rounded shadow shadow-gray-300 hljs' >hue</code>) and name of the color as keys. Default is false.</td>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>hue</code>) and name of the color as keys. Default is false.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-12">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>The largest hue angle difference in the colors passed in or a custom object.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -784,8 +781,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L773">wrappers.d.ts:773</a></p>
 <hr />
 <h3 id="getfarthestlightness">getFarthestLightness</h3>
-<p>▸ <strong>getFarthestLightness</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Returns the largest <code class='rounded shadow shadow-gray-300 hljs' >lightness</code> value from the bound collection.</p>
+<p>▸ <strong>getFarthestLightness</strong>(<code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Returns the largest <code>lightness</code> value from the bound collection.</p>
 <h4 id="parameters-🧮-13">Parameters 🧮</h4>
 <table>
 <thead>
@@ -797,22 +794,22 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with <code class='rounded shadow shadow-gray-300 hljs' >factor</code> (lightness) and <code>name</code> of the color as keys. Default is false.</td>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with <code>factor</code> (lightness) and <code>name</code> of the color as keys. Default is false.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-13">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The largest <code class='rounded shadow shadow-gray-300 hljs' >lightness</code> value in the colors passed in or a custom object.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest <code>lightness</code> value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
 
@@ -824,8 +821,8 @@ console.log(load(sample).getFarthestLightness('lch', true))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L244">wrappers.d.ts:244</a></p>
 <hr />
 <h3 id="getfarthestlightnessfrom">getFarthestLightnessFrom</h3>
-<p>▸ <strong>getFarthestLightnessFrom</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Gets the largest lightness difference between the colors the bound collection <code class='rounded shadow shadow-gray-300 hljs' >against</code> a comparison color.</p>
+<p>▸ <strong>getFarthestLightnessFrom</strong>(<code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the largest lightness difference between the colors the bound collection <code>against</code> a comparison color.</p>
 <h4 id="parameters-🧮-14">Parameters 🧮</h4>
 <table>
 <thead>
@@ -837,27 +834,27 @@ console.log(load(sample).getFarthestLightness('lch', true))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the channel being queried.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='rounded shadow shadow-gray-300 hljs' >lightness</code>) and name of the color as keys. Default is false.</td>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>lightness</code>) and name of the color as keys. Default is false.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-14">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>The largest lightness difference in the colors passed in or a custom object.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -875,8 +872,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L844">wrappers.d.ts:844</a></p>
 <hr />
 <h3 id="getfarthestluminancefrom">getFarthestLuminanceFrom</h3>
-<p>▸ <strong>getFarthestLuminanceFrom</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Gets the largest <code class='rounded shadow shadow-gray-300 hljs' >luminance</code> difference between the colors in the bound collection <code>against</code> a comparison color.</p>
+<p>▸ <strong>getFarthestLuminanceFrom</strong>(<code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the largest <code>luminance</code> difference between the colors in the bound collection <code>against</code> a comparison color.</p>
 <h4 id="parameters-🧮-15">Parameters 🧮</h4>
 <table>
 <thead>
@@ -888,27 +885,27 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='rounded shadow shadow-gray-300 hljs' >lightness</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>lightness</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-15">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The largest lightness difference in the colors passed in or a custom object with the <code class='rounded shadow shadow-gray-300 hljs' >factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { getFarthestLuminanceFrom } from 'huetiful-js'
+<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The largest lightness difference in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getFarthestLuminanceFrom } from 'huetiful-js'
 var sample = [
    { l: 40, c: 20, h: 40, mode: 'lch' },
    { l: 20, c: 10, h: 20, mode: 'lch' },
@@ -923,8 +920,8 @@ console.log(getFarthestLuminanceFrom(sample, against));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L217">wrappers.d.ts:217</a></p>
 <hr />
 <h3 id="getmeanchroma">getMeanChroma</h3>
-<p>▸ <strong>getMeanChroma</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code>): <code>number</code></p>
-<p>Returns the average <code class='rounded shadow shadow-gray-300 hljs' >chroma</code> from the bound <code>collection</code> of colors. Achromatic colors (or colors with a falsy <code>chroma</code> channel) will be excluded from the sum.</p>
+<p>▸ <strong>getMeanChroma</strong>(<code>colorspace?</code>): <code>number</code></p>
+<p>Returns the average <code>chroma</code> from the bound <code>collection</code> of colors. Achromatic colors (or colors with a falsy <code>chroma</code> channel) will be excluded from the sum.</p>
 <h4 id="parameters-🧮-16">Parameters 🧮</h4>
 <table>
 <thead>
@@ -936,17 +933,17 @@ console.log(getFarthestLuminanceFrom(sample, against));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
-<td style="text-align:left;">The colorspace to fetch the <code class='rounded shadow shadow-gray-300 hljs' >chroma</code> channel value from.</td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The colorspace to fetch the <code>chroma</code> channel value from.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-16">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code></p>
-<p>The average <code class='rounded shadow shadow-gray-300 hljs' >chroma</code> in the passed in <code>collection</code> or undefined if no color in the <code>collection</code> has a valid <code>chroma</code> channel.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><code>number</code></p>
+<p>The average <code>chroma</code> in the passed in <code>collection</code> or undefined if no color in the <code>collection</code> has a valid <code>chroma</code> channel.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -962,8 +959,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L909">wrappers.d.ts:909</a></p>
 <hr />
 <h3 id="getmeancontrast">getMeanContrast</h3>
-<p>▸ <strong>getMeanContrast</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against?</code>): <code>number</code></p>
-<p>Returns the average <code class='rounded shadow shadow-gray-300 hljs' >contrast</code> from the bound <code>collection</code> of colors.</p>
+<p>▸ <strong>getMeanContrast</strong>(<code>against?</code>): <code>number</code></p>
+<p>Returns the average <code>contrast</code> from the bound <code>collection</code> of colors.</p>
 <h4 id="parameters-🧮-17">Parameters 🧮</h4>
 <table>
 <thead>
@@ -975,17 +972,17 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
-<td style="text-align:left;">The color to compare the <code class='rounded shadow shadow-gray-300 hljs' >contrast</code> against. Used by the <code>getContrast</code> function for each color in the <code>collection</code>. Default is <code>black</code></td>
+<td style="text-align:left;"><code>against?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to compare the <code>contrast</code> against. Used by the <code>getContrast</code> function for each color in the <code>collection</code>. Default is <code>black</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-17">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code></p>
-<p>The average <code class='rounded shadow shadow-gray-300 hljs' >distance</code> in the passed in <code>collection</code> .</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><code>number</code></p>
+<p>The average <code>distance</code> in the passed in <code>collection</code> .</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 var sample = [
    { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -1002,8 +999,8 @@ console.log(load(sample).getMeanContrast(against));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1014">wrappers.d.ts:1014</a></p>
 <hr />
 <h3 id="getmeandistance">getMeanDistance</h3>
-<p>▸ <strong>getMeanDistance</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against?</code>): <code>number</code></p>
-<p>Returns the average <code class='rounded shadow shadow-gray-300 hljs' >distance</code> from the passed in <code>collection</code> of colors using the <code>differenceHyab</code> metric. In the future, an option to specify the metric to use when querying the <code>distance</code> factor.</p>
+<p>▸ <strong>getMeanDistance</strong>(<code>against?</code>): <code>number</code></p>
+<p>Returns the average <code>distance</code> from the passed in <code>collection</code> of colors using the <code>differenceHyab</code> metric. In the future, an option to specify the metric to use when querying the <code>distance</code> factor.</p>
 <h4 id="parameters-🧮-18">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1015,17 +1012,17 @@ console.log(load(sample).getMeanContrast(against));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
-<td style="text-align:left;">The color to compare the distance from. Used by the metric function for each color in the <code class='rounded shadow shadow-gray-300 hljs' >collection</code>. Default is <code>black</code>.</td>
+<td style="text-align:left;"><code>against?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;">The color to compare the distance from. Used by the metric function for each color in the <code>collection</code>. Default is <code>black</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-18">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code></p>
-<p>The average <code class='rounded shadow shadow-gray-300 hljs' >distance</code> in the passed in <code>collection</code> .</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><code>number</code></p>
+<p>The average <code>distance</code> in the passed in <code>collection</code> .</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 var sample = [
    { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -1042,8 +1039,8 @@ console.log(load(against).getMeanDistance(sample));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L991">wrappers.d.ts:991</a></p>
 <hr />
 <h3 id="getmeanhue">getMeanHue</h3>
-<p>▸ <strong>getMeanHue</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code>, <code>excludeGreys?</code>): <code>number</code></p>
-<p>Returns the average <code class='rounded shadow shadow-gray-300 hljs' >hue</code> from the bound <code>collection</code> of colors. Achromatic colors (or colors with a falsy <code>chroma</code> channel) will be excluded from the sum if <code>excludeGreys</code> is <code>true</code>. This can help make your color scales make more 'visual sense since the <code>hue</code> channel depends on the <code>chroma</code> channel to look colorful. This will also alter the final average hue angle returned.</p>
+<p>▸ <strong>getMeanHue</strong>(<code>colorspace?</code>, <code>excludeGreys?</code>): <code>number</code></p>
+<p>Returns the average <code>hue</code> from the bound <code>collection</code> of colors. Achromatic colors (or colors with a falsy <code>chroma</code> channel) will be excluded from the sum if <code>excludeGreys</code> is <code>true</code>. This can help make your color scales make more 'visual sense since the <code>hue</code> channel depends on the <code>chroma</code> channel to look colorful. This will also alter the final average hue angle returned.</p>
 <h4 id="parameters-🧮-19">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1055,22 +1052,22 @@ console.log(load(against).getMeanDistance(sample));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
-<td style="text-align:left;">The colorspace to fetch the <code class='rounded shadow shadow-gray-300 hljs' >hue</code> channel value from.</td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The colorspace to fetch the <code>hue</code> channel value from.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >excludeGreys?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
-<td style="text-align:left;">Optional boolean to filter out achromatic colors from the passed in <code class='rounded shadow shadow-gray-300 hljs' >collection</code>.</td>
+<td style="text-align:left;"><code>excludeGreys?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean to filter out achromatic colors from the passed in <code>collection</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-19">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code></p>
-<p>The average <code class='rounded shadow shadow-gray-300 hljs' >hue</code> angle in the passed in <code>collection</code>.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><code>number</code></p>
+<p>The average <code>hue</code> angle in the passed in <code>collection</code>.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 10, mode: 'lch' },
@@ -1086,8 +1083,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L950">wrappers.d.ts:950</a></p>
 <hr />
 <h3 id="getmeanlightness">getMeanLightness</h3>
-<p>▸ <strong>getMeanLightness</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code>): <code>number</code></p>
-<p>Returns the average <code class='rounded shadow shadow-gray-300 hljs' >lightness</code> from the passed in <code>collection</code> of colors.</p>
+<p>▸ <strong>getMeanLightness</strong>(<code>colorspace?</code>): <code>number</code></p>
+<p>Returns the average <code>lightness</code> from the passed in <code>collection</code> of colors.</p>
 <h4 id="parameters-🧮-20">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1099,17 +1096,17 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
-<td style="text-align:left;">The colorspace to fetch the <code class='rounded shadow shadow-gray-300 hljs' >lightness</code> channel value from.</td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The colorspace to fetch the <code>lightness</code> channel value from.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-20">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code></p>
-<p>The average <code class='rounded shadow shadow-gray-300 hljs' >lightness</code> in the passed in <code>collection</code>.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><code>number</code></p>
+<p>The average <code>lightness</code> in the passed in <code>collection</code>.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -1125,13 +1122,13 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L929">wrappers.d.ts:929</a></p>
 <hr />
 <h3 id="getmeanluminance">getMeanLuminance</h3>
-<p>▸ <strong>getMeanLuminance</strong>(): <code class='rounded shadow shadow-gray-300 hljs' >number</code></p>
-<p>Returns the average relative <code class='rounded shadow shadow-gray-300 hljs' >luminance</code> from the bound <code>collection</code> of colors.</p>
+<p>▸ <strong>getMeanLuminance</strong>(): <code>number</code></p>
+<p>Returns the average relative <code>luminance</code> from the bound <code>collection</code> of colors.</p>
 <h4 id="returns-🔙-21">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code></p>
-<p>The average relative <code class='rounded shadow shadow-gray-300 hljs' >luminance</code> in the passed in <code>collection</code> or undefined if no color in the <code>collection</code> has a valid <code>chroma</code> channel.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><code>number</code></p>
+<p>The average relative <code>luminance</code> in the passed in <code>collection</code> or undefined if no color in the <code>collection</code> has a valid <code>chroma</code> channel.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -1147,8 +1144,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L969">wrappers.d.ts:969</a></p>
 <hr />
 <h3 id="getnearestchromafrom">getNearestChromaFrom</h3>
-<p>▸ <strong>getNearestChromaFrom</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Gets the smallest chroma/saturation difference between the colors in the bound collection <code class='rounded shadow shadow-gray-300 hljs' >against</code> a comparison color.</p>
+<p>▸ <strong>getNearestChromaFrom</strong>(<code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the smallest chroma/saturation difference between the colors in the bound collection <code>against</code> a comparison color.</p>
 <h4 id="parameters-🧮-21">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1160,27 +1157,27 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the channel being queried.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='rounded shadow shadow-gray-300 hljs' >saturation</code>) and name of the color as keys. Default is false.</td>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>saturation</code>) and name of the color as keys. Default is false.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-22">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>The smallest chroma/saturation difference in the colors passed in or a custom object.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -1198,7 +1195,7 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L738">wrappers.d.ts:738</a></p>
 <hr />
 <h3 id="getnearestcolor">getNearestColor</h3>
-<p>▸ <strong>getNearestColor</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>, <code>num?</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>getNearestColor</strong>(<code>against</code>, <code>num?</code>): <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>> | <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>[]</p>
 <p>Returns the nearest color(s) in the bound collection against
  *</p>
 <h4 id="parameters-🧮-22">Parameters 🧮</h4>
@@ -1212,22 +1209,22 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to use for distance comparison.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >num?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
-<td style="text-align:left;">The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the <code class='rounded shadow shadow-gray-300 hljs' >differenceHyab</code> metric.</td>
+<td style="text-align:left;"><code>num?</code></td>
+<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;">The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the <code>differenceHyab</code> metric.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-23">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>> | <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>[]</p>
 <p>An array of colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js';
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js';
 
 let cols = tailwindColors('all', '500')
 
@@ -1238,8 +1235,8 @@ console.log(load(cols).getNearestColor('blue', 3));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L671">wrappers.d.ts:671</a></p>
 <hr />
 <h3 id="getnearesthue">getNearestHue</h3>
-<p>▸ <strong>getNearestHue</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Returns the smallest <code class='rounded shadow shadow-gray-300 hljs' >hue</code> angle from the bound <code>collection</code>.</p>
+<p>▸ <strong>getNearestHue</strong>(<code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Returns the smallest <code>hue</code> angle from the bound <code>collection</code>.</p>
 <h4 id="parameters-🧮-23">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1251,22 +1248,22 @@ console.log(load(cols).getNearestColor('blue', 3));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The mode color space to perform the computation in.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
 <td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (hue) and name of the color as keys. Default is false.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-24">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>The smallest hue value in the colors passed in or a custom object.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 let sample = ['b2c3f1', '#a1bd2f', '#f3bac1']
 
@@ -1277,8 +1274,8 @@ console.log(load(sample).getNearestHue('lch'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L130">wrappers.d.ts:130</a></p>
 <hr />
 <h3 id="getnearesthuefrom">getNearestHueFrom</h3>
-<p>▸ <strong>getNearestHueFrom</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Gets the smallest <code class='rounded shadow shadow-gray-300 hljs' >hue</code> angle difference between the colors in the bound collection <code>against</code> a comparison color.
+<p>▸ <strong>getNearestHueFrom</strong>(<code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the smallest <code>hue</code> angle difference between the colors in the bound collection <code>against</code> a comparison color.
  *</p>
 <h4 id="parameters-🧮-24">Parameters 🧮</h4>
 <table>
@@ -1291,27 +1288,27 @@ console.log(load(sample).getNearestHue('lch'))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the channel being queried.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='rounded shadow shadow-gray-300 hljs' >hue</code>) and name of the color as keys. Default is false.</td>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>hue</code>) and name of the color as keys. Default is false.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-25">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>The smallest hue angle difference in the colors passed in or a custom object.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -1329,8 +1326,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L808">wrappers.d.ts:808</a></p>
 <hr />
 <h3 id="getnearestlightness">getNearestLightness</h3>
-<p>▸ <strong>getNearestLightness</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Returns the smallest <code class='rounded shadow shadow-gray-300 hljs' >lightness</code> value from the bound collection.</p>
+<p>▸ <strong>getNearestLightness</strong>(<code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Returns the smallest <code>lightness</code> value from the bound collection.</p>
 <h4 id="parameters-🧮-25">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1342,22 +1339,22 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
 <td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (lightness) and name of the color as keys. Default is false.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-26">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The smallest <code class='rounded shadow shadow-gray-300 hljs' >lightness</code> value in the colors passed in or a custom object.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { getNeareastLightness } from 'huetiful-js'
+<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest <code>lightness</code> value in the colors passed in or a custom object.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { getNeareastLightness } from 'huetiful-js'
 
 let sample = ["b2c3f1", "#a1bd2f", "#f3bac1"]
 
@@ -1369,8 +1366,8 @@ console.log(load(sample).getNearestLightness('lch', true))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L155">wrappers.d.ts:155</a></p>
 <hr />
 <h3 id="getnearestlightnessfrom">getNearestLightnessFrom</h3>
-<p>▸ <strong>getNearestLightnessFrom</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Gets the smallest lightness difference between the colors in the bound collection <code class='rounded shadow shadow-gray-300 hljs' >against</code> a comparison color.</p>
+<p>▸ <strong>getNearestLightnessFrom</strong>(<code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the smallest lightness difference between the colors in the bound collection <code>against</code> a comparison color.</p>
 <h4 id="parameters-🧮-26">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1382,27 +1379,27 @@ console.log(load(sample).getNearestLightness('lch', true))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The mode colorspace to retrieve the channel being queried.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='rounded shadow shadow-gray-300 hljs' >lightness</code>) and name of the color as keys. Default is false.</td>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>lightness</code>) and name of the color as keys. Default is false.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-27">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
 <p>The smallest lightness difference in the colors passed in or a custom object.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -1420,8 +1417,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L879">wrappers.d.ts:879</a></p>
 <hr />
 <h3 id="getnearestluminancefrom">getNearestLuminanceFrom</h3>
-<p>▸ <strong>getNearestLuminanceFrom</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>Gets the smallest <code class='rounded shadow shadow-gray-300 hljs' >luminance</code> difference between the colors in the bound collection <code>against</code> a comparison color.</p>
+<p>▸ <strong>getNearestLuminanceFrom</strong>(<code>against</code>, <code>colorspace?</code>, <code>colorObj?</code>): <code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>Gets the smallest <code>luminance</code> difference between the colors in the bound collection <code>against</code> a comparison color.</p>
 <h4 id="parameters-🧮-27">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1433,27 +1430,27 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare against. This color is used as a subtrahend against each color in the collection.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
-<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code class='rounded shadow shadow-gray-300 hljs' >luminance</code>) and name of the color as keys. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean that makes the function return a custom object with factor (<code>luminance</code>) and name of the color as keys. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-28">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
-<p>The smallest <code class='rounded shadow shadow-gray-300 hljs' >luminance</code> difference in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><code>number</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>factor</code>: <code>number</code>  }</p>
+<p>The smallest <code>luminance</code> difference in the colors passed in or a custom object with the <code>factor</code> and the color's <code>name</code> as keys.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 var sample =  [
          { l: 40, c: 20, h: 40, mode: 'lch' },
@@ -1470,8 +1467,8 @@ var sample =  [
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L185">wrappers.d.ts:185</a></p>
 <hr />
 <h3 id="interpolatespline">interpolateSpline</h3>
-<p>▸ <strong>interpolateSpline</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code>, <code>samples?</code>, <code>kind?</code>, <code>closed?</code>, <code>options?</code>): <code>object</code> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[]</p>
-<p>Returns a spline interpolator function with customizable interpolation methods (by selecting the <code class='rounded shadow shadow-gray-300 hljs' >kind</code> of ), with support for generating color scales for cyclic data (by setting the <code>closed</code> parameter to <code>true</code>) and optional channel specific overrides.</p>
+<p>▸ <strong>interpolateSpline</strong>(<code>colorspace?</code>, <code>samples?</code>, <code>kind?</code>, <code>closed?</code>, <code>options?</code>): <code>object</code> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>> | <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>Returns a spline interpolator function with customizable interpolation methods (by selecting the <code>kind</code> of ), with support for generating color scales for cyclic data (by setting the <code>closed</code> parameter to <code>true</code>) and optional channel specific overrides.</p>
 <h4 id="parameters-🧮-28">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1483,37 +1480,37 @@ var sample =  [
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >samples?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+<td style="text-align:left;"><code>samples?</code></td>
+<td style="text-align:left;"><code>number</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >kind?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >"natural"</code> | <code>"monotone"</code> | <code>"basis"</code></td>
+<td style="text-align:left;"><code>kind?</code></td>
+<td style="text-align:left;"><code>"natural"</code> | <code>"monotone"</code> | <code>"basis"</code></td>
 <td style="text-align:left;">The type of the spline interpolation method. Default is basis.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >closed?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
+<td style="text-align:left;"><code>closed?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
 <td style="text-align:left;">Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >options?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >Pick</code>\&lt;<a href="https://huetiful-js.com/types#interpolatoroptions"><code>InterpolatorOptions</code></a>, <code>"easingFn"</code> | <code>"hueFixup"</code>></td>
+<td style="text-align:left;"><code>options?</code></td>
+<td style="text-align:left;"><code>Pick</code>\&lt;<a href="https://huetiful-js.com/api/../modules/types#interpolatoroptions"><code>InterpolatorOptions</code></a>, <code>"easingFn"</code> | <code>"hueFixup"</code>></td>
 <td style="text-align:left;">Optional channel specific overrides.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-29">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >object</code> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>> | <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[]</p>
-<p>The discovered palettes.Respects the <code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code> type of the first color in the array of colors to interpolate</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js';
+<p><code>object</code> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>> | <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>The discovered palettes.Respects the <code>ColorToken</code> type of the first color in the array of colors to interpolate</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js';
 
 console.log(load(['pink', 'blue']).interpolateSpline('lch', 8));
 
@@ -1528,16 +1525,16 @@ console.log(load(['pink', 'blue']).interpolateSpline('lch', 8));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L56">wrappers.d.ts:56</a></p>
 <hr />
 <h3 id="output">output</h3>
-<p>▸ <strong>output</strong>(): <a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></p>
+<p>▸ <strong>output</strong>(): <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></p>
 <h4 id="returns-🔙-30">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></p>
+<p><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></p>
 <p>Returns the result value from the chain.</p>
 <h4 id="defined-in-📝-30">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1019">wrappers.d.ts:1019</a></p>
 <hr />
 <h3 id="sortbychroma">sortByChroma</h3>
-<p>▸ <strong>sortByChroma</strong>(<code class='rounded shadow shadow-gray-300 hljs' >order</code>, <code>colorspace?</code>): <code>ColorArray</code></p>
-<p>Sorts colors in the bound collection according to their saturation. Achromatic colors are not supported as they lack a truthy <code class='rounded shadow shadow-gray-300 hljs' >chroma</code> or saturation channel.</p>
+<p>▸ <strong>sortByChroma</strong>(<code>order</code>, <code>colorspace?</code>): <code>ColorArray</code></p>
+<p>Sorts colors in the bound collection according to their saturation. Achromatic colors are not supported as they lack a truthy <code>chroma</code> or saturation channel.</p>
 <h4 id="parameters-🧮-29">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1549,22 +1546,22 @@ console.log(load(['pink', 'blue']).interpolateSpline('lch', 8));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >order</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >"asc"</code> | <code>"desc"</code></td>
+<td style="text-align:left;"><code>order</code></td>
+<td style="text-align:left;"><code>"asc"</code> | <code>"desc"</code></td>
 <td style="text-align:left;">The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The mode color space to compute the saturation value in. The default is jch .</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-31">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></p>
-<p>The collection of sorted colors. If a plain <code class='rounded shadow shadow-gray-300 hljs' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from "huetiful-js";
+<p><code>ColorArray</code></p>
+<p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from "huetiful-js";
 let sample = [
  "#00ffdc",
  "#00ff78",
@@ -1606,7 +1603,7 @@ console.log(sortedDescending)
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L601">wrappers.d.ts:601</a></p>
 <hr />
 <h3 id="sortbycontrast">sortByContrast</h3>
-<p>▸ <strong>sortByContrast</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>, <code>order?</code>): <code>ColorArray</code></p>
+<p>▸ <strong>sortByContrast</strong>(<code>against</code>, <code>order?</code>): <code>ColorArray</code></p>
 <p>Sorts colors in the bound collection according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)</p>
 <h4 id="parameters-🧮-30">Parameters 🧮</h4>
 <table>
@@ -1619,22 +1616,22 @@ console.log(sortedDescending)
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >order?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >"asc"</code> | <code>"desc"</code></td>
+<td style="text-align:left;"><code>order?</code></td>
+<td style="text-align:left;"><code>"asc"</code> | <code>"desc"</code></td>
 <td style="text-align:left;">The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-32">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></p>
-<p>The collection of sorted colors. If a plain <code class='rounded shadow shadow-gray-300 hljs' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><code>ColorArray</code></p>
+<p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 let sample = ['purple', 'green', 'red', 'brown']
 console.log(load(sample).sortByContrast('yellow'))
@@ -1647,7 +1644,7 @@ console.log(load(sample).sortByContrast('yellow', 'desc'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L619">wrappers.d.ts:619</a></p>
 <hr />
 <h3 id="sortbydistance">sortByDistance</h3>
-<p>▸ <strong>sortByDistance</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>, <code>order?</code>): <code>ColorArray</code></p>
+<p>▸ <strong>sortByDistance</strong>(<code>against</code>, <code>order?</code>): <code>ColorArray</code></p>
 <p>Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist</p>
 <h4 id="parameters-🧮-31">Parameters 🧮</h4>
 <table>
@@ -1660,22 +1657,22 @@ console.log(load(sample).sortByContrast('yellow', 'desc'))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >order?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >"asc"</code> | <code>"desc"</code></td>
+<td style="text-align:left;"><code>order?</code></td>
+<td style="text-align:left;"><code>"asc"</code> | <code>"desc"</code></td>
 <td style="text-align:left;">The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-33">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></p>
-<p>The collection of sorted colors. If a plain <code class='rounded shadow shadow-gray-300 hljs' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from 'huetiful-js'
+<p><code>ColorArray</code></p>
+<p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from 'huetiful-js'
 
 let sample = ['purple', 'green', 'red', 'brown']
 console.log(
@@ -1697,8 +1694,8 @@ console.log(
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L517">wrappers.d.ts:517</a></p>
 <hr />
 <h3 id="sortbyhue">sortByHue</h3>
-<p>▸ <strong>sortByHue</strong>(<code class='rounded shadow shadow-gray-300 hljs' >order?</code>, <code>colorspace?</code>): <code>ColorArray</code></p>
-<p>Sorts colors in the bound collection according to hue values. It works with any color space with a hue channel. Note that hue values between <code class='rounded shadow shadow-gray-300 hljs' >hsl</code> and <code>lch</code> do not align. Achromatic colors are not supported.</p>
+<p>▸ <strong>sortByHue</strong>(<code>order?</code>, <code>colorspace?</code>): <code>ColorArray</code></p>
+<p>Sorts colors in the bound collection according to hue values. It works with any color space with a hue channel. Note that hue values between <code>hsl</code> and <code>lch</code> do not align. Achromatic colors are not supported.</p>
 <h4 id="parameters-🧮-32">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1710,22 +1707,22 @@ console.log(
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >order?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >"asc"</code> | <code>"desc"</code></td>
+<td style="text-align:left;"><code>order?</code></td>
+<td style="text-align:left;"><code>"asc"</code> | <code>"desc"</code></td>
 <td style="text-align:left;">The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The colorspace to compute the color distances in. All colors within the collection will be converted to mode. Also note that because differences in hue mapping certain color spaces such as HSL and LCH hue values do not align. Keep such quirks in mind to avoid weird results.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-34">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></p>
+<p><code>ColorArray</code></p>
 <p>A collection of the sorted color values.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">let sample = [
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">let sample = [
  "#00ffdc",
  "#00ff78",
  "#00c000",
@@ -1754,7 +1751,7 @@ console.log(sortedDescending)
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L655">wrappers.d.ts:655</a></p>
 <hr />
 <h3 id="sortbylightness">sortByLightness</h3>
-<p>▸ <strong>sortByLightness</strong>(<code class='rounded shadow shadow-gray-300 hljs' >order?</code>): <code>ColorArray</code></p>
+<p>▸ <strong>sortByLightness</strong>(<code>order?</code>): <code>ColorArray</code></p>
 <p>Sorts colors in the bound collection according to their lightness.</p>
 <h4 id="parameters-🧮-33">Parameters 🧮</h4>
 <table>
@@ -1767,17 +1764,17 @@ console.log(sortedDescending)
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >order?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >"asc"</code> | <code>"desc"</code></td>
+<td style="text-align:left;"><code>order?</code></td>
+<td style="text-align:left;"><code>"asc"</code> | <code>"desc"</code></td>
 <td style="text-align:left;">The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-35">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></p>
-<p>The collection of sorted colors. If a plain <code class='rounded shadow shadow-gray-300 hljs' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from "huetiful-js";
+<p><code>ColorArray</code></p>
+<p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from "huetiful-js";
 
 let sample = [
  "#00ffdc",
@@ -1808,7 +1805,7 @@ load(sample).sortByLightness('desc')
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L491">wrappers.d.ts:491</a></p>
 <hr />
 <h3 id="sortbyluminance">sortByLuminance</h3>
-<p>▸ <strong>sortByLuminance</strong>(<code class='rounded shadow shadow-gray-300 hljs' >order?</code>): <code>ColorArray</code></p>
+<p>▸ <strong>sortByLuminance</strong>(<code>order?</code>): <code>ColorArray</code></p>
 <p>Sorts colors in the bound collection according to the relative brightness as defined by WCAG.</p>
 <h4 id="parameters-🧮-34">Parameters 🧮</h4>
 <table>
@@ -1821,17 +1818,17 @@ load(sample).sortByLightness('desc')
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >order?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >"asc"</code> | <code>"desc"</code></td>
+<td style="text-align:left;"><code>order?</code></td>
+<td style="text-align:left;"><code>"asc"</code> | <code>"desc"</code></td>
 <td style="text-align:left;">The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-36">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></p>
-<p>The collection of sorted colors. If a plain <code class='rounded shadow shadow-gray-300 hljs' >object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { load } from "huetiful-js";
+<p><code>ColorArray</code></p>
+<p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { load } from "huetiful-js";
 let sample = [
  "#00ffdc",
  "#00ff78",
@@ -1860,10 +1857,10 @@ console.log(sortedDescending)
 <h4 id="defined-in-📝-36">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L554">wrappers.d.ts:554</a></p>
 <h1 id="class-color">Class: Color</h1>
-<p><a href="https://huetiful-js.com/wrappers">wrappers</a>.Color</p>
-<p>Creates a lazy chain wrapper over a single color token that has all the functions that take a <code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code> as their first argument.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { Color } from 'huetiful-js'
+<p><a href="https://huetiful-js.com/api/../modules/wrappers">wrappers</a>.Color</p>
+<p>Creates a lazy chain wrapper over a single color token that has all the functions that take a <code>ColorToken</code> as their first argument.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { Color } from 'huetiful-js'
 
 let wrapper = new Color('pink');
 
@@ -1873,35 +1870,35 @@ console.log(wrapper.color2hex());
 <h2 id="table-of-contents-📑-1">Table of contents 📑</h2>
 <h3 id="constructors-1">Constructors</h3>
 <ul>
-<li><a href="https://huetiful-js.com/wrappers.Color#constructor">constructor</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#constructor">constructor</a></li>
 </ul>
 <h3 id="methods-2">Methods</h3>
 <ul>
-<li><a href="https://huetiful-js.com/wrappers.Color#alpha">alpha</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#color2hex">color2hex</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#contrast">contrast</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#deficiency">deficiency</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#earthtone">earthtone</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#getchannel">getChannel</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#getcomplimentaryhue">getComplimentaryHue</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#gethuefamily">getHueFamily</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#hueshift">hueShift</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#isachromatic">isAchromatic</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#iscool">isCool</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#iswarm">isWarm</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#luminance">luminance</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#output">output</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#overtone">overtone</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#pairedscheme">pairedScheme</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#pastel">pastel</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#saturation">saturation</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#scheme">scheme</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#setchannel">setChannel</a></li>
-<li><a href="https://huetiful-js.com/wrappers.Color#via">via</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#alpha">alpha</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#color2hex">color2hex</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#contrast">contrast</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#deficiency">deficiency</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#earthtone">earthtone</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#getchannel">getChannel</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#getcomplimentaryhue">getComplimentaryHue</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#gethuefamily">getHueFamily</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#hueshift">hueShift</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#isachromatic">isAchromatic</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#iscool">isCool</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#iswarm">isWarm</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#luminance">luminance</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#output">output</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#overtone">overtone</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#pairedscheme">pairedScheme</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#pastel">pastel</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#saturation">saturation</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#scheme">scheme</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#setchannel">setChannel</a></li>
+<li><a href="https://huetiful-js.com/api/wrappers.Color#via">via</a></li>
 </ul>
 <h2 id="constructors-2">Constructors</h2>
 <h3 id="constructor">constructor</h3>
-<p>• <strong>new Color</strong>(<code class='rounded shadow shadow-gray-300 hljs' >c</code>, <code>options?</code>): <code>Color</code></p>
+<p>• <strong>new Color</strong>(<code>c</code>, <code>options?</code>): <code>Color</code></p>
 <h4 id="parameters-🧮-35">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1912,23 +1909,23 @@ console.log(wrapper.color2hex());
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >c</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>c</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >options?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#coloroptions"><code class='rounded shadow shadow-gray-300 hljs' >ColorOptions</code></a></td>
+<td style="text-align:left;"><code>options?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#coloroptions"><code>ColorOptions</code></a></td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-37">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >Color</code></p>
+<p><code>Color</code></p>
 <h4 id="defined-in-📝-37">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1042">wrappers.d.ts:1042</a></p>
 <h2 id="methods-3">Methods</h2>
 <h3 id="alpha">alpha</h3>
-<p>▸ <strong>alpha</strong>(<code class='rounded shadow shadow-gray-300 hljs' >amount?</code>): <code>number</code> | <code>Color</code></p>
-<p>Sets/Gets the opacity or <code class='rounded shadow shadow-gray-300 hljs' >alpha</code> channel of a color. If the <code>value</code> parameter is omitted it gets the bound color's <code>alpha</code> value.</p>
+<p>▸ <strong>alpha</strong>(<code>amount?</code>): <code>number</code> | <code>Color</code></p>
+<p>Sets/Gets the opacity or <code>alpha</code> channel of a color. If the <code>value</code> parameter is omitted it gets the bound color's <code>alpha</code> value.</p>
 <h4 id="parameters-🧮-36">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1939,16 +1936,16 @@ console.log(wrapper.color2hex());
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >amount?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
+<td style="text-align:left;"><code>amount?</code></td>
+<td style="text-align:left;"><code>string</code> | <code>number</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-38">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | <code>Color</code></p>
-<p>color The resulting color. Preserves the bound <code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code> type.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js';
+<p><code>number</code> | <code>Color</code></p>
+<p>color The resulting color. Preserves the bound <code>ColorToken</code> type.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js';
 
 // Getting the alpha
 console.log(color('#a1bd2f0d').alpha())
@@ -1965,16 +1962,16 @@ console.log(myColor)
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1064">wrappers.d.ts:1064</a></p>
 <hr />
 <h3 id="color2hex">color2hex</h3>
-<p>▸ <strong>color2hex</strong>(): <code class='rounded shadow shadow-gray-300 hljs' >string</code></p>
-<p>Returns the bound <code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code> as a hexadecimal string.</p>
+<p>▸ <strong>color2hex</strong>(): <code>string</code></p>
+<p>Returns the bound <code>ColorToken</code> as a hexadecimal string.</p>
 <h4 id="returns-🔙-39">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >string</code></p>
+<p><code>string</code></p>
 <h4 id="defined-in-📝-39">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1109">wrappers.d.ts:1109</a></p>
 <hr />
 <h3 id="contrast">contrast</h3>
-<p>▸ <strong>contrast</strong>(<code class='rounded shadow shadow-gray-300 hljs' >against</code>): <code>number</code></p>
-<p>Gets the contrast value between the bound and  comparison ( or <code class='rounded shadow shadow-gray-300 hljs' >against</code>) color.</p>
+<p>▸ <strong>contrast</strong>(<code>against</code>): <code>number</code></p>
+<p>Gets the contrast value between the bound and  comparison ( or <code>against</code>) color.</p>
 <h4 id="parameters-🧮-37">Parameters 🧮</h4>
 <table>
 <thead>
@@ -1986,17 +1983,17 @@ console.log(myColor)
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to use for comparison.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-40">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code></p>
+<p><code>number</code></p>
 <p>The contrast value between the two colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 console.log(color('pink').contrast('yellow'))
 // 1.4322318222624262
@@ -2005,8 +2002,8 @@ console.log(color('pink').contrast('yellow'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1221">wrappers.d.ts:1221</a></p>
 <hr />
 <h3 id="deficiency">deficiency</h3>
-<p>▸ <strong>deficiency</strong>(<code class='rounded shadow shadow-gray-300 hljs' >deficiencyType?</code>, <code>severity?</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a></p>
-<p>Returns the bound color as a simulation of the specified type of color vision deficiency with the deficiency filter's intensity determined by the <code class='rounded shadow shadow-gray-300 hljs' >severity</code> value.</p>
+<p>▸ <strong>deficiency</strong>(<code>deficiencyType?</code>, <code>severity?</code>): <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></p>
+<p>Returns the bound color as a simulation of the specified type of color vision deficiency with the deficiency filter's intensity determined by the <code>severity</code> value.</p>
 <h4 id="parameters-🧮-38">Parameters 🧮</h4>
 <table>
 <thead>
@@ -2018,22 +2015,22 @@ console.log(color('pink').contrast('yellow'))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >deficiencyType?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >"red"</code> | <code>"blue"</code> | <code>"green"</code> | <code>"monochromacy"</code></td>
-<td style="text-align:left;">The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' can't perceive <code class='rounded shadow shadow-gray-300 hljs' >'blue'</code> light properly. Default is <code>'red'</code> when the defeciency parameter is <code>undefined</code>.</td>
+<td style="text-align:left;"><code>deficiencyType?</code></td>
+<td style="text-align:left;"><code>"red"</code> | <code>"blue"</code> | <code>"green"</code> | <code>"monochromacy"</code></td>
+<td style="text-align:left;">The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' can't perceive <code>'blue'</code> light properly. Default is <code>'red'</code> when the defeciency parameter is <code>undefined</code>.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >severity?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+<td style="text-align:left;"><code>severity?</code></td>
+<td style="text-align:left;"><code>number</code></td>
 <td style="text-align:left;">The intensity of the filter in the range [0,1].</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-41">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></p>
-<p>The color as its simulated variant. Preserves the bound <code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code> type.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></p>
+<p>The color as its simulated variant. Preserves the bound <code>ColorToken</code> type.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 // Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
 // We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
@@ -2050,8 +2047,8 @@ console.log(protanopia)
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1405">wrappers.d.ts:1405</a></p>
 <hr />
 <h3 id="earthtone">earthtone</h3>
-<p>▸ <strong>earthtone</strong>(<code class='rounded shadow shadow-gray-300 hljs' >options?</code>): <a href="https://huetiful-js.com/wrappers.ColorArray"><code>ColorArray</code></a> | <code>Color</code></p>
-<p>Returns a spline interpolation between an <code class='rounded shadow shadow-gray-300 hljs' >earthtone</code> and the bound color. Call <code>output()</code> to get the results.</p>
+<p>▸ <strong>earthtone</strong>(<code>options?</code>): <a href="https://huetiful-js.com/api/wrappers.ColorArray"><code>ColorArray</code></a> | <code>Color</code></p>
+<p>Returns a spline interpolation between an <code>earthtone</code> and the bound color. Call <code>output()</code> to get the results.</p>
 <h4 id="parameters-🧮-39">Parameters 🧮</h4>
 <table>
 <thead>
@@ -2063,17 +2060,17 @@ console.log(protanopia)
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >options?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#earthtoneoptions"><code class='rounded shadow shadow-gray-300 hljs' >EarthtoneOptions</code></a></td>
+<td style="text-align:left;"><code>options?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#earthtoneoptions"><code>EarthtoneOptions</code></a></td>
 <td style="text-align:left;">Optional overrides for customizing interpolation and easing functions.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-42">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/wrappers.ColorArray"><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></a> | <code>Color</code></p>
-<p>The collection of colors resulting from the earthtone interpolation. Preserves the <code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code> type of the bound color.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><a href="https://huetiful-js.com/api/wrappers.ColorArray"><code>ColorArray</code></a> | <code>Color</code></p>
+<p>The collection of colors resulting from the earthtone interpolation. Preserves the <code>ColorToken</code> type of the bound color.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 let base = 'purple'
 
@@ -2102,7 +2099,7 @@ console.log(color(base).earthtone({ iterations:8 }).output())
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1207">wrappers.d.ts:1207</a></p>
 <hr />
 <h3 id="getchannel">getChannel</h3>
-<p>▸ <strong>getChannel</strong>(<code class='rounded shadow shadow-gray-300 hljs' >modeChannel</code>): <code>number</code></p>
+<p>▸ <strong>getChannel</strong>(<code>modeChannel</code>): <code>number</code></p>
 <p>Returns the specified channel value on the bound color token.</p>
 <h4 id="parameters-🧮-40">Parameters 🧮</h4>
 <table>
@@ -2114,16 +2111,16 @@ console.log(color(base).earthtone({ iterations:8 }).output())
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >modeChannel</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>modeChannel</code></td>
+<td style="text-align:left;"><code>string</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-43">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code></p>
+<p><code>number</code></p>
 <p>value The value of the queried channel.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 console.log(color('#a1bd2f').getChannel('rgb.g'))
 // 0.7411764705882353
@@ -2132,7 +2129,7 @@ console.log(color('#a1bd2f').getChannel('rgb.g'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1079">wrappers.d.ts:1079</a></p>
 <hr />
 <h3 id="getcomplimentaryhue">getComplimentaryHue</h3>
-<p>▸ <strong>getComplimentaryHue</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code>): <code>Color</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>hue</code>: <a href="https://huetiful-js.com/types#huefamily"><code>HueFamily</code></a> | <code>"gray"</code>  }</p>
+<p>▸ <strong>getComplimentaryHue</strong>(<code>colorObj?</code>): <code>Color</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>hue</code>: <a href="https://huetiful-js.com/api/../modules/types#huefamily"><code>HueFamily</code></a> | <code>"gray"</code>  }</p>
 <p>Returns the complementary hue of the bound color. The function may behave unexpectedly when you pass in an achromatic color.</p>
 <h4 id="parameters-🧮-41">Parameters 🧮</h4>
 <table>
@@ -2145,17 +2142,17 @@ console.log(color('#a1bd2f').getChannel('rgb.g'))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorObj?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
-<td style="text-align:left;">Optional boolean whether to return a custom object with the color <code class='rounded shadow shadow-gray-300 hljs' >name</code> and <code>hueFamily</code> as keys or just the result color. Default is <code>false</code>.</td>
+<td style="text-align:left;"><code>colorObj?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">Optional boolean whether to return a custom object with the color <code>name</code> and <code>hueFamily</code> as keys or just the result color. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-44">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >Color</code> | { <code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> ; <code>hue</code>: <a href="https://huetiful-js.com/types#huefamily"><code>HueFamily</code></a> | <code>"gray"</code>  }</p>
-<p>A custom object if <code class='rounded shadow shadow-gray-300 hljs' >colorObj</code> is <code>true</code> else the complimentary color. Preserves the bound <code>Colortoken</code> type.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from "huetiful-js";
+<p><code>Color</code> | { <code>color</code>: <a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a> ; <code>hue</code>: <a href="https://huetiful-js.com/api/../modules/types#huefamily"><code>HueFamily</code></a> | <code>"gray"</code>  }</p>
+<p>A custom object if <code>colorObj</code> is <code>true</code> else the complimentary color. Preserves the bound <code>Colortoken</code> type.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from "huetiful-js";
 
 console.log(color("pink").getComplimentaryHue(true))
 // { hue: 'blue-green', color: '#97dfd7ff' }
@@ -2164,13 +2161,13 @@ console.log(color("pink").getComplimentaryHue(true))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1169">wrappers.d.ts:1169</a></p>
 <hr />
 <h3 id="gethuefamily">getHueFamily</h3>
-<p>▸ <strong>getHueFamily</strong>(): <code class='rounded shadow shadow-gray-300 hljs' >string</code></p>
-<p>Returns the hue family of the bound color with the overtone included (if it has one). For achromatic colors it returns <code class='rounded shadow shadow-gray-300 hljs' >"gray"</code>.</p>
+<p>▸ <strong>getHueFamily</strong>(): <code>string</code></p>
+<p>Returns the hue family of the bound color with the overtone included (if it has one). For achromatic colors it returns <code>"gray"</code>.</p>
 <h4 id="returns-🔙-45">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >string</code></p>
-<p>The name of the hue family for example <code class='rounded shadow shadow-gray-300 hljs' >red</code> or <code>blue-green</code>.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><code>string</code></p>
+<p>The name of the hue family for example <code>red</code> or <code>blue-green</code>.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 console.log(color("#310000").getHueFamily())
 // red
@@ -2179,8 +2176,8 @@ console.log(color("#310000").getHueFamily())
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1439">wrappers.d.ts:1439</a></p>
 <hr />
 <h3 id="hueshift">hueShift</h3>
-<p>▸ <strong>hueShift</strong>(<code class='rounded shadow shadow-gray-300 hljs' >options?</code>): <a href="https://huetiful-js.com/wrappers.ColorArray"><code>ColorArray</code></a></p>
-<p>Returns a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down) from a single color. <code class='rounded shadow shadow-gray-300 hljs' >maxLightness</code> and <code>minLightness</code> values determine how light or dark our colour will be at either extreme. Call <code>output()</code> to get the result.</p>
+<p>▸ <strong>hueShift</strong>(<code>options?</code>): <a href="https://huetiful-js.com/api/wrappers.ColorArray"><code>ColorArray</code></a></p>
+<p>Returns a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down) from a single color. <code>maxLightness</code> and <code>minLightness</code> values determine how light or dark our colour will be at either extreme. Call <code>output()</code> to get the result.</p>
 <h4 id="parameters-🧮-42">Parameters 🧮</h4>
 <table>
 <thead>
@@ -2192,17 +2189,17 @@ console.log(color("#310000").getHueFamily())
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >options?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#hueshiftoptions"><code class='rounded shadow shadow-gray-300 hljs' >HueShiftOptions</code></a></td>
-<td style="text-align:left;">The optional overrides object to customize the <code class='rounded shadow shadow-gray-300 hljs' >HueShiftOptions</code> like easing function.</td>
+<td style="text-align:left;"><code>options?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#hueshiftoptions"><code>HueShiftOptions</code></a></td>
+<td style="text-align:left;">The optional overrides object to customize the <code>HueShiftOptions</code> like easing function.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-46">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/wrappers.ColorArray"><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></a></p>
-<p>An array of colors. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or <code class='rounded shadow shadow-gray-300 hljs' >(iterations * 2) + 1</code>. Preserves the passed in <code>ColorToken</code> type.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from "huetiful-js";
+<p><a href="https://huetiful-js.com/api/wrappers.ColorArray"><code>ColorArray</code></a></p>
+<p>An array of colors. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or <code>(iterations * 2) + 1</code>. Preserves the passed in <code>ColorToken</code> type.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from "huetiful-js";
 
 let hueShiftedPalette = color("#3e0000").hueShift({ iterations:1 });
 
@@ -2221,13 +2218,13 @@ console.log(hueShiftedPalette);
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1155">wrappers.d.ts:1155</a></p>
 <hr />
 <h3 id="isachromatic">isAchromatic</h3>
-<p>▸ <strong>isAchromatic</strong>(): <code class='rounded shadow shadow-gray-300 hljs' >boolean</code></p>
-<p>Returns <code class='rounded shadow shadow-gray-300 hljs' >true</code> if the bound color has hue or is grayscale else <code>false</code>.</p>
+<p>▸ <strong>isAchromatic</strong>(): <code>boolean</code></p>
+<p>Returns <code>true</code> if the bound color has hue or is grayscale else <code>false</code>.</p>
 <h4 id="returns-🔙-47">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></p>
+<p><code>boolean</code></p>
 <p>True if the color is achromatic else false.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from "huetiful-js";
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from "huetiful-js";
 import { formatHex8, interpolate, samples } from "culori"
 
 var test = c =&gt; color(c).isAchromatic()
@@ -2269,12 +2266,12 @@ console.log(grays.map(test));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1339">wrappers.d.ts:1339</a></p>
 <hr />
 <h3 id="iscool">isCool</h3>
-<p>▸ <strong>isCool</strong>(): <code class='rounded shadow shadow-gray-300 hljs' >boolean</code></p>
-<p>Returns <code class='rounded shadow shadow-gray-300 hljs' >true</code> if color the bound color can be roughly classified as a cool color else <code>false</code>.</p>
+<p>▸ <strong>isCool</strong>(): <code>boolean</code></p>
+<p>Returns <code>true</code> if color the bound color can be roughly classified as a cool color else <code>false</code>.</p>
 <h4 id="returns-🔙-48">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><code>boolean</code></p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 let sample = [
  "#00ffdc",
@@ -2289,12 +2286,12 @@ console.log(color(sample[2]).isCool());
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1383">wrappers.d.ts:1383</a></p>
 <hr />
 <h3 id="iswarm">isWarm</h3>
-<p>▸ <strong>isWarm</strong>(): <code class='rounded shadow shadow-gray-300 hljs' >boolean</code></p>
-<p>Returns <code class='rounded shadow shadow-gray-300 hljs' >true</code> if color the bound color can be roughly classified as a warm color else <code>false</code>.</p>
+<p>▸ <strong>isWarm</strong>(): <code>boolean</code></p>
+<p>Returns <code>true</code> if color the bound color can be roughly classified as a warm color else <code>false</code>.</p>
 <h4 id="returns-🔙-49">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><code>boolean</code></p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 let sample = [
  "#00ffdc",
@@ -2309,8 +2306,8 @@ console.log(color(sample[2]).isWarm());
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1360">wrappers.d.ts:1360</a></p>
 <hr />
 <h3 id="luminance">luminance</h3>
-<p>▸ <strong>luminance</strong>(<code class='rounded shadow shadow-gray-300 hljs' >amount?</code>): <code>number</code> | <code>Color</code></p>
-<p>Sets/Gets the <code class='rounded shadow shadow-gray-300 hljs' >luminance</code> value of the bound color.</p>
+<p>▸ <strong>luminance</strong>(<code>amount?</code>): <code>number</code> | <code>Color</code></p>
+<p>Sets/Gets the <code>luminance</code> value of the bound color.</p>
 <h4 id="parameters-🧮-43">Parameters 🧮</h4>
 <table>
 <thead>
@@ -2322,17 +2319,17 @@ console.log(color(sample[2]).isWarm());
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >amount?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
-<td style="text-align:left;">The <code class='rounded shadow shadow-gray-300 hljs' >luminance</code> value to set on the bound color.</td>
+<td style="text-align:left;"><code>amount?</code></td>
+<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;">The <code>luminance</code> value to set on the bound color.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-50">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code> | <code>Color</code></p>
-<p>The <code class='rounded shadow shadow-gray-300 hljs' >luminance</code> value if the method is called with no arguments else it returns a color with its <code>luminance</code>value mutated.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><code>number</code> | <code>Color</code></p>
+<p>The <code>luminance</code> value if the method is called with no arguments else it returns a color with its <code>luminance</code>value mutated.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 let myColor = 'green';
 console.log(color(myColor).luminance());
@@ -2359,12 +2356,12 @@ darkMode: '#1f2937'
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1253">wrappers.d.ts:1253</a></p>
 <hr />
 <h3 id="output-1">output</h3>
-<p>▸ <strong>output</strong>(): <code class='rounded shadow shadow-gray-300 hljs' >any</code></p>
+<p>▸ <strong>output</strong>(): <code>any</code></p>
 <p>Returns the final value from the chain.</p>
 <h4 id="returns-🔙-51">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >any</code></p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><code>any</code></p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 let myOutput = color(['rgb',200,34,65]).output()
 
@@ -2375,13 +2372,13 @@ console.log(myOutput)
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1267">wrappers.d.ts:1267</a></p>
 <hr />
 <h3 id="overtone">overtone</h3>
-<p>▸ <strong>overtone</strong>(): <code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>boolean</code></p>
+<p>▸ <strong>overtone</strong>(): <code>string</code> | <code>boolean</code></p>
 <p>Returns the hue which is biasing the passed in color.</p>
 <h4 id="returns-🔙-52">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>boolean</code></p>
-<p>The name of the overtone hue. If an achromatic color is passed in it return the string <code class='rounded shadow shadow-gray-300 hljs' >'gray'</code> otherwise if the color has no bias it returns false.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">console.log(color("fefefe").overtone())
+<p><code>string</code> | <code>boolean</code></p>
+<p>The name of the overtone hue. If an achromatic color is passed in it return the string <code>'gray'</code> otherwise if the color has no bias it returns false.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">console.log(color("fefefe").overtone())
 // 'gray'
 
 console.log(color("cyan").overtone())
@@ -2394,8 +2391,8 @@ console.log(color("blue").overtone())
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1425">wrappers.d.ts:1425</a></p>
 <hr />
 <h3 id="pairedscheme">pairedScheme</h3>
-<p>▸ <strong>pairedScheme</strong>(<code class='rounded shadow shadow-gray-300 hljs' >options?</code>): <a href="https://huetiful-js.com/wrappers.ColorArray"><code>ColorArray</code></a></p>
-<p>Returns a palette that contains a base color that is incremented by a <code class='rounded shadow shadow-gray-300 hljs' >hueStep</code> to get the final hue to pair with.The colors are interpolated via white or black. A negative <code>hueStep</code> will pick a color that is <code>n</code> degrees behind the base color. Call <code>output()</code> to get the final result.</p>
+<p>▸ <strong>pairedScheme</strong>(<code>options?</code>): <a href="https://huetiful-js.com/api/wrappers.ColorArray"><code>ColorArray</code></a></p>
+<p>Returns a palette that contains a base color that is incremented by a <code>hueStep</code> to get the final hue to pair with.The colors are interpolated via white or black. A negative <code>hueStep</code> will pick a color that is <code>n</code> degrees behind the base color. Call <code>output()</code> to get the final result.</p>
 <h4 id="parameters-🧮-44">Parameters 🧮</h4>
 <table>
 <thead>
@@ -2407,17 +2404,17 @@ console.log(color("blue").overtone())
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >options?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#pairedschemeoptions"><code class='rounded shadow shadow-gray-300 hljs' >PairedSchemeOptions</code></a></td>
+<td style="text-align:left;"><code>options?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#pairedschemeoptions"><code>PairedSchemeOptions</code></a></td>
 <td style="text-align:left;">The optional overrides object to customize per channel options like interpolation methods and channel fixups.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-53">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/wrappers.ColorArray"><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></a></p>
+<p><a href="https://huetiful-js.com/api/wrappers.ColorArray"><code>ColorArray</code></a></p>
 <p>An array containing the paired scheme.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 console.log(color("green").pairedScheme({hueStep:6,samples:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
@@ -2426,12 +2423,12 @@ console.log(color("green").pairedScheme({hueStep:6,samples:4,tone:'dark'}))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1134">wrappers.d.ts:1134</a></p>
 <hr />
 <h3 id="pastel">pastel</h3>
-<p>▸ <strong>pastel</strong>(): <code class='rounded shadow shadow-gray-300 hljs' >Color</code></p>
-<p>Returns a randomized pastel variant of the bound color token. Preserves the bound <code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code> type.</p>
+<p>▸ <strong>pastel</strong>(): <code>Color</code></p>
+<p>Returns a randomized pastel variant of the bound color token. Preserves the bound <code>ColorToken</code> type.</p>
 <h4 id="returns-🔙-54">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >Color</code></p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js';
+<p><code>Color</code></p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js';
 
 console.log(color("green").pastel())
 
@@ -2441,7 +2438,7 @@ console.log(color("green").pastel())
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1122">wrappers.d.ts:1122</a></p>
 <hr />
 <h3 id="saturation">saturation</h3>
-<p>▸ <strong>saturation</strong>(<code class='rounded shadow shadow-gray-300 hljs' >amount?</code>): <code>any</code></p>
+<p>▸ <strong>saturation</strong>(<code>amount?</code>): <code>any</code></p>
 <p>Sets/Gets the saturation value of the bound color.</p>
 <h4 id="parameters-🧮-45">Parameters 🧮</h4>
 <table>
@@ -2454,19 +2451,19 @@ console.log(color("green").pastel())
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >amount?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
-<td style="text-align:left;">The amount of <code class='rounded shadow shadow-gray-300 hljs' >saturation</code> to set on the bound color token. See also the supported string expressions in the docs.</td>
+<td style="text-align:left;"><code>amount?</code></td>
+<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;">The amount of <code>saturation</code> to set on the bound color token. See also the supported string expressions in the docs.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-55">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >any</code></p>
-<p>The <code class='rounded shadow shadow-gray-300 hljs' >saturation</code> value if the method is called with no arguments else it returns a color with its <code>saturation</code> value mutated.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >See</code></strong></p>
+<p><code>any</code></p>
+<p>The <code>saturation</code> value if the method is called with no arguments else it returns a color with its <code>saturation</code> value mutated.</p>
+<p><strong><code>See</code></strong></p>
 <p><a href="https://huetiful-js.com/basics/string-expressions">https://huetiful-js.com/basics/string-expressions</a></p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 let myColor = ['hsl',200,0.09,0.5]
 
@@ -2481,7 +2478,7 @@ console.log(color(myColor).saturation("*0.3"))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1289">wrappers.d.ts:1289</a></p>
 <hr />
 <h3 id="scheme">scheme</h3>
-<p>▸ <strong>scheme</strong>(<code class='rounded shadow shadow-gray-300 hljs' >schemeType</code>, <code>easingFunc?</code>): <a href="https://huetiful-js.com/wrappers.ColorArray"><code>ColorArray</code></a></p>
+<p>▸ <strong>scheme</strong>(<code>schemeType</code>, <code>easingFunc?</code>): <a href="https://huetiful-js.com/api/wrappers.ColorArray"><code>ColorArray</code></a></p>
 <p>Returns a randomised classic color scheme from the bound color.</p>
 <h4 id="parameters-🧮-46">Parameters 🧮</h4>
 <table>
@@ -2494,22 +2491,22 @@ console.log(color(myColor).saturation("*0.3"))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >schemeType</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >"analogous"</code> | <code>"triadic"</code> | <code>"tetradic"</code> | <code>"complementary"</code></td>
-<td style="text-align:left;">Any classic color scheme either <code class='rounded shadow shadow-gray-300 hljs' >"analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary"</code>.</td>
+<td style="text-align:left;"><code>schemeType</code></td>
+<td style="text-align:left;"><code>"analogous"</code> | <code>"triadic"</code> | <code>"tetradic"</code> | <code>"complementary"</code></td>
+<td style="text-align:left;">Any classic color scheme either <code>"analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary"</code>.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >easingFunc?</code></td>
-<td style="text-align:left;">(<code class='rounded shadow shadow-gray-300 hljs' >t</code>: <code>number</code>) =&gt; <code>number</code></td>
-<td style="text-align:left;">The easing function to apply to the palette. It's applied on the <code class='rounded shadow shadow-gray-300 hljs' >hue</code> channel.</td>
+<td style="text-align:left;"><code>easingFunc?</code></td>
+<td style="text-align:left;">(<code>t</code>: <code>number</code>) =&gt; <code>number</code></td>
+<td style="text-align:left;">The easing function to apply to the palette. It's applied on the <code>hue</code> channel.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-56">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/wrappers.ColorArray"><code class='rounded shadow shadow-gray-300 hljs' >ColorArray</code></a></p>
-<p>The collection of colors. Elements in the array depend on the number of sample colors in the targeted scheme. Preserves the type of the bound <code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code> as elements of the collection.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color  } from 'huetiful-js'
+<p><a href="https://huetiful-js.com/api/wrappers.ColorArray"><code>ColorArray</code></a></p>
+<p>The collection of colors. Elements in the array depend on the number of sample colors in the targeted scheme. Preserves the type of the bound <code>ColorToken</code> as elements of the collection.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color  } from 'huetiful-js'
 
 console.log(color("#a1bd2f").scheme("triadic"))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
@@ -2518,7 +2515,7 @@ console.log(color("#a1bd2f").scheme("triadic"))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1454">wrappers.d.ts:1454</a></p>
 <hr />
 <h3 id="setchannel">setChannel</h3>
-<p>▸ <strong>setChannel</strong>(<code class='rounded shadow shadow-gray-300 hljs' >modeChannel</code>, <code>value</code>): <code>Color</code></p>
+<p>▸ <strong>setChannel</strong>(<code>modeChannel</code>, <code>value</code>): <code>Color</code></p>
 <p>Sets the specified channel value on the bound color token.</p>
 <h4 id="parameters-🧮-47">Parameters 🧮</h4>
 <table>
@@ -2531,22 +2528,22 @@ console.log(color("#a1bd2f").scheme("triadic"))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >modeChannel</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>modeChannel</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >value</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>number</code></td>
-<td style="text-align:left;">The value to set on the queried channel. Also supports expressions as strings e.g <code class='rounded shadow shadow-gray-300 hljs' >"#fc23a1"</code> <code>"*0.5"</code></td>
+<td style="text-align:left;"><code>value</code></td>
+<td style="text-align:left;"><code>string</code> | <code>number</code></td>
+<td style="text-align:left;">The value to set on the queried channel. Also supports expressions as strings e.g <code>"#fc23a1"</code> <code>"*0.5"</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-57">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >Color</code></p>
-<p>The mutated color. Preserves the bound in <code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code> type.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color } from 'huetiful-js'
+<p><code>Color</code></p>
+<p>The mutated color. Preserves the bound in <code>ColorToken</code> type.</p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color } from 'huetiful-js'
 
 let myColor = color('green').setChannel('lch.h',10)
 
@@ -2557,8 +2554,8 @@ console.log(myColor.getChannel('lch.h'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1097">wrappers.d.ts:1097</a></p>
 <hr />
 <h3 id="via">via</h3>
-<p>▸ <strong>via</strong>(<code class='rounded shadow shadow-gray-300 hljs' >origin</code>, <code>t?</code>, <code>options?</code>): <code>string</code></p>
-<p>Interpolates the bound color via the <code class='rounded shadow shadow-gray-300 hljs' >origin</code> at the point <code>t</code>. Call <code>output()</code> to get the results.</p>
+<p>▸ <strong>via</strong>(<code>origin</code>, <code>t?</code>, <code>options?</code>): <code>string</code></p>
+<p>Interpolates the bound color via the <code>origin</code> at the point <code>t</code>. Call <code>output()</code> to get the results.</p>
 <h4 id="parameters-🧮-48">Parameters 🧮</h4>
 <table>
 <thead>
@@ -2570,25 +2567,25 @@ console.log(myColor.getChannel('lch.h'))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >origin</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>origin</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to interpolate via.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >t?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+<td style="text-align:left;"><code>t?</code></td>
+<td style="text-align:left;"><code>number</code></td>
 <td style="text-align:left;">The point in the interpolation to return. Expected value is in the range [0,1]</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >options?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#interpolatoroptions"><code class='rounded shadow shadow-gray-300 hljs' >InterpolatorOptions</code></a></td>
+<td style="text-align:left;"><code>options?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/../modules/types#interpolatoroptions"><code>InterpolatorOptions</code></a></td>
 <td style="text-align:left;">Overrides object to customize the easing and the interpolation methods /fixups.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-58">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >string</code></p>
-<p>The result of the interpolation. Preserves the bound <code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code> type.</p>
+<p><code>string</code></p>
+<p>The result of the interpolation. Preserves the bound <code>ColorToken</code> type.</p>
 <h4 id="defined-in-📝-58">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/wrappers.d.ts#L1105">wrappers.d.ts:1105</a></p>
 
@@ -2597,7 +2594,7 @@ console.log(myColor.getChannel('lch.h'))
 </div>
 <section class="flex justify-between">
     <div class="flex-col space-y-2">
-        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/utils"
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/api/utils"
             class='flex align-middle space-x-2 p-4' id="previous-button"><svg xmlns="http://www.w3.org/2000/svg"
                 width="22" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
@@ -2613,7 +2610,7 @@ console.log(myColor.getChannel('lch.h'))
 
 
     <div class="flex-col space-y-2">
-        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/utils" class='flex space-x-2 p-4'
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/api/utils" class='flex space-x-2 p-4'
             id="next-button"><span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
                     class="feather feather-chevron-right">
@@ -2628,7 +2625,7 @@ console.log(myColor.getChannel('lch.h'))
 
 
         <footer
-            class="bg-[url(assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
+            class="bg-[url(/assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
 
             <div class="flex-col">
                 <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
@@ -2707,9 +2704,11 @@ console.log(myColor.getChannel('lch.h'))
         </footer>
 
 
+        <script type="text/javascript" src='assets/vendor/htmx.js'></script>
+        <script type="text/javascript" src='assets/vendor/highlight.min.js'></script>
 
         <script type="text/javascript">hljs.highlightAll();</script>
-        <script src="https://huetiful-js.com/assets/js/main.js"></script>
+        <script src="https://huetiful-js.com/api//assets/js/main.js"></script>
     </body>
 
 </html>

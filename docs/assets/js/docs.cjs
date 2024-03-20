@@ -18,8 +18,7 @@ var { colorsNamed } = require('culori');
 var { readFileSync, lstatSync } = require('node:fs'),
   ge = require('github-emoji'),
   defaultClasses = {
-    blockquote: ' border-l-blue-400 bg-blue-200',
-    code: 'rounded-md shadow-md shadow-gray-300 hljs'
+    blockquote: ' border-l-blue-400 bg-blue-200'
   },
   injectClasses = Object.keys(defaultClasses).map((key) => ({
     type: 'output',
@@ -54,13 +53,13 @@ function isColorCollection(arg, cb) {
   return false;
 }
 
-function rel2absURL(baseUrl = `https://huetiful-js.com`) {
+function rel2absURL(baseUrl = `https://huetiful-js.com/api`) {
   return (html = '') => {
     var regex = /(src|href)="(?!http|https|ftp|mailto|data:)([^"]+)"/gi;
-
+    // https://huetiful-js.com/types#divergingscheme
     return html.replace(
       regex,
-      (_, attr, relUrl) => `${attr}="${new URL(relUrl, baseUrl)}"`
+      (_, attr, relUrl) => `${attr}="${baseUrl}/${relUrl}"`
     );
   };
 }
@@ -93,13 +92,10 @@ function generateDocs(source) {
 
   // Fixing links and extensions
 
-  return rel2absURL()(
-    $.makeHtml(current)
-      .replace(new RegExp('README.md', 'gm'), '')
-      .replace(new RegExp('modules.md', 'gm'), 'modules')
-      .replace(new RegExp('.md', 'gm'), '')
-      .replace(new RegExp(`modules/`, 'g'), './')
-  );
+  return $.makeHtml(current)
+    .replace(new RegExp('README.md', 'gm'), '')
+    .replace(new RegExp('modules.md', 'gm'), 'api')
+    .replace(new RegExp('.md', 'gm'), '');
 }
 // Loop through the markdown files for modules
 function buildDataObject(sourceModule) {

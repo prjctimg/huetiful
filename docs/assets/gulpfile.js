@@ -17,13 +17,18 @@ var PATH_TO_MD_FILES = './markdown';
 var moduleNames = readdirSync(PATH_TO_MD_FILES + '/modules', 'utf-8').map(
   (s) => s.split('.')[0]
 );
-var BASE_URL = `https://huetiful-js.com`;
+var BASE_URL = `https://huetiful-js.com/api`;
 
 export async function links() {
   moduleNames.map((srcFile) =>
     writeFileSync(
       `../www/api/${srcFile}/index.html`,
-      _.rel2absURL()(readFileSync(`../www/api/${srcFile}/index.html`, 'utf-8'))
+      _.rel2absURL()(
+        readFileSync(`../www/api/${srcFile}/index.html`, 'utf-8')
+      ).replace(
+        /(?:([^/]+)\/)?#[a-z0-9]/i,
+        `https://huetiful-js.com/api/$1/index.html$2`
+      )
     )
   );
 

@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/huetiful.css" />
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/github-markdown-light.css" />
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/atom-one-dark.css" />
-    <script defer type="text/javascript" src='assets/vendor/htmx.js></script>
-    <script defer type="text/javascript" src=' assets/vendor/highlight.min.js'></script>
-    <script defer src="https://huetiful-js.com/assets/vendor/typescript.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/huetiful.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/github-markdown-light.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/atom-one-dark.css" />
     <script>document.documentElement.classList.add('js')</script>
 
     
@@ -33,7 +30,7 @@
 
         </a>
 
-        <a hx-get="https://huetiful-js.com/api" hx-target="#swap-content"
+        <a hx-get="https://huetiful-js.com/api" hx-target="https://huetiful-js.com/api//index.html$2wap-content"
             class="inline-flex space-y-1 items-center font-medium text-base">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -128,17 +125,17 @@
 <h2 id="table-of-contents-📑">Table of contents 📑</h2>
 <h3 id="functions-🧰">Functions 🧰</h3>
 <ul>
-<li><a href="https://huetiful-js.com/colors#colordeficiency">colorDeficiency</a></li>
-<li><a href="https://huetiful-js.com/colors#diverging">diverging</a></li>
-<li><a href="https://huetiful-js.com/colors#getnearestcolor">getNearestColor</a></li>
-<li><a href="https://huetiful-js.com/colors#qualitative">qualitative</a></li>
-<li><a href="https://huetiful-js.com/colors#sequential">sequential</a></li>
-<li><a href="https://huetiful-js.com/colors#tailwindcolors">tailwindColors</a></li>
+<li><a href="https://huetiful-js.com/api/colors#colordeficiency">colorDeficiency</a></li>
+<li><a href="https://huetiful-js.com/api/colors#diverging">diverging</a></li>
+<li><a href="https://huetiful-js.com/api/colors#getnearestcolor">getNearestColor</a></li>
+<li><a href="https://huetiful-js.com/api/colors#qualitative">qualitative</a></li>
+<li><a href="https://huetiful-js.com/api/colors#sequential">sequential</a></li>
+<li><a href="https://huetiful-js.com/api/colors#tailwindcolors">tailwindColors</a></li>
 </ul>
 <h2 id="functions">Functions</h2>
 <h3 id="colordeficiency">colorDeficiency</h3>
-<p>▸ <strong>colorDeficiency</strong>(<code class='rounded shadow shadow-gray-300 hljs' >deficiencyType?</code>): (<code>color</code>: <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>, <code>severity?</code>: <code>number</code>) =&gt; <code>string</code></p>
-<p>Returns the color as a simulation of the passed in <code class='rounded shadow shadow-gray-300 hljs' >defeciencyType</code> of color vision deficiency with the deficiency filter's intensity determined by the <code>severity</code> value.</p>
+<p>▸ <strong>colorDeficiency</strong>(<code>deficiencyType?</code>): (<code>color</code>: <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>, <code>severity?</code>: <code>number</code>) =&gt; <code>string</code></p>
+<p>Returns the color as a simulation of the passed in <code>defeciencyType</code> of color vision deficiency with the deficiency filter's intensity determined by the <code>severity</code> value.</p>
 <h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
 <thead>
@@ -150,16 +147,16 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >deficiencyType?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >DeficiencyType</code></td>
-<td style="text-align:left;">The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is <code class='rounded shadow shadow-gray-300 hljs' >'red'</code> when the defeciency parameter is undefined or any falsy value.</td>
+<td style="text-align:left;"><code>deficiencyType?</code></td>
+<td style="text-align:left;"><code>DeficiencyType</code></td>
+<td style="text-align:left;">The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is <code>'red'</code> when the defeciency parameter is undefined or any falsy value.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >fn</code></p>
-<p>The color as its simulated variant. Preserves the <code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code> type of the pased in color.</p>
-<p>▸ (<code class='rounded shadow shadow-gray-300 hljs' >color</code>, <code>severity?</code>): <code>string</code></p>
+<p><code>fn</code></p>
+<p>The color as its simulated variant. Preserves the <code>ColorToken</code> type of the pased in color.</p>
+<p>▸ (<code>color</code>, <code>severity?</code>): <code>string</code></p>
 <h5 id="parameters-🧮-1">Parameters 🧮</h5>
 <table>
 <thead>
@@ -170,19 +167,19 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >color</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >severity?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+<td style="text-align:left;"><code>severity?</code></td>
+<td style="text-align:left;"><code>number</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="returns-🔙-1">Returns 🔙</h5>
-<p><code class='rounded shadow shadow-gray-300 hljs' >string</code></p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { colorDeficiency, color2hex } from 'huetiful-js'
+<p><code>string</code></p>
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { colorDeficiency, color2hex } from 'huetiful-js'
 
 // Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
 // We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
@@ -199,7 +196,7 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L51">colors.d.ts:51</a></p>
 <hr />
 <h3 id="diverging">diverging</h3>
-<p>▸ <strong>diverging</strong>(<code class='rounded shadow shadow-gray-300 hljs' >scheme</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>diverging</strong>(<code>scheme</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[]</p>
 <p>A wrapper function for ColorBrewer's map of diverging color schemes.</p>
 <h4 id="parameters-🧮-2">Parameters 🧮</h4>
 <table>
@@ -212,17 +209,17 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >scheme</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#divergingscheme"><code class='rounded shadow shadow-gray-300 hljs' >DivergingScheme</code></a></td>
+<td style="text-align:left;"><code>scheme</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#divergingscheme"><code>DivergingScheme</code></a></td>
 <td style="text-align:left;">The name of the scheme.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-2">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[]</p>
+<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[]</p>
 <p>An array of colors in hex represantation.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { diverging } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { diverging } from 'huetiful-js'
 
 console.log(diverging("Spectral"))
 //[
@@ -236,7 +233,7 @@ console.log(diverging("Spectral"))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L97">colors.d.ts:97</a></p>
 <hr />
 <h3 id="getnearestcolor">getNearestColor</h3>
-<p>▸ <strong>getNearestColor</strong>(<code class='rounded shadow shadow-gray-300 hljs' >collection</code>, <code>against</code>, <code>num?</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a> | <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
+<p>▸ <strong>getNearestColor</strong>(<code>collection</code>, <code>against</code>, <code>num?</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a> | <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>></p>
 <p>Returns the nearest color(s) in a collection against</p>
 <h4 id="parameters-🧮-3">Parameters 🧮</h4>
 <table>
@@ -249,27 +246,27 @@ console.log(diverging("Spectral"))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >collection</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[] | <code>"tailwind"</code></td>
+<td style="text-align:left;"><code>collection</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>"tailwind"</code></td>
 <td style="text-align:left;">The collection of colors to search for nearest colors</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>against</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to use for distance comparison.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >num?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
-<td style="text-align:left;">The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the <code class='rounded shadow shadow-gray-300 hljs' >differenceHyab</code> metric.</td>
+<td style="text-align:left;"><code>num?</code></td>
+<td style="text-align:left;"><code>number</code></td>
+<td style="text-align:left;">The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the <code>differenceHyab</code> metric.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-3">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a> | <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>></p>
+<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a> | <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>></p>
 <p>An cllection of colors.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">let cols = colors('all', '500')
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">let cols = colors('all', '500')
 
 console.log(getNearestColor(cols, 'blue', 3));
 // [ '#a855f7', '#8b5cf6', '#d946ef' ]
@@ -278,7 +275,7 @@ console.log(getNearestColor(cols, 'blue', 3));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L23">colors.d.ts:23</a></p>
 <hr />
 <h3 id="qualitative">qualitative</h3>
-<p>▸ <strong>qualitative</strong>(<code class='rounded shadow shadow-gray-300 hljs' >scheme</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>qualitative</strong>(<code>scheme</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[]</p>
 <p>A wrapper function for ColorBrewer's map of qualitative color schemes.</p>
 <h4 id="parameters-🧮-4">Parameters 🧮</h4>
 <table>
@@ -291,17 +288,17 @@ console.log(getNearestColor(cols, 'blue', 3));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >scheme</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#qualitativescheme"><code class='rounded shadow shadow-gray-300 hljs' >QualitativeScheme</code></a></td>
+<td style="text-align:left;"><code>scheme</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#qualitativescheme"><code>QualitativeScheme</code></a></td>
 <td style="text-align:left;">The name of the scheme</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-4">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[]</p>
+<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[]</p>
 <p>An array of colors in hex represantation.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { qualitative } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { qualitative } from 'huetiful-js'
 
 console.log(qualitative("Accent"))
 // [
@@ -315,7 +312,7 @@ console.log(qualitative("Accent"))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L117">colors.d.ts:117</a></p>
 <hr />
 <h3 id="sequential">sequential</h3>
-<p>▸ <strong>sequential</strong>(<code class='rounded shadow shadow-gray-300 hljs' >scheme</code>): <a href="https://huetiful-js.com/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>sequential</strong>(<code>scheme</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[]</p>
 <p>A wrapper function for ColorBrewer's map of sequential color schemes.</p>
 <h4 id="parameters-🧮-5">Parameters 🧮</h4>
 <table>
@@ -328,17 +325,17 @@ console.log(qualitative("Accent"))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >scheme</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#sequentialscheme"><code class='rounded shadow shadow-gray-300 hljs' >SequentialScheme</code></a></td>
+<td style="text-align:left;"><code>scheme</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#sequentialscheme"><code>SequentialScheme</code></a></td>
 <td style="text-align:left;">The name of the scheme</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-5">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a>[]</p>
+<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[]</p>
 <p>An array of colors in hex represantation.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { sequential } from 'huetiful-js
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { sequential } from 'huetiful-js
 
 console.log(sequential("OrRd"))
 
@@ -354,8 +351,8 @@ console.log(sequential("OrRd"))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L77">colors.d.ts:77</a></p>
 <hr />
 <h3 id="tailwindcolors">tailwindColors</h3>
-<p>▸ <strong>tailwindColors</strong>(<code class='rounded shadow shadow-gray-300 hljs' >shade</code>, <code>value?</code>): <code>string</code> | <code>string</code>[]</p>
-<p>Returns TailwindCSS color value(s) of the specified <code class='rounded shadow shadow-gray-300 hljs' >shade</code> from the default palette. If invoked with no parameters, it returns an array of colors from 100 to 900. If invoked with parameter will return the specified shade vale,</p>
+<p>▸ <strong>tailwindColors</strong>(<code>shade</code>, <code>value?</code>): <code>string</code> | <code>string</code>[]</p>
+<p>Returns TailwindCSS color value(s) of the specified <code>shade</code> from the default palette. If invoked with no parameters, it returns an array of colors from 100 to 900. If invoked with parameter will return the specified shade vale,</p>
 <h4 id="parameters-🧮-6">Parameters 🧮</h4>
 <table>
 <thead>
@@ -366,20 +363,20 @@ console.log(sequential("OrRd"))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >shade</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#tailwindcolorfamilies"><code class='rounded shadow shadow-gray-300 hljs' >TailwindColorFamilies</code></a> | <code>"all"</code></td>
+<td style="text-align:left;"><code>shade</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#tailwindcolorfamilies"><code>TailwindColorFamilies</code></a> | <code>"all"</code></td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >value?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#scalevalues"><code class='rounded shadow shadow-gray-300 hljs' >ScaleValues</code></a></td>
+<td style="text-align:left;"><code>value?</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#scalevalues"><code>ScaleValues</code></a></td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-6">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>string</code>[]</p>
+<p><code>string</code> | <code>string</code>[]</p>
 <p>color A hex string value or array of hex strings.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { tailwindColors } from "huetiful-js";
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { tailwindColors } from "huetiful-js";
 
 // We pass in red as the target hue.
 // It returns a function that can be called with an optional value parameter
@@ -407,7 +404,7 @@ console.log(red('900'));
 </div>
 <section class="flex justify-between">
     <div class="flex-col space-y-2">
-        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/accessibility"
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/api/accessibility"
             class='flex align-middle space-x-2 p-4' id="previous-button"><svg xmlns="http://www.w3.org/2000/svg"
                 width="22" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
@@ -423,7 +420,7 @@ console.log(red('900'));
 
 
     <div class="flex-col space-y-2">
-        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/colors" class='flex space-x-2 p-4'
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/api/colors" class='flex space-x-2 p-4'
             id="next-button"><span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
                     class="feather feather-chevron-right">
@@ -438,7 +435,7 @@ console.log(red('900'));
 
 
         <footer
-            class="bg-[url(assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
+            class="bg-[url(/assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
 
             <div class="flex-col">
                 <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
@@ -517,9 +514,11 @@ console.log(red('900'));
         </footer>
 
 
+        <script type="text/javascript" src='assets/vendor/htmx.js'></script>
+        <script type="text/javascript" src='assets/vendor/highlight.min.js'></script>
 
         <script type="text/javascript">hljs.highlightAll();</script>
-        <script src="https://huetiful-js.com/assets/js/main.js"></script>
+        <script src="https://huetiful-js.com/api//assets/js/main.js"></script>
     </body>
 
 </html>

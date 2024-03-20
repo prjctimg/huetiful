@@ -57,6 +57,4 @@
 function adaptive(color, theme = { light: '#fff', dark: '#000' }) {
   var min_c,
     par = 0.5;
-  
-  
 }

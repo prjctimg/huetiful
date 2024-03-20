@@ -5,8 +5,8 @@
   "main": "index.js",
   "description": "The documentation webapp for huetiful-js",
   "scripts": {
-    "deploy": "gulp xml && gulp assets && gulp rename && npm run css:build && gulp links && gulp clean",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "gulp xml && gulp assets && gulp rename && npm run css:build && gulp links && gulp clean ",
+    "deploy": "echo \"Error: no test specified\" && exit 1",
     "css:build": "npx tailwindcss -i ./css/_/index.css -o ../www/assets/css/huetiful.css ",
     "css:dev": "npx tailwindcss -i ./css/_/index.css -o ../www/assets/css/huetiful.css --watch"
   },

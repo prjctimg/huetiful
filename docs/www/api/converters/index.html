@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/huetiful.css" />
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/github-markdown-light.css" />
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/atom-one-dark.css" />
-    <script defer type="text/javascript" src='assets/vendor/htmx.js></script>
-    <script defer type="text/javascript" src=' assets/vendor/highlight.min.js'></script>
-    <script defer src="https://huetiful-js.com/assets/vendor/typescript.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/huetiful.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/github-markdown-light.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/atom-one-dark.css" />
     <script>document.documentElement.classList.add('js')</script>
 
     
@@ -33,7 +30,7 @@
 
         </a>
 
-        <a hx-get="https://huetiful-js.com/api" hx-target="#swap-content"
+        <a hx-get="https://huetiful-js.com/api" hx-target="https://huetiful-js.com/api//index.html$2wap-content"
             class="inline-flex space-y-1 items-center font-medium text-base">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -128,22 +125,22 @@
 <h2 id="table-of-contents-📑">Table of contents 📑</h2>
 <h3 id="functions-🧰">Functions 🧰</h3>
 <ul>
-<li><a href="https://huetiful-js.com/converters#color2hex">color2hex</a></li>
-<li><a href="https://huetiful-js.com/converters#color2num">color2num</a></li>
-<li><a href="https://huetiful-js.com/converters#color2tuple">color2tuple</a></li>
-<li><a href="https://huetiful-js.com/converters#num2color">num2color</a></li>
-<li><a href="https://huetiful-js.com/converters#temp2color">temp2color</a></li>
-<li><a href="https://huetiful-js.com/converters#tocie">toCIE</a></li>
-<li><a href="https://huetiful-js.com/converters#todin99">toDIN99</a></li>
-<li><a href="https://huetiful-js.com/converters#tojab">toJab</a></li>
-<li><a href="https://huetiful-js.com/converters#tojch">toJch</a></li>
-<li><a href="https://huetiful-js.com/converters#took">toOk</a></li>
-<li><a href="https://huetiful-js.com/converters#ucsconverter">ucsConverter</a></li>
+<li><a href="https://huetiful-js.com/api/converters#color2hex">color2hex</a></li>
+<li><a href="https://huetiful-js.com/api/converters#color2num">color2num</a></li>
+<li><a href="https://huetiful-js.com/api/converters#color2tuple">color2tuple</a></li>
+<li><a href="https://huetiful-js.com/api/converters#num2color">num2color</a></li>
+<li><a href="https://huetiful-js.com/api/converters#temp2color">temp2color</a></li>
+<li><a href="https://huetiful-js.com/api/converters#tocie">toCIE</a></li>
+<li><a href="https://huetiful-js.com/api/converters#todin99">toDIN99</a></li>
+<li><a href="https://huetiful-js.com/api/converters#tojab">toJab</a></li>
+<li><a href="https://huetiful-js.com/api/converters#tojch">toJch</a></li>
+<li><a href="https://huetiful-js.com/api/converters#took">toOk</a></li>
+<li><a href="https://huetiful-js.com/api/converters#ucsconverter">ucsConverter</a></li>
 </ul>
 <h2 id="functions">Functions</h2>
 <h3 id="color2hex">color2hex</h3>
-<p>▸ <strong>color2hex</strong>(<code class='rounded shadow shadow-gray-300 hljs' >color</code>): <code>string</code></p>
-<p>Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), any <code class='rounded shadow shadow-gray-300 hljs' >number</code> from 0 to 166,777,215 and arrays in the form of <code>[string,number,number,number,numer?]</code> the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.</p>
+<p>▸ <strong>color2hex</strong>(<code>color</code>): <code>string</code></p>
+<p>Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), any <code>number</code> from 0 to 166,777,215 and arrays in the form of <code>[string,number,number,number,numer?]</code> the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.</p>
 <h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
 <thead>
@@ -155,17 +152,17 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >color</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to convert to hexadecimal. Works on color objects and CSS named colors.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >string</code></p>
+<p><code>string</code></p>
 <p>A hexadecimal representation of the passed in color.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color2hex } from "huetiful-js";
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color2hex } from "huetiful-js";
 
 console.log(color2hex({ l: 50, c: 31, h: 100, alpha: 0.5, mode: "lch" }))
 // #7b794180
@@ -177,7 +174,7 @@ console.log(color2hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L75">converters.d.ts:75</a></p>
 <hr />
 <h3 id="color2num">color2num</h3>
-<p>▸ <strong>color2num</strong>(<code class='rounded shadow shadow-gray-300 hljs' >color</code>): <code>number</code></p>
+<p>▸ <strong>color2num</strong>(<code>color</code>): <code>number</code></p>
 <p>Returns the numerical equivalent of a color.</p>
 <h4 id="parameters-🧮-1">Parameters 🧮</h4>
 <table>
@@ -190,17 +187,17 @@ console.log(color2hex({ l: 50, c: 31, h: 100, mode: "lch" }))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >color</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/types#colortoken"><code class='rounded shadow shadow-gray-300 hljs' >ColorToken</code></a></td>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to convert to its numerical equivalent.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-1">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code></p>
+<p><code>number</code></p>
 <p>value The numerical value of the color from 0 to 16,777,215.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color2num } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color2num } from 'huetiful-js'
 
 console.log(color2num("b2c3f1"))
 // 11715569
@@ -209,7 +206,7 @@ console.log(color2num("b2c3f1"))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L104">converters.d.ts:104</a></p>
 <hr />
 <h3 id="color2tuple">color2tuple</h3>
-<p>▸ <strong>color2tuple</strong>(<code class='rounded shadow shadow-gray-300 hljs' >color</code>, <code>colorspace?</code>, <code>omitMode?</code>): <code>number</code>[] | [<code>string</code>, <code>number</code>, <code>number</code>, <code>number</code>, number?]</p>
+<p>▸ <strong>color2tuple</strong>(<code>color</code>, <code>colorspace?</code>, <code>omitMode?</code>): <code>number</code>[] | [<code>string</code>, <code>number</code>, <code>number</code>, <code>number</code>, number?]</p>
 <p>Returns an array of channel values in the mode color space. It does not mutate the values of the passed in color token.</p>
 <h4 id="parameters-🧮-2">Parameters 🧮</h4>
 <table>
@@ -222,27 +219,27 @@ console.log(color2num("b2c3f1"))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >color</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>object</code></td>
-<td style="text-align:left;">Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g <code class='rounded shadow shadow-gray-300 hljs' >num2color</code> if you want tonevrt the number to supported color token.</td>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><code>string</code> | <code>object</code></td>
+<td style="text-align:left;">Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g <code>num2color</code> if you want tonevrt the number to supported color token.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
-<td style="text-align:left;">The mode color space to return channel values for. You can omit this parameter if you pass in a color object with the <code class='rounded shadow shadow-gray-300 hljs' >mode</code> property.</td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The mode color space to return channel values for. You can omit this parameter if you pass in a color object with the <code>mode</code> property.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >omitMode?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >boolean</code></td>
-<td style="text-align:left;">optional boolean to exclude the mode from the final tuple. Default is <code class='rounded shadow shadow-gray-300 hljs' >false</code>.</td>
+<td style="text-align:left;"><code>omitMode?</code></td>
+<td style="text-align:left;"><code>boolean</code></td>
+<td style="text-align:left;">optional boolean to exclude the mode from the final tuple. Default is <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-2">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >number</code>[] | [<code>string</code>, <code>number</code>, <code>number</code>, <code>number</code>, number?]</p>
+<p><code>number</code>[] | [<code>string</code>, <code>number</code>, <code>number</code>, <code>number</code>, number?]</p>
 <p>An array of channel values with the colorspace as first element and the alpha channel as the fifth element in the array if its explicitly defined in the passed in color.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { color2tuple } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { color2tuple } from 'huetiful-js'
 
 let rgbColor = {
  r: 0.4,
@@ -259,8 +256,8 @@ console.log(color2tuple(rgbColor));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L145">converters.d.ts:145</a></p>
 <hr />
 <h3 id="num2color">num2color</h3>
-<p>▸ <strong>num2color</strong>(<code class='rounded shadow shadow-gray-300 hljs' >num</code>, <code>colorspace?</code>): <code>string</code> | <code>object</code></p>
-<p>Returns the color equivalent of any <code class='rounded shadow shadow-gray-300 hljs' >number</code> between 0 and 16,777,215 as a hexadecimal string or color object if the <code>colorspace</code> is specified.</p>
+<p>▸ <strong>num2color</strong>(<code>num</code>, <code>colorspace?</code>): <code>string</code> | <code>object</code></p>
+<p>Returns the color equivalent of any <code>number</code> between 0 and 16,777,215 as a hexadecimal string or color object if the <code>colorspace</code> is specified.</p>
 <h4 id="parameters-🧮-3">Parameters 🧮</h4>
 <table>
 <thead>
@@ -272,22 +269,22 @@ console.log(color2tuple(rgbColor));
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >num</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+<td style="text-align:left;"><code>num</code></td>
+<td style="text-align:left;"><code>number</code></td>
 <td style="text-align:left;">The number to convert.</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">-</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-3">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>object</code></p>
+<p><code>string</code> | <code>object</code></p>
 <p>color A color object or hex string.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { num2color } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { num2color } from 'huetiful-js'
 
 console.log(num2color(900))
 // #000384
@@ -296,8 +293,8 @@ console.log(num2color(900))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L88">converters.d.ts:88</a></p>
 <hr />
 <h3 id="temp2color">temp2color</h3>
-<p>▸ <strong>temp2color</strong>(<code class='rounded shadow shadow-gray-300 hljs' >kelvin</code>, <code>colorspace?</code>): <code>string</code> | <code>object</code></p>
-<p>Converts the temperature value (in Kelvins) to a color as a hexadecimal string else a color object in the mode <code class='rounded shadow shadow-gray-300 hljs' >colorspace</code>.</p>
+<p>▸ <strong>temp2color</strong>(<code>kelvin</code>, <code>colorspace?</code>): <code>string</code> | <code>object</code></p>
+<p>Converts the temperature value (in Kelvins) to a color as a hexadecimal string else a color object in the mode <code>colorspace</code>.</p>
 <h4 id="parameters-🧮-4">Parameters 🧮</h4>
 <table>
 <thead>
@@ -309,22 +306,22 @@ console.log(num2color(900))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >kelvin</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >number</code></td>
+<td style="text-align:left;"><code>kelvin</code></td>
+<td style="text-align:left;"><code>number</code></td>
 <td style="text-align:left;">The number of Kelvins. From 0 to 30,000 .</td>
 </tr>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
-<td style="text-align:left;">Optional parameter to return a color object in the mode <code class='rounded shadow shadow-gray-300 hljs' >colorspace</code> hexadecimal string. Default is <code>'rgb'</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">Optional parameter to return a color object in the mode <code>colorspace</code> hexadecimal string. Default is <code>'rgb'</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-4">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >string</code> | <code>object</code></p>
+<p><code>string</code> | <code>object</code></p>
 <p>color The color as a hexadecimal  or plain color object.</p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >Example</code></strong></p>
-<pre><code class='rounded shadow shadow-gray-300 hljs'  class="ts language-ts">import { temp2color } from 'huetiful-js'
+<p><strong><code>Example</code></strong></p>
+<pre><code class="ts language-ts">import { temp2color } from 'huetiful-js'
 
 console.log(temp2color(2542))
 // #ffa44a
@@ -333,7 +330,7 @@ console.log(temp2color(2542))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L118">converters.d.ts:118</a></p>
 <hr />
 <h3 id="tocie">toCIE</h3>
-<p>▸ <strong>toCIE</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
+<p>▸ <strong>toCIE</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
 <p>Returns the passed in color as a plain object in the specified CIE colorspace.</p>
 <h4 id="parameters-🧮-5">Parameters 🧮</h4>
 <table>
@@ -346,15 +343,15 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >"lch"</code> | <code>"lch65"</code> | <code>"lab"</code> | <code>"lab65"</code> | <code>"xyz50"</code> | <code>"xyz65"</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>"lch"</code> | <code>"lch65"</code> | <code>"lab"</code> | <code>"lab65"</code> | <code>"xyz50"</code> | <code>"xyz65"</code></td>
 <td style="text-align:left;">The CIE colorspace to use.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-5">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >fn</code></p>
-<p>▸ (<code class='rounded shadow shadow-gray-300 hljs' >color</code>): <code>object</code></p>
+<p><code>fn</code></p>
+<p>▸ (<code>color</code>): <code>object</code></p>
 <h5 id="parameters-🧮-6">Parameters 🧮</h5>
 <table>
 <thead>
@@ -365,20 +362,20 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >color</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><code>string</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="returns-🔙-6">Returns 🔙</h5>
-<p><code class='rounded shadow shadow-gray-300 hljs' >object</code></p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >See</code></strong></p>
+<p><code>object</code></p>
+<p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
 <h4 id="defined-in-📝-5">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L33">converters.d.ts:33</a></p>
 <hr />
 <h3 id="todin99">toDIN99</h3>
-<p>▸ <strong>toDIN99</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
+<p>▸ <strong>toDIN99</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
 <p>Returns the passed in color as a plain object in the specified DIN99 colorspace.</p>
 <h4 id="parameters-🧮-7">Parameters 🧮</h4>
 <table>
@@ -391,15 +388,15 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >"dlch"</code> | <code>"dlab"</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>"dlch"</code> | <code>"dlab"</code></td>
 <td style="text-align:left;">The DIN99 colorspace variant (either cartesian/dlab or polar/dlch) to use.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-7">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >fn</code></p>
-<p>▸ (<code class='rounded shadow shadow-gray-300 hljs' >color</code>): <code>object</code></p>
+<p><code>fn</code></p>
+<p>▸ (<code>color</code>): <code>object</code></p>
 <h5 id="parameters-🧮-8">Parameters 🧮</h5>
 <table>
 <thead>
@@ -410,20 +407,20 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >color</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><code>string</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="returns-🔙-8">Returns 🔙</h5>
-<p><code class='rounded shadow shadow-gray-300 hljs' >object</code></p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >See</code></strong></p>
+<p><code>object</code></p>
+<p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
 <h4 id="defined-in-📝-6">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L43">converters.d.ts:43</a></p>
 <hr />
 <h3 id="tojab">toJab</h3>
-<p>▸ <strong>toJab</strong>(<code class='rounded shadow shadow-gray-300 hljs' >color</code>): <code>object</code></p>
+<p>▸ <strong>toJab</strong>(<code>color</code>): <code>object</code></p>
 <p>Returns the passed in color as a plain object in the Jab colorspace.</p>
 <h4 id="parameters-🧮-9">Parameters 🧮</h4>
 <table>
@@ -436,21 +433,21 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >color</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
-<td style="text-align:left;">The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by <code class='rounded shadow shadow-gray-300 hljs' >color2hex</code> which extends supported color formats.</td>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by <code>color2hex</code> which extends supported color formats.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-9">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >object</code></p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >See</code></strong></p>
+<p><code>object</code></p>
+<p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For expected ranges and channels.</p>
 <h4 id="defined-in-📝-7">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L59">converters.d.ts:59</a></p>
 <hr />
 <h3 id="tojch">toJch</h3>
-<p>▸ <strong>toJch</strong>(<code class='rounded shadow shadow-gray-300 hljs' >color</code>): <code>object</code></p>
+<p>▸ <strong>toJch</strong>(<code>color</code>): <code>object</code></p>
 <p>Returns the passed in color as a plain object in the Jch colorspace.</p>
 <h4 id="parameters-🧮-10">Parameters 🧮</h4>
 <table>
@@ -463,21 +460,21 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >color</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
-<td style="text-align:left;">The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by <code class='rounded shadow shadow-gray-300 hljs' >color2hex</code> which extends supported color formats.</td>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><code>string</code></td>
+<td style="text-align:left;">The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by <code>color2hex</code> which extends supported color formats.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-10">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >object</code></p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >See</code></strong></p>
+<p><code>object</code></p>
+<p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a> For expected ranges and channels.</p>
 <h4 id="defined-in-📝-8">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L52">converters.d.ts:52</a></p>
 <hr />
 <h3 id="took">toOk</h3>
-<p>▸ <strong>toOk</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
+<p>▸ <strong>toOk</strong>(<code>colorspace?</code>): (<code>color</code>: <code>string</code>) =&gt; <code>object</code></p>
 <p>Returns the passed in color as a plain object in the specified Ok colorspace.</p>
 <h4 id="parameters-🧮-11">Parameters 🧮</h4>
 <table>
@@ -490,15 +487,15 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace?</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace?</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The Ok colorspace to use.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-11">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >fn</code></p>
-<p>▸ (<code class='rounded shadow shadow-gray-300 hljs' >color</code>): <code>object</code></p>
+<p><code>fn</code></p>
+<p>▸ (<code>color</code>): <code>object</code></p>
 <h5 id="parameters-🧮-12">Parameters 🧮</h5>
 <table>
 <thead>
@@ -509,20 +506,20 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >color</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>color</code></td>
+<td style="text-align:left;"><code>string</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="returns-🔙-12">Returns 🔙</h5>
-<p><code class='rounded shadow shadow-gray-300 hljs' >object</code></p>
-<p><strong><code class='rounded shadow shadow-gray-300 hljs' >See</code></strong></p>
+<p><code>object</code></p>
+<p><strong><code>See</code></strong></p>
 <p><a href="https://culorijs.org/color-spaces/">https://culorijs.org/color-spaces/</a></p>
 <h4 id="defined-in-📝-9">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L23">converters.d.ts:23</a></p>
 <hr />
 <h3 id="ucsconverter">ucsConverter</h3>
-<p>▸ <strong>ucsConverter</strong>(<code class='rounded shadow shadow-gray-300 hljs' >colorspace</code>): <code>ConvertFn</code></p>
+<p>▸ <strong>ucsConverter</strong>(<code>colorspace</code>): <code>ConvertFn</code></p>
 <p>Converter function with mode definitions for uniform color spaces. The function is curried to return a converter in the passed colospace.</p>
 <h4 id="parameters-🧮-13">Parameters 🧮</h4>
 <table>
@@ -535,14 +532,14 @@ console.log(temp2color(2542))
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >colorspace</code></td>
-<td style="text-align:left;"><code class='rounded shadow shadow-gray-300 hljs' >string</code></td>
+<td style="text-align:left;"><code>colorspace</code></td>
+<td style="text-align:left;"><code>string</code></td>
 <td style="text-align:left;">The mode converter to return.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-13">Returns 🔙</h4>
-<p><code class='rounded shadow shadow-gray-300 hljs' >ConvertFn</code></p>
+<p><code>ConvertFn</code></p>
 <p>The converter function in the mode colorspace.</p>
 <h4 id="defined-in-📝-10">Defined in 📝</h4>
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/converters.d.ts#L13">converters.d.ts:13</a></p>
@@ -552,7 +549,7 @@ console.log(temp2color(2542))
 </div>
 <section class="flex justify-between">
     <div class="flex-col space-y-2">
-        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/colors"
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/api/colors"
             class='flex align-middle space-x-2 p-4' id="previous-button"><svg xmlns="http://www.w3.org/2000/svg"
                 width="22" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
@@ -568,7 +565,7 @@ console.log(temp2color(2542))
 
 
     <div class="flex-col space-y-2">
-        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/colors" class='flex space-x-2 p-4'
+        <button hx-trigger="click" hx-target="#swap-view" hx-get="https://huetiful-js.com/api/colors" class='flex space-x-2 p-4'
             id="next-button"><span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
                     class="feather feather-chevron-right">
@@ -583,7 +580,7 @@ console.log(temp2color(2542))
 
 
         <footer
-            class="bg-[url(assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
+            class="bg-[url(/assets/img/night-sky-over-mountains.jpg)] bg-cover bg-no-repeat bg-center flex-inline flex-wrap p-4">
 
             <div class="flex-col">
                 <div class="flex items-end justify-end space-x-4 pt-8 " id="social-links">
@@ -662,9 +659,11 @@ console.log(temp2color(2542))
         </footer>
 
 
+        <script type="text/javascript" src='assets/vendor/htmx.js'></script>
+        <script type="text/javascript" src='assets/vendor/highlight.min.js'></script>
 
         <script type="text/javascript">hljs.highlightAll();</script>
-        <script src="https://huetiful-js.com/assets/js/main.js"></script>
+        <script src="https://huetiful-js.com/api//assets/js/main.js"></script>
     </body>
 
 </html>
