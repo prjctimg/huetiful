@@ -25,8 +25,6 @@ function setProgress() {
 
 window.addEventListener('scroll', setProgress);
 
-setProgress();
-
 /* Dark/light mode toggle */
 
 // var lightSwitches = document.querySelectorAll('.light-switch');
