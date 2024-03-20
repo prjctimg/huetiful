@@ -5,24 +5,23 @@
 [![npm minzipped size](https://img.shields.io/bundlephobia/minzip/huetiful-js?style=social)](https://bundlephobia.com/package/huetiful-js)
 [![twitter](https://img.shields.io/twitter/follow/deantarisai?style=social)](https://twitter.com/deantarisai)
 
-  <p align='center'>
-    <img alt="logo" title="sine_cos_rotation" src="./docs/assets/images/logo.png">
-  
-  </p>
-  
-<p align='center'> JavaScript library for color manipulation 🧪
+
+<div style='background:linear-gradient(to right bottom,#f97316,#ec4899,#3b82f6,#22c55e);width:100vw;height:50vh;'></div>
+  <h4 align='center' style='font-family:monospace;'>huetiful-js</h4>
+  <h3 style='color:#6b7280;font-weight:600;font-family:monospace' align='center'>Function oriented library <span style='color:black;'>for</span> <span style='color:#3b82f6;'>color</span> <span style='color:#ec4899;'>manipulation</span>🧪</h3>
+<p align='center'>
 <br>
 <br>
  <a href="https://huetiful-js.com">📜 Docs</a>
     ·
-    <a href="https://github.com/prjctimg/prjctimg/issues/new?template=---bug-report.md">🐞 Report Bug</a>
+    <a href="https://github.com/xml-wizard/huetiful/issues/new?template=---bug-report.md">🐞 Report Bug</a>
     ·
     <a href="https://github.com/xml-wizard/huetiful/issues/new?template=---feature-request.md">🍩 Request Feature</a>
     ·
     <a href="https://github.com/xml-wizard/huetiful/wiki">🧠 Wiki </a>
 </p>
 
-![huetiful-js logo](assets/images/logo.png)
+
 
 ## Table of contents
 
@@ -382,7 +381,7 @@ If you wish to explore more examples and reasoning behind this library, [you can
 
 This project is fully open source! Contributions of any kind are greatly appreciated! See🔍 the [CONTRIBUTING](./CONTRIBUTING.md) file for more information on how to get started.
 
-<img alt="logo" title="huetiful-js" src="./docs/assets/images/logo_v1.png">
+<img alt="logo" title="huetiful-js" src="./docs/assets/img/logo_v1.png">
 
 #### References 🔗
 
