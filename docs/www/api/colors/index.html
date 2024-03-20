@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/huetiful.css" />
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/github-markdown-light.css" />
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/atom-one-dark.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/huetiful.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/github-markdown-light.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/atom-one-dark.css" />
     <script>document.documentElement.classList.add('js')</script>
 
     
@@ -30,7 +30,7 @@
 
         </a>
 
-        <a hx-get="https://huetiful-js.com/api" hx-target="https://huetiful-js.com/api//index.html$2wap-content"
+        <a hx-get="https://huetiful-js.com/api" hx-target="#swap-content"
             class="inline-flex space-y-1 items-center font-medium text-base">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -125,16 +125,16 @@
 <h2 id="table-of-contents-📑">Table of contents 📑</h2>
 <h3 id="functions-🧰">Functions 🧰</h3>
 <ul>
-<li><a href="https://huetiful-js.com/api/colors#colordeficiency">colorDeficiency</a></li>
-<li><a href="https://huetiful-js.com/api/colors#diverging">diverging</a></li>
-<li><a href="https://huetiful-js.com/api/colors#getnearestcolor">getNearestColor</a></li>
-<li><a href="https://huetiful-js.com/api/colors#qualitative">qualitative</a></li>
-<li><a href="https://huetiful-js.com/api/colors#sequential">sequential</a></li>
-<li><a href="https://huetiful-js.com/api/colors#tailwindcolors">tailwindColors</a></li>
+<li><a href="https://huetiful-js.com/api/colors/index.html#colordeficiency">colorDeficiency</a></li>
+<li><a href="https://huetiful-js.com/api/colors/index.html#diverging">diverging</a></li>
+<li><a href="https://huetiful-js.com/api/colors/index.html#getnearestcolor">getNearestColor</a></li>
+<li><a href="https://huetiful-js.com/api/colors/index.html#qualitative">qualitative</a></li>
+<li><a href="https://huetiful-js.com/api/colors/index.html#sequential">sequential</a></li>
+<li><a href="https://huetiful-js.com/api/colors/index.html#tailwindcolors">tailwindColors</a></li>
 </ul>
 <h2 id="functions">Functions</h2>
 <h3 id="colordeficiency">colorDeficiency</h3>
-<p>▸ <strong>colorDeficiency</strong>(<code>deficiencyType?</code>): (<code>color</code>: <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>, <code>severity?</code>: <code>number</code>) =&gt; <code>string</code></p>
+<p>▸ <strong>colorDeficiency</strong>(<code>deficiencyType?</code>): (<code>color</code>: <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>, <code>severity?</code>: <code>number</code>) =&gt; <code>string</code></p>
 <p>Returns the color as a simulation of the passed in <code>defeciencyType</code> of color vision deficiency with the deficiency filter's intensity determined by the <code>severity</code> value.</p>
 <h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
@@ -168,7 +168,7 @@
 <tbody>
 <tr>
 <td style="text-align:left;"><code>color</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>severity?</code></td>
@@ -196,7 +196,7 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L51">colors.d.ts:51</a></p>
 <hr />
 <h3 id="diverging">diverging</h3>
-<p>▸ <strong>diverging</strong>(<code>scheme</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>diverging</strong>(<code>scheme</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[]</p>
 <p>A wrapper function for ColorBrewer's map of diverging color schemes.</p>
 <h4 id="parameters-🧮-2">Parameters 🧮</h4>
 <table>
@@ -210,13 +210,13 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 <tbody>
 <tr>
 <td style="text-align:left;"><code>scheme</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#divergingscheme"><code>DivergingScheme</code></a></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#divergingscheme"><code>DivergingScheme</code></a></td>
 <td style="text-align:left;">The name of the scheme.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-2">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[]</p>
 <p>An array of colors in hex represantation.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { diverging } from 'huetiful-js'
@@ -233,7 +233,7 @@ console.log(diverging("Spectral"))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L97">colors.d.ts:97</a></p>
 <hr />
 <h3 id="getnearestcolor">getNearestColor</h3>
-<p>▸ <strong>getNearestColor</strong>(<code>collection</code>, <code>against</code>, <code>num?</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a> | <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>></p>
+<p>▸ <strong>getNearestColor</strong>(<code>collection</code>, <code>against</code>, <code>num?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> | <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
 <p>Returns the nearest color(s) in a collection against</p>
 <h4 id="parameters-🧮-3">Parameters 🧮</h4>
 <table>
@@ -247,12 +247,12 @@ console.log(diverging("Spectral"))
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>"tailwind"</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>"tailwind"</code></td>
 <td style="text-align:left;">The collection of colors to search for nearest colors</td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to use for distance comparison.</td>
 </tr>
 <tr>
@@ -263,7 +263,7 @@ console.log(diverging("Spectral"))
 </tbody>
 </table>
 <h4 id="returns-🔙-3">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a> | <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>></p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a> | <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></p>
 <p>An cllection of colors.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">let cols = colors('all', '500')
@@ -275,7 +275,7 @@ console.log(getNearestColor(cols, 'blue', 3));
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L23">colors.d.ts:23</a></p>
 <hr />
 <h3 id="qualitative">qualitative</h3>
-<p>▸ <strong>qualitative</strong>(<code>scheme</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>qualitative</strong>(<code>scheme</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[]</p>
 <p>A wrapper function for ColorBrewer's map of qualitative color schemes.</p>
 <h4 id="parameters-🧮-4">Parameters 🧮</h4>
 <table>
@@ -289,13 +289,13 @@ console.log(getNearestColor(cols, 'blue', 3));
 <tbody>
 <tr>
 <td style="text-align:left;"><code>scheme</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#qualitativescheme"><code>QualitativeScheme</code></a></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#qualitativescheme"><code>QualitativeScheme</code></a></td>
 <td style="text-align:left;">The name of the scheme</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-4">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[]</p>
 <p>An array of colors in hex represantation.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { qualitative } from 'huetiful-js'
@@ -312,7 +312,7 @@ console.log(qualitative("Accent"))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/colors.d.ts#L117">colors.d.ts:117</a></p>
 <hr />
 <h3 id="sequential">sequential</h3>
-<p>▸ <strong>sequential</strong>(<code>scheme</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p>▸ <strong>sequential</strong>(<code>scheme</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[]</p>
 <p>A wrapper function for ColorBrewer's map of sequential color schemes.</p>
 <h4 id="parameters-🧮-5">Parameters 🧮</h4>
 <table>
@@ -326,13 +326,13 @@ console.log(qualitative("Accent"))
 <tbody>
 <tr>
 <td style="text-align:left;"><code>scheme</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#sequentialscheme"><code>SequentialScheme</code></a></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#sequentialscheme"><code>SequentialScheme</code></a></td>
 <td style="text-align:left;">The name of the scheme</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-5">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[]</p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[]</p>
 <p>An array of colors in hex represantation.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { sequential } from 'huetiful-js
@@ -364,11 +364,11 @@ console.log(sequential("OrRd"))
 <tbody>
 <tr>
 <td style="text-align:left;"><code>shade</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#tailwindcolorfamilies"><code>TailwindColorFamilies</code></a> | <code>"all"</code></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#tailwindcolorfamilies"><code>TailwindColorFamilies</code></a> | <code>"all"</code></td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>value?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#scalevalues"><code>ScaleValues</code></a></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#scalevalues"><code>ScaleValues</code></a></td>
 </tr>
 </tbody>
 </table>
@@ -518,7 +518,7 @@ console.log(red('900'));
         <script type="text/javascript" src='assets/vendor/highlight.min.js'></script>
 
         <script type="text/javascript">hljs.highlightAll();</script>
-        <script src="https://huetiful-js.com/api//assets/js/main.js"></script>
+        <script src="https://huetiful-js.com/assets/js/main.js"></script>
     </body>
 
 </html>

@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/huetiful.css" />
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/github-markdown-light.css" />
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/api//assets/css/atom-one-dark.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/huetiful.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/github-markdown-light.css" />
+    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/atom-one-dark.css" />
     <script>document.documentElement.classList.add('js')</script>
 
     
@@ -30,7 +30,7 @@
 
         </a>
 
-        <a hx-get="https://huetiful-js.com/api" hx-target="https://huetiful-js.com/api//index.html$2wap-content"
+        <a hx-get="https://huetiful-js.com/api" hx-target="#swap-content"
             class="inline-flex space-y-1 items-center font-medium text-base">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -125,16 +125,16 @@
 <h2 id="table-of-contents-📑">Table of contents 📑</h2>
 <h3 id="functions-🧰">Functions 🧰</h3>
 <ul>
-<li><a href="https://huetiful-js.com/api/sortBy#sortbychroma">sortByChroma</a></li>
-<li><a href="https://huetiful-js.com/api/sortBy#sortbycontrast">sortByContrast</a></li>
-<li><a href="https://huetiful-js.com/api/sortBy#sortbydistance">sortByDistance</a></li>
-<li><a href="https://huetiful-js.com/api/sortBy#sortbyhue">sortByHue</a></li>
-<li><a href="https://huetiful-js.com/api/sortBy#sortbylightness">sortByLightness</a></li>
-<li><a href="https://huetiful-js.com/api/sortBy#sortbyluminance">sortByLuminance</a></li>
+<li><a href="https://huetiful-js.com/api/sortBy/index.html#sortbychroma">sortByChroma</a></li>
+<li><a href="https://huetiful-js.com/api/sortBy/index.html#sortbycontrast">sortByContrast</a></li>
+<li><a href="https://huetiful-js.com/api/sortBy/index.html#sortbydistance">sortByDistance</a></li>
+<li><a href="https://huetiful-js.com/api/sortBy/index.html#sortbyhue">sortByHue</a></li>
+<li><a href="https://huetiful-js.com/api/sortBy/index.html#sortbylightness">sortByLightness</a></li>
+<li><a href="https://huetiful-js.com/api/sortBy/index.html#sortbyluminance">sortByLuminance</a></li>
 </ul>
 <h2 id="functions">Functions</h2>
 <h3 id="sortbychroma">sortByChroma</h3>
-<p>▸ <strong>sortByChroma</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>▸ <strong>sortByChroma</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to the intensity of their <code>chroma</code> in the specified <code>colorspace</code>.</p>
 <h4 id="parameters-🧮">Parameters 🧮</h4>
 <table>
@@ -148,7 +148,7 @@
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The <code>collection</code> of colors to sort.</td>
 </tr>
 <tr>
@@ -164,7 +164,7 @@
 </tbody>
 </table>
 <h4 id="returns-🔙">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { sortByChroma } from "huetiful-js";
@@ -209,7 +209,7 @@ console.log(sortedDescending)
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/sortBy.d.ts#L61">sortBy.d.ts:61</a></p>
 <hr />
 <h3 id="sortbycontrast">sortByContrast</h3>
-<p>▸ <strong>sortByContrast</strong>(<code>collection</code>, <code>against</code>, <code>order?</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>▸ <strong>sortByContrast</strong>(<code>collection</code>, <code>against</code>, <code>order?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their contrast value as defined by WCAG. The contrast is tested <code>against</code> a comparison color.</p>
 <h4 id="parameters-🧮-1">Parameters 🧮</h4>
 <table>
@@ -223,12 +223,12 @@ console.log(sortedDescending)
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The <code>collection</code> of colors to sort.</td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 <tr>
@@ -239,7 +239,7 @@ console.log(sortedDescending)
 </tbody>
 </table>
 <h4 id="returns-🔙-1">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { sortByContrast } from 'huetiful-js'
@@ -255,7 +255,7 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/sortBy.d.ts#L240">sortBy.d.ts:240</a></p>
 <hr />
 <h3 id="sortbydistance">sortByDistance</h3>
-<p>▸ <strong>sortByDistance</strong>(<code>collection</code>, <code>against</code>, <code>order?</code>, <code>options?</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>▸ <strong>sortByDistance</strong>(<code>collection</code>, <code>against</code>, <code>order?</code>, <code>options?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their distance. The distance factor is determined by the colorspace used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the collection.</p>
 <h4 id="parameters-🧮-2">Parameters 🧮</h4>
 <table>
@@ -269,12 +269,12 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The <code>collection</code> of colors to sort..</td>
 </tr>
 <tr>
 <td style="text-align:left;"><code>against</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a></td>
 <td style="text-align:left;">The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.</td>
 </tr>
 <tr>
@@ -284,13 +284,13 @@ console.log(sortByContrast(sample, 'yellow', 'desc'))
 </tr>
 <tr>
 <td style="text-align:left;"><code>options?</code></td>
-<td style="text-align:left;"><a href="https://huetiful-js.com/api/types#colordistanceoptions"><code>ColorDistanceOptions</code></a></td>
+<td style="text-align:left;"><a href="https://huetiful-js.com/api/types/index.html#colordistanceoptions"><code>ColorDistanceOptions</code></a></td>
 <td style="text-align:left;">-</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns-🔙-2">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { sortByDistance } from 'huetiful-js'
@@ -311,7 +311,7 @@ console.log(sortByDistance(sample, 'yellow', 'asc'))
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/sortBy.d.ts#L267">sortBy.d.ts:267</a></p>
 <hr />
 <h3 id="sortbyhue">sortByHue</h3>
-<p>▸ <strong>sortByHue</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>▸ <strong>sortByHue</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their hue angle values. It works with any <code>colorspace</code> with a hue channel.</p>
 <h4 id="parameters-🧮-3">Parameters 🧮</h4>
 <table>
@@ -325,7 +325,7 @@ console.log(sortByDistance(sample, 'yellow', 'asc'))
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The <code>collection</code> of colors to sort. Achromatic colors are not supported because when displayed on the screen, the colors would be grayscale (so visually, there's no sign of hue). This behaviour is because the <code>hue</code> channel is dependant on the <code>lightness</code> and <code>saturation / chroma</code> channels . For example, a falsy value like <code>0</code> or <code>undefined</code> turns the color grayscale whilst lightness at both extremes renders a color totally white (max) or black (min).</td>
 </tr>
 <tr>
@@ -341,7 +341,7 @@ console.log(sortByDistance(sample, 'yellow', 'asc'))
 </tbody>
 </table>
 <h4 id="returns-🔙-3">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">let sample = [
@@ -384,7 +384,7 @@ console.log(sortedDescending)
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/sortBy.d.ts#L217">sortBy.d.ts:217</a></p>
 <hr />
 <h3 id="sortbylightness">sortByLightness</h3>
-<p>▸ <strong>sortByLightness</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>▸ <strong>sortByLightness</strong>(<code>collection</code>, <code>order?</code>, <code>colorspace?</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their lightness.</p>
 <h4 id="parameters-🧮-4">Parameters 🧮</h4>
 <table>
@@ -398,7 +398,7 @@ console.log(sortedDescending)
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The <code>collection</code> of colors to sort.</td>
 </tr>
 <tr>
@@ -414,7 +414,7 @@ console.log(sortedDescending)
 </tbody>
 </table>
 <h4 id="returns-🔙-4">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { sortByLightness } from "huetiful-js";
@@ -459,7 +459,7 @@ sortByLightness(sample,'desc')
 <p><a href="https://github.com/prjctimg/huetiful/blob/12f39ea/types/sortBy.d.ts#L166">sortBy.d.ts:166</a></p>
 <hr />
 <h3 id="sortbyluminance">sortByLuminance</h3>
-<p>▸ <strong>sortByLuminance</strong>(<code>collection</code>, <code>order</code>): <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p>▸ <strong>sortByLuminance</strong>(<code>collection</code>, <code>order</code>): <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>Sorts colors according to their relative brightness as defined by the WCAG3 definition.</p>
 <h4 id="parameters-🧮-5">Parameters 🧮</h4>
 <table>
@@ -473,7 +473,7 @@ sortByLightness(sample,'desc')
 <tbody>
 <tr>
 <td style="text-align:left;"><code>collection</code></td>
-<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>></td>
+<td style="text-align:left;"><code>object</code> | <code>ArrayLike</code>\&lt;<a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>></td>
 <td style="text-align:left;">The <code>collection</code> of colors to sort.</td>
 </tr>
 <tr>
@@ -484,7 +484,7 @@ sortByLightness(sample,'desc')
 </tbody>
 </table>
 <h4 id="returns-🔙-5">Returns 🔙</h4>
-<p><a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
+<p><a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>[] | <code>Map</code>\&lt;<code>any</code>, <a href="https://huetiful-js.com/api/types/index.html#colortoken"><code>ColorToken</code></a>> | <code>object</code></p>
 <p>The collection of sorted colors. If a plain <code>object</code> or <code>Map</code> is used as a collection it is worked with and returned as is. Plain objects are returned as <code>Map</code> objects because they remember insertion order. <code>ArrayLike</code> objects are returned as plain arrays.</p>
 <p><strong><code>Example</code></strong></p>
 <pre><code class="ts language-ts">import { sortByLuminance } from "huetiful-js";
@@ -646,7 +646,7 @@ console.log(sortedDescending)
         <script type="text/javascript" src='assets/vendor/highlight.min.js'></script>
 
         <script type="text/javascript">hljs.highlightAll();</script>
-        <script src="https://huetiful-js.com/api//assets/js/main.js"></script>
+        <script src="https://huetiful-js.com/assets/js/main.js"></script>
     </body>
 
 </html>

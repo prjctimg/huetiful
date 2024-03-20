@@ -53,13 +53,28 @@ function isColorCollection(arg, cb) {
   return false;
 }
 
+function rel2absURLAlt(baseUrl = `https://huetiful-js.com/api`) {
+  return (html = '') => {
+    var regex = /(src|href)="(?!http|https|ftp|mailto|data:)([^"]+)"/gi;
+
+    // https://huetiful-js.com/types#divergingscheme
+    return html.replace(
+      regex,
+      (_, attr, relUrl) =>
+        `${attr}="${baseUrl}/${relUrl.split('#')[0]}/index.html${
+          relUrl.split('#')[1] ? `#${relUrl.split('#')[1]}` : ''
+        }"`
+    );
+  };
+}
+
 function rel2absURL(baseUrl = `https://huetiful-js.com/api`) {
   return (html = '') => {
     var regex = /(src|href)="(?!http|https|ftp|mailto|data:)([^"]+)"/gi;
     // https://huetiful-js.com/types#divergingscheme
     return html.replace(
       regex,
-      (_, attr, relUrl) => `${attr}="${baseUrl}/${relUrl}"`
+      (_, attr, relUrl) => `${attr}="${new URL(relUrl, baseUrl)}"`
     );
   };
 }
@@ -69,7 +84,7 @@ function rel2absURL(baseUrl = `https://huetiful-js.com/api`) {
 // const injectMarkdownInHtmlComment = (data) =>
 //   `<!-- DOC_START -->\n${data}\n<!-- DOC_END -->`;
 
-function generateDocs(source) {
+function generateDocs(source, cb = null) {
   var [current, markdownHeadingEmojiMap] = [
     readFileSync(source, 'utf-8'),
     {
@@ -92,13 +107,20 @@ function generateDocs(source) {
 
   // Fixing links and extensions
 
-  return $.makeHtml(current)
-    .replace(new RegExp('README.md', 'gm'), '')
-    .replace(new RegExp('modules.md', 'gm'), 'api')
-    .replace(new RegExp('.md', 'gm'), '');
+  return !cb
+    ? $.makeHtml(current)
+        .replace(new RegExp('README.md', 'gm'), '')
+        .replace(new RegExp('modules.md', 'gm'), 'api')
+        .replace(new RegExp('.md', 'gm'), '')
+    : cb(
+        $.makeHtml(current)
+          .replace(new RegExp('README.md', 'gm'), '')
+          .replace(new RegExp('modules.md', 'gm'), 'api')
+          .replace(new RegExp('.md', 'gm'), '')
+      );
 }
 // Loop through the markdown files for modules
-function buildDataObject(sourceModule) {
+function buildDataObject(sourceModule, markupTransform = null) {
   var time = new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
     month: 'short',
@@ -112,9 +134,11 @@ function buildDataObject(sourceModule) {
 
   return {
     title: `${sourceModule}`,
-    mainContent: generateDocs(
-      PATH_TO_MARKDOWN_FILES + '/' + sourceModule + '.md'
-    ),
+    mainContent: !markupTransform
+      ? generateDocs(PATH_TO_MARKDOWN_FILES + '/' + sourceModule + '.md')
+      : markupTransform(
+          generateDocs(PATH_TO_MARKDOWN_FILES + '/' + sourceModule + '.md')
+        ),
     lastUpdated: time,
     srcFile: cb('src', sourceModule, 'js'),
     specFile: cb('spec', sourceModule, 'spec.js'),
@@ -126,6 +150,7 @@ function buildDataObject(sourceModule) {
 module.exports = {
   buildDataObject,
   rel2absURL,
+  rel2absURLAlt,
   isColorCollection,
   generateDocs
 };

@@ -23,12 +23,7 @@ export async function links() {
   moduleNames.map((srcFile) =>
     writeFileSync(
       `../www/api/${srcFile}/index.html`,
-      _.rel2absURL()(
-        readFileSync(`../www/api/${srcFile}/index.html`, 'utf-8')
-      ).replace(
-        /(?:([^/]+)\/)?#[a-z0-9]/i,
-        `https://huetiful-js.com/api/$1/index.html$2`
-      )
+      _.rel2absURL()(readFileSync(`../www/api/${srcFile}/index.html`, 'utf-8'))
     )
   );
 
@@ -42,7 +37,7 @@ export async function xml() {
     return (env) => {
       env.addGlobal('page', extra);
 
-      env.addGlobal('data', _.buildDataObject(source));
+      env.addGlobal('data', _.buildDataObject(source, _.rel2absURLAlt()));
     };
   }
   function demoDocsEnv(spec) {
