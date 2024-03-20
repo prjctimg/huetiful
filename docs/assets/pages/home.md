@@ -1,5 +1,5 @@
-<section class="flex-col w-full bg-[url(assets/img/night-sky-over-mountains.jpg)] ">
-<img src='../img/starry-night-over-lake.jpg'>
+<section class="flex-col w-full ">
+<div class='bg-hero-home bg-cover bg-no-repeat bg-center '/>
   <h1 class="font-black m-4 text-center text-2xl"><span class="text-sky-500">Function oriented</span> library for color
     manipulation 🧪
   </h1>

@@ -19,18 +19,18 @@ var moduleNames = readdirSync(PATH_TO_MD_FILES + '/modules', 'utf-8').map(
 );
 var BASE_URL = `https://huetiful-js.com/api`;
 
-export async function links() {
-  moduleNames.map((srcFile) =>
-    writeFileSync(
-      `../www/api/${srcFile}/index.html`,
-      _.rel2absURL()(readFileSync(`../www/api/${srcFile}/index.html`, 'utf-8'))
-    )
-  );
+// export async function links() {
+//   moduleNames.map((srcFile) =>
+//     writeFileSync(
+//       `../www/api/${srcFile}/index.html`,
+//       _.rel2absURL()(readFileSync(`../www/api/${srcFile}/index.html`, 'utf-8'))
+//     )
+//   );
 
-  ['../www/index.html', '../www/demo.html', '../www/api/index.html'].map((f) =>
-    writeFileSync(f, _.rel2absURL()(readFileSync(f, 'utf-8')))
-  );
-}
+//   ['../www/index.html', '../www/demo.html', '../www/api/index.html'].map((f) =>
+//     writeFileSync(f, _.rel2absURL()(readFileSync(f, 'utf-8')))
+//   );
+// }
 
 export async function xml() {
   function ApiDocsEnv(source, extra) {
@@ -63,18 +63,18 @@ export async function xml() {
           path: ['./xml/'],
           manageEnv: ApiDocsEnv(srcFile, {
             previous: {
-              href: idx > 0 ? `${BASE_URL}/${moduleNames[--idx]}` : BASE_URL,
+              href: idx > 0 ? `/api/${moduleNames[--idx]}` : '/index.html',
               title: idx > 0 ? moduleNames[--idx] : `Return to home page`
             },
             next: {
               href:
                 idx < moduleNames.length
-                  ? `${BASE_URL}/${moduleNames[++idx]}`
-                  : `${BASE_URL}/api`,
+                  ? `/api/${moduleNames[++idx]}`
+                  : `/api`,
               title:
                 idx < moduleNames.length
                   ? moduleNames[++idx]
-                  : `Return to API home page`
+                  : `Return to home page`
             }
           }),
 
@@ -179,4 +179,4 @@ export const assets = series(css, js, fonts, img);
 //export const clean = clean;
 export const rename = renameFiles;
 export const dev = series(xml, assets, watchFiles);
-export const deploy = series(xml, assets, links);
+export const deploy = series(xml, assets);

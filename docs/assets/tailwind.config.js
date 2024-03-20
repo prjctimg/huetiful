@@ -46,6 +46,7 @@ export default {
     backdropSepia: ({ theme }) => theme('sepia'),
     backgroundColor: ({ theme }) => theme('colors'),
     backgroundImage: {
+      'hero-home': 'url(assets/img/night-sky-over-mountains.jpg)',
       none: 'none',
       'gradient-to-t': 'linear-gradient(to top, var(--tw-gradient-stops))',
       'gradient-to-tr':

@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/huetiful.css" />
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/github-markdown-light.css" />
-    <link rel="stylesheet" type="text/css" href="https://huetiful-js.com/assets/css/atom-one-dark.css" />
-    <script>document.documentElement.classList.add('js')</script>
+    <link rel="stylesheet" type="text/css" href="/assets/css/huetiful.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/github-markdown-light.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/atom-one-dark.css" />
+    <script type="text/javascript" src='/assets/vendor/htmx.js'></script>
+    <script type="text/javascript" defer src='/assets/vendor/highlight.min.js'></script>
 
     
 
@@ -21,7 +22,7 @@
 
         <a class="inline-flex space-y-1 items-center font-medium text-base" href="https://huetiful-js.com"
             id="home"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -30,16 +31,16 @@
 
         </a>
 
-        <a hx-get="https://huetiful-js.com/api" hx-target="#swap-content"
+        <a hx-get="/api/index.html" hx-target="#swap-content"
             class="inline-flex space-y-1 items-center font-medium text-base">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
                 <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                 <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
             </svg><span>API</span>
         </a>
-        <a class="inline-flex space-y-1 items-center font-medium text-base" hx-get="https://huetiful-js.com/demo"
+        <a class="inline-flex space-y-1 items-center font-medium text-base" hx-get="/demo.html"
             hx-target="#swap-content">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" aria-hidden="true" class="inline-block mr-1" data-slot="icon">
@@ -50,9 +51,9 @@
             <span>Demo</span>
         </a>
         <a class="inline-flex space-y-1 items-center font-medium text-base"
-            href="https://github.com/xml-wizard/huetiful/wiki" id="wiki-link">
+            href="https://github.com/xml-wizard/huetiful/wiki">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="2" y1="12" x2="22" y2="12"></line>
@@ -62,14 +63,14 @@
             <span>Wiki</span>
         </a>
         <a class="inline-flex space-y-1 items-center font-medium text-base"
-            href="https://github.com/xml-wizard/huetiful" id="source-link">
+            href="https://github.com/xml-wizard/huetiful">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
                 class="inline-block mr-1">
                 <path
                     d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
                 </path>
-            </svg> <span>Source</span>
+            </svg> <span>GitHub</span>
         </a>
 
     </nav>
@@ -86,7 +87,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">sortBySaturation</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Sorts colors by saturation value in `asc` order</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #94a3b8,#9ca3af,#a1a1aa,#a3a3a3,#a8a29e,#f87171,#fb923c,#fbbf24,#facc15,#a3e635,#4ade80,#34d399,#2dd4bf,#38bdf8,#60a5fa,#a78bfa,#c084fc,#e879f9,#f472b6,#fb7185,asc,lch
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -219,7 +227,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">sortByLightness</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Sorts colors by lightness value in `asc` order</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #94a3b8,#9ca3af,#a1a1aa,#a3a3a3,#a8a29e,#f87171,#fb923c,#fbbf24,#facc15,#a3e635,#4ade80,#34d399,#2dd4bf,#38bdf8,#60a5fa,#a78bfa,#c084fc,#e879f9,#f472b6,#fb7185,asc,lch
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -256,7 +271,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">sortByLuminance</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Sorts colors by luminance value in `asc` order</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #94a3b8,#9ca3af,#a1a1aa,#a3a3a3,#a8a29e,#f87171,#fb923c,#fbbf24,#facc15,#a3e635,#4ade80,#34d399,#2dd4bf,#38bdf8,#60a5fa,#a78bfa,#c084fc,#e879f9,#f472b6,#fb7185,asc
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -293,7 +315,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">sortByDistance</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Sorts colors by distance value in `asc` order</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #94a3b8,#9ca3af,#a1a1aa,#a3a3a3,#a8a29e,#f87171,#fb923c,#fbbf24,#facc15,#a3e635,#4ade80,#34d399,#2dd4bf,#38bdf8,#60a5fa,#a78bfa,#c084fc,#e879f9,#f472b6,#fb7185,brown,asc
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -330,7 +359,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">sortByContrast</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Sorts colors by distance value in `asc` order</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #94a3b8,#9ca3af,#a1a1aa,#a3a3a3,#a8a29e,#f87171,#fb923c,#fbbf24,#facc15,#a3e635,#4ade80,#34d399,#2dd4bf,#38bdf8,#60a5fa,#a78bfa,#c084fc,#e879f9,#f472b6,#fb7185,black,asc
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -367,7 +403,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">sortByHue</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Sorts colors by hue angle in `asc` order</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #94a3b8,#9ca3af,#a1a1aa,#a3a3a3,#a8a29e,#f87171,#fb923c,#fbbf24,#facc15,#a3e635,#4ade80,#34d399,#2dd4bf,#38bdf8,#60a5fa,#a78bfa,#c084fc,#e879f9,#f472b6,#fb7185,asc,lch
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -414,7 +457,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">tailwindColors</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Returns the swatches of color families at 300</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            all,300
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -557,7 +607,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">filterByContrast</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Filters color by relative contrast</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #94a3b8,#9ca3af,#a1a1aa,#a3a3a3,#a8a29e,#f87171,#fb923c,#fbbf24,#facc15,#a3e635,#4ade80,#34d399,#2dd4bf,#38bdf8,#60a5fa,#a78bfa,#c084fc,#e879f9,#f472b6,#fb7185,green,3.05,12
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -588,7 +645,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">filterByHue</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Filters color by hue</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #94a3b8,#9ca3af,#a1a1aa,#a3a3a3,#a8a29e,#f87171,#fb923c,#fbbf24,#facc15,#a3e635,#4ade80,#34d399,#2dd4bf,#38bdf8,#60a5fa,#a78bfa,#c084fc,#e879f9,#f472b6,#fb7185,60,220,lch
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -637,7 +701,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">filterByLuminance</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Filters color by luminance</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #94a3b8,#9ca3af,#a1a1aa,#a3a3a3,#a8a29e,#f87171,#fb923c,#fbbf24,#facc15,#a3e635,#4ade80,#34d399,#2dd4bf,#38bdf8,#60a5fa,#a78bfa,#c084fc,#e879f9,#f472b6,#fb7185,&gt;0.5,&lt;0.9
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -680,7 +751,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">filterByLightness</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Filters color by lightness</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #94a3b8,#9ca3af,#a1a1aa,#a3a3a3,#a8a29e,#f87171,#fb923c,#fbbf24,#facc15,#a3e635,#4ade80,#34d399,#2dd4bf,#38bdf8,#60a5fa,#a78bfa,#c084fc,#e879f9,#f472b6,#fb7185,45,69,lch
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -765,7 +843,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">filterByDistance</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Filters color by distance</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #94a3b8,#9ca3af,#a1a1aa,#a3a3a3,#a8a29e,#f87171,#fb923c,#fbbf24,#facc15,#a3e635,#4ade80,#34d399,#2dd4bf,#38bdf8,#60a5fa,#a78bfa,#c084fc,#e879f9,#f472b6,#fb7185,yellow,&gt;70.05
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -796,7 +881,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">filterByChroma</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Filters color by saturation</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #94a3b8,#9ca3af,#a1a1aa,#a3a3a3,#a8a29e,#f87171,#fb923c,#fbbf24,#facc15,#a3e635,#4ade80,#34d399,#2dd4bf,#38bdf8,#60a5fa,#a78bfa,#c084fc,#e879f9,#f472b6,#fb7185,70
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -849,7 +941,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">discoverPalettes</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Takes an array of colors and finds the best matches for a set of predefined palettes.</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #ffff00,#00ffdc,#00ff78,#00c000,#007e00,#164100,#720000,#600000,#4e0000,#3e0000,#310000,tetradic
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -886,7 +985,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">earthtone</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Creates a scale of a spline interpolation between an earthtone and a color.</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            pink,lch,[object Object]
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -929,7 +1035,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">hueShift</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Generates a palette of hue shifted colors</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            #3e0000
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -1020,7 +1133,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">interpolateSpline</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Returns a spline interpolator function with customizable interpolation methods</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            b2c3f1,#a1bd2f,#f3bac1,lch,8,natural
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -1081,7 +1201,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">pairedScheme</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Creates a scheme that consists of a scheme color that is incremented by a hueStep to get the final hue to pair with</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            green,[object Object]
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         
         <div class="flex-col space-y-2">
@@ -1118,7 +1245,14 @@
     
     <h4 class="font-sans text-slate-700 font-semibold text-base">pastel</h4>
     <p class="pt-3 font-sans text-slate-500 text-sm ">Creates a pastel variant of a color</p>
-    <div class="flex space-x-2 p-2">
+    <div class="px-1.5 flex-col">
+        <h5 class="font-sans text-slate-700 font-semibold text-base">Parameters:</h5>
+        <pre><code class="hljs">
+            green
+        </code></pre>
+        <hr class="divide-y">
+    </div>
+    <div class="flex space-x-2 p-2 flex-wrap">
         
         <div class="flex-col space-y-2">
             <p class="text-sm">#81f281</p>
@@ -1218,12 +1352,10 @@
             </div>
         </footer>
 
-
-        <script type="text/javascript" src='assets/vendor/htmx.js'></script>
-        <script type="text/javascript" src='assets/vendor/highlight.min.js'></script>
+        <script src="/assets/js/main.js"></script>
 
         <script type="text/javascript">hljs.highlightAll();</script>
-        <script src="https://huetiful-js.com/assets/js/main.js"></script>
+
     </body>
 
 </html>
