@@ -130,7 +130,7 @@ function buildDataObject(sourceModule, markupTransform = null) {
   }).format(lstatSync('../../types/' + sourceModule + '.d.ts').mtime);
 
   var cb = (s, x, y) =>
-    `https://github.com/xml-wizard/blob/main/${s}/${x}.${y}`;
+    `https://github.com/xml-wizard/huetiful/blob/main/${s}/${x}.${y}`;
 
   return {
     title: `${sourceModule}`,
