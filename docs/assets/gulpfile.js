@@ -63,17 +63,17 @@ export async function xml() {
           path: ['./xml/'],
           manageEnv: ApiDocsEnv(srcFile, {
             previous: {
-              href: idx > 0 ? `/api/${moduleNames[--idx]}` : '/index.html',
-              title: idx > 0 ? moduleNames[--idx] : `Return to home page`
+              href: idx > 0 ? `/api/${moduleNames[idx - 1]}` : '/index.html',
+              title: idx > 0 ? moduleNames[idx - 1] : `Return to home page`
             },
             next: {
               href:
                 idx < moduleNames.length
-                  ? `/api/${moduleNames[++idx]}`
+                  ? `/api/${moduleNames[idx + 1]}`
                   : `/api`,
               title:
-                idx < moduleNames.length
-                  ? moduleNames[++idx]
+                idx <= moduleNames.length
+                  ? moduleNames[idx + 1]
                   : `Return to home page`
             }
           }),

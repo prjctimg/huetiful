@@ -3,7 +3,7 @@
 
 {% block content %}
 {% for mod,prop in demoData %}
-<section class="flex-col p-4 bg-slate-100 my-4 rounded-md shadow-md">
+<section class="flex-col bg-slate-100 my-3 shadow-md">
 
     <h3 class="font-sans text-lg font-semibold text-slate-700">{{mod}}</h3>
 
@@ -11,22 +11,23 @@
 
     {% for func,props in prop.specs %}
     <h4 class="font-sans text-slate-700 font-semibold text-base">{{func}}</h4>
-    <p class="pt-2 font-sans text-slate-500 text-sm ">{{props.description}}</p>
-    <p class="py-2 font-sans text-slate-500 text-sm ">Output:</p>
-    <div class="grid grid-cols-6  gap-4">
+    <p class="pt-3 font-sans text-slate-500 text-sm ">{{props.description}}</p>
+
+    <hr class="divide-y">
+
+    <div class="flex space-x-2 p-2 flex-wrap">
         {% if isColorCollection(props.expect) %}
         {% for color in props.expect %}
-        <div class="place-items-center">
+        <div class="flex-col space-y-2">
             <div class="w-8 h-8 rounded-md shadow-md bg-[{{color}}]"></div>
+            <p class="text-xs font-sans font-normal text-slate-400">{{color}}</p>
 
         </div>
         {% endfor %}
         {% else %}
-        <div class="place-items-center">
-
+        <div class="flex-col space-y-2">
+            <p class="text-sm">{{props.expect}}</p>
             <div class="w-8 h-8 rounded-md shadow-md bg-[{{props.expect}}]"></div>
-            <p class="text-xs font-sans font-normal text-slate-400">{{color}}</p>
-
         </div>
 
         {% endif %}
