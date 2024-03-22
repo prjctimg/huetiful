@@ -2,7 +2,7 @@
 <html lang="en">
     {% include "partials/head.njk" %}
 
-    <body class="markdown-body">
+    <body class="markdown-body md:container md:mx-auto font-sans bg-slate-100">
         {% include "partials/navbar.njk" %}
         {% block content %} {% endblock content %}
 
@@ -60,7 +60,7 @@
 
 
             <div class="pt-2">
-                <blockquote class="inline-block text-sm">
+                <blockquote class="inline-block text-sm font-sans text-white">
                     <p class="text-sm">
                         <span class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="14"
                                 viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75"

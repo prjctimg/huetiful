@@ -1,12 +1,13 @@
 <section class="flex justify-between divide-x-[1px] divide-slate-400">
 
-    <a href="{{page.previous.href}}" class='flex align-middle space-x-2 p-4' id="previous-button"><svg
-            xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-chevron-left">
-            <polyline points="15 18 9 12 15 6"></polyline>
-        </svg><span></span>
-        <h5 class="font-sans text-sm text-slate-700 tracking-tight dark:text-slate-300">{{page.previous.title}}</h5>
+    <a href="{{page.previous.href}}" class='flex space-x-2 p-4' id="previous-button"><span><svg
+                xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-chevron-left">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg></span>
+        <h5 class="inline font-sans text-sm text-slate-700 tracking-tight dark:text-slate-300">{{page.previous.title}}
+        </h5>
     </a>
 
     <a href="{{page.next.href}}" class='flex space-x-2 p-4 items-center'><span><svg xmlns="http://www.w3.org/2000/svg"

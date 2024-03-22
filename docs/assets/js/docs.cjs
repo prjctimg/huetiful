@@ -123,7 +123,6 @@ function generateDocs(source, cb = null) {
 // Loop through the markdown files for modules
 function buildDataObject(sourceModule, markupTransform = null) {
   var time = new Intl.DateTimeFormat('en-US', {
-    weekday: 'long',
     month: 'short',
     day: 'numeric',
 

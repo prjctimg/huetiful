@@ -4,13 +4,13 @@ The library is split into individual modules each with functions that have the s
 
 ### Modules
 
-- [accessibility](api/accessibility)
-- [colors](api/colors)
-- [converters](api/converters)
-- [filterBy](api/filterBy)
-- [generators](api/generators)
-- [sortBy](api/sortBy)
-- [stats](api/stats)
-- [types](api/types)
-- [utils](api/utils)
-- [wrappers](api/wrappers)
+- [accessibility](accessibility)
+- [colors](colors)
+- [converters](converters)
+- [filterBy](filterBy)
+- [generators](generators)
+- [sortBy](sortBy)
+- [stats](stats)
+- [types](types)
+- [utils](utils)
+- [wrappers](wrappers)
