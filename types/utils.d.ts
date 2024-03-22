@@ -3,7 +3,6 @@ import {
   ColorToken,
   HueColorSpaces,
   HueFamily,
-  DeficiencyType,
   UniformColorSpaces
 } from './types';
 

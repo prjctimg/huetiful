@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-undef
 var { build } = require('esbuild');
-var { dependencies } = require('../../../package.json');
+var { dependencies } = require('./package.json');
 
 build({
   legalComments: 'inline',
