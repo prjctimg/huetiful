@@ -23,6 +23,8 @@ function setProgress() {
   progressBar.style.width = width;
 }
 
+setProgress();
+
 window.addEventListener('scroll', setProgress);
 
 /* Dark/light mode toggle */
