@@ -19,7 +19,8 @@ import type {
   HueShiftOptions,
   InterpolatorOptions,
   PairedSchemeOptions,
-  UniformColorSpaces
+  UniformColorSpaces,
+  DistributionOptions
 } from './types';
 /**
  *
@@ -220,7 +221,45 @@ console.log(pastel("green"))
 // #036103ff
  */
 declare function pastel(color: ColorToken): ColorToken;
+
+/**
+ * Distributes the hue angle of a color in the collection with the specified extremum (i.e the color with the smallest/largest hue angle in the collection) to all colors in the collection.
+ * @param collection
+ * @param threshold
+ * @param options
+ */
+declare function distributeHue(
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  threshold: number,
+  options?: DistributionOptions
+): Array<ColorToken> | Map<any, ColorToken>;
+
+declare function distributeLuminance(
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  threshold: number,
+  options?: Omit<
+    DistributionOptions,
+    'hueFixup' | 'excludeAchromatic' | 'colorspace'
+  >
+): Array<ColorToken> | Map<any, ColorToken>;
+
+declare function distributeLightness(
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  threshold: number,
+  options?: Omit<DistributionOptions, 'hueFixup' | 'excludeAchrpmatic'>
+): Array<ColorToken> | Map<any, ColorToken>;
+
+declare function distributeChroma(
+  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  threshold: number,
+  options?: DistributionOptions
+): Array<ColorToken> | Map<any, ColorToken>;
+
 export {
+  distributeChroma,
+  distributeHue,
+  distributeLightness,
+  distributeLuminance,
   discoverPalettes,
   hueShift,
   pairedScheme,

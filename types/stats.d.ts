@@ -1,4 +1,4 @@
-import { ColorToken, HueColorSpaces } from './types';
+import { ColorToken, UniformColorSpaces } from './types';
 
 /**
  * Returns the largest chroma/saturation difference between the colors in a collection `against` a comparison color.
@@ -30,7 +30,7 @@ import { ColorToken, HueColorSpaces } from './types';
 declare function getFarthestChromaFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   colorObj?: boolean
 ):
   | number
@@ -69,7 +69,7 @@ declare function getFarthestChromaFrom(
 declare function getNearestChromaFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   colorObj?: boolean
 ):
   | number
@@ -105,7 +105,7 @@ declare function getNearestChromaFrom(
 declare function getFarthestHueFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   colorObj?: boolean
 ):
   | number
@@ -142,7 +142,7 @@ declare function getFarthestHueFrom(
 declare function getNearestHueFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   colorObj?: boolean
 ):
   | number
@@ -180,7 +180,7 @@ declare function getNearestHueFrom(
 declare function getFarthestLightnessFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   colorObj?: boolean
 ):
   | number
@@ -216,7 +216,7 @@ declare function getFarthestLightnessFrom(
 declare function getNearestLightnessFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   colorObj?: boolean
 ):
   | number
@@ -250,7 +250,7 @@ declare function getNearestLightnessFrom(
 declare function getNearestLuminanceFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   colorObj?: boolean
 ):
   | number
@@ -284,7 +284,7 @@ console.log(getFarthestLuminanceFrom(sample, against));
 declare function getFarthestLuminanceFrom(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
   against: ColorToken,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   colorObj?: boolean
 ):
   | number
@@ -315,7 +315,7 @@ declare function getFarthestLuminanceFrom(
 
 declare function getMeanChroma(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
-  colorspace?: HueColorSpaces
+  colorspace?: UniformColorSpaces
 ): number | undefined;
 /**
  * Returns the average `lightness` from the passed in `collection` of colors.
@@ -339,7 +339,7 @@ declare function getMeanChroma(
 
 declare function getMeanLightness(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
-  colorspace?: HueColorSpaces
+  colorspace?: UniformColorSpaces
 ): number;
 /**
  * Returns the average `hue` from the passed in `collection` of colors. Achromatic colors (or colors with a falsy `chroma` channel) will be excluded from the sum if `excludeGreys` is `true`. This can help make your color scales make more 'visual sense since the `hue` channel depends on the `chroma` channel to look colorful. This will also alter the final average hue angle returned.
@@ -364,7 +364,7 @@ declare function getMeanLightness(
 
 declare function getMeanHue(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   excludeGreys?: boolean
 ): number;
 /**
@@ -514,7 +514,7 @@ console.log(getNearestChroma(sample, 'lch'))
  */
 declare function getNearestChroma(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   colorObj?: boolean
 ):
   | number
@@ -540,7 +540,7 @@ console.log(getFarthestChroma(sample, 'lch'))
  */
 declare function getFarthestChroma(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   colorObj?: boolean
 ):
   | number
@@ -566,7 +566,7 @@ console.log(getNearestHue(sample, 'lch'))
  */
 declare function getNearestHue(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
-  colorspace?: HueColorSpaces | string,
+  colorspace?: UniformColorSpaces | string,
   colorObj?: boolean
 ):
   | number
@@ -591,7 +591,7 @@ console.log(getFarthestHue(sample, 'lch'))
  */
 declare function getFarthestHue(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   colorObj?: boolean
 ):
   | number
@@ -620,7 +620,7 @@ console.log(getNearestLightness(sample, 'lch',true))
  */
 declare function getNearestLightness(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   colorObj?: boolean
 ):
   | number
@@ -648,7 +648,7 @@ console.log(getFarthestLightness(sample, 'lch',true))
  */
 declare function getFarthestLightness(
   collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
-  colorspace?: HueColorSpaces,
+  colorspace?: UniformColorSpaces,
   colorObj?: boolean
 ):
   | number
@@ -656,6 +656,8 @@ declare function getFarthestLightness(
       factor: number;
       color: ColorToken;
     };
+
+// distributeMeanHue
 
 export {
   getFarthestChroma,

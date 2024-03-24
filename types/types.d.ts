@@ -139,6 +139,15 @@ export type EarthtoneOptions = Omit<
   'hueStep' | 'via' | 'maxLightness' | 'minLightness'
 >;
 
+export type DistributionOptions = {
+  normalize?: boolean;
+  colorspace?: UniformColorSpaces;
+  extremum?: 'min' | 'max';
+  excludeAchromatic?: boolean;
+  excludeSelf: boolean;
+  hueFixup?: 'shorter' | 'longer';
+};
+
 export type HueShiftOptions = Omit<Options, 'via' | 'earthtones' | ''> &
   InterpolatorOptions;
 export type Interpolator = (arr: number[]) => (t: number) => number;
@@ -239,8 +248,8 @@ export type UniformColorSpaces =
   | 'lch'
   | 'lch65'
   | 'lchuv'
-  | 'oklch'
-  | string;
+  | 'oklch';
+
 export type Colorspaces =
   | 'a98'
   | 'cubehelix'
