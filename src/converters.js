@@ -1,22 +1,6 @@
-'use strict';
-
 import {
   useMode,
   modeRgb,
-  modeHsv,
-  modeLab,
-  modeLab65,
-  modeHwb,
-  modeHsl,
-  modeCubehelix,
-  modeDlab,
-  modeOkhsl,
-  modeOkhsv,
-  modeHsi,
-  modeLrgb,
-  modeXyz50,
-  modeXyz65,
-  modeOklab,
   converter,
   modeDlch,
   modeJch,
@@ -26,80 +10,10 @@ import {
   modeOklch,
   formatHex,
   formatHex8,
-  colorsNamed,
-  modeLuv,
-  modeRec2020,
-  modeProphoto,
-  modeP3,
-  modeA98,
-  modeYiq,
-  modeJab
+  colorsNamed
 } from 'culori/fn';
 
 import { gmchn } from './helpers.js';
-
-function toOk(colorspace = 'oklch') {
-  var cspaces = new Map([
-    ['oklab', modeOklab],
-    ['oklch', modeOklch],
-    ['okhsl', modeOkhsl],
-    ['okhsv', modeOkhsv]
-  ]);
-  return (color) => useMode(cspaces[colorspace])(color);
-}
-
-function toCubehelix(color = '#000') {
-  return useMode(modeCubehelix)(color);
-}
-
-function toRGB(colorspace = 'rgb') {
-  var cspaces = new Map([
-    ['lrgb', modeLrgb],
-    ['hwb', modeHwb],
-    ['hsl', modeHsl],
-    ['hsi', modeHsi],
-    ['hsv', modeHsv],
-    ['rgb', modeRgb],
-    ['rec2020', modeRec2020],
-    ['prophoto', modeProphoto],
-    ['p3', modeP3],
-    ['a98', modeA98],
-    ['xyb', modeXyb],
-    ['yiq', modeYiq]
-  ]);
-
-  return useMode(cspaces[colorspace])(color);
-}
-
-function toJab(color) {
-  return useMode(modeJab)(color);
-}
-
-function toJch(color) {
-  return useMode(modeJch)(color);
-}
-
-function toCIE(colorspace = 'lch') {
-  var cspaces = new Map([
-    ['xyz65', modeXyz65],
-    ['xyz50', modeXyz50],
-    ['lab', modeLab],
-    ['lab65', modeLab65],
-    ['luv', modeLuv],
-    ['lchuv', modeLchuv],
-    ['lch', modeLch],
-    ['lch65', modeLch65]
-  ]);
-  return (color) => useMode(cspaces[colorspace.toLowerCase()])(color);
-}
-
-function toDIN99(colorspace = 'dlch') {
-  var cspaces = new Map([
-    ['dlab', modeDlab],
-    ['lch', modeDlch]
-  ]);
-  return (color) => useMode(cspaces[colorspace.toLowerCase()])(color);
-}
 
 function ucsConverter(colorspace = 'lch') {
   const ucsDefinitions = {
@@ -279,12 +193,5 @@ export {
   temp2color,
   color2tuple,
   ucsConverter,
-  color2hex,
-  toCIE,
-  toCubehelix,
-  toDIN99,
-  toRGB,
-  toOk,
-  toJab,
-  toJch
+  color2hex
 };

@@ -1,4 +1,5 @@
 import type {
+  ColorObject,
   Colorspaces,
   ColorToken,
   ColorTuple,
@@ -12,51 +13,7 @@ import type {
  */
 declare function ucsConverter(
   colorspace: UniformColorSpaces
-): import('culori/src/converter').ConvertFn<any>;
-
-/**
- * Returns the passed in color as a plain object in the specified Ok colorspace.
- * @param colorspace The Ok colorspace to use.
- * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
- * @see https://culorijs.org/color-spaces/
- */
-declare function toOk(
-  colorspace?: UniformColorSpaces
-): (color: string) => object;
-
-/**
- * Returns the passed in color as a plain object in the specified CIE colorspace.
- * @param colorspace The CIE colorspace to use.
- * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
- * @see https://culorijs.org/color-spaces/
- */
-declare function toCIE(
-  colorspace?: 'lab' | 'lch' | 'lch65' | 'lab65' | 'xyz50' | 'xyz65'
-): (color: string) => object;
-
-/**
- * Returns the passed in color as a plain object in the specified DIN99 colorspace.
- * @param colorspace The DIN99 colorspace variant (either cartesian/dlab or polar/dlch) to use.
- * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
- * @see https://culorijs.org/color-spaces/
- */
-declare function toDIN99(
-  colorspace?: 'dlch' | 'dlab'
-): (color: string) => object;
-
-/**
- * Returns the passed in color as a plain object in the Jch colorspace.
- * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
- * @see https://culorijs.org/color-spaces/ For expected ranges and channels.
- */
-declare function toJch(color: string): object;
-
-/**
- * Returns the passed in color as a plain object in the Jab colorspace.
- * @param color The color to convert. Expects colors to be in the formats supported by Culori because it is not guarded by `color2hex` which extends supported color formats.
- * @see https://culorijs.org/color-spaces/ For expected ranges and channels.
- */
-declare function toJab(color: string): object;
+): (color: ColorToken) => ColorObject;
 
 /**
  *
