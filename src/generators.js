@@ -3,7 +3,6 @@ import {
   modeLch,
   easingSmoothstep,
   samples as _smp,
-  modeJch,
   averageNumber,
   differenceEuclidean,
   interpolate,
@@ -21,6 +20,10 @@ import {
 } from 'culori/fn';
 
 import {
+  color2hex,
+  color2num,
+  color2tuple,
+  ucsConverter,
   adjustHue,
   rand,
   or,
@@ -30,17 +33,9 @@ import {
   min,
   pltrconfg,
   gt,
-  gte
-} from './helpers.js';
-
-import {
-  color2hex,
-  color2num,
-  color2tuple,
-  num2color,
-  ucsConverter
+  gte,
+  setChannel
 } from './converters.js';
-import { setChannel } from './utils.js';
 
 function scheme(schemeType) {
   return (color, easingFunc) => {

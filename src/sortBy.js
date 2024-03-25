@@ -6,7 +6,7 @@ function baseSortBy(factor, cb, order, collection) {
   return sortedColl(factor, cb, order)(collection);
 }
 
-function sortBySaturation(collection, order, colorspace = 'lch') {
+function sortByChroma(collection, order, colorspace = 'lch') {
   return baseSortBy(
     'saturation',
     getChannel(mcchn(colorspace)),
@@ -48,7 +48,7 @@ export {
   sortByContrast,
   sortByDistance,
   sortByLightness,
-  sortBySaturation,
+  sortByChroma,
   sortByHue,
   sortByLuminance
 };

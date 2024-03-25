@@ -255,6 +255,9 @@ declare function distributeChroma(
   options?: DistributionOptions
 ): Array<ColorToken> | Map<any, ColorToken>;
 
+declare function reverseSpectrum(collection, colorspace: HueColorSpaces): any;
+7;
+
 export {
   distributeChroma,
   distributeHue,

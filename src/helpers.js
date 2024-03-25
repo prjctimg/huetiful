@@ -35,7 +35,7 @@ import { ucsConverter } from './converters.js';
  * @returns The first truthy value
  */
 function or(arg, def) {
-  return arg || def;
+  return typeof arg === 'undefined' ? def : arg;
 }
 
 // Global interpolator options defaults
