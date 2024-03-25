@@ -32,7 +32,9 @@ import {
   nearest,
   differenceHyab,
   random,
-  formatHex
+  formatHex,
+  fixupHueShorter,
+  fixupHueLonger
 } from 'culori/fn';
 
 import {
@@ -50,14 +52,16 @@ import {
   pltrconfg,
   gt,
   gte,
-  setChannel
+  setChannel,
+  colorObjColl,
+  getChannel,
+  isAchromatic
 } from './index.js';
 
 /**
  *
  *  Generates a randomised classic color scheme from a single color.
  * @param {'analogous' | 'triadic' | 'tetradic' | 'complementary' | string}  schemeType  Any classic color scheme either .
- * @param color The color to use as a base for the palette.
  * @param easingFunc The easing function to apply to the palette. It's applied on the `hue` channel.
  * @returns A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme. Preserves the `ColorToken` type of the pased in color.
  * @example
@@ -69,6 +73,9 @@ console.log(scheme("triadic")("#a1bd2f"))
  */
 
 function scheme(schemeType) {
+  /**
+   * @param { string}  color The color to use as a base for the palette.
+   */
   return (color, easingFunc) => {
     schemeType = schemeType.toLowerCase();
     easingFunc = or(easingFunc, easingSmoothstep);
@@ -570,14 +577,82 @@ function pastel(color) {
   }
 
   return c;
+}
 
-  // For now we're simply returning an hsv object with the s and v channel set to the averages
-  // return color2hex({
-  //   h: color['h'],
-  //   s: smp_pstl['avSat'],
-  //   v: rand(smp_pstl['mn_smp_val'], smp_pstl['mx_smp_val']),
-  //   mode: 'hsv'
-  // });
+function baseDistribute(c = [], t = 0.5, options = {}) {
+  // Destructure the opts to check before distributing the factor
+
+  var { extremum, excludeSelf, excludeAchromatic, hueFixup, colorspace } =
+    options;
+
+  // v is expected to be a color object so that we can access the color's hue property during the mapping
+  var mx_cb = (v) =>
+      setChannel(`${colorspace}.h`)(v, v['h'] + v['h'] * (mn / mx) * 1),
+    mn_cb = (v) =>
+      setChannel(`${colorspace}.h`)(v, v['h'] + v['h'] * ((mn / v['h']) * 1));
+
+  var _ = Object.keys(
+    colorObjColl('hue', getChannel(`${colorspace}.h`))(c)
+  ).map((v) => _[v]['hue']);
+  var [mn, mx] = [min(_), max(_)];
+
+  // Set the extremum to distribute to default to max if its not min
+  extremum = or(extremum, 'max');
+
+  // Exclude the colorToken with the specified factor extremum being distributed
+  excludeSelf = or(excludeSelf, false);
+
+  // Exclude achromatic colors from the manipulations. The colors are returned in the resultant collection
+  excludeAchromatic = or(excludeAchromatic, false);
+
+  // The fixup to use when tweaking the hue channels
+  hueFixup = hueFixup === 'longer' ? fixupHueLonger : fixupHueShorter;
+  colorspace = or(colorspace, 'lch');
+
+  var tmp = [];
+  if (excludeAchromatic) {
+    tmp = Object.keys(c).filter((v) => isAchromatic(_[v]['color'], colorspace));
+    c = Object.keys(c).filter((v) => !isAchromatic(_[v]['color'], colorspace));
+  }
+
+  /**
+   * The color with the extremum we want
+   */
+  var slf;
+  if (excludeSelf) {
+    // capture the color that has the same value as that of the specified extremum
+    slf = c.find(
+      (o) =>
+        getChannel(`${colorspace}.h`)(c[o]) === (extremum === 'max' ? mx : mn)
+    );
+
+    // exclude it from the collection
+    c = Object.keys(c).filter((o) => c[o] !== slf);
+  }
+
+  var out,
+    cb = (f) =>
+      Object.keys(c)
+        .map((o) => c[o])
+        .map(f);
+
+  if (extremum.toLowerCase() === 'max') {
+    out = cb(mx_cb);
+  } else {
+    out = cb(mn_cb);
+  }
+
+  // Put back the color with the pecfied extremum
+  if (excludeSelf) {
+    out.unshift(slf);
+  }
+
+  // Put back achromatic colors
+  if (excludeAchromatic && tmp.length > 0) {
+    out.push(...tmp);
+  }
+
+  return out;
 }
 
 export {
