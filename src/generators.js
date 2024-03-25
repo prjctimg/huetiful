@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * @license
  * @preserve
@@ -49,7 +51,7 @@ import {
   gt,
   gte,
   setChannel
-} from './converters.js';
+} from './index.js';
 
 /**
  *
@@ -365,6 +367,7 @@ function interpolateSpline(
 
   colors = Object.values(colors);
 
+  // @ts-ignore
   let f = interpolate([...colors, easingFn], colorspace, {
     h: {
       fixup: hueFixup,
@@ -381,10 +384,11 @@ function interpolateSpline(
   // make sure samples is an absolute integer
   iterations = gte(iterations, 1) ? iterations : 1;
 
-  let res;
+  var res;
   if (gt(iterations, 1)) {
     res = _smp(iterations).map((s) => color2hex(f(s)));
   } else {
+    // @ts-ignore
     res = res.push(color2hex(f(0.5)));
   }
   return res;
@@ -401,6 +405,7 @@ function pltr(colors = [], colorspace = 'lch', options = {}) {
   return interpolate(
     [or(easingFn, pltrconfg['ef']), ...colors],
 
+    // @ts-ignore
     colorspace,
     {
       h: {
@@ -549,9 +554,11 @@ function pastel(color) {
       break;
     // We're checking if it doesn't have a string method since both strings and arrays hve a length property.
     case 'object' && !color.match && color.length:
+      // @ts-ignore
       c = color2tuple(c);
       break;
     case 'string':
+      // @ts-ignore
       c = formatHex(c);
       break;
     case 'object':

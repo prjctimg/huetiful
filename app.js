@@ -16,9 +16,6 @@ function baseDistribute(c = [], t = 0.5, options = {}) {
   _ = colorObjColl('hue', getChannel(`${colorspace}.h`))(c);
   var [mn, mx] = [min(_.map((v) => v['hue'])), max(_.map((v) => v['hue']))];
 
-  let eps = (mn / mx) * 1;
-  let eps_alt = mx * t;
-
   // Set the extremum to distribute to default to max if its not min
   extremum = or(extremum, 'max');
 
