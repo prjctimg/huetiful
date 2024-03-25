@@ -13,14 +13,14 @@ function baseDistribute(c = [], t = 0.5, options = {}) {
     mn_cb = (v) =>
       setChannel(`${colorspace}.h`)(v, v['h'] + v['h'] * ((mn / v['h']) * 1));
 
-  c = colorObjColl('hue', getChannel(`${colorspace}.h`))(c);
-  var [mn, mx] = [min(c.map((v) => v['hue'])), max(c.map((v) => c['hue']))];
+  _ = colorObjColl('hue', getChannel(`${colorspace}.h`))(c);
+  var [mn, mx] = [min(_.map((v) => v['hue'])), max(_.map((v) => v['hue']))];
 
   let eps = (mn / mx) * 1;
   let eps_alt = mx * t;
 
   // Set the extremum to distribute to default to max if its not min
-  extremum = extremum === 'min' ? min : max;
+  extremum = or(extremum, 'max');
 
   // Exclude the colorToken with the specified factor extremum being distributed
   excludeSelf = or(excludeSelf, false);
@@ -32,7 +32,7 @@ function baseDistribute(c = [], t = 0.5, options = {}) {
   hueFixup = hueFixup === 'longer' ? fixupHueLonger : fixupHueShorter;
   colorspace = or(colorspace, 'lch');
 
-  if (extremum === max) {
+  if (extremum.toLowerCase() === 'max') {
     return c.map(mx_cb);
   } else {
     return c.map(mn_cb);

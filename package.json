@@ -24,6 +24,8 @@
     "culori"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^19.0.3",
+    "@commitlint/config-conventional": "^19.0.3",
     "@types/culori": "^2.0.0",
     "dts-bundle-generator": "^8.0.1",
     "esbuild": "^0.17.19",
@@ -32,6 +34,7 @@
     "husky": "^8.0.3",
     "jasmine": "5.1.0",
     "nodemon": "^3.0.1",
+    "standard-version": "^9.5.0",
     "typedoc": "^0.25.3",
     "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.0.2"
@@ -44,7 +47,8 @@
     "code:types": "dts-bundle-generator  -o  ./lib/huetiful.d.ts ./types/index.d.ts --no-banner",
     "code:lint": "eslint --fix --ext ./src/*.js",
     "code:format": "prettier \"./src/*.js\" --write",
-    "start": "nodemon app.js --watch "
+    "start": "nodemon app.js --watch ",
+    "commitlint": "commitlint --edit"
   },
   "husky": {
     "hooks": {}
