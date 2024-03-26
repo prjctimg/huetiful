@@ -16,7 +16,7 @@ governing permissions and limitations under the License.
 
 describe(`The sortBy module test suite `, function () {
   var sortBySpec = {
-    sortBySaturation: {
+    sortByChroma: {
       params: [['blue', 'pink', 'yellow', 'green'], 'asc', 'lch'],
       description: 'Sorts colors by saturation value in `asc` order',
       expect: ['pink', 'green', 'yellow', 'blue']
