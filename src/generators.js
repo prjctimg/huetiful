@@ -644,6 +644,7 @@ function baseDistribute(c = [], t = 0.5, options = {}) {
 
   // Put back the color with the pecfied extremum
   if (excludeSelf) {
+    //
     out.unshift(slf);
   }
 

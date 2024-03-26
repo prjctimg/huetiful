@@ -1,20 +1,24 @@
 # Changelog
 
-Please note that the list of changes is not final and is still a work in progress. More information will (or may) be updated from the Git commit history in the future.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [2.0.0 (stable)](#200-stable)
-    - [Notable changes](#notable-changes)
-    - [New features :toolbox:](#new-features-toolbox)
-    - [Enhancements :pill:](#enhancements-pill)
-    - [Bug fixes :snail:](#bug-fixes-snail)
-
-<!-- /code_chunk_output -->
+## [2.2.0](https://github.com/xml-wizard/huetiful/compare/v2.1.0...v2.2.0) (2024-03-26)
 
 
+### Features
+
+* added distribution function ([9432c30](https://github.com/xml-wizard/huetiful/commits/9432c300618f412b0f7d04727005a70f0b1fff36))
+
+
+### Documentation changes
+
+* moved docs to generators.js from declaration file ([a994e94](https://github.com/xml-wizard/huetiful/commits/a994e9418588a767bb282bc2f6ea0900e0d4948c))
+
+
+### Bug fixes
+
+* fixed base distribution function to handle overrides with defaults ([f8c7c7c](https://github.com/xml-wizard/huetiful/commits/f8c7c7cd951bbd107fae2e686039edc40c672b45))
+* fixed type errors in generators ([fce44cb](https://github.com/xml-wizard/huetiful/commits/fce44cbbe004e2cbfada167a32ad1292f7128585))
 
 ### 2.0.0 (stable)
 
