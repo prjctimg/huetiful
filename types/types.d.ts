@@ -14,7 +14,21 @@ governing permissions and limitations under the License.
 */
 
 // Color token types
-export type ColorTuple = [Colorspaces, number, number, number, number?];
+export type ColorTuple =
+  | [Colorspaces, number, number, number, number?]
+  | Array<number>;
+
+export type Order = 'asc' | 'desc';
+export type FactObject =
+  | number
+  | {
+      factor: number;
+      color: ColorToken;
+    };
+
+export type SchemeType = 'analogous' | 'triadic' | 'tetradic' | 'complementary';
+
+export type Collection = ArrayLike<ColorToken> | Map<any, ColorToken> | object;
 
 export type ColorOptions = {
   alpha?: number;
@@ -210,14 +224,14 @@ export type SequentialScheme =
  * @type
  * @description Any recognizable color token.
  */
-export type ColorToken = number | string | ColorObject | ColorTuple;
+export type ColorToken = number | string | ColorObject | ColorTuple | boolean;
 
 export type ColorObject = {
   [channel: string]: number | undefined;
 
   alpha?: number;
   // @ts-ignore
-  colorspace: Colorspaces;
+  mode: Colorspaces;
 };
 
 /**

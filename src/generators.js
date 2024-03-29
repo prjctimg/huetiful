@@ -1,6 +1,16 @@
 // @ts-check
 
 /**
+ * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} Collection
+ * @typedef { import('../types/types.js').HueColorSpaces} HueColorSpaces
+ * @typedef {import('../types/types.js').FactObject} FactObject
+ * @typedef {import('../types/types.js').InterpolatorOptions} InterpolatorOptions
+ * @typedef {import('../types/types.js').SchemeType} SchemeType
+
+ */
+
+/**
  * @license
  * @preserve
  * generators.js -  Functions for generating custom color scales.
@@ -55,15 +65,16 @@ import {
   setChannel,
   colorObjColl,
   getChannel,
-  isAchromatic
+  isAchromatic,
+  keys,
+  values
 } from './index.js';
 
 /**
  *
  *  Generates a randomised classic color scheme from a single color.
  * @param {'analogous' | 'triadic' | 'tetradic' | 'complementary' | string}  schemeType  Any classic color scheme either .
- * @param easingFunc The easing function to apply to the palette. It's applied on the `hue` channel.
- * @returns A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme. Preserves the `ColorToken` type of the pased in color.
+  * @returns A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme. Preserves the `ColorToken` type of the pased in color.
  * @example
  *
  import { scheme } from 'huetiful-js'
@@ -72,18 +83,22 @@ console.log(scheme("triadic")("#a1bd2f"))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
  */
 
-function scheme(schemeType) {
+function scheme(schemeType = 'analogous') {
   /**
-   * @param { string}  color The color to use as a base for the palette.
+   * @param {string}  color The color to use as a base for the palette.
+   * @param {(t?:number)=>number} easingFunc The easing function to apply to the palette. It's applied on the `hue` channel.
+
    */
-  return (color, easingFunc) => {
+  // @ts-ignore
+  return (color = 'cyan', easingFunc = easingSmoothstep) => {
     schemeType = schemeType.toLowerCase();
-    easingFunc = or(easingFunc, easingSmoothstep);
+
     const cb = (iterations, distance, color) =>
       _smp(iterations).map((val) =>
         adjustHue((color['h'] + distance) * (val * easingFunc(val)))
       );
 
+    // @ts-ignore
     color = useMode(modeLch)(color);
     const lowMin = 0.05,
       lowMax = 0.495,
@@ -96,7 +111,7 @@ function scheme(schemeType) {
       complementary: cb(2, 180, color)
     };
     // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
-    for (const scheme of Object.keys(targetHueSteps)) {
+    for (const scheme of keys(targetHueSteps)) {
       targetHueSteps[scheme].map(
         (step) =>
           rand(step * lowMax, step * lowMin) +
@@ -118,7 +133,7 @@ function scheme(schemeType) {
 /**
  *
  * Takes a collection of colors and finds the nearest matches using the `differenceHyab()` difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use `isAchromatic` to filter grays from your collection in the mode `colorspace` before passing it to the function.
- * @param colors The collection of colors to create palettes from. Preferably use 6 or more colors for better results.
+ * @param {Collection} colors The collection of colors to create palettes from. Preferably use 6 or more colors for better results.
  * @param schemeType (Optional) The palette type you want to return.
  * @returns An array of colors if the `schemeType` parameter is specified else it returns a `Map` object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
  * @example
@@ -158,7 +173,7 @@ function discoverPalettes(colors = [], schemeType, colorspace = 'lch') {
   };
 
   const toLch = useMode(modeLch);
-  colors = Object.keys(colors).map((color) => toLch(color2hex(colors[color])));
+  colors = keys(colors).map((color) => toLch(color2hex(colors[color])));
   const palettes = {};
   const schemeKeys = ['analogous', 'triadic', 'tetradic', 'complementary'];
   const targetPalettes = {};
@@ -166,13 +181,14 @@ function discoverPalettes(colors = [], schemeType, colorspace = 'lch') {
     var current = colors[color];
     schemeKeys.forEach((s) => (targetPalettes[s] = scheme(s)(current)));
 
-    for (const paletteType of Object.keys(targetPalettes)) {
+    for (const paletteType of keys(targetPalettes)) {
       const palette = [];
       let eps = 0;
 
       for (const targetColor of targetPalettes[paletteType]) {
         // filter out colors already in the palette
 
+        // @ts-ignore
         const _colors = colors.filter(
           (c1) => !palette.some((c2) => isColorEqual(c1, c2))
         );
@@ -249,7 +265,9 @@ function earthtone(color, colorspace = 'lch', options = {}) {
   const f = pltr([scheme, color], colorspace);
 
   return (
+    // @ts-ignore
     (iterations === 1 && color2hex(f(0.5))) ||
+    // @ts-ignore
     _smp(iterations).map((t) => color2hex(f(t)))
   );
 }
@@ -280,6 +298,7 @@ function hueShift(color, colorspace = 'lch', options = {}) {
   const lmap = (n) => (start1, end1) => (start2, end2) =>
     ((n - start1) / (end1 - start1)) * (end2 - start2) + start2;
 
+  // @ts-ignore
   color = ucsConverter(colorspace.toLowerCase())(color);
 
   let { iterations, hueStep, minLightness, maxLightness, easingFunc } = options;
@@ -322,7 +341,7 @@ function hueShift(color, colorspace = 'lch', options = {}) {
 /**
  *
  *  Returns a spline interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.
- * @param colors The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
+ * @param {Collection} colors The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
  * @param colorspace The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
  * @param kind The type of the spline interpolation method. Default is basis.
  * @param closed Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is `false`
@@ -372,7 +391,7 @@ function interpolateSpline(
         interpolatorSplineNatural;
   }
 
-  colors = Object.values(colors);
+  colors = values(colors);
 
   // @ts-ignore
   let f = interpolate([...colors, easingFn], colorspace, {
@@ -393,6 +412,7 @@ function interpolateSpline(
 
   var res;
   if (gt(iterations, 1)) {
+    // @ts-ignore
     res = _smp(iterations).map((s) => color2hex(f(s)));
   } else {
     // @ts-ignore
@@ -475,6 +495,7 @@ function pairedScheme(color, options) {
   );
 
   if (samples <= 1) {
+    // @ts-ignore
     return color2hex(scale(0.5));
   } else {
     // Declare the num of iterations in samples() which will be used as the t value
@@ -483,6 +504,7 @@ function pairedScheme(color, options) {
     const smp = _smp(samples * 2);
 
     //The array to capture the different iterations
+    // @ts-ignore
     const results = smp.map((t) => color2hex(scale(easingFunc(t))));
     // Return a slice of the array from the start to the half length of the array
     return results.slice(0, results.length / 2);
@@ -573,12 +595,14 @@ function pastel(color) {
       break;
 
     default:
+      // @ts-ignore
       c = color2hex(c);
   }
 
   return c;
 }
 
+// @ts-ignore
 function baseDistribute(c = [], t = 0.5, options = {}) {
   // Destructure the opts to check before distributing the factor
 
@@ -591,9 +615,9 @@ function baseDistribute(c = [], t = 0.5, options = {}) {
     mn_cb = (v) =>
       setChannel(`${colorspace}.h`)(v, v['h'] + v['h'] * ((mn / v['h']) * 1));
 
-  var _ = Object.keys(
-    colorObjColl('hue', getChannel(`${colorspace}.h`))(c)
-  ).map((v) => _[v]['hue']);
+  var _ = keys(colorObjColl('hue', getChannel(`${colorspace}.h`))(c)).map(
+    (v) => _[v]['hue']
+  );
   var [mn, mx] = [min(_), max(_)];
 
   // Set the extremum to distribute to default to max if its not min
@@ -611,8 +635,8 @@ function baseDistribute(c = [], t = 0.5, options = {}) {
 
   var tmp = [];
   if (excludeAchromatic) {
-    tmp = Object.keys(c).filter((v) => isAchromatic(_[v]['color'], colorspace));
-    c = Object.keys(c).filter((v) => !isAchromatic(_[v]['color'], colorspace));
+    tmp = keys(c).filter((v) => isAchromatic(_[v]['color'], colorspace));
+    c = keys(c).filter((v) => !isAchromatic(_[v]['color'], colorspace));
   }
 
   /**
@@ -627,12 +651,12 @@ function baseDistribute(c = [], t = 0.5, options = {}) {
     );
 
     // exclude it from the collection
-    c = Object.keys(c).filter((o) => c[o] !== slf);
+    c = keys(c).filter((o) => c[o] !== slf);
   }
 
   var out,
     cb = (f) =>
-      Object.keys(c)
+      keys(c)
         .map((o) => c[o])
         .map(f);
 

@@ -1,19 +1,34 @@
+/**
+ * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} Collection
+ * @typedef { import('../types/types.js').Colorspaces} Colorspaces
+ * @typedef {import('../types/types.js').TailwindColorFamilies} TailwindColorFamilies
+ * @typedef {import('../types/types.js').InterpolatorOptions} InterpolatorOptions
+ * @typedef {import('../types/types.js').SchemeType} SchemeType
+ * @typedef {import('../types/types.js').ScaleValues} ScaleValues
+ * @typedef {import('../types/types.js').QualitativeScheme} QualitativeScheme
+ * @typedef {import('../types/types.js').SequentialScheme} SequentialScheme
+ * @typedef {import('../types/types.js').DivergingScheme} DivergingScheme
+ */
+
 import tailwindHues from './color-maps/swatches/tailwind.js';
 
 import {
   getMeanLuminance as _gmlmnce,
   getFarthestContrast as _gfctrst,
-  getNearestContrast as _gnctrst
+  getNearestContrast as _gnctrst,
+  values,
+  keys
 } from './index.js';
 
 import { nearest, differenceHyab } from 'culori/fn';
 
 /**
- * Returns the nearest color(s) in a collection against
- * @param collection The collection of colors to search for nearest colors
- * @param against The color to use for distance comparison.
- * @param num The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric.
- * @returns An cllection of colors.
+ * Returns the nearest color(s) in a collection as compared `against` the passed in color. 
+ * @param {Collection} collection The collection of colors to search for nearest colors.
+ * @param {ColorToken} against The color to use for distance comparison.
+ * @param {number} num The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric.
+ * @returns {Collection} A collection of colors.
  * @example
  *
  * let cols = colors('all', '500')
@@ -22,10 +37,10 @@ console.log(getNearestColor(cols, 'blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
 
-function getNearestColor(collection, color, num = 1) {
+function getNearestColor(collection, against, num = 1) {
   const cb = (collection, color) => {
     return nearest(
-      Object.values(collection),
+      values(collection),
       differenceHyab(),
       (color) => color
     )(color, num);
@@ -33,15 +48,21 @@ function getNearestColor(collection, color, num = 1) {
   let result;
 
   if (collection === 'tailwind') {
-    result = cb(tailwindColors('all'), color);
+    // @ts-ignore
+    result = cb(tailwindColors('all'), against);
   } else {
-    result = cb(collection, color);
+    result = cb(collection, against);
   }
 
   return result;
 }
 
-//Check if the scheme object has the passed in scheme
+/**
+ * Returns the specified scheme from the passed in color map
+ * @param {string} scheme The palette type to return.
+ * @param {Collection} schemesObject The color map with the `scheme`s as keys and `ColorToken | Array<ColorToken>` as values.
+ * @returns {Collection} The collection of colors from the specified `scheme`.
+ */
 function hasScheme(scheme, schemesObject) {
   const cb = (str) => str.toLowerCase();
   const { keys } = Object;
@@ -61,9 +82,11 @@ function hasScheme(scheme, schemesObject) {
 /**
  *
  *  A wrapper function for ColorBrewer's map of sequential color schemes.
- * @param scheme The name of the scheme
- * @returns An array of colors in hex represantation.
+ * @param {SequentialScheme} scheme The name of the scheme.
+ * @param {Colorspaces|undefined} colorspace The color to retrieve the `scheme` in.
+ * @returns {Collection|ColorToken}  A collection of colors in the specified colorspace. The default is hex if `colorspace` is `undefined.`
  * @example
+ * 
  * import { sequential } from 'huetiful-js
 
 
@@ -81,7 +104,7 @@ console.log(sequential("OrRd"))
 
  */
 
-function sequential(scheme) {
+function sequential(scheme, colorspace = undefined) {
   const schemes = {
     OrRd: [
       '#fff7ec',
@@ -300,8 +323,9 @@ function sequential(scheme) {
 /**
  *
  *  A wrapper function for ColorBrewer's map of diverging color schemes.
- * @param scheme The name of the scheme.
- * @returns An array of colors in hex represantation.
+ * @param {DivergingScheme} scheme The name of the scheme.
+ * @returns {Collection} The collection of colors from the specified `scheme`.
+ * @param {Colorspaces|undefined} colorspace The color to retrieve the `scheme` in.
  * @example
  *
  * import { diverging } from 'huetiful-js'
@@ -317,7 +341,7 @@ console.log(diverging("Spectral"))
 ]
  */
 
-function diverging(scheme) {
+function diverging(scheme, colorspace = undefined) {
   const schemes = {
     Spectral: [
       '#9e0142',
@@ -444,8 +468,8 @@ function diverging(scheme) {
 /**
  *
  *  A wrapper function for ColorBrewer's map of qualitative color schemes.
- * @param scheme The name of the scheme
- * @returns An array of colors in hex represantation.
+ * @param {QualitativeScheme} scheme The name of the scheme
+ * @returns {Collection} The collection of colors from the specified `scheme`.
  * @example
  *
  * import { qualitative } from 'huetiful-js'
@@ -461,7 +485,7 @@ console.log(qualitative("Accent"))
 
  */
 
-function qualitative(scheme) {
+function qualitative(scheme, colorspace = undefined) {
   const schemes = {
     Set2: [
       '#66c2a5',
@@ -559,9 +583,10 @@ function qualitative(scheme) {
 
 /**
  *
- *  Returns TailwindCSS color value(s) of the specified `shade` from the default palette. If invoked with no parameters, it returns an array of colors from 100 to 900. If invoked with parameter will return the specified shade vale,
- * @param  val The tone value of the shade. Values are in incrementals of 100. Both numeric (100) and its string equivalent ('100') are valid.
- * @returns color A hex string value or array of hex strings.
+ *  Returns TailwindCSS color value(s) of the specified `shade` from the default palette. If called with no parameters, it returns an array of colors from `050` to `900`. If called with parameter will return the specified shade value.
+ * @param {TailwindColorFamilies |`all`} shade The hue family to return.
+ * @param  {ScaleValues} value The tone value of the shade. Values are in incrementals of `100`. For example numeric (`100`) and its string equivalent (`'100'`) are valid.
+ * @returns {Array<string>|string} A hex string value or array of hex strings.
  * @example
  *
  * import { tailwindColors } from "huetiful-js";
@@ -590,7 +615,7 @@ console.log(red('900'));
  */
 
 function tailwindColors(shade, value) {
-  var [defaultHue, hueKeys] = ['all', Object.keys(tailwindHues)];
+  var [defaultHue, hueKeys] = ['all', keys(tailwindHues)];
 
   var [hasHue, hasVal] = [
     (h) => hueKeys.includes(h),
@@ -609,23 +634,25 @@ function tailwindColors(shade, value) {
       ].includes(val.toString())
   ];
 
+  // @ts-ignore
   shade = shade.toLowerCase();
-
+  var res;
   if (shade === defaultHue) {
     if (hasVal(value)) {
-      return hueKeys.map((hue) => tailwindHues[hue][value]);
+      res = hueKeys.map((hue) => tailwindHues[hue][value]);
     } else {
-      return hueKeys.map((key) => Object.values(tailwindHues[key])).flat(2);
+      res = hueKeys.map((key) => values(tailwindHues[key])).flat(2);
     }
   } else if (hasHue(shade)) {
     if (hasVal(value)) {
-      return tailwindHues[shade][value];
+      res = tailwindHues[shade][value];
     } else {
-      return Object.values(tailwindHues[shade]);
+      res = values(tailwindHues[shade]);
     }
   } else if (!shade || (!shade && !value)) {
-    return hueKeys.map((h) => tailwindHues[H]);
+    res = hueKeys.map((h) => tailwindHues[h]);
   }
+  return res;
 }
 
 export { getNearestColor, diverging, qualitative, sequential, tailwindColors };

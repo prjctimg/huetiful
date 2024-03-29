@@ -6,19 +6,21 @@ import type {
   InterpolatorOptions,
   PairedSchemeOptions,
   UniformColorSpaces,
-  DistributionOptions
+  DistributionOptions,
+  Collection,
+  SchemeType
 } from './types';
 declare function scheme(
-  schemeType: 'analogous' | 'triadic' | 'tetradic' | 'complementary' | string
+  schemeType: SchemeType | string
 ): (
   color: ColorToken,
   easingFunc?: (t: number) => number
 ) => ArrayLike<ColorToken>;
 declare function discoverPalettes(
-  colors: ArrayLike<ColorToken> | object,
-  schemeType?: 'analogous' | 'triadic' | 'tetradic' | 'complementary',
+  colors: Collection,
+  schemeType?: SchemeType,
   colorspace?: UniformColorSpaces
-): ArrayLike<ColorToken> | object;
+): Collection;
 declare function earthtone(
   color: ColorToken,
   colorspace?: HueColorSpaces,
@@ -31,7 +33,7 @@ declare function hueShift(
 ): ArrayLike<ColorToken>;
 
 declare function interpolateSpline(
-  colors: ArrayLike<ColorToken> | object,
+  colors: Collection,
   colorspace?: HueColorSpaces,
   iterations?: number,
   kind?: 'natural' | 'monotone' | 'basis',
@@ -60,13 +62,13 @@ declare function pastel(color: ColorToken): ColorToken;
  * @param options
  */
 declare function distributeHue(
-  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  collection: Collection | Map<any, ColorToken>,
   threshold: number,
   options?: DistributionOptions
 ): Array<ColorToken> | Map<any, ColorToken>;
 
 declare function distributeLuminance(
-  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  collection: Collection | Map<any, ColorToken>,
   threshold: number,
   options?: Omit<
     DistributionOptions,
@@ -75,13 +77,13 @@ declare function distributeLuminance(
 ): Array<ColorToken> | Map<any, ColorToken>;
 
 declare function distributeLightness(
-  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  collection: Collection | Map<any, ColorToken>,
   threshold: number,
   options?: Omit<DistributionOptions, 'hueFixup' | 'excludeAchrpmatic'>
 ): Array<ColorToken> | Map<any, ColorToken>;
 
 declare function distributeChroma(
-  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
+  collection: Collection | Map<any, ColorToken>,
   threshold: number,
   options?: DistributionOptions
 ): Array<ColorToken> | Map<any, ColorToken>;

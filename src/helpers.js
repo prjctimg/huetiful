@@ -1,10 +1,8 @@
 /**
  * @module
  * @license
- * helpers.ts - Helper functions for huetiful-js.
- * Contains colors from TailwindCSS released under the MIT permissive licence.
- * Contains parts of chroma.js released under the Apache-2.0 license.
-Copyright 2023 Dean Tarisai.
+ * helpers.js - Helper functions for huetiful-js.
+ opyright 2023 Dean Tarisai.
 This file is licensed to you under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License. You may obtain a copy
 of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -26,6 +24,8 @@ import {
   interpolatorLinear
 } from 'culori/fn';
 import { ucsConverter } from './converters.js';
+
+var { keys, entries, values } = Object;
 
 /**
  * @internal
@@ -66,11 +66,14 @@ function exprParser(color = '#000', mc = '', expr = '') {
 
   var [mode, chn, op, val] = [
     ...mc.split('.'),
+    // @ts-ignore
     /^(\*|\+|\-|\/)/.exec(expr)['0'],
+    // @ts-ignore
     /[0-9]*\.?[0-9]+/.exec(expr)['0']
   ];
 
-  color = ucsConverter(mode.toString().toLowerCase())(color);
+  // @ts-ignore
+  color = ucsConverter(mode.toLowerCase())(color);
   const cb = (value) => parseFloat(value);
 
   // Match an operator against the first truthy case and perform the relevant math operation
@@ -98,6 +101,7 @@ function mcchn(colorspace) {
   colorspace = or(colorspace, 'lch');
   const reChroma = /(s|c)/i;
 
+  // @ts-ignore
   const ch = reChroma.exec(colorspace)['0'];
 
   if (reChroma.test(colorspace)) {
@@ -114,6 +118,7 @@ function mlchn(colorspace) {
   colorspace = or(colorspace, 'lch');
   const reLightness = /(j|l)/i;
 
+  // @ts-ignore
   const ch = reLightness.exec(colorspace)['0'];
 
   if (reLightness.test(colorspace)) {
@@ -131,7 +136,7 @@ function colorObj(factor, callback) {
 
 function customFindKey(collection, factor) {
   // If the color is achromatic return the string gray
-  const propKeys = Object.keys(collection);
+  const propKeys = keys(collection);
 
   const result = propKeys
     .filter((key) => {
@@ -283,7 +288,7 @@ function colorObjColl(factor = 'factor', callback = (arg) => arg.toString()) {
     } else if (typeof collection === 'object') {
       res = new Map();
 
-      for (const [key, klr] of Object.entries(collection)) {
+      for (const [key, klr] of entries(collection)) {
         res.set(key, cb(klr));
       }
     } else {
@@ -305,6 +310,7 @@ function max(array = []) {
 function reNum(s) {
   s = s.toString();
   var reDigits = /[0-9]*\.?[0-9]+/;
+  // @ts-ignore
   return (reDigits.test(s) && Number(reDigits.exec(s)['0'])) || undefined;
 }
 
@@ -312,6 +318,7 @@ function reOp(s) {
   s = s.toString();
   var reComparator = /^(>=|<=|<|>|={1,2}|!={0,2})/;
 
+  // @ts-ignore
   return (reComparator.test(s) && reComparator.exec(s)['0']) || undefined;
 }
 function sortedColl(
@@ -328,22 +335,24 @@ function sortedColl(
     // Sort the array using our customSort helper function
 
     if (Array.isArray(collection)) {
+      // @ts-ignore
       res = objColl.sort(customSort(order, factor));
 
       return (colorObj === true && res) || res.map((color) => color['color']);
     } else {
       res = new Map();
-      Object.values(objColl)
+      values(objColl)
+        // @ts-ignore
         .sort(customSort(order, factor))
         .map((val, key) => {
-          var [k, v] = Object.entries(collection)[key];
+          var [k, v] = entries(collection)[key];
           if (val === v) {
             res.set(k, val);
           }
         });
 
       if (colorObj === false) {
-        Object.entries(res).map((v) => res.set(v[0], v[1]['color']));
+        entries(res).map((v) => res.set(v[0], v[1]['color']));
       }
     }
     return res;
@@ -359,6 +368,7 @@ function filteredColl(factor, cb) {
         factor,
         cb
       )(collection)
+        // @ts-ignore
         .filter((color) => inRange(color[factor], start, end))
         .map((color) => color['color']);
 
@@ -371,12 +381,15 @@ function filteredColl(factor, cb) {
 
       if (op) {
         const mapFilter = (test) => {
-          return colorObjColl(
-            factor,
-            cb
-          )(collection)
-            .filter((el) => test(el[factor], parseFloat(val.toString())))
-            .map((el) => el['color']);
+          return (
+            colorObjColl(
+              factor,
+              cb
+            )(collection)
+              // @ts-ignore
+              .filter((el) => test(el[factor], parseFloat(val.toString())))
+              .map((el) => el['color'])
+          );
         };
         // object with comparison symbols as keys
         var comparisonSymbols = {
@@ -426,5 +439,8 @@ export {
   gmchn,
   pltrconfg,
   reOp,
-  reNum
+  reNum,
+  entries,
+  values,
+  keys
 };
