@@ -57,7 +57,9 @@
     "commitlint": "commitlint --edit"
   },
   "husky": {
-    "hooks": {}
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && npx cz  --hook || true"
+    }
   },
   "prettier": {
     "semi": true,

@@ -1308,7 +1308,7 @@ console.log(myColor.getChannel('lch.h'))
    */
   brighten(amount) {
     // @ts-ignore
-    this['_color'] = _brghtn(this['_color'], amount, colorspace);
+    this['_color'] = _brghtn(this['_color'], amount);
     return this;
   }
 
