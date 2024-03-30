@@ -67,7 +67,10 @@ import {
   getNearestColor as _gnrstc,
   gt,
   // @ts-ignore
-  lt
+  lt,
+  getMeanLuminance as _gmnlmnce,
+  brighten as _brghtn,
+  darken as drkn
 } from './index.js';
 import { tailwindColors } from './colors.js';
 
@@ -466,7 +469,7 @@ console.log(load(sample).getMeanContrast(against));
  */
 
   getMeanLuminance() {
-    return 0;
+    return _gmnlmnce(this['colors']);
   }
 
   /**
@@ -1293,14 +1296,39 @@ console.log(myColor.getChannel('lch.h'))
     return this;
   }
 
-  // brighten(amount, colorspace) {
-  //   this['_color'] = _Brighten(this['_color'], amount, colorspace);
-  //   return this;
-  // }
-  // darken(amount) {
-  //   this['_color'] = _Darken(this['_color'], amount);
-  //   return this;
-  // }
+  /**
+   * 
+   * The inverse of `darken`. Brightens the bound color by increasing the lightness channel.
+   * @param {number} amount The amount to brighten with. The value is expected to be in the range `[0,1]`. Default is  `0.5`.
+   * @returns {Color} The brightened color. Preserves the `ColorToken` type of the pased in color.
+   * @example  import { color } from "huetiful-js";
+  
+  console.log(color('blue').brighten(0.3, 'lch'));
+  //#464646
+   */
+  brighten(amount) {
+    // @ts-ignore
+    this['_color'] = _brghtn(this['_color'], amount, colorspace);
+    return this;
+  }
+
+  /**
+ *
+ * Darkens the bound color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
+ * @param {number} amount The amount to darken with. The value is expected to be in the range `[0,1]`. Default is `0.5`.
+ * @returns {Color} The darkened color. Preserves the `ColorToken` type of the pased in color.
+ * @example
+ *
+ *  import { color } from "huetiful-js";
+console.log(color('blue'+-).darken(0.3, 'lch'));
+//#464646
+
+ */
+
+  darken(amount) {
+    this['_color'] = drkn(this['_color'], amount);
+    return this;
+  }
 
   /**
    * Returns the bound `ColorToken` as a hexadecimal string.

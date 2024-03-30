@@ -409,7 +409,22 @@ function filteredColl(factor, cb) {
   };
 }
 
+function clamp(value, min = -Infinity, max = Infinity) {
+  if (typeof value === 'number') {
+    if (gt(value, max)) {
+      return max;
+    } else if (lt(value, min)) {
+      return min;
+    } else {
+      return value;
+    }
+  } else {
+    throw Error(`${value} is not a number`);
+  }
+}
+
 export {
+  clamp,
   exprParser,
   mlchn,
   mcchn,

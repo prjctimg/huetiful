@@ -59,6 +59,16 @@ var utilsSpec = {
     params: ['#ffc300', 0.7],
     description: `Sets the luminance of the passed in color`,
     expect: '#ffe180'
+  },
+  brighten: {
+    params: ['b2c3f1', 0.4, 'lch'],
+    description: 'Brightens the passed in color',
+    expect: '#b3c4f2ff'
+  },
+  darken: {
+    params: ['b2c3f1', 0.4, 'lch'],
+    description: 'Darkens the passed in color',
+    expect: '#b1c2f0ff'
   }
 };
 
@@ -66,7 +76,7 @@ describe(`Test suite for utils`, () => {
   _iterator(utils, utilsSpec);
   // it(`Brightens/darkens the passed in color`, () => {
   //   expect(utils.darken(col, 0.5)).toBe(67.22120855010492);
-  //   expect(utils.brighten(['b2c3f1', '#a1bd2f', '#f3bac1'], '*0.3')).toBe(22.45669293295522);
+  //   expect(utils.brighten([, '#a1bd2f', '#f3bac1'], '*0.3')).toBe(22.45669293295522);
   // });
 
   // Not in the map because these funcs are curried

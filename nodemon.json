@@ -1,1 +1,1 @@
-{ "watch": "./docs/assets/", "exec": "node ./docs/assets/js/docs.cjs" }
+{ "watch": "./*.js", "exec": "node ./app.js" }

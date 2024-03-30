@@ -36,7 +36,9 @@ import {
   color2hex,
   ucsConverter,
   keys,
-  entries
+  entries,
+  clamp,
+  min
 } from './index.js';
 
 import {
@@ -48,9 +50,12 @@ import {
   converter,
   wcagContrast,
   formatHex,
-  easingSmootherstep as _ess
+  easingSmootherstep as _ess,
+  modeLab65,
+  formatHex8
 } from 'culori/fn';
 import 'culori/css';
+import modeRanges from './color-maps/samples/modeRanges.js';
 
 /**
  *
@@ -460,10 +465,9 @@ function isWarm(color) {
 
 /**
  *
- * Darkens the color by reducing the `lightness` channel.
+ * Darkens the color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
  * @param {ColorToken} color The color to darken.
- * @param {number} amount The amount to darken with. The value is expected to be in the range `[0,1]`
- * @param {UniformColorSpaces} colorspace The mode colorspace to darken the color in. Only uniform colorspaces are supported
+ * @param {number} amount The amount to darken with. The value is expected to be in the range `[0,1]`. Default is `0.5`.
  * @returns {ColorToken} The darkened color. Preserves the `ColorToken` type of the pased in color.
  * @example
  *
@@ -473,49 +477,55 @@ console.log(darken('blue', 0.3, 'lch'));
 
  */
 
-function darken(color = '#fff', amount = 0.3, colorspace) {
-  const chn = mlchn(colorspace)[1];
-  colorspace = or(colorspace, 'lch');
-  const src = ucsConverter(colorspace)(color2hex(color));
-
-  // @ts-ignore
-  var l = src[chn];
-
-  if (typeof amount === 'number' && inRange(amount, 0, 1)) {
+function darken(color = '#fff', amount = 0.3) {
+  var src = useMode(modeLab65)(color2hex(color));
+  if (typeof amount === 'number') {
     // darken by value of the current channel as a percentage
 
+    var l = 'l';
+
     // @ts-ignore
-    src[chn] = l * (end - start * _ess(amount));
-  } else {
-    Error(`Darken accepts a number in the range [0,1] but got ${amount}`);
+    src[l] = max([0, src[l] - amount]);
+
+    // @ts-ignore
   }
 
   // @ts-ignore
-  return color2hex(src);
+  return formatHex8(src);
 }
 
 /**
  *
- * The inverse of `darken`. It brightens the passed in color by increasing the lightness channel.
+ * The inverse of `darken`. Brightens the passed in color by increasing the lightness channel by `amount` of the channel. For example `0.3` means increase the lightness by `0.3` of the channel's current value.
  * @param {ColorToken} color The color to brighten.
- * @param amount The amount to brighten with. The value is expected to be in the range `[0,1]`
- * @param {UniformColorSpaces} colorspace The mode colorspace to brighten the color in. Only uniform colorspaces are supported.
+ * @param {number} amount The amount to brighten with. The value is expected to be in the range `[0,1]`. Default is `0.5`.
  * @returns {ColorToken} The brightened color. Preserves the `ColorToken` type of the pased in color.
  * @example
  *
  *  import { brighten } from "huetiful-js";
+ * 
 console.log(brighten('blue', 0.3, 'lch'));
 //#464646
 
  */
 
-function brighten(color, amount = 1, colorspace) {
-  return darken(color, +amount, colorspace);
+function brighten(color, amount = 0.4) {
+  var src = useMode(modeLab65)(color2hex(color));
+  if (typeof amount === 'number') {
+    // darken by value of the current channel as a percentage
+
+    var l = 'l';
+
+    // @ts-ignore
+    src[l] = min([100, (src[l] += amount)]);
+  }
+  // @ts-ignore
+  return formatHex8(src);
 }
 
 /**
  *
- * Checks if a color is achromatic(without hue or simply grayscale).
+ * Checks if a color is achromatic (without hue or simply grayscale).
  * @param {ColorToken} color The color to test if it is achromatic or not.
  * @param {HueColorSpaces} [colorspace='lch'] The colorspace to use when checking if the `color` is grayscale or not.
  * @returns {boolean} True if the color is achromatic else false.

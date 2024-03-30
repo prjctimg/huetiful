@@ -73,8 +73,8 @@ import {
 /**
  *
  *  Generates a randomised classic color scheme from a single color.
- * @param {'analogous' | 'triadic' | 'tetradic' | 'complementary' | string}  schemeType  Any classic color scheme either .
-  * @returns A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme. Preserves the `ColorToken` type of the pased in color.
+ * @param {SchemeType|string}  schemeType  Any classic color scheme either .
+  * @returns {Collection} A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme. Preserves the `ColorToken` type of the pased in color.
  * @example
  *
  import { scheme } from 'huetiful-js'
@@ -86,16 +86,18 @@ console.log(scheme("triadic")("#a1bd2f"))
 function scheme(schemeType = 'analogous') {
   /**
    * @param {string}  color The color to use as a base for the palette.
-   * @param {(t?:number)=>number} easingFunc The easing function to apply to the palette. It's applied on the `hue` channel.
+   * @param {(t:number)=>number} [easingFn=undefined] The easing function to apply to the palette. It's applied on the `hue` channel.
 
    */
   // @ts-ignore
-  return (color = 'cyan', easingFunc = easingSmoothstep) => {
+  return (color = 'cyan', easingFn) => {
     schemeType = schemeType.toLowerCase();
 
     const cb = (iterations, distance, color) =>
       _smp(iterations).map((val) =>
-        adjustHue((color['h'] + distance) * (val * easingFunc(val)))
+        adjustHue(
+          (color['h'] + distance) * (val * or(easingFn, easingSmoothstep)(val))
+        )
       );
 
     // @ts-ignore
@@ -122,7 +124,9 @@ function scheme(schemeType = 'analogous') {
     const colors = targetHueSteps[schemeType].map((step) => ({
       l: color['l'],
       c: color['c'],
-      h: step * easingFunc(1 / targetHueSteps[schemeType].length),
+      h:
+        step *
+        or(easingFn, easingSmoothstep)(1 / targetHueSteps[schemeType].length),
       mode: 'lch'
     }));
 
@@ -134,8 +138,8 @@ function scheme(schemeType = 'analogous') {
  *
  * Takes a collection of colors and finds the nearest matches using the `differenceHyab()` difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use `isAchromatic` to filter grays from your collection in the mode `colorspace` before passing it to the function.
  * @param {Collection} colors The collection of colors to create palettes from. Preferably use 6 or more colors for better results.
- * @param schemeType (Optional) The palette type you want to return.
- * @returns An array of colors if the `schemeType` parameter is specified else it returns a `Map` object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
+ * @param {SchemeType} schemeType (Optional) The palette type you want to return.
+ * @returns {Array<ColorToken>} An array of colors if the `schemeType` parameter is specified else it returns a `Map` object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
  * @example
  *
  * import { discoverPalettes } from 'huetiful-js'
@@ -179,6 +183,7 @@ function discoverPalettes(colors = [], schemeType, colorspace = 'lch') {
   const targetPalettes = {};
   for (const color in colors) {
     var current = colors[color];
+    // @ts-ignore
     schemeKeys.forEach((s) => (targetPalettes[s] = scheme(s)(current)));
 
     for (const paletteType of keys(targetPalettes)) {
