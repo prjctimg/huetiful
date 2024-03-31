@@ -34,10 +34,8 @@ import {
   mcchn,
   or,
   color2hex,
-  ucsConverter,
   keys,
   entries,
-  clamp,
   min
 } from './index.js';
 
@@ -55,7 +53,6 @@ import {
   formatHex8
 } from 'culori/fn';
 import 'culori/css';
-import modeRanges from './color-maps/samples/modeRanges.js';
 
 /**
  *

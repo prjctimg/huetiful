@@ -7,7 +7,7 @@
  * @typedef {import('../types/types.js').FactObject} FactObject
  * @typedef {import('../types/types.js').InterpolatorOptions} InterpolatorOptions
  * @typedef {import('../types/types.js').SchemeType} SchemeType
-
+ * @typedef {import('../types/types.js').UniformColorSpaces} UniformColorSpaces
  */
 
 /**
@@ -44,14 +44,15 @@ import {
   random,
   formatHex,
   fixupHueShorter,
-  fixupHueLonger
+  fixupHueLonger,
+  converter
 } from 'culori/fn';
+import 'culori/css';
 
 import {
   color2hex,
   color2num,
   color2tuple,
-  ucsConverter,
   adjustHue,
   rand,
   or,
@@ -304,7 +305,7 @@ function hueShift(color, colorspace = 'lch', options = {}) {
     ((n - start1) / (end1 - start1)) * (end2 - start2) + start2;
 
   // @ts-ignore
-  color = ucsConverter(colorspace.toLowerCase())(color);
+  color = converter(colorspace.toLowerCase())(color);
 
   let { iterations, hueStep, minLightness, maxLightness, easingFunc } = options;
   const [l, c] = [mlchn, mcchn].map((e) => e(colorspace).split('.')[1]);

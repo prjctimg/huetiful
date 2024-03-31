@@ -1,11 +1,4 @@
 /**
- * @typedef {import('../types/types.d').Colorspaces} Colorspaces
- *
- *
- *
- */
-
-/**
  * @typedef { import('../types/types.js').ColorToken} ColorToken
  * @typedef { import('../types/types.js').Collection} Collection
  * @typedef { import('../types/types.js').HueColorSpaces} HueColorSpaces
@@ -13,42 +6,19 @@
  * @typedef {import('../types/types.js').InterpolatorOptions} InterpolatorOptions
  * @typedef {import('../types/types.js').SchemeType} SchemeType
  * @typedef {import('../types/types.js').UniformColorSpaces} UniformColorSpaces
+ * @typedef {import('../types/types.js').Colorspaces} Colorspaces
  */
 
 import {
   useMode,
   modeRgb,
   converter,
-  modeDlch,
-  modeJch,
-  modeLch,
-  modeLch65,
-  modeLchuv,
-  modeOklch,
   formatHex,
   formatHex8,
   colorsNamed
 } from 'culori/fn';
 
 import { gmchn, keys } from './helpers.js';
-
-/**
- * Converter function with mode definitions for uniform color spaces. The function is curried to return a converter in the passed colospace.
- * @param {UniformColorSpaces} colorspace The mode converter to return.
- * @returns The converter function in the mode colorspace.
- */
-function ucsConverter(colorspace = 'lch') {
-  const ucsDefinitions = {
-    jch: modeJch,
-    lch: modeLch,
-    dlch: modeDlch,
-    lchuv: modeLchuv,
-    oklch: modeOklch,
-    lch65: modeLch65
-  };
-
-  return useMode(ucsDefinitions[colorspace.toLowerCase()]);
-}
 
 /**
  *
@@ -311,6 +281,5 @@ export {
   color2num,
   temp2color,
   color2tuple,
-  ucsConverter,
   color2hex
 };

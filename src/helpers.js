@@ -21,9 +21,9 @@ import {
   fixupHueShorter,
   interpolatorSplineBasisClosed,
   easingSmoothstep,
-  interpolatorLinear
+  interpolatorLinear,
+  converter
 } from 'culori/fn';
-import { ucsConverter } from './converters.js';
 
 var { keys, entries, values } = Object;
 
@@ -73,7 +73,7 @@ function exprParser(color = '#000', mc = '', expr = '') {
   ];
 
   // @ts-ignore
-  color = ucsConverter(mode.toLowerCase())(color);
+  color = converter(mode.toLowerCase())(color);
   const cb = (value) => parseFloat(value);
 
   // Match an operator against the first truthy case and perform the relevant math operation
