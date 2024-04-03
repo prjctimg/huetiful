@@ -13,10 +13,10 @@ import _demo from './json/demo.json' assert { type: 'json' };
 
 var { src, dest, series, watch } = gulp;
 
-var PATH_TO_MD_FILES = './markdown';
-var moduleNames = readdirSync(PATH_TO_MD_FILES + '/modules', 'utf-8').map(
-  (s) => s.split('.')[0]
-);
+// var PATH_TO_MD_FILES = './markdown';
+// var moduleNames = readdirSync(PATH_TO_MD_FILES + '/modules', 'utf-8').map(
+//   (s) => s.split('.')[0]
+// );
 var BASE_URL = `https://huetiful-js.com/api`;
 
 // export async function links() {
@@ -131,25 +131,25 @@ async function renameFiles() {
   //   );
   // });
 
-  renameSync('www/demo/demo.html', 'www/demo/index.html');
+  renameSync('../www/demo/demo.html', '../www/demo/index.html');
   writeFileSync(`../www/.nojekyll`, '', 'utf-8');
 }
 
-export async function clean() {
-  moduleNames.map((srcFile) =>
-    rmSync(`../www/api/${srcFile}/post.html`, {
-      force: true,
-      recursive: true,
-      retryDelay: 1500
-    })
-  );
+// export async function clean() {
+//   moduleNames.map((srcFile) =>
+//     rmSync(`../www/api/${srcFile}/post.html`, {
+//       force: true,
+//       recursive: true,
+//       retryDelay: 1500
+//     })
+//   );
 
-  rmSync(`../www/api/api.html`, {
-    force: true,
-    recursive: true,
-    retryDelay: 1500
-  });
-}
+//   rmSync(`../www/api/api.html`, {
+//     force: true,
+//     recursive: true,
+//     retryDelay: 1500
+//   });
+// }
 
 export default async function watchFiles() {
   return watch(['./**/*+(njk|svg|ttf|otf|js)'], xml);
@@ -174,4 +174,4 @@ export const assets = series(css, js, fonts);
 //export const clean = clean;
 export const rename = renameFiles;
 export const dev = series(xml, assets, watchFiles);
-export const deploy = series(xml, assets, rename);
+export const deploy = series(xml, assets);
