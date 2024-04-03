@@ -1,4 +1,5 @@
 /**
+
  * @typedef { import('../types/types.js').ColorToken} ColorToken
  * @typedef { import('../types/types.js').Collection} Collection
  * @typedef { import('../types/types.js').Colorspaces} Colorspaces
@@ -24,6 +25,7 @@ import {
 import { nearest, differenceHyab } from 'culori/fn';
 
 /**
+ * @public
  * Returns the nearest color(s) in a collection as compared `against` the passed in color. 
  * @param {Collection} collection The collection of colors to search for nearest colors.
  * @param {ColorToken} against The color to use for distance comparison.
@@ -58,6 +60,7 @@ function getNearestColor(collection, against, num = 1) {
 }
 
 /**
+ * @public
  * Returns the specified scheme from the passed in color map
  * @param {string} scheme The palette type to return.
  * @param {Collection} schemesObject The color map with the `scheme`s as keys and `ColorToken | Array<ColorToken>` as values.
@@ -80,6 +83,7 @@ function hasScheme(scheme, schemesObject) {
 }
 
 /**
+ * @public
  *
  *  A wrapper function for ColorBrewer's map of sequential color schemes.
  * @param {SequentialScheme} scheme The name of the scheme.
@@ -321,6 +325,7 @@ function sequential(scheme, colorspace = undefined) {
 }
 
 /**
+ * @public
  *
  *  A wrapper function for ColorBrewer's map of diverging color schemes.
  * @param {DivergingScheme} scheme The name of the scheme.
@@ -466,6 +471,7 @@ function diverging(scheme, colorspace = undefined) {
 }
 
 /**
+ * @public
  *
  *  A wrapper function for ColorBrewer's map of qualitative color schemes.
  * @param {QualitativeScheme} scheme The name of the scheme
@@ -582,6 +588,7 @@ function qualitative(scheme, colorspace = undefined) {
 }
 
 /**
+ * @public
  *
  *  Returns TailwindCSS color value(s) of the specified `shade` from the default palette. If called with no parameters, it returns an array of colors from `050` to `900`. If called with parameter will return the specified shade value.
  * @param {TailwindColorFamilies |`all`} shade The hue family to return.

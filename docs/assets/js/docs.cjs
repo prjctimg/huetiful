@@ -1,5 +1,5 @@
 #!/usr/bin / env node
-
+// @ts-nocheck
 /*
  * @license xml-wizard/huetiful-docs Documentation script using showdown.js,Typedoc and github-markdown-css .  
  * Copyright 2024 Dean Tarisai.
@@ -18,8 +18,7 @@ var { colorsNamed } = require('culori');
 var { readFileSync, lstatSync } = require('node:fs'),
   ge = require('github-emoji'),
   defaultClasses = {
-    blockquote: ' border-l-blue-400 bg-blue-200',
-    code: 'hljs language-typescript text-wrap'
+    blockquote: ' border-l-blue-400 bg-blue-200'
   },
   injectClasses = Object.keys(defaultClasses).map((key) => ({
     type: 'output',
@@ -127,7 +126,7 @@ function buildDataObject(sourceModule, markupTransform = null) {
     day: 'numeric',
 
     dayPeriod: 'short'
-  }).format(lstatSync('../../types/' + sourceModule + '.d.ts').mtime);
+  }).format(lstatSync('../../src/' + sourceModule + '.js').mtime);
 
   var cb = (s, x, y) =>
     `https://github.com/xml-wizard/huetiful/blob/main/${s}/${x}.${y}`;
@@ -142,8 +141,7 @@ function buildDataObject(sourceModule, markupTransform = null) {
     lastUpdated: time,
     srcFile: cb('src', sourceModule, 'js'),
     specFile: cb('spec', sourceModule, 'spec.js'),
-    wikiPage: `https://github.com/xml-wizard/huetiful/wiki/${sourceModule}`,
-    declFile: cb('types', sourceModule, 'd.ts')
+    wikiPage: `https://github.com/xml-wizard/huetiful/wiki/${sourceModule}`
   };
 }
 

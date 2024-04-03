@@ -1,17 +1,4 @@
-/**
- * @typedef { import('../types/types.js').ColorToken} ColorToken
- * @typedef { import('../types/types.js').Collection} Collection
- * @typedef { import('../types/types.js').HueColorSpaces} HueColorSpaces
- * @typedef {import('../types/types.js').FactObject} FactObject
- * @typedef {import('../types/types.js').InterpolatorOptions} InterpolatorOptions
- * @typedef {import('../types/types.js').SchemeType} SchemeType
- * @typedef {import('../types/types.js').Order} Order
- * @typedef {import('../types/types.js').Colorspaces} Colorspaces
- * @typedef {import('../types/types.js').UniformColorSpaces} UniformColorSpaces
- * @typedef {import('../types/types.js').TailwindColorFamilies} TailwindColorFamilies
-
- */
-
+// @ts-nocheck
 export * from './colors.js';
 export * from './utils.js';
 export * from './generators.js';

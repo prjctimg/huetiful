@@ -1,8 +1,8 @@
 /**
- * @module
+ * 
  * @license
  * helpers.js - Helper functions for huetiful-js.
- opyright 2023 Dean Tarisai.
+ Copyright 2024 Dean Tarisai.
 This file is licensed to you under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License. You may obtain a copy
 of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -28,7 +28,7 @@ import {
 var { keys, entries, values } = Object;
 
 /**
- * @internal
+ * @public
  *  Returns the first truthy value.
  * @param arg The value to check
  * @param def The value to cast if arg is falsy

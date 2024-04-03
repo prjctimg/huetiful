@@ -1,6 +1,14 @@
+// @ts-nocheck
 /**
  * Script for the huetiful-js docs site. Contains JS powered perks
  */
+
+/** syntax-highlighting */
+document.addEventListener('DOMContentLoaded', () =>
+  document
+    .querySelectorAll('pre code')
+    .forEach((el) => hljs.highlightElement(el))
+);
 
 /** Reading progress */
 

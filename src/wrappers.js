@@ -75,8 +75,7 @@ import {
 import { tailwindColors } from './colors.js';
 
 /**
- * @experimental
- * @internal
+ * @public
  * @this {ColorArray}
  Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
  * @example
@@ -92,6 +91,7 @@ console.log(wrapper.sortByHue('desc', 'lch').output());
  */
 class ColorArray {
   /**
+   * @public
    * @param {Collection} colors The collection of colors to bind.
    */
   constructor(colors) {
@@ -100,6 +100,7 @@ class ColorArray {
   }
 
   /**
+   * @public
    
  * Returns the nearest color(s) in the bound collection against
  * @param {ColorToken} color  The color to use for distance comparison.
@@ -124,6 +125,7 @@ console.log(load(cols).getNearestColor('blue', 3));
   }
 
   /**
+   * @public
  * Gets the largest chroma/saturation difference between the colors in the bound collection `against` a comparison color.
  * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param {HueColorSpaces} [colorspace='lch'] The mode colorspace to retrieve the channel being queried.
@@ -154,6 +156,7 @@ console.log(load(cols).getNearestColor('blue', 3));
   }
 
   /**
+   * @public
  * Gets the smallest chroma/saturation difference between the colors in the bound collection `against` a comparison color.
  * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param {HueColorSpaces} [colorspace='lch'] The mode colorspace to retrieve the channel being queried.
@@ -185,6 +188,7 @@ console.log(load(cols).getNearestColor('blue', 3));
   }
 
   /**
+   * @public
  * Gets the largest lightness difference between the colors the bound collection `against` a comparison color.
  * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param {HueColorSpaces} [colorspace='lch'] The mode colorspace to retrieve the channel being queried.
@@ -215,6 +219,7 @@ console.log(load(cols).getNearestColor('blue', 3));
   }
 
   /**
+   * @public
  * Gets the smallest lightness difference between the colors in the bound collection `against` a comparison color.
  * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param {HueColorSpaces} [colorspace='lch'] The mode colorspace to retrieve the channel being queried.
@@ -243,6 +248,7 @@ console.log(load(cols).getNearestColor('blue', 3));
   }
 
   /**
+   * @public
  * Gets the smallest `hue` angle difference between the colors in the bound collection `against` a comparison color.
   * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param {HueColorSpaces} [colorspace='lch'] The mode colorspace to retrieve the channel being queried.
@@ -272,6 +278,7 @@ console.log(load(cols).getNearestColor('blue', 3));
   }
 
   /**
+   * @public
  * Gets the largest hue angle difference between the colors in the bound collection `against` a comparison color.
  * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param {HueColorSpaces} [colorspace='lch'] The mode colorspace to retrieve the channel being queried.
@@ -300,6 +307,7 @@ console.log(load(cols).getNearestColor('blue', 3));
   }
 
   /**
+   * @public
  * Gets the smallest `luminance` difference between the colors in the bound collection `against` a comparison color.
  * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`luminance`) and name of the color as keys. Default is `false`.
@@ -327,6 +335,7 @@ console.log(load(cols).getNearestColor('blue', 3));
   }
 
   /**
+   * @public
  * Gets the largest `luminance` difference between the colors in the bound collection `against` a comparison color.
  * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
  * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
@@ -354,6 +363,7 @@ console.log(getFarthestLuminanceFrom(sample, against));
   }
 
   /**
+   * @public
  * Returns the average `chroma` from the bound `collection` of colors. Achromatic colors (or colors with a falsy `chroma` channel) will be excluded from the sum.
  * @param {HueColorSpaces} [colorspace='lch'] The colorspace to fetch the `chroma` channel value from.
  * @returns {number} The average `chroma` in the passed in `collection` or undefined if no color in the `collection` has a valid `chroma` channel.
@@ -378,6 +388,7 @@ console.log(getFarthestLuminanceFrom(sample, against));
   }
 
   /**
+   * @public
  * Returns the average `contrast` from the bound `collection` of colors.
  * @param {ColorToken} against The color to compare the `contrast` against. Used by the `getContrast` function for each color in the `collection`. Default is `black`
  * @returns {number} The average `distance` in the passed in `collection` .
@@ -403,6 +414,7 @@ console.log(load(sample).getMeanContrast(against));
     return _gmctrst(this['colors'], against);
   }
   /**
+   * @public
  * Returns the average `lightness` from the passed in `collection` of colors.
  * @param {HueColorSpaces} [colorspace='lch']  The colorspace to fetch the `lightness` channel value from.
  * @returns {number} The average `lightness` in the passed in `collection`.
@@ -426,6 +438,7 @@ console.log(load(sample).getMeanContrast(against));
   }
 
   /**
+   * @public
  * Returns the average `hue` from the bound `collection` of colors. Achromatic colors (or colors with a falsy `chroma` channel) will be excluded from the sum if `excludeGreys` is `true`. This can help make your color scales make more 'visual sense since the `hue` channel depends on the `chroma` channel to look colorful. This will also alter the final average hue angle returned.
  * @param {HueColorSpaces} [colorspace='lch'] The colorspace to fetch the `hue` channel value from.
  * @param {boolean} excludeGreys Optional boolean to filter out achromatic colors from the passed in `collection`.
@@ -451,6 +464,7 @@ console.log(load(sample).getMeanContrast(against));
   }
 
   /**
+   * @public
  * Returns the average relative `luminance` from the bound `collection` of colors.
  * @returns {number} The average relative `luminance` in the passed in `collection` or undefined if no color in the `collection` has a valid `chroma` channel.
  * @example
@@ -473,6 +487,7 @@ console.log(load(sample).getMeanContrast(against));
   }
 
   /**
+   * @public
  * Returns the average `distance` from the passed in `collection` of colors using the `differenceHyab` metric. In the future, an option to specify the metric to use when querying the `distance` factor.
  * @param {ColorToken} against The color to compare the distance from. Used by the metric function for each color in the `collection`. Default is `black`.
  * @returns {number} The average `distance` in the passed in `collection` .
@@ -497,6 +512,7 @@ console.log(load(against).getMeanDistance(sample));
     return _gmd(this['colors'], against);
   }
   /**
+   * @public
      
      *  Returns a spline interpolator function with customizable interpolation methods (by selecting the `kind` of ), with support for generating color scales for cyclic data (by setting the `closed` parameter to `true`) and optional channel specific overrides.
      * @param {HueColorSpaces} [colorspace='lch'] The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
@@ -536,6 +552,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    *
    * Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
    * @param {SchemeType} schemeType (Optional) The palette type you want to return.
@@ -567,6 +584,7 @@ console.log(load(against).getMeanDistance(sample));
     return this;
   }
   /**
+   * @public
    *
    * Returns the largest hue angle from the bound collection.
    * @param {HueColorSpaces} [colorspace='lch'] The mode color space to perform the computation in.
@@ -587,6 +605,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    *
    *  Returns the smallest `hue` angle from the bound `collection`.
    * @param {HueColorSpaces} [colorspace='lch'] The mode color space to perform the computation in.
@@ -608,6 +627,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    *
    *  Returns the smallest `lightness` value from the bound collection.
    * @param {HueColorSpaces} [colorspace='lch'] The mode color space to perform the computation in.
@@ -631,6 +651,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    *
    *  Returns the largest `lightness` value from the bound collection.
    * @param {HueColorSpaces} [colorspace='lch'] The mode color space to perform the computation in.
@@ -653,6 +674,7 @@ console.log(load(against).getMeanDistance(sample));
     return _mxl(this['colors'], colorspace, colorObj);
   }
   /**
+   * @public
    *
    * Returns a `collection` of colors in the specified `saturation/chroma` range from the bound collection.
    *
@@ -700,6 +722,7 @@ console.log(load(against).getMeanDistance(sample));
     return this;
   }
   /**
+   * @public
    *
    *  Returns a `collection` of colors in the specified `lightness` range.
    *
@@ -741,6 +764,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    *
    *  Returns colors with the specified distance range from the bound `collection`. The distance is tested against a comparison color (the 'against' param) and the specified distance ranges.
    *
@@ -778,6 +802,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    *
    *
    *  Returns collection of colors within the specified contrast range. The contrast is tested against a comparison (`'against'`) color and the specified contrast ranges.
@@ -823,6 +848,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    *
    *  Returns colors in the specified hue ranges between 0 to 360.
    * Supports expression strings for the `start` and `end` parameters e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | > | !`
@@ -858,6 +884,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    *
    *  Returns a `collection` of colors in the specified luminance range. The range is normalised to [0,1].
    * Supports expression strings for the `start` and `end` parameters e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | > | !`
@@ -892,6 +919,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    *
    * Sorts colors in the bound collection according to their lightness.
    * @param {Order} [order='asc']  The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
@@ -933,6 +961,7 @@ console.log(load(against).getMeanDistance(sample));
     return this;
   }
   /**
+   * @public
    *
    *  Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
    * @param {ColorToken} against The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.
@@ -965,6 +994,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    *
    *  Sorts colors in the bound collection according to the relative brightness as defined by WCAG.
    * @param {Order} [order='asc']  The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
@@ -1007,6 +1037,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    *
    *  Sorts colors in the bound collection according to their saturation. Achromatic colors are not supported as they lack a truthy `chroma` or saturation channel.
    * @param {Order} [order='asc']  The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
@@ -1059,6 +1090,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    *
    * Sorts colors in the bound collection according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
    * @param {ColorToken} against The color to compare against.
@@ -1083,6 +1115,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    *
    *  Sorts colors in the bound collection according to hue angles. It works with any color space with a hue channel. Note that hue values between `hsl` and `lch` do not align. Achromatic colors are not supported.
    * @param {Order} [order='asc']  The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
@@ -1124,6 +1157,7 @@ console.log(load(against).getMeanDistance(sample));
   }
 
   /**
+   * @public
    * @returns Returns the result value from the chain.
    */
   output() {
@@ -1132,6 +1166,7 @@ console.log(load(against).getMeanDistance(sample));
 }
 
 /**
+ * @public
  * A wrapper function over the `ColorArray` class which returns a new instance of the class. Use it to invoke the class without using the `new` keyword
  * @param {Collection} colors A collection of colors to chain the array methods on. Every element in the array will be parsed as a color token.
  * @returns {ColorArray} A new instance of the `ColorArray` class with the passed in collection bound to it.
@@ -1141,6 +1176,7 @@ function load(colors) {
 }
 
 /**
+ * @public
  * @internal
  @this {ColorArray}
  * Creates a lazy chain wrapper over a single color token that has all the functions that take a `ColorToken` as their first argument.
@@ -1156,6 +1192,7 @@ console.log(wrapper.color2hex());
 
 class Color {
   /**
+   * @public
    *
    * @param {ColorToken} [c= '#000'] The color to bind.
    * @param {ColorOptions} [options= {}] Optional overrides and properties for the bound color.
@@ -1204,6 +1241,7 @@ class Color {
   }
 
   /**
+   * @public
  *
  * Sets/Gets the opacity or `alpha` channel of a color. If the `value` parameter is omitted it gets the bound color's `alpha` value.
  * @param {number|string} [amount=undefined] The value to apply to the opacity channel. The value is normalized to the range [0,1]
@@ -1236,6 +1274,7 @@ console.log(myColor)
   }
 
   /**
+   * @public
  *
  *  Returns the specified channel value on the bound color token.
  * @param {string} mc The mode and channel to be retrieved. For example `rgb.b` will return the value of the blue channel's value in the RGB color space of that color.
@@ -1255,6 +1294,7 @@ console.log(color('#a1bd2f').getChannel('rgb.g'))
   }
 
   /**
+   * @public
  *
  * Sets the specified channel value on the bound color token.
  * @param {string} mc The mode and channel to work with. For example `'rgb.b'`.
@@ -1278,6 +1318,7 @@ console.log(myColor.getChannel('lch.h'))
   }
 
   /**
+   * @public
    * Interpolates the bound color via the `origin` at the point `t`. Call `output()` to get the results.
    * @param {ColorToken} origin The color to interpolate via.
    * @param {number} t The point in the interpolation to return. Expected value is in the range [0,1]
@@ -1297,6 +1338,7 @@ console.log(myColor.getChannel('lch.h'))
   }
 
   /**
+   * @public
    * 
    * The inverse of `darken`. Brightens the bound color by increasing the lightness channel.
    * @param {number} amount The amount to brighten with. The value is expected to be in the range `[0,1]`. Default is  `0.5`.
@@ -1313,6 +1355,7 @@ console.log(myColor.getChannel('lch.h'))
   }
 
   /**
+   * @public
  *
  * Darkens the bound color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
  * @param {number} amount The amount to darken with. The value is expected to be in the range `[0,1]`. Default is `0.5`.
@@ -1331,6 +1374,7 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   }
 
   /**
+   * @public
    * Returns the bound `ColorToken` as a hexadecimal string.
    * @returns {string}
    */
@@ -1341,6 +1385,7 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   }
 
   /**
+   * @public
    * Returns a randomized pastel variant of the bound color token. Preserves the bound `ColorToken` type.
    *
    * @example
@@ -1360,6 +1405,7 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   }
 
   /**
+   * @public
    * Returns a palette that contains a base color that is incremented by a `hueStep` to get the final hue to pair with.The colors are interpolated via white or black. A negative `hueStep` will pick a color that is `n` degrees behind the base color. Call `output()` to get the final result.
    * @param {PairedSchemeOptions} options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
    * @returns {Color|ColorArray} An array containing the paired scheme.
@@ -1382,6 +1428,7 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   }
 
   /**
+   * @public
    * Returns a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down) from a single color. `maxLightness` and `minLightness` values determine how light or dark our colour will be at either extreme. Call `output()` to get the result.
    * @param {HueShiftOptions} options The optional overrides object to customize the `HueShiftOptions` like easing function.
    *@returns {ColorArray|Color} An array of colors. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or `(iterations * 2) + 1`. Preserves the passed in `ColorToken` type.
@@ -1415,6 +1462,7 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   }
 
   /**
+   * @public
    *
    * Returns the complementary hue of the bound color. The function returns `'gray'` when you pass in an achromatic color.
    * @param {UniformColorSpaces} colorspace The colorspace to fetch the complimentary color from. Only supports uniform colorspaces.
@@ -1441,6 +1489,7 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   }
 
   /**
+   * @public
    * Returns a spline interpolation between an `earthtone` and the bound color. Call `output()` to get the results.
    * @param {EarthtoneOptions} options Optional overrides for customizing interpolation and easing functions.
    * @returns {Color|ColorArray} The collection of colors resulting from the earthtone interpolation. Preserves the `ColorToken` type of the bound color.
@@ -1491,6 +1540,7 @@ console.log(color(base).earthtone({ iterations:8 }).output())
   }
 
   /**
+   * @public
    * Gets the contrast value between the bound and  comparison ( or `against`) color.
    * @param {ColorToken} [against='#000'] The color to use for comparison.
    * @returns {number} The contrast value between the two colors.
@@ -1524,6 +1574,7 @@ console.log(color(base).earthtone({ iterations:8 }).output())
   }
 
   /**
+   * @public
    * Sets/Gets the `luminance` value of the bound color.
    * @param {number|string} amount The `luminance` value to set on the bound color.
    * @returns {number|Color} The `luminance` value if the method is called with no arguments else it returns a color with its `luminance `value mutated.
@@ -1566,6 +1617,7 @@ console.log(color(myColor).luminance(0.5));
   }
 
   /**
+   * @public
    * Returns the final value from the chain.
    * @returns {ColorToken}
    * @example
@@ -1585,6 +1637,7 @@ console.log(color(myColor).luminance(0.5));
   }
 
   /**
+   * @public
    * Sets/Gets the saturation value of the bound color.
    * @param {string|number} amount The amount of `saturation` to set on the bound color token. See also the supported string expressions in the docs.
    * @see https://huetiful-js.com/basics/string-expressions
@@ -1624,6 +1677,7 @@ console.log(color(myColor).luminance(0.5));
   }
 
   /**
+   * @public
  *@experimental
  * Returns `true` if the bound color has hue or is grayscale else `false`.
  * @param {HueColorSpaces} [colorspace='lch'] The colorspace to use when checking if the `color` is grayscale or not.
@@ -1681,6 +1735,7 @@ console.log(grays.map(test));
   }
 
   /**
+   * @public
  *
  * @experimental
  * Returns `true` if color the bound color can be roughly classified as a warm color else `false`.
@@ -1707,6 +1762,7 @@ console.log(color(sample[2]).isWarm());
     return _iwm(this['_color']);
   }
   /**
+   * @public
  *
 * Returns `true` if color the bound color can be roughly classified as a cool color else `false`.
 * @returns {boolean}
@@ -1735,6 +1791,7 @@ console.log(color(sample[2]).isCool());
   }
 
   /**
+   * @public
    *
    * Returns the bound color as a simulation of the specified type of color vision deficiency with the deficiency filter's intensity determined by the `severity` value.
    * @param {DeficiencyType} deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' can't perceive `'blue'` light properly. Default is `'red'` when the defeciency parameter is `undefined`.
@@ -1762,6 +1819,7 @@ console.log(color(sample[2]).isCool());
   }
 
   /**
+   * @public
  *
  * Returns the hue which is biasing the passed in color.
  * @returns {string} The name of the overtone hue. If an achromatic color is passed in it return the string `'gray'` otherwise if the color has no bias it returns false.
@@ -1783,6 +1841,7 @@ console.log(color("blue").overtone())
   }
 
   /**
+   * @public
  *
  * Returns the hue family of the bound color with the overtone included (if it has one). For achromatic colors it returns `"gray"`.
  * @returns {string} The name of the hue family for example `red` or `blue-green`.
@@ -1801,6 +1860,7 @@ console.log(color("#310000").getHueFamily())
   }
 
   /**
+   * @public
  *
  * Returns a randomised classic color scheme from the bound color.
  * @param {"analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary"} schemeType  Any classic color scheme.
@@ -1821,6 +1881,7 @@ console.log(color("#a1bd2f").scheme("triadic"))
 }
 
 /**
+ * @public
  * Wrapper function over the Color class that returns a new Color method chain.
  * @param {ColorToken} color The color token to bind.
  * @returns {Color} A `new Color` class with all the utilities that take a single color as the first parameter bound to its prototype.

@@ -11,7 +11,7 @@
         <div class='flex flex-row w-full justify-end'>
 
 
-            <a class='grid-rows-2 place-items-start' href={{data.declFile}}>
+            <a class='grid-rows-2 place-items-start' href={{data.srcFile}}>
                 <button class="flex-col place-items-start py-1 bg-sky-500 border-none font-sans text-sm text-white">Edit
                     this page</button>
                 <span class="inline ml-1"><span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18"
@@ -49,13 +49,18 @@
     </div>
 
 </article>
+{% include "./partials/toc.njk" %}
 
+<div id="main-content">
+    {{data.mainContent|safe}}
+</div>
 
-
-{{data.mainContent|safe}}
 
 </article>
 
 </div>
 {% include "./partials/pagination.njk" %}
 {% endblock content %}
+{% block customScripts %}
+<script src="/assets/toc.js"></script>
+{% endblock customScripts %}

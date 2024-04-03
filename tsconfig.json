@@ -1,15 +1,14 @@
 {
   "include": [
-     
-      "types/accessibility.d.ts",
-      "types/stats.d.ts",
-      "types/wrappers.d.ts","types/generators.d.ts",
-      "types/utils.d.ts",
-      "types/colors.d.ts",
-      "types/converters.d.ts",
-      "types/filterBy.d.ts",
-      "types/sortBy.d.ts",
-      "types/types.d.ts"
+     "src/accessibility.js",
+      "src/stats.js",
+      "src/wrappers.js",
+      "src/generators.js",
+      "src/utils.js",
+      "src/colors.js",
+      "src/converters.js",
+      "src/filterBy.js",
+      "src/sortBy.js"
       
     ],"exclude":["**/*/node_modules"],
   "compilerOptions": {

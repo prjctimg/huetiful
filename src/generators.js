@@ -11,8 +11,8 @@
  */
 
 /**
- * @license
- * @preserve
+ *@license
+ *
  * generators.js -  Functions for generating custom color scales.
 (c) 2024, Dean Tarisai.
 This file is licensed to you under the Apache License, Version 2.0 (the 'License');
@@ -72,7 +72,7 @@ import {
 } from './index.js';
 
 /**
- *
+ *@public
  *  Generates a randomised classic color scheme from a single color.
  * @param {SchemeType|string}  schemeType  Any classic color scheme either .
   * @returns {Collection} A collection of 8 character hex codes. Elements in the array depend on the number of sample colors in the targeted scheme. Preserves the `ColorToken` type of the pased in color.
@@ -136,7 +136,7 @@ function scheme(schemeType = 'analogous') {
 }
 
 /**
- *
+ *@public
  * Takes a collection of colors and finds the nearest matches using the `differenceHyab()` difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use `isAchromatic` to filter grays from your collection in the mode `colorspace` before passing it to the function.
  * @param {Collection} colors The collection of colors to create palettes from. Preferably use 6 or more colors for better results.
  * @param {SchemeType} schemeType (Optional) The palette type you want to return.
@@ -232,7 +232,7 @@ function discoverPalettes(colors = [], schemeType, colorspace = 'lch') {
 }
 
 /**
- *
+ *@public
  *  Creates a scale of a spline interpolation between an earthtone and a color.
  * @param color The color to interpolate an earth tone with.
  * @param options Optional overrides for customising interpolation and easing functions.
@@ -279,7 +279,7 @@ function earthtone(color, colorspace = 'lch', options = {}) {
 }
 
 /**
- * Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts down) from a single color. Min and max lightness values determine how light or dark our colour will be at either extreme.
+ *@public Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts down) from a single color. Min and max lightness values determine how light or dark our colour will be at either extreme.
  * @param color The color to use as the scheme of the hueshift. Colors are internally converted to LCH.
  * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
  *@returns A collection of the hueshifted colors. The length of the resultant array is the number of `iterations` multiplied by 2 plus the scheme color passed or `(iterations * 2) + 1`. Preserves the `ColorToken` type of the passed in color.
@@ -345,7 +345,7 @@ function hueShift(color, colorspace = 'lch', options = {}) {
 }
 
 /**
- *
+ *@public
  *  Returns a spline interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.
  * @param {Collection} colors The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result.
  * @param colorspace The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
@@ -457,7 +457,7 @@ function pltr(colors = [], colorspace = 'lch', options = {}) {
 }
 
 /**
- * Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color.
+ *@public Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color.
  * @param color The color to return a paired color scheme from.
  * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
  * @returns An array containing the paired scheme.Preserves the `ColorToken` type of the passed in color.
@@ -518,7 +518,7 @@ function pairedScheme(color, options) {
 }
 
 /**
- *
+ *@public
  *  Returns a random pastel variant of the passed in color.
  * @param color The color to return a pastel variant of.
  * @returns A random pastel color. Preserves the `ColorToken` type of the pased in color.

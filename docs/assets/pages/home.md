@@ -355,6 +355,6 @@ var myLazyChain = load([
 If you wish to explore more examples and reasoning behind this library, [you can check out the wiki](https://github.com/xml-wizard/huetiful/wiki). [Or head over to the docs](https://huetiful-js.com/api/) to play around with the API
 
 
-![](../img/night-sky-over-mountains.jpg)
+![](assets/img/night-sky-over-mountains.jpg)
 
 <cite> Moon over mountains :mountain: </cite>

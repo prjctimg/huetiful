@@ -55,6 +55,7 @@ import {
 import 'culori/css';
 
 /**
+ * @public
  *
  * Gets the hue family which a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
  * @param {ColorToken} color The color to query its shade or hue family.
@@ -87,6 +88,7 @@ function getHueFamily(color) {
 }
 
 /**
+ * @public
  *
  * Returns the complementary hue of the passed in color. The function is internally guarded against achromatic colors.
  * @param {ColorToken} color The color to retrieve its complimentary hue.
@@ -115,11 +117,12 @@ function getComplimentaryHue(color, colorspace, colorObj = false) {
     // @ts-ignore
     color: color2hex(setChannel(modeChannel)(color, complementaryHue))
   }) || { hue: 'gray', color: color };
-
+  // @ts-ignore
   return (colorObj && result) || result['color'];
 }
 
 /**
+ * @public
  *
  *  Sets the value for the specified channel in a color.
  * @param {string} mc The mode and channel to work with. For example 'rgb.b'.
@@ -135,6 +138,7 @@ console.log(getChannel('lch.h')(myColor))
 
 function setChannel(mc) {
   /**
+   * @public
    * @param {number|string} value The value to set on the queried channel. Also supports expressions as strings e.g set('lch.c)("#fc23a1","*0.5")
    * @param {ColorToken} color Any recognizable color token.
    * @returns {ColorToken} The mutated color. Preserves the `ColorToken` type of the passed in color.
@@ -166,6 +170,7 @@ function setChannel(mc) {
 }
 
 /**
+ * @public
  *
  *  Gets the  value specifified channel on the color.
  * @param {string} mc The mode and channel to be retrieved. For example "rgb.b" will return the value of the blue channel in the RGB color space of that color.
@@ -179,6 +184,7 @@ console.log(getChannel('rgb.g')('#a1bd2f'))
 
 function getChannel(mc) {
   /**
+   * @public
    *
    * @param {ColorToken} color The color being queried.
    * @returns {number} The value of the queried channel.
@@ -204,6 +210,7 @@ function getChannel(mc) {
   };
 }
 /**
+ * @public
  * Gets the luminance value of that color as defined by WCAG.
  * @param {ColorToken} color The color to query.
  * @returns {number} The color's luminance value.
@@ -235,6 +242,7 @@ function getLuminance(color) {
 }
 
 /**
+ * @public
  *
  *  Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
  * @param {ColorToken} color The color to set luminance
@@ -297,6 +305,7 @@ function setLuminance(color, lum) {
   return formatHex(color);
 }
 /**
+ * @public
  *
  * Sets the opacity of a color. Also gets the alpha value of the color if the value param is omitted
  * @param {ColorToken} color The color with the targeted opacity/alpha channel.
@@ -343,6 +352,7 @@ function alpha(color = '#000', value) {
 }
 
 /**
+ * @public
  *
  *  Gets the contrast between the passed in colors.
  * @param {ColorToken} color
@@ -361,6 +371,7 @@ function getContrast(color, against) {
 }
 
 /**
+ * @public
  *
  * Returns the hue which is biasing the passed in color
  * @param {ColorToken} color The color to query its overtone.
@@ -398,6 +409,7 @@ function temperaturePredicate(fctr, temp) {
   );
 }
 /**
+ * @public
  *
  *  Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.
  * @param {ColorToken} color The color to check the temperature.
@@ -431,6 +443,7 @@ function isCool(color) {
 }
 
 /**
+ * @public
  * 
  * Checks if a color can be roughly classified as a warm color. Returns true if color is a warm color else false.
  * @param {ColorToken} color The color to check the temperature.
@@ -461,6 +474,7 @@ function isWarm(color) {
 }
 
 /**
+ * @public
  *
  * Darkens the color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
  * @param {ColorToken} color The color to darken.
@@ -492,6 +506,7 @@ function darken(color = '#fff', amount = 0.3) {
 }
 
 /**
+ * @public
  *
  * The inverse of `darken`. Brightens the passed in color by increasing the lightness channel by `amount` of the channel. For example `0.3` means increase the lightness by `0.3` of the channel's current value.
  * @param {ColorToken} color The color to brighten.
@@ -521,6 +536,7 @@ function brighten(color, amount = 0.4) {
 }
 
 /**
+ * @public
  *
  * Checks if a color is achromatic (without hue or simply grayscale).
  * @param {ColorToken} color The color to test if it is achromatic or not.

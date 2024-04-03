@@ -41,7 +41,7 @@
     "nodemon": "^3.0.1",
     "standard-version": "^9.5.0",
     "typedoc": "^0.25.3",
-    "typedoc-plugin-markdown": "^3.17.1",
+    "typedoc-material-theme": "^1.0.2",
     "typescript": "^5.0.2"
   },
   "scripts": {
@@ -50,7 +50,7 @@
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
     "test": "npx jasmine",
-    "docs": "npx typedoc --hideBreadcrumbs true",
+    "docs": "npx typedoc --excludeReferences true --includeVersion true --excludeNotDocumented true --plugin typedoc-material-theme --themeColor #c084fc --darkHighlightTheme material-theme-palenight --lightHighlightTheme material-theme-lighter --hideGenerator true --sitemapBaseUrl https://huetiful-js.com",
     "code:build": "node ./build.cjs",
     "code:publish": "npm run code:build & npm run code:types",
     "code:types": "dts-bundle-generator  -o  ./lib/huetiful.d.ts ./types/index.d.ts --no-banner",
@@ -84,33 +84,27 @@
   },
   "typedocOptions": {
     "entryPoints": [
-      "types/accessibility.d.ts",
-      "types/stats.d.ts",
-      "types/wrappers.d.ts",
-      "types/generators.d.ts",
-      "types/utils.d.ts",
-      "types/colors.d.ts",
-      "types/converters.d.ts",
-      "types/filterBy.d.ts",
-      "types/sortBy.d.ts",
-      "types/types.d.ts"
-    ],
-    "plugin": [
-      "typedoc-plugin-markdown"
+      "src/accessibility.js",
+      "src/stats.js",
+      "src/wrappers.js",
+      "src/generators.js",
+      "src/utils.js",
+      "src/colors.js",
+      "src/converters.js",
+      "src/filterBy.js",
+      "src/sortBy.js"
     ],
     "excludeTags": [
       "@internal"
     ],
     "entryPointStrategy": "resolve",
-    "out": "docs/assets/markdown",
+    "out": "docs/www/api",
     "exclude": [
       "./color-maps"
     ],
-    "readme": "docs/assets/pages/home.md",
+    "readme": "none",
     "tsconfig": "./tsconfig.json",
-    "disableSources": false,
-    "gitRemote": "main",
-    "includeVersion": false
+    "gitRemote": "main"
   },
   "files": [
     "lib",

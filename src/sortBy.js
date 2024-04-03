@@ -30,7 +30,7 @@ function baseSortBy(factor, cb, order, collection) {
 }
 
 /**
- *
+ *@public
  * Sorts colors according to the intensity of their `chroma` in the specified `colorspace`.
  * @param {Collection} collection The `collection` of colors to sort.
  * @param  {Order} [order='asc'] The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
@@ -87,7 +87,7 @@ function sortByChroma(collection, order, colorspace = 'lch') {
 }
 
 /**
- *
+ *@public
  *  Sorts colors according to their relative brightness as defined by the WCAG3 definition.
  * @param {Collection} collection The `collection` of colors to sort.
  * @param  {Order} [order='asc'] The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
@@ -140,7 +140,7 @@ function sortByLuminance(collection, order) {
 }
 
 /**
- *
+ *@public
  *  Sorts colors according to their lightness.
  * @param {Collection} collection The `collection` of colors to sort.
  * @param  {Order} [order='asc'] The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
@@ -198,7 +198,7 @@ function sortByLightness(collection, order, colorspace = 'lch') {
 }
 
 /**
- *
+ *@public
  * Sorts colors according to their hue angle values. It works with any `colorspace` with a hue channel.
  * @param {Collection} collection The `collection` of colors to sort. Achromatic colors are not supported because when displayed on the screen, the colors would be grayscale (so visually, there's no sign of hue). This behaviour is because the `hue` channel is dependant on the `lightness` and `saturation / chroma` channels . For example, a falsy value like `0` or `undefined` turns the color  grayscale whilst lightness at both extremes renders a color totally white (max) or black (min).
  * @param order The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
@@ -248,7 +248,7 @@ function sortByHue(collection, order, colorspace = 'lch') {
   return baseSortBy('hue', getChannel(`${colorspace}.h`), order, collection);
 }
 /**
- *
+ *@public
  *  Sorts colors according to their contrast value as defined by WCAG. The contrast is tested `against` a comparison color.
  * @param {Collection} collection The `collection` of colors to sort.
  * @param  {Order} [order='asc'] The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
@@ -271,7 +271,7 @@ function sortByContrast(collection, against, order) {
   return baseSortBy('contrast', cb(against), order, collection);
 }
 /**
- *
+ *@public
  * Sorts colors according to their distance. The distance factor is determined by the colorspace used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the collection.
  * @param {Collection} collection The `collection` of colors to sort..
  * @param against The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.

@@ -3,25 +3,18 @@
  * @typedef { import('../types/types.js').Collection} Collection
  * @typedef { import('../types/types.js').HueColorSpaces} HueColorSpaces
  * @typedef {import('../types/types.js').FactObject} FactObject
- * @typedef {import('../types/types.js').InterpolatorOptions} InterpolatorOptions
- * @typedef {import('../types/types.js').SchemeType} SchemeType
+ * @typedef {import('../types/types.js').ColorObject} ColorObject
+ * @typedef {import('../types/types.js').ColorTuple} ColorTuple
  * @typedef {import('../types/types.js').UniformColorSpaces} UniformColorSpaces
  * @typedef {import('../types/types.js').Colorspaces} Colorspaces
  */
 
-import {
-  useMode,
-  modeRgb,
-  converter,
-  formatHex,
-  formatHex8,
-  colorsNamed
-} from 'culori/fn';
-
+import { converter, formatHex, formatHex8, colorsNamed } from 'culori/fn';
+import 'culori/css';
 import { gmchn, keys } from './helpers.js';
 
 /**
- *
+ *@public
   Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), any `number` from 0 to 166,777,215 and arrays in the form of `[string,number,number,number,numer?]` the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
  * @param {ColorToken} color The color to convert to hexadecimal. Works on color objects and CSS named colors.
  * @returns {string} A hexadecimal representation of the passed in color.
@@ -71,12 +64,12 @@ function color2hex(color) {
         tuple2object(color2tuple(color))
       );
   }
-
+  // @ts-ignore
   return c;
 }
 
 /**
- *
+ *@public
  *  Returns the color equivalent of any `number` between 0 and 16,777,215 as a hexadecimal string or color object if the `colorspace` is specified.
  * @param num The number to convert.
  * @returns color A color object or hex string.
@@ -104,17 +97,17 @@ function num2color(num, colorspace) {
     };
 
     // @ts-ignore
-    return (colorspace && useMode(colorspace)(_rgb)) || formatHex(_rgb);
+    return (colorspace && converter(colorspace)(_rgb)) || formatHex(_rgb);
   } else {
     throw Error('unknown num color: ' + num);
   }
 }
 
 /**
- *
+ *@public
  *  Returns the numerical equivalent of a color.
- * @param color The color to convert to its numerical equivalent.
- * @returns value The numerical value of the color from 0 to 16,777,215.
+ * @param {ColorToken} color The color to convert to its numerical equivalent.
+ * @returns {number} value The numerical value of the color from 0 to 16,777,215.
  * @example
  *
  * import { color2num } from 'huetiful-js'
@@ -124,17 +117,17 @@ console.log(color2num("b2c3f1"))
  */
 
 function color2num(color) {
-  const rgb = useMode(modeRgb)(color2hex(color));
+  const rgb = converter('rgb')(color2hex(color));
   // @ts-ignore
   return ((255 * rgb['r']) << 16) + ((255 * rgb['g']) << 8) + 255 * rgb['b'];
 }
 
 /**
- *
+ *@public
  *  Converts the temperature value (in Kelvins) to a color as a hexadecimal string else a color object in the mode `colorspace`.
  * @param {number} kelvin The number of Kelvins. From 0 to 30,000 .
  * @param {Colorspaces} colorspace Optional parameter to return a color object in the mode `colorspace` hexadecimal string. Default is `'rgb'`
- * @returns color The color as a hexadecimal  or plain color object.
+ * @returns {ColorObject|string} The color as a hexadecimal  or plain color object.
  * @example
  *
  * import { temp2color } from 'huetiful-js'
@@ -183,18 +176,18 @@ function temp2color(kelvin = 1000, colorspace) {
 
   return (
     // @ts-ignore
-    (colorspace && useMode(colorspace.toLowerCase())(result)) ||
+    (colorspace && converter(colorspace.toLowerCase())(result)) ||
     // @ts-ignore
     formatHex(result)
   );
 }
 
 /**
- *
+ *@public
  *  Returns an array of channel values in the mode color space. It does not mutate the values of the passed in color token.
- * @param color Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g `num2color` if you want tonevrt the number to supported color token.
- * @param colorspace The mode color space to return channel values for. You can omit this parameter if you pass in a color object with the `mode` property.
- * @param omitMode optional boolean to exclude the mode from the final tuple. Default is `false`.
+ * @param {string|ColorObject} color Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g `num2color` if you want to convert the number to a supported  color token.
+ * @param {Colorspaces} colorspace The mode color space to return channel values for. You can omit this parameter if you pass in a color object with the `mode` property.
+ * @param {boolean} [omitMode=false] optional boolean to exclude the mode from the final tuple. Default is `false`.
  * @returns An array of channel values with the colorspace as first element and the alpha channel as the fifth element in the array if its explicitly defined in the passed in color.
  * @example
  *
@@ -213,7 +206,7 @@ console.log(color2tuple(rgbColor));
 
  */
 
-function color2tuple(color, colorspace = 'rgb', omitMode = false) {
+function color2tuple(color, colorspace = 'rgb', omitMode) {
   colorspace = colorspace || color['mode'];
   var o;
 
@@ -237,16 +230,16 @@ function color2tuple(color, colorspace = 'rgb', omitMode = false) {
 }
 
 /**
- *
- * @param {*} arr An array with the channels values and optional `colorspace` to specify the mode where such values
- * @param {*} targetMode
- * @returns
+ *@public
+ * @param {ColorTuple} arr An array with the channels values and optional `colorspace` to specify the mode where such values
+ * @param {Colorspaces} targetMode The colorspace to return the values in. If `undefined` it will use the mode  in the passed in array.
+ * @returns {ColorObject} The color object.
  */
 function tuple2object(arr = [], targetMode) {
   if (arr) {
     // get  the needed vars
     var [m, tm, cb] = [
-      arr[0],
+      typeof arr[0] !== 'number' ? arr[0] : undefined,
       targetMode,
       (x, y, m) => ({
         [x[0]]: y[0],
@@ -257,8 +250,10 @@ function tuple2object(arr = [], targetMode) {
       })
     ];
 
+    // @ts-ignore
     if ((m || tm) === ('rgb' || 'lrgb') && arr.some((ch) => 1 < Math.abs(ch))) {
       arr = ((typeof arr[0] == 'string' && arr.slice(1)) || arr).map(
+        // @ts-ignore
         (ch) => ch / 255
       );
     }
