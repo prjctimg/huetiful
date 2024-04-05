@@ -4,7 +4,7 @@
             "path": "."
         }
     ],"settings": {
-        "liveServer.settings.root": "/www/"
+        "liveServer.settings.root": "./www/"
     }
 
 

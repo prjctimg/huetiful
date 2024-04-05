@@ -40,20 +40,13 @@ export async function xml() {
   //     env.addGlobal('data', _.buildDataObject(source, _.rel2absURLAlt()));
   //   };
   // }
-  function demoDocsEnv(spec) {
-    return (env) => {
-      return env
-        .addGlobal('isColorCollection', _.isColorCollection)
-        .addGlobal('demoData', spec);
-    };
-  }
 
   function indexPageEnv(env) {
     env.addGlobal('home', {
-      content: _.generateDocs('./pages/home.md')
+      content: _.generateDocs('./pages/home.md'),
+      isColorCollection: _.isColorCollection,
+      demoData: _demo
     });
-
-    env.addGlobal('api', { content: _.generateDocs('./pages/api.md') });
   }
   // Making the documentation per module
   // moduleNames.map((srcFile, idx) => {
@@ -85,17 +78,17 @@ export async function xml() {
   //     .pipe(dest(`../www/api/${srcFile}`));
   // });
 
-  src(`./xml/views/demo.njk`)
-    .pipe(
-      _njk({
-        path: ['./xml/'],
-        manageEnv: demoDocsEnv(_demo),
+  // src(`./xml/views/demo.njk`)
+  // .pipe(
+  //   _njk({
+  //     path: ['./xml/'],
+  //     manageEnv: demoDocsEnv(_demo),
 
-        ext: '.html',
-        inheritExtension: false
-      })
-    )
-    .pipe(dest(`../www/demo`));
+  //     ext: '.html',
+  //     inheritExtension: false
+  //   })
+  // )
+  // .pipe(dest(`../www/demo`));
 
   src(`./xml/views/index.njk`)
     .pipe(
@@ -122,7 +115,7 @@ export async function xml() {
   //   .pipe(dest(`../www/api`));
 }
 
-async function renameFiles() {
+async function meta() {
   // moduleNames.map((srcFile) => {
   //   writeFileSync(
   //     `../www/api/${srcFile}/index.html`,
@@ -131,7 +124,7 @@ async function renameFiles() {
   //   );
   // });
 
-  renameSync('../www/demo/demo.html', '../www/demo/index.html');
+  // renameSync('../www/demo/demo.html', '../www/demo/index.html');
   writeFileSync(`../www/.nojekyll`, '', 'utf-8');
 }
 
@@ -166,12 +159,11 @@ export async function css() {
   return src('*css/*.css').pipe(dest('../www/assets'));
 }
 
-export async function img() {
-  return src('*img/*').pipe(dest('../www/assets'));
-}
+// export async function img() {
+//   return src('*img/*').pipe(dest('../www/assets'));
+// }
 
 export const assets = series(css, js, fonts);
 //export const clean = clean;
-export const rename = renameFiles;
 export const dev = series(xml, assets, watchFiles);
-export const deploy = series(xml, assets);
+export const deploy = series(xml, assets, meta);

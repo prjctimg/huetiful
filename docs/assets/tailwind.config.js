@@ -1,3 +1,4 @@
+// @ts-nocheck
 /** @type {import('tailwindcss').Config} */
 export default {
   content: {
@@ -1076,10 +1077,8 @@ export default {
     }
   },
   plugins: [
-    require('tailwindcss-gradients'),
     require('tailwind-heropatterns'),
-    require('tailwindcss-border-gradients'),
-    require('taos/plugin')
+    require('tailwindcss-border-gradients')
   ],
   safelist: [
     '!duration-[0ms]',
