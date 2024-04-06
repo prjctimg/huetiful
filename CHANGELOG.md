@@ -20,6 +20,13 @@ All notable changes to this project will be documented in this file. See [standa
 * fixed base distribution function to handle overrides with defaults ([f8c7c7c](https://github.com/xml-wizard/huetiful/commits/f8c7c7cd951bbd107fae2e686039edc40c672b45))
 * fixed type errors in generators ([fce44cb](https://github.com/xml-wizard/huetiful/commits/fce44cbbe004e2cbfada167a32ad1292f7128585))
 
+## [2.2.0](https://github.com/xml-wizard/huetiful/compare/v2.1.1...v2.2.0) (2024-03-28)
+
+
+### Features
+
+* added release-please-npm.yml workflow to publish when a new release is merged ([fce329a](https://github.com/xml-wizard/huetiful/commit/fce329a84a60b2eb44adcdb16799bb8235e33fc5))
+
 ### 2.0.0 (stable)
 
 ##### Notable changes
