@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - dev
+      - main
 name: release-please
 jobs:
   release-please:
@@ -11,32 +11,19 @@ jobs:
         id: release
         with:
           release-type: node
-          package-name: release-please-action
-    # The logic below handles the npm publication:
+      # The logic below handles the npm publication:
       - uses: actions/checkout@v4
-      # these if statements ensure that a publication only occurs when
-      # a new release is created:
+        # these if statements ensure that a publication only occurs when
+        # a new release is created:
         if: ${{ steps.release.outputs.release_created }}
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-         node-version: 20
-        
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm i
+      - run: npm ci
         if: ${{ steps.release.outputs.release_created }}
-      - run: |
-         cat << EOF > "$HOME/.npmrc" //registry.npmjs.org/:_authToken=$NPM_PUBLISH EOF
+      - run: npm publish
         env:
-            NODE_AUTH: ${{secrets.NPM_PUBLISH}}  
-        if: ${{ steps.release.outputs.release_created }}
-      - name: Build package
-        run: cd huetiful
-        if: ${{ steps.release.outputs.release_created }}
-      - name: Run NPM publish
-        run: |
-          npm run code:publish
-          npm run publish
-        env:
-          NODE_AUTH: ${{secrets.NPM_PUBLISH}}  
+          NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH}}
         if: ${{ steps.release.outputs.release_created }}
