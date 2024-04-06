@@ -38,5 +38,5 @@ jobs:
           npm run code:publish
           npm run publish
         env:
-          NPM_TOKEN:${{secrets.NPM_PUBLISH}}  
+          NODE_AUTH:${{secrets.NPM_PUBLISH}}  
         if: ${{ steps.release.outputs.release_created }}
