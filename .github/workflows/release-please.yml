@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main
+      - dev
 name: release-please
 jobs:
   release-please:
@@ -28,7 +28,7 @@ jobs:
       - run: |
          cat << EOF > "$HOME/.npmrc" //registry.npmjs.org/:_authToken=$NPM_PUBLISH EOF
         env:
-         NPM_TOKEN:${{secrets.NPM_PUBLISH}}  
+         NODE_AUTH:${{secrets.NPM_PUBLISH}}  
         if: ${{ steps.release.outputs.release_created }}
       - name: Build package
         run: cd huetiful
