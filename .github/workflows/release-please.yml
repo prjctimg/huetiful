@@ -28,7 +28,7 @@ jobs:
       - run: |
          cat << EOF > "$HOME/.npmrc" //registry.npmjs.org/:_authToken=$NPM_PUBLISH EOF
         env:
-         NODE_AUTH:${{secrets.NPM_PUBLISH}}  
+            NODE_AUTH: ${{secrets.NPM_PUBLISH}}  
         if: ${{ steps.release.outputs.release_created }}
       - name: Build package
         run: cd huetiful
@@ -38,5 +38,5 @@ jobs:
           npm run code:publish
           npm run publish
         env:
-          NODE_AUTH:${{secrets.NPM_PUBLISH}}  
+          NODE_AUTH: ${{secrets.NPM_PUBLISH}}  
         if: ${{ steps.release.outputs.release_created }}
