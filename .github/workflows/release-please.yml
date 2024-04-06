@@ -11,6 +11,7 @@ jobs:
         id: release
         with:
           release-type: node
+
       # The logic below handles the npm publication:
       - uses: actions/checkout@v4
         # these if statements ensure that a publication only occurs when
@@ -26,4 +27,33 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH}}
+
+          package-name: release-please-action
+    # The logic below handles the npm publication:
+      - uses: actions/checkout@v4
+      # these if statements ensure that a publication only occurs when
+      # a new release is created:
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+         node-version: 20
+        
+        if: ${{ steps.release.outputs.release_created }}
+      - run: npm i
+        if: ${{ steps.release.outputs.release_created }}
+      - run: |
+         cat << EOF > "$HOME/.npmrc" //registry.npmjs.org/:_authToken=$NPM_PUBLISH EOF
+        env:
+         NPM_TOKEN:${{secrets.NPM_PUBLISH}}  
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Build package
+        run: cd huetiful
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Run NPM publish
+        run: |
+          npm run code:publish
+          npm run publish
+        env:
+          NPM_TOKEN:${{secrets.NPM_PUBLISH}}  
         if: ${{ steps.release.outputs.release_created }}
