@@ -28,5 +28,5 @@ jobs:
          token: ${{secrets.GH_PAT}}
          preview-branch: main
          source-dir: ./docs/www
-         umbrella-dir: pr-preview
+         umbrella-dir: ./docs/pr-preview
          action: auto
