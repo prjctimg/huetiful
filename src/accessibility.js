@@ -1,5 +1,6 @@
 /**
  * @typedef {import('../types/types.js').DeficiencyType} DeficiencyType
+ * @typedef {import('../types/types.js').ColorToken} ColorToken
  */
 
 import { color2hex } from './converters.js';
@@ -44,30 +45,30 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
  */
 
 function colorDeficiency(deficiencyType) {
-  const baseColorDeficiency = (def, col, sev) => {
-    let result;
-    col = color2hex(col);
-    switch (def) {
+  const f = (d, c, t) => {
+    let res;
+    c = color2hex(c);
+    switch (d) {
       case 'blue':
-        result = filterDeficiencyTrit(sev)(col);
+        res = filterDeficiencyTrit(t)(c);
         break;
       case 'red':
-        result = filterDeficiencyProt(sev)(col);
+        res = filterDeficiencyProt(t)(c);
         break;
       case 'green':
-        result = filterDeficiencyDeuter(sev)(col);
+        res = filterDeficiencyDeuter(t)(c);
         break;
       case 'monochromacy':
-        result = filterGrayscale(sev, 'lch')(col);
+        res = filterGrayscale(t, 'lch')(c);
         break;
     }
 
-    return color2hex(result);
+    return color2hex(res);
   };
 
   /**
-   * @param {import('../types/types.js').ColorToken} color The color to return its simulated variant.
-   * @param {number} [severity=1] The intensity of the filter. The exepected value is between [0,1]. For example 0.5
+   * @param {ColorToken} color The color to return its simulated variant.
+   * @param {number} [severity=0.5] The intensity of the filter. The exepected value is between [0,1]. For example 0.5
    */
   return (color, severity) => {
     // Store the keys of deficiency types
@@ -79,7 +80,7 @@ function colorDeficiency(deficiencyType) {
       typeof deficiencyType === 'string' &&
       deficiencies.some((el) => el === deficiencyType)
     ) {
-      return baseColorDeficiency(deficiencyType, color, severity);
+      return f(deficiencyType, color, severity);
     } else {
       throw Error(
         `Unknown color vision deficiency ${deficiencyType}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`

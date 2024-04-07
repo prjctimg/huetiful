@@ -66,8 +66,6 @@ import {
   getMeanLightness as _gml,
   getNearestColor as _gnrstc,
   gt,
-  // @ts-ignore
-  lt,
   getMeanLuminance as _gmnlmnce,
   brighten as _brghtn,
   darken as drkn
@@ -1835,7 +1833,7 @@ console.log(color("blue").overtone())
 // false
  */
 
-  ovetone() {
+  overtone() {
     // @ts-ignore
     return _ot(this['_color']);
   }

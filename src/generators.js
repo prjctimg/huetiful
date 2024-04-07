@@ -686,6 +686,9 @@ function baseDistribute(c = [], t = 0.5, options = {}) {
   return out;
 }
 
+function distributeHue() {}
+//
+
 export {
   discoverPalettes,
   hueShift,

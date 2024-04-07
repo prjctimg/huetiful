@@ -14,7 +14,7 @@ governing permissions and limitations under the License.
 
 import { getChannel } from './utils.js';
 
-import modeRanges from './color-maps/samples/modeRanges.js';
+import limits from './color-maps/samples/modeRanges.js';
 
 import {
   interpolatorSplineNatural,
@@ -55,13 +55,13 @@ const pltrconfg = {
   li
 };
 
-function gmchn(cspace, idx) {
-  const res = cspace.substring(cspace.length - 3);
+function gmchn(m, i) {
+  const res = m.substring(m.length - 3);
 
-  return (idx && res.charAt(idx)) || res;
+  return (i && res.charAt(i)) || res;
 }
 
-function exprParser(color = '#000', mc = '', expr = '') {
+function exprParser(c = '#000', mc = '', expr = '') {
   // regExp to match arithmetic operator and the value
 
   var [mode, chn, op, val] = [
@@ -73,110 +73,108 @@ function exprParser(color = '#000', mc = '', expr = '') {
   ];
 
   // @ts-ignore
-  color = converter(mode.toLowerCase())(color);
+  c = converter(mode.toLowerCase())(c);
   const cb = (value) => parseFloat(value);
 
   // Match an operator against the first truthy case and perform the relevant math operation
   switch (op) {
     case '+':
-      color[chn] += +cb(val);
+      c[chn] += +cb(val);
       break;
     case '-':
-      color[chn] -= +cb(val);
+      c[chn] -= +cb(val);
       break;
     case '*':
-      color[chn] *= +cb(val);
+      c[chn] *= +cb(val);
       break;
     case '/':
-      color[chn] /= +cb(val);
+      c[chn] /= +cb(val);
       break;
     // throw error alert
   }
 
-  return color;
+  return c;
 }
 
-function mcchn(colorspace) {
+function mcchn(m) {
   // Matches any string with c or s
-  colorspace = or(colorspace, 'lch');
+  m = or(m, 'lch');
   const reChroma = /(s|c)/i;
 
   // @ts-ignore
-  const ch = reChroma.exec(colorspace)['0'];
+  const ch = reChroma.exec(m)['0'];
 
-  if (reChroma.test(colorspace)) {
-    return `${colorspace}.${ch}`;
+  if (reChroma.test(m)) {
+    return `${m}.${ch}`;
   } else {
-    throw Error(
-      `The color space ${colorspace} has no chroma/saturation channel.`
-    );
+    throw Error(`The color space ${m} has no chroma/saturation channel.`);
   }
 }
 
-function mlchn(colorspace) {
+function mlchn(m) {
   // Matches any string with c or s
-  colorspace = or(colorspace, 'lch');
-  const reLightness = /(j|l)/i;
+  m = or(m, 'lch');
+  const rl = /(j|l)/i;
 
   // @ts-ignore
-  const ch = reLightness.exec(colorspace)['0'];
+  const ch = rl.exec(m)['0'];
 
-  if (reLightness.test(colorspace)) {
-    return `${colorspace}.${ch}`;
+  if (rl.test(m)) {
+    return `${m}.${ch}`;
   } else {
-    throw Error(`The color space ${colorspace} has no lightness channel.`);
+    throw Error(`The color space ${m} has no lightness channel.`);
   }
 }
 
-function colorObj(factor, callback) {
-  return (color) => {
-    return { [factor]: callback(color), color: color };
+function colorObj(fctr, cb) {
+  return (c) => {
+    return { [fctr]: cb(c), color: c };
   };
 }
 
-function customFindKey(collection, factor) {
+function customFindKey(col, fctr) {
   // If the color is achromatic return the string gray
-  const propKeys = keys(collection);
+  const k = keys(col);
 
-  const result = propKeys
+  const res = k
     .filter((key) => {
-      const hueVals = customConcat(collection[key]);
+      const t = customConcat(col[key]);
 
-      const minVal = min(...hueVals);
+      const mn = min(...t);
 
-      const maxVal = max(...hueVals);
+      const mx = max(...t);
       // Capture the min and max values and see if the passed in color is within that range
-      return inRange(factor, minVal, maxVal);
+      return inRange(fctr, mn, mx);
     })
     .toString();
 
-  return result;
+  return res;
 }
 
-function customConcat(hue) {
+function customConcat(h) {
   const res = [];
-  const { keys } = Object;
-  if (typeof hue == 'object') {
-    const hueKeys = keys(hue);
+
+  if (typeof h == 'object') {
+    const k = keys(h);
 
     //@ts-ignore
-    res.push(...hueKeys.map((key) => hue[key]));
+    res.push(...k.map((v) => h[v]));
   }
 
   return res.flat(1);
 }
 
-function adjustHue(value) {
-  return (value > 0 && (value += Math.ceil(-value / 360) * 360)) || value % 360;
+function adjustHue(x) {
+  return (x > 0 && (x += Math.ceil(-x / 360) * 360)) || x % 360;
 }
 
-function chnDiff(color, modeChannel) {
-  return (subtrahend) => {
-    const cb = (color) => getChannel(modeChannel)(color);
-    if (cb(color) < cb(subtrahend)) {
-      return cb(subtrahend) - cb(color);
+function chnDiff(x, mc) {
+  return (y) => {
+    const cb = (color) => getChannel(mc)(color);
+    if (cb(x) < cb(y)) {
+      return cb(y) - cb(x);
     } else {
-      return cb(color) - cb(subtrahend);
+      return cb(x) - cb(y);
     }
   };
 }
@@ -207,74 +205,74 @@ function neq(x, y) {
   return !(x === y);
 }
 
-function inRange(number, start, end) {
+function inRange(n, s, e) {
   /* Built-in method references for those with the same name as other `lodash` methods. */
 
-  return gte(number, Math.min(start, end)) && lt(number, Math.max(start, end));
+  return gte(n, Math.min(s, e)) && lt(n, Math.max(s, e));
 }
 
-function isInt(num) {
-  const reInt = /^-?[0-9]+$/;
-  return reInt.test(num.toString());
+function isInt(n) {
+  const r = /^-?[0-9]+$/;
+  return r.test(n.toString());
 }
 
-function norm(value, modeChannel) {
-  const [mode, chn] = modeChannel.split('.');
-  const [start, end] = modeRanges[mode][chn];
-  const range = inRange(value, start, end);
+function norm(v, mc) {
+  const [m, c] = mc.split('.');
+  const [s, e] = limits[m][c];
+  const r = inRange(v, s, e);
 
-  if (!range) {
-    if (lte(value, 1)) {
-      value = end * value;
+  if (!r) {
+    if (lte(v, 1)) {
+      v = e * v;
     } else {
-      value = (lte(end, 100) && end * (value / 100)) || end * (value / end);
+      v = (lte(e, 100) && e * (v / 100)) || e * (v / e);
     }
   }
-  return value;
+  return v;
 }
 
-function rand(min, max) {
-  if (min > max) {
-    var [mn, mx] = [min, max];
-    max = mn;
-    min = mx;
+function rand(mn, mx) {
+  if (mn > mx) {
+    var [mn, mx] = [mn, mx];
+    mx = mn;
+    mn = mx;
   } else {
-    return Math.random() * (max - min) + min;
+    return Math.random() * (mx - mn) + mn;
   }
 }
 
-function floorCeil(num) {
-  if (!isInt(num)) {
-    const strArr = num.toString().split('.');
-    const float = strArr[1];
+function floorCeil(n) {
+  if (!isInt(n)) {
+    const c = n.toString().split('.');
+    const v = c[1];
 
     //If the decimal value is .4  and below it will be rounded down else it will be rounded up.
-    const reFloorCeil = (float) => /^[0-4]$/.test(float.charAt(0));
+    const r = (float) => /^[0-4]$/.test(float.charAt(0));
 
-    if (reFloorCeil(float)) {
-      num = Math.floor(num);
+    if (r(v)) {
+      n = Math.floor(n);
     } else {
-      num = Math.ceil(num);
+      n = Math.ceil(n);
     }
   }
 
-  return num;
+  return n;
 }
 
-function customSort(order = 'asc', factor = 'factor') {
+function customSort(o = 'asc', fctr = 'factor') {
   // a-b gives asc order & b-a gives desc order
 
   return (a, b) => {
-    if (order === 'asc') {
-      return a[factor] - b[factor];
-    } else if (order === 'desc') {
-      return b[factor] - a[factor];
+    if (o === 'asc') {
+      return a[fctr] - b[fctr];
+    } else if (o === 'desc') {
+      return b[fctr] - a[fctr];
     }
   };
 }
 
-function colorObjColl(factor = 'factor', callback = (arg) => arg.toString()) {
-  var cb = colorObj(factor, callback),
+function colorObjColl(fctr = 'factor', cb = (a) => a.toString()) {
+  var _cb = colorObj(fctr, cb),
     res;
   /**
    * @param collection The array or object of colors to iterate over. If an object is passed, its values are expected to be valid color tokens.
@@ -284,12 +282,12 @@ function colorObjColl(factor = 'factor', callback = (arg) => arg.toString()) {
     // Convert object into a Map which remembers sorting order in a more predictable way
 
     if (Array.isArray(collection) && gte(collection.length, 1)) {
-      res = collection.map(cb);
+      res = collection.map(_cb);
     } else if (typeof collection === 'object') {
       res = new Map();
 
       for (const [key, klr] of entries(collection)) {
-        res.set(key, cb(klr));
+        res.set(key, _cb(klr));
       }
     } else {
       throw new Error(`The type of ${typeof collection} is not iterable`);
@@ -298,13 +296,13 @@ function colorObjColl(factor = 'factor', callback = (arg) => arg.toString()) {
   };
 }
 
-function min(array = []) {
-  return array.reduce((a, b) => Math.min(a, b), Infinity);
+function min(arr = []) {
+  return arr.reduce((a, b) => Math.min(a, b), Infinity);
 }
 
-function max(array = []) {
-  array = or(array, []);
-  return array.reduce((a, b) => Math.max(a, b), -Infinity);
+function max(arr = []) {
+  arr = or(arr, []);
+  return arr.reduce((a, b) => Math.max(a, b), -Infinity);
 }
 
 function reNum(s) {
@@ -321,37 +319,32 @@ function reOp(s) {
   // @ts-ignore
   return (reComparator.test(s) && reComparator.exec(s)['0']) || undefined;
 }
-function sortedColl(
-  factor = 'factor',
-  callback,
-  order = 'asc',
-  colorObj = false
-) {
-  return (collection) => {
-    var objColl = colorObjColl(factor, callback)(collection),
+function sortedColl(fctr = 'factor', cb, o = 'asc', obj = false) {
+  return (c) => {
+    var r = colorObjColl(fctr, cb)(c),
       res;
 
     // If the collection is not an Array  insert the sorted elements
     // Sort the array using our customSort helper function
 
-    if (Array.isArray(collection)) {
+    if (Array.isArray(c)) {
       // @ts-ignore
-      res = objColl.sort(customSort(order, factor));
+      res = r.sort(customSort(o, fctr));
 
-      return (colorObj === true && res) || res.map((color) => color['color']);
+      return (obj === true && res) || res.map((color) => color['color']);
     } else {
       res = new Map();
-      values(objColl)
+      values(r)
         // @ts-ignore
-        .sort(customSort(order, factor))
+        .sort(customSort(o, fctr))
         .map((val, key) => {
-          var [k, v] = entries(collection)[key];
+          var [k, v] = entries(c)[key];
           if (val === v) {
             res.set(k, val);
           }
         });
 
-      if (colorObj === false) {
+      if (obj === false) {
         entries(res).map((v) => res.set(v[0], v[1]['color']));
       }
     }
@@ -359,40 +352,40 @@ function sortedColl(
   };
 }
 
-function filteredColl(factor, cb) {
-  return (collection, start, end) => {
-    let result;
+function filteredColl(fctr, cb) {
+  return (c, s, e) => {
+    let res;
 
-    if (typeof start === 'number') {
-      result = colorObjColl(
-        factor,
+    if (typeof s === 'number') {
+      res = colorObjColl(
+        fctr,
         cb
-      )(collection)
+      )(c)
         // @ts-ignore
-        .filter((color) => inRange(color[factor], start, end))
+        .filter((color) => inRange(color[fctr], s, e))
         .map((color) => color['color']);
 
       // If string, split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
-    } else if (typeof start === 'string') {
+    } else if (typeof s === 'string') {
       //The patterns to match
 
-      const val = reNum(start),
-        op = reOp(start);
+      const v = reNum(s),
+        op = reOp(s);
 
       if (op) {
         const mapFilter = (test) => {
           return (
             colorObjColl(
-              factor,
+              fctr,
               cb
-            )(collection)
+            )(c)
               // @ts-ignore
-              .filter((el) => test(el[factor], parseFloat(val.toString())))
+              .filter((el) => test(el[fctr], parseFloat(v.toString())))
               .map((el) => el['color'])
           );
         };
         // object with comparison symbols as keys
-        var comparisonSymbols = {
+        var _symbols = {
           '!=': neq,
           '==': eq,
           '>=': gte,
@@ -402,24 +395,24 @@ function filteredColl(factor, cb) {
           '===': eq,
           '!==': neq
         };
-        result = mapFilter(comparisonSymbols[op]);
+        res = mapFilter(_symbols[op]);
       }
     }
-    return result;
+    return res;
   };
 }
 
-function clamp(value, min = -Infinity, max = Infinity) {
-  if (typeof value === 'number') {
-    if (gt(value, max)) {
-      return max;
-    } else if (lt(value, min)) {
-      return min;
+function clamp(v, mn = -Infinity, mx = Infinity) {
+  if (typeof v === 'number') {
+    if (gt(v, mx)) {
+      return mx;
+    } else if (lt(v, mn)) {
+      return mn;
     } else {
-      return value;
+      return v;
     }
   } else {
-    throw Error(`${value} is not a number`);
+    throw Error(`${v} is not a number`);
   }
 }
 

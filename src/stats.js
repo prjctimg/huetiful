@@ -33,6 +33,8 @@ import {
   values
 } from './index.js';
 
+// Predicate functions
+
 function lightnessPredicate(cspace) {
   return getChannel(`${mlchn(cspace)}`);
 }
@@ -51,10 +53,10 @@ function chromaPredicate(colorspace) {
 /**
  * @public
  * Returns the largest chroma/saturation difference between the colors in a collection `against` a comparison color.
- * @param {Collection} collection The collection of colors to query.
- * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
- * @param {HueColorSpaces} colorspace The mode colorspace to retrieve the channel being queried.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The collection of colors to query.
+ * @param {ColorToken} [against='#fff'] The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param {HueColorSpaces} [colorspace='lch'] The mode colorspace to retrieve the channel being queried.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The largest chroma/saturation difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
@@ -76,12 +78,7 @@ function chromaPredicate(colorspace) {
 
  */
 
-function getFarthestChromaFrom(
-  collection = [],
-  against = '#fff',
-  colorspace = 'lch',
-  colorObj = false
-) {
+function getFarthestChromaFrom(collection, against, colorspace, colorObj) {
   return baseFunc(
     'saturation',
     collection,
@@ -94,10 +91,10 @@ function getFarthestChromaFrom(
 /**
  * @public
  * Gets the largest hue angle difference between the colors in a collection `against` a comparison color.
- * @param {Collection} collection The collection of colors to query.
- * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
- * @param {HueColorSpaces} colorspace The mode colorspace to retrieve the channel being queried.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The collection of colors to query.
+ * @param {ColorToken} [against='#fff'] The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param {HueColorSpaces} [colorspace='lch'] The mode colorspace to retrieve the channel being queried.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The largest hue angle difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
@@ -117,12 +114,7 @@ function getFarthestChromaFrom(
         // 35
  */
 
-function getFarthestHueFrom(
-  collection = [],
-  against = '#fff',
-  colorspace = 'lch',
-  colorObj = false
-) {
+function getFarthestHueFrom(collection, against, colorspace, colorObj) {
   return baseFunc(
     'hue',
     collection,
@@ -135,10 +127,10 @@ function getFarthestHueFrom(
 /**
  * @public
  * Returns the largest `lightness` difference between the colors in a collection `against` a comparison color.
- * @param {Collection} collection The collection of colors to query.
- * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
- * @param {HueColorSpaces} colorspace The mode colorspace to retrieve the channel being queried.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The collection of colors to query.
+ * @param {ColorToken} [against='#fff'] The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param {HueColorSpaces} [colorspace='lch'] The mode colorspace to retrieve the channel being queried.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The largest `lightness` difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
@@ -162,9 +154,9 @@ function getFarthestHueFrom(
 
 function getFarthestLightnessFrom(
   collection = [],
-  against = '#fff',
-  colorspace = 'lch',
-  colorObj = false
+  against,
+  colorspace,
+  colorObj
 ) {
   return baseFunc(
     'lightness',
@@ -177,10 +169,10 @@ function getFarthestLightnessFrom(
 /**
  * @public
  * Returns the smallest chroma/saturation difference between the colors in a collection `against` a comparison color.
- * @param {Collection} collection The collection of colors to query.
- * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
- * @param {HueColorSpaces} colorspace The mode colorspace to retrieve the channel being queried.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The collection of colors to query.
+ * @param {ColorToken} [against='#fff'] The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param {HueColorSpaces} [colorspace='lch'] The mode colorspace to retrieve the channel being queried.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The smallest chroma/saturation difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
@@ -203,12 +195,7 @@ function getFarthestLightnessFrom(
 
  */
 
-function getNearestChromaFrom(
-  collection = [],
-  against = '#fff',
-  colorspace = 'lch',
-  colorObj = false
-) {
+function getNearestChromaFrom(collection, against, colorspace, colorObj) {
   return baseFunc(
     'saturation',
     collection,
@@ -221,10 +208,10 @@ function getNearestChromaFrom(
 /**
  * @public
  * Returns the smallest hue angle difference between the colors in a collection `against` a comparison color.
- * @param {Collection} collection The collection of colors to query.
- * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
- * @param {HueColorSpaces} colorspace The mode colorspace to retrieve the channel being queried.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The collection of colors to query.
+ * @param {ColorToken} [against='#fff'] The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param {HueColorSpaces} [colorspace='lch'] The mode colorspace to retrieve the channel being queried.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The smallest hue angle difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
@@ -245,12 +232,7 @@ function getNearestChromaFrom(
 
  */
 
-function getNearestHueFrom(
-  collection = [],
-  against = '#fff',
-  colorspace = 'lch',
-  colorObj = false
-) {
+function getNearestHueFrom(collection, against, colorspace, colorObj) {
   return baseFunc(
     'hue',
     collection,
@@ -263,10 +245,10 @@ function getNearestHueFrom(
 /**
  * @public
  * Returns the smallest `lightness` difference between the colors in a collection `against` a comparison color.
- * @param {Collection} collection The collection of colors to query.
- * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
- * @param {HueColorSpaces} colorspace The mode colorspace to retrieve the channel being queried.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The collection of colors to query.
+ * @param {ColorToken} [against='#fff'] The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param {HueColorSpaces} [colorspace='lch'] The mode colorspace to retrieve the channel being queried.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The smallest` lightness` difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
@@ -288,9 +270,9 @@ function getNearestHueFrom(
 
 function getNearestLightnessFrom(
   collection = [],
-  against = '#fff',
-  colorspace = 'lch',
-  colorObj = false
+  against,
+  colorspace,
+  colorObj
 ) {
   return baseFunc(
     'lightness',
@@ -304,9 +286,9 @@ function getNearestLightnessFrom(
 /**
  * @public
  * Returns the largest `luminance` difference between the colors in a collection `against` a comparison color.
- * @param {Collection} collection The collection of colors to query.
- * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The collection of colors to query.
+ * @param {ColorToken} [against='#fff'] The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The largest `lightness` difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
@@ -333,9 +315,9 @@ function getFarthestLuminanceFrom(collection, against, colorObj) {
 /**
  * @public
  * Returns the smallest `luminance` difference between the colors in a collection `against` a comparison color.
- * @param {Collection} collection The collection of colors to query.
- * @param {ColorToken} against The color to compare against. This color is used as a subtrahend against each color in the collection.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`luminance`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The collection of colors to query.
+ * @param {ColorToken} [against='#fff'] The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`luminance`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The smallest `luminance` difference in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  *
  * @example
@@ -361,8 +343,8 @@ function getNearestLuminanceFrom(collection, against, colorObj) {
 /**
  * @public
  * Returns the average `chroma` from the passed in `collection` of colors. Achromatic colors (or colors with a falsy `chroma` channel) will be excluded from the sum.
- * @param {Collection} collection The collection of color tokens to query.
- * @param {HueColorSpaces} colorspace The colorspace to fetch the `chroma` channel value from.
+ * @param {Collection} [collection=[]] The collection of color tokens to query.
+ * @param {HueColorSpaces} [colorspace='lch'] The colorspace to fetch the `chroma` channel value from.
  * @returns {number} The average `chroma` in the passed in `collection` or undefined if no color in the `collection` has a valid `chroma` channel.
  * @example
  *
@@ -380,7 +362,7 @@ function getNearestLuminanceFrom(collection, against, colorObj) {
 
  */
 
-function getMeanChroma(collection = [], colorspace = 'lch') {
+function getMeanChroma(collection, colorspace) {
   var cb = getChannel(mcchn(colorspace));
   return averageNumber(values(collection).map(cb));
 }
@@ -388,8 +370,8 @@ function getMeanChroma(collection = [], colorspace = 'lch') {
 /**
  * @public
  * Returns the average `lightness` from the passed in `collection` of colors.
- * @param {Collection} collection The collection of color tokens to query.
- * @param {HueColorSpaces} colorspace The colorspace to fetch the `lightness` channel value from.
+ * @param {Collection} [collection=[]] The collection of color tokens to query.
+ * @param {HueColorSpaces} [colorspace='lch'] The colorspace to fetch the `lightness` channel value from.
  * @returns {number} The average `lightness` in the passed in `collection`.
  * @example
  *
@@ -406,7 +388,7 @@ function getMeanChroma(collection = [], colorspace = 'lch') {
         // 20
  */
 
-function getMeanLightness(collection = [], colorspace = 'lch') {
+function getMeanLightness(collection, colorspace) {
   var cb = getChannel(mlchn(colorspace));
   return averageNumber(values(collection).map(cb));
 }
@@ -414,8 +396,8 @@ function getMeanLightness(collection = [], colorspace = 'lch') {
 /**
  * @public
  * Returns the average `hue` from the passed in `collection` of colors. Achromatic colors (or colors with a falsy `chroma` channel) will be excluded from the sum if `excludeGreys` is `true`. This can help make your color scales make more 'visual sense since the `hue` channel depends on the `chroma` channel to look colorful. This will also alter the final average hue angle returned.
- * @param {Collection} collection The collection of color tokens to query.
- * @param {HueColorSpaces} colorspace The colorspace to fetch the `hue` channel value from.
+ * @param {Collection} [collection=[]] The collection of color tokens to query.
+ * @param {HueColorSpaces} [colorspace='lch'] The colorspace to fetch the `hue` channel value from.
  * @param {boolean} excludeGreys Optional boolean to filter out achromatic colors from the passed in `collection`. Default is `false`.
  * @returns {number} The average `hue` angle in the passed in `collection`.
  * @example
@@ -433,7 +415,7 @@ function getMeanLightness(collection = [], colorspace = 'lch') {
         // 12
  */
 
-function getMeanHue(collection, colorspace = 'lch', excludeGreys = false) {
+function getMeanHue(collection, colorspace, excludeGreys = false) {
   var cb = (cb = getChannel(`${colorspace}.h`));
   return averageAngle(values(collection).map(cb));
 }
@@ -441,8 +423,8 @@ function getMeanHue(collection, colorspace = 'lch', excludeGreys = false) {
 /**
  * @public
  * Returns the average `distance` from the passed in `collection` of colors using the `differenceHyab` metric. In the future, an option to specify the metric to use when querying the `distance` factor.
- * @param {Collection} collection The collection of color tokens to query.
- * @param {ColorToken} against The color to compare the distance from. Used by the metric function for each color in the `collection`. Default is `black`.
+ * @param {Collection} [collection=[]] The collection of color tokens to query.
+ * @param {ColorToken} [against='#fff'] The color to compare the distance from. Used by the metric function for each color in the `collection`. Default is `black`.
  * @returns {number} The average `distance` in the passed in `collection` .
  * @example
  * import { getMeanDistance } from 'huetiful-js'
@@ -461,7 +443,7 @@ console.log(getMeanDistance(sample, against));
 // 142.7183074639663
  */
 
-function getMeanDistance(collection, against = '#fff') {
+function getMeanDistance(collection, against) {
   var cb = (x) => (y) => differenceHyab()(x, y);
   return averageNumber(values(collection).map(cb(against)));
 }
@@ -469,8 +451,8 @@ function getMeanDistance(collection, against = '#fff') {
 /**
  * @public
  * Returns the average `contrast` from the passed in `collection` of colors.
- * @param {Collection} collection The collection of color tokens to query.
- * @param {ColorToken} against The color to compare the `contrast` against. Used by the `getContrast` function for each color in the `collection`. Default is `black`
+ * @param {Collection} [collection=[]] The collection of color tokens to query.
+ * @param {ColorToken} [against='#fff'] The color to compare the `contrast` against. Used by the `getContrast` function for each color in the `collection`. Default is `black`
  * @returns {number} The average `distance` in the passed in `collection` .
  * @example
  *
@@ -489,7 +471,7 @@ console.log(getMeanContrast(sample, against));
 // 1.5960886749927419
 
  */
-function getMeanContrast(collection, against = '#fff') {
+function getMeanContrast(collection, against) {
   var cb = (x) => (y) => getContrast(x, y);
 
   return averageNumber(values(collection).map(cb(against)));
@@ -498,7 +480,7 @@ function getMeanContrast(collection, against = '#fff') {
 /**
  * @public
  * Returns the average relative `luminance` from the passed in `collection` of colors.
- * @param {Collection} collection The collection of color tokens to query.
+ * @param {Collection} [collection=[]] The collection of color tokens to query.
  * @returns {number} The average relative `luminance` in the passed in `collection` or undefined if no color in the `collection` has a valid `chroma` channel.
  * @example
  *
@@ -520,21 +502,22 @@ function getMeanLuminance(collection) {
 }
 
 // The baseFunc for getting specifified factor extremums
-function baseFunc(fctr, collection, cb, order, colorObj) {
+function baseFunc(fctr, col, cb, o, cObj) {
   const result = sortedColl(
     fctr,
     cb,
-    order,
+    o,
     true
-  )(collection).filter((el) => el[fctr] !== undefined);
+  )(col).filter((el) => el[fctr] !== undefined);
 
-  return (colorObj && result[0]) || result[0][fctr];
+  return (cObj && result[0]) || result[0][fctr];
 }
 /**
  * @public
  * Returns the smallest contrast value from the passed in colors compared against a sample color.
- * @param {Collection} collection The collection of colors to query the color with the smallest contrast value.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`contrast`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The collection of colors to query the color with the smallest contrast value.
+ * @param {ColorToken} [against='#fff'] The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`contrast`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The smallest contrast value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
@@ -561,8 +544,9 @@ function getNearestContrast(collection, against, colorObj) {
  * @public
  *
  * Returns the largest contrast value from the passed in colors compared against a sample color.
- * @param {Collection} collection The collection of colors to query the color with the largest contrast value.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`contrast`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The collection of colors to query the color with the largest contrast value.
+ * @param {ColorToken} [against='#fff'] The color to compare against. This color is used as a subtrahend against each color in the collection.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`contrast`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The largest contrast value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
@@ -589,9 +573,9 @@ function getFarthestContrast(collection, against, colorObj) {
  * @public
  *
  * Returns the smallest `chroma` / `saturation` value from the passed in colors.
- * @param {Collection} collection The collection of colors to query the color with the smallest chroma/saturation value.
- * @param {HueColorSpaces} colorspace The mode `colorspace` to retrieve saturation/chroma values.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The collection of colors to query the color with the smallest chroma/saturation value.
+ * @param {HueColorSpaces} [colorspace='lch'] The mode `colorspace` to retrieve saturation/chroma values.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The smallest chroma/saturation value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
@@ -617,9 +601,9 @@ function getNearestChroma(collection, colorspace, colorObj = false) {
  * @public
  *
  * Gets the largest saturation value from the passed in colors.
- * @param {Collection} collection The collection of colors to query the color with the largest saturation value.
- * @param {HueColorSpaces} colorspace The mode `colorspace` to perform the computation in.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The collection of colors to query the color with the largest saturation value.
+ * @param {HueColorSpaces} [colorspace='lch'] The mode `colorspace` to perform the computation in.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`saturation`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The largest saturation value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
@@ -644,9 +628,9 @@ function getFarthestChroma(collection, colorspace, colorObj = false) {
  * @public
  *
  * Gets the smallest lightness value from the passed in colors.
- * @param {Collection} collection The collection of colors to query the color with the smallest lightness value.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
- * @param {HueColorSpaces} colorspace The mode `colorspace` to retrieve the lightness value from.
+ * @param {Collection} [collection=[]] The collection of colors to query the color with the smallest lightness value.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
+ * @param {HueColorSpaces} [colorspace='lch'] The mode `colorspace` to retrieve the lightness value from.
  * @returns {number|FactObject} The smallest lightness value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
@@ -660,7 +644,7 @@ console.log(getNearestLightness(sample, 'lch',true))
 
  */
 
-function getNearestLightness(collection = [], colorspace, colorObj = false) {
+function getNearestLightness(collection, colorspace, colorObj = false) {
   const fctr = 'lightness';
   return baseFunc(
     fctr,
@@ -675,9 +659,9 @@ function getNearestLightness(collection = [], colorspace, colorObj = false) {
  * @public
  *
  *  Gets the largest `lightness` value from the passed in colors.
- * @param {Collection} collection The collection of colors to query the color with the largest `lightness` value.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
- * @param {HueColorSpaces} colorspace The mode `colorspace` to retrieve the `lightness` value from.
+ * @param {Collection} [collection=[]] The collection of colors to query the color with the largest `lightness` value.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`lightness`) and name of the color as keys. Default is `false`.
+ * @param {HueColorSpaces} [colorspace='lch'] The mode `colorspace` to retrieve the `lightness` value from.
  * @returns {number|FactObject} The largest `lightness` value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
@@ -706,9 +690,9 @@ function getFarthestLightness(collection, colorspace, colorObj = false) {
  * @public
  *
  * Returns the smallest hue angle from the passed in colors.
- * @param {Collection} collection The collection of colors to query the color with the smallest hue value.
- * @param {HueColorSpaces} colorspace The mode `colorspace` to perform the computation in.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The collection of colors to query the color with the smallest hue value.
+ * @param {HueColorSpaces} [colorspace='lch'] The mode `colorspace` to perform the computation in.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The smallest hue value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *
@@ -727,9 +711,9 @@ function getNearestHue(collection, colorspace, colorObj = false) {
  * @public
  *
  * Returns the largest hue angle from the passed in colors.
- * @param {Collection} collection The array of colors to query the color with the largest hue value.
- * @param {HueColorSpaces} colorspace The mode `colorspace` to perform the computation in.
- * @param {boolean} colorObj Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
+ * @param {Collection} [collection=[]] The array of colors to query the color with the largest hue value.
+ * @param {HueColorSpaces} [colorspace='lch'] The mode `colorspace` to perform the computation in.
+ * @param {boolean} [colorObj=false] Optional boolean that makes the function return a custom object with factor (`hue`) and name of the color as keys. Default is `false`.
  * @returns {number|FactObject} The largest hue value in the colors passed in or a custom object with the `factor` and the color's `name` as keys.
  * @example
  *

@@ -15,7 +15,7 @@ import { gmchn, keys } from './helpers.js';
 
 /**
  *@public
-  Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), any `number` from 0 to 166,777,215 and arrays in the form of `[string,number,number,number,numer?]` the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
+  Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), any `number` from 0 to 166,777,215 and arrays in the form of `[string,number,number,number,number?]` the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
  * @param {ColorToken} color The color to convert to hexadecimal. Works on color objects and CSS named colors.
  * @returns {string} A hexadecimal representation of the passed in color.
  * @example
@@ -71,7 +71,8 @@ function color2hex(color) {
 /**
  *@public
  *  Returns the color equivalent of any `number` between 0 and 16,777,215 as a hexadecimal string or color object if the `colorspace` is specified.
- * @param num The number to convert.
+ * @param {number} num The number to convert.
+ * @param {Colorspaces} colorspace The optional colorspace to return the resulting color in. The color token is returned as a plain color object.
  * @returns color A color object or hex string.
  * @example
  *
@@ -83,6 +84,7 @@ console.log(num2color(900))
 
 function num2color(num, colorspace) {
   // Ported from chroma-js with slight modifications
+  // @ts-ignore
   colorspace = (colorspace && colorspace.toLowerCase()) || colorspace;
   if (typeof num === 'number' && num >= 0 && num <= 0xffffff) {
     const r = num >> 16;
@@ -167,7 +169,7 @@ function temp2color(kelvin = 1000, colorspace) {
       28.0852963507957 * log(g);
     b = 255;
   }
-  const result = {
+  const res = {
     r: r / 255,
     g: g / 255,
     b: b / 255,
@@ -176,9 +178,9 @@ function temp2color(kelvin = 1000, colorspace) {
 
   return (
     // @ts-ignore
-    (colorspace && converter(colorspace.toLowerCase())(result)) ||
+    (colorspace && converter(colorspace.toLowerCase())(res)) ||
     // @ts-ignore
-    formatHex(result)
+    formatHex(res)
   );
 }
 

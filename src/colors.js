@@ -40,12 +40,8 @@ console.log(getNearestColor(cols, 'blue', 3));
  */
 
 function getNearestColor(collection, against, num = 1) {
-  const cb = (collection, color) => {
-    return nearest(
-      values(collection),
-      differenceHyab(),
-      (color) => color
-    )(color, num);
+  const cb = (col, c) => {
+    return nearest(values(col), differenceHyab(), (color) => color)(c, num);
   };
   let result;
 
@@ -62,23 +58,23 @@ function getNearestColor(collection, against, num = 1) {
 /**
  * @public
  * Returns the specified scheme from the passed in color map
- * @param {string} scheme The palette type to return.
- * @param {Collection} schemesObject The color map with the `scheme`s as keys and `ColorToken | Array<ColorToken>` as values.
+ * @param {string} s The palette type to return.
+ * @param {Collection} obj The color map with the `scheme`s as keys and `ColorToken | Array<ColorToken>` as values.
  * @returns {Collection} The collection of colors from the specified `scheme`.
  */
-function hasScheme(scheme, schemesObject) {
-  const cb = (str) => str.toLowerCase();
+function hasScheme(s, obj) {
+  const cb = (s) => s.toLowerCase();
   const { keys } = Object;
   // Map all schemes keys to lower case
-  const schemeOptions = keys(schemesObject).map(cb);
+  const o = keys(obj).map(cb);
 
-  scheme = cb(scheme);
+  s = cb(s);
   // Check if passed in scheme is available
-  if (schemeOptions.indexOf(scheme) > -1) {
-    return schemesObject[scheme];
+  if (o.indexOf(s) > -1) {
+    return obj[s];
   } else {
     // Else throw error:Invalid scheme
-    throw Error(`${scheme} is an invalid scheme option.`);
+    throw Error(`${s} is an invalid scheme option.`);
   }
 }
 
@@ -87,7 +83,6 @@ function hasScheme(scheme, schemesObject) {
  *
  *  A wrapper function for ColorBrewer's map of sequential color schemes.
  * @param {SequentialScheme} scheme The name of the scheme.
- * @param {Colorspaces|undefined} colorspace The color to retrieve the `scheme` in.
  * @returns {Collection|ColorToken}  A collection of colors in the specified colorspace. The default is hex if `colorspace` is `undefined.`
  * @example
  * 
@@ -108,8 +103,8 @@ console.log(sequential("OrRd"))
 
  */
 
-function sequential(scheme, colorspace = undefined) {
-  const schemes = {
+function sequential(scheme) {
+  const so = {
     OrRd: [
       '#fff7ec',
       '#fee8c8',
@@ -321,7 +316,7 @@ function sequential(scheme, colorspace = undefined) {
     ]
   };
 
-  return hasScheme(scheme, schemes);
+  return hasScheme(scheme, so);
 }
 
 /**
@@ -330,7 +325,6 @@ function sequential(scheme, colorspace = undefined) {
  *  A wrapper function for ColorBrewer's map of diverging color schemes.
  * @param {DivergingScheme} scheme The name of the scheme.
  * @returns {Collection} The collection of colors from the specified `scheme`.
- * @param {Colorspaces|undefined} colorspace The color to retrieve the `scheme` in.
  * @example
  *
  * import { diverging } from 'huetiful-js'
@@ -346,8 +340,8 @@ console.log(diverging("Spectral"))
 ]
  */
 
-function diverging(scheme, colorspace = undefined) {
-  const schemes = {
+function diverging(scheme) {
+  const so = {
     Spectral: [
       '#9e0142',
       '#d53e4f',
@@ -467,7 +461,7 @@ function diverging(scheme, colorspace = undefined) {
     ]
   };
 
-  return hasScheme(scheme, schemes);
+  return hasScheme(scheme, so);
 }
 
 /**
@@ -491,8 +485,8 @@ console.log(qualitative("Accent"))
 
  */
 
-function qualitative(scheme, colorspace = undefined) {
-  const schemes = {
+function qualitative(scheme) {
+  const so = {
     Set2: [
       '#66c2a5',
       '#fc8d62',
@@ -584,7 +578,7 @@ function qualitative(scheme, colorspace = undefined) {
       '#f2f2f2'
     ]
   };
-  return hasScheme(scheme, schemes);
+  return hasScheme(scheme, so);
 }
 
 /**
