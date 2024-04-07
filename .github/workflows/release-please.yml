@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-      - dev
+
 
 permissions:
   contents: write
@@ -19,6 +19,7 @@ jobs:
         with:
           release-type: node
           target-branch: ${github.ref_name}}
+          token: ${{secrets.GH_PAT}}
       # The logic below handles the npm publication:
       - uses: actions/checkout@v4
         # these if statements ensure that a publication only occurs when
@@ -29,9 +30,8 @@ jobs:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm i
-        if: ${{ steps.release.outputs.release_created }}
       - run: |
+          npm install
           npm test
           npm run code:publish
           npm publish
