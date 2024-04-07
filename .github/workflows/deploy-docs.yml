@@ -4,7 +4,7 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: 
+    branches:
       - main
 
   # Allows you to run this workflow manually from the Actions tab
@@ -19,7 +19,6 @@ permissions:
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 
-
 jobs:
   # Single deploy job since we're just deploying
   deploy-preview:
@@ -28,6 +27,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Build site
+        run: |
+          npm install
+          npm run docs
+          cd docs/assets && npm install && npm run deploy
+      - name: Deploy site
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           # Upload directory with assets
@@ -35,4 +39,3 @@ jobs:
           branch: gh-pages
           clean-exclude: pr-preview
           force: false
-      
