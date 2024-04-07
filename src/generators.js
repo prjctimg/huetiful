@@ -8,6 +8,7 @@
  * @typedef {import('../types/types.js').InterpolatorOptions} InterpolatorOptions
  * @typedef {import('../types/types.js').SchemeType} SchemeType
  * @typedef {import('../types/types.js').UniformColorSpaces} UniformColorSpaces
+ * @typedef {import('../types/types.js').DistributionOptions} DistributionOptions
  */
 
 /**
@@ -609,87 +610,106 @@ function pastel(color) {
 }
 
 // @ts-ignore
-function baseDistribute(c = [], t = 0.5, options = {}) {
+
+/**
+ * Distributes the specified `factor` of a color in the collection with the specified `extremum` (i.e the color with the smallest/largest `hue` angle or `chroma` value) to all color tokens in the collection.
+ *
+ 
+ */
+function distribute(factor) {
   // Destructure the opts to check before distributing the factor
 
-  var { extremum, excludeSelf, excludeAchromatic, hueFixup, colorspace } =
-    options;
-
-  // v is expected to be a color object so that we can access the color's hue property during the mapping
-  var mx_cb = (v) =>
-      setChannel(`${colorspace}.h`)(v, v['h'] + v['h'] * (mn / mx) * 1),
-    mn_cb = (v) =>
-      setChannel(`${colorspace}.h`)(v, v['h'] + v['h'] * ((mn / v['h']) * 1));
-
-  var _ = keys(colorObjColl('hue', getChannel(`${colorspace}.h`))(c)).map(
-    (v) => _[v]['hue']
-  );
-  var [mn, mx] = [min(_), max(_)];
-
-  // Set the extremum to distribute to default to max if its not min
-  extremum = or(extremum, 'max');
-
-  // Exclude the colorToken with the specified factor extremum being distributed
-  excludeSelf = or(excludeSelf, false);
-
-  // Exclude achromatic colors from the manipulations. The colors are returned in the resultant collection
-  excludeAchromatic = or(excludeAchromatic, false);
-
-  // The fixup to use when tweaking the hue channels
-  hueFixup = hueFixup === 'longer' ? fixupHueLonger : fixupHueShorter;
-  colorspace = or(colorspace, 'lch');
-
-  var tmp = [];
-  if (excludeAchromatic) {
-    tmp = keys(c).filter((v) => isAchromatic(_[v]['color'], colorspace));
-    c = keys(c).filter((v) => !isAchromatic(_[v]['color'], colorspace));
-  }
-
   /**
-   * The color with the extremum we want
+   * @param {Collection} collection The colors to manipulate
+   * @param {DistributionOptions} [options={}] Optional overrides to change the default configursation
+   * @returns {Collection} The collection with each color`s hue channel adjusted.
    */
-  var slf;
-  if (excludeSelf) {
-    // capture the color that has the same value as that of the specified extremum
-    slf = c.find(
-      (o) =>
-        getChannel(`${colorspace}.h`)(c[o]) === (extremum === 'max' ? mx : mn)
-    );
+  return (collection, options) => {
+    var { extremum, excludeSelf, excludeAchromatic, hueFixup, colorspace } =
+      options;
 
-    // exclude it from the collection
-    c = keys(c).filter((o) => c[o] !== slf);
-  }
+    // v is expected to be a color object so that we can access the color's hue property during the mapping
+    var mx_cb = (v) =>
+        setChannel(`${colorspace}.h`)(v, v['h'] + v['h'] * (mn / mx) * 1),
+      mn_cb = (v) =>
+        setChannel(`${colorspace}.h`)(v, v['h'] + v['h'] * ((mn / v['h']) * 1));
 
-  var out,
-    cb = (f) =>
-      keys(c)
-        .map((o) => c[o])
-        .map(f);
+    var _ = keys(
+      colorObjColl('hue', getChannel(`${colorspace}.h`))(collection)
+    ).map((v) => _[v]['hue']);
+    var [mn, mx] = [min(_), max(_)];
 
-  if (extremum.toLowerCase() === 'max') {
-    out = cb(mx_cb);
-  } else {
-    out = cb(mn_cb);
-  }
+    // Set the extremum to distribute to default to max if its not min
+    extremum = or(extremum, 'max');
 
-  // Put back the color with the pecfied extremum
-  if (excludeSelf) {
-    //
-    out.unshift(slf);
-  }
+    // Exclude the colorToken with the specified factor extremum being distributed
+    excludeSelf = or(excludeSelf, false);
 
-  // Put back achromatic colors
-  if (excludeAchromatic && tmp.length > 0) {
-    out.push(...tmp);
-  }
+    // Exclude achromatic colors from the manipulations. The colors are returned in the resultant collection
+    excludeAchromatic = or(excludeAchromatic, false);
 
-  return out;
+    // The fixup to use when tweaking the hue channels
+    // @ts-ignore
+    hueFixup = hueFixup === 'longer' ? fixupHueLonger : fixupHueShorter;
+    colorspace = or(colorspace, 'lch');
+
+    var tmp = [];
+    if (excludeAchromatic) {
+      tmp = keys(collection).filter((v) =>
+        isAchromatic(_[v]['color'], colorspace)
+      );
+      collection = keys(collection).filter(
+        (v) => !isAchromatic(_[v]['color'], colorspace)
+      );
+    }
+
+    /**
+     * The color with the extremum we want.
+     */
+    var slf;
+    if (excludeSelf) {
+      // capture the color that has the same value as that of the specified extremum
+      slf = keys(collection).find(
+        (o) =>
+          getChannel(`${colorspace}.h`)(collection[o]) ===
+          (extremum === 'max' ? mx : mn)
+      );
+
+      // exclude it from the collection
+      collection = keys(collection).filter((o) => collection[o] !== slf);
+    }
+
+    var out,
+      cb = (f) =>
+        keys(collection)
+          .map((o) => collection[o])
+          .map(f);
+
+    if (extremum.toLowerCase() === 'max') {
+      out = cb(mx_cb);
+    } else {
+      out = cb(mn_cb);
+    }
+
+    // Put back the color with the pecfied extremum
+    if (excludeSelf) {
+      //
+      out.unshift(slf);
+    }
+
+    // Put back achromatic colors
+    if (excludeAchromatic && tmp.length > 0) {
+      out.push(...tmp);
+    }
+
+    return out;
+  };
 }
 
-function distributeHue() {}
 //
 
 export {
+  distribute,
   discoverPalettes,
   hueShift,
   pairedScheme,

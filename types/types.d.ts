@@ -153,12 +153,32 @@ export type EarthtoneOptions = Omit<
   'hueStep' | 'via' | 'maxLightness' | 'minLightness'
 >;
 
+/**
+ * Override options for factor distributed palettes.
+ */
 export type DistributionOptions = {
-  normalize?: boolean;
+  /**
+   * The colorspace to distribute the specified factor in. Defaults to `lch` when the passed in mode has no `'chroma' | 'hue' | 'lightness'` channel
+   */
   colorspace?: UniformColorSpaces;
-  extremum?: 'min' | 'max';
+  /**
+   * The extreme end for the `factor`  we wish to distribute. If `mean` is picked, it will map the `average` value of that factor in the passed in collection.
+   */
+  extremum?: 'min' | 'max' | 'mean';
+
+  /**
+   * Exclude grayscale colors from the distribution operation. Default is `false`
+   */
   excludeAchromatic?: boolean;
-  excludeSelf: boolean;
+
+  /**
+   * Exclude the color with the specified `extremum` from the distribution operation. Default is `false`
+   */
+  excludeSelf?: boolean;
+
+  /**
+   * The fixup function to use when distributing the hue factor.
+   */
   hueFixup?: 'shorter' | 'longer';
 };
 
@@ -166,7 +186,12 @@ export type HueShiftOptions = Omit<Options, 'via' | 'earthtones' | ''> &
   InterpolatorOptions;
 export type Interpolator = (arr: number[]) => (t: number) => number;
 export type Tone = 'light' | 'dark';
+
+/**
+ * The type of color vision defeciency.
+ */
 export type DeficiencyType = 'red' | 'blue' | 'green' | 'monochromacy';
+
 export type HueFamily =
   | 'red-purple'
   | 'red'

@@ -55,47 +55,15 @@ declare function pairedScheme(
 ): ArrayLike<ColorToken> | ColorToken;
 declare function pastel(color: ColorToken): ColorToken;
 
-/**
- * Distributes the hue angle of a color in the collection with the specified extremum (i.e the color with the smallest/largest hue angle in the collection) to all colors in the collection.
- * @param collection
- * @param threshold
- * @param options
- */
-declare function distributeHue(
-  collection: Collection | Map<any, ColorToken>,
-  threshold: number,
+declare function distribute(
+  collection: Collection,
   options?: DistributionOptions
-): Array<ColorToken> | Map<any, ColorToken>;
+): Collection;
 
-declare function distributeLuminance(
-  collection: Collection | Map<any, ColorToken>,
-  threshold: number,
-  options?: Omit<
-    DistributionOptions,
-    'hueFixup' | 'excludeAchromatic' | 'colorspace'
-  >
-): Array<ColorToken> | Map<any, ColorToken>;
-
-declare function distributeLightness(
-  collection: Collection | Map<any, ColorToken>,
-  threshold: number,
-  options?: Omit<DistributionOptions, 'hueFixup' | 'excludeAchrpmatic'>
-): Array<ColorToken> | Map<any, ColorToken>;
-
-declare function distributeChroma(
-  collection: Collection | Map<any, ColorToken>,
-  threshold: number,
-  options?: DistributionOptions
-): Array<ColorToken> | Map<any, ColorToken>;
-
-declare function reverseSpectrum(collection, colorspace: HueColorSpaces): any;
-7;
+//declare function reverseSpectrum(collection, colorspace: HueColorSpaces): any;
 
 export {
-  distributeChroma,
-  distributeHue,
-  distributeLightness,
-  distributeLuminance,
+  distribute,
   discoverPalettes,
   hueShift,
   pairedScheme,
