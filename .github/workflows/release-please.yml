@@ -2,6 +2,15 @@ on:
   push:
     branches:
       - main
+
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+permissions:
+  contents: write
+
 name: release-please
 jobs:
   release-please:
@@ -11,6 +20,7 @@ jobs:
         id: release
         with:
           release-type: node
+          token: ${{secrets.GH_PAT}}
       # The logic below handles the npm publication:
       - uses: actions/checkout@v4
         # these if statements ensure that a publication only occurs when
