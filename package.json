@@ -29,7 +29,6 @@
     "@types/culori": "^2.0.0",
     "commitizen": "^4.3.0",
     "cz-emoji-conventional": "^1.0.2",
-    "documentation": "^14.0.3",
     "dts-bundle-generator": "^8.0.1",
     "esbuild": "^0.17.19",
     "eslint": "^8.53.0",
@@ -44,13 +43,13 @@
   },
   "scripts": {
     "test": "npx jasmine",
-    "docs": "npx typedoc --excludeReferences true --includeVersion true --excludeNotDocumented true --plugin typedoc-material-theme --themeColor #c084fc --darkHighlightTheme material-theme-palenight --lightHighlightTheme material-theme-lighter --hideGenerator true --sitemapBaseUrl https://huetiful-js.com",
+    "docs": "npx typedoc --excludeReferences true --includeVersion false --excludeNotDocumented true --plugin typedoc-material-theme  --darkHighlightTheme material-theme-palenight --lightHighlightTheme material-theme-lighter --hideGenerator true --sitemapBaseUrl https://huetiful-js.com",
     "code:build": "node ./build.cjs",
     "code:publish": "npm run code:build & npm run code:types",
     "code:types": "dts-bundle-generator  -o  ./lib/huetiful.d.ts ./types/index.d.ts --no-banner",
     "code:lint": "eslint --fix --ext ./src/*.js",
     "code:format": "prettier \"./src/*.js\" --write",
-    "code:clean":"npm run code:format & npm run code:lint",
+    "code:clean": "npm run code:format & npm run code:lint",
     "start": "nodemon app.js --watch "
   },
   "husky": {
@@ -98,7 +97,8 @@
     ],
     "readme": "none",
     "tsconfig": "./tsconfig.json",
-    "gitRemote": "main"
+    "gitRemote": "main",
+    "themeColor": "#c084fc"
   },
   "files": [
     "lib",
