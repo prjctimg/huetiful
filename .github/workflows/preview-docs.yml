@@ -1,8 +1,8 @@
-name: Deploy GitHub PAges Preview
+name: Deploy GitHub Pages Preview
 on:
   push:
     branches:
-      - main
+      - dev
   pull_request:
     types:
       - opened
@@ -15,7 +15,7 @@ jobs:
   deploy-preview: 
    runs-on: ubuntu-latest
    steps:
-     - uses: actions/checkout@v3
+     - uses: actions/checkout@v4
      - name: Install and Build
        if: github.event.action  != 'closed' # skips build step if pr is closed 
 
@@ -27,7 +27,7 @@ jobs:
        uses: rossjrw/pr-preview-action@v1.4.7
        with:
          token: ${{secrets.GH_PAT}}
-         preview-branch: main
+         preview-branch: ${{ github.ref }}
          source-dir: ./docs/www
          umbrella-dir: ./docs/pr-preview
          action: auto
