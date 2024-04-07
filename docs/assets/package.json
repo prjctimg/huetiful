@@ -5,7 +5,7 @@
   "main": "index.js",
   "description": "The documentation webapp for huetiful-js",
   "scripts": {
-    "deploy": "gulp deploy && npm run css:build",
+    "deploy": "npx gulp deploy && npm run css:build",
     "css:build": "npx tailwindcss -i ./css/_/index.css -o ../www/assets/css/huetiful.css ",
     "css:dev": "npx tailwindcss -i ./css/_/index.css -o ../www/assets/css/huetiful.css --watch"
   },

@@ -28,7 +28,6 @@
     "@commitlint/config-conventional": "^19.0.3",
     "@types/culori": "^2.0.0",
     "commitizen": "^4.3.0",
-    "culori": "^4.0.1",
     "cz-emoji-conventional": "^1.0.2",
     "documentation": "^14.0.3",
     "dts-bundle-generator": "^8.0.1",
@@ -39,16 +38,11 @@
     "husky": "^8.0.3",
     "jasmine": "5.1.0",
     "nodemon": "^3.0.1",
-    "standard-version": "^9.5.0",
     "typedoc": "^0.25.3",
     "typedoc-material-theme": "^1.0.2",
     "typescript": "^5.0.2"
   },
   "scripts": {
-    "release": "standard-version",
-    "release:minor": "standard-version --release-as minor",
-    "release:patch": "standard-version --release-as patch",
-    "release:major": "standard-version --release-as major",
     "test": "npx jasmine",
     "docs": "npx typedoc --excludeReferences true --includeVersion true --excludeNotDocumented true --plugin typedoc-material-theme --themeColor #c084fc --darkHighlightTheme material-theme-palenight --lightHighlightTheme material-theme-lighter --hideGenerator true --sitemapBaseUrl https://huetiful-js.com",
     "code:build": "node ./build.cjs",
@@ -56,8 +50,8 @@
     "code:types": "dts-bundle-generator  -o  ./lib/huetiful.d.ts ./types/index.d.ts --no-banner",
     "code:lint": "eslint --fix --ext ./src/*.js",
     "code:format": "prettier \"./src/*.js\" --write",
-    "start": "nodemon app.js --watch ",
-    "commitlint": "commitlint --edit"
+    "code:clean":"npm run code:format & npm run code:lint",
+    "start": "nodemon app.js --watch "
   },
   "husky": {
     "hooks": {}

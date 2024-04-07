@@ -22,8 +22,7 @@ jobs:
        run: |
          npm install
          npm run docs
-         cd docs/assets && npm install
-         npm run deploy
+         cd docs/assets && npm install && npm run deploy
      - name: Deploy PR Preview
        uses: rossjrw/pr-preview-action@v1.4.7
        with:
