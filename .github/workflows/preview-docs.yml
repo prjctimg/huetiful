@@ -1,0 +1,34 @@
+name: Deploy GitHub PAges Preview
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - closed
+      - reopened
+       
+concurrency: preview-${{ github.ref }}
+jobs:
+  deploy-preview: 
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v3
+     - name: Install and Build
+       if: github.event.action  != 'closed' # skips build step if pr is closed 
+
+       run: |
+         npm install
+         npm run docs
+         cd docs/assets && npm install
+         npm run deploy
+     - name: Deploy PR Preview
+       uses: rossjrw/pr-preview-action@v1.4.7
+       with:
+         token: ${{secrets.GH_PAT}}
+         preview-branch: main
+         source-dir: ./docs/www
+         umbrella-dir: ./docs/pr-preview
+         action: auto
