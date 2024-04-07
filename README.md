@@ -1,4 +1,4 @@
-[![Deploy GitHub Pages](https://github.com/xml-wizard/huetiful/actions/workflows/static.yml/badge.svg?branch=main)](https://github.com/xml-wizard/huetiful/actions/workflows/static.yml)
+[![Deploy static content to Pages](https://github.com/xml-wizard/huetiful/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/xml-wizard/huetiful/actions/workflows/deploy-docs.yml)
 [![NPM publish 📦](https://github.com/xml-wizard/huetiful/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/xml-wizard/huetiful/actions/workflows/npm-publish.yml)
 ![NPM Downloads](https://img.shields.io/npm/dm/huetiful-js?style=social&logo=npm&link=https%3A%2F%2Fnpmjs.com%2Fpackage%2Fhuetiful-js%20)
 ![GitHub Repo stars](https://img.shields.io/github/stars/xml-wizard/huetiful?style=social&logo=github)
