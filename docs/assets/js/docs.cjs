@@ -13,8 +13,6 @@ governing permissions and limitations under the License.
 
  */
 
-var { colorsNamed } = require('culori');
-
 var { readFileSync, lstatSync } = require('node:fs'),
   ge = require('github-emoji'),
   defaultClasses = {
