@@ -159,9 +159,9 @@ export async function css() {
   return src('*css/*.css').pipe(dest('../www/assets'));
 }
 
-// export async function img() {
-//   return src('*img/*').pipe(dest('../www/assets'));
-// }
+export async function img() {
+  return src('*img/*').pipe(dest('../www/assets'));
+}
 
 export const assets = series(css, js, fonts);
 //export const clean = clean;

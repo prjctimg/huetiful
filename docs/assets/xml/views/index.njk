@@ -1,7 +1,7 @@
 {% extends "./layouts/base.njk" %}
 
 {% block content %}
-{{home.content}}
+{{home.content | safe}}
 {% for mod, prop in home.demoData %}
 
 <h2 class="font-mono text-slate-600 text-left text-lg font-semibold">Demos</h2>
