@@ -1,8 +1,14 @@
+# This workflow automatically publishes to npm when a release-PR is merged
+name: Build and release
+
 on:
   push:
     branches:
       - main
-name: release-please
+
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   release-please:
     runs-on: ubuntu-latest
@@ -23,7 +29,10 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
       - run: npm ci
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm publish
+      - run: |
+          npm test
+          npm run code:publish
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH}}
         if: ${{ steps.release.outputs.release_created }}
