@@ -4,20 +4,11 @@
 
 ### markdown
 
-- add changelog page
-- add the downloads page
-- add a resources/references page to material used in the project
-
 ### nunjucks
 
-- downloads page view
-- create card component
-- create list layout
 - create preview layout
-- create a code block component. (i can use querySelectorAll to match certain element patterns and then target my styles)
 
 ## features to add 
-
 ### javascript/css
 
 - add analytics to pages
@@ -28,5 +19,4 @@
 
 ### ci
 
-- run tailwind from gulp
-- setup gulp workflow to run before docs are deployed
+- run tailwind from gulp for development
