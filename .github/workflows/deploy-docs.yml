@@ -38,4 +38,4 @@ jobs:
           folder: ./docs/www
           branch: gh-pages
           clean-exclude: pr-preview
-          force: false
+          force: true
