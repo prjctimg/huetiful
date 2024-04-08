@@ -23,7 +23,7 @@
 
 <!-- code_chunk_output -->
 
-- [What's this ?](#whats-this-)
+- [Description](#description)
   - [Features include](#features-include)
 - [Installation and usage](#installation-and-usage)
   - [Using a package manager](#using-a-package-manager)
@@ -36,26 +36,27 @@
 
 <!-- /code_chunk_output -->
 
-## What's this ?
+## Description
 
-[huetiful-js](www.huetiful-js.com) is a small (~15kB) and fast function oriented library for a color manipulations written in JavaScript. It is based on color theory but tries to hide away the complexities of color science from the developer.
+[huetiful-js](www.huetiful-js.com) is a **small** (~15kB) & **fast** library for color manipulation written in JavaScript. 
 
-The library aims to parse colors from as many types as possible allowing freedom to define our color tokens as we see fit as well as parse color data from methods such as the Canvas API's `getImageData` method. The collection methods are fully generic making it possible to treat `ArrayLike` and `Map` like objects as valid color collections so long as the values are parseable color tokens.
+It is function oriented and borrows a lot of its features from color theory but tries to hide away the science from the developer.
 
-It uses [Culori](https://culorijs.org/api/) under the hood which provides access to low level functions for color conversions and other necessary bells and whistles that this library depends on.
+The library aims to parse colors from as many types as possible allowing freedom to define our color tokens as we see fit as well as parse colors from other source. For instance, methods such as the HTML `Canvas` API's `getImageData()` method. The collection methods try to be as generic as possible by treating `ArrayLike` and `Map`-like objects as valid color collections so long as the values are parseable color tokens.
 
-It works both in Node and the browser.
+It uses [Culori](https://culorijs.org/api/) under the hood which provides access to low level functions for color conversions and other necessary bells and whistles that this library depends on. It works both in Node and the browser.
 
 ### Features include
 
-- Filtering and sorting colors by their properties e.g `saturation` and `hue`
-- Creating custom palettes and color scales
-- Manipulating individual color tokens for example setting and querying properties
-- Predicate functions for determining the properties of a color e.g chromaticity or overtone.
-- Calculating values of central tendency and other statistical values from collections of colors
-- Wrapping collections of colors/individual color tokens similar to Lodash's `_.chain` utility allowing method chaining before returning our final output.
-- Color maps for Colorbrewer, TailwindCSS and CSS named colors
-- Converting colors across different types including numbers, strings (all CSS parseable string represantations of color), plain objects, arrays and even boolean values
+- [Filtering collections of colors]() by using the values of their properties as ranges. For example `distance` against a comparison color and `luminance`.
+- [Sorting collections of colors in]() by their properties. For example using `saturation` or `hue` in either descending or ascending order
+- [Creating custom palettes and color scales]()
+- [Manipulating individual color tokens]() for example setting and querying properties
+- [Predicate functions for determining the properties of a color]() e.g chromaticity or overtone.
+- [Calculating values of central tendency and other statistical values]() from collections of colors
+- [Wrapping collections of colors/individual color tokens]() similar to Lodash's `_.chain` utility allowing method chaining before returning our final output.
+- [Color maps for Colorbrewer, TailwindCSS and CSS named colors]()
+- [Converting colors across different types]() including numbers, strings (all CSS parseable string represantations of color), plain objects, arrays and even boolean values
 
 
 ## Installation and usage

@@ -6,9 +6,6 @@ on:
   pull_request:
     types:
       - opened
-      - synchronize
-      - closed
-      - reopened
 
 concurrency: preview-${{ github.ref }}
 jobs:
