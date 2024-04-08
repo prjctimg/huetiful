@@ -35,7 +35,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           # Upload directory with assets
-          folder: ./docs/www
+          folder: docs/www
           branch: gh-pages
           clean-exclude: pr-preview
-          force: true
+          force: false
