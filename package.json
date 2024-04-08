@@ -20,9 +20,9 @@
   },
   "types": "./lib/huetiful.d.ts",
   "description": "Function oriented library for color manipulation 🧪",
-  "bundleDependencies": [
-    "culori"
-  ],
+  "dependencies": {
+    "culori": "^4.0.1"
+  },
   "devDependencies": {
     "@commitlint/cli": "^19.0.3",
     "@commitlint/config-conventional": "^19.0.3",
@@ -37,7 +37,6 @@
     "husky": "^8.0.3",
     "jasmine": "5.1.0",
     "nodemon": "^3.0.1",
-    "release-please": "^16.10.1",
     "typedoc": "^0.25.3",
     "typedoc-material-theme": "^1.0.2",
     "typescript": "^5.0.2"
