@@ -112,6 +112,6 @@ This project is a result of open source resources from many places all over the 
  <pre>
  License ⚖️
 
- © 2024, <a href="https://github.com/xml-wizard">xml-wizard</a>
+ © 2024, </a> & <a href="https://github.com/xml-wizard">xml-wizard contributors</a>
  Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h5>
  🧪 & 🔬 with 🥃 in Crowhill,ZW</pre>
