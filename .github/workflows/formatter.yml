@@ -1,0 +1,10 @@
+on: push
+name: Lint and format code
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lint and format
+        uses: MarvinJWendt/run-node-formatter@stable
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
