@@ -1,1 +1,3 @@
-<!-- Add links to download sites  -->
+- [GitHub release]()
+- [SourceForge]()
+- [unpkg]()

@@ -187,7 +187,7 @@
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-          (c) 2024 Dean Tarisai and xml-wizard contributors
+          (c) 2024 Dean Tarisai & xml-wizard contributors
               huetiful-js
            -> Function oriented JavaScript library for color manipulation
 
