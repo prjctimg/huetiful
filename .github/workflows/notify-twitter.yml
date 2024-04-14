@@ -13,8 +13,8 @@ jobs:
         with:
           message: |
             ${{ github.event.repository.name }} ${{ github.event.release.tag_name }} has been released! 🚀. Check out the release notes here 📜: ${{ github.event.release.html_url }}
-          twitter-app-key: ${{ secrets.TWITTER_APP_KEY }}
-          twitter-app-secret: ${{ secrets.TWITTER_APP_SECRET }}
-          twitter-access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          twitter-app-key: ${{ secrets.X_API_KEY }}
+          twitter-app-secret: ${{ secrets.X_API_SECRET }}
+          twitter-access-token: ${{ secrets.X_ACCESS_TOKEN }}
+          twitter-access-token-secret: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
           
