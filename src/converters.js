@@ -8,9 +8,9 @@
  * @typedef {import('../types/types.js').UniformColorSpaces} UniformColorSpaces
  * @typedef {import('../types/types.js').Colorspaces} Colorspaces
  */
-
+import 'culori/all';
 import { converter, formatHex, formatHex8, colorsNamed } from 'culori/fn';
-import 'culori/css';
+
 import { gmchn, keys } from './helpers.js';
 
 /**
@@ -42,7 +42,7 @@ function color2hex(color) {
 
       break;
     // @ts-ignore
-    case 'object' && color.length:
+    case 'object' && color?.length:
       // @ts-ignore
       c = ((color.length === 5 && formatHex8) || formatHex)(
         // @ts-ignore
@@ -59,7 +59,8 @@ function color2hex(color) {
         formatHex8(color);
       break;
     default:
-      c = ((color['alpha'] < 1 && formatHex8) || formatHex)(
+      // @ts-ignore
+      c = ((color?.alpha < 1 && formatHex8) || formatHex)(
         // @ts-ignore
         tuple2object(color2tuple(color))
       );
@@ -188,7 +189,7 @@ function temp2color(kelvin = 1000, colorspace) {
  *@public
  *  Returns an array of channel values in the mode color space. It does not mutate the values of the passed in color token.
  * @param {string|ColorObject} color Expects the color to be in hexadecimal represantation or as a plain color object. Use a converter suitable for the color token type you're expecting to convert it to hexadecimal format e.g `num2color` if you want to convert the number to a supported  color token.
- * @param {Colorspaces} colorspace The mode color space to return channel values for. You can omit this parameter if you pass in a color object with the `mode` property.
+ * @param {Colorspaces} [colorspace='lch'] The mode color space to return channel values for. You can omit this parameter if you pass in a color object with the `mode` property.
  * @param {boolean} [omitMode=false] optional boolean to exclude the mode from the final tuple. Default is `false`.
  * @returns An array of channel values with the colorspace as first element and the alpha channel as the fifth element in the array if its explicitly defined in the passed in color.
  * @example
@@ -208,22 +209,23 @@ console.log(color2tuple(rgbColor));
 
  */
 
-function color2tuple(color, colorspace = 'rgb', omitMode) {
-  colorspace = colorspace || color['mode'];
+function color2tuple(color, colorspace, omitMode) {
+  // @ts-ignore
+  colorspace = colorspace || color?.mode || 'lch';
   var o;
 
   if (Array.isArray(color)) {
     o = tuple2object(color, colorspace);
   } else if (typeof color === 'number') {
     o = num2color(color, colorspace);
-  } else {
+  } else if (typeof color === 'string' || typeof color === 'object') {
     // @ts-ignore
     o = converter(colorspace)(color);
   }
 
   var arr = keys(o)
     .filter((ch) => ch !== 'mode')
-    .map((key) => o[key]);
+    .map((ch) => o[ch]);
 
   // dont add mode string if true
   omitMode ? arr : arr.unshift(colorspace);
@@ -234,7 +236,7 @@ function color2tuple(color, colorspace = 'rgb', omitMode) {
 /**
  *@public
  * @param {ColorTuple} arr An array with the channels values and optional `colorspace` to specify the mode where such values
- * @param {Colorspaces} targetMode The colorspace to return the values in. If `undefined` it will use the mode  in the passed in array.
+ * @param {Colorspaces} [targetMode='lch'] The colorspace to return the values in. If `undefined` it will use the mode  in the passed in array.
  * @returns {ColorObject} The color object.
  */
 function tuple2object(arr = [], targetMode) {

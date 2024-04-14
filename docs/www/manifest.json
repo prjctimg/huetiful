@@ -1,0 +1,40 @@
+{
+  "name": "huetiful-js",
+  "short_name": "huetiful-js",
+  "icons": [
+    {
+      "src": "/assets/static/android-icon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "density": "0.75"
+    },
+    {
+      "src": "/assets/static/favicon-icon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png",
+      "density": "1.0"
+    },
+    {
+      "src": "/assets/static/favicon-icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "density": "1.5"
+    },
+    {
+      "src": "/assets/static/favicon-icon-48x48.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "density": "1.5"
+    },
+    {
+      "src": "/assets/static/touch/android-icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "density": "2.0"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#d31b33"
+}

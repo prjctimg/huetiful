@@ -28,7 +28,11 @@ export type FactObject =
 
 export type SchemeType = 'analogous' | 'triadic' | 'tetradic' | 'complementary';
 
-export type Collection = ArrayLike<ColorToken> | Map<any, ColorToken> | object;
+export type Collection =
+  | Array<ColorToken<any>>
+  | ArrayLike<ColorToken>
+  | Map<any, ColorToken>
+  | { [key: string]: ColorToken };
 
 export type ColorOptions = {
   alpha?: number;
@@ -271,12 +275,11 @@ export type ColorObject = {
 export type Factor =
   | 'luminance'
   | 'temp'
-  | 'saturation'
+  | 'chroma'
   | 'contrast'
   | 'distance'
   | 'lightness'
-  | 'hue'
-  | string;
+  | 'hue';
 
 type callback = unknown;
 

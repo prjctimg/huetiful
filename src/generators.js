@@ -9,6 +9,8 @@
  * @typedef {import('../types/types.js').SchemeType} SchemeType
  * @typedef {import('../types/types.js').UniformColorSpaces} UniformColorSpaces
  * @typedef {import('../types/types.js').DistributionOptions} DistributionOptions
+ * @typedef {import('../types/types.js').Factor} Factor
+ * @typedef {import('../types/types.js').PairedSchemeOptions} PairedSchemeOptions
  */
 
 /**
@@ -46,30 +48,34 @@ import {
   formatHex,
   fixupHueShorter,
   fixupHueLonger,
-  converter
+  converter as _cnvrtr
 } from 'culori/fn';
-import 'culori/css';
+import 'culori/all';
 
 import {
-  color2hex,
+  color2hex as _c2hx,
   color2num,
   color2tuple,
   adjustHue,
   rand,
-  or,
+  or as or,
   mcchn,
   mlchn,
-  max,
-  min,
+  max as _max,
+  min as _min,
   pltrconfg,
   gt,
   gte,
-  setChannel,
+  setChannel as _schn,
   colorObjColl,
-  getChannel,
+  getChannel as _gchn,
   isAchromatic,
   keys,
-  values
+  values,
+  setLuminance as _slmnce,
+  getLuminance as _glmnce,
+  tuple2object,
+  entries
 } from './index.js';
 
 /**
@@ -132,16 +138,19 @@ function scheme(schemeType = 'analogous') {
       mode: 'lch'
     }));
 
-    return colors.map(color2hex);
+    return colors.map(_c2hx);
   };
 }
+
+// do some type checks using instanceof
+const { isArray, from, prototype } = Array;
 
 /**
  *@public
  * Takes a collection of colors and finds the nearest matches using the `differenceHyab()` difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use `isAchromatic` to filter grays from your collection in the mode `colorspace` before passing it to the function.
  * @param {Collection} colors The collection of colors to create palettes from. Preferably use 6 or more colors for better results.
  * @param {SchemeType} schemeType (Optional) The palette type you want to return.
- * @returns {Array<ColorToken>} An array of colors if the `schemeType` parameter is specified else it returns a `Map` object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
+ * @returns {Collection} An array of colors if the `schemeType` parameter is specified else it returns a `Map` object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
  * @example
  *
  * import { discoverPalettes } from 'huetiful-js'
@@ -179,7 +188,7 @@ function discoverPalettes(colors = [], schemeType, colorspace = 'lch') {
   };
 
   const toLch = useMode(modeLch);
-  colors = keys(colors).map((color) => toLch(color2hex(colors[color])));
+  colors = keys(colors).map((color) => toLch(_c2hx(colors[color])));
   const palettes = {};
   const schemeKeys = ['analogous', 'triadic', 'tetradic', 'complementary'];
   const targetPalettes = {};
@@ -211,7 +220,7 @@ function discoverPalettes(colors = [], schemeType, colorspace = 'lch') {
       }
 
       if (!palettes[paletteType] || eps < palettes[paletteType].variance) {
-        palettes[paletteType] = palette.map(color2hex);
+        palettes[paletteType] = palette.map(_c2hx);
       }
     }
   }
@@ -250,7 +259,7 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 
 function earthtone(color, colorspace = 'lch', options = {}) {
   let { iterations, earthtones } = options;
-  color = color2hex(color);
+  color = _c2hx(color);
   iterations = or(iterations, 1);
 
   earthtones = or(earthtones, 'dark');
@@ -273,9 +282,9 @@ function earthtone(color, colorspace = 'lch', options = {}) {
 
   return (
     // @ts-ignore
-    (iterations === 1 && color2hex(f(0.5))) ||
+    (iterations === 1 && _c2hx(f(0.5))) ||
     // @ts-ignore
-    _smp(iterations).map((t) => color2hex(f(t)))
+    _smp(iterations).map((t) => _c2hx(f(t)))
   );
 }
 
@@ -306,7 +315,7 @@ function hueShift(color, colorspace = 'lch', options = {}) {
     ((n - start1) / (end1 - start1)) * (end2 - start2) + start2;
 
   // @ts-ignore
-  color = converter(colorspace.toLowerCase())(color);
+  color = _cnvrtr(colorspace.toLowerCase())(color);
 
   let { iterations, hueStep, minLightness, maxLightness, easingFunc } = options;
   const [l, c] = [mlchn, mcchn].map((e) => e(colorspace).split('.')[1]);
@@ -342,7 +351,7 @@ function hueShift(color, colorspace = 'lch', options = {}) {
     palette.push(colorShiftUp);
     palette.unshift(colorShiftDown);
   }
-  return Array.from(new Set(palette)).map(color2hex);
+  return Array.from(new Set(palette)).map(_c2hx);
 }
 
 /**
@@ -420,10 +429,10 @@ function interpolateSpline(
   var res;
   if (gt(iterations, 1)) {
     // @ts-ignore
-    res = _smp(iterations).map((s) => color2hex(f(s)));
+    res = _smp(iterations).map((s) => _c2hx(f(s)));
   } else {
     // @ts-ignore
-    res = res.push(color2hex(f(0.5)));
+    res = res.push(_c2hx(f(0.5)));
   }
   return res;
 }
@@ -459,8 +468,8 @@ function pltr(colors = [], colorspace = 'lch', options = {}) {
 
 /**
  *@public Creates a palette that consists of a base color that is incremented by a hueStep to get the final hue to pair with.The colors are interpolated via white or black. A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color.
- * @param color The color to return a paired color scheme from.
- * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
+ * @param {ColorToken} color The color to return a paired color scheme from.
+ * @param {PairedSchemeOptions} options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
  * @returns An array containing the paired scheme.Preserves the `ColorToken` type of the passed in color.
  * @example
  *
@@ -476,7 +485,7 @@ function pairedScheme(color, options) {
     via,
     hueStep,
     easingFn: easingFunc
-  } = options || {};
+  } = options || {}; // I cant get intellisense when I use
 
   samples = or(samples, 1);
   easingFunc = or(easingFunc, easingSmoothstep);
@@ -484,10 +493,11 @@ function pairedScheme(color, options) {
   hueStep = or(hueStep, 5);
 
   const toLch = useMode(modeLch);
-  color = toLch(color2hex(color));
+  //  @ts-ignore
+  color = toLch(_c2hx(color));
 
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
-  const derivedHue = setChannel('lch.h')(color, color['h'] + hueStep);
+  const derivedHue = _schn('lch.h')(color, color['h'] + hueStep);
 
   // Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes
   const tones = {
@@ -496,6 +506,7 @@ function pairedScheme(color, options) {
   };
 
   const scale = interpolate(
+    // @ts-ignore
     [color, tones[via], derivedHue, easingFunc],
     'lch',
     or(options, pltr)
@@ -503,7 +514,7 @@ function pairedScheme(color, options) {
 
   if (samples <= 1) {
     // @ts-ignore
-    return color2hex(scale(0.5));
+    return _c2hx(scale(0.5));
   } else {
     // Declare the num of iterations in samples() which will be used as the t value
     // Since the interpolation returns half duplicate values we double the sample value
@@ -512,7 +523,7 @@ function pairedScheme(color, options) {
 
     //The array to capture the different iterations
     // @ts-ignore
-    const results = smp.map((t) => color2hex(scale(easingFunc(t))));
+    const results = smp.map((t) => _c2hx(scale(easingFunc(t))));
     // Return a slice of the array from the start to the half length of the array
     return results.slice(0, results.length / 2);
   }
@@ -521,8 +532,8 @@ function pairedScheme(color, options) {
 /**
  *@public
  *  Returns a random pastel variant of the passed in color.
- * @param color The color to return a pastel variant of.
- * @returns A random pastel color. Preserves the `ColorToken` type of the pased in color.
+ * @param {ColorToken} color The color to return a pastel variant of.
+ * @returns {ColorToken} A random pastel color. Preserves the `ColorToken` type of the pased in color.
  * @example
  *
 import { pastel } from 'huetiful-js'
@@ -532,7 +543,7 @@ console.log(pastel("green"))
 // #036103ff
  */
 
-function pastel(color) {
+function pastel(color, colorspace) {
   const smp = [
     {
       color: '#fea3aa',
@@ -570,13 +581,13 @@ function pastel(color) {
   const smp_pstl = {
     avSat: averageNumber(smpVal),
     avVal: averageNumber(smpSat),
-    mn_smp_sat: min(smpSat),
-    mx_smp_sat: max(smpSat),
-    mn_smp_val: min(smpVal),
-    mx_smp_val: max(smpVal)
+    mn_smp_sat: _min(smpSat),
+    mx_smp_sat: _max(smpSat),
+    mn_smp_val: _min(smpVal),
+    mx_smp_val: _max(smpVal)
   };
-
-  color = useMode(modeHsv)(color2hex(color));
+  // @ts-ignore
+  color = useMode(modeHsv)(_c2hx(color));
 
   var c = random('hsv', {
     h: color['h'],
@@ -589,6 +600,7 @@ function pastel(color) {
       color2num(color);
       break;
     // We're checking if it doesn't have a string method since both strings and arrays hve a length property.
+    // @ts-ignore
     case 'object' && !color.match && color.length:
       // @ts-ignore
       c = color2tuple(c);
@@ -603,9 +615,10 @@ function pastel(color) {
 
     default:
       // @ts-ignore
-      c = color2hex(c);
+      c = _c2hx(c);
   }
 
+  // @ts-ignore
   return c;
 }
 
@@ -613,53 +626,82 @@ function pastel(color) {
 
 /**
  * Distributes the specified `factor` of a color in the collection with the specified `extremum` (i.e the color with the smallest/largest `hue` angle or `chroma` value) to all color tokens in the collection.
- *
- 
+ *@param {Factor} [factor='hue'] The property you want to distribute to the colors in the collection for example `hue | luminance`
+ * @param {DistributionOptions} [options={}] Optional overrides to change the default configursation
+
+  @returns {(collection:Collection,options?:DistributionOptions)=>Collection}
  */
-function distribute(factor) {
+function distribute(factor, options) {
   // Destructure the opts to check before distributing the factor
 
+  var get_cb, set_cb;
+  var { extremum, excludeSelf, excludeAchromatic, hueFixup, colorspace } = or(
+    options,
+    {}
+  );
+
+  // Set the extremum to distribute to default to max if its not min
+  extremum = or(extremum, 'max');
+
+  // Exclude the colorToken with the specified factor extremum being distributed
+  excludeSelf = or(excludeSelf, false);
+
+  // Exclude achromatic colors from the manipulations. The colors are returned in the resultant collection
+  excludeAchromatic = or(excludeAchromatic, false);
+
+  // The fixup to use when tweaking the hue channels
+  // @ts-ignore
+  hueFixup =
+    factor === 'hue'
+      ? hueFixup === 'longer'
+        ? fixupHueLonger
+        : fixupHueShorter
+      : null;
+  colorspace = or(colorspace, 'lch');
+
+  // v is expected to be a color object so that we can access the color's hue property during the mapping
+
+  // set the callbacks depending on the type of factor
+  switch (factor) {
+    case 'chroma':
+      get_cb = (v) => _gchn(mcchn(colorspace))(v);
+      set_cb = (k, v) => _schn(mcchn(colorspace))(v, k);
+
+      break;
+    case 'hue':
+      get_cb = (v) => _gchn(`${colorspace}.h`)(v);
+      set_cb = (k, v) => _schn(`${colorspace}.h`)(v, k);
+
+      break;
+    case 'luminance':
+      get_cb = (v) => _glmnce(v);
+      set_cb = (k, v) => _slmnce(v, k);
+      break;
+    case 'lightness':
+      get_cb = (v) => _gchn(mlchn(colorspace))(v);
+      set_cb = (k, v) => _schn(mlchn(colorspace))(v, k);
+
+      break;
+  }
+
   /**
-   * @param {Collection} collection The colors to manipulate
-   * @param {DistributionOptions} [options={}] Optional overrides to change the default configursation
-   * @returns {Collection} The collection with each color`s hue channel adjusted.
+   *
+   * @param {Collection} collection The colors to manipulate.
+   * @returns {Collection} The collection with each color's `factor` adjusted.
    */
-  return (collection, options) => {
-    var { extremum, excludeSelf, excludeAchromatic, hueFixup, colorspace } =
-      options;
+  return (collection = []) => {
+    var o_ = colorObjColl(factor, get_cb)(collection);
+    var k_ = keys(o_).map((v) => o_[v][factor]);
+    var [mn, mx] = [_min(k_), _max(k_)];
+    collection = keys(collection).map((a) => _c2hx(collection[a]));
+    var mx_cb = (v) => set_cb(get_cb(v) + get_cb(v) * (mn / mx), v),
+      mn_cb = (v) => set_cb(get_cb(v) + get_cb(v) * (mn / get_cb(v)), v);
 
-    // v is expected to be a color object so that we can access the color's hue property during the mapping
-    var mx_cb = (v) =>
-        setChannel(`${colorspace}.h`)(v, v['h'] + v['h'] * (mn / mx) * 1),
-      mn_cb = (v) =>
-        setChannel(`${colorspace}.h`)(v, v['h'] + v['h'] * ((mn / v['h']) * 1));
-
-    var _ = keys(
-      colorObjColl('hue', getChannel(`${colorspace}.h`))(collection)
-    ).map((v) => _[v]['hue']);
-    var [mn, mx] = [min(_), max(_)];
-
-    // Set the extremum to distribute to default to max if its not min
-    extremum = or(extremum, 'max');
-
-    // Exclude the colorToken with the specified factor extremum being distributed
-    excludeSelf = or(excludeSelf, false);
-
-    // Exclude achromatic colors from the manipulations. The colors are returned in the resultant collection
-    excludeAchromatic = or(excludeAchromatic, false);
-
-    // The fixup to use when tweaking the hue channels
-    // @ts-ignore
-    hueFixup = hueFixup === 'longer' ? fixupHueLonger : fixupHueShorter;
-    colorspace = or(colorspace, 'lch');
-
-    var tmp = [];
+    var tmp_ = [];
     if (excludeAchromatic) {
-      tmp = keys(collection).filter((v) =>
-        isAchromatic(_[v]['color'], colorspace)
-      );
+      tmp_ = keys(o_).filter((v) => isAchromatic(o_[v]['color'], colorspace));
       collection = keys(collection).filter(
-        (v) => !isAchromatic(_[v]['color'], colorspace)
+        (v) => !isAchromatic(o_[v]['color'], colorspace)
       );
     }
 
@@ -671,41 +713,45 @@ function distribute(factor) {
       // capture the color that has the same value as that of the specified extremum
       slf = keys(collection).find(
         (o) =>
-          getChannel(`${colorspace}.h`)(collection[o]) ===
+          _gchn(`${colorspace}.h`)(collection[o]) ===
           (extremum === 'max' ? mx : mn)
       );
 
       // exclude it from the collection
-      collection = keys(collection).filter((o) => collection[o] !== slf);
+      // @ts-ignore
+      collection = collection.filter((o) => o !== slf);
     }
 
-    var out,
-      cb = (f) =>
-        keys(collection)
-          .map((o) => collection[o])
-          .map(f);
+    var _o_ = [],
+      cb_ = (f) => {
+        for (const [p, q] of entries(collection)) {
+          _o_[p] = f(q);
+        }
+        return _o_;
+      };
 
     if (extremum.toLowerCase() === 'max') {
-      out = cb(mx_cb);
+      cb_(mx_cb);
     } else {
-      out = cb(mn_cb);
+      cb_(mn_cb);
     }
-
+    console.log(_o_);
     // Put back the color with the pecfied extremum
     if (excludeSelf) {
       //
-      out.unshift(slf);
+      _o_.unshift(slf);
     }
 
     // Put back achromatic colors
-    if (excludeAchromatic && tmp.length > 0) {
-      out.push(...tmp);
+    if (excludeAchromatic && tmp_.length > 0) {
+      _o_.push(...tmp_);
     }
 
-    return out;
+    return _o_;
   };
 }
 
+// distribute('contrast')([],{hueFixup:'shorter'})
 //
 
 export {

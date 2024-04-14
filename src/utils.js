@@ -20,37 +20,38 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import hueTempMap from './color-maps/samples/hueTemperature.js';
+import ___hmap from './color-maps/samples/hueTemperature.js';
 import {
-  adjustHue,
+  adjustHue as jst_h,
   customConcat,
-  exprParser,
+  exprParser as _xprsr,
   floorCeil,
-  inRange,
+  inRange as rng,
   lt,
   mlchn,
-  max,
+  max as mx,
   rand,
   mcchn,
   or,
-  color2hex,
+  color2hex as c2hx,
   keys,
   entries,
-  min
+  min as mn,
+  gmchn
 } from './index.js';
 
 import {
   interpolate,
-  wcagLuminance,
+  wcagLuminance as __lmnce,
   modeRgb,
-  useMode,
-  modeLch,
-  converter,
-  wcagContrast,
+  useMode as _um,
+  modeLch as _lch,
+  converter as __cnvrtr,
+  wcagContrast as ctrst,
   formatHex,
   easingSmootherstep as _ess,
-  modeLab65,
-  formatHex8
+  modeLab65 as _lab65,
+  formatHex8 as fmt_hx
 } from 'culori/fn';
 import 'culori/css';
 
@@ -70,21 +71,21 @@ console.log(getHueFamily("#310000"))
  */
 
 function getHueFamily(color) {
-  var [nearestKey, nearestDiff] = ['', Infinity];
-  for (let [idx, value] of entries(hueTempMap)) {
-    var [hueVals, currentHue, difference] = [
+  var [nrst_k, nrst_diff] = ['', Infinity];
+  for (let [idx, value] of entries(___hmap)) {
+    var [h_, cur_h, diff] = [
       customConcat(value),
       getChannel(`lch.h`)(color),
-      Math.abs(max(hueVals) - currentHue)
+      Math.abs(mx(h_) - cur_h)
     ];
-    if (lt(difference, nearestDiff)) {
-      nearestKey = idx;
-      nearestDiff = difference;
+    if (lt(diff, nrst_diff)) {
+      nrst_k = idx;
+      nrst_diff = diff;
     }
   }
 
   // @ts-ignore
-  return nearestKey;
+  return nrst_k;
 }
 
 /**
@@ -106,19 +107,17 @@ console.log(getComplimentaryHue("purple"))
  */
 
 function getComplimentaryHue(color, colorspace, colorObj = false) {
-  const modeChannel = `${or(colorspace, 'lch')}.h`;
+  const mc = `${or(colorspace, 'lch')}.h`;
 
-  const complementaryHue = adjustHue(
-    getChannel(modeChannel)(color) + 180 * rand(0.965, 1)
-  );
+  const h = jst_h(getChannel(mc)(color) + 180 * rand(0.965, 1));
 
-  const result = (complementaryHue && {
-    hue: getHueFamily(complementaryHue),
+  const o = (h && {
+    hue: getHueFamily(h),
     // @ts-ignore
-    color: color2hex(setChannel(modeChannel)(color, complementaryHue))
+    color: c2hx(setChannel(mc)(color, h))
   }) || { hue: 'gray', color: color };
   // @ts-ignore
-  return (colorObj && result) || result['color'];
+  return (colorObj && o) || o['color'];
 }
 
 /**
@@ -145,26 +144,26 @@ function setChannel(mc) {
 
    */
   return (color, value) => {
-    const [mode, channel] = mc.split('.');
+    const [m, c] = mc.split('.');
 
     // @ts-ignore
-    const src = converter(mode)(color2hex(color));
+    const o = __cnvrtr(m)(c2hx(color));
 
-    if (channel) {
+    if (c) {
       if (typeof value === 'number') {
         // @ts-ignore
-        src[channel] = value;
+        o[c] = value;
       } else if (typeof value === 'string') {
         // @ts-ignore
-        exprParser(src, channel, value);
+        _xprsr(o, c, value);
       } else {
         throw new Error(`unsupported value for setChannel`);
       }
 
       // @ts-ignore
-      return src;
+      return o;
     } else {
-      throw new Error(`unknown channel ${channel} in mode ${mode}`);
+      throw new Error(`unknown channel ${c} in mode ${m}`);
     }
   };
 }
@@ -172,7 +171,7 @@ function setChannel(mc) {
 /**
  * @public
  *
- *  Gets the  value specifified channel on the color.
+ *  Gets the value of the specified channel on the passed in color.
  * @param {string} mc The mode and channel to be retrieved. For example "rgb.b" will return the value of the blue channel in the RGB color space of that color.
  * @example
  *
@@ -190,23 +189,23 @@ function getChannel(mc) {
    * @returns {number} The value of the queried channel.
    */
   return (color) => {
-    const [mode, channel] = (mc || color[0] || color['mode']).split('.');
+    const [m, c] = (mc || color[0] || color['mode']).split('.');
     // @ts-ignore
     // @ts-ignore
-    var res, src;
+    var o;
     if (Array.isArray(color) || typeof color === 'object') {
-      if (mode === (color[0] || color['mode'])) {
+      if (m === (color[0] || color['mode'])) {
         if (Array.isArray(color)) {
-          res = color[mode.indexOf(channel)];
+          o = color[gmchn(m).indexOf(c)];
         } else {
-          res = color[channel];
+          o = color[c];
         }
       }
     } else {
       // @ts-ignore
-      res = converter(mode)(color2hex(color))[channel];
+      o = __cnvrtr(m)(c2hx(color))[c];
     }
-    return res;
+    return o;
   };
 }
 /**
@@ -238,7 +237,7 @@ console.log(colors('all', '400').map(getLuminance));
  */
 
 function getLuminance(color) {
-  return wcagLuminance(color2hex(color));
+  return __lmnce(c2hx(color));
 }
 
 /**
@@ -246,7 +245,7 @@ function getLuminance(color) {
  *
  *  Sets the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance).
  * @param {ColorToken} color The color to set luminance
- * @param lum The amount of luminance to set. The value range is normalised between [0,1]
+ * @param amount The amount of luminance to set. The value range is normalised between [0,1]
  * @returns { ColorToken} The mutated color with the modified properties. Preserves the `ColorToken` type of the passed in color.
  * @example
  *
@@ -258,58 +257,56 @@ console.log(getLuminance(myColor))
 // 0.4999999136285792
  */
 
-function setLuminance(color, lum) {
-  const white = '#ffffff',
-    black = '#000000';
-  const toRgb = useMode(modeRgb);
+function setLuminance(color, amount) {
+  const w = '#ffffff',
+    b = '#000000';
+  const _ = _um(modeRgb);
   const EPS = 1e-7;
   let MAX_ITER = 20;
 
-  if (lum !== undefined && typeof lum == 'number') {
-    (lum == 0 && lum) || black || (lum == 1 && !lum) || white;
-
+  if (amount !== undefined && typeof amount == 'number') {
     // compute new color using...
     // @ts-ignore
-    color = toRgb(color2hex(color));
+    color = _(c2hx(color));
     // @ts-ignore
-    const cur_lum = wcagLuminance(color);
+    const cu_lm = __lmnce(color);
 
-    const test = (low, high) => {
+    const cb = (mn, mx) => {
       //Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
 
-      const mid = interpolate([low, high])(0.5);
+      // use a bilinear interpolation
+      const md = interpolate([mn, mx])(0.5);
       const lm = getLuminance(color);
 
       // @ts-ignore
-      if (Math.abs(lum - lm > EPS) || !MAX_ITER--) {
+      if (Math.abs(amount - lm > EPS) || !MAX_ITER--) {
         // close enough
-        return mid;
+        return md;
       }
 
-      if (lm > lum) {
-        return test(low, mid);
+      if (lm > amount) {
+        return cb(mn, md);
       } else {
-        return test(mid, high);
+        return cb(md, mx);
       }
     };
 
-    let rgb;
-    if (cur_lum > lum) {
-      rgb = test(black, color);
+    var o;
+    if (cu_lm > amount) {
+      o = cb(b, color);
     } else {
-      rgb = test(color, white);
+      o = cb(color, w);
     }
-    color = rgb;
   }
   // @ts-ignore
-  return formatHex(color);
+  return formatHex(o);
 }
 /**
  * @public
  *
  * Sets the opacity of a color. Also gets the alpha value of the color if the value param is omitted
  * @param {ColorToken} color The color with the targeted opacity/alpha channel.
- * @param {number | string} value The value to apply to the opacity channel. The value is between [0,1]
+ * @param {number | string} amount The value to apply to the opacity channel. The value is between [0,1]
  * @returns {number|ColorToken} Preserves the `ColorToken` type of the pased in color.
  * @example
  *
@@ -326,29 +323,29 @@ console.log(myColor)
 // #b2c3f180
  */
 
-function alpha(color = '#000', value) {
+function alpha(color = '#000', amount) {
   // We never perform an operation on an undefined color. Defaults to pure black
-  const channel = 'alpha';
-  const lch = useMode(modeLch);
-  var src = lch(color2hex(color));
-  if (typeof value === 'undefined' || null) {
+  const c = 'alpha';
+  const _ = _um(_lch);
+  var o = _(c2hx(color));
+  if (typeof amount === 'undefined' || null) {
     // @ts-ignore
-    return src[channel];
-  } else if (typeof value === 'number') {
-    if (inRange(value, 0, 1)) {
+    return o[c];
+  } else if (typeof amount === 'number') {
+    if (rng(amount, 0, 1)) {
       // @ts-ignore
-      src[channel] = value;
+      o[c] = amount;
     } else {
       // @ts-ignore
-      src[channel] = value / 100;
+      o[c] = amount / 100;
     }
-  } else if (typeof value === 'string') {
+  } else if (typeof amount === 'string') {
     // @ts-ignore
-    exprParser(src, channel, value);
+    _xprsr(o, c, amount);
   }
 
   // @ts-ignore
-  return color2hex(src);
+  return c2hx(o);
 }
 
 /**
@@ -367,7 +364,7 @@ function alpha(color = '#000', value) {
  */
 
 function getContrast(color, against) {
-  return wcagContrast(color2hex(color), color2hex(against));
+  return ctrst(c2hx(color), c2hx(against));
 }
 
 /**
@@ -391,21 +388,21 @@ console.log(overtone("blue"))
  */
 
 function overtone(color) {
-  var hue = getHueFamily(color);
+  var h = getHueFamily(color);
 
   // We check if the color can be found in the defined ranges
   // @ts-ignore
   return (
     (isAchromatic(color) && 'gray') ||
     // @ts-ignore
-    (/-/.test(hue) && hue.split('-')[1]) ||
+    (/-/.test(h) && h.split('-')[1]) ||
     false
   );
 }
 
-function temperaturePredicate(fctr, temp) {
-  return keys(hueTempMap).some((val) =>
-    inRange(floorCeil(fctr), hueTempMap[val][temp][0], hueTempMap[val][temp][1])
+function temperaturePredicate(fctr, y) {
+  return keys(___hmap).some((k) =>
+    rng(floorCeil(fctr), ___hmap[k][y][0], ___hmap[k][y][1])
   );
 }
 /**
@@ -489,20 +486,20 @@ console.log(darken('blue', 0.3, 'lch'));
  */
 
 function darken(color = '#fff', amount = 0.3) {
-  var src = useMode(modeLab65)(color2hex(color));
+  var o = _um(_lab65)(c2hx(color));
   if (typeof amount === 'number') {
     // darken by value of the current channel as a percentage
 
     var l = 'l';
 
     // @ts-ignore
-    src[l] = max([0, src[l] - amount]);
+    o[l] = mx([0, o[l] - amount]);
 
     // @ts-ignore
   }
 
   // @ts-ignore
-  return formatHex8(src);
+  return fmt_hx(o);
 }
 
 /**
@@ -522,17 +519,17 @@ console.log(brighten('blue', 0.3, 'lch'));
  */
 
 function brighten(color, amount = 0.4) {
-  var src = useMode(modeLab65)(color2hex(color));
+  var o = _um(_lab65)(c2hx(color));
   if (typeof amount === 'number') {
     // darken by value of the current channel as a percentage
 
     var l = 'l';
 
     // @ts-ignore
-    src[l] = min([100, (src[l] += amount)]);
+    o[l] = mn([100, (o[l] += amount)]);
   }
   // @ts-ignore
-  return formatHex8(src);
+  return fmt_hx(o);
 }
 
 /**
@@ -586,15 +583,15 @@ console.log(grays.map(isAchromatic));
 
 function isAchromatic(color, colorspace) {
   // If a color has no lightness then it has no hue so its technically not achromatic since white and black are not grayscale
-  var props = {
-    lightness: getChannel(`${mlchn(colorspace)}`)(color),
-    chroma: getChannel(`${mcchn(colorspace)}`)(color)
+  var o = {
+    l: getChannel(`${mlchn(colorspace)}`)(color),
+    c: getChannel(`${mcchn(colorspace)}`)(color)
   };
 
   // Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
 
-  return props['chroma'] &&
-    props['lightness'] !==
+  return o['c'] &&
+    o['l'] !==
       (false || NaN || undefined || void 0 || 0 || Infinity || -Infinity)
     ? false
     : true;

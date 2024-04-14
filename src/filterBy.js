@@ -34,7 +34,7 @@ function baseFilterBy(
   colorspace = 'lch'
 ) {
   const normFacts = {
-    saturation: mcchn,
+    chroma: mcchn,
     lightness: mlchn
   };
 
@@ -68,7 +68,11 @@ function baseFilterBy(
 /**
  * @public
  * Returns colors in the specified `saturation` or `chroma` range. The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
- * This means a value in the range `[0,1]` will return, for example if you pass `start` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either `start` or `end` is above 1 AND the `colorspace` in use has an `end` range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range `[0,100]` and will return the normalized value.
+ 
+
+* This means a value in the range `[0,1]` will return, for example if you pass `start` as `0.3` it means `0.3 (or 30%)` of the channel's supported range.
+
+But if the value of either `start` or `end` is above 1 AND the `colorspace` in use has an `end` range higher than 1 then the value is treated as if in the unnormalized range else the value is treated as if in the range `[0,100]` and will return the normalized value.
    * 
    * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
    * 
@@ -108,12 +112,11 @@ function filterByChroma(
 ) {
   const modeChannel = mcchn(colorspace);
 
-  const factor = 'saturation';
   // eslint-disable-next-line no-ternary
   end = !end ? modeRanges[colorspace][modeChannel.split('.')[1]][1] : end;
 
   return baseFilterBy(
-    factor,
+    'chroma',
     getChannel(modeChannel),
     collection,
     // @ts-ignore
@@ -164,7 +167,10 @@ function filterByLuminance(collection, start = 0.05, end = 1) {
  * Returns colors in the specified lightness range.
  *
  * The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
- * This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
+ 
+* This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. 
+
+But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
   * @see https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
  * @param {Collection}  collection The collection of colors to filter.
  * @param {number|string}  start The minimum end of the lightness range. Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
@@ -215,7 +221,8 @@ function filterByLightness(collection, start = 0.05, end, colorspace = 'lch') {
 /**
  * @public
  * Returns colors in the specified hue ranges between 0 to 360.
- * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
+ *
+ *  Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param {Collection} collection The collection of colors to filter.
  * @param {number|string}  start The minimum end of the 'hue' range. 
  * @param {number|string} end The maximum end of the hue range.
@@ -254,7 +261,8 @@ function filterByHue(collection, start = 0, end = 360, colorspace = 'lch') {
 /**
  * @public
  * Returns colors with the specified `distance` range. The `distance` is tested against a comparison color (the 'against' param) and the specified `distance` ranges. Uses the `differenceHyab` metric for calculating the distances.
- * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
+ 
+* Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param {Collection}  collection The collection of colors to filter.
  * @param {number|string}  start The minimum end of the `distance` range.
  * @param {number|string} end The maximum end of the `distance` range.
@@ -293,7 +301,8 @@ function filterByDistance(collection, against, start = 0.05, end = Infinity) {
 /**
  * @public
  * Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
- * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
+ 
+* Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param {Collection}  collection The collection of colors to filter.
  * @param {number|string}  start The minimum end of the contrast range.
  * @param {number|string} end The maximum end of the contrast range.

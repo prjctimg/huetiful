@@ -316,6 +316,7 @@ function sequential(scheme) {
     ]
   };
 
+  // @ts-ignore
   return hasScheme(scheme, so);
 }
 
@@ -461,6 +462,7 @@ function diverging(scheme) {
     ]
   };
 
+  // @ts-ignore
   return hasScheme(scheme, so);
 }
 
@@ -578,6 +580,7 @@ function qualitative(scheme) {
       '#f2f2f2'
     ]
   };
+  // @ts-ignore
   return hasScheme(scheme, so);
 }
 

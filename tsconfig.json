@@ -21,5 +21,7 @@
     "emitDeclarationOnly":true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext"
   }
 }

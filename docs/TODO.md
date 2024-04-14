@@ -19,4 +19,5 @@
 
 ### ci
 
-- run tailwind from gulp for development
+- twitter post whenever we publish
+- 

@@ -16,39 +16,39 @@
     "./stats": "./src/stats.js",
     "./accessibility": "./src/accessibility.js",
     "./helpers": "./src/helpers.js",
-    ".": "./lib/index.js"
+    ".": "./lib/huetiful.esm.js"
   },
-  "types": "./lib/index.d.ts",
   "description": "Function oriented library for color manipulation 🧪",
   "dependencies": {
     "culori": "^4.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.0.3",
-    "@commitlint/config-conventional": "^19.0.3",
-    "@types/culori": "^2.0.0",
+    "@types/culori": "^2.1.0",
+    "autoprefixer": "^10.4.16",
     "commitizen": "^4.3.0",
     "cz-emoji-conventional": "^1.0.2",
     "esbuild": "^0.17.19",
     "eslint": "^8.53.0",
     "github-emoji": "^1.2.0",
     "gulp": "^5.0.0",
+    "gulp-postcss": "^10.0.0",
     "husky": "^8.0.3",
     "jasmine": "5.1.0",
     "nodemon": "^3.0.1",
+    "postcss-cli": "^11.0.0",
+    "prettier": "^3.2.0",
     "typedoc": "^0.25.3",
-    "typedoc-material-theme": "^1.0.2",
-    "typescript": "^5.0.2",
-    "prettier": "^3.2.0"
+    "typedoc-github-wiki-theme": "^1.1.0",
+    "typescript": "^5.0.2"
   },
   "scripts": {
     "test": "npx jasmine",
-    "docs": "npx typedoc --excludeReferences true --includeVersion false --excludeNotDocumented true --plugin typedoc-material-theme  --darkHighlightTheme material-theme-palenight --lightHighlightTheme material-theme-lighter --hideGenerator true --sitemapBaseUrl https://huetiful-js.com",
+    "docs": "npx typedoc --excludeReferences true --includeVersion false --excludeNotDocumented true --darkHighlightTheme material-theme-palenight --plugin typedoc-plugin-markdown --hideGenerator true",
     "build": "node ./build.cjs",
     "code:publish": "npm run build & npx tsc",
     "format": "npx prettier \"./src/*.js\" --write",
-    "lint":"npx eslint --fix --ext ./src/*.js",
-    "start": "nodemon app.js --watch "
+    "lint": "npx eslint --fix --ext ./src/*.js",
+    "start": "docsify serve ./docs/www "
   },
   "husky": {
     "hooks": {}
@@ -95,8 +95,7 @@
     ],
     "readme": "none",
     "tsconfig": "./tsconfig.json",
-    "gitRemote": "main",
-    "themeColor": "#c084fc"
+    "gitRemote": "main"
   },
   "files": [
     "lib",

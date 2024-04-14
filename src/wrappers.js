@@ -103,7 +103,7 @@ class ColorArray {
  * Returns the nearest color(s) in the bound collection against
  * @param {ColorToken} color  The color to use for distance comparison.
  * @param {number} num The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric.
- * @returns {Collection} An array of colors.
+ * @returns {ColorArray} An array of colors.
  * @example
  *
  * import { load } from 'huetiful-js';
@@ -115,6 +115,7 @@ console.log(load(cols).getNearestColor('blue', 3));
  */
   getNearestColor(color, num = 1) {
     if (gt(num, 1)) {
+      // @ts-ignore
       return _gnrstc(this['colors'], color, num);
     } else {
       this['colors'] = _gnrstc(this['colors'], color, num);
@@ -685,7 +686,7 @@ console.log(load(against).getMeanDistance(sample));
    * @param {number|string} end The maximum end of the `saturation/chroma` range.
    * @see https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
    * @param {HueColorSpaces} [colorspace='lch'] The color space to fetch the saturation value from. Any color space with a chroma channel e.g 'lch' or 'hsl' will do.
-   * @returns {Collection} Collection of filtered colors.
+   * @returns {ColorArray} Collection of filtered colors.
    * @example
    * import { load } from 'huetiful-js'
    *
@@ -733,7 +734,7 @@ console.log(load(against).getMeanDistance(sample));
    * @param {number | string} start The minimum end of the `lightness` range.
    * @param {number | string} end The maximum end of the `lightness` range.
    * @see https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
-   * @returns {Collection} Collection of filtered colors.
+   * @returns {ColorArray} Collection of filtered colors.
    * @example
    *
    * import { load } from 'huetiful-js'
@@ -770,7 +771,7 @@ console.log(load(against).getMeanDistance(sample));
    * @param {ColorToken} against The color to compare against.
    * @param {number | string} start  The minimum end of the distance range.
    * @param {number | string} end The maximum end of the distance range.
-   * @returns {Collection} Collection of filtered colors.
+   * @returns {ColorArray} Collection of filtered colors.
    * @example
    * import { load } from 'huetiful-js'
   
@@ -809,7 +810,7 @@ console.log(load(against).getMeanDistance(sample));
    * @param {ColorToken} against The color to compare against.
    * @param {number | string} start The minimum end of the contrast range. Default is `1`.
    * @param {number | string} end The maximum end of the contrast range. The default is `21`.
-   * @returns {Collection} Collection of filtered colors.
+   * @returns {ColorArray} Collection of filtered colors.
    *
    * @example
    *
@@ -852,7 +853,7 @@ console.log(load(against).getMeanDistance(sample));
    * Supports expression strings for the `start` and `end` parameters e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | > | !`
    * @param {number|string} start The minimum end of the `hue` range.
    * @param {number|string} end The maximum end of the `hue` range.
-   * @returns {Collection} A collecion of the filtered colors.
+   * @returns {ColorArray} A collecion of the filtered colors.
    * @example
    *
    * import { load } from 'huetiful-js'
@@ -888,7 +889,7 @@ console.log(load(against).getMeanDistance(sample));
    * Supports expression strings for the `start` and `end` parameters e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | > | !`
    * @param {number | string} start The minimum end of the luminance range.
    * @param {number | string} end The maximum end of the luminance range.
-   * @returns {Collection} Collection of filtered colors.
+   * @returns {ColorArray} Collection of filtered colors.
    * @example
    *
    * import { load } from 'huetiful-js'
@@ -921,7 +922,7 @@ console.log(load(against).getMeanDistance(sample));
    *
    * Sorts colors in the bound collection according to their lightness.
    * @param {Order} [order='asc']  The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
-  * @returns {Collection} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
+  * @returns {ColorArray} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
    * @example
    * import { load } from "huetiful-js";
   
@@ -964,7 +965,7 @@ console.log(load(against).getMeanDistance(sample));
    *  Sorts colors according to their Euclidean distance. The distance factor is determined by the color space used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the array i.e it sorts the colors against the dist
    * @param {ColorToken} against The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.
    * @param {Order} [order='asc']  The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
-  * @returns {Collection} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
+  * @returns {ColorArray} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
    * @example
    * import { load } from 'huetiful-js'
   
@@ -996,7 +997,7 @@ console.log(load(against).getMeanDistance(sample));
    *
    *  Sorts colors in the bound collection according to the relative brightness as defined by WCAG.
    * @param {Order} [order='asc']  The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
-  * @returns {Collection} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
+  * @returns {ColorArray} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
    * @example
    *
    * import { load } from "huetiful-js";
@@ -1040,7 +1041,7 @@ console.log(load(against).getMeanDistance(sample));
    *  Sorts colors in the bound collection according to their saturation. Achromatic colors are not supported as they lack a truthy `chroma` or saturation channel.
    * @param {Order} [order='asc']  The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
    * @param {HueColorSpaces} [colorspace='lch'] The mode color space to compute the saturation value in. The default is jch .
-  * @returns {Collection} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
+  * @returns {ColorArray} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
    * @example
    * import { load } from "huetiful-js";
   let sample = [
@@ -1093,7 +1094,7 @@ console.log(load(against).getMeanDistance(sample));
    * Sorts colors in the bound collection according to their contrast value as defined by WCAG. The contrast is tested against a comparison color (the 'against' param)
    * @param {ColorToken} against The color to compare against.
    * @param {Order} [order='asc']  The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
-   * @returns {Collection} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
+   * @returns {ColorArray} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays.
    * @example
    *
    * import { load } from 'huetiful-js'
@@ -1118,7 +1119,7 @@ console.log(load(against).getMeanDistance(sample));
    *  Sorts colors in the bound collection according to hue angles. It works with any color space with a hue channel. Note that hue values between `hsl` and `lch` do not align. Achromatic colors are not supported.
    * @param {Order} [order='asc']  The expected order of arrangement. Either 'asc' or 'desc'. Default is ascending ('asc')
   * @param {HueColorSpaces} [colorspace='lch'] The colorspace to compute the color distances in. All colors within the collection will be converted to mode. Also note that because differences in hue mapping certain color spaces such as HSL and LCH hue values do not align. Keep such quirks in mind to avoid weird results.
-  * @returns {Collection} A collection of the sorted color values.
+  * @returns {ColorArray} A collection of the sorted color values.
    * @example
    * let sample = [
     "#00ffdc",

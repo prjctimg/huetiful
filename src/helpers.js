@@ -35,7 +35,7 @@ var { keys, entries, values } = Object;
  * @returns The first truthy value
  */
 function or(arg, def) {
-  return typeof arg === 'undefined' ? def : arg;
+  return arg || def;
 }
 
 // Global interpolator options defaults

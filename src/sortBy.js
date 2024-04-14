@@ -78,12 +78,7 @@ console.log(sortedDescending)
  */
 
 function sortByChroma(collection, order, colorspace) {
-  return baseSortBy(
-    'saturation',
-    getChannel(mcchn(colorspace)),
-    order,
-    collection
-  );
+  return baseSortBy('chroma', getChannel(mcchn(colorspace)), order, collection);
 }
 
 /**
