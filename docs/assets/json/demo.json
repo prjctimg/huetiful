@@ -1,174 +1,11 @@
 {
   "sortBy": {
-    "description": "Functions for sorting collections of color  using their properties.",
+    "description": "This module has functions for sorting collections of colors using their properties. Here are some of the functions in action:",
     "specs": {
-      "sortBySaturation": {
-        "params": [
-          [
-            "#94a3b8",
-            "#9ca3af",
-            "#a1a1aa",
-            "#a3a3a3",
-            "#a8a29e",
-            "#f87171",
-            "#fb923c",
-            "#fbbf24",
-            "#facc15",
-            "#a3e635",
-            "#4ade80",
-            "#34d399",
-            "#2dd4bf",
-            "#38bdf8",
-            "#60a5fa",
-            "#a78bfa",
-            "#c084fc",
-            "#e879f9",
-            "#f472b6",
-            "#fb7185"
-          ],
-          "asc",
-          "lch"
-        ],
-        "description": "Sorts colors by saturation value in `asc` order",
-        "expect": [
-          "#a3a3a3",
-          "#a8a29e",
-          "#a1a1aa",
-          "#9ca3af",
-          "#94a3b8",
-          "#38bdf8",
-          "#2dd4bf",
-          "#60a5fa",
-          "#34d399",
-          "#f472b6",
-          "#fb7185",
-          "#f87171",
-          "#a78bfa",
-          "#c084fc",
-          "#4ade80",
-          "#fb923c",
-          "#e879f9",
-          "#fbbf24",
-          "#facc15",
-          "#a3e635"
-        ]
-      },
-      "sortByLightness": {
-        "params": [
-          [
-            "#94a3b8",
-            "#9ca3af",
-            "#a1a1aa",
-            "#a3a3a3",
-            "#a8a29e",
-            "#f87171",
-            "#fb923c",
-            "#fbbf24",
-            "#facc15",
-            "#a3e635",
-            "#4ade80",
-            "#34d399",
-            "#2dd4bf",
-            "#38bdf8",
-            "#60a5fa",
-            "#a78bfa",
-            "#c084fc",
-            "#e879f9",
-            "#f472b6",
-            "#fb7185"
-          ],
-          "asc",
-          "lch"
-        ],
-        "description": "Sorts colors by lightness value in `asc` order",
-        "expect": [
-          "#a78bfa",
-          "#f87171",
-          "#c084fc",
-          "#fb7185",
-          "#f472b6",
-          "#60a5fa",
-          "#94a3b8",
-          "#a1a1aa",
-          "#9ca3af",
-          "#a3a3a3",
-          "#a8a29e",
-          "#e879f9",
-          "#fb923c",
-          "#38bdf8",
-          "#34d399",
-          "#2dd4bf",
-          "#4ade80",
-          "#fbbf24",
-          "#facc15",
-          "#a3e635"
-        ]
-      },
-      "sortByLuminance": {
-        "params": [
-          [
-            "#94a3b8",
-            "#9ca3af",
-            "#a1a1aa",
-            "#a3a3a3",
-            "#a8a29e",
-            "#f87171",
-            "#fb923c",
-            "#fbbf24",
-            "#facc15",
-            "#a3e635",
-            "#4ade80",
-            "#34d399",
-            "#2dd4bf",
-            "#38bdf8",
-            "#60a5fa",
-            "#a78bfa",
-            "#c084fc",
-            "#e879f9",
-            "#f472b6",
-            "#fb7185"
-          ],
-          "asc"
-        ],
-        "description": "Sorts colors by luminance value in `asc` order",
-        "expect": [
-          "#f87171",
-          "#a78bfa",
-          "#fb7185",
-          "#f472b6",
-          "#c084fc",
-          "#94a3b8",
-          "#a1a1aa",
-          "#60a5fa",
-          "#9ca3af",
-          "#a3a3a3",
-          "#a8a29e",
-          "#e879f9",
-          "#fb923c",
-          "#38bdf8",
-          "#34d399",
-          "#2dd4bf",
-          "#4ade80",
-          "#fbbf24",
-          "#facc15",
-          "#a3e635"
-        ]
-      },
+     
       "sortByDistance": {
         "params": [
           [
-            "#94a3b8",
-            "#9ca3af",
-            "#a1a1aa",
-            "#a3a3a3",
-            "#a8a29e",
-            "#f87171",
-            "#fb923c",
-            "#fbbf24",
-            "#facc15",
-            "#a3e635",
-            "#4ade80",
-            "#34d399",
             "#2dd4bf",
             "#38bdf8",
             "#60a5fa",
@@ -181,45 +18,11 @@
           "brown",
           "asc"
         ],
-        "description": "Sorts colors by the distance from 'brown' in `asc` order",
-        "expect": [
-          "#f87171",
-          "#fb7185",
-          "#fb923c",
-          "#f472b6",
-          "#a8a29e",
-          "#a3a3a3",
-          "#a1a1aa",
-          "#9ca3af",
-          "#94a3b8",
-          "#fbbf24",
-          "#e879f9",
-          "#c084fc",
-          "#a78bfa",
-          "#facc15",
-          "#60a5fa",
-          "#38bdf8",
-          "#2dd4bf",
-          "#34d399",
-          "#4ade80",
-          "#a3e635"
-        ]
+        "description": "Arrange the colors in ascending order using the Euclidean distance between each color in the collection against the CSS named color 'brown'"
       },
       "sortByContrast": {
         "params": [
           [
-            "#94a3b8",
-            "#9ca3af",
-            "#a1a1aa",
-            "#a3a3a3",
-            "#a8a29e",
-            "#f87171",
-            "#fb923c",
-            "#fbbf24",
-            "#facc15",
-            "#a3e635",
-            "#4ade80",
-            "#34d399",
             "#2dd4bf",
             "#38bdf8",
             "#60a5fa",
@@ -230,47 +33,13 @@
             "#fb7185"
           ],
           "black",
-          "asc"
+          "desc"
         ],
-        "description": "Sorts colors by contrast value in `asc` order against black",
-        "expect": [
-          "#f87171",
-          "#a78bfa",
-          "#fb7185",
-          "#f472b6",
-          "#c084fc",
-          "#94a3b8",
-          "#a1a1aa",
-          "#60a5fa",
-          "#9ca3af",
-          "#a3a3a3",
-          "#a8a29e",
-          "#e879f9",
-          "#fb923c",
-          "#38bdf8",
-          "#34d399",
-          "#2dd4bf",
-          "#4ade80",
-          "#fbbf24",
-          "#facc15",
-          "#a3e635"
-        ]
+        "description": "Arrange the colors in descending order using the contrast (WCAG 2.0) value between each color in the collection against black"
       },
       "sortByHue": {
         "params": [
           [
-            "#94a3b8",
-            "#9ca3af",
-            "#a1a1aa",
-            "#a3a3a3",
-            "#a8a29e",
-            "#f87171",
-            "#fb923c",
-            "#fbbf24",
-            "#facc15",
-            "#a3e635",
-            "#4ade80",
-            "#34d399",
             "#2dd4bf",
             "#38bdf8",
             "#60a5fa",
@@ -281,83 +50,27 @@
             "#fb7185"
           ],
           "asc",
-          "lch"
+          "lch65"
         ],
-        "description": "Sorts colors by hue angle in `asc` order",
-        "expect": [
-          "#fb7185",
-          "#f87171",
-          "#fb923c",
-          "#fbbf24",
-          "#facc15",
-          "#a3e635",
-          "#4ade80",
-          "#34d399",
-          "#2dd4bf",
-          "#38bdf8",
-          "#94a3b8",
-          "#9ca3af",
-          "#60a5fa",
-          "#a1a1aa",
-          "#a3a3a3",
-          "#a8a29e",
-          "#a78bfa",
-          "#c084fc",
-          "#e879f9",
-          "#f472b6"
-        ]
+        "description": "Arrange the colors in ascending order using the hue angle of each color using the cylindrical form of the CIELAB colorspace under the D65 illuminant (or simply 'lch65')"
       }
     }
   },
   "colors": {
-    "description": "Functions for returning swatches. Also contains the `load` and `color` chains.",
+    "description": "This module has functions for returning colors from the bundled color maps included in the library which you can use to kickstart your designs. Here are some of the functions in action:",
     "specs": {
       "tailwindColors": {
         "params": ["all", "300"],
-        "description": "Returns the swatches of color families at 300",
-        "expect": [
-          "#cbd5e1",
-          "#d1d5db",
-          "#d4d4d8",
-          "#d4d4d4",
-          "#d6d3d1",
-          "#fca5a5",
-          "#fdba74",
-          "#fcd34d",
-          "#fde047",
-          "#bef264",
-          "#86efac",
-          "#6ee7b7",
-          "#5eead4",
-          "#7dd3fc",
-          "#93c5fd",
-          "#c4b5fd",
-          "#d8b4fe",
-          "#f0abfc",
-          "#f9a8d4",
-          "#fda4af"
-        ]
+        "description": "Return the colors in the TailwindCSS default palette  from all the hue families at value '300'"
       }
     }
   },
   "filterBy": {
-    "description": "Functions for filtering collections of color using `start` and `end` ranges",
+    "description": "This module has functions for filtering collections of colors by removing colors that don't meet the specified property ranges. Here are some of the functions in action:",
     "specs": {
       "filterByContrast": {
         "params": [
           [
-            "#94a3b8",
-            "#9ca3af",
-            "#a1a1aa",
-            "#a3a3a3",
-            "#a8a29e",
-            "#f87171",
-            "#fb923c",
-            "#fbbf24",
-            "#facc15",
-            "#a3e635",
-            "#4ade80",
-            "#34d399",
             "#2dd4bf",
             "#38bdf8",
             "#60a5fa",
@@ -371,24 +84,11 @@
           3.05,
           12
         ],
-        "description": "Filters color by relative contrast",
-        "expect": ["#fbbf24", "#facc15", "#a3e635"]
+        "description": "Remove colors from the collection that don't have a contrast value (WCAG 2.0) ranging from 3.05 to 12 "
       },
       "filterByHue": {
         "params": [
           [
-            "#94a3b8",
-            "#9ca3af",
-            "#a1a1aa",
-            "#a3a3a3",
-            "#a8a29e",
-            "#f87171",
-            "#fb923c",
-            "#fbbf24",
-            "#facc15",
-            "#a3e635",
-            "#4ade80",
-            "#34d399",
             "#2dd4bf",
             "#38bdf8",
             "#60a5fa",
@@ -402,153 +102,11 @@
           220,
           "lch"
         ],
-        "description": "Filters color by hue",
-        "expect": [
-          "#fbbf24",
-          "#facc15",
-          "#a3e635",
-          "#4ade80",
-          "#34d399",
-          "#2dd4bf"
-        ]
-      },
-      "filterByLuminance": {
-        "params": [
-          [
-            "#94a3b8",
-            "#9ca3af",
-            "#a1a1aa",
-            "#a3a3a3",
-            "#a8a29e",
-            "#f87171",
-            "#fb923c",
-            "#fbbf24",
-            "#facc15",
-            "#a3e635",
-            "#4ade80",
-            "#34d399",
-            "#2dd4bf",
-            "#38bdf8",
-            "#60a5fa",
-            "#a78bfa",
-            "#c084fc",
-            "#e879f9",
-            "#f472b6",
-            "#fb7185"
-          ],
-          ">0.5",
-          "<0.9"
-        ],
-        "description": "Filters color by luminance",
-        "expect": ["#fbbf24", "#facc15", "#a3e635", "#4ade80", "#2dd4bf"]
-      },
-      "filterByLightness": {
-        "params": [
-          [
-            "#94a3b8",
-            "#9ca3af",
-            "#a1a1aa",
-            "#a3a3a3",
-            "#a8a29e",
-            "#f87171",
-            "#fb923c",
-            "#fbbf24",
-            "#facc15",
-            "#a3e635",
-            "#4ade80",
-            "#34d399",
-            "#2dd4bf",
-            "#38bdf8",
-            "#60a5fa",
-            "#a78bfa",
-            "#c084fc",
-            "#e879f9",
-            "#f472b6",
-            "#fb7185"
-          ],
-          45,
-          69,
-          "lch"
-        ],
-        "description": "Filters color by lightness",
-        "expect": [
-          "#94a3b8",
-          "#9ca3af",
-          "#a1a1aa",
-          "#a3a3a3",
-          "#a8a29e",
-          "#f87171",
-          "#60a5fa",
-          "#a78bfa",
-          "#c084fc",
-          "#e879f9",
-          "#f472b6",
-          "#fb7185"
-        ]
-      },
-      "filterByDistance": {
-        "params": [
-          [
-            "#94a3b8",
-            "#9ca3af",
-            "#a1a1aa",
-            "#a3a3a3",
-            "#a8a29e",
-            "#f87171",
-            "#fb923c",
-            "#fbbf24",
-            "#facc15",
-            "#a3e635",
-            "#4ade80",
-            "#34d399",
-            "#2dd4bf",
-            "#38bdf8",
-            "#60a5fa",
-            "#a78bfa",
-            "#c084fc",
-            "#e879f9",
-            "#f472b6",
-            "#fb7185"
-          ],
-          "yellow",
-          ">70.05"
-        ],
-        "description": "Filters color by distance",
-        "expect": ["#fbbf24", "#facc15", "#a3e635"]
-      },
-      "filterByChroma": {
-        "params": [
-          [
-            "#94a3b8",
-            "#9ca3af",
-            "#a1a1aa",
-            "#a3a3a3",
-            "#a8a29e",
-            "#f87171",
-            "#fb923c",
-            "#fbbf24",
-            "#facc15",
-            "#a3e635",
-            "#4ade80",
-            "#34d399",
-            "#2dd4bf",
-            "#38bdf8",
-            "#60a5fa",
-            "#a78bfa",
-            "#c084fc",
-            "#e879f9",
-            "#f472b6",
-            "#fb7185"
-          ],
-          70
-        ],
-        "description": "Filters color by saturation",
-        "expect": ["#fb923c", "#fbbf24", "#facc15", "#a3e635", "#e879f9"]
-      }
-    }
-  },
+        "description": "Remove colors from the collection that don't have a hue angle starting from 60 up to 220 using the 'lch' colorspace under the standard illuminant (D50)"
+        
+      }}},
   "generators": {
-    "description": "Functions for generating custom color scales and palettes.",
+    "description": "This module has functions for creating or generating custom palettes or color scales. Mostly the functions will require a base color to manipulate but some can take collections as a starting point as well. Here are some of the functions in action:",
     "specs": {
       "discoverPalettes": {
         "params": [
@@ -567,55 +125,26 @@
           ],
           "tetradic"
         ],
-        "description": "Takes an array of colors and finds the best matches for a set of predefined palettes.",
-        "expect": ["#310000", "#3e0000", "#4e0000", "#164100"]
+        "description": "Return a tetradic color scheme from the passed in collection. In the future it may support returning one-dimensional maps of all colors that satisfy the constraints of the targeted scheme."
       },
       "earthtone": {
         "params": ["pink", "lch", { "earthtones": "clay", "iterations": 5 }],
-        "description": "Creates a scale of a spline interpolation between an earthtone and a color.",
-        "expect": ["#6a5c52", "#816a63", "#b38d86", "#e6b0ac", "#ffc1be"]
-      },
+        "description": "Create a scale of spline interpolation between the earthtone 'clay' and the color 'pink'."},
       "hueShift": {
-        "params": ["#3e0000"],
-        "description": "Generates a palette of hue shifted colors",
-        "expect": [
-          "#3f0101",
-          "#2b1800",
-          "#002620",
-          "#2f1500",
-          "#321300",
-          "#3f0007",
-          "#3e0000",
-          "#561a17",
-          "#743356",
-          "#915077",
-          "#268fad",
-          "#cb8ebe",
-          "#fcaca7"
-        ]
+        "params": ["#3eb1f9"],
+        "description": "Create a palette of hueshifted colors from the passed color using the default options"
       },
       "interpolateSpline": {
         "params": [["b2c3f1", "#a1bd2f", "#f3bac1"], "lch", 8, "natural"],
-        "description": "Returns a spline interpolator function with customizable interpolation methods",
-        "expect": [
-          "#b2c3f1",
-          "#2dd0f5",
-          "#00d5ae",
-          "#6aca4c",
-          "#c5b722",
-          "#fba859",
-          "#010101",
-          "#f3bac1"
-        ]
+        "description": "Create a color scale with 8 samples using spline interpolation (natural) in the 'lch' colorspace"
       },
       "pairedScheme": {
         "params": ["green", { "hueStep": 6, "iterations": 4, "tone": "dark" }],
-        "description": "Creates a scheme that consists of a scheme color that is incremented by a hueStep to get the final hue to pair with",
-        "expect": ["#008000", "#348e2a", "#79b36f", "#cfe4cb"]
+        "description": "Create a scheme that uses the color 'green' as a starting point  and adds a hue angle of 6 to get the color hue to pair with while using the 'dark' tone and getting 4 samples within that scale. Uses trilinear interpolation"
       },
       "pastel": {
         "params": ["green"],
-        "description": "Creates a pastel variant of a color",
+        "description": "Create a pastel variant of the color 'green' ",
         "expect": "#81f281"
       }
     }
