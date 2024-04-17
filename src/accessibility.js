@@ -1,6 +1,7 @@
 /**
  * @typedef {import('../types/types.js').DeficiencyType} DeficiencyType
  * @typedef {import('../types/types.js').ColorToken} ColorToken
+ * @typedef {import('../types/types.js').AdaptivePaletteOptions} AdaptivePaletteOptions
  */
 
 import { color2hex } from './converters.js';
@@ -100,10 +101,10 @@ function colorDeficiency(deficiencyType) {
 // -> Contrast is the perceived difference in color i.e the ability of one color to stand out from another. This allows colors to be legible on different backgrounds.
 
 // 4. What are the specifics of contrast ratio in relation to design elements
-// -> Contrast ratios allow us to define the contrast relationship between the colors we're working with. For example certain text must meet a minimum contrast ratio in order for it to be easily viewable to a wider userbase.
+// -> Contrast ratios allow us to define the contrast relationship between the colors we're working with. For example certain text must meet a minimum contrast ratio in order for it to be easily viewable to a wider audience.
 
 // 5. What are the nuances of dark/light mode. How is the color corrected when we switch themes
-// -> Certain colors will diverge from our color system if we tune them up. For example yellow will turn dark yellow if we adjust it to meet WCAG requirements in light mode. Therefore such colors cannot be used for text.
+// -> Certain colors will diverge from our color system if we tune them up. For example yellow will turn dark yellow/{muddy} if we adjust it to meet WCAG requirements in light mode. Therefore such colors cannot be used for text.
 
 // 6. How can this be implemented in code
 
@@ -138,9 +139,20 @@ function colorDeficiency(deficiencyType) {
 // Find contrast colors
 // find contrast color pairs that are harmonius
 
+//  we think of chromatic adaption
+
 // The relative luminance returned should be compliant to the defined ratio
 
-function adaptive(color, theme = { light: '#fff', dark: '#000' }) {
+// Purkinje Effect -> The peak sensitivity of the human eye shifts
+// toward the blue end of the spectrum at lower light {luminance ?} levels.
+// Web API case study : AmbientLightSensor
+
+/**
+ *
+ * @param {*} color
+ * @param { AdaptivePaletteOptions} options
+ */
+function adaptive(color, options) {
   var min_c,
     par = 0.5;
 }

@@ -1,73 +1,6 @@
-<div style='background:linear-gradient(to right bottom,#f97316,#ec4899,#3b82f6,#22c55e);width:100vw;height:50vh;'></div>
-  
+# Quickstart
 
-## Table of contents
-
-- [Installation and usage](#installation-and-usage)
-  - [Node](#node)
-  - [Browser](#browser)
-- [Quickstart](#quickstart)
-  - [Working with collections of color](#working-with-collections-of-color)
-- [Creating palettes](#creating-palettes)
-  - [Querying color properties](#querying-color-properties)
-  - [Getting "mathy" with color](#getting-mathy-with-color)
-  - [Method chaining with lazy wrappers](#method-chaining-with-lazy-wrappers)
-    - [Where to go next ?](#where-to-go-next-)
-    - [License ⚖️](#license-️)
-
-
-
-## What is this ?
-
-This library aims to make it simple and straight forward to manipulate color either as individual tokens or collections of tokens. It builds off where libraries like chroma.js and d3-color leave their APIs by adding collection methods for sorting/filtering ,querying values of statistical significance and setting/getting different property values of color.
-
-Its like a lodash for dealing with color . It uses Culori under the hood for color conversions and other color related bells and whistles. It is written in JavaScript but has type declarations for common built-in parameters and function signatures.
-
-Consider the typical parameter signature of a filtering function:
-
-```ts
-
-declare function filterByChroma(
-  collection: ArrayLike<ColorToken> | object | Map<any, ColorToken>,
-  start?: number,
-  end?: number,
-  colorspace?: HueColorSpaces
-): Array<ColorToken> | Map<any, ColorToken>;
-
-```
-
-Focus on the `collection` parameter and the return type of the above function declaration. All functions that took a collection color as an array prior v1.78.x can support this overload as well for collections. These functions retain the structure of the passed in collection which was different in the previous versions since we'd only return arrays by default. This means if you pass in an object as a collection the function will return a `Map`.
-
-#### Installation and usage
-
-##### Node
-
-The library🧾 is on npm as a package📦 for use in NodeJS:
-
-```bash
-npm i huetiful-js
-```
-
-You can use a CDN in this example, jsdelivr to load the library remotely:
-
-```ts
-import {...} from 'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.esm.mjs'
-
-```
-
-##### Browser
-
-Or load the library as a UMD glabal (`huetiful`) in your HTML file using a `<script>` tag:
-
-```html
-# With script tag
-
-<script src='https://cdn.jsdelivr.net/npm/huetiful-js/dist/huetiful.umd.js'></script>
-```
-
-### Quickstart
-
-#### Working with collections of color
+## Working with collections of color
 
 Think of a scenario where we have collection of color tokens that we may want to filter by contrast and then have the result returned sorted by each color's hue angle in ascending order. In this example we will simply sort colors by luminance:
 
@@ -116,9 +49,7 @@ console.log(sortedDescending)
 
 ```
 
-
-
-### Creating palettes
+## Creating palettes
 
 A few simple palette generator functions are included in the library. One of my favourites is `hueShift`  (as a color becomes lighter, its hue shifts up and darker when its hue shifts down. ) .
 
@@ -142,7 +73,7 @@ console.log(hueShiftedPalette);
 
 ```
 
-#### Querying color properties
+## Querying color properties
 
 Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? Though its easy to tell colors apart visually when they're displayed on the screen📺 it can be a bit confusing to tell colors apart using code. Below is an example showing how to determine if a color is gray or not:
 
@@ -234,7 +165,7 @@ console.log(sample.filter(isWarm))
 
 ```
 
-#### Getting "mathy" with color
+## Getting "mathy" with color
 
 Color has different properties which our eyes take note of in order to distinguish colors from each other even when they have certain perceived similarities. For example we can get the farthest hue angle in a collection against a specified color:
 
@@ -262,9 +193,9 @@ console.log(getFarthestHueFrom(sample, 'lime', 'lch'))
 
 ```
 
-#### Method chaining with lazy wrappers
+## Method chaining with lazy wrappers
 
-Feeling lazy or maybe you just don't like nesting function calls ? We got you covered. The API exposes two wrapper functions, one for individual color tokens (`Color` class) and the other for collections of colors (`ColorArray` class). These two classes are not publicly exported but are accessible through two wrapper functions; `load` which simply returns a `new ColorArray` and `color` which returns a `new Color`. 
+Feeling lazy or maybe you just don't like nesting function calls ? We got you covered. The API exposes two wrapper functions, one for individual color tokens (`Color` class) and the other for collections of colors (`ColorArray` class). These two classes are not publicly exported but are accessible through two wrapper functions; `load` which simply returns a `new ColorArray` and `color` which returns a `new Color`.
 
 Below is a simple example of how to use these functions
 
@@ -295,14 +226,14 @@ console.log(myLazyChainTwo);
 
 ```
 
-##### Where to go next ?
+### Where to go next ?
 
 We've barely scratched the surface! Dig into the API for more functions and examples.
 
 ##### License ⚖️
 
  <pre>
- © 2024,Dean Tarisai
+ © 2024,<a href='https://deantarisai.me'>Dean Tarisai</a> & <a href='https://github.com/xml-wizard/huetiful'>xml-wizard contributors</a>
  Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h5>
  🧪 & 🔬 with 🥃 in Crowhill,ZW
  </pre>

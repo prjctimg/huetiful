@@ -274,7 +274,6 @@ export type ColorObject = {
  */
 export type Factor =
   | 'luminance'
-  | 'temp'
   | 'chroma'
   | 'contrast'
   | 'distance'

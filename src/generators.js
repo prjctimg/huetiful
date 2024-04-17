@@ -533,7 +533,7 @@ function pairedScheme(color, options) {
  *@public
  *  Returns a random pastel variant of the passed in color.
  * @param {ColorToken} color The color to return a pastel variant of.
- * @returns {ColorToken} A random pastel color. Preserves the `ColorToken` type of the pased in color.
+ * @returns { ColorToken} A random pastel color. Preserves the `ColorToken` type of the pased in color.
  * @example
  *
 import { pastel } from 'huetiful-js'
@@ -634,11 +634,10 @@ function pastel(color, colorspace) {
 function distribute(factor, options) {
   // Destructure the opts to check before distributing the factor
 
-  var get_cb, set_cb;
-  var { extremum, excludeSelf, excludeAchromatic, hueFixup, colorspace } = or(
-    options,
-    {}
-  );
+  var { extremum, excludeSelf, excludeAchromatic, hueFixup, colorspace } =
+      options || {},
+    get_cb,
+    set_cb;
 
   // Set the extremum to distribute to default to max if its not min
   extremum = or(extremum, 'max');
@@ -664,23 +663,12 @@ function distribute(factor, options) {
   // set the callbacks depending on the type of factor
   switch (factor) {
     case 'chroma':
-      get_cb = (v) => _gchn(mcchn(colorspace))(v);
-      set_cb = (k, v) => _schn(mcchn(colorspace))(v, k);
-
       break;
     case 'hue':
-      get_cb = (v) => _gchn(`${colorspace}.h`)(v);
-      set_cb = (k, v) => _schn(`${colorspace}.h`)(v, k);
-
       break;
     case 'luminance':
-      get_cb = (v) => _glmnce(v);
-      set_cb = (k, v) => _slmnce(v, k);
       break;
     case 'lightness':
-      get_cb = (v) => _gchn(mlchn(colorspace))(v);
-      set_cb = (k, v) => _schn(mlchn(colorspace))(v, k);
-
       break;
   }
 
@@ -690,20 +678,7 @@ function distribute(factor, options) {
    * @returns {Collection} The collection with each color's `factor` adjusted.
    */
   return (collection = []) => {
-    var o_ = colorObjColl(factor, get_cb)(collection);
-    var k_ = keys(o_).map((v) => o_[v][factor]);
-    var [mn, mx] = [_min(k_), _max(k_)];
-    collection = keys(collection).map((a) => _c2hx(collection[a]));
-    var mx_cb = (v) => set_cb(get_cb(v) + get_cb(v) * (mn / mx), v),
-      mn_cb = (v) => set_cb(get_cb(v) + get_cb(v) * (mn / get_cb(v)), v);
-
-    var tmp_ = [];
-    if (excludeAchromatic) {
-      tmp_ = keys(o_).filter((v) => isAchromatic(o_[v]['color'], colorspace));
-      collection = keys(collection).filter(
-        (v) => !isAchromatic(o_[v]['color'], colorspace)
-      );
-    }
+    var o_, k_, mn, mx, mx_cb, mn_cb, tmp_;
 
     /**
      * The color with the extremum we want.

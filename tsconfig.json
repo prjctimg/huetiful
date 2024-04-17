@@ -12,8 +12,8 @@
       
     ],"exclude":["**/*/node_modules"],
   "compilerOptions": {
-    "lib":["esnext"],
-    "target":"esnext",
+    "lib":["es2023"],
+    "target":"es6",
     "skipLibCheck": true,
      "allowJs": true,
     "checkJs": true,

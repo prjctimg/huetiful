@@ -1,14 +1,24 @@
+# Introduction
 
-### Modules
+- [Installation]()
+- [Quickstart](/assets/pages/quickstart.md)
 
-- [accessibility](modules/accessibility.md)
-- [colors](modules/colors.md)
-- [converters](modules/converters.md)
-- [filterBy](modules/filterBy.md)
-- [generators](modules/generators.md)
-- [sortBy](modules/sortBy.md)
-- [stats](modules/stats.md)
-- [utils](modules/utils.md)
-- [wrappers](modules/wrappers.md)
+### API
+
+- [accessibility](/api/modules/accessibility.md)
+- [colors](/api/modules/colors.md)
+- [converters](/api/modules/converters.md)
+- [filterBy](/api/modules/filterBy.md)
+- [generators](/api/modules/generators.md)
+- [sortBy](/api/modules/sortBy.md)
+- [stats](/api/modules/stats.md)
+- [utils](/api/modules/utils.md)
+- [wrappers](/api/modules/wrappers.md)
+
+
+### Classes
+
+- [ColorArray](/api/classes/wrappers.ColorArray.md)
+- [Color](/api/classes/wrappers.Color.md)
 
 <footer id='mb-footer'></footer>
