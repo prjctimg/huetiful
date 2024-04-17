@@ -8,7 +8,7 @@
 
 /**
  * @license
- * sortBy.js - Utilities for sorting collections of colors.
+ * sortBy.js - Utility for sorting collections of colors.
 Copyright 2024 Dean Tarisai.
 This file is licensed to you under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License. You may obtain a copy
