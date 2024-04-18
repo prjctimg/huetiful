@@ -99,4 +99,4 @@ function sortBy(
   };
 }
 
-export default sortBy;
+export { sortBy };

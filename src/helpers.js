@@ -272,8 +272,7 @@ function customSort(o = 'asc', fctr = 'factor') {
 }
 
 function colorObjColl(fctr = 'factor', cb = (a) => a.toString()) {
-  var _cb = colorObj(fctr, cb),
-    res;
+  var _cb = colorObj(fctr, cb);
   /**
    * @param collection The array or object of colors to iterate over. If an object is passed, its values are expected to be valid color tokens.
    */
@@ -281,66 +280,101 @@ function colorObjColl(fctr = 'factor', cb = (a) => a.toString()) {
     // Check if the collection is an array else treat it like a plain object
     // Convert object into a Map which remembers sorting order in a more predictable way
 
-    if (Array.isArray(collection) && gte(collection.length, 1)) {
-      res = collection.map(_cb);
-    } else if (typeof collection === 'object') {
-      res = new Map();
-
-      for (const [key, klr] of entries(collection)) {
-        res.set(key, _cb(klr));
-      }
-    } else {
-      throw new Error(`The type of ${typeof collection} is not iterable`);
-    }
-    return res;
+    return map(collection, _cb);
   };
 }
 
-function min(arr = []) {
-  return arr.reduce((a, b) => Math.min(a, b), Infinity);
+/**
+ * Checks if value is an array.
+ * @param {any} x The value to check.
+ * @returns {boolean}
+ */
+function isArray(x) {
+  return Array.isArray(x);
 }
 
-function max(arr = []) {
-  arr = or(arr, []);
-  return arr.reduce((a, b) => Math.max(a, b), -Infinity);
+/**
+ * Checks if the value is an instance of a `Map`.
+ * @param {any} x The value to check.
+ * @returns {boolean}
+ */
+function isMap(x) {
+  return x instanceof Map;
+}
+
+/**
+ * Iterates over any collection invoking `cb` on every element in the `collection`.
+ * @param {Map<any,ColorToken>|Array<ColorToken|{[key:string]:ColorToken}>} collection The collection to map over.
+ * @param {(a)=>any} cb The callback function invoked per element in the collection. The callback is expected to be unary.
+ * @returns {Collection}
+ *
+ */
+function map(collection, cb) {
+  var _o;
+  if (collection instanceof Map) {
+    _o = new Map();
+    for (const [a, b] of entries(collection)) {
+      _o.set(a, cb(b));
+    }
+  } else if (isArray(collection)) {
+    _o = new Array(collection.length);
+    for (const [a, b] of entries(collection)) {
+      _o[a] = cb(b);
+    }
+  } else {
+    for (const [a, b] of entries(collection)) {
+      _o = {};
+      _o[a] = cb(b);
+    }
+  }
+  return _o;
+}
+
+function min(x = []) {
+  return x.reduce((a, b) => Math.min(a, b), Infinity);
+}
+
+function max(x = []) {
+  x = or(x, []);
+  return x.reduce((a, b) => Math.max(a, b), -Infinity);
 }
 
 function reNum(s) {
   s = s.toString();
-  var reDigits = /[0-9]*\.?[0-9]+/;
+  var re = /[0-9]*\.?[0-9]+/;
   // @ts-ignore
-  return (reDigits.test(s) && Number(reDigits.exec(s)['0'])) || undefined;
+  return (re.test(s) && Number(re.exec(s)['0'])) || undefined;
 }
 
 function reOp(s) {
   s = s.toString();
-  var reComparator = /^(>=|<=|<|>|={1,2}|!={0,2})/;
+  var re = /^(>=|<=|<|>|={1,2}|!={0,2})/;
 
   // @ts-ignore
-  return (reComparator.test(s) && reComparator.exec(s)['0']) || undefined;
+  return (re.test(s) && re.exec(s)['0']) || undefined;
 }
-function sortedColl(fctr = 'factor', cb, o = 'asc', obj = false) {
+function sortedColl(f = 'factor', cb, o = 'asc', obj = false) {
   return (c) => {
-    var r = colorObjColl(fctr, cb)(c),
+    var r = colorObjColl(f, cb)(c),
       res;
 
     // If the collection is not an Array  insert the sorted elements
     // Sort the array using our customSort helper function
 
-    if (Array.isArray(c)) {
+    if (isArray(c)) {
       // @ts-ignore
-      res = r.sort(customSort(o, fctr));
+      res = r.sort(customSort(o, f));
 
       return (obj === true && res) || res.map((color) => color['color']);
     } else {
       res = new Map();
       values(r)
         // @ts-ignore
-        .sort(customSort(o, fctr))
-        .map((val, key) => {
-          var [k, v] = entries(c)[key];
-          if (val === v) {
-            res.set(k, val);
+        .sort(customSort(o, f))
+        .map((v, z) => {
+          var [k, v] = entries(c)[z];
+          if (v === v) {
+            res.set(k, v);
           }
         });
 
@@ -352,17 +386,17 @@ function sortedColl(fctr = 'factor', cb, o = 'asc', obj = false) {
   };
 }
 
-function filteredColl(fctr, cb) {
+function filteredColl(f, cb) {
   return (c, s, e) => {
-    let res;
+    let _o;
 
     if (typeof s === 'number') {
-      res = colorObjColl(
-        fctr,
+      _o = colorObjColl(
+        f,
         cb
       )(c)
         // @ts-ignore
-        .filter((color) => inRange(color[fctr], s, e))
+        .filter((color) => inRange(color[f], s, e))
         .map((color) => color['color']);
 
       // If string, split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
@@ -373,19 +407,19 @@ function filteredColl(fctr, cb) {
         op = reOp(s);
 
       if (op) {
-        const mapFilter = (test) => {
+        const mapFilter = (j) => {
           return (
             colorObjColl(
-              fctr,
+              f,
               cb
             )(c)
               // @ts-ignore
-              .filter((el) => test(el[fctr], parseFloat(v.toString())))
-              .map((el) => el['color'])
+              .filter((l) => j(l[f], parseFloat(v.toString())))
+              .map((l) => l['color'])
           );
         };
         // object with comparison symbols as keys
-        var _symbols = {
+        var sym_ = {
           '!=': neq,
           '==': eq,
           '>=': gte,
@@ -395,10 +429,11 @@ function filteredColl(fctr, cb) {
           '===': eq,
           '!==': neq
         };
-        res = mapFilter(_symbols[op]);
+        _o = mapFilter(sym_[op]);
       }
     }
-    return res;
+
+    return _o;
   };
 }
 
