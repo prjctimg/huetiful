@@ -263,9 +263,9 @@ function customSort(o = 'asc', fctr = 'factor') {
   // a-b gives asc order & b-a gives desc order
 
   return (a, b) => {
-    if (o === 'asc') {
+    if (o === 'asc' || 'min') {
       return a[fctr] - b[fctr];
-    } else if (o === 'desc') {
+    } else if (o === 'desc' || 'max') {
       return b[fctr] - a[fctr];
     }
   };

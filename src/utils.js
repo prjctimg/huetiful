@@ -20,12 +20,12 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import ___hmap from './color-maps/samples/hueTemperature.js';
+import hue from './maps/hue.js';
 import {
   adjustHue as jst_h,
-  customConcat,
+  customConcat as ccat,
   exprParser as _xprsr,
-  floorCeil,
+  floorCeil as fceil,
   inRange as rng,
   lt,
   mlchn,
@@ -72,9 +72,9 @@ console.log(getHueFamily("#310000"))
 
 function getHueFamily(color) {
   var [nrst_k, nrst_diff] = ['', Infinity];
-  for (let [idx, value] of entries(___hmap)) {
+  for (let [idx, value] of entries(hue)) {
     var [h_, cur_h, diff] = [
-      customConcat(value),
+      ccat(value),
       getChannel(`lch.h`)(color),
       Math.abs(mx(h_) - cur_h)
     ];
@@ -401,9 +401,7 @@ function overtone(color) {
 }
 
 function temperaturePredicate(fctr, y) {
-  return keys(___hmap).some((k) =>
-    rng(floorCeil(fctr), ___hmap[k][y][0], ___hmap[k][y][1])
-  );
+  return keys(hue).some((k) => rng(fceil(fctr), hue[k][y][0], hue[k][y][1]));
 }
 /**
  * @public
