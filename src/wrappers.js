@@ -1,3 +1,5 @@
+// i really need you to believe in me :smile:
+
 /**
  * @typedef { import('../types/types.js').ColorToken} ColorToken
  * @typedef { import('../types/types.js').Collection} Collection
@@ -13,6 +15,23 @@
 
  * @typedef {import('../types/types.js').DeficiencyType} DeficiencyType
  */
+
+import { filterBy } from './filterBy.js';
+import { sortBy } from './sortBy.js';
+import { nearest } from './nearest.js';
+import { stats } from './stats.js';
+import { interpolator } from './interpolator.js';
+import { distribute } from './distribute.js';
+import { discover } from './discover.js';
+import { gt, mcchn, or } from './fp/index.js';
+import { colors } from './colors.js';
+import { token } from './token.js';
+import { darken, brighten } from './darken.js';
+import { hueshift } from './hueshift.js';
+import { deficiency } from './deficiency.js';
+import { luminance } from './luminance.js';
+import { earthtone } from './earthtone.js';
+import { get } from './get.js';
 
 /**
  * 
@@ -40,8 +59,6 @@ class ColorArray {
   }
 
   /**
-   * 
-   
  * Returns the nearest color(s) in the bound collection against
  * @param {ColorToken} color  The color to use for distance comparison.
  * @param {number} num The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric.
@@ -52,15 +69,15 @@ class ColorArray {
  *
  * let cols = tailwindColors('all', '500')
  *
-console.log(load(cols).getNearestColor('blue', 3));
+console.log(load(cols).nearest('blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
-  getNearestColor(color, num = 1) {
+  nearest(color, num = 1) {
     if (gt(num, 1)) {
       // @ts-ignore
-      return _gnrstc(this['colors'], color, num);
+      return nearest(this['colors'], color, num);
     } else {
-      this['colors'] = _gnrstc(this['colors'], color, num);
+      this['colors'] = nearest(this['colors'], color, num);
       return this;
     }
   }
@@ -69,10 +86,10 @@ console.log(load(cols).getNearestColor('blue', 3));
    * 
      
      *  Returns a spline interpolator function with customizable interpolation methods (by selecting the `kind` of ), with support for generating color scales for cyclic data (by setting the `closed` parameter to `true`) and optional channel specific overrides.
-     * @param {Colorspaces} [colorspace='lch'] The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
-     * @param {'natural' | 'monotone' | 'basis'} kind The type of the spline interpolation method. Default is basis.
-     * @param {boolean} closed Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false
-     * @param {Pick<InterpolatorOptions, 'hueFixup' | 'easingFn' | 'domain'>} options Optional channel specific overrides.
+     *  {Colorspaces} [colorspace='jch'] The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
+     *  {'natural' | 'monotone' | 'basis'} kind The type of the spline interpolation method. Default is basis.
+     *  Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false
+     * @param {InterpolatorOptions} options Optional channel specific overrides.
      * @returns The discovered palettes.Respects the `ColorToken` type of the first color in the array of colors to interpolate
      *
      * @example
@@ -91,14 +108,10 @@ console.log(load(cols).getNearestColor('blue', 3));
      */
 
   // @ts-ignore
-  interpolateSpline(colorspace, samples, kind, closed, options) {
-    this['colors'] = _pltrspln(
+  interpolator(options) {
+    this['colors'] = interpolator(
       // @ts-ignore
       this['colors'],
-      colorspace,
-      samples,
-      kind,
-      closed,
       options
     );
 
@@ -109,7 +122,7 @@ console.log(load(cols).getNearestColor('blue', 3));
    * 
    *
    * Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
-   * @param {SchemeType} schemeType (Optional) The palette type you want to return.
+   * @param {SchemeType} kind (Optional) The palette type you want to return.
    * @returns {ColorArray} A collection of colors if the `schemeType` parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
    * @example
    *
@@ -133,8 +146,8 @@ console.log(load(cols).getNearestColor('blue', 3));
   // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
    */
 
-  discoverPalettes(schemeType) {
-    this['colors'] = _dp(this['colors'], schemeType);
+  discover(kind) {
+    this['colors'] = discover(this['colors'], kind);
     return this;
   }
 
@@ -216,10 +229,10 @@ class Color {
     );
 
     // light mode default is gray-100
-    this['lightMode'] = or(lightMode, tailwindColors('gray', '100'));
+    this['lightMode'] = or(lightMode, colors('gray', '100'));
 
     // dark mode default is gray-800
-    this['darkMode'] = or(darkMode, tailwindColors('gray', '800'));
+    this['darkMode'] = or(darkMode, colors('gray', '800'));
   }
 
   /**
@@ -311,9 +324,9 @@ console.log(myColor.getChannel('lch.h'))
   via(origin, t, options) {
     // @ts-ignore
 
-    this['_color'] = _pltr(
+    this['_color'] = interpolator(
       [origin, this['_color']],
-      this['colorspace'],
+
       options
     )(t);
     return this;
@@ -332,7 +345,7 @@ console.log(myColor.getChannel('lch.h'))
    */
   brighten(amount) {
     // @ts-ignore
-    this['_color'] = _brghtn(this['_color'], amount);
+    this['_color'] = brighten(this['_color'], amount);
     return this;
   }
 
@@ -351,16 +364,18 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
  */
 
   darken(amount) {
-    this['_color'] = drkn(this['_color'], amount);
+    this['_color'] = darken(this['_color'], amount);
     return this;
   }
 
   /**
    *
    * Returns the bound `ColorToken` as a hexadecimal string.
-   * @returns {string}
+   * @returns {ColorToken}
    */
-  // token() {}
+  token(kind, options) {
+    return token(kind, options)(this['_color']);
+  }
 
   /**
    *
@@ -378,7 +393,7 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
 
   pastel() {
     // @ts-ignore
-    this['_color'] = _pstl(this['_color']);
+    this['_color'] = pastel(this['_color']);
     return this;
   }
 
@@ -401,7 +416,7 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
       return new ColorArray(_ps(this['_color'], options));
     } else {
       // @ts-ignore
-      this['_color'] = _ps(this['_color'], options);
+      this['_color'] = pair(this['_color'], options);
       return this;
     }
   }
@@ -430,21 +445,18 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
 
   hueshift(options) {
     if (gt(options['num'], 1)) {
-      this['colors'] = _hshft(this['_color'], this['colorspace'], options);
+      this['colors'] = hueshift(this['_color'], options);
 
       return new ColorArray(this['colors']);
     } else {
       // @ts-ignore
-      this['_color'] = _hshft(this['_color'], options);
+      this['_color'] = hueshift(this['_color'], options);
       return this;
     }
   }
 
   /**
-   * 
-   *
    * Returns the complementary hue of the bound color. The function returns `'gray'` when you pass in an achromatic color.
-   * @param {Colorspaces} colorspace The colorspace to fetch the complimentary color from. Only supports uniform colorspaces.
    * @param {boolean} [colorObj=false] Optional boolean whether to return a custom object with the color `name` and `hueFamily` as keys or just the result color. Default is `false`.
    * @returns {FactObject|Color} A custom object if `colorObj` is `true` else the complimentary color. Preserves the bound `Colortoken` type.
    * @example
@@ -456,7 +468,7 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   
    */
 
-  getComplimentaryHue(colorspace, colorObj) {
+  family(colorObj) {
     // @ts-ignore
     this['_color'] = _gch(this['_color'], colorspace, colorObj);
     if (colorObj) {
@@ -502,11 +514,8 @@ console.log(color(base).earthtone({ iterations:8 }).output())
    */
 
   earthtone(options) {
-    this['colors'] = _rthtn(
-      this['_color'],
-      this['colorspace'],
-      or(options, {})
-    );
+    // @ts-ignore
+    this['colors'] = earthtone(this['_color'], options);
 
     if (gt(options['num'], 1)) {
       // @ts-ignore
@@ -556,7 +565,7 @@ console.log(color(base).earthtone({ iterations:8 }).output())
   /**
    * 
    * Sets/Gets the `luminance` value of the bound color.
-   * @param {number|string} amount The `luminance` value to set on the bound color.
+   * @param {number} amount The `luminance` value to set on the bound color.
    * @returns {number|Color} The `luminance` value if the method is called with no arguments else it returns a color with its `luminance `value mutated.
    *
    * @example
@@ -585,7 +594,16 @@ console.log(color(myColor).luminance(0.5));
  }
    */
 
-  luminance(amount) {}
+  luminance(amount) {
+    if (amount) {
+      this['_color'] = luminance(this['_color'], amount);
+
+      return this;
+    }
+
+    // @ts-ignore
+    return luminance(this['_color']);
+  }
 
   /**
    *
@@ -639,7 +657,7 @@ console.log(color(myColor).luminance(0.5));
 
       return this;
     } else {
-      this['_saturation'] = _gchn(
+      this['_saturation'] = get(
         `${this['colorspace']}.${mcchn(this['colorspace'])}`
         // @ts-ignore
       )(this['_color']);
@@ -760,7 +778,7 @@ console.log(color(sample[2]).isCool());
    * 
    *
    * Returns the bound color as a simulation of the specified type of color vision deficiency with the deficiency filter's intensity determined by the `severity` value.
-   * @param {DeficiencyType} deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' can't perceive `'blue'` light properly. Default is `'red'` when the defeciency parameter is `undefined`.
+   * @param {DeficiencyType} kind The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' can't perceive `'blue'` light properly. Default is `'red'` when the defeciency parameter is `undefined`.
    * @param {number} severity The intensity of the filter in the range [0,1].
    * @returns {Color} The color as its simulated variant. Preserves the bound `ColorToken` type.
    * @example
@@ -779,8 +797,8 @@ console.log(color(sample[2]).isCool());
   // #9f9f9f
    */
 
-  deficiency(deficiencyType, severity = 1) {
-    this['_color'] = _cds(deficiencyType)(this['_color'], severity);
+  deficiency(kind, severity = 1) {
+    this['_color'] = deficiency(kind)(this['_color'], severity);
     return this;
   }
 
@@ -804,25 +822,6 @@ console.log(color("blue").overtone())
   overtone() {
     // @ts-ignore
     return _ot(this['_color']);
-  }
-
-  /**
-   * 
- *
- * Returns the hue family of the bound color with the overtone included (if it has one). For achromatic colors it returns `"gray"`.
- * @returns {string} The name of the hue family for example `red` or `blue-green`.
- * @example
- *
- * import { color } from 'huetiful-js'
- 
- 
-console.log(color("#310000").getHueFamily())
-// red
- */
-
-  family() {
-    // @ts-ignore
-    return _ghf(this['_color']);
   }
 
   /**

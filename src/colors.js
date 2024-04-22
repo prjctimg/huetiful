@@ -9,7 +9,7 @@
 
 /// Extracted from TailwindCSS
 
-import { keys, values } from './fp';
+import { keys, values } from './fp/index.js';
 import tailwind from './maps/tailwind.js';
 
 /**

@@ -4,9 +4,10 @@
  */
 
 import { easingSmoothstep } from 'culori/fn';
+// @ts-ignore
 import { adjustHue, or, mcchn, mlchn, gmchn, lt, gt, gte } from './fp';
 import { token } from './token.js';
-import ranges from './maps/ranges';
+import ranges from './maps/ranges.js';
 
 /**
  * Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts down) from a single color. Min and max lightness values determine how light or dark our colour will be at either extreme.
@@ -29,7 +30,7 @@ console.log(hueShiftedPalette);
   '#3b0c3a'
 ]
  */
-export function hueshift(
+function hueshift(
   color,
   options = {
     colorspace: 'jch'
@@ -42,7 +43,8 @@ export function hueshift(
   // @ts-ignore
   color = token('object', { targetMode: colorspace.toLowerCase() })(color);
 
-  let { iterations, hueStep, minLightness, maxLightness, easingFunc } = options;
+  // @ts-ignore
+  let { num, hueStep, minLightness, maxLightness, easingFn } = options;
   const [l, c, [u, v]] = [
     gmchn(mlchn(colorspace), 0),
     gmchn(mcchn(colorspace), 1),
@@ -50,8 +52,8 @@ export function hueshift(
   ];
 
   // Pass default values in case the options object is overridden
-  easingFunc = or(easingFunc, easingSmoothstep);
-  iterations = or(iterations, 6) + 1;
+  easingFn = or(easingFn, easingSmoothstep);
+  num = or(num, 6) + 1;
   hueStep = or(hueStep, 5);
 
   // if value is beyond max normalize all the values ensuring that the end is higher than start
@@ -69,20 +71,22 @@ export function hueshift(
   // Maximum number of iterations possible.
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
   // @ts-ignore
-  for (let i = 1; i < iterations; i++) {
+  for (let i = 1; i < num; i++) {
     //adjustHue checks hue values are clamped.
     // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
     const [y, x] = [
       {
-        [l]: f(i)(0.1, iterations)(color[l], minLightness),
+        [l]: f(i)(0.1, num)(color[l], minLightness),
         [c]: color[c],
-        h: adjustHue(color['h'] - hueStep * (i * easingFunc(i))),
+        // @ts-ignore
+        h: adjustHue(color['h'] - hueStep * (i * easingFn(i))),
         mode: colorspace
       },
       {
         [l]: f(i)(u, v)(u, 100),
         [c]: color[c],
-        h: adjustHue(color['h'] + hueStep * (i * easingFunc(i))),
+        // @ts-ignore
+        h: adjustHue(color['h'] + hueStep * (i * easingFn(i))),
         mode: colorspace
       }
     ];
@@ -91,3 +95,5 @@ export function hueshift(
   }
   return Array.from(new Set(z)).map(token('hex'));
 }
+
+export { hueshift };

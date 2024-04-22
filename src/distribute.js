@@ -1,13 +1,14 @@
+// @ts-nocheck
 import { fixupHueLonger, fixupHueShorter } from 'culori/fn';
 import { or } from './index.js';
 
 // @ts-ignore
 /**
  * Distributes the specified `factor` of a color in the collection with the specified `extremum` (i.e the color with the smallest/largest `hue` angle or `chroma` value) to all color tokens in the collection.
- *@param {Factor} [factor='hue'] The property you want to distribute to the colors in the collection for example `hue | luminance`
- * @param {DistributionOptions} [options={}] Optional overrides to change the default configursation
+ *@param {import('./filterBy.js').Factor} [factor='hue'] The property you want to distribute to the colors in the collection for example `hue | luminance`
+ * @param {import('../types/types.js').DistributionOptions} [options={}] Optional overrides to change the default configursation
 
-  @returns {(collection:Collection,options?:DistributionOptions)=>Collection}
+  @returns {(collection:import('./token.js').Collection,options?:import('../types/types.js').DistributionOptions)=>import('./token.js').Collection}
  */
 function distribute(factor, options) {
   // Destructure the opts to check before distributing the factor
@@ -50,9 +51,11 @@ function distribute(factor, options) {
 
   /**
    *
-   * @param {Collection} collection The colors to manipulate.
-   * @returns {Collection} The collection with each color's `factor` adjusted.
+   * @param {import('./token.js').Collection} collection The colors to manipulate.
+   * @returns {import('./token.js').Collection} The collection with each color's `factor` adjusted.
    */
   return (collection = []) => {};
 }
 distribute('contrast')([], { hueFixup: 'shorter' });
+
+export { distribute };
