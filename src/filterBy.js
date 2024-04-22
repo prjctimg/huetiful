@@ -1,40 +1,19 @@
 /**
  * @typedef { import('../types/types.js').ColorToken} ColorToken
  * @typedef { import('../types/types.js').Collection} Collection
- * @typedef { import('../types/types.js').HueColorSpaces} HueColorSpaces
  * @typedef {import('../types/types.js').Factor} Factor
- * @typedef {import('../types/types.js').Order} Order
+ * @typedef {import('../types/types.js').Colorspaces} Colorspaces
  */
-
-/**
- * @license
- * filterBy.js - Utility for filtering collections of colors.
-Copyright 2024 Dean Tarisai.
-This file is licensed to you under the Apache License, Version 2.0 (the 'License');
-you may not use this file except in compliance with the License. You may obtain a copy
-of the License at http://www.apache.org/licenses/LICENSE-2.0
-Unless required by applicable law or agreed to in writing, software distributed under
-the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
-OF ANY KIND, either express or implied. See the License for the specific language
-governing permissions and limitations under the License.
-*/
 
 import { differenceHyab } from 'culori/fn';
 
-import {
-  mcchn,
-  mlchn,
-  filteredColl,
-  getLuminance,
-  getContrast,
-  getChannel,
-  color2hex
-} from './index.js';
+// @ts-ignore
+import { mcchn, mlchn, filteredColl } from './fp';
+import { token } from './token.js';
+import { get } from './get.js';
+import { contrast } from './contrast.js';
+import { luminance } from './luminance.js';
 import ranges from './maps/ranges.js';
-
-function baseFilterBy(factor, cb, start, end) {
-  return (collection) => filteredColl(factor, cb)(collection, start, end);
-}
 
 /**
  * Filters a collection of colors using the specified `factor` as the criteria. The supported options are:
@@ -92,21 +71,24 @@ function filterBy(
      */
     against: '#fff',
     /**
-     * @type {HueColorSpaces} The mode colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' | 'contrast' | 'distance'`.
+     * @type {Colorspaces} The mode colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' | 'contrast' | 'distance'`.
      */
     colorspace: 'lch'
   }
 ) {
   var { against, colorspace } = options,
-    cb;
+    z;
 
+  function w(a, b, s, e) {
+    return (y) => filteredColl(a, b)(y, s, e);
+  }
   switch (factor) {
     case 'chroma':
       end = !end ? ranges[colorspace][mcchn(colorspace).split('.')[1]][1] : end;
 
-      cb = baseFilterBy(
+      z = w(
         factor,
-        getChannel(mcchn(colorspace)),
+        get(mcchn(colorspace)),
 
         // @ts-ignore
         start,
@@ -115,22 +97,22 @@ function filterBy(
 
       break;
     case 'contrast':
-      let cb2 = (against) => (color) => getContrast(color, against);
+      let q = (against) => (color) => contrast(color, against);
 
-      cb = baseFilterBy(
+      z = w(
         'contrast',
-        cb2(against),
+        q(against),
         // @ts-ignore
         start,
         end
       );
       break;
     case 'distance':
-      let cb1 = (against) => (color) => differenceHyab()(against, color);
+      let u = (against) => (color) => differenceHyab()(against, color);
 
-      cb = baseFilterBy(
+      z = w(
         'distance',
-        cb1(color2hex(against)),
+        u(token('hex')(against)),
 
         // @ts-ignore
         start,
@@ -138,9 +120,9 @@ function filterBy(
       );
       break;
     case 'hue':
-      cb = baseFilterBy(
+      z = w(
         factor,
-        getChannel(`${colorspace}.h`),
+        get(`${colorspace}.h`),
         // @ts-ignore
         start,
         end
@@ -148,18 +130,18 @@ function filterBy(
       break;
     case 'lightness':
       end = !end ? ranges[colorspace][mcchn(colorspace).split('.')[1]][1] : end;
-      cb = baseFilterBy(
+      z = w(
         factor,
-        getChannel(mlchn(colorspace)),
+        get(mlchn(colorspace)),
         // @ts-ignore
         start,
         end
       );
       break;
     case 'luminance':
-      cb = baseFilterBy(
+      z = w(
         factor,
-        getLuminance,
+        luminance,
         // @ts-ignore
         start,
         end
@@ -175,8 +157,8 @@ function filterBy(
    * @returns {Collection}  A collection of the filtered colors.
    */
   return (collection) => {
-    return cb(collection);
+    return z(collection);
   };
 }
 
-export default filterBy;
+export { filterBy };

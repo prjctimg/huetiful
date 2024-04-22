@@ -1,55 +1,21 @@
 /**
  * @typedef { import('../types/types.js').ColorToken} ColorToken
  * @typedef { import('../types/types.js').Collection} Collection
- * @typedef { import('../types/types.js').HueColorSpaces} HueColorSpaces
+
  * @typedef {import('../types/types.js').FactObject} FactObject
  * @typedef {import('../types/types.js').InterpolatorOptions} InterpolatorOptions
  * @typedef {import('../types/types.js').SchemeType} SchemeType
- * @typedef {import('../types/types.js').Order} Order
+ * @typedef {import('../types/types.js').Colorspaces} Colorspaces
  * @typedef {import('../types/types.js').ColorOptions} ColorOptions
  * @typedef {import('../types/types.js').PairedSchemeOptions} PairedSchemeOptions
  * @typedef {import('../types/types.js').HueShiftOptions} HueShiftOptions
  * @typedef {import('../types/types.js').EarthtoneOptions} EarthtoneOptions
- * @typedef {import('../types/types.js').UniformColorSpaces} UniformColorSpaces
+
  * @typedef {import('../types/types.js').DeficiencyType} DeficiencyType
  */
 
-import * as filterBy from './filterBy.js';
-import * as sortBy from './sortBy.js';
-import {
-  discoverPalettes as _dp,
-  alpha as _opac,
-  isAchromatic as _ia,
-  isCool as _icl,
-  isWarm as _iwm,
-  overtone as _ot,
-  color2hex as _hx,
-  getChannel as _gchn,
-  getContrast as _gctrst,
-  getLuminance as _glmnce,
-  setChannel as _schn,
-  setLuminance as _slm,
-  or,
-  mcchn,
-  scheme as _schm,
-  pastel as _pstl,
-  hueShift as _hshft,
-  getHueFamily as _ghf,
-  pairedScheme as _ps,
-  earthtone as _rthtn,
-  getComplimentaryHue as _gch,
-  colorDeficiency as _cds,
-  interpolator as _pltr,
-  interpolateSpline as _pltrspln,
-  getNearestColor as _gnrstc,
-  gt,
-  brighten as _brghtn,
-  darken as drkn
-} from './index.js';
-import { tailwindColors } from './colors.js';
-
 /**
- * @public
+ * 
  * @this {ColorArray}
  Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
  * @example
@@ -65,7 +31,7 @@ console.log(wrapper.sortByHue('desc', 'lch').output());
  */
 class ColorArray {
   /**
-   * @public
+   *
    * @param {Collection} colors The collection of colors to bind.
    */
   constructor(colors) {
@@ -74,7 +40,7 @@ class ColorArray {
   }
 
   /**
-   * @public
+   * 
    
  * Returns the nearest color(s) in the bound collection against
  * @param {ColorToken} color  The color to use for distance comparison.
@@ -100,10 +66,10 @@ console.log(load(cols).getNearestColor('blue', 3));
   }
 
   /**
-   * @public
+   * 
      
      *  Returns a spline interpolator function with customizable interpolation methods (by selecting the `kind` of ), with support for generating color scales for cyclic data (by setting the `closed` parameter to `true`) and optional channel specific overrides.
-     * @param {HueColorSpaces} [colorspace='lch'] The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
+     * @param {Colorspaces} [colorspace='lch'] The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
      * @param {'natural' | 'monotone' | 'basis'} kind The type of the spline interpolation method. Default is basis.
      * @param {boolean} closed Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false
      * @param {Pick<InterpolatorOptions, 'hueFixup' | 'easingFn' | 'domain'>} options Optional channel specific overrides.
@@ -140,7 +106,7 @@ console.log(load(cols).getNearestColor('blue', 3));
   }
 
   /**
-   * @public
+   * 
    *
    * Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
    * @param {SchemeType} schemeType (Optional) The palette type you want to return.
@@ -173,7 +139,7 @@ console.log(load(cols).getNearestColor('blue', 3));
   }
 
   /**
-   * @public
+   *
    * @returns Returns the result value from the chain.
    */
   output() {
@@ -182,7 +148,7 @@ console.log(load(cols).getNearestColor('blue', 3));
 }
 
 /**
- * @public
+ *
  * A wrapper function over the `ColorArray` class which returns a new instance of the class. Use it to invoke the class without using the `new` keyword
  * @param {Collection} colors A collection of colors to chain the array methods on. Every element in the array will be parsed as a color token.
  * @returns {ColorArray} A new instance of the `ColorArray` class with the passed in collection bound to it.
@@ -192,7 +158,7 @@ function load(colors) {
 }
 
 /**
- * @public
+ * 
  * @internal
  @this {ColorArray}
  * Creates a lazy chain wrapper over a single color token that has all the functions that take a `ColorToken` as their first argument.
@@ -208,7 +174,7 @@ console.log(wrapper.color2hex());
 
 class Color {
   /**
-   * @public
+   *
    *
    * @param {ColorToken} [c= '#000'] The color to bind.
    * @param {ColorOptions} [options= {}] Optional overrides and properties for the bound color.
@@ -257,7 +223,7 @@ class Color {
   }
 
   /**
-   * @public
+   * 
  *
  * Sets/Gets the opacity or `alpha` channel of a color. If the `value` parameter is omitted it gets the bound color's `alpha` value.
  * @param {number|string} [amount=undefined] The value to apply to the opacity channel. The value is normalized to the range [0,1]
@@ -290,7 +256,7 @@ console.log(myColor)
   }
 
   /**
-   * @public
+   * 
  *
  *  Returns the specified channel value on the bound color token.
  * @param {string} mc The mode and channel to be retrieved. For example `rgb.b` will return the value of the blue channel's value in the RGB color space of that color.
@@ -304,13 +270,13 @@ console.log(color('#a1bd2f').getChannel('rgb.g'))
  *
 */
 
-  getChannel(mc) {
+  get(mc) {
     // @ts-ignore
     return _gchn(`${this['colorspace']}.${mc.toLowerCase()}`)(this['_color']);
   }
 
   /**
-   * @public
+   * 
  *
  * Sets the specified channel value on the bound color token.
  * @param {string} mc The mode and channel to work with. For example `'rgb.b'`.
@@ -327,14 +293,14 @@ console.log(myColor.getChannel('lch.h'))
 // 10
  */
 
-  setChannel(mc, value) {
+  set(mc, value) {
     // @ts-ignore
     this['_color'] = _schn(mc)(this['_color'], value);
     return this;
   }
 
   /**
-   * @public
+   *
    * Interpolates the bound color via the `origin` at the point `t`. Call `output()` to get the results.
    * @param {ColorToken} origin The color to interpolate via.
    * @param {number} t The point in the interpolation to return. Expected value is in the range [0,1]
@@ -354,7 +320,7 @@ console.log(myColor.getChannel('lch.h'))
   }
 
   /**
-   * @public
+   * 
    * 
    * The inverse of `darken`. Brightens the bound color by increasing the lightness channel.
    * @param {number} amount The amount to brighten with. The value is expected to be in the range `[0,1]`. Default is  `0.5`.
@@ -371,7 +337,7 @@ console.log(myColor.getChannel('lch.h'))
   }
 
   /**
-   * @public
+   * 
  *
  * Darkens the bound color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
  * @param {number} amount The amount to darken with. The value is expected to be in the range `[0,1]`. Default is `0.5`.
@@ -390,18 +356,14 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   }
 
   /**
-   * @public
+   *
    * Returns the bound `ColorToken` as a hexadecimal string.
    * @returns {string}
    */
-  color2hex() {
-    // @ts-ignore
-    this['_color'] = _hx(this['_color']);
-    return this['_color'];
-  }
+  // token() {}
 
   /**
-   * @public
+   *
    * Returns a randomized pastel variant of the bound color token. Preserves the bound `ColorToken` type.
    *
    * @example
@@ -421,7 +383,7 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   }
 
   /**
-   * @public
+   * 
    * Returns a palette that contains a base color that is incremented by a `hueStep` to get the final hue to pair with.The colors are interpolated via white or black. A negative `hueStep` will pick a color that is `n` degrees behind the base color. Call `output()` to get the final result.
    * @param {PairedSchemeOptions} options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
    * @returns {Color|ColorArray} An array containing the paired scheme.
@@ -433,8 +395,9 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
    */
 
-  pairedScheme(options) {
-    if (gt(options['iterations'], 1)) {
+  pair(options) {
+    if (gt(options['num'], 1)) {
+      // @ts-ignore
       return new ColorArray(_ps(this['_color'], options));
     } else {
       // @ts-ignore
@@ -444,7 +407,7 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   }
 
   /**
-   * @public
+   * 
    * Returns a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down) from a single color. `maxLightness` and `minLightness` values determine how light or dark our colour will be at either extreme. Call `output()` to get the result.
    * @param {HueShiftOptions} options The optional overrides object to customize the `HueShiftOptions` like easing function.
    *@returns {ColorArray|Color} An array of colors. The length of the resultant array is the number of iterations multiplied by 2 plus the scheme color passed or `(iterations * 2) + 1`. Preserves the passed in `ColorToken` type.
@@ -465,8 +428,8 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   ]
    */
 
-  hueShift(options) {
-    if (gt(options['iterations'], 1)) {
+  hueshift(options) {
+    if (gt(options['num'], 1)) {
       this['colors'] = _hshft(this['_color'], this['colorspace'], options);
 
       return new ColorArray(this['colors']);
@@ -478,10 +441,10 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   }
 
   /**
-   * @public
+   * 
    *
    * Returns the complementary hue of the bound color. The function returns `'gray'` when you pass in an achromatic color.
-   * @param {UniformColorSpaces} colorspace The colorspace to fetch the complimentary color from. Only supports uniform colorspaces.
+   * @param {Colorspaces} colorspace The colorspace to fetch the complimentary color from. Only supports uniform colorspaces.
    * @param {boolean} [colorObj=false] Optional boolean whether to return a custom object with the color `name` and `hueFamily` as keys or just the result color. Default is `false`.
    * @returns {FactObject|Color} A custom object if `colorObj` is `true` else the complimentary color. Preserves the bound `Colortoken` type.
    * @example
@@ -505,7 +468,7 @@ console.log(color('blue'+-).darken(0.3, 'lch'));
   }
 
   /**
-   * @public
+   * 
    * Returns a spline interpolation between an `earthtone` and the bound color. Call `output()` to get the results.
    * @param {EarthtoneOptions} options Optional overrides for customizing interpolation and easing functions.
    * @returns {Color|ColorArray} The collection of colors resulting from the earthtone interpolation. Preserves the `ColorToken` type of the bound color.
@@ -545,7 +508,8 @@ console.log(color(base).earthtone({ iterations:8 }).output())
       or(options, {})
     );
 
-    if (gt(options['iterations'], 1)) {
+    if (gt(options['num'], 1)) {
+      // @ts-ignore
       return new ColorArray(this['colors']);
     } else {
       // @ts-ignore
@@ -556,7 +520,7 @@ console.log(color(base).earthtone({ iterations:8 }).output())
   }
 
   /**
-   * @public
+   *
    * Gets the contrast value between the bound and  comparison ( or `against`) color.
    * @param {ColorToken} [against='#000'] The color to use for comparison.
    * @returns {number} The contrast value between the two colors.
@@ -590,7 +554,7 @@ console.log(color(base).earthtone({ iterations:8 }).output())
   }
 
   /**
-   * @public
+   * 
    * Sets/Gets the `luminance` value of the bound color.
    * @param {number|string} amount The `luminance` value to set on the bound color.
    * @returns {number|Color} The `luminance` value if the method is called with no arguments else it returns a color with its `luminance `value mutated.
@@ -621,19 +585,10 @@ console.log(color(myColor).luminance(0.5));
  }
    */
 
-  luminance(amount) {
-    if (amount) {
-      // @ts-ignore
-      this['_color'] = _slm(this['_color'], this['_color']);
-      this['_luminance'] = _glmnce(this['_color']);
-      return this;
-    }
-    // @ts-ignore
-    return _glmnce(this['_color']);
-  }
+  luminance(amount) {}
 
   /**
-   * @public
+   *
    * Returns the final value from the chain.
    * @returns {ColorToken}
    * @example
@@ -653,7 +608,7 @@ console.log(color(myColor).luminance(0.5));
   }
 
   /**
-   * @public
+   *
    * Sets/Gets the saturation value of the bound color.
    * @param {string|number} amount The amount of `saturation` to set on the bound color token. See also the supported string expressions in the docs.
    * @see https://huetiful-js.com/basics/string-expressions
@@ -693,10 +648,9 @@ console.log(color(myColor).luminance(0.5));
   }
 
   /**
-   * @public
+   * 
  *@experimental
- * Returns `true` if the bound color has hue or is grayscale else `false`.
- * @param {HueColorSpaces} [colorspace='lch'] The colorspace to use when checking if the `color` is grayscale or not.
+ * Returns `true` if the bound color has hue or is grayscale elsColorspaces} [colorspace='lch'] The colorspace to use when checking if the `color` is grayscale or not.
 
  * @returns True if the color is achromatic else false.
  * @example
@@ -745,13 +699,13 @@ console.log(grays.map(test));
  */
 
   // @ts-ignore
-  isAchromatic(colorspace) {
+  achromatic(colorspace) {
     // @ts-ignore
     return _ia(this['_color']);
   }
 
   /**
-   * @public
+   * 
  *
  * @experimental
  * Returns `true` if color the bound color can be roughly classified as a warm color else `false`.
@@ -773,12 +727,8 @@ console.log(color(sample[2]).isWarm());
  
  */
 
-  isWarm() {
-    // @ts-ignore
-    return _iwm(this['_color']);
-  }
   /**
-   * @public
+   * 
  *
 * Returns `true` if color the bound color can be roughly classified as a cool color else `false`.
 * @returns {boolean}
@@ -801,13 +751,13 @@ console.log(color(sample[2]).isCool());
  
  */
 
-  isCool() {
+  temp() {
     // @ts-ignore
     return _icl(this['_color']);
   }
 
   /**
-   * @public
+   * 
    *
    * Returns the bound color as a simulation of the specified type of color vision deficiency with the deficiency filter's intensity determined by the `severity` value.
    * @param {DeficiencyType} deficiencyType The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' can't perceive `'blue'` light properly. Default is `'red'` when the defeciency parameter is `undefined`.
@@ -835,7 +785,7 @@ console.log(color(sample[2]).isCool());
   }
 
   /**
-   * @public
+   * 
  *
  * Returns the hue which is biasing the passed in color.
  * @returns {string} The name of the overtone hue. If an achromatic color is passed in it return the string `'gray'` otherwise if the color has no bias it returns false.
@@ -857,7 +807,7 @@ console.log(color("blue").overtone())
   }
 
   /**
-   * @public
+   * 
  *
  * Returns the hue family of the bound color with the overtone included (if it has one). For achromatic colors it returns `"gray"`.
  * @returns {string} The name of the hue family for example `red` or `blue-green`.
@@ -870,13 +820,13 @@ console.log(color("#310000").getHueFamily())
 // red
  */
 
-  getHueFamily() {
+  family() {
     // @ts-ignore
     return _ghf(this['_color']);
   }
 
   /**
-   * @public
+   * 
  *
  * Returns a randomised classic color scheme from the bound color.
  * @param {"analogous"|"triadic"|"tetradic"|"complementary"|"splitComplementary"} schemeType  Any classic color scheme.
@@ -897,7 +847,7 @@ console.log(color("#a1bd2f").scheme("triadic"))
 }
 
 /**
- * @public
+ * 
  * Wrapper function over the Color class that returns a new Color method chain.
  * @param {ColorToken} color The color token to bind.
  * @returns {Color} A `new Color` class with all the utilities that take a single color as the first parameter bound to its prototype.

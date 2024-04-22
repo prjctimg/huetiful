@@ -1,18 +1,3 @@
-/*
- * @preserve 
- * @license
- * types.d.ts - Type declarations for huetiful-js.
- * Contains colors from TailwindCSS released under the MIT permissive licence.
-Copyright 2024 Dean Tarisai.
-This file is licensed to you under the Apache License, Version 2.0 (the 'License');
-you may not use this file except in compliance with the License. You may obtain a copy
-of the License at http://www.apache.org/licenses/LICENSE-2.0
-Unless required by applicable law or agreed to in writing, software distributed under
-the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
-OF ANY KIND, either express or implied. See the License for the specific language
-governing permissions and limitations under the License.
-*/
-
 // Color token types
 export type ColorTuple =
   | [Colorspaces, number, number, number, number?]
@@ -38,7 +23,7 @@ export type ColorOptions = {
   alpha?: number;
   lightness?: number;
   temperature?: number;
-  colorspace?: HueColorSpaces;
+  colorspace?: Colorspaces;
   luminance?: number;
   saturation?: number;
 
@@ -46,7 +31,7 @@ export type ColorOptions = {
   darkMode?: ColorToken;
 
   contrast?: number;
-  colorSpace?: HueColorSpaces;
+  mode?: Colorspaces;
 };
 export type ColorDistanceOptions = {
   weights?: [number, number, number, number];
@@ -62,15 +47,38 @@ export type AdaptivePaletteOptions = {
   colorBlind?: boolean;
 };
 
-export type InterpolatorOptions = Pick<
-  Options,
-  | 'easingFn'
-  | 'hueInterpolator'
-  | 'chromaInterpolator'
-  | 'hueFixup'
-  | 'lightnessInterpolator'
-  | 'domain'
->;
+export type InterpolatorOptions = {
+  /**
+   * The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
+   */
+  colorspace?: Colorspaces;
+
+  /**
+   * The easing function to use.
+   * @param  t Any value between 0 and 1
+   * @returns A number.
+   */
+  easingFn?: (t: number) => number;
+
+  /**
+   * The type of hue fixup to apply to the hue channels during interpolation.
+   */
+  hueFixup?: 'longer' | 'shorter';
+
+  /**
+   * The amount of samples to return in the result collection.
+   */
+  num?: number;
+
+  /**
+   * The type of the spline interpolation method. Default is basis.
+   */
+  kind?: 'basis' | 'monotone' | 'natural';
+  /**
+     Optional parameter to return the `'closed'` variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is `false`
+     */
+  closed?: boolean;
+};
 
 /**
  * @type
@@ -78,43 +86,25 @@ export type InterpolatorOptions = Pick<
  */
 type Options = {
   /**
-   * The easing function to use.
-   * @param t Any value between 0 and 1
-   * @returns A number.
+   *  domain The color stops in the range [0,1] passed in as an array. The color scale returned is from the start (which is element at index 0) up to the optional end which defaults to 1.
    */
-  easingFn?: (t: number) => number;
+  domain?: [number, number?];
+};
 
+export type PairedSchemeOptions = InterpolatorOptions & {
   /**
-   *@param The interpolation method to use on the hue channel.
-   */
-  hueInterpolator?: Interpolator;
-
-  /**
-   *@param The interpolation method to use on the chroma channel.
-   */
-  chromaInterpolator?: Interpolator;
-
-  /**
-   *@param The type of hue fixup to apply to the hue channels during interpolation.
-   */
-  hueFixup?: (arr: number[]) => number[];
-
-  /**
-   *@param The interpolation method to use on the lightness channel.
-   */
-  lightnessInterpolator?: Interpolator;
-  /**
-   *@param The color to pass through during interpolation.
+   * The color to pass through during interpolation.
    */
   via?: Tone;
 
   /**
-   *@param The amount of hue angles to increment each iteration with.
+   * The amount of hue angles to increment each iteration with.
    */
   hueStep?: number;
-
+};
+export type EarthtoneOptions = InterpolatorOptions & {
   /**
-   * * @param earthtone The earthtone to interpolate with.
+   * *  earthtone The earthtone to interpolate with.
    */
   earthtones?:
     | 'light-gray'
@@ -127,36 +117,7 @@ type Options = {
     | 'cocoa'
     | 'dark-brown'
     | 'dark';
-
-  /**
-   *@param The amount of samples to return in the result collection.
-   */
-  iterations?: number;
-
-  /**
-   * * @param minLightness  Minimum lightness value (range 0-100).
-   */
-  minLightness?: number;
-  /**
-   * @param maxLightness  Maximum lightness value (range 0-100).
-   */
-  maxLightness?: number;
-
-  /**
-   * @param domain The color stops in the range [0,1] passed in as an array. The color scale returned is from the start (which is element at index 0) up to the optional end which defaults to 1.
-   */
-  domain?: [number, number?];
 };
-
-export type PairedSchemeOptions = Omit<
-  Options,
-  'earthtones' | 'maxLightness' | 'minLightness'
->;
-export type EarthtoneOptions = Omit<
-  Options,
-  'hueStep' | 'via' | 'maxLightness' | 'minLightness'
->;
-
 /**
  * Override options for factor distributed palettes.
  */
@@ -164,7 +125,7 @@ export type DistributionOptions = {
   /**
    * The colorspace to distribute the specified factor in. Defaults to `lch` when the passed in mode has no `'chroma' | 'hue' | 'lightness'` channel
    */
-  colorspace?: UniformColorSpaces;
+  colorspace?: Colorspaces;
   /**
    * The extreme end for the `factor`  we wish to distribute. If `mean` is picked, it will map the `average` value of that factor in the passed in collection.
    */
@@ -179,16 +140,33 @@ export type DistributionOptions = {
    * Exclude the color with the specified `extremum` from the distribution operation. Default is `false`
    */
   excludeSelf?: boolean;
-
-  /**
-   * The fixup function to use when distributing the hue factor.
-   */
-  hueFixup?: 'shorter' | 'longer';
 };
 
-export type HueShiftOptions = Omit<Options, 'via' | 'earthtones' | ''> &
-  InterpolatorOptions;
-export type Interpolator = (arr: number[]) => (t: number) => number;
+export type Stats = {
+  [factor in Factor]: {
+    extremums: [number, number];
+    colors: [ColorToken, ColorToken];
+    mean: number;
+  };
+} & {
+  colorspace: Colorspaces;
+  against: ColorToken | null;
+};
+
+export type HueShiftOptions = Pick<
+  InterpolatorOptions,
+  'colorspace' | 'easingFn' | 'num'
+> & {
+  /**
+   * *  minLightness  Minimum lightness value (range 0-100).
+   */
+  minLightness?: number;
+  /**
+   *  maxLightness  Maximum lightness value (range 0-100).
+   */
+  maxLightness?: number;
+};
+
 export type Tone = 'light' | 'dark';
 
 /**
@@ -196,6 +174,9 @@ export type Tone = 'light' | 'dark';
  */
 export type DeficiencyType = 'red' | 'blue' | 'green' | 'monochromacy';
 
+/**
+ * Basic color families and their overtoned variants,
+ */
 export type HueFamily =
   | 'red-purple'
   | 'red'
@@ -208,6 +189,9 @@ export type HueFamily =
   | 'purple-blue'
   | 'purple';
 
+/**
+ * The `diverging` color scheme in the ColorBrewer colormap.
+ */
 export type DivergingScheme =
   | 'Spectral'
   | 'RdYlGn'
@@ -218,6 +202,10 @@ export type DivergingScheme =
   | 'BrBG'
   | 'RdGy'
   | 'PuOr';
+
+/**
+ * The `qualitative` color scheme in the ColorBrewer colormap.
+ */
 export type QualitativeScheme =
   | 'Set2'
   | 'Accent'
@@ -228,6 +216,9 @@ export type QualitativeScheme =
   | 'Pastel2'
   | 'Pastel1';
 
+/**
+ * The `sequential` color scheme in the ColorBrewer colormap.
+ */
 export type SequentialScheme =
   | 'OrRd'
   | 'PuBu'
@@ -250,10 +241,9 @@ export type SequentialScheme =
   | 'Viridis';
 
 /**
- * @type
- * @description Any recognizable color token.
+ * Any recognizable color token.
  */
-export type ColorToken = number | string | ColorObject | ColorTuple | boolean;
+export type ColorToken = number | ColorObject | ColorTuple | boolean | string;
 
 export type ColorObject = {
   [channel: string]: number | undefined;
@@ -264,13 +254,7 @@ export type ColorObject = {
 };
 
 /**
- * @param
- * An array of baseColor tokens (in short, just an array of valid colors)
- */
-
-/**
- * @type
- * The property being queried. Used in utilities that perform operations on collections.
+ * The color property being queried.
  */
 export type Factor =
   | 'luminance'
@@ -282,37 +266,26 @@ export type Factor =
 
 type callback = unknown;
 
-export type UniformColorSpaces =
-  | 'lch'
-  | 'jch'
-  | 'dlch'
-  | 'lch'
-  | 'lch65'
-  | 'lchuv'
-  | 'oklch';
-
+/**
+ * The `colorspace` or `mode` to use.
+ */
 export type Colorspaces =
-  | 'a98'
-  | 'cubehelix'
-  | 'dlab'
-  | 'jab'
   | 'lab'
   | 'lab65'
   | 'lrgb'
-  | 'luv'
   | 'oklab'
   | 'rgb'
-  | HueColorSpaces;
-
-export type HueColorSpaces =
-  | UniformColorSpaces
-  | 'hsl'
+  | 'lch'
+  | 'jch'
+  | 'lch'
+  | 'lch65'
+  | 'oklch'
   | 'hsv'
-  | 'hsi'
-  | 'hwb'
-  | 'okhsl'
-  | 'okhsv';
+  | 'hwb';
 
+/**
+ * The value of the Tailwind color.
+ */
 export type ScaleValues =
   | '050'
   | '100'
@@ -326,6 +299,9 @@ export type ScaleValues =
   | '900'
   | '950';
 
+/**
+ * Color families in the default TailwindCSS palette.
+ */
 export type TailwindColorFamilies =
   | 'indigo'
   | 'gray'

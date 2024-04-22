@@ -1,6 +1,4 @@
-/// Extracted from TailwindCSS
-
-export default {
+const tailwind = {
   /*     black: '#000',
         white: '#fff', */
   indigo: {
@@ -245,4 +243,51 @@ export default {
     800: '#9f1239',
     900: '#881337'
   }
+};
+
+var {
+  indigo,
+  red,
+  rose,
+  gray,
+  green,
+  pink,
+  purple,
+  blue,
+  sky,
+  violet,
+  amber,
+  emerald,
+  fuchsia,
+  lime,
+  neutral,
+  orange,
+  stone,
+  teal,
+  yellow,
+  zinc
+} = tailwind;
+
+export default tailwind;
+export {
+  indigo,
+  red,
+  rose,
+  gray,
+  green,
+  pink,
+  purple,
+  blue,
+  sky,
+  violet,
+  amber,
+  emerald,
+  fuchsia,
+  lime,
+  neutral,
+  orange,
+  stone,
+  teal,
+  yellow,
+  zinc
 };

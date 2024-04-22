@@ -1,12 +1,12 @@
 {
   "include": [
-     "src/accessibility.js",
+     "src/adaptive.js",
       "src/stats.js",
       "src/wrappers.js",
       "src/generators.js",
       "src/utils.js",
       "src/colors.js",
-      "src/converters.js",
+      "src/token.js",
       "src/filterBy.js",
       "src/sortBy.js"
       

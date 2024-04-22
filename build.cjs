@@ -9,7 +9,6 @@ build({
   bundle: true,
   outfile: `./lib/huetiful.esm.js`,
   external: Object.keys(devDependencies),
-  entryPoints: [`./src/index.js`],
   minify: false
 });
 console.log(`ESM build done.`);
@@ -21,7 +20,7 @@ build({
   format: 'iife',
   minify: false,
   outfile: `./lib/huetiful.umd.js`,
-  minifySyntax: true,
+  
   keepNames: true
 });
 
@@ -34,6 +33,7 @@ build({
   format: 'iife',
   minify: true,
   globalName: 'huetiful',
+  minifySyntax: true,
   outfile: `./lib/huetiful.umd.min.js`
 });
 console.log(`[info] UMD build (bundled & minified) successful`);

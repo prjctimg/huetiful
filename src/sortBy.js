@@ -1,26 +1,16 @@
 /**
  * @typedef { import('../types/types.js').ColorToken} ColorToken
  * @typedef { import('../types/types.js').Collection} Collection
- * @typedef { import('../types/types.js').HueColorSpaces} HueColorSpaces
+ * @typedef { import('../types/types.js').Colorspaces} Colorspaces
  * @typedef {import('../types/types.js').Factor} Factor
  * @typedef {import('../types/types.js').Order} Order
  */
 
-/**
- * @license
- * sortBy.js - Utility for sorting collections of colors.
-Copyright 2024 Dean Tarisai.
-This file is licensed to you under the Apache License, Version 2.0 (the 'License');
-you may not use this file except in compliance with the License. You may obtain a copy
-of the License at http://www.apache.org/licenses/LICENSE-2.0
-Unless required by applicable law or agreed to in writing, software distributed under
-the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
-OF ANY KIND, either express or implied. See the License for the specific language
-governing permissions and limitations under the License.
-*/
-
-import { sortedColl, mlchn, mcchn, getLuminance, getChannel } from './index.js';
-import { wcagContrast, differenceHyab } from 'culori/fn';
+import { sortedColl, mlchn, mcchn } from './index.js';
+import { luminance } from './luminance.js';
+import { get } from './get.js';
+import { contrast } from './contrast.js';
+import { differenceHyab } from 'culori/fn';
 
 /**
  * @public
@@ -33,7 +23,7 @@ import { wcagContrast, differenceHyab } from 'culori/fn';
  * * `luminance` - Sorts colors according to their relative brightness as defined by the WCAG3 definition.
  *
  * @param {Factor} factor The factor to use for sorting the colors.
- * @param {Order} [order='asc'] The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`).
+ * @param {'asc'|'desc'} [order='asc'] The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`).
  * @param options
  
  
@@ -56,7 +46,7 @@ function sortBy(
      */
     against: '#fff',
     /**
-     * @type {HueColorSpaces} The mode colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' | 'contrast' | 'distance'`.
+     * @type {Colorspaces} The mode colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' | 'contrast' | 'distance'`.
      */
     colorspace: 'lch'
   }
@@ -65,13 +55,13 @@ function sortBy(
     cb;
   switch (factor) {
     case 'chroma':
-      cb = sortedColl('chroma', getChannel(mcchn(colorspace)), order);
+      cb = sortedColl('chroma', get(mcchn(colorspace)), order);
       break;
     case 'hue':
-      cb = sortedColl('hue', getChannel(`${colorspace}.h`), order);
+      cb = sortedColl('hue', get(`${colorspace}.h`), order);
       break;
     case 'luminance':
-      cb = sortedColl('luminance', getLuminance, order);
+      cb = sortedColl('luminance', luminance, order);
       break;
     case 'distance':
       var cb1 = (a) => (c) => {
@@ -81,11 +71,11 @@ function sortBy(
       cb = sortedColl('distance', cb1(against), order);
       break;
     case 'contrast':
-      let cb2 = (a) => (c) => wcagContrast(c, a);
+      let cb2 = (a) => (c) => contrast(c, a);
       cb = sortedColl('contrast', cb2(against), order);
       break;
     case 'lightness':
-      cb = sortedColl('lightness', getChannel(mlchn(colorspace)), order);
+      cb = sortedColl('lightness', get(mlchn(colorspace)), order);
       break;
   }
 

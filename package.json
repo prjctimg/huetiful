@@ -11,7 +11,7 @@
     "./utils": "./src/utils.js",
     "./sortBy": "./src/sortBy.js",
     "./filterBy": "./src/filterBy.js",
-    "./converters": "./src/converters.js",
+    "./token": "./src/token.js",
     "./wrappers": "./src/wrappers.js",
     "./stats": "./src/stats.js",
     "./accessibility": "./src/accessibility.js",
@@ -75,13 +75,13 @@
   },
   "typedocOptions": {
     "entryPoints": [
-      "src/accessibility.js",
+      "src/adaptive.js",
       "src/stats.js",
       "src/wrappers.js",
       "src/generators.js",
       "src/utils.js",
       "src/colors.js",
-      "src/converters.js",
+      "src/token.js",
       "src/filterBy.js",
       "src/sortBy.js"
     ],
