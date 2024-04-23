@@ -5,7 +5,7 @@
  * @typedef {import('../types/types.js').PairedSchemeOptions} PairedSchemeOptions
  */
 
-import { lte, or } from './index.js';
+import { lte, or } from './fp/index.js';
 import { token } from './token.js';
 import { set } from './set.js';
 import { interpolator } from './interpolator.js';

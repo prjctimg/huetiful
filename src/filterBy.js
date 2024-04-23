@@ -8,7 +8,7 @@
 import { differenceHyab } from 'culori/fn';
 
 // @ts-ignore
-import { mcchn, mlchn, filteredColl } from './fp';
+import { mcchn, mlchn, filteredColl } from './fp/index.js';
 import { token } from './token.js';
 import { get } from './get.js';
 import { contrast } from './contrast.js';

@@ -6,7 +6,7 @@
  * @typedef {import('../types/types.js').ScaleValues} ScaleValues
  */
 
-import { values } from './fp';
+import { values } from './fp/index.js';
 import { nearest as nrst, differenceHyab } from 'culori/fn';
 import { colors } from './colors.js';
 

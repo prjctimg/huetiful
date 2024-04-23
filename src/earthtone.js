@@ -7,7 +7,7 @@
 // @ts-ignore
 import { samples, blerp } from 'culori/fn';
 import { token } from './token.js';
-import { or } from './fp';
+import { or } from './fp/index.js';
 import { interpolator } from './interpolator.js';
 
 /**

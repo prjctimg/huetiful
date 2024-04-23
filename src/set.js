@@ -2,7 +2,7 @@
  * @typedef { import('../types/types.js').ColorToken} ColorToken
  */
 
-import { exprParser } from './fp';
+import { exprParser } from './fp/index.js';
 import { token } from './token.js';
 
 /**

@@ -1,3 +1,7 @@
+/**
+ * @typedef {import('../types/types.js').ColorToken} ColorToken
+ */
+
 import { token } from './token.js';
 import { gmchn } from './fp/index.js';
 

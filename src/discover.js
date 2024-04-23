@@ -4,7 +4,7 @@
  */
 
 import { differenceEuclidean, nearest, differenceHyab } from 'culori/fn';
-import { mcchn, mlchn, keys, values, gmchn } from './fp';
+import { mcchn, mlchn, keys, values, gmchn } from './fp/index.js';
 import { scheme } from './scheme.js';
 import { token } from './token.js';
 

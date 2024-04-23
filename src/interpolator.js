@@ -23,9 +23,9 @@ import {
   gt,
   gte,
   values,
-  token,
   gmchn
-} from './index.js';
+} from './fp/index.js';
+import { token } from './token.js';
 
 /**
  *  Returns a spline interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.

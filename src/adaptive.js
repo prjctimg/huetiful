@@ -71,4 +71,4 @@ function adaptive(color, options) {
     par = 0.5;
 }
 
-export { defeciency };
+export { adaptive };

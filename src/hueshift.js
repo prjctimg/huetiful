@@ -5,7 +5,7 @@
 
 import { easingSmoothstep } from 'culori/fn';
 // @ts-ignore
-import { adjustHue, or, mcchn, mlchn, gmchn, lt, gt, gte } from './fp';
+import { adjustHue, or, mcchn, mlchn, gmchn, lt, gt, gte } from './fp/index.js';
 import { token } from './token.js';
 import ranges from './maps/ranges.js';
 

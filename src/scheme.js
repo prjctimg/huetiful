@@ -5,7 +5,7 @@
  */
 
 import { easingSmoothstep, samples } from 'culori/fn';
-import { adjustHue, rand, or, keys } from './fp';
+import { adjustHue, rand, or, keys } from './fp/index.js';
 import { token } from './token.js';
 
 /**

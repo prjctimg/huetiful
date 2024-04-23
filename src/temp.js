@@ -7,7 +7,7 @@
  */
 
 import hue from './maps/hue.js';
-import { floorCeil, inRange, keys } from './fp';
+import { floorCeil, inRange, keys } from './fp/index.js';
 import { get } from './get.js';
 
 /**

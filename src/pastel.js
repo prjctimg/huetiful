@@ -3,7 +3,7 @@
  */
 
 import { averageNumber, random } from 'culori/fn';
-import { max, min } from './fp';
+import { max, min } from './fp/index.js';
 import { token } from './token.js';
 
 /**

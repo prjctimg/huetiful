@@ -3,7 +3,7 @@
  * @typedef { import('../types/types.js').ColorToken} ColorToken
  */
 import hue from './maps/hue.js';
-import { customConcat, lt, max, entries } from './fp';
+import { customConcat, lt, max, entries } from './fp/index.js';
 import { get } from './get.js';
 
 /**

@@ -1,15 +1,9 @@
-/**
- * @typedef { import('../types/types.js').ColorToken} ColorToken
- */
-
-import { mlchn, mcchn } from './fp/index.js';
-import { get } from './get.js';
-
+export type ColorToken = import('../types/types.js').ColorToken;
 /**
  * Checks if a color token is achromatic (without hue or simply grayscale).
- * 
+ *
  * A color token is considered achromatic or gray if:
- * 
+ *
  * * It has a falsy chroma/saturation channel when its channel values are computed in a hue based colorspace because the hue channel is hue dependant.
  * * It has a falsy hue channel (usually happens if you use a custom interpolation method other than interpolatorLinear and one of the hue channels in the interpolation has a falsy channel) which makes the hue `NaN`
  * @param {ColorToken} color The color token to test if it is achromatic or not.
@@ -55,19 +49,4 @@ console.log(grays.map(achromatic));
 ]
 
  */
-function achromatic(color) {
-  // If a color has no lightness then it has no hue so its technically not achromatic since white and black are not grayscale
-  var o = {
-    l: get(`${mlchn('jch')}`)(color),
-    c: get(`${mcchn('jch')}`)(color)
-  };
-
-  // Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
-  return o['c'] &&
-    o['l'] !==
-      (false || NaN || undefined || void 0 || 0 || Infinity || -Infinity)
-    ? false
-    : true;
-}
-
-export { achromatic };
+export function achromatic(color: ColorToken): boolean;
