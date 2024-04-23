@@ -13,8 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: |
+          npm i
+          npm run docs
       - name: Deploy PR Preview
         uses: rossjrw/pr-preview-action@v1.4.7
+
         with:
           token: ${{secrets.GH_PAT}}
           preview-branch: gh-pages
