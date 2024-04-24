@@ -11,10 +11,10 @@ import { or } from './fp/index.js';
 import { interpolator } from './interpolator.js';
 
 /**
- *  Creates a color scale between an earthtone and any color token using spline interpolators on the channels.
+ * Creates a color scale between an earth cctone and any color token using spline interpolation.
  * @param {ColorToken} color The color to interpolate an earth tone with.
  * @param options Optional overrides for customising interpolation and easing functions.
- * @returns {ColorToken | Array<ColorToken>} Collection of colors resulting from the earthtone interpolation. Preserves the `ColorToken` type of the passed in color.
+ * @returns {string | Array<string>}
  * @example
  *
  * import { earthtone } from 'huetiful-js'
@@ -63,10 +63,9 @@ function earthtone(
     kind: method
   });
 
+  // @ts-ignore
   return (
-    // @ts-ignore
     (iterations === 1 && token('hex')(f(0.5))) ||
-    // @ts-ignore
     samples(iterations).map((t) => token('hex')(f(t)))
   );
 }
