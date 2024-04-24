@@ -22,9 +22,15 @@ import { or } from './fp/index.js';
 // Add reference to articles
 // Read more about the minimum accepted values for palette accessibility
 /**
- * Returns the color as a simulation of the passed in `defeciencyType` of color vision deficiency with the deficiency filter's intensity determined by the `severity` value.
- * @param {DeficiencyType} [kind='red'] The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is `'red'` when the deficiency parameter is undefined or any falsy value.
- * @returns The color as its simulated variant. Preserves the `ColorToken` type of the pased in color.
+ * Simulates how a color may be perceived by people with color vision deficiency.
+ * 
+ * To avoid writing the long types, the expected parameters for the `kind` of blindness are simply the colors that are hard to perceive for the type of color blindness:
+ * 
+ * * 'tritanopia' - An inability to distinguish the color 'blue'. The `kind` is `'blue'`.
+ * * 'deuteranopia' - An inability to distinguish the color 'green'.. The `kind` is `'green'`.
+ * * 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
+ * * 
+ * @param {DeficiencyType} [kind='red'] The type of color vision deficiency.  Default is `'red'`.
  * @example
  *
  * import { deficiency, token('hex') } from 'huetiful-js'
@@ -44,7 +50,7 @@ function deficiency(kind) {
   const f = (d, c, t) => {
     let res;
     c = token('hex')(c);
-    switch (d) {
+    switch (d.toLowerCase()) {
       case 'blue':
         res = filterDeficiencyTrit(t)(c);
         break;
@@ -65,6 +71,7 @@ function deficiency(kind) {
   /**
    * @param {ColorToken} color The color to return its simulated variant.
    * @param {number} [severity=0.1] The intensity of the filter. The exepected value is between [0,1]. Default is `0.1`.
+   * @returns {string}
    */
   return (color, severity) => {
     // Store the keys of deficiency types
@@ -72,7 +79,8 @@ function deficiency(kind) {
     // Cast 'red' as the default parameter
     kind = or(kind, 'red');
 
-    if (typeof kind === 'string' && deficiencies.some((el) => el === kind)) {
+    if (deficiencies.some((el) => el === kind.toLowerCase())) {
+      // @ts-ignore
       return f(kind, color, severity);
     } else {
       throw Error(
