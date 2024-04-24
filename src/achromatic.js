@@ -60,14 +60,13 @@ console.log(grays.map(achromatic));
  */
 function achromatic(color) {
   // If a color has no lightness then it has no hue so its technically not achromatic since white and black are not grayscale
-  var o = {
-    l: get(`${mlchn('jch')}`)(color),
-    c: get(`${mcchn('jch')}`)(color),
-    p: token('array', { targetMode: 'rgb', omitMode: true })(color),
-    f: (x) =>
+  var [l, c, p, f] = [
+    get(`${mlchn('jch')}`)(color),
+    get(`${mcchn('jch')}`)(color),
+    token('array', { targetMode: 'rgb', omitMode: true })(color),
+    (x) =>
       x !== (false || NaN || undefined || void 0 || 0 || Infinity || -Infinity)
-  };
-  var { l, c, p, f } = o;
+  ];
 
   q = eq(p[0], p[1]) && eq(p[0], p[2]) && eq(p[2], p[1]);
   // Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
