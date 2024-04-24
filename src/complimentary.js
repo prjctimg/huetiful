@@ -10,7 +10,7 @@ import { get } from './get.js';
 import { set } from './set.js';
 
 /**
- * Returns the complementary color (180 degrees from that color) of the passed in color token.
+ * Returns the complimentary color of the passed in color token. A complimentary color is 180 degrees away on the hue channel.
  * 
  * The object (if the `obj` parameter is `true`) returns:
  * 
@@ -19,28 +19,26 @@ import { set } from './set.js';
  * 
  * The function is internally guarded against achromatic colors which means no action will be done on a gray color and it will be returned as is. Pure black or white (`'#000000'` and `'#ffffff'` respectively) may return unexpected results.
  * 
- * @param {ColorToken} color The color to retrieve its complimentary hue.
- * @param {boolean} obj Optional boolean whether to return an object with the result color hue family or just the result color. Default is `false`.
+ * @param {ColorToken} color The color to retrieve its complimentary equivalent.
+ * @param {boolean} obj Optional boolean whether to return an object with the result color's hue family or just the result color. Default is `false`.
  * @returns {ColorToken|FactObject}
  * @example
- *import { complementary } from "huetiful-js";
+ *import { complimentary } from "huetiful-js";
  *
  *
-console.log(complementary("pink",'lch', true))
+console.log(complimentary("pink",'lch', true))
 //// { hue: 'blue-green', color: '#97dfd7ff' }
 
-console.log(complementary("purple"))
+console.log(complimentary("purple"))
 // #005700ff
  */
-function complimentary(color, colorspace, obj = false) {
-  var mc = `${or(colorspace, 'jch')}.h`;
-
-  var h = adjustHue(get(mc)(color) + 180 * rand(0.965, 1));
+function complimentary(color, obj = false) {
+  var h = adjustHue(get('jch.h')(color) + 180 * rand(0.965, 1));
 
   var o = (h && {
     hue: family(h),
     // @ts-ignore
-    color: token('hex')(set(mc)(color, h))
+    color: token('hex')(set('jch.h')(color, h))
   }) || { hue: 'gray', color: color };
   // @ts-ignore
   return (obj && o) || o['color'];
