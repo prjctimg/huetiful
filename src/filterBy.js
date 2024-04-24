@@ -16,7 +16,7 @@ import { luminance } from './luminance.js';
 import ranges from './maps/ranges.js';
 
 /**
- * Filters a collection of colors using the specified `factor` as the criteria. The supported options are:
+ * Filters a collection of colors using the specified `factor` as the criterion. The supported options are:
  * * `'contrast'` - Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
  * * `'lightness'` - Returns colors in the specified lightness range.
  * * `'chroma'` - Returns colors in the specified `saturation` or `chroma` range. The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
@@ -35,10 +35,9 @@ import ranges from './maps/ranges.js';
  * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * 
  * 
- * @param {Factor} factor The factor to use as a filtering criteria.
+ * @param {Factor} factor The factor to use as a filtering criterion.
  * @param {number|string}  start The minimum end of the `factor` range.
- * @param {number|string} end The maximum end of the `factor` range. 
- * @returns Array of filtered colors.
+ * @param {number|string} end The maximum end of the `factor` range.
  *
  * @example
  * 
@@ -57,6 +56,9 @@ let sample = [
   '#600000',
   '#720000',
 ]
+
+// Filtering colors by their relative contrast against 'green'. 
+// The collection will include colors with a relative contrast equal to 3 or greater.
 
 console.log(filterBy('contrast','>=3')(sample,{ against:'green' }))
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
@@ -82,7 +84,7 @@ function filterBy(
   function w(a, b, s, e) {
     return (y) => filteredColl(a, b)(y, s, e);
   }
-  switch (factor) {
+  switch (factor.toLowerCase()) {
     case 'chroma':
       end = !end ? ranges[colorspace][mcchn(colorspace).split('.')[1]][1] : end;
 
@@ -97,7 +99,7 @@ function filterBy(
 
       break;
     case 'contrast':
-      let q = (against) => (color) => contrast(color, against);
+      let q = (a) => (b) => contrast(b, a);
 
       z = w(
         'contrast',
@@ -108,7 +110,7 @@ function filterBy(
       );
       break;
     case 'distance':
-      let u = (against) => (color) => differenceHyab()(against, color);
+      let u = (a) => (b) => differenceHyab()(a, b);
 
       z = w(
         'distance',
