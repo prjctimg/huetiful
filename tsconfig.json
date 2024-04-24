@@ -5,7 +5,7 @@
       "src/colors.js",
       "src/complimentary.js",
       "src/contrast.js",
-      "src/darken.js",
+      "src/lightness.js",
       "src/deficiency.js",
       "src/discover.js",
       "src/earthtone.js",

@@ -26,7 +26,7 @@ import { discover } from './discover.js';
 import { gt, mcchn, or } from './fp/index.js';
 import { colors } from './colors.js';
 import { token } from './token.js';
-import { darken, brighten } from './darken.js';
+import { darken, brighten } from './lightness.js';
 import { hueshift } from './hueshift.js';
 import { deficiency } from './deficiency.js';
 import { luminance } from './luminance.js';
