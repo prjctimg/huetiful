@@ -1,6 +1,6 @@
 /**
 
- * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} ColorToken
  * @typedef { import('../types/types.js').Collection} Collection
  * @typedef {import('../types/types.js').QualitativeScheme} QualitativeScheme
  * @typedef {import('../types/types.js').SequentialScheme} SequentialScheme

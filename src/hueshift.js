@@ -1,6 +1,6 @@
 /**
  * @typedef {import('../types/types.js').HueShiftOptions} HueShiftOptions
- * @typedef {import('../types/types.js').ColorToken} ColorToken
+ * @typedef {import('../types/types.js').Collection} ColorToken
  */
 
 import { easingSmoothstep } from 'culori/fn';
@@ -21,7 +21,7 @@ import ranges from './maps/ranges.js';
  * 
  *  The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or `(num * 2) + 1`.
  * 
- * @param color The color to use as the base of the palette.
+ * @param baseColor The color to use as the base of the palette.
  * @param {HueShiftOptions} options The optional overrides object.
  *@returns {Array<string>}
  * @example
@@ -41,7 +41,7 @@ console.log(hueShiftedPalette);
 ]
  */
 function hueshift(
-  color,
+  baseColor,
   options = {
     colorspace: 'jch'
   }
@@ -51,7 +51,9 @@ function hueshift(
     ((n - a0) / (b0 - a0)) * (b1 - a1) + a1;
 
   // @ts-ignore
-  color = token('object', { targetMode: colorspace.toLowerCase() })(color);
+  baseColor = token('object', { targetMode: colorspace.toLowerCase() })(
+    baseColor
+  );
 
   // @ts-ignore
   let { num, hueStep, minLightness, maxLightness, easingFn } = options;
@@ -77,7 +79,7 @@ function hueshift(
   maxLightness =
     typeof maxLightness === 'number' && lt(maxLightness, v) ? maxLightness : v;
   // Pass in default values if any of the opts is undefined
-  const z = [color];
+  const z = [baseColor];
   // Maximum number of iterations possible.
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
   // @ts-ignore
@@ -86,17 +88,17 @@ function hueshift(
     // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
     const [y, x] = [
       {
-        [l]: f(i)(0.1, num)(color[l], minLightness),
-        [c]: color[c],
+        [l]: f(i)(0.1, num)(baseColor[l], minLightness),
+        [c]: baseColor[c],
         // @ts-ignore
-        h: adjustHue(color['h'] - hueStep * (i * easingFn(i))),
+        h: adjustHue(baseColor['h'] - hueStep * (i * easingFn(i))),
         mode: colorspace
       },
       {
         [l]: f(i)(u, v)(u, 100),
-        [c]: color[c],
+        [c]: baseColor[c],
         // @ts-ignore
-        h: adjustHue(color['h'] + hueStep * (i * easingFn(i))),
+        h: adjustHue(baseColor['h'] + hueStep * (i * easingFn(i))),
         mode: colorspace
       }
     ];

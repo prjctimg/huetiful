@@ -1,5 +1,5 @@
 //@ts-nocheck
-export * from './get.js';
+export * from './mc.js';
 export * from './generators.js';
 export * from './filterBy.js';
 export * from './sortBy.js';
@@ -29,6 +29,5 @@ export * from './overtone.js';
 export * from './pair.js';
 export * from './pastel.js';
 export * from './scheme.js';
-export * from './set.js';
 export * from './temp.js';
 export * from './maps/tailwind.js';

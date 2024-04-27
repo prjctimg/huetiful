@@ -1,6 +1,6 @@
 /**
 
- * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} ColorToken
  * @typedef {import('../types/types.js').TailwindColorFamilies} TailwindColorFamilies
  * @typedef {import('../types/types.js').ScaleValues} ScaleValues
 

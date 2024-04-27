@@ -1,10 +1,10 @@
 // @ts-nocheck
 /**
- * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} ColorToken
  */
 
 import { mlchn, mcchn, eq } from './fp/index.js';
-import { get } from './get.js';
+import { mc } from './mc.js';
 import { token } from './token.js';
 
 /**
@@ -61,8 +61,8 @@ console.log(grays.map(achromatic));
 function achromatic(color) {
   // If a color has no lightness then it has no hue so its technically not achromatic since white and black are not grayscale
   var [l, c, p, f] = [
-    get(`${mlchn('jch')}`)(color),
-    get(`${mcchn('jch')}`)(color),
+    mc(`${mlchn('jch')}`)(color),
+    mc(`${mcchn('jch')}`)(color),
     token('array', { targetMode: 'rgb', omitMode: true })(color),
     (x) =>
       x !== (false || NaN || undefined || void 0 || 0 || Infinity || -Infinity)

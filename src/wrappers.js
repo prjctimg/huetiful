@@ -1,7 +1,7 @@
 // i really need you to believe in me :smile:
 
 /**
- * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} ColorToken
  * @typedef { import('../types/types.js').Collection} Collection
 
  * @typedef {import('../types/types.js').FactObject} FactObject
@@ -31,11 +31,9 @@ import { hueshift } from './hueshift.js';
 import { deficiency } from './deficiency.js';
 import { luminance } from './luminance.js';
 import { earthtone } from './earthtone.js';
-import { get } from './get.js';
+import { mc } from './mc.js';
 
 /**
- * 
- * @this {ColorArray}
  Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
  * @example
  * import { ColorArray } from 'huetiful-js'
@@ -149,6 +147,22 @@ console.log(load(cols).nearest('blue', 3));
   discover(kind) {
     this['colors'] = discover(this['colors'], kind);
     return this;
+  }
+
+  filterBy(options) {
+    return filterBy(this['colors'], options);
+  }
+
+  sortBy(options) {
+    return sortBy(options)(this['colors']);
+  }
+
+  stats(options) {
+    return stats(this['colors'], options);
+  }
+
+  distribute(options) {
+    return discover(this['colors'], options);
   }
 
   /**
@@ -657,7 +671,7 @@ console.log(color(myColor).luminance(0.5));
 
       return this;
     } else {
-      this['_saturation'] = get(
+      this['_saturation'] = mc(
         `${this['colorspace']}.${mcchn(this['colorspace'])}`
         // @ts-ignore
       )(this['_color']);

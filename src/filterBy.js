@@ -1,5 +1,5 @@
 /**
- * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} ColorToken
  * @typedef { import('../types/types.js').Collection} Collection
  * @typedef {import('../types/types.js').Factor} Factor
  * @typedef {import('../types/types.js').Colorspaces} Colorspaces
@@ -10,7 +10,7 @@ import { differenceHyab } from 'culori/fn';
 // @ts-ignore
 import { mcchn, mlchn, filteredColl } from './fp/index.js';
 import { token } from './token.js';
-import { get } from './get.js';
+import { mc } from './mc.js';
 import { contrast } from './contrast.js';
 import { luminance } from './luminance.js';
 import ranges from './maps/ranges.js';
@@ -90,7 +90,7 @@ function filterBy(
 
       z = w(
         factor,
-        get(mcchn(colorspace)),
+        mc(mcchn(colorspace)),
 
         // @ts-ignore
         start,
@@ -124,7 +124,7 @@ function filterBy(
     case 'hue':
       z = w(
         factor,
-        get(`${colorspace}.h`),
+        mc(`${colorspace}.h`),
         // @ts-ignore
         start,
         end
@@ -134,7 +134,7 @@ function filterBy(
       end = !end ? ranges[colorspace][mcchn(colorspace).split('.')[1]][1] : end;
       z = w(
         factor,
-        get(mlchn(colorspace)),
+        mc(mlchn(colorspace)),
         // @ts-ignore
         start,
         end

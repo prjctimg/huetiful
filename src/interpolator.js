@@ -1,13 +1,13 @@
 /**
- * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} ColorToken
  * @typedef { import('../types/types.js').Collection} Collection
  * @typedef {import('../types/types.js').InterpolatorOptions} InterpolatorOptions
  
 */
 
 import {
-  samples as _smp,
-  interpolate as _pltr,
+  samples,
+  interpolate,
   interpolatorSplineBasis,
   interpolatorSplineBasisClosed,
   interpolatorSplineMonotone,
@@ -28,16 +28,23 @@ import {
 import { token } from './token.js';
 
 /**
- *  Returns a spline interpolator function with customizable interpolation methods (passed in as 'kind') and optional channel specific overrides.
- * @param {Collection} colors The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result or making all the colors in the resulting interpolation gray.
+ * Interpolates the passed in colors and returns a collection of colors from the interpolation.
+ * 
+ * Some things to keep in mind when creating color scales using this function:
+ * 
+ * * To create a color scale for cyclic values pass `true` to the `closed` parameter in the `options` object. 
+ * * If `num` is 1 then a single color is returned from the resulting interpolation with the internal `t` value at `0.5` else a collection of the `num` of color scales is returned.
+ * * If the collection of colors contains an achromatic color, the resulting samples may all be grayscale or pure black.
+ *  
+ * @param {Collection} baseColors The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result or making all the colors in the resulting interpolation gray.
  * @param {InterpolatorOptions} options Optional overrides.
- * @returns A collection of colors resulting from the interpolation.
+ * @returns {Array<string> | string}
  *
  * @example
  *
  * import { interpolator } from 'huetiful-js';
 
-console.log(interpolator(['pink', 'blue'], 'lch', 8));
+console.log(interpolator(['pink', 'blue'], { num:8 }));
 
 // [
   '#ffc0cb', '#ff9ebe',
@@ -48,7 +55,7 @@ console.log(interpolator(['pink', 'blue'], 'lch', 8));
  *
  */
 function interpolator(
-  colors = [],
+  baseColors = [],
 
   options = {
     colorspace: 'lch',
@@ -57,14 +64,7 @@ function interpolator(
     closed: false
   }
 ) {
-  var {
-    hueFixup,
-    easingFn,
-    kind,
-    closed,
-    colorspace,
-    num: iterations
-  } = options || {};
+  var { hueFixup, easingFn, kind, closed, colorspace, num } = options || {};
   // Set the internal defaults
   easingFn = or(easingFn, pltrconfg['ef']);
 
@@ -84,10 +84,10 @@ function interpolator(
         interpolatorSplineNatural;
   }
 
-  colors = values(colors);
+  baseColors = values(baseColors);
 
   // @ts-ignore
-  let p = _pltr([...colors, easingFn], colorspace, {
+  let p = interpolate([...baseColors, easingFn], colorspace, {
     // @ts-ignore
     h: {
       fixup: hueFixup,
@@ -103,16 +103,17 @@ function interpolator(
 
   // make sure samples is an absolute integer
   // @ts-ignore
-  iterations = gte(iterations, 1) ? Math.abs(iterations) : 1;
+  num = gte(num, 1) ? Math.abs(num) : 1;
 
   var o;
-  if (gt(iterations, 1)) {
+  if (gt(num, 1)) {
     // @ts-ignore
-    o = _smp(iterations).map((s) => token('hex')(p(s)));
+    o = samples(num).map((s) => token('hex')(p(s)));
   } else {
     // @ts-ignore
-    o = o.push(token('hex')(p(0.5)));
+    o = token('hex')(p(0.5));
   }
+  // @ts-ignore
   return o;
 }
 

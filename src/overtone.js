@@ -1,19 +1,20 @@
 /**
  
- * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} ColorToken
  */
 
 import { family } from './family.js';
 import { achromatic } from './achromatic.js';
 
 /**
- * @public
- 
- * Returns the hue which is biasing the passed in color
+ * Returns the name of the hue family which is biasing the passed in color.
+ * 
+ * * If an achromatic color is passed in it returns the string `'gray'`
+ * * If the color has no bias it returns `false`.
  * @param {ColorToken} color The color to query its overtone.
- * @returns {string} The name of the overtone hue. If an achromatic color is passed in it return the string `'gray'` otherwise if the color has no bias it returns false.
+ * @returns {string | false}
  * @example
- *
+ * 
  * import { overtone } from "huetiful-js";
  *
 console.log(overtone("fefefe"))

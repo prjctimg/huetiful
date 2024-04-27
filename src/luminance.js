@@ -1,19 +1,20 @@
 /**
- * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} ColorToken
  */
 
 import { token } from './token.js';
 import { interpolate, wcagLuminance } from 'culori/fn';
 
 /**
- * Gets the luminance of the passed in color token if the `amount` parameter is not passed in else it will set the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
+ * Gets the luminance of the passed in color token if the `amount` parameter is not passed in else it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
  * @param { ColorToken } color The color to retrieve or adjust luminance.
  * @param { number } [amount=undefined] The amount of luminance to set. The value range is normalised between [0,1]
- * @returns { ColorToken  | number} The mutated color with the modified properties. Preserves the `ColorToken` type of the passed in color.
+ * @returns { string  | number} 
  * @example
  *
  * import { luminance } from 'huetiful-js'
 
+// Getting the luminance
 
 console.log(luminance('#a1bd2f'))
 // 0.4417749513730954
@@ -33,6 +34,7 @@ console.log(colors('all', '400').map((c) => luminance(c)));
    0.3464512307705231, 0.34012939384198054
 ]
 
+// setting the luminance
 
 let myColor = luminance('#a1bd2f', 0.5)
 

@@ -1,5 +1,5 @@
 /**
- * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} ColorToken
  * @typedef { import('../types/types.js').DeficiencyType} DeficiencyType
  */
 

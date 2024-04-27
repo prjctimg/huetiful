@@ -1,6 +1,6 @@
 /**
  * @typedef { import('../types/types.js').Collection} Collection
- * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} ColorToken
  */
 
 // @ts-ignore
@@ -11,9 +11,9 @@ import { or } from './fp/index.js';
 import { interpolator } from './interpolator.js';
 
 /**
- * Creates a color scale between an earth cctone and any color token using spline interpolation.
- * @param {ColorToken} color The color to interpolate an earth tone with.
- * @param options Optional overrides for customising interpolation and easing functions.
+ * Creates a color scale between an earth tone and any color token using spline interpolation.
+ * @param {ColorToken} baseColor The color to interpolate an earth tone with.
+ * @param {import('./wrappers.js').EarthtoneOptions} options Optional overrides for customising interpolation and easing functions.
  * @returns {string | Array<string>}
  * @example
  *
@@ -24,17 +24,9 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 // [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
 
  */
-function earthtone(
-  color,
-  options = {
-    colorspace: 'jch',
-    method: '',
-    closed: false
-  }
-) {
-  let { iterations, earthtones, colorspace, method, closed } = options;
-  color = token('hex')(color);
-  iterations = or(iterations, 1);
+function earthtone(baseColor, options) {
+  let { num, earthtones, colorspace, kind, closed } = options || {};
+  baseColor = token('hex')(baseColor);
 
   earthtones = or(earthtones, 'dark');
   const v = {
@@ -55,19 +47,12 @@ function earthtone(
   // Get the channels to be lerped for each color
   // The t values will be similar. For each color at the point tx,ty allocate the values to each respective channel
 
-  const f = interpolator([u, color], {
-    // @ts-ignore
+  return interpolator([u, baseColor], {
     colorspace: colorspace,
+    num: num,
     closed: closed,
-    // @ts-ignore
-    kind: method
+    kind: kind
   });
-
-  // @ts-ignore
-  return (
-    (iterations === 1 && token('hex')(f(0.5))) ||
-    samples(iterations).map((t) => token('hex')(f(t)))
-  );
 }
 
 export { earthtone };

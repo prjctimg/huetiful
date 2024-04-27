@@ -1,5 +1,5 @@
 /**
- * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} ColorToken
  */
 
 import { averageNumber, random } from 'culori/fn';
@@ -8,7 +8,8 @@ import { token } from './token.js';
 
 /**
  * Returns a random pastel variant of the passed in color token.
- * @param {ColorToken} color The color to return a pastel variant of.
+ * 
+ * @param {ColorToken} baseColor The color to return a pastel variant of.
  * @returns {ColorToken} A random pastel color.
  * @example
  *
@@ -18,8 +19,11 @@ console.log(pastel("green"))
 
 // #036103ff
  */
-function pastel(color) {
+function pastel(baseColor) {
   /**
+   * The colors from which the randomized values are obtained from were extracted from this article:
+   *
+   * @see www.wikipedia.com Wikipedia
    * The elements in each array are chroma, lightness of the color in jch and then the color in numerical representation. Got the values from sample pastel colors on the Wikipedia article
    */
   var w = [
@@ -41,10 +45,10 @@ function pastel(color) {
     mxl: max(v)
   };
   // @ts-ignore
-  color = token('object', { targetMode: 'jch' })(color);
+  baseColor = token('object', { targetMode: 'jch' })(baseColor);
 
   var q = random('lch65', {
-    h: color['h'],
+    h: baseColor['h'],
     c: [t['mns'], t['mxs']],
     l: [t['mnl'], t['mxl']]
   });

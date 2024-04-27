@@ -1,5 +1,5 @@
 /**
- * @typedef { import('../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../types/types.js').Collection} ColorToken
  * @typedef { import('../types/types.js').Collection} Collection
  * @typedef { import('../types/types.js').Colorspaces} Colorspaces
  * @typedef {import('../types/types.js').Stats} Stats
@@ -8,7 +8,7 @@
 
 import hue from './maps/hue.js';
 import { floorCeil, inRange, keys } from './fp/index.js';
-import { get } from './get.js';
+import { mc } from './mc.js';
 
 /**
  * Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.
@@ -43,7 +43,7 @@ function temp(color) {
   }
 
   // First we need to get the hue value which we'll pass to the predicate
-  return temperaturePredicate(get('lch.h')(color), 'cool') ? 'cool' : 'warm';
+  return temperaturePredicate(mc('lch.h')(color), 'cool') ? 'cool' : 'warm';
 }
 
 export { temp };

@@ -1,6 +1,6 @@
 // Color token types
 export type ColorTuple =
-  | [Colorspaces, number, number, number, number?]
+  | [string, number, number, number, number?]
   | Array<number>;
 
 export type Order = 'asc' | 'desc';
@@ -13,11 +13,16 @@ export type FactObject =
 
 export type SchemeType = 'analogous' | 'triadic' | 'tetradic' | 'complementary';
 
-export type Collection =
-  | Array<ColorToken<any>>
-  | ArrayLike<ColorToken>
-  | Map<any, ColorToken>
-  | { [key: string]: ColorToken };
+export type Collection<T = any> = T extends any[]
+  ?
+      | Array<ColorTuple>
+      | Array<string>
+      | Array<number>
+      | Array<{ [key: string]: T }>
+      | Array<boolean>
+  : T extends object
+    ? { [key: string]: T }
+    : typeof T;
 
 export type ColorOptions = {
   alpha?: number;
@@ -142,15 +147,73 @@ export type DistributionOptions = {
   excludeSelf?: boolean;
 };
 
-export type Stats = {
-  [factor in Factor]: {
-    extremums: [number, number];
-    colors: [ColorToken, ColorToken];
-    mean: number;
-  };
-} & {
-  colorspace: Colorspaces;
-  against: ColorToken | null;
+export type Stats =
+  | {
+      [factor in Factor]: {
+        extremums?: [number, number];
+        colors?: [ColorToken, ColorToken];
+        against?: ColorToken | null;
+        mean?: number;
+      };
+    }
+  | ({
+      extremums?: [number, number];
+      colors?: [ColorToken, ColorToken];
+      against?: ColorToken | null;
+      mean?: number;
+    } & {
+      colorspace?: Colorspaces;
+      displayable?: number;
+    });
+
+/**
+ * Options for specifying sorting conditions.
+ */
+export type SortByOptions = {
+  /**
+   
+   * The factor to use for sorting the colors.
+   */
+  factor?: Factor;
+  /**
+      * The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`).
+
+     */
+  order?: 'asc' | 'desc';
+  /**
+   * The color to compare the `factor` with.
+   * All the `factor`s are calculated between this color and the ones in the colors array.
+   * Only works for the `'distance'` and `'contrast'` factor.
+   */
+  against?: ColorToken;
+  /**
+   * The colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' | 'contrast' | 'distance'`.
+   */
+  colorspace?: Colorspaces;
+};
+
+export type StatsOptions = {
+  /**
+   * The color to compare the `factor` with. All the `factor`s are calculated between this color and the ones in the colors array. Only works for the `'distance'` and `'contrast'` factor.
+   */
+  against?: ColorToken;
+  /**
+   * The colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' | 'contrast' | 'distance'`.
+   */
+  colorspace?: Colorspaces;
+
+  /**
+   * Choose whether to use the `against` color token for factors that support it as an overload (that is, all factors except `distance` and `contrast)
+   */
+  relativeMean?: boolean;
+  factor?: Factor | Array<Factor>;
+};
+
+export type SchemeOptions = Pick<
+  InterpolatorOptions,
+  'num' | 'colorspace' | 'easingFn'
+> & {
+  kind?: SchemeType;
 };
 
 export type HueShiftOptions = Pick<

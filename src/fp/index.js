@@ -1,25 +1,11 @@
 /**
- * @typedef { import('../../types/types.js').ColorToken} ColorToken
+ * @typedef { import('../../types/types.js').Collection} ColorToken
  * @typedef { import('../../types/types.js').Collection} Collection
  * @typedef {import('../../types/types.js').InterpolatorOptions} InterpolatorOptions
  * @typedef {import('../../types/types.js').TailwindColorFamilies} TailwindColorFamilies
  */
 
-/**
- * 
- * @license
- * fp.js - Helper functions for huetiful-js.
- Copyright 2024 Dean Tarisai.
-This file is licensed to you under the Apache License, Version 2.0 (the 'License');
-you may not use this file except in compliance with the License. You may obtain a copy
-of the License at http://www.apache.org/licenses/LICENSE-2.0
-Unless required by applicable law or agreed to in writing, software distributed under
-the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
-OF ANY KIND, either express or implied. See the License for the specific language
-governing permissions and limitations under the License.
-*/
-
-import { get } from '../get.js';
+import { mc } from '../mc.js';
 
 import limits from '../maps/ranges.js';
 
@@ -189,7 +175,7 @@ function adjustHue(x) {
 
 function chnDiff(x, mc) {
   return (y) => {
-    const cb = (color) => get(mc)(color);
+    const cb = (color) => mc(mc)(color);
     if (cb(x) < cb(y)) {
       return cb(y) - cb(x);
     } else {
@@ -384,7 +370,7 @@ function sortedColl(f = 'factor', cb, o = 'asc', obj = false) {
       // @ts-ignore
       u = r.sort(customSort(o, f));
 
-      return (obj === true && u) || u.map((color) => color['color']);
+      return (obj === true && u) || u.map((w) => w['color']);
     } else {
       u = new Map();
       values(r)
@@ -500,6 +486,7 @@ export {
   or,
   gmchn,
   pltrconfg,
+  isArray,
   reOp,
   reNum,
   entries,

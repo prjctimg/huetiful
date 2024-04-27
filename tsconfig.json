@@ -10,7 +10,7 @@
       "src/discover.js",
       "src/earthtone.js",
       "src/family.js",
-      "src/get.js",
+      "src/mc.js",
       "src/overtone.js",
       "src/hueshift.js",
       "src/nearest.js",
