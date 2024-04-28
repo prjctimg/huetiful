@@ -1,7 +1,7 @@
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
- * @typedef { import('../types/types.js').Collection} Collection
- * @typedef {import('../types/types.js').InterpolatorOptions} InterpolatorOptions
+ * @typedef { import('./types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} Collection
+ * @typedef {import('./types.js').InterpolatorOptions} InterpolatorOptions
  
 */
 
@@ -38,7 +38,7 @@ import { token } from './token.js';
  *  
  * @param {Collection} baseColors The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result or making all the colors in the resulting interpolation gray.
  * @param {InterpolatorOptions} options Optional overrides.
- * @returns {Array<string> | string}
+ * @returns {Array<string|ColorToken> | string|ColorToken}
  *
  * @example
  *
@@ -108,10 +108,10 @@ function interpolator(
   var o;
   if (gt(num, 1)) {
     // @ts-ignore
-    o = samples(num).map((s) => token('hex')(p(s)));
+    o = samples(num).map((s) => token(p(s), options['token']));
   } else {
     // @ts-ignore
-    o = token('hex')(p(0.5));
+    o = token(p(0.5), options['token']);
   }
   // @ts-ignore
   return o;

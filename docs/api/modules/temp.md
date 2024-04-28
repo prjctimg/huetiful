@@ -2,19 +2,39 @@
 
 # Module: temp
 
+## Type Aliases
+
+### Collection
+
+Ƭ **Collection**\<\>: `Collection`
+
+#### Defined in
+
+[temp.js:3](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/temp.js#L3)
+
+___
+
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[temp.js:2](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/temp.js#L2)
+
 ## Functions
 
 ### temp
 
 ▸ **temp**(`color`): ``"cool"`` \| ``"warm"``
 
-Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.
+Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'`.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](alpha.md#colortoken) | The color to check the temperature. |
+| `color` | `any` | The color to check the temperature. |
 
 #### Returns
 
@@ -43,4 +63,4 @@ console.log(map(sample, isCool));
 
 #### Defined in
 
-[src/temp.js:38](https://github.com/prjctimg/huetiful/blob/ed00af0/src/temp.js#L38)
+[temp.js:39](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/temp.js#L39)

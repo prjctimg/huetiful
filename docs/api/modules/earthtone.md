@@ -2,29 +2,44 @@
 
 # Module: earthtone
 
+## Type Aliases
+
+### Collection
+
+Ƭ **Collection**\<\>: `Collection`
+
+#### Defined in
+
+[earthtone.js:2](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/earthtone.js#L2)
+
+___
+
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[earthtone.js:3](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/earthtone.js#L3)
+
 ## Functions
 
 ### earthtone
 
-▸ **earthtone**(`color`, `options?`): [`ColorToken`](alpha.md#colortoken) \| [`ColorToken`](alpha.md#colortoken)[]
+▸ **earthtone**(`baseColor`, `options`): `string` \| `string`[]
 
-Creates a color scale between an earthtone and any color token using spline interpolators on the channels.
+Creates a color scale between an earth tone and any color token using spline interpolation.
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `color` | [`ColorToken`](alpha.md#colortoken) | `undefined` | The color to interpolate an earth tone with. |
-| `options` | `Object` | `undefined` | Optional overrides for customising interpolation and easing functions. |
-| `options.closed` | `boolean` | `false` | - |
-| `options.colorspace` | `string` | `'jch'` | - |
-| `options.method` | `string` | `''` | - |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `baseColor` | `any` | The color to interpolate an earth tone with. |
+| `options` | `EarthtoneOptions` | Optional overrides for customising interpolation and easing functions. |
 
 #### Returns
 
-[`ColorToken`](alpha.md#colortoken) \| [`ColorToken`](alpha.md#colortoken)[]
-
-Collection of colors resulting from the earthtone interpolation. Preserves the `ColorToken` type of the passed in color.
+`string` \| `string`[]
 
 **`Example`**
 
@@ -37,4 +52,4 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 
 #### Defined in
 
-[src/earthtone.js:27](https://github.com/prjctimg/huetiful/blob/ed00af0/src/earthtone.js#L27)
+[earthtone.js:27](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/earthtone.js#L27)

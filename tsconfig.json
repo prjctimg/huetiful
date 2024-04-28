@@ -21,7 +21,6 @@
       "src/adaptive.js",
       "src/stats.js",
       "src/wrappers.js",
-      "src/set.js",
       "src/temp.js",
       "src/token.js",
       "src/scheme.js",
@@ -29,7 +28,7 @@
       "src/pair.js",
       "src/filterBy.js",
       "src/sortBy.js",
-    "types/types.d.ts"
+    "src/types.d.ts"
     ],"exclude":["**/*/node_modules"],
   "compilerOptions": {
     "lib":["es2023"],

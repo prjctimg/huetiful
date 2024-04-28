@@ -1,6 +1,6 @@
 /**
- * @typedef { import('../types/types.js').HueFamily}HueFamily
- * @typedef { import('../types/types.js').Collection} ColorToken
+ * @typedef { import('./types.js').HueFamily}HueFamily
+ * @typedef { import('./types.js').Collection} ColorToken
  */
 import hue from './maps/hue.js';
 import { customConcat, lt, max, entries } from './fp/index.js';

@@ -25,7 +25,7 @@ console.log(wrapper.color2hex());
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `c?` | [`ColorToken`](../modules/alpha.md#colortoken) | The color to bind. |
+| `c?` | `any` | The color to bind. |
 | `options?` | `ColorOptions` | Optional overrides and properties for the bound color. |
 
 #### Returns
@@ -34,25 +34,19 @@ console.log(wrapper.color2hex());
 
 #### Defined in
 
-[src/wrappers.js:195](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L195)
+[wrappers.js:323](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L323)
 
 ## Methods
 
 ### achromatic
 
-▸ **achromatic**(`colorspace`): `any`
+▸ **achromatic**(): `boolean`
 
 Returns `true` if the bound color has hue or is grayscale elsColorspaces} [colorspace='lch'] The colorspace to use when checking if the `color` is grayscale or not.
 
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `colorspace` | `any` |
-
 #### Returns
 
-`any`
+`boolean`
 
 True if the color is achromatic else false.
 
@@ -100,7 +94,7 @@ true,  true, false
 
 #### Defined in
 
-[src/wrappers.js:720](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L720)
+[wrappers.js:875](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L875)
 
 ___
 
@@ -141,7 +135,7 @@ console.log(myColor)
 
 #### Defined in
 
-[src/wrappers.js:260](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L260)
+[wrappers.js:388](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L388)
 
 ___
 
@@ -161,186 +155,26 @@ The inverse of `darken`. Brightens the bound color by increasing the lightness c
 
 [`Color`](wrappers.Color.md)
 
-The brightened color. Preserves the `ColorToken` type of the pased in color.
+The brightened color.
 
 **`Example`**
 
 ```ts
 import { color } from "huetiful-js";
 
-console.log(color('blue').brighten(0.3, 'lch'));
+console.log(color('blue').brighten(0.3));
 //#464646
 ```
 
 #### Defined in
 
-[src/wrappers.js:346](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L346)
+[wrappers.js:460](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L460)
 
 ___
 
-### contrast
+### complimentary
 
-▸ **contrast**(`against?`): `number`
-
-Gets the contrast value between the bound and  comparison ( or `against`) color.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `against?` | [`ColorToken`](../modules/alpha.md#colortoken) | The color to use for comparison. |
-
-#### Returns
-
-`number`
-
-The contrast value between the two colors.
-
-**`Example`**
-
-```ts
-import { color } from 'huetiful-js'
-
-console.log(color('pink').contrast('yellow'))
-// 1.4322318222624262
-```
-
-#### Defined in
-
-[src/wrappers.js:545](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L545)
-
-___
-
-### darken
-
-▸ **darken**(`amount`): [`Color`](wrappers.Color.md)
-
-Darkens the bound color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `amount` | `number` | The amount to darken with. The value is expected to be in the range `[0,1]`. Default is `0.5`. |
-
-#### Returns
-
-[`Color`](wrappers.Color.md)
-
-The darkened color. Preserves the `ColorToken` type of the pased in color.
-
-**`Example`**
-
-```ts
-import { color } from "huetiful-js";
-console.log(color('blue'+-).darken(0.3, 'lch'));
-//#464646
-```
-
-#### Defined in
-
-[src/wrappers.js:366](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L366)
-
-___
-
-### deficiency
-
-▸ **deficiency**(`kind`, `severity?`): [`Color`](wrappers.Color.md)
-
-Returns the bound color as a simulation of the specified type of color vision deficiency with the deficiency filter's intensity determined by the `severity` value.
-
-#### Parameters
-
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `kind` | [`DeficiencyType`](../modules/deficiency.md#deficiencytype) | `undefined` | The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' can't perceive `'blue'` light properly. Default is `'red'` when the defeciency parameter is `undefined`. |
-| `severity` | `number` | `1` | The intensity of the filter in the range [0,1]. |
-
-#### Returns
-
-[`Color`](wrappers.Color.md)
-
-The color as its simulated variant. Preserves the bound `ColorToken` type.
-
-**`Example`**
-
-```ts
-import { color } from 'huetiful-js'
-
-// Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
-// We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
-let tritanomaly = color(['rgb', 230, 100, 50, 0.5]).colorDeficiency('blue', 0.1)
-console.log(tritanomaly)
-// #dd663680
-
-// Here we are simulating color blindness of tritanomaly or we can't see 'red'. The severity is not explicitly set so it defaults to 1
-let protanopia = color({ h: 20, w: 50, b: 30, mode: 'hwb' }).colorDeficiency('red')
-console.log(protanopia)
-// #9f9f9f
-```
-
-#### Defined in
-
-[src/wrappers.js:800](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L800)
-
-___
-
-### earthtone
-
-▸ **earthtone**(`options`): [`ColorArray`](wrappers.ColorArray.md) \| [`Color`](wrappers.Color.md)
-
-Returns a spline interpolation between an `earthtone` and the bound color. Call `output()` to get the results.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `options` | `EarthtoneOptions` | Optional overrides for customizing interpolation and easing functions. |
-
-#### Returns
-
-[`ColorArray`](wrappers.ColorArray.md) \| [`Color`](wrappers.Color.md)
-
-The collection of colors resulting from the earthtone interpolation. Preserves the `ColorToken` type of the bound color.
-
-**`Example`**
-
-```ts
-import { color } from 'huetiful-js'
-
-let base = 'purple'
-
-console.log(color(base).earthtone({iterations:8}))
-
-ColorArray {
-colors: [
- '#352a21', '#3e2825',
- '#4c2624', '#5f2028',
- '#741033', '#860040',
- '#940049', '#99004b'
-]
-}
-
-console.log(color(base).earthtone({ iterations:8 }).output())
-// call output() to only get results array
-
-// [
- '#352a21', '#3e2825',
- '#4c2624', '#5f2028',
- '#741033', '#860040',
- '#940049', '#99004b'
-]
-```
-
-#### Defined in
-
-[src/wrappers.js:516](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L516)
-
-___
-
-### family
-
-▸ **family**(`colorObj?`): `FactObject` \| [`Color`](wrappers.Color.md)
+▸ **complimentary**(`colorObj?`): `FactObject` \| [`Color`](wrappers.Color.md)
 
 Returns the complementary hue of the bound color. The function returns `'gray'` when you pass in an achromatic color.
 
@@ -367,40 +201,197 @@ console.log(color("pink").getComplimentaryHue(true))
 
 #### Defined in
 
-[src/wrappers.js:471](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L471)
+[wrappers.js:614](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L614)
 
 ___
 
-### get
+### contrast
 
-▸ **get**(`mc`): `number`
+▸ **contrast**(`against?`): `number`
 
-Returns the specified channel value on the bound color token.
+Gets the contrast value between the bound and  comparison ( or `against`) color.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `mc` | `string` | The mode and channel to be retrieved. For example `rgb.b` will return the value of the blue channel's value in the RGB color space of that color. |
+| `against?` | `any` | The color to use for comparison. |
 
 #### Returns
 
 `number`
 
-The value of the queried channel.
+The contrast value between the two colors.
 
 **`Example`**
 
 ```ts
 import { color } from 'huetiful-js'
 
-console.log(color('#a1bd2f').getChannel('rgb.g'))
-// 0.7411764705882353
+console.log(color('pink').contrast('yellow'))
+// 1.4322318222624262
 ```
 
 #### Defined in
 
-[src/wrappers.js:286](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L286)
+[wrappers.js:705](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L705)
+
+___
+
+### darken
+
+▸ **darken**(`amount`): [`Color`](wrappers.Color.md)
+
+Darkens the bound color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `amount` | `number` | The amount to darken with. The value is expected to be in the range `[0,1]`. Default is `0.5`. |
+
+#### Returns
+
+[`Color`](wrappers.Color.md)
+
+The darkened color.
+
+**`Example`**
+
+```ts
+import { color } from "huetiful-js";
+console.log(color('blue'+-).darken(0.3));
+//#464646
+```
+
+#### Defined in
+
+[wrappers.js:479](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L479)
+
+___
+
+### deficiency
+
+▸ **deficiency**(`options`): [`Color`](wrappers.Color.md)
+
+Simulates how a color may be perceived by people with color vision deficiency.
+
+To avoid writing the long types, the expected parameters for the `kind` of blindness are simply the colors that are hard to perceive for the type of color blindness:
+
+* 'tritanopia' - An inability to distinguish the color 'blue'. The `kind` is `'blue'`.
+* 'deuteranopia' - An inability to distinguish the color 'green'.. The `kind` is `'green'`.
+* 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `options` | [`DeficiencyOptions`](../modules/deficiency.md#deficiencyoptions) |
+
+#### Returns
+
+[`Color`](wrappers.Color.md)
+
+The color as its simulated variant. Preserves the bound `ColorToken` type.
+
+**`Example`**
+
+```ts
+import { color } from 'huetiful-js'
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
+// We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
+let tritanomaly = color(['rgb', 230, 100, 50, 0.5]).colorDeficiency('blue', 0.1)
+console.log(tritanomaly)
+// #dd663680
+
+// Here we are simulating color blindness of tritanomaly or we can't see 'red'. The severity is not explicitly set so it defaults to 1
+let protanopia = color({ h: 20, w: 50, b: 30, mode: 'hwb' }).colorDeficiency('red')
+console.log(protanopia)
+// #9f9f9f
+```
+
+#### Defined in
+
+[wrappers.js:933](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L933)
+
+___
+
+### earthtone
+
+▸ **earthtone**(`options`): [`ColorArray`](wrappers.ColorArray.md) \| [`Color`](wrappers.Color.md)
+
+Creates a color scale between an earth tone and any color token using spline interpolation.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `options` | `EarthtoneOptions` |
+
+#### Returns
+
+[`ColorArray`](wrappers.ColorArray.md) \| [`Color`](wrappers.Color.md)
+
+**`Example`**
+
+```ts
+import { color } from 'huetiful-js'
+
+let base = 'purple'
+
+console.log(color(base).earthtone({num:8}))
+
+ColorArray {
+colors: [
+ '#352a21', '#3e2825',
+ '#4c2624', '#5f2028',
+ '#741033', '#860040',
+ '#940049', '#99004b'
+]
+}
+
+console.log(color(base).earthtone({ iterations:8 }).output())
+// call output() to only get results array
+
+// [
+ '#352a21', '#3e2825',
+ '#4c2624', '#5f2028',
+ '#741033', '#860040',
+ '#940049', '#99004b'
+]
+```
+
+#### Defined in
+
+[wrappers.js:677](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L677)
+
+___
+
+### family
+
+▸ **family**(): [`HueFamily`](../modules/family.md#huefamily)
+
+Gets the hue family which a color belongs to with the overtone included (if it has one.).
+
+For example `'red'` or `'blue-green'`. If the color is achromatic it returns the string `'gray'`.
+
+#### Returns
+
+[`HueFamily`](../modules/family.md#huefamily)
+
+**`Example`**
+
+```ts
+import { color } from 'huetiful-js'
+
+console.log(color("#310000").family())
+// 'red'
+```
+
+#### Defined in
+
+[wrappers.js:637](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L637)
 
 ___
 
@@ -408,13 +399,22 @@ ___
 
 ▸ **hueshift**(`options`): [`ColorArray`](wrappers.ColorArray.md) \| [`Color`](wrappers.Color.md)
 
-Returns a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts  down) from a single color. `maxLightness` and `minLightness` values determine how light or dark our colour will be at either extreme. Call `output()` to get the result.
+* Creates a palette of hue shifted colors from the passed in color.
+
+Hue shifting means that:
+
+* As a color becomes lighter, its hue shifts up (increases).
+* As a color becomes darker its hue shifts down (decreases).
+
+The `minLightness` and `maxLightness` values determine how dark or light our color will be at either extreme respectively.
+
+ The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or `(num * 2) + 1`.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `HueShiftOptions` | The optional overrides object to customize the `HueShiftOptions` like easing function. |
+| `options` | `HueshiftOptions` | The optional overrides object to customize the `HueShiftOptions` like easing function. |
 
 #### Returns
 
@@ -443,7 +443,7 @@ console.log(hueShiftedPalette);
 
 #### Defined in
 
-[src/wrappers.js:446](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L446)
+[wrappers.js:589](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L589)
 
 ___
 
@@ -451,25 +451,29 @@ ___
 
 ▸ **luminance**(`amount`): `number` \| [`Color`](wrappers.Color.md)
 
-Sets/Gets the `luminance` value of the bound color.
+Gets the luminance of the passed in color token.
+
+If the `amount` parameter is not passed in else it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
+  *
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `amount` | `number` | The `luminance` value to set on the bound color. |
+| `amount` | `number` | The `luminance` value to set on the bound color. * |
 
 #### Returns
 
 `number` \| [`Color`](wrappers.Color.md)
 
-The `luminance` value if the method is called with no arguments else it returns a color with its `luminance `value mutated.
+*
+  *
 
 **`Example`**
 
 ```ts
-import { color } from 'huetiful-js'
-
+* import { color } from 'huetiful-js'
+  *
 let myColor = 'green';
 console.log(color(myColor).luminance());
 // 0.1543834296814607
@@ -480,32 +484,69 @@ console.log(color(myColor)._luminance);
 console.log(color(myColor).luminance(0.5));
 
 // Color {
-alpha: 1,
-_color: '#008000',
-_luminance: 0.5,
-lightness: 46.27770902748027,
-colorspace: 'lch',
-_saturation: undefined,
-lightMode: '#f3f4f6',
-darkMode: '#1f2937'
+  alpha: 1,
+  _color: '#008000',
+  _luminance: 0.5,
+  lightness: 46.27770902748027,
+  colorspace: 'lch',
+  _saturation: undefined,
+  lightMode: '#f3f4f6',
+  darkMode: '#1f2937'
 }
 ```
 
 #### Defined in
 
-[src/wrappers.js:597](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L597)
+[wrappers.js:755](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L755)
+
+___
+
+### mc
+
+▸ **mc**(`modeChannel`, `value`): `number` \| [`Color`](wrappers.Color.md)
+
+Sets the value of the specified channel on the passed in color.
+
+If the `amount` parameter is `undefined` it gets the value of the specified channel.
+ *
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `modeChannel` | `string` | The mode and channel to be retrieved. For example `rgb.b` will return the value of the blue channel's value in the RGB color space of that color. * |
+| `value` | `string` \| `number` | The value to set on the queried channel. Also supports expressions as strings e.g `"#fc23a1"` `"*0.5"` * * The supported symbols `*` `+` `-` `/` |
+
+#### Returns
+
+`number` \| [`Color`](wrappers.Color.md)
+
+The value of the queried channel.
+
+**`Example`**
+
+```ts
+import { color } from 'huetiful-js'
+
+console.log(color('#a1bd2f').mc('rgb.g'))
+// 0.7411764705882353
+```
+
+#### Defined in
+
+[wrappers.js:418](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L418)
 
 ___
 
 ### output
 
-▸ **output**(): [`ColorToken`](../modules/alpha.md#colortoken)
+▸ **output**(): `any`
 
 Returns the final value from the chain.
 
 #### Returns
 
-[`ColorToken`](../modules/alpha.md#colortoken)
+`any`
 
 **`Example`**
 
@@ -520,7 +561,7 @@ console.log(myOutput)
 
 #### Defined in
 
-[src/wrappers.js:623](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L623)
+[wrappers.js:781](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L781)
 
 ___
 
@@ -528,13 +569,14 @@ ___
 
 ▸ **overtone**(): `string`
 
-Returns the hue which is biasing the passed in color.
+Returns the name of the hue family which is biasing the passed in color.
+
+* If an achromatic color is passed in it returns the string `'gray'`
+* If the color has no bias it returns `false`.
 
 #### Returns
 
 `string`
-
-The name of the overtone hue. If an achromatic color is passed in it return the string `'gray'` otherwise if the color has no bias it returns false.
 
 **`Example`**
 
@@ -551,7 +593,7 @@ console.log(color("blue").overtone())
 
 #### Defined in
 
-[src/wrappers.js:822](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L822)
+[wrappers.js:956](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L956)
 
 ___
 
@@ -559,7 +601,10 @@ ___
 
 ▸ **pair**(`options`): [`ColorArray`](wrappers.ColorArray.md) \| [`Color`](wrappers.Color.md)
 
-Returns a palette that contains a base color that is incremented by a `hueStep` to get the final hue to pair with.The colors are interpolated via white or black. A negative `hueStep` will pick a color that is `n` degrees behind the base color. Call `output()` to get the final result.
+Creates a palette that consists of a `baseColor` that is incremented by a `hueStep` to get the final color to pair with.
+The colors are then spline interpolated via white or black.
+
+A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color.
 
 #### Parameters
 
@@ -584,7 +629,7 @@ console.log(color("green").pairedScheme({hueStep:6,samples:4,tone:'dark'}))
 
 #### Defined in
 
-[src/wrappers.js:413](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L413)
+[wrappers.js:548](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L548)
 
 ___
 
@@ -610,7 +655,7 @@ console.log(color("green").pastel())
 
 #### Defined in
 
-[src/wrappers.js:394](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L394)
+[wrappers.js:526](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L526)
 
 ___
 
@@ -624,7 +669,7 @@ Sets/Gets the saturation value of the bound color.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `amount` | `string` \| `number` | The amount of `saturation` to set on the bound color token. See also the supported string expressions in the docs. |
+| `amount` | `string` \| `number` | The amount of `saturation` to set on the bound color token. Also supports string expressions. |
 
 #### Returns
 
@@ -632,49 +677,42 @@ Sets/Gets the saturation value of the bound color.
 
 The `saturation` value if the method is called with no arguments else it returns a color with its `saturation` value mutated.
 
-**`See`**
-
-https://huetiful-js.com/basics/string-expressions
-
 **`Example`**
 
 ```ts
 import { color } from 'huetiful-js'
 
-let myColor = ['hsl',200,0.09,0.5]
+let myColor = ['lch',60,13,0.5]
 
 console.log(color(myColor).saturation())
-// 0.3
+// 13
 
 console.log(color(myColor).saturation("*0.3"))
 
-// ['hsl',200,0.09,0.5]
+// ['lch',60,19.9,0.5]
 ```
 
 #### Defined in
 
-[src/wrappers.js:650](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L650)
+[wrappers.js:807](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L807)
 
 ___
 
 ### scheme
 
-▸ **scheme**(`schemeType`, `easingFunc?`): [`ColorArray`](wrappers.ColorArray.md)
+▸ **scheme**(`options`): [`ColorArray`](wrappers.ColorArray.md)
 
 Returns a randomised classic color scheme from the bound color.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `schemeType` | ``"analogous"`` \| ``"triadic"`` \| ``"tetradic"`` \| ``"complementary"`` \| ``"splitComplementary"`` | Any classic color scheme. |
-| `easingFunc?` | (`t`: `number`) => `number` | The easing function to apply to the palette. It's applied on the `hue` channel. |
+| Name | Type |
+| :------ | :------ |
+| `options` | `any` |
 
 #### Returns
 
 [`ColorArray`](wrappers.ColorArray.md)
-
-The collection of colors. Elements in the array depend on the number of sample colors in the targeted scheme. Preserves the type of the bound `ColorToken` as elements of the collection.
 
 **`Example`**
 
@@ -687,59 +725,14 @@ console.log(color("#a1bd2f").scheme("triadic"))
 
 #### Defined in
 
-[src/wrappers.js:842](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L842)
-
-___
-
-### set
-
-▸ **set**(`mc`, `value`): [`Color`](wrappers.Color.md)
-
-Sets the specified channel value on the bound color token.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `mc` | `string` | The mode and channel to work with. For example `'rgb.b'`. |
-| `value` | `string` \| `number` | The value to set on the queried channel. Also supports expressions as strings e.g `"#fc23a1"` `"*0.5"` |
-
-#### Returns
-
-[`Color`](wrappers.Color.md)
-
-The mutated color. Preserves the bound in `ColorToken` type.
-
-**`Example`**
-
-```ts
-import { color } from 'huetiful-js'
-
-let myColor = color('green').setChannel('lch.h',10)
-
-console.log(myColor.getChannel('lch.h'))
-// 10
-```
-
-#### Defined in
-
-[src/wrappers.js:309](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L309)
+[wrappers.js:975](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L975)
 
 ___
 
 ### temp
 
-▸ **temp**(): `boolean`
+▸ **temp**(): ``"cool"`` \| ``"warm"``
 
-Returns `true` if color the bound color can be roughly classified as a cool color else `false`.
-
-#### Returns
-
-`boolean`
-
-**`Example`**
-
-```ts
 import { color } from 'huetiful-js'
 
 let sample = [
@@ -748,52 +741,72 @@ let sample = [
 "#00c000"
 ];
 
-console.log(color(sample[2]).isCool());
-// false
-```
+console.log(color(sample[2]).temp());
+// 'warm'
+
+#### Returns
+
+``"cool"`` \| ``"warm"``
 
 #### Defined in
 
-[src/wrappers.js:772](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L772)
+[wrappers.js:900](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L900)
 
 ___
 
 ### token
 
-▸ **token**(`kind`, `options`): [`ColorToken`](../modules/alpha.md#colortoken)
+▸ **token**(`options`): `any`
 
-Returns the bound `ColorToken` as a hexadecimal string.
+Parses any recognizable color to the specified `kind` of `ColorToken` type.
+
+The `kind` option supports the following types as options:
+
+* `'array'` - Parses the color token to an array of channel values with the `colorspace` as the first element if the `omitMode` parameter is set to `false` in the `options` object.
+
+* `'number'` - Parses the color token to its numerical equivalent to a number between `0` and `16,777,215`.
+
+The `numberType` can be used to specify which type of number to return if the `kind` option is set to `'number'`:
+ - `'hexadecimal'`
+ - `'binary'`
+ - `'octal'`
+ - `'decimal'` exponential notation
+
+* `'hex'` - Parses the color token to its hexadecimal string equivalent.
+
+If the color token has an explicit `alpha` (specified by the `alpha` key in color objects and as the fourth and last number in a color array) the string will be 8 characters long instead of 6.
+
+* `'object'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `kind` | `any` |
 | `options` | `any` |
 
 #### Returns
 
-[`ColorToken`](../modules/alpha.md#colortoken)
+`any`
 
 #### Defined in
 
-[src/wrappers.js:376](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L376)
+[wrappers.js:508](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L508)
 
 ___
 
 ### via
 
-▸ **via**(`origin`, `t`, `options`): [`Color`](wrappers.Color.md)
+▸ **via**(`origin`): [`Color`](wrappers.Color.md)
 
-Interpolates the bound color via the `origin` at the point `t`. Call `output()` to get the results.
+Interpolates the bound color via the `origin` with the point `t` at `0.5`. 
+
+Call `output()` to get the results.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `origin` | [`ColorToken`](../modules/alpha.md#colortoken) | The color to interpolate via. |
-| `t` | `number` | The point in the interpolation to return. Expected value is in the range [0,1] |
-| `options` | `InterpolatorOptions` | Overrides object to customize the easing and the interpolation methods /fixups. |
+| `origin` | `any` | The color to interpolate via. value is in the range [0,1] the easing and the interpolation methods /fixups. |
 
 #### Returns
 
@@ -803,4 +816,4 @@ The result of the interpolation. Preserves the bound `ColorToken` type.
 
 #### Defined in
 
-[src/wrappers.js:324](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L324)
+[wrappers.js:439](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L439)

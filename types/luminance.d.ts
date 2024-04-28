@@ -1,13 +1,16 @@
-export type ColorToken = import('../types/types.js').ColorToken;
+export type ColorToken = import('./types.js').Collection;
 /**
- * Gets the luminance of the passed in color token if the `amount` parameter is not passed in else it will set the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
+ * Gets the luminance of the passed in color token.
+ *
+ * If the `amount` parameter is not passed in else it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
  * @param { ColorToken } color The color to retrieve or adjust luminance.
  * @param { number } [amount=undefined] The amount of luminance to set. The value range is normalised between [0,1]
- * @returns { ColorToken  | number} The mutated color with the modified properties. Preserves the `ColorToken` type of the passed in color.
+ * @returns { string  | number}
  * @example
  *
  * import { luminance } from 'huetiful-js'
 
+// Getting the luminance
 
 console.log(luminance('#a1bd2f'))
 // 0.4417749513730954
@@ -27,10 +30,11 @@ console.log(colors('all', '400').map((c) => luminance(c)));
    0.3464512307705231, 0.34012939384198054
 ]
 
+// setting the luminance
 
 let myColor = luminance('#a1bd2f', 0.5)
 
 console.log(luminance(myColor))
 // 0.4999999136285792
  */
-export function luminance(color: ColorToken, amount?: number): ColorToken | number;
+export function luminance(color: ColorToken, amount?: number): string | number;

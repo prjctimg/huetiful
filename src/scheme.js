@@ -1,8 +1,8 @@
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
- * @typedef { import('../types/types.js').Collection} Collection
+ * @typedef { import('./types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} Collection
 
- * @typedef {import('../types/types.js').SchemeOptions} SchemeOptions
+ * @typedef {import('./types.js').SchemeOptions} SchemeOptions
  */
 
 import { easingSmoothstep, samples } from 'culori/fn';
@@ -13,7 +13,10 @@ import {
   keys,
   entries,
   isArray,
-  values
+  values,
+  mlchn,
+  gmchn,
+  mcchn
 } from './fp/index.js';
 import { token } from './token.js';
 
@@ -57,8 +60,7 @@ function scheme(baseColor = 'cyan', options) {
       adjustHue((m['h'] + l) * (d * or(easingFn, easingSmoothstep)(d)))
     );
 
-  // @ts-ignore
-  baseColor = token('object', { targetMode: colorspace })(baseColor);
+  baseColor = token(baseColor, { targetMode: colorspace, kind: 'object' });
   let y = {
     analogous: f(3, 12, baseColor),
     triadic: f(3, 120, baseColor),
@@ -73,12 +75,14 @@ function scheme(baseColor = 'cyan', options) {
   }
   // The map for steps to obtain the targeted palettes
 
+  const [m, n] = [gmchn(mlchn(colorspace), 0), gmchn(mcchn(colorspace), 1)];
+
   if (isArray(kind)) {
     var e = {};
     for (const r of values(kind)) {
       e[r] = y[kind].map((d) => ({
-        l: baseColor['l'],
-        c: baseColor['c'],
+        [m]: baseColor[m],
+        [n]: baseColor[n],
         h: baseColor['h'] + d * or(easingFn, easingSmoothstep)(1 / l),
         mode: colorspace
       }));
@@ -86,8 +90,8 @@ function scheme(baseColor = 'cyan', options) {
     return e;
   } else {
     return y[kind].map((d) => ({
-      l: baseColor['l'],
-      c: baseColor['c'],
+      [m]: baseColor[m],
+      [n]: baseColor[n],
       h: baseColor['h'] + d * or(easingFn, easingSmoothstep)(1 / l),
       mode: colorspace
     }));

@@ -1,6 +1,6 @@
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
- * @typedef { import('../types/types.js').FactObject} FactObject
+ * @typedef { import('./types.js').Collection} ColorToken
+ * @typedef { import('./types.js').FactObject} FactObject
  */
 
 import { adjustHue, rand, or } from './fp/index.js';

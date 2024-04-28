@@ -1,6 +1,6 @@
 /**
  
- * @typedef { import('../types/types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} ColorToken
  */
 
 import { family } from './family.js';

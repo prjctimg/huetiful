@@ -2,20 +2,32 @@
 
 # Module: contrast
 
+## Type Aliases
+
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[contrast.js:2](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/contrast.js#L2)
+
 ## Functions
 
 ### contrast
 
 ▸ **contrast**(`a`, `b`): `number`
 
-Gets the contrast between the passed in colors. Swapping color `a` and `b` in the parameter list doesn't change the resulting value.
+Gets the contrast between the passed in colors.
+
+Swapping color `a` and `b` in the parameter list doesn't change the resulting value.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `a` | [`ColorToken`](alpha.md#colortoken) | First color to query. |
-| `b` | [`ColorToken`](alpha.md#colortoken) | The color to compare against. |
+| `a` | `any` | First color to query. |
+| `b` | `any` | The color to compare against. |
 
 #### Returns
 
@@ -32,4 +44,4 @@ console.log(contrast("black", "white"));
 
 #### Defined in
 
-[src/contrast.js:20](https://github.com/prjctimg/huetiful/blob/ed00af0/src/contrast.js#L20)
+[contrast.js:22](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/contrast.js#L22)

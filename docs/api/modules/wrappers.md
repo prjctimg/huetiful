@@ -7,6 +7,69 @@
 - [Color](../classes/wrappers.Color.md)
 - [ColorArray](../classes/wrappers.ColorArray.md)
 
+## Type Aliases
+
+### Collection
+
+Ƭ **Collection**\<\>: `Collection`
+
+#### Defined in
+
+[wrappers.js:6](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L6)
+
+___
+
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[wrappers.js:5](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L5)
+
+___
+
+### FilterByOptions
+
+Ƭ **FilterByOptions**: `Object`
+
+Overrides for setting filtering criterion, expected ranges and other behaviour.
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `against?` | `ColorToken` | The color to compare the `factor` with. All the `factor`s are calculated between this color and the ones in the colors array. Only works for the `'distance'` and `'contrast'` factor. |
+| `colorspace?` | [`Colorspaces`](nearest.md#colorspaces) | The mode colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' \| 'contrast' \| 'distance'`. |
+| `end?` | `number` \| `string` | The maximum end of the `factor` range. |
+| `factor?` | ``"hue"`` | The factor to use as a filtering criterion. Default is `'hue'` |
+| `start?` | `number` \| `string` | The minimum end of the `factor` range. |
+
+#### Defined in
+
+types.d.ts:159
+
+___
+
+### SortByOptions
+
+Ƭ **SortByOptions**: `Object`
+
+Options for specifying sorting conditions.
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `against?` | `ColorToken` | The color to compare the `factor` with. All the `factor`s are calculated between this color and the ones in the colors array. Only works for the `'distance'` and `'contrast'` factor. |
+| `colorspace?` | [`Colorspaces`](nearest.md#colorspaces) | The colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' \| 'contrast' \| 'distance'`. |
+| `factor?` | [`Factor`](filterBy.md#factor) | The factor to use for sorting the colors. |
+| `order?` | ``"asc"`` \| ``"desc"`` | The arrangement order of the colors either `asc \| desc`. Default is ascending (`asc`). |
+
+#### Defined in
+
+types.d.ts:269
+
 ## Functions
 
 ### color
@@ -19,7 +82,7 @@ Wrapper function over the Color class that returns a new Color method chain.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](alpha.md#colortoken) | The color token to bind. |
+| `color` | `any` | The color token to bind. |
 
 #### Returns
 
@@ -38,7 +101,7 @@ let wrapper = color('cyan').getHueFamily()
 
 #### Defined in
 
-[src/wrappers.js:862](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L862)
+[wrappers.js:995](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L995)
 
 ___
 
@@ -52,7 +115,7 @@ A wrapper function over the `ColorArray` class which returns a new instance of t
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Collection` | A collection of colors to chain the array methods on. Every element in the array will be parsed as a color token. |
+| `colors` | `any` | A collection of colors to chain the array methods on. Every element in the array will be parsed as a color token. |
 
 #### Returns
 
@@ -62,4 +125,4 @@ A new instance of the `ColorArray` class with the passed in collection bound to 
 
 #### Defined in
 
-[src/wrappers.js:169](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L169)
+[wrappers.js:299](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L299)

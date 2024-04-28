@@ -2,26 +2,43 @@
 
 # Module: hueshift
 
+## Type Aliases
+
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[hueshift.js:3](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/hueshift.js#L3)
+
 ## Functions
 
 ### hueshift
 
-▸ **hueshift**(`color`, `options?`): [`ColorToken`](alpha.md#colortoken)[]
+▸ **hueshift**(`baseColor`, `options?`): `string`[]
 
-Generates a palette of hue shifted colors (as a color becomes lighter, its hue shifts up and darker when its hue shifts down) from a single color. Min and max lightness values determine how light or dark our colour will be at either extreme.
+Creates a palette of hue shifted colors from the passed in color.
+
+Hue shifting means that:
+
+* As a color becomes lighter, its hue shifts up (increases).
+* As a color becomes darker its hue shifts down (decreases).
+
+The `minLightness` and `maxLightness` values determine how dark or light our color will be at either extreme respectively.
+
+ The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or `(num * 2) + 1`.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | `any` | The color to use as the scheme of the hueshift. Colors are internally converted to LCH. |
-| `options` | `HueShiftOptions` | The optional overrides object to customize per channel options like interpolation methods and channel fixups. |
+| `baseColor` | `any` | The color to use as the base of the palette. |
+| `options` | `HueshiftOptions` | The optional overrides object. |
 
 #### Returns
 
-[`ColorToken`](alpha.md#colortoken)[]
-
-A collection of the hueshifted colors. The length of the resultant array is the number of `iterations` multiplied by 2 plus the scheme color passed or `(iterations * 2) + 1`. Preserves the `ColorToken` type of the passed in color.
+`string`[]
 
 **`Example`**
 
@@ -44,4 +61,4 @@ console.log(hueShiftedPalette);
 
 #### Defined in
 
-[src/hueshift.js:33](https://github.com/prjctimg/huetiful/blob/ed00af0/src/hueshift.js#L33)
+[hueshift.js:43](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/hueshift.js#L43)

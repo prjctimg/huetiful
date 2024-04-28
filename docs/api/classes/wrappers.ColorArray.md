@@ -4,11 +4,14 @@
 
 [wrappers](../modules/wrappers.md).ColorArray
 
+Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
+*
+
 **`Example`**
 
 ```ts
-import { ColorArray } from 'huetiful-js'
-
+* import { ColorArray } from 'huetiful-js'
+*
 let sample = ['blue', 'pink', 'yellow', 'green'];
 let wrapper = new ColorArray(sample);
 // We can even chain the methods and get the result by calling output()
@@ -28,7 +31,7 @@ console.log(wrapper.sortByHue('desc', 'lch').output());
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `colors` | `Collection` | The collection of colors to bind. |
+| `colors` | `any` | The collection of colors to bind. |
 
 #### Returns
 
@@ -36,27 +39,32 @@ console.log(wrapper.sortByHue('desc', 'lch').output());
 
 #### Defined in
 
-[src/wrappers.js:56](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L56)
+[wrappers.js:67](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L67)
 
 ## Methods
 
 ### discover
 
-▸ **discover**(`kind`): [`ColorArray`](wrappers.ColorArray.md)
+▸ **discover**(`options`): [`ColorArray`](wrappers.ColorArray.md)
 
-Takes an array of colors and finds the best matches for a set of predefined palettes. The function does not work on achromatic colors, you may use isAchromatic to filter grays from your collection before passing it to the function.
+Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes. 
+
+The function returns different values based on the `kind` parameter passed in:
+
+* An array of colors for the `kind` of scheme, if the `kind` parameter is specified.
+* Else it returns an object of all the palette types as keys and their values as an array of colors. 
+
+If no colors are valid for the palette types it returns an empty array for the palette results. It does not work with achromatic colors thus they're excluded from the resulting collection.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `kind` | `SchemeType` | (Optional) The palette type you want to return. |
+| Name | Type |
+| :------ | :------ |
+| `options` | `DiscoverOptions` |
 
 #### Returns
 
 [`ColorArray`](wrappers.ColorArray.md)
-
-A collection of colors if the `schemeType` parameter is specified else it returns an object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
 
 **`Example`**
 
@@ -77,13 +85,78 @@ let sample = [
  "#310000",
 ]
 
-console.log(load(sample).discoverPalettes(sample, "tetradic").output())
+console.log(load(sample).discover({kind:'tetradic'}).output())
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
 ```
 
 #### Defined in
 
-[src/wrappers.js:149](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L149)
+[wrappers.js:163](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L163)
+
+___
+
+### filterBy
+
+▸ **filterBy**(`options`): [`ColorArray`](wrappers.ColorArray.md)
+
+Filters a collection of colors using the specified `factor` as the criterion. The supported options are:
+* `'contrast'` - Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
+* `'lightness'` - Returns colors in the specified lightness range.
+* `'chroma'` - Returns colors in the specified `saturation` or `chroma` range. The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
+
+* `'distance'` - Returns colors with the specified `distance` range. The `distance` is tested against a comparison color (the 'against' param) and the specified `distance` ranges. Uses the `differenceHyab` metric for calculating the distances.
+* `luminance` - Returns colors in the specified luminance range.
+* `'hue'` - Returns colors in the specified hue ranges between 0 to 360.
+
+For the `chroma` and `lightness` factors, the range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range. 
+This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. 
+But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `options` | [`FilterByOptions`](../modules/wrappers.md#filterbyoptions) |
+
+#### Returns
+
+[`ColorArray`](wrappers.ColorArray.md)
+
+**`See`**
+
+https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
+
+Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
+
+**`Example`**
+
+```ts
+import { filterBy } from 'huetiful-js'
+
+let sample = [
+ '#00ffdc',
+ '#00ff78',
+ '#00c000',
+ '#007e00',
+ '#164100',
+ '#ffff00',
+ '#310000',
+ '#3e0000',
+ '#4e0000',
+ '#600000',
+ '#720000',
+]
+
+// Filtering colors by their relative contrast against 'green'. 
+// The collection will include colors with a relative contrast equal to 3 or greater.
+
+console.log(load(sample).filterBy({start:'>=3', factor:'contrast',against:'green' }))
+// [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
+```
+
+#### Defined in
+
+[wrappers.js:213](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L213)
 
 ___
 
@@ -91,74 +164,69 @@ ___
 
 ▸ **interpolator**(`options`): [`ColorArray`](wrappers.ColorArray.md)
 
-*  Returns a spline interpolator function with customizable interpolation methods (by selecting the `kind` of ), with support for generating color scales for cyclic data (by setting the `closed` parameter to `true`) and optional channel specific overrides.
-  *  {Colorspaces} [colorspace='jch'] The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
-  *  {'natural' | 'monotone' | 'basis'} kind The type of the spline interpolation method. Default is basis.
-  *  Optional parameter to return the 'closed' variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is false
-  *
+Interpolates the passed in colors and returns a collection of colors from the interpolation.
+
+Some things to keep in mind when creating color scales using this function:
+
+* To create a color scale for cyclic values pass `true` to the `closed` parameter in the `options` object. 
+* If `num` is 1 then a single color is returned from the resulting interpolation with the internal `t` value at `0.5` else a collection of the `num` of color scales is returned.
+* If the collection of colors contains an achromatic color, the resulting samples may all be grayscale or pure black.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `InterpolatorOptions` | Optional channel specific overrides. * |
+| `options` | `InterpolatorOptions` | Optional channel specific overrides. |
 
 #### Returns
 
 [`ColorArray`](wrappers.ColorArray.md)
-
-The discovered palettes.Respects the `ColorToken` type of the first color in the array of colors to interpolate
-  *
-  *
-
-**`Example`**
-
-```ts
-*
-  * import { load } from 'huetiful-js';
-
-console.log(load(['pink', 'blue']).interpolateSpline('lch', 8));
-
-// [
- '#ffc0cb', '#ff9ebe',
- '#f97bbb', '#ed57bf',
- '#d830c9', '#b800d9',
- '#8700eb', '#0000ff'
-]
-  *
-```
-
-#### Defined in
-
-[src/wrappers.js:111](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L111)
-
-___
-
-### nearest
-
-▸ **nearest**(`color`, `num?`): [`ColorArray`](wrappers.ColorArray.md)
-
-Returns the nearest color(s) in the bound collection against
-
-#### Parameters
-
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `color` | [`ColorToken`](../modules/alpha.md#colortoken) | `undefined` | The color to use for distance comparison. |
-| `num` | `number` | `1` | The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric. |
-
-#### Returns
-
-[`ColorArray`](wrappers.ColorArray.md)
-
-An array of colors.
 
 **`Example`**
 
 ```ts
 import { load } from 'huetiful-js';
+ 
+ console.log(load(['pink', 'blue']).interpolateSpline({num:8, colorspace:'lch'}));
+ 
+ // [
+   '#ffc0cb', '#ff9ebe',
+   '#f97bbb', '#ed57bf',
+   '#d830c9', '#b800d9',
+   '#8700eb', '#0000ff'
+ ]
+    *
+```
 
-let cols = tailwindColors('all', '500')
+#### Defined in
+
+[wrappers.js:119](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L119)
+
+___
+
+### nearest
+
+▸ **nearest**(`against`, `num`): [`ColorArray`](wrappers.ColorArray.md)
+
+Returns the nearest color(s) in the bound collection against
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `against` | `any` | The color to use for distance comparison. |
+| `num` | `number` | The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric. |
+
+#### Returns
+
+[`ColorArray`](wrappers.ColorArray.md)
+
+**`Example`**
+
+```ts
+import { load,colors } from 'huetiful-js';
+
+let cols = colors('all', '500')
 
 console.log(load(cols).nearest('blue', 3));
 // [ '#a855f7', '#8b5cf6', '#d946ef' ]
@@ -166,20 +234,108 @@ console.log(load(cols).nearest('blue', 3));
 
 #### Defined in
 
-[src/wrappers.js:75](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L75)
+[wrappers.js:86](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L86)
 
 ___
 
 ### output
 
-▸ **output**(): `Collection`
+▸ **output**(): `any`
 
 #### Returns
 
-`Collection`
+`any`
 
 Returns the result value from the chain.
 
 #### Defined in
 
-[src/wrappers.js:158](https://github.com/prjctimg/huetiful/blob/ed00af0/src/wrappers.js#L158)
+[wrappers.js:288](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L288)
+
+___
+
+### sortBy
+
+▸ **sortBy**(`options`): [`ColorArray`](wrappers.ColorArray.md)
+
+Sorts colors according to the specified `factor`. The supported options are:
+
+* `'contrast'` - Sorts colors according to their contrast value as defined by WCAG.
+The contrast is tested `against` a comparison color  which can be specified in the `options` object.
+* `'lightness'` - Sorts colors according to their lightness.
+* `'chroma'` - Sorts colors according to the intensity of their `chroma` in the `colorspace` specified in the `options` object.
+* `'distance'` - Sorts colors according to their distance.
+The distance is computed from the `against` color token which is used for comparison for all the colors in the `collection`.
+* `luminance` - Sorts colors according to their relative brightness as defined by the WCAG3 definition.
+
+The return type is determined by the type of `collection`:
+
+* Plain objects are returned as `Map` objects because they remember insertion order. `Map` objects are returned as is.
+* `ArrayLike` objects are returned as plain arrays. Plain arrays are returned as is.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `options` | [`SortByOptions`](../modules/wrappers.md#sortbyoptions) |
+
+#### Returns
+
+[`ColorArray`](wrappers.ColorArray.md)
+
+**`Example`**
+
+```ts
+import { sortBy } from 'huetiful-js'
+
+let sample = ['purple', 'green', 'red', 'brown']
+console.log(
+ load(sample).sortBy({ against:'yellow' factor:'distance',order:'desc'})
+)
+
+// [ 'brown', 'red', 'green', 'purple' ]
+```
+
+#### Defined in
+
+[wrappers.js:247](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L247)
+
+___
+
+### stats
+
+▸ **stats**(`options`): `Stats`
+
+Computes statistical values about the passed in color collection.
+
+The topmost properties from each returned `factor` object are:
+
+* `against` - The color being used for comparison.
+
+Required for the `distance` and `contrast` factors.
+If `relativeMean` is `false`, other factors that take the comparison color token as an overload will have this property's value as `null`.
+* `colorspace` - The colorspace in which the factors were computed in. It has no effect on the `contrast` or `distance` factors (for now).
+
+* `extremums` - An array of the minimum and the maximum value (respectively) of the `factor`.
+* `colors` - An array of color tokens that have the minimum and maximum `extremum` values respectively.
+* `mean` - The average value for the `factor`.
+* `displayable` - The percentage of the displayable or colors with channel ranges that can be rendered in  that colorspace when converted to RGB.
+
+The `mean` property can be overloaded by the `relativeMean` option:
+
+* If `relativeMean` is `true`, the `against` option will be used as a subtrahend for calculating the distance between each `extremum`.
+For example, it will mean "Get the largest/smallest distance between `factor` as compared `against` this color token otherwise just get the smallest/largest `factor` from thr passed in collection."
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options` | `StatsOptions` | Optional parameters to specify how the data should be computed. |
+
+#### Returns
+
+`Stats`
+
+#### Defined in
+
+[wrappers.js:276](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L276)

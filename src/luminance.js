@@ -1,12 +1,14 @@
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} ColorToken
  */
 
 import { token } from './token.js';
 import { interpolate, wcagLuminance } from 'culori/fn';
 
 /**
- * Gets the luminance of the passed in color token if the `amount` parameter is not passed in else it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
+ * Gets the luminance of the passed in color token.
+ * 
+ * If the `amount` parameter is not passed in else it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
  * @param { ColorToken } color The color to retrieve or adjust luminance.
  * @param { number } [amount=undefined] The amount of luminance to set. The value range is normalised between [0,1]
  * @returns { string  | number} 
@@ -42,9 +44,10 @@ console.log(luminance(myColor))
 // 0.4999999136285792
  */
 function luminance(color, amount) {
+  color = token(color);
   if (!amount) {
     // @ts-ignore
-    return wcagLuminance(token('hex')(color));
+    return wcagLuminance(color);
   } else {
     const w = '#ffffff',
       b = '#000000';
@@ -54,9 +57,7 @@ function luminance(color, amount) {
 
     if (typeof amount == 'number') {
       // compute new color using...
-      // @ts-ignore
-      color = token('object', { targetMode: 'rgb' })(color);
-      // @ts-ignore
+
       const cl = wcagLuminance(color);
 
       //Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.

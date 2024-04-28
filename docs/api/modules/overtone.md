@@ -2,25 +2,36 @@
 
 # Module: overtone
 
+## Type Aliases
+
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[overtone.js:3](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/overtone.js#L3)
+
 ## Functions
 
 ### overtone
 
-▸ **overtone**(`color`): `string`
+▸ **overtone**(`color`): `string` \| ``false``
 
-Returns the hue which is biasing the passed in color
+Returns the name of the hue family which is biasing the passed in color.
+
+* If an achromatic color is passed in it returns the string `'gray'`
+* If the color has no bias it returns `false`.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](alpha.md#colortoken) | The color to query its overtone. |
+| `color` | `any` | The color to query its overtone. |
 
 #### Returns
 
-`string`
-
-The name of the overtone hue. If an achromatic color is passed in it return the string `'gray'` otherwise if the color has no bias it returns false.
+`string` \| ``false``
 
 **`Example`**
 
@@ -39,4 +50,4 @@ console.log(overtone("blue"))
 
 #### Defined in
 
-[src/overtone.js:28](https://github.com/prjctimg/huetiful/blob/ed00af0/src/overtone.js#L28)
+[overtone.js:29](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/overtone.js#L29)

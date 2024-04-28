@@ -4,6 +4,26 @@
 
 ## Type Aliases
 
+### Collection
+
+Ƭ **Collection**\<\>: `Collection`
+
+#### Defined in
+
+[filterBy.js:3](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/filterBy.js#L3)
+
+___
+
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[filterBy.js:2](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/filterBy.js#L2)
+
+___
+
 ### Factor
 
 Ƭ **Factor**: ``"luminance"`` \| ``"chroma"`` \| ``"contrast"`` \| ``"distance"`` \| ``"lightness"`` \| ``"hue"``
@@ -12,15 +32,15 @@ The color property being queried.
 
 #### Defined in
 
-[types/types.d.ts:259](https://github.com/prjctimg/huetiful/blob/ed00af0/types/types.d.ts#L259)
+types.d.ts:419
 
 ## Functions
 
 ### filterBy
 
-▸ **filterBy**(`factor`, `start`, `end`, `options?`): (`collection`: `Collection`) => `Collection`
+▸ **filterBy**(`collection`, `options?`): `any`
 
-Filters a collection of colors using the specified `factor` as the criteria. The supported options are:
+Filters a collection of colors using the specified `factor` as the criterion. The supported options are:
 * `'contrast'` - Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
 * `'lightness'` - Returns colors in the specified lightness range.
 * `'chroma'` - Returns colors in the specified `saturation` or `chroma` range. The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
@@ -35,32 +55,14 @@ But if the value of either start or end is above 1 AND the `colorspace` in use h
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `factor` | [`Factor`](filterBy.md#factor) | `undefined` | The factor to use as a filtering criteria. |
-| `start` | `string` \| `number` | `undefined` | The minimum end of the `factor` range. |
-| `end` | `string` \| `number` | `undefined` | The maximum end of the `factor` range. |
-| `options` | `Object` | `undefined` | - |
-| `options.against` | [`ColorToken`](alpha.md#colortoken) | `'#fff'` |  |
-| `options.colorspace` | [`Colorspaces`](nearest.md#colorspaces) | `'lch'` |  |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `collection` | `any` | The collection of colors to filter. |
+| `options` | [`FilterByOptions`](wrappers.md#filterbyoptions) |  |
 
 #### Returns
 
-`fn`
-
-Array of filtered colors.
-
-▸ (`collection`): `Collection`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `collection` | `Collection` |
-
-##### Returns
-
-`Collection`
+`any`
 
 **`See`**
 
@@ -87,10 +89,13 @@ let sample = [
  '#720000',
 ]
 
+// Filtering colors by their relative contrast against 'green'. 
+// The collection will include colors with a relative contrast equal to 3 or greater.
+
 console.log(filterBy('contrast','>=3')(sample,{ against:'green' }))
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
 ```
 
 #### Defined in
 
-[src/filterBy.js:64](https://github.com/prjctimg/huetiful/blob/ed00af0/src/filterBy.js#L64)
+[filterBy.js:63](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/filterBy.js#L63)

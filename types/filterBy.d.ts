@@ -1,9 +1,10 @@
-export type ColorToken = import('../types/types.js').ColorToken;
-export type Collection = import('../types/types.js').Collection;
-export type Factor = import('../types/types.js').Factor;
-export type Colorspaces = import('../types/types.js').Colorspaces;
+export type ColorToken = import('./types.js').Collection;
+export type Collection = import('./types.js').Collection;
+export type Factor = import('./types.js').Factor;
+export type Colorspaces = import('./types.js').Colorspaces;
+export type FilterByOptions = import('./types.js').FilterByOptions;
 /**
- * Filters a collection of colors using the specified `factor` as the criteria. The supported options are:
+ * Filters a collection of colors using the specified `factor` as the criterion. The supported options are:
  * * `'contrast'` - Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
  * * `'lightness'` - Returns colors in the specified lightness range.
  * * `'chroma'` - Returns colors in the specified `saturation` or `chroma` range. The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
@@ -20,13 +21,9 @@ export type Colorspaces = import('../types/types.js').Colorspaces;
  * @see https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
  *
  * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
- *
- *
- * @param {Factor} factor The factor to use as a filtering criteria.
- * @param {number|string}  start The minimum end of the `factor` range.
- * @param {number|string} end The maximum end of the `factor` range.
- * @returns Array of filtered colors.
- *
+ * @param {Collection} collection The collection of colors to filter.
+ * @param {FilterByOptions} options
+ * @returns {Collection}
  * @example
  *
  * import { filterBy } from 'huetiful-js'
@@ -45,16 +42,10 @@ let sample = [
   '#720000',
 ]
 
+// Filtering colors by their relative contrast against 'green'.
+// The collection will include colors with a relative contrast equal to 3 or greater.
+
 console.log(filterBy('contrast','>=3')(sample,{ against:'green' }))
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
  */
-export function filterBy(factor: Factor, start: number | string, end: number | string, options?: {
-    /**
-     * @type {ColorToken}  The color to compare the `factor` with. All the `factor`s are calculated between this color and the ones in the colors array. Only works for the `'distance'` and `'contrast'` factor.
-     */
-    against: ColorToken;
-    /**
-     * @type {Colorspaces} The mode colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' | 'contrast' | 'distance'`.
-     */
-    colorspace: Colorspaces;
-}): (collection: Collection) => Collection;
+export function filterBy(collection: Collection, options?: FilterByOptions): Collection;

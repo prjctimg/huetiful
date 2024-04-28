@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} ColorToken
  */
 
 import { mlchn, mcchn, eq } from './fp/index.js';

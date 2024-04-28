@@ -4,6 +4,36 @@
 
 ## Type Aliases
 
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[deficiency.js:2](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/deficiency.js#L2)
+
+___
+
+### DeficiencyOptions
+
+Ƭ **DeficiencyOptions**: `Object`
+
+Overrides to specify the type of color blindness and filter intensity.
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `kind?` | [`DeficiencyType`](deficiency.md#deficiencytype) | The type of color vision deficiency. Default is `'red'` |
+| `severity?` | `number` | The intensity of the filter. The exepected value is between [0,1]. Default is `0.1`. |
+| `token?` | [`TokenOptions`](token.md#tokenoptions) | Specify the parsing behaviour and change output type of the `ColorToken`. |
+
+#### Defined in
+
+types.d.ts:204
+
+___
+
 ### DeficiencyType
 
 Ƭ **DeficiencyType**: ``"red"`` \| ``"blue"`` \| ``"green"`` \| ``"monochromacy"``
@@ -12,40 +42,32 @@ The type of color vision defeciency.
 
 #### Defined in
 
-[types/types.d.ts:175](https://github.com/prjctimg/huetiful/blob/ed00af0/types/types.d.ts#L175)
+types.d.ts:335
 
 ## Functions
 
 ### deficiency
 
-▸ **deficiency**(`kind?`): (`color`: [`ColorToken`](alpha.md#colortoken), `severity?`: `number`) => [`ColorToken`](alpha.md#colortoken)
+▸ **deficiency**(`color`, `options?`): `any`
 
-Returns the color as a simulation of the passed in `defeciencyType` of color vision deficiency with the deficiency filter's intensity determined by the `severity` value.
+Simulates how a color may be perceived by people with color vision deficiency.
+
+To avoid writing the long types, the expected parameters for the `kind` of blindness are simply the colors that are hard to perceive for the type of color blindness:
+
+* 'tritanopia' - An inability to distinguish the color 'blue'. The `kind` is `'blue'`.
+* 'deuteranopia' - An inability to distinguish the color 'green'.. The `kind` is `'green'`.
+* 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `kind?` | [`DeficiencyType`](deficiency.md#deficiencytype) | The type of color vision deficiency. To avoid writing the long types, the expected parameters are simply the colors that are hard to perceive for the type of color blindness. For example those with 'tritanopia' are unable to perceive 'blue' light. Default is `'red'` when the deficiency parameter is undefined or any falsy value. |
+| `color` | `any` | The color to return its simulated variant |
+| `options` | [`DeficiencyOptions`](deficiency.md#deficiencyoptions) |  |
 
 #### Returns
 
-`fn`
-
-The color as its simulated variant. Preserves the `ColorToken` type of the pased in color.
-
-▸ (`color`, `severity?`): [`ColorToken`](alpha.md#colortoken)
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `color` | [`ColorToken`](alpha.md#colortoken) |
-| `severity?` | `number` |
-
-##### Returns
-
-[`ColorToken`](alpha.md#colortoken)
+`any`
 
 **`Example`**
 
@@ -66,4 +88,4 @@ console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 
 #### Defined in
 
-[src/deficiency.js:43](https://github.com/prjctimg/huetiful/blob/ed00af0/src/deficiency.js#L43)
+[deficiency.js:51](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/deficiency.js#L51)

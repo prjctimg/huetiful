@@ -57,7 +57,10 @@ export type InterpolatorOptions = {
    * The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
    */
   colorspace?: Colorspaces;
-
+  /**
+   * Specify the parsing behaviour and change output type of the `ColorToken`.
+   */
+  token?: TokenOptions;
   /**
    * The easing function to use.
    * @param  t Any value between 0 and 1
@@ -140,11 +143,105 @@ export type DistributionOptions = {
    * Exclude grayscale colors from the distribution operation. Default is `false`
    */
   excludeAchromatic?: boolean;
-
+  /**
+   * Specify the parsing behaviour and change output type of the `ColorToken`.
+   */
+  token?: TokenOptions;
   /**
    * Exclude the color with the specified `extremum` from the distribution operation. Default is `false`
    */
   excludeSelf?: boolean;
+};
+
+/**
+ * Overrides for setting filtering criterion, expected ranges and other behaviour.
+ */
+export type FilterByOptions = {
+  /**
+   * The factor to use as a filtering criterion.
+   *
+   * Default is `'hue'`
+   */
+  factor?: 'hue';
+  /**
+   * The minimum end of the `factor` range.
+   */
+  start?: number | string;
+
+  /**
+   * The maximum end of the `factor` range.
+   */
+  end?: number | string | undefined;
+  /**
+   * The color to compare the `factor` with. All the `factor`s are calculated between this color and the ones in the colors array. Only works for the `'distance'` and `'contrast'` factor.
+   */
+  against?: ColorToken;
+  /**
+   *  The mode colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' | 'contrast' | 'distance'`.
+   */
+  colorspace?: Colorspaces;
+};
+
+export type DiscoverOptions = {
+  /**
+   * The palette type to return.
+   * Default is `undefined`
+   */
+  kind?: SchemeType | undefined;
+  /**
+   * The colorspace to retrieve channel values from.
+   */
+  colorspace?: Colorspaces;
+  /**
+   * Specify the parsing behaviour and change output type of the `ColorToken`.
+   */
+  token?: TokenOptions;
+};
+
+/**
+ * Overrides to specify the type of color blindness and filter intensity.
+ */
+export type DeficiencyOptions = {
+  /**
+   * The type of color vision deficiency.  Default is `'red'`
+   */
+  kind?: DeficiencyType;
+  /**
+   * The intensity of the filter. The exepected value is between [0,1]. Default is `0.1`.
+   */
+  severity?: number;
+  /**
+   * Specify the parsing behaviour and change output type of the `ColorToken`.
+   */
+  token?: TokenOptions;
+};
+
+/**
+ * Overrides to customize the parsing and output behaviour.
+ */
+export type TokenOptions = {
+  /**
+   * The type of color token to return. Default is `'hex'`.
+   */
+  kind?: 'number' | 'array' | 'object' | 'hex';
+  /**
+   * If the `kind` is set to `'array'` it will remove the mode string from color tuple. Default is `false`.
+   */
+  omitMode?: boolean;
+  /**
+   * The type of number to return. Only valid if kind is set to `'number'`. Default is `'literal'`
+   */
+  numberType?: 'literal' | 'hex' | 'octal' | 'binary' | 'decimal';
+
+  /**
+   *  The mode in which the channel values are valid in. It is used for color arrays if they have the `colorspace` string ommitted. Default is `'rgb'`.
+   */
+  sourceMode?: Colorspaces;
+
+  /**
+   * The colorspace in which to return the color object or array in. Default is `'lch'`.
+   */
+  targetMode?: Colorspaces;
 };
 
 export type Stats =
@@ -216,9 +313,9 @@ export type SchemeOptions = Pick<
   kind?: SchemeType;
 };
 
-export type HueShiftOptions = Pick<
+export type HueshiftOptions = Pick<
   InterpolatorOptions,
-  'colorspace' | 'easingFn' | 'num'
+  'colorspace' | 'easingFn' | 'num' | 'token'
 > & {
   /**
    * *  minLightness  Minimum lightness value (range 0-100).

@@ -1,8 +1,8 @@
-export type ColorToken = import('../types/types.js').ColorToken;
-export type Collection = import('../types/types.js').Collection;
-export type QualitativeScheme = import('../types/types.js').QualitativeScheme;
-export type SequentialScheme = import('../types/types.js').SequentialScheme;
-export type DivergingScheme = import('../types/types.js').DivergingScheme;
+export type ColorToken = import('./types.js').Collection;
+export type Collection = import('./types.js').Collection;
+export type QualitativeScheme = import('./types.js').QualitativeScheme;
+export type SequentialScheme = import('./types.js').SequentialScheme;
+export type DivergingScheme = import('./types.js').DivergingScheme;
 /**
  *  A wrapper function for ColorBrewer's map of diverging color schemes.
  * @param {DivergingScheme} scheme The name of the scheme.

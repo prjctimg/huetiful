@@ -1,10 +1,10 @@
 /**
 
- * @typedef { import('../types/types.js').Collection} ColorToken
- * @typedef { import('../types/types.js').Collection} Collection
- * @typedef {import('../types/types.js').QualitativeScheme} QualitativeScheme
- * @typedef {import('../types/types.js').SequentialScheme} SequentialScheme
- * @typedef {import('../types/types.js').DivergingScheme} DivergingScheme
+ * @typedef { import('./types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} Collection
+ * @typedef {import('./types.js').QualitativeScheme} QualitativeScheme
+ * @typedef {import('./types.js').SequentialScheme} SequentialScheme
+ * @typedef {import('./types.js').DivergingScheme} DivergingScheme
  */
 
 /**

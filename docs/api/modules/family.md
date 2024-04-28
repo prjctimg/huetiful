@@ -2,25 +2,47 @@
 
 # Module: family
 
+## Type Aliases
+
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[family.js:3](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/family.js#L3)
+
+___
+
+### HueFamily
+
+Ƭ **HueFamily**: ``"red-purple"`` \| ``"red"`` \| ``"yellow-red"`` \| ``"yellow"`` \| ``"green-yellow"`` \| ``"green"`` \| ``"blue-green"`` \| ``"blue"`` \| ``"purple-blue"`` \| ``"purple"``
+
+Basic color families and their overtoned variants,
+
+#### Defined in
+
+types.d.ts:340
+
 ## Functions
 
 ### family
 
-▸ **family**(`color`): [`TailwindColorFamilies`](colors.md#tailwindcolorfamilies)
+▸ **family**(`color`): [`HueFamily`](family.md#huefamily)
 
-Gets the hue family which a color belongs to with the overtone included (if it has one.). For achromatic colors it returns the string "gray".
+Gets the hue family which a color belongs to with the overtone included (if it has one.).
+
+For example `'red'` or `'blue-green'`. If the color is achromatic it returns the string `'gray'`.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](alpha.md#colortoken) | The color to query its shade or hue family. |
+| `color` | `any` | The color to query its shade or hue family. |
 
 #### Returns
 
-[`TailwindColorFamilies`](colors.md#tailwindcolorfamilies)
-
-The name of the hue family for example `red` or `blue-green`.
+[`HueFamily`](family.md#huefamily)
 
 **`Example`**
 
@@ -33,4 +55,4 @@ console.log(family("#310000"))
 
 #### Defined in
 
-[src/family.js:21](https://github.com/prjctimg/huetiful/blob/ed00af0/src/family.js#L21)
+[family.js:23](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/family.js#L23)

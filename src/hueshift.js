@@ -1,6 +1,6 @@
 /**
- * @typedef {import('../types/types.js').HueShiftOptions} HueShiftOptions
- * @typedef {import('../types/types.js').Collection} ColorToken
+ * @typedef {import('./types.js').HueshiftOptions} HueShiftOptions
+ * @typedef {import('./types.js').Collection} ColorToken
  */
 
 import { easingSmoothstep } from 'culori/fn';
@@ -46,17 +46,18 @@ function hueshift(
     colorspace: 'jch'
   }
 ) {
-  var { colorspace } = options || {};
+  // @ts-ignore
+  let { num, hueStep, minLightness, maxLightness, easingFn, colorspace } =
+    options;
   const f = (n) => (a0, b0) => (a1, b1) =>
     ((n - a0) / (b0 - a0)) * (b1 - a1) + a1;
 
   // @ts-ignore
-  baseColor = token('object', { targetMode: colorspace.toLowerCase() })(
-    baseColor
-  );
+  baseColor = token(baseColor, {
+    kind: 'object',
+    targetMode: colorspace
+  });
 
-  // @ts-ignore
-  let { num, hueStep, minLightness, maxLightness, easingFn } = options;
   const [l, c, [u, v]] = [
     gmchn(mlchn(colorspace), 0),
     gmchn(mcchn(colorspace), 1),
@@ -106,7 +107,7 @@ function hueshift(
     z.unshift(y);
   }
   // @ts-ignore
-  return Array.from(new Set(z)).map(token('hex'));
+  return Array.from(new Set(z)).map((j) => token(j, options['token']));
 }
 
 export { hueshift };

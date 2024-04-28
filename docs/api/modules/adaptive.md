@@ -16,14 +16,24 @@ This object returns the lightMode and darkMode optimized version of a color with
 
 | Name | Type |
 | :------ | :------ |
-| `backgroundColor?` | \{ `dark?`: [`ColorToken`](alpha.md#colortoken) ; `light?`: [`ColorToken`](alpha.md#colortoken)  } |
-| `backgroundColor.dark?` | [`ColorToken`](alpha.md#colortoken) |
-| `backgroundColor.light?` | [`ColorToken`](alpha.md#colortoken) |
+| `backgroundColor?` | \{ `dark?`: `ColorToken` ; `light?`: `ColorToken`  } |
+| `backgroundColor.dark?` | `ColorToken` |
+| `backgroundColor.light?` | `ColorToken` |
 | `colorBlind?` | `boolean` |
 
 #### Defined in
 
-[types/types.d.ts:45](https://github.com/prjctimg/huetiful/blob/ed00af0/types/types.d.ts#L45)
+types.d.ts:50
+
+___
+
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[adaptive.js:3](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/adaptive.js#L3)
 
 ## Functions
 
@@ -44,4 +54,4 @@ This object returns the lightMode and darkMode optimized version of a color with
 
 #### Defined in
 
-[src/adaptive.js:69](https://github.com/prjctimg/huetiful/blob/ed00af0/src/adaptive.js#L69)
+[adaptive.js:69](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/adaptive.js#L69)

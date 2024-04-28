@@ -1,6 +1,7 @@
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
- * @typedef { import('../types/types.js').DeficiencyType} DeficiencyType
+ * @typedef { import('./types.js').Collection} ColorToken
+ * @typedef { import('./types.js').DeficiencyType} DeficiencyType
+ * @typedef {import('./types.js').DeficiencyOptions} DeficiencyOptions
  */
 
 import { token } from './token.js';
@@ -29,8 +30,9 @@ import { or } from './fp/index.js';
  * * 'tritanopia' - An inability to distinguish the color 'blue'. The `kind` is `'blue'`.
  * * 'deuteranopia' - An inability to distinguish the color 'green'.. The `kind` is `'green'`.
  * * 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
- * * 
- * @param {DeficiencyType} [kind='red'] The type of color vision deficiency.  Default is `'red'`.
+ *
+ * @param {ColorToken} color The color to return its simulated variant
+ * @param {DeficiencyOptions} options
  * @example
  *
  * import { deficiency, token('hex') } from 'huetiful-js'
@@ -46,48 +48,49 @@ let protanopia = deficiency('red')
 console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
 // #9f9f9f
  */
-function deficiency(kind) {
+function deficiency(
+  color,
+  options = {
+    kind: 'red',
+    severity: 0.1
+  }
+) {
+  var { kind, severity } = options || {};
+
   const f = (d, c, t) => {
-    let res;
-    c = token('hex')(c);
+    let o;
+    c = token(c);
     switch (d.toLowerCase()) {
       case 'blue':
-        res = filterDeficiencyTrit(t)(c);
+        o = filterDeficiencyTrit(t)(c);
         break;
       case 'red':
-        res = filterDeficiencyProt(t)(c);
+        o = filterDeficiencyProt(t)(c);
         break;
       case 'green':
-        res = filterDeficiencyDeuter(t)(c);
+        o = filterDeficiencyDeuter(t)(c);
         break;
       case 'monochromacy':
-        res = filterGrayscale(t, 'lch')(c);
+        o = filterGrayscale(t, 'lch')(c);
         break;
     }
 
-    return token('hex')(res);
+    return token(o, options['token']);
   };
 
-  /**
-   * @param {ColorToken} color The color to return its simulated variant.
-   * @param {number} [severity=0.1] The intensity of the filter. The exepected value is between [0,1]. Default is `0.1`.
-   * @returns {string}
-   */
-  return (color, severity) => {
-    // Store the keys of deficiency types
-    const deficiencies = ['red', 'blue', 'green', 'monochromacy'];
-    // Cast 'red' as the default parameter
-    kind = or(kind, 'red');
+  // Store the keys of deficiency types
+  const deficiencies = ['red', 'blue', 'green', 'monochromacy'];
+  // Cast 'red' as the default parameter
+  kind = or(kind, 'red');
 
-    if (deficiencies.some((el) => el === kind.toLowerCase())) {
-      // @ts-ignore
-      return f(kind, color, severity);
-    } else {
-      throw Error(
-        `Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
-      );
-    }
-  };
+  if (deficiencies.some((el) => el === kind.toLowerCase())) {
+    // @ts-ignore
+    return f(kind, color, severity);
+  } else {
+    throw Error(
+      `Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
+    );
+  }
 }
 
 export { deficiency };

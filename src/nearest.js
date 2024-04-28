@@ -1,9 +1,9 @@
 /**
  *
- * @typedef { import('../types/types.js').Collection} ColorToken
- * @typedef { import('../types/types.js').Collection} Collection
- * @typedef { import('../types/types.js').Colorspaces} Colorspaces
- * @typedef {import('../types/types.js').ScaleValues} ScaleValues
+ * @typedef { import('./types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} Collection
+ * @typedef { import('./types.js').Colorspaces} Colorspaces
+ * @typedef {import('./types.js').ScaleValues} ScaleValues
  */
 
 import { values } from './fp/index.js';

@@ -1,8 +1,8 @@
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
- * @typedef { import('../types/types.js').Collection} Collection
+ * @typedef { import('./types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} Collection
 
- * @typedef {import('../types/types.js').PairedSchemeOptions} PairedSchemeOptions
+ * @typedef {import('./types.js').PairedSchemeOptions} PairedSchemeOptions
  */
 
 import { lt, lte, or } from './fp/index.js';
@@ -18,7 +18,7 @@ import { samples } from 'culori/fn';
  * A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color.
  * @param {ColorToken} baseColor The color to return a paired color scheme from.
  * @param {PairedSchemeOptions} options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
- * @returns {Array<string>|string}
+ * @returns {Array<string|ColorToken>|string|ColorToken}
  * @example
  *
  * import { pair } from 'huetiful-js'
@@ -34,7 +34,7 @@ function pair(baseColor, options) {
   hueStep = or(hueStep, 5);
 
   //  @ts-ignore
-  baseColor = token('object')(baseColor);
+  baseColor = token(baseColor, { kind: 'object' });
 
   // get the hue of the passed in color and add it to the step which will result in the final color to pair with
   const g = mc(`${or(colorspace, 'jch')}.h`)(
@@ -53,7 +53,8 @@ function pair(baseColor, options) {
   const f = (l) =>
     interpolator([baseColor, u[via], g], {
       colorspace: colorspace,
-      num: l
+      num: l,
+      token: options['token']
     });
 
   // Declare the num of iterations in samples() which will be used as the t value

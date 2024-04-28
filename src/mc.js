@@ -1,27 +1,31 @@
 /**
- * @typedef {import('../types/types.js').Collection} ColorToken
+ * @typedef {import('./types.js').Collection} ColorToken
  */
 import { exprParser } from './fp/index.js';
 import { token } from './token.js';
 import { gmchn } from './fp/index.js';
 
 /**
- * Gets the value of the specified channel on the passed in color.
+ * Sets the value of the specified channel on the passed in color.
+ * 
+ * If the `amount` parameter is `undefined` it gets the value of the specified channel.
  * @param {string} modeChannel The mode and channel to be retrieved. For example `'rgb.b'` will return the value of the blue channel in the RGB color space of that color.
+ 
  * @example
  *
- * import { get } from 'huetiful-js'
+ * import { mc } from 'huetiful-js'
 
-console.log(get('rgb.g')('#a1bd2f'))
+console.log(mc('rgb.g')('#a1bd2f'))
 // 0.7411764705882353
- * */
+ * 
+*/
 
 function mc(modeChannel) {
   /**
    
    * @param {ColorToken} color Any recognizable color token.
-   * @param {number|string} [value=undefined] The value to set on the queried channel. 
-   * Also supports expressions as strings e.g `mc('lch.c)('red','*0.5')`
+  * @param {string|number} [value=undefined] The value to set on the queried channel. Also supports expressions as strings e.g `"#fc23a1"` `"*0.5"`
+ 
    * @returns  {number|ColorToken}
  
    */

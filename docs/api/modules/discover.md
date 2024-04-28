@@ -2,27 +2,41 @@
 
 # Module: discover
 
+## Type Aliases
+
+### Collection
+
+Ƭ **Collection**\<\>: `Collection`
+
+#### Defined in
+
+[discover.js:2](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/discover.js#L2)
+
 ## Functions
 
 ### discover
 
-▸ **discover**(`colors?`, `kind`, `colorspace?`): `Collection`
+▸ **discover**(`colors?`, `options?`): `any`
 
-Takes a collection of colors and finds the nearest matches using the `differenceHyab()` difference metric for a set of predefined palettes. The function does not work on achromatic colors, you may use `isAchromatic` to filter grays from your collection in the mode `colorspace` before passing it to the function.
+Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes. 
+
+The function returns different values based on the `kind` parameter passed in:
+
+* An array of colors for the `kind` of scheme, if the `kind` parameter is specified.
+* Else it returns an object of all the palette types as keys and their values as an array of colors. 
+
+If no colors are valid for the palette types it returns an empty array for the palette results. It does not work with achromatic colors thus they're excluded from the resulting collection.
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `colors` | `Collection` | `[]` | The collection of colors to create palettes from. Preferably use 6 or more colors for better results. |
-| `kind` | `SchemeType` | `undefined` | (Optional) The palette type you want to return. |
-| `colorspace` | `string` | `'jch'` | - |
+| `colors` | `any` | `[]` | The collection of colors to create palettes from. Preferably use 6 or more colors for better results. |
+| `options` | `DiscoverOptions` | `undefined` |  |
 
 #### Returns
 
-`Collection`
-
-An array of colors if the `schemeType` parameter is specified else it returns a `Map` object of all the palette types as keys and their values as an array of colors. If no colors are valid for the palette types it returns an empty array for the palette results.
+`any`
 
 **`Example`**
 
@@ -49,4 +63,4 @@ console.log(discover(sample, "tetradic"))
 
 #### Defined in
 
-[src/discover.js:37](https://github.com/prjctimg/huetiful/blob/ed00af0/src/discover.js#L37)
+[discover.js:45](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/discover.js#L45)

@@ -1,7 +1,7 @@
-export type ColorToken = import('../types/types.js').ColorToken;
-export type FactObject = import('../types/types.js').FactObject;
+export type ColorToken = import('./types.js').Collection;
+export type FactObject = import('./types.js').FactObject;
 /**
- * Returns the complementary color (180 degrees from that color) of the passed in color token.
+ * Returns the complimentary color of the passed in color token. A complimentary color is 180 degrees away on the hue channel.
  *
  * The object (if the `obj` parameter is `true`) returns:
  *
@@ -10,17 +10,17 @@ export type FactObject = import('../types/types.js').FactObject;
  *
  * The function is internally guarded against achromatic colors which means no action will be done on a gray color and it will be returned as is. Pure black or white (`'#000000'` and `'#ffffff'` respectively) may return unexpected results.
  *
- * @param {ColorToken} color The color to retrieve its complimentary hue.
- * @param {boolean} obj Optional boolean whether to return an object with the result color hue family or just the result color. Default is `false`.
+ * @param {ColorToken} baseColor The color to retrieve its complimentary equivalent.
+ * @param {boolean} obj Optional boolean whether to return an object with the result color's hue family or just the result color. Default is `false`.
  * @returns {ColorToken|FactObject}
  * @example
- *import { complementary } from "huetiful-js";
+ *import { complimentary } from "huetiful-js";
  *
  *
-console.log(complementary("pink",'lch', true))
+console.log(complimentary("pink",'lch', true))
 //// { hue: 'blue-green', color: '#97dfd7ff' }
 
-console.log(complementary("purple"))
+console.log(complimentary("purple"))
 // #005700ff
  */
-export function complimentary(color: ColorToken, colorspace: any, obj?: boolean): ColorToken | FactObject;
+export function complimentary(baseColor: ColorToken, obj?: boolean): ColorToken | FactObject;

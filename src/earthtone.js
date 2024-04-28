@@ -1,6 +1,6 @@
 /**
- * @typedef { import('../types/types.js').Collection} Collection
- * @typedef { import('../types/types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} Collection
+ * @typedef { import('./types.js').Collection} ColorToken
  */
 
 // @ts-ignore
@@ -26,7 +26,7 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
  */
 function earthtone(baseColor, options) {
   let { num, earthtones, colorspace, kind, closed } = options || {};
-  baseColor = token('hex')(baseColor);
+  baseColor = token(baseColor);
 
   earthtones = or(earthtones, 'dark');
   const v = {
@@ -51,7 +51,8 @@ function earthtone(baseColor, options) {
     colorspace: colorspace,
     num: num,
     closed: closed,
-    kind: kind
+    kind: kind,
+    token: options['token']
   });
 }
 

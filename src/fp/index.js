@@ -1,8 +1,8 @@
 /**
- * @typedef { import('../../types/types.js').Collection} ColorToken
- * @typedef { import('../../types/types.js').Collection} Collection
- * @typedef {import('../../types/types.js').InterpolatorOptions} InterpolatorOptions
- * @typedef {import('../../types/types.js').TailwindColorFamilies} TailwindColorFamilies
+ * @typedef { import('../types.js').Collection} ColorToken
+ * @typedef { import('../types.js').Collection} Collection
+ * @typedef {import('../types.js').InterpolatorOptions} InterpolatorOptions
+ * @typedef {import('../types.js').TailwindColorFamilies} TailwindColorFamilies
  */
 
 import { mc } from '../mc.js';

@@ -1,11 +1,11 @@
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
- * @typedef { import('../types/types.js').Collection} Collection
- * @typedef {import('../types/types.js').FactObject} FactObject
- * @typedef {import('../types/types.js').ColorObject} ColorObject
- * @typedef {import('../types/types.js').ColorTuple} ColorTuple
- 
- * @typedef {import('../types/types.js').Colorspaces} Colorspaces
+ * @typedef { import('./types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} Collection
+ * @typedef {import('./types.js').FactObject} FactObject
+ * @typedef {import('./types.js').ColorObject} ColorObject
+ * @typedef {import('./types.js').ColorTuple} ColorTuple
+ * @typedef {import('./types.js').TokenOptions} TokenOptions
+ * @typedef {import('./types.js').Colorspaces} Colorspaces
  *
  */
 import {
@@ -24,59 +24,48 @@ import {
 import { gmchn, keys } from './fp/index.js';
 
 /**
- * Returns a converter function that parses any recognizable color to the specified `kind` of `ColorToken` type.
+ * Parses any recognizable color to the specified `kind` of `ColorToken` type.
  *
- * It supports the following types as options:
+ * The `kind` option supports the following types as options:
  *
  * * `'array'` - Parses the color token to an array of channel values with the `colorspace` as the first element if the `omitMode` parameter is set to `false` in the `options` object.
  *
- * * `'number'` - Parses the color token to its numerical equivalent to a number between `0` and `16,777,215` in hexadecimal, binary, octal or decimal exponential notations if specified in the `numberType` parameter in the ``options` object.
+ * * `'number'` - Parses the color token to its numerical equivalent to a number between `0` and `16,777,215`.
  *
- * * `'hex'` - Parses the color token to its hexadecimal string equivalent. If the color token has an explicit `alpha` (specified by the `alpha` key in color objects and as the fourth and last number in a color array) the string will be 8 characters long instead of 6.
+ * The `numberType` can be used to specify which type of number to return if the `kind` option is set to `'number'`:
+ *  - `'hexadecimal'`
+ *  - `'binary'`
+ *  - `'octal'`
+ *  - `'decimal'` exponential notation
+ *
+ * * `'hex'` - Parses the color token to its hexadecimal string equivalent.
+ *
+ * If the color token has an explicit `alpha` (specified by the `alpha` key in color objects and as the fourth and last number in a color array) the string will be 8 characters long instead of 6.
  *
  * * `'object'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.
  *
- * @param {'number'|'array'|'object'|'hex'} kind
- * @param options Optional overrides to customize `kind` specific parameters.
- * @returns {(color:ColorToken)=>ColorToken} The color token in the specified `kind`.
+ * @param {ColorToken} color The color token to parse or convert.
+ * @param {TokenOptions} options
+ * @returns {ColorToken}
  */
 function token(
-  kind,
+  color,
   options = {
-    /**
-     * @type {boolean}
-     * If the `kind` is set to `'array'` it will remove the mode string from color tuple. Default is `false`.
-     */
+    kind: 'hex',
     omitMode: false,
-    /**
-     * @type {'literal'|'hex'|'octal'|'binary'|'decimal'}
-     * The type of number to return. Only valid if kind is set to `'number'`. Default is `'literal'`
-     */
     numberType: 'literal',
-
-    /**
-     * @type {Colorspaces}
-     *  The mode in which the channel values are valid in. It is used for color arrays if they have the `colorspace` string ommitted. Default is `'rgb'`.
-     */
     sourceMode: 'rgb',
-
-    /**
-     * @type {Colorspaces}
-     * The colorspace in which to return the color object or array in. Default is `'lch'`.
-     */
     targetMode: 'lch'
   }
 ) {
   var defs = {
     rgb: modeLrgb,
-
     lch65: modeLch65,
     lab65: modeLab65,
-
     oklch: modeOklch
   };
 
-  var { sourceMode, targetMode, omitMode } = options;
+  var { sourceMode, targetMode, omitMode, kind } = options;
 
   /**
    *  Returns the color equivalent of any `number` between 0 and 16,777,215 as a hexadecimal string or color object if the `colorspace` is specified.
@@ -247,31 +236,30 @@ function token(
    * @param {ColorToken} color The color to parse to the specified `'kind'`.
    * @returns {ColorToken}
    */
-  return (color) => {
-    var p;
-    switch (kind) {
-      case 'array':
-        // @ts-ignore
-        p = c2arr(color, targetMode, omitMode);
-        break;
-      case 'hex':
-        p = c2hx(color);
-        break;
-      case 'number':
-        p = c2num(color);
-        break;
-      case 'object':
-        // @ts-ignore
-        p = arr2obj(c2arr(color));
-        break;
 
-      default:
-        p = c2hx(color);
-        break;
-    }
+  var p;
+  switch (kind) {
+    case 'array':
+      // @ts-ignore
+      p = c2arr(color, targetMode, omitMode);
+      break;
+    case 'hex':
+      p = c2hx(color);
+      break;
+    case 'number':
+      p = c2num(color);
+      break;
+    case 'object':
+      // @ts-ignore
+      p = arr2obj(c2arr(color));
+      break;
 
-    return p;
-  };
+    default:
+      p = c2hx(color);
+      break;
+  }
+
+  return p;
 }
 
 export { token };

@@ -2,31 +2,43 @@
 
 # Module: luminance
 
+## Type Aliases
+
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[luminance.js:2](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/luminance.js#L2)
+
 ## Functions
 
 ### luminance
 
-▸ **luminance**(`color`, `amount?`): [`ColorToken`](alpha.md#colortoken)
+▸ **luminance**(`color`, `amount?`): `string` \| `number`
 
-Gets the luminance of the passed in color token if the `amount` parameter is not passed in else it will set the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
+Gets the luminance of the passed in color token.
+
+If the `amount` parameter is not passed in else it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `color` | [`ColorToken`](alpha.md#colortoken) | The color to retrieve or adjust luminance. |
+| `color` | `any` | The color to retrieve or adjust luminance. |
 | `amount?` | `number` | The amount of luminance to set. The value range is normalised between [0,1] |
 
 #### Returns
 
-[`ColorToken`](alpha.md#colortoken)
-
-The mutated color with the modified properties. Preserves the `ColorToken` type of the passed in color.
+`string` \| `number`
 
 **`Example`**
 
 ```ts
 import { luminance } from 'huetiful-js'
+
+// Getting the luminance
 
 console.log(luminance('#a1bd2f'))
 // 0.4417749513730954
@@ -46,6 +58,8 @@ console.log(colors('all', '400').map((c) => luminance(c)));
   0.3464512307705231, 0.34012939384198054
 ]
 
+// setting the luminance
+
 let myColor = luminance('#a1bd2f', 0.5)
 
 console.log(luminance(myColor))
@@ -54,4 +68,4 @@ console.log(luminance(myColor))
 
 #### Defined in
 
-[src/luminance.js:42](https://github.com/prjctimg/huetiful/blob/ed00af0/src/luminance.js#L42)
+[luminance.js:46](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/luminance.js#L46)

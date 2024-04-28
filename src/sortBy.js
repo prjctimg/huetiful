@@ -1,10 +1,10 @@
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
- * @typedef { import('../types/types.js').Collection} Collection
- * @typedef { import('../types/types.js').Colorspaces} Colorspaces
- * @typedef {import('../types/types.js').Factor} Factor
- * @typedef {import('../types/types.js').Order} Order
- * @typedef {import('../types/types.js').SortByOptions} SortByOptions
+ * @typedef { import('./types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} Collection
+ * @typedef { import('./types.js').Colorspaces} Colorspaces
+ * @typedef {import('./types.js').Factor} Factor
+ * @typedef {import('./types.js').Order} Order
+ * @typedef {import('./types.js').SortByOptions} SortByOptions
  */
 
 import { sortedColl, mlchn, mcchn } from './index.js';
@@ -38,7 +38,7 @@ import { sortBy } from 'huetiful-js'
 
 let sample = ['purple', 'green', 'red', 'brown']
 console.log(
-  sortBy('distance','desc',{ against:'yellow'})(sample)
+  sortBy(sample,{ against:'yellow' kind:'distance',order:'desc',})
 )
 
 // [ 'brown', 'red', 'green', 'purple' ]

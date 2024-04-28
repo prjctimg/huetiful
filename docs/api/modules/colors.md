@@ -4,6 +4,16 @@
 
 ## Type Aliases
 
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[colors.js:3](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/colors.js#L3)
+
+___
+
 ### ScaleValues
 
 Ƭ **ScaleValues**: ``"050"`` \| ``"100"`` \| ``"200"`` \| ``"300"`` \| ``"400"`` \| ``"500"`` \| ``"600"`` \| ``"700"`` \| ``"800"`` \| ``"900"`` \| ``"950"``
@@ -12,7 +22,7 @@ The value of the Tailwind color.
 
 #### Defined in
 
-[types/types.d.ts:289](https://github.com/prjctimg/huetiful/blob/ed00af0/types/types.d.ts#L289)
+types.d.ts:449
 
 ___
 
@@ -24,7 +34,7 @@ Color families in the default TailwindCSS palette.
 
 #### Defined in
 
-[types/types.d.ts:305](https://github.com/prjctimg/huetiful/blob/ed00af0/types/types.d.ts#L305)
+types.d.ts:465
 
 ## Functions
 
@@ -32,7 +42,13 @@ Color families in the default TailwindCSS palette.
 
 ▸ **colors**(`shade`, `value`): `string` \| `string`[]
 
-Returns TailwindCSS color value(s) of the specified `shade` from the default palette. If called with no parameters, it returns an array of colors from `050` to `900`. If called with parameter will return the specified shade value.
+Returns TailwindCSS color value(s) from the default palette.
+
+The function behaves as follows:
+
+* If called with both `shade` and `value` parameters, it returns that color as a hex string. For example `'blue'` and `'500'` would return the equivalent of `blue-500`.
+* If called with no parameters or just the `'all'` parameter as the `shade`, it returns an array of colors from `'050'` to `'900'` for every `shade`. 
+* If the `shade ` is `'all'` and the `value` is specified, it returns an array of colors at the specified `value` for each `shade`.
 
 #### Parameters
 
@@ -45,16 +61,14 @@ Returns TailwindCSS color value(s) of the specified `shade` from the default pal
 
 `string` \| `string`[]
 
-A hex string value or array of hex strings.
-
 **`Example`**
 
 ```ts
-import { tailwindColors } from "huetiful-js";
+import { colors } from "huetiful-js";
 
 // We pass in red as the target hue.
 // It returns a function that can be called with an optional value parameter
-let red = tailwindColors("red");
+let red = colors("red");
 console.log(red());
 // [
  '#fef2f2', '#fee2e2',
@@ -73,4 +87,4 @@ console.log(red('900'));
 
 #### Defined in
 
-[src/colors.js:48](https://github.com/prjctimg/huetiful/blob/ed00af0/src/colors.js#L48)
+[colors.js:53](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/colors.js#L53)

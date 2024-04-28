@@ -4,6 +4,26 @@
 
 ## Type Aliases
 
+### Collection
+
+Ƭ **Collection**\<\>: `Collection`
+
+#### Defined in
+
+[brewer.js:4](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/brewer.js#L4)
+
+___
+
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[brewer.js:3](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/brewer.js#L3)
+
+___
+
 ### DivergingScheme
 
 Ƭ **DivergingScheme**: ``"Spectral"`` \| ``"RdYlGn"`` \| ``"RdBu"`` \| ``"PiYG"`` \| ``"PRGn"`` \| ``"RdYlBu"`` \| ``"BrBG"`` \| ``"RdGy"`` \| ``"PuOr"``
@@ -12,7 +32,7 @@ The `diverging` color scheme in the ColorBrewer colormap.
 
 #### Defined in
 
-[types/types.d.ts:195](https://github.com/prjctimg/huetiful/blob/ed00af0/types/types.d.ts#L195)
+types.d.ts:355
 
 ___
 
@@ -24,7 +44,7 @@ The `qualitative` color scheme in the ColorBrewer colormap.
 
 #### Defined in
 
-[types/types.d.ts:209](https://github.com/prjctimg/huetiful/blob/ed00af0/types/types.d.ts#L209)
+types.d.ts:369
 
 ___
 
@@ -36,13 +56,13 @@ The `sequential` color scheme in the ColorBrewer colormap.
 
 #### Defined in
 
-[types/types.d.ts:222](https://github.com/prjctimg/huetiful/blob/ed00af0/types/types.d.ts#L222)
+types.d.ts:382
 
 ## Functions
 
 ### diverging
 
-▸ **diverging**(`scheme`): `Collection`
+▸ **diverging**(`scheme`): `any`
 
 A wrapper function for ColorBrewer's map of diverging color schemes.
 
@@ -54,7 +74,7 @@ A wrapper function for ColorBrewer's map of diverging color schemes.
 
 #### Returns
 
-`Collection`
+`any`
 
 The collection of colors from the specified `scheme`.
 
@@ -74,13 +94,13 @@ console.log(diverging("Spectral"))
 
 #### Defined in
 
-[src/brewer.js:287](https://github.com/prjctimg/huetiful/blob/ed00af0/src/brewer.js#L287)
+[brewer.js:287](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/brewer.js#L287)
 
 ___
 
 ### qualitative
 
-▸ **qualitative**(`scheme`): `Collection`
+▸ **qualitative**(`scheme`): `any`
 
 A wrapper function for ColorBrewer's map of qualitative color schemes.
 
@@ -92,7 +112,7 @@ A wrapper function for ColorBrewer's map of qualitative color schemes.
 
 #### Returns
 
-`Collection`
+`any`
 
 The collection of colors from the specified `scheme`.
 
@@ -112,13 +132,13 @@ console.log(qualitative("Accent"))
 
 #### Defined in
 
-[src/brewer.js:429](https://github.com/prjctimg/huetiful/blob/ed00af0/src/brewer.js#L429)
+[brewer.js:429](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/brewer.js#L429)
 
 ___
 
 ### sequential
 
-▸ **sequential**(`scheme`): [`ColorToken`](alpha.md#colortoken) \| `Collection`
+▸ **sequential**(`scheme`): `any`
 
 A wrapper function for ColorBrewer's map of sequential color schemes.
 
@@ -130,7 +150,7 @@ A wrapper function for ColorBrewer's map of sequential color schemes.
 
 #### Returns
 
-[`ColorToken`](alpha.md#colortoken) \| `Collection`
+`any`
 
 A collection of colors in the specified colorspace. The default is hex if `colorspace` is `undefined.`
 
@@ -152,4 +172,4 @@ console.log(sequential("OrRd"))
 
 #### Defined in
 
-[src/brewer.js:53](https://github.com/prjctimg/huetiful/blob/ed00af0/src/brewer.js#L53)
+[brewer.js:53](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/brewer.js#L53)

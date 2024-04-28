@@ -1,11 +1,12 @@
-export type ColorToken = import('../types/types.js').ColorToken;
+export type ColorToken = import('./types.js').Collection;
 /**
  * Checks if a color token is achromatic (without hue or simply grayscale).
  *
  * A color token is considered achromatic or gray if:
  *
- * * It has a falsy chroma/saturation channel when its channel values are computed in a hue based colorspace because the hue channel is hue dependant.
- * * It has a falsy hue channel (usually happens if you use a custom interpolation method other than interpolatorLinear and one of the hue channels in the interpolation has a falsy channel) which makes the hue `NaN`
+ * * It has a falsy chroma/saturation channel when its channel values are computed in a hue based colorspace because the hue channel depends on the chroma channel for the final color to be non-gray (or colorful).
+ * * It has a falsy hue channel (usually happens if you use a custom interpolation method other than interpolatorLinear and one of the hue channels in the interpolation has a falsy channel) which makes the hue `NaN`.
+ * * All its `[r,g,b]` channels have equal values since grays are a result of interpolating black (`['rgb',0,0,0]`) and white (`['rgb',1,1,1]`). Therefore black and white return `false` because they're not grays.
  * @param {ColorToken} color The color token to test if it is achromatic or not.
  * @returns {boolean} True if the color token is achromatic else false.
  * @example

@@ -1,6 +1,7 @@
 /**
- * @typedef { import('../types/types.js').Collection} Collection
- * @typedef { import('../types/types.js').SchemeType} SchemeType
+ * @typedef { import('./types.js').Collection} Collection
+ * @typedef { import('./types.js').SchemeType} SchemeType
+ * @typedef { import('./types.js').DiscoverOptions} DiscoverOptions
  */
 
 import { nearest, differenceHyab } from 'culori/fn';
@@ -9,7 +10,7 @@ import { scheme } from './scheme.js';
 import { token } from './token.js';
 
 /**
- * Takes a collection of colors and finds the nearest matches using the `differenceHyab()` difference metric for a set of predefined palettes. 
+ * Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes. 
  * 
  * The function returns different values based on the `kind` parameter passed in:
  * 
@@ -18,7 +19,7 @@ import { token } from './token.js';
  * 
  * If no colors are valid for the palette types it returns an empty array for the palette results. It does not work with achromatic colors thus they're excluded from the resulting collection.
  * @param {Collection} colors The collection of colors to create palettes from. Preferably use 6 or more colors for better results.
- * @param {SchemeType} kind (Optional) The palette type you want to return.
+* @param {DiscoverOptions} options
  * @returns {Collection} 
  * @example
  *
@@ -41,7 +42,16 @@ let sample = [
 console.log(discover(sample, "tetradic"))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
  */
-function discover(colors = [], kind, colorspace = 'jch') {
+function discover(
+  colors = [],
+  options = {
+    kind: undefined,
+
+    colorspace: 'jch'
+  }
+) {
+  let { kind, colorspace } = options || {};
+
   // I have this weird urge to just put stuff in arrays...elegant
   var [q, k, t, u, v, f] = [
     {},
@@ -53,16 +63,16 @@ function discover(colors = [], kind, colorspace = 'jch') {
   ];
 
   colors = values(colors).map((z) =>
-    token('object', {
-      // @ts-ignore
+    token(z, {
+      kind: 'object',
       targetMode: colorspace
     })(z)
   );
 
-  for (var x in colors) {
-    var p = colors[x];
+  for (var x of colors) {
     // @ts-ignore
-    k.forEach((s) => (t[s] = scheme(s)(p)));
+
+    t[x] = scheme(x, { kind: kind });
 
     for (var d of keys(t)) {
       var [h, r] = [[], 0];
@@ -80,15 +90,15 @@ function discover(colors = [], kind, colorspace = 'jch') {
         h.push(m);
       }
 
-      if (!q[d] || r < q[d].variance) {
-        q[d] = h.map(token('hex'));
+      if (!q[d] || r < q[d]) {
+        q[d] = h.map((i) => token(i, options['token']));
       }
     }
   }
   var o;
-  if (k.some((a) => a === kind.toLowerCase())) {
+  if (kind) {
     o = q[kind.toLowerCase()];
-  } else if (typeof kind === 'undefined') {
+  } else if (!kind) {
     o = q;
   } else {
     throw Error(

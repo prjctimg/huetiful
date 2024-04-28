@@ -1,13 +1,13 @@
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
- * @typedef { import('../types/types.js').Collection} Collection
- * @typedef {import('../types/types.js').Factor} Factor
- * @typedef {import('../types/types.js').Colorspaces} Colorspaces
+ * @typedef { import('./types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} Collection
+ * @typedef {import('./types.js').Factor} Factor
+ * @typedef {import('./types.js').Colorspaces} Colorspaces
+ * @typedef {import('./types.js').FilterByOptions} FilterByOptions
  */
 
 import { differenceHyab } from 'culori/fn';
 
-// @ts-ignore
 import { mcchn, mlchn, filteredColl } from './fp/index.js';
 import { token } from './token.js';
 import { mc } from './mc.js';
@@ -33,12 +33,9 @@ import ranges from './maps/ranges.js';
  * @see https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
  *
  * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
- * 
- * 
- * @param {Factor} factor The factor to use as a filtering criterion.
- * @param {number|string}  start The minimum end of the `factor` range.
- * @param {number|string} end The maximum end of the `factor` range.
- *
+ * @param {Collection} collection The collection of colors to filter.  
+ * @param {FilterByOptions} options
+ * @returns {Collection}
  * @example
  * 
  * import { filterBy } from 'huetiful-js'
@@ -64,21 +61,16 @@ console.log(filterBy('contrast','>=3')(sample,{ against:'green' }))
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
  */
 function filterBy(
-  factor,
-  start,
-  end,
+  collection,
   options = {
-    /**
-     * @type {ColorToken}  The color to compare the `factor` with. All the `factor`s are calculated between this color and the ones in the colors array. Only works for the `'distance'` and `'contrast'` factor.
-     */
-    against: '#fff',
-    /**
-     * @type {Colorspaces} The mode colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' | 'contrast' | 'distance'`.
-     */
+    factor: 'hue',
+    start: 0,
+    end: undefined,
+    against: 'cyan',
     colorspace: 'lch'
   }
 ) {
-  var { against, colorspace } = options,
+  var { against, colorspace, end, start, factor } = options,
     z;
 
   function w(a, b, s, e) {
@@ -114,7 +106,7 @@ function filterBy(
 
       z = w(
         'distance',
-        u(token('hex')(against)),
+        u(token(against)),
 
         // @ts-ignore
         start,
@@ -153,14 +145,7 @@ function filterBy(
       break;
   }
 
-  /**
-   * @param {Collection}  collection The collection of colors to filter.
-   * @param options
-   * @returns {Collection}  A collection of the filtered colors.
-   */
-  return (collection) => {
-    return z(collection);
-  };
+  return z(collection);
 }
 
 export { filterBy };

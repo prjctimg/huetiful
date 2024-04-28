@@ -1,9 +1,9 @@
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
- * @typedef { import('../types/types.js').Collection} Collection
- * @typedef { import('../types/types.js').Colorspaces} Colorspaces
- * @typedef {import('../types/types.js').Stats} Stats
- * @typedef {import('../types/types.js').StatsOptions} StatsOptions
+ * @typedef { import('./types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} Collection
+ * @typedef { import('./types.js').Colorspaces} Colorspaces
+ * @typedef {import('./types.js').Stats} Stats
+ * @typedef {import('./types.js').StatsOptions} StatsOptions
  */
 
 import { differenceHyab, averageNumber, averageAngle } from 'culori/fn';

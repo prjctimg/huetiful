@@ -1,7 +1,7 @@
 /**
- * @typedef {import('../types/types.js').DeficiencyType} DeficiencyType
- * @typedef {import('../types/types.js').Collection} ColorToken
- * @typedef {import('../types/types.js').AdaptivePaletteOptions} AdaptivePaletteOptions
+ * @typedef {import('./types.js').DeficiencyType} DeficiencyType
+ * @typedef {import('./types.js').Collection} ColorToken
+ * @typedef {import('./types.js').AdaptivePaletteOptions} AdaptivePaletteOptions
  */
 
 // Things I need to understand first:

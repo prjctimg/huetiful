@@ -1,5 +1,5 @@
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} ColorToken
  */
 
 import { max, token, min } from './index.js';
@@ -12,7 +12,7 @@ function f(a = 0.1, b, c) {
     o['l'] = b([100, o['l'] + 100 * a]);
   }
   // @ts-ignore
-  return token('hex')(o);
+  return token(o);
 }
 
 /**

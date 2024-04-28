@@ -1,10 +1,10 @@
-export type DeficiencyType = import('../types/types.js').DeficiencyType;
-export type ColorToken = import('../types/types.js').ColorToken;
-export type AdaptivePaletteOptions = import('../types/types.js').AdaptivePaletteOptions;
+export type DeficiencyType = import('./types.js').DeficiencyType;
+export type ColorToken = import('./types.js').Collection;
+export type AdaptivePaletteOptions = import('./types.js').AdaptivePaletteOptions;
 /**
- * @typedef {import('../types/types.js').DeficiencyType} DeficiencyType
- * @typedef {import('../types/types.js').ColorToken} ColorToken
- * @typedef {import('../types/types.js').AdaptivePaletteOptions} AdaptivePaletteOptions
+ * @typedef {import('./types.js').DeficiencyType} DeficiencyType
+ * @typedef {import('./types.js').Collection} ColorToken
+ * @typedef {import('./types.js').AdaptivePaletteOptions} AdaptivePaletteOptions
  */
 /**
  *

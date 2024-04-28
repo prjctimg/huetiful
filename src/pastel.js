@@ -1,5 +1,5 @@
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} ColorToken
  */
 
 import { averageNumber, random } from 'culori/fn';
@@ -56,3 +56,5 @@ function pastel(baseColor) {
   // @ts-ignore
   return q;
 }
+
+export { pastel };

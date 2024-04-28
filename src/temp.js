@@ -1,8 +1,8 @@
 /**
- * @typedef { import('../types/types.js').Collection} ColorToken
- * @typedef { import('../types/types.js').Collection} Collection
- * @typedef { import('../types/types.js').Colorspaces} Colorspaces
- * @typedef {import('../types/types.js').Stats} Stats
+ * @typedef { import('./types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} Collection
+ * @typedef { import('./types.js').Colorspaces} Colorspaces
+ * @typedef {import('./types.js').Stats} Stats
  
  */
 
@@ -11,7 +11,8 @@ import { floorCeil, inRange, keys } from './fp/index.js';
 import { mc } from './mc.js';
 
 /**
- * Checks if a color can be roughly classified as a cool color. Returns true if color is a cool color else false.
+ * Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'`.
+ * 
  * @param {ColorToken} color The color to check the temperature.
  * @returns {'cool' | 'warm'} True if the color is cool else false.
  * @example

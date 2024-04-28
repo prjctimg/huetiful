@@ -2,13 +2,23 @@
 
 # Module: complimentary
 
+## Type Aliases
+
+### ColorToken
+
+Ƭ **ColorToken**\<\>: `Collection`
+
+#### Defined in
+
+[complimentary.js:2](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/complimentary.js#L2)
+
 ## Functions
 
 ### complimentary
 
-▸ **complimentary**(`color`, `colorspace`, `obj?`): `string` \| `number` \| `boolean` \| `ColorObject` \| [[`Colorspaces`](nearest.md#colorspaces), `number`, `number`, `number`, number?] \| `number`[] \| \{ `color`: [`ColorToken`](alpha.md#colortoken) ; `factor`: `number`  }
+▸ **complimentary**(`baseColor`, `obj?`): `any`
 
-Returns the complementary color (180 degrees from that color) of the passed in color token.
+Returns the complimentary color of the passed in color token. A complimentary color is 180 degrees away on the hue channel.
 
 The object (if the `obj` parameter is `true`) returns:
 
@@ -21,26 +31,25 @@ The function is internally guarded against achromatic colors which means no acti
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `color` | [`ColorToken`](alpha.md#colortoken) | `undefined` | The color to retrieve its complimentary hue. |
-| `colorspace` | `any` | `undefined` | - |
-| `obj` | `boolean` | `false` | Optional boolean whether to return an object with the result color hue family or just the result color. Default is `false`. |
+| `baseColor` | `any` | `undefined` | The color to retrieve its complimentary equivalent. |
+| `obj` | `boolean` | `false` | Optional boolean whether to return an object with the result color's hue family or just the result color. Default is `false`. |
 
 #### Returns
 
-`string` \| `number` \| `boolean` \| `ColorObject` \| [[`Colorspaces`](nearest.md#colorspaces), `number`, `number`, `number`, number?] \| `number`[] \| \{ `color`: [`ColorToken`](alpha.md#colortoken) ; `factor`: `number`  }
+`any`
 
 **`Example`**
 
 ```ts
-import { complementary } from "huetiful-js";
+import { complimentary } from "huetiful-js";
 
-console.log(complementary("pink",'lch', true))
+console.log(complimentary("pink",'lch', true))
 //// { hue: 'blue-green', color: '#97dfd7ff' }
 
-console.log(complementary("purple"))
+console.log(complimentary("purple"))
 // #005700ff
 ```
 
 #### Defined in
 
-[src/complimentary.js:35](https://github.com/prjctimg/huetiful/blob/ed00af0/src/complimentary.js#L35)
+[complimentary.js:34](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/complimentary.js#L34)
