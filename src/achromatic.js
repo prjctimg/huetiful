@@ -63,9 +63,8 @@ function achromatic(color) {
   var [l, c, p, f] = [
     mc(`${mlchn('jch')}`)(color),
     mc(`${mcchn('jch')}`)(color),
-    token('array', { targetMode: 'rgb', omitMode: true })(color),
-    (x) =>
-      x !== (false || NaN || undefined || void 0 || 0 || Infinity || -Infinity)
+    token(color, { targetMode: 'rgb', omitMode: true, kind: 'array' }),
+    (x) => x !== (false || NaN || undefined || 0 || Infinity || -Infinity)
   ];
 
   q = eq(p[0], p[1]) && eq(p[0], p[2]) && eq(p[2], p[1]);

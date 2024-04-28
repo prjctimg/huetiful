@@ -45,7 +45,7 @@ function mc(modeChannel) {
         }
       } else {
         // @ts-ignore
-        o = token('object', { targetMode: m })(color)[c];
+        o = token(color, { kind: 'object', targetMode: m })[c];
       }
       return o;
     } else {

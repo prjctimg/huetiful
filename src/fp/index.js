@@ -5,8 +5,6 @@
  * @typedef {import('../types.js').TailwindColorFamilies} TailwindColorFamilies
  */
 
-import { mc } from '../mc.js';
-
 import limits from '../maps/ranges.js';
 
 import {

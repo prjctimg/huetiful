@@ -91,7 +91,7 @@ function luminance(color, amount) {
       }
     }
     // @ts-ignore
-    return token('hex')(o);
+    return token(o);
   }
 }
 

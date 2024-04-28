@@ -45,7 +45,7 @@ function pastel(baseColor) {
     mxl: max(v)
   };
   // @ts-ignore
-  baseColor = token('object', { targetMode: 'jch' })(baseColor);
+  baseColor = token(baseColor, { targetMode: 'jch', kind: 'object' });
 
   var q = random('lch65', {
     h: baseColor['h'],

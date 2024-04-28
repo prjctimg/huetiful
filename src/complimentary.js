@@ -37,7 +37,7 @@ function complimentary(baseColor, obj = false) {
   var o = (h && {
     hue: family(h),
     // @ts-ignore
-    color: token('hex')(set('jch.h')(baseColor, h))
+    color: token(mc('jch.h')(baseColor, h))
   }) || { hue: 'gray', color: baseColor };
   // @ts-ignore
   return (obj && o) || o['color'];

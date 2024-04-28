@@ -21,7 +21,7 @@ import { wcagContrast } from 'culori/fn';
  */
 function contrast(a, b) {
   // @ts-ignore
-  return wcagContrast(token('hex')(a), token('hex')(b));
+  return wcagContrast(token(a), token(b));
 }
 
 export { contrast };

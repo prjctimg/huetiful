@@ -59,116 +59,41 @@
 
   </head>
 
-  <body id="app">
+  <body>
+    <div id="app"></div>
     <nav></nav>
 
     <script src="/assets/js/vendor/docsify.js"></script>
-    <script src="/assets/js/vendor/plugins/time-updater.js"></script>
-    <script src="/assets/js/vendor/plugins/wordcount.js"></script>
-    <script src="/assets/js/vendor/plugins/progress.js"></script>
-    <script src="/assets/js/vendor/plugins/kofi.js"></script>
-    <script src="/assets/js/vendor/plugins/edit.js"></script>
-    <script src="/assets/js/vendor/plugins/accordify.js"></script>
     <script src="/assets/js/vendor/plugins/pagination.js"></script>
-    <script src="/assets/js/vendor/plugins/footer.js"></script>
-    <script src="/assets/js/vendor/plugins/banner.js"></script>
-    <script src="/assets/js/vendor/plugins/alert.js"></script>
-    <script src="/assets/js/vendor/plugins/changelog.js"></script>
-    <script src="/assets/js/config.js"></script>
+    <script src="/assets/js/vendor/plugins/edit.js"></script>
+
 
     <script>
       window.$docsify = {
+        el: '#app',
         name: 'huetiful-js',
         repo: 'xml-wizard/huetiful',
-        homepage: '/assets/pages/home.md',
+        homepage: '/home.md',
         logo: '/assets/img/logo.svg',
         nameLink: 'https://huetiful-js.com',
         loadNavbar: false,
-        topBanner: {
-          options: {
-            content:
-              'huetiful-js V3 is here! Smaller API with same functionality and better perfomance.',
-            position: 'relative',
-            backgroundColor: '#bae6fd',
-            zIndex: -1,
-            textColor: '#091e42',
-            linkColor: '#091e42',
-            textAlign: 'center',
-            defaultTag: 'div'
-          }
-        },
         plugins: [
           EditOnGithubPlugin.create(
-            'https://github.com/xml-wizard/huetiful/blob/main/docs/assets/pages/',
+            'https://github.com/xml-wizard/huetiful/blob/main/docs/',
             null,
             'Edit this page'
           )
         ],
         nativeEmoji: true,
-        alias: {
-          '/api/': '/assets/pages/api',
-          '/api/(.*)': '/api/modules/$1',
-          '/changelog':
-            'https://raw.githubusercontent.com/xml-wizard/huetiful/main/CHANGELOG',
-          '/download': '/assets/pages/download',
-          '/contributing':
-            'https://raw.githubusercontent.com/xml-wizard/huetiful/main/CONTRIBUTING',
-          '/references':
-            'https://raw.githubusercontent.com/xml-wizard/huetiful/main/REFERENCES',
-          '/quickstart': '/assets/pages/quickstart'
-        },
         topMargin: 50,
-        progress: {
-          position: 'top',
-          color: 'var(--theme-color,#42b983)',
-          height: '3px'
-        },
-        coverpage: '/assets/pages/_cover.md',
-        executeScript: true,
-        autoFooter: {
-          name: 'Dean Tarisai & xml-wizard contributors',
-          url: 'https://github.com/xml-wizard',
-          copyYear: '2021',
-          policy: false
-        },
-        copyCode: {
-          buttonText: 'Copy to clipboard',
-          errorText: 'Error!',
-          successText: 'Copied!'
-        },
+        coverpage: '/_cover.md',
         pagination: {
           previousText: 'Back to',
           nextText: 'Up next',
           crossChapter: true,
           crossChapterText: true
         },
-        count: {
-          countable: true,
-          postMessage: 'top',
-          margin: '10px',
-          float: 'right',
-          fontsize: '0.9em',
-          color: 'rgb(90,90,90)',
-          isExpexted: true
-        },
-        accordify: {
-          prerenderComments: true,
-          seletors: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
-        },
-        'flexible-alerts': {
-          note: {
-            label: 'Good to know'
-          },
-          tip: {
-            label: 'Tip'
-          },
-          warning: {
-            label: 'Caution'
-          },
-          attention: {
-            label: 'Remember'
-          }
-        }
+
       };
 
     </script>

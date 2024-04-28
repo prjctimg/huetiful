@@ -33,7 +33,7 @@ function alpha(color, amount) {
   const c = 'alpha';
 
   // @ts-ignore
-  var o = token('object', { targetMode: 'lch' })(color);
+  var o = token(color, { targetMode: 'lch', kind: 'object' });
   if (typeof amount === 'undefined' || null) {
     // @ts-ignore
     return o[c];
@@ -51,7 +51,7 @@ function alpha(color, amount) {
   }
 
   // @ts-ignore
-  return token('hex')(o);
+  return token(o);
 }
 
 export { alpha };
