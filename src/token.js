@@ -68,7 +68,7 @@ function token(
     lch65: modeLch65,
     lab65: modeLab65,
     oklch: modeOklch,
-    lch: modeLch65,
+    lch: modeLch,
     xyz: modeXyz65
   };
 
@@ -105,50 +105,49 @@ function token(
   }
   /**
    * Converts a wide range of color tokens which are color objects, and CSS named colors  (for example 'red'), any `number` from 0 to 166,777,215 and arrays in the form of `[string,number,number,number,number?]` the first element in the array being the mode color space and the fourth optional number element as the opacity value to hexadecimal.
-   * @param {ColorToken} color The color to convert to hexadecimal. Works on color objects and CSS named colors.
+   * @param {ColorToken} r The color to convert to hexadecimal. Works on color objects and CSS named colors.
    * @returns {string} A hexadecimal representation of the passed in color.
    */
 
-  // function c2hx(color) {
-  //   // if its of type string and not a CSS named color then its probably hex so we don't convert it
-  //   var c;
-  //   switch (typeof color) {
-  //     case 'boolean':
-  //       c = (color === true && '#ffffff') || '#000000';
+  function c2hx(r) {
+    // if its of type string and not a CSS named color then its probably hex so we don't convert it
+    var c;
+    switch (typeof r) {
+      case 'boolean':
+        c = (r === true && '#ffffff') || '#000000';
 
-  //       break;
-  //     case 'number':
-  //       // @ts-ignore
-  //       c = num2c(color);
+        break;
+      case 'number':
+        // @ts-ignore
+        c = num2c(r);
 
-  //       break;
-  //     // @ts-ignore
-  //     case 'object' && color?.length:
-  //       // @ts-ignore
-  //       c = ((color.length === 5 && formatHex8) || formatHex)(
-  //         // @ts-ignore
-  //         arr2obj(color)
-  //       );
+        break;
+      // @ts-ignore
+      case 'object' && r?.length:
+        // @ts-ignore
+        c = ((r.length === 5 && formatHex8) || formatHex)(
+          // @ts-ignore
+          arr2obj(r)
+        );
 
-  //       break;
-  //     case 'string':
-  //       c =
-  //         // @ts-ignore
-  //         (!keys(colorsNamed).some((el) => el === color.toLowerCase()) &&
-  //           color) ||
-  //         // @ts-ignore
-  //         formatHex8(color);
-  //       break;
-  //     default:
-  //       // @ts-ignore
-  //       c = ((color?.alpha < 1 && formatHex8) || formatHex)(
-  //         // @ts-ignore
-  //         arr2obj(c2arr(color, targetMode))
-  //       );
-  //   }
-  //   // @ts-ignore
-  //   return c;
-  // }
+        break;
+      case 'string':
+        c =
+          // @ts-ignore
+          (!keys(colorsNamed).some((el) => el === r.toLowerCase()) && r) ||
+          // @ts-ignore
+          formatHex8(r);
+        break;
+      default:
+        // @ts-ignore
+        c = ((r?.alpha < 1 && formatHex8) || formatHex)(
+          // @ts-ignore
+          arr2obj(c2arr(r, targetMode))
+        );
+    }
+    // @ts-ignore
+    return c;
+  }
 
   /**
    * Returns the numerical equivalent of a color.
@@ -203,8 +202,10 @@ function token(
     if (arr) {
       // get  the needed vars
       var [m, tm, cb] = [
-        typeof arr[0] !== 'number' ? arr[0] : sourceMode,
-        targetMode,
+        typeof arr[0] != 'number' ? arr[0] : sourceMode,
+        !targetMode ? m : targetMode,
+
+        // x is the string of mode channels, y is an array of channels
         (x, y, m) => ({
           [x[0]]: y[0],
           [x[1]]: y[1],
@@ -228,7 +229,7 @@ function token(
 
       if (m && tm) {
         // @ts-ignore
-        return useMode(defs[tm])(cb(gmchn(m).split(''), arr.slice(1), tm));
+        return useMode(defs[tm])(cb(gmchn(m).split(''), arr.slice(1), m));
       } else if ((!m && tm) || (m && !tm)) {
         return cb(
           (m || tm).split(''),
@@ -248,7 +249,7 @@ function token(
   switch (kind) {
     case 'array':
       // @ts-ignore
-      p = c2arr(color, targetMode, omitMode);
+      p = c2arr(c2hx(color), targetMode, omitMode);
       break;
     case 'hex':
       p = c2hx(color);
@@ -259,7 +260,7 @@ function token(
     // @ts-ignore
     case 'object':
       // @ts-ignore
-      p = arr2obj(c2arr(color));
+      p = useMode(defs[targetMode])(c2hx(color));
       break;
 
     default:

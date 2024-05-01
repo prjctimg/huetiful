@@ -47,4 +47,11 @@ import { mc } from './src/index.js';
 
 let a = mc('lch65.h')('blue');
 
-console.log(token(['rgb', 0.2, 0.5, 0.1], { kind: 'object' }));
+console.log(
+  token(
+    { mode: 'rgb', r: 0.2, g: 0.5, b: 0.1 },
+    { kind: 'array', targetMode: 'lch', omitMode: true }
+  )
+);
+
+console.log(mc('lch.h')('#310000', 10));
