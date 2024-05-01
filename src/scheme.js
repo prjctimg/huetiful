@@ -75,7 +75,7 @@ function scheme(baseColor = 'cyan', options) {
   }
   // The map for steps to obtain the targeted palettes
 
-  const [m, n] = [gmchn(mlchn(colorspace), 0), gmchn(mcchn(colorspace), 1)];
+  const [m, n] = [mlchn(colorspace), mcchn(colorspace)];
 
   if (isArray(kind)) {
     var e = {};

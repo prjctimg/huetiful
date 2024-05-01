@@ -18,10 +18,14 @@ import {
   modeLab65,
   modeOklch,
   formatHex,
-  formatHex8
+  formatHex8,
+  modeLch,
+  modeXyz50,
+  modeXyz65,
+  modeLab
 } from 'culori/fn';
 
-import { gmchn, keys } from './fp/index.js';
+import { gmchn, isArray, keys } from './fp/index.js';
 
 /**
  * Parses any recognizable color to the specified `kind` of `ColorToken` type.
@@ -55,14 +59,17 @@ function token(
     omitMode: false,
     numberType: 'literal',
     sourceMode: 'rgb',
-    targetMode: 'lch'
+    targetMode: undefined
   }
 ) {
   var defs = {
     rgb: modeLrgb,
+    lab: modeLab,
     lch65: modeLch65,
     lab65: modeLab65,
-    oklch: modeOklch
+    oklch: modeOklch,
+    lch: modeLch65,
+    xyz: modeXyz65
   };
 
   var { sourceMode, targetMode, omitMode, kind } = options;
@@ -102,46 +109,46 @@ function token(
    * @returns {string} A hexadecimal representation of the passed in color.
    */
 
-  function c2hx(color) {
-    // if its of type string and not a CSS named color then its probably hex so we don't convert it
-    var c;
-    switch (typeof color) {
-      case 'boolean':
-        c = (color === true && '#ffffff') || '#000000';
+  // function c2hx(color) {
+  //   // if its of type string and not a CSS named color then its probably hex so we don't convert it
+  //   var c;
+  //   switch (typeof color) {
+  //     case 'boolean':
+  //       c = (color === true && '#ffffff') || '#000000';
 
-        break;
-      case 'number':
-        // @ts-ignore
-        c = num2c(color);
+  //       break;
+  //     case 'number':
+  //       // @ts-ignore
+  //       c = num2c(color);
 
-        break;
-      // @ts-ignore
-      case 'object' && color?.length:
-        // @ts-ignore
-        c = ((color.length === 5 && formatHex8) || formatHex)(
-          // @ts-ignore
-          arr2obj(color)
-        );
+  //       break;
+  //     // @ts-ignore
+  //     case 'object' && color?.length:
+  //       // @ts-ignore
+  //       c = ((color.length === 5 && formatHex8) || formatHex)(
+  //         // @ts-ignore
+  //         arr2obj(color)
+  //       );
 
-        break;
-      case 'string':
-        c =
-          // @ts-ignore
-          (!keys(colorsNamed).some((el) => el === color.toLowerCase()) &&
-            color) ||
-          // @ts-ignore
-          formatHex8(color);
-        break;
-      default:
-        // @ts-ignore
-        c = ((color?.alpha < 1 && formatHex8) || formatHex)(
-          // @ts-ignore
-          arr2obj(c2arr(color, targetMode))
-        );
-    }
-    // @ts-ignore
-    return c;
-  }
+  //       break;
+  //     case 'string':
+  //       c =
+  //         // @ts-ignore
+  //         (!keys(colorsNamed).some((el) => el === color.toLowerCase()) &&
+  //           color) ||
+  //         // @ts-ignore
+  //         formatHex8(color);
+  //       break;
+  //     default:
+  //       // @ts-ignore
+  //       c = ((color?.alpha < 1 && formatHex8) || formatHex)(
+  //         // @ts-ignore
+  //         arr2obj(c2arr(color, targetMode))
+  //       );
+  //   }
+  //   // @ts-ignore
+  //   return c;
+  // }
 
   /**
    * Returns the numerical equivalent of a color.
@@ -249,6 +256,7 @@ function token(
     case 'number':
       p = c2num(color);
       break;
+    // @ts-ignore
     case 'object':
       // @ts-ignore
       p = arr2obj(c2arr(color));

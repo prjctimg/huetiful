@@ -15,16 +15,7 @@ import {
   interpolatorSplineNatural,
   interpolatorSplineNaturalClosed
 } from 'culori/fn';
-import {
-  or,
-  mcchn,
-  mlchn,
-  pltrconfg,
-  gt,
-  gte,
-  values,
-  gmchn
-} from './fp/index.js';
+import { or, mcchn, mlchn, pltrconfg, gt, gte, values } from './fp/index.js';
 import { token } from './token.js';
 
 /**
@@ -93,10 +84,10 @@ function interpolator(
       fixup: hueFixup,
       use: or(f, pltrconfg['hi'])
     },
-    [gmchn(mlchn(colorspace), 1)]: {
+    [mlchn(colorspace)]: {
       use: or(f, pltrconfg['li'])
     },
-    [gmchn(mcchn(colorspace), 1)]: {
+    [mcchn(colorspace)]: {
       use: or(f, pltrconfg['ci'])
     }
   });

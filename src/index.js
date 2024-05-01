@@ -17,7 +17,7 @@ export * from './complimentary.js';
 export * from './contrast.js';
 export * from './deficiency.js';
 export * from './discover.js';
-export * from './distribute.js';
+//export * from './distribute.js';
 export * from './earthtone.js';
 export * from './family.js';
 export * from './hueshift.js';

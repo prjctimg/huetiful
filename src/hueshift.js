@@ -58,10 +58,10 @@ function hueshift(
     targetMode: colorspace
   });
 
-  const [l, c, [u, v]] = [
-    gmchn(mlchn(colorspace), 0),
-    gmchn(mcchn(colorspace), 1),
-    ranges['jch']['j']
+  var [l, c, [u, v]] = [
+    mlchn(colorspace),
+    mcchn(colorspace),
+    ranges[colorspace][mlchn(colorspace)]
   ];
 
   // Pass default values in case the options object is overridden
@@ -70,7 +70,7 @@ function hueshift(
   hueStep = or(hueStep, 5);
 
   // if value is beyond max normalize all the values ensuring that the end is higher than start
-  // and that if minval was less than max range we will get that channel's ewquivalent value on the [0,100] scale.
+  // and that if minval was less than max range we will get that channel's equivalent value on the [0,100] scale.
   minLightness =
     typeof minLightness === 'number' &&
     gte(minLightness, 0) &&

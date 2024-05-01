@@ -57,8 +57,8 @@ function discover(
     {},
     ['analogous', 'triadic', 'tetradic', 'complementary'],
     {},
-    gmchn(mlchn(colorspace), 1),
-    gmchn(mcchn(colorspace), 1),
+    mlchn(colorspace),
+    mcchn(colorspace),
     (a, b) => differenceHyab()(a, b) === 0
   ];
 
