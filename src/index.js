@@ -1,10 +1,10 @@
 //@ts-nocheck
 export * from './mc.js';
-
+export * from './maps/tailwind.js';
 export * from './filterBy.js';
 export * from './sortBy.js';
 export * from './token.js';
-export * from './fp/index.js';
+// export * from './fp/index.js';
 export * from './adaptive.js';
 export * from './stats.js';
 export * from './wrappers.js';

@@ -32,7 +32,7 @@
           '/api/': '/api',
           '/api/(.*)': '/api/modules/$1',
           '/changelog':
-            'https://raw.githubusercontent.com/xml-wizard/huetiful/main/CHANGELOG',
+            ',
           '/download': '/download',
           '/contributing':
             'https://raw.githubusercontent.com/xml-wizard/huetiful/main/CONTRIBUTING',

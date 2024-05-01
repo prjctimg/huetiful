@@ -2,8 +2,8 @@
  * @typedef { import('./types.js').Collection} ColorToken
  */
 
-import { max, token, min } from './index.js';
-
+import { max, min } from './fp/index.js';
+import { token } from './token.js';
 function f(a = 0.1, b, c) {
   // @ts-ignore
   var o = token('object', { targetMode: 'lab65' })(c);

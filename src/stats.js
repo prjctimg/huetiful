@@ -15,7 +15,7 @@ import {
   or,
   values,
   isArray
-} from './index.js';
+} from './fp/index.js';
 import { luminance } from './luminance.js';
 import { mc } from './mc.js';
 import { contrast } from './contrast.js';

@@ -7,9 +7,14 @@ import { exprParser, inRange } from './fp/index.js';
 
 /**
  *
- * Returns the color token's alpha channel value if the the `amount` parameter is not passed in else it sets the color token's alpha channel with the `amount` specified.
+ * Returns the color token's alpha channel value.
  * 
- * * Also supports math expressions as a `string` for the `amount` parameter. For example `*0.5` which means the value multiply the current alpha by `0.5` and set the product as the new alpha value. In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
+ *  If the the `amount` parameter is passed in, it sets the color token's alpha channel with the `amount` specified 
+ * and returns the color as a hex string.
+ * 
+ * * Also supports math expressions as a `string` for the `amount` parameter. 
+ * For example `*0.5` which means the value multiply the current alpha by `0.5` and set the product as the new alpha value. 
+ * In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
  * 
  * @param {ColorToken} color The color with the opacity/alpha channel to retrieve or set.
  * @param {number | string} amount The value to apply to the opacity channel. The value is between `[0,1]`
@@ -28,8 +33,7 @@ console.log(myColor)
 
 // #b2c3f180
  */
-function alpha(color, amount) {
-  // We never perform an operation on an undefined color. Defaults to pure black
+function alpha(color, amount = undefined) {
   const c = 'alpha';
 
   // @ts-ignore

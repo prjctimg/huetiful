@@ -1,8 +1,6 @@
-[huetiful-js](../README.md) / [wrappers](../modules/wrappers.md) / ColorArray
+[huetiful-js](../README.md) / ColorArray
 
 # Class: ColorArray
-
-[wrappers](../modules/wrappers.md).ColorArray
 
 Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
 *
@@ -21,11 +19,27 @@ console.log(wrapper.sortByHue('desc', 'lch').output());
 // [ 'blue', 'green', 'yellow', 'pink' ]
 ```
 
+## Table of contents
+
+### Constructors
+
+- [constructor](ColorArray.md#constructor)
+
+### Methods
+
+- [discover](ColorArray.md#discover)
+- [filterBy](ColorArray.md#filterby)
+- [interpolator](ColorArray.md#interpolator)
+- [nearest](ColorArray.md#nearest)
+- [output](ColorArray.md#output)
+- [sortBy](ColorArray.md#sortby)
+- [stats](ColorArray.md#stats)
+
 ## Constructors
 
 ### constructor
 
-• **new ColorArray**(`colors`): [`ColorArray`](wrappers.ColorArray.md)
+• **new ColorArray**(`colors`): [`ColorArray`](ColorArray.md)
 
 #### Parameters
 
@@ -35,17 +49,17 @@ console.log(wrapper.sortByHue('desc', 'lch').output());
 
 #### Returns
 
-[`ColorArray`](wrappers.ColorArray.md)
+[`ColorArray`](ColorArray.md)
 
 #### Defined in
 
-[wrappers.js:67](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L67)
+[wrappers.js:67](https://github.com/prjctimg/huetiful/blob/6a7e153/src/wrappers.js#L67)
 
 ## Methods
 
 ### discover
 
-▸ **discover**(`options`): [`ColorArray`](wrappers.ColorArray.md)
+▸ **discover**(`options`): [`ColorArray`](ColorArray.md)
 
 Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes. 
 
@@ -64,7 +78,7 @@ If no colors are valid for the palette types it returns an empty array for the p
 
 #### Returns
 
-[`ColorArray`](wrappers.ColorArray.md)
+[`ColorArray`](ColorArray.md)
 
 **`Example`**
 
@@ -91,13 +105,13 @@ console.log(load(sample).discover({kind:'tetradic'}).output())
 
 #### Defined in
 
-[wrappers.js:163](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L163)
+[wrappers.js:163](https://github.com/prjctimg/huetiful/blob/6a7e153/src/wrappers.js#L163)
 
 ___
 
 ### filterBy
 
-▸ **filterBy**(`options`): [`ColorArray`](wrappers.ColorArray.md)
+▸ **filterBy**(`options`): [`ColorArray`](ColorArray.md)
 
 Filters a collection of colors using the specified `factor` as the criterion. The supported options are:
 * `'contrast'` - Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
@@ -116,11 +130,11 @@ But if the value of either start or end is above 1 AND the `colorspace` in use h
 
 | Name | Type |
 | :------ | :------ |
-| `options` | [`FilterByOptions`](../modules/wrappers.md#filterbyoptions) |
+| `options` | [`FilterByOptions`](../README.md#filterbyoptions) |
 
 #### Returns
 
-[`ColorArray`](wrappers.ColorArray.md)
+[`ColorArray`](ColorArray.md)
 
 **`See`**
 
@@ -156,13 +170,13 @@ console.log(load(sample).filterBy({start:'>=3', factor:'contrast',against:'green
 
 #### Defined in
 
-[wrappers.js:213](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L213)
+[wrappers.js:213](https://github.com/prjctimg/huetiful/blob/6a7e153/src/wrappers.js#L213)
 
 ___
 
 ### interpolator
 
-▸ **interpolator**(`options`): [`ColorArray`](wrappers.ColorArray.md)
+▸ **interpolator**(`options`): [`ColorArray`](ColorArray.md)
 
 Interpolates the passed in colors and returns a collection of colors from the interpolation.
 
@@ -180,7 +194,7 @@ Some things to keep in mind when creating color scales using this function:
 
 #### Returns
 
-[`ColorArray`](wrappers.ColorArray.md)
+[`ColorArray`](ColorArray.md)
 
 **`Example`**
 
@@ -200,13 +214,13 @@ import { load } from 'huetiful-js';
 
 #### Defined in
 
-[wrappers.js:119](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L119)
+[wrappers.js:119](https://github.com/prjctimg/huetiful/blob/6a7e153/src/wrappers.js#L119)
 
 ___
 
 ### nearest
 
-▸ **nearest**(`against`, `num`): [`ColorArray`](wrappers.ColorArray.md)
+▸ **nearest**(`against`, `num`): [`ColorArray`](ColorArray.md)
 
 Returns the nearest color(s) in the bound collection against
 
@@ -219,7 +233,7 @@ Returns the nearest color(s) in the bound collection against
 
 #### Returns
 
-[`ColorArray`](wrappers.ColorArray.md)
+[`ColorArray`](ColorArray.md)
 
 **`Example`**
 
@@ -234,7 +248,7 @@ console.log(load(cols).nearest('blue', 3));
 
 #### Defined in
 
-[wrappers.js:86](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L86)
+[wrappers.js:86](https://github.com/prjctimg/huetiful/blob/6a7e153/src/wrappers.js#L86)
 
 ___
 
@@ -250,13 +264,13 @@ Returns the result value from the chain.
 
 #### Defined in
 
-[wrappers.js:288](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L288)
+[wrappers.js:288](https://github.com/prjctimg/huetiful/blob/6a7e153/src/wrappers.js#L288)
 
 ___
 
 ### sortBy
 
-▸ **sortBy**(`options`): [`ColorArray`](wrappers.ColorArray.md)
+▸ **sortBy**(`options`): [`ColorArray`](ColorArray.md)
 
 Sorts colors according to the specified `factor`. The supported options are:
 
@@ -277,11 +291,11 @@ The return type is determined by the type of `collection`:
 
 | Name | Type |
 | :------ | :------ |
-| `options` | [`SortByOptions`](../modules/wrappers.md#sortbyoptions) |
+| `options` | [`SortByOptions`](../README.md#sortbyoptions) |
 
 #### Returns
 
-[`ColorArray`](wrappers.ColorArray.md)
+[`ColorArray`](ColorArray.md)
 
 **`Example`**
 
@@ -298,7 +312,7 @@ console.log(
 
 #### Defined in
 
-[wrappers.js:247](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L247)
+[wrappers.js:247](https://github.com/prjctimg/huetiful/blob/6a7e153/src/wrappers.js#L247)
 
 ___
 
@@ -338,4 +352,4 @@ For example, it will mean "Get the largest/smallest distance between `factor` as
 
 #### Defined in
 
-[wrappers.js:276](https://github.com/prjctimg/huetiful/blob/5e5fb86/src/wrappers.js#L276)
+[wrappers.js:276](https://github.com/prjctimg/huetiful/blob/6a7e153/src/wrappers.js#L276)

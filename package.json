@@ -61,15 +61,12 @@
   },
   "scripts": {
     "test": "npx jasmine",
-    "docs": "npx typedoc --includeVersion false --excludeReferences true  --cleanOutputDir true --excludeNotDocumented true --plugin typedoc-plugin-markdown --hideInPageTOC true --hideGenerator true",
+    "docs": "npx typedoc --includeVersion false --excludeReferences false  --cleanOutputDir false --excludeNotDocumented true --plugin typedoc-plugin-markdown --hideInPageTOC false --hideGenerator true",
     "build": "node ./build.cjs",
     "code:publish": "npm run build & npx tsc",
     "format": "npx prettier \"./src/*.js\" --write",
     "lint": "npx eslint --fix --ext ./src/*.js",
     "start": "docsify serve ./docs "
-  },
-  "husky": {
-    "hooks": {}
   },
   "prettier": {
     "semi": true,
@@ -93,42 +90,23 @@
   },
   "typedocOptions": {
     "entryPoints": [
-      "src/alpha.js",
-      "src/brewer.js",
-      "src/colors.js",
-      "src/complimentary.js",
-      "src/contrast.js",
-      "src/lightness.js",
-      "src/deficiency.js",
-      "src/discover.js",
-      "src/earthtone.js",
-      "src/family.js",
-      "src/mc.js",
-      "src/overtone.js",
-      "src/hueshift.js",
-      "src/nearest.js",
-      "src/interpolator.js",
-      "src/luminance.js",
-      "src/achromatic.js",
-      "src/adaptive.js",
-      "src/stats.js",
-      "src/wrappers.js",
-      "src/set.js",
-      "src/temp.js",
-      "src/token.js",
-      "src/scheme.js",
-      "src/pastel.js",
-      "src/pair.js",
-      "src/filterBy.js",
-      "src/sortBy.js"
+      "src/index.js"
     ],
     "excludeTags": [
       "@internal"
     ],
     "entryPointStrategy": "resolve",
-    "out": "docs/api",
+    "out": "docs/",
     "exclude": [
-      "./maps"
+      "./fp"
+    ],
+    "groupOrder": [
+      "Function",
+      "Class",
+      "Constructor",
+      "Property",
+      "Method",
+      "TypeAlias"
     ],
     "readme": "none",
     "tsconfig": "./tsconfig.json",
@@ -149,17 +127,23 @@
     "url": "https://github.com/xml-wizard/huetiful.git"
   },
   "keywords": [
-    "generative art",
-    "javascript",
-    "uniform colorspaces",
-    "color vision deficiency",
+    "small",
+    "lch",
+    "D65",
+    "lab",
+    "oklch",
+    "rgb",
+    "jch",
+    "color-schemes",
     "colors",
     "culori",
-    "interpolation",
-    "tailwindcss",
-    "color brewer",
-    "cielab",
-    "cielch"
+    "palettes",
+    "colors",
+    "generator",
+    "filter",
+    "sort",
+    "luminance",
+    "contrast"
   ],
   "author": "Dean Tarisai",
   "email": "prjctimg@outlook.com",
@@ -169,6 +153,6 @@
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "bugs": {
-    "url": "https://github.com/xml-wizard /huetiful/issues"
+    "url": "https://github.com/xml-wizard/huetiful/issues"
   }
 }

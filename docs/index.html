@@ -30,12 +30,18 @@
       content="huetiful-js is a small (~15kB) library for function oriented color manipulation." />
     <meta property=" og:image" content="/assets/img/seo/og.png">
 
+    <!-- Umami analytics -->
+    <script defer src="https://analytics.eu.umami.is/script.js"
+      data-website-id="4f9437d6-1eb3-4dac-b700-a4aa3f5f9351"></script>
+
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no" />
 
     <!-- Web Application Manifest -->
-    <link rel="manifest" href="/assets/static/manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
 
+    <!-- code-highlight -->
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-typescript.min.js"></script>
 
 
     <!-- Add to homescreen for Chrome on Android -->
@@ -55,17 +61,21 @@
     <meta name="theme-color" content="#d31b33" />
 
     <link rel="stylesheet" href="maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/assets/css/vue.css">
+    <link rel="stylesheet" href="/darcula.css">
 
   </head>
 
   <body>
-    <div id="app"></div>
-    <nav></nav>
+
+    <div id="app">
+
+    </div>
+
 
     <script src="/assets/js/vendor/docsify.js"></script>
-    <script src="/assets/js/vendor/plugins/pagination.js"></script>
+    <script src="./assets/js/vendor/plugins/pagination.js"></script>
     <script src="/assets/js/vendor/plugins/edit.js"></script>
+    <script src="/assets/js/vendor/plugins/kofi.js"></script>
 
 
     <script>
@@ -77,26 +87,33 @@
         logo: '/assets/img/logo.svg',
         nameLink: 'https://huetiful-js.com',
         loadNavbar: false,
+        routerMode: 'history',
+        
+         maxLevel: 3,
+        auto2top: true,
+        search: 'auto',
         plugins: [
           EditOnGithubPlugin.create(
             'https://github.com/xml-wizard/huetiful/blob/main/docs/',
             null,
-            'Edit this page'
+            'Edit this page 📜'
           )
         ],
-        nativeEmoji: true,
+        nativeEmoji: false,
         topMargin: 50,
-        coverpage: '/_cover.md',
+        coverpage: false,
         pagination: {
           previousText: 'Back to',
           nextText: 'Up next',
           crossChapter: true,
           crossChapterText: true
         },
-
+        relativePath: true
       };
 
     </script>
+
+    <script src="/assets/js/vendor/plugins/search.min.js"></script>
   </body>
 
 </html>

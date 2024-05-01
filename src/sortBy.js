@@ -7,7 +7,7 @@
  * @typedef {import('./types.js').SortByOptions} SortByOptions
  */
 
-import { sortedColl, mlchn, mcchn } from './index.js';
+import { sortedColl, mlchn, mcchn } from './fp/index.js';
 import { luminance } from './luminance.js';
 import { mc } from './mc.js';
 import { contrast } from './contrast.js';

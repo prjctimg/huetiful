@@ -16,7 +16,7 @@ import { token } from './token.js';
  * * It has a falsy hue channel (usually happens if you use a custom interpolation method other than interpolatorLinear and one of the hue channels in the interpolation has a falsy channel) which makes the hue `NaN`.
  * * All its `[r,g,b]` channels have equal values since grays are a result of interpolating black (`['rgb',0,0,0]`) and white (`['rgb',1,1,1]`). Therefore black and white return `false` because they're not grays.
  * @param {ColorToken} color The color token to test if it is achromatic or not.
- * @returns {boolean} True if the color token is achromatic else false.
+ * @returns {boolean}
  * @example
  *
  * import { achromatic } from "huetiful-js";

@@ -22,10 +22,11 @@ import { mc } from './mc.js';
  * @param {boolean} obj Optional boolean whether to return an object with the result color's hue family or just the result color. Default is `false`.
  * @returns {ColorToken|FactObject}
  * @example
- *import { complimentary } from "huetiful-js";
+ * 
+ * import { complimentary } from "huetiful-js";
  *
  *
-console.log(complimentary("pink",'lch', true))
+console.log(complimentary("pink", true))
 //// { hue: 'blue-green', color: '#97dfd7ff' }
 
 console.log(complimentary("purple"))

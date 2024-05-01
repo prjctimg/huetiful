@@ -1,24 +1,18 @@
-# Introduction
 
-- [Installation]()
-- [Quickstart](/assets/pages/quickstart.md)
+* [Home](/)
 
-### API
+* Getting started
 
-- [accessibility](/api/modules/accessibility.md)
-- [colors](/api/modules/colors.md)
-- [converters](/api/modules/converters.md)
-- [filterBy](/api/modules/filterBy.md)
-- [generators](/api/modules/generators.md)
-- [sortBy](/api/modules/sortBy.md)
-- [stats](/api/modules/stats.md)
-- [utils](/api/modules/utils.md)
-- [wrappers](/api/modules/wrappers.md)
+  * [Installation](/installation)
+  * [Quickstart](/quickstart)
 
+* [API](/README)
 
-### Classes
+* Resources
 
-- [ColorArray](/api/classes/wrappers.ColorArray.md)
-- [Color](/api/classes/wrappers.Color.md)
+  * [Changelog]('https://raw.githubusercontent.com/xml-wizard/huetiful/main/CHANGELOG)
+  * [Download](/download)
+  * [Contributing]('https://raw.githubusercontent.com/xml-wizard/huetiful/main/CONTRIBUTING)
+  * [References](/references)
 
 <footer id='mb-footer'></footer>

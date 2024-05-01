@@ -35,18 +35,14 @@ import { or } from './fp/index.js';
  * @param {DeficiencyOptions} options
  * @example
  *
- * import { deficiency, token('hex') } from 'huetiful-js'
+ * import { deficiency, token } from 'huetiful-js'
 
 // Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
-// We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
-let tritanomaly = deficiency('blue')
-console.log(tritanomaly(['rgb', 230, 100, 50, 0.5], 0.1))
+// We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.5
+
+console.log(deficiency(['rgb', 230, 100, 50, 0.5],{ kind:'blue', severity:0.5 }))
 // #dd663680
 
-// Here we are simulating color blindness of tritanomaly or we can't see 'red'. The severity is not explicitly set so it defaults to 1
-let protanopia = deficiency('red')
-console.log(protanopia({ h: 20, w: 50, b: 30, mode: 'hwb' }))
-// #9f9f9f
  */
 function deficiency(
   color,
