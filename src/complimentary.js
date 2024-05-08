@@ -3,7 +3,7 @@
  * @typedef { import('./types.js').FactObject} FactObject
  */
 
-import { adjustHue, rand, or } from './fp/index.js';
+import { adjustHue, rand } from './fp/index.js';
 import { token } from './token.js';
 import { family } from './family.js';
 import { mc } from './mc.js';
@@ -33,15 +33,15 @@ console.log(complimentary("purple"))
 // #005700ff
  */
 function complimentary(baseColor, obj = false) {
-  var h = adjustHue(mc('jch.h')(baseColor) + 180 * rand(0.965, 1));
+	var h = adjustHue(mc('jch.h')(baseColor) + 180 * rand(0.965, 1));
 
-  var o = (h && {
-    hue: family(h),
-    // @ts-ignore
-    color: token(mc('jch.h')(baseColor, h))
-  }) || { hue: 'gray', color: baseColor };
-  // @ts-ignore
-  return (obj && o) || o['color'];
+	var o = (h && {
+		hue: family(h),
+		// @ts-ignore
+		color: token(mc('jch.h')(baseColor, h))
+	}) || { hue: 'gray', color: baseColor };
+	// @ts-ignore
+	return (obj && o) || o['color'];
 }
 
 export { complimentary };

@@ -23,14 +23,16 @@ console.log(family("#310000"))
 function family(color) {
   var [k, v] = ['', Infinity];
   for (let [i, b] of entries(hue)) {
-    var [p, y, u] = [customConcat(b), mc(`lch.h`)(color), Math.abs(max(p) - y)];
+    var p = customConcat(b),
+      y = mc(`lch.h`)(color),
+      u = Math.abs(max(p) - y);
     if (lt(u, v)) {
       k = i;
     }
   }
 
   // @ts-ignore
-  return k;
+  return k === '' ? 'gray' : k;
 }
 
 export { family };

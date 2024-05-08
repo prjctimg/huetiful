@@ -5,7 +5,7 @@
  */
 
 import { nearest, differenceHyab } from 'culori/fn';
-import { mcchn, mlchn, keys, values, gmchn } from './fp/index.js';
+import { mcchn, keys, values, gmchn } from './fp/index.js';
 import { scheme } from './scheme.js';
 import { token } from './token.js';
 
@@ -43,70 +43,70 @@ console.log(discover(sample, "tetradic"))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
  */
 function discover(
-  colors = [],
-  options = {
-    kind: undefined,
+	colors = [],
+	options = {
+		kind: undefined,
 
-    colorspace: 'jch'
-  }
+		colorspace: 'jch'
+	}
 ) {
-  let { kind, colorspace } = options || {};
+	let { kind, colorspace } = options || {};
 
-  // I have this weird urge to just put stuff in arrays...elegant
-  var [q, k, t, u, v, f] = [
-    {},
-    ['analogous', 'triadic', 'tetradic', 'complementary'],
-    {},
-    mlchn(colorspace),
-    mcchn(colorspace),
-    (a, b) => differenceHyab()(a, b) === 0
-  ];
+	// I have this weird urge to just put stuff in arrays...elegant
+	var [q, k, t, u, v, f] = [
+		{},
+		['analogous', 'triadic', 'tetradic', 'complementary'],
+		{},
+		mcchn('l', colorspace),
+		mcchn('c', colorspace),
+		(a, b) => differenceHyab()(a, b) === 0
+	];
 
-  colors = values(colors).map((z) =>
-    token(z, {
-      kind: 'object',
-      targetMode: colorspace
-    })(z)
-  );
+	colors = values(colors).map((z) =>
+		token(z, {
+			kind: 'object',
+			targetMode: colorspace
+		})(z)
+	);
 
-  for (var x of colors) {
-    // @ts-ignore
+	for (var x of colors) {
+		// @ts-ignore
 
-    t[x] = scheme(x, { kind: kind });
+		t[x] = scheme(x, { kind: kind });
 
-    for (var d of keys(t)) {
-      var [h, r] = [[], 0];
+		for (var d of keys(t)) {
+			var [h, r] = [[], 0];
 
-      for (var g of t[d]) {
-        // filter out colors already in the palette
-        // @ts-ignore
-        var l = colors.filter((a) => !h.some((b) => f(a, b)));
+			for (var g of t[d]) {
+				// filter out colors already in the palette
+				// @ts-ignore
+				var l = colors.filter((a) => !h.some((b) => f(a, b)));
 
-        var m = nearest(l, differenceHyab())(g)[0];
+				var m = nearest(l, differenceHyab())(g)[0];
 
-        r += differenceHyab()(g, m);
+				r += differenceHyab()(g, m);
 
-        // @ts-ignore
-        h.push(m);
-      }
+				// @ts-ignore
+				h.push(m);
+			}
 
-      if (!q[d] || r < q[d]) {
-        q[d] = h.map((i) => token(i, options['token']));
-      }
-    }
-  }
-  var o;
-  if (kind) {
-    o = q[kind.toLowerCase()];
-  } else if (!kind) {
-    o = q;
-  } else {
-    throw Error(
-      `${kind} is not a valid scheme. The schemes are triadic | tetradic | analogous | complementary`
-    );
-  }
+			if (!q[d] || r < q[d]) {
+				q[d] = h.map((i) => token(i, options['token']));
+			}
+		}
+	}
+	var o;
+	if (kind) {
+		o = q[kind.toLowerCase()];
+	} else if (!kind) {
+		o = q;
+	} else {
+		throw Error(
+			`${kind} is not a valid scheme. The schemes are triadic | tetradic | analogous | complementary`
+		);
+	}
 
-  return o;
+	return o;
 }
 
 export { discover };

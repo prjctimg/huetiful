@@ -7,16 +7,15 @@
 
 import { easingSmoothstep, samples } from 'culori/fn';
 import {
-  adjustHue,
-  rand,
-  or,
-  keys,
-  entries,
-  isArray,
-  values,
-  mlchn,
-  gmchn,
-  mcchn
+	adjustHue,
+	rand,
+	or,
+	keys,
+	entries,
+	isArray,
+	values,
+	gmchn,
+	mcchn
 } from './fp/index.js';
 import { token } from './token.js';
 
@@ -51,51 +50,51 @@ console.log(scheme("triadic")("#a1bd2f"))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
  */
 function scheme(baseColor = 'cyan', options) {
-  let { colorspace, kind, easingFn } = options || {};
-  // @ts-ignore
-  kind = or(kind, 'analagous').toLowerCase();
+	let { colorspace, kind, easingFn } = options || {};
+	// @ts-ignore
+	kind = or(kind, 'analagous').toLowerCase();
 
-  const f = (h, l, m) =>
-    samples(h).map((d) =>
-      adjustHue((m['h'] + l) * (d * or(easingFn, easingSmoothstep)(d)))
-    );
+	const f = (h, l, m) =>
+		samples(h).map((d) =>
+			adjustHue((m['h'] + l) * (d * or(easingFn, easingSmoothstep)(d)))
+		);
 
-  baseColor = token(baseColor, { targetMode: colorspace, kind: 'object' });
-  let y = {
-    analogous: f(3, 12, baseColor),
-    triadic: f(3, 120, baseColor),
-    tetradic: f(4, 90, baseColor),
-    complimentary: f(2, 180, baseColor)
-  };
-  // extremums lowMin,lowMax, highMin, highMax respectively
-  const [u, v, w, x, l] = [0.05, 0.495, 0.5, 0.995, y[kind].length];
-  // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
-  for (const [m, n] of entries(y)) {
-    y[m] = n.map((d) => rand(d * v, d * u) + rand(d * x, d * w) / 2);
-  }
-  // The map for steps to obtain the targeted palettes
+	baseColor = token(baseColor, { targetMode: colorspace, kind: 'object' });
+	let y = {
+		analogous: f(3, 12, baseColor),
+		triadic: f(3, 120, baseColor),
+		tetradic: f(4, 90, baseColor),
+		complimentary: f(2, 180, baseColor)
+	};
+	// extremums lowMin,lowMax, highMin, highMax and  respectively
+	const [r, s, t, u] = [0.05, 0.495, 0.5, 0.995];
+	// For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
+	for (const [m, n] of entries(y)) {
+		y[m] = n.map((d) => rand(d * s, d * r) + rand(d * u, d * t) / 2);
+	}
+	// The map for steps to obtain the targeted palettes
 
-  const [m, n] = [mlchn(colorspace), mcchn(colorspace)];
+	const [l, c] = ['l', 'c'].map((a) => mcchn(a, colorspace, false));
 
-  if (isArray(kind)) {
-    var e = {};
-    for (const r of values(kind)) {
-      e[r] = y[kind].map((d) => ({
-        [m]: baseColor[m],
-        [n]: baseColor[n],
-        h: baseColor['h'] + d * or(easingFn, easingSmoothstep)(1 / l),
-        mode: colorspace
-      }));
-    }
-    return e;
-  } else {
-    return y[kind].map((d) => ({
-      [m]: baseColor[m],
-      [n]: baseColor[n],
-      h: baseColor['h'] + d * or(easingFn, easingSmoothstep)(1 / l),
-      mode: colorspace
-    }));
-  }
+	if (isArray(kind)) {
+		var [e, v] = [{}, y[kind].length];
+		for (const k of values(kind)) {
+			e[k] = y[kind].map((d) => ({
+				[l]: baseColor[l],
+				[c]: baseColor[c],
+				h: baseColor['h'] + d * or(easingFn, easingSmoothstep)(1 / v),
+				mode: colorspace
+			}));
+		}
+		return e;
+	} else {
+		return y[kind].map((d) => ({
+			[l]: baseColor[l],
+			[c]: baseColor[c],
+			h: baseColor['h'] + d * or(easingFn, easingSmoothstep)(1 / v),
+			mode: colorspace
+		}));
+	}
 }
 
 export { scheme };

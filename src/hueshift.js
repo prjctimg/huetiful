@@ -3,11 +3,10 @@
  * @typedef {import('./types.js').Collection} ColorToken
  */
 
-import { easingSmoothstep } from 'culori/fn';
+import { easingSmoothstep, formatHex8 } from 'culori/fn';
 // @ts-ignore
-import { adjustHue, or, mcchn, mlchn, gmchn, lt, gt, gte } from './fp/index.js';
+import { adjustHue, or, lt, lte } from './fp/index.js';
 import { token } from './token.js';
-import ranges from './maps/ranges.js';
 
 /**
  * Creates a palette of hue shifted colors from the passed in color.
@@ -23,9 +22,9 @@ import ranges from './maps/ranges.js';
  * 
  * @param baseColor The color to use as the base of the palette.
  * @param {HueShiftOptions} options The optional overrides object.
- *@returns {Array<string>}
+ 
  * @example
- * import { hueShift } from "huetiful-js";
+ * import { hueshift } from "huetiful-js";
 
 let hueShiftedPalette = hueShift("#3e0000");
 
@@ -40,74 +39,68 @@ console.log(hueShiftedPalette);
   '#3b0c3a'
 ]
  */
-function hueshift(
-  baseColor,
-  options = {
-    colorspace: 'jch'
-  }
-) {
-  // @ts-ignore
-  let { num, hueStep, minLightness, maxLightness, easingFn, colorspace } =
-    options;
-  const f = (n) => (a0, b0) => (a1, b1) =>
-    ((n - a0) / (b0 - a0)) * (b1 - a1) + a1;
+function hueshift(baseColor, options) {
+	// @ts-ignore
+	let { num, hueStep, minLightness, maxLightness, easingFn } = options || {};
 
-  // @ts-ignore
-  baseColor = token(baseColor, {
-    kind: 'object',
-    targetMode: colorspace
-  });
+	baseColor = or(baseColor, 'cyan');
 
-  var [l, c, [u, v]] = [
-    mlchn(colorspace),
-    mcchn(colorspace),
-    ranges[colorspace][mlchn(colorspace)]
-  ];
+	easingFn = or(easingFn, easingSmoothstep);
+	num = or(num, 6) + 1;
+	hueStep = or(hueStep, 5);
 
-  // Pass default values in case the options object is overridden
-  easingFn = or(easingFn, easingSmoothstep);
-  num = or(num, 6) + 1;
-  hueStep = or(hueStep, 5);
+	baseColor = token(baseColor, {
+		kind: 'object',
+		targetMode: 'lch'
+	});
 
-  // if value is beyond max normalize all the values ensuring that the end is higher than start
-  // and that if minval was less than max range we will get that channel's equivalent value on the [0,100] scale.
-  minLightness =
-    typeof minLightness === 'number' &&
-    gte(minLightness, 0) &&
-    lt(minLightness, maxLightness)
-      ? minLightness
-      : v * 0.1 + u;
-  maxLightness =
-    typeof maxLightness === 'number' && lt(maxLightness, v) ? maxLightness : v;
-  // Pass in default values if any of the opts is undefined
-  const z = [baseColor];
-  // Maximum number of iterations possible.
-  //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
-  // @ts-ignore
-  for (let i = 1; i < num; i++) {
-    //adjustHue checks hue values are clamped.
-    // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
-    const [y, x] = [
-      {
-        [l]: f(i)(0.1, num)(baseColor[l], minLightness),
-        [c]: baseColor[c],
-        // @ts-ignore
-        h: adjustHue(baseColor['h'] - hueStep * (i * easingFn(i))),
-        mode: colorspace
-      },
-      {
-        [l]: f(i)(u, v)(u, 100),
-        [c]: baseColor[c],
-        // @ts-ignore
-        h: adjustHue(baseColor['h'] + hueStep * (i * easingFn(i))),
-        mode: colorspace
-      }
-    ];
-    z.push(x);
-    z.unshift(y);
-  }
-  // @ts-ignore
-  return Array.from(new Set(z)).map((j) => token(j, options['token']));
+	var z = [baseColor];
+
+	// // if value is beyond max normalize all the values ensuring that the end is higher than start
+	// // and that if minval was less than max range we will get that channel's equivalent value on the [0,100] scale.
+	maxLightness = lte(maxLightness, 95) ? maxLightness : 90;
+	minLightness = lt(minLightness, maxLightness) ? minLightness : 10;
+
+	/**
+	 * @internal
+	 * Normalizes any value in the range [0,1] to the ranges supported by the colorspace
+	 
+	 */
+	function f(i, e1, e2) {
+		return Math.abs(
+			((i - 0) / (e1 - 0)) * (e2 - baseColor['l']) + baseColor['l']
+		);
+	}
+
+	// Maximum number of iterations possible.
+	//Each iteration add a darker shade to the start of the array and a lighter tint to the end.
+	// @ts-ignore
+	for (let i = 1, j = i / num; i < num; i++) {
+		// 	//adjustHue checks hue values are clamped.
+		// 	// Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
+
+		const [y, x] = [
+			{
+				l: f(i, num, minLightness),
+				c: baseColor['c'],
+				// @ts-ignore
+				h: adjustHue(baseColor['h'] - hueStep * easingFn(j)),
+				mode: 'lch'
+			},
+			{
+				l: f(i, num, maxLightness),
+				c: baseColor['c'],
+				// @ts-ignore
+				h: adjustHue(baseColor['h'] + hueStep),
+				mode: 'lch'
+			}
+		];
+
+		z.push(x);
+		z.unshift(y);
+	}
+	//@ts-ignore
+	return Array.from(new Set(z)).map(formatHex8);
 }
 
 export { hueshift };

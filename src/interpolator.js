@@ -6,16 +6,18 @@
 */
 
 import {
-  samples,
-  interpolate,
-  interpolatorSplineBasis,
-  interpolatorSplineBasisClosed,
-  interpolatorSplineMonotone,
-  interpolatorSplineMonotoneClosed,
-  interpolatorSplineNatural,
-  interpolatorSplineNaturalClosed
+	samples,
+	interpolate,
+	interpolatorSplineBasis,
+	interpolatorSplineBasisClosed,
+	interpolatorSplineMonotone,
+	interpolatorSplineMonotoneClosed,
+	interpolatorSplineNatural,
+	interpolatorSplineNaturalClosed,
+	fixupHueShorter,
+	fixupHueLonger
 } from 'culori/fn';
-import { or, mcchn, mlchn, pltrconfg, gt, gte, values } from './fp/index.js';
+import { or, mcchn, pltrconfg, gt, gte, values } from './fp/index.js';
 import { token } from './token.js';
 
 /**
@@ -45,67 +47,68 @@ console.log(interpolator(['pink', 'blue'], { num:8 }));
 ]
  *
  */
-function interpolator(
-  baseColors = [],
+function interpolator(baseColors = [], options = undefined) {
+	var { hueFixup, stops, easingFn, kind, closed, colorspace, num } =
+		options || {};
+	// Set the internal defaults
+	easingFn = or(easingFn, pltrconfg['ef']);
+	kind = or(kind, 'basis');
+	num = or(num, 1);
+	// @ts-ignore
+	hueFixup = hueFixup === 'shorter' ? fixupHueShorter : fixupHueLonger;
+	let f;
+	switch (kind) {
+		case 'basis':
+			f = (closed && interpolatorSplineBasisClosed) || interpolatorSplineBasis;
+			break;
+		case 'monotone':
+			f =
+				(closed && interpolatorSplineMonotoneClosed) ||
+				interpolatorSplineMonotone;
+			break;
+		case 'natural':
+			f =
+				(closed && interpolatorSplineNaturalClosed) ||
+				interpolatorSplineNatural;
+	}
 
-  options = {
-    colorspace: 'lch',
-    num: 1,
-    kind: 'basis',
-    closed: false
-  }
-) {
-  var { hueFixup, easingFn, kind, closed, colorspace, num } = options || {};
-  // Set the internal defaults
-  easingFn = or(easingFn, pltrconfg['ef']);
+	baseColors = values(baseColors);
+	var o,
+		l = stops.length;
+	if (l) {
+		o = baseColors.slice(0, l - 1).map((c, i) => [c, stops[i]]);
+		baseColors = o.concat(baseColors.slice(l));
+	}
 
-  let f;
-  switch (kind) {
-    case 'basis':
-      f = (closed && interpolatorSplineBasisClosed) || interpolatorSplineBasis;
-      break;
-    case 'monotone':
-      f =
-        (closed && interpolatorSplineMonotoneClosed) ||
-        interpolatorSplineMonotone;
-      break;
-    case 'natural':
-      f =
-        (closed && interpolatorSplineNaturalClosed) ||
-        interpolatorSplineNatural;
-  }
+	// @ts-ignore
+	let p = interpolate([...baseColors, easingFn], colorspace, {
+		// @ts-ignore
+		h: {
+			fixup: hueFixup,
+			use: or(f, pltrconfg['hi'])
+		},
+		[mcchn('l', colorspace, false)]: {
+			use: or(f, pltrconfg['li'])
+		},
+		[mcchn('c', colorspace, false)]: {
+			use: or(f, pltrconfg['ci'])
+		}
+	});
 
-  baseColors = values(baseColors);
+	// make sure samples is an absolute integer
+	// @ts-ignore
+	num = gte(num, 1) ? Math.abs(num) : 1;
 
-  // @ts-ignore
-  let p = interpolate([...baseColors, easingFn], colorspace, {
-    // @ts-ignore
-    h: {
-      fixup: hueFixup,
-      use: or(f, pltrconfg['hi'])
-    },
-    [mlchn(colorspace)]: {
-      use: or(f, pltrconfg['li'])
-    },
-    [mcchn(colorspace)]: {
-      use: or(f, pltrconfg['ci'])
-    }
-  });
-
-  // make sure samples is an absolute integer
-  // @ts-ignore
-  num = gte(num, 1) ? Math.abs(num) : 1;
-
-  var o;
-  if (gt(num, 1)) {
-    // @ts-ignore
-    o = samples(num).map((s) => token(p(s), options['token']));
-  } else {
-    // @ts-ignore
-    o = token(p(0.5), options['token']);
-  }
-  // @ts-ignore
-  return o;
+	var o;
+	if (gt(num, 1)) {
+		// @ts-ignore
+		o = samples(num).map((s) => token(p(s), options['token']));
+	} else {
+		// @ts-ignore
+		o = token(p(0.5), options['token']);
+	}
+	// @ts-ignore
+	return o;
 }
 
 export { interpolator };

@@ -1,9 +1,8 @@
 /**
  * @typedef {import('./types.js').Collection} ColorToken
  */
-import { exprParser, isArray } from './fp/index.js';
+import { exprParser, isArray, gmchn, eq } from './fp/index.js';
 import { token } from './token.js';
-import { gmchn } from './fp/index.js';
 
 /**
  * Sets the value of the specified channel on the passed in color.
@@ -20,7 +19,7 @@ console.log(mc('rgb.g')('#a1bd2f'))
  * 
 */
 
-function mc(modeChannel) {
+function mc(modeChannel = '') {
   /**
    
    * @param {ColorToken} color Any recognizable color token.
@@ -30,25 +29,40 @@ function mc(modeChannel) {
  
    */
   return (color, value) => {
-    if (!value) {
-      const [m, c] = modeChannel.split('.');
+    var [m, c] = modeChannel.split('.'),
       // @ts-ignore
+      u = token(color, { targetMode: m, kind: 'object' });
 
-      var o;
-      if (typeof color === 'object') {
-        if (m === (color[0] || color['mode'])) {
-          if (isArray(color)) {
-            o = color[gmchn(m).indexOf(c)];
-          } else {
-            o = color[c];
-          }
+    if (value) {
+      if (c) {
+        if (typeof value === 'number') {
+          // @ts-ignore
+          u[c] = value;
+        } else if (typeof value === 'string') {
+          // @ts-ignore
+          exprParser(u, c, value);
+        } else {
+          throw Error(
+            `${typeof value}} ${value} is an unsupported value to set on a color token`
+          );
         }
-      } else {
+
         // @ts-ignore
-        o = token(color, { kind: 'object', targetMode: m })[c];
+        return u;
+      } else {
+        throw Error(`unknown channel ${c} in mode ${m}`);
+      }
+    } else {
+      const [m, c] = modeChannel.split('.');
+
+      var p;
+      if (typeof color === 'object') {
+        if (isArray(color) && eq(m, color[0])) {
+          u = color.slice(1)[gmchn(m).indexOf(c)];
+        }
       }
     }
-    return o;
+    return u[c];
   };
 }
 

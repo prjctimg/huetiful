@@ -61,14 +61,14 @@
 // toward the blue end of the spectrum at lower light {luminance ?} levels.
 // Web API case study : AmbientLightSensor
 
-/**
- *
- * @param {*} color
- * @param { AdaptivePaletteOptions} options
- */
-function adaptive(color, options) {
-  var min_c,
-    par = 0.5;
-}
+// /**
+//  *
+//  * @param {*} color
+//  * @param { AdaptivePaletteOptions} options
+//  */
+// function adaptive(color, options) {
+//   var min_c,
+//     par = 0.5;
+// }
 
-export { adaptive };
+// export { adaptive };

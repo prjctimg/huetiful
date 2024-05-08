@@ -3,7 +3,7 @@
  * @typedef { import('./types.js').Collection} ColorToken
  */
 
-import { mlchn, mcchn, eq } from './fp/index.js';
+import { mcchn, eq } from './fp/index.js';
 import { mc } from './mc.js';
 import { token } from './token.js';
 
@@ -59,18 +59,17 @@ console.log(grays.map(achromatic));
 
  */
 function achromatic(color) {
-  // If a color has no lightness then it has no hue so its technically not achromatic since white and black are not grayscale
-  var [l, c, p, f] = [
-    mc(`${mlchn('jch')}`)(color),
-    mc(`${mcchn('jch')}`)(color),
-    token(color, { targetMode: 'rgb', omitMode: true, kind: 'array' }),
-    (x) => x !== (false || NaN || undefined || 0 || Infinity || -Infinity)
-  ];
+	// If a color has no lightness then it has no hue so its technically not achromatic since white and black are not grayscale
+	var [l, c, f] = [
+		mc('lch.l')(color),
+		mc('lch.c')(color),
+		token(color, { targetMode: 'rgb', kind: 'number' }),
+		(x) => x !== NaN || undefined || 0
+	];
+	//q = eq(p[0], p[1]) && eq(p[0], p[2]) && eq(p[2], p[1]);
+	// Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
 
-  q = eq(p[0], p[1]) && eq(p[0], p[2]) && eq(p[2], p[1]);
-  // Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
-
-  return f(c) && f(l) && !q ? false : true;
+	return f(c) || f(l) ? false : true;
 }
 
 export { achromatic };

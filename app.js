@@ -6,9 +6,20 @@
 // During the interpolation
 // we focus on the hue AND CHROMA CHANNELS
 
-import { converter } from 'culori';
+import { inGamut } from 'culori';
+// @ts-ignore
 import { token } from './src/token.js';
-import { mc } from './src/index.js';
+import {
+	colors,
+	mc,
+	pastel,
+	stats,
+	filterBy,
+	luminance,
+	sortBy,
+	hueshift,
+	achromatic
+} from './src/index.js';
 
 // const smp = [
 //   {
@@ -40,18 +51,61 @@ import { mc } from './src/index.js';
 // ];
 
 // let u = smp.map((e) => {
-//   let r = converter('jch')(e.color);
-//   return [r?.c, r?.j, token('number')(e.color)];
+//   let r = converter('hsv')(e.color);
+//   return [r?.s, r?.v, token(e.color, { kind: 'number' })];
 // });
-// console.log(u);
+//console.log(u);
 
-let a = mc('lch65.h')('blue');
+let a = mc('lch.h')('#4da2b3');
 
-console.log(
-  token(
-    { mode: 'rgb', r: 0.2, g: 0.5, b: 0.1 },
-    { kind: 'array', targetMode: 'lch', omitMode: true }
-  )
-);
+//console.log(a);
 
-console.log(mc('lch.h')('#310000', 10));
+//console.log(pastel('green', { kind: 'hex' }));
+
+let ui = colors('all', '500');
+
+//console.log(ui);
+
+// console.log(
+//   stats(ui, {
+//     factor: ['chroma', 'contrast'],
+//     relative: true
+//   })
+// );
+
+// let rf = filterBy(ui, {
+// 	factor: ['hue', 'contrast'],
+// 	ranges: {
+// 		hue: [50, 300],
+// 		contrast: [4, 12]
+// 	},
+// 	against: 'yellow'
+// });
+
+// console.log(rf);
+
+let palette = colors('all', '500');
+let base = colors('orange', '700');
+
+let filteredPalette = filterBy(palette, {
+	factor: 'contrast',
+	against: 'yellow',
+	ranges: ['>4', '>=10']
+});
+
+filteredPalette = filterBy(palette, {
+	against: 'yellow',
+	factor: ['hue', 'luminance', 'contrast'],
+	ranges: { hue: [200, 300], luminance: [0.4, 0.6], contrast: ['<2'] }
+});
+
+// console.log(
+// 	hueshift('yellow', {
+// 		maxLightness: 0.6,
+// 		minLightness: 0.1
+// 	})
+// );
+
+//console.log(token(['lch', 50, 23, 78]));
+
+console.log(['blue', 'gray', 'black'].map((e) => achromatic(e)));

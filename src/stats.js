@@ -8,21 +8,24 @@
 
 import { differenceHyab, averageNumber, averageAngle } from 'culori/fn';
 import {
-  mlchn,
-  mcchn,
-  chnDiff,
-  sortedColl,
-  or,
-  values,
-  isArray
+	mcchn,
+	chnDiff,
+	sortedColl,
+	or,
+	values,
+	isArray,
+	wtf
 } from './fp/index.js';
 import { luminance } from './luminance.js';
 import { mc } from './mc.js';
 import { contrast } from './contrast.js';
+import { token } from './token.js';
+import { achromatic } from './achromatic.js';
+import { family } from './family.js';
 /**
  * Computes statistical values about the passed in color collection.
  *
- * The topmost properties from each returned `factor` object are:
+ * The properties from each returned `factor` object are:
  *
  * * `against` - The color being used for comparison.
  *
@@ -34,163 +37,171 @@ import { contrast } from './contrast.js';
  * * `extremums` - An array of the minimum and the maximum value (respectively) of the `factor`.
  * * `colors` - An array of color tokens that have the minimum and maximum `extremum` values respectively.
  * * `mean` - The average value for the `factor`.
- * * `displayable` - The percentage of the displayable or colors with channel ranges that can be rendered in  that colorspace when converted to RGB.
  *
  * The `mean` property can be overloaded by the `relativeMean` option:
  *
  * * If `relativeMean` is `true`, the `against` option will be used as a subtrahend for calculating the distance between each `extremum`.
  * For example, it will mean "Get the largest/smallest distance between `factor` as compared `against` this color token otherwise just get the smallest/largest `factor` from thr passed in collection."
  *
+ * These properties are available at the topmost level of the resultant object:
+ *
+ * * `achromatic` - The amount of colors which are gray out of the total colors in the collection as a value in the range [0,1].
+ * * `colorspace` - The colorspace in which the values were computed from, expected to be hue based.
+ * Defaults to `lch` if an invalid mode like `rgb` is used.
+ *
  * @param {Collection} collection The collection to compute stats from. Any collection with color tokens as values will work.
- * @param {StatsOptions} options Optional parameters to specify how the data should be computed.
+ * @param {StatsOptions} options
  * @returns {Stats}
  */
-function stats(
-  collection,
-  options = {
-    against: 'cyan',
+function stats(collection = [], options = undefined) {
+	var { factor, relative, colorspace, against } = options || {};
 
-    colorspace: 'lch'
-  }
-) {
-  var { factor, relativeMean, colorspace, against } = options;
+	/*
+                                    //// DEFAULT OPTIONS  \\\\
+      factor
+      if factor is defined we return the specified
+      factors else all factors if undefined.
+  
 
-  function y(n, m, o, l) {
-    const result = (y) =>
-      sortedColl(n, m, o, true)(y).filter((g) => g[n] !== undefined);
+     relative
+     return the largest/smallest factor distances by default
+     else compare the distances agains a comparison color.
+   
+   colorspace
+    default is lch if an invalid colorpace is passed in
+    expects the colorspace to be hue based
+   
+   
+  against
+  default is cyan so that factors dependant on the argument
+  don't f*ck things up in the result object
 
-    return (w) => (l && result(w)[0]) || result(w)[0][n];
-  }
+   */
 
-  function z(cspace) {
-    return mc(`${mlchn(cspace)}`);
-  }
+	factor = or(factor, undefined);
+	relative = or(relative, false);
+	colorspace = or(colorspace, 'lch');
+	against = or(against, 'cyan');
 
-  function g(a) {
-    return (b) => contrast(a, b);
-  }
+	//convert all color tokens to excepted colorspace
+	collection = values(collection).map((i) => token(i));
 
-  function j(i) {
-    return (c) => mc(`${or(i, 'jch')}.h`)(c);
-  }
-  function v(i) {
-    return (color) => mc(mcchn(i))(color);
-  }
-  var m,
-    n = (b, m) => (a) => m(values(a).map(b));
-  // similar to get farthest or nearest factor fom...
-  var f_cb = (e, f) => {
-    var cb;
+	// put a bunch of stuff in arrays. f*ck readability :lol:
 
-    // if relativeMean is true
-    // use the overload on all other factors when fetching their mean
-    if (relativeMean) {
-      switch (f) {
-        case 'chroma':
-          cb = y(f, chnDiff(against, mcchn(colorspace)), e, true);
-          break;
-        case 'luminance':
-          // @ts-ignore
-          let cb1 = (a) => (b) => Math.abs(luminance(a) - luminance(b));
-          cb = y(f, cb1(against), e, true);
-          break;
-        case 'lightness':
-          cb = y(f, chnDiff(against, mlchn(colorspace)), e, true);
-          break;
-        case 'hue':
-          cb = y(f, chnDiff(against, `${colorspace}.h`), e, true);
-          break;
-        case 'contrast':
-          cb = y(f, g(against), e, true);
-          break;
-      }
-    } else {
-      switch (f) {
-        case 'chroma':
-          cb = y(f, v(colorspace), e, true);
-          break;
-        case 'luminance':
-          break;
-        case 'lightness':
-          cb = y(f, z(colorspace), e, true);
-          break;
-        case 'hue':
-          cb = y(f, j(colorspace), e, true);
-          break;
-      }
-    }
+	// Callback functions for retrieving factors
+	var [o, y, z, g, j, v, m] = [
+			(f) => {
+				var u;
 
-    switch (f) {
-      case 'chroma':
-        m = n(mc(mcchn(colorspace)), averageNumber);
-        break;
+				// if relativeMean is true
+				// use the overload on all other factors when fetching their mean
+				if (relative) {
+					switch (f) {
+						case 'chroma':
+							u = y(f, chnDiff(against, mcchn('c', colorspace)));
+							break;
+						case 'luminance':
+							// @ts-ignore
+							let cb1 = (a) => (b) => Math.abs(luminance(a) - luminance(b));
+							u = y(f, cb1(against));
+							break;
+						case 'lightness':
+							u = y(f, chnDiff(against, mcchn('c', colorspace)));
+							break;
+						case 'hue':
+							u = y(f, chnDiff(against, `${colorspace}.h`));
+							break;
+						case 'contrast':
+							u = y(f, g(against));
+							break;
+					}
+				} else {
+					switch (f) {
+						case 'chroma':
+							u = y(f, v(colorspace));
+							break;
+						case 'luminance':
+							u = y(f, luminance);
+							break;
+						case 'lightness':
+							u = y(f, z(colorspace));
+							break;
+						case 'hue':
+							u = y(f, j(colorspace));
+							break;
+					}
+				}
 
-      case 'distance':
-        let i = (a) => (b) => differenceHyab()(a, b);
-        m = n(i, averageNumber);
-        break;
-      case 'hue':
-        m = n(mc(`${colorspace}.h`), averageAngle);
+				return u;
+			},
+			(n, m) => sortedColl(n, m, 'asc', true)(collection),
+			(m) => mc(mcchn('l', colorspace)),
+			(a) => contrast(a, against),
+			(i) => (c) => mc(`${or(i, 'lch')}.h`)(c),
+			(i) => (c) => mc(mcchn('c', colorspace))(c),
 
-        break;
-      case 'lightness':
-        m = n(mc(mlchn(colorspace)), averageNumber);
-        break;
-      case 'contrast':
-        let h = (a) => (b) => contrast(a, b);
-        m = n(h, averageNumber);
+			collection.length
+		],
+		[t, i] = [
+			(k) => {
+				// we filter out falsy values from the collection to avoid getting NaN
+				var [n, v] = [
+					(b, m) => (a) =>
+						m(
+							values(a)
+								.map((i) => b(i))
+								.filter((i) => i)
+						),
+					null
+				];
+				switch (k) {
+					case 'chroma':
+						v = n(mc(mcchn('c', colorspace)), averageNumber);
+						break;
 
-      case 'luminance':
-        m = n(luminance, averageNumber);
-        break;
-    }
+					case 'distance':
+						let i = (a) => (b) => differenceHyab()(a, b);
+						v = n(i, averageNumber);
+						break;
+					case 'hue':
+						v = n(mc(`${colorspace}.h`), averageAngle);
 
-    return cb;
-  };
+						break;
+					case 'lightness':
+						v = n(mc(mcchn('l', colorspace)), averageNumber);
+						break;
+					case 'contrast':
+						let h = (a) => (b) => contrast(a, b);
+						v = n(h, averageNumber);
 
-  var p = {},
-    t = (k) => ({
-      against:
-        k !== ('contrast' || 'distance') && !relativeMean ? null : against,
-      color: [
-        f_cb('min')(collection)['color'],
-        f_cb('max')(collection)['color']
-      ],
-      // @ts-ignore
-      mean: m(collection),
-      extremums: [f_cb('min')(collection)[k], f_cb('max')(collection)[k]]
-    });
+					case 'luminance':
+						v = n(luminance, averageNumber);
+						break;
+				}
+				return v;
+			},
+			(k) => {
+				var [x, y] = [o(k)[0], o(k)[m - 1]];
 
-  // if its an array add each factor as a key to the object
-  if (isArray(factor)) {
-    for (const k of values(factor)) {
-      p[k] = t(k);
-    }
-  } else if (typeof factor === 'string') {
-    // @ts-ignore
-    p = t(factor);
-  }
+				return {
+					against:
+						relative || k === ('contrast' || 'distance') ? against : null,
+					colors: [x['color'], y['color']],
+					// @ts-ignore
+					mean: t(k)(collection),
+					extremums: [x[k], y[k]],
+					families: [family(x['color']), family(y['color'])]
+				};
+			}
+		],
+		p = wtf(factor, i);
 
-  // if factor is falsy return all the factors
-  else {
-    for (const k of [
-      'hue',
-      'chroma',
-      'lightness',
-      'distance',
-      'contrast',
-      'luminance'
-    ]) {
-      p[k] = t(k);
-    }
-  }
+	p['achromatic'] =
+		// @ts-ignore
+		values(collection).filter(achromatic).length / collection.length;
+	p['colorspace'] = colorspace;
 
-  p['displayable'] =
-    // @ts-ignore
-    values(collection).map(inGamut('rgb')).length / collection.length;
-  p['colorspace'] = colorspace;
-  // @ts-ignore
-  return p;
+	return p;
 }
 
 export { stats };

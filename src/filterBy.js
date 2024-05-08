@@ -8,12 +8,12 @@
 
 import { differenceHyab } from 'culori/fn';
 
-import { mcchn, mlchn, filteredColl } from './fp/index.js';
+import { mcchn, filteredColl, wtf, isArray, or } from './fp/index.js';
 import { token } from './token.js';
 import { mc } from './mc.js';
 import { contrast } from './contrast.js';
 import { luminance } from './luminance.js';
-import ranges from './maps/ranges.js';
+import limits from './maps/limits.js';
 
 /**
  * Filters a collection of colors using the specified `factor` as the criterion. The supported options are:
@@ -54,98 +54,171 @@ let sample = [
   '#720000',
 ]
 
-// Filtering colors by their relative contrast against 'green'. 
-// The collection will include colors with a relative contrast equal to 3 or greater.
-
-console.log(filterBy('contrast','>=3')(sample,{ against:'green' }))
-// [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
  */
-function filterBy(
-  collection,
-  options = {
-    factor: 'hue',
-    start: 0,
-    end: undefined,
-    against: 'cyan',
-    colorspace: 'lch'
-  }
-) {
-  var { against, colorspace, end, start, factor } = options,
-    z;
+function filterBy(collection, options) {
+	var { against, colorspace, factor, ranges } = options || {};
 
-  function w(a, b, s, e) {
-    return (y) => filteredColl(a, b)(y, s, e);
-  }
-  switch (factor.toLowerCase()) {
-    case 'chroma':
-      end = !end ? ranges[colorspace][mcchn(colorspace).split('.')[1]][1] : end;
+	factor = or(factor, undefined);
+	//	relative = or(relative, false);
+	colorspace = or(colorspace, 'lch');
+	against = or(against, 'cyan');
+	//	order = or(order, 'asc');
 
-      z = w(
-        factor,
-        mc(mcchn(colorspace)),
+	var w = (b, s, e) => {
+			return filteredColl(factor, b)(collection, s, e);
+		},
+		p = (k) => {
+			/**
+			 * @type { string | number } x
+			 * The `start` or min extremum.
+			 */
+			let x,
+				/**
+				 * @type { string | number } x
+				 * The `end` or max extremum.
+				 */
+				y,
+				z,
+				[c, l] = [mcchn('c', colorspace, false), mcchn('l', colorspace, false)];
+			if (isArray(factor) || undefined) {
+				x = ranges[k][0];
+				y = or(ranges[k][1], undefined);
+				switch (k?.toLowerCase()) {
+					case 'chroma':
+						y = !y ? limits[colorspace][c][1] : y;
 
-        // @ts-ignore
-        start,
-        end
-      );
+						z = w(
+							mc(c),
 
-      break;
-    case 'contrast':
-      let q = (a) => (b) => contrast(b, a);
+							// @ts-ignore
+							x,
+							y
+						);
 
-      z = w(
-        'contrast',
-        q(against),
-        // @ts-ignore
-        start,
-        end
-      );
-      break;
-    case 'distance':
-      let u = (a) => (b) => differenceHyab()(a, b);
+						break;
+					case 'contrast':
+						let q = (a) => (b) => contrast(b, a);
 
-      z = w(
-        'distance',
-        u(token(against)),
+						z = w(
+							q(against),
 
-        // @ts-ignore
-        start,
-        end
-      );
-      break;
-    case 'hue':
-      z = w(
-        factor,
-        mc(`${colorspace}.h`),
-        // @ts-ignore
-        start,
-        end
-      );
-      break;
-    case 'lightness':
-      end = !end ? ranges[colorspace][mcchn(colorspace).split('.')[1]][1] : end;
-      z = w(
-        factor,
-        mc(mlchn(colorspace)),
-        // @ts-ignore
-        start,
-        end
-      );
-      break;
-    case 'luminance':
-      z = w(
-        factor,
-        luminance,
-        // @ts-ignore
-        start,
-        end
-      );
-      break;
-    default:
-      break;
-  }
+							x,
+							y
+						);
+						break;
+					case 'distance':
+						/**
+						 * The `distance` factor callback.
+						 * @param {ColorToken} a The color ro compare against.
+						 * @returns
+						 */
+						// @ts-ignore
+						let u = (a) => differenceHyab()(a, against);
 
-  return z(collection);
+						z = w(
+							u(token(against)),
+
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'hue':
+						z = w(
+							mc(`${colorspace}.h`),
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'lightness':
+						y = !y ? limits[colorspace][mcchn('l', colorspace, false)][1] : y;
+						z = w(
+							mc(mcchn('l', colorspace)),
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'luminance':
+						z = w(
+							luminance,
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+				}
+			} else {
+				x = ranges[0];
+
+				y = or(ranges[1], undefined);
+				switch (k?.toLowerCase()) {
+					case 'chroma':
+						y = !ranges[1] ? limits[colorspace][c][1] : y;
+
+						z = w(
+							mc(mcchn('c', colorspace)),
+
+							// @ts-ignore
+							x,
+							y
+						);
+
+						break;
+					case 'contrast':
+						let q = (a) => (b) => contrast(b, a);
+
+						z = w(
+							q(against),
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'distance':
+						let u = (a) => (b) => differenceHyab()(a, b);
+
+						z = w(
+							u(token(against)),
+
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'hue':
+						z = w(
+							mc(`${colorspace}.h`),
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'lightness':
+						y = !y ? limits[colorspace][c.split('.')[1]][1] : y;
+						z = w(
+							mc(mcchn('l', colorspace)),
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'luminance':
+						z = w(
+							luminance,
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+				}
+			}
+
+			return z;
+		};
+
+	return wtf(factor, p);
 }
 
 export { filterBy };

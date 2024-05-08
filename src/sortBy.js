@@ -7,7 +7,7 @@
  * @typedef {import('./types.js').SortByOptions} SortByOptions
  */
 
-import { sortedColl, mlchn, mcchn } from './fp/index.js';
+import { sortedColl, mcchn, chnDiff, wtf, or } from './fp/index.js';
 import { luminance } from './luminance.js';
 import { mc } from './mc.js';
 import { contrast } from './contrast.js';
@@ -43,44 +43,67 @@ console.log(
 
 // [ 'brown', 'red', 'green', 'purple' ]
  */
-function sortBy(
-  collection,
-  options = {
-    factor: 'hue',
-    order: 'asc',
-    against: 'cyan',
-    colorspace: 'lch'
-  }
-) {
-  var { against, colorspace, factor, order } = options || {},
-    cb;
-  switch (factor.toLowerCase()) {
-    case 'chroma':
-      cb = sortedColl('chroma', mc(mcchn(colorspace)), order);
-      break;
-    case 'hue':
-      cb = sortedColl('hue', mc(`${colorspace}.h`), order);
-      break;
-    case 'luminance':
-      cb = sortedColl('luminance', luminance, order);
-      break;
-    case 'distance':
-      var cb1 = (a) => (c) => {
-        return differenceHyab()(a, c);
-      };
+function sortBy(collection = [], options = undefined) {
+	var { against, colorspace, factor, order, relative } = options || {};
+	factor = or(factor, undefined);
+	relative = or(relative, false);
+	colorspace = or(colorspace, 'lch');
+	against = or(against, 'cyan');
+	order = or(order, 'asc');
 
-      cb = sortedColl('distance', cb1(against), order);
-      break;
-    case 'contrast':
-      let cb2 = (a) => (c) => contrast(c, a);
-      cb = sortedColl('contrast', cb2(against), order);
-      break;
-    case 'lightness':
-      cb = sortedColl('lightness', mc(mlchn(colorspace)), order);
-      break;
-  }
+	var [l, c] = ['l', 'c'].map((w) => mcchn(w, colorspace, false)),
+		y = (a) => sortedColl(factor, a, order),
+		z = (h) => {
+			var x;
+			if (relative) {
+				switch (h?.toLowerCase()) {
+					case 'chroma':
+						x = y(chnDiff(against, mc(colorspace + '.' + c)));
+						break;
+					case 'hue':
+						x = y(chnDiff(against, mc(`${colorspace}.h`)));
+						break;
+					case 'luminance':
+						// @ts-ignore
+						let v = (a) => (b) => Math.abs(luminance(a) - luminance(b));
+						x = y(v(against));
+						break;
 
-  return cb(collection);
+					case 'lightness':
+						x = y(chnDiff(against, mc(colorspace + '.' + l)));
+						break;
+				}
+			} else {
+				switch (h?.toLowerCase()) {
+					case 'chroma':
+						x = y(mc(colorspace + '.' + c));
+						break;
+					case 'hue':
+						x = y(mc(`${colorspace}.h`));
+						break;
+					case 'luminance':
+						x = y(luminance);
+						break;
+					case 'distance':
+						var u = (a) => (c) => {
+							return differenceHyab()(a, c);
+						};
+
+						x = y(u(against));
+						break;
+					case 'contrast':
+						let w = (a) => (c) => contrast(c, a);
+						x = y(w(against));
+						break;
+					case 'lightness':
+						x = y(mc(colorspace + '.' + l));
+						break;
+				}
+				return x(collection);
+			}
+		};
+
+	return wtf(factor, z);
 }
 
 export { sortBy };

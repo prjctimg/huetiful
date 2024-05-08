@@ -1,158 +1,164 @@
 {
-  "name": "huetiful-js",
-  "version": "2.3.0",
-  "type": "module",
-  "main": "./src/index.js",
-  "browser": "./lib/huetiful.umd.js",
-  "jsdelivr": "./lib/huetiful.min.umd.js",
-  "types": "./types/index.d.ts",
-  "exports": {
-    "./alpha": "src/alpha.js",
-    "./brewer": "src/brewer.js",
-    "./colors": "src/colors.js",
-    "./complimentary": "src/complimentary.js",
-    "./contrast": "src/contrast.js",
-    "./lightness": "src/lightness.js",
-    "./deficiency": "src/deficiency.js",
-    "./discover": "src/discover.js",
-    "./earthtone": "src/earthtone.js",
-    "./family": "src/family.js",
-    "./mc": "src/mc.js",
-    "./overtone": "src/overtone.js",
-    "./hueshift": "src/hueshift.js",
-    "./nearest": "src/nearest.js",
-    ".": "src/index.js",
-    "./interpolator": "src/interpolator.js",
-    "./luminance": "src/luminance.js",
-    "./achromatic": "src/achromatic.js",
-    "./adaptive": "src/adaptive.js",
-    "./stats": "src/stats.js",
-    "./wrappers": "src/wrappers.js",
-    "./temp": "src/temp.js",
-    "./token": "src/token.js",
-    "./scheme": "src/scheme.js",
-    "./pastel": "src/pastel.js",
-    "./pair": "src/pair.js",
-    "./filterBy": "src/filterBy.js",
-    "./sortBy": "src/sortBy.js"
-  },
-  "description": "Function oriented library for color manipulation 🧪",
-  "dependencies": {
-    "culori": "^4.0.1"
-  },
-  "devDependencies": {
-    "@types/culori": "^2.1.0",
-    "autoprefixer": "^10.4.16",
-    "commitizen": "^4.3.0",
-    "cz-emoji-conventional": "^1.0.2",
-    "esbuild": "^0.17.19",
-    "eslint": "^8.53.0",
-    "github-emoji": "^1.2.0",
-    "gulp": "^5.0.0",
-    "gulp-postcss": "^10.0.0",
-    "husky": "^8.0.3",
-    "jasmine": "5.1.0",
-    "nodemon": "^3.0.1",
-    "postcss-cli": "^11.0.0",
-    "prettier": "^3.2.0",
-    "typedoc": "^0.25.3",
-    "typedoc-github-wiki-theme": "^1.1.0",
-    "typescript": "^5.0.2"
-  },
-  "scripts": {
-    "test": "npx jasmine",
-    "docs": "npx typedoc --includeVersion false --excludeReferences false  --cleanOutputDir false --excludeNotDocumented true --plugin typedoc-plugin-markdown --hideInPageTOC false --hideGenerator true",
-    "build": "node ./build.cjs",
-    "code:publish": "npm run build & npx tsc",
-    "format": "npx prettier \"./src/*.js\" --write",
-    "lint": "npx eslint --fix --ext ./src/*.js",
-    "start": "docsify serve ./docs "
-  },
-  "prettier": {
-    "semi": true,
-    "singleQuote": true,
-    "printWidth": 80,
-    "tabWidth": 2,
-    "useTabs": false,
-    "trailingComma": "none",
-    "bracketSpacing": true
-  },
-  "eslintConfig": {
-    "root": true,
-    "rules": {
-      "prefer-const": 0,
-      "no-console": 1,
-      "no-ternary": 0,
-      "no-var": 0,
-      "no-explicit-any": 0,
-      "no-useless-escape": 0
-    }
-  },
-  "typedocOptions": {
-    "entryPoints": [
-      "src/index.js"
-    ],
-    "excludeTags": [
-      "@internal"
-    ],
-    "entryPointStrategy": "resolve",
-    "out": "docs/",
-    "exclude": [
-      "./fp"
-    ],
-    "groupOrder": [
-      "Function",
-      "Class",
-      "Constructor",
-      "Property",
-      "Method",
-      "TypeAlias"
-    ],
-    "readme": "none",
-    "tsconfig": "./tsconfig.json",
-    "gitRemote": "main"
-  },
-  "files": [
-    "lib",
-    "src",
-    "types",
-    "CHANGELOG.md",
-    "CODE_OF_CONDUCT.md",
-    "README.md",
-    "CONTRIBUTING.md",
-    "LICENSE.md"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/xml-wizard/huetiful.git"
-  },
-  "keywords": [
-    "small",
-    "lch",
-    "D65",
-    "lab",
-    "oklch",
-    "rgb",
-    "jch",
-    "color-schemes",
-    "colors",
-    "culori",
-    "palettes",
-    "colors",
-    "generator",
-    "filter",
-    "sort",
-    "luminance",
-    "contrast"
-  ],
-  "author": "Dean Tarisai",
-  "email": "prjctimg@outlook.com",
-  "homepage": "https://huetiful-js.com",
-  "license": "Apache-2.0",
-  "engines": {
-    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
-  },
-  "bugs": {
-    "url": "https://github.com/xml-wizard/huetiful/issues"
-  }
+	"name": "huetiful-js",
+	"version": "2.3.0",
+	"type": "module",
+	"module": "./lib/huetiful.esm.node.js",
+	"main": "./src/index.js",
+	"browser": "./lib/huetiful.esm.js",
+	"jsdelivr": "./lib/huetiful.esm.min.js",
+	"types": "./types/index.d.ts",
+	"exports": {
+		"./alpha": "src/alpha.js",
+		"./brewer": "src/brewer.js",
+		"./colors": "src/colors.js",
+		"./complimentary": "src/complimentary.js",
+		"./contrast": "src/contrast.js",
+		"./lightness": "src/lightness.js",
+		"./deficiency": "src/deficiency.js",
+		"./discover": "src/discover.js",
+		"./earthtone": "src/earthtone.js",
+		"./family": "src/family.js",
+		"./mc": "src/mc.js",
+		"./overtone": "src/overtone.js",
+		"./hueshift": "src/hueshift.js",
+		"./nearest": "src/nearest.js",
+		".": "src/index.js",
+		"./interpolator": "src/interpolator.js",
+		"./luminance": "src/luminance.js",
+		"./achromatic": "src/achromatic.js",
+		"./adaptive": "src/adaptive.js",
+		"./stats": "src/stats.js",
+		"./wrappers": "src/wrappers.js",
+		"./temp": "src/temp.js",
+		"./token": "src/token.js",
+		"./scheme": "src/scheme.js",
+		"./pastel": "src/pastel.js",
+		"./pair": "src/pair.js",
+		"./filterBy": "src/filterBy.js",
+		"./sortBy": "src/sortBy.js"
+	},
+	"description": "Function oriented library for color manipulation 🧪",
+	"dependencies": {
+		"culori": "^4.0.1"
+	},
+	"devDependencies": {
+		"@types/culori": "^2.1.0",
+		"commitizen": "^4.3.0",
+		"cz-emoji-conventional": "^1.0.2",
+		"esbuild": "^0.17.19",
+		"eslint": "^8.53.0",
+		"husky": "^8.0.3",
+		"jasmine": "5.1.0",
+		"nodemon": "^3.0.1",
+		"prettier": "^3.2.0",
+		"typedoc": "^0.25.3",
+		"typedoc-github-wiki-theme": "^1.1.0",
+		"typedoc-material-theme": "^1.0.2",
+		"typescript": "^5.0.2"
+	},
+	"scripts": {
+		"test": "npx jasmine",
+		"docs": "npx typedoc",
+		"build": "node ./build.cjs",
+		"code:publish": "npm run build & npx tsc",
+		"format": "npx prettier \"./src/*.js\" --write",
+		"lint": "npx eslint --fix --ext ./src/*.js",
+		"start": "docsify serve ./docs "
+	},
+	"prettier": {
+		"semi": true,
+		"singleQuote": true,
+		"printWidth": 80,
+		"tabWidth": 2,
+		"useTabs": true,
+		"trailingComma": "none",
+		"bracketSpacing": true
+	},
+	"eslintConfig": {
+		"root": true,
+		"rules": {
+			"prefer-const": 0,
+			"no-console": 1,
+			"no-ternary": 0,
+			"no-var": 0,
+			"no-explicit-any": 0,
+			"no-useless-escape": 0
+		}
+	},
+	"typedocOptions": {
+		"entryPoints": [
+			"src/index.js"
+		],
+		"excludeTags": [
+			"@internal"
+		],
+		"lightHighlightTheme": "rose-pine",
+		"darkHighlightTheme": "rose-pine-moon",
+		"themeColor": "#15803d",
+		"excludeNotDocumented": true,
+		"excludeReferences": false,
+		"includeVersion": true,
+		"plugin": [
+			"typedoc-material-theme"
+		],
+		"gaID": "G-0TXKRCERK8",
+		"entryPointStrategy": "resolve",
+		"out": "docs/",
+		"exclude": [
+			"./fp"
+		],
+		"groupOrder": [
+			"Function",
+			"Class",
+			"Constructor",
+			"Property",
+			"Method",
+			"TypeAlias"
+		],
+		"tsconfig": "./tsconfig.json",
+		"gitRemote": "main"
+	},
+	"files": [
+		"lib",
+		"src",
+		"types",
+		"CHANGELOG.md",
+		"CODE_OF_CONDUCT.md",
+		"README.md",
+		"CONTRIBUTING.md",
+		"LICENSE.md"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/xml-wizard/huetiful.git"
+	},
+	"keywords": [
+		"small",
+		"lch",
+		"D65",
+		"lab",
+		"oklch",
+		"rgb",
+		"jch",
+		"color-schemes",
+		"colors",
+		"culori",
+		"palettes",
+		"colors",
+		"generator",
+		"filter",
+		"sort",
+		"luminance",
+		"contrast"
+	],
+	"author": "Dean Tarisai",
+	"email": "prjctimg@outlook.com",
+	"homepage": "https://huetiful-js.com",
+	"license": "Apache-2.0",
+	"engines": {
+		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+	},
+	"bugs": {
+		"url": "https://github.com/xml-wizard/huetiful/issues"
+	}
 }
