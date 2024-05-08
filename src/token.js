@@ -69,14 +69,12 @@ function token(color, options = undefined) {
 	kind = or(kind, 'hex');
 	omitMode = or(omitMode, false);
 	numType = or(numType, undefined);
-	targetMode = or(targetMode, 'lch');
+
 	srcMode = srcMode
 		? srcMode
 		: isArray(color)
-			? neq(typeof color[0], 'number')
-				? color[0]
-				: color?.mode
-			: 'rgb';
+			? neq(typeof color[0], 'number') && color[0]
+			: color?.mode;
 
 	function num2c() {
 		// Ported from chroma-js with slight modifications
@@ -102,11 +100,7 @@ function token(color, options = undefined) {
 
 	function c2hx() {
 		// if its of type string and not a CSS named color then its probably hex so we don't convert it
-		var c,
-			/**
-			 * Return the in gamut color by converting it to RGB
-			 */
-			f = toGamut('rec2020', targetMode)(arr2obj());
+		var c;
 		switch (typeof color) {
 			case 'boolean':
 				c = (color === true && '#ffffff') || '#000000';
@@ -171,8 +165,6 @@ function token(color, options = undefined) {
 			o = useMode(defs[targetMode])(color);
 		}
 
-		o = toGamut('rec2020')(o);
-
 		var arr = keys(o)
 			.filter((ch) => ch !== 'mode')
 			.map((ch) => o[ch]);
@@ -192,7 +184,7 @@ function token(color, options = undefined) {
 		 */
 		var cb = () => {
 			var [x, y] = [
-				gmchn(srcMode).split(''),
+				gmchn(srcMode || targetMode).split(''),
 				eq(typeof color[0], 'string') ? color.slice(1) : color
 			];
 
@@ -200,7 +192,7 @@ function token(color, options = undefined) {
 				[x[0]]: y[0],
 				[x[1]]: y[1],
 				[x[2]]: y[2],
-				mode: srcMode || targetMode,
+				mode: srcMode,
 				alpha: y[3] || 1
 			};
 		};
@@ -218,10 +210,7 @@ function token(color, options = undefined) {
 			);
 		}
 
-		if (srcMode) {
-			// @ts-ignore
-			q = toGamut('rec2020', targetMode)(useMode(defs[targetMode])(cb()));
-		}
+		// @ts-ignore
 
 		return q;
 	}
@@ -245,7 +234,7 @@ function token(color, options = undefined) {
 
 		case 'object':
 			// @ts-ignore
-			p = toGamut(targetMode)(useMode(defs[srcMode])(c2hx()));
+			p = useMode(defs[targetMode])(c2hx());
 			break;
 
 		default:
