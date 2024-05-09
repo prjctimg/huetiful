@@ -225,7 +225,7 @@ export type TokenOptions = {
 	/**
 	 * The type of color token to return. Default is `'hex'`.
 	 */
-	kind?: 'number' | 'array' | 'object' | 'hex';
+	kind?: 'number' | 'array' | 'object' | 'hex' | 'temp';
 	/**
 	 * If the `kind` is set to `'array'` it will remove the mode string from color tuple. Default is `false`.
 	 */
