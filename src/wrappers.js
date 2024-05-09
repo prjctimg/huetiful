@@ -334,7 +334,7 @@ class Color {
 
 		// set the color's lightness if its not explicitly passed in the default lightness is in Lch but will be refactored soon
 		// @ts-ignore
-		this['lightness'] = or(lightness, mc('lch.l')(c));
+		this['_lightness'] = or(lightness, mc('lch.l')(c));
 
 		// set the default color space as jch if a color space is not specified. TODO: get the mode from object and array
 		this['colorspace'] = or(colorspace, 'lch');
