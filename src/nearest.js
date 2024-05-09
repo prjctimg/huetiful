@@ -27,20 +27,22 @@ import { colors } from './colors.js';
 console.log(nearest(cols, 'blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
-function nearest(collection, against, num = 1) {
-  const f = (a, b) => {
-    return nrst(values(a), differenceHyab(), (color) => color)(b, num);
-  };
-  let o;
+function nearest(collection, options = { against: 'cyan', num: 1 }) {
+	var { against, num } = options || {};
 
-  if (collection === 'tailwind') {
-    // @ts-ignore
-    o = f(colors('all'), against);
-  } else {
-    o = f(collection, against);
-  }
+	const f = (a, b) => {
+		return nrst(values(a), differenceHyab(), (color) => color)(b, num);
+	};
+	let o;
 
-  return o;
+	if (collection === 'tailwind') {
+		// @ts-ignore
+		o = f(colors('all'), against);
+	} else {
+		o = f(collection, against);
+	}
+
+	return o;
 }
 
 export { nearest };
