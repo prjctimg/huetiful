@@ -1,312 +1,109 @@
 /**
- * @typedef { import('../types/types.js').ColorToken} ColorToken
- * @typedef { import('../types/types.js').Collection} Collection
- * @typedef { import('../types/types.js').HueColorSpaces} HueColorSpaces
- * @typedef {import('../types/types.js').FactObject} FactObject
- * @typedef {import('../types/types.js').InterpolatorOptions} InterpolatorOptions
- * @typedef {import('../types/types.js').SchemeType} SchemeType
- * @typedef {import('../types/types.js').Order} Order
+ * @typedef { import('./types.js').Collection} ColorToken
+ * @typedef { import('./types.js').Collection} Collection
+ * @typedef { import('./types.js').Colorspaces} Colorspaces
+ * @typedef {import('./types.js').Factor} Factor
+ * @typedef {import('./types.js').Order} Order
+ * @typedef {import('./types.js').SortByOptions} SortByOptions
  */
 
-/**
- * @license
- * sortBy.js - Utilities for sorting collections of colors.
-Copyright 2024 Dean Tarisai.
-This file is licensed to you under the Apache License, Version 2.0 (the 'License');
-you may not use this file except in compliance with the License. You may obtain a copy
-of the License at http://www.apache.org/licenses/LICENSE-2.0
-Unless required by applicable law or agreed to in writing, software distributed under
-the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
-OF ANY KIND, either express or implied. See the License for the specific language
-governing permissions and limitations under the License.
-*/
-
-import { sortedColl, mlchn, mcchn } from './helpers.js';
-import { wcagContrast, differenceHyab } from 'culori/fn';
-import { getLuminance, getChannel } from './utils.js';
-
-function baseSortBy(fctr, cb, o, col) {
-  return sortedColl(fctr, cb, o)(col);
-}
+import { sortedColl, mcchn, chnDiff, wtf, or } from './fp/index.js';
+import { luminance } from './luminance.js';
+import { mc } from './mc.js';
+import { contrast } from './contrast.js';
+import { differenceHyab } from 'culori/fn';
 
 /**
- *@public
- * Sorts colors according to the intensity of their `chroma` in the specified `colorspace`.
- * @param {Collection} [collection=[]] The `collection` of colors to sort.
- * @param  {Order} [order='asc'] The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
- * @param {HueColorSpaces} [colorspace='lch'] The `mode` colorspace to compute the saturation value in. The default is lch .
- * @returns {Collection} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
- * @example
- * import { sortByChroma } from "huetiful-js";
-let sample = [
-  "#00ffdc",
-  "#00ff78",
-  "#00c000",
-  "#007e00",
-  "#164100",
-  "#ffff00",
-  "#310000",
-  "#3e0000",
-  "#4e0000",
-  "#600000",
-  "#720000",
-];
-
-let sorted = sortByChroma(sample);
-console.log(sorted);
-
-// [
-  '#310000', '#3e0000',
-  '#164100', '#4e0000',
-  '#600000', '#720000',
-  '#00ffdc', '#007e00',
-  '#00ff78', '#00c000',
-  '#ffff00'
-]
-
-let sortedDescending = sortByChroma(sample,'desc');
-console.log(sortedDescending)
-// [
-  '#ffff00', '#00c000',
-  '#00ff78', '#007e00',
-  '#00ffdc', '#720000',
-  '#600000', '#4e0000',
-  '#164100', '#3e0000',
-  '#310000'
-]
-
- */
-
-function sortByChroma(collection, order, colorspace) {
-  return baseSortBy(
-    'saturation',
-    getChannel(mcchn(colorspace)),
-    order,
-    collection
-  );
-}
-
-/**
- *@public
- *  Sorts colors according to their relative brightness as defined by the WCAG3 definition.
- * @param {Collection} [collection=[]] The `collection` of colors to sort.
- * @param  {Order} [order='asc'] The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
- * @returns {Collection} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
- * @example
- * import { sortByLuminance } from "huetiful-js";
-let sample = [
-  "#00ffdc",
-  "#00ff78",
-  "#00c000",
-  "#007e00",
-  "#164100",
-  "#ffff00",
-  "#310000",
-  "#3e0000",
-  "#4e0000",
-  "#600000",
-  "#720000",
-];
-
-
-
-let sorted = sortByLuminance(sample)
-console.log(sorted)
-// [
-  '#310000', '#3e0000',
-  '#4e0000', '#600000',
-  '#720000', '#164100',
-  '#007e00', '#00c000',
-  '#00ff78', '#00ffdc',
-  '#ffff00'
-]
-
-let sortedDescending = sortByLuminance(sample, "desc");
-console.log(sortedDescending)
-// [
-  '#ffff00', '#00ffdc',
-  '#00ff78', '#00c000',
-  '#007e00', '#164100',
-  '#720000', '#600000',
-  '#4e0000', '#3e0000',
-  '#310000'
-]
-
- 
- */
-
-function sortByLuminance(collection, order) {
-  return baseSortBy('luminance', getLuminance, order, collection);
-}
-
-/**
- *@public
- *  Sorts colors according to their lightness.
- * @param {Collection} [collection=[]] The `collection` of colors to sort.
- * @param  {Order} [order='asc'] The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
- * @param {HueColorSpaces} colorspace The mode colorspace to use for filtering color lightness. Defaut is lch65
- * @returns {Collection} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
- * @example
- * import { sortByLightness } from "huetiful-js";
-
-let sample = [
-  "#00ffdc",
-  "#00ff78",
-  "#00c000",
-  "#007e00",
-  "#164100",
-  "#ffff00",
-  "#310000",
-  "#3e0000",
-  "#4e0000",
-  "#600000",
-  "#720000",
-]
-
-sortByLightness(sample)
-
-// [
-  '#310000', '#3e0000',
-  '#4e0000', '#600000',
-  '#720000', '#164100',
-  '#007e00', '#00c000',
-  '#00ff78', '#00ffdc',
-  '#ffff00'
-]
-
-
-sortByLightness(sample,'desc')
-
-// [
-  '#ffff00', '#00ffdc',
-  '#00ff78', '#00c000',
-  '#007e00', '#164100',
-  '#720000', '#600000',
-  '#4e0000', '#3e0000',
-  '#310000'
-]
-
- */
-
-function sortByLightness(collection, order, colorspace = 'lch') {
-  return baseSortBy(
-    'lightness',
-    getChannel(mlchn(colorspace)),
-    order,
-    collection
-  );
-}
-
-/**
- *@public
- * Sorts colors according to their hue angle values. It works with any `colorspace` with a hue channel.
- * @param {Collection} [collection=[]] The `collection` of colors to sort. Achromatic colors are not supported because when displayed on the screen, the colors would be grayscale (so visually, there's no sign of hue). This behaviour is because the `hue` channel is dependant on the `lightness` and `saturation / chroma` channels . For example, a falsy value like `0` or `undefined` turns the color  grayscale whilst lightness at both extremes renders a color totally white (max) or black (min).
- * @param {Order} [order='asc'] The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
-* @param {HueColorSpaces} colorspace The mode `colorspace` to compute the color distances in. All colors within the collection will be converted to mode. Note that hue values between modes like `hsl` and `lch` do not align so you may get weird results if you mix colors with different colorspaces.
-* @returns  The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
- * @example
- * let sample = [
-  "#00ffdc",
-  "#00ff78",
-  "#00c000",
-  "#007e00",
-  "#164100",
-  "#ffff00",
-  "#310000",
-  "#3e0000",
-  "#4e0000",
-  "#600000",
-  "#720000",
-];
-
-
-let sorted = sortByHue(sample);
-console.log(sorted)
-// [
-  '#310000', '#3e0000',
-  '#4e0000', '#600000',
-  '#720000', '#ffff00',
-  '#164100', '#00c000',
-  '#007e00', '#00ff78',
-  '#00ffdc'
-]
-
-let sortedDescending = sortByHue(sample,'desc');
-console.log(sortedDescending)
-// [
-  '#00ffdc', '#00ff78',
-  '#007e00', '#00c000',
-  '#164100', '#ffff00',
-  '#720000', '#600000',
-  '#4e0000', '#3e0000',
-  '#310000'
-]
-
- */
-
-function sortByHue(collection, order, colorspace = 'lch') {
-  return baseSortBy('hue', getChannel(`${colorspace}.h`), order, collection);
-}
-/**
- *@public
- *  Sorts colors according to their contrast value as defined by WCAG. The contrast is tested `against` a comparison color.
- * @param {Collection} [collection=[]] The `collection` of colors to sort.
- * @param {ColorToken} [against='#fff'] The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.
- * @param  {Order} [order='asc'] The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`)
- * @returns {Collection} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
- * @example
+ * Sorts colors according to the specified `factor`. The supported options are:
  *
- * import { sortByContrast } from 'huetiful-js'
+ * * `'contrast'` - Sorts colors according to their contrast value as defined by WCAG.
+ * The contrast is tested `against` a comparison color  which can be specified in the `options` object.
+ * * `'lightness'` - Sorts colors according to their lightness.
+ * * `'chroma'` - Sorts colors according to the intensity of their `chroma` in the `colorspace` specified in the `options` object.
+ * * `'distance'` - Sorts colors according to their distance.
+ * The distance is computed from the `against` color token which is used for comparison for all the colors in the `collection`.
+ * * `luminance` - Sorts colors according to their relative brightness as defined by the WCAG3 definition.
+ * 
+ * The return type is determined by the type of `collection`:
+ * 
+ * * Plain objects are returned as `Map` objects because they remember insertion order. `Map` objects are returned as is.
+ * * `ArrayLike` objects are returned as plain arrays. Plain arrays are returned as is.
+ * @param {Collection} collection The `collection` of colors to sort.
+ * @param {SortByOptions} options
+ * @returns {Collection}  
 
-let sample = ['purple', 'green', 'red', 'brown']
-console.log(sortByContrast(sample, 'yellow'))
-// [ 'red', 'green', 'brown', 'purple' ]
-
-console.log(sortByContrast(sample, 'yellow', 'desc'))
-// [ 'purple', 'brown', 'green', 'red' ]
- 
- */
-
-function sortByContrast(collection, against, order) {
-  var cb = (a) => (c) => wcagContrast(c, a);
-  return baseSortBy('contrast', cb(against), order, collection);
-}
-/**
- *@public
- * Sorts colors according to their distance. The distance factor is determined by the colorspace used (some color spaces are not symmetrical meaning that the distance between colorA and colorB is not equal to the distance between colorB and colorA ). The distance is computed from against a color which is used for comparison for all the colors in the collection.
- * @param {Collection} [collection=[]] The `collection` of colors to sort..
- * @param {ColorToken} [against='#fff'] The color to compare the distance with. All the distances are calculated between this color and the ones in the colors array.
- * @param  {Order} [order='asc'] The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`).
- * @returns {Collection} The collection of sorted colors. If a plain `object` or `Map` is used as a collection it is worked with and returned as is. Plain objects are returned as `Map` objects because they remember insertion order. `ArrayLike` objects are returned as plain arrays. 
  * @example
- * import { sortByDistance } from 'huetiful-js'
+
+import { sortBy } from 'huetiful-js'
 
 let sample = ['purple', 'green', 'red', 'brown']
 console.log(
-  sortByDistance(sample, 'yellow', 'asc')
+  sortBy(sample,{ against:'yellow' kind:'distance',order:'desc',})
 )
 
 // [ 'brown', 'red', 'green', 'purple' ]
-
-let sample = ['purple', 'green', 'red', 'brown']
-console.log(sortByDistance(sample, 'yellow', 'asc'))
-
-// [ 'green', 'brown', 'red', 'purple' ]
  */
+function sortBy(collection = [], options = undefined) {
+	var { against, colorspace, factor, order, relative } = options || {};
+	factor = or(factor, undefined);
+	relative = or(relative, false);
+	colorspace = or(colorspace, 'lch');
+	against = or(against, 'cyan');
+	order = or(order, 'asc');
 
-function sortByDistance(collection, against, order) {
-  var cb = (a) => (c) => {
-    return differenceHyab()(a, c);
-  };
+	var [l, c] = ['l', 'c'].map((w) => mcchn(w, colorspace, false)),
+		y = (a) => sortedColl(factor, a, order),
+		z = (h) => {
+			var x;
+			if (relative) {
+				switch (h?.toLowerCase()) {
+					case 'chroma':
+						x = y(chnDiff(against, mc(colorspace + '.' + c)));
+						break;
+					case 'hue':
+						x = y(chnDiff(against, mc(`${colorspace}.h`)));
+						break;
+					case 'luminance':
+						// @ts-ignore
+						let v = (a) => (b) => Math.abs(luminance(a) - luminance(b));
+						x = y(v(against));
+						break;
 
-  return baseSortBy('distance', cb(against), order, collection);
+					case 'lightness':
+						x = y(chnDiff(against, mc(colorspace + '.' + l)));
+						break;
+				}
+			} else {
+				switch (h?.toLowerCase()) {
+					case 'chroma':
+						x = y(mc(colorspace + '.' + c));
+						break;
+					case 'hue':
+						x = y(mc(`${colorspace}.h`));
+						break;
+					case 'luminance':
+						x = y(luminance);
+						break;
+					case 'distance':
+						var u = (a) => (c) => {
+							return differenceHyab()(a, c);
+						};
+
+						x = y(u(against));
+						break;
+					case 'contrast':
+						let w = (a) => (c) => contrast(c, a);
+						x = y(w(against));
+						break;
+					case 'lightness':
+						x = y(mc(colorspace + '.' + l));
+						break;
+				}
+				return x(collection);
+			}
+		};
+
+	return wtf(factor, z);
 }
 
-export {
-  sortByContrast,
-  sortByDistance,
-  sortByLightness,
-  sortByChroma,
-  sortByHue,
-  sortByLuminance
-};
+export { sortBy };

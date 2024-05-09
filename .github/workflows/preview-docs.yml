@@ -13,18 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install and Build
-        if: github.event.action  != 'closed' # skips build step if pr is closed
-
-        run: |
-          npm install
+      - run: |
+          npm i
           npm run docs
-          cd docs/assets && npm install && npm run deploy
       - name: Deploy PR Preview
         uses: rossjrw/pr-preview-action@v1.4.7
+
         with:
           token: ${{secrets.GH_PAT}}
           preview-branch: gh-pages
-          source-dir: docs/www
+          source-dir: docs
           umbrella-dir: docs/pr-preview
           action: auto

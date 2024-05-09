@@ -187,9 +187,9 @@
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-          (c) 2023 Dean Tarisai
+          (c) 2024 Dean Tarisai & xml-wizard contributors
               huetiful-js
-           -> Open source TypeScript library for general purpose color manipulations.
+           -> Function oriented JavaScript library for color manipulation
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

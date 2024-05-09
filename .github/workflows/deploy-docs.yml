@@ -26,16 +26,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Build site
-        run: |
-          npm install
+      - run: |
+          npm i
           npm run docs
-          cd docs/assets && npm install && npm run deploy
       - name: Deploy site
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           # Upload directory with assets
-          folder: docs/www
+          folder: docs
           branch: gh-pages
           clean-exclude: pr-preview
           force: false
