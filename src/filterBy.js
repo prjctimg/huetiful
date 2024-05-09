@@ -167,7 +167,7 @@ function filterBy(collection, options) {
 
 						break;
 					case 'contrast':
-						let q = (a) => (b) => contrast(b, a);
+						let q = (a) => contrast(against, a);
 
 						z = w(
 							q(against),
@@ -177,7 +177,8 @@ function filterBy(collection, options) {
 						);
 						break;
 					case 'distance':
-						let u = (a) => (b) => differenceHyab()(a, b);
+						// @ts-ignore
+						let u = (b) => differenceHyab()(against, b);
 
 						z = w(
 							u(token(against)),

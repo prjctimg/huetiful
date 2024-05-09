@@ -59,16 +59,19 @@ console.log(grays.map(achromatic));
 
  */
 function achromatic(color) {
+	color = token(color, { kind: 'object', targetMode: 'lch' });
+
 	// If a color has no lightness then it has no hue so its technically not achromatic since white and black are not grayscale
-	var [l, c, f] = [
-		mc('lch.l')(color),
-		mc('lch.c')(color),
-		(x) => x !== (NaN || undefined || 0 || Infinity || -Infinity)
-	];
+	var f = (x) => typeof x === 'undefined' || x === 0 || x === NaN;
+
 	//q = eq(p[0], p[1]) && eq(p[0], p[2]) && eq(p[2], p[1]);
 	// Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
 
-	return f(c) && f(l) ? false : true;
+	return (f(color['l']) || color['l'] >= 100) && !f(color['c'] || f(color['c']))
+		? false
+		: f(color['c'])
+			? true
+			: false;
 }
 
 export { achromatic };

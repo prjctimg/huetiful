@@ -87,17 +87,11 @@ let ui = colors('all', '500');
 let palette = colors('all', '500');
 let base = colors('orange', '700');
 
-let filteredPalette = filterBy(palette, {
-	factor: 'contrast',
-	against: 'yellow',
-	ranges: ['>4', '>=10']
-});
-
-filteredPalette = filterBy(palette, {
-	against: 'yellow',
-	factor: ['hue', 'luminance', 'contrast'],
-	ranges: { hue: [200, 300], luminance: [0.4, 0.6], contrast: ['<2'] }
-});
+// let filteredPalette = filterBy(palette, {
+// 	factor: 'contrast',
+// 	against: 'yellow',
+// 	ranges: ['>4', '>=10']
+// });
 
 // console.log(
 // 	hueshift('yellow', {

@@ -1,11 +1,7 @@
-![huetiful-logo](/assets/img/logo.svg)
+![huetiful-logo](./logo.svg)
 
 [![Deploy GitHub Pages](https://github.com/xml-wizard/huetiful/actions/workflows/deploy-docs.yml/badge.svg?branch=main)](https://github.com/xml-wizard/huetiful/actions/workflows/deploy-docs.yml)
 [![NPM publish 📦](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml/badge.svg)](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml)
-![NPM Downloads](https://img.shields.io/npm/dm/huetiful-js?style=social&logo=npm&link=https%3A%2F%2Fnpmjs.com%2Fpackage%2Fhuetiful-js%20)
-![GitHub Repo stars](https://img.shields.io/github/stars/xml-wizard/huetiful?style=social&logo=github)
-[![npm minzipped size](https://img.shields.io/bundlephobia/minzip/huetiful-js?style=social)](https://bundlephobia.com/package/huetiful-js)
-[![twitter](https://img.shields.io/twitter/follow/deantarisai?style=social)](https://twitter.com/deantarisai)
 
 [huetiful-js](www.huetiful-js.com) is a **small** (~10kB) & **fast** library for color manipulation written in JavaScript.
 
@@ -28,9 +24,9 @@ It uses [Culori](https://culorijs.org/api/) under the hood which provides access
 
 ## Installation
 
-### Using a package manager
+> As of v3.0.0 the library is ESM only. You can [compile your own UMD build from source](https://github.com/xml-wizard/huetiful) if you want it.
 
-> Note that the library is ESM and UMD only.
+### Using a package manager
 
 Assuming you already have Node already installed, you can add the package using npm/yarn or any other Node based package manager:
 
@@ -44,21 +40,51 @@ Or:
 yarn add huetiful-js
 ```
 
+#### Quick check :smile:
+
+```js
+
+import { achromatic, stats, colors } from 'huetiful-js';
+
+let all = colors('all')
+let grays = all.filter(achromatic)
+
+console.log(grays)
+
+console.log(stats(all))
+
+```
+
 ### In the browser and via CDNs
 
 You can use also a CDN in this example, jsdelivr to load the library remotely:
+
+> Make sure to set the `type` of the script tag to module when you load it in your HTML.
 
 ```js
 import {...} from 'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.esm.js'
 
 ```
 
-Or load the library as a UMD glabal (`huetiful`) in your HTML file using a `<script>` tag:
+Or load the library asyour HTML file using a `<script>` tag:
 
 ```html
 # With script tag
 
-<script src='https://cdn.jsdelivr.net/npm/huetiful-js/dist/huetiful.umd.js'></script>
+<script type='module' src='https://cdn.jsdelivr.net/npm/huetiful-js/dist/huetiful.js'></script
+
+
+# Or, if you like it this way
+
+<script>
+
+import { colors } from 'https://cdn.jsdelivr.net/npm/huetiful-js/dist/huetiful.esm.js'
+
+let myPalette = colors('all','700')
+
+</script>
+
+
 
 ```
 
@@ -67,6 +93,8 @@ Or load the library as a UMD glabal (`huetiful`) in your HTML file using a `<scr
 [See the Quickstart here](https://huetiful-js.com/quickstart)
 
 ## Community
+
+We'd love to hear your feedback and suggestions :rocket:!
 
 [See the discussions](https://github.com/xml-wizard/huetiful/discussions) and just say hi, or share a coding meme (whatever breaks the ice🏔️)
 

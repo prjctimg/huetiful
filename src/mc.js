@@ -20,7 +20,7 @@ console.log(mc('rgb.g')('#a1bd2f'))
 */
 
 function mc(modeChannel = '') {
-  /**
+	/**
    
    * @param {ColorToken} color Any recognizable color token.
   * @param {string|number} [value=undefined] The value to set on the queried channel. Also supports expressions as strings e.g `"#fc23a1"` `"*0.5"`
@@ -28,42 +28,46 @@ function mc(modeChannel = '') {
    * @returns  {number|ColorToken}
  
    */
-  return (color, value) => {
-    var [m, c] = modeChannel.split('.'),
-      // @ts-ignore
-      u = token(color, { targetMode: m, kind: 'object' });
+	return (color, value) => {
+		var [m, c] = modeChannel.split('.'),
+			// @ts-ignore
+			u = token(color, { targetMode: m, kind: 'object' });
 
-    if (value) {
-      if (c) {
-        if (typeof value === 'number') {
-          // @ts-ignore
-          u[c] = value;
-        } else if (typeof value === 'string') {
-          // @ts-ignore
-          exprParser(u, c, value);
-        } else {
-          throw Error(
-            `${typeof value}} ${value} is an unsupported value to set on a color token`
-          );
-        }
+		if (value) {
+			if (c) {
+				if (typeof value === 'number') {
+					// @ts-ignore
+					u[c] = value;
+				} else if (typeof value === 'string') {
+					// @ts-ignore
+					exprParser(u, c, value);
+				} else {
+					throw Error(
+						`${typeof value}} ${value} is an unsupported value to set on a color token`
+					);
+				}
 
-        // @ts-ignore
-        return u;
-      } else {
-        throw Error(`unknown channel ${c} in mode ${m}`);
-      }
-    } else {
-      const [m, c] = modeChannel.split('.');
+				// @ts-ignore
+				return u;
+			} else {
+				throw Error(`unknown channel ${c} in mode ${m}`);
+			}
+		} else {
+			var p;
 
-      var p;
-      if (typeof color === 'object') {
-        if (isArray(color) && eq(m, color[0])) {
-          u = color.slice(1)[gmchn(m).indexOf(c)];
-        }
-      }
-    }
-    return u[c];
-  };
+			switch (typeof color) {
+				case 'object':
+					if (isArray(color)) {
+						u = (typeof color[0] == 'string' ? color.slice(1) : color)[
+							gmchn(m).indexOf(c)
+						];
+					} else {
+						u = color[c];
+					}
+			}
+		}
+		return u;
+	};
 }
 
 export { mc };
