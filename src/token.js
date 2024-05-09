@@ -69,12 +69,12 @@ function token(color, options = undefined) {
 	kind = or(kind, 'hex');
 	omitMode = or(omitMode, false);
 	numType = or(numType, undefined);
-
 	srcMode = srcMode
 		? srcMode
 		: isArray(color)
 			? neq(typeof color[0], 'number') && color[0]
-			: color?.mode;
+			: color?.mode || 'rgb';
+	targetMode = or(targetMode, srcMode);
 
 	function num2c() {
 		// Ported from chroma-js with slight modifications
@@ -119,7 +119,8 @@ function token(color, options = undefined) {
 			case 'string':
 				c =
 					// if its a hex string we return it as is
-
+					(!keys(colorsNamed).some((el) => el === color.toLowerCase()) &&
+						color) ||
 					formatHex8(color);
 				break;
 			default:
@@ -136,6 +137,7 @@ function token(color, options = undefined) {
 		/**
 		 * @type {number|string}
 		 */
+		// @ts-ignore
 		var n = ((255 * _['r']) << 16) + ((255 * _['g']) << 8) + 255 * _['b'];
 		switch (numType?.toLowerCase()) {
 			case 'binary':
@@ -162,9 +164,9 @@ function token(color, options = undefined) {
 			o = num2c();
 		} else if (typeof color === ('string' || 'object')) {
 			// @ts-ignore
-			o = useMode(defs[targetMode])(color);
+			o = formatHex8(color);
 		}
-
+		o = useMode(defs[targetMode])(o);
 		var arr = keys(o)
 			.filter((ch) => ch !== 'mode')
 			.map((ch) => o[ch]);
