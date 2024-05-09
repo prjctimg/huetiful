@@ -10,11 +10,9 @@ import {
 	adjustHue,
 	rand,
 	or,
-	keys,
 	entries,
 	isArray,
 	values,
-	gmchn,
 	mcchn
 } from './fp/index.js';
 import { token } from './token.js';

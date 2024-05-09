@@ -3,7 +3,7 @@
  */
 
 import { token } from './token.js';
-import { exprParser, inRange } from './fp/index.js';
+import { exprParser, inRange, isArray } from './fp/index.js';
 
 /**
  *
@@ -34,28 +34,27 @@ console.log(myColor)
 // #b2c3f180
  */
 function alpha(color, amount = undefined) {
-  const c = 'alpha';
+	const c = 'alpha',
+		m =
+			color?.mode ||
+			(isArray(color) && typeof color[0] === 'string' && color[0]) ||
+			'rgb';
 
-  // @ts-ignore
-  var o = token(color, { targetMode: 'lch', kind: 'object' });
-  if (typeof amount === 'undefined' || null) {
-    // @ts-ignore
-    return o[c];
-  } else if (typeof amount === 'number') {
-    if (inRange(amount, 0, 1)) {
-      // @ts-ignore
-      o[c] = amount;
-    } else {
-      // @ts-ignore
-      o[c] = amount / 100;
-    }
-  } else if (typeof amount === 'string') {
-    // @ts-ignore
-    exprParser(o, c, amount);
-  }
+	var o = token(color, { targetMode: m, kind: 'object' });
+	if (typeof amount === 'undefined' || null) {
+		return o[c];
+	} else if (typeof amount === 'number') {
+		if (inRange(amount, 0, 1)) {
+			o[c] = amount;
+		} else {
+			o[c] = amount / 100;
+		}
+	} else if (typeof amount === 'string') {
+		// @ts-ignore
+		o = exprParser(o, c, amount);
+	}
 
-  // @ts-ignore
-  return token(o);
+	return token(o);
 }
 
 export { alpha };
