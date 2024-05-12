@@ -1,4 +1,5 @@
 ![huetiful-logo](/assets/img/logo.svg)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxml-wizard%2Fhuetiful.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxml-wizard%2Fhuetiful?ref=badge_shield)
 
 [![Deploy GitHub Pages](https://github.com/xml-wizard/huetiful/actions/workflows/deploy-docs.yml/badge.svg?branch=main)](https://github.com/xml-wizard/huetiful/actions/workflows/deploy-docs.yml)
 [![NPM publish 📦](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml/badge.svg)](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml)
@@ -86,3 +87,6 @@ This project is a result of open source resources from many places all over the 
  © 2024, <a href="https://deantarisai.me">Dean Tarisai</a> & <a href="https://github.com/xml-wizard">xml-wizard contributors</a>
  Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h5>
  🧪 & 🔬 with 🥃 in Crowhill,ZW</pre>
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxml-wizard%2Fhuetiful.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxml-wizard%2Fhuetiful?ref=badge_large)
