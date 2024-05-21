@@ -50,49 +50,58 @@ console.log(scheme("triadic")("#a1bd2f"))
 function scheme(baseColor = 'cyan', options) {
 	let { colorspace, kind, easingFn } = options || {};
 	// @ts-ignore
-	kind = or(kind, 'analagous').toLowerCase();
-
-	const f = (h, l, m) =>
+	kind = kind?.toLowerCase();
+	colorspace = or(colorspace, 'lch');
+	// @ts-ignore
+	baseColor = token(baseColor, { targetMode: colorspace, kind: 'obj' });
+	const f = (h, l) =>
 		samples(h).map((d) =>
-			adjustHue((m['h'] + l) * (d * or(easingFn, easingSmoothstep)(d)))
+			adjustHue((baseColor['h'] + l) * (d * or(easingFn, easingSmoothstep)(d)))
 		);
 
-	baseColor = token(baseColor, { targetMode: colorspace, kind: 'object' });
 	let y = {
-		analogous: f(3, 12, baseColor),
-		triadic: f(3, 120, baseColor),
-		tetradic: f(4, 90, baseColor),
-		complimentary: f(2, 180, baseColor)
+		analogous: f(3, 12),
+		triadic: f(3, 120),
+		tetradic: f(4, 90),
+		complimentary: f(2, 180)
 	};
 	// extremums lowMin,lowMax, highMin, highMax and  respectively
 	const [r, s, t, u] = [0.05, 0.495, 0.5, 0.995];
 	// For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
 	for (const [m, n] of entries(y)) {
-		y[m] = n.map((d) => rand(d * s, d * r) + rand(d * u, d * t) / 2);
+		for (const [i, h] of entries(n)) {
+			y[m][i] = rand(h * s, h * r) + rand(h * u, h * t) / 2;
+		}
 	}
 	// The map for steps to obtain the targeted palettes
 
-	const [l, c] = ['l', 'c'].map((a) => mcchn(a, colorspace, false));
+	var [[l, c], e] = [['l', 'c'].map((a) => mcchn(a, colorspace, false)), {}];
 
+	var z = (x = 0) => ({
+		[l]: baseColor[l],
+		[c]: baseColor[c],
+		h: adjustHue(baseColor['h'] + x),
+		mode: colorspace
+	});
 	if (isArray(kind)) {
-		var [e, v] = [{}, y[kind].length];
 		for (const k of values(kind)) {
-			e[k] = y[kind].map((d) => ({
-				[l]: baseColor[l],
-				[c]: baseColor[c],
-				h: baseColor['h'] + d * or(easingFn, easingSmoothstep)(1 / v),
-				mode: colorspace
-			}));
+			for (const [v, u] of entries(y[k])) {
+				e[k][v] = z(u);
+			}
 		}
-		return e;
+	} else if (kind) {
+		for (const u of values(y[kind])) {
+			e = z(u);
+		}
 	} else {
-		return y[kind].map((d) => ({
-			[l]: baseColor[l],
-			[c]: baseColor[c],
-			h: baseColor['h'] + d * or(easingFn, easingSmoothstep)(1 / v),
-			mode: colorspace
-		}));
+		for (const [j, k] of entries(y)) {
+			for (const [v, u] of entries(k)) {
+				e[j][v] = z(u);
+			}
+		}
 	}
+	// @ts-ignore
+	return e;
 }
 
 export { scheme };

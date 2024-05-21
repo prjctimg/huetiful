@@ -19,14 +19,22 @@ import { mc } from '../mc.js';
 var { keys, entries, values } = Object;
 
 /**
- * @public
+ *
  *  Returns the first truthy value.
- * @param arg The value to check
+ * @param  arg The value to check
  * @param def The value to cast if arg is falsy
- * @returns The first truthy value
+ * @returns  The first truthy value
  */
 function or(arg, def) {
 	return arg || def;
+}
+
+/**
+ * Logical AND expression for `a` and `b`.
+
+ */
+function and(a, b) {
+	return a && b;
 }
 
 /**
@@ -42,10 +50,10 @@ function wtf(t, z) {
 		for (const k of values(t)) {
 			p[k] = z(k);
 		}
-	} else if (typeof t === 'string') {
+	} else if (t?.toLowerCase()) {
 		// @ts-ignore
 		p = z(t);
-	} else if (typeof t == undefined) {
+	} else if (!t) {
 		for (const k of [
 			'hue',
 			'chroma',
@@ -93,7 +101,7 @@ const pltrconfg = {
 function gmchn(m = '', i) {
 	const o = m.substring(m.length - 3);
 
-	return (i && o.charAt(i)) || o;
+	return or(and(i, o.charAt(i)), o);
 }
 
 function exprParser(c = {}, mc = '', w = '') {
@@ -154,7 +162,7 @@ function mcchn(c, m, f = true) {
 	d = x.exec(m)['0'];
 
 	// @ts-ignore
-	return x.test(m) ? (f && `${m}.${d}`) || d : Error(e);
+	return x.test(m) ? or(and(f, `${m}.${d}`), d) : Error(e);
 }
 
 function colorObj(a, b) {
@@ -182,21 +190,25 @@ function customFindKey(u, v) {
 	return o;
 }
 
-function customConcat(h) {
-	const res = [];
+function customConcat(h = {}, t = '') {
+	var res = [];
 
 	if (typeof h == 'object') {
 		const k = keys(h);
 
 		//@ts-ignore
-		res.push(...k.map((v) => h[v]));
+
+
+		for (const g of k ) {
+			res.push(...h[g])
+		}
 	}
 
 	return res.flat(1);
 }
 
 function adjustHue(x) {
-	return (x > 0 && (x += Math.ceil(-x / 360) * 360)) || x % 360;
+	return or(and(lt(x, 0), (x += Math.ceil(-x / 360) * 360)), x % 360);
 }
 
 function chnDiff(x, s) {
@@ -239,7 +251,7 @@ function neq(x, y) {
 function inRange(n, s, e) {
 	/* Built-in method references for those with the same name as other `lodash` methods. */
 
-	return gte(n, Math.min(s, e)) && lt(n, Math.max(s, e));
+	return and(gte(n, Math.min(s, e)), lt(n, Math.max(s, e)));
 }
 
 function isInt(n) {
@@ -342,7 +354,10 @@ function isMap(x) {
  */
 function map(u, cb) {
 	var o, p;
-	p = u instanceof Map ? new Map() || (u instanceof Set && new Set()) : false;
+	p = or(
+		or(and(u instanceof Map, new Map()), and(u instanceof Set, new Set())),
+		false
+	);
 	if (p) {
 		for (const [a, b] of entries(u)) {
 			u.set(a, cb(b));
@@ -396,7 +411,10 @@ function sortedColl(f = 'factor', cb, o = 'asc', obj = false) {
 			// @ts-ignore
 			u = r.sort(customSort(o, f));
 
-			return (obj === true && u) || u.map((w) => w['color']);
+			return or(
+				and(eq(obj, true), u),
+				u.map((w) => w['color'])
+			);
 		} else {
 			u = new Map();
 			values(r)
@@ -482,8 +500,29 @@ function clamp(v, mn = -Infinity, mx = Infinity) {
 	}
 }
 
+/**
+ *
+ * @param {*} c The color token
+ * @param {*} m the srcmode vaiable
+ * @returns
+ */
+function getSrcMode(c, m) {
+	return m
+		? m
+		: or(
+				and(and(isArray(c), neq(typeof c[0], 'number')), c[0]),
+				or(c?.mode, 'lch')
+			).toLowerCase();
+}
+
+function getAlphaMode(c) {
+	return or(c?.mode, and(and(isArray(c), eq(typeof c[0], 'string')), c[0]));
+}
+
 export {
+	getAlphaMode,
 	clamp,
+	getSrcMode,
 	exprParser,
 	mcchn,
 	min,
@@ -517,5 +556,6 @@ export {
 	entries,
 	values,
 	keys,
-	wtf
+	wtf,
+	and
 };

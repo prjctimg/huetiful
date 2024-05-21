@@ -3,8 +3,7 @@
  * @typedef { import('./types.js').Collection} ColorToken
  */
 
-import { mcchn, eq } from './fp/index.js';
-import { mc } from './mc.js';
+import { and, gte, or } from './fp/index.js';
 import { token } from './token.js';
 
 /**
@@ -18,12 +17,9 @@ import { token } from './token.js';
  * @param {ColorToken} color The color token to test if it is achromatic or not.
  * @returns {boolean}
  * @example
- *
- * import { achromatic } from "huetiful-js";
-import { formatHex8, interpolate, samples } from "culori"
+ import { achromatic } from "huetiful-js";
 
-
-achromatic('pink')
+ achromatic('pink')
 // false
 
 let sample = [
@@ -40,18 +36,18 @@ console.log(sample.map(achromatic));
 achromatic('gray')
 // Returns true
 
+* We can expand this example by interpolating between black and white and then getting some samples to iterate through.
+* @example
 
+import { interpolator } from "huetiful-js"
 
-// we create an interpolation using black and white
-let f = interpolate(["black", "white"]);
+// we create an interpolation using black and white with 12 samples
+let grays = interpolator(["black", "white"],{ num:12 });
 
-//We then create 12 evenly spaced samples and pass them to f as the `t` param required by an interpolating function.
-// Lastly we convert the color to hex for brevity for this example (otherwise color objects work fine too.)
-let grays = samples(12).map((c) => formatHex8(f(c)));
 console.log(grays.map(achromatic));
 
 //
- [ false, true, true,
+ [false, true, true,
   true,  true, true,
   true,  true, true,
   true,  true, false
@@ -59,19 +55,21 @@ console.log(grays.map(achromatic));
 
  */
 function achromatic(color) {
-	color = token(color, { kind: 'object', targetMode: 'lch' });
+	color = token(color, { kind: 'obj', targetMode: 'lch' });
 
 	// If a color has no lightness then it has no hue so its technically not achromatic since white and black are not grayscale
 	var f = (x) => typeof x === 'undefined' || x === 0 || x === NaN;
 
-	//q = eq(p[0], p[1]) && eq(p[0], p[2]) && eq(p[2], p[1]);
-	// Check if the saturation channel is zero or falsy for color spaces with saturation/chroma channel
-
-	return (f(color['l']) || color['l'] >= 100) && !f(color['c'] || f(color['c']))
-		? false
-		: f(color['c'])
-			? true
-			: false;
+	return or(
+		and(
+			and(
+				or(f(color['l']), gte(color['l'], 100)),
+				or(!f(color['c'], f(color['c'])))
+			),
+			false
+		),
+		or(and(f(color['c']), true), false)
+	);
 }
 
 export { achromatic };

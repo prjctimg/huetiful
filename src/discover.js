@@ -5,7 +5,7 @@
  */
 
 import { nearest, differenceHyab } from 'culori/fn';
-import { mcchn, keys, values, gmchn } from './fp/index.js';
+import { mcchn, keys, values, or } from './fp/index.js';
 import { scheme } from './scheme.js';
 import { token } from './token.js';
 
@@ -39,18 +39,12 @@ let sample = [
   "#310000",
 ]
 
-console.log(discover(sample, "tetradic"))
+console.log(discover(sample, { kind:'tetradic' }))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
  */
-function discover(
-	colors = [],
-	options = {
-		kind: undefined,
-
-		colorspace: 'jch'
-	}
-) {
+function discover(colors = [], options) {
 	let { kind, colorspace } = options || {};
+	colorspace = or(colorspace, 'lch');
 
 	// I have this weird urge to just put stuff in arrays...elegant
 	var [q, k, t, u, v, f] = [
@@ -66,7 +60,7 @@ function discover(
 		token(z, {
 			kind: 'object',
 			targetMode: colorspace
-		})(z)
+		})
 	);
 
 	for (var x of colors) {

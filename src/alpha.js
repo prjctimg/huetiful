@@ -3,7 +3,15 @@
  */
 
 import { token } from './token.js';
-import { exprParser, inRange, isArray } from './fp/index.js';
+import {
+	and,
+	eq,
+	exprParser,
+	getAlphaMode,
+	inRange,
+	isArray,
+	or
+} from './fp/index.js';
 
 /**
  *
@@ -35,12 +43,9 @@ console.log(myColor)
  */
 function alpha(color, amount = undefined) {
 	const c = 'alpha',
-		m =
-			color?.mode ||
-			(isArray(color) && typeof color[0] === 'string' && color[0]) ||
-			'rgb';
+		m = getAlphaMode(color);
 
-	var o = token(color, { targetMode: m, kind: 'object' });
+	var o = token(color, { targetMode: m, kind: 'obj' });
 	if (typeof amount === 'undefined' || null) {
 		return o[c];
 	} else if (typeof amount === 'number') {

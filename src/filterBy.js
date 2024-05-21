@@ -83,7 +83,7 @@ function filterBy(collection, options) {
 			if (isArray(factor) || undefined) {
 				x = ranges[k][0];
 				y = or(ranges[k][1], undefined);
-				switch (k?.toLowerCase()) {
+				switch (k) {
 					case 'chroma':
 						y = !y ? limits[colorspace][c][1] : y;
 
@@ -153,7 +153,7 @@ function filterBy(collection, options) {
 				x = ranges[0];
 
 				y = or(ranges[1], undefined);
-				switch (k?.toLowerCase()) {
+				switch (k) {
 					case 'chroma':
 						y = !ranges[1] ? limits[colorspace][c][1] : y;
 

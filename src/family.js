@@ -3,8 +3,23 @@
  * @typedef { import('./types.js').Collection} ColorToken
  */
 import hue from './maps/hue.js';
-import { customConcat, lt, max, entries } from './fp/index.js';
+import {
+	customConcat,
+	lt,
+	max,
+	entries,
+	gte,
+	keys,
+	values,
+	and,
+	or,
+	eq,
+	neq,
+	inRange,
+	min
+} from './fp/index.js';
 import { mc } from './mc.js';
+import { achromatic } from './achromatic.js';
 
 /**
  * Gets the hue family which a color belongs to with the overtone included (if it has one.).
@@ -21,18 +36,19 @@ console.log(family("#310000"))
 // 'red'
  */
 function family(color) {
-  var [k, v] = ['', Infinity];
-  for (let [i, b] of entries(hue)) {
-    var p = customConcat(b),
-      y = mc(`lch.h`)(color),
-      u = Math.abs(max(p) - y);
-    if (lt(u, v)) {
-      k = i;
-    }
-  }
+	var q;
+	if (neq(achromatic(color), true)) {
+		var [y, z] = [mc(`lch.h`)(color), keys(hue)];
+		console.log(y);
+		// @ts-ignore
+		return z.find((o) => {
+			var p = customConcat(hue[o]);
+			return inRange(y, min(p), max(p));
+		});
+	}
 
-  // @ts-ignore
-  return k === '' ? 'gray' : k;
+	// @ts-ignore
+	return 'gray';
 }
 
 export { family };

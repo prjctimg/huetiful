@@ -13,16 +13,10 @@ export type FactObject =
 
 export type SchemeType = 'analogous' | 'triadic' | 'tetradic' | 'complementary';
 
-export type Collection<T = any> = T extends any[]
-	?
-			| Array<ColorTuple>
-			| Array<string>
-			| Array<number>
-			| Array<{ [key: string]: T }>
-			| Array<boolean>
-	: T extends object
-		? { [key: string]: T }
-		: typeof T;
+export type Collection =
+	| Array<ColorToken>
+	| Map<any, ColorToken>
+	| Set<ColorToken>;
 
 export type ColorOptions = {
 	alpha?: number;
@@ -223,17 +217,33 @@ export type DeficiencyOptions = {
  */
 export type TokenOptions = {
 	/**
-	 * The type of color token to return. Default is `'hex'`.
+	 * The type of color token to return. Default is `'str'`.
 	 */
-	kind?: 'number' | 'array' | 'object' | 'hex' | 'temp';
+	kind?: 'num' | 'arr' | 'obj' | 'str' | 'temp';
 	/**
-	 * If the `kind` is set to `'array'` it will remove the mode string from color tuple. Default is `false`.
+	 * If the `kind` is set to `'arr'` it will remove the mode string from color tuple. Default is `false`.
 	 */
 	omitMode?: boolean;
+
+	/**
+	 * If the `kind` is set to `'arr'` it will remove the alpha channel value from color tuple. Default is `false`.
+	 */
+	omitAlpha?: boolean;
+
+	/**
+	 * If `true` and the passed in color token is an array or plain object and in the `srcMode` of `'rgb'` or `'lrgb'`,
+	 * it will have all channels normalized back to [0,1] range if any of the channe values is beyond 1.
+	 *
+	 * This can help the parser to recognize RGB colors in the [0,255] range which Culori doesn't handle.
+	 *
+	 * Default is `false`.
+	 */
+	normalizeRgb?: boolean;
+
 	/**
 	 * The type of number to return. Only valid if kind is set to `'number'`. Default is `'literal'`
 	 */
-	numType?: 'exponential' | 'hex' | 'octal' | 'binary';
+	numType?: 'expo' | 'hex' | 'oct' | 'bin';
 
 	/**
 	 *  The mode in which the channel values are valid in. It is used for color arrays if they have the `colorspace` string ommitted. Default is `'rgb'`.

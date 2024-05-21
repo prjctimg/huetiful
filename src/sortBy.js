@@ -53,10 +53,11 @@ function sortBy(collection = [], options = undefined) {
 
 	var [l, c] = ['l', 'c'].map((w) => mcchn(w, colorspace, false)),
 		y = (a) => sortedColl(factor, a, order),
+		// returns factor cbs determined by the options
 		z = (h) => {
 			var x;
 			if (relative) {
-				switch (h?.toLowerCase()) {
+				switch (h) {
 					case 'chroma':
 						x = y(chnDiff(against, mc(colorspace + '.' + c)));
 						break;
@@ -74,7 +75,7 @@ function sortBy(collection = [], options = undefined) {
 						break;
 				}
 			} else {
-				switch (h?.toLowerCase()) {
+				switch (h) {
 					case 'chroma':
 						x = y(mc(colorspace + '.' + c));
 						break;
