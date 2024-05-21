@@ -28,11 +28,11 @@ function mc(modeChannel = '') {
    * @returns  {number|ColorToken}
  
    */
-	return (color, value) => {
+	return (color, value = undefined) => {
 		var [m, c] = modeChannel.split('.'),
 			// @ts-ignore
-			u = token(color, { targetMode: m, kind: 'object' });
-
+			u = token(color, { targetMode: m, kind: 'obj' });
+		console.log(u);
 		if (value) {
 			if (c) {
 				if (typeof value === 'number') {
@@ -40,7 +40,7 @@ function mc(modeChannel = '') {
 					u[c] = value;
 				} else if (typeof value === 'string') {
 					// @ts-ignore
-					exprParser(u, c, value);
+					u = exprParser(u, c, value);
 				} else {
 					throw Error(
 						`${typeof value}} ${value} is an unsupported value to set on a color token`
@@ -64,6 +64,9 @@ function mc(modeChannel = '') {
 					} else {
 						u = color[c];
 					}
+
+				default:
+					u = u[c];
 			}
 		}
 		return u;

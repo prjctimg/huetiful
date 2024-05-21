@@ -4,7 +4,7 @@
  */
 
 import { averageNumber, random } from 'culori/fn';
-import { max, min } from './fp/index.js';
+import { and, max, min, or } from './fp/index.js';
 import { token } from './token.js';
 
 /**
@@ -51,13 +51,13 @@ function pastel(baseColor, options = undefined) {
 	var q = random('hsv', {
 		s: [t['mns'], t['mxs']],
 		v: [t['mnv'], t['mxv']],
-		h: token(baseColor, { targetMode: 'hsv', kind: 'object' })['h']
+		h: token(baseColor, { targetMode: 'hsv', kind: 'obj' })['h']
 	});
 
 	// check if it is displayable
 
 	// @ts-ignore
-	return options ? token(q, options) : q;
+	return or(and(options, token(q, options)), q);
 }
 
 export { pastel };

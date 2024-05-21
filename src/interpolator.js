@@ -17,11 +17,24 @@ import {
 	fixupHueShorter,
 	fixupHueLonger
 } from 'culori/fn';
-import { or, mcchn, pltrconfg, gt, gte, values } from './fp/index.js';
+import { or, mcchn, pltrconfg, gt, gte, values, and } from './fp/index.js';
 import { token } from './token.js';
 
 /**
- * Interpolates the passed in colors and returns a collection of colors from the interpolation.
+ * Interpolates the passed in colors and returns a color scale that is evenly split into `num` amount of samples. 
+ * 
+ * The interpolation behaviour can be overidden allowing us to get slightly different effects from the same `baseColors`.
+ * 
+ * The behaviour of the interpolation can be customized by:
+ * 
+ * * Changing the `kind` of interpolation
+ * 
+ * 	* natural
+ * 	* basis
+ * 	* monotone
+ * * Changing the easing function (`easingFn`)
+ *  
+ *   * 
  * 
  * Some things to keep in mind when creating color scales using this function:
  * 
@@ -73,10 +86,10 @@ function interpolator(baseColors = [], options = undefined) {
 	}
 
 	baseColors = values(baseColors);
-	var o,
-		l = stops.length;
+	var [l, o] = [stops?.length, undefined];
 	if (l) {
 		o = baseColors.slice(0, l - 1).map((c, i) => [c, stops[i]]);
+		// @ts-ignore
 		baseColors = o.concat(baseColors.slice(l));
 	}
 
@@ -97,18 +110,17 @@ function interpolator(baseColors = [], options = undefined) {
 
 	// make sure samples is an absolute integer
 	// @ts-ignore
-	num = gte(num, 1) ? Math.abs(num) : 1;
+	num = or(and(gte(num, 1), Math.abs(num)), 1);
 
-	var o;
-	if (gt(num, 1)) {
+	return or(
+		and(
+			gt(num, 1),
+			//  @ts-ignore
+			samples(num).map((s) => token(p(s), options?.token))
+		),
 		// @ts-ignore
-		o = samples(num).map((s) => token(p(s), options['token']));
-	} else {
-		// @ts-ignore
-		o = token(p(0.5), options['token']);
-	}
-	// @ts-ignore
-	return o;
+		token(p(0.5), options?.token)
+	);
 }
 
 export { interpolator };

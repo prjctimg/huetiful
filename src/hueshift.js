@@ -50,7 +50,7 @@ function hueshift(baseColor, options) {
 	hueStep = or(hueStep, 5);
 
 	baseColor = token(baseColor, {
-		kind: 'object',
+		kind: 'obj',
 		targetMode: 'lch'
 	});
 

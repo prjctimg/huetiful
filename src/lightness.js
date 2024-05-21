@@ -12,15 +12,24 @@ import { token } from './token.js';
  * @returns {string}
  * @example
  *
- *  import { darken } from "huetiful-js";
-console.log(darken('blue', 0.3, 'lch'));
+ *  import { lightness } from "huetiful-js";
+ * 
+ // dakening a color
+console.log(lightness('blue', 0.3, true));
+
+// '#464646'
+
+// brightening a color, we can omit the final param 
+// because it's false by default.
+console.log(brighten('blue', 0.3));
 //#464646
+
 
  */
 function lightness(color, amount, darken = false) {
 	var f = () => {
 		// @ts-ignore
-		var o = token('object', { targetMode: 'lab65' })(color);
+		var o = token(color, { kind: 'obj', targetMode: 'lab65' });
 		if (typeof amount === 'number') {
 			// @ts-ignore
 			o['l'] = (darken ? max : min)([
@@ -34,18 +43,5 @@ function lightness(color, amount, darken = false) {
 	// @ts-ignore
 	return f();
 }
-/**
- * The inverse of `darken`. Brightens the passed in color by increasing the lightness channel by `amount` of the channel. For example `0.3` means increase the lightness by `0.3` of the channel's current value.
- * @param {ColorToken} color The color to brighten.
- * @param {number} amount The amount to brighten with. The value is expected to be in the range `[0,1]`. Default is `0.1`.
- * @returns {string} 
- * @example
- *
- *  import { brighten } from "huetiful-js";
- *
-console.log(brighten('blue', 0.3, 'lch'));
-//#464646
-
- */
 
 export { lightness };

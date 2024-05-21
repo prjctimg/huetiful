@@ -6,7 +6,7 @@
  * @typedef {import('./types.js').ScaleValues} ScaleValues
  */
 
-import { values } from './fp/index.js';
+import { and, eq, or, values } from './fp/index.js';
 import { nearest as nrst, differenceHyab } from 'culori/fn';
 import { colors } from './colors.js';
 
@@ -17,8 +17,6 @@ import { colors } from './colors.js';
  * * If the `num` parameter is more than 1, the returned collection of colors has the colors sorted starting with the nearest color first
  * 
  * @param {Collection | 'tailwind'} collection The collection of colors to search for nearest colors.
- * @param {ColorToken} against The color to use for distance comparison.
- * @param {number} num The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric.
  * @returns {Collection}
  * @example
  *
@@ -27,22 +25,19 @@ import { colors } from './colors.js';
 console.log(nearest(cols, 'blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
-function nearest(collection, options = { against: 'cyan', num: 1 }) {
+function nearest(collection, options) {
 	var { against, num } = options || {};
-
+	num = or(num, 1);
+	against = or(against, 'cyan');
 	const f = (a, b) => {
-		return nrst(values(a), differenceHyab(), (color) => color)(b, num);
+		var o = nrst(values(a), differenceHyab(), (c) => c)(b, num);
+		return or(and(eq(num, 1), o[0]), o);
 	};
-	let o;
 
-	if (collection === 'tailwind') {
-		// @ts-ignore
-		o = f(colors('all'), against);
-	} else {
-		o = f(collection, against);
-	}
-
-	return o;
+	return or(
+		and(eq(collection, 'tailwind'), f(colors('all'), against)),
+		f(collection, against)
+	);
 }
 
 export { nearest };

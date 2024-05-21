@@ -6,10 +6,10 @@
 
 import { token } from './token.js';
 import {
-  filterDeficiencyDeuter,
-  filterDeficiencyProt,
-  filterDeficiencyTrit,
-  filterGrayscale
+	filterDeficiencyDeuter,
+	filterDeficiencyProt,
+	filterDeficiencyTrit,
+	filterGrayscale
 } from 'culori/fn';
 import { or } from './fp/index.js';
 
@@ -35,58 +35,58 @@ import { or } from './fp/index.js';
  * @param {DeficiencyOptions} options
  * @example
  *
- * import { deficiency, token } from 'huetiful-js'
+ * import { deficiency } from 'huetiful-js'
 
 // Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
 // We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.5
 
 console.log(deficiency(['rgb', 230, 100, 50, 0.5],{ kind:'blue', severity:0.5 }))
-// #dd663680
+// '#dd663680'
 
  */
 function deficiency(
-  color,
-  options = {
-    kind: 'red',
-    severity: 0.1
-  }
+	color,
+	options = {
+		kind: 'red',
+		severity: 0.1
+	}
 ) {
-  var { kind, severity } = options || {};
+	var { kind, severity } = options || {};
 
-  const f = (d, c, t) => {
-    let o;
-    c = token(c);
-    switch (d.toLowerCase()) {
-      case 'blue':
-        o = filterDeficiencyTrit(t)(c);
-        break;
-      case 'red':
-        o = filterDeficiencyProt(t)(c);
-        break;
-      case 'green':
-        o = filterDeficiencyDeuter(t)(c);
-        break;
-      case 'monochromacy':
-        o = filterGrayscale(t, 'lch')(c);
-        break;
-    }
+	const f = (d, c, t) => {
+		let o;
+		c = token(c);
+		switch (d.toLowerCase()) {
+			case 'blue':
+				o = filterDeficiencyTrit(t)(c);
+				break;
+			case 'red':
+				o = filterDeficiencyProt(t)(c);
+				break;
+			case 'green':
+				o = filterDeficiencyDeuter(t)(c);
+				break;
+			case 'monochromacy':
+				o = filterGrayscale(t, 'lch')(c);
+				break;
+		}
 
-    return token(o, options['token']);
-  };
+		return token(o, options['token']);
+	};
 
-  // Store the keys of deficiency types
-  const deficiencies = ['red', 'blue', 'green', 'monochromacy'];
-  // Cast 'red' as the default parameter
-  kind = or(kind, 'red');
+	// Store the keys of deficiency types
+	const deficiencies = ['red', 'blue', 'green', 'monochromacy'];
+	// Cast 'red' as the default parameter
+	kind = or(kind, 'red');
 
-  if (deficiencies.some((el) => el === kind.toLowerCase())) {
-    // @ts-ignore
-    return f(kind, color, severity);
-  } else {
-    throw Error(
-      `Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
-    );
-  }
+	if (deficiencies.some((el) => el === kind.toLowerCase())) {
+		// @ts-ignore
+		return f(kind, color, severity);
+	} else {
+		throw Error(
+			`Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
+		);
+	}
 }
 
 export { deficiency };

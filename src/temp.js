@@ -37,14 +37,14 @@ console.log(map(sample, isCool));
 
  */
 function temp(color) {
-  function temperaturePredicate(q, y) {
-    return keys(hue).some((k) =>
-      inRange(floorCeil(q), hue[k][y][0], hue[k][y][1])
-    );
-  }
+	function f(q, y) {
+		return keys(hue).some((k) =>
+			inRange(floorCeil(q), hue[k][y][0], hue[k][y][1])
+		);
+	}
 
-  // First we need to get the hue value which we'll pass to the predicate
-  return temperaturePredicate(mc('lch.h')(color), 'cool') ? 'cool' : 'warm';
+	// First we need to get the hue value which we'll pass to the predicate
+	return f(mc('lch.h')(color), 'cool') ? 'cool' : 'warm';
 }
 
 export { temp };
