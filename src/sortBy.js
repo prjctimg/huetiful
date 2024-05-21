@@ -86,9 +86,7 @@ function sortBy(collection = [], options = undefined) {
 						x = y(luminance);
 						break;
 					case 'distance':
-						var u = (a) => (c) => {
-							return differenceHyab()(a, c);
-						};
+						var u = (a) => (c) => differenceHyab()(a, c);
 
 						x = y(u(against));
 						break;
