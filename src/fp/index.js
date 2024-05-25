@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * @typedef { import('../types.js').Collection} ColorToken
  * @typedef { import('../types.js').Collection} Collection
@@ -41,32 +42,36 @@ function and(a, b) {
  * Helper func to return fact(s)
  * @param {any} t The factor either array string or undef
  * @param {*} z callback that takes a factor as its only argument
- *
+ * @param y = Optional array of factor keys
  */
-function wtf(t, z) {
+function wtf(
+	t,
+	z,
+	y = ['hue', 'chroma', 'lightness', 'distance', 'contrast', 'luminance']
+) {
 	var p = {};
 	// if factor is an array add each factor as a key to the object
-	if (isArray(t)) {
-		for (const k of values(t)) {
-			p[k] = z(k);
-		}
-	} else if (t?.toLowerCase()) {
-		// @ts-ignore
-		p = z(t);
-	} else if (!t) {
-		for (const k of [
-			'hue',
-			'chroma',
-			'lightness',
-			'distance',
-			'contrast',
-			'luminance'
-		]) {
-			p[k] = z(k);
-		}
-	}
-
-	return p;
+	return or(
+		or(
+			and(
+				isArray(t),
+				(() => {
+					for (const k of values(t)) {
+						p[k] = z(k);
+					}
+				})()
+			),
+			and(t?.toLowerCase(), (p = z(t)))
+		),
+		and(
+			not(t),
+			(() => {
+				for (const k of y) {
+					p[k] = z(k);
+				}
+			})()
+		)
+	);
 }
 
 let [ci, ef, hf, hi, li] = [
@@ -104,40 +109,45 @@ function gmchn(m = '', i) {
 	return or(and(i, o.charAt(i)), o);
 }
 
-function exprParser(c = {}, mc = '', w = '') {
+function mult(x, y) {
+	return x * y;
+}
+
+function give(x, y) {
+	return x / y;
+}
+
+function add(x, y) {
+	return x + y;
+}
+
+function take(x, y) {
+	return x - y;
+}
+
+function exprParser(a, b) {
 	// regExp to match arithmetic operator and the value
 
-	var [m, y, w, q] = [
-		...mc.split('.'),
-		// @ts-ignore
-		/^(\*|\+|\-|\/)/.exec(w)['0'],
-		// @ts-ignore
-		/[0-9]*\.?[0-9]+/.exec(w)['0']
-	];
+	// Create operator map
+	var u = {
+		'!=': neq,
+		'==': eq,
+		'>=': gte,
+		'<=': lte,
+		'>': gt,
+		'<': lt,
+		'===': eq,
+		'!==': neq,
+		'!': not,
+		'/': give,
+		'*': mult,
+		'+': add,
+		'-': take
+	};
+
+	return and(eq(typeof b, 'string'), u[reOp(b)](a, reNum(b)));
 
 	// @ts-ignore
-
-	const g = (s) => parseFloat(s);
-
-	// Match an operator against the first truthy case and perform the relevant math operation
-
-	switch (w) {
-		case '+':
-			c[y] += +g(q);
-			break;
-		case '-':
-			c[y] -= +g(q);
-			break;
-		case '*':
-			c[y] *= +g(q);
-			break;
-		case '/':
-			c[y] /= +g(q);
-			break;
-		// throw error alert
-	}
-
-	return c;
 }
 
 /**
@@ -151,13 +161,20 @@ function mcchn(c, m, f = true) {
 	// Matches any string with c or s
 	m = or(m, 'lch');
 	var x, e, d;
-	if (c === 'l') {
-		x = /(j|l)/i;
-		e = `The color space ${m} has no lightness channel.`;
-	} else {
-		x = /(s|c)/i;
-		e = `The color space ${m} has no chroma/saturation channel.`;
-	}
+
+	or(
+		and(
+			eq(c, 'l'),
+			(() => {
+				x = /(j|l)/i;
+				e = `The color space ${m} has no lightness channel.`;
+			})()
+		),
+		(() => {
+			x = /(s|c)/i;
+			e = `The color space ${m} has no chroma/saturation channel.`;
+		})()
+	);
 
 	d = x.exec(m)['0'];
 
@@ -173,52 +190,45 @@ function colorObj(a, b) {
 
 function customFindKey(u, v) {
 	// If the color is achromatic return the string gray
-	const k = keys(u);
-
-	const o = k
+	return keys(u)
 		.filter((a) => {
 			const t = customConcat(u[a]);
 
-			const mn = min(...t);
+			const [mn, mx] = [min(...t), max(...t)];
 
-			const mx = max(...t);
 			// Capture the min and max values and see if the passed in color is within that range
 			return inRange(v, mn, mx);
 		})
 		.toString();
-
-	return o;
 }
 
-function customConcat(h = {}, t = '') {
-	var res = [];
+function customConcat(h = {}) {
+	return and(
+		eq(typeof h, 'object'),
+		(() => {
+			var res = [];
+			const k = keys(h);
 
-	if (typeof h == 'object') {
-		const k = keys(h);
+			//@ts-ignore
 
-		//@ts-ignore
+			for (const g of k) {
+				res.push(...h[g]);
+			}
 
-
-		for (const g of k ) {
-			res.push(...h[g])
-		}
-	}
-
-	return res.flat(1);
+			return res.flat(1);
+		})()
+	);
 }
 
 function adjustHue(x) {
-	return or(and(lt(x, 0), (x += Math.ceil(-x / 360) * 360)), x % 360);
+	return or(and(lt(x, 0), (x += Math.ceil(mult(give(-x, 360)), 360))), x % 360);
 }
 
 function chnDiff(x, s) {
 	return (y) => {
 		const cb = (color) => mc(s)(color);
-		if (cb(x) < cb(y)) {
-			return cb(y) - cb(x);
-		} else {
-			return cb(x) - cb(y);
-		}
+
+		return or(and(lt(cb(x), cb(y)), take(cb(y), cb(x))), take(cb(x), cb(y)));
 	};
 }
 
@@ -245,9 +255,12 @@ function eq(x, y) {
 }
 
 function neq(x, y) {
-	return !(x === y);
+	return not(eq(x, y));
 }
 
+function not(x) {
+	return !x;
+}
 function inRange(n, s, e) {
 	/* Built-in method references for those with the same name as other `lodash` methods. */
 
@@ -255,62 +268,59 @@ function inRange(n, s, e) {
 }
 
 function isInt(n) {
-	const r = /^-?[0-9]+$/;
-	return r.test(n.toString());
+	return /^-?[0-9]+$/.test(n.toString());
 }
 
-function norm(v, mc) {
-	const [m, c] = mc.split('.');
-	const [s, e] = limits[m][c];
-	const r = inRange(v, s, e);
+function norm(v, mc = '') {
+	const c = mc.split('.'),
+		[s, e] = limits[c[0]][c[1]];
 
-	if (!r) {
-		if (lte(v, 1)) {
-			v = e * v;
-		} else {
-			v = (lte(e, 100) && e * (v / 100)) || e * (v / e);
-		}
-	}
-	return v;
+	return and(
+		not(inRange(v, s, e)),
+		or(
+			and(lte(v, 1), (v = mult(e, v))),
+			or(and(lte(e, 100), mult(e, give(v, 100))), mult(e, give(v, e)))
+		)
+	);
 }
 
 function rand(mn, mx) {
-	if (mn > mx) {
-		var [mn, mx] = [mn, mx];
-		mx = mn;
-		mn = mx;
-	} else {
-		return Math.random() * (mx - mn) + mn;
-	}
+	return or(
+		and(
+			gt(mn, mx),
+			(() => {
+				var [mn, mx] = [mn, mx];
+				mx = mn;
+				mn = mx;
+			})()
+		),
+		Math.random() * (mx - mn) + mn
+	);
 }
 
 function floorCeil(n) {
-	if (!isInt(n)) {
-		const c = n.toString().split('.');
-		const v = c[1];
+	return and(
+		not(isInt(n)),
+		or(
+			and(
+				eq(/^[0-4]$/.test(n.toString().split('.')[1].charAt(0)), true),
+				Math.floor(n)
+			),
+			Math.ceil(n)
+		)
+	);
 
-		//If the decimal value is .4  and below it will be rounded down else it will be rounded up.
-		const r = (o) => /^[0-4]$/.test(o.charAt(0));
-
-		if (r(v)) {
-			n = Math.floor(n);
-		} else {
-			n = Math.ceil(n);
-		}
-	}
-
-	return n;
+	//If the decimal value is .4  and below it will be rounded down else it will be rounded up.
 }
 
 function customSort(o = 'asc', x = 'factor') {
 	// a-b gives asc order & b-a gives desc order
 
 	return (a, b) => {
-		if (o === 'asc' || 'min') {
-			return a[x] - b[x];
-		} else if (o === 'desc' || 'max') {
-			return b[x] - a[x];
-		}
+		return or(
+			and(eq(o, or('asc', 'min')), a[x] - b[x]),
+			and(eq(o, or('desc', 'max')), b[x] - a[x])
+		);
 	};
 }
 
@@ -319,11 +329,11 @@ function colorObjColl(a = 'factor', b) {
 	/**
 	 * @param collection The array or object of colors to iterate over. If an object is passed, its values are expected to be valid color tokens.
 	 */
-	return (collection) => {
+	return (z) => {
 		// Check if the collection is an array else treat it like a plain object
 		// Convert object into a Map which remembers sorting order in a more predictable way
 
-		return map(collection, u);
+		return map(z, u);
 	};
 }
 
@@ -346,6 +356,15 @@ function isMap(x) {
 }
 
 /**
+ * Checks if the value is an instance of a `Set`.
+ * @param {any} x The value to check.
+ * @returns {boolean}
+ */
+function isSet(x) {
+	return x instanceof Set;
+}
+
+/**
  * Iterates over any collection invoking `cb` on every element in the `collection`.
  * @param {Collection} u The collection to map over.
  * @param {(a)=>any} cb The callback function invoked per element in the collection. The callback is expected to be unary.
@@ -354,10 +373,7 @@ function isMap(x) {
  */
 function map(u, cb) {
 	var o, p;
-	p = or(
-		or(and(u instanceof Map, new Map()), and(u instanceof Set, new Set())),
-		false
-	);
+	p = or(or(and(isMap(u), new Map()), and(isSet(u), new Set())), false);
 	if (p) {
 		for (const [a, b] of entries(u)) {
 			u.set(a, cb(b));
@@ -389,15 +405,15 @@ function reNum(s) {
 	s = s.toString();
 	var re = /[0-9]*\.?[0-9]+/;
 	// @ts-ignore
-	return (re.test(s) && Number(re.exec(s)['0'])) || undefined;
+	return or(and(re.test(s), Number(re.exec(s)['0'])), undefined);
 }
 
 function reOp(s) {
 	s = s.toString();
-	var re = /^(>=|<=|<|>|={1,2}|!={0,2})/;
+	var re = /^(\*|\+|\-|\/|>=|<=|<|>|={1,2}|!={0,2})/;
 
 	// @ts-ignore
-	return (re.test(s) && re.exec(s)['0']) || undefined;
+	return or(and(re.test(s), re.exec(s)['0']), undefined);
 }
 function sortedColl(f = 'factor', cb, o = 'asc', obj = false) {
 	return (c) => {
@@ -406,83 +422,94 @@ function sortedColl(f = 'factor', cb, o = 'asc', obj = false) {
 
 		// If the collection is not an Array  insert the sorted elements
 		// Sort the array using our customSort helper function
+		return or(
+			and(
+				isArray(c),
+				(() => {
+					// @ts-ignore
+					u = r.sort(customSort(o, f));
 
-		if (isArray(c)) {
-			// @ts-ignore
-			u = r.sort(customSort(o, f));
+					return or(
+						and(eq(obj, true), u),
+						u.map((w) => w['color'])
+					);
+				})()
+			),
+			(() => {
+				u = new Map();
+				var t = values(r)
+					// @ts-ignore
+					.sort(customSort(o, f));
 
-			return or(
-				and(eq(obj, true), u),
-				u.map((w) => w['color'])
-			);
-		} else {
-			u = new Map();
-			values(r)
-				// @ts-ignore
-				.sort(customSort(o, f))
-				.map((v, z) => {
-					var [k, v] = entries(c)[z];
-					if (v === v) {
-						u.set(k, v);
+				for (const [z, v] of entries(t)) {
+					u.set(z, v);
+				}
+
+				if (eq(obj, false)) {
+					for (const [z, v] of entries(u)) {
+						u.set(z, v['color']);
 					}
-				});
-
-			if (obj === false) {
-				entries(u).map((v) => u.set(v[0], v[1]['color']));
-			}
-		}
-		return u;
+				}
+				return u;
+			})()
+		);
 	};
 }
 
 function filteredColl(f, cb) {
 	return (c, s, e) => {
-		let o;
-
-		if (typeof s === 'number') {
-			o = colorObjColl(
-				f,
-				cb
-			)(c)
-				// @ts-ignore
-				.filter((j) => inRange(j[f], s, e))
-				.map((j) => j['color']);
-
-			// If string, split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
-		} else if (typeof s === 'string') {
-			//The patterns to match
-
-			const v = reNum(s),
-				w = reOp(s);
-
-			if (w) {
-				const mapFilter = (j) => {
+		return or(
+			and(
+				eq((typeof s, 'number')),
+				(() => {
 					return (
 						colorObjColl(
 							f,
 							cb
 						)(c)
 							// @ts-ignore
-							.filter((l) => j(l[f], parseFloat(v.toString())))
-							.map((l) => l['color'])
+							.filter((j) => inRange(j[f], s, e))
+							.map((j) => j['color'])
 					);
-				};
-				// object with comparison symbols as keys
-				var u = {
-					'!=': neq,
-					'==': eq,
-					'>=': gte,
-					'<=': lte,
-					'>': gt,
-					'<': lt,
-					'===': eq,
-					'!==': neq
-				};
-				o = mapFilter(u[w]);
-			}
-		}
 
-		return o;
+					// If string, split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
+				})()
+			),
+
+			(() => {
+				//The patterns to match
+
+				const v = reNum(s),
+					w = reOp(s),
+					u = {
+						'!=': neq,
+						'==': eq,
+						'>=': gte,
+						'<=': lte,
+						'>': gt,
+						'<': lt,
+						'===': eq,
+						'!==': neq,
+						'!': not,
+						'/': give,
+						'*': mapAlphaMultiply,
+						'+': mapAlphaDivide,
+						'-': take
+					};
+				return and(
+					w,
+					colorObjColl(
+						f,
+						cb
+					)(c)
+						// @ts-ignore
+						.filter((l) => u[w](l[f], parseFloat(v.toString())))
+						.map((l) => l['color'])
+				);
+
+				// object with comparison symbols as keys
+			})()
+		);
 	};
 }
 
@@ -515,13 +542,9 @@ function getSrcMode(c, m) {
 			).toLowerCase();
 }
 
-function getAlphaMode(c) {
-	return or(c?.mode, and(and(isArray(c), eq(typeof c[0], 'string')), c[0]));
-}
-
 export {
-	getAlphaMode,
 	clamp,
+	not,
 	getSrcMode,
 	exprParser,
 	mcchn,
@@ -557,5 +580,8 @@ export {
 	values,
 	keys,
 	wtf,
-	and
+	and,
+	give,
+	add,
+	take
 };

@@ -37,7 +37,7 @@ import { token } from './token.js';
  * * If it is falsy it will return a color map of all palettes.
  * 
  * Note that the `num` parameter works on the `monochromatic` palette type only.
- * @param baseColor The color to create the palette(s) from.
+ * @param {ColorToken} baseColor The color to create the palette(s) from.
  * @param {SchemeOptions} options Optional overrides.
  * @returns {Collection}
  * @example
@@ -47,6 +47,7 @@ import { token } from './token.js';
 console.log(scheme("triadic")("#a1bd2f"))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
  */
+// @ts-ignore
 function scheme(baseColor = 'cyan', options) {
 	let { colorspace, kind, easingFn } = options || {};
 	// @ts-ignore

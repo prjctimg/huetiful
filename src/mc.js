@@ -1,7 +1,7 @@
 /**
  * @typedef {import('./types.js').Collection} ColorToken
  */
-import { exprParser, isArray, gmchn, eq } from './fp/index.js';
+import { exprParser, isArray, gmchn, eq, and, or } from './fp/index.js';
 import { token } from './token.js';
 
 /**
@@ -31,45 +31,40 @@ function mc(modeChannel = '') {
 	return (color, value = undefined) => {
 		var [m, c] = modeChannel.split('.'),
 			// @ts-ignore
-			u = token(color, { targetMode: m, kind: 'obj' });
-		console.log(u);
-		if (value) {
-			if (c) {
-				if (typeof value === 'number') {
-					// @ts-ignore
-					u[c] = value;
-				} else if (typeof value === 'string') {
-					// @ts-ignore
-					u = exprParser(u, c, value);
-				} else {
-					throw Error(
-						`${typeof value}} ${value} is an unsupported value to set on a color token`
-					);
-				}
+			u = token(color, { targetMode: m, kind: 'obj' }),
+			p;
 
-				// @ts-ignore
-				return u;
-			} else {
-				throw Error(`unknown channel ${c} in mode ${m}`);
-			}
-		} else {
-			var p;
-
-			switch (typeof color) {
-				case 'object':
-					if (isArray(color)) {
-						u = (typeof color[0] == 'string' ? color.slice(1) : color)[
+		or(
+			and(
+				eq(typeof color, 'object'),
+				(p = or(
+					and(
+						isArray(color),
+						or(and(eq(typeof color[0], 'string'), color.slice(1)), color)[
 							gmchn(m).indexOf(c)
-						];
-					} else {
-						u = color[c];
-					}
+						]
+					),
+					color[c]
+				))
+			),
+			(p = u[c])
+		);
 
-				default:
-					u = u[c];
-			}
+		if (value) {
+			or(
+				or(
+					and(eq(typeof value, 'number'), (u[c] = value)),
+					exprParser(u[c], value)
+				),
+				Error(
+					`${typeof value}} ${value} is an unsupported value to set on a color token`
+				)
+			);
+
+			// @ts-ignore
+			return u;
 		}
-		return u;
+		return p;
 	};
 }
 

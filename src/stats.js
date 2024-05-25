@@ -14,7 +14,10 @@ import {
 	or,
 	values,
 	isArray,
-	wtf
+	wtf,
+	and,
+	eq,
+	entries
 } from './fp/index.js';
 import { luminance } from './luminance.js';
 import { mc } from './mc.js';
@@ -96,40 +99,27 @@ function stats(collection = [], options = undefined) {
 				// if relativeMean is true
 				// use the overload on all other factors when fetching their mean
 				if (relative) {
-					switch (f) {
-						case 'chroma':
-							u = y(f, chnDiff(against, mcchn('c', colorspace)));
-							break;
-						case 'luminance':
+					const c = {
+						chroma: y(f, chnDiff(against, mcchn('c', colorspace))),
+						luminance: (() => {
 							// @ts-ignore
 							let cb1 = (a) => (b) => Math.abs(luminance(a) - luminance(b));
-							u = y(f, cb1(against));
-							break;
-						case 'lightness':
-							u = y(f, chnDiff(against, mcchn('c', colorspace)));
-							break;
-						case 'hue':
-							u = y(f, chnDiff(against, `${colorspace}.h`));
-							break;
-						case 'contrast':
-							u = y(f, g(against));
-							break;
-					}
+							return y(f, cb1(against));
+						})(),
+						lightness: y(f, chnDiff(against, mcchn('c', colorspace))),
+						hue: y(f, chnDiff(against, `${colorspace}.h`)),
+						contrast: y(f, g(against))
+					};
+					u = c[f];
 				} else {
-					switch (f) {
-						case 'chroma':
-							u = y(f, v(colorspace));
-							break;
-						case 'luminance':
-							u = y(f, luminance);
-							break;
-						case 'lightness':
-							u = y(f, z(colorspace));
-							break;
-						case 'hue':
-							u = y(f, j(colorspace));
-							break;
-					}
+					const c = {
+						chroma: y(f, v(colorspace)),
+						luminance: y(f, luminance),
+						lightness: y(f, z(colorspace)),
+						hue: y(f, j(colorspace))
+					};
+
+					u = c[f];
 				}
 
 				return u;
@@ -146,46 +136,44 @@ function stats(collection = [], options = undefined) {
 			(k) => {
 				// we filter out falsy values from the collection to avoid getting NaN
 				var [n, v] = [
-					(b, m) => (a) =>
-						m(
-							values(a)
-								.map((i) => b(i))
-								.filter((i) => i)
-						),
+					(b, m) => (a) => {
+						let r = [];
+						for (const [i, o] of entries(a)) {
+							r[i] = b(o);
+						}
+
+						r = r.filter((i) => i);
+
+						m(r);
+					},
 					null
 				];
-				switch (k) {
-					case 'chroma':
-						v = n(mc(mcchn('c', colorspace)), averageNumber);
-						break;
 
-					case 'distance':
+				const c = {
+					chroma: n(mc(mcchn('c', colorspace)), averageNumber),
+					distance: (() => {
 						let i = (a) => (b) => differenceHyab()(a, b);
-						v = n(i, averageNumber);
-						break;
-					case 'hue':
-						v = n(mc(`${colorspace}.h`), averageAngle);
-
-						break;
-					case 'lightness':
-						v = n(mc(mcchn('l', colorspace)), averageNumber);
-						break;
-					case 'contrast':
+						return n(i, averageNumber);
+					})(),
+					hue: n(mc(`${colorspace}.h`), averageAngle),
+					lightness: n(mc(mcchn('l', colorspace)), averageNumber),
+					contrast: (() => {
 						let h = (a) => (b) => contrast(a, b);
-						v = n(h, averageNumber);
+						return n(h, averageNumber);
+					})(),
+					luminance: n(luminance, averageNumber)
+				};
 
-					case 'luminance':
-						v = n(luminance, averageNumber);
-						break;
-				}
-				return v;
+				return c[k];
 			},
 			(k) => {
 				var [x, y] = [o(k)[0], o(k)[m - 1]];
 
 				return {
-					against:
-						relative || k === ('contrast' || 'distance') ? against : null,
+					against: or(
+						and(or(relative, eq(k, or('contrast', 'distance'))), against),
+						null
+					),
 					colors: [x['color'], y['color']],
 					// @ts-ignore
 					mean: t(k)(collection),

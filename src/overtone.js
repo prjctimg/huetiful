@@ -5,6 +5,7 @@
 
 import { family } from './family.js';
 import { achromatic } from './achromatic.js';
+import { and } from './fp/index.js';
 
 /**
  * Returns the name of the hue family which is biasing the passed in color.
@@ -27,16 +28,15 @@ console.log(overtone("blue"))
 // false
  */
 function overtone(color) {
-  var h = family(color);
+	var h = family(color);
 
-  // We check if the color can be found in the defined ranges
-  // @ts-ignore
-  return (
-    (achromatic(color) && 'gray') ||
-    // @ts-ignore
-    (/-/.test(h) && h.split('-')[1]) ||
-    false
-  );
+	// We check if the color can be found in the defined ranges
+	// @ts-ignore
+	return or(
+		and(achromatic(color), 'gray'),
+		// @ts-ignore
+		or(and(/-/.test(h), h.split('-')[1]), false)
+	);
 }
 
 export { overtone };

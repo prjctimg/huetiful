@@ -4,10 +4,10 @@
  * @typedef { import('./types.js').DiscoverOptions} DiscoverOptions
  */
 
-import { nearest, differenceHyab } from 'culori/fn';
-import { mcchn, keys, values, or } from './fp/index.js';
+import { differenceHyab } from 'culori/fn';
+import { or, eq, values, entries, wtf } from './fp/index.js';
 import { scheme } from './scheme.js';
-import { token } from './token.js';
+import { nearest } from './nearest.js';
 
 /**
  * Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes. 
@@ -43,64 +43,47 @@ console.log(discover(sample, { kind:'tetradic' }))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
  */
 function discover(colors = [], options) {
-	let { kind, colorspace } = options || {};
-	colorspace = or(colorspace, 'lch');
+	//  Initialize and sanitize parameters
+
+	let { kind } = options || {};
+
+	colors = values(colors);
+
+	/*
+	 * 					* GLOBAL VARIABLES
+	 *						* f - The callback to test if colors are equal or not
+	 *						* c - The targeted palettes map
+	 *						* a - Result collection of the queried palettes
+	 *
+	 *
+	 *
+	 *
+	 */
 
 	// I have this weird urge to just put stuff in arrays...elegant
-	var [q, k, t, u, v, f] = [
-		{},
-		['analogous', 'triadic', 'tetradic', 'complementary'],
-		{},
-		mcchn('l', colorspace),
-		mcchn('c', colorspace),
-		(a, b) => differenceHyab()(a, b) === 0
-	];
-
-	colors = values(colors).map((z) =>
-		token(z, {
-			kind: 'object',
-			targetMode: colorspace
-		})
-	);
-
-	for (var x of colors) {
-		// @ts-ignore
-
-		t[x] = scheme(x, { kind: kind });
-
-		for (var d of keys(t)) {
-			var [h, r] = [[], 0];
-
-			for (var g of t[d]) {
-				// filter out colors already in the palette
-				// @ts-ignore
-				var l = colors.filter((a) => !h.some((b) => f(a, b)));
-
-				var m = nearest(l, differenceHyab())(g)[0];
-
-				r += differenceHyab()(g, m);
-
-				// @ts-ignore
-				h.push(m);
+	var [a, c, f] = [{}, {}, (a, b) => differenceHyab()(a, b)],
+		z = (u) => {
+			for (const [h, g] of entries(colors)) {
+				c[h] = scheme(g, { kind: u });
 			}
 
-			if (!q[d] || r < q[d]) {
-				q[d] = h.map((i) => token(i, options['token']));
-			}
-		}
-	}
-	var o;
-	if (kind) {
-		o = q[kind.toLowerCase()];
-	} else if (!kind) {
-		o = q;
-	} else {
-		throw Error(
-			`${kind} is not a valid scheme. The schemes are triadic | tetradic | analogous | complementary`
-		);
-	}
+			var j = [];
+			for (var [i, r] of entries(c)) {
+				// @ts-ignore
+				var m = nearest(colors.filter((n) => !j.some((o) => eq(f(n, o), 0))));
 
-	return o;
+				j.push(m);
+
+				a[i] = a[i] ? a[i] : j;
+			}
+
+			return u ? a[u] : a;
+		};
+
+	// Get the values of any collection
+
+	// @ts-ignore
+	return wtf(kind, z, ['analogous', 'triadic', 'tetradic', 'complementary']);
 }
 
 export { discover };
