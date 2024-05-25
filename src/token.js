@@ -303,7 +303,7 @@ function token(color, options = undefined) {
 			color = { alpha: z, mode: srcMode };
 
 			// assign channel keys with their values
-			for (const [k, v] of x) {
+			for (const [k, v] of entries(x)) {
 				color[v] = y[k];
 			}
 		}

@@ -1,3 +1,5 @@
+//  @ts-nocheck
+
 /**
  * @typedef { import('./types.js').Collection} ColorToken
  * @typedef { import('./types.js').Collection} Collection
@@ -57,49 +59,38 @@ function sortBy(collection = [], options = undefined) {
 		z = (h) => {
 			var x;
 			if (relative) {
-				switch (h) {
-					case 'chroma':
-						x = y(chnDiff(against, mc(colorspace + '.' + c)));
-						break;
-					case 'hue':
-						x = y(chnDiff(against, mc(`${colorspace}.h`)));
-						break;
-					case 'luminance':
-						// @ts-ignore
+				let k = {
+					chroma: y(chnDiff(against, mc(colorspace + '.' + c))),
+					hue: y(chnDiff(against, mc(`${colorspace}.h`))),
+					luminance: (() => {
 						let v = (a) => (b) => Math.abs(luminance(a) - luminance(b));
-						x = y(v(against));
-						break;
+						return y(v(against));
+					})(),
+					lightness: y(chnDiff(against, mc(colorspace + '.' + l)))
+				};
 
-					case 'lightness':
-						x = y(chnDiff(against, mc(colorspace + '.' + l)));
-						break;
-				}
+				x = k[h];
 			} else {
-				switch (h) {
-					case 'chroma':
-						x = y(mc(colorspace + '.' + c));
-						break;
-					case 'hue':
-						x = y(mc(`${colorspace}.h`));
-						break;
-					case 'luminance':
-						x = y(luminance);
-						break;
-					case 'distance':
+				var k = {
+					chroma: y(mc(colorspace + '.' + c)),
+					hue: y(mc(`${colorspace}.h`)),
+					luminance: y(luminance),
+					distance: (() => {
 						var u = (a) => (c) => differenceHyab()(a, c);
 
-						x = y(u(against));
-						break;
-					case 'contrast':
+						return y(u(against));
+					})(),
+					contrast: (() => {
 						let w = (a) => (c) => contrast(c, a);
-						x = y(w(against));
-						break;
-					case 'lightness':
-						x = y(mc(colorspace + '.' + l));
-						break;
-				}
-				return x(collection);
+						return y(w(against));
+					})(),
+					lightness: y(mc(colorspace + '.' + l))
+				};
+
+				x = k[h];
 			}
+
+			return x(collection);
 		};
 
 	return wtf(factor, z);
