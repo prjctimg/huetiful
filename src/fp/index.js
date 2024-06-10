@@ -6,7 +6,7 @@
  * @typedef {import('../types.js').TailwindColorFamilies} TailwindColorFamilies
  */
 
-import limits from '../maps/limits.js';
+import limits from '../palettes/limits.js';
 
 import {
 	interpolatorSplineNatural,
@@ -15,7 +15,7 @@ import {
 	easingSmoothstep,
 	interpolatorLinear
 } from 'culori/fn';
-import { mc } from '../mc.js';
+import { mc } from '../mc/mc.js';
 
 var { keys, entries, values } = Object;
 
@@ -376,16 +376,17 @@ function map(u, cb) {
 	p = or(or(and(isMap(u), new Map()), and(isSet(u), new Set())), false);
 	if (p) {
 		for (const [a, b] of entries(u)) {
-			u.set(a, cb(b));
+			p.set(a, cb(b));
 		}
+		o = p;
 	} else if (isArray(u)) {
 		o = new Array(u.length);
 		for (const [a, b] of entries(u)) {
 			o[a] = cb(b);
 		}
 	} else {
+		o = {};
 		for (const [a, b] of entries(u)) {
-			o = {};
 			o[a] = cb(b);
 		}
 	}
@@ -543,6 +544,7 @@ function getSrcMode(c, m) {
 }
 
 export {
+	map,
 	clamp,
 	not,
 	getSrcMode,
