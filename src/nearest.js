@@ -8,7 +8,7 @@
 
 import { and, eq, or, values } from './fp/index.js';
 import { nearest as nrst, differenceHyab } from 'culori/fn';
-import { colors } from './colors.js';
+import { colors } from './palettes/colors.js';
 
 /**
  * Returns the nearest color(s) in a collection as compared `against` the passed in color using the `differenceHyab` metric function.

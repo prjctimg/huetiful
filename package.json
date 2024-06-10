@@ -54,12 +54,13 @@
 		"typedoc": "^0.25.3",
 		"typedoc-github-wiki-theme": "^1.1.0",
 		"typedoc-material-theme": "^1.0.2",
+		"typedoc-plugin-markdown": "^4.0.3",
 		"typescript": "^5.0.2"
 	},
 	"scripts": {
 		"test": "npx jasmine",
 		"docs": "npx typedoc",
-		"build": "node ./build.cjs",
+		"build": "node ./jobs/build.cjs",
 		"code:publish": "npm run build & npx tsc",
 		"format": "npx prettier \"./src/*.js\" --write",
 		"lint": "npx eslint --fix --ext ./src/*.js",
@@ -84,39 +85,6 @@
 			"no-explicit-any": 0,
 			"no-useless-escape": 0
 		}
-	},
-	"typedocOptions": {
-		"entryPoints": [
-			"src/index.js"
-		],
-		"excludeTags": [
-			"@internal"
-		],
-		"lightHighlightTheme": "rose-pine",
-		"darkHighlightTheme": "rose-pine-moon",
-		"themeColor": "#15803d",
-		"excludeNotDocumented": true,
-		"excludeReferences": false,
-		"includeVersion": true,
-		"plugin": [
-			"typedoc-material-theme"
-		],
-		"gaID": "G-0TXKRCERK8",
-		"entryPointStrategy": "resolve",
-		"out": "docs/",
-		"exclude": [
-			"./fp"
-		],
-		"groupOrder": [
-			"Function",
-			"Class",
-			"Constructor",
-			"Property",
-			"Method",
-			"TypeAlias"
-		],
-		"tsconfig": "./tsconfig.json",
-		"gitRemote": "main"
 	},
 	"files": [
 		"lib",

@@ -1,0 +1,35 @@
+ {
+		"entryPoints": [
+			"src/index.js"
+		],
+		"excludeTags": [
+			"@internal"
+		],
+		"outputFileStrategy":"modules",
+		"fileExtension":".mdx",
+        "entryFileName":"index",
+        "entryModule":"./docs/index.mdx",
+        "expandObjects":true,
+		"excludeNotDocumented": true,
+		"excludeReferences": false,
+		"includeVersion": true,
+		"plugin": [
+			"typedoc-plugin-markdown","./jobs/navigation.mjs"
+		],
+		"gaID": "G-0TXKRCERK8",
+		"entryPointStrategy": "resolve",
+		"out": "docs/typedoc",
+		"exclude": [
+			"./fp"
+		],
+		"groupOrder": [
+			"Function",
+			"Class",
+			"Constructor",
+			"Property",
+			"Method",
+			"TypeAlias"
+		],
+		"tsconfig": "./tsconfig.json",
+		"gitRemote": "main"
+	}
