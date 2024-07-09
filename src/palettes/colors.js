@@ -8,8 +8,8 @@
 
 /// Extracted from TailwindCSS
 
-import { and, eq, keys, or, values } from '../fp/index.js';
-import tailwind from './tailwind.js';
+import { and, eq, keys, or, values } from "../fp/index.js";
+import tailwind from "./tailwind.js";
 
 /**
  *
@@ -48,47 +48,48 @@ console.log(colors('red','900'));
 
  */
 
-function colors(shade = 'all', value = undefined) {
-	var w = tailwind;
+function colors(shade = "all", value = undefined) {
+  var w = tailwind;
 
-	var [d, k] = ['all', keys(w)];
+  var [d, k] = ["all", keys(w)];
 
-	var [p, q] = [
-		(h) => k.includes(h),
-		(i) =>
-			[
-				'50',
-				'100',
-				'200',
-				'300',
-				'400',
-				'500',
-				'600',
-				'700',
-				'800',
-				'900'
-			].includes(i?.toString())
-	];
+  var [p, q] = [
+    (h) => k.includes(h),
+    (i) =>
+      [
+        "50",
+        "050",
+        "100",
+        "200",
+        "300",
+        "400",
+        "500",
+        "600",
+        "700",
+        "800",
+        "900",
+      ].includes(i?.toString()),
+  ];
 
-	// @ts-ignore
-	shade = shade.toLowerCase();
-	var o;
-	if (eq(shade, d)) {
-		if (q(value)) {
-			o = k.map((y) => w[y][value]);
-		} else {
-			o = k.map((y) => values(w[y])).flat(2);
-		}
-	} else if (p(shade)) {
-		if (q(value)) {
-			o = w[shade][value];
-		} else {
-			o = values(w[shade]);
-		}
-	} else if (or(!shade, and(!shade, !value))) {
-		o = k.map((h) => w[h]);
-	}
-	return o;
+  // @ts-ignore
+  shade = shade.toLowerCase();
+  var o;
+  if (eq(shade, d)) {
+    if (q(value)) {
+      o = k.map((y) => w[y][value]);
+    } else {
+      o = k.map((y) => values(w[y])).flat(2);
+    }
+  } else if (p(shade)) {
+    if (q(value)) {
+      o = w[shade][value];
+    } else {
+      o = values(w[shade]);
+    }
+  } else if (or(!shade, and(!shade, !value))) {
+    o = k.map((h) => w[h]);
+  }
+  return o;
 }
 
 export { colors };
