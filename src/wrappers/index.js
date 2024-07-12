@@ -1,4 +1,35 @@
 /**
+ * @typedef { import('../types.js').ColorToken} ColorToken
+ *@typedef { import('../types.js').Collection} Collection
+ *@typedef { import('../types.js').HueshiftOptions} HueShiftOptions
+ 
+ */
+
+import { deficiency, contrast } from "../accessibility/index.js";
+import { filterBy, sortBy, stats } from "../collection/index.js";
+import {
+  interpolator,
+  discover,
+  hueshift,
+  earthtone,
+  scheme,
+  pair,
+} from "../generators/index.js";
+import { or, gt, mcchn } from "../internal/index.js";
+import { colors, nearest } from "../palettes/index.js";
+import {
+  mc,
+  lightness,
+  token,
+  complimentary,
+  family,
+  luminance,
+  temp,
+  overtone,
+  alpha,
+} from "../utilities/index.js";
+
+/**
  Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
  * @example
  * import { ColorArray } from 'huetiful-js'
@@ -14,7 +45,7 @@ console.log(wrapper.sortByHue('desc', 'lch').output());
 export class ColorArray {
   /**
    *
-   * @param {import('../types.js').Collection} colors The collection of colors to bind.
+   * @param {Collection} colors The collection of colors to bind.
    */
   constructor(colors) {
     this["colors"] = colors;
@@ -36,7 +67,7 @@ console.log(load(cols).nearest('blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
   nearest(against, num) {
-    this["colors"] = nearest(this["colors"], against, num);
+    this["colors"] = nearest(this["colors"]);
     return this;
   }
 
@@ -160,6 +191,7 @@ console.log(load(sample).filterBy({start:'>=3', factor:'contrast',against:'green
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
  */
   filterBy(options) {
+    // @ts-ignore
     return filterBy(this["colors"], options);
   }
 
@@ -193,7 +225,8 @@ console.log(
 // [ 'brown', 'red', 'green', 'purple' ]
  */
   sortBy(options) {
-    return sortBy(options)(this["colors"]);
+    // @ts-ignore
+    return sortBy(this["colors"], options);
   }
 
   /**
@@ -254,7 +287,7 @@ console.log(wrapper.color2hex());
 class Color {
   /**
    * @param {ColorToken} [c= 'cyan'] The color to bind.
-   * @param {ColorOptions} [options= {}] Optional overrides and properties for the bound color.
+   * @param {import("../types.js").ColorOptions} [options= {}] Optional overrides and properties for the bound color.
    */
   constructor(c, options) {
     let {
@@ -322,11 +355,11 @@ class Color {
    */
   alpha(amount) {
     if (amount) {
-      this["_color"] = _opac(this["_color"], amount);
+      this["_color"] = alpha(this["_color"], amount);
       return this;
     } else {
       // @ts-ignore
-      return _opac(this["_color"]);
+      return alpha(this["_color"]);
     }
   }
 
@@ -354,6 +387,7 @@ class Color {
 
       return this;
     } else {
+      // @ts-ignore
       return mc(modeChannel)(this["_color"]);
     }
   }
@@ -461,7 +495,7 @@ class Color {
     * The colors are then spline interpolated via white or black.
     *
     * A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color.
-    * @param {PairedSchemeOptions} options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
+    * @param {import("../types.js").PairedSchemeOptions} options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
     * @returns {Color|ColorArray}
     * @example
     *
@@ -471,7 +505,8 @@ class Color {
     // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
      */
   pair(options) {
-    if (gt(options["num"], 1)) {
+    if (gt(options?.num, 1)) {
+      // @ts-ignore
       return new ColorArray(pair(this["_color"], options));
     } else {
       this["_color"] = pair(this["_color"], options);
@@ -493,7 +528,7 @@ class Color {
    *  The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or `(num * 2) + 1`.
    *
      * @param {HueShiftOptions} options The optional overrides object to customize the `HueShiftOptions` like easing function.
-     *@returns {ColorArray|Color}
+     *@returns {ColorArray}
      * @example
      * import { color } from "huetiful-js";
     
@@ -513,19 +548,15 @@ class Color {
   hueshift(options) {
     if (gt(options["num"], 1)) {
       this["colors"] = hueshift(this["_color"], options);
-
+      //  @ts-ignore
       return new ColorArray(this["colors"]);
-    } else {
-      // @ts-ignore
-      this["_color"] = hueshift(this["_color"], options);
-      return this;
     }
   }
 
   /**
      * Returns the complementary hue of the bound color. The function returns `'gray'` when you pass in an achromatic color.
      * @param {boolean} [colorObj=false] Optional boolean whether to return a custom object with the color `name` and `hueFamily` as keys or just the result color. Default is `false`.
-     * @returns {FactObject|Color}
+     * @returns {import("../types.js").FactObject|Color}
      * @example
      *import { color } from "huetiful-js";
      *
@@ -547,7 +578,7 @@ class Color {
    * Gets the hue family which a color belongs to with the overtone included (if it has one.).
    *
    * For example `'red'` or `'blue-green'`. If the color is achromatic it returns the string `'gray'`.
-   * @returns {HueFamily}
+   * @returns {import("../types.js").HueFamily}
    * @example
    *
    * import { color } from 'huetiful-js'
@@ -565,7 +596,7 @@ class Color {
      * Creates a color scale between an earth tone and any color token using spline interpolation.
      *
   
-     * @param {EarthtoneOptions} options
+     * @param {import("../types.js").EarthtoneOptions} options
      * @returns {Color|ColorArray}
      *
      * @example
@@ -828,7 +859,7 @@ class Color {
    * * 'deuteranopia' - An inability to distinguish the color 'green'.. The `kind` is `'green'`.
    * * 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
    *
-   * @param {DeficiencyOptions} options
+   * @param {import("../types.js").DeficiencyOptions} options
    * @returns {Color}
    *
    * @example

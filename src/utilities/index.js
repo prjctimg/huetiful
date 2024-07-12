@@ -1,6 +1,9 @@
 // @ts-nocheck
 /**
- * @typedef { import('../types.js').Collection} ColorToken
+ * @typedef { import('../types.js').ColorToken} ColorToken
+ *@typedef { import('../types.js').Collection} Collection
+ * @typedef {import('../types.js').TailwindColorFamilies} TailwindColorFamilies
+ * @typedef {import('../types.js').ScaleValues} ScaleValues
  */
 
 import {
@@ -16,10 +19,12 @@ import {
   modeLch,
   modeXyz65,
   modeLab,
-} from "culori/fn";
+  wcagLuminance,
+  interpolate,
+,random} from "culori/fn";
 import "culori/css";
-import { token } from "../core/token.js";
 import {
+  getSrcMode,
   gmchn,
   and,
   eq,
@@ -33,8 +38,8 @@ import {
   give,
   max,
   min,
-} from "../fp/index.js";
-import { colorsNamed } from "culori";
+} from "../internal/index.js";
+import {hue} from "../constants/index.js";
 
 /**
  *
@@ -132,8 +137,6 @@ function alpha(color, amount = undefined) {
     })()
   );
 }
-
-export { alpha, mc };
 
 /**
  * Sets the value of the specified channel on the passed in color.
@@ -490,15 +493,13 @@ function token(color, options = undefined) {
   }[kind]();
 }
 
-import { interpolate, wcagLuminance } from "culori/fn";
-
 /**
  * Gets the luminance of the passed in color token.
  * 
  * If the `amount` parameter is not passed in else it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
  * @param { ColorToken } color The color to retrieve or adjust luminance.
  * @param { number } [amount=undefined] The amount of luminance to set. The value range is normalised between [0,1]
- * @returns { string  | number} 
+ * @returns { ColorToken  | number} 
  * @example
  *
  * import { luminance } from 'huetiful-js'
@@ -611,10 +612,6 @@ function family(color) {
   return "gray";
 }
 
-import hue from "../palettes/hue.js";
-import { floorCeil, inRange, keys } from "../fp/index.js";
-import { mc } from "../mc/mc.js";
-
 /**
  * Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'`.
  * 
@@ -723,32 +720,15 @@ function complimentary(baseColor, obj = false) {
   return (obj && o) || o["color"];
 }
 
-/**
- * Returns the nearest color(s) in a collection as compared `against` the passed in color using the `differenceHyab` metric function.
- * 
- * * To get the nearest color from the Tailwind CSS default palette pass in the string `tailwind` as the `collection` parameter.
- * * If the `num` parameter is more than 1, the returned collection of colors has the colors sorted starting with the nearest color first
- * 
- * @param {Collection | 'tailwind'} collection The collection of colors to search for nearest colors.
- * @returns {Collection}
- * @example
- *
- * let cols = colors('all', '500')
- *
-console.log(nearest(cols, 'blue', 3));
- // [ '#a855f7', '#8b5cf6', '#d946ef' ]
- */
-function nearest(collection, options) {
-  var { against, num } = options || {};
-  num = or(num, 1);
-  against = or(against, "cyan");
-  const f = (a, b) => {
-    var o = nrst(values(a), differenceHyab(), (c) => c)(b, num);
-    return or(and(eq(num, 1), o[0]), o);
-  };
-
-  return or(
-    and(eq(collection, "tailwind"), f(colors("all"), against)),
-    f(collection, against)
-  );
-}
+export {
+  token,
+  achromatic,
+  complimentary,
+  overtone,
+  temp,
+  family,
+  alpha,
+  luminance,
+  lightness,
+  mc,
+};

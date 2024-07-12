@@ -1,4 +1,52 @@
 /**
+ * @typedef { import('../types.js').Collection} Collection
+ * @typedef { import('../types.js').SchemeType} SchemeType
+ * * @typedef { import('../types.js').SchemeOptions} SchemeOptions
+ * @typedef { import('../types.js').DiscoverOptions} DiscoverOptions
+ * @typedef { import('../types.js').HueshiftOptions} HueShiftOptions
+ *@typedef { import('../types.js').ColorToken} ColorToken
+ *@typedef { import('../types.js').TokenOptions} TokenOptions
+ *@typedef { import('../types.js').PairedSchemeOptions} PairedSchemeOptions
+ *@typedef { import('../types.js').InterpolatorOptions} InterpolatorOptions
+ */
+
+import {
+  samples,
+  interpolate,
+  interpolatorSplineBasis,
+  interpolatorSplineBasisClosed,
+  interpolatorSplineMonotone,
+  interpolatorSplineMonotoneClosed,
+  interpolatorSplineNatural,
+  interpolatorSplineNaturalClosed,
+  fixupHueShorter,
+  fixupHueLonger,
+  differenceHyab,
+  easingSmoothstep,
+  averageNumber,
+} from "culori/fn";
+import {
+  or,
+  mcchn,
+  pltrconfg,
+  gt,
+  gte,
+  lte,
+  lt,
+  min,
+  max,
+  values,
+  wtf,
+  entries,
+  and,
+  eq,
+  adjustHue,
+  isArray,
+  rand,
+} from "../internal/index.js";
+import { mc, token } from "../utilities/index.js";
+
+/**
  * Creates a palette of hue shifted colors from the passed in color.
  * 
  * Hue shifting means that:
@@ -198,23 +246,9 @@ function pair(baseColor, options) {
 
   // Return a slice of the array from the start to the half length of the array
 
+  //@ts-ignore
   return lte(num, 1) ? f(1) : f(num * 2).slice(0, num);
 }
-
-import {
-  samples,
-  interpolate,
-  interpolatorSplineBasis,
-  interpolatorSplineBasisClosed,
-  interpolatorSplineMonotone,
-  interpolatorSplineMonotoneClosed,
-  interpolatorSplineNatural,
-  interpolatorSplineNaturalClosed,
-  fixupHueShorter,
-  fixupHueLonger,
-} from "culori/fn";
-import { or, mcchn, pltrconfg, gt, gte, values, and } from "../fp/index.js";
-import { token } from "../core/token.js";
 
 /**
  * Interpolates the passed in colors and returns a color scale that is evenly split into `num` amount of samples. 
@@ -240,7 +274,7 @@ import { token } from "../core/token.js";
  *  
  * @param {Collection} baseColors The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result or making all the colors in the resulting interpolation gray.
  * @param {InterpolatorOptions} options Optional overrides.
- * @returns {Array<string|ColorToken> | string|ColorToken}
+ * @returns {Array<ColorToken>}
  *
  * @example
  *
@@ -318,17 +352,6 @@ function interpolator(baseColors = [], options = undefined) {
     token(p(0.5), options?.token)
   );
 }
-
-/**
- * @typedef { import('../types.js').Collection} Collection
- * @typedef { import('../types.js').SchemeType} SchemeType
- * @typedef { import('../types.js').DiscoverOptions} DiscoverOptions
- */
-
-import { differenceHyab } from "culori/fn";
-import { or, eq, values, entries, wtf } from "../fp/index.js";
-import { scheme } from "../scheme/index.js";
-import { nearest } from "../nearest.js";
 
 /**
  * Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes. 
@@ -410,8 +433,8 @@ function discover(colors = [], options) {
 /**
  * Creates a color scale between an earth tone and any color token using spline interpolation.
  * @param {ColorToken} baseColor The color to interpolate an earth tone with.
- * @param {import('../wrappers.js').EarthtoneOptions} options Optional overrides for customising interpolation and easing functions.
- * @returns {string | Array<string>}
+ * @param {import("../types.js").EarthtoneOptions} options Optional overrides for customising interpolation and easing functions.
+ * @returns {ColorToken | Array<ColorToken>}
  * @example
  *
  * import { earthtone } from 'huetiful-js'
@@ -449,7 +472,7 @@ function earthtone(baseColor, options) {
     num: num,
     closed: closed,
     kind: kind,
-    token: options["token"],
+    token: options?.token,
   });
 }
 
@@ -540,3 +563,5 @@ function scheme(baseColor = "cyan", options) {
   // @ts-ignore
   return e;
 }
+
+export { pair, discover, hueshift, pastel, earthtone, scheme, interpolator };
