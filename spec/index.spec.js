@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import * as mods from '../src/index.js';
 
 /**
@@ -109,11 +109,6 @@ var specs = {
 		expect: false
 	},
 
-	// complimentary: {
-	// 	params: ['pink', true],
-	// 	description: `Gets the complimentary hue family and the color of the passed in color`,
-	// 	expect: { hue: 'purple', color: '#98dfd3' }
-	// },
 
 	overtone: {
 		params: ['cyan'],
