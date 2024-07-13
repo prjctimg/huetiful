@@ -20,8 +20,7 @@ import {
   modeXyz65,
   modeLab,
   wcagLuminance,
-  interpolate,
-,random} from "culori/fn";
+  interpolate} from "culori/fn";
 import "culori/css";
 import {
   getSrcMode,
