@@ -10,7 +10,7 @@
 
 #### Features 
 
-- [Collection methods](https://huetiful-js.com/api/collection) for filtering,sorting,querying and colors using the values of their properties as criteria.
+- [Collection methods](https://huetiful-js.com/api/collection) for manipulating colors using the values of their properties as criteria.
 - [Color maps](https://huetiful-js.com/api/palettes) from Tailwind and [ColorBrewer](colorbrewer2.org) exposed as wrapper functions to help you kickstart your palettes.
 - [Utilities](https://huetiful-js.com/api/utilities) for setting and querying color properties.
 - [Wrapper functions](https://huetiful-js.com/api/wrappers) allowing method chaining for all the utilities in the API.
