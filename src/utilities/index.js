@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /**
  * @typedef { import('../types.js').ColorToken} ColorToken
  *@typedef { import('../types.js').Collection} Collection
@@ -20,7 +21,8 @@ import {
   modeXyz65,
   modeLab,
   wcagLuminance,
-  interpolate} from "culori/fn";
+  interpolate,
+} from "culori/fn";
 import "culori/css";
 import {
   getSrcMode,
@@ -37,8 +39,16 @@ import {
   give,
   max,
   min,
+  adjustHue,
+  customConcat,
+  entries,
+  floorCeil,
+  gte,
+  keys,
+  lte,
+  rand,
 } from "../internal/index.js";
-import {hue} from "../constants/index.js";
+import { hue } from "../constants/index.js";
 
 /**
  *
@@ -289,7 +299,7 @@ function lightness(color, amount, darken = false) {
  * * `'temp'` - Parses the color token to its RGB equivalent and expects the value to be between 0 and 30,000
  *
  * @param {ColorToken} color The color token to parse or convert.
- * @param {TokenOptions} options
+ * @param {import("../types.js").TokenOptions} options Options to customize the parsing and output behaviour.
  * @returns {ColorToken}
  */
 function token(color, options = undefined) {
@@ -416,9 +426,15 @@ function token(color, options = undefined) {
        */
 
       var [x, y, z] = [
-        gmchn(srcMode || targetMode).split(""),
-        eq(typeof color[0], "string") ? color.slice(1) : color,
-        eq(color?.length, 5) ? color[4] : undefined,
+        gmchn(or(srcMode, targetMode)),
+        or(
+          and(
+            and(isArray(color), eq(typeof color[0], "string")),
+            color.slice(1)
+          ),
+          color
+        ),
+        or(and(eq(color?.length, 5), color[4]), undefined),
       ];
 
       /**
@@ -432,34 +448,48 @@ function token(color, options = undefined) {
        *
        *
        */
-      if (typeof color === "number") {
-        color = num2c();
-      } else if (typeof color === "string") {
-        color = cnv(targetMode);
-      } else if (typeof color === "object") {
-        /**
-         * This block only runs on objects not strings/numbers and boolean
-         */
-        if (eq(srcMode, "rgb" || "lrgb") && normalizeRgb) {
-          /**
-           *  Normalize the color back to the rgb gamut supported by culori
-           * @type {boolean}
-           * */
-          var s = y.some((c) => 1 < Math.abs(c));
-          y = s ? y.map((c) => c / 255) : y;
-        }
+      or(
+        and(eq(typeof color, "number"), (color = num2c())),
+        or(
+          and(eq(typeof color, "string"), (color = cnv(targetMode))),
+          and(
+            eq(typeof color, "object"),
+            (() => {
+              /**
+               * This block only runs on objects not strings/numbers and boolean
+               */
+              and(
+                eq(srcMode, and(or("rgb", "lrgb")), normalizeRgb),
+                (() => {
+                  /**
+                   *  Normalize the color back to the rgb gamut supported by culori
+                   * @type {boolean}
+                   * */
+                  var s = y.some((c) => lt(1, Math.abs(c)));
+                  y = or(
+                    and(
+                      s,
+                      y.map((c) => c / 255)
+                    ),
+                    y
+                  );
+                })()
+              );
 
-        // reinitialize color to an empty object
-        color = {};
+              // reinitialize color to an empty object
+              color = {};
 
-        // then assign the alpha and colorspace properties
-        color = { alpha: z, mode: srcMode };
+              // then assign the alpha and colorspace properties
+              color = { alpha: z, mode: srcMode };
 
-        // assign channel keys with their values
-        for (const [k, v] of entries(x)) {
-          color[v] = y[k];
-        }
-      }
+              // assign channel keys with their values
+              for (const [k, v] of entries(x)) {
+                color[v] = y[k];
+              }
+            })()
+          )
+        )
+      );
 
       // convert the color to a target mode if it is specified
       color = targetMode ? cnv(targetMode) : color;
@@ -587,7 +617,7 @@ function luminance(color, amount) {
  * 
  * For example `'red'` or `'blue-green'`. If the color is achromatic it returns the string `'gray'`.
  * @param {ColorToken} color The color to query its shade or hue family.
- * @returns {HueFamily}
+ * @returns {import("../types.js").HueFamily}
  * @example
  *
  * import { family } from 'huetiful-js'
@@ -692,7 +722,7 @@ function overtone(color) {
  * 
  * @param {ColorToken} baseColor The color to retrieve its complimentary equivalent.
  * @param {boolean} obj Optional boolean whether to return an object with the result color's hue family or just the result color. Default is `false`.
- * @returns {ColorToken|FactObject}
+ * @returns {ColorToken|import("../types.js").FactObject}
  * @example
  * 
  * import { complimentary } from "huetiful-js";

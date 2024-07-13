@@ -41,7 +41,7 @@
     "code:publish": "npm run build & npx tsc",
     "format": "npx prettier \"./src/*.js\" --write",
     "lint": "npx eslint --fix --ext ./src/*.js",
-    "start": "docsify serve ./docs "
+    "start": "npx nodemon app.js --watch"
   },
   "prettier": {
     "semi": true,
@@ -127,7 +127,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/xml-wizard/huetiful.git"
+    "url": "https://github.com/prjctimg/huetiful.git"
   },
   "keywords": [
     "small",
@@ -156,6 +156,10 @@
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "bugs": {
-    "url": "https://github.com/xml-wizard/huetiful/issues"
+    "url": "https://github.com/prjctimg/huetiful/issues"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
+
 }
