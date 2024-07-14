@@ -1,0 +1,462 @@
+[**huetiful-js v2.3.0**](index.mdx) • **Docs**
+
+***
+
+[huetiful-js v2.3.0](modules.mdx) / utilities
+
+# utilities
+
+## Functions
+
+### achromatic()
+
+> **achromatic**(`color`): `boolean`
+
+Checks if a color token is achromatic (without hue or simply grayscale).
+
+#### Parameters
+
+• **color**: [`ColorToken`](accessibility.mdx#colortoken)
+
+The color token to test if it is achromatic or not.
+
+#### Returns
+
+`boolean`
+
+[[include:achromatic.md]]
+
+#### Defined in
+
+utilities/index.js:212
+
+***
+
+### alpha()
+
+> **alpha**(`color`, `amount`): `string` \| `number`
+
+Returns the color token's alpha channel value.
+
+ If the the `amount` parameter is passed in, it sets the color token's alpha channel with the `amount` specified 
+and returns the color as a hex string.
+
+* Also supports math expressions as a `string` for the `amount` parameter. 
+For example `*0.5` which means the value multiply the current alpha by `0.5` and set the product as the new alpha value. 
+In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
+
+#### Parameters
+
+• **color**: [`ColorToken`](accessibility.mdx#colortoken)
+
+The color with the opacity/alpha channel to retrieve or set.
+
+• **amount**: `string` \| `number` = `undefined`
+
+The value to apply to the opacity channel. The value is between `[0,1]`
+
+#### Returns
+
+`string` \| `number`
+
+#### Example
+
+```ts
+// Getting the alpha
+console.log(alpha('#a1bd2f0d'))
+// 0.050980392156862744
+
+// Setting the alpha
+
+let myColor = alpha('b2c3f1', 0.5)
+
+console.log(myColor)
+
+// #b2c3f180
+```
+
+#### Defined in
+
+utilities/index.js:71
+
+***
+
+### complimentary()
+
+> **complimentary**(`baseColor`, `obj`): `any`
+
+Returns the complimentary color of the passed in color token. A complimentary color is 180 degrees away on the hue channel.
+
+The object (if the `obj` parameter is `true`) returns:
+
+* The complimentary color for the passed in color token
+* The hue family from which the complimentary color was found.
+
+The function is not guarded against achromatic colors which means no action will be done on a gray color and it will be returned as is. Pure black or white (`'#000000'` and `'#ffffff'` respectively) may return unexpected results.
+
+#### Parameters
+
+• **baseColor**: [`ColorToken`](accessibility.mdx#colortoken)
+
+The color to retrieve its complimentary equivalent.
+
+• **obj**: `boolean` = `false`
+
+Optional boolean whether to return an object with the result color's hue family or just the result color. Default is `false`.
+
+#### Returns
+
+`any`
+
+#### Example
+
+```ts
+import { complimentary } from "huetiful-js";
+
+console.log(complimentary("pink", true))
+//// { hue: 'blue-green', color: '#97dfd7ff' }
+
+console.log(complimentary("purple"))
+// #005700
+```
+
+#### Defined in
+
+utilities/index.js:707
+
+***
+
+### family()
+
+> **family**(`color`): `HueFamily`
+
+Gets the hue family which a color belongs to with the overtone included (if it has one.).
+
+For example `'red'` or `'blue-green'`. If the color is achromatic it returns the string `'gray'`.
+
+#### Parameters
+
+• **color**: [`ColorToken`](accessibility.mdx#colortoken)
+
+The color to query its shade or hue family.
+
+#### Returns
+
+`HueFamily`
+
+#### Example
+
+```ts
+import { family } from 'huetiful-js'
+
+console.log(family("#310000"))
+// 'red'
+```
+
+#### Defined in
+
+utilities/index.js:599
+
+***
+
+### lightness()
+
+> **lightness**(`color`, `amount`, `darken`): `string`
+
+Darkens the color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
+
+#### Parameters
+
+• **color**: [`ColorToken`](accessibility.mdx#colortoken)
+
+The color to darken.
+
+• **amount**: `number`
+
+The amount to darken with. The value is expected to be in the range `[0,1]`. Default is `0.1`.
+
+• **darken**: `boolean` = `false`
+
+#### Returns
+
+`string`
+
+#### Example
+
+```ts
+import { lightness } from "huetiful-js";
+
+// dakening a color
+console.log(lightness('blue', 0.3, true));
+
+// '#464646'
+
+// brightening a color, we can omit the final param 
+// because it's false by default.
+console.log(brighten('blue', 0.3));
+//#464646
+```
+
+#### Defined in
+
+utilities/index.js:251
+
+***
+
+### luminance()
+
+> **luminance**(`color`, `amount`?): [`ColorToken`](accessibility.mdx#colortoken)
+
+Gets the luminance of the passed in color token.
+
+If the `amount` parameter is not passed in else it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
+
+#### Parameters
+
+• **color**: [`ColorToken`](accessibility.mdx#colortoken)
+
+The color to retrieve or adjust luminance.
+
+• **amount?**: `number`
+
+The amount of luminance to set. The value range is normalised between [0,1]
+
+#### Returns
+
+[`ColorToken`](accessibility.mdx#colortoken)
+
+#### Example
+
+```ts
+import { luminance } from 'huetiful-js'
+
+// Getting the luminance
+
+console.log(luminance('#a1bd2f'))
+// 0.4417749513730954
+
+console.log(colors('all', '400').map((c) => luminance(c)));
+
+// [
+  0.3595097699638928,  0.3635745068550118,
+  0.3596908494424909,  0.3662525955988395,
+ 0.36634113914916244, 0.32958967582076004,
+ 0.41393242740130043,  0.5789820793721787,
+  0.6356386777636567,  0.6463720036841869,
+  0.5525691083297639,  0.4961850321908156,
+  0.5140644334784611,  0.4401325598899415,
+ 0.36299191043315415,  0.3358285501372504,
+ 0.34737270839643575, 0.37670102542883394,
+  0.3464512307705231, 0.34012939384198054
+]
+
+// setting the luminance
+
+let myColor = luminance('#a1bd2f', 0.5)
+
+console.log(luminance(myColor))
+// 0.4999999136285792
+```
+
+#### Defined in
+
+utilities/index.js:533
+
+***
+
+### mc()
+
+> **mc**(`modeChannel`): (`color`, `value`?) => [`ColorToken`](accessibility.mdx#colortoken)
+
+Sets the value of the specified channel on the passed in color.
+
+If the `amount` parameter is `undefined` it gets the value of the specified channel.
+
+#### Parameters
+
+• **modeChannel**: `string` = `""`
+
+The mode and channel to be retrieved. For example `'rgb.b'` will return the value of the blue channel in the RGB color space of that color.
+
+#### Returns
+
+`Function`
+
+##### Parameters
+
+• **color**: [`ColorToken`](accessibility.mdx#colortoken)
+
+• **value?**: `string` \| `number` = `undefined`
+
+##### Returns
+
+[`ColorToken`](accessibility.mdx#colortoken)
+
+#### Example
+
+```ts
+import { mc } from 'huetiful-js'
+
+console.log(mc('rgb.g')('#a1bd2f'))
+// 0.7411764705882353
+```
+
+#### Defined in
+
+utilities/index.js:155
+
+***
+
+### overtone()
+
+> **overtone**(`color`): `string` \| `false`
+
+Returns the name of the hue family which is biasing the passed in color.
+
+* If an achromatic color is passed in it returns the string `'gray'`
+* If the color has no bias it returns `false`.
+
+#### Parameters
+
+• **color**: [`ColorToken`](accessibility.mdx#colortoken)
+
+The color to query its overtone.
+
+#### Returns
+
+`string` \| `false`
+
+#### Example
+
+```ts
+import { overtone } from "huetiful-js";
+
+console.log(overtone("fefefe"))
+// 'gray'
+
+console.log(overtone("cyan"))
+// 'green'
+
+console.log(overtone("blue"))
+// false
+```
+
+#### Defined in
+
+utilities/index.js:671
+
+***
+
+### temp()
+
+> **temp**(`color`): `"warm"` \| `"cool"`
+
+Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'`.
+
+#### Parameters
+
+• **color**: [`ColorToken`](accessibility.mdx#colortoken)
+
+The color to check the temperature.
+
+#### Returns
+
+`"warm"` \| `"cool"`
+
+True if the color is cool else false.
+
+#### Example
+
+```ts
+import { isCool } from 'huetiful-js'
+
+let sample = [
+ "#00ffdc",
+ "#00ff78",
+ "#00c000"
+];
+
+console.log(isCool(sample[2]));
+// false
+
+console.log(map(sample, isCool));
+
+// [ true,  false, true]
+```
+
+#### Defined in
+
+utilities/index.js:640
+
+***
+
+### token()
+
+> **token**(`color`, `options`): [`ColorToken`](accessibility.mdx#colortoken)
+
+Parses any recognizable color to the specified `kind` of `ColorToken` type.
+
+The `kind` option supports the following types as options:
+
+* `'arr'` - Parses the color token to an array of channel values with the `colorspace` as the first element if the `omitMode` parameter is set to `false` in the `options` object.
+
+* `'num'` - Parses the color token to its numerical equivalent to a number between `0` and `16,777,215`.
+
+The `numberType` can be used to specify which type of number to return if the `kind` option is set to `'number'`:
+ - `'hex'` - Hexadecimal number
+ - `'bin'` - Binary number
+ - `'oct'` - Octal number
+ - `'expo'` - Decimal exponential notation
+
+* `'str'` - Parses the color token to its hexadecimal string equivalent.
+
+If the color token has an explicit `alpha` (specified by the `alpha` key in color objects and as the fourth and last number in a color array) the string will be 8 characters long instead of 6.
+
+* `'obj'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.
+* `'temp'` - Parses the color token to its RGB equivalent and expects the value to be between 0 and 30,000
+
+#### Parameters
+
+• **color**: [`ColorToken`](accessibility.mdx#colortoken)
+
+The color token to parse or convert.
+
+• **options**: `TokenOptions` = `undefined`
+
+#### Returns
+
+[`ColorToken`](accessibility.mdx#colortoken)
+
+#### Defined in
+
+utilities/index.js:295
+
+## References
+
+### ColorToken
+
+Re-exports [ColorToken](accessibility.mdx#colortoken)
+
+## Type Aliases
+
+### ScaleValues
+
+> **ScaleValues**: `"050"` \| `"100"` \| `"200"` \| `"300"` \| `"400"` \| `"500"` \| `"600"` \| `"700"` \| `"800"` \| `"900"` \| `"950"`
+
+The value of the Tailwind color.
+
+#### Defined in
+
+types.d.ts:472
+
+***
+
+### TailwindColorFamilies
+
+> **TailwindColorFamilies**: `"indigo"` \| `"gray"` \| `"zinc"` \| `"neutral"` \| `"stone"` \| `"red"` \| `"orange"` \| `"amber"` \| `"yellow"` \| `"lime"` \| `"green"` \| `"emerald"` \| `"teal"` \| `"sky"` \| `"blue"` \| `"violet"` \| `"purple"` \| `"fuchsia"` \| `"pink"` \| `"rose"`
+
+Color families in the default TailwindCSS palette.
+
+#### Defined in
+
+types.d.ts:488
