@@ -1,6 +1,6 @@
 {
 	"name": "huetiful-js",
-	"version": "2.3.0",
+	"version": "3.0.0",
 	"type": "module",
 	"module": "./lib/huetiful.esm.node.js",
 	"main": "./src/index.js",

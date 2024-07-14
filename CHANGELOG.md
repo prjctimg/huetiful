@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/prjctimg/huetiful/compare/v2.3.0...v3.0.0) (2024-07-14)
+
+
+### Miscellaneous Chores
+
+* release 3.0.0 ([67391c2](https://github.com/prjctimg/huetiful/commit/67391c29a60ed5964c98e7e27f73d051bdacbc22))
+
 ## [2.3.0](https://github.com/xml-wizard/huetiful/compare/v2.2.0...v2.3.0) (2024-04-08)
 
 
