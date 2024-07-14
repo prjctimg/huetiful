@@ -17,7 +17,7 @@
     "./constants": "./src/constants/index.js",
     "./utilities": "./src/utilities/index.js"
   },
-  "description": "JavaScript utility library for simple, fast and accessible color manipulation.",
+  "description": "JavaScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.",
   "dependencies": {
     "culori": "^4.0.1"
   },

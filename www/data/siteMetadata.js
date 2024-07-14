@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: "huetiful-js",
   author: "Dean Tarisai",
-  headerTitle: "TailwindBlog",
+  headerTitle: "huetiful-js",
   description:
     "JavaScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.",
   language: "en-us",
@@ -18,7 +18,7 @@ const siteMetadata = {
   facebook: "https://facebook.com/deantarisai",
   // youtube: "https://youtube.com",
   // linkedin: "https://www.linkedin.com",
-  threads: "https://www.threads.net",
+  // threads: "https://www.threads.net",
   instagram: "https://www.instagram.com/deantarie",
   locale: "en-US",
   analytics: {
