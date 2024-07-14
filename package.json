@@ -4,7 +4,7 @@
   "type": "module",
   "module": "./lib/huetiful.esm.js",
   "main": "./src/index.js",
-  "browser": "./lib/huetiful.esm.js",
+  "browser": "./lib/huetiful.min.js",
   "jsdelivr": "./lib/huetiful.min.js",
   "types": "./types/index.d.ts",
   "exports": {
