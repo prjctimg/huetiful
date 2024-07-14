@@ -72,14 +72,14 @@
     "expandObjects": true,
     "excludeNotDocumented": true,
     "excludeReferences": false,
-    "includeVersion": true,
+  
     "plugin": [
       "typedoc-plugin-markdown",
       "./jobs/navigation.mjs"
     ],
   
     "entryPointStrategy": "resolve",
-    "out": "docs/typedoc",
+    "out": ".temp",
     "exclude": [
       "./internal"
     ],
@@ -90,7 +90,9 @@
       "Property",
       "Method",
       "TypeAlias"
-    ],
+    ],"hidePageTitle":true,  
+    "hidePageHeader": true,
+    "hideGroupHeadings":false,
     "tsconfig": "./tsconfig.json",
     "gitRemote": "main"
   },

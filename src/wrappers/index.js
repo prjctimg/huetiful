@@ -568,6 +568,7 @@ class Color {
   complimentary(colorObj) {
     this["_color"] = complimentary(this["_color"], colorObj);
     if (colorObj) {
+      // @ts-ignore
       return complimentary(this["_color"], colorObj);
     }
 
