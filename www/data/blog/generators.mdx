@@ -1,0 +1,407 @@
+---
+title: generators
+date: Jul 14, 2024
+lastmod: Sun, Jul 14, at night
+summary: Utilites for creating palettes by mapping strategic values to target channels on color tokens.
+---
+
+
+[huetiful-js](modules.mdx) / generators
+
+## Functions
+
+### discover()
+
+> **discover**(`colors`, `options`): `Collection`
+
+Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes. 
+
+The function returns different values based on the `kind` parameter passed in:
+
+* An array of colors for the `kind` of scheme, if the `kind` parameter is specified.
+* Else it returns an object of all the palette types as keys and their values as an array of colors. 
+
+If no colors are valid for the palette types it returns an empty array for the palette results. It does not work with achromatic colors thus they're excluded from the resulting collection.
+
+#### Parameters
+
+• **colors**: `Collection` = `[]`
+
+The collection of colors to create palettes from. Preferably use 6 or more colors for better results.
+
+• **options**: `DiscoverOptions`
+
+#### Returns
+
+`Collection`
+
+#### Example
+
+```ts
+import { discover } from 'huetiful-js'
+
+let sample = [
+ "#ffff00",
+ "#00ffdc",
+ "#00ff78",
+ "#00c000",
+ "#007e00",
+ "#164100",
+ "#720000",
+ "#600000",
+ "#4e0000",
+ "#3e0000",
+ "#310000",
+]
+
+console.log(discover(sample, { kind:'tetradic' }))
+// [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
+```
+
+#### Defined in
+
+generators/index.js:389
+
+***
+
+### earthtone()
+
+> **earthtone**(`baseColor`, `options`): [`ColorToken`](accessibility.mdx#colortoken) \| [`ColorToken`](accessibility.mdx#colortoken)[]
+
+Creates a color scale between an earth tone and any color token using spline interpolation.
+
+#### Parameters
+
+• **baseColor**: [`ColorToken`](accessibility.mdx#colortoken)
+
+The color to interpolate an earth tone with.
+
+• **options**: `EarthtoneOptions`
+
+Optional overrides for customising interpolation and easing functions.
+
+#### Returns
+
+[`ColorToken`](accessibility.mdx#colortoken) \| [`ColorToken`](accessibility.mdx#colortoken)[]
+
+#### Example
+
+```ts
+import { earthtone } from 'huetiful-js'
+
+console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
+// [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
+```
+
+#### Defined in
+
+generators/index.js:447
+
+***
+
+### hueshift()
+
+> **hueshift**(`baseColor`, `options`): `any`[]
+
+Creates a palette of hue shifted colors from the passed in color.
+
+Hue shifting means that:
+
+* As a color becomes lighter, its hue shifts up (increases).
+* As a color becomes darker its hue shifts down (decreases).
+
+The `minLightness` and `maxLightness` values determine how dark or light our color will be at either extreme respectively.
+
+ The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or `(num * 2) + 1`.
+
+#### Parameters
+
+• **baseColor**: `any`
+
+The color to use as the base of the palette.
+
+• **options**: `HueshiftOptions`
+
+The optional overrides object.
+
+#### Returns
+
+`any`[]
+
+#### Example
+
+```ts
+import { hueshift } from "huetiful-js";
+
+let hueShiftedPalette = hueShift("#3e0000");
+
+console.log(hueShiftedPalette);
+
+// [
+ '#ffffe1', '#ffdca5',
+ '#ca9a70', '#935c40',
+ '#5c2418', '#3e0000',
+ '#310000', '#34000f',
+ '#38001e', '#3b002c',
+ '#3b0c3a'
+]
+```
+
+#### Defined in
+
+generators/index.js:80
+
+***
+
+### interpolator()
+
+> **interpolator**(`baseColors`, `options`): [`ColorToken`](accessibility.mdx#colortoken)[]
+
+Interpolates the passed in colors and returns a color scale that is evenly split into `num` amount of samples. 
+
+The interpolation behaviour can be overidden allowing us to get slightly different effects from the same `baseColors`.
+
+The behaviour of the interpolation can be customized by:
+
+* Changing the `kind` of interpolation
+
+	* natural
+	* basis
+	* monotone
+* Changing the easing function (`easingFn`)
+ 
+  * 
+
+Some things to keep in mind when creating color scales using this function:
+
+* To create a color scale for cyclic values pass `true` to the `closed` parameter in the `options` object. 
+* If `num` is 1 then a single color is returned from the resulting interpolation with the internal `t` value at `0.5` else a collection of the `num` of color scales is returned.
+* If the collection of colors contains an achromatic color, the resulting samples may all be grayscale or pure black.
+
+#### Parameters
+
+• **baseColors**: `Collection` = `[]`
+
+The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result or making all the colors in the resulting interpolation gray.
+
+• **options**: `InterpolatorOptions` = `undefined`
+
+Optional overrides.
+
+#### Returns
+
+[`ColorToken`](accessibility.mdx#colortoken)[]
+
+#### Example
+
+```ts
+import { interpolator } from 'huetiful-js';
+
+console.log(interpolator(['pink', 'blue'], { num:8 }));
+
+// [
+ '#ffc0cb', '#ff9ebe',
+ '#f97bbb', '#ed57bf',
+ '#d830c9', '#b800d9',
+ '#8700eb', '#0000ff'
+]
+```
+
+#### Defined in
+
+generators/index.js:293
+
+***
+
+### pair()
+
+> **pair**(`baseColor`, `options`): [`ColorToken`](accessibility.mdx#colortoken) \| [`ColorToken`](accessibility.mdx#colortoken)[]
+
+Creates a palette that consists of a `baseColor` that is incremented by a `hueStep` to get the final color to pair with.
+The colors are then spline interpolated via white or black.
+
+A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color.
+
+#### Parameters
+
+• **baseColor**: [`ColorToken`](accessibility.mdx#colortoken)
+
+The color to return a paired color scheme from.
+
+• **options**: `PairedSchemeOptions`
+
+The optional overrides object to customize per channel options like interpolation methods and channel fixups.
+
+#### Returns
+
+[`ColorToken`](accessibility.mdx#colortoken) \| [`ColorToken`](accessibility.mdx#colortoken)[]
+
+#### Example
+
+```ts
+import { pair } from 'huetiful-js'
+
+console.log(pair("green",{hueStep:6,num:4,tone:'dark'}))
+// [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
+```
+
+#### Defined in
+
+generators/index.js:212
+
+***
+
+### pastel()
+
+> **pastel**(`baseColor`, `options`): [`ColorToken`](accessibility.mdx#colortoken)
+
+Returns a random pastel variant of the passed in color token.
+
+#### Parameters
+
+• **baseColor**: [`ColorToken`](accessibility.mdx#colortoken)
+
+The color to return a pastel variant of.
+
+• **options**: [`TokenOptions`](generators.mdx#tokenoptions) = `undefined`
+
+#### Returns
+
+[`ColorToken`](accessibility.mdx#colortoken)
+
+A random pastel color.
+
+#### Example
+
+```ts
+import { pastel } from 'huetiful-js'
+
+console.log(pastel("green"))
+
+// #036103ff
+```
+
+#### Defined in
+
+generators/index.js:158
+
+***
+
+### scheme()
+
+> **scheme**(`baseColor`, `options`): `Collection`
+
+Generates a randomised classic color scheme from the passed in color.
+
+The classic palette types are:
+
+* `triadic` - Picks 3 colors 120 degrees apart.
+* `tetradic` - Picks 4 colors 90 degrees apart.
+* `complimentary` - Picks 2 colors 180 degrees apart.
+* `monochromatic` - Picks `num` amount of colors from the same hue family   .
+* `analogous` - Picks 3 colors 12 degrees apart.
+
+The `kind` parameter can either be a string or an array:
+
+* If it is an array, each element should be a `kind` of palette. 
+It will return a color map with the array elements as keys.
+Duplicate values are simply ignored.
+* If it is a string it will return an array of colors of the specified `kind` of palette.
+* If it is falsy it will return a color map of all palettes.
+
+Note that the `num` parameter works on the `monochromatic` palette type only.
+
+#### Parameters
+
+• **baseColor**: [`ColorToken`](accessibility.mdx#colortoken) = `"cyan"`
+
+The color to create the palette(s) from.
+
+• **options**: `SchemeOptions`
+
+Optional overrides.
+
+#### Returns
+
+`Collection`
+
+#### Example
+
+```ts
+import { scheme } from 'huetiful-js'
+
+console.log(scheme("triadic")("#a1bd2f"))
+// [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
+```
+
+#### Defined in
+
+generators/index.js:510
+
+## References
+
+### ColorToken
+
+Re-exports [ColorToken](accessibility.mdx#colortoken)
+
+## Type Aliases
+
+### TokenOptions
+
+> **TokenOptions**: \{`kind`: `"num"` \| `"arr"` \| `"obj"` \| `"str"` \| `"temp"`;`normalizeRgb`: `boolean`;`numType`: `"expo"` \| `"hex"` \| `"oct"` \| `"bin"`;`omitAlpha`: `boolean`;`omitMode`: `boolean`;`srcMode`: [`Colorspaces`](collection.mdx#colorspaces);`targetMode`: [`Colorspaces`](collection.mdx#colorspaces); \}
+
+Overrides to customize the parsing and output behaviour.
+
+#### Type declaration
+
+##### kind?
+
+> `optional` **kind**: `"num"` \| `"arr"` \| `"obj"` \| `"str"` \| `"temp"`
+
+The type of color token to return. Default is `'str'`.
+
+##### normalizeRgb?
+
+> `optional` **normalizeRgb**: `boolean`
+
+If `true` and the passed in color token is an array or plain object and in the `srcMode` of `'rgb'` or `'lrgb'`,
+it will have all channels normalized back to [0,1] range if any of the channe values is beyond 1.
+
+This can help the parser to recognize RGB colors in the [0,255] range which Culori doesn't handle.
+
+Default is `false`.
+
+##### numType?
+
+> `optional` **numType**: `"expo"` \| `"hex"` \| `"oct"` \| `"bin"`
+
+The type of number to return. Only valid if kind is set to `'number'`. Default is `'literal'`
+
+##### omitAlpha?
+
+> `optional` **omitAlpha**: `boolean`
+
+If the `kind` is set to `'arr'` it will remove the alpha channel value from color tuple. Default is `false`.
+
+##### omitMode?
+
+> `optional` **omitMode**: `boolean`
+
+If the `kind` is set to `'arr'` it will remove the mode string from color tuple. Default is `false`.
+
+##### srcMode?
+
+> `optional` **srcMode**: [`Colorspaces`](collection.mdx#colorspaces)
+
+The mode in which the channel values are valid in. It is used for color arrays if they have the `colorspace` string ommitted. Default is `'rgb'`.
+
+##### targetMode?
+
+> `optional` **targetMode**: [`Colorspaces`](collection.mdx#colorspaces)
+
+The colorspace in which to return the color object or array in. Default is `'lch'`.
+
+#### Defined in
+
+types.d.ts:218
+
