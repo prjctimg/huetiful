@@ -1,4 +1,4 @@
-export default {
+const summary = {
   accessibility:
     "Functions to help ensure your palettes and color scales are accessible for a wider audience.",
   wrappers:
@@ -12,3 +12,4 @@ export default {
   collection:
     "Utilities for querying statistics,soring,filtering and distributing properties on collections of colors. ",
 };
+module.exports.default = summary;
