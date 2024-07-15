@@ -21,6 +21,8 @@
 
 #### Installation
 
+> [!NOTE]
+>
 > As of v3.0.0 the library is ESM only. You can [compile your own UMD build from source](https://github.com/prjctimg/huetiful) if you want it.
 
 ##### Using a package manager
@@ -61,16 +63,16 @@ You can use also a CDN in this example, jsdelivr to load the library remotely:
 > Make sure to set the `type` of the script tag to module when you load it in your HTML.
 
 ```js
-import {...} from 'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.js'
+import {...} from 'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js'
 
 ```
 
 Or load the library as your HTML file using a `<script>` tag:
 
 ```html
-# With script tag
+<!-- With script tag -->
 
-<script type='module' src='https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js'></script
+<script type='module' src='https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js'></script>
 
 
 <!-- Or, if you like it this way -->
@@ -100,9 +102,9 @@ let myPalette = colors('all','700')
 This project is fully open source! Contributions of any kind are greatly appreciated! See🔍 the [contributing page on the documentation site](./CONTRIBUTING.md) file for more information on how to get started.
 
 
- <pre>
-License ⚖️
+> #### License ⚖️
+>
+> © 2024, [Dean Tarisai](https://deantarisai.me)
+> Released under the [Apache-2.0](./LICENSE.md)
+> 🧪 & 🔬 with 🥃 in Crowhill,ZW
 
- © 2024, <a href="https://deantarisai.me">Dean Tarisai</a>
- <h5>Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h5>
- 🧪 & 🔬 with 🥃 in Crowhill,ZW</pre>
