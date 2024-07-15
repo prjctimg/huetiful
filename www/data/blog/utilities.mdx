@@ -27,7 +27,7 @@ The color token to test if it is achromatic or not.
 
 `boolean`
 
-[[include:achromatic.md]]
+\[\[include:achromatic.md]]
 
 #### Defined in
 
@@ -37,16 +37,16 @@ utilities/index.js:222
 
 ### alpha()
 
-> **alpha**(`color`, `amount`): `string` \| `number`
+> **alpha**(`color`, `amount`): `string` | `number`
 
 Returns the color token's alpha channel value.
 
- If the the `amount` parameter is passed in, it sets the color token's alpha channel with the `amount` specified 
+If the the `amount` parameter is passed in, it sets the color token's alpha channel with the `amount` specified
 and returns the color as a hex string.
 
-* Also supports math expressions as a `string` for the `amount` parameter. 
-For example `*0.5` which means the value multiply the current alpha by `0.5` and set the product as the new alpha value. 
-In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
+* Also supports math expressions as a `string` for the `amount` parameter.
+  For example `*0.5` which means the value multiply the current alpha by `0.5` and set the product as the new alpha value.
+  In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
 
 #### Parameters
 
@@ -54,13 +54,13 @@ In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`
 
 The color with the opacity/alpha channel to retrieve or set.
 
-• **amount**: `string` \| `number` = `undefined`
+• **amount**: `string` | `number` = `undefined`
 
 The value to apply to the opacity channel. The value is between `[0,1]`
 
 #### Returns
 
-`string` \| `number`
+`string` | `number`
 
 #### Example
 
@@ -86,7 +86,7 @@ utilities/index.js:81
 
 ### complimentary()
 
-> **complimentary**(`baseColor`, `obj`): `string` \| `number` \| `boolean` \| `object` \| `number`[] \| [`string`, `number`, `number`, `number`, `number?`] \| `Blob` \| `ArrayBuffer` \| \{`color`: [`ColorToken`](accessibility.mdx#colortoken);`factor`: `number`; \}
+> **complimentary**(`baseColor`, `obj`): `string` | `number` | `boolean` | `object` | `number`\[] | \[`string`, `number`, `number`, `number`, `number?`] | `Blob` | `ArrayBuffer` | \{`color`: [`ColorToken`](accessibility.mdx#colortoken);`factor`: `number`; }
 
 Returns the complimentary color of the passed in color token. A complimentary color is 180 degrees away on the hue channel.
 
@@ -109,7 +109,7 @@ Optional boolean whether to return an object with the result color's hue family 
 
 #### Returns
 
-`string` \| `number` \| `boolean` \| `object` \| `number`[] \| [`string`, `number`, `number`, `number`, `number?`] \| `Blob` \| `ArrayBuffer` \| \{`color`: [`ColorToken`](accessibility.mdx#colortoken);`factor`: `number`; \}
+`string` | `number` | `boolean` | `object` | `number`\[] | \[`string`, `number`, `number`, `number`, `number?`] | `Blob` | `ArrayBuffer` | \{`color`: [`ColorToken`](accessibility.mdx#colortoken);`factor`: `number`; }
 
 #### Example
 
@@ -222,7 +222,7 @@ The color to retrieve or adjust luminance.
 
 • **amount?**: `number`
 
-The amount of luminance to set. The value range is normalised between [0,1]
+The amount of luminance to set. The value range is normalised between \[0,1]
 
 #### Returns
 
@@ -289,7 +289,7 @@ The mode and channel to be retrieved. For example `'rgb.b'` will return the valu
 
 • **color**: [`ColorToken`](accessibility.mdx#colortoken)
 
-• **value?**: `string` \| `number` = `undefined`
+• **value?**: `string` | `number` = `undefined`
 
 ##### Returns
 
@@ -312,7 +312,7 @@ utilities/index.js:165
 
 ### overtone()
 
-> **overtone**(`color`): `string` \| `false`
+> **overtone**(`color`): `string` | `false`
 
 Returns the name of the hue family which is biasing the passed in color.
 
@@ -327,7 +327,7 @@ The color to query its overtone.
 
 #### Returns
 
-`string` \| `false`
+`string` | `false`
 
 #### Example
 
@@ -352,7 +352,7 @@ utilities/index.js:701
 
 ### temp()
 
-> **temp**(`color`): `"warm"` \| `"cool"`
+> **temp**(`color`): `"warm"` | `"cool"`
 
 Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'`.
 
@@ -364,7 +364,7 @@ The color to check the temperature.
 
 #### Returns
 
-`"warm"` \| `"cool"`
+`"warm"` | `"cool"`
 
 True if the color is cool else false.
 
@@ -406,12 +406,13 @@ The `kind` option supports the following types as options:
 * `'num'` - Parses the color token to its numerical equivalent to a number between `0` and `16,777,215`.
 
 The `numberType` can be used to specify which type of number to return if the `kind` option is set to `'number'`:
- - `'hex'` - Hexadecimal number
- - `'bin'` - Binary number
- - `'oct'` - Octal number
- - `'expo'` - Decimal exponential notation
 
-* `'str'` - Parses the color token to its hexadecimal string equivalent.
+* `'hex'` - Hexadecimal number
+* `'bin'` - Binary number
+* `'oct'` - Octal number
+* `'expo'` - Decimal exponential notation
+
+- `'str'` - Parses the color token to its hexadecimal string equivalent.
 
 If the color token has an explicit `alpha` (specified by the `alpha` key in color objects and as the fourth and last number in a color array) the string will be 8 characters long instead of 6.
 
@@ -446,7 +447,7 @@ Re-exports [ColorToken](accessibility.mdx#colortoken)
 
 ### ScaleValues
 
-> **ScaleValues**: `"050"` \| `"100"` \| `"200"` \| `"300"` \| `"400"` \| `"500"` \| `"600"` \| `"700"` \| `"800"` \| `"900"` \| `"950"`
+> **ScaleValues**: `"050"` | `"100"` | `"200"` | `"300"` | `"400"` | `"500"` | `"600"` | `"700"` | `"800"` | `"900"` | `"950"`
 
 The value of the Tailwind color.
 
@@ -458,7 +459,7 @@ types.d.ts:472
 
 ### TailwindColorFamilies
 
-> **TailwindColorFamilies**: `"indigo"` \| `"gray"` \| `"zinc"` \| `"neutral"` \| `"stone"` \| `"red"` \| `"orange"` \| `"amber"` \| `"yellow"` \| `"lime"` \| `"green"` \| `"emerald"` \| `"teal"` \| `"sky"` \| `"blue"` \| `"violet"` \| `"purple"` \| `"fuchsia"` \| `"pink"` \| `"rose"`
+> **TailwindColorFamilies**: `"indigo"` | `"gray"` | `"zinc"` | `"neutral"` | `"stone"` | `"red"` | `"orange"` | `"amber"` | `"yellow"` | `"lime"` | `"green"` | `"emerald"` | `"teal"` | `"sky"` | `"blue"` | `"violet"` | `"purple"` | `"fuchsia"` | `"pink"` | `"rose"`
 
 Color families in the default TailwindCSS palette.
 

@@ -13,21 +13,22 @@ canonicalUrl: https://huetiful-js.com/api/palettes
 
 ### colors()
 
-> **colors**(`shade`, `value`): `string` \| `string`[]
+> **colors**(`shade`, `value`): `string` | `string`\[]
 
 Returns TailwindCSS color value(s) from the default palette.
 
 The function behaves as follows:
 
 * If called with both `shade` and `value` parameters, it returns that color as a hex string. For example `'blue'` and `'500'` would return the equivalent of `blue-500`.
-* If called with no parameters or just the `'all'` parameter as the `shade`, it returns an array of colors from `'050'` to `'900'` for every `shade`. 
+* If called with no parameters or just the `'all'` parameter as the `shade`, it returns an array of colors from `'050'` to `'900'` for every `shade`.
 
 Note that to specify `'050'` as a number you just pass `50`. Values are all valid as string or number for example `'100'` and`100` .
+
 * If the `shade ` is `'all'` and the `value` is specified, it returns an array of colors at the specified `value` for each `shade`.
 
 #### Parameters
 
-• **shade**: [`TailwindColorFamilies`](utilities.mdx#tailwindcolorfamilies) \| `"all"` = `"all"`
+• **shade**: [`TailwindColorFamilies`](utilities.mdx#tailwindcolorfamilies) | `"all"` = `"all"`
 
 The hue family to return.
 
@@ -37,7 +38,7 @@ The tone value of the shade. Values are in incrementals of `100`. For example nu
 
 #### Returns
 
-`string` \| `string`[]
+`string` | `string`\[]
 
 #### Example
 
@@ -114,7 +115,7 @@ Returns the nearest color(s) in a collection as compared `against` the passed in
 
 #### Parameters
 
-• **collection**: `Collection` \| `"tailwind"`
+• **collection**: `Collection` | `"tailwind"`
 
 The collection of colors to search for nearest colors.
 
@@ -179,7 +180,7 @@ palettes/index.js:700
 
 ### sequential()
 
-> **sequential**(`scheme`): `Collection` \| [`ColorToken`](accessibility.mdx#colortoken)
+> **sequential**(`scheme`): `Collection` | [`ColorToken`](accessibility.mdx#colortoken)
 
 A wrapper function for ColorBrewer's map of sequential color schemes.
 
@@ -191,7 +192,7 @@ The name of the scheme.
 
 #### Returns
 
-`Collection` \| [`ColorToken`](accessibility.mdx#colortoken)
+`Collection` | [`ColorToken`](accessibility.mdx#colortoken)
 
 A collection of colors in the specified colorspace. The default is hex if `colorspace` is `undefined.`
 
@@ -219,7 +220,7 @@ palettes/index.js:324
 
 ### DivergingScheme
 
-> **DivergingScheme**: `"Spectral"` \| `"RdYlGn"` \| `"RdBu"` \| `"PiYG"` \| `"PRGn"` \| `"RdYlBu"` \| `"BrBG"` \| `"RdGy"` \| `"PuOr"`
+> **DivergingScheme**: `"Spectral"` | `"RdYlGn"` | `"RdBu"` | `"PiYG"` | `"PRGn"` | `"RdYlBu"` | `"BrBG"` | `"RdGy"` | `"PuOr"`
 
 The `diverging` color scheme in the ColorBrewer colormap.
 
@@ -231,7 +232,7 @@ types.d.ts:379
 
 ### QualitativeScheme
 
-> **QualitativeScheme**: `"Set2"` \| `"Accent"` \| `"Set1"` \| `"Set3"` \| `"Dark2"` \| `"Paired"` \| `"Pastel2"` \| `"Pastel1"`
+> **QualitativeScheme**: `"Set2"` | `"Accent"` | `"Set1"` | `"Set3"` | `"Dark2"` | `"Paired"` | `"Pastel2"` | `"Pastel1"`
 
 The `qualitative` color scheme in the ColorBrewer colormap.
 
@@ -243,7 +244,7 @@ types.d.ts:393
 
 ### SequentialScheme
 
-> **SequentialScheme**: `"OrRd"` \| `"PuBu"` \| `"BuPu"` \| `"Oranges"` \| `"BuGn"` \| `"YlOrBr"` \| `"YlGn"` \| `"Reds"` \| `"RdPu"` \| `"Greens"` \| `"YlGnBu"` \| `"Purples"` \| `"GnBu"` \| `"Greys"` \| `"YlOrRd"` \| `"PuRd"` \| `"Blues"` \| `"PuBuGn"` \| `"Viridis"`
+> **SequentialScheme**: `"OrRd"` | `"PuBu"` | `"BuPu"` | `"Oranges"` | `"BuGn"` | `"YlOrBr"` | `"YlGn"` | `"Reds"` | `"RdPu"` | `"Greens"` | `"YlGnBu"` | `"Purples"` | `"GnBu"` | `"Greys"` | `"YlOrRd"` | `"PuRd"` | `"Blues"` | `"PuBuGn"` | `"Viridis"`
 
 The `sequential` color scheme in the ColorBrewer colormap.
 

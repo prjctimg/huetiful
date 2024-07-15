@@ -6,12 +6,12 @@
 
 > **discover**(`colors`, `options`): `Collection`
 
-Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes. 
+Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes.
 
 The function returns different values based on the `kind` parameter passed in:
 
 * An array of colors for the `kind` of scheme, if the `kind` parameter is specified.
-* Else it returns an object of all the palette types as keys and their values as an array of colors. 
+* Else it returns an object of all the palette types as keys and their values as an array of colors.
 
 If no colors are valid for the palette types it returns an empty array for the palette results. It does not work with achromatic colors thus they're excluded from the resulting collection.
 
@@ -58,7 +58,7 @@ generators/index.js:389
 
 ### earthtone()
 
-> **earthtone**(`baseColor`, `options`): [`ColorToken`](accessibility.mdx#colortoken) \| [`ColorToken`](accessibility.mdx#colortoken)[]
+> **earthtone**(`baseColor`, `options`): [`ColorToken`](accessibility.mdx#colortoken) | [`ColorToken`](accessibility.mdx#colortoken)\[]
 
 Creates a color scale between an earth tone and any color token using spline interpolation.
 
@@ -74,7 +74,7 @@ Optional overrides for customising interpolation and easing functions.
 
 #### Returns
 
-[`ColorToken`](accessibility.mdx#colortoken) \| [`ColorToken`](accessibility.mdx#colortoken)[]
+[`ColorToken`](accessibility.mdx#colortoken) | [`ColorToken`](accessibility.mdx#colortoken)\[]
 
 #### Example
 
@@ -93,7 +93,7 @@ generators/index.js:447
 
 ### hueshift()
 
-> **hueshift**(`baseColor`, `options`): `any`[]
+> **hueshift**(`baseColor`, `options`): `any`\[]
 
 Creates a palette of hue shifted colors from the passed in color.
 
@@ -104,7 +104,7 @@ Hue shifting means that:
 
 The `minLightness` and `maxLightness` values determine how dark or light our color will be at either extreme respectively.
 
- The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or `(num * 2) + 1`.
+The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or `(num * 2) + 1`.
 
 #### Parameters
 
@@ -118,7 +118,7 @@ The optional overrides object.
 
 #### Returns
 
-`any`[]
+`any`\[]
 
 #### Example
 
@@ -147,9 +147,9 @@ generators/index.js:80
 
 ### interpolator()
 
-> **interpolator**(`baseColors`, `options`): [`ColorToken`](accessibility.mdx#colortoken)[]
+> **interpolator**(`baseColors`, `options`): [`ColorToken`](accessibility.mdx#colortoken)\[]
 
-Interpolates the passed in colors and returns a color scale that is evenly split into `num` amount of samples. 
+Interpolates the passed in colors and returns a color scale that is evenly split into `num` amount of samples.
 
 The interpolation behaviour can be overidden allowing us to get slightly different effects from the same `baseColors`.
 
@@ -157,16 +157,16 @@ The behaviour of the interpolation can be customized by:
 
 * Changing the `kind` of interpolation
 
-	* natural
-	* basis
-	* monotone
+  * natural
+  * basis
+  * monotone
 * Changing the easing function (`easingFn`)
- 
-  * 
+
+  *
 
 Some things to keep in mind when creating color scales using this function:
 
-* To create a color scale for cyclic values pass `true` to the `closed` parameter in the `options` object. 
+* To create a color scale for cyclic values pass `true` to the `closed` parameter in the `options` object.
 * If `num` is 1 then a single color is returned from the resulting interpolation with the internal `t` value at `0.5` else a collection of the `num` of color scales is returned.
 * If the collection of colors contains an achromatic color, the resulting samples may all be grayscale or pure black.
 
@@ -182,7 +182,7 @@ Optional overrides.
 
 #### Returns
 
-[`ColorToken`](accessibility.mdx#colortoken)[]
+[`ColorToken`](accessibility.mdx#colortoken)\[]
 
 #### Example
 
@@ -207,7 +207,7 @@ generators/index.js:293
 
 ### pair()
 
-> **pair**(`baseColor`, `options`): [`ColorToken`](accessibility.mdx#colortoken) \| [`ColorToken`](accessibility.mdx#colortoken)[]
+> **pair**(`baseColor`, `options`): [`ColorToken`](accessibility.mdx#colortoken) | [`ColorToken`](accessibility.mdx#colortoken)\[]
 
 Creates a palette that consists of a `baseColor` that is incremented by a `hueStep` to get the final color to pair with.
 The colors are then spline interpolated via white or black.
@@ -226,7 +226,7 @@ The optional overrides object to customize per channel options like interpolatio
 
 #### Returns
 
-[`ColorToken`](accessibility.mdx#colortoken) \| [`ColorToken`](accessibility.mdx#colortoken)[]
+[`ColorToken`](accessibility.mdx#colortoken) | [`ColorToken`](accessibility.mdx#colortoken)\[]
 
 #### Example
 
@@ -295,9 +295,9 @@ The classic palette types are:
 
 The `kind` parameter can either be a string or an array:
 
-* If it is an array, each element should be a `kind` of palette. 
-It will return a color map with the array elements as keys.
-Duplicate values are simply ignored.
+* If it is an array, each element should be a `kind` of palette.
+  It will return a color map with the array elements as keys.
+  Duplicate values are simply ignored.
 * If it is a string it will return an array of colors of the specified `kind` of palette.
 * If it is falsy it will return a color map of all palettes.
 
@@ -340,7 +340,7 @@ Re-exports [ColorToken](accessibility.mdx#colortoken)
 
 ### TokenOptions
 
-> **TokenOptions**: \{`kind`: `"num"` \| `"arr"` \| `"obj"` \| `"str"` \| `"temp"`;`normalizeRgb`: `boolean`;`numType`: `"expo"` \| `"hex"` \| `"oct"` \| `"bin"`;`omitAlpha`: `boolean`;`omitMode`: `boolean`;`srcMode`: [`Colorspaces`](collection.mdx#colorspaces);`targetMode`: [`Colorspaces`](collection.mdx#colorspaces); \}
+> **TokenOptions**: \{`kind`: `"num"` | `"arr"` | `"obj"` | `"str"` | `"temp"`;`normalizeRgb`: `boolean`;`numType`: `"expo"` | `"hex"` | `"oct"` | `"bin"`;`omitAlpha`: `boolean`;`omitMode`: `boolean`;`srcMode`: [`Colorspaces`](collection.mdx#colorspaces);`targetMode`: [`Colorspaces`](collection.mdx#colorspaces); }
 
 Overrides to customize the parsing and output behaviour.
 
@@ -348,7 +348,7 @@ Overrides to customize the parsing and output behaviour.
 
 ##### kind?
 
-> `optional` **kind**: `"num"` \| `"arr"` \| `"obj"` \| `"str"` \| `"temp"`
+> `optional` **kind**: `"num"` | `"arr"` | `"obj"` | `"str"` | `"temp"`
 
 The type of color token to return. Default is `'str'`.
 
@@ -357,15 +357,15 @@ The type of color token to return. Default is `'str'`.
 > `optional` **normalizeRgb**: `boolean`
 
 If `true` and the passed in color token is an array or plain object and in the `srcMode` of `'rgb'` or `'lrgb'`,
-it will have all channels normalized back to [0,1] range if any of the channe values is beyond 1.
+it will have all channels normalized back to \[0,1] range if any of the channe values is beyond 1.
 
-This can help the parser to recognize RGB colors in the [0,255] range which Culori doesn't handle.
+This can help the parser to recognize RGB colors in the \[0,255] range which Culori doesn't handle.
 
 Default is `false`.
 
 ##### numType?
 
-> `optional` **numType**: `"expo"` \| `"hex"` \| `"oct"` \| `"bin"`
+> `optional` **numType**: `"expo"` | `"hex"` | `"oct"` | `"bin"`
 
 The type of number to return. Only valid if kind is set to `'number'`. Default is `'literal'`
 

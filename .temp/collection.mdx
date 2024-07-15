@@ -33,16 +33,21 @@ collection/index.js:268
 > **filterBy**(`collection`, `options`): `Collection`
 
 Filters a collection of colors using the specified `factor` as the criterion. The supported options are:
+
 * `'contrast'` - Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
+
 * `'lightness'` - Returns colors in the specified lightness range.
+
 * `'chroma'` - Returns colors in the specified `saturation` or `chroma` range. The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
 
 * `'distance'` - Returns colors with the specified `distance` range. The `distance` is tested against a comparison color (the 'against' param) and the specified `distance` ranges. Uses the `differenceHyab` metric for calculating the distances.
+
 * `luminance` - Returns colors in the specified luminance range.
+
 * `'hue'` - Returns colors in the specified hue ranges between 0 to 360.
 
-For the `chroma` and `lightness` factors, the range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range. 
-This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. 
+For the `chroma` and `lightness` factors, the range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
+This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range.
 But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
 
 #### Parameters
@@ -59,7 +64,7 @@ The collection of colors to filter.
 
 #### See
 
-https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
+[https://culorijs.org/color-spaces/](https://culorijs.org/color-spaces/) For the expected ranges per colorspace.
 
 Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
 
@@ -96,11 +101,11 @@ collection/index.js:354
 Sorts colors according to the specified `factor`. The supported options are:
 
 * `'contrast'` - Sorts colors according to their contrast value as defined by WCAG.
-The contrast is tested `against` a comparison color  which can be specified in the `options` object.
+  The contrast is tested `against` a comparison color  which can be specified in the `options` object.
 * `'lightness'` - Sorts colors according to their lightness.
 * `'chroma'` - Sorts colors according to the intensity of their `chroma` in the `colorspace` specified in the `options` object.
 * `'distance'` - Sorts colors according to their distance.
-The distance is computed from the `against` color token which is used for comparison for all the colors in the `collection`.
+  The distance is computed from the `against` color token which is used for comparison for all the colors in the `collection`.
 * `luminance` - Sorts colors according to their relative brightness as defined by the WCAG3 definition.
 
 The return type is determined by the type of `collection`:
@@ -151,22 +156,25 @@ The properties from each returned `factor` object are:
 
 Required for the `distance` and `contrast` factors.
 If `relativeMean` is `false`, other factors that take the comparison color token as an overload will have this property's value as `null`.
+
 * `colorspace` - The colorspace in which the factors were computed in. It has no effect on the `contrast` or `distance` factors (for now).
 
 * `extremums` - An array of the minimum and the maximum value (respectively) of the `factor`.
+
 * `colors` - An array of color tokens that have the minimum and maximum `extremum` values respectively.
+
 * `mean` - The average value for the `factor`.
 
 The `mean` property can be overloaded by the `relativeMean` option:
 
 * If `relativeMean` is `true`, the `against` option will be used as a subtrahend for calculating the distance between each `extremum`.
-For example, it will mean "Get the largest/smallest distance between `factor` as compared `against` this color token otherwise just get the smallest/largest `factor` from thr passed in collection."
+  For example, it will mean "Get the largest/smallest distance between `factor` as compared `against` this color token otherwise just get the smallest/largest `factor` from thr passed in collection."
 
 These properties are available at the topmost level of the resultant object:
 
-* `achromatic` - The amount of colors which are gray out of the total colors in the collection as a value in the range [0,1].
+* `achromatic` - The amount of colors which are gray out of the total colors in the collection as a value in the range \[0,1].
 * `colorspace` - The colorspace in which the values were computed from, expected to be hue based.
-Defaults to `lch` if an invalid mode like `rgb` is used.
+  Defaults to `lch` if an invalid mode like `rgb` is used.
 
 #### Parameters
 
@@ -194,7 +202,7 @@ Re-exports [ColorToken](accessibility.mdx#colortoken)
 
 ### Colorspaces
 
-> **Colorspaces**: `"lab"` \| `"lab65"` \| `"lrgb"` \| `"oklab"` \| `"rgb"` \| `"lch"` \| `"jch"` \| `"lch"` \| `"lch65"` \| `"oklch"` \| `"hsv"` \| `"hwb"`
+> **Colorspaces**: `"lab"` | `"lab65"` | `"lrgb"` | `"oklab"` | `"rgb"` | `"lch"` | `"jch"` | `"lch"` | `"lch65"` | `"oklch"` | `"hsv"` | `"hwb"`
 
 The `colorspace` or `mode` to use.
 
@@ -206,7 +214,7 @@ types.d.ts:455
 
 ### DistributionOptions
 
-> **DistributionOptions**: `Pick`\<`InterpolatorOptions`, `"hueFixup"`\> & \{`colorspace`: [`Colorspaces`](collection.mdx#colorspaces);`excludeAchromatic`: `boolean`;`excludeSelf`: `boolean`;`extremum`: `"min"` \| `"max"` \| `"mean"`;`token`: [`TokenOptions`](generators.mdx#tokenoptions); \}
+> **DistributionOptions**: `Pick`\<`InterpolatorOptions`, `"hueFixup"`> & \{`colorspace`: [`Colorspaces`](collection.mdx#colorspaces);`excludeAchromatic`: `boolean`;`excludeSelf`: `boolean`;`extremum`: `"min"` | `"max"` | `"mean"`;`token`: [`TokenOptions`](generators.mdx#tokenoptions); }
 
 Override options for factor distributed palettes.
 
@@ -232,7 +240,7 @@ Exclude the color with the specified `extremum` from the distribution operation.
 
 ##### extremum?
 
-> `optional` **extremum**: `"min"` \| `"max"` \| `"mean"`
+> `optional` **extremum**: `"min"` | `"max"` | `"mean"`
 
 The extreme end for the `factor`  we wish to distribute. If `mean` is picked, it will map the `average` value of that factor in the passed in collection.
 
@@ -250,7 +258,7 @@ types.d.ts:122
 
 ### Factor
 
-> **Factor**: `"luminance"` \| `"chroma"` \| `"contrast"` \| `"distance"` \| `"lightness"` \| `"hue"`
+> **Factor**: `"luminance"` | `"chroma"` | `"contrast"` | `"distance"` | `"lightness"` | `"hue"`
 
 The color property being queried.
 
@@ -262,7 +270,7 @@ types.d.ts:442
 
 ### SortByOptions
 
-> **SortByOptions**: \{`against`: [`ColorToken`](accessibility.mdx#colortoken);`colorspace`: [`Colorspaces`](collection.mdx#colorspaces);`factor`: [`Factor`](collection.mdx#factor);`order`: `"asc"` \| `"desc"`;`relative`: `boolean`; \}
+> **SortByOptions**: \{`against`: [`ColorToken`](accessibility.mdx#colortoken);`colorspace`: [`Colorspaces`](collection.mdx#colorspaces);`factor`: [`Factor`](collection.mdx#factor);`order`: `"asc"` | `"desc"`;`relative`: `boolean`; }
 
 Options for specifying sorting conditions.
 
@@ -290,7 +298,7 @@ The factor to use for sorting the colors.
 
 ##### order?
 
-> `optional` **order**: `"asc"` \| `"desc"`
+> `optional` **order**: `"asc"` | `"desc"`
 
 The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`).
 
@@ -310,7 +318,7 @@ types.d.ts:283
 
 ### StatsOptions
 
-> **StatsOptions**: \{`against`: [`ColorToken`](accessibility.mdx#colortoken);`colorspace`: [`Colorspaces`](collection.mdx#colorspaces);`factor`: [`Factor`](collection.mdx#factor) \| [`Factor`](collection.mdx#factor)[];`relative`: `boolean`; \}
+> **StatsOptions**: \{`against`: [`ColorToken`](accessibility.mdx#colortoken);`colorspace`: [`Colorspaces`](collection.mdx#colorspaces);`factor`: [`Factor`](collection.mdx#factor) | [`Factor`](collection.mdx#factor)\[];`relative`: `boolean`; }
 
 Optional parameters to specify how the data should be computed.
 
@@ -330,13 +338,13 @@ The colorspace to perform the sorting operation in. It is ignored when the facto
 
 ##### factor?
 
-> `optional` **factor**: [`Factor`](collection.mdx#factor) \| [`Factor`](collection.mdx#factor)[]
+> `optional` **factor**: [`Factor`](collection.mdx#factor) | [`Factor`](collection.mdx#factor)\[]
 
 ##### relative?
 
 > `optional` **relative**: `boolean`
 
-Choose whether to use the `against` color token for factors that support it as an overload (that is, all factors except `distance` and `contrast)
+Choose whether to use the `against` color token for factors that support it as an overload (that is, all factors except `distance` and \`contrast)
 
 #### Defined in
 

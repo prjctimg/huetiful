@@ -83,13 +83,13 @@ accessibility/index.js:140
 
 ### AdaptivePaletteOptions
 
-> **AdaptivePaletteOptions**: \{`backgroundColor`: \{`dark`: [`ColorToken`](accessibility.mdx#colortoken);`light`: [`ColorToken`](accessibility.mdx#colortoken); \};`colorBlind`: `boolean`; \}
+> **AdaptivePaletteOptions**: \{`backgroundColor`: \{`dark`: [`ColorToken`](accessibility.mdx#colortoken);`light`: [`ColorToken`](accessibility.mdx#colortoken); };`colorBlind`: `boolean`; }
 
 #### Type declaration
 
 ##### backgroundColor?
 
-> `optional` **backgroundColor**: \{`dark`: [`ColorToken`](accessibility.mdx#colortoken);`light`: [`ColorToken`](accessibility.mdx#colortoken); \}
+> `optional` **backgroundColor**: \{`dark`: [`ColorToken`](accessibility.mdx#colortoken);`light`: [`ColorToken`](accessibility.mdx#colortoken); }
 
 ##### backgroundColor.dark?
 
@@ -115,7 +115,7 @@ types.d.ts:44
 
 ### ColorToken
 
-> **ColorToken**: `number` \| `object` \| `ColorTuple` \| `boolean` \| `string` \| `Blob` \| `ArrayBuffer`
+> **ColorToken**: `number` | `object` | `ColorTuple` | `boolean` | `string` | `Blob` | `ArrayBuffer`
 
 Any recognizable color token.
 
@@ -127,7 +127,7 @@ types.d.ts:430
 
 ### DeficiencyOptions
 
-> **DeficiencyOptions**: \{`kind`: [`DeficiencyType`](accessibility.mdx#deficiencytype);`severity`: `number`;`token`: [`TokenOptions`](generators.mdx#tokenoptions); \}
+> **DeficiencyOptions**: \{`kind`: [`DeficiencyType`](accessibility.mdx#deficiencytype);`severity`: `number`;`token`: [`TokenOptions`](generators.mdx#tokenoptions); }
 
 Overrides to specify the type of color blindness and filter intensity.
 
@@ -143,7 +143,7 @@ The type of color vision deficiency.  Default is `'red'`
 
 > `optional` **severity**: `number`
 
-The intensity of the filter. The exepected value is between [0,1]. Default is `0.1`.
+The intensity of the filter. The exepected value is between \[0,1]. Default is `0.1`.
 
 ##### token?
 
@@ -159,7 +159,7 @@ types.d.ts:200
 
 ### DeficiencyType
 
-> **DeficiencyType**: `"red"` \| `"blue"` \| `"green"` \| `"monochromacy"`
+> **DeficiencyType**: `"red"` | `"blue"` | `"green"` | `"monochromacy"`
 
 The type of color vision defeciency.
 
