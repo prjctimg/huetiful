@@ -1,5 +1,5 @@
 var fs = require("fs"),
-  summ = require("../www/data/summary.json");
+  summ = require("../www/data/summary");
 
 function page(title, date, lastmod, summary, content) {
   return `---
