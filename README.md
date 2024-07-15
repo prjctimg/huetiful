@@ -73,7 +73,7 @@ Or load the library as your HTML file using a `<script>` tag:
 <script type='module' src='https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js'></script
 
 
-# Or, if you like it this way
+<!-- Or, if you like it this way -->
 
 <script>
 
@@ -104,6 +104,5 @@ This project is fully open source! Contributions of any kind are greatly appreci
 License ⚖️
 
  © 2024, <a href="https://deantarisai.me">Dean Tarisai</a>
- Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h5>
+ <h5>Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h5>
  🧪 & 🔬 with 🥃 in Crowhill,ZW</pre>
-</pre>
