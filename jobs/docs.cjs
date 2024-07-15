@@ -30,18 +30,8 @@ for (const doc of [
     `./www/data/blog/${doc}.mdx`,
     page(
       doc,
-      meta.birthtime.toLocaleDateString("en-US", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      }),
-      meta.mtime.toLocaleDateString("en-US", {
-        dayPeriod: "short",
-        day: "2-digit",
-        month: "short",
-
-        weekday: "short",
-      }),
+      meta.birthtime.toISOString().split("T")[0],
+      meta.mtime.toISOString().split("T")[0],
       summ[doc],
       fs.readFileSync(pathToMD + doc + ".mdx", "utf8")
     )
