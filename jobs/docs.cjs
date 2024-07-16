@@ -1,12 +1,26 @@
 var fs = require("fs"),
-  summ = require("../www/data/summary");
+  summ = {
+    accessibility:
+      "Functions to help ensure your palettes and color scales are accessible for a wider audience.",
+    wrappers:
+      'Wrapper functions for creating "read-manipulate-output " chains (via method chaining) for a more concise syntax.',
+    generators:
+      "Utilites for creating palettes by mapping strategic values to target channels on color tokens.",
+    palettes:
+      "Precomputed color maps from Tailwind and ColorBrewer exposed as wrapper functions making it easy to get your designs started.",
+    utilities:
+      "Functions for general purpose set/get snd conversion operations on color tokens.",
+    collection:
+      "Utilities for querying statistics,soring,filtering and distributing properties on collections of colors. ",
+  };
 
-function page(title, date, lastmod, summary, content) {
+function page(title, date, lastmod, summary, content, canonicalUrl) {
   return `---
 title: ${title}
 date: ${date}
 lastmod: ${lastmod}
-summary: ${summary}
+${summary ? `summary: ${summary}` : ""}
+canonicalUrl: ${canonicalUrl}
 ---
 \n
 ${content}
@@ -33,9 +47,22 @@ for (const doc of [
       meta.birthtime.toISOString().split("T")[0],
       meta.mtime.toISOString().split("T")[0],
       summ[doc],
-      fs.readFileSync(pathToMD + doc + ".mdx", "utf8")
+      fs.readFileSync(pathToMD + doc + ".mdx", "utf8"),
+      `https://huetiful-js.com/api/${doc}`
     )
   );
 }
 
-fs.rmdirSync("./.temp", { force: true, recursive: true });
+//fs.rmdirSync("./.temp", { force: true, recursive: true });
+const meta = fs.statSync(`./README.md`);
+fs.writeFileSync(
+  `./www/data/blog/index.mdx`,
+  page(
+    `Home`,
+    meta.birthtime.toISOString().split("T")[0],
+    meta.mtime.toISOString().split("T")[0],
+    undefined,
+    fs.readFileSync(pathToMD + "index.mdx", "utf8"),
+    "https://huetiful-js.com"
+  )
+);

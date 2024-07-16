@@ -30,8 +30,10 @@
     "jasmine": "5.1.0",
     "nodemon": "^3.0.1",
     "prettier": "^3.2.0",
+    "remark-toc": "^9.0.0",
     "typedoc": "^0.26.4",
     "typedoc-plugin-markdown": "^4.2.0",
+    "typedoc-plugin-remark": "^1.0.2",
     "typescript": "^5.0.2"
   },
   "scripts": {
@@ -72,12 +74,10 @@
     "expandObjects": true,
     "excludeNotDocumented": true,
     "excludeReferences": false,
-  
     "plugin": [
       "typedoc-plugin-markdown",
-      "./jobs/navigation.mjs"
+      "typedoc-plugin-remark"
     ],
-  
     "entryPointStrategy": "resolve",
     "out": ".temp",
     "exclude": [
@@ -90,9 +90,10 @@
       "Property",
       "Method",
       "TypeAlias"
-    ],"hidePageTitle":true,  
+    ],
+    "hidePageTitle": true,
     "hidePageHeader": true,
-    "hideGroupHeadings":false,
+    "hideGroupHeadings": false,
     "tsconfig": "./tsconfig.json",
     "gitRemote": "main"
   },
@@ -163,5 +164,4 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   }
-
 }
