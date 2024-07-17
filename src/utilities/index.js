@@ -7,6 +7,10 @@
  * @typedef {import('../types.js').ScaleValues} ScaleValues
  */
 
+/**
+ *
+ */
+
 import {
   colorsNamed,
   useMode,
@@ -419,7 +423,7 @@ function token(color, options = undefined) {
        *								The following variables are valid if the token is a collection only
        * 								- x is an array of channel keys
        * 								- y is the array of channel values computed according to color tuple length
-       * 								- z is the alpha channel captured if it exists in the color tuple
+       * 								- z is the alpha channel captured if it exists in the color token
        *
        *
        *
@@ -428,13 +432,29 @@ function token(color, options = undefined) {
       var [x, y, z] = [
         gmchn(or(srcMode, targetMode)),
         or(
+          // if the color is an array just take the values whilst optionally omitting the colorspace (if specified)
           and(
             and(isArray(color), eq(typeof color[0], "string")),
             color.slice(1)
           ),
           color
         ),
-        or(and(eq(color?.length, 5), color[4]), undefined),
+        // check if the alpha channel is explicitly specified else cast 1 as the default
+        or(
+          or(and(eq(color?.length, 5), color[4]), 1),
+
+          // if its a string and has 8 or more characters (ignoring #) and is not a CSS named color take the last two characters and convert them from hex
+          and(
+            and(
+              and(
+                eq(typeof color, "string"),
+                not(colorsNamed[color?.toLowerCase()])
+              ),
+              gte(color?.length, 8)
+            ),
+            parseInt(color?.slice(color?.length - 2), 16)
+          )
+        ),
       ];
 
       /**
@@ -505,10 +525,29 @@ function token(color, options = undefined) {
           j[k] = color[v];
         }
 
-        // dont add mode string if true
-        omitMode ? j : j.unshift(targetMode);
+        // if true, remove the
+        or(
+          and(
+            omitMode,
+            or(
+              and(eq(kind, "arr"), j.unshift(targetMode)),
+              and(eq(kind, "obj"), delete j?.mode)
+            ),
+            j
+          )
+        );
+
         // dont add alpha channel if true
-        omitAlpha ? j : j.push(or(z, 1));
+        or(
+          and(
+            omitAlpha,
+            or(
+              and(eq(kind, "arr"), j.push(z)),
+              and(eq(kind, "obj"), delete j?.alpha)
+            )
+          ),
+          j
+        );
 
         return j;
       }
