@@ -358,6 +358,52 @@ function token(color, options = undefined) {
   normalizeRgb = or(normalizeRgb, false);
 
   /*
+   * 							* GLOBALS
+   *								The following variables are valid if the token is a collection only
+   * 								- x is an array of channel keys from the source colorspace. If undefined it defaults to LCH
+   * 								- y is the array of channel values computed according to color tuple length
+   * 								- z is the alpha channel captured if it exists in the color token
+   *
+   *
+   *
+   */
+
+  // if the color is an array turn it to an object
+
+  var x = gmchn(or(srcMode, targetMode)),
+    [y, z] = [
+      or(
+        or(
+          // if the color is an array just take the values whilst optionally omitting the colorspace (if specified)
+          and(
+            and(isArray(color), eq(typeof color[0], "string")),
+            color.slice(1)
+          ),
+          color
+        ),
+        and(
+          eq(typeof color, "object"),
+          x.map((c) => color[c])
+        )
+      ),
+      // check if the alpha channel is explicitly specified else cast 1 as the default
+      or(
+        or(and(eq(color?.length, 5), color[4]), 1),
+
+        // if its a string and has 8 or more characters (ignoring #) and is not a CSS named colortake the last two characters and convert them from hex
+        and(
+          and(
+            and(eq(typeof color, "string"), not(colorsNamed[color])),
+            gte(color?.length, 8)
+          ),
+          parseInt(color?.slice(color?.length - 2), 16)
+        )
+      ),
+    ];
+
+  // convert the color to a target mode if it is specified
+
+  /*
    *				* GLOBAL CONVERTER FUNCTIONS (listed respectively to declarations)
    *
    *						- num2c - converts a number to an RGB color object
@@ -369,195 +415,144 @@ function token(color, options = undefined) {
    *
    */
 
-  var num2c = () => {
-      // Ported from chroma-js with slight modifications
-      //
-      //
-
-      return and(
-        and(eq(typeof color, "number"), gte(color, 0)),
-        lte(color, 0xffffff)
-      )
-        ? {
-            // @ts-ignore
-            r: (color >> 16) / 255,
-            // @ts-ignore
-            g: ((color >> 8) & 0xff) / 255,
-            // @ts-ignore
-            b: (color & 0xff) / 255,
-            mode: "rgb",
-          }
-        : Error("unknown num color: " + color);
-    },
-    c2hx = () => {
-      return {
-        boolean: or(and(eq(color, true), "#ffffff"), "#000000"),
-        number: num2c(),
-        object: formatHex(c2col()),
-        // @ts-ignore
-        string: or(colorsNamed?.(color?.toLowerCase()), formatHex(color)),
-      }[typeof color];
-    },
-    c2num = () => {
-      const _ = cnv("rgb");
-
+  function c2col() {
+    if (eq(kind, "obj")) {
+      return color;
+    } else if (eq(kind, "arr")) {
       /**
-       * @type {number|string}
+       * The result array if `kind` is `arr`
        */
-      // @ts-ignore
-      var s = ((255 * _["r"]) << 16) + ((255 * _["g"]) << 8) + 255 * _["b"];
+      var j = [];
+      for (const [k, v] of entries(x)) {
+        j[k] = color[v];
+      }
 
-      return or(
-        and(
-          numType,
-          s.toString(
-            { bin: 2, hex: 16, expo: 6, oct: 8 }[numType?.toLowerCase()]
-          )
-        ),
-        s
-      );
-    },
-    c2col = () => {
-      /*
-       * 							* GLOBALS
-       *								The following variables are valid if the token is a collection only
-       * 								- x is an array of channel keys from the source colorspace. If undefined it defaults to LCH
-       * 								- y is the array of channel values computed according to color tuple length
-       * 								- z is the alpha channel captured if it exists in the color token
-       *
-       *
-       *
-       */
-
-      var [x, y, z] = [
-        gmchn(or(srcMode, targetMode)),
-        or(
-          or(
-            // if the color is an array just take the values whilst optionally omitting the colorspace (if specified)
-            and(
-              and(isArray(color), eq(typeof color[0], "string")),
-              color.slice(1)
-            ),
-            color
-          ),
-          and(
-            eq(typeof color, "object"),
-            x.map((c) => color[c])
-          )
-        ),
-        // check if the alpha channel is explicitly specified else cast 1 as the default
-        or(
-          or(and(eq(color?.length, 5), color[4]), 1),
-
-          // if its a string and has 8 or more characters (ignoring #) and is not a CSS named colortake the last two characters and convert them from hex
-          and(
-            and(
-              and(
-                eq(typeof color, "string"),
-                not(colorsNamed[color?.toLowerCase()])
-              ),
-              gte(color?.length, 8)
-            ),
-            parseInt(color?.slice(color?.length - 2), 16)
-          )
-        ),
-      ];
-
-      /**
-       * 						* Conversion according to color token type
-       * 							- The conversion reassigns the color variable with the widely parseable format
-       * 							- If the color token is an array or plain object:
-       * 									* If it has a srcMode of rgb/lrgb we normalize the values if normalizeRgb is true
-       * 									* Finally we return the color as an object with values assigned using a forof loop
-       *
-       *
-       *
-       *
-       */
+      // if true, remove the
       or(
-        and(eq(typeof color, "number"), (color = num2c())),
-        or(
-          and(eq(typeof color, "string"), (color = cnv(targetMode))),
-          and(
-            eq(typeof color, "object"),
-            (() => {
-              /**
-               * This block only runs on objects not strings/numbers and boolean
-               */
-              and(
-                eq(srcMode, and(or("rgb", "lrgb")), normalizeRgb),
-                (() => {
-                  /**
-                   *  Normalize the color back to the rgb gamut supported by culori
-                   * @type {boolean}
-                   * */
-                  var s = y.some((c) => lt(1, Math.abs(c)));
-                  y = or(
-                    and(
-                      s,
-                      y.map((c) => c / 255)
-                    ),
-                    y
-                  );
-                })()
-              );
-
-              // reinitialize color to an empty object
-              color = {};
-
-              // then assign the alpha and colorspace properties
-              color = { alpha: z, mode: srcMode };
-
-              // assign channel keys with their values
-              for (const [k, v] of entries(x)) {
-                color[v] = y[k];
-              }
-            })()
-          )
+        and(
+          omitMode,
+          or(
+            and(eq(kind, "arr"), j.unshift(targetMode)),
+            and(eq(kind, "obj"), delete j?.mode)
+          ),
+          j
         )
       );
 
-      // convert the color to a target mode if it is specified
-      color = targetMode ? cnv(targetMode) : color;
-
-      if (eq(kind, "obj")) {
-        return color;
-      } else if (eq(kind, "arr")) {
-        /**
-         * The result array if `kind` is `arr`
-         */
-        var j = [];
-        for (const [k, v] of entries(x)) {
-          j[k] = color[v];
-        }
-
-        // if true, remove the
-        or(
-          and(
-            omitMode,
-            or(
-              and(eq(kind, "arr"), j.unshift(targetMode)),
-              and(eq(kind, "obj"), delete j?.mode)
-            ),
-            j
+      // dont add alpha channel if true
+      or(
+        and(
+          omitAlpha,
+          or(
+            and(eq(kind, "arr"), j.push(z)),
+            and(eq(kind, "obj"), delete j?.alpha)
           )
-        );
+        ),
+        j
+      );
 
-        // dont add alpha channel if true
-        or(
+      return j;
+    }
+  }
+  function c2num() {
+    const _ = cnv("rgb");
+
+    /**
+     * @type {number|string}
+     */
+    // @ts-ignore
+    var s = ((255 * _["r"]) << 16) + ((255 * _["g"]) << 8) + 255 * _["b"];
+
+    return or(
+      and(
+        numType,
+        s.toString({ bin: 2, hex: 16, expo: 6, oct: 8 }[numType?.toLowerCase()])
+      ),
+      s
+    );
+  }
+  function c2hx() {
+    return {
+      boolean: or(and(eq(color, true), "#ffffff"), "#000000"),
+      number: num2c(),
+      object: formatHex(c2col()),
+      // @ts-ignore
+      string: or(colorsNamed?.(color?.toLowerCase()), formatHex(color)),
+    }[typeof color];
+  }
+  function num2c() {
+    // Ported from chroma-js with slight modifications
+    //
+    //
+    return and(
+      and(eq(typeof color, "number"), gte(color, 0)),
+      lte(color, 0xffffff)
+    )
+      ? {
+          // @ts-ignore
+          r: (color >> 16) / 255,
+          // @ts-ignore
+          g: ((color >> 8) & 0xff) / 255,
+          // @ts-ignore
+          b: (color & 0xff) / 255,
+          mode: "rgb",
+        }
+      : Error("unknown num color: " + color);
+  }
+
+  /**
+   * 						* Conversion according to color token type
+   * 							- The conversion reassigns the color variable with the widely parseable format
+   * 							- If the color token is an array or plain object:
+   * 									* If it has a srcMode of rgb/lrgb we normalize the values if normalizeRgb is true
+   * 									* Finally we return the color as an object with values assigned using a forof loop
+   *
+   *
+   *
+   *
+   */
+  or(
+    and(eq(typeof color, "number"), (color = num2c())),
+    or(
+      and(eq(typeof color, "string"), (color = cnv(targetMode))),
+      and(
+        eq(typeof color, "object"),
+        (() => {
+          /**
+           * This block only runs on objects not strings/numbers and boolean
+           */
           and(
-            omitAlpha,
-            or(
-              and(eq(kind, "arr"), j.push(z)),
-              and(eq(kind, "obj"), delete j?.alpha)
-            )
-          ),
-          j
-        );
+            eq(srcMode, and(or("rgb", "lrgb")), normalizeRgb),
+            (() => {
+              /**
+               *  Normalize the color back to the rgb gamut supported by culori
+               * @type {boolean}
+               * */
+              var s = y.some((c) => lt(1, Math.abs(c)));
+              y = or(
+                and(
+                  s,
+                  y.map((c) => c / 255)
+                ),
+                y
+              );
+            })()
+          );
 
-        return j;
-      }
-    };
+          // reinitialize color to an empty object
+          color = {};
+
+          // then assign the alpha and colorspace properties
+          color = { alpha: z, mode: srcMode };
+
+          // assign channel keys with their values
+          for (const [k, v] of entries(x)) {
+            color[v] = y[k];
+          }
+        })()
+      )
+    )
+  );
 
   return {
     obj: c2col,
