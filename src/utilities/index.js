@@ -393,9 +393,9 @@ function token(color, options = undefined) {
       return {
         boolean: or(and(eq(color, true), "#ffffff"), "#000000"),
         number: num2c(),
-        object: formatHex(color),
+        object: formatHex(c2col()),
         // @ts-ignore
-        string: or(colorsNamed?.color, formatHex(color)),
+        string: or(colorsNamed?.(color?.toLowerCase()), formatHex(color)),
       }[typeof color];
     },
     c2num = () => {
@@ -421,7 +421,7 @@ function token(color, options = undefined) {
       /*
        * 							* GLOBALS
        *								The following variables are valid if the token is a collection only
-       * 								- x is an array of channel keys
+       * 								- x is an array of channel keys from the source colorspace. If undefined it defaults to LCH
        * 								- y is the array of channel values computed according to color tuple length
        * 								- z is the alpha channel captured if it exists in the color token
        *
@@ -432,12 +432,18 @@ function token(color, options = undefined) {
       var [x, y, z] = [
         gmchn(or(srcMode, targetMode)),
         or(
-          // if the color is an array just take the values whilst optionally omitting the colorspace (if specified)
-          and(
-            and(isArray(color), eq(typeof color[0], "string")),
-            color.slice(1)
+          or(
+            // if the color is an array just take the values whilst optionally omitting the colorspace (if specified)
+            and(
+              and(isArray(color), eq(typeof color[0], "string")),
+              color.slice(1)
+            ),
+            color
           ),
-          x.map((c) => color[c])
+          and(
+            eq(typeof color, "object"),
+            x.map((c) => color[c])
+          )
         ),
         // check if the alpha channel is explicitly specified else cast 1 as the default
         or(
