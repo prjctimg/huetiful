@@ -443,7 +443,7 @@ function token(color, options = undefined) {
         or(
           or(and(eq(color?.length, 5), color[4]), 1),
 
-          // if its a string and has 8 or more characters (ignoring #) and is not a CSS named color take the last two characters and convert them from hex
+          // if its a string and has 8 or more characters (ignoring #) and is not a CSS named colortake the last two characters and convert them from hex
           and(
             and(
               and(
