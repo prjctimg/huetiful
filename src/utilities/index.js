@@ -437,7 +437,7 @@ function token(color, options = undefined) {
             and(isArray(color), eq(typeof color[0], "string")),
             color.slice(1)
           ),
-          color
+          x.map((c) => color[c])
         ),
         // check if the alpha channel is explicitly specified else cast 1 as the default
         or(
