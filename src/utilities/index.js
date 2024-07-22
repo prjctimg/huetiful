@@ -40,7 +40,7 @@ import {
   isArray,
   neq,
   or,
-  lt,
+  gt,
   take,
   give,
   max,
@@ -373,7 +373,6 @@ function token(color, options = undefined) {
       ? color?.filter((a) => eq(typeof a, "number"))
       : undefined,
     // if the color is an array just take the values whilst optionally omitting the colorspace (if specified)
-
     // step 2 get the alpha
 
     // check if the alpha channel is explicitly specified else cast 1 as the default
@@ -399,14 +398,15 @@ function token(color, options = undefined) {
   color = y
     ? (() => {
         let z = {};
-        for (const [k, v] of entries(x)) {
-          z[v] = y[k];
+        for (const k of x) {
+          z[k] = y[x.indexOf(k)];
         }
+
         and(eq(y?.length, 4), (z["alpha"] = y[3]));
         return z;
       })()
     : color;
-
+  console.log(color);
   // convert the color to a target mode if it is specified
 
   /*
@@ -422,38 +422,34 @@ function token(color, options = undefined) {
    */
 
   function c2col() {
-    if (eq(srcMode, and(or("rgb", "lrgb")))) {
+    if (and(normalizeRgb, eq(srcMode, and(or("rgb", "lrgb"))))) {
       /**
        *  Normalize the color back to the rgb gamut supported by culori
        * @type {boolean}
        * */
-      var s = x.some((c) => lt(1, Math.abs(color[c])));
+      var s = x.some((c) => gt(Math.abs(color[c]), 1));
 
-      if (s)
+      if (s) {
         for (const [k, v] of x) {
           color[v] = y[k] / 255;
         }
-    }
-
-    color = cnv(targetMode);
-    let j = [];
-    if (eq(kind, "obj")) {
-      // dont add alpha channel if true
-      or(and(omitAlpha, delete color?.alpha), j);
-      or(and(omitMode, delete color?.mode));
-    }
-    if (eq(kind, "arr")) {
-      // if true, remove the
-
-      for (const [k, v] of x) {
-        j[k] = color[v];
       }
-      omitAlpha ? j.pop() : j;
-      omitMode ? j.unshift(targetMode) : j;
-      color = j;
     }
 
-    return color;
+    if (eq(kind, "obj")) {
+      omitMode ? color : (color["mode"] = targetMode);
+      omitAlpha ? color : (color["alpha"] = z);
+      return color;
+    } else if (eq(kind, "arr")) {
+      let j = [];
+      for (const k of x) {
+        j[x.indexOf(k)] = color[k];
+      }
+
+      omitAlpha ? j : j.push(z);
+      omitMode ? j : j.unshift(targetMode);
+      return j;
+    }
   }
 
   function c2num() {
