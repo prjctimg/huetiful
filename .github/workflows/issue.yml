@@ -22,12 +22,9 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             Thanks for the issue, our team will look into it as soon as possible! If you would like to work on this issue, please wait for a maintainer to decide if it is ready to be worked on.
-
             To claim an issue, please leave a comment that says ".take". If you have any questions, feel free to ping a maintainer.
-
-           For full info on how to contribute, please check out the [contributors guide](https://github.com/prjctimg/huetiful/blob/main/CONTRIBUTING.md).
-
-           ##### Quick checklist after creating an issue
-           - [ ] Link issue to respective project
-           - [ ] Add appropiate labels to issue
-           - [ ] Add milestones and link PRs (if any)
+            For full info on how to contribute, please check out the [contributors guide](https://github.com/prjctimg/huetiful/blob/main/CONTRIBUTING.md).
+             ##### Quick checklist after creating an issue
+            - [ ] Link issue to respective project
+            - [ ] Add appropiate labels to issue
+            - [ ] Add milestones and link PRs (if any)
