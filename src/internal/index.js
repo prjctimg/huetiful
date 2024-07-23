@@ -481,22 +481,8 @@ function filteredColl(f, cb) {
         //The patterns to match
 
         const v = reNum(s),
-          w = reOp(s),
-          u = {
-            "!=": neq,
-            "==": eq,
-            ">=": gte,
-            "<=": lte,
-            ">": gt,
-            "<": lt,
-            "===": eq,
-            "!==": neq,
-            "!": not,
-            "/": give,
-            "*": mapAlphaMultiply,
-            "+": mapAlphaDivide,
-            "-": take,
-          };
+          w = reOp(s);
+
         return and(
           w,
           colorObjColl(
@@ -504,7 +490,23 @@ function filteredColl(f, cb) {
             cb
           )(c)
             // @ts-ignore
-            .filter((l) => u[w](l[f], parseFloat(v.toString())))
+            .filter((l) => {
+              return {
+                "!=": neq,
+                "==": eq,
+                ">=": gte,
+                "<=": lte,
+                ">": gt,
+                "<": lt,
+                "===": eq,
+                "!==": neq,
+                "!": not,
+                "/": give,
+                "*": mult,
+                "+": add,
+                "-": take,
+              }[w](l[f], parseFloat(v.toString()));
+            })
             .map((l) => l["color"])
         );
 
@@ -539,7 +541,7 @@ function getSrcMode(c, m) {
     ? m
     : or(
         and(and(isArray(c), neq(typeof c[0], "number")), c[0]),
-        or(c?.mode, "lch")
+        or(c?.mode, "rgb")
       ).toLowerCase();
 }
 
