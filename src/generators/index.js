@@ -24,6 +24,8 @@ import {
   differenceHyab,
   easingSmoothstep,
   averageNumber,
+  formatHex8,
+  random,
 } from "culori/fn";
 import {
   or,

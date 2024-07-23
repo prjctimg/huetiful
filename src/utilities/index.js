@@ -183,6 +183,19 @@ function mc(modeChannel = "") {
       u = token(color, { targetMode: m, kind: "obj" }),
       p;
 
+    if (eq(typeof color, "object")) {
+      p = or(
+        and(
+          isArray(color),
+          or(and(eq(typeof color[0], "string"), color.slice(1)), color)[
+            gmchn(m).indexOf(c)
+          ]
+        ),
+        color[c]
+      );
+    } else {
+    }
+
     or(
       and(
         eq(typeof color, "object"),
