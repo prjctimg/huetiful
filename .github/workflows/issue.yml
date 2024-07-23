@@ -25,4 +25,9 @@ jobs:
 
             To claim an issue, please leave a comment that says ".take". If you have any questions, feel free to ping a maintainer.
 
-          # For full info on how to contribute, please check out our [contributors guide](https://github.com/xml-wizard/huetiful/blob/main/CONTRIBUTING.md).
+           For full info on how to contribute, please check out the [contributors guide](https://github.com/prjctimg/huetiful/blob/main/CONTRIBUTING.md).
+
+           ##### Quick checklist after creating an issue
+           - [ ] Link issue to respective project
+           - [ ] Add appropiate labels to issue
+           - [ ] Add milestones and link PRs (if any)
