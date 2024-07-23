@@ -371,6 +371,8 @@ function token(color, options = undefined) {
      */
     y = isArray(color)
       ? color?.filter((a) => eq(typeof a, "number"))
+      : eq(typeof color, "object")
+      ? x?.map((a) => color[a])
       : undefined,
     // if the color is an array just take the values whilst optionally omitting the colorspace (if specified)
     // step 2 get the alpha
@@ -385,44 +387,26 @@ function token(color, options = undefined) {
     z = and(isArray(color), eq(y?.length, 4))
       ? y[3]
       : and(
-          and(eq(typeof color, "string"), not(colorsNamed[color])),
+          and(
+            eq(typeof color, "string"),
+            not(colorsNamed?.color?.toLowerCase())
+          ),
           gte(color?.length, 8)
         )
       ? parseInt(color?.slice(color?.length - 2), 16)
       : 1;
 
   // if its a string and has 8 or more characters (ignoring #) and is not a CSS named colortake the last two characters and convert them from hex
+  let g = {};
+  if (y) {
+    // convert the color to an object (including alpha) without the mode
 
-  // convert the color to an object (including alpha) without the mode
+    for (const k of x) {
+      g[k] = y[x.indexOf(k)];
+    }
 
-  color = y
-    ? (() => {
-        let z = {};
-        for (const k of x) {
-          z[k] = y[x.indexOf(k)];
-        }
-
-        and(eq(y?.length, 4), (z["alpha"] = y[3]));
-        return z;
-      })()
-    : color;
-  console.log(color);
-  // convert the color to a target mode if it is specified
-
-  /*
-   *				* GLOBAL CONVERTER FUNCTIONS (listed respectively to declarations)
-   *
-   *						- num2c - converts a number to an RGB color object
-   *						- c2hx - converts any color token to hexadecimal
-   *						- c2num - converts a color token to its numerical equivalent
-   *						- tmp2c - converts any number between 1 and 30,000 to an RGB color object
-   *						- c2col - converts any color token to an array or object equivalent
-   * 						- State is shared so no converter takes a parameter.
-   *
-   */
-
-  function c2col() {
-    if (and(normalizeRgb, eq(srcMode, and(or("rgb", "lrgb"))))) {
+    // color["alpha"] = eq(y?.length, 4) ? y[3] : 1;
+    if (and(srcMode.includes("rgb"), normalizeRgb)) {
       /**
        *  Normalize the color back to the rgb gamut supported by culori
        * @type {boolean}
@@ -430,20 +414,28 @@ function token(color, options = undefined) {
       var s = x.some((c) => gt(Math.abs(color[c]), 1));
 
       if (s) {
-        for (const [k, v] of x) {
-          color[v] = y[k] / 255;
+        for (const k of x) {
+          g[k] /= 255;
         }
       }
     }
+  } else {
+    g = cnv(targetMode);
+  }
 
+  /**
+   *
+   * converts any color token to an array or object equivalent
+   */
+  function c2col() {
     if (eq(kind, "obj")) {
-      omitMode ? color : (color["mode"] = targetMode);
-      omitAlpha ? color : (color["alpha"] = z);
-      return color;
+      omitMode ? g : (g["mode"] = targetMode);
+      omitAlpha ? g : (g["alpha"] = z);
+      return g;
     } else if (eq(kind, "arr")) {
       let j = [];
       for (const k of x) {
-        j[x.indexOf(k)] = color[k];
+        j[x.indexOf(k)] = g[k];
       }
 
       omitAlpha ? j : j.push(z);
@@ -452,6 +444,10 @@ function token(color, options = undefined) {
     }
   }
 
+  /**
+   *
+   * converts a color token to its numerical equivalent
+   */
   function c2num() {
     const _ = cnv("rgb");
 
@@ -469,6 +465,11 @@ function token(color, options = undefined) {
       s
     );
   }
+
+  /**
+   *
+   * converts any color token to hexadecimal
+   */
   function c2str() {
     var e = {
       boolean: or(and(eq(color, true), "#ffffff"), "#000000"),
@@ -480,6 +481,11 @@ function token(color, options = undefined) {
 
     return omitAlpha ? e : formatHex8(color);
   }
+
+  /**
+   *
+   * converts a number to an RGB color object
+   */
   function num2c() {
     // Ported from chroma-js with slight modifications
     //
@@ -499,22 +505,6 @@ function token(color, options = undefined) {
         }
       : Error("unknown num color: " + color);
   }
-
-  /**
-   * 						* Conversion according to color token type
-   * 							- The conversion reassigns the color variable with the widely parseable format
-   * 							- If the color token is an array or plain object:
-   * 									* If it has a srcMode of rgb/lrgb we normalize the values if normalizeRgb is true
-   * 									* Finally we return the color as an object with values assigned using a forof loop
-   *
-   *
-   *
-   *
-   */
-
-  /**
-   * This block only runs on objects not strings/numbers and boolean
-   */
 
   return {
     obj: c2col,
