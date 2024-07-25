@@ -166,7 +166,7 @@ var specs = {
   alpha: {
     params: ["#f3da3c51"],
     description: "Returns the alpha of the passed in color",
-    expect: true,
+    expect: 81,
   },
   deficiency: {
     params: [["rgb", 230, 100, 50, 0.5], { kind: "blue", severity: 0.5 }],
