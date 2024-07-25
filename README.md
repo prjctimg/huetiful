@@ -103,7 +103,7 @@ This project is fully open source! Contributions of any kind are greatly appreci
  <pre>
 License ⚖️
 
- © 2024, <a href="https://deantarisai.me">Dean Tarisai</a>
- <h5>Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h5>
+ © 2024, <a href="https://deantarisai.me">ディーン・タリサイ</a>
+ <h5>Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> permissive license.</h5>
  🧪 & 🔬 with 🥃 in Crowhill,ZW
  </pre>
