@@ -141,7 +141,7 @@ var specs = {
     expect: ["#6a5c52ff", "#8f7570ff", "#b48e8fff", "#daa7adff", "#ffc0cbff"],
   },
   hueshift: {
-    params: ["#3e0000"],
+    params: ["#3e00a6"],
     description: "Generates a palette of hue shifted colors",
     expect: jasmine.arrayContaining(hueshiftPalette),
   },

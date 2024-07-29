@@ -220,8 +220,11 @@ function customConcat(h = {}) {
   );
 }
 
-function adjustHue(x) {
-  return or(and(lt(x, 0), (x += Math.ceil(mult(give(-x, 360)), 360))), x % 360);
+function adjustHue(val) {
+  if (val < 0) val += Math.ceil(-val / 360) * 360;
+
+  return val % 360;
+  // return or(and(lt(x, 0), (x += Math.ceil(mult(give(-x, 360)), 360))), x % 360);
 }
 
 function chnDiff(x, s) {
@@ -531,18 +534,15 @@ function clamp(v, mn = -Infinity, mx = Infinity) {
 }
 
 /**
- *
+ * Parses the colorspace of the passed in color token. Meant for arrays and color objects.
  * @param {*} c The color token
- * @param {*} m the srcmode vaiable
+ * @param {*} m the srcmode variable
  * @returns
  */
 function getSrcMode(c, m) {
   return m
     ? m
-    : or(
-        and(and(isArray(c), neq(typeof c[0], "number")), c[0]),
-        or(c?.mode, "rgb")
-      ).toLowerCase();
+    : or(and(and(isArray(c), neq(typeof c[0], "number")), c[0]), c?.mode);
 }
 
 export {

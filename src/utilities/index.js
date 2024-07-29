@@ -2,7 +2,7 @@
 
 /**
  * @typedef { import('../types.js').ColorToken} ColorToken
- *@typedef { import('../types.js').Collection} Collection
+ * @typedef { import('../types.js').Collection} Collection
  * @typedef {import('../types.js').TailwindColorFamilies} TailwindColorFamilies
  * @typedef {import('../types.js').ScaleValues} ScaleValues
  */
@@ -86,6 +86,7 @@ console.log(myColor)
  */
 function alpha(color, amount = undefined) {
   let a;
+
   if (isArray(color)) {
     a = eq(color.filter((d) => eq(typeof d, "number")).length, 4)
       ? color[color?.length - 1]
@@ -132,10 +133,6 @@ function alpha(color, amount = undefined) {
     }
     return color;
   }
-
-  // a = or(and(eq(a, false), 1), a);
-
-  return or(and(eq(amount, undefined), a), (() => {})());
 }
 
 /**
@@ -351,7 +348,7 @@ function token(color, options = undefined) {
 
   srcMode = getSrcMode(color, srcMode);
 
-  targetMode = or(targetMode, srcMode)?.toLowerCase();
+  targetMode = or(targetMode, "lch");
 
   omitAlpha = or(omitAlpha, false);
 

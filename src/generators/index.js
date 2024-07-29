@@ -1,7 +1,7 @@
 /**
  * @typedef { import('../types.js').Collection} Collection
  * @typedef { import('../types.js').SchemeType} SchemeType
- * * @typedef { import('../types.js').SchemeOptions} SchemeOptions
+ * @typedef { import('../types.js').SchemeOptions} SchemeOptions
  * @typedef { import('../types.js').DiscoverOptions} DiscoverOptions
  * @typedef { import('../types.js').HueshiftOptions} HueShiftOptions
  *@typedef { import('../types.js').ColorToken} ColorToken
@@ -80,45 +80,38 @@ console.log(hueShiftedPalette);
 ]
  */
 function hueshift(baseColor, options) {
-  // @ts-ignore
   let { num, hueStep, minLightness, maxLightness, easingFn } = options || {};
 
-  baseColor = or(baseColor, "cyan");
-
+  baseColor = or(baseColor, "#3fca2b");
   easingFn = or(easingFn, easingSmoothstep);
   num = or(num, 6) + 1;
   hueStep = or(hueStep, 5);
-
   baseColor = token(baseColor, {
     kind: "obj",
     targetMode: "lch",
   });
-
   var z = [baseColor];
 
   // // if value is beyond max normalize all the values ensuring that the end is higher than start
   // // and that if minval was less than max range we will get that channel's equivalent value on the [0,100] scale.
   maxLightness = lte(maxLightness, 95) ? maxLightness : 90;
-  minLightness = lt(minLightness, maxLightness) ? minLightness : 10;
+  minLightness = lte(minLightness, maxLightness) ? minLightness : 5;
 
   /**
-	 * @internal
-	 * Normalizes any value in the range [0,1] to the ranges supported by the colorspace
-	 
-	 */
+   * @internal
+   * Normalizes any value in the range [0,1] to the ranges supported by the colorspace
+   */
   function f(i, e1, e2) {
     return Math.abs(
       ((i - 0) / (e1 - 0)) * (e2 - baseColor["l"]) + baseColor["l"]
     );
   }
-
   // Maximum number of iterations possible.
   //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
   // @ts-ignore
   for (let i = 1, j = i / num; i < num; i++) {
-    // 	//adjustHue checks hue values are clamped.
-    // 	// Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
-
+    //adjustHue checks hue values are clamped.
+    // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
     const [y, x] = [
       {
         l: f(i, num, minLightness),
@@ -131,7 +124,7 @@ function hueshift(baseColor, options) {
         l: f(i, num, maxLightness),
         c: baseColor["c"],
         // @ts-ignore
-        h: adjustHue(baseColor["h"] + hueStep),
+        h: adjustHue(baseColor["h"] + hueStep) * easingFn(j),
         mode: "lch",
       },
     ];
@@ -139,8 +132,10 @@ function hueshift(baseColor, options) {
     z.push(x);
     z.unshift(y);
   }
-  //@ts-ignore
-  return Array.from(new Set(z)).map(formatHex8);
+
+  //return z;
+  // //@ts-ignore
+  return Array.from(new Set(z)).map((c) => token(c));
 }
 
 /**

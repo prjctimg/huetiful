@@ -147,32 +147,22 @@ function deficiency(
   var { kind, severity } = options || {};
 
   const f = (d, c, t) => {
-    let o;
     c = token(c);
-    switch (d.toLowerCase()) {
-      case "blue":
-        o = filterDeficiencyTrit(t)(c);
-        break;
-      case "red":
-        o = filterDeficiencyProt(t)(c);
-        break;
-      case "green":
-        o = filterDeficiencyDeuter(t)(c);
-        break;
-      case "monochromacy":
-        o = filterGrayscale(t, "lch")(c);
-        break;
-    }
 
-    return token(o, options["token"]);
+    return {
+      blue: filterDeficiencyTrit(t)(c),
+      red: filterDeficiencyProt(t)(c),
+      green: filterDeficiencyDeuter(t)(c),
+      monochromacy: filterGrayscale(t, "lch")(c),
+    };
   };
 
   // Store the keys of deficiency types
-  const deficiencies = ["red", "blue", "green", "monochromacy"];
+  const defs = ["red", "blue", "green", "monochromacy"];
   // Cast 'red' as the default parameter
   kind = or(kind, "red");
 
-  if (deficiencies.some((el) => el === kind.toLowerCase())) {
+  if (defs.some((el) => el === kind.toLowerCase())) {
     // @ts-ignore
     return f(kind, color, severity);
   } else {
