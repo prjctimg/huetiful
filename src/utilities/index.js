@@ -2,7 +2,7 @@
 
 /**
  * @typedef { import('../types.js').ColorToken} ColorToken
- *@typedef { import('../types.js').Collection} Collection
+ * @typedef { import('../types.js').Collection} Collection
  * @typedef {import('../types.js').TailwindColorFamilies} TailwindColorFamilies
  * @typedef {import('../types.js').ScaleValues} ScaleValues
  */
@@ -85,72 +85,54 @@ console.log(myColor)
 // #b2c3f180
  */
 function alpha(color, amount = undefined) {
-  var a;
+  let a;
 
-  if (eq(typeof color, "string")) {
-    a = and(
-      not(colorsNamed[color?.toLowerCase()]),
-      and(
-        or(
-          eq(color?.length, 9),
-          and(!color?.startsWith("#"), eq(color?.length, 8))
-        ),
-        parseInt(color?.slice(color?.length - 2), 16)
-      )
-    );
-  } else if (isArray(color)) {
-    a = and(
-      or(
-        eq(color?.length, 5),
-        and(neq(typeof color[0], "string"), eq(color?.length, 4))
-      ),
-
-      color[take(color?.length, 1)]
-    );
+  if (isArray(color)) {
+    a = eq(color.filter((d) => eq(typeof d, "number")).length, 4)
+      ? color[color?.length - 1]
+      : 1;
+  } else if (eq(typeof color, "string")) {
+    a = and(gte(color?.length, 8), not(colorsNamed?.color?.toLowerCase()))
+      ? parseInt(color?.slice(color?.length - 2), 16)
+      : 1;
   } else if (eq(typeof color, "object")) {
     a = color?.alpha;
   }
 
-  a = or(and(eq(a, false), 1), a);
+  if (not(amount)) {
+    return a;
+  } else {
+    amount = or(
+      and(neq(typeof amount, "number"), exprParser(a, amount)),
+      or(and(inRange(amount, 0, 1), amount), give(amount, 100))
+    );
 
-  return or(
-    and(eq(amount, undefined), a),
-    (() => {
-      amount = or(
-        and(neq(typeof amount, "number"), exprParser(a, amount)),
-        or(and(inRange(amount, 0, 1), amount), give(amount, 100))
-      );
+    if (isArray(color)) {
+      // Get the alpha index
 
-      and(
-        isArray(color),
-        (() => {
-          // Get the alpha index
-
-          color[
+      color[
+        or(
+          and(
             or(
-              and(
-                or(
-                  eq(color.length, 5),
-                  and(neq(color[0], "string"), eq(color.length, 4))
-                ),
-                take(color.length, 1)
-              ),
-              3
-            )
-          ] = amount;
-        })()
-      );
+              eq(color.length, 5),
+              and(neq(color[0], "string"), eq(color.length, 4))
+            ),
+            take(color.length, 1)
+          ),
+          3
+        )
+      ] = amount;
+    }
 
-      if (eq(typeof color, "object")) {
-        color["alpha"] = amount;
-      } else {
-        var o = token(color, { kind: "obj" });
-        o["alpha"] = amount;
-        color = o;
-      }
-      return color;
-    })()
-  );
+    if (eq(typeof color, "object")) {
+      color["alpha"] = amount;
+    } else {
+      var o = token(color, { kind: "obj" });
+      o["alpha"] = amount;
+      color = o;
+    }
+    return color;
+  }
 }
 
 /**
@@ -182,6 +164,19 @@ function mc(modeChannel = "") {
       // @ts-ignore
       u = token(color, { targetMode: m, kind: "obj" }),
       p;
+
+    if (eq(typeof color, "object")) {
+      p = or(
+        and(
+          isArray(color),
+          or(and(eq(typeof color[0], "string"), color.slice(1)), color)[
+            gmchn(m).indexOf(c)
+          ]
+        ),
+        color[c]
+      );
+    } else {
+    }
 
     or(
       and(
@@ -353,7 +348,7 @@ function token(color, options = undefined) {
 
   srcMode = getSrcMode(color, srcMode);
 
-  targetMode = or(targetMode, srcMode)?.toLowerCase();
+  targetMode = or(targetMode, "lch");
 
   omitAlpha = or(omitAlpha, false);
 
@@ -384,17 +379,7 @@ function token(color, options = undefined) {
      * @type{number}
      */
 
-    z = and(isArray(color), eq(y?.length, 4))
-      ? y[3]
-      : and(
-          and(
-            eq(typeof color, "string"),
-            not(colorsNamed?.color?.toLowerCase())
-          ),
-          gte(color?.length, 8)
-        )
-      ? parseInt(color?.slice(color?.length - 2), 16)
-      : 1;
+    z = alpha(color);
 
   // if its a string and has 8 or more characters (ignoring #) and is not a CSS named colortake the last two characters and convert them from hex
   let g = {};
