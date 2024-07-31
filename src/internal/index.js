@@ -49,29 +49,21 @@ function wtf(
   z,
   y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"]
 ) {
-  var p = {};
+  let p = {};
+
+  if (isArray(t)) {
+    for (const k of values(t)) {
+      p[k] = z(k);
+    }
+  } else if (eq(typeof t, "string")) {
+    p = z(t);
+  } else {
+    for (const k of y) {
+      p[k] = z(k);
+    }
+  }
   // if factor is an array add each factor as a key to the object
-  return or(
-    or(
-      and(
-        isArray(t),
-        (() => {
-          for (const k of values(t)) {
-            p[k] = z(k);
-          }
-        })()
-      ),
-      and(t?.toLowerCase(), (p = z(t)))
-    ),
-    and(
-      not(t),
-      (() => {
-        for (const k of y) {
-          p[k] = z(k);
-        }
-      })()
-    )
-  );
+  return p;
 }
 
 let [ci, ef, hf, hi, li] = [
@@ -405,7 +397,7 @@ function max(x) {
   return x.reduce((a, b) => Math.max(a, b), -Infinity);
 }
 
-function reNum(s) {
+function reNum(s = "") {
   s = s.toString();
   var re = /[0-9]*\.?[0-9]+/;
   // @ts-ignore

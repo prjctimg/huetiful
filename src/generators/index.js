@@ -188,7 +188,7 @@ function pastel(baseColor, options = undefined) {
   // check if it is displayable
 
   // @ts-ignore
-  return or(and(options, token(q, options)), q);
+  return token(q, options);
 }
 
 /**
