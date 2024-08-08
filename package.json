@@ -15,7 +15,7 @@
     "./wrappers": "./src/wrappers/index.js",
     "./palettes": "./src/palettes/index.js",
     "./constants": "./src/constants/index.js",
-    "./utilities": "./src/utilities/index.js"
+    "./utils": "./src/utils/index.js"
   },
   "description": "JavaScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.",
   "dependencies": {
@@ -42,7 +42,7 @@
     "build": "node ./jobs/build.cjs",
     "code:publish": "npm run build & npx tsc",
     "format": "npx prettier \"./src/*.js\" --write",
-    "lint": "npx eslint --fix --ext ./src/*.js",
+    "lint": "npx eslint --fix --ext ./src/*/index.js",
     "start": "npx nodemon app.js --watch"
   },
   "prettier": {
@@ -70,7 +70,6 @@
     "outputFileStrategy": "modules",
     "fileExtension": ".mdx",
     "entryFileName": "index",
-    "entryModule": "./docs/index.mdx",
     "expandObjects": true,
     "excludeNotDocumented": true,
     "excludeReferences": false,

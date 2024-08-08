@@ -1,5 +1,5 @@
 //@ts-nocheck
-export * from "./utilities/index.js";
+export * from "./utils/index.js";
 export * from "./palettes/index.js";
 export * from "./accessibility/index.js";
 export * from "./collection/index.js";
