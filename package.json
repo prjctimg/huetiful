@@ -95,7 +95,7 @@
     "hidePageHeader": true,
     "hideGroupHeadings": false,
     "tsconfig": "./tsconfig.json",
-    "gitRemote": "main"
+    "disableSources":true
   },
   "eslintIgnore": [
     "*.cjs",
@@ -156,7 +156,7 @@
   "homepage": "https://huetiful-js.com",
   "license": "Apache-2.0",
   "engines": {
-    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+    "node": "^14.13.1 || >=16.0.0"
   },
   "bugs": {
     "url": "https://github.com/prjctimg/huetiful/issues"

@@ -5,7 +5,7 @@
  * @typedef {import('../types.js').AdaptivePaletteOptions} AdaptivePaletteOptions
  */
 
-import { token } from "../utilities/index.js";
+import { token } from "../utils/index.js";
 import {
   filterDeficiencyDeuter,
   filterDeficiencyProt,
