@@ -85,25 +85,31 @@ console.log(myColor)
 // #b2c3f180
  */
 function alpha(color, amount = undefined) {
-  let a;
+  let alphaChannel;
 
   if (isArray(color)) {
-    a = eq(color.filter((d) => eq(typeof d, "number")).length, 4)
+    alphaChannel = eq(
+      color.filter((channel) => eq(typeof channel, "number")).length,
+      4
+    )
       ? color[color?.length - 1]
       : 1;
   } else if (eq(typeof color, "string")) {
-    a = and(gte(color?.length, 8), not(colorsNamed?.color?.toLowerCase()))
+    alphaChannel = and(
+      gte(color?.length, 8),
+      not(colorsNamed?.color?.toLowerCase())
+    )
       ? parseInt(color?.slice(color?.length - 2), 16)
       : 1;
   } else if (eq(typeof color, "object")) {
-    a = color?.alpha;
+    alphaChannel = color?.alpha;
   }
 
   if (not(amount)) {
-    return a;
+    return alphaChannel;
   } else {
     amount = or(
-      and(neq(typeof amount, "number"), exprParser(a, amount)),
+      and(neq(typeof amount, "number"), exprParser(alphaChannel, amount)),
       or(and(inRange(amount, 0, 1), amount), give(amount, 100))
     );
 
@@ -127,9 +133,9 @@ function alpha(color, amount = undefined) {
     if (eq(typeof color, "object")) {
       color["alpha"] = amount;
     } else {
-      var o = token(color, { kind: "obj" });
-      o["alpha"] = amount;
-      color = o;
+      var colorObject = token(color, { kind: "obj" });
+      colorObject["alpha"] = amount;
+      color = colorObject;
     }
     return color;
   }
@@ -160,20 +166,20 @@ function mc(modeChannel = "") {
  
    */
   return (color, value = undefined) => {
-    var [m, c] = modeChannel.split("."),
+    let [mode, channel] = modeChannel.split("."),
       // @ts-ignore
-      u = token(color, { targetMode: m, kind: "obj" }),
-      p;
+      colorObject = token(color, { targetMode: mode, kind: "obj" }),
+      currentChannel;
 
     if (eq(typeof color, "object")) {
-      p = or(
+      currentChannel = or(
         and(
           isArray(color),
           or(and(eq(typeof color[0], "string"), color.slice(1)), color)[
-            gmchn(m).indexOf(c)
+            gmchn(mode).indexOf(channel)
           ]
         ),
-        color[c]
+        color[channel]
       );
     } else {
     }
@@ -181,24 +187,24 @@ function mc(modeChannel = "") {
     or(
       and(
         eq(typeof color, "object"),
-        (p = or(
+        (currentChannel = or(
           and(
             isArray(color),
             or(and(eq(typeof color[0], "string"), color.slice(1)), color)[
-              gmchn(m).indexOf(c)
+              gmchn(mode).indexOf(channel)
             ]
           ),
-          color[c]
+          color[channel]
         ))
       ),
-      (p = u[c])
+      (currentChannel = colorObject[channel])
     );
 
     if (value) {
       or(
         or(
-          and(eq(typeof value, "number"), (u[c] = value)),
-          exprParser(u[c], value)
+          and(eq(typeof value, "number"), (colorObject[channel] = value)),
+          exprParser(colorObject[channel], value)
         ),
         Error(
           `${typeof value}} ${value} is an unsupported value to set on a color token`
@@ -206,9 +212,9 @@ function mc(modeChannel = "") {
       );
 
       // @ts-ignore
-      return u;
+      return colorObject;
     }
-    return p;
+    return currentChannel;
   };
 }
 
@@ -259,17 +265,17 @@ function achromatic(color) {
   color = token(color, { kind: "obj", targetMode: "lch" });
 
   // If a color has no lightness then it has no hue so its technically not achromatic since white and black are not grayscale
-  var f = (x) => typeof x === "undefined" || x === 0 || x === NaN;
+  var isFalsy = (x) => typeof x === "undefined" || x === 0 || x === NaN;
 
   return or(
     and(
       and(
-        or(f(color["l"]), gte(color["l"], 100)),
-        or(!f(color["c"], f(color["c"])))
+        or(isFalsy(color["l"]), gte(color["l"], 100)),
+        or(!isFalsy(color["c"], isFalsy(color["c"])))
       ),
       false
     ),
-    or(and(f(color["c"]), true), false)
+    or(and(isFalsy(color["c"]), true), false)
   );
 }
 
@@ -297,16 +303,16 @@ console.log(brighten('blue', 0.3));
 function lightness(color, amount, darken = false) {
   var f = () => {
     // @ts-ignore
-    var o = token(color, { kind: "obj", targetMode: "lab65" });
+    var colorObject = token(color, { kind: "obj", targetMode: "lab65" });
     if (typeof amount === "number") {
       // @ts-ignore
-      o["l"] = (darken ? max : min)([
+      colorObject["l"] = (darken ? max : min)([
         100,
-        o["l"] + 100 * (darken ? -amount : amount),
+        colorObject["l"] + 100 * (darken ? -amount : amount),
       ]);
     }
     // @ts-ignore
-    return token(o);
+    return token(colorObject);
   };
   // @ts-ignore
   return f();
@@ -346,7 +352,7 @@ function token(color, options = undefined) {
    * Colorspaces are heavy to load in the browser so expect support for certain colorspaces to be dropped
    *
    */
-  var defs = {
+  const modeDefinitions = {
       hsv: modeHsv,
       rgb: modeLrgb,
       lab: modeLab,
@@ -359,7 +365,7 @@ function token(color, options = undefined) {
     },
     { srcMode, targetMode, omitMode, kind, numType, omitAlpha, normalizeRgb } =
       options || {},
-    cnv = (m, a) => useMode(defs[m])(or(a, c2str()));
+    parseToken = (m, a) => useMode(modeDefinitions[m])(or(a, c2str()));
 
   /**
    *
@@ -394,15 +400,15 @@ function token(color, options = undefined) {
    * an array of channel keys from the source colorspace. If undefined it defaults to LCH
    * @type {string[]}
    */
-  var x = gmchn(or(srcMode, targetMode)),
+  var channelKeys = gmchn(or(srcMode, targetMode)),
     /**
      * @type {number[]}
      * an array of channel values
      */
-    y = isArray(color)
+    channelValues = isArray(color)
       ? color?.filter((a) => eq(typeof a, "number"))
       : eq(typeof color, "object")
-      ? x?.map((a) => color[a])
+      ? channelKeys?.map((a) => color[a])
       : undefined,
     // if the color is an array just take the values whilst optionally omitting the colorspace (if specified)
     // step 2 get the alpha
@@ -414,15 +420,15 @@ function token(color, options = undefined) {
      * @type{number}
      */
 
-    z = alpha(color);
+    alphaValue = alpha(color);
 
   // if its a string and has 8 or more characters (ignoring #) and is not a CSS named colortake the last two characters and convert them from hex
-  let g = {};
-  if (y) {
+  let result = {};
+  if (channelValues) {
     // convert the color to an object (including alpha) without the mode
 
-    for (const k of x) {
-      g[k] = y[x.indexOf(k)];
+    for (const channel of channelKeys) {
+      result[channel] = channelValues[channelKeys.indexOf(channel)];
     }
 
     // color["alpha"] = eq(y?.length, 4) ? y[3] : 1;
@@ -431,16 +437,16 @@ function token(color, options = undefined) {
        *  Normalize the color back to the rgb gamut supported by culori
        * @type {boolean}
        * */
-      var s = x.some((c) => gt(Math.abs(color[c]), 1));
+      var checkGamut = channelKeys.some((c) => gt(Math.abs(color[c]), 1));
 
-      if (s) {
-        for (const k of x) {
-          g[k] /= 255;
+      if (checkGamut) {
+        for (const k of channelKeys) {
+          result[k] /= 255;
         }
       }
     }
   } else {
-    g = cnv(targetMode);
+    result = parseToken(targetMode);
   }
 
   /**
@@ -449,18 +455,18 @@ function token(color, options = undefined) {
    */
   function c2col() {
     if (eq(kind, "obj")) {
-      omitMode ? g : (g["mode"] = targetMode);
-      omitAlpha ? g : (g["alpha"] = z);
-      return g;
+      omitMode ? result : (result["mode"] = targetMode);
+      omitAlpha ? result : (result["alpha"] = alphaValue);
+      return result;
     } else if (eq(kind, "arr")) {
-      let j = [];
-      for (const k of x) {
-        j[x.indexOf(k)] = g[k];
+      let colorArray = [];
+      for (const k of channelKeys) {
+        colorArray[channelKeys.indexOf(k)] = result[k];
       }
 
-      omitAlpha ? j : j.push(z);
-      omitMode ? j : j.unshift(targetMode);
-      return j;
+      omitAlpha ? colorArray : colorArray.push(alphaValue);
+      omitMode ? colorArray : colorArray.unshift(targetMode);
+      return colorArray;
     }
   }
 
@@ -469,20 +475,25 @@ function token(color, options = undefined) {
    * converts a color token to its numerical equivalent
    */
   function c2num() {
-    const _ = cnv("rgb");
+    const rgbObject = parseToken("rgb");
 
     /**
      * @type {number|string}
      */
     // @ts-ignore
-    var s = ((255 * _["r"]) << 16) + ((255 * _["g"]) << 8) + 255 * _["b"];
+    const result =
+      ((255 * rgbObject["r"]) << 16) +
+      ((255 * rgbObject["g"]) << 8) +
+      255 * rgbObject["b"];
 
     return or(
       and(
         numType,
-        s.toString({ bin: 2, hex: 16, expo: 6, oct: 8 }[numType?.toLowerCase()])
+        result.toString(
+          { bin: 2, hex: 16, expo: 6, oct: 8 }[numType?.toLowerCase()]
+        )
       ),
-      s
+      result
     );
   }
 
@@ -491,7 +502,7 @@ function token(color, options = undefined) {
    * converts any color token to hexadecimal
    */
   function c2str() {
-    var e = {
+    var colorHex = {
       boolean: or(and(eq(color, true), "#ffffff"), "#000000"),
       number: num2c(),
       object: formatHex(color),
@@ -499,7 +510,7 @@ function token(color, options = undefined) {
       string: or(colorsNamed?.color, formatHex(color)),
     }[typeof color];
 
-    return omitAlpha ? e : formatHex8(color);
+    return omitAlpha ? colorHex : formatHex8(color);
   }
 
   /**
@@ -584,43 +595,43 @@ function luminance(color, amount) {
     const EPS = 1e-7;
     let MAX_ITER = 20;
 
-    if (typeof amount == "number") {
+    if (eq(typeof amount, "number")) {
       // compute new color using...
 
-      const cl = wcagLuminance(color);
+      const currentLuminance = wcagLuminance(color);
 
       //Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
       // use a bilinear interpolation
 
       const f = (u, v) => {
-        const [md, l] = [
+        const [mid, low] = [
           interpolate([u, v])(0.5),
           // @ts-ignore
           wcagLuminance(color),
         ];
 
         // @ts-ignore
-        if (Math.abs(amount - l > EPS) || !MAX_ITER--) {
+        if (Math.abs(amount - low > EPS) || !MAX_ITER--) {
           // close enough
-          return md;
+          return mid;
         }
 
-        if (l > amount) {
-          return f(u, md);
+        if (gt(low, amount)) {
+          return f(u, mid);
         } else {
-          return f(md, v);
+          return f(mid, v);
         }
       };
 
-      var o;
-      if (cl > amount) {
-        o = f(b, color);
+      var result;
+      if (gt(currentLuminance, amount)) {
+        result = f(b, color);
       } else {
-        o = f(color, w);
+        result = f(color, w);
       }
     }
     // @ts-ignore
-    return token(o);
+    return token(result);
   }
 }
 
@@ -640,12 +651,12 @@ console.log(family("#310000"))
  */
 function family(color) {
   if (neq(achromatic(color), true)) {
-    var [y, z] = [mc(`lch.h`)(color), keys(hue)];
-    console.log(y);
+    let [hueAngle, hueFamilies] = [mc(`lch.h`)(color), keys(hue)];
+
     // @ts-ignore
-    return z.find((o) => {
-      var p = customConcat(hue[o]);
-      return inRange(y, min(p), max(p));
+    return hueFamilies.find((o) => {
+      const hueRanges = customConcat(hue[o]);
+      return inRange(hueAngle, min(hueRanges), max(hueRanges));
     });
   }
 
@@ -654,7 +665,7 @@ function family(color) {
 }
 
 /**
- * Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'`.
+ * Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'` using the `'lch'` colorspace.
  * 
  * @param {ColorToken} color The color to check the temperature.
  * @returns {'cool' | 'warm'} True if the color is cool else false.
@@ -680,18 +691,23 @@ console.log(map(sample, isCool));
 
  */
 function temp(color) {
-  function f(q, y) {
-    return keys(hue).some((k) =>
-      inRange(floorCeil(q), hue[k][y][0], hue[k][y][1])
-    );
-  }
-
-  // First we need to get the hue value which we'll pass to the predicate
-  return f(mc("lch.h")(color), "cool") ? "cool" : "warm";
+  return or(
+    and(
+      keys(hue).some((hueFamily) =>
+        inRange(
+          floorCeil(mc("lch.h")(color)),
+          hue[hueFamily]["cool"][0],
+          hue[hueFamily]["cool"][1]
+        )
+      ),
+      "cool"
+    ),
+    "warm"
+  );
 }
 
 /**
- * Returns the name of the hue family which is biasing the passed in color.
+ * Returns the name of the hue family which is biasing the passed in color using the `'lch'` colorspace.
  * 
  * * If an achromatic color is passed in it returns the string `'gray'`
  * * If the color has no bias it returns `false`.
@@ -711,14 +727,14 @@ console.log(overtone("blue"))
 // false
  */
 function overtone(color) {
-  var h = family(color);
+  const hueFamily = family(color);
 
   // We check if the color can be found in the defined ranges
   // @ts-ignore
   return or(
     and(achromatic(color), "gray"),
     // @ts-ignore
-    or(and(/-/.test(h), h.split("-")[1]), false)
+    or(and(/-/.test(hueFamily), hueFamily.split("-")[1]), false)
   );
 }
 
@@ -747,18 +763,20 @@ console.log(complimentary("purple"))
 // #005700
  */
 function complimentary(baseColor, obj = false) {
-  var h = adjustHue(mc("lch.h")(baseColor) + 180 * rand(0.965, 1));
+  var complimentaryHueAngle = adjustHue(
+    mc("lch.h")(baseColor) + 180 * rand(0.965, 1)
+  );
 
-  var o = or(
+  const result = or(
     and(!achromatic(baseColor), {
-      hue: family(h),
+      hue: family(complimentaryHueAngle),
       // @ts-ignore
-      color: token(mc("lch.h")(baseColor, h)),
+      color: token(mc("lch.h")(baseColor, complimentaryHueAngle)),
     }),
     { hue: "gray", color: baseColor }
   );
   // @ts-ignore
-  return (obj && o) || o["color"];
+  return (obj && result) || result["color"];
 }
 
 export {
