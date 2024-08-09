@@ -90,7 +90,7 @@ function hueshift(baseColor, options) {
     kind: "obj",
     targetMode: "lch",
   });
-  var z = [baseColor];
+  let z = [baseColor];
 
   // // if value is beyond max normalize all the values ensuring that the end is higher than start
   // // and that if minval was less than max range we will get that channel's equivalent value on the [0,100] scale.
@@ -159,7 +159,7 @@ function pastel(baseColor, options = undefined) {
    * @see www.wikipedia.com Wikipedia
    * The elements in each array are chroma, lightness of the color in HSV and then the color in numerical representation. Got the values from sample pastel colors on the Wikipedia article
    */
-  var w = [
+  let w = [
     [0.3582677165354331, 0.996078431372549, 16538982.504333857],
     [0.4395161290322581, 0.9725490196078431, 15694401.836627495],
     [0.472, 0.9803921568627451, 15986490.838712374],
@@ -179,7 +179,7 @@ function pastel(baseColor, options = undefined) {
   };
   // @ts-ignore
 
-  var q = random("hsv", {
+  let q = random("hsv", {
     s: [t["mns"], t["mxs"]],
     v: [t["mnv"], t["mxv"]],
     h: token(baseColor, { targetMode: "hsv", kind: "obj" })["h"],
@@ -288,7 +288,7 @@ console.log(interpolator(['pink', 'blue'], { num:8 }));
  *
  */
 function interpolator(baseColors = [], options = undefined) {
-  var { hueFixup, stops, easingFn, kind, closed, colorspace, num } =
+  let { hueFixup, stops, easingFn, kind, closed, colorspace, num } =
     options || {};
   // Set the internal defaults
   easingFn = or(easingFn, pltrconfg["ef"]);
@@ -313,7 +313,7 @@ function interpolator(baseColors = [], options = undefined) {
   }
 
   baseColors = values(baseColors);
-  var [l, o] = [stops?.length, undefined];
+  let [l, o] = [stops?.length, undefined];
   if (l) {
     o = baseColors.slice(0, l - 1).map((c, i) => [c, stops[i]]);
     // @ts-ignore
@@ -402,16 +402,16 @@ function discover(colors = [], options) {
    */
 
   // I have this weird urge to just put stuff in arrays...elegant
-  var [a, c, f] = [{}, {}, (a, b) => differenceHyab()(a, b)],
+  let [a, c, f] = [{}, {}, (a, b) => differenceHyab()(a, b)],
     z = (u) => {
       for (const [h, g] of entries(colors)) {
         c[h] = scheme(g, { kind: u });
       }
 
-      var j = [];
-      for (var [i, r] of entries(c)) {
+      let j = [];
+      for (let [i, r] of entries(c)) {
         // @ts-ignore
-        var m = nearest(colors.filter((n) => !j.some((o) => eq(f(n, o), 0))));
+        let m = nearest(colors.filter((n) => !j.some((o) => eq(f(n, o), 0))));
 
         j.push(m);
 
@@ -532,9 +532,9 @@ function scheme(baseColor = "cyan", options) {
   }
   // The map for steps to obtain the targeted palettes
 
-  var [[l, c], e] = [["l", "c"].map((a) => mcchn(a, colorspace, false)), {}];
+  let [[l, c], e] = [["l", "c"].map((a) => mcchn(a, colorspace, false)), {}];
 
-  var z = (x = 0) => ({
+  let z = (x = 0) => ({
     [l]: baseColor[l],
     [c]: baseColor[c],
     h: adjustHue(baseColor["h"] + x),

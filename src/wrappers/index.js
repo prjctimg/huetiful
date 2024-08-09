@@ -754,7 +754,7 @@ class Color {
    *
    */
   saturation(amount) {
-    var c = mcchn("c", this["colorspace"]);
+    let c = mcchn("c", this["colorspace"]);
     if (amount) {
       // @ts-ignore
       this["_color"] = mc(

@@ -133,7 +133,7 @@ function alpha(color, amount = undefined) {
     if (eq(typeof color, "object")) {
       color["alpha"] = amount;
     } else {
-      var colorObject = token(color, { kind: "obj" });
+      let colorObject = token(color, { kind: "obj" });
       colorObject["alpha"] = amount;
       color = colorObject;
     }
@@ -265,7 +265,7 @@ function achromatic(color) {
   color = token(color, { kind: "obj", targetMode: "lch" });
 
   // If a color has no lightness then it has no hue so its technically not achromatic since white and black are not grayscale
-  var isFalsy = (x) => typeof x === "undefined" || x === 0 || x === NaN;
+  let isFalsy = (x) => typeof x === "undefined" || x === 0 || x === NaN;
 
   return or(
     and(
@@ -301,9 +301,9 @@ console.log(brighten('blue', 0.3));
 
  */
 function lightness(color, amount, darken = false) {
-  var f = () => {
+  let f = () => {
     // @ts-ignore
-    var colorObject = token(color, { kind: "obj", targetMode: "lab65" });
+    let colorObject = token(color, { kind: "obj", targetMode: "lab65" });
     if (typeof amount === "number") {
       // @ts-ignore
       colorObject["l"] = (darken ? max : min)([
@@ -400,7 +400,7 @@ function token(color, options = undefined) {
    * an array of channel keys from the source colorspace. If undefined it defaults to LCH
    * @type {string[]}
    */
-  var channelKeys = gmchn(or(srcMode, targetMode)),
+  let channelKeys = gmchn(or(srcMode, targetMode)),
     /**
      * @type {number[]}
      * an array of channel values
@@ -437,7 +437,7 @@ function token(color, options = undefined) {
        *  Normalize the color back to the rgb gamut supported by culori
        * @type {boolean}
        * */
-      var checkGamut = channelKeys.some((c) => gt(Math.abs(color[c]), 1));
+      let checkGamut = channelKeys.some((c) => gt(Math.abs(color[c]), 1));
 
       if (checkGamut) {
         for (const k of channelKeys) {
@@ -502,7 +502,7 @@ function token(color, options = undefined) {
    * converts any color token to hexadecimal
    */
   function c2str() {
-    var colorHex = {
+    let colorHex = {
       boolean: or(and(eq(color, true), "#ffffff"), "#000000"),
       number: num2c(),
       object: formatHex(color),
@@ -623,7 +623,7 @@ function luminance(color, amount) {
         }
       };
 
-      var result;
+      let result;
       if (gt(currentLuminance, amount)) {
         result = f(b, color);
       } else {
@@ -763,7 +763,7 @@ console.log(complimentary("purple"))
 // #005700
  */
 function complimentary(baseColor, obj = false) {
-  var complimentaryHueAngle = adjustHue(
+  const complimentaryHueAngle = adjustHue(
     mc("lch.h")(baseColor) + 180 * rand(0.965, 1)
   );
 
