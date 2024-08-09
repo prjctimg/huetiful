@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.1](https://github.com/prjctimg/huetiful/compare/v2.3.0...v3.0.1) (2024-08-09)
+
+
+### Performance Improvements
+
+* added missing file ([3069d35](https://github.com/prjctimg/huetiful/commit/3069d35f5a75908050e0afd6acde8e96545f5791))
+* created index file for palettes subdir ([046f770](https://github.com/prjctimg/huetiful/commit/046f7709d05cb2dee490e3eb20ef6fa41acda5c7))
+* created index file for palettes subdir ([4b312c4](https://github.com/prjctimg/huetiful/commit/4b312c4ad8c226e7804c46409521d1482a07a573))
+
+
+### Miscellaneous Chores
+
+* release 3.0.0 ([67391c2](https://github.com/prjctimg/huetiful/commit/67391c29a60ed5964c98e7e27f73d051bdacbc22))
+* release 3.0.1 ([253655e](https://github.com/prjctimg/huetiful/commit/253655ec1dcf65752160a93f453fcc7d27a81975))
+
 ## [2.3.0](https://github.com/xml-wizard/huetiful/compare/v2.2.0...v2.3.0) (2024-04-08)
 
 
