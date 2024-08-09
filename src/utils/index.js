@@ -265,7 +265,7 @@ function achromatic(color) {
   color = token(color, { kind: "obj", targetMode: "lch" });
 
   // If a color has no lightness then it has no hue so its technically not achromatic since white and black are not grayscale
-  let isFalsy = (x) => typeof x === "undefined" || x === 0 || x === NaN;
+  let isFalsy = (x) => or(or(eq(typeof x, "undefined"), eq(x, 0)), isNaN(x));
 
   return or(
     and(
@@ -353,18 +353,25 @@ function token(color, options = undefined) {
    *
    */
   const modeDefinitions = {
-      hsv: modeHsv,
-      rgb: modeLrgb,
-      lab: modeLab,
-      lch65: modeLch65,
-      lab65: modeLab65,
-      oklch: modeOklch,
-      lch: modeLch,
-      xyz: modeXyz65,
-      jch: modeJch,
-    },
-    { srcMode, targetMode, omitMode, kind, numType, omitAlpha, normalizeRgb } =
-      options || {},
+    hsv: modeHsv,
+    rgb: modeLrgb,
+    lab: modeLab,
+    lch65: modeLch65,
+    lab65: modeLab65,
+    oklch: modeOklch,
+    lch: modeLch,
+    xyz: modeXyz65,
+    jch: modeJch,
+  };
+  let {
+      srcMode,
+      targetMode,
+      omitMode,
+      kind,
+      numType,
+      omitAlpha,
+      normalizeRgb,
+    } = options || {},
     parseToken = (m, a) => useMode(modeDefinitions[m])(or(a, c2str()));
 
   /**
@@ -585,6 +592,7 @@ console.log(luminance(myColor))
  */
 function luminance(color, amount) {
   color = token(color);
+  let result;
   if (!amount) {
     // @ts-ignore
     return wcagLuminance(color);
@@ -623,7 +631,6 @@ function luminance(color, amount) {
         }
       };
 
-      let result;
       if (gt(currentLuminance, amount)) {
         result = f(b, color);
       } else {

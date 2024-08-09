@@ -15,7 +15,7 @@ import {
   easingSmoothstep,
   interpolatorLinear,
 } from "culori/fn";
-import { mc } from "../utilities/index.js";
+import { mc } from "../utils/index.js";
 
 let { keys, entries, values } = Object;
 
@@ -44,7 +44,7 @@ function and(a, b) {
  * @param {*} z callback that takes a factor as its only argument
  * @param y = Optional array of factor keys
  */
-function wtf(
+function factorIterator(
   t,
   z,
   y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"]
@@ -267,26 +267,20 @@ function isInt(n) {
 }
 
 function norm(v, mc = "") {
-  const c = mc.split("."),
-    [s, e] = limits[c[0]][c[1]];
+  const channel = mc.split("."),
+    [start, end] = limits[channel[0]][channel[1]];
 
   return and(
-    not(inRange(v, s, e)),
+    not(inRange(v, start, end)),
     or(
-      and(lte(v, 1), (v = mult(e, v))),
-      or(and(lte(e, 100), mult(e, give(v, 100))), mult(e, give(v, e)))
+      and(lte(v, 1), (v = mult(end, v))),
+      or(and(lte(end, 100), mult(end, give(v, 100))), mult(end, give(v, end)))
     )
   );
 }
 
 function rand(mn, mx) {
-  if (gt(mn, mx)) {
-    let [mn, mx] = [mn, mx];
-    mx = mn;
-    mn = mx;
-  }
-
-  return Math.random() * (mx - mn) + mn;
+  return Math.random() * Math.abs(mx - mn + mn);
 }
 
 function floorCeil(n) {
@@ -571,7 +565,7 @@ export {
   entries,
   values,
   keys,
-  wtf,
+  factorIterator,
   and,
   give,
   add,

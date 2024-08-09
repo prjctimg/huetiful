@@ -146,7 +146,7 @@ function deficiency(
 ) {
   var { kind, severity } = options || {};
 
-  const f = (d, c, t) => {
+  const f = (c, t) => {
     c = token(c);
 
     return {

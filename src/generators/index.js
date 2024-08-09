@@ -38,7 +38,7 @@ import {
   min,
   max,
   values,
-  wtf,
+  factorIterator,
   entries,
   and,
   eq,
@@ -46,7 +46,7 @@ import {
   isArray,
   rand,
 } from "../internal/index.js";
-import { mc, token } from "../utilities/index.js";
+import { mc, token } from "../utils/index.js";
 
 /**
  * Creates a palette of hue shifted colors from the passed in color.
@@ -424,7 +424,12 @@ function discover(colors = [], options) {
   // Get the values of any collection
 
   // @ts-ignore
-  return wtf(kind, z, ["analogous", "triadic", "tetradic", "complementary"]);
+  return factorIterator(kind, z, [
+    "analogous",
+    "triadic",
+    "tetradic",
+    "complementary",
+  ]);
 }
 
 /**

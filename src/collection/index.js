@@ -14,7 +14,7 @@ import {
   sortedColl,
   mcchn,
   chnDiff,
-  wtf,
+  factorIterator,
   or,
   and,
   isArray,
@@ -174,7 +174,7 @@ function stats(collection = [], options = undefined) {
     ];
 
   return (() => {
-    const p = wtf(factor, i);
+    const p = factorIterator(factor, i);
     p["achromatic"] =
       // @ts-ignore
       values(collection).filter(achromatic).length / m;
@@ -255,7 +255,7 @@ function sortBy(collection = [], options = undefined) {
       )[h](collection);
     };
 
-  return wtf(factor, z);
+  return factorIterator(factor, z);
 }
 
 /**
@@ -515,7 +515,7 @@ function filterBy(collection, options) {
       return z;
     };
 
-  return wtf(factor, p);
+  return factorIterator(factor, p);
 }
 
 export { stats, sortBy, filterBy, distribute };
