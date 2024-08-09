@@ -8,7 +8,7 @@ var fs = require("fs"),
       "Utilites for creating palettes by mapping strategic values to target channels on color tokens.",
     palettes:
       "Precomputed color maps from Tailwind and ColorBrewer exposed as wrapper functions making it easy to get your designs started.",
-    utilities:
+    utils:
       "Functions for general purpose set/get snd conversion operations on color tokens.",
     collection:
       "Utilities for querying statistics,soring,filtering and distributing properties on collections of colors. ",

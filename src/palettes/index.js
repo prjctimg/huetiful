@@ -810,11 +810,11 @@ console.log(nearest(cols, 'blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
 function nearest(collection, options) {
-  var { against, num } = options || {};
+  let { against, num } = options || {};
   num = or(num, 1);
   against = or(against, "cyan");
   const f = (a, b) => {
-    var o = nrst(values(a), differenceHyab(), (c) => c)(b, num);
+    let o = nrst(values(a), differenceHyab(), (c) => c)(b, num);
     return or(and(eq(num, 1), o[0]), o);
   };
 
@@ -862,11 +862,11 @@ function nearest(collection, options) {
    */
 
 function colors(shade = "all", value = undefined) {
-  var w = tailwind;
+  let w = tailwind;
 
-  var [d, k] = ["all", keys(w)];
+  let [d, k] = ["all", keys(w)];
 
-  var [p, q] = [
+  let [p, q] = [
     (h) => k.includes(h),
     (i) =>
       [
@@ -886,7 +886,7 @@ function colors(shade = "all", value = undefined) {
 
   // @ts-ignore
   shade = shade.toLowerCase();
-  var o;
+  let o;
   if (eq(shade, d)) {
     if (q(value)) {
       o = k.map((y) => w[y][value]);

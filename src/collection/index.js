@@ -14,7 +14,7 @@ import {
   sortedColl,
   mcchn,
   chnDiff,
-  wtf,
+  factorIterator,
   or,
   and,
   isArray,
@@ -22,7 +22,7 @@ import {
   eq,
   filteredColl,
 } from "../internal/index.js";
-import { family, luminance, mc, token } from "../utilities/index.js";
+import { family, luminance, mc, token } from "../utils/index.js";
 import { contrast } from "../accessibility/index.js";
 import {
   averageAngle,
@@ -65,7 +65,7 @@ import { limits } from "../constants/index.js";
  * @returns {Stats}
  */
 function stats(collection = [], options = undefined) {
-  var { factor, relative, colorspace, against } = options || {};
+  let { factor, relative, colorspace, against } = options || {};
 
   /*
                                     //// DEFAULT OPTIONS  \\\\
@@ -101,7 +101,7 @@ function stats(collection = [], options = undefined) {
   // put a bunch of stuff in arrays. f*ck readability :lol:
   //  z,j,v are similar
   // Callback functions for retrieving factors
-  var [o, m] = [
+  const [o, m] = [
       (f) => {
         // if relativeMean is true
         // use the overload on all other factors when fetching their mean
@@ -174,7 +174,7 @@ function stats(collection = [], options = undefined) {
     ];
 
   return (() => {
-    const p = wtf(factor, i);
+    const p = factorIterator(factor, i);
     p["achromatic"] =
       // @ts-ignore
       values(collection).filter(achromatic).length / m;
@@ -255,7 +255,7 @@ function sortBy(collection = [], options = undefined) {
       )[h](collection);
     };
 
-  return wtf(factor, z);
+  return factorIterator(factor, z);
 }
 
 /**
@@ -267,7 +267,7 @@ function sortBy(collection = [], options = undefined) {
  */
 function distribute(factor, options) {
   // Destructure the opts to check before distributing the factor
-  var { extremum, excludeSelf, excludeAchromatic, colorspace, hueFixup } =
+  let { extremum, excludeSelf, excludeAchromatic, colorspace, hueFixup } =
       options || {},
     get_cb,
     set_cb;
@@ -352,7 +352,7 @@ let sample = [
 
  */
 function filterBy(collection, options) {
-  var { against, colorspace, factor, ranges } = options || {};
+  let { against, colorspace, factor, ranges } = options || {};
 
   factor = or(factor, undefined);
   //	relative = or(relative, false);
@@ -360,7 +360,7 @@ function filterBy(collection, options) {
   against = or(against, "cyan");
   //	order = or(order, 'asc');
 
-  var w = (b, s, e) => {
+  let w = (b, s, e) => {
       return filteredColl(factor, b)(collection, s, e);
     },
     p = (k) => {
@@ -515,7 +515,7 @@ function filterBy(collection, options) {
       return z;
     };
 
-  return wtf(factor, p);
+  return factorIterator(factor, p);
 }
 
 export { stats, sortBy, filterBy, distribute };

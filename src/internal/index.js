@@ -15,9 +15,9 @@ import {
   easingSmoothstep,
   interpolatorLinear,
 } from "culori/fn";
-import { mc } from "../utilities/index.js";
+import { mc } from "../utils/index.js";
 
-var { keys, entries, values } = Object;
+let { keys, entries, values } = Object;
 
 /**
  *
@@ -44,7 +44,7 @@ function and(a, b) {
  * @param {*} z callback that takes a factor as its only argument
  * @param y = Optional array of factor keys
  */
-function wtf(
+function factorIterator(
   t,
   z,
   y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"]
@@ -121,7 +121,7 @@ function exprParser(a, b) {
   // regExp to match arithmetic operator and the value
 
   // Create operator map
-  var u = {
+  let u = {
     "!=": neq,
     "==": eq,
     ">=": gte,
@@ -152,7 +152,7 @@ function exprParser(a, b) {
 function mcchn(c, m, f = true) {
   // Matches any string with c or s
   m = or(m, "lch");
-  var x, e, d;
+  let x, e, d;
 
   or(
     and(
@@ -198,7 +198,7 @@ function customConcat(h = {}) {
   return and(
     eq(typeof h, "object"),
     (() => {
-      var res = [];
+      let res = [];
       const k = keys(h);
 
       //@ts-ignore
@@ -267,30 +267,20 @@ function isInt(n) {
 }
 
 function norm(v, mc = "") {
-  const c = mc.split("."),
-    [s, e] = limits[c[0]][c[1]];
+  const channel = mc.split("."),
+    [start, end] = limits[channel[0]][channel[1]];
 
   return and(
-    not(inRange(v, s, e)),
+    not(inRange(v, start, end)),
     or(
-      and(lte(v, 1), (v = mult(e, v))),
-      or(and(lte(e, 100), mult(e, give(v, 100))), mult(e, give(v, e)))
+      and(lte(v, 1), (v = mult(end, v))),
+      or(and(lte(end, 100), mult(end, give(v, 100))), mult(end, give(v, end)))
     )
   );
 }
 
 function rand(mn, mx) {
-  return or(
-    and(
-      gt(mn, mx),
-      (() => {
-        var [mn, mx] = [mn, mx];
-        mx = mn;
-        mn = mx;
-      })()
-    ),
-    Math.random() * (mx - mn) + mn
-  );
+  return Math.random() * Math.abs(mx - mn + mn);
 }
 
 function floorCeil(n) {
@@ -320,7 +310,7 @@ function customSort(o = "asc", x = "factor") {
 }
 
 function colorObjColl(a = "factor", b) {
-  var u = colorObj(a, b);
+  let u = colorObj(a, b);
   /**
    * @param collection The array or object of colors to iterate over. If an object is passed, its values are expected to be valid color tokens.
    */
@@ -367,7 +357,7 @@ function isSet(x) {
  *
  */
 function map(u, cb) {
-  var o, p;
+  let o, p;
   p = or(or(and(isMap(u), new Map()), and(isSet(u), new Set())), false);
   if (p) {
     for (const [a, b] of entries(u)) {
@@ -399,21 +389,21 @@ function max(x) {
 
 function reNum(s = "") {
   s = s.toString();
-  var re = /[0-9]*\.?[0-9]+/;
+  let re = /[0-9]*\.?[0-9]+/;
   // @ts-ignore
   return or(and(re.test(s), Number(re.exec(s)["0"])), undefined);
 }
 
 function reOp(s) {
   s = s.toString();
-  var re = /^(\*|\+|\-|\/|>=|<=|<|>|={1,2}|!={0,2})/;
+  let re = /^(\*|\+|\-|\/|>=|<=|<|>|={1,2}|!={0,2})/;
 
   // @ts-ignore
   return or(and(re.test(s), re.exec(s)["0"]), undefined);
 }
 function sortedColl(f = "factor", cb, o = "asc", obj = false) {
   return (c) => {
-    var r = colorObjColl(f, cb)(c),
+    let r = colorObjColl(f, cb)(c),
       u;
 
     // If the collection is not an Array  insert the sorted elements
@@ -433,7 +423,7 @@ function sortedColl(f = "factor", cb, o = "asc", obj = false) {
       ),
       (() => {
         u = new Map();
-        var t = values(r)
+        let t = values(r)
           // @ts-ignore
           .sort(customSort(o, f));
 
@@ -575,7 +565,7 @@ export {
   entries,
   values,
   keys,
-  wtf,
+  factorIterator,
   and,
   give,
   add,

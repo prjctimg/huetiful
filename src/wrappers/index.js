@@ -27,7 +27,7 @@ import {
   temp,
   overtone,
   alpha,
-} from "../utilities/index.js";
+} from "../utils/index.js";
 
 /**
  Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
@@ -754,7 +754,7 @@ class Color {
    *
    */
   saturation(amount) {
-    var c = mcchn("c", this["colorspace"]);
+    let c = mcchn("c", this["colorspace"]);
     if (amount) {
       // @ts-ignore
       this["_color"] = mc(
