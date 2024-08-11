@@ -101,33 +101,33 @@ function stats(collection = [], options = undefined) {
   // put a bunch of stuff in arrays. f*ck readability :lol:
   //  z,j,v are similar
   // Callback functions for retrieving factors
-  const [o, m] = [
+  const [getStatsObject, collectionLength] = [
       (f) => {
         // if relativeMean is true
         // use the overload on all other factors when fetching their mean
 
-        const [y, z, g] = [
+        const [sortedTokens, getChannel, getContrast] = [
           (a, b) => sortedColl(a, b, "asc", true)(collection),
           (a) => (b) => mc(a)(b),
           (a) => contrast(a, against),
         ];
         return or(
           and(eq(relative, true), {
-            chroma: y(f, chnDiff(against, mcchn("c", colorspace))),
+            chroma: sortedTokens(f, chnDiff(against, mcchn("c", colorspace))),
             luminance: (() => {
               // @ts-ignore
               let cb1 = (a) => (b) => Math.abs(luminance(a) - luminance(b));
-              return y(f, cb1(against));
+              return sortedTokens(f, cb1(against));
             })(),
-            lightness: y(f, chnDiff(against, mcchn("l", colorspace))),
-            hue: y(f, chnDiff(against, `${colorspace}.h`)),
-            contrast: y(f, g),
+            lightness: sortedTokens(f, chnDiff(against, mcchn("l", colorspace))),
+            hue: sortedTokens(f, chnDiff(against, `${colorspace}.h`)),
+            contrast: sortedTokens(f, getContrast),
           }),
           {
-            chroma: y(f, z(mcchn("c", colorspace))),
-            luminance: y(f, luminance),
-            lightness: y(f, z(mcchn("l", colorspace))),
-            hue: y(f, z(colorspace + `.h`)),
+            chroma: sortedTokens(f, getChannel(mcchn("c", colorspace))),
+            luminance: sortedTokens(f, luminance),
+            lightness: sortedTokens(f, getChannel(mcchn("l", colorspace))),
+            hue: sortedTokens(f, getChannel(colorspace + `.h`)),
           }
         )[f];
       },
@@ -135,7 +135,7 @@ function stats(collection = [], options = undefined) {
       // @ts-ignore
       collection.length,
     ],
-    [t, i] = [
+    [factorStats, commonStats] = [
       (k) => {
         // we filter out falsy values from the collection to avoid getting NaN
         // @ts-ignore
@@ -157,7 +157,7 @@ function stats(collection = [], options = undefined) {
         }[k];
       },
       (k) => {
-        const [x, y] = [o(k)[0], o(k)[m - 1]];
+        const [x, y] = [getStatsObject(k)[0], getStatsObject(k)[collectionLength - 1]];
 
         return {
           against: or(
@@ -166,7 +166,7 @@ function stats(collection = [], options = undefined) {
           ),
           colors: [x["color"], y["color"]],
           // @ts-ignore
-          mean: t(k)(collection),
+          mean: factorStats(k)(collection),
           extremums: [x[k], y[k]],
           families: [family(x["color"]), family(y["color"])],
         };
@@ -174,10 +174,10 @@ function stats(collection = [], options = undefined) {
     ];
 
   return (() => {
-    const p = factorIterator(factor, i);
+    const p = factorIterator(factor, commonStats);
     p["achromatic"] =
       // @ts-ignore
-      values(collection).filter(achromatic).length / m;
+      values(collection).filter(achromatic).length / collectionLength;
     p["colorspace"] = colorspace;
 
     return p;
@@ -222,10 +222,12 @@ function sortBy(collection = [], options = undefined) {
   against = or(against, "cyan");
   order = or(order, "asc");
 
-  const [l, c] = ["l", "c"].map((w) => mcchn(w, colorspace, false)),
+
+  // lightness and chroma channel constants respectively
+  const [l , c] = ["l", "c"].map((w) => mcchn(w, colorspace, false)),
     y = (a) => sortedColl(factor, a, order),
     // returns factor cbs determined by the options
-    z = (h) => {
+    factorCallbacks = (h) => {
       return or(
         and(relative, {
           chroma: y(chnDiff(against, mc(colorspace + "." + c))),
@@ -255,7 +257,8 @@ function sortBy(collection = [], options = undefined) {
       )[h](collection);
     };
 
-  return factorIterator(factor, z);
+  // @ts-ignore
+  return factorIterator(factor, factorCallbacks);
 }
 
 /**
@@ -269,7 +272,9 @@ function distribute(factor, options) {
   // Destructure the opts to check before distributing the factor
   let { extremum, excludeSelf, excludeAchromatic, colorspace, hueFixup } =
       options || {},
+    // @ts-ignore
     get_cb,
+    // @ts-ignore
     set_cb;
 
   // Set the extremum to distribute to default to max if its not min
@@ -375,6 +380,7 @@ function filterBy(collection, options) {
          */
         y,
         z,
+        // @ts-ignore
         [c, l] = [mcchn("c", colorspace, false), mcchn("l", colorspace, false)];
       if (isArray(factor) || undefined) {
         x = ranges[k][0];
@@ -515,6 +521,7 @@ function filterBy(collection, options) {
       return z;
     };
 
+  // @ts-ignore
   return factorIterator(factor, p);
 }
 
