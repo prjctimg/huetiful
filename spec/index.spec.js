@@ -92,112 +92,133 @@ var all300 = [
 
 // This object is for simple utils with no edge cases
 var specs = {
-  family: {
-    params: ["cyan"],
-    description: `Gets the color"s hue family`,
-    expect: "blue-green",
-  },
-  temp: {
-    params: ["pink"],
-    description: `Returns the rough color temperature either cool or warm.`,
-    expect: "cool",
-  },
-  achromatic: {
-    params: ["yellow"],
-    description: `Checks if a color is achromatic or not`,
-    expect: false,
-  },
+	family: {
+		params: ['cyan'],
+		description: `Gets the color"s hue family`,
+		expect: 'blue-green'
+	},
+	temp: {
+		params: ['pink'],
+		description: `Returns the rough color temperature either cool or warm.`,
+		expect: 'cool'
+	},
+	achromatic: {
+		params: ['yellow'],
+		description: `Checks if a color is achromatic or not`,
+		expect: false
+	},
 
-  overtone: {
-    params: ["cyan"],
-    description: `Gets the overtone of the passed in color`,
-    expect: "green",
-  },
-  contrast: {
-    params: ["black", "white"],
-    description: `Gets the contrast of the passed in color`,
-    expect: 21,
-  },
-  luminance: {
-    params: ["#ffc300", 0.7],
-    description: `Sets the luminance of the passed in color`,
-    expect: "#ffe180ff",
-  },
-  lightness: {
-    params: ["blue", 0.3, false],
-    description: "Lightens/darkens the passed in color",
-    expect: "#9d63ffff",
-  },
-  discover: {
-    params: [sample, { kind: "tetradic" }],
-    description:
-      "Takes an array of colors and finds the best matches for a set of predefined palettes.",
-    expect: ["#ffff00ff", "#00ffdcff", "#310000ff", "#720000ff"],
-  },
-  earthtone: {
-    params: ["pink", { earthtones: "clay", num: 5, closed: true }],
-    description:
-      "Creates a scale of a spline interpolation between an earthtone and a color.",
-    expect: ["#6a5c52ff", "#8f7570ff", "#b48e8fff", "#daa7adff", "#ffc0cbff"],
-  },
-  hueshift: {
-    params: ["#3e00a6"],
-    description: "Generates a palette of hue shifted colors",
-    expect: hueshiftPalette,
-  },
-  interpolator: {
-    params: [
-      ["b2c3f1", "#a1bd2f", "#f3bac1"],
-      { colorspace: "lch", num: 8, kind: "natural" },
-    ],
-    description:
-      "Returns a spline interpolator function with customizable interpolation methods",
-    expect: [
-      "#b2c3f1ff",
-      "#ff9ea9ff",
-      "#a6c44aff",
-      "#00d3d8ff",
-      "#00bfffff",
-      "#e0a4ffff",
-      "#ffa5daff",
-      "#f3bac1ff",
-    ],
-  },
-  alpha: {
-    params: ["#f3da3c51"],
-    description: "Returns the alpha of the passed in color",
-    expect: 81,
-  },
-  deficiency: {
-    params: [["rgb", 230, 100, 50, 0.5], { kind: "blue", severity: 0.5 }],
-    expect: "#dd663680",
-  },
-  nearest: {
-    params: [cols, { against: "cyan", num: 1 }],
-    description: `Returns the nearest color`,
-    expect: "#14b8a6",
-  },
-  scheme: {
-    params: ["purple", { kind: "tetradic" }],
-    description: `Returns a classic palette`,
-    expect: true,
-  },
-  pair: {
-    params: ["green", { hueStep: 6, num: 4, tone: "dark" }],
-    description:
-      "Creates a scheme that consists of a scheme color that is incremented by a hueStep to get the final hue to pair with",
-    expect: ["#008000", "#348e2a", "#79b36f", "#cfe4cb"],
-  },
-  pastel: {
-    params: ["green"],
-    description: "Creates a pastel variant of a color",
-    expect: jasmine.anything(),
-  },
-  colors: {
-    params: ["all", "300"],
-    description: "Returns the swatches of color families at 300",
-    expect: all300,
-  },
+	overtone: {
+		params: ['cyan'],
+		description: `Gets the overtone of the passed in color`,
+		expect: 'green'
+	},
+	contrast: {
+		params: ['black', 'white'],
+		description: `Gets the contrast of the passed in color`,
+		expect: 21
+	},
+	luminance: {
+		params: ['#ffc300', 0.7],
+		description: `Sets the luminance of the passed in color`,
+		expect: '#ffe180ff'
+	},
+	lightness: {
+		params: ['blue', 0.3, false],
+		description: 'Lightens/darkens the passed in color',
+		expect: '#9d63ffff'
+	},
+	discover: {
+		params: [sample, { kind: 'tetradic' }],
+		description:
+			'Takes an array of colors and finds the best matches for a set of predefined palettes.',
+		expect: {
+			0: ['#495569ff', '#5a5065ff', '#634d5fff'],
+			1: ['#4d5463ff', '#545362ff', '#614f58ff'],
+			2: ['#53525bff', '#585058ff', '#52525bff'],
+			3: ['#525252ff', '#525252ff', '#525252ff'],
+			4: ['#57534eff', '#57534eff', '#54544eff'],
+			5: ['#da2a22ff', '#cb4400ff', '#c44c00ff'],
+			6: ['#e95908ff', '#d66a00ff', '#e06200ff'],
+			7: ['#d57900ff', '#d37b00ff', '#8f9900ff'],
+			8: ['#c68c00ff', '#bf8f00ff', '#a59a00ff'],
+			9: ['#60a413ff', '#1caa3bff', '#00ab44ff'],
+			10: ['#00a44eff', '#00a784ff', '#00a7a4ff'],
+			11: ['#00966dff', '#009787ff', '#00977aff'],
+			12: ['#099489ff', '#009491ff', '#2d8ebaff'],
+			13: ['#2083c8ff', '#7a73c4ff', '#a066b1ff'],
+			14: ['#425fe8ff', '#535ce6ff', '#3162eaff'],
+			15: ['#912be3ff', '#d90092ff', '#912ae3ff'],
+			16: ['#ac13daff', '#ec005cff', '#a421e0ff'],
+			17: ['#d200beff', '#e90093ff', '#cc09c6ff'],
+			18: ['#db2775ff', '#dc286cff', '#dc2869ff'],
+			19: ['#e11f46ff', '#db2f34ff', '#d8362bff']
+		}
+	},
+	earthtone: {
+		params: ['pink', { earthtones: 'clay', num: 5, closed: true }],
+		description:
+			'Creates a scale of a spline interpolation between an earthtone and a color.',
+		expect: ['#6a5c52ff', '#8f7570ff', '#b48e8fff', '#daa7adff', '#ffc0cbff']
+	},
+	hueshift: {
+		params: ['#3e00a6'],
+		description: 'Generates a palette of hue shifted colors',
+		expect: hueshiftPalette
+	},
+	interpolator: {
+		params: [
+			['b2c3f1', '#a1bd2f', '#f3bac1'],
+			{ colorspace: 'lch', num: 8, kind: 'natural' }
+		],
+		description:
+			'Returns a spline interpolator function with customizable interpolation methods',
+		expect: [
+			'#b2c3f1ff',
+			'#ff9ea9ff',
+			'#a6c44aff',
+			'#00d3d8ff',
+			'#00bfffff',
+			'#e0a4ffff',
+			'#ffa5daff',
+			'#f3bac1ff'
+		]
+	},
+	alpha: {
+		params: ['#f3da3c51'],
+		description: 'Returns the alpha of the passed in color',
+		expect: 81
+	},
+	deficiency: {
+		params: [['rgb', 230, 100, 50, 0.5], { kind: 'blue', severity: 0.5 }],
+		expect: '#dd663680'
+	},
+	nearest: {
+		params: [cols, { against: 'cyan', num: 1 }],
+		description: `Returns the nearest color`,
+		expect: '#14b8a6'
+	},
+	scheme: {
+		params: ['purple', { kind: 'tetradic' }],
+		description: `Returns a classic palette`,
+		expect: true
+	},
+	pair: {
+		params: ['green', { hueStep: 6, num: 4, tone: 'dark' }],
+		description:
+			'Creates a scheme that consists of a scheme color that is incremented by a hueStep to get the final hue to pair with',
+		expect: ['#008000', '#348e2a', '#79b36f', '#cfe4cb']
+	},
+	pastel: {
+		params: ['green'],
+		description: 'Creates a pastel variant of a color',
+		expect: jasmine.anything()
+	},
+	colors: {
+		params: ['all', '300'],
+		description: 'Returns the swatches of color families at 300',
+		expect: all300
+	}
 };
 
 _iterator(mods, specs);

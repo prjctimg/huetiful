@@ -184,6 +184,19 @@ export type DiscoverOptions = {
    * Default is `undefined`
    */
   kind?: SchemeType | undefined;
+/**
+ * The minimum distance between colors. May affect finally palette results.
+ * Default is 0
+ */
+  minDistance?: number;
+
+  /**
+   * The minimum distance between colors. May affect finally palette results
+   * Default is the `jnd` internal constant.
+   */
+  maxDistance?: number;
+
+
   /**
    * The colorspace to retrieve channel values from.
    */
