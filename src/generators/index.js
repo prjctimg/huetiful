@@ -392,7 +392,7 @@ function discover(colors = [], options) {
 		//  Initialize and sanitize parameters
 		const colorTokenValues = values(colors),
 			colorTokenKeys = keys(colors);
-		let { kind ,maxDistance,minDistance} = options || {};
+		let { kind, maxDistance, minDistance } = options || {};
 
 		/*
 		 * 					* GLOBAL VARIABLES
@@ -405,17 +405,17 @@ function discover(colors = [], options) {
 		 *
 		 */
 
-		maxDistance = or(maxDistance, 0.0014)
-		minDistance= or(minDistance,0)
+		maxDistance = or(maxDistance, 0.0014);
+		minDistance = or(minDistance, 0);
 
-		const palettes = {};
-		let [colorDistance] = [(a, b) => differenceHyab()(a, b)];
-		const availableColors = (arg, obj = {}) =>
-			obj[arg]?.filter((c) =>
-				colorTokenValues.some((d) =>
-					not(inRange(colorDistance(c, d), minDistance, maxDistance))
-				)
-			);
+		const palettes = {},
+			colorDistance = (a, b) => differenceHyab()(a, b),
+			customInRange = (c, d) =>
+				inRange(colorDistance(c, d), minDistance, maxDistance),
+			availableColors = (arg, obj = {}) =>
+				obj[arg]?.filter((c) =>
+					colorTokenValues.some((d) => not(customInRange(c, d)))
+				);
 		// Create the classic palettes per valid color token  in the collection
 
 		for (const key of colorTokenKeys) {
@@ -425,9 +425,18 @@ function discover(colors = [], options) {
 		// For each color token,
 		//remove the colors that are available
 		// in the source color token collection
+
+		let currentPalette;
 		for (const key of colorTokenKeys) {
 			if (eq(typeof kind, 'string')) {
 				palettes[key] = availableColors(key, palettes);
+				if (gt(currentPalette.length,1)) {
+				palettes[key]=	palettes[key].filter((a, b) =>
+						not(customInRange(a, currentPalette[b]))
+					);
+				}
+
+				currentPalette = palettes[key];
 			} else {
 				// if the color token value is an object, iterate through the available palette keys
 				for (const paletteType of keys(palettes[key])) {
@@ -524,7 +533,7 @@ console.log(scheme("triadic")("#a1bd2f"))
  */
 // @ts-ignore
 function scheme(baseColor = { l: 8, c: 40, h: 87, mode: 'lch' }, options = {}) {
-	let { colorspace, kind, easingFn, tokenOptions } = options || {};
+	let { colorspace, kind, easingFn } = options || {};
 	// @ts-ignore
 	kind = or(kind, 'analogous');
 	colorspace = or(colorspace, 'lch');
@@ -551,31 +560,31 @@ function scheme(baseColor = { l: 8, c: 40, h: 87, mode: 'lch' }, options = {}) {
 			triadic: generateSteps(3, 120),
 			tetradic: generateSteps(4, 90),
 			complimentary: generateSteps(2, 180)
+		},
+		callback = (kind) => {
+			// // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
+
+			// // The map for steps to obtain the targeted palettes
+
+			const [lightnessChan, chromaChan] = ['l', 'c'].map((a) =>
+					mcchn(a, colorspace, false)
+				),
+				palettes = [];
+
+			for (const [idx, step] of entries(PALETTE_TYPES[kind])) {
+				palettes[idx] = token(
+					{
+						[lightnessChan]: baseColor[lightnessChan],
+						[chromaChan]: baseColor[chromaChan],
+						h: adjustHue(baseColor['h'] + step),
+						mode: colorspace
+					},
+					options?.token
+				);
+			}
+			palettes.shift();
+			return palettes;
 		};
-	const callback = (kind) => {
-		// // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
-
-		// // The map for steps to obtain the targeted palettes
-
-		const [lightnessChan, chromaChan] = ['l', 'c'].map((a) =>
-				mcchn(a, colorspace, false)
-			),
-			palettes = [];
-
-		for (const [idx, step] of entries(PALETTE_TYPES[kind])) {
-			palettes[idx] = token(
-				{
-					[lightnessChan]: baseColor[lightnessChan],
-					[chromaChan]: baseColor[chromaChan],
-					h: adjustHue(baseColor['h'] + step),
-					mode: colorspace
-				},
-				tokenOptions
-			);
-		}
-		palettes.shift();
-		return palettes;
-	};
 
 	return factorIterator(kind, callback, keys(PALETTE_TYPES));
 }

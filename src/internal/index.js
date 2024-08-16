@@ -43,6 +43,7 @@ function and(a, b) {
  * @param {any} t The factor either array string or undef
  * @param {*} z callback that takes a factor as its only argument
  * @param y = Optional array of factor keys
+ * @returns {Collection}
  */
 function factorIterator(
 	t,

@@ -348,6 +348,8 @@ export type SchemeOptions = Pick<
   "num" | "colorspace" | "easingFn"
 > & {
   kind?: SchemeType;
+  token?:TokenOptions
+
 };
 
 export type HueshiftOptions = Pick<
