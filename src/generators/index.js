@@ -430,8 +430,8 @@ function discover(colors = [], options) {
 		for (const key of colorTokenKeys) {
 			if (eq(typeof kind, 'string')) {
 				palettes[key] = availableColors(key, palettes);
-				if (gt(currentPalette.length,1)) {
-				palettes[key]=	palettes[key].filter((a, b) =>
+				if (gt(currentPalette.length, 1)) {
+					palettes[key] = palettes[key].filter((a, b) =>
 						not(customInRange(a, currentPalette[b]))
 					);
 				}
