@@ -119,7 +119,10 @@ function stats(collection = [], options = undefined) {
               let cb1 = (a) => (b) => Math.abs(luminance(a) - luminance(b));
               return sortedTokens(f, cb1(against));
             })(),
-            lightness: sortedTokens(f, chnDiff(against, mcchn("l", colorspace))),
+            lightness: sortedTokens(
+              f,
+              chnDiff(against, mcchn("l", colorspace))
+            ),
             hue: sortedTokens(f, chnDiff(against, `${colorspace}.h`)),
             contrast: sortedTokens(f, getContrast),
           }),
@@ -157,7 +160,10 @@ function stats(collection = [], options = undefined) {
         }[k];
       },
       (k) => {
-        const [x, y] = [getStatsObject(k)[0], getStatsObject(k)[collectionLength - 1]];
+        const [x, y] = [
+          getStatsObject(k)[0],
+          getStatsObject(k)[collectionLength - 1],
+        ];
 
         return {
           against: or(
@@ -172,7 +178,7 @@ function stats(collection = [], options = undefined) {
         };
       },
     ];
-
+  // @ts-ignore
   return (() => {
     const p = factorIterator(factor, commonStats);
     p["achromatic"] =
@@ -222,9 +228,8 @@ function sortBy(collection = [], options = undefined) {
   against = or(against, "cyan");
   order = or(order, "asc");
 
-
   // lightness and chroma channel constants respectively
-  const [l , c] = ["l", "c"].map((w) => mcchn(w, colorspace, false)),
+  const [l, c] = ["l", "c"].map((w) => mcchn(w, colorspace, false)),
     y = (a) => sortedColl(factor, a, order),
     // returns factor cbs determined by the options
     factorCallbacks = (h) => {

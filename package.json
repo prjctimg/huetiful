@@ -30,6 +30,11 @@
     "jasmine": "5.1.0",
     "nodemon": "^3.0.1",
     "prettier": "^3.2.0",
+    "rehype-highlight": "^7.0.0",
+    "rehype-sanitize": "^6.0.0",
+    "rehype-stringify": "^10.0.0",
+    "remark": "^15.0.1",
+    "remark-rehype": "^11.1.0",
     "remark-toc": "^9.0.0",
     "typedoc": "^0.26.4",
     "typedoc-plugin-markdown": "^4.2.0",
@@ -56,25 +61,24 @@
   },
   "typedocOptions": {
     "entryPoints": [
-      "./src/accessibility/index.js",
-      "./src/collection/index.js",
-      "./src/constants/index.js",
-      "./src/generators/index.js",
-      "./src/palettes/index.js",
-      "./src/utilities/index.js",
-      "./src/wrappers/index.js"
+      "./src/index.js"
     ],
-    "excludeTags": ["@internal"],
+    "excludeTags": [
+      "@internal"
+    ],
     "outputFileStrategy": "modules",
-    "fileExtension": ".mdx",
-    "entryFileName": "index",
+    "fileExtension": ".md",
     "expandObjects": true,
     "excludeNotDocumented": true,
     "excludeReferences": false,
-    "plugin": ["typedoc-plugin-markdown", "typedoc-plugin-remark"],
+    "plugin": [
+      "typedoc-plugin-markdown"
+    ],
     "entryPointStrategy": "resolve",
     "out": ".temp",
-    "exclude": ["./internal"],
+    "exclude": [
+      "./internal"
+    ],
     "groupOrder": [
       "Function",
       "Class",
@@ -89,7 +93,10 @@
     "tsconfig": "./tsconfig.json",
     "disableSources": true
   },
-  "eslintIgnore": ["*.cjs", ".mjs"],
+  "eslintIgnore": [
+    "*.cjs",
+    ".mjs"
+  ],
   "config": {
     "commitizen": {
       "path": "cz-emoji-conventional"
@@ -104,7 +111,10 @@
       "no-explicit-any": 0,
       "no-useless-escape": 0
     },
-    "parserOptions": { "sourceType": "module", "ecmaVersion": "latest" }
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": "latest"
+    }
   },
   "files": [
     "lib",

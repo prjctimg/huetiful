@@ -184,10 +184,10 @@ export type DiscoverOptions = {
    * Default is `undefined`
    */
   kind?: SchemeType | undefined;
-/**
- * The minimum distance between colors. May affect finally palette results.
- * Default is 0
- */
+  /**
+   * The minimum distance between colors. May affect finally palette results.
+   * Default is 0
+   */
   minDistance?: number;
 
   /**
@@ -195,7 +195,6 @@ export type DiscoverOptions = {
    * Default is the `jnd` internal constant.
    */
   maxDistance?: number;
-
 
   /**
    * The colorspace to retrieve channel values from.
@@ -348,13 +347,12 @@ export type SchemeOptions = Pick<
   "num" | "colorspace" | "easingFn"
 > & {
   kind?: SchemeType;
-  token?:TokenOptions
-
+  token?: TokenOptions;
 };
-
+``;
 export type HueshiftOptions = Pick<
   InterpolatorOptions,
-  "colorspace" | "easingFn" | "num" | "token"
+  "colorspace" | "easingFn" | "num" | "token" | "hueStep"
 > & {
   /**
    * *  minLightness  Minimum lightness value (range 0-100).

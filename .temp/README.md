@@ -1,28 +1,19 @@
----
-title: Home
-date: 2024-07-14
-lastmod: 2024-07-15
-
-canonicalUrl: https://huetiful-js.com
----
-
-
 [![NPM publish 📦](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml/badge.svg)](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml)
-![NPM Downloads](https://img.shields.io/npm/dt/huetiful-js?style=flat-square\&logo=npm\&link=https%3A%2F%2Fnpmjs.com%2Fpackage%2Fhuetiful-js)
+![NPM Downloads](https://img.shields.io/npm/dt/huetiful-js?style=flat-square&logo=npm&link=https%3A%2F%2Fnpmjs.com%2Fpackage%2Fhuetiful-js)
 
 ![huetiful-logo](_media/logo.svg)
 
-<h3 align="center">JavaScript utility library for simple, fast and accessible color manipulation.</h3>
+<h3 align='center'>JavaScript utility library for simple, fast and accessible color manipulation.</h3>
 
-#### Features
+#### Features 
 
-* [Collection methods](https://huetiful-js.com/api/collection) for manipulating colors using the values of their properties as criteria.
-* [Color maps](https://huetiful-js.com/api/palettes) from Tailwind and [ColorBrewer](colorbrewer2.org) exposed as wrapper functions to help you kickstart your palettes.
-* [Utilities](https://huetiful-js.com/api/utilities) for setting and querying color properties.
-* [Wrapper functions](https://huetiful-js.com/api/wrappers) allowing method chaining for all the utilities in the API.
-* [Color maps](https://huetiful-js.com/api/colors) for Colorbrewer, TailwindCSS and CSS named colors exposed as wrapper functions.
-* [Color token parser](https://huetiful-js.com/api/converterters) for all types including numbers, strings (all CSS parseable string represantations of color), plain objects, arrays (or `ArrayLike` objects) and even boolean values.
-* [Accessibility utilities]() when handling color in design.
+- [Collection methods](https://huetiful-js.com/api/collection) for manipulating colors using the values of their properties as criteria.
+- [Color maps](https://huetiful-js.com/api/palettes) from Tailwind and [ColorBrewer](colorbrewer2.org) exposed as wrapper functions to help you kickstart your palettes.
+- [Utilities](https://huetiful-js.com/api/utilities) for setting and querying color properties.
+- [Wrapper functions](https://huetiful-js.com/api/wrappers) allowing method chaining for all the utilities in the API.
+- [Color maps](https://huetiful-js.com/api/colors) for Colorbrewer, TailwindCSS and CSS named colors exposed as wrapper functions.
+- [Color token parser](https://huetiful-js.com/api/converterters) for all types including numbers, strings (all CSS parseable string represantations of color), plain objects, arrays (or `ArrayLike` objects) and even boolean values.
+- [Accessibility utilities]() when handling color in design.
 
 #### Installation
 
@@ -101,11 +92,10 @@ let myPalette = colors('all','700')
 
 This project is fully open source! Contributions of any kind are greatly appreciated! See🔍 the [contributing page on the documentation site](_media/CONTRIBUTING.md) file for more information on how to get started.
 
-<pre>
-  License ⚖️
+ <pre>
+License ⚖️
 
-  © 2024, <a href="https://deantarisai.me">Dean Tarisai</a>
-  <h5>Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</h5>
-  🧪 & 🔬 with 🥃 in Crowhill,ZW
-</pre>
-
+ © 2024, <a href="https://deantarisai.me">ディーン・タリサイ</a>
+ <h5>Released under the  <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> permissive license.</h5>
+ 🧪 & 🔬 with 🥃 in Crowhill,ZW
+ </pre>
