@@ -1,27 +1,70 @@
-// Color token types
+/**
+ * @author ディーン・タリサイ
+ * Type definitions.
+ */
+
+
+
+
+
+/**
+ * An array of channel values for a color token with the `mode` (first element of type `string`) and `alpha` (last element of type `number` in the [0,1] range) being optional.  
+ * 
+ * It can also be in different variants as shown below:
+ * 
+ * @example
+ * // The first element can either be a string `mode` which denotes the colorspace the channel values are valid in.
+ * const colorTuple = ['rgb',0.1,0.5,0.8]
+ * const colorTupleWithAlpha = ['rgb',0.1,0.5,0.8,0.5]
+ * const colorTupleWithAlphaButNoMode = [0.1,0.5,0.8,0.5]
+ * const colorTupleWithNoAlphaAndMode = [0.1,0.5,0.8]
+ * 
+ * When omitting the `mode` from the color tuple, be sure to specify the `srcMode` option in when passing it to `token()` or any function that has access to `TokenOptions`.
+ */
 export type ColorTuple =
-  | [string, number, number, number, number?]
-  | Array<number>;
+  | Array<number | string>;
 
+
+/**
+ * The order to insert elements back into the result collection either ascending (`'asc'`) or descending (`'desc'`).
+ */
 export type Order = "asc" | "desc";
-export type FactObject =
-  | number
-  | {
-      factor: number;
-      color: ColorToken;
-    };
 
+
+/**
+ * The value of the `factor` being queried usually a number but can also be falsy like `NaN` for edge cases or an object with the value of the factor and the color token associated with it.
+ */
+export type Fact =
+  | number |
+  undefined
+  | {
+    factor: number;
+    color: ColorToken;
+  };
+
+
+/**
+ * The scheme to use when creating base palettes.
+ */
 export type SchemeType = "analogous" | "triadic" | "tetradic" | "complementary";
 
+
+/**
+ * Any collection with enumerable keys that can be used to iterate through it to get the values which are expected to be valid color tokens. 
+ */
 export type Collection =
   | Array<ColorToken>
   | Map<any, ColorToken>
   | Set<ColorToken>;
 
+
+/**
+ * Properties on an instance of the `Color` class. Some of these properties have corresponding methods.
+ */
 export type ColorOptions = {
   alpha?: number;
   lightness?: number;
-  temperature?: number;
+  temp?: number;
   colorspace?: Colorspaces;
   luminance?: number;
   saturation?: number;
@@ -32,20 +75,21 @@ export type ColorOptions = {
   contrast?: number;
   mode?: Colorspaces;
 };
-export type ColorDistanceOptions = {
-  weights?: [number, number, number, number];
-  mode?: Colorspaces;
-};
 
 /**
  * @type
- * @description This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.
+ * This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.
  */
 export type AdaptivePaletteOptions = {
   backgroundColor?: { light?: ColorToken; dark?: ColorToken };
   colorBlind?: boolean;
 };
 
+
+
+/**
+ * Options for customizing the color interpolator behaviour. It is extended by some palette utilities
+ */
 export type InterpolatorOptions = {
   /**
    * The positions of color stops to use during interpolation. Each number in the array is assigned to the colors in the collection according to the order the colors are passed in.
@@ -89,6 +133,11 @@ export type InterpolatorOptions = {
   closed?: boolean;
 };
 
+
+
+/**
+ * Options for the `pair()` palette generator function.
+ */
 export type PairedSchemeOptions = InterpolatorOptions & {
   /**
    * The color to pass through during interpolation.
@@ -100,21 +149,25 @@ export type PairedSchemeOptions = InterpolatorOptions & {
    */
   hueStep?: number;
 };
+
+/**
+ * Options for the `earthtone()` palette generator function.
+ */
 export type EarthtoneOptions = InterpolatorOptions & {
   /**
    * *  earthtone The earthtone to interpolate with.
    */
   earthtones?:
-    | "light-gray"
-    | "silver"
-    | "sand"
-    | "tupe"
-    | "mahogany"
-    | "brick-red"
-    | "clay"
-    | "cocoa"
-    | "dark-brown"
-    | "dark";
+  | "light-gray"
+  | "silver"
+  | "sand"
+  | "tupe"
+  | "mahogany"
+  | "brick-red"
+  | "clay"
+  | "cocoa"
+  | "dark-brown"
+  | "dark";
 };
 /**
  * Override options for factor distributed palettes.
@@ -163,10 +216,10 @@ export type FilterByOptions = {
    * The end value is optional but the range value(s) are expected to be in an array.
    */
   ranges?:
-    | {
-        [F in Factor]?: Array<number | string>;
-      }
-    | Array<number | string>;
+  | {
+    [F in Factor]?: Array<number | string>;
+  }
+  | Array<number | string>;
 
   /**
    * The color to compare the `factor` with. All the `factor`s are calculated between this color and the ones in the colors array. Only works for the `'distance'` and `'contrast'` factor.
@@ -178,6 +231,10 @@ export type FilterByOptions = {
   colorspace?: Colorspaces;
 };
 
+
+/**
+ * Options for the `discover()` palette generator function.
+ */
 export type DiscoverOptions = {
   /**
    * The palette type to return.
@@ -196,6 +253,10 @@ export type DiscoverOptions = {
    */
   maxDistance?: number;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
   /**
    * The colorspace to retrieve channel values from.
    */
@@ -268,26 +329,30 @@ export type TokenOptions = {
   targetMode?: Colorspaces;
 };
 
+
+/**
+ * The default structure of a `Stats` object as returned by `stats()` when invoked with default `options`.
+ */
 export type Stats =
   | {
-      [F in Factor]: {
-        extremums?: Array<number>;
-        colors?: Array<typeof ColorToken>;
-        against?: ColorToken | null;
-        mean?: number;
-        families?: Array<HueFamily | "gray">;
-      };
-    }
-  | ({
+    [F in Factor]: {
       extremums?: Array<number>;
       colors?: Array<typeof ColorToken>;
       against?: ColorToken | null;
       mean?: number;
       families?: Array<HueFamily | "gray">;
-    } & {
-      colorspace?: Colorspaces;
-      achromatic?: number;
-    });
+    };
+  }
+  | ({
+    extremums?: Array<number>;
+    colors?: Array<typeof ColorToken>;
+    against?: ColorToken | null;
+    mean?: number;
+    families?: Array<HueFamily | "gray">;
+  } & {
+    colorspace?: Colorspaces;
+    achromatic?: number;
+  });
 
 /**
  * Options for specifying sorting conditions.
@@ -342,14 +407,31 @@ export type StatsOptions = {
   factor?: Factor | Array<Factor>;
 };
 
+
+
+/**
+ * Options for the `scheme()` palette generator function.
+ */
 export type SchemeOptions = Pick<
   InterpolatorOptions,
-  "num" | "colorspace" | "easingFn"
+  "easingFn"
 > & {
+<<<<<<< HEAD
   kind?: SchemeType;
   token?: TokenOptions;
 };
 ``;
+=======
+  kind?: SchemeType|Array<SchemeType>;
+  token?: TokenOptions
+
+};
+
+
+/**
+ * Options for the `hueshift()` palette generator function.
+ */
+>>>>>>> main
 export type HueshiftOptions = Pick<
   InterpolatorOptions,
   "colorspace" | "easingFn" | "num" | "token" | "hueStep"
@@ -364,6 +446,10 @@ export type HueshiftOptions = Pick<
   maxLightness?: number;
 };
 
+
+/**
+ * The tone to use.
+ */
 export type Tone = "light" | "dark";
 
 /**
@@ -442,12 +528,10 @@ export type SequentialScheme =
  */
 export type ColorToken =
   | number
-  | object
   | ColorTuple
   | boolean
-  | string
-  | Blob
-  | ArrayBuffer;
+  | string | object
+
 
 /**
  * The color property being queried.
@@ -460,7 +544,6 @@ export type Factor =
   | "lightness"
   | "hue";
 
-type callback = unknown;
 
 /**
  * The `colorspace` or `mode` to use.

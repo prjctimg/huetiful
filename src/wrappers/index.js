@@ -272,7 +272,6 @@ console.log(
 
 /**
  *
- * @internal
  @this {ColorArray}
  * Creates a lazy chain wrapper over a single color token that has all the functions that take a `ColorToken` as their first argument.
  *
@@ -289,7 +288,7 @@ class Color {
    * @param {ColorToken} [c= 'cyan'] The color to bind.
    * @param {import("../types.js").ColorOptions} [options= {}] Optional overrides and properties for the bound color.
    */
-  constructor(c, options) {
+  constructor(c, options={}) {
     let {
       alpha,
       colorspace,
@@ -298,7 +297,7 @@ class Color {
       lightMode,
       darkMode,
       lightness,
-    } = or(options, {});
+    } = options;
 
     // Set the alpha of the color if its not explicitly passed in.
     // @ts-ignore
@@ -481,12 +480,12 @@ class Color {
    * console.log(color("green").pastel())
    *
    * // #036103ff
-   * @returns {Color}
+   * @return
    */
   pastel() {
     // @ts-ignore
     this["_color"] = pastel(this["_color"]);
-    return this;
+    return this
   }
 
   /**
@@ -556,7 +555,7 @@ class Color {
   /**
      * Returns the complementary hue of the bound color. The function returns `'gray'` when you pass in an achromatic color.
      * @param {boolean} [colorObj=false] Optional boolean whether to return a custom object with the color `name` and `hueFamily` as keys or just the result color. Default is `false`.
-     * @returns {import("../types.js").FactObject|Color}
+     * @returns {import("../types.js").Fact|Color}
      * @example
      *import { color } from "huetiful-js";
      *
@@ -922,3 +921,5 @@ class Color {
     return new ColorArray(scheme(this["_color"], options));
   }
 }
+
+
