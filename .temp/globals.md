@@ -35,6 +35,10 @@ The collection of colors to bind.
 
 [`ColorArray`](globals.md#colorarray)
 
+###### Defined in
+
+[wrappers/index.js:50](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L50)
+
 #### Methods
 
 ##### discover()
@@ -80,6 +84,10 @@ let sample = [
 console.log(load(sample).discover({kind:'tetradic'}).output())
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
 ```
+
+###### Defined in
+
+[wrappers/index.js:144](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L144)
 
 ##### filterBy()
 
@@ -138,6 +146,10 @@ console.log(load(sample).filterBy({start:'>=3', factor:'contrast',against:'green
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
 ```
 
+###### Defined in
+
+[wrappers/index.js:193](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L193)
+
 ##### interpolator()
 
 > **interpolator**(`options`): [`ColorArray`](globals.md#colorarray)
@@ -176,6 +188,10 @@ import { load } from 'huetiful-js';
  *
 ```
 
+###### Defined in
+
+[wrappers/index.js:101](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L101)
+
 ##### nearest()
 
 > **nearest**(`against`, `num`): [`ColorArray`](globals.md#colorarray)
@@ -207,6 +223,10 @@ console.log(load(cols).nearest('blue', 3));
 // [ '#a855f7', '#8b5cf6', '#d946ef' ]
 ```
 
+###### Defined in
+
+[wrappers/index.js:69](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L69)
+
 ##### output()
 
 > **output**(): `Collection`
@@ -216,6 +236,10 @@ console.log(load(cols).nearest('blue', 3));
 `Collection`
 
 Returns the result value from the chain.
+
+###### Defined in
+
+[wrappers/index.js:268](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L268)
 
 ##### sortBy()
 
@@ -257,6 +281,10 @@ console.log(
 // [ 'brown', 'red', 'green', 'purple' ]
 ```
 
+###### Defined in
+
+[wrappers/index.js:227](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L227)
+
 ##### stats()
 
 > **stats**(`options`): `Stats`
@@ -290,6 +318,10 @@ Optional parameters to specify how the data should be computed.
 ###### Returns
 
 `Stats`
+
+###### Defined in
+
+[wrappers/index.js:257](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L257)
 
 ## Functions
 
@@ -348,6 +380,10 @@ console.log(grays.map(achromatic));
 ]
 ```
 
+#### Defined in
+
+[utils/index.js:264](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L264)
+
 ***
 
 ### alpha()
@@ -392,6 +428,10 @@ console.log(myColor)
 
 // #b2c3f180
 ```
+
+#### Defined in
+
+[utils/index.js:87](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L87)
 
 ***
 
@@ -443,6 +483,10 @@ console.log(colors('red','900'));
 // '#7f1d1d'
 ```
 
+#### Defined in
+
+[palettes/index.js:864](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/palettes/index.js#L864)
+
 ***
 
 ### complimentary()
@@ -484,6 +528,10 @@ console.log(complimentary("purple"))
 // #005700
 ```
 
+#### Defined in
+
+[utils/index.js:772](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L772)
+
 ***
 
 ### contrast()
@@ -516,6 +564,10 @@ import { contrast } from 'huetiful-js'
 console.log(contrast("black", "white"));
 // 21
 ```
+
+#### Defined in
+
+[accessibility/index.js:32](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/accessibility/index.js#L32)
 
 ***
 
@@ -571,6 +623,10 @@ console.log(deficiency(['rgb', 230, 100, 50, 0.5],{ kind:'blue', severity:0.5 })
 // '#dd663680'
 ```
 
+#### Defined in
+
+[accessibility/index.js:140](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/accessibility/index.js#L140)
+
 ***
 
 ### discover()
@@ -621,6 +677,10 @@ console.log(discover(sample, { kind:'tetradic' }))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
 ```
 
+#### Defined in
+
+[generators/index.js:391](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L391)
+
 ***
 
 ### distribute()
@@ -642,6 +702,10 @@ Optional overrides to change the default configursation
 #### Returns
 
 `undefined`
+
+#### Defined in
+
+[collection/index.js:276](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/collection/index.js#L276)
 
 ***
 
@@ -677,6 +741,10 @@ console.log(diverging("Spectral"))
 ]
 ```
 
+#### Defined in
+
+[palettes/index.js:558](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/palettes/index.js#L558)
+
 ***
 
 ### earthtone()
@@ -708,6 +776,10 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 // [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
 ```
 
+#### Defined in
+
+[generators/index.js:473](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L473)
+
 ***
 
 ### family()
@@ -736,6 +808,10 @@ import { family } from 'huetiful-js'
 console.log(family("#310000"))
 // 'red'
 ```
+
+#### Defined in
+
+[utils/index.js:659](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L659)
 
 ***
 
@@ -794,6 +870,10 @@ let sample = [
 ]
 ```
 
+#### Defined in
+
+[collection/index.js:364](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/collection/index.js#L364)
+
 ***
 
 ### hueshift()
@@ -843,6 +923,10 @@ console.log(hueShiftedPalette);
  '#3b0c3a'
 ]
 ```
+
+#### Defined in
+
+[generators/index.js:87](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L87)
 
 ***
 
@@ -900,6 +984,10 @@ console.log(interpolator(['pink', 'blue'], { num:8 }));
 ]
 ```
 
+#### Defined in
+
+[generators/index.js:295](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L295)
+
 ***
 
 ### lightness()
@@ -939,6 +1027,10 @@ console.log(lightness('blue', 0.3, true));
 console.log(brighten('blue', 0.3));
 //#464646
 ```
+
+#### Defined in
+
+[utils/index.js:303](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L303)
 
 ***
 
@@ -997,6 +1089,10 @@ console.log(luminance(myColor))
 // 0.4999999136285792
 ```
 
+#### Defined in
+
+[utils/index.js:593](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L593)
+
 ***
 
 ### mc()
@@ -1036,6 +1132,10 @@ console.log(mc('rgb.g')('#a1bd2f'))
 // 0.7411764705882353
 ```
 
+#### Defined in
+
+[utils/index.js:159](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L159)
+
 ***
 
 ### nearest()
@@ -1067,6 +1167,10 @@ let cols = colors('all', '500')
 console.log(nearest(cols, 'blue', 3));
 // [ '#a855f7', '#8b5cf6', '#d946ef' ]
 ```
+
+#### Defined in
+
+[palettes/index.js:812](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/palettes/index.js#L812)
 
 ***
 
@@ -1104,6 +1208,10 @@ console.log(overtone("blue"))
 // false
 ```
 
+#### Defined in
+
+[utils/index.js:736](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L736)
+
 ***
 
 ### pair()
@@ -1138,6 +1246,10 @@ console.log(pair("green",{hueStep:6,num:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
 ```
 
+#### Defined in
+
+[generators/index.js:214](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L214)
+
 ***
 
 ### pastel()
@@ -1169,6 +1281,10 @@ console.log(pastel("green"))
 
 // #036103ff
 ```
+
+#### Defined in
+
+[generators/index.js:160](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L160)
 
 ***
 
@@ -1203,6 +1319,10 @@ console.log(qualitative("Accent"))
  '#bf5b17', '#666666'
 ]
 ```
+
+#### Defined in
+
+[palettes/index.js:700](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/palettes/index.js#L700)
 
 ***
 
@@ -1253,6 +1373,10 @@ console.log(scheme("triadic")("#a1bd2f"))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
 ```
 
+#### Defined in
+
+[generators/index.js:536](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L536)
+
 ***
 
 ### sequential()
@@ -1288,6 +1412,10 @@ console.log(sequential("OrRd"))
  '#7f0000'
 ]
 ```
+
+#### Defined in
+
+[palettes/index.js:324](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/palettes/index.js#L324)
 
 ***
 
@@ -1335,6 +1463,10 @@ console.log(
 // [ 'brown', 'red', 'green', 'purple' ]
 ```
 
+#### Defined in
+
+[collection/index.js:223](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/collection/index.js#L223)
+
 ***
 
 ### stats()
@@ -1378,6 +1510,10 @@ The collection to compute stats from. Any collection with color tokens as values
 
 `Stats`
 
+#### Defined in
+
+[collection/index.js:67](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/collection/index.js#L67)
+
 ***
 
 ### temp()
@@ -1416,6 +1552,10 @@ console.log(map(sample, isCool));
 
 // [ true,  false, true]
 ```
+
+#### Defined in
+
+[utils/index.js:700](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L700)
 
 ***
 
@@ -1458,6 +1598,10 @@ Options to customize the parsing and output behaviour.
 
 [`ColorToken`](globals.md#colortoken)
 
+#### Defined in
+
+[utils/index.js:347](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L347)
+
 ## Type Aliases
 
 ### AdaptivePaletteOptions
@@ -1486,6 +1630,10 @@ Options to customize the parsing and output behaviour.
 
 This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.
 
+#### Defined in
+
+[types.d.ts:44](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L44)
+
 ***
 
 ### ColorToken
@@ -1494,6 +1642,10 @@ This object returns the lightMode and darkMode optimized version of a color with
 
 Any recognizable color token.
 
+#### Defined in
+
+[types.d.ts:443](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L443)
+
 ***
 
 ### Colorspaces
@@ -1501,6 +1653,10 @@ Any recognizable color token.
 > **Colorspaces**: `"lab"` \| `"lab65"` \| `"lrgb"` \| `"oklab"` \| `"rgb"` \| `"lch"` \| `"jch"` \| `"lch"` \| `"lch65"` \| `"oklch"` \| `"hsv"` \| `"hwb"`
 
 The `colorspace` or `mode` to use.
+
+#### Defined in
+
+[types.d.ts:468](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L468)
 
 ***
 
@@ -1530,6 +1686,10 @@ The intensity of the filter. The exepected value is between [0,1]. Default is `0
 
 Specify the parsing behaviour and change output type of the `ColorToken`.
 
+#### Defined in
+
+[types.d.ts:212](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L212)
+
 ***
 
 ### DeficiencyType
@@ -1537,6 +1697,10 @@ Specify the parsing behaviour and change output type of the `ColorToken`.
 > **DeficiencyType**: `"red"` \| `"blue"` \| `"green"` \| `"monochromacy"`
 
 The type of color vision defeciency.
+
+#### Defined in
+
+[types.d.ts:372](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L372)
 
 ***
 
@@ -1578,6 +1742,10 @@ The extreme end for the `factor`  we wish to distribute. If `mean` is picked, it
 
 Specify the parsing behaviour and change output type of the `ColorToken`.
 
+#### Defined in
+
+[types.d.ts:122](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L122)
+
 ***
 
 ### DivergingScheme
@@ -1585,6 +1753,10 @@ Specify the parsing behaviour and change output type of the `ColorToken`.
 > **DivergingScheme**: `"Spectral"` \| `"RdYlGn"` \| `"RdBu"` \| `"PiYG"` \| `"PRGn"` \| `"RdYlBu"` \| `"BrBG"` \| `"RdGy"` \| `"PuOr"`
 
 The `diverging` color scheme in the ColorBrewer colormap.
+
+#### Defined in
+
+[types.d.ts:392](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L392)
 
 ***
 
@@ -1594,6 +1766,10 @@ The `diverging` color scheme in the ColorBrewer colormap.
 
 The color property being queried.
 
+#### Defined in
+
+[types.d.ts:455](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L455)
+
 ***
 
 ### QualitativeScheme
@@ -1601,6 +1777,10 @@ The color property being queried.
 > **QualitativeScheme**: `"Set2"` \| `"Accent"` \| `"Set1"` \| `"Set3"` \| `"Dark2"` \| `"Paired"` \| `"Pastel2"` \| `"Pastel1"`
 
 The `qualitative` color scheme in the ColorBrewer colormap.
+
+#### Defined in
+
+[types.d.ts:406](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L406)
 
 ***
 
@@ -1610,6 +1790,10 @@ The `qualitative` color scheme in the ColorBrewer colormap.
 
 The value of the Tailwind color.
 
+#### Defined in
+
+[types.d.ts:485](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L485)
+
 ***
 
 ### SequentialScheme
@@ -1617,6 +1801,10 @@ The value of the Tailwind color.
 > **SequentialScheme**: `"OrRd"` \| `"PuBu"` \| `"BuPu"` \| `"Oranges"` \| `"BuGn"` \| `"YlOrBr"` \| `"YlGn"` \| `"Reds"` \| `"RdPu"` \| `"Greens"` \| `"YlGnBu"` \| `"Purples"` \| `"GnBu"` \| `"Greys"` \| `"YlOrRd"` \| `"PuRd"` \| `"Blues"` \| `"PuBuGn"` \| `"Viridis"`
 
 The `sequential` color scheme in the ColorBrewer colormap.
+
+#### Defined in
+
+[types.d.ts:419](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L419)
 
 ***
 
@@ -1662,6 +1850,10 @@ Use the `against` comparison color when ordering the color tokens.
 
 It has no effect on `contrast` and `distance` factors because they're already relative.
 
+#### Defined in
+
+[types.d.ts:295](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L295)
+
 ***
 
 ### StatsOptions
@@ -1694,6 +1886,10 @@ The colorspace to perform the sorting operation in. It is ignored when the facto
 
 Choose whether to use the `against` color token for factors that support it as an overload (that is, all factors except `distance` and `contrast)
 
+#### Defined in
+
+[types.d.ts:328](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L328)
+
 ***
 
 ### TailwindColorFamilies
@@ -1701,6 +1897,10 @@ Choose whether to use the `against` color token for factors that support it as a
 > **TailwindColorFamilies**: `"indigo"` \| `"gray"` \| `"zinc"` \| `"neutral"` \| `"stone"` \| `"red"` \| `"orange"` \| `"amber"` \| `"yellow"` \| `"lime"` \| `"green"` \| `"emerald"` \| `"teal"` \| `"sky"` \| `"blue"` \| `"violet"` \| `"purple"` \| `"fuchsia"` \| `"pink"` \| `"rose"`
 
 Color families in the default TailwindCSS palette.
+
+#### Defined in
+
+[types.d.ts:501](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L501)
 
 ***
 
@@ -1758,3 +1958,7 @@ The mode in which the channel values are valid in. It is used for color arrays i
 > `optional` **targetMode**: [`Colorspaces`](globals.md#colorspaces)
 
 The colorspace in which to return the color object or array in. Default is `'lch'`.
+
+#### Defined in
+
+[types.d.ts:230](https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L230)

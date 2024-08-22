@@ -1,0 +1,3636 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>undefined</title>
+    <meta
+      name="keywords"
+      content="simple,color,library,culori,github,npm,javascript,color-scales,tailwind,functional,plain,fast,accessible,performance"
+    />
+    <meta
+      name="description"
+      content="JavaScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@prjctimg" />
+    <meta name="twitter:title" content="huetiful-js" />
+    <meta
+      name="twitter:description"
+      content="JavaScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation."
+    />
+    <meta
+      name="twitter:image"
+      content="https://huetiful-js.com/img/twitter.jpg"
+    />
+    <meta property="og:url" content="https://huetiful-js.com" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="huetiful-js" />
+    <meta
+      property="og:description"
+      content="JavaScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation."
+    />
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/starry-night.css" />
+  </head>
+  <body>
+    <nav class="toc">
+      <ol class="toc-level toc-level-1">
+        <li class="toc-item toc-item-h2">
+          <a class="toc-link toc-link-h2" href="#">Classes</a>
+          <ol class="toc-level toc-level-2">
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">ColorArray</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Constructors</a>
+                  <ol class="toc-level toc-level-4">
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#"
+                        >new ColorArray()</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Methods</a>
+                  <ol class="toc-level toc-level-4">
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">discover()</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">filterBy()</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#"
+                        >interpolator()</a
+                      >
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">nearest()</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">output()</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">sortBy()</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">stats()</a>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li class="toc-item toc-item-h2">
+          <a class="toc-link toc-link-h2" href="#">Functions</a>
+          <ol class="toc-level toc-level-2">
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">achromatic()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">alpha()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">colors()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">complimentary()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">contrast()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">deficiency()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                  <ol class="toc-level toc-level-4">
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">blue</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">green</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">monochromacy</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">red</a>
+                    </li>
+                  </ol>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">discover()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">distribute()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">diverging()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">earthtone()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">family()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">filterBy()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">See</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">hueshift()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">interpolator()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">lightness()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">luminance()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">mc()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                  <ol class="toc-level toc-level-4">
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">Parameters</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">Returns</a>
+                    </li>
+                  </ol>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">nearest()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">overtone()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">pair()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">pastel()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">qualitative()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">scheme()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">sequential()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">sortBy()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">stats()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">temp()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Example</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">token()</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Parameters</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Returns</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li class="toc-item toc-item-h2">
+          <a class="toc-link toc-link-h2" href="#">Type Aliases</a>
+          <ol class="toc-level toc-level-2">
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#"
+                >AdaptivePaletteOptions</a
+              >
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Type declaration</a>
+                  <ol class="toc-level toc-level-4">
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#"
+                        >backgroundColor?</a
+                      >
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#"
+                        >backgroundColor.dark?</a
+                      >
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#"
+                        >backgroundColor.light?</a
+                      >
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">colorBlind?</a>
+                    </li>
+                  </ol>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Description</a>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">ColorToken</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">Colorspaces</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">DeficiencyOptions</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Type declaration</a>
+                  <ol class="toc-level toc-level-4">
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">kind?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">severity?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">token?</a>
+                    </li>
+                  </ol>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">DeficiencyType</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">DistributionOptions</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Type declaration</a>
+                  <ol class="toc-level toc-level-4">
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">colorspace?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#"
+                        >excludeAchromatic?</a
+                      >
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">excludeSelf?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">extremum?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">token?</a>
+                    </li>
+                  </ol>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">DivergingScheme</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">Factor</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">QualitativeScheme</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">ScaleValues</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">SequentialScheme</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">SortByOptions</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Type declaration</a>
+                  <ol class="toc-level toc-level-4">
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">against?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">colorspace?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">factor?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">order?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">relative?</a>
+                    </li>
+                  </ol>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">StatsOptions</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Type declaration</a>
+                  <ol class="toc-level toc-level-4">
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">against?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">colorspace?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">factor?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">relative?</a>
+                    </li>
+                  </ol>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">TailwindColorFamilies</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+            <li class="toc-item toc-item-h3">
+              <a class="toc-link toc-link-h3" href="#">TokenOptions</a>
+              <ol class="toc-level toc-level-3">
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Type declaration</a>
+                  <ol class="toc-level toc-level-4">
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">kind?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">normalizeRgb?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">numType?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">omitAlpha?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">omitMode?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">srcMode?</a>
+                    </li>
+                    <li class="toc-item toc-item-h5">
+                      <a class="toc-link toc-link-h5" href="#">targetMode?</a>
+                    </li>
+                  </ol>
+                </li>
+                <li class="toc-item toc-item-h4">
+                  <a class="toc-link toc-link-h4" href="#">Defined in</a>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </nav>
+    <h2>Classes</h2>
+    <h3>ColorArray</h3>
+    <p>
+      Creates a lazy chain wrapper over a collection of colors that has all the
+      array methods (functions that take a collection of colors as their first
+      argument). *
+    </p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">*</span> <span class="pl-k">import</span> { <span class="pl-smi">ColorArray</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+<span class="pl-k">*</span>
+<span class="pl-k">let</span> <span class="pl-smi">sample</span> <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">'</span>blue<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>pink<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>yellow<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>green<span class="pl-pds">'</span></span>];
+<span class="pl-k">let</span> <span class="pl-smi">wrapper</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ColorArray</span>(<span class="pl-smi">sample</span>);
+<span class="pl-c">// We can even chain the methods and get the result by calling output()</span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">wrapper</span>.<span class="pl-en">sortByHue</span>(<span class="pl-s"><span class="pl-pds">'</span>desc<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>lch<span class="pl-pds">'</span></span>).<span class="pl-en">output</span>());
+
+<span class="pl-c">// [ 'blue', 'green', 'yellow', 'pink' ]</span>
+</code></pre>
+    <h4>Constructors</h4>
+    <h5>new ColorArray()</h5>
+    <blockquote>
+      <p>
+        <strong>new ColorArray</strong>(<code>colors</code>):
+        <a href="globals.md#colorarray"><code>ColorArray</code></a>
+      </p>
+    </blockquote>
+    <h6>Parameters</h6>
+    <p>• <strong>colors</strong>: <code>Collection</code></p>
+    <p>The collection of colors to bind.</p>
+    <h6>Returns</h6>
+    <p>
+      <a href="globals.md#colorarray"><code>ColorArray</code></a>
+    </p>
+    <h6>Defined in</h6>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L50"
+        >wrappers/index.js:50</a
+      >
+    </p>
+    <h4>Methods</h4>
+    <h5>discover()</h5>
+    <blockquote>
+      <p>
+        <strong>discover</strong>(<code>options</code>):
+        <a href="globals.md#colorarray"><code>ColorArray</code></a>
+      </p>
+    </blockquote>
+    <p>
+      Takes a collection of colors and finds the nearest matches using the
+      <code>differenceHyab()</code> color difference metric for a set of
+      predefined palettes.
+    </p>
+    <p>
+      The function returns different values based on the
+      <code>kind</code> parameter passed in:
+    </p>
+    <ul>
+      <li>
+        An array of colors for the <code>kind</code> of scheme, if the
+        <code>kind</code> parameter is specified.
+      </li>
+      <li>
+        Else it returns an object of all the palette types as keys and their
+        values as an array of colors.
+      </li>
+    </ul>
+    <p>
+      If no colors are valid for the palette types it returns an empty array for
+      the palette results. It does not work with achromatic colors thus they're
+      excluded from the resulting collection.
+    </p>
+    <h6>Parameters</h6>
+    <p>• <strong>options</strong>: <code>DiscoverOptions</code></p>
+    <h6>Returns</h6>
+    <p>
+      <a href="globals.md#colorarray"><code>ColorArray</code></a>
+    </p>
+    <h6>Example</h6>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">load</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-k">let</span> <span class="pl-smi">sample</span> <span class="pl-k">=</span> [
+<span class="pl-s"><span class="pl-pds">"</span>#ffff00<span class="pl-pds">"</span></span>,
+<span class="pl-s"><span class="pl-pds">"</span>#00ffdc<span class="pl-pds">"</span></span>,
+<span class="pl-s"><span class="pl-pds">"</span>#00ff78<span class="pl-pds">"</span></span>,
+<span class="pl-s"><span class="pl-pds">"</span>#00c000<span class="pl-pds">"</span></span>,
+<span class="pl-s"><span class="pl-pds">"</span>#007e00<span class="pl-pds">"</span></span>,
+<span class="pl-s"><span class="pl-pds">"</span>#164100<span class="pl-pds">"</span></span>,
+<span class="pl-s"><span class="pl-pds">"</span>#720000<span class="pl-pds">"</span></span>,
+<span class="pl-s"><span class="pl-pds">"</span>#600000<span class="pl-pds">"</span></span>,
+<span class="pl-s"><span class="pl-pds">"</span>#4e0000<span class="pl-pds">"</span></span>,
+<span class="pl-s"><span class="pl-pds">"</span>#3e0000<span class="pl-pds">"</span></span>,
+<span class="pl-s"><span class="pl-pds">"</span>#310000<span class="pl-pds">"</span></span>,
+]
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">load</span>(<span class="pl-smi">sample</span>).<span class="pl-en">discover</span>({kind:<span class="pl-s"><span class="pl-pds">'</span>tetradic<span class="pl-pds">'</span></span>}).<span class="pl-en">output</span>())
+<span class="pl-c">// [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]</span>
+</code></pre>
+    <h6>Defined in</h6>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L144"
+        >wrappers/index.js:144</a
+      >
+    </p>
+    <h5>filterBy()</h5>
+    <blockquote>
+      <p>
+        <strong>filterBy</strong>(<code>options</code>):
+        <a href="globals.md#colorarray"><code>ColorArray</code></a>
+      </p>
+    </blockquote>
+    <p>
+      Filters a collection of colors using the specified <code>factor</code> as
+      the criterion. The supported options are:
+    </p>
+    <ul>
+      <li>
+        <p>
+          <code>'contrast'</code> - Returns colors with the specified contrast
+          range. The contrast is tested against a comparison color (the
+          'against' param) and the specified contrast ranges.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>'lightness'</code> - Returns colors in the specified lightness
+          range.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>'chroma'</code> - Returns colors in the specified
+          <code>saturation</code> or <code>chroma</code> range. The range is
+          internally normalized to the supported ranges by the
+          <code>colorspace</code> in use if it is out of range.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>'distance'</code> - Returns colors with the specified
+          <code>distance</code> range. The <code>distance</code> is tested
+          against a comparison color (the 'against' param) and the specified
+          <code>distance</code> ranges. Uses the
+          <code>differenceHyab</code> metric for calculating the distances.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>luminance</code> - Returns colors in the specified luminance
+          range.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>'hue'</code> - Returns colors in the specified hue ranges
+          between 0 to 360.
+        </p>
+      </li>
+    </ul>
+    <p>
+      For the <code>chroma</code> and <code>lightness</code> factors, the range
+      is internally normalized to the supported ranges by the
+      <code>colorspace</code> in use if it is out of range. This means a value
+      in the range <code>[0,1]</code> will return, for example if you pass
+      <code>startLightness</code> as <code>0.3</code> it means
+      <code>0.3 (or 30%)</code> of the channel's supported range. But if the
+      value of either start or end is above 1 AND the <code>colorspace</code> in
+      use has an end range higher than 1 then the value is treated as is else
+      the value is treated as if in the range <code>[0,100]</code> and will
+      return the normalized value.
+    </p>
+    <h6>Parameters</h6>
+    <p>• <strong>options</strong>: <code>FilterByOptions</code></p>
+    <h6>Returns</h6>
+    <p>
+      <a href="globals.md#colorarray"><code>ColorArray</code></a>
+    </p>
+    <h6>See</h6>
+    <p>
+      https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
+    </p>
+    <p>
+      Supports expression strings e.g <code>'>=0.5'</code>. The supported
+      symbols are <code>== | === | != | !== | >= | &#x3C;= | &#x3C; | ></code>
+    </p>
+    <h6>Example</h6>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">filterBy</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-k">let</span> <span class="pl-smi">sample</span> <span class="pl-k">=</span> [
+ <span class="pl-s"><span class="pl-pds">'</span>#00ffdc<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#00ff78<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#00c000<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#007e00<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#164100<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#ffff00<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#310000<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#3e0000<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#4e0000<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#600000<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#720000<span class="pl-pds">'</span></span>,
+]
+
+<span class="pl-c">// Filtering colors by their relative contrast against 'green'.</span>
+<span class="pl-c">// The collection will include colors with a relative contrast equal to 3 or greater.</span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">load</span>(<span class="pl-smi">sample</span>).<span class="pl-en">filterBy</span>({start:<span class="pl-s"><span class="pl-pds">'</span>>=3<span class="pl-pds">'</span></span>, factor:<span class="pl-s"><span class="pl-pds">'</span>contrast<span class="pl-pds">'</span></span>,against:<span class="pl-s"><span class="pl-pds">'</span>green<span class="pl-pds">'</span></span> }))
+<span class="pl-c">// [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]</span>
+</code></pre>
+    <h6>Defined in</h6>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L193"
+        >wrappers/index.js:193</a
+      >
+    </p>
+    <h5>interpolator()</h5>
+    <blockquote>
+      <p>
+        <strong>interpolator</strong>(<code>options</code>):
+        <a href="globals.md#colorarray"><code>ColorArray</code></a>
+      </p>
+    </blockquote>
+    <p>
+      Interpolates the passed in colors and returns a collection of colors from
+      the interpolation.
+    </p>
+    <p>
+      Some things to keep in mind when creating color scales using this
+      function:
+    </p>
+    <ul>
+      <li>
+        To create a color scale for cyclic values pass <code>true</code> to the
+        <code>closed</code> parameter in the <code>options</code> object.
+      </li>
+      <li>
+        If <code>num</code> is 1 then a single color is returned from the
+        resulting interpolation with the internal <code>t</code> value at
+        <code>0.5</code> else a collection of the <code>num</code> of color
+        scales is returned.
+      </li>
+      <li>
+        If the collection of colors contains an achromatic color, the resulting
+        samples may all be grayscale or pure black.
+      </li>
+    </ul>
+    <h6>Parameters</h6>
+    <p>• <strong>options</strong>: <code>InterpolatorOptions</code></p>
+    <p>Optional channel specific overrides.</p>
+    <h6>Returns</h6>
+    <p>
+      <a href="globals.md#colorarray"><code>ColorArray</code></a>
+    </p>
+    <h6>Example</h6>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">load</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>;
+ 
+ <span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">load</span>([<span class="pl-s"><span class="pl-pds">'</span>pink<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>blue<span class="pl-pds">'</span></span>]).<span class="pl-en">interpolateSpline</span>({num:<span class="pl-c1">8</span>, colorspace:<span class="pl-s"><span class="pl-pds">'</span>lch<span class="pl-pds">'</span></span>}));
+ 
+ <span class="pl-c">// [</span>
+<span class="pl-s"><span class="pl-pds">'</span>#ffc0cb<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#ff9ebe<span class="pl-pds">'</span></span>,
+<span class="pl-s"><span class="pl-pds">'</span>#f97bbb<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#ed57bf<span class="pl-pds">'</span></span>,
+<span class="pl-s"><span class="pl-pds">'</span>#d830c9<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#b800d9<span class="pl-pds">'</span></span>,
+<span class="pl-s"><span class="pl-pds">'</span>#8700eb<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#0000ff<span class="pl-pds">'</span></span>
+ ]
+ <span class="pl-k">*</span>
+</code></pre>
+    <h6>Defined in</h6>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L101"
+        >wrappers/index.js:101</a
+      >
+    </p>
+    <h5>nearest()</h5>
+    <blockquote>
+      <p>
+        <strong>nearest</strong>(<code>against</code>, <code>num</code>):
+        <a href="globals.md#colorarray"><code>ColorArray</code></a>
+      </p>
+    </blockquote>
+    <p>Returns the nearest color(s) in the bound collection against</p>
+    <h6>Parameters</h6>
+    <p>
+      • <strong>against</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color to use for distance comparison.</p>
+    <p>• <strong>num</strong>: <code>number</code></p>
+    <p>
+      The number of colors to return, if the value is above the colors in the
+      available sample, the entire collection is returned with colors ordered in
+      ascending order using the <code>differenceHyab</code> metric.
+    </p>
+    <h6>Returns</h6>
+    <p>
+      <a href="globals.md#colorarray"><code>ColorArray</code></a>
+    </p>
+    <h6>Example</h6>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">load</span>,<span class="pl-smi">colors</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">let</span> <span class="pl-smi">cols</span> <span class="pl-k">=</span> <span class="pl-en">colors</span>(<span class="pl-s"><span class="pl-pds">'</span>all<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>500<span class="pl-pds">'</span></span>)
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">load</span>(<span class="pl-smi">cols</span>).<span class="pl-en">nearest</span>(<span class="pl-s"><span class="pl-pds">'</span>blue<span class="pl-pds">'</span></span>, <span class="pl-c1">3</span>));
+<span class="pl-c">// [ '#a855f7', '#8b5cf6', '#d946ef' ]</span>
+</code></pre>
+    <h6>Defined in</h6>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L69"
+        >wrappers/index.js:69</a
+      >
+    </p>
+    <h5>output()</h5>
+    <blockquote>
+      <p><strong>output</strong>(): <code>Collection</code></p>
+    </blockquote>
+    <h6>Returns</h6>
+    <p><code>Collection</code></p>
+    <p>Returns the result value from the chain.</p>
+    <h6>Defined in</h6>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L268"
+        >wrappers/index.js:268</a
+      >
+    </p>
+    <h5>sortBy()</h5>
+    <blockquote>
+      <p>
+        <strong>sortBy</strong>(<code>options</code>):
+        <a href="globals.md#colorarray"><code>ColorArray</code></a>
+      </p>
+    </blockquote>
+    <p>
+      Sorts colors according to the specified <code>factor</code>. The supported
+      options are:
+    </p>
+    <ul>
+      <li>
+        <code>'contrast'</code> - Sorts colors according to their contrast value
+        as defined by WCAG. The contrast is tested <code>against</code> a
+        comparison color which can be specified in the
+        <code>options</code> object.
+      </li>
+      <li>
+        <code>'lightness'</code> - Sorts colors according to their lightness.
+      </li>
+      <li>
+        <code>'chroma'</code> - Sorts colors according to the intensity of their
+        <code>chroma</code> in the <code>colorspace</code> specified in the
+        <code>options</code> object.
+      </li>
+      <li>
+        <code>'distance'</code> - Sorts colors according to their distance. The
+        distance is computed from the <code>against</code> color token which is
+        used for comparison for all the colors in the <code>collection</code>.
+      </li>
+      <li>
+        <code>luminance</code> - Sorts colors according to their relative
+        brightness as defined by the WCAG3 definition.
+      </li>
+    </ul>
+    <p>The return type is determined by the type of <code>collection</code>:</p>
+    <ul>
+      <li>
+        Plain objects are returned as <code>Map</code> objects because they
+        remember insertion order. <code>Map</code> objects are returned as is.
+      </li>
+      <li>
+        <code>ArrayLike</code> objects are returned as plain arrays. Plain
+        arrays are returned as is.
+      </li>
+    </ul>
+    <h6>Parameters</h6>
+    <p>
+      • <strong>options</strong>:
+      <a href="globals.md#sortbyoptions"><code>SortByOptions</code></a>
+    </p>
+    <h6>Returns</h6>
+    <p>
+      <a href="globals.md#colorarray"><code>ColorArray</code></a>
+    </p>
+    <h6>Example</h6>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">sortBy</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-k">let</span> <span class="pl-smi">sample</span> <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">'</span>purple<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>green<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>red<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>brown<span class="pl-pds">'</span></span>]
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(
+ <span class="pl-en">load</span>(<span class="pl-smi">sample</span>).<span class="pl-en">sortBy</span>({ against:<span class="pl-s"><span class="pl-pds">'</span>yellow<span class="pl-pds">'</span></span> <span class="pl-smi">factor</span>:<span class="pl-s"><span class="pl-pds">'</span>distance<span class="pl-pds">'</span></span>,order:<span class="pl-s"><span class="pl-pds">'</span>desc<span class="pl-pds">'</span></span>})
+)
+
+<span class="pl-c">// [ 'brown', 'red', 'green', 'purple' ]</span>
+</code></pre>
+    <h6>Defined in</h6>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L227"
+        >wrappers/index.js:227</a
+      >
+    </p>
+    <h5>stats()</h5>
+    <blockquote>
+      <p><strong>stats</strong>(<code>options</code>): <code>Stats</code></p>
+    </blockquote>
+    <p>Computes statistical values about the passed in color collection.</p>
+    <p>
+      The topmost properties from each returned <code>factor</code> object are:
+    </p>
+    <ul>
+      <li><code>against</code> - The color being used for comparison.</li>
+    </ul>
+    <p>
+      Required for the <code>distance</code> and <code>contrast</code> factors.
+      If <code>relativeMean</code> is <code>false</code>, other factors that
+      take the comparison color token as an overload will have this property's
+      value as <code>null</code>.
+    </p>
+    <ul>
+      <li>
+        <p>
+          <code>colorspace</code> - The colorspace in which the factors were
+          computed in. It has no effect on the <code>contrast</code> or
+          <code>distance</code> factors (for now).
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>extremums</code> - An array of the minimum and the maximum value
+          (respectively) of the <code>factor</code>.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>colors</code> - An array of color tokens that have the minimum
+          and maximum <code>extremum</code> values respectively.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>mean</code> - The average value for the <code>factor</code>.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>displayable</code> - The percentage of the displayable or colors
+          with channel ranges that can be rendered in that colorspace when
+          converted to RGB.
+        </p>
+      </li>
+    </ul>
+    <p>
+      The <code>mean</code> property can be overloaded by the
+      <code>relativeMean</code> option:
+    </p>
+    <ul>
+      <li>
+        If <code>relativeMean</code> is <code>true</code>, the
+        <code>against</code> option will be used as a subtrahend for calculating
+        the distance between each <code>extremum</code>. For example, it will
+        mean "Get the largest/smallest distance between <code>factor</code> as
+        compared <code>against</code> this color token otherwise just get the
+        smallest/largest <code>factor</code> from thr passed in collection."
+      </li>
+    </ul>
+    <h6>Parameters</h6>
+    <p>
+      • <strong>options</strong>:
+      <a href="globals.md#statsoptions"><code>StatsOptions</code></a>
+    </p>
+    <p>Optional parameters to specify how the data should be computed.</p>
+    <h6>Returns</h6>
+    <p><code>Stats</code></p>
+    <h6>Defined in</h6>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/wrappers/index.js#L257"
+        >wrappers/index.js:257</a
+      >
+    </p>
+    <h2>Functions</h2>
+    <h3>achromatic()</h3>
+    <blockquote>
+      <p>
+        <strong>achromatic</strong>(<code>color</code>): <code>boolean</code>
+      </p>
+    </blockquote>
+    <p>
+      Checks if a color token is achromatic (without hue or simply grayscale).
+    </p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>color</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color token to test if it is achromatic or not.</p>
+    <h4>Returns</h4>
+    <p><code>boolean</code></p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">achromatic</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">"</span>huetiful-js<span class="pl-pds">"</span></span>;
+
+<span class="pl-en">achromatic</span>(<span class="pl-s"><span class="pl-pds">'</span>pink<span class="pl-pds">'</span></span>)
+<span class="pl-c">// false</span>
+
+<span class="pl-k">let</span> <span class="pl-smi">sample</span> <span class="pl-k">=</span> [
+ <span class="pl-s"><span class="pl-pds">"</span>#164100<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#ffff00<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#310000<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>pink<span class="pl-pds">'</span></span>
+];
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">sample</span>.<span class="pl-en">map</span>(<span class="pl-smi">achromatic</span>));
+
+<span class="pl-c">// [false, false, false,false]</span>
+
+<span class="pl-en">achromatic</span>(<span class="pl-s"><span class="pl-pds">'</span>gray<span class="pl-pds">'</span></span>)
+<span class="pl-c">// Returns true</span>
+
+<span class="pl-c">// We can expand this example by interpolating between black and white and then getting some samples to iterate through.</span>
+
+<span class="pl-k">import</span> { <span class="pl-smi">interpolator</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">"</span>huetiful-js<span class="pl-pds">"</span></span>
+
+<span class="pl-c">// we create an interpolation using black and white with 12 samples</span>
+<span class="pl-k">let</span> <span class="pl-smi">grays</span> <span class="pl-k">=</span> <span class="pl-en">interpolator</span>([<span class="pl-s"><span class="pl-pds">"</span>black<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>white<span class="pl-pds">"</span></span>],{ num:<span class="pl-c1">12</span> });
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">grays</span>.<span class="pl-en">map</span>(<span class="pl-smi">achromatic</span>));
+
+<span class="pl-c">//</span>
+[<span class="pl-c1">false</span>, <span class="pl-c1">true</span>, <span class="pl-c1">true</span>,
+ <span class="pl-c1">true</span>,  <span class="pl-c1">true</span>, <span class="pl-c1">true</span>,
+ <span class="pl-c1">true</span>,  <span class="pl-c1">true</span>, <span class="pl-c1">true</span>,
+ <span class="pl-c1">true</span>,  <span class="pl-c1">true</span>, <span class="pl-c1">false</span>
+]
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L264"
+        >utils/index.js:264</a
+      >
+    </p>
+    <hr />
+    <h3>alpha()</h3>
+    <blockquote>
+      <p>
+        <strong>alpha</strong>(<code>color</code>, <code>amount</code>):
+        <code>string</code> | <code>number</code>
+      </p>
+    </blockquote>
+    <p>Returns the color token's alpha channel value.</p>
+    <p>
+      If the the <code>amount</code> parameter is passed in, it sets the color
+      token's alpha channel with the <code>amount</code> specified and returns
+      the color as a hex string.
+    </p>
+    <ul>
+      <li>
+        Also supports math expressions as a <code>string</code> for the
+        <code>amount</code> parameter. For example <code>*0.5</code> which means
+        the value multiply the current alpha by <code>0.5</code> and set the
+        product as the new alpha value. In short
+        <code>currentAlpha * 0.5 = newAlpha</code>. The supported symbols are
+        <code>* - / +</code>.
+      </li>
+    </ul>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>color</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color with the opacity/alpha channel to retrieve or set.</p>
+    <p>
+      • <strong>amount</strong>: <code>string</code> | <code>number</code> =
+      <code>undefined</code>
+    </p>
+    <p>
+      The value to apply to the opacity channel. The value is between
+      <code>[0,1]</code>
+    </p>
+    <h4>Returns</h4>
+    <p><code>string</code> | <code>number</code></p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-c">// Getting the alpha</span>
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">alpha</span>(<span class="pl-s"><span class="pl-pds">'</span>#a1bd2f0d<span class="pl-pds">'</span></span>))
+<span class="pl-c">// 0.050980392156862744</span>
+
+<span class="pl-c">// Setting the alpha</span>
+
+<span class="pl-k">let</span> <span class="pl-smi">myColor</span> <span class="pl-k">=</span> <span class="pl-en">alpha</span>(<span class="pl-s"><span class="pl-pds">'</span>b2c3f1<span class="pl-pds">'</span></span>, <span class="pl-c1">0.5</span>)
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">myColor</span>)
+
+<span class="pl-c">// #b2c3f180</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L87"
+        >utils/index.js:87</a
+      >
+    </p>
+    <hr />
+    <h3>colors()</h3>
+    <blockquote>
+      <p>
+        <strong>colors</strong>(<code>shade</code>, <code>value</code>):
+        <code>string</code> | <code>string</code>[]
+      </p>
+    </blockquote>
+    <p>Returns TailwindCSS color value(s) from the default palette.</p>
+    <p>The function behaves as follows:</p>
+    <ul>
+      <li>
+        If called with both <code>shade</code> and
+        <code>value</code> parameters, it returns that color as a hex string.
+        For example <code>'blue'</code> and <code>'500'</code> would return the
+        equivalent of <code>blue-500</code>.
+      </li>
+      <li>
+        If called with no parameters or just the <code>'all'</code> parameter as
+        the <code>shade</code>, it returns an array of colors from
+        <code>'050'</code> to <code>'900'</code> for every <code>shade</code>.
+      </li>
+    </ul>
+    <p>
+      Note that to specify <code>'050'</code> as a number you just pass
+      <code>50</code>. Values are all valid as string or number for example
+      <code>'100'</code> and<code>100</code> .
+    </p>
+    <ul>
+      <li>
+        If the <code>shade </code> is <code>'all'</code> and the
+        <code>value</code> is specified, it returns an array of colors at the
+        specified <code>value</code> for each <code>shade</code>.
+      </li>
+    </ul>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>shade</strong>:
+      <a href="globals.md#tailwindcolorfamilies"
+        ><code>TailwindColorFamilies</code></a
+      >
+      | <code>"all"</code> = <code>"all"</code>
+    </p>
+    <p>The hue family to return.</p>
+    <p>
+      • <strong>value</strong>:
+      <a href="globals.md#scalevalues"><code>ScaleValues</code></a> =
+      <code>undefined</code>
+    </p>
+    <p>
+      The tone value of the shade. Values are in incrementals of
+      <code>100</code>. For example numeric (<code>100</code>) and its string
+      equivalent (<code>'100'</code>) are valid.
+    </p>
+    <h4>Returns</h4>
+    <p><code>string</code> | <code>string</code>[]</p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">colors</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">"</span>huetiful-js<span class="pl-pds">"</span></span>;
+
+<span class="pl-c">// We pass in red as the target hue.</span>
+<span class="pl-c">// It returns a function that can be called with an optional value parameter</span>
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">colors</span>(<span class="pl-s"><span class="pl-pds">'</span>red<span class="pl-pds">'</span></span>));
+<span class="pl-c">// [</span>
+ <span class="pl-s"><span class="pl-pds">'</span>#fef2f2<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#fee2e2<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#fecaca<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#fca5a5<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#f87171<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#ef4444<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#dc2626<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#b91c1c<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#991b1b<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#7f1d1d<span class="pl-pds">'</span></span>
+]
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">colors</span>(<span class="pl-s"><span class="pl-pds">'</span>red<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>900<span class="pl-pds">'</span></span>));
+<span class="pl-c">// '#7f1d1d'</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/palettes/index.js#L864"
+        >palettes/index.js:864</a
+      >
+    </p>
+    <hr />
+    <h3>complimentary()</h3>
+    <blockquote>
+      <p>
+        <strong>complimentary</strong>(<code>baseColor</code>,
+        <code>obj</code>): <code>string</code> | <code>number</code> |
+        <code>boolean</code> | <code>object</code> | <code>number</code>[] |
+        [<code>string</code>, <code>number</code>, <code>number</code>,
+        <code>number</code>, <code>number?</code>] | <code>Blob</code> |
+        <code>ArrayBuffer</code> | {<code>color</code>:
+        <a href="globals.md#colortoken"><code>ColorToken</code></a
+        >;<code>factor</code>: <code>number</code>; }
+      </p>
+    </blockquote>
+    <p>
+      Returns the complimentary color of the passed in color token. A
+      complimentary color is 180 degrees away on the hue channel.
+    </p>
+    <p>
+      The object (if the <code>obj</code> parameter is <code>true</code>)
+      returns:
+    </p>
+    <ul>
+      <li>The complimentary color for the passed in color token</li>
+      <li>The hue family from which the complimentary color was found.</li>
+    </ul>
+    <p>
+      The function is not guarded against achromatic colors which means no
+      action will be done on a gray color and it will be returned as is. Pure
+      black or white (<code>'#000000'</code> and
+      <code>'#ffffff'</code> respectively) may return unexpected results.
+    </p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>baseColor</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color to retrieve its complimentary equivalent.</p>
+    <p>• <strong>obj</strong>: <code>boolean</code> = <code>false</code></p>
+    <p>
+      Optional boolean whether to return an object with the result color's hue
+      family or just the result color. Default is <code>false</code>.
+    </p>
+    <h4>Returns</h4>
+    <p>
+      <code>string</code> | <code>number</code> | <code>boolean</code> |
+      <code>object</code> | <code>number</code>[] | [<code>string</code>,
+      <code>number</code>, <code>number</code>, <code>number</code>,
+      <code>number?</code>] | <code>Blob</code> | <code>ArrayBuffer</code> |
+      {<code>color</code>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a
+      >;<code>factor</code>: <code>number</code>; }
+    </p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">complimentary</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">"</span>huetiful-js<span class="pl-pds">"</span></span>;
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">complimentary</span>(<span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>, <span class="pl-c1">true</span>))
+<span class="pl-c">//// { hue: 'blue-green', color: '#97dfd7ff' }</span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">complimentary</span>(<span class="pl-s"><span class="pl-pds">"</span>purple<span class="pl-pds">"</span></span>))
+<span class="pl-c">// #005700</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L772"
+        >utils/index.js:772</a
+      >
+    </p>
+    <hr />
+    <h3>contrast()</h3>
+    <blockquote>
+      <p>
+        <strong>contrast</strong>(<code>a</code>, <code>b</code>):
+        <code>number</code>
+      </p>
+    </blockquote>
+    <p>Gets the contrast between the passed in colors.</p>
+    <p>
+      Swapping color <code>a</code> and <code>b</code> in the parameter list
+      doesn't change the resulting value.
+    </p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>a</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>First color to query.</p>
+    <p>
+      • <strong>b</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color to compare against.</p>
+    <h4>Returns</h4>
+    <p><code>number</code></p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">contrast</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">contrast</span>(<span class="pl-s"><span class="pl-pds">"</span>black<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>white<span class="pl-pds">"</span></span>));
+<span class="pl-c">// 21</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/accessibility/index.js#L32"
+        >accessibility/index.js:32</a
+      >
+    </p>
+    <hr />
+    <h3>deficiency()</h3>
+    <blockquote>
+      <p>
+        <strong>deficiency</strong>(<code>color</code>, <code>options</code>):
+        {<code>blue</code>: <code>any</code>;<code>green</code>:
+        <code>any</code>;<code>monochromacy</code>:
+        <code>FindColorByMode</code>&#x3C;<code>"a98"</code> |
+        <code>"cubehelix"</code> | <code>"dlab"</code> | <code>"dlch"</code> |
+        <code>"hsi"</code> | <code>"hsl"</code> | <code>"hsv"</code> |
+        <code>"hwb"</code> | <code>"jab"</code> | <code>"jch"</code> |
+        <code>"lab"</code> | <code>"lab65"</code> | <code>"lch"</code> |
+        <code>"lch65"</code> | <code>"lchuv"</code> | <code>"lrgb"</code> |
+        <code>"luv"</code> | <code>"okhsl"</code> | <code>"okhsv"</code> |
+        <code>"oklab"</code> | <code>"oklch"</code> | <code>"p3"</code> |
+        <code>"prophoto"</code> | <code>"rec2020"</code> | <code>"rgb"</code> |
+        <code>"xyb"</code> | <code>"xyz50"</code> | <code>"xyz65"</code> |
+        <code>"yiq"</code>>;<code>red</code>: <code>any</code>; }
+      </p>
+    </blockquote>
+    <p>
+      Simulates how a color may be perceived by people with color vision
+      deficiency.
+    </p>
+    <p>
+      To avoid writing the long types, the expected parameters for the
+      <code>kind</code> of blindness are simply the colors that are hard to
+      perceive for the type of color blindness:
+    </p>
+    <ul>
+      <li>
+        'tritanopia' - An inability to distinguish the color 'blue'. The
+        <code>kind</code> is <code>'blue'</code>.
+      </li>
+      <li>
+        'deuteranopia' - An inability to distinguish the color 'green'.. The
+        <code>kind</code> is <code>'green'</code>.
+      </li>
+      <li>
+        'protanopia' - An inability to distinguish the color 'red'. The
+        <code>kind</code> is <code>'red'</code>.
+      </li>
+    </ul>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>color</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color to return its simulated variant</p>
+    <p>
+      • <strong>options</strong>:
+      <a href="globals.md#deficiencyoptions"><code>DeficiencyOptions</code></a>
+      = <code>...</code>
+    </p>
+    <h4>Returns</h4>
+    <p>
+      {<code>blue</code>: <code>any</code>;<code>green</code>:
+      <code>any</code>;<code>monochromacy</code>:
+      <code>FindColorByMode</code>&#x3C;<code>"a98"</code> |
+      <code>"cubehelix"</code> | <code>"dlab"</code> | <code>"dlch"</code> |
+      <code>"hsi"</code> | <code>"hsl"</code> | <code>"hsv"</code> |
+      <code>"hwb"</code> | <code>"jab"</code> | <code>"jch"</code> |
+      <code>"lab"</code> | <code>"lab65"</code> | <code>"lch"</code> |
+      <code>"lch65"</code> | <code>"lchuv"</code> | <code>"lrgb"</code> |
+      <code>"luv"</code> | <code>"okhsl"</code> | <code>"okhsv"</code> |
+      <code>"oklab"</code> | <code>"oklch"</code> | <code>"p3"</code> |
+      <code>"prophoto"</code> | <code>"rec2020"</code> | <code>"rgb"</code> |
+      <code>"xyb"</code> | <code>"xyz50"</code> | <code>"xyz65"</code> |
+      <code>"yiq"</code>>;<code>red</code>: <code>any</code>; }
+    </p>
+    <h5>blue</h5>
+    <blockquote>
+      <p><strong>blue</strong>: <code>any</code></p>
+    </blockquote>
+    <h5>green</h5>
+    <blockquote>
+      <p><strong>green</strong>: <code>any</code></p>
+    </blockquote>
+    <h5>monochromacy</h5>
+    <blockquote>
+      <p>
+        <strong>monochromacy</strong>: <code>FindColorByMode</code>&#x3C;<code
+          >"a98"</code
+        >
+        | <code>"cubehelix"</code> | <code>"dlab"</code> | <code>"dlch"</code> |
+        <code>"hsi"</code> | <code>"hsl"</code> | <code>"hsv"</code> |
+        <code>"hwb"</code> | <code>"jab"</code> | <code>"jch"</code> |
+        <code>"lab"</code> | <code>"lab65"</code> | <code>"lch"</code> |
+        <code>"lch65"</code> | <code>"lchuv"</code> | <code>"lrgb"</code> |
+        <code>"luv"</code> | <code>"okhsl"</code> | <code>"okhsv"</code> |
+        <code>"oklab"</code> | <code>"oklch"</code> | <code>"p3"</code> |
+        <code>"prophoto"</code> | <code>"rec2020"</code> | <code>"rgb"</code> |
+        <code>"xyb"</code> | <code>"xyz50"</code> | <code>"xyz65"</code> |
+        <code>"yiq"</code>>
+      </p>
+    </blockquote>
+    <h5>red</h5>
+    <blockquote>
+      <p><strong>red</strong>: <code>any</code></p>
+    </blockquote>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">deficiency</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-c">// Here we are simulating color blindness of tritanomaly or we can't see 'blue'.</span>
+<span class="pl-c">// We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.5</span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">deficiency</span>([<span class="pl-s"><span class="pl-pds">'</span>rgb<span class="pl-pds">'</span></span>, <span class="pl-c1">230</span>, <span class="pl-c1">100</span>, <span class="pl-c1">50</span>, <span class="pl-c1">0.5</span>],{ kind:<span class="pl-s"><span class="pl-pds">'</span>blue<span class="pl-pds">'</span></span>, severity:<span class="pl-c1">0.5</span> }))
+<span class="pl-c">// '#dd663680'</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/accessibility/index.js#L140"
+        >accessibility/index.js:140</a
+      >
+    </p>
+    <hr />
+    <h3>discover()</h3>
+    <blockquote>
+      <p>
+        <strong>discover</strong>(<code>colors</code>, <code>options</code>):
+        <code>Collection</code>
+      </p>
+    </blockquote>
+    <p>
+      Takes a collection of colors and finds the nearest matches using the
+      <code>differenceHyab()</code> color difference metric for a set of
+      predefined palettes.
+    </p>
+    <p>
+      The function returns different values based on the
+      <code>kind</code> parameter passed in:
+    </p>
+    <ul>
+      <li>
+        An array of colors for the <code>kind</code> of scheme, if the
+        <code>kind</code> parameter is specified.
+      </li>
+      <li>
+        Else it returns an object of all the palette types as keys and their
+        values as an array of colors.
+      </li>
+    </ul>
+    <p>
+      If no colors are valid for the palette types it returns an empty array for
+      the palette results. It does not work with achromatic colors thus they're
+      excluded from the resulting collection.
+    </p>
+    <h4>Parameters</h4>
+    <p>• <strong>colors</strong>: <code>Collection</code> = <code>[]</code></p>
+    <p>
+      The collection of colors to create palettes from. Preferably use 6 or more
+      colors for better results.
+    </p>
+    <p>• <strong>options</strong>: <code>DiscoverOptions</code></p>
+    <h4>Returns</h4>
+    <p><code>Collection</code></p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">discover</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-k">let</span> <span class="pl-smi">sample</span> <span class="pl-k">=</span> [
+ <span class="pl-s"><span class="pl-pds">"</span>#ffff00<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#00ffdc<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#00ff78<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#00c000<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#007e00<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#164100<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#720000<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#600000<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#4e0000<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#3e0000<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#310000<span class="pl-pds">"</span></span>,
+]
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">discover</span>(<span class="pl-smi">sample</span>, { kind:<span class="pl-s"><span class="pl-pds">'</span>tetradic<span class="pl-pds">'</span></span> }))
+<span class="pl-c">// [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L391"
+        >generators/index.js:391</a
+      >
+    </p>
+    <hr />
+    <h3>distribute()</h3>
+    <blockquote>
+      <p>
+        <strong>distribute</strong>(<code>factor</code>?,
+        <code>options</code>?): <code>undefined</code>
+      </p>
+    </blockquote>
+    <p>
+      Distributes the specified <code>factor</code> of a color in the collection
+      with the specified <code>extremum</code> (i.e the color with the
+      smallest/largest <code>hue</code> angle or <code>chroma</code> value) to
+      all color tokens in the collection.
+    </p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>factor?</strong>:
+      <a href="globals.md#factor"><code>Factor</code></a>
+    </p>
+    <p>
+      The property you want to distribute to the colors in the collection for
+      example <code>hue | luminance</code>
+    </p>
+    <p>
+      • <strong>options?</strong>:
+      <a href="globals.md#distributionoptions"
+        ><code>DistributionOptions</code></a
+      >
+    </p>
+    <p>Optional overrides to change the default configursation</p>
+    <h4>Returns</h4>
+    <p><code>undefined</code></p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/collection/index.js#L276"
+        >collection/index.js:276</a
+      >
+    </p>
+    <hr />
+    <h3>diverging()</h3>
+    <blockquote>
+      <p>
+        <strong>diverging</strong>(<code>scheme</code>): <code>Collection</code>
+      </p>
+    </blockquote>
+    <p>A wrapper function for ColorBrewer's map of diverging color schemes.</p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>scheme</strong>:
+      <a href="globals.md#divergingscheme"><code>DivergingScheme</code></a>
+    </p>
+    <p>The name of the scheme.</p>
+    <h4>Returns</h4>
+    <p><code>Collection</code></p>
+    <p>The collection of colors from the specified <code>scheme</code>.</p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">diverging</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">diverging</span>(<span class="pl-s"><span class="pl-pds">"</span>Spectral<span class="pl-pds">"</span></span>))
+<span class="pl-c">//[</span>
+ <span class="pl-s"><span class="pl-pds">'</span>#7fc97f<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#beaed4<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#fdc086<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#ffff99<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#386cb0<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#f0027f<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#bf5b17<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#666666<span class="pl-pds">'</span></span>
+]
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/palettes/index.js#L558"
+        >palettes/index.js:558</a
+      >
+    </p>
+    <hr />
+    <h3>earthtone()</h3>
+    <blockquote>
+      <p>
+        <strong>earthtone</strong>(<code>baseColor</code>,
+        <code>options</code>):
+        <a href="globals.md#colortoken"><code>ColorToken</code></a> |
+        <a href="globals.md#colortoken"><code>ColorToken</code></a
+        >[]
+      </p>
+    </blockquote>
+    <p>
+      Creates a color scale between an earth tone and any color token using
+      spline interpolation.
+    </p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>baseColor</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color to interpolate an earth tone with.</p>
+    <p>• <strong>options</strong>: <code>EarthtoneOptions</code></p>
+    <p>
+      Optional overrides for customising interpolation and easing functions.
+    </p>
+    <h4>Returns</h4>
+    <p>
+      <a href="globals.md#colortoken"><code>ColorToken</code></a> |
+      <a href="globals.md#colortoken"><code>ColorToken</code></a
+      >[]
+    </p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">earthtone</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">earthtone</span>(<span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">'</span>lch<span class="pl-pds">'</span></span>,{earthtones:<span class="pl-s"><span class="pl-pds">'</span>clay<span class="pl-pds">'</span></span>,samples:<span class="pl-c1">5</span> }))
+<span class="pl-c">// [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L473"
+        >generators/index.js:473</a
+      >
+    </p>
+    <hr />
+    <h3>family()</h3>
+    <blockquote>
+      <p><strong>family</strong>(<code>color</code>): <code>HueFamily</code></p>
+    </blockquote>
+    <p>
+      Gets the hue family which a color belongs to with the overtone included
+      (if it has one.).
+    </p>
+    <p>
+      For example <code>'red'</code> or <code>'blue-green'</code>. If the color
+      is achromatic it returns the string <code>'gray'</code>.
+    </p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>color</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color to query its shade or hue family.</p>
+    <h4>Returns</h4>
+    <p><code>HueFamily</code></p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">family</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">family</span>(<span class="pl-s"><span class="pl-pds">"</span>#310000<span class="pl-pds">"</span></span>))
+<span class="pl-c">// 'red'</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L659"
+        >utils/index.js:659</a
+      >
+    </p>
+    <hr />
+    <h3>filterBy()</h3>
+    <blockquote>
+      <p>
+        <strong>filterBy</strong>(<code>collection</code>,
+        <code>options</code>): <code>Collection</code>
+      </p>
+    </blockquote>
+    <p>
+      Filters a collection of colors using the specified <code>factor</code> as
+      the criterion. The supported options are:
+    </p>
+    <ul>
+      <li>
+        <p>
+          <code>'contrast'</code> - Returns colors with the specified contrast
+          range. The contrast is tested against a comparison color (the
+          'against' param) and the specified contrast ranges.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>'lightness'</code> - Returns colors in the specified lightness
+          range.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>'chroma'</code> - Returns colors in the specified
+          <code>saturation</code> or <code>chroma</code> range. The range is
+          internally normalized to the supported ranges by the
+          <code>colorspace</code> in use if it is out of range.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>'distance'</code> - Returns colors with the specified
+          <code>distance</code> range. The <code>distance</code> is tested
+          against a comparison color (the 'against' param) and the specified
+          <code>distance</code> ranges. Uses the
+          <code>differenceHyab</code> metric for calculating the distances.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>luminance</code> - Returns colors in the specified luminance
+          range.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>'hue'</code> - Returns colors in the specified hue ranges
+          between 0 to 360.
+        </p>
+      </li>
+    </ul>
+    <p>
+      For the <code>chroma</code> and <code>lightness</code> factors, the range
+      is internally normalized to the supported ranges by the
+      <code>colorspace</code> in use if it is out of range. This means a value
+      in the range <code>[0,1]</code> will return, for example if you pass
+      <code>startLightness</code> as <code>0.3</code> it means
+      <code>0.3 (or 30%)</code> of the channel's supported range. But if the
+      value of either start or end is above 1 AND the <code>colorspace</code> in
+      use has an end range higher than 1 then the value is treated as is else
+      the value is treated as if in the range <code>[0,100]</code> and will
+      return the normalized value.
+    </p>
+    <h4>Parameters</h4>
+    <p>• <strong>collection</strong>: <code>Collection</code></p>
+    <p>The collection of colors to filter.</p>
+    <p>• <strong>options</strong>: <code>FilterByOptions</code></p>
+    <h4>Returns</h4>
+    <p><code>Collection</code></p>
+    <h4>See</h4>
+    <p>
+      https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
+    </p>
+    <p>
+      Supports expression strings e.g <code>'>=0.5'</code>. The supported
+      symbols are <code>== | === | != | !== | >= | &#x3C;= | &#x3C; | ></code>
+    </p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">filterBy</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-k">let</span> <span class="pl-smi">sample</span> <span class="pl-k">=</span> [
+ <span class="pl-s"><span class="pl-pds">'</span>#00ffdc<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#00ff78<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#00c000<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#007e00<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#164100<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#ffff00<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#310000<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#3e0000<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#4e0000<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#600000<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#720000<span class="pl-pds">'</span></span>,
+]
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/collection/index.js#L364"
+        >collection/index.js:364</a
+      >
+    </p>
+    <hr />
+    <h3>hueshift()</h3>
+    <blockquote>
+      <p>
+        <strong>hueshift</strong>(<code>baseColor</code>, <code>options</code>):
+        <a href="globals.md#colortoken"><code>ColorToken</code></a
+        >[]
+      </p>
+    </blockquote>
+    <p>Creates a palette of hue shifted colors from the passed in color.</p>
+    <p>Hue shifting means that:</p>
+    <ul>
+      <li>As a color becomes lighter, its hue shifts up (increases).</li>
+      <li>As a color becomes darker its hue shifts down (decreases).</li>
+    </ul>
+    <p>
+      The <code>minLightness</code> and <code>maxLightness</code> values
+      determine how dark or light our color will be at either extreme
+      respectively.
+    </p>
+    <p>
+      The length of the resultant array is the number of samples
+      (<code>num</code>) multiplied by 2 plus the base color passed in or
+      <code>(num * 2) + 1</code>.
+    </p>
+    <h4>Parameters</h4>
+    <p>• <strong>baseColor</strong>: <code>any</code></p>
+    <p>The color to use as the base of the palette.</p>
+    <p>• <strong>options</strong>: <code>HueshiftOptions</code></p>
+    <p>The optional overrides object.</p>
+    <h4>Returns</h4>
+    <p>
+      <a href="globals.md#colortoken"><code>ColorToken</code></a
+      >[]
+    </p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">hueshift</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">"</span>huetiful-js<span class="pl-pds">"</span></span>;
+
+<span class="pl-k">let</span> <span class="pl-smi">hueShiftedPalette</span> <span class="pl-k">=</span> <span class="pl-en">hueShift</span>(<span class="pl-s"><span class="pl-pds">"</span>#3e0000<span class="pl-pds">"</span></span>);
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">hueShiftedPalette</span>);
+
+<span class="pl-c">// [</span>
+ <span class="pl-s"><span class="pl-pds">'</span>#ffffe1<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#ffdca5<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#ca9a70<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#935c40<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#5c2418<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#3e0000<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#310000<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#34000f<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#38001e<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#3b002c<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#3b0c3a<span class="pl-pds">'</span></span>
+]
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L87"
+        >generators/index.js:87</a
+      >
+    </p>
+    <hr />
+    <h3>interpolator()</h3>
+    <blockquote>
+      <p>
+        <strong>interpolator</strong>(<code>baseColors</code>,
+        <code>options</code>):
+        <a href="globals.md#colortoken"><code>ColorToken</code></a
+        >[]
+      </p>
+    </blockquote>
+    <p>
+      Interpolates the passed in colors and returns a color scale that is evenly
+      split into <code>num</code> amount of samples.
+    </p>
+    <p>
+      The interpolation behaviour can be overidden allowing us to get slightly
+      different effects from the same <code>baseColors</code>.
+    </p>
+    <p>The behaviour of the interpolation can be customized by:</p>
+    <ul>
+      <li>
+        <p>Changing the <code>kind</code> of interpolation</p>
+        <ul>
+          <li>natural</li>
+          <li>basis</li>
+          <li>monotone</li>
+        </ul>
+      </li>
+      <li>
+        <p>Changing the easing function (<code>easingFn</code>)</p>
+        <ul>
+          <li></li>
+        </ul>
+      </li>
+    </ul>
+    <p>
+      Some things to keep in mind when creating color scales using this
+      function:
+    </p>
+    <ul>
+      <li>
+        To create a color scale for cyclic values pass <code>true</code> to the
+        <code>closed</code> parameter in the <code>options</code> object.
+      </li>
+      <li>
+        If <code>num</code> is 1 then a single color is returned from the
+        resulting interpolation with the internal <code>t</code> value at
+        <code>0.5</code> else a collection of the <code>num</code> of color
+        scales is returned.
+      </li>
+      <li>
+        If the collection of colors contains an achromatic color, the resulting
+        samples may all be grayscale or pure black.
+      </li>
+    </ul>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>baseColors</strong>: <code>Collection</code> = <code>[]</code>
+    </p>
+    <p>
+      The collection of colors to interpolate. If a color has a falsy channel
+      for example black has an undefined hue channel some interpolation methods
+      may return NaN affecting the final result or making all the colors in the
+      resulting interpolation gray.
+    </p>
+    <p>
+      • <strong>options</strong>: <code>InterpolatorOptions</code> =
+      <code>undefined</code>
+    </p>
+    <p>Optional overrides.</p>
+    <h4>Returns</h4>
+    <p>
+      <a href="globals.md#colortoken"><code>ColorToken</code></a
+      >[]
+    </p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">interpolator</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>;
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">interpolator</span>([<span class="pl-s"><span class="pl-pds">'</span>pink<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>blue<span class="pl-pds">'</span></span>], { num:<span class="pl-c1">8</span> }));
+
+<span class="pl-c">// [</span>
+ <span class="pl-s"><span class="pl-pds">'</span>#ffc0cb<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#ff9ebe<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#f97bbb<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#ed57bf<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#d830c9<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#b800d9<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#8700eb<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#0000ff<span class="pl-pds">'</span></span>
+]
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L295"
+        >generators/index.js:295</a
+      >
+    </p>
+    <hr />
+    <h3>lightness()</h3>
+    <blockquote>
+      <p>
+        <strong>lightness</strong>(<code>color</code>, <code>amount</code>,
+        <code>darken</code>): <code>string</code>
+      </p>
+    </blockquote>
+    <p>
+      Darkens the color by reducing the <code>lightness</code> channel by
+      <code>amount</code> of the channel. For example <code>0.3</code> means
+      reduce the lightness by <code>0.3</code> of the channel's current value.
+    </p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>color</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color to darken.</p>
+    <p>• <strong>amount</strong>: <code>number</code></p>
+    <p>
+      The amount to darken with. The value is expected to be in the range
+      <code>[0,1]</code>. Default is <code>0.1</code>.
+    </p>
+    <p>• <strong>darken</strong>: <code>boolean</code> = <code>false</code></p>
+    <h4>Returns</h4>
+    <p><code>string</code></p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">lightness</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">"</span>huetiful-js<span class="pl-pds">"</span></span>;
+
+<span class="pl-c">// darkening a color</span>
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">lightness</span>(<span class="pl-s"><span class="pl-pds">'</span>blue<span class="pl-pds">'</span></span>, <span class="pl-c1">0.3</span>, <span class="pl-c1">true</span>));
+
+<span class="pl-c">// '#464646'</span>
+
+<span class="pl-c">// brightening a color, we can omit the final param </span>
+<span class="pl-c">// because it's false by default.</span>
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">brighten</span>(<span class="pl-s"><span class="pl-pds">'</span>blue<span class="pl-pds">'</span></span>, <span class="pl-c1">0.3</span>));
+<span class="pl-c">//#464646</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L303"
+        >utils/index.js:303</a
+      >
+    </p>
+    <hr />
+    <h3>luminance()</h3>
+    <blockquote>
+      <p>
+        <strong>luminance</strong>(<code>color</code>, <code>amount</code>?):
+        <a href="globals.md#colortoken"><code>ColorToken</code></a>
+      </p>
+    </blockquote>
+    <p>Gets the luminance of the passed in color token.</p>
+    <p>
+      If the <code>amount</code> parameter is not passed in else it will adjust
+      the luminance by interpolating the color with black (to decrease
+      luminance) or white (to increase the luminance) by the specified
+      <code>amount</code>.
+    </p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>color</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color to retrieve or adjust luminance.</p>
+    <p>• <strong>amount?</strong>: <code>number</code></p>
+    <p>
+      The amount of luminance to set. The value range is normalised between
+      [0,1]
+    </p>
+    <h4>Returns</h4>
+    <p>
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">luminance</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-c">// Getting the luminance</span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">luminance</span>(<span class="pl-s"><span class="pl-pds">'</span>#a1bd2f<span class="pl-pds">'</span></span>))
+<span class="pl-c">// 0.4417749513730954</span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">colors</span>(<span class="pl-s"><span class="pl-pds">'</span>all<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>400<span class="pl-pds">'</span></span>).<span class="pl-en">map</span>((<span class="pl-v">c</span>) <span class="pl-k">=></span> <span class="pl-en">luminance</span>(<span class="pl-smi">c</span>)));
+
+<span class="pl-c">// [</span>
+  <span class="pl-c1">0.3595097699638928</span>,  <span class="pl-c1">0.3635745068550118</span>,
+  <span class="pl-c1">0.3596908494424909</span>,  <span class="pl-c1">0.3662525955988395</span>,
+ <span class="pl-c1">0.36634113914916244</span>, <span class="pl-c1">0.32958967582076004</span>,
+ <span class="pl-c1">0.41393242740130043</span>,  <span class="pl-c1">0.5789820793721787</span>,
+  <span class="pl-c1">0.6356386777636567</span>,  <span class="pl-c1">0.6463720036841869</span>,
+  <span class="pl-c1">0.5525691083297639</span>,  <span class="pl-c1">0.4961850321908156</span>,
+  <span class="pl-c1">0.5140644334784611</span>,  <span class="pl-c1">0.4401325598899415</span>,
+ <span class="pl-c1">0.36299191043315415</span>,  <span class="pl-c1">0.3358285501372504</span>,
+ <span class="pl-c1">0.34737270839643575</span>, <span class="pl-c1">0.37670102542883394</span>,
+  <span class="pl-c1">0.3464512307705231</span>, <span class="pl-c1">0.34012939384198054</span>
+]
+
+<span class="pl-c">// setting the luminance</span>
+
+<span class="pl-k">let</span> <span class="pl-smi">myColor</span> <span class="pl-k">=</span> <span class="pl-en">luminance</span>(<span class="pl-s"><span class="pl-pds">'</span>#a1bd2f<span class="pl-pds">'</span></span>, <span class="pl-c1">0.5</span>)
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">luminance</span>(<span class="pl-smi">myColor</span>))
+<span class="pl-c">// 0.4999999136285792</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L593"
+        >utils/index.js:593</a
+      >
+    </p>
+    <hr />
+    <h3>mc()</h3>
+    <blockquote>
+      <p>
+        <strong>mc</strong>(<code>modeChannel</code>): (<code>color</code>,
+        <code>value</code>?) =>
+        <a href="globals.md#colortoken"><code>ColorToken</code></a>
+      </p>
+    </blockquote>
+    <p>Sets the value of the specified channel on the passed in color.</p>
+    <p>
+      If the <code>amount</code> parameter is <code>undefined</code> it gets the
+      value of the specified channel.
+    </p>
+    <h4>Parameters</h4>
+    <p>• <strong>modeChannel</strong>: <code>string</code> = <code>""</code></p>
+    <p>
+      The mode and channel to be retrieved. For example
+      <code>'rgb.b'</code> will return the value of the blue channel in the RGB
+      color space of that color.
+    </p>
+    <h4>Returns</h4>
+    <p><code>Function</code></p>
+    <h5>Parameters</h5>
+    <p>
+      • <strong>color</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>
+      • <strong>value?</strong>: <code>string</code> | <code>number</code> =
+      <code>undefined</code>
+    </p>
+    <h5>Returns</h5>
+    <p>
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">mc</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">mc</span>(<span class="pl-s"><span class="pl-pds">'</span>rgb.g<span class="pl-pds">'</span></span>)(<span class="pl-s"><span class="pl-pds">'</span>#a1bd2f<span class="pl-pds">'</span></span>))
+<span class="pl-c">// 0.7411764705882353</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L159"
+        >utils/index.js:159</a
+      >
+    </p>
+    <hr />
+    <h3>nearest()</h3>
+    <blockquote>
+      <p>
+        <strong>nearest</strong>(<code>collection</code>, <code>options</code>):
+        <code>Collection</code>
+      </p>
+    </blockquote>
+    <p>
+      Returns the nearest color(s) in a collection as compared
+      <code>against</code> the passed in color using the
+      <code>differenceHyab</code> metric function.
+    </p>
+    <ul>
+      <li>
+        To get the nearest color from the Tailwind CSS default palette pass in
+        the string <code>tailwind</code> as the
+        <code>collection</code> parameter.
+      </li>
+      <li>
+        If the <code>num</code> parameter is more than 1, the returned
+        collection of colors has the colors sorted starting with the nearest
+        color first
+      </li>
+    </ul>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>collection</strong>: <code>Collection</code> |
+      <code>"tailwind"</code>
+    </p>
+    <p>The collection of colors to search for nearest colors.</p>
+    <p>• <strong>options</strong>: <code>any</code></p>
+    <h4>Returns</h4>
+    <p><code>Collection</code></p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">let</span> <span class="pl-smi">cols</span> <span class="pl-k">=</span> <span class="pl-en">colors</span>(<span class="pl-s"><span class="pl-pds">'</span>all<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>500<span class="pl-pds">'</span></span>)
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">nearest</span>(<span class="pl-smi">cols</span>, <span class="pl-s"><span class="pl-pds">'</span>blue<span class="pl-pds">'</span></span>, <span class="pl-c1">3</span>));
+<span class="pl-c">// [ '#a855f7', '#8b5cf6', '#d946ef' ]</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/palettes/index.js#L812"
+        >palettes/index.js:812</a
+      >
+    </p>
+    <hr />
+    <h3>overtone()</h3>
+    <blockquote>
+      <p>
+        <strong>overtone</strong>(<code>color</code>): <code>string</code> |
+        <code>false</code>
+      </p>
+    </blockquote>
+    <p>
+      Returns the name of the hue family which is biasing the passed in color
+      using the <code>'lch'</code> colorspace.
+    </p>
+    <ul>
+      <li>
+        If an achromatic color is passed in it returns the string
+        <code>'gray'</code>
+      </li>
+      <li>If the color has no bias it returns <code>false</code>.</li>
+    </ul>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>color</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color to query its overtone.</p>
+    <h4>Returns</h4>
+    <p><code>string</code> | <code>false</code></p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">overtone</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">"</span>huetiful-js<span class="pl-pds">"</span></span>;
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">overtone</span>(<span class="pl-s"><span class="pl-pds">"</span>fefefe<span class="pl-pds">"</span></span>))
+<span class="pl-c">// 'gray'</span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">overtone</span>(<span class="pl-s"><span class="pl-pds">"</span>cyan<span class="pl-pds">"</span></span>))
+<span class="pl-c">// 'green'</span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">overtone</span>(<span class="pl-s"><span class="pl-pds">"</span>blue<span class="pl-pds">"</span></span>))
+<span class="pl-c">// false</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L736"
+        >utils/index.js:736</a
+      >
+    </p>
+    <hr />
+    <h3>pair()</h3>
+    <blockquote>
+      <p>
+        <strong>pair</strong>(<code>baseColor</code>, <code>options</code>):
+        <a href="globals.md#colortoken"><code>ColorToken</code></a> |
+        <a href="globals.md#colortoken"><code>ColorToken</code></a
+        >[]
+      </p>
+    </blockquote>
+    <p>
+      Creates a palette that consists of a <code>baseColor</code> that is
+      incremented by a <code>hueStep</code> to get the final color to pair with.
+      The colors are then spline interpolated via white or black.
+    </p>
+    <p>
+      A negative <code>hueStep</code> will pick a color that is
+      <code>hueStep</code> degrees behind the base color.
+    </p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>baseColor</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color to return a paired color scheme from.</p>
+    <p>• <strong>options</strong>: <code>PairedSchemeOptions</code></p>
+    <p>
+      The optional overrides object to customize per channel options like
+      interpolation methods and channel fixups.
+    </p>
+    <h4>Returns</h4>
+    <p>
+      <a href="globals.md#colortoken"><code>ColorToken</code></a> |
+      <a href="globals.md#colortoken"><code>ColorToken</code></a
+      >[]
+    </p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">pair</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">pair</span>(<span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>,{hueStep:<span class="pl-c1">6</span>,num:<span class="pl-c1">4</span>,tone:<span class="pl-s"><span class="pl-pds">'</span>dark<span class="pl-pds">'</span></span>}))
+<span class="pl-c">// [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L214"
+        >generators/index.js:214</a
+      >
+    </p>
+    <hr />
+    <h3>pastel()</h3>
+    <blockquote>
+      <p>
+        <strong>pastel</strong>(<code>baseColor</code>, <code>options</code>):
+        <a href="globals.md#colortoken"><code>ColorToken</code></a>
+      </p>
+    </blockquote>
+    <p>Returns a random pastel variant of the passed in color token.</p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>baseColor</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color to return a pastel variant of.</p>
+    <p>
+      • <strong>options</strong>:
+      <a href="globals.md#tokenoptions"><code>TokenOptions</code></a> =
+      <code>undefined</code>
+    </p>
+    <h4>Returns</h4>
+    <p>
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>A random pastel color.</p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">pastel</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">pastel</span>(<span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>))
+
+<span class="pl-c">// #036103ff</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L160"
+        >generators/index.js:160</a
+      >
+    </p>
+    <hr />
+    <h3>qualitative()</h3>
+    <blockquote>
+      <p>
+        <strong>qualitative</strong>(<code>scheme</code>):
+        <code>Collection</code>
+      </p>
+    </blockquote>
+    <p>
+      A wrapper function for ColorBrewer's map of qualitative color schemes.
+    </p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>scheme</strong>:
+      <a href="globals.md#qualitativescheme"><code>QualitativeScheme</code></a>
+    </p>
+    <p>The name of the scheme</p>
+    <h4>Returns</h4>
+    <p><code>Collection</code></p>
+    <p>The collection of colors from the specified <code>scheme</code>.</p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">qualitative</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">qualitative</span>(<span class="pl-s"><span class="pl-pds">"</span>Accent<span class="pl-pds">"</span></span>))
+<span class="pl-c">// [</span>
+ <span class="pl-s"><span class="pl-pds">'</span>#7fc97f<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#beaed4<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#fdc086<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#ffff99<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#386cb0<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#f0027f<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#bf5b17<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#666666<span class="pl-pds">'</span></span>
+]
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/palettes/index.js#L700"
+        >palettes/index.js:700</a
+      >
+    </p>
+    <hr />
+    <h3>scheme()</h3>
+    <blockquote>
+      <p>
+        <strong>scheme</strong>(<code>baseColor</code>, <code>options</code>):
+        <code>Collection</code>
+      </p>
+    </blockquote>
+    <p>Generates a randomised classic color scheme from the passed in color.</p>
+    <p>The classic palette types are:</p>
+    <ul>
+      <li><code>triadic</code> - Picks 3 colors 120 degrees apart.</li>
+      <li><code>tetradic</code> - Picks 4 colors 90 degrees apart.</li>
+      <li><code>complimentary</code> - Picks 2 colors 180 degrees apart.</li>
+      <li>
+        <code>monochromatic</code> - Picks <code>num</code> amount of colors
+        from the same hue family .
+      </li>
+      <li><code>analogous</code> - Picks 3 colors 12 degrees apart.</li>
+    </ul>
+    <p>The <code>kind</code> parameter can either be a string or an array:</p>
+    <ul>
+      <li>
+        If it is an array, each element should be a <code>kind</code> of
+        palette. It will return a color map with the array elements as keys.
+        Duplicate values are simply ignored.
+      </li>
+      <li>
+        If it is a string it will return an array of colors of the specified
+        <code>kind</code> of palette.
+      </li>
+      <li>If it is falsy it will return a color map of all palettes.</li>
+    </ul>
+    <p>
+      Note that the <code>num</code> parameter works on the
+      <code>monochromatic</code> palette type only.
+    </p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>baseColor</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a> =
+      <code>...</code>
+    </p>
+    <p>The color to create the palette(s) from.</p>
+    <p>
+      • <strong>options</strong>: <code>SchemeOptions</code> = <code>{}</code>
+    </p>
+    <p>Optional overrides.</p>
+    <h4>Returns</h4>
+    <p><code>Collection</code></p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">scheme</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">scheme</span>(<span class="pl-s"><span class="pl-pds">"</span>triadic<span class="pl-pds">"</span></span>)(<span class="pl-s"><span class="pl-pds">"</span>#a1bd2f<span class="pl-pds">"</span></span>))
+<span class="pl-c">// [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/generators/index.js#L536"
+        >generators/index.js:536</a
+      >
+    </p>
+    <hr />
+    <h3>sequential()</h3>
+    <blockquote>
+      <p>
+        <strong>sequential</strong>(<code>scheme</code>):
+        <code>Collection</code> |
+        <a href="globals.md#colortoken"><code>ColorToken</code></a>
+      </p>
+    </blockquote>
+    <p>A wrapper function for ColorBrewer's map of sequential color schemes.</p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>scheme</strong>:
+      <a href="globals.md#sequentialscheme"><code>SequentialScheme</code></a>
+    </p>
+    <p>The name of the scheme.</p>
+    <h4>Returns</h4>
+    <p>
+      <code>Collection</code> |
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>
+      A collection of colors in the specified colorspace. The default is hex if
+      <code>colorspace</code> is <code>undefined.</code>
+    </p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">sequential</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-j<span class="pl-ii">s</span></span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">sequential</span>(<span class="pl-s"><span class="pl-pds">"</span>OrRd<span class="pl-pds">"</span></span>))
+
+<span class="pl-c">// [</span>
+ <span class="pl-s"><span class="pl-pds">'</span>#fff7ec<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#fee8c8<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#fdd49e<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#fdbb84<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#fc8d59<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#ef6548<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#d7301f<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#b30000<span class="pl-pds">'</span></span>,
+ <span class="pl-s"><span class="pl-pds">'</span>#7f0000<span class="pl-pds">'</span></span>
+]
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/palettes/index.js#L324"
+        >palettes/index.js:324</a
+      >
+    </p>
+    <hr />
+    <h3>sortBy()</h3>
+    <blockquote>
+      <p>
+        <strong>sortBy</strong>(<code>collection</code>, <code>options</code>):
+        <code>Collection</code>
+      </p>
+    </blockquote>
+    <p>
+      Sorts colors according to the specified <code>factor</code>. The supported
+      options are:
+    </p>
+    <ul>
+      <li>
+        <code>'contrast'</code> - Sorts colors according to their contrast value
+        as defined by WCAG. The contrast is tested <code>against</code> a
+        comparison color which can be specified in the
+        <code>options</code> object.
+      </li>
+      <li>
+        <code>'lightness'</code> - Sorts colors according to their lightness.
+      </li>
+      <li>
+        <code>'chroma'</code> - Sorts colors according to the intensity of their
+        <code>chroma</code> in the <code>colorspace</code> specified in the
+        <code>options</code> object.
+      </li>
+      <li>
+        <code>'distance'</code> - Sorts colors according to their distance. The
+        distance is computed from the <code>against</code> color token which is
+        used for comparison for all the colors in the <code>collection</code>.
+      </li>
+      <li>
+        <code>luminance</code> - Sorts colors according to their relative
+        brightness as defined by the WCAG3 definition.
+      </li>
+    </ul>
+    <p>The return type is determined by the type of <code>collection</code>:</p>
+    <ul>
+      <li>
+        Plain objects are returned as <code>Map</code> objects because they
+        remember insertion order. <code>Map</code> objects are returned as is.
+      </li>
+      <li>
+        <code>ArrayLike</code> objects are returned as plain arrays. Plain
+        arrays are returned as is.
+      </li>
+    </ul>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>collection</strong>: <code>Collection</code> = <code>[]</code>
+    </p>
+    <p>The <code>collection</code> of colors to sort.</p>
+    <p>
+      • <strong>options</strong>:
+      <a href="globals.md#sortbyoptions"><code>SortByOptions</code></a> =
+      <code>undefined</code>
+    </p>
+    <h4>Returns</h4>
+    <p><code>Collection</code></p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">sortBy</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-k">let</span> <span class="pl-smi">sample</span> <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">'</span>purple<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>green<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>red<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>brown<span class="pl-pds">'</span></span>]
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(
+ <span class="pl-en">sortBy</span>(<span class="pl-smi">sample</span>,{ against:<span class="pl-s"><span class="pl-pds">'</span>yellow<span class="pl-pds">'</span></span> <span class="pl-smi">kind</span>:<span class="pl-s"><span class="pl-pds">'</span>distance<span class="pl-pds">'</span></span>,order:<span class="pl-s"><span class="pl-pds">'</span>desc<span class="pl-pds">'</span></span>,})
+)
+
+<span class="pl-c">// [ 'brown', 'red', 'green', 'purple' ]</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/collection/index.js#L223"
+        >collection/index.js:223</a
+      >
+    </p>
+    <hr />
+    <h3>stats()</h3>
+    <blockquote>
+      <p>
+        <strong>stats</strong>(<code>collection</code>, <code>options</code>):
+        <code>Stats</code>
+      </p>
+    </blockquote>
+    <p>Computes statistical values about the passed in color collection.</p>
+    <p>The properties from each returned <code>factor</code> object are:</p>
+    <ul>
+      <li><code>against</code> - The color being used for comparison.</li>
+    </ul>
+    <p>
+      Required for the <code>distance</code> and <code>contrast</code> factors.
+      If <code>relativeMean</code> is <code>false</code>, other factors that
+      take the comparison color token as an overload will have this property's
+      value as <code>null</code>.
+    </p>
+    <ul>
+      <li>
+        <p>
+          <code>colorspace</code> - The colorspace in which the factors were
+          computed in. It has no effect on the <code>contrast</code> or
+          <code>distance</code> factors (for now).
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>extremums</code> - An array of the minimum and the maximum value
+          (respectively) of the <code>factor</code>.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>colors</code> - An array of color tokens that have the minimum
+          and maximum <code>extremum</code> values respectively.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>mean</code> - The average value for the <code>factor</code>.
+        </p>
+      </li>
+    </ul>
+    <p>
+      The <code>mean</code> property can be overloaded by the
+      <code>relativeMean</code> option:
+    </p>
+    <ul>
+      <li>
+        If <code>relativeMean</code> is <code>true</code>, the
+        <code>against</code> option will be used as a subtrahend for calculating
+        the distance between each <code>extremum</code>. For example, it will
+        mean "Get the largest/smallest distance between <code>factor</code> as
+        compared <code>against</code> this color token otherwise just get the
+        smallest/largest <code>factor</code> from thr passed in collection."
+      </li>
+    </ul>
+    <p>
+      These properties are available at the topmost level of the resultant
+      object:
+    </p>
+    <ul>
+      <li>
+        <code>achromatic</code> - The amount of colors which are gray out of the
+        total colors in the collection as a value in the range [0,1].
+      </li>
+      <li>
+        <code>colorspace</code> - The colorspace in which the values were
+        computed from, expected to be hue based. Defaults to <code>lch</code> if
+        an invalid mode like <code>rgb</code> is used.
+      </li>
+    </ul>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>collection</strong>: <code>Collection</code> = <code>[]</code>
+    </p>
+    <p>
+      The collection to compute stats from. Any collection with color tokens as
+      values will work.
+    </p>
+    <p>
+      • <strong>options</strong>:
+      <a href="globals.md#statsoptions"><code>StatsOptions</code></a> =
+      <code>undefined</code>
+    </p>
+    <h4>Returns</h4>
+    <p><code>Stats</code></p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/collection/index.js#L67"
+        >collection/index.js:67</a
+      >
+    </p>
+    <hr />
+    <h3>temp()</h3>
+    <blockquote>
+      <p>
+        <strong>temp</strong>(<code>color</code>): <code>"warm"</code> |
+        <code>"cool"</code>
+      </p>
+    </blockquote>
+    <p>
+      Returns a rough estimation of a color's temperature as either
+      <code>'cool'</code> or <code>'warm'</code> using the
+      <code>'lch'</code> colorspace.
+    </p>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>color</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color to check the temperature.</p>
+    <h4>Returns</h4>
+    <p><code>"warm"</code> | <code>"cool"</code></p>
+    <p>True if the color is cool else false.</p>
+    <h4>Example</h4>
+    <pre><code class="language-ts"><span class="pl-k">import</span> { <span class="pl-smi">isCool</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>
+
+<span class="pl-k">let</span> <span class="pl-smi">sample</span> <span class="pl-k">=</span> [
+ <span class="pl-s"><span class="pl-pds">"</span>#00ffdc<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#00ff78<span class="pl-pds">"</span></span>,
+ <span class="pl-s"><span class="pl-pds">"</span>#00c000<span class="pl-pds">"</span></span>
+];
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">isCool</span>(<span class="pl-smi">sample</span>[<span class="pl-c1">2</span>]));
+<span class="pl-c">// false</span>
+
+<span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">map</span>(<span class="pl-smi">sample</span>, <span class="pl-smi">isCool</span>));
+
+<span class="pl-c">// [ true,  false, true]</span>
+</code></pre>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L700"
+        >utils/index.js:700</a
+      >
+    </p>
+    <hr />
+    <h3>token()</h3>
+    <blockquote>
+      <p>
+        <strong>token</strong>(<code>color</code>, <code>options</code>):
+        <a href="globals.md#colortoken"><code>ColorToken</code></a>
+      </p>
+    </blockquote>
+    <p>
+      Parses any recognizable color to the specified <code>kind</code> of
+      <code>ColorToken</code> type.
+    </p>
+    <p>The <code>kind</code> option supports the following types as options:</p>
+    <ul>
+      <li>
+        <p>
+          <code>'arr'</code> - Parses the color token to an array of channel
+          values with the <code>colorspace</code> as the first element if the
+          <code>omitMode</code> parameter is set to <code>false</code> in the
+          <code>options</code> object.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>'num'</code> - Parses the color token to its numerical
+          equivalent to a number between <code>0</code> and
+          <code>16,777,215</code>.
+        </p>
+      </li>
+    </ul>
+    <p>
+      The <code>numberType</code> can be used to specify which type of number to
+      return if the <code>kind</code> option is set to <code>'number'</code>:
+    </p>
+    <ul>
+      <li><code>'hex'</code> - Hexadecimal number</li>
+      <li><code>'bin'</code> - Binary number</li>
+      <li><code>'oct'</code> - Octal number</li>
+      <li><code>'expo'</code> - Decimal exponential notation</li>
+    </ul>
+    <ul>
+      <li>
+        <code>'str'</code> - Parses the color token to its hexadecimal string
+        equivalent.
+      </li>
+    </ul>
+    <p>
+      If the color token has an explicit <code>alpha</code> (specified by the
+      <code>alpha</code> key in color objects and as the fourth and last number
+      in a color array) the string will be 8 characters long instead of 6.
+    </p>
+    <ul>
+      <li>
+        <code>'obj'</code> - Parses the color token to a plain color object in
+        the <code>mode</code> specified by the <code>targetMode</code> parameter
+        in the <code>options</code> object.
+      </li>
+      <li>
+        <code>'temp'</code> - Parses the color token to its RGB equivalent and
+        expects the value to be between 0 and 30,000
+      </li>
+    </ul>
+    <h4>Parameters</h4>
+    <p>
+      • <strong>color</strong>:
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <p>The color token to parse or convert.</p>
+    <p>
+      • <strong>options</strong>:
+      <a href="globals.md#tokenoptions"><code>TokenOptions</code></a> =
+      <code>undefined</code>
+    </p>
+    <p>Options to customize the parsing and output behaviour.</p>
+    <h4>Returns</h4>
+    <p>
+      <a href="globals.md#colortoken"><code>ColorToken</code></a>
+    </p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/utils/index.js#L347"
+        >utils/index.js:347</a
+      >
+    </p>
+    <h2>Type Aliases</h2>
+    <h3>AdaptivePaletteOptions</h3>
+    <blockquote>
+      <p>
+        <strong>AdaptivePaletteOptions</strong>: {<code>backgroundColor</code>:
+        {<code>dark</code>:
+        <a href="globals.md#colortoken"><code>ColorToken</code></a
+        >;<code>light</code>:
+        <a href="globals.md#colortoken"><code>ColorToken</code></a
+        >; };<code>colorBlind</code>: <code>boolean</code>; }
+      </p>
+    </blockquote>
+    <h4>Type declaration</h4>
+    <h5>backgroundColor?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>backgroundColor</strong>:
+        {<code>dark</code>:
+        <a href="globals.md#colortoken"><code>ColorToken</code></a
+        >;<code>light</code>:
+        <a href="globals.md#colortoken"><code>ColorToken</code></a
+        >; }
+      </p>
+    </blockquote>
+    <h5>backgroundColor.dark?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>dark</strong>:
+        <a href="globals.md#colortoken"><code>ColorToken</code></a>
+      </p>
+    </blockquote>
+    <h5>backgroundColor.light?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>light</strong>:
+        <a href="globals.md#colortoken"><code>ColorToken</code></a>
+      </p>
+    </blockquote>
+    <h5>colorBlind?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>colorBlind</strong>: <code>boolean</code>
+      </p>
+    </blockquote>
+    <h4>Description</h4>
+    <p>
+      This object returns the lightMode and darkMode optimized version of a
+      color with support to add color vision deficiency simulation to the final
+      color result.
+    </p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L44"
+        >types.d.ts:44</a
+      >
+    </p>
+    <hr />
+    <h3>ColorToken</h3>
+    <blockquote>
+      <p>
+        <strong>ColorToken</strong>: <code>number</code> | <code>object</code> |
+        <code>ColorTuple</code> | <code>boolean</code> | <code>string</code> |
+        <code>Blob</code> | <code>ArrayBuffer</code>
+      </p>
+    </blockquote>
+    <p>Any recognizable color token.</p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L443"
+        >types.d.ts:443</a
+      >
+    </p>
+    <hr />
+    <h3>Colorspaces</h3>
+    <blockquote>
+      <p>
+        <strong>Colorspaces</strong>: <code>"lab"</code> |
+        <code>"lab65"</code> | <code>"lrgb"</code> | <code>"oklab"</code> |
+        <code>"rgb"</code> | <code>"lch"</code> | <code>"jch"</code> |
+        <code>"lch"</code> | <code>"lch65"</code> | <code>"oklch"</code> |
+        <code>"hsv"</code> | <code>"hwb"</code>
+      </p>
+    </blockquote>
+    <p>The <code>colorspace</code> or <code>mode</code> to use.</p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L468"
+        >types.d.ts:468</a
+      >
+    </p>
+    <hr />
+    <h3>DeficiencyOptions</h3>
+    <blockquote>
+      <p>
+        <strong>DeficiencyOptions</strong>: {<code>kind</code>:
+        <a href="globals.md#deficiencytype"><code>DeficiencyType</code></a
+        >;<code>severity</code>: <code>number</code>;<code>token</code>:
+        <a href="globals.md#tokenoptions"><code>TokenOptions</code></a
+        >; }
+      </p>
+    </blockquote>
+    <p>
+      Overrides to specify the type of color blindness and filter intensity.
+    </p>
+    <h4>Type declaration</h4>
+    <h5>kind?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>kind</strong>:
+        <a href="globals.md#deficiencytype"><code>DeficiencyType</code></a>
+      </p>
+    </blockquote>
+    <p>The type of color vision deficiency. Default is <code>'red'</code></p>
+    <h5>severity?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>severity</strong>: <code>number</code>
+      </p>
+    </blockquote>
+    <p>
+      The intensity of the filter. The exepected value is between [0,1]. Default
+      is <code>0.1</code>.
+    </p>
+    <h5>token?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>token</strong>:
+        <a href="globals.md#tokenoptions"><code>TokenOptions</code></a>
+      </p>
+    </blockquote>
+    <p>
+      Specify the parsing behaviour and change output type of the
+      <code>ColorToken</code>.
+    </p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L212"
+        >types.d.ts:212</a
+      >
+    </p>
+    <hr />
+    <h3>DeficiencyType</h3>
+    <blockquote>
+      <p>
+        <strong>DeficiencyType</strong>: <code>"red"</code> |
+        <code>"blue"</code> | <code>"green"</code> | <code>"monochromacy"</code>
+      </p>
+    </blockquote>
+    <p>The type of color vision defeciency.</p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L372"
+        >types.d.ts:372</a
+      >
+    </p>
+    <hr />
+    <h3>DistributionOptions</h3>
+    <blockquote>
+      <p>
+        <strong>DistributionOptions</strong>:
+        <code>Pick</code>&#x3C;<code>InterpolatorOptions</code>,
+        <code>"hueFixup"</code>> &#x26; {<code>colorspace</code>:
+        <a href="globals.md#colorspaces"><code>Colorspaces</code></a
+        >;<code>excludeAchromatic</code>:
+        <code>boolean</code>;<code>excludeSelf</code>:
+        <code>boolean</code>;<code>extremum</code>: <code>"min"</code> |
+        <code>"max"</code> | <code>"mean"</code>;<code>token</code>:
+        <a href="globals.md#tokenoptions"><code>TokenOptions</code></a
+        >; }
+      </p>
+    </blockquote>
+    <p>Override options for factor distributed palettes.</p>
+    <h4>Type declaration</h4>
+    <h5>colorspace?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>colorspace</strong>:
+        <a href="globals.md#colorspaces"><code>Colorspaces</code></a>
+      </p>
+    </blockquote>
+    <p>
+      The colorspace to distribute the specified factor in. Defaults to
+      <code>lch</code> when the passed in mode has no
+      <code>'chroma' | 'hue' | 'lightness'</code> channel
+    </p>
+    <h5>excludeAchromatic?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>excludeAchromatic</strong>:
+        <code>boolean</code>
+      </p>
+    </blockquote>
+    <p>
+      Exclude grayscale colors from the distribution operation. Default is
+      <code>false</code>
+    </p>
+    <h5>excludeSelf?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>excludeSelf</strong>: <code>boolean</code>
+      </p>
+    </blockquote>
+    <p>
+      Exclude the color with the specified <code>extremum</code> from the
+      distribution operation. Default is <code>false</code>
+    </p>
+    <h5>extremum?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>extremum</strong>: <code>"min"</code> |
+        <code>"max"</code> | <code>"mean"</code>
+      </p>
+    </blockquote>
+    <p>
+      The extreme end for the <code>factor</code> we wish to distribute. If
+      <code>mean</code> is picked, it will map the <code>average</code> value of
+      that factor in the passed in collection.
+    </p>
+    <h5>token?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>token</strong>:
+        <a href="globals.md#tokenoptions"><code>TokenOptions</code></a>
+      </p>
+    </blockquote>
+    <p>
+      Specify the parsing behaviour and change output type of the
+      <code>ColorToken</code>.
+    </p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L122"
+        >types.d.ts:122</a
+      >
+    </p>
+    <hr />
+    <h3>DivergingScheme</h3>
+    <blockquote>
+      <p>
+        <strong>DivergingScheme</strong>: <code>"Spectral"</code> |
+        <code>"RdYlGn"</code> | <code>"RdBu"</code> | <code>"PiYG"</code> |
+        <code>"PRGn"</code> | <code>"RdYlBu"</code> | <code>"BrBG"</code> |
+        <code>"RdGy"</code> | <code>"PuOr"</code>
+      </p>
+    </blockquote>
+    <p>The <code>diverging</code> color scheme in the ColorBrewer colormap.</p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L392"
+        >types.d.ts:392</a
+      >
+    </p>
+    <hr />
+    <h3>Factor</h3>
+    <blockquote>
+      <p>
+        <strong>Factor</strong>: <code>"luminance"</code> |
+        <code>"chroma"</code> | <code>"contrast"</code> |
+        <code>"distance"</code> | <code>"lightness"</code> | <code>"hue"</code>
+      </p>
+    </blockquote>
+    <p>The color property being queried.</p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L455"
+        >types.d.ts:455</a
+      >
+    </p>
+    <hr />
+    <h3>QualitativeScheme</h3>
+    <blockquote>
+      <p>
+        <strong>QualitativeScheme</strong>: <code>"Set2"</code> |
+        <code>"Accent"</code> | <code>"Set1"</code> | <code>"Set3"</code> |
+        <code>"Dark2"</code> | <code>"Paired"</code> | <code>"Pastel2"</code> |
+        <code>"Pastel1"</code>
+      </p>
+    </blockquote>
+    <p>
+      The <code>qualitative</code> color scheme in the ColorBrewer colormap.
+    </p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L406"
+        >types.d.ts:406</a
+      >
+    </p>
+    <hr />
+    <h3>ScaleValues</h3>
+    <blockquote>
+      <p>
+        <strong>ScaleValues</strong>: <code>"050"</code> | <code>"100"</code> |
+        <code>"200"</code> | <code>"300"</code> | <code>"400"</code> |
+        <code>"500"</code> | <code>"600"</code> | <code>"700"</code> |
+        <code>"800"</code> | <code>"900"</code> | <code>"950"</code>
+      </p>
+    </blockquote>
+    <p>The value of the Tailwind color.</p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L485"
+        >types.d.ts:485</a
+      >
+    </p>
+    <hr />
+    <h3>SequentialScheme</h3>
+    <blockquote>
+      <p>
+        <strong>SequentialScheme</strong>: <code>"OrRd"</code> |
+        <code>"PuBu"</code> | <code>"BuPu"</code> | <code>"Oranges"</code> |
+        <code>"BuGn"</code> | <code>"YlOrBr"</code> | <code>"YlGn"</code> |
+        <code>"Reds"</code> | <code>"RdPu"</code> | <code>"Greens"</code> |
+        <code>"YlGnBu"</code> | <code>"Purples"</code> | <code>"GnBu"</code> |
+        <code>"Greys"</code> | <code>"YlOrRd"</code> | <code>"PuRd"</code> |
+        <code>"Blues"</code> | <code>"PuBuGn"</code> | <code>"Viridis"</code>
+      </p>
+    </blockquote>
+    <p>The <code>sequential</code> color scheme in the ColorBrewer colormap.</p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L419"
+        >types.d.ts:419</a
+      >
+    </p>
+    <hr />
+    <h3>SortByOptions</h3>
+    <blockquote>
+      <p>
+        <strong>SortByOptions</strong>: {<code>against</code>:
+        <a href="globals.md#colortoken"><code>ColorToken</code></a
+        >;<code>colorspace</code>:
+        <a href="globals.md#colorspaces"><code>Colorspaces</code></a
+        >;<code>factor</code>:
+        <a href="globals.md#factor"><code>Factor</code></a
+        >;<code>order</code>: <code>"asc"</code> |
+        <code>"desc"</code>;<code>relative</code>: <code>boolean</code>; }
+      </p>
+    </blockquote>
+    <p>Options for specifying sorting conditions.</p>
+    <h4>Type declaration</h4>
+    <h5>against?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>against</strong>:
+        <a href="globals.md#colortoken"><code>ColorToken</code></a>
+      </p>
+    </blockquote>
+    <p>
+      The color to compare the <code>factor</code> with. All the
+      <code>factor</code>s are calculated between this color and the ones in the
+      colors array. Only works for the <code>'distance'</code> and
+      <code>'contrast'</code> factor.
+    </p>
+    <h5>colorspace?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>colorspace</strong>:
+        <a href="globals.md#colorspaces"><code>Colorspaces</code></a>
+      </p>
+    </blockquote>
+    <p>
+      The colorspace to perform the sorting operation in. It is ignored when the
+      factor is <code>'luminance' | 'contrast' | 'distance'</code>.
+    </p>
+    <h5>factor?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>factor</strong>:
+        <a href="globals.md#factor"><code>Factor</code></a>
+      </p>
+    </blockquote>
+    <p>The factor to use for sorting the colors.</p>
+    <h5>order?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>order</strong>: <code>"asc"</code> |
+        <code>"desc"</code>
+      </p>
+    </blockquote>
+    <p>
+      The arrangement order of the colors either <code>asc | desc</code>.
+      Default is ascending (<code>asc</code>).
+    </p>
+    <h5>relative?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>relative</strong>: <code>boolean</code>
+      </p>
+    </blockquote>
+    <p>
+      Use the <code>against</code> comparison color when ordering the color
+      tokens.
+    </p>
+    <p>
+      It has no effect on <code>contrast</code> and
+      <code>distance</code> factors because they're already relative.
+    </p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L295"
+        >types.d.ts:295</a
+      >
+    </p>
+    <hr />
+    <h3>StatsOptions</h3>
+    <blockquote>
+      <p>
+        <strong>StatsOptions</strong>: {<code>against</code>:
+        <a href="globals.md#colortoken"><code>ColorToken</code></a
+        >;<code>colorspace</code>:
+        <a href="globals.md#colorspaces"><code>Colorspaces</code></a
+        >;<code>factor</code>:
+        <a href="globals.md#factor"><code>Factor</code></a> |
+        <a href="globals.md#factor"><code>Factor</code></a
+        >[];<code>relative</code>: <code>boolean</code>; }
+      </p>
+    </blockquote>
+    <p>Optional parameters to specify how the data should be computed.</p>
+    <h4>Type declaration</h4>
+    <h5>against?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>against</strong>:
+        <a href="globals.md#colortoken"><code>ColorToken</code></a>
+      </p>
+    </blockquote>
+    <p>
+      The color to compare the <code>factor</code> with. All the
+      <code>factor</code>s are calculated between this color and the ones in the
+      colors array. Only works for the <code>'distance'</code> and
+      <code>'contrast'</code> factor.
+    </p>
+    <h5>colorspace?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>colorspace</strong>:
+        <a href="globals.md#colorspaces"><code>Colorspaces</code></a>
+      </p>
+    </blockquote>
+    <p>
+      The colorspace to perform the sorting operation in. It is ignored when the
+      factor is <code>'luminance' | 'contrast' | 'distance'</code>.
+    </p>
+    <h5>factor?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>factor</strong>:
+        <a href="globals.md#factor"><code>Factor</code></a> |
+        <a href="globals.md#factor"><code>Factor</code></a
+        >[]
+      </p>
+    </blockquote>
+    <h5>relative?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>relative</strong>: <code>boolean</code>
+      </p>
+    </blockquote>
+    <p>
+      Choose whether to use the <code>against</code> color token for factors
+      that support it as an overload (that is, all factors except
+      <code>distance</code> and `contrast)
+    </p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L328"
+        >types.d.ts:328</a
+      >
+    </p>
+    <hr />
+    <h3>TailwindColorFamilies</h3>
+    <blockquote>
+      <p>
+        <strong>TailwindColorFamilies</strong>: <code>"indigo"</code> |
+        <code>"gray"</code> | <code>"zinc"</code> | <code>"neutral"</code> |
+        <code>"stone"</code> | <code>"red"</code> | <code>"orange"</code> |
+        <code>"amber"</code> | <code>"yellow"</code> | <code>"lime"</code> |
+        <code>"green"</code> | <code>"emerald"</code> | <code>"teal"</code> |
+        <code>"sky"</code> | <code>"blue"</code> | <code>"violet"</code> |
+        <code>"purple"</code> | <code>"fuchsia"</code> | <code>"pink"</code> |
+        <code>"rose"</code>
+      </p>
+    </blockquote>
+    <p>Color families in the default TailwindCSS palette.</p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L501"
+        >types.d.ts:501</a
+      >
+    </p>
+    <hr />
+    <h3>TokenOptions</h3>
+    <blockquote>
+      <p>
+        <strong>TokenOptions</strong>: {<code>kind</code>: <code>"num"</code> |
+        <code>"arr"</code> | <code>"obj"</code> | <code>"str"</code> |
+        <code>"temp"</code>;<code>normalizeRgb</code>:
+        <code>boolean</code>;<code>numType</code>: <code>"expo"</code> |
+        <code>"hex"</code> | <code>"oct"</code> |
+        <code>"bin"</code>;<code>omitAlpha</code>:
+        <code>boolean</code>;<code>omitMode</code>:
+        <code>boolean</code>;<code>srcMode</code>:
+        <a href="globals.md#colorspaces"><code>Colorspaces</code></a
+        >;<code>targetMode</code>:
+        <a href="globals.md#colorspaces"><code>Colorspaces</code></a
+        >; }
+      </p>
+    </blockquote>
+    <p>Overrides to customize the parsing and output behaviour.</p>
+    <h4>Type declaration</h4>
+    <h5>kind?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>kind</strong>: <code>"num"</code> |
+        <code>"arr"</code> | <code>"obj"</code> | <code>"str"</code> |
+        <code>"temp"</code>
+      </p>
+    </blockquote>
+    <p>The type of color token to return. Default is <code>'str'</code>.</p>
+    <h5>normalizeRgb?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>normalizeRgb</strong>:
+        <code>boolean</code>
+      </p>
+    </blockquote>
+    <p>
+      If <code>true</code> and the passed in color token is an array or plain
+      object and in the <code>srcMode</code> of <code>'rgb'</code> or
+      <code>'lrgb'</code>, it will have all channels normalized back to [0,1]
+      range if any of the channe values is beyond 1.
+    </p>
+    <p>
+      This can help the parser to recognize RGB colors in the [0,255] range
+      which Culori doesn't handle.
+    </p>
+    <p>Default is <code>false</code>.</p>
+    <h5>numType?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>numType</strong>: <code>"expo"</code> |
+        <code>"hex"</code> | <code>"oct"</code> | <code>"bin"</code>
+      </p>
+    </blockquote>
+    <p>
+      The type of number to return. Only valid if kind is set to
+      <code>'number'</code>. Default is <code>'literal'</code>
+    </p>
+    <h5>omitAlpha?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>omitAlpha</strong>: <code>boolean</code>
+      </p>
+    </blockquote>
+    <p>
+      If the <code>kind</code> is set to <code>'arr'</code> it will remove the
+      alpha channel value from color tuple. Default is <code>false</code>.
+    </p>
+    <h5>omitMode?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>omitMode</strong>: <code>boolean</code>
+      </p>
+    </blockquote>
+    <p>
+      If the <code>kind</code> is set to <code>'arr'</code> it will remove the
+      mode string from color tuple. Default is <code>false</code>.
+    </p>
+    <h5>srcMode?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>srcMode</strong>:
+        <a href="globals.md#colorspaces"><code>Colorspaces</code></a>
+      </p>
+    </blockquote>
+    <p>
+      The mode in which the channel values are valid in. It is used for color
+      arrays if they have the <code>colorspace</code> string ommitted. Default
+      is <code>'rgb'</code>.
+    </p>
+    <h5>targetMode?</h5>
+    <blockquote>
+      <p>
+        <code>optional</code> <strong>targetMode</strong>:
+        <a href="globals.md#colorspaces"><code>Colorspaces</code></a>
+      </p>
+    </blockquote>
+    <p>
+      The colorspace in which to return the color object or array in. Default is
+      <code>'lch'</code>.
+    </p>
+    <h4>Defined in</h4>
+    <p>
+      <a
+        href="https://github.com/prjctimg/huetiful/blob/c38611eda314faf803993df6cd330b0c837c5dbf/src/types.d.ts#L230"
+        >types.d.ts:230</a
+      >
+    </p>
+  </body>
+</html>

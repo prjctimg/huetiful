@@ -90,7 +90,7 @@ let myPalette = colors('all','700')
 
 #### Contributing
 
-This project is fully open source! Contributions of any kind are greatly appreciated! See🔍 the [contributing page on the documentation site](_media/CONTRIBUTING.md) file for more information on how to get started.
+This project is fully open source! Contributions of any kind are greatly appreciated! See🔍 the [contributing page on the documentation site](./CONTRIBUTING.md) file for more information on how to get started.
 
  <pre>
 License ⚖️
