@@ -4,46 +4,45 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypeStarryNight from "rehype-starry-night";
 import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
-import remarkToc from 'remark-toc';
-import rehypeToc from 'rehype-toc';
-async function markdownToHtml({ markdown = '', outPath, title }) {
-	var result = await remark()
-		.use(remarkParse)
-		.use(remarkToc)
-		.use(remarkRehype)
-		.use(rehypeStarryNight)
+import remarkToc from "remark-toc";
+import rehypeToc from "rehype-toc";
+import rehypePrettyCode from "rehype-pretty-code";
+async function markdownToHtml({ markdown = "", outPath, title }) {
+  markdown = "## On this page 📜:\n" + markdown;
+  var result = await remark()
+    .use(remarkParse)
+    .use(remarkToc, {
+      heading: "On this page 📜:",
+      maxDepth: 3,
+      minDepth: 2,
+    })
+    .use(remarkRehype)
+    .use(rehypePrettyCode, { theme: "rose-pine-dawn" })
+    .use(rehypeStringify)
+    .process(markdown);
 
-		.use(rehypeToc, {
-			nav: true,
-			position: 'afterbegin',
-			headings: ['h2', 'h3']
-		})
-		.use(rehypeStringify)
-
-		.process(markdown);
-
-	writeFileSync(
-		outPath,
-		template({
-			content: result
-				.toString()
-				.replace(new RegExp('globals.md', 'gmi'), 'index.html'),
-			title: title
-		})
-	);
-	return 0;
-	// Is this statement necessary ?
+  writeFileSync(
+    outPath,
+    template({
+      content: result
+        .toString()
+        .replace(new RegExp("globals.md", "gmi"), "index.html"),
+      title: title,
+    })
+  );
+  return 0;
+  // Is this statement necessary ?
 }
 
 /**
  * For each array, the first element is the markdown file name and the second element is the name of the output html file
  */
 const pages = [
-	['globals', 'api', 'huetiful-js - API'],
-	['README', 'index', 'huetiful-js - Home']
+  ["globals", "api", "huetiful-js - API"],
+  ["README", "index", "huetiful-js - Home"],
 ];
 function template({ content, title }) {
-	return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -91,9 +90,9 @@ function template({ content, title }) {
  */
 
 for (const page of pages) {
-	await markdownToHtml({
-		markdown: readFileSync(`./.temp/${page[0]}.md`, 'utf-8'),
-		outPath: `./www/${page[1]}.html`,
-		title: page[2]
-	});
+  await markdownToHtml({
+    markdown: readFileSync(`./.temp/${page[0]}.md`, "utf-8"),
+    outPath: `./www/${page[1]}.html`,
+    title: page[2],
+  });
 }
