@@ -29,12 +29,80 @@
 
         <!-- Web Application Manifest -->
         <link rel="manifest" href="manifest.json" />
-        <link rel="stylesheet" href="/css/styles.css">
-        <link rel="stylesheet" href="/css/starry-night.css">
+         <link rel="stylesheet" href="css/github-markdown.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/starry-night.css">
 </head>
 <body>
-<main>
-  <nav class="toc"><ol class="toc-level toc-level-1"></ol></nav>
+<main class='markdown-body'>
+  <nav class="toc"><ol class="toc-level toc-level-1"></ol></nav><p><a href="https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml"><img src="https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml/badge.svg" alt="NPM publish 📦"></a>
+<img src="https://img.shields.io/npm/dt/huetiful-js?style=flat-square&#x26;logo=npm&#x26;link=https%3A%2F%2Fnpmjs.com%2Fpackage%2Fhuetiful-js" alt="NPM Downloads"></p>
+<p><img src="_media/logo.svg" alt="huetiful-logo"></p>
+<h4>Features</h4>
+<ul>
+<li><a href="https://huetiful-js.com/api/collection">Collection methods</a> for manipulating colors using the values of their properties as criteria.</li>
+<li><a href="https://huetiful-js.com/api/palettes">Color maps</a> from Tailwind and <a href="colorbrewer2.org">ColorBrewer</a> exposed as wrapper functions to help you kickstart your palettes.</li>
+<li><a href="https://huetiful-js.com/api/utilities">Utilities</a> for setting and querying color properties.</li>
+<li><a href="https://huetiful-js.com/api/wrappers">Wrapper functions</a> allowing method chaining for all the utilities in the API.</li>
+<li><a href="https://huetiful-js.com/api/colors">Color maps</a> for Colorbrewer, TailwindCSS and CSS named colors exposed as wrapper functions.</li>
+<li><a href="https://huetiful-js.com/api/converterters">Color token parser</a> for all types including numbers, strings (all CSS parseable string represantations of color), plain objects, arrays (or <code>ArrayLike</code> objects) and even boolean values.</li>
+<li><a href="">Accessibility utilities</a> when handling color in design.</li>
+</ul>
+<h4>Installation</h4>
+<blockquote>
+<p>As of v3.0.0 the library is ESM only. You can <a href="https://github.com/prjctimg/huetiful">compile your own UMD build from source</a> if you want it.</p>
+</blockquote>
+<h5>Using a package manager</h5>
+<p>Assuming you already have Node already installed, you can add the package using npm/yarn or any other Node based package manager:</p>
+<pre><code class="language-bash">npm i huetiful-js
+</code></pre>
+<p>Or:</p>
+<pre><code class="language-bash">yarn add huetiful-js
+
+<span class="pl-c"># For GitHub Package use @prjctimg/huetiful-js</span>
+</code></pre>
+<h6>Quick check :smile:</h6>
+<pre><code class="language-js">
+<span class="pl-k">import</span> { <span class="pl-smi">achromatic</span>, <span class="pl-smi">stats</span>, <span class="pl-smi">colors</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">let</span> all <span class="pl-k">=</span> <span class="pl-en">colors</span>(<span class="pl-s"><span class="pl-pds">'</span>all<span class="pl-pds">'</span></span>)
+<span class="pl-k">let</span> grays <span class="pl-k">=</span> <span class="pl-smi">all</span>.<span class="pl-en">filter</span>(achromatic)
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(grays)
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">stats</span>(all))
+
+</code></pre>
+<h5>In the browser and via CDNs</h5>
+<p>You can use also a CDN in this example, jsdelivr to load the library remotely:</p>
+<blockquote>
+<p>Make sure to set the <code>type</code> of the script tag to module when you load it in your HTML.</p>
+</blockquote>
+<pre><code class="language-js"><span class="pl-k">import</span> {...} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js<span class="pl-pds">'</span></span>
+
+</code></pre>
+<p>Or load the library as your HTML file using a <code>&#x3C;script></code> tag:</p>
+<pre><code class="language-html"># With script tag
+
+&#x3C;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">'</span>module<span class="pl-pds">'</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js<span class="pl-pds">'</span></span>><span class="pl-k">&#x3C;/</span>script
+
+<span class="pl-c">&#x3C;!--</span> Or, <span class="pl-k">if</span> you like it <span class="pl-c1">this</span> way <span class="pl-c">--></span>
+
+<span class="pl-k">&#x3C;</span>script<span class="pl-k">></span>
+
+<span class="pl-k">import</span> { <span class="pl-smi">colors</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js<span class="pl-pds">'</span></span>
+
+<span class="pl-k">let</span> myPalette <span class="pl-k">=</span> <span class="pl-en">colors</span>(<span class="pl-s"><span class="pl-pds">'</span>all<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>700<span class="pl-pds">'</span></span>)
+
+&#x3C;/<span class="pl-ent">script</span>>
+
+</code></pre>
+<h4>Quickstart</h4>
+<p><a href="https://huetiful-js.com/quickstart">See the Quickstart here</a></p>
+<h4>Community</h4>
+<p><a href="https://github.com/xml-wizard/huetiful/discussions">See the discussions</a></p>
+<h4>Contributing</h4>
+<p>This project is fully open source! Contributions of any kind are greatly appreciated! See🔍 the <a href="./CONTRIBUTING.md">contributing page on the documentation site</a> file for more information on how to get started.</p>
   </main>
 </body>
 </html>

@@ -253,10 +253,6 @@ export type DiscoverOptions = {
    */
   maxDistance?: number;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> main
   /**
    * The colorspace to retrieve channel values from.
    */
@@ -416,12 +412,6 @@ export type SchemeOptions = Pick<
   InterpolatorOptions,
   "easingFn"
 > & {
-<<<<<<< HEAD
-  kind?: SchemeType;
-  token?: TokenOptions;
-};
-``;
-=======
   kind?: SchemeType|Array<SchemeType>;
   token?: TokenOptions
 
@@ -431,7 +421,6 @@ export type SchemeOptions = Pick<
 /**
  * Options for the `hueshift()` palette generator function.
  */
->>>>>>> main
 export type HueshiftOptions = Pick<
   InterpolatorOptions,
   "colorspace" | "easingFn" | "num" | "token" | "hueStep"
