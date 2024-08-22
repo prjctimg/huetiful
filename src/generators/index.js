@@ -4,50 +4,52 @@
  * @typedef { import('../types.js').SchemeOptions} SchemeOptions
  * @typedef { import('../types.js').DiscoverOptions} DiscoverOptions
  * @typedef { import('../types.js').HueshiftOptions} HueShiftOptions
- *@typedef { import('../types.js').ColorToken} ColorToken
- *@typedef { import('../types.js').TokenOptions} TokenOptions
- *@typedef { import('../types.js').PairedSchemeOptions} PairedSchemeOptions
- *@typedef { import('../types.js').InterpolatorOptions} InterpolatorOptions
+ * @typedef { import('../types.js').ColorToken} ColorToken
+ * @typedef { import('../types.js').TokenOptions} TokenOptions
+ * @typedef { import('../types.js').PairedSchemeOptions} PairedSchemeOptions
+ * @typedef { import('../types.js').InterpolatorOptions} InterpolatorOptions
  */
 
 import {
-  samples,
-  interpolate,
-  interpolatorSplineBasis,
-  interpolatorSplineBasisClosed,
-  interpolatorSplineMonotone,
-  interpolatorSplineMonotoneClosed,
-  interpolatorSplineNatural,
-  interpolatorSplineNaturalClosed,
-  fixupHueShorter,
-  fixupHueLonger,
-  differenceHyab,
-  easingSmoothstep,
-  averageNumber,
-  formatHex8,
-  random,
-} from "culori/fn";
+	samples,
+	interpolate,
+	interpolatorSplineBasis,
+	interpolatorSplineBasisClosed,
+	interpolatorSplineMonotone,
+	interpolatorSplineMonotoneClosed,
+	interpolatorSplineNatural,
+	interpolatorSplineNaturalClosed,
+	fixupHueShorter,
+	fixupHueLonger,
+	differenceHyab,
+	easingSmoothstep,
+	averageNumber,
+	random
+// @ts-ignore
+} from 'culori/fn';
 import {
-  or,
-  mcchn,
-  pltrconfg,
-  gt,
-  gte,
-  lte,
-  lt,
-  min,
-  max,
-  values,
-  factorIterator,
-  entries,
-  and,
-  eq,
-  adjustHue,
-  isArray,
-  rand,
-} from "../internal/index.js";
-import { mc, token } from "../utils/index.js";
-
+	or,
+	mcchn,
+	pltrconfg,
+	gt,
+	gte,
+	lte,
+	lt,
+	min,
+	max,
+	values,
+	factorIterator,
+	entries,
+	and,
+	eq,
+	adjustHue,
+	rand,
+	inRange,
+	isValidArgs,
+	not,
+	keys
+} from '../internal/index.js';
+import { mc, token } from '../utils/index.js';
 /**
  * Creates a palette of hue shifted colors from the passed in color.
  * 
@@ -80,62 +82,62 @@ console.log(hueShiftedPalette);
 ]
  */
 function hueshift(baseColor, options) {
-  let { num, hueStep, minLightness, maxLightness, easingFn } = options || {};
+	let { num, hueStep, minLightness, maxLightness, easingFn } = options || {};
 
-  baseColor = or(baseColor, "#3fca2b");
-  easingFn = or(easingFn, easingSmoothstep);
-  num = or(num, 6) + 1;
-  hueStep = or(hueStep, 5);
-  baseColor = token(baseColor, {
-    kind: "obj",
-    targetMode: "lch",
-  });
-  let z = [baseColor];
+	baseColor = or(baseColor, '#3fca2b');
+	easingFn = or(easingFn, easingSmoothstep);
+	num = or(num, 6) + 1;
+	hueStep = or(hueStep, 5);
+	baseColor = token(baseColor, {
+		kind: 'obj',
+		targetMode: 'lch'
+	});
+	let z = [baseColor];
 
-  // // if value is beyond max normalize all the values ensuring that the end is higher than start
-  // // and that if minval was less than max range we will get that channel's equivalent value on the [0,100] scale.
-  maxLightness = lte(maxLightness, 95) ? maxLightness : 90;
-  minLightness = lte(minLightness, maxLightness) ? minLightness : 5;
+	// // if value is beyond max normalize all the values ensuring that the end is higher than start
+	// // and that if minval was less than max range we will get that channel's equivalent value on the [0,100] scale.
+	maxLightness = lte(maxLightness, 95) ? maxLightness : 90;
+	minLightness = lte(minLightness, maxLightness) ? minLightness : 5;
 
-  /**
-   * @internal
-   * Normalizes any value in the range [0,1] to the ranges supported by the colorspace
-   */
-  function f(i, e1, e2) {
-    return Math.abs(
-      ((i - 0) / (e1 - 0)) * (e2 - baseColor["l"]) + baseColor["l"]
-    );
-  }
-  // Maximum number of iterations possible.
-  //Each iteration add a darker shade to the start of the array and a lighter tint to the end.
-  // @ts-ignore
-  for (let i = 1, j = i / num; i < num; i++) {
-    //adjustHue checks hue values are clamped.
-    // Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
-    const [y, x] = [
-      {
-        l: f(i, num, minLightness),
-        c: baseColor["c"],
-        // @ts-ignore
-        h: adjustHue(baseColor["h"] - hueStep * easingFn(j)),
-        mode: "lch",
-      },
-      {
-        l: f(i, num, maxLightness),
-        c: baseColor["c"],
-        // @ts-ignore
-        h: adjustHue(baseColor["h"] + hueStep) * easingFn(j),
-        mode: "lch",
-      },
-    ];
+	/**
+	 * @internal
+	 * Normalizes any value in the range [0,1] to the ranges supported by the colorspace
+	 */
+	function f(i, e1, e2) {
+		return Math.abs(
+			((i - 0) / (e1 - 0)) * (e2 - baseColor['l']) + baseColor['l']
+		);
+	}
+	// Maximum number of iterations possible.
+	//Each iteration add a darker shade to the start of the array and a lighter tint to the end.
+	// @ts-ignore
+	for (let i = 1, j = i / num; i < num; i++) {
+		//adjustHue checks hue values are clamped.
+		// Here we use lightnessMapper to calculate our lightness values which takes a number that exists in range [0,1].
+		const [y, x] = [
+			{
+				l: f(i, num, minLightness),
+				c: baseColor['c'],
+				// @ts-ignore
+				h: adjustHue(baseColor['h'] - hueStep * easingFn(j)),
+				mode: 'lch'
+			},
+			{
+				l: f(i, num, maxLightness),
+				c: baseColor['c'],
+				// @ts-ignore
+				h: adjustHue(baseColor['h'] + hueStep) * easingFn(j),
+				mode: 'lch'
+			}
+		];
 
-    z.push(x);
-    z.unshift(y);
-  }
+		z.push(x);
+		z.unshift(y);
+	}
 
-  //return z;
-  // //@ts-ignore
-  return Array.from(new Set(z)).map((c) => token(c));
+	//return z;
+	// //@ts-ignore
+	return Array.from(new Set(z)).map((c) => token(c));
 }
 
 /**
@@ -153,42 +155,42 @@ console.log(pastel("green"))
 // #036103ff
  */
 function pastel(baseColor, options = undefined) {
-  /**
-   * The colors from which the randomized values are obtained from were extracted from this article:
-   *
-   * @see www.wikipedia.com Wikipedia
-   * The elements in each array are chroma, lightness of the color in HSV and then the color in numerical representation. Got the values from sample pastel colors on the Wikipedia article
-   */
-  let w = [
-    [0.3582677165354331, 0.996078431372549, 16538982.504333857],
-    [0.4395161290322581, 0.9725490196078431, 15694401.836627495],
-    [0.472, 0.9803921568627451, 15986490.838712374],
-    [0.3305785123966942, 0.9490196078431372, 14834893.772825705],
-    [0.2992125984251969, 0.996078431372549, 7446012.731034764],
-    [0.38818565400843885, 0.9294117647058824, 8247112.202928809],
-  ];
-  const [u, v] = [w.map((o) => o[0]), w.map((o) => o[1])];
+	/**
+	 * The colors from which the randomized values are obtained from were extracted from this article:
+	 *
+	 * @see www.wikipedia.com Wikipedia
+	 * The elements in each array are chroma, lightness of the color in HSV and then the color in numerical representation. Got the values from sample pastel colors on the Wikipedia article
+	 */
+	let w = [
+		[0.3582677165354331, 0.996078431372549, 16538982.504333857],
+		[0.4395161290322581, 0.9725490196078431, 15694401.836627495],
+		[0.472, 0.9803921568627451, 15986490.838712374],
+		[0.3305785123966942, 0.9490196078431372, 14834893.772825705],
+		[0.2992125984251969, 0.996078431372549, 7446012.731034764],
+		[0.38818565400843885, 0.9294117647058824, 8247112.202928809]
+	];
+	const [u, v] = [w.map((o) => o[0]), w.map((o) => o[1])];
 
-  const t = {
-    ms: averageNumber(u),
-    ml: averageNumber(v),
-    mns: min(u),
-    mxs: max(u),
-    mnv: min(v),
-    mxv: max(v),
-  };
-  // @ts-ignore
+	const t = {
+		ms: averageNumber(u),
+		ml: averageNumber(v),
+		mns: min(u),
+		mxs: max(u),
+		mnv: min(v),
+		mxv: max(v)
+	};
+	// @ts-ignore
 
-  let q = random("hsv", {
-    s: [t["mns"], t["mxs"]],
-    v: [t["mnv"], t["mxv"]],
-    h: token(baseColor, { targetMode: "hsv", kind: "obj" })["h"],
-  });
+	let q = random('hsv', {
+		s: [t['mns'], t['mxs']],
+		v: [t['mnv'], t['mxv']],
+		h: token(baseColor, { targetMode: 'hsv', kind: 'obj' })['h']
+	});
 
-  // check if it is displayable
+	// check if it is displayable
 
-  // @ts-ignore
-  return token(q, options);
+	// @ts-ignore
+	return token(q, options);
 }
 
 /**
@@ -207,44 +209,44 @@ console.log(pair("green",{hueStep:6,num:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
  */
 function pair(baseColor, options) {
-  // eslint-disable-next-line prefer-const
-  let { num, via, hueStep, colorspace } = options || {}; // I cant get intellisense when I use or()
+	// eslint-disable-next-line prefer-const
+	let { num, via, hueStep, colorspace } = options || {}; // I cant get intellisense when I use or()
 
-  via = or(via, "light");
-  hueStep = or(hueStep, 5);
+	via = or(via, 'light');
+	hueStep = or(hueStep, 5);
 
-  //  @ts-ignore
-  baseColor = token(baseColor, { kind: "obj" });
+	//  @ts-ignore
+	baseColor = token(baseColor, { kind: 'obj' });
 
-  // get the hue of the passed in color and add it to the step which will result in the final color to pair with
-  const g = mc(`${or(colorspace, "jch")}.h`)(
-    baseColor,
-    Math.abs(baseColor["h"] + (lt(hueStep, 0) ? -hueStep : hueStep))
-  );
+	// get the hue of the passed in color and add it to the step which will result in the final color to pair with
+	const g = mc(`${or(colorspace, 'jch')}.h`)(
+		baseColor,
+		Math.abs(baseColor['h'] + (lt(hueStep, 0) ? -hueStep : hueStep))
+	);
 
-  // Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes.
-  // This is because pure black returns a falsy channel (have'nt found out which yet but it f*cks up the results smh).
-  // Question: Black is  the absence of hue or ligtness or both ? Why ?
-  const u = {
-    dark: { l: 0, c: 0, h: 0, mode: "jch" },
-    light: { l: 100, c: 0, h: 0, mode: "jch" },
-  };
+	// Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes.
+	// This is because pure black returns a falsy channel (have'nt found out which yet but it f*cks up the results smh).
+	// Question: Black is  the absence of hue or ligtness or both ? Why ?
+	const u = {
+		dark: { l: 0, c: 0, h: 0, mode: 'jch' },
+		light: { l: 100, c: 0, h: 0, mode: 'jch' }
+	};
 
-  const f = (l) =>
-    interpolator([baseColor, u[via], g], {
-      colorspace: colorspace,
-      num: 1,
-      token: options["token"],
-    });
+	const f = (l) =>
+		interpolator([baseColor, u[via], g], {
+			colorspace: colorspace,
+			num: 1,
+			token: options['token']
+		});
 
-  // Declare the num of iterations in samples() which will be used as the t value
-  // Since the interpolation returns half duplicate values we double the sample value
-  // Guard the num param against negative values and floats
+	// Declare the num of iterations in samples() which will be used as the t value
+	// Since the interpolation returns half duplicate values we double the sample value
+	// Guard the num param against negative values and floats
 
-  // Return a slice of the array from the start to the half length of the array
+	// Return a slice of the array from the start to the half length of the array
 
-  //@ts-ignore
-  return lte(num, 1) ? f(1) : f(num * 2).slice(0, num);
+	//@ts-ignore
+	return lte(num, 1) ? f(1) : f(num * 2).slice(0, num);
 }
 
 /**
@@ -288,66 +290,66 @@ console.log(interpolator(['pink', 'blue'], { num:8 }));
  *
  */
 function interpolator(baseColors = [], options = undefined) {
-  let { hueFixup, stops, easingFn, kind, closed, colorspace, num } =
-    options || {};
-  // Set the internal defaults
-  easingFn = or(easingFn, pltrconfg["ef"]);
-  kind = or(kind, "basis");
-  num = or(num, 1);
-  // @ts-ignore
-  hueFixup = hueFixup === "shorter" ? fixupHueShorter : fixupHueLonger;
-  let f;
-  switch (kind) {
-    case "basis":
-      f = (closed && interpolatorSplineBasisClosed) || interpolatorSplineBasis;
-      break;
-    case "monotone":
-      f =
-        (closed && interpolatorSplineMonotoneClosed) ||
-        interpolatorSplineMonotone;
-      break;
-    case "natural":
-      f =
-        (closed && interpolatorSplineNaturalClosed) ||
-        interpolatorSplineNatural;
-  }
+	let { hueFixup, stops, easingFn, kind, closed, colorspace, num } =
+		options || {};
+	// Set the internal defaults
+	easingFn = or(easingFn, pltrconfg['ef']);
+	kind = or(kind, 'basis');
+	num = or(num, 1);
+	// @ts-ignore
+	hueFixup = hueFixup === 'shorter' ? fixupHueShorter : fixupHueLonger;
+	let f;
+	switch (kind) {
+		case 'basis':
+			f = (closed && interpolatorSplineBasisClosed) || interpolatorSplineBasis;
+			break;
+		case 'monotone':
+			f =
+				(closed && interpolatorSplineMonotoneClosed) ||
+				interpolatorSplineMonotone;
+			break;
+		case 'natural':
+			f =
+				(closed && interpolatorSplineNaturalClosed) ||
+				interpolatorSplineNatural;
+	}
 
-  baseColors = values(baseColors);
-  let [l, o] = [stops?.length, undefined];
-  if (l) {
-    o = baseColors.slice(0, l - 1).map((c, i) => [c, stops[i]]);
-    // @ts-ignore
-    baseColors = o.concat(baseColors.slice(l));
-  }
+	baseColors = values(baseColors);
+	let [l, o] = [stops?.length, undefined];
+	if (l) {
+		o = baseColors.slice(0, l - 1).map((c, i) => [c, stops[i]]);
+		// @ts-ignore
+		baseColors = o.concat(baseColors.slice(l));
+	}
 
-  // @ts-ignore
-  let p = interpolate([...baseColors, easingFn], colorspace, {
-    // @ts-ignore
-    h: {
-      fixup: hueFixup,
-      use: or(f, pltrconfg["hi"]),
-    },
-    [mcchn("l", colorspace, false)]: {
-      use: or(f, pltrconfg["li"]),
-    },
-    [mcchn("c", colorspace, false)]: {
-      use: or(f, pltrconfg["ci"]),
-    },
-  });
+	// @ts-ignore
+	let p = interpolate([...baseColors, easingFn], colorspace, {
+		// @ts-ignore
+		h: {
+			fixup: hueFixup,
+			use: or(f, pltrconfg['hi'])
+		},
+		[mcchn('l', colorspace, false)]: {
+			use: or(f, pltrconfg['li'])
+		},
+		[mcchn('c', colorspace, false)]: {
+			use: or(f, pltrconfg['ci'])
+		}
+	});
 
-  // make sure samples is an absolute integer
-  // @ts-ignore
-  num = or(and(gte(num, 1), Math.abs(num)), 1);
+	// make sure samples is an absolute integer
+	// @ts-ignore
+	num = or(and(gte(num, 1), Math.abs(num)), 1);
 
-  return or(
-    and(
-      gt(num, 1),
-      //  @ts-ignore
-      samples(num).map((s) => token(p(s), options?.token))
-    ),
-    // @ts-ignore
-    token(p(0.5), options?.token)
-  );
+	return or(
+		and(
+			gt(num, 1),
+			//  @ts-ignore
+			samples(num).map((s) => token(p(s), options?.token))
+		),
+		// @ts-ignore
+		token(p(0.5), options?.token)
+	);
 }
 
 /**
@@ -384,52 +386,71 @@ console.log(discover(sample, { kind:'tetradic' }))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
  */
 function discover(colors = [], options) {
-  //  Initialize and sanitize parameters
+	if (isValidArgs(colors, 4)) {
+		//  Initialize and sanitize parameters
+		const colorTokenValues = values(colors),
+			colorTokenKeys = keys(colors);
+		let { kind, maxDistance, minDistance } = options || {};
 
-  let { kind } = options || {};
+		/*
+		 * 					* GLOBAL VARIABLES
+		 *						* f - The callback to test if colors are equal or not
+		 *						* c - The targeted palettes map
+		 *						* a - Result collection of the queried palettes
+		 *
+		 *
+		 *
+		 *
+		 */
 
-  colors = values(colors);
+		maxDistance = or(maxDistance, 0.0014);
+		minDistance = or(minDistance, 0);
 
-  /*
-   * 					* GLOBAL VARIABLES
-   *						* f - The callback to test if colors are equal or not
-   *						* c - The targeted palettes map
-   *						* a - Result collection of the queried palettes
-   *
-   *
-   *
-   *
-   */
+		const palettes = {},
+			colorDistance = (a, b) => differenceHyab()(a, b),
+			customInRange = (c, d) =>
+				inRange(colorDistance(c, d), minDistance, maxDistance),
+			availableColors = (arg, obj = {}) =>
+				obj[arg]?.filter((c) =>
+					colorTokenValues.some((d) => not(customInRange(c, d)))
+				);
+		// Create the classic palettes per valid color token  in the collection
 
-  // I have this weird urge to just put stuff in arrays...elegant
-  let [a, c, f] = [{}, {}, (a, b) => differenceHyab()(a, b)],
-    z = (u) => {
-      for (const [h, g] of entries(colors)) {
-        c[h] = scheme(g, { kind: u });
-      }
+		for (const key of colorTokenKeys) {
+			palettes[key] = scheme(colors[key], { kind: kind });
+		}
 
-      let j = [];
-      for (let [i, r] of entries(c)) {
-        // @ts-ignore
-        let m = nearest(colors.filter((n) => !j.some((o) => eq(f(n, o), 0))));
+		// For each color token,
+		//remove the colors that are available
+		// in the source color token collection
 
-        j.push(m);
+		let currentPalette;
+		for (const key of colorTokenKeys) {
+			if (eq(typeof kind, 'string')) {
+				palettes[key] = availableColors(key, palettes);
+				if (gt(currentPalette.length, 1)) {
+					palettes[key] = palettes[key].filter((a, b) =>
+						not(customInRange(a, currentPalette[b]))
+					);
+				}
 
-        a[i] = a[i] ? a[i] : j;
-      }
+				currentPalette = palettes[key];
+			} else {
+				// if the color token value is an object, iterate through the available palette keys
+				for (const paletteType of keys(palettes[key])) {
+					palettes[key][paletteType] = availableColors(
+						paletteType,
+						palettes[key]
+					);
+				}
+			}
+		}
 
-      return u ? a[u] : a;
-    };
+		// Get the values of any collection
 
-  // Get the values of any collection
-
-  // @ts-ignore
-  return factorIterator(kind, z, [
-    "analogous",
-    "triadic",
-    "tetradic",
-    "complementary",
-  ]);
+		// @ts-ignore
+		return palettes;
+	}
 }
 
 /**
@@ -447,35 +468,35 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 
  */
 function earthtone(baseColor, options) {
-  let { num, earthtones, colorspace, kind, closed } = options || {};
-  baseColor = token(baseColor);
+	let { num, earthtones, colorspace, kind, closed } = options || {};
+	baseColor = token(baseColor);
 
-  earthtones = or(earthtones, "dark");
-  const v = {
-    "light-gray": "#e5e5e5",
-    silver: "#f5f5f5",
-    sand: "#c2b2a4",
-    tupe: "#a79e8a",
-    mahogany: "#958c7c",
-    "brick-red": "#7d7065",
-    clay: "#6a5c52",
-    cocoa: "#584a3e",
-    "dark-brown": "#473b31",
-    dark: "#352a21",
-  };
+	earthtones = or(earthtones, 'dark');
+	const earthtoneSamples = {
+		'light-gray': '#e5e5e5',
+		silver: '#f5f5f5',
+		sand: '#c2b2a4',
+		tupe: '#a79e8a',
+		mahogany: '#958c7c',
+		'brick-red': '#7d7065',
+		clay: '#6a5c52',
+		cocoa: '#584a3e',
+		'dark-brown': '#473b31',
+		dark: '#352a21'
+	};
 
-  const u = v[earthtones.toLowerCase()];
+	const currentEarthtone = earthtoneSamples[earthtones.toLowerCase()];
 
-  // Get the channels to be lerped for each color
-  // The t values will be similar. For each color at the point tx,ty allocate the values to each respective channel
+	// Get the channels to be lerped for each color
+	// The t values will be similar. For each color at the point tx,ty allocate the values to each respective channel
 
-  return interpolator([u, baseColor], {
-    colorspace: colorspace,
-    num: num,
-    closed: closed,
-    kind: kind,
-    token: options?.token,
-  });
+	return interpolator([currentEarthtone, baseColor], {
+		colorspace: colorspace,
+		num: num,
+		closed: closed,
+		kind: kind,
+		token: options?.token
+	});
 }
 
 /**
@@ -509,61 +530,61 @@ console.log(scheme("triadic")("#a1bd2f"))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
  */
 // @ts-ignore
-function scheme(baseColor = "cyan", options) {
-  let { colorspace, kind, easingFn } = options || {};
-  // @ts-ignore
-  kind = kind?.toLowerCase();
-  colorspace = or(colorspace, "lch");
-  // @ts-ignore
-  baseColor = token(baseColor, { targetMode: colorspace, kind: "obj" });
-  const f = (h, l) =>
-    samples(h).map((d) =>
-      adjustHue((baseColor["h"] + l) * (d * or(easingFn, easingSmoothstep)(d)))
-    );
+function scheme(baseColor = { l: 8, c: 40, h: 87, mode: 'lch' }, options = {}) {
+	let { colorspace, kind, easingFn } = options || {};
+	// @ts-ignore
+	kind = or(kind, 'analogous');
+	colorspace = or(colorspace, 'lch');
+	// @ts-ignore
+	baseColor = token(baseColor, { targetMode: colorspace, kind: 'obj' });
 
-  let y = {
-    analogous: f(3, 12),
-    triadic: f(3, 120),
-    tetradic: f(4, 90),
-    complimentary: f(2, 180),
-  };
-  // extremums lowMin,lowMax, highMin, highMax and  respectively
-  const [r, s, t, u] = [0.05, 0.495, 0.5, 0.995];
-  // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
-  for (const [m, n] of entries(y)) {
-    for (const [i, h] of entries(n)) {
-      y[m][i] = rand(h * s, h * r) + rand(h * u, h * t) / 2;
-    }
-  }
-  // The map for steps to obtain the targeted palettes
+	// // extremums
+	const [lowMin, lowMax, highMin, highMax] = [0.05, 0.495, 0.5, 0.995],
+		generateSteps = (stops, step) => {
+			const res = [];
 
-  let [[l, c], e] = [["l", "c"].map((a) => mcchn(a, colorspace, false)), {}];
+			for (let [k, v] of entries(samples(stops))) {
+				v = adjustHue(
+					(baseColor['h'] + step) * (v * or(easingFn, easingSmoothstep)(v))
+				);
 
-  let z = (x = 0) => ({
-    [l]: baseColor[l],
-    [c]: baseColor[c],
-    h: adjustHue(baseColor["h"] + x),
-    mode: colorspace,
-  });
-  if (isArray(kind)) {
-    for (const k of values(kind)) {
-      for (const [v, u] of entries(y[k])) {
-        e[k][v] = z(u);
-      }
-    }
-  } else if (kind) {
-    for (const u of values(y[kind])) {
-      e = z(u);
-    }
-  } else {
-    for (const [j, k] of entries(y)) {
-      for (const [v, u] of entries(k)) {
-        e[j][v] = z(u);
-      }
-    }
-  }
-  // @ts-ignore
-  return e;
+				res[k] =
+					rand(v * lowMax, v * lowMin) + rand(v * highMax, v * highMin) / 2;
+			}
+			return res;
+		},
+		PALETTE_TYPES = {
+			analogous: generateSteps(3, 12),
+			triadic: generateSteps(3, 120),
+			tetradic: generateSteps(4, 90),
+			complimentary: generateSteps(2, 180)
+		},
+		callback = (kind) => {
+			// // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
+
+			// // The map for steps to obtain the targeted palettes
+
+			const [lightnessChan, chromaChan] = ['l', 'c'].map((a) =>
+					mcchn(a, colorspace, false)
+				),
+				palettes = [];
+
+			for (const [idx, step] of entries(PALETTE_TYPES[kind])) {
+				palettes[idx] = token(
+					{
+						[lightnessChan]: baseColor[lightnessChan],
+						[chromaChan]: baseColor[chromaChan],
+						h: adjustHue(baseColor['h'] + step),
+						mode: colorspace
+					},
+					options?.token
+				);
+			}
+			palettes.shift();
+			return palettes;
+		};
+
+	return factorIterator(kind, callback, keys(PALETTE_TYPES));
 }
 
 export { pair, discover, hueshift, pastel, earthtone, scheme, interpolator };

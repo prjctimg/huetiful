@@ -757,7 +757,7 @@ function overtone(color) {
  * 
  * @param {ColorToken} baseColor The color to retrieve its complimentary equivalent.
  * @param {boolean} obj Optional boolean whether to return an object with the result color's hue family or just the result color. Default is `false`.
- * @returns {ColorToken|import("../types.js").FactObject}
+ * @returns {ColorToken|import("../types.js").Fact}
  * @example
  * 
  * import { complimentary } from "huetiful-js";
