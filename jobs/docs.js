@@ -15,9 +15,10 @@ async function markdownToHtml({ markdown = "", outPath, title }) {
       heading: "On this page 📜:",
       maxDepth: 3,
       minDepth: 2,
+      parents: "node",
     })
     .use(remarkRehype)
-    .use(rehypePrettyCode, { theme: "rose-pine-dawn" })
+    .use(rehypeStarryNight)
     .use(rehypeStringify)
     .process(markdown);
 
