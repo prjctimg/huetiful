@@ -7,13 +7,14 @@
 
 import { token } from "../utils/index.js";
 import {
-  filterDeficiencyDeuter,
-  filterDeficiencyProt,
-  filterDeficiencyTrit,
-  filterGrayscale,
-} from "culori/fn";
-import { or } from "../internal/index.js";
-import { wcagContrast } from "culori/fn";
+	filterDeficiencyDeuter,
+	filterDeficiencyProt,
+	filterDeficiencyTrit,
+	filterGrayscale,
+	formatHex8
+} from 'culori/fn';
+import { eq, or } from '../internal/index.js';
+import { wcagContrast } from 'culori/fn';
 
 /**
  * Gets the contrast between the passed in colors.
@@ -30,8 +31,8 @@ import { wcagContrast } from "culori/fn";
  * // 21
  */
 function contrast(a, b) {
-  // @ts-ignore
-  return wcagContrast(token(a), token(b));
+	// @ts-ignore
+	return wcagContrast(token(a), token(b));
 }
 
 // This module is focused on creating color blind safe palettes that adhere to the minimum contrast requirements
@@ -137,39 +138,26 @@ console.log(deficiency(['rgb', 230, 100, 50, 0.5],{ kind:'blue', severity:0.5 })
 // '#dd663680'
 
  */
-function deficiency(
-  color,
-  options = {
-    kind: "red",
-    severity: 0.1,
-  }
-) {
-  var { kind, severity } = options || {};
+function deficiency(color, options) {
+	let { kind, severity } = options || {};
+	color = token(color);
+	const func = (c, t = 1) =>
+			({
+				blue: filterDeficiencyTrit(t)(c),
+				red: filterDeficiencyProt(t)(c),
+				green: filterDeficiencyDeuter(t)(c),
+				monochromacy: filterGrayscale(t, 'lch')(c)
+			})[kind],
+		defs = ['red', 'blue', 'green', 'monochromacy'];
 
-  const f = (c, t) => {
-    c = token(c);
+	kind = or(kind, 'red');
+	severity = or(severity, 0.5);
 
-    return {
-      blue: filterDeficiencyTrit(t)(c),
-      red: filterDeficiencyProt(t)(c),
-      green: filterDeficiencyDeuter(t)(c),
-      monochromacy: filterGrayscale(t, "lch")(c),
-    };
-  };
-
-  // Store the keys of deficiency types
-  const defs = ["red", "blue", "green", "monochromacy"];
-  // Cast 'red' as the default parameter
-  kind = or(kind, "red");
-
-  if (defs.some((el) => el === kind.toLowerCase())) {
-    // @ts-ignore
-    return f(kind, color, severity);
-  } else {
-    throw Error(
-      `Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
-    );
-  }
+	return defs.some((el) => eq(el, kind.toLowerCase()))
+		? formatHex8(func(color, severity))
+		: Error(
+				`Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
+			);
 }
 
 export { deficiency, contrast, adaptive };

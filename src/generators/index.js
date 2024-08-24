@@ -29,32 +29,6 @@ import {
 // @ts-ignore
 } from 'culori/fn';
 import {
-<<<<<<< HEAD
-  or,
-  mcchn,
-  pltrconfg,
-  gt,
-  gte,
-  lte,
-  lt,
-  min,
-  max,
-  values,
-  factorIterator,
-  entries,
-  and,
-  eq,
-  adjustHue,
-  isArray,
-  rand,
-  inRange,
-  isValidArgs,
-  not,
-  keys,
-} from "../internal/index.js";
-import { mc, token } from "../utils/index.js";
-import { nearest } from "../palettes/index.js";
-=======
 	or,
 	mcchn,
 	pltrconfg,
@@ -77,7 +51,6 @@ import { nearest } from "../palettes/index.js";
 	keys
 } from '../internal/index.js';
 import { mc, token } from '../utils/index.js';
->>>>>>> main
 /**
  * Creates a palette of hue shifted colors from the passed in color.
  * 
@@ -326,42 +299,43 @@ function interpolator(baseColors = [], options = undefined) {
 	num = or(num, 1);
 	// @ts-ignore
 	hueFixup = hueFixup === 'shorter' ? fixupHueShorter : fixupHueLonger;
-	let f;
-	switch (kind) {
-		case 'basis':
-			f = (closed && interpolatorSplineBasisClosed) || interpolatorSplineBasis;
-			break;
-		case 'monotone':
-			f =
-				(closed && interpolatorSplineMonotoneClosed) ||
-				interpolatorSplineMonotone;
-			break;
-		case 'natural':
-			f =
-				(closed && interpolatorSplineNaturalClosed) ||
-				interpolatorSplineNatural;
-	}
+	let method = {
+		basis: or(
+			and(closed, interpolatorSplineBasisClosed),
+			interpolatorSplineBasis
+		),
+		natural: or(
+			and(closed, interpolatorSplineNaturalClosed),
+			interpolatorSplineNatural
+		),
+		monotone: or(
+			and(closed, interpolatorSplineMonotoneClosed),
+			interpolatorSplineMonotone
+		)
+	}[kind];
 
 	baseColors = values(baseColors);
-	let [l, o] = [stops?.length, undefined];
-	if (l) {
-		o = baseColors.slice(0, l - 1).map((c, i) => [c, stops[i]]);
+	let len = stops?.length,
+		o;
+	if (gt(len, 0)) {
 		// @ts-ignore
-		baseColors = o.concat(baseColors.slice(l));
+		o = baseColors?.slice(0, len - 1).map((c, i) => [c, stops[i]]);
+		// @ts-ignore
+		baseColors = o.concat(baseColors.slice(len));
 	}
 
 	// @ts-ignore
-	let p = interpolate([...baseColors, easingFn], colorspace, {
+	let func = interpolate([...baseColors, easingFn], colorspace, {
 		// @ts-ignore
 		h: {
 			fixup: hueFixup,
-			use: or(f, pltrconfg['hi'])
+			use: or(method, pltrconfg['hi'])
 		},
 		[mcchn('l', colorspace, false)]: {
-			use: or(f, pltrconfg['li'])
+			use: or(method, pltrconfg['li'])
 		},
 		[mcchn('c', colorspace, false)]: {
-			use: or(f, pltrconfg['ci'])
+			use: or(method, pltrconfg['ci'])
 		}
 	});
 
@@ -373,10 +347,10 @@ function interpolator(baseColors = [], options = undefined) {
 		and(
 			gt(num, 1),
 			//  @ts-ignore
-			samples(num).map((s) => token(p(s), options?.token))
+			samples(num).map((s) => token(func(s), options?.token))
 		),
 		// @ts-ignore
-		token(p(0.5), options?.token)
+		token(func(0.5), options?.token)
 	);
 }
 
@@ -414,89 +388,11 @@ console.log(discover(sample, { kind:'tetradic' }))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
  */
 function discover(colors = [], options) {
-<<<<<<< HEAD
-  if (isValidArgs(colors, 4)) {
-    //  Initialize and sanitize parameters
-    const colorTokenValues = values(colors),
-      colorTokenKeys = keys(colors);
-    let { kind, maxDistance, minDistance } = options || {};
-
-    /*
-     * 					* GLOBAL VARIABLES
-     *						* f - The callback to test if colors are equal or not
-     *						* c - The targeted palettes map
-     *						* a - Result collection of the queried palettes
-     *
-     *
-     *
-     *
-     */
-
-    maxDistance = or(maxDistance, 0.0014);
-    minDistance = or(minDistance, 0);
-
-    const palettes = {},
-      colorDistance = (a, b) => differenceHyab()(a, b),
-      customInRange = (c, d) =>
-        inRange(colorDistance(c, d), minDistance, maxDistance),
-      availableColors = (arg, obj = {}) =>
-        obj[arg]?.filter((c) =>
-          colorTokenValues.some((d) => not(customInRange(c, d)))
-        );
-    // Create the classic palettes per valid color token  in the collection
-
-    for (const key of colorTokenKeys) {
-      palettes[key] = scheme(colors[key], { kind: kind });
-    }
-
-    // For each color token,
-    //remove the colors that are available
-    // in the source color token collection
-
-    let currentPalette;
-    for (const key of colorTokenKeys) {
-      if (eq(typeof kind, "string")) {
-        palettes[key] = availableColors(key, palettes);
-        if (gt(currentPalette.length, 1)) {
-          palettes[key] = palettes[key].filter((a, b) =>
-            not(customInRange(a, currentPalette[b]))
-          );
-        }
-
-        currentPalette = palettes[key];
-      } else {
-        // if the color token value is an object, iterate through the available palette keys
-        for (const paletteType of keys(palettes[key])) {
-          palettes[key][paletteType] = availableColors(
-            paletteType,
-            palettes[key]
-          );
-        }
-      }
-    }
-
-    // Get the values of any collection
-
-    // @ts-ignore
-    return palettes;
-  }
-=======
 	if (isValidArgs(colors, 4)) {
 		//  Initialize and sanitize parameters
 		const colorTokenValues = values(colors),
 			colorTokenKeys = keys(colors);
 		let { kind, maxDistance, minDistance } = options || {};
-
-		/*
-		 * 					* GLOBAL VARIABLES
-		 *						* f - The callback to test if colors are equal or not
-		 *						* c - The targeted palettes map
-		 *						* a - Result collection of the queried palettes
-		 *
-		 *
-		 *
-		 *
-		 */
 
 		maxDistance = or(maxDistance, 0.0014);
 		minDistance = or(minDistance, 0);
@@ -519,7 +415,7 @@ function discover(colors = [], options) {
 		//remove the colors that are available
 		// in the source color token collection
 
-		let currentPalette;
+		let currentPalette = [];
 		for (const key of colorTokenKeys) {
 			if (eq(typeof kind, 'string')) {
 				palettes[key] = availableColors(key, palettes);
@@ -546,7 +442,6 @@ function discover(colors = [], options) {
 		// @ts-ignore
 		return palettes;
 	}
->>>>>>> main
 }
 
 /**
@@ -567,23 +462,6 @@ function earthtone(baseColor, options) {
 	let { num, earthtones, colorspace, kind, closed } = options || {};
 	baseColor = token(baseColor);
 
-<<<<<<< HEAD
-  earthtones = or(earthtones, "dark");
-  const earthtoneSamples = {
-    "light-gray": "#e5e5e5",
-    silver: "#f5f5f5",
-    sand: "#c2b2a4",
-    tupe: "#a79e8a",
-    mahogany: "#958c7c",
-    "brick-red": "#7d7065",
-    clay: "#6a5c52",
-    cocoa: "#584a3e",
-    "dark-brown": "#473b31",
-    dark: "#352a21",
-  };
-
-  const currentEarthtone = earthtoneSamples[earthtones.toLowerCase()];
-=======
 	earthtones = or(earthtones, 'dark');
 	const earthtoneSamples = {
 		'light-gray': '#e5e5e5',
@@ -599,20 +477,10 @@ function earthtone(baseColor, options) {
 	};
 
 	const currentEarthtone = earthtoneSamples[earthtones.toLowerCase()];
->>>>>>> main
 
 	// Get the channels to be lerped for each color
 	// The t values will be similar. For each color at the point tx,ty allocate the values to each respective channel
 
-<<<<<<< HEAD
-  return interpolator([currentEarthtone, baseColor], {
-    colorspace: colorspace,
-    num: num,
-    closed: closed,
-    kind: kind,
-    token: options?.token,
-  });
-=======
 	return interpolator([currentEarthtone, baseColor], {
 		colorspace: colorspace,
 		num: num,
@@ -620,7 +488,6 @@ function earthtone(baseColor, options) {
 		kind: kind,
 		token: options?.token
 	});
->>>>>>> main
 }
 
 /**
@@ -654,63 +521,6 @@ console.log(scheme("triadic")("#a1bd2f"))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
  */
 // @ts-ignore
-<<<<<<< HEAD
-function scheme(baseColor = { l: 8, c: 40, h: 87, mode: "lch" }, options = {}) {
-  let { colorspace, kind, easingFn } = options || {};
-  // @ts-ignore
-  kind = or(kind, "analogous");
-  colorspace = or(colorspace, "lch");
-  // @ts-ignore
-  baseColor = token(baseColor, { targetMode: colorspace, kind: "obj" });
-
-  // // extremums
-  const [lowMin, lowMax, highMin, highMax] = [0.05, 0.495, 0.5, 0.995],
-    generateSteps = (stops, step) => {
-      const res = [];
-
-      for (let [k, v] of entries(samples(stops))) {
-        v = adjustHue(
-          (baseColor["h"] + step) * (v * or(easingFn, easingSmoothstep)(v))
-        );
-
-        res[k] =
-          rand(v * lowMax, v * lowMin) + rand(v * highMax, v * highMin) / 2;
-      }
-      return res;
-    },
-    PALETTE_TYPES = {
-      analogous: generateSteps(3, 12),
-      triadic: generateSteps(3, 120),
-      tetradic: generateSteps(4, 90),
-      complimentary: generateSteps(2, 180),
-    },
-    callback = (kind) => {
-      // // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
-
-      // // The map for steps to obtain the targeted palettes
-
-      const [lightnessChan, chromaChan] = ["l", "c"].map((a) =>
-          mcchn(a, colorspace, false)
-        ),
-        palettes = [];
-
-      for (const [idx, step] of entries(PALETTE_TYPES[kind])) {
-        palettes[idx] = token(
-          {
-            [lightnessChan]: baseColor[lightnessChan],
-            [chromaChan]: baseColor[chromaChan],
-            h: adjustHue(baseColor["h"] + step),
-            mode: colorspace,
-          },
-          options?.token
-        );
-      }
-      palettes.shift();
-      return palettes;
-    };
-
-  return factorIterator(kind, callback, keys(PALETTE_TYPES));
-=======
 function scheme(baseColor = { l: 8, c: 40, h: 87, mode: 'lch' }, options = {}) {
 	let { colorspace, kind, easingFn } = options || {};
 	// @ts-ignore
@@ -766,7 +576,6 @@ function scheme(baseColor = { l: 8, c: 40, h: 87, mode: 'lch' }, options = {}) {
 		};
 
 	return factorIterator(kind, callback, keys(PALETTE_TYPES));
->>>>>>> main
 }
 
 export { pair, discover, hueshift, pastel, earthtone, scheme, interpolator };

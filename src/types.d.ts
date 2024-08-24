@@ -53,9 +53,10 @@ export type SchemeType = "analogous" | "triadic" | "tetradic" | "complementary";
  * Any collection with enumerable keys that can be used to iterate through it to get the values which are expected to be valid color tokens. 
  */
 export type Collection =
-  | Array<ColorToken>
-  | Map<any, ColorToken>
-  | Set<ColorToken>;
+	| Array<ColorToken>
+	| Map<any, ColorToken>
+	| Set<ColorToken>
+	| object;
 
 
 /**
@@ -285,44 +286,44 @@ export type DeficiencyOptions = {
  * Overrides to customize the parsing and output behaviour.
  */
 export type TokenOptions = {
-  /**
-   * The type of color token to return. Default is `'str'`.
-   */
-  kind?: "num" | "arr" | "obj" | "str" | "temp";
-  /**
-   * If the `kind` is set to `'arr'` it will remove the mode string from color tuple. Default is `false`.
-   */
-  omitMode?: boolean;
+	/**
+	 * The type of color token to return. Default is `'str'`.
+	 */
+	kind?: 'num' | 'arr' | 'obj' | 'str' | 'temp';
+	/**
+	 * If the `kind` is set to `'arr'` it will remove the mode string from color tuple. Default is `false`.
+	 */
+	omitMode?: boolean;
 
-  /**
-   * If the `kind` is set to `'arr'` it will remove the alpha channel value from color tuple. Default is `false`.
-   */
-  omitAlpha?: boolean;
+	/**
+	 * If the `kind` is set to `'arr'` it will remove the alpha channel value from color tuple. Default is `false`.
+	 */
+	omitAlpha?: boolean;
 
-  /**
-   * If `true` and the passed in color token is an array or plain object and in the `srcMode` of `'rgb'` or `'lrgb'`,
-   * it will have all channels normalized back to [0,1] range if any of the channe values is beyond 1.
-   *
-   * This can help the parser to recognize RGB colors in the [0,255] range which Culori doesn't handle.
-   *
-   * Default is `false`.
-   */
-  normalizeRgb?: boolean;
+	/**
+	 * If `true` and the passed in color token is an array or plain object and in the `srcMode` of `'rgb'` or `'lrgb'`,
+	 * it will have all channels normalized back to [0,1] range if any of the channe values is beyond 1.
+	 *
+	 * This can help the parser to recognize RGB colors in the [0,255] range which Culori doesn't handle.
+	 *
+	 * Default is `true`.
+	 */
+	normalizeRgb?: boolean;
 
-  /**
-   * The type of number to return. Only valid if kind is set to `'number'`. Default is `'literal'`
-   */
-  numType?: "expo" | "hex" | "oct" | "bin";
+	/**
+	 * The type of number to return. Only valid if kind is set to `'number'`. Default is `'literal'`
+	 */
+	numType?: 'expo' | 'hex' | 'oct' | 'bin';
 
-  /**
-   *  The mode in which the channel values are valid in. It is used for color arrays if they have the `colorspace` string ommitted. Default is `'rgb'`.
-   */
-  srcMode?: Colorspaces;
+	/**
+	 *  The mode in which the channel values are valid in. It is used for color arrays if they have the `colorspace` string ommitted. Default is `'rgb'`.
+	 */
+	srcMode?: Colorspaces;
 
-  /**
-   * The colorspace in which to return the color object or array in. Default is `'lch'`.
-   */
-  targetMode?: Colorspaces;
+	/**
+	 * The colorspace in which to return the color object or array in. Default is `'lch'`.
+	 */
+	targetMode?: Colorspaces;
 };
 
 
@@ -408,13 +409,9 @@ export type StatsOptions = {
 /**
  * Options for the `scheme()` palette generator function.
  */
-export type SchemeOptions = Pick<
-  InterpolatorOptions,
-  "easingFn"
-> & {
-  kind?: SchemeType|Array<SchemeType>;
-  token?: TokenOptions
-
+export type SchemeOptions = Pick<InterpolatorOptions, 'easingFn' | 'colorspace'> & {
+	kind?: SchemeType | Array<SchemeType>;
+	token?: TokenOptions;
 };
 
 

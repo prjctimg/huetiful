@@ -1,7 +1,7 @@
 /**
- * @typedef { import('../types.js').ColorToken} ColorToken
- * @typedef { import('../types.js').Collection} Collection
- * @typedef { import('../types.js').Colorspaces} Colorspaces
+ * @typedef {import('../types.js').ColorToken} ColorToken
+ * @typedef {import('../types.js').Collection} Collection
+ * @typedef {import('../types.js').Colorspaces} Colorspaces
  * @typedef {import('../types.js').Stats} Stats
  * @typedef {import('../types.js').StatsOptions} StatsOptions
  * @typedef {import('../types.js').Factor} Factor
@@ -65,9 +65,9 @@ import { limits } from "../constants/index.js";
  * @returns {Stats}
  */
 function stats(collection = [], options = undefined) {
-  let { factor, relative, colorspace, against } = options || {};
+	let { factor, relative, colorspace, against } = options || {};
 
-  /*
+	/*
                                     //// DEFAULT OPTIONS  \\\\
       factor
       if factor is defined we return the specified
@@ -89,113 +89,99 @@ function stats(collection = [], options = undefined) {
 
    */
 
-  factor = or(factor, undefined);
-  relative = or(relative, false);
-  colorspace = or(colorspace, "lch");
-  against = or(against, "cyan");
+	factor = or(factor, undefined);
+	relative = or(relative, false);
+	colorspace = or(colorspace, 'lch');
+	against = or(against, 'cyan');
 
-  //convert all color tokens to excepted colorspace
+	//convert all color tokens to excepted colorspace
 
-  collection = map(collection, token);
+	collection = map(collection, token);
 
-  // put a bunch of stuff in arrays. f*ck readability :lol:
-  //  z,j,v are similar
-  // Callback functions for retrieving factors
-  const [getStatsObject, collectionLength] = [
-      (f) => {
-        // if relativeMean is true
-        // use the overload on all other factors when fetching their mean
+	// put a bunch of stuff in arrays. f*ck readability :lol:
+	//  z,j,v are similar
+	// Callback functions for retrieving factors
+	const getStatsObject = (fact) => {
+			// if relativeMean is true
+			// use the overload on all other factors when fetching their mean
 
-        const [sortedTokens, getChannel, getContrast] = [
-          (a, b) => sortedColl(a, b, "asc", true)(collection),
-          (a) => (b) => mc(a)(b),
-          (a) => contrast(a, against),
-        ];
-        return or(
-          and(eq(relative, true), {
-            chroma: sortedTokens(f, chnDiff(against, mcchn("c", colorspace))),
-            luminance: (() => {
-              // @ts-ignore
-              let cb1 = (a) => (b) => Math.abs(luminance(a) - luminance(b));
-              return sortedTokens(f, cb1(against));
-            })(),
-<<<<<<< HEAD
-            lightness: sortedTokens(
-              f,
-              chnDiff(against, mcchn("l", colorspace))
-            ),
-=======
-            lightness: sortedTokens(f, chnDiff(against, mcchn("l", colorspace))),
->>>>>>> main
-            hue: sortedTokens(f, chnDiff(against, `${colorspace}.h`)),
-            contrast: sortedTokens(f, getContrast),
-          }),
-          {
-            chroma: sortedTokens(f, getChannel(mcchn("c", colorspace))),
-            luminance: sortedTokens(f, luminance),
-            lightness: sortedTokens(f, getChannel(mcchn("l", colorspace))),
-            hue: sortedTokens(f, getChannel(colorspace + `.h`)),
-          }
-        )[f];
-      },
+			const [sortedTokens, getChannel, getContrast] = [
+				(a, b) => sortedColl(a, b, 'asc', true)(collection),
+				(a) => (b) => mc(a)(b),
+				(a) => contrast(a, against)
+			];
+			return or(
+				and(eq(relative, true), {
+					chroma: sortedTokens(fact, chnDiff(against, mcchn('c', colorspace))),
+					luminance: (() => {
+						// @ts-ignore
+						let cb1 = (a) => (b) => Math.abs(luminance(a) - luminance(b));
+						return sortedTokens(fact, cb1(against));
+					})(),
+					lightness: sortedTokens(
+						fact,
+						chnDiff(against, mcchn('l', colorspace))
+					),
+					hue: sortedTokens(fact, chnDiff(against, `${colorspace}.h`)),
+					contrast: sortedTokens(fact, getContrast)
+				}),
+				{
+					chroma: sortedTokens(fact, getChannel(mcchn('c', colorspace))),
+					luminance: sortedTokens(fact, luminance),
+					lightness: sortedTokens(fact, getChannel(mcchn('l', colorspace))),
+					hue: sortedTokens(fact, getChannel(colorspace + `.h`))
+				}
+			)[fact];
+		},
+		len =
+			// @ts-ignore
+			collection.length,
+		factorStats = (fact) => {
+			// we filter out falsy values from the collection to avoid getting NaN
+			// @ts-ignore
+			const n = (a, b) => (c) => map(a, b(c));
 
-      // @ts-ignore
-      collection.length,
-    ],
-    [factorStats, commonStats] = [
-      (k) => {
-        // we filter out falsy values from the collection to avoid getting NaN
-        // @ts-ignore
-        const n = (a, b) => (c) => map(a, b(c));
+			return {
+				chroma: n(mc(mcchn('c', colorspace)), averageNumber),
+				distance: (() => {
+					let i = (a) => (b) => differenceHyab()(a, b);
+					return n(i, averageNumber);
+				})(),
+				hue: n(mc(colorspace + `.h`), averageAngle),
+				lightness: n(mc(mcchn('l', colorspace)), averageNumber),
+				contrast: (() => {
+					let h = (a) => (b) => contrast(a, b);
+					return n(h, averageNumber);
+				})(),
+				luminance: n(luminance, averageNumber)
+			}[fact];
+		},
+		commonStats = (fact) => {
+			const [x, y] = [getStatsObject(fact)[0], getStatsObject(fact)[len - 1]];
 
-        return {
-          chroma: n(mc(mcchn("c", colorspace)), averageNumber),
-          distance: (() => {
-            let i = (a) => (b) => differenceHyab()(a, b);
-            return n(i, averageNumber);
-          })(),
-          hue: n(mc(colorspace + `.h`), averageAngle),
-          lightness: n(mc(mcchn("l", colorspace)), averageNumber),
-          contrast: (() => {
-            let h = (a) => (b) => contrast(a, b);
-            return n(h, averageNumber);
-          })(),
-          luminance: n(luminance, averageNumber),
-        }[k];
-      },
-      (k) => {
-<<<<<<< HEAD
-        const [x, y] = [
-          getStatsObject(k)[0],
-          getStatsObject(k)[collectionLength - 1],
-        ];
-=======
-        const [x, y] = [getStatsObject(k)[0], getStatsObject(k)[collectionLength - 1]];
->>>>>>> main
+			return {
+				against: or(
+					and(or(relative, eq(fact, or('contrast', 'distance'))), against),
+					null
+				),
+				colors: [x['color'], y['color']],
+				// @ts-ignore
+				mean: factorStats(fact)(collection),
+				extremums: [x[fact], y[fact]],
+				families: [family(x['color']), family(y['color'])]
+			};
+		};
 
-        return {
-          against: or(
-            and(or(relative, eq(k, or("contrast", "distance"))), against),
-            null
-          ),
-          colors: [x["color"], y["color"]],
-          // @ts-ignore
-          mean: factorStats(k)(collection),
-          extremums: [x[k], y[k]],
-          families: [family(x["color"]), family(y["color"])],
-        };
-      },
-    ];
-  // @ts-ignore
-  return (() => {
-    const p = factorIterator(factor, commonStats);
-    p["achromatic"] =
-      // @ts-ignore
-      values(collection).filter(achromatic).length / collectionLength;
-    p["colorspace"] = colorspace;
+	// @ts-ignore
+	return (() => {
+		const p = factorIterator(factor, commonStats);
+		p['achromatic'] =
+			// @ts-ignore
+			values(collection).filter(achromatic).length / len;
+		p['colorspace'] = colorspace;
 
-    return p;
-  })();
+		return p;
+	})();
 }
 
 /**
@@ -229,55 +215,49 @@ console.log(
 // [ 'brown', 'red', 'green', 'purple' ]
  */
 function sortBy(collection = [], options = undefined) {
-  let { against, colorspace, factor, order, relative } = options || {};
-  factor = or(factor, undefined);
-  relative = or(relative, false);
-  colorspace = or(colorspace, "lch");
-  against = or(against, "cyan");
-  order = or(order, "asc");
+	let { against, colorspace, factor, order, relative } = options || {};
+	factor = or(factor, undefined);
+	relative = or(relative, false);
+	colorspace = or(colorspace, 'lch');
+	against = or(against, 'cyan');
+	order = or(order, 'asc');
 
-<<<<<<< HEAD
-  // lightness and chroma channel constants respectively
-  const [l, c] = ["l", "c"].map((w) => mcchn(w, colorspace, false)),
-=======
+	// lightness and chroma channel constants respectively
+	const [l, c] = ['l', 'c'].map((w) => mcchn(w, colorspace, false)),
+		y = (a) => sortedColl(factor, a, order),
+		// returns factor cbs determined by the options
+		factorCallbacks = (h) => {
+			return or(
+				and(relative, {
+					chroma: y(chnDiff(against, mc(colorspace + '.' + c))),
+					hue: y(chnDiff(against, mc(`${colorspace}.h`))),
+					luminance: (() => {
+						// @ts-ignore
+						let v = (a) => (b) => Math.abs(luminance(a) - luminance(b));
+						return y(v(against));
+					})(),
+					lightness: y(chnDiff(against, mc(colorspace + '.' + l)))
+				}),
+				{
+					chroma: y(mc(colorspace + '.' + c)),
+					hue: y(mc(`${colorspace}.h`)),
+					luminance: y(luminance),
+					distance: (() => {
+						const u = (a) => (c) => differenceHyab()(a, c);
 
-  // lightness and chroma channel constants respectively
-  const [l , c] = ["l", "c"].map((w) => mcchn(w, colorspace, false)),
->>>>>>> main
-    y = (a) => sortedColl(factor, a, order),
-    // returns factor cbs determined by the options
-    factorCallbacks = (h) => {
-      return or(
-        and(relative, {
-          chroma: y(chnDiff(against, mc(colorspace + "." + c))),
-          hue: y(chnDiff(against, mc(`${colorspace}.h`))),
-          luminance: (() => {
-            // @ts-ignore
-            let v = (a) => (b) => Math.abs(luminance(a) - luminance(b));
-            return y(v(against));
-          })(),
-          lightness: y(chnDiff(against, mc(colorspace + "." + l))),
-        }),
-        {
-          chroma: y(mc(colorspace + "." + c)),
-          hue: y(mc(`${colorspace}.h`)),
-          luminance: y(luminance),
-          distance: (() => {
-            const u = (a) => (c) => differenceHyab()(a, c);
+						return y(u(against));
+					})(),
+					contrast: (() => {
+						const w = (a) => (c) => contrast(c, a);
+						return y(w(against));
+					})(),
+					lightness: y(mc(colorspace + '.' + l))
+				}
+			)[h](collection);
+		};
 
-            return y(u(against));
-          })(),
-          contrast: (() => {
-            const w = (a) => (c) => contrast(c, a);
-            return y(w(against));
-          })(),
-          lightness: y(mc(colorspace + "." + l)),
-        }
-      )[h](collection);
-    };
-
-  // @ts-ignore
-  return factorIterator(factor, factorCallbacks);
+	// @ts-ignore
+	return factorIterator(factor, factorCallbacks);
 }
 
 /**

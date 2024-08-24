@@ -35,7 +35,7 @@
 </head>
 <body>
 <main class='markdown-body'>
-  <h2>On this page 📜:</h2>
+  <ol class="toc toc-level toc-level-1"><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#">On this page 📜:</a></li></ol><h2>On this page 📜:</h2>
 <p><a href="https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml"><img src="https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml/badge.svg" alt="NPM publish 📦"></a>
 <img src="https://img.shields.io/npm/dt/huetiful-js?style=flat-square&#x26;logo=npm&#x26;link=https%3A%2F%2Fnpmjs.com%2Fpackage%2Fhuetiful-js" alt="NPM Downloads"></p>
 <p><img src="_media/logo.svg" alt="huetiful-logo"></p>
@@ -55,44 +55,49 @@
 </blockquote>
 <h5>Using a package manager</h5>
 <p>Assuming you already have Node already installed, you can add the package using npm/yarn or any other Node based package manager:</p>
-<figure data-rehype-pretty-code-figure=""><pre style="background-color:#faf4ed;color:#575279" tabindex="0" data-language="bash" data-theme="rose-pine-dawn"><code data-language="bash" data-theme="rose-pine-dawn" style="display: grid;"><span data-line=""><span style="color:#D7827E">npm</span><span style="color:#EA9D34"> i</span><span style="color:#EA9D34"> huetiful-js</span></span></code></pre></figure>
+<pre><code class="language-bash">npm i huetiful-js
+</code></pre>
 <p>Or:</p>
-<figure data-rehype-pretty-code-figure=""><pre style="background-color:#faf4ed;color:#575279" tabindex="0" data-language="bash" data-theme="rose-pine-dawn"><code data-language="bash" data-theme="rose-pine-dawn" style="display: grid;"><span data-line=""><span style="color:#D7827E">yarn</span><span style="color:#EA9D34"> add</span><span style="color:#EA9D34"> huetiful-js</span></span>
-<span data-line=""> </span>
-<span data-line=""><span style="color:#797593;font-style:italic">#</span><span style="color:#9893A5;font-style:italic"> For GitHub Package use @prjctimg/huetiful-js</span></span></code></pre></figure>
+<pre><code class="language-bash">yarn add huetiful-js
+
+<span class="pl-c"># For GitHub Package use @prjctimg/huetiful-js</span>
+</code></pre>
 <h6>Quick check :smile:</h6>
-<figure data-rehype-pretty-code-figure=""><pre style="background-color:#faf4ed;color:#575279" tabindex="0" data-language="js" data-theme="rose-pine-dawn"><code data-language="js" data-theme="rose-pine-dawn" style="display: grid;"><span data-line=""> </span>
-<span data-line=""><span style="color:#286983">import </span><span style="color:#797593">{</span><span style="color:#575279;font-style:italic"> achromatic</span><span style="color:#797593">,</span><span style="color:#575279;font-style:italic"> stats</span><span style="color:#797593">,</span><span style="color:#575279;font-style:italic"> colors</span><span style="color:#797593"> }</span><span style="color:#286983"> from </span><span style="color:#EA9D34">'huetiful-js'</span><span style="color:#797593">;</span></span>
-<span data-line=""> </span>
-<span data-line=""><span style="color:#286983">let</span><span style="color:#575279;font-style:italic"> all</span><span style="color:#286983"> =</span><span style="color:#D7827E"> colors</span><span style="color:#575279">(</span><span style="color:#EA9D34">'all'</span><span style="color:#575279">)</span></span>
-<span data-line=""><span style="color:#286983">let</span><span style="color:#575279;font-style:italic"> grays</span><span style="color:#286983"> =</span><span style="color:#575279;font-style:italic"> all</span><span style="color:#286983">.</span><span style="color:#D7827E">filter</span><span style="color:#575279">(</span><span style="color:#575279;font-style:italic">achromatic</span><span style="color:#575279">)</span></span>
-<span data-line=""> </span>
-<span data-line=""><span style="color:#575279;font-style:italic">console</span><span style="color:#286983">.</span><span style="color:#D7827E">log</span><span style="color:#575279">(</span><span style="color:#575279;font-style:italic">grays</span><span style="color:#575279">)</span></span>
-<span data-line=""> </span>
-<span data-line=""><span style="color:#575279;font-style:italic">console</span><span style="color:#286983">.</span><span style="color:#D7827E">log</span><span style="color:#575279">(</span><span style="color:#D7827E">stats</span><span style="color:#575279">(</span><span style="color:#575279;font-style:italic">all</span><span style="color:#575279">))</span></span>
-<span data-line=""> </span></code></pre></figure>
+<pre><code class="language-js">
+<span class="pl-k">import</span> { <span class="pl-smi">achromatic</span>, <span class="pl-smi">stats</span>, <span class="pl-smi">colors</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>huetiful-js<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">let</span> all <span class="pl-k">=</span> <span class="pl-en">colors</span>(<span class="pl-s"><span class="pl-pds">'</span>all<span class="pl-pds">'</span></span>)
+<span class="pl-k">let</span> grays <span class="pl-k">=</span> <span class="pl-smi">all</span>.<span class="pl-en">filter</span>(achromatic)
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(grays)
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">stats</span>(all))
+
+</code></pre>
 <h5>In the browser and via CDNs</h5>
 <p>You can use also a CDN in this example, jsdelivr to load the library remotely:</p>
 <blockquote>
 <p>Make sure to set the <code>type</code> of the script tag to module when you load it in your HTML.</p>
 </blockquote>
-<figure data-rehype-pretty-code-figure=""><pre style="background-color:#faf4ed;color:#575279" tabindex="0" data-language="js" data-theme="rose-pine-dawn"><code data-language="js" data-theme="rose-pine-dawn" style="display: grid;"><span data-line=""><span style="color:#286983">import </span><span style="color:#797593">{</span><span style="color:#286983">...</span><span style="color:#797593">}</span><span style="color:#286983"> from </span><span style="color:#EA9D34">'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js'</span></span>
-<span data-line=""> </span></code></pre></figure>
+<pre><code class="language-js"><span class="pl-k">import</span> {...} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js<span class="pl-pds">'</span></span>
+
+</code></pre>
 <p>Or load the library as your HTML file using a <code>&#x3C;script></code> tag:</p>
-<figure data-rehype-pretty-code-figure=""><pre style="background-color:#faf4ed;color:#575279" tabindex="0" data-language="html" data-theme="rose-pine-dawn"><code data-language="html" data-theme="rose-pine-dawn" style="display: grid;"><span data-line=""><span style="color:#575279"># With script tag</span></span>
-<span data-line=""> </span>
-<span data-line=""><span style="color:#9893A5">&#x3C;</span><span style="color:#56949F">script</span><span style="color:#907AA9;font-style:italic"> type</span><span style="color:#797593">=</span><span style="color:#EA9D34">'module'</span><span style="color:#907AA9;font-style:italic"> src</span><span style="color:#797593">=</span><span style="color:#EA9D34">'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js'</span><span style="color:#9893A5">>&#x3C;</span><span style="color:#575279">/script</span></span>
-<span data-line=""> </span>
-<span data-line=""><span style="color:#575279">&#x3C;!-- Or, if you like it this way --></span></span>
-<span data-line=""> </span>
-<span data-line=""><span style="color:#575279">&#x3C;script></span></span>
-<span data-line=""> </span>
-<span data-line=""><span style="color:#575279">import { colors } from 'https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js'</span></span>
-<span data-line=""> </span>
-<span data-line=""><span style="color:#575279">let myPalette = colors('all','700')</span></span>
-<span data-line=""> </span>
-<span data-line=""><span style="color:#575279">&#x3C;</span><span style="color:#9893A5">/</span><span style="color:#56949F">script</span><span style="color:#9893A5">></span></span>
-<span data-line=""> </span></code></pre></figure>
+<pre><code class="language-html"># With script tag
+
+&#x3C;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">'</span>module<span class="pl-pds">'</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js<span class="pl-pds">'</span></span>><span class="pl-k">&#x3C;/</span>script
+
+<span class="pl-c">&#x3C;!--</span> Or, <span class="pl-k">if</span> you like it <span class="pl-c1">this</span> way <span class="pl-c">--></span>
+
+<span class="pl-k">&#x3C;</span>script<span class="pl-k">></span>
+
+<span class="pl-k">import</span> { <span class="pl-smi">colors</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>https://cdn.jsdelivr.net/npm/huetiful-js/lib/huetiful.min.js<span class="pl-pds">'</span></span>
+
+<span class="pl-k">let</span> myPalette <span class="pl-k">=</span> <span class="pl-en">colors</span>(<span class="pl-s"><span class="pl-pds">'</span>all<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>700<span class="pl-pds">'</span></span>)
+
+&#x3C;/<span class="pl-ent">script</span>>
+
+</code></pre>
 <h4>Quickstart</h4>
 <p><a href="https://huetiful-js.com/quickstart">See the Quickstart here</a></p>
 <h4>Community</h4>

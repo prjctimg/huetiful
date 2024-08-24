@@ -345,211 +345,217 @@ function lightness(color, amount, darken = false) {
  * @returns {ColorToken}
  */
 function token(color, options = undefined) {
-  /*
-   * SUPPORTED COLORSPACES
-   * huetiful-js does not focus on color conversion but parsing color from a myriad of sources and doing useful stuff
-   * This means we only support the colorspaces we use internally. The most accessible token type is the hexadecimal. after that you're on your own
-   * Colorspaces are heavy to load in the browser so expect support for certain colorspaces to be dropped
-   *
-   */
-  const modeDefinitions = {
-    hsv: modeHsv,
-    rgb: modeLrgb,
-    lab: modeLab,
-    lch65: modeLch65,
-    lab65: modeLab65,
-    oklch: modeOklch,
-    lch: modeLch,
-    xyz: modeXyz65,
-    jch: modeJch,
-  };
-  let {
-      srcMode,
-      targetMode,
-      omitMode,
-      kind,
-      numType,
-      omitAlpha,
-      normalizeRgb,
-    } = options || {},
-    parseToken = (m, a) => useMode(modeDefinitions[m])(or(a, c2str()));
+	/*
+	 * SUPPORTED COLORSPACES
+	 * huetiful-js does not focus on color conversion but parsing color from a myriad of sources and doing useful stuff
+	 * This means we only support the colorspaces we use internally. The most accessible token type is the hexadecimal. after that you're on your own
+	 * Colorspaces are heavy to load in the browser so expect support for certain colorspaces to be dropped
+	 *
+	 */
+	const modeDefinitions = {
+		hsv: modeHsv,
+		rgb: modeLrgb,
+		lab: modeLab,
+		lch65: modeLch65,
+		lab65: modeLab65,
+		oklch: modeOklch,
+		lch: modeLch,
+		xyz: modeXyz65,
+		jch: modeJch
+	};
+	let {
+		srcMode,
+		targetMode,
+		omitMode,
+		kind,
+		numType,
+		omitAlpha,
+		normalizeRgb
+	} = options || {};
 
-  /**
-   *
-   * 					* GLOBAL DEFAULTS (listed respectively to declarations)
-   *
-   * 							* color - if a color is a string we lowercase it
-   * 							* kind - return the color as hexadecimal by default
-   * 							* omitMode - return the array with the colorpace string by default
-   * 							* numType - return it as an ordinary integer if numType is undefined
-   * 							* srcMode - the mode the color was parsed in. Default is lch
-   * 							* targetMode - the mode to output the color token in. It is ignored for hex and number
-   * 							* omitAlpha - Omit the alpha channel from the color tuple. Default is false
-   * 							* normalizeRgb - Normalize RGB values above 1 as if in the range [0,255] back to the [0,1] range
-   */
+	/**
+	 *
+	 * 					* GLOBAL DEFAULTS (listed respectively to declarations)
+	 *
+	 * 							* color - if a color is a string we lowercase it
+	 * 							* kind - return the color as hexadecimal by default
+	 * 							* omitMode - return the array with the colorpace string by default
+	 * 							* numType - return it as an ordinary integer if numType is undefined
+	 * 							* srcMode - the mode the color was parsed in. Default is lch
+	 * 							* targetMode - the mode to output the color token in. It is ignored for hex and number
+	 * 							* omitAlpha - Omit the alpha channel from the color tuple. Default is false
+	 * 							* normalizeRgb - Normalize RGB values above 1 as if in the range [0,255] back to the [0,1] range
+	 */
 
-  kind = or(kind?.toLowerCase(), "str");
+	kind = or(kind?.toLowerCase(), 'str');
 
-  omitMode = or(omitMode, false);
+	omitMode = or(omitMode, false);
 
-  numType = or(numType?.toLowerCase(), undefined);
+	numType = or(numType?.toLowerCase(), undefined);
 
-  srcMode = getSrcMode(color, srcMode);
+	srcMode = getSrcMode(color);
 
-  targetMode = or(targetMode, "lch");
+	omitAlpha = or(omitAlpha, false);
 
-  omitAlpha = or(omitAlpha, false);
+	normalizeRgb = or(normalizeRgb, true);
 
-  normalizeRgb = or(normalizeRgb, false);
+	// if the color is an array turn it to an object
+	/**
+	 * an array of channel keys from the source colorspace. If undefined it defaults to 'rgb'
+	 * @type {string[]}
+	 */
+	let srcChannels = gmchn(srcMode),
+		/**
+		 * @type {number[]}
+		 * an array of channel values
+		 */
+		srcChannelValues = isArray(color)
+			? color?.filter((a) => eq(typeof a, 'number'))
+			: eq(typeof color, 'object')
+				? srcChannels?.map((a) => color[a])
+				: undefined,
+		// if the color is an array just take the values whilst optionally omitting the colorspace (if specified)
+		// step 2 get the alpha
 
-  // if the color is an array turn it to an object
-  /**
-   * an array of channel keys from the source colorspace. If undefined it defaults to LCH
-   * @type {string[]}
-   */
-  let channelKeys = gmchn(or(srcMode, targetMode)),
-    /**
-     * @type {number[]}
-     * an array of channel values
-     */
-    channelValues = isArray(color)
-      ? color?.filter((a) => eq(typeof a, "number"))
-      : eq(typeof color, "object")
-      ? channelKeys?.map((a) => color[a])
-      : undefined,
-    // if the color is an array just take the values whilst optionally omitting the colorspace (if specified)
-    // step 2 get the alpha
+		// check if the alpha channel is explicitly specified else cast 1 as the default
 
-    // check if the alpha channel is explicitly specified else cast 1 as the default
+		/**
+		 * the alpha channel captured if it exists in the color token
+		 * @type{number}
+		 */
 
-    /**
-     * the alpha channel captured if it exists in the color token
-     * @type{number}
-     */
+		alphaValue = alpha(color);
 
-    alphaValue = alpha(color);
+	// if its a string and has 8 or more characters (ignoring #) and is not a CSS named colortake the last two characters and convert them from hex
+	let result = { mode: srcMode };
+	if (srcChannelValues) {
+		// convert the color to an object (including alpha) without the mode
 
-  // if its a string and has 8 or more characters (ignoring #) and is not a CSS named colortake the last two characters and convert them from hex
-  let result = {};
-  if (channelValues) {
-    // convert the color to an object (including alpha) without the mode
+		for (const channel of srcChannels) {
+			result[channel] = srcChannelValues[srcChannels.indexOf(channel)];
+		}
+	}
 
-    for (const channel of channelKeys) {
-      result[channel] = channelValues[channelKeys.indexOf(channel)];
-    }
+	function parseToken() {
+		return useMode(modeDefinitions[targetMode])(result);
+	}
+	/**
+	 *
+	 * converts any color token to an array or object equivalent
+	 */
+	function c2col() {
+		if (and(eq(srcMode, 'rgb'), normalizeRgb)) {
+			/**
+			 *  Normalize the color back to the rgb gamut supported by culori
+			 * @type {boolean}
+			 * */
+			let checkGamut = srcChannels.some((c) => gt(Math.abs(result[c]), 1));
 
-    // color["alpha"] = eq(y?.length, 4) ? y[3] : 1;
-    if (and(srcMode.includes("rgb"), normalizeRgb)) {
-      /**
-       *  Normalize the color back to the rgb gamut supported by culori
-       * @type {boolean}
-       * */
-      let checkGamut = channelKeys.some((c) => gt(Math.abs(color[c]), 1));
+			if (checkGamut) {
+				for (const k of srcChannels) {
+					result[k] /= 255;
+				}
+			}
+		}
 
-      if (checkGamut) {
-        for (const k of channelKeys) {
-          result[k] /= 255;
-        }
-      }
-    }
-  } else {
-    result = parseToken(targetMode);
-  }
+		// If targetMode is defined, reassign channel  keys to that of  the targetMode
+		// to allow iteration to work correctly
+		if (targetMode) {
+			srcChannels = gmchn(targetMode);
+			result = parseToken();
+		}
+		if (eq(kind, 'obj')) {
+			omitMode ? result : (result['mode'] = targetMode ? targetMode : srcMode);
+			omitAlpha ? result : (result['alpha'] = alphaValue);
+			return result;
+		} else if (eq(kind, 'arr')) {
+			let colorArray = [];
+			for (const k of srcChannels) {
+				colorArray[srcChannels.indexOf(k)] = result[k];
+			}
 
-  /**
-   *
-   * converts any color token to an array or object equivalent
-   */
-  function c2col() {
-    if (eq(kind, "obj")) {
-      omitMode ? result : (result["mode"] = targetMode);
-      omitAlpha ? result : (result["alpha"] = alphaValue);
-      return result;
-    } else if (eq(kind, "arr")) {
-      let colorArray = [];
-      for (const k of channelKeys) {
-        colorArray[channelKeys.indexOf(k)] = result[k];
-      }
+			omitAlpha ? colorArray : colorArray.push(alphaValue);
+			omitMode
+				? colorArray
+				: colorArray.unshift(targetMode ? targetMode : srcMode);
+			return colorArray;
+		}
+	}
 
-      omitAlpha ? colorArray : colorArray.push(alphaValue);
-      omitMode ? colorArray : colorArray.unshift(targetMode);
-      return colorArray;
-    }
-  }
+	/**
+	 *
+	 * converts a color token to its numerical equivalent
+	 */
+	function c2num() {
+		const rgbObject = parseToken('rgb');
 
-  /**
-   *
-   * converts a color token to its numerical equivalent
-   */
-  function c2num() {
-    const rgbObject = parseToken("rgb");
+		/**
+		 * @type {number|string}
+		 */
+		// @ts-ignore
+		const result =
+			((255 * rgbObject['r']) << 16) +
+			((255 * rgbObject['g']) << 8) +
+			255 * rgbObject['b'];
 
-    /**
-     * @type {number|string}
-     */
-    // @ts-ignore
-    const result =
-      ((255 * rgbObject["r"]) << 16) +
-      ((255 * rgbObject["g"]) << 8) +
-      255 * rgbObject["b"];
+		return or(
+			and(
+				numType,
+				result.toString(
+					{ bin: 2, hex: 16, expo: 6, oct: 8 }[numType?.toLowerCase()]
+				)
+			),
+			result
+		);
+	}
 
-    return or(
-      and(
-        numType,
-        result.toString(
-          { bin: 2, hex: 16, expo: 6, oct: 8 }[numType?.toLowerCase()]
-        )
-      ),
-      result
-    );
-  }
+	/**
+	 *
+	 * converts any color token to hexadecimal
+	 */
+	function c2str() {
+		return {
+			boolean: or(and(eq(color, true), '#ffffff'), '#000000'),
+			number: num2c(),
+			object: (() => {
+				kind = 'obj';
+				return (omitAlpha ? formatHex : formatHex8)(c2col());
+			})(),
+			// @ts-ignore
+			string: or(colorsNamed?.color, formatHex(color))
+		}[typeof color];
+	}
 
-  /**
-   *
-   * converts any color token to hexadecimal
-   */
-  function c2str() {
-    let colorHex = {
-      boolean: or(and(eq(color, true), "#ffffff"), "#000000"),
-      number: num2c(),
-      object: formatHex(color),
-      // @ts-ignore
-      string: or(colorsNamed?.color, formatHex(color)),
-    }[typeof color];
+	/**
+	 *
+	 * converts a number to an RGB color object
+	 */
+	function num2c() {
+		// Ported from chroma-js with slight modifications
+		//
+		//
+		return and(
+			and(eq(typeof color, 'number'), gte(color, 0)),
+			lte(color, 0xffffff)
+		)
+			? {
+					// @ts-ignore
+					r: (color >> 16) / 255,
+					// @ts-ignore
+					g: ((color >> 8) & 0xff) / 255,
+					// @ts-ignore
+					b: (color & 0xff) / 255,
+					mode: 'rgb'
+				}
+			: Error('unknown num color: ' + color);
+	}
 
-    return omitAlpha ? colorHex : formatHex8(color);
-  }
-
-  /**
-   *
-   * converts a number to an RGB color object
-   */
-  function num2c() {
-    // Ported from chroma-js with slight modifications
-    //
-    //
-    return and(
-      and(eq(typeof color, "number"), gte(color, 0)),
-      lte(color, 0xffffff)
-    )
-      ? {
-          // @ts-ignore
-          r: (color >> 16) / 255,
-          // @ts-ignore
-          g: ((color >> 8) & 0xff) / 255,
-          // @ts-ignore
-          b: (color & 0xff) / 255,
-          mode: "rgb",
-        }
-      : Error("unknown num color: " + color);
-  }
-
-  return {
-    obj: c2col,
-    arr: c2col,
-    str: c2str,
-    num: c2num,
-  }[kind]();
+	return {
+		obj: c2col,
+		arr: c2col,
+		str: c2str,
+		num: c2num
+	}[kind]();
 }
 
 /**

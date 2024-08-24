@@ -3,36 +3,32 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypeStarryNight from "rehype-starry-night";
-import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
-import remarkToc from "remark-toc";
-import rehypeToc from "rehype-toc";
-import rehypePrettyCode from "rehype-pretty-code";
-async function markdownToHtml({ markdown = "", outPath, title }) {
-  markdown = "## On this page 📜:\n" + markdown;
-  var result = await remark()
-    .use(remarkParse)
-    .use(remarkToc, {
-      heading: "On this page 📜:",
-      maxDepth: 3,
-      minDepth: 2,
-      parents: "node",
-    })
-    .use(remarkRehype)
-    .use(rehypeStarryNight)
-    .use(rehypeStringify)
-    .process(markdown);
+import { readFileSync, writeFileSync } from 'node:fs';
+import remarkToc from 'remark-toc';
+import rehypeToc from 'rehype-toc';
 
-  writeFileSync(
-    outPath,
-    template({
-      content: result
-        .toString()
-        .replace(new RegExp("globals.md", "gmi"), "index.html"),
-      title: title,
-    })
-  );
-  return 0;
-  // Is this statement necessary ?
+async function markdownToHtml({ markdown = '', outPath, title }) {
+	markdown = 'On this page 📜:\n' + markdown;
+	const result = await remark()
+		.use(remarkParse)
+
+		.use(remarkRehype)
+		.use(rehypeStarryNight)
+		.use(rehypeToc, { headings: ['h2', 'h3'], nav: false })
+		.use(rehypeStringify)
+		.process(markdown);
+
+	writeFileSync(
+		outPath,
+		template({
+			content: result
+				.toString()
+				.replace(new RegExp('globals.md', 'gmi'), 'index.html'),
+			title: title
+		})
+	);
+	return 0;
+	// Is this statement necessary ?
 }
 
 /**

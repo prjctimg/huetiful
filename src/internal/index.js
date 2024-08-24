@@ -513,13 +513,13 @@ function clamp(v, mn = -Infinity, mx = Infinity) {
 /**
  * Parses the colorspace of the passed in color token. Meant for arrays and color objects.
  * @param {*} c The color token
- * @param {*} m the srcmode variable
- * @returns
+ * @returns {import('../types.js').Colorspaces}
  */
-function getSrcMode(c, m) {
-	return m
-		? m
-		: or(and(and(isArray(c), neq(typeof c[0], 'number')), c[0]), c?.mode);
+function getSrcMode(c) {
+	return or(
+		or(and(and(isArray(c), neq(typeof c[0], 'number')), c[0]), c?.mode),
+		'rgb'
+	);
 }
 
 function isValidArgs(argsList, minArgs=1) {
