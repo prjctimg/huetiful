@@ -97,9 +97,9 @@ const pltrconfg = {
 };
 
 function gmchn(m = '', i) {
-	const o = m.substring(m.length - 3);
+	m = m.replace(/\d|ok/g, '');
 
-	return or(and(i, o.charAt(i)), o.split(''));
+	return or(and(i, m.charAt(i)), m.split(''));
 }
 
 function mult(x, y) {
@@ -522,14 +522,14 @@ function getSrcMode(c) {
 	);
 }
 
-function isValidArgs(argsList, minArgs=1) {
+function isValidArgs(argsList, minArgs = 1) {
 	const len = argsList?.length;
 
 	if (gte(len, minArgs)) {
 		return true;
 	} else {
 		throw new Error(
-			`Color token collection cannot have a length smaller than 1 or be of type ${typeof argsList }`
+			`Color token collection cannot have a length smaller than 1 or be of type ${typeof argsList}`
 		);
 	}
 }
