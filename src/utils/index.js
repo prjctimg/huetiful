@@ -409,11 +409,7 @@ function token(color, options = undefined) {
 		 * @type {number[]}
 		 * an array of channel values
 		 */
-		srcChannelValues = isArray(color)
-			? color?.filter((a) => eq(typeof a, 'number'))
-			: eq(typeof color, 'object')
-				? srcChannels?.map((a) => color[a])
-				: undefined,
+		srcChannelValues,
 		// if the color is an array just take the values whilst optionally omitting the colorspace (if specified)
 		// step 2 get the alpha
 
@@ -425,9 +421,21 @@ function token(color, options = undefined) {
 		 */
 
 		alphaValue = alpha(color);
-
-	// if its a string and has 8 or more characters (ignoring #) and is not a CSS named colortake the last two characters and convert them from hex
 	let result = { mode: srcMode };
+	if (isArray(color)) {
+		srcChannelValues = color?.filter((a) => eq(typeof a, 'number'));
+	} else if (eq(typeof color, 'object')) {
+		srcChannelValues = srcChannels?.map((a) => color[a]);
+	} else if (neq(typeof color, 'boolean')) {
+		result = eq(typeof color, 'number') ? num2c() : parseToken(c2str(), 'rgb');
+		srcMode = 'rgb';
+		srcChannelValues = srcChannels?.map((a) => result[a]);
+		// result is equivalent to the color now to allow proper iteration
+	}
+
+	console.log(srcChannelValues);
+	// if its a string and has 8 or more characters (ignoring #) and is not a CSS named colortake the last two characters and convert them from hex
+
 	if (srcChannelValues) {
 		// convert the color to an object (including alpha) without the mode
 
@@ -436,14 +444,14 @@ function token(color, options = undefined) {
 		}
 	}
 
-	function parseToken() {
-		return useMode(modeDefinitions[targetMode])(result);
+	function parseToken(col, mode) {
+		return useMode(modeDefinitions[or(mode, targetMode)])(or(col, result));
 	}
 	/**
 	 *
 	 * converts any color token to an array or object equivalent
 	 */
-	function c2col() {
+	function c2col(k) {
 		if (and(eq(srcMode, 'rgb'), normalizeRgb)) {
 			/**
 			 *  Normalize the color back to the rgb gamut supported by culori
@@ -462,13 +470,14 @@ function token(color, options = undefined) {
 		// to allow iteration to work correctly
 		if (targetMode) {
 			srcChannels = gmchn(targetMode);
+
 			result = parseToken();
 		}
-		if (eq(kind, 'obj')) {
+		if (eq(k, 'obj')) {
 			omitMode ? result : (result['mode'] = targetMode ? targetMode : srcMode);
 			omitAlpha ? result : (result['alpha'] = alphaValue);
 			return result;
-		} else if (eq(kind, 'arr')) {
+		} else if (eq(k, 'arr')) {
 			let colorArray = [];
 			for (const k of srcChannels) {
 				colorArray[srcChannels.indexOf(k)] = result[k];
@@ -478,6 +487,7 @@ function token(color, options = undefined) {
 			omitMode
 				? colorArray
 				: colorArray.unshift(targetMode ? targetMode : srcMode);
+			console.log(colorArray);
 			return colorArray;
 		}
 	}
@@ -487,7 +497,7 @@ function token(color, options = undefined) {
 	 * converts a color token to its numerical equivalent
 	 */
 	function c2num() {
-		const rgbObject = parseToken('rgb');
+		const rgbObject = parseToken(undefined, 'rgb');
 
 		/**
 		 * @type {number|string}
@@ -517,10 +527,7 @@ function token(color, options = undefined) {
 		return {
 			boolean: or(and(eq(color, true), '#ffffff'), '#000000'),
 			number: num2c(),
-			object: (() => {
-				kind = 'obj';
-				return (omitAlpha ? formatHex : formatHex8)(c2col());
-			})(),
+			object: (omitAlpha ? formatHex : formatHex8)(c2col('obj')),
 			// @ts-ignore
 			string: or(colorsNamed?.color, formatHex(color))
 		}[typeof color];
@@ -551,11 +558,11 @@ function token(color, options = undefined) {
 	}
 
 	return {
-		obj: c2col,
-		arr: c2col,
-		str: c2str,
-		num: c2num
-	}[kind]();
+		obj: c2col('obj'),
+		arr: c2col('arr'),
+		str: c2str(),
+		num: c2num()
+	}[kind];
 }
 
 /**
