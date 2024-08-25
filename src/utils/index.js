@@ -435,7 +435,7 @@ function token(color, options = undefined) {
 	 * converts any color token to an array or object equivalent
 	 */
 	function c2col(k) {
-		if (and(eq(srcMode, 'rgb'), normalizeRgb)) {
+		if (and(and(eq(srcMode, 'rgb'), normalizeRgb), not(targetMode))) {
 			/**
 			 *  Normalize the color back to the rgb gamut supported by culori
 			 * @type {boolean}
@@ -470,7 +470,7 @@ function token(color, options = undefined) {
 			omitMode
 				? colorArray
 				: colorArray.unshift(targetMode ? targetMode : srcMode);
-			console.log(colorArray);
+
 			return colorArray;
 		}
 	}
