@@ -54,6 +54,7 @@ import {
 	rand
 } from '../internal/index.js';
 import { hue } from '../constants/index.js';
+import { ColorToken, TokenOptions } from '../types.js';
 
 /**
  *
@@ -66,7 +67,7 @@ import { hue } from '../constants/index.js';
  * For example `*0.5` which means the value multiply the current alpha by `0.5` and set the product as the new alpha value. 
  * In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
  * 
- * @param {ColorToken} color The color with the opacity/alpha channel to retrieve or set.
+ * @param  color The color with the opacity/alpha channel to retrieve or set.
  * @param {number|string} amount The value to apply to the opacity channel. The value is between `[0,1]`
  * @returns {number|string}
  * @example
@@ -158,7 +159,7 @@ console.log(mc('rgb.g')('#a1bd2f'))
 function mc(modeChannel = '') {
 	/**
    
-   * @param {ColorToken} color Any recognizable color token.
+   * @param  color Any recognizable color token.
   * @param {string|number} [value=undefined] The value to set on the queried channel. Also supports expressions as strings e.g `"#fc23a1"` `"*0.5"`
  
    * @returns  {number|ColorToken}
@@ -220,7 +221,7 @@ function mc(modeChannel = '') {
 /**
  * Checks if a color token is achromatic (without hue or simply grayscale).
  * 
- * @param {ColorToken} color The color token to test if it is achromatic or not.
+ * @param  color The color token to test if it is achromatic or not.
  * @returns {boolean}
  * @example
 
@@ -280,7 +281,7 @@ function achromatic(color) {
 
 /**
  * Darkens the color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
- * @param {ColorToken} color The color to darken.
+ * @param  color The color to darken.
  * @param {number} amount The amount to darken with. The value is expected to be in the range `[0,1]`. Default is `0.1`.
  * @returns {string}
  * @example
@@ -339,48 +340,41 @@ function lightness(color, amount, darken = false) {
  * * `'obj'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.
  * * `'temp'` - Parses the color token to its RGB equivalent and expects the value to be between 0 and 30,000
  *
- * @param {ColorToken} color The color token to parse or convert.
- * @param {import("../types.js").TokenOptions} options Options to customize the parsing and output behaviour.
- * @returns {ColorToken}
+ * @param  color The color token to parse or convert.
+ * @param  options Options to customize the parsing and output behaviour.
+ * @returns 
  */
-function token(color, options = undefined) {
+function token<Color extends ColorToken, Options extends TokenOptions>(
+	color: Color,
+	options?: Options
+): Options['kind'] {
 	/**
 	 * @description huetiful-js does not focus on color conversion but parsing color from a myriad of sources and doing useful stuff. This means we only support the colorspaces we use internally. The most accessible token type is the hexadecimal. after that you're on your own Colorspaces are heavy to load in the browser so expect support for certain colorspaces to be dropped
 	 *
 	 */
 	const modeDefinitions = {
-		hsv: modeHsv,
-		rgb: modeLrgb,
-		lab: modeLab,
-		lch65: modeLch65,
-		lab65: modeLab65,
-		oklch: modeOklch,
-		lch: modeLch,
-		xyz: modeXyz65,
-		jch: modeJch
-	};
-	let {
-		srcMode,
-		targetMode,
-		omitMode,
-		kind,
-		numType,
-		omitAlpha,
-		normalizeRgb
-	} = options || {};
+			hsv: modeHsv,
+			rgb: modeLrgb,
+			lab: modeLab,
+			lch65: modeLch65,
+			lab65: modeLab65,
+			oklch: modeOklch,
+			lch: modeLch,
+			xyz: modeXyz65,
+			jch: modeJch
+		},
+		defaultOptions: TokenOptions = {
+			kind: 'str',
+			omitMode: false,
+			numType: undefined,
+			srcMode: getSrcMode(color),
+			omitAlpha: false,
+			normalizeRgb: true
+		},
+		{ srcMode, targetMode, omitMode, kind, numType, omitAlpha, normalizeRgb } =
+			or(options, defaultOptions);
 
 	// Initialize defaults for the options
-	kind = or(kind?.toLowerCase(), 'str');
-
-	omitMode = or(omitMode, false);
-
-	numType = or(numType?.toLowerCase(), undefined);
-
-	srcMode = getSrcMode(color);
-
-	omitAlpha = or(omitAlpha, false);
-
-	normalizeRgb = or(normalizeRgb, true);
 
 	// Step 1 - Parse the color toke to an object
 
@@ -641,7 +635,7 @@ function luminance(color, amount) {
  * Gets the hue family which a color belongs to with the overtone included (if it has one.).
  * 
  * For example `'red'` or `'blue-green'`. If the color is achromatic it returns the string `'gray'`.
- * @param {ColorToken} color The color to query its shade or hue family.
+ * @param  color The color to query its shade or hue family.
  * @returns {import("../types.js").HueFamily}
  * @example
  *
@@ -669,7 +663,7 @@ function family(color) {
 /**
  * Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'` using the `'lch'` colorspace.
  * 
- * @param {ColorToken} color The color to check the temperature.
+ * @param  color The color to check the temperature.
  * @returns {'cool' | 'warm'} True if the color is cool else false.
  * @example
  *
@@ -713,7 +707,7 @@ function temp(color) {
  * 
  * * If an achromatic color is passed in it returns the string `'gray'`
  * * If the color has no bias it returns `false`.
- * @param {ColorToken} color The color to query its overtone.
+ * @param  color The color to query its overtone.
  * @returns {string | false}
  * @example
  * 
@@ -750,7 +744,7 @@ function overtone(color) {
  * 
  * The function is not guarded against achromatic colors which means no action will be done on a gray color and it will be returned as is. Pure black or white (`'#000000'` and `'#ffffff'` respectively) may return unexpected results.
  * 
- * @param {ColorToken} baseColor The color to retrieve its complimentary equivalent.
+ * @param  baseColor The color to retrieve its complimentary equivalent.
  * @param {boolean} obj Optional boolean whether to return an object with the result color's hue family or just the result color. Default is `false`.
  * @returns {ColorToken|import("../types.js").Fact}
  * @example

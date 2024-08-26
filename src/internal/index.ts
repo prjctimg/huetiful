@@ -26,7 +26,7 @@ let { keys, entries, values } = Object;
  * @param def The value to cast if arg is falsy
  * @returns  The first truthy value
  */
-function or(arg, def) {
+function or<T, U>(arg: T, def: U) {
 	return arg || def;
 }
 

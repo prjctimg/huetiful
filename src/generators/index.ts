@@ -1,16 +1,3 @@
-
-/**
- * @typedef { import('../types.js').Collection} Collection
- * @typedef { import('../types.js').SchemeType} SchemeType
- * @typedef { import('../types.js').SchemeOptions} SchemeOptions
- * @typedef { import('../types.js').DiscoverOptions} DiscoverOptions
- * @typedef { import('../types.js').HueshiftOptions} HueShiftOptions
- * @typedef { import('../types.js').ColorToken} ColorToken
- * @typedef { import('../types.js').TokenOptions} TokenOptions
- * @typedef { import('../types.js').PairedSchemeOptions} PairedSchemeOptions
- * @typedef { import('../types.js').InterpolatorOptions} InterpolatorOptions
- */
-
 import {
 	samples,
 	interpolate,
@@ -26,7 +13,7 @@ import {
 	easingSmoothstep,
 	averageNumber,
 	random
-// @ts-ignore
+	// @ts-ignore
 } from 'culori/fn';
 import {
 	or,
@@ -51,6 +38,15 @@ import {
 	keys
 } from '../internal/index.js';
 import { mc, token } from '../utils/index.js';
+import {
+	ColorToken,
+	TokenOptions,
+	PairedSchemeOptions,
+	Collection,
+	InterpolatorOptions,
+	DiscoverOptions,
+	HueshiftOptions
+} from '../types.js';
 /**
  * Creates a palette of hue shifted colors from the passed in color.
  * 
@@ -64,7 +60,7 @@ import { mc, token } from '../utils/index.js';
  *  The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or `(num * 2) + 1`.
  * 
  * @param baseColor The color to use as the base of the palette.
- * @param {HueShiftOptions} options The optional overrides object.
+ * @param {HueshiftOptions} options The optional overrides object.
  
  * @example
  * import { hueshift } from "huetiful-js";
@@ -82,7 +78,7 @@ console.log(hueShiftedPalette);
   '#3b0c3a'
 ]
  */
-function hueshift(baseColor, options) {
+function hueshift(baseColor, options: HueshiftOptions): Collection {
 	let { num, hueStep, minLightness, maxLightness, easingFn } = options || {};
 
 	baseColor = or(baseColor, '#3fca2b');
@@ -155,7 +151,10 @@ console.log(pastel("green"))
 
 // #036103ff
  */
-function pastel(baseColor, options = undefined) {
+function pastel(
+	baseColor: ColorToken,
+	options: TokenOptions | undefined = undefined
+): ColorToken {
 	/**
 	 * The colors from which the randomized values are obtained from were extracted from this article:
 	 *
@@ -209,7 +208,10 @@ function pastel(baseColor, options = undefined) {
 console.log(pair("green",{hueStep:6,num:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
  */
-function pair(baseColor, options) {
+function pair(
+	baseColor: ColorToken,
+	options: PairedSchemeOptions
+): Array<string | ColorToken> | string | ColorToken {
 	// eslint-disable-next-line prefer-const
 	let { num, via, hueStep, colorspace } = options || {}; // I cant get intellisense when I use or()
 
@@ -290,7 +292,10 @@ console.log(interpolator(['pink', 'blue'], { num:8 }));
 ]
  *
  */
-function interpolator(baseColors = [], options = undefined) {
+function interpolator(
+	baseColors: Collection = [],
+	options: InterpolatorOptions = undefined
+): Array<ColorToken> {
 	let { hueFixup, stops, easingFn, kind, closed, colorspace, num } =
 		options || {};
 	// Set the internal defaults
@@ -387,7 +392,10 @@ let sample = [
 console.log(discover(sample, { kind:'tetradic' }))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
  */
-function discover(colors = [], options) {
+function discover(
+	colors: Collection = [],
+	options: DiscoverOptions
+): Collection {
 	if (isValidArgs(colors, 4)) {
 		//  Initialize and sanitize parameters
 		const colorTokenValues = values(colors),
@@ -458,7 +466,10 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 // [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
 
  */
-function earthtone(baseColor, options) {
+function earthtone(
+	baseColor: ColorToken,
+	options: import('../types.js').EarthtoneOptions
+): ColorToken | Array<ColorToken> {
 	let { num, earthtones, colorspace, kind, closed } = options || {};
 	baseColor = token(baseColor);
 
@@ -521,7 +532,10 @@ console.log(scheme("triadic")("#a1bd2f"))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
  */
 // @ts-ignore
-function scheme(baseColor = { l: 8, c: 40, h: 87, mode: 'lch' }, options = {}) {
+function scheme(
+	baseColor: ColorToken = { l: 8, c: 40, h: 87, mode: 'lch' },
+	options: SchemeOptions = {}
+): Collection {
 	let { colorspace, kind, easingFn } = options || {};
 	// @ts-ignore
 	kind = or(kind, 'analogous');
@@ -579,8 +593,3 @@ function scheme(baseColor = { l: 8, c: 40, h: 87, mode: 'lch' }, options = {}) {
 }
 
 export { pair, discover, hueshift, pastel, earthtone, scheme, interpolator };
-
-
-
-
-

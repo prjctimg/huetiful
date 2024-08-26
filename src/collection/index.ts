@@ -1,37 +1,32 @@
-/**
- * @typedef {import('../types.js').ColorToken} ColorToken
- * @typedef {import('../types.js').Collection} Collection
- * @typedef {import('../types.js').Colorspaces} Colorspaces
- * @typedef {import('../types.js').Stats} Stats
- * @typedef {import('../types.js').StatsOptions} StatsOptions
- * @typedef {import('../types.js').Factor} Factor
- * @typedef {import('../types.js').Order} Order
- * @typedef {import('../types.js').SortByOptions} SortByOptions
- * @typedef {import('../types.js').DistributionOptions} DistributionOptions
- */
-
 import {
-  sortedColl,
-  mcchn,
-  chnDiff,
-  factorIterator,
-  or,
-  and,
-  isArray,
-  map,
-  eq,
-  filteredColl,
-} from "../internal/index.js";
-import { family, luminance, mc, token } from "../utils/index.js";
-import { contrast } from "../accessibility/index.js";
+	sortedColl,
+	mcchn,
+	chnDiff,
+	factorIterator,
+	or,
+	and,
+	isArray,
+	map,
+	eq,
+	filteredColl
+} from '../internal/index.js';
+import { family, luminance, mc, token } from '../utils/index.js';
+import { contrast } from '../accessibility/index.js';
 import {
-  averageAngle,
-  averageNumber,
-  differenceHyab,
-  fixupHueLonger,
-  fixupHueShorter,
-} from "culori/fn";
-import { limits } from "../constants/index.js";
+	averageAngle,
+	averageNumber,
+	differenceHyab,
+	fixupHueLonger,
+	fixupHueShorter
+} from 'culori/fn';
+import { limits } from '../constants/index.js';
+import {
+	Collection,
+	ColorToken,
+	SortByOptions,
+	Stats,
+	StatsOptions
+} from '../types.js';
 
 /**
  * Computes statistical values about the passed in color collection.
@@ -64,7 +59,7 @@ import { limits } from "../constants/index.js";
  * @param {StatsOptions} options
  * @returns {Stats}
  */
-function stats(collection = [], options = undefined) {
+function stats(collection: Collection, options = undefined) {
 	let { factor, relative, colorspace, against } = options || {};
 
 	/*
@@ -214,13 +209,19 @@ console.log(
 
 // [ 'brown', 'red', 'green', 'purple' ]
  */
-function sortBy(collection = [], options = undefined) {
-	let { against, colorspace, factor, order, relative } = options || {};
-	factor = or(factor, undefined);
-	relative = or(relative, false);
-	colorspace = or(colorspace, 'lch');
-	against = or(against, 'cyan');
-	order = or(order, 'asc');
+function sortBy<T extends ColorToken>(
+	collection: Collection<T>,
+	options?: SortByOptions
+): Collection<T> {
+	const defaultOptions: SortByOptions = {
+		factor: undefined,
+		relative: false,
+		colorspace: 'lch',
+		against: 'cyan',
+		order: 'asc'
+	};
+	const { against, colorspace, factor, order, relative } =
+		options || defaultOptions;
 
 	// lightness and chroma channel constants respectively
 	const [l, c] = ['l', 'c'].map((w) => mcchn(w, colorspace, false)),
@@ -268,51 +269,51 @@ function sortBy(collection = [], options = undefined) {
   @returns {undefined}
  */
 function distribute(factor, options) {
-  // Destructure the opts to check before distributing the factor
-  let { extremum, excludeSelf, excludeAchromatic, colorspace, hueFixup } =
-      options || {},
-    // @ts-ignore
-    get_cb,
-    // @ts-ignore
-    set_cb;
+	// Destructure the opts to check before distributing the factor
+	let { extremum, excludeSelf, excludeAchromatic, colorspace, hueFixup } =
+			options || {},
+		// @ts-ignore
+		get_cb,
+		// @ts-ignore
+		set_cb;
 
-  // Set the extremum to distribute to default to max if its not min
-  extremum = or(extremum, "max");
+	// Set the extremum to distribute to default to max if its not min
+	extremum = or(extremum, 'max');
 
-  // Exclude the colorToken with the specified factor extremum being distributed
-  excludeSelf = or(excludeSelf, false);
+	// Exclude the colorToken with the specified factor extremum being distributed
+	excludeSelf = or(excludeSelf, false);
 
-  // Exclude achromatic colors from the manipulations. The colors are returned in the resultant collection
-  excludeAchromatic = or(excludeAchromatic, false);
+	// Exclude achromatic colors from the manipulations. The colors are returned in the resultant collection
+	excludeAchromatic = or(excludeAchromatic, false);
 
-  // The fixup to use when tweaking the hue channels
-  // @ts-ignore
-  hueFixup =
-    factor === "hue"
-      ? hueFixup === "longer"
-        ? fixupHueLonger
-        : fixupHueShorter
-      : null;
-  colorspace = or(colorspace, "lch");
+	// The fixup to use when tweaking the hue channels
+	// @ts-ignore
+	hueFixup =
+		factor === 'hue'
+			? hueFixup === 'longer'
+				? fixupHueLonger
+				: fixupHueShorter
+			: null;
+	colorspace = or(colorspace, 'lch');
 
-  // v is expected to be a color object so that we can access the color's hue property during the mapping
-  // set the callbacks depending on the type of factor
-  switch (factor) {
-    case "chroma":
-      break;
-    case "hue":
-      break;
-    case "luminance":
-      break;
-    case "lightness":
-      break;
-  }
+	// v is expected to be a color object so that we can access the color's hue property during the mapping
+	// set the callbacks depending on the type of factor
+	switch (factor) {
+		case 'chroma':
+			break;
+		case 'hue':
+			break;
+		case 'luminance':
+			break;
+		case 'lightness':
+			break;
+	}
 
-  /**
-   *
-   * @param {any} collection The colors to manipulate.
-   * @returns {any} The collection with each color's `factor` adjusted.
-   */
+	/**
+	 *
+	 * @param {any} collection The colors to manipulate.
+	 * @returns {any} The collection with each color's `factor` adjusted.
+	 */
 }
 
 /**
@@ -356,172 +357,172 @@ let sample = [
 
  */
 function filterBy(collection, options) {
-  let { against, colorspace, factor, ranges } = options || {};
+	let { against, colorspace, factor, ranges } = options || {};
 
-  factor = or(factor, undefined);
-  //	relative = or(relative, false);
-  colorspace = or(colorspace, "lch");
-  against = or(against, "cyan");
-  //	order = or(order, 'asc');
+	factor = or(factor, undefined);
+	//	relative = or(relative, false);
+	colorspace = or(colorspace, 'lch');
+	against = or(against, 'cyan');
+	//	order = or(order, 'asc');
 
-  let w = (b, s, e) => {
-      return filteredColl(factor, b)(collection, s, e);
-    },
-    p = (k) => {
-      /**
-       * @type { string | number } x
-       * The `start` or min extremum.
-       */
-      let x,
-        /**
-         * @type { string | number } x
-         * The `end` or max extremum.
-         */
-        y,
-        z,
-        // @ts-ignore
-        [c, l] = [mcchn("c", colorspace, false), mcchn("l", colorspace, false)];
-      if (isArray(factor) || undefined) {
-        x = ranges[k][0];
-        y = or(ranges[k][1], undefined);
-        switch (k) {
-          case "chroma":
-            y = !y ? limits[colorspace][c][1] : y;
+	let w = (b, s, e) => {
+			return filteredColl(factor, b)(collection, s, e);
+		},
+		p = (k) => {
+			/**
+			 * @type { string | number } x
+			 * The `start` or min extremum.
+			 */
+			let x,
+				/**
+				 * @type { string | number } x
+				 * The `end` or max extremum.
+				 */
+				y,
+				z,
+				// @ts-ignore
+				[c, l] = [mcchn('c', colorspace, false), mcchn('l', colorspace, false)];
+			if (isArray(factor) || undefined) {
+				x = ranges[k][0];
+				y = or(ranges[k][1], undefined);
+				switch (k) {
+					case 'chroma':
+						y = !y ? limits[colorspace][c][1] : y;
 
-            z = w(
-              mc(c),
+						z = w(
+							mc(c),
 
-              // @ts-ignore
-              x,
-              y
-            );
+							// @ts-ignore
+							x,
+							y
+						);
 
-            break;
-          case "contrast":
-            let q = (a) => (b) => contrast(b, a);
+						break;
+					case 'contrast':
+						let q = (a) => (b) => contrast(b, a);
 
-            z = w(
-              q(against),
+						z = w(
+							q(against),
 
-              x,
-              y
-            );
-            break;
-          case "distance":
-            /**
-             * The `distance` factor callback.
-             * @param {ColorToken} a The color ro compare against.
-             * @returns
-             */
-            // @ts-ignore
-            let u = (a) => differenceHyab()(a, against);
+							x,
+							y
+						);
+						break;
+					case 'distance':
+						/**
+						 * The `distance` factor callback.
+						 * @param {ColorToken} a The color ro compare against.
+						 * @returns
+						 */
+						// @ts-ignore
+						let u = (a) => differenceHyab()(a, against);
 
-            z = w(
-              u(token(against)),
+						z = w(
+							u(token(against)),
 
-              // @ts-ignore
-              x,
-              y
-            );
-            break;
-          case "hue":
-            z = w(
-              mc(`${colorspace}.h`),
-              // @ts-ignore
-              x,
-              y
-            );
-            break;
-          case "lightness":
-            y = !y ? limits[colorspace][mcchn("l", colorspace, false)][1] : y;
-            z = w(
-              mc(mcchn("l", colorspace)),
-              // @ts-ignore
-              x,
-              y
-            );
-            break;
-          case "luminance":
-            z = w(
-              luminance,
-              // @ts-ignore
-              x,
-              y
-            );
-            break;
-        }
-      } else {
-        x = ranges[0];
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'hue':
+						z = w(
+							mc(`${colorspace}.h`),
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'lightness':
+						y = !y ? limits[colorspace][mcchn('l', colorspace, false)][1] : y;
+						z = w(
+							mc(mcchn('l', colorspace)),
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'luminance':
+						z = w(
+							luminance,
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+				}
+			} else {
+				x = ranges[0];
 
-        y = or(ranges[1], undefined);
-        switch (k) {
-          case "chroma":
-            y = !ranges[1] ? limits[colorspace][c][1] : y;
+				y = or(ranges[1], undefined);
+				switch (k) {
+					case 'chroma':
+						y = !ranges[1] ? limits[colorspace][c][1] : y;
 
-            z = w(
-              mc(mcchn("c", colorspace)),
+						z = w(
+							mc(mcchn('c', colorspace)),
 
-              // @ts-ignore
-              x,
-              y
-            );
+							// @ts-ignore
+							x,
+							y
+						);
 
-            break;
-          case "contrast":
-            let q = (a) => contrast(against, a);
+						break;
+					case 'contrast':
+						let q = (a) => contrast(against, a);
 
-            z = w(
-              q(against),
-              // @ts-ignore
-              x,
-              y
-            );
-            break;
-          case "distance":
-            // @ts-ignore
-            let u = (b) => differenceHyab()(against, b);
+						z = w(
+							q(against),
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'distance':
+						// @ts-ignore
+						let u = (b) => differenceHyab()(against, b);
 
-            z = w(
-              u(token(against)),
+						z = w(
+							u(token(against)),
 
-              // @ts-ignore
-              x,
-              y
-            );
-            break;
-          case "hue":
-            z = w(
-              mc(`${colorspace}.h`),
-              // @ts-ignore
-              x,
-              y
-            );
-            break;
-          case "lightness":
-            y = !y ? limits[colorspace][c.split(".")[1]][1] : y;
-            z = w(
-              mc(mcchn("l", colorspace)),
-              // @ts-ignore
-              x,
-              y
-            );
-            break;
-          case "luminance":
-            z = w(
-              luminance,
-              // @ts-ignore
-              x,
-              y
-            );
-            break;
-        }
-      }
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'hue':
+						z = w(
+							mc(`${colorspace}.h`),
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'lightness':
+						y = !y ? limits[colorspace][c.split('.')[1]][1] : y;
+						z = w(
+							mc(mcchn('l', colorspace)),
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+					case 'luminance':
+						z = w(
+							luminance,
+							// @ts-ignore
+							x,
+							y
+						);
+						break;
+				}
+			}
 
-      return z;
-    };
+			return z;
+		};
 
-  // @ts-ignore
-  return factorIterator(factor, p);
+	// @ts-ignore
+	return factorIterator(factor, p);
 }
 
 export { stats, sortBy, filterBy, distribute };

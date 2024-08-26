@@ -52,10 +52,10 @@ export type SchemeType = "analogous" | "triadic" | "tetradic" | "complementary";
 /**
  * Any collection with enumerable keys that can be used to iterate through it to get the values which are expected to be valid color tokens. 
  */
-export type Collection =
-	| Array<ColorToken>
-	| Map<any, ColorToken>
-	| Set<ColorToken>
+export type Collection<C extends ColorToken> =
+	| Array<C>
+	| Map<any, C>
+	| Set<C>
 	| object;
 
 
