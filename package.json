@@ -51,11 +51,11 @@
 	},
 	"scripts": {
 		"test": "npm run build && npx jasmine",
-		"docs": "npx typedoc && node ./jobs/docs.cjs",
-		"build": "node ./jobs/build.cjs",
+		"docs": "npx typedoc && npx tsx ./jobs/docs.ts",
+		"build": "npx tsx ./jobs/build.cts",
 		"code:publish": "npm run build & npx tsc",
-		"format": "npx prettier \"./src/*.js\" --write",
-		"lint": "npx eslint --fix --ext ./src/*/index.js",
+		"format": "npx prettier \"./src/*.ts\" --write",
+		"lint": "npx eslint --fix --ext ./src/*/index.ts",
 		"start": "npx tsx watch app.ts"
 	},
 	"prettier": {

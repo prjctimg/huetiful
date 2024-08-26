@@ -243,30 +243,30 @@ describe(`Test suite for utils`, function () {
 
 // // TEST FOR FILTERBY
 
-// describe(`Test suite for filterBy`, function () {
-// 	it(`Returns a collection of colors filtered using different factors`, function () {
-// 		expect(
-// 			mods.filterBy(filterBysample, {
-// 				factor: ['chroma', 'contrast'],
-// 				against: 'black',
-// 				ranges: {
-// 					chroma: ['>30'],
-// 					contrast: [14]
-// 				}
-// 			})
-// 		).toEqual();
-// 	});
+describe(`Test suite for filterBy`, function () {
+	it(`Returns a collection of colors filtered using different factors`, function () {
+		expect(
+			mods.filterBy(filterBysample, {
+				factor: ['chroma', 'contrast'],
+				against: 'black',
+				ranges: {
+					chroma: ['>30'],
+					contrast: [14]
+				}
+			})
+		).toEqual();
+	});
 
-// 	it(`Returns an array of filtered colors`, function () {
-// 		expect(
-// 			mods.filterBy(filterBysample, {
-// 				factor: 'distance',
-// 				against: 'yellow',
-// 				ranges: ['>=20']
-// 			})
-// 		);
-// 	});
-// });
+	it(`Returns an array of filtered colors`, function () {
+		expect(
+			mods.filterBy(filterBysample, {
+				factor: 'distance',
+				against: 'yellow',
+				ranges: ['>=20']
+			})
+		).toEqual();
+	});
+});
 
 // // TEST FOR SORTBY
 
