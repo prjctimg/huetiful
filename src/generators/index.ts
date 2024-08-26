@@ -1,4 +1,4 @@
-// ts-nocheck
+
 /**
  * @typedef { import('../types.js').Collection} Collection
  * @typedef { import('../types.js').SchemeType} SchemeType
@@ -579,3 +579,8 @@ function scheme(baseColor = { l: 8, c: 40, h: 87, mode: 'lch' }, options = {}) {
 }
 
 export { pair, discover, hueshift, pastel, earthtone, scheme, interpolator };
+
+
+
+
+

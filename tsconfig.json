@@ -1,5 +1,5 @@
 {
-  "include": [ "src/index.js",
+  "include": [ "src/index.ts",
     "src/types.d.ts"
     ],"exclude":["**/*/node_modules"],
   "compilerOptions": {
