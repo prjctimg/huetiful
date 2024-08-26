@@ -1,12 +1,3 @@
-// @ts-nocheck
-
-/**
- * @typedef { import('../types.js').ColorToken} ColorToken
- * @typedef { import('../types.js').Collection} Collection
- * @typedef {import('../types.js').TailwindColorFamilies} TailwindColorFamilies
- * @typedef {import('../types.js').ScaleValues} ScaleValues
- */
-
 /**
  *
  */
@@ -54,7 +45,15 @@ import {
 	rand
 } from '../internal/index.js';
 import { hue } from '../constants/index.js';
-import { ColorToken, TokenOptions } from '../types.js';
+import {
+	ColorToken,
+	Fact,
+	FactObject,
+	BiasedHues,
+	TokenOptions,
+	ColorFamily,
+	ComplimentaryOptions
+} from '../types.js';
 
 /**
  *
@@ -97,6 +96,7 @@ function alpha(color, amount = undefined) {
 	} else if (eq(typeof color, 'string')) {
 		alphaChannel = and(
 			gte(color?.length, 8),
+			// @ts-ignore
 			not(colorsNamed?.color?.toLowerCase())
 		)
 			? parseInt(color?.slice(color?.length - 2), 16)
@@ -156,65 +156,48 @@ console.log(mc('rgb.g')('#a1bd2f'))
  * 
 */
 
-function mc(modeChannel = '') {
+function mc<Color extends ColorToken, Value>(modeChannel: string) {
 	/**
    
    * @param  color Any recognizable color token.
-  * @param {string|number} [value=undefined] The value to set on the queried channel. Also supports expressions as strings e.g `"#fc23a1"` `"*0.5"`
+  * @param The value to set on the queried channel. Also supports expressions as strings e.g `"#fc23a1"` `"*0.5"`
  
    * @returns  {number|ColorToken}
  
    */
-	return (color, value = undefined) => {
+	return (
+		color: Color,
+		value?: number | string
+	): Value extends number | string ? ColorToken : number => {
 		let [mode, channel] = modeChannel.split('.'),
 			// @ts-ignore
 			colorObject = token(color, { targetMode: mode, kind: 'obj' }),
 			currentChannel;
 
 		if (eq(typeof color, 'object')) {
-			currentChannel = or(
-				and(
-					isArray(color),
-					or(and(eq(typeof color[0], 'string'), color.slice(1)), color)[
-						gmchn(mode).indexOf(channel)
-					]
-				),
-				color[channel]
-			);
+			if (isArray(color)) {
+				currentChannel = (
+					eq(typeof color[0], 'string') ? color.slice(1) : color
+				)[gmchn(mode).indexOf(channel)];
+			}
 		} else {
+			currentChannel = colorObject[channel];
 		}
-
-		or(
-			and(
-				eq(typeof color, 'object'),
-				(currentChannel = or(
-					and(
-						isArray(color),
-						or(and(eq(typeof color[0], 'string'), color.slice(1)), color)[
-							gmchn(mode).indexOf(channel)
-						]
-					),
-					color[channel]
-				))
-			),
-			(currentChannel = colorObject[channel])
-		);
 
 		if (value) {
-			or(
-				or(
-					and(eq(typeof value, 'number'), (colorObject[channel] = value)),
-					exprParser(colorObject[channel], value)
-				),
-				Error(
+			if (eq(typeof value, 'number')) {
+				colorObject[channel] = value as number;
+			} else if (eq(typeof value, 'string')) {
+				colorObject = exprParser(colorObject[channel], value);
+			} else {
+				throw Error(
 					`${typeof value}} ${value} is an unsupported value to set on a color token`
-				)
-			);
+				);
+			}
 
 			// @ts-ignore
-			return colorObject;
 		}
-		return currentChannel;
+		return not(value) ? currentChannel : colorObject;
 	};
 }
 
@@ -271,7 +254,7 @@ function achromatic(color) {
 		and(
 			and(
 				or(isFalsy(color['l']), gte(color['l'], 100)),
-				or(!isFalsy(color['c'], isFalsy(color['c'])))
+				or(not(isFalsy(color['c'])), isFalsy(color['c']))
 			),
 			false
 		),
@@ -342,38 +325,43 @@ function lightness(color, amount, darken = false) {
  *
  * @param  color The color token to parse or convert.
  * @param  options Options to customize the parsing and output behaviour.
- * @returns 
+ * @returns
  */
 function token<Color extends ColorToken, Options extends TokenOptions>(
 	color: Color,
 	options?: Options
-): Options['kind'] {
+): ColorToken {
 	/**
 	 * @description huetiful-js does not focus on color conversion but parsing color from a myriad of sources and doing useful stuff. This means we only support the colorspaces we use internally. The most accessible token type is the hexadecimal. after that you're on your own Colorspaces are heavy to load in the browser so expect support for certain colorspaces to be dropped
 	 *
 	 */
 	const modeDefinitions = {
-			hsv: modeHsv,
-			rgb: modeLrgb,
-			lab: modeLab,
-			lch65: modeLch65,
-			lab65: modeLab65,
-			oklch: modeOklch,
-			lch: modeLch,
-			xyz: modeXyz65,
-			jch: modeJch
-		},
-		defaultOptions: TokenOptions = {
-			kind: 'str',
-			omitMode: false,
-			numType: undefined,
-			srcMode: getSrcMode(color),
-			omitAlpha: false,
-			normalizeRgb: true
-		},
-		{ srcMode, targetMode, omitMode, kind, numType, omitAlpha, normalizeRgb } =
-			or(options, defaultOptions);
+		hsv: modeHsv,
+		rgb: modeLrgb,
+		lab: modeLab,
+		lch65: modeLch65,
+		lab65: modeLab65,
+		oklch: modeOklch,
+		lch: modeLch,
+		xyz: modeXyz65,
+		jch: modeJch
+	};
+	let {
+		srcMode,
+		targetMode,
+		omitMode,
+		kind,
+		numType,
+		omitAlpha,
+		normalizeRgb
+	} = or(options, {} as Options);
 
+	kind = or(kind, 'str');
+	srcMode = getSrcMode(color);
+	normalizeRgb = or(normalizeRgb, true);
+	numType = or(numType, undefined);
+	omitMode = or(omitMode, false);
+	omitAlpha = or(omitAlpha, false);
 	// Initialize defaults for the options
 
 	// Step 1 - Parse the color toke to an object
@@ -382,7 +370,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 	 * an array of channel keys from the source colorspace. If undefined it defaults to 'rgb'
 	 * @type {string[]}
 	 */
-	let srcChannels = gmchn(srcMode),
+	let srcChannels = gmchn(srcMode) as string[],
 		/**
 		 * @type {number[]}
 		 * an array of channel values
@@ -405,9 +393,10 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 	} else if (eq(typeof color, 'object')) {
 		srcChannelValues = srcChannels?.map((a) => color[a]);
 	} else if (neq(typeof color, 'boolean')) {
+		// @ts-ignore
 		result = eq(typeof color, 'number') ? num2c() : parseToken(c2str(), 'rgb');
-		srcMode = 'rgb';
-		srcChannelValues = srcChannels?.map((a) => result[a]);
+
+		srcChannelValues = 'rgb'.split('').map((a) => result[a]);
 		// result is equivalent to the color now to allow proper iteration
 	}
 
@@ -421,7 +410,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 		}
 	}
 
-	function parseToken(col, mode) {
+	function parseToken(col?, mode?) {
 		return useMode(modeDefinitions[or(mode, targetMode)])(or(col, result));
 	}
 	/**
@@ -446,7 +435,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 		// If targetMode is defined, reassign channel  keys to that of  the targetMode
 		// to allow iteration to work correctly
 		if (targetMode) {
-			srcChannels = gmchn(targetMode);
+			srcChannels = gmchn(targetMode) as string[];
 
 			result = parseToken();
 		}
@@ -474,7 +463,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 	 * converts a color token to its numerical equivalent
 	 */
 	function c2num() {
-		const rgbObject = parseToken(undefined, 'rgb');
+		const rgbObject: object = parseToken(undefined, 'rgb');
 
 		/**
 		 * @type {number|string}
@@ -504,6 +493,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 		return {
 			boolean: or(and(eq(color, true), '#ffffff'), '#000000'),
 			number: num2c(),
+			// @ts-ignore
 			object: (omitAlpha ? formatHex : formatHex8)(c2col('obj')),
 			// @ts-ignore
 			string: or(colorsNamed?.color, formatHex(color))
@@ -523,11 +513,11 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 			lte(color, 0xffffff)
 		)
 			? {
-					r: (color >> 16) / 255,
+					r: ((color as number) >> 16) / 255,
 
-					g: ((color >> 8) & 0xff) / 255,
+					g: (((color as number) >> 8) & 0xff) / 255,
 
-					b: (color & 0xff) / 255,
+					b: (color as number & 0xff) / 255,
 					mode: 'rgb'
 				}
 			: Error('unknown num color: ' + color);
@@ -579,8 +569,11 @@ let myColor = luminance('#a1bd2f', 0.5)
 console.log(luminance(myColor))
 // 0.4999999136285792
  */
-function luminance(color, amount) {
-	color = token(color);
+function luminance<Color extends ColorToken, Amount>(
+	color: Color,
+	amount?: number
+): Amount extends number ? ColorToken : number {
+	color = token(color) as Color;
 	let result;
 	if (!amount) {
 		// @ts-ignore
@@ -595,7 +588,7 @@ function luminance(color, amount) {
 		if (eq(typeof amount, 'number')) {
 			// compute new color using...
 
-			const currentLuminance = wcagLuminance(color);
+			const currentLuminance = wcagLuminance(color as string);
 
 			//Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
 			// use a bilinear interpolation
@@ -636,7 +629,6 @@ function luminance(color, amount) {
  * 
  * For example `'red'` or `'blue-green'`. If the color is achromatic it returns the string `'gray'`.
  * @param  color The color to query its shade or hue family.
- * @returns {import("../types.js").HueFamily}
  * @example
  *
  * import { family } from 'huetiful-js'
@@ -645,9 +637,15 @@ function luminance(color, amount) {
 console.log(family("#310000"))
 // 'red'
  */
-function family(color) {
+function family<
+	Color extends ColorToken,
+	HueFamily extends BiasedHues & ColorFamily
+>(color: Color): HueFamily {
 	if (neq(achromatic(color), true)) {
-		let [hueAngle, hueFamilies] = [mc(`lch.h`)(color), keys(hue)];
+		let [hueAngle, hueFamilies] = [
+			mc(`lch.h`)(color),
+			keys(hue) as HueFamily[]
+		];
 
 		// @ts-ignore
 		return hueFamilies.find((o) => {
@@ -664,7 +662,7 @@ function family(color) {
  * Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'` using the `'lch'` colorspace.
  * 
  * @param  color The color to check the temperature.
- * @returns {'cool' | 'warm'} True if the color is cool else false.
+ * True if the color is cool else false.
  * @example
  *
  * import { isCool } from 'huetiful-js'
@@ -686,7 +684,7 @@ console.log(map(sample, isCool));
 
 
  */
-function temp(color) {
+function temp<Color extends ColorToken>(color: Color): 'cool' | 'warm' {
 	return or(
 		and(
 			keys(hue).some((hueFamily) =>
@@ -722,7 +720,9 @@ console.log(overtone("cyan"))
 console.log(overtone("blue"))
 // false
  */
-function overtone(color) {
+function overtone<Color extends ColorToken, Bias extends ColorFamily>(
+	color: Color
+): Bias | false {
 	const hueFamily = family(color);
 
 	// We check if the color can be found in the defined ranges
@@ -745,8 +745,7 @@ function overtone(color) {
  * The function is not guarded against achromatic colors which means no action will be done on a gray color and it will be returned as is. Pure black or white (`'#000000'` and `'#ffffff'` respectively) may return unexpected results.
  * 
  * @param  baseColor The color to retrieve its complimentary equivalent.
- * @param {boolean} obj Optional boolean whether to return an object with the result color's hue family or just the result color. Default is `false`.
- * @returns {ColorToken|import("../types.js").Fact}
+ * @param obj Optional boolean whether to return an object with the result color's hue family or just the result color. Default is `false`.
  * @example
  * 
  * import { complimentary } from "huetiful-js";
@@ -758,21 +757,23 @@ console.log(complimentary("pink", true))
 console.log(complimentary("purple"))
 // #005700
  */
-function complimentary(baseColor, obj = false) {
+function complimentary<
+	Color extends ColorToken,
+	Options extends ComplimentaryOptions
+>(baseColor: Color, options?: Options) {
+	const { randomOffset, extremums } = or(options, {} as Options);
+	const MIN_EXTREMUM = 0.965995,
+		MAX_EXTREMUM = 1;
 	const complimentaryHueAngle = adjustHue(
-		mc('lch.h')(baseColor) + 180 * rand(0.965, 1)
+		mc('lch.h')(baseColor) +
+			(randomOffset
+				? 180 *
+					rand(or(extremums[0], MIN_EXTREMUM), or(extremums[1], MAX_EXTREMUM))
+				: 180)
 	);
 
-	const result = or(
-		and(!achromatic(baseColor), {
-			hue: family(complimentaryHueAngle),
-			// @ts-ignore
-			color: token(mc('lch.h')(baseColor, complimentaryHueAngle))
-		}),
-		{ hue: 'gray', color: baseColor }
-	);
 	// @ts-ignore
-	return (obj && result) || result['color'];
+	return token(mc('lch.h')(baseColor, complimentaryHueAngle));
 }
 
 export {

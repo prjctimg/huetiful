@@ -1,4 +1,4 @@
-import * as mods from '../src/index.js';
+import * as mods from '../lib/huetiful.esm.js';
 
 /**
  *

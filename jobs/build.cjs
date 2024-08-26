@@ -5,7 +5,7 @@ var { dependencies } = require('../package.json');
 ///// For Node (no external deps)
 build({
 	legalComments: 'inline',
-	entryPoints: [`./src/index.js`],
+	entryPoints: [`./src/index.ts`],
 	format: 'esm',
 	bundle: true,
 	outfile: `./lib/huetiful.esm.js`,

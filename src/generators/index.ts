@@ -208,21 +208,19 @@ function pastel(
 console.log(pair("green",{hueStep:6,num:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
  */
-function pair(
-	baseColor: ColorToken,
-	options: PairedSchemeOptions
-): Array<string | ColorToken> | string | ColorToken {
-	// eslint-disable-next-line prefer-const
-	let { num, via, hueStep, colorspace } = options || {}; // I cant get intellisense when I use or()
-
+function pair<Color extends ColorToken, Options extends PairedSchemeOptions>(
+	baseColor: Color,
+	options?: Options
+): Collection {
+	let { num, via, hueStep, colorspace } = or(options, {} as Options);
 	via = or(via, 'light');
 	hueStep = or(hueStep, 5);
-
+	colorspace = or(colorspace, 'lch65');
 	//  @ts-ignore
-	baseColor = token(baseColor, { kind: 'obj' });
+	baseColor = token(baseColor, { kind: 'obj', targetMode: colorspace });
 
 	// get the hue of the passed in color and add it to the step which will result in the final color to pair with
-	const g = mc(`${or(colorspace, 'jch')}.h`)(
+	const destinationColor = mc(`${colorspace}.h`)(
 		baseColor,
 		Math.abs(baseColor['h'] + (lt(hueStep, 0) ? -hueStep : hueStep))
 	);
@@ -230,26 +228,21 @@ function pair(
 	// Set the tones to color objects with hardcoded hue values and lightness channels clamped at extremes.
 	// This is because pure black returns a falsy channel (have'nt found out which yet but it f*cks up the results smh).
 	// Question: Black is  the absence of hue or ligtness or both ? Why ?
-	const u = {
-		dark: { l: 0, c: 0, h: 0, mode: 'jch' },
-		light: { l: 100, c: 0, h: 0, mode: 'jch' }
-	};
+	const tone = {
+		dark: { l: 0, c: 0, h: 0, mode: colorspace },
+		light: { l: 100, c: 0, h: 0, mode: colorspace }
+	}[via];
 
-	const f = (l) =>
-		interpolator([baseColor, u[via], g], {
-			colorspace: colorspace,
-			num: 1,
-			token: options['token']
-		});
-
-	// Declare the num of iterations in samples() which will be used as the t value
 	// Since the interpolation returns half duplicate values we double the sample value
 	// Guard the num param against negative values and floats
 
 	// Return a slice of the array from the start to the half length of the array
 
-	//@ts-ignore
-	return lte(num, 1) ? f(1) : f(num * 2).slice(0, num);
+	return interpolator([baseColor, tone], {
+		colorspace: 'lch',
+		num: num * 2,
+		token: options?.token
+	}).slice(0, num);
 }
 
 /**

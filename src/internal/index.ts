@@ -16,6 +16,7 @@ import {
 	interpolatorLinear
 } from 'culori/fn';
 import { mc } from '../utils/index.js';
+import { Colorspaces } from '../types.js';
 
 let { keys, entries, values } = Object;
 
@@ -34,7 +35,7 @@ function or<T, U>(arg: T, def: U) {
  * Logical AND expression for `a` and `b`.
 
  */
-function and(a, b) {
+function and<T, U>(a: U, b: T) {
 	return a && b;
 }
 
@@ -96,7 +97,10 @@ const pltrconfg = {
 	li
 };
 
-function gmchn(m = '', i) {
+function gmchn<I extends unknown>(
+	m = '',
+	i?: I
+): I extends number ? string : string[] {
 	m = m.replace(/\d|ok/g, '');
 
 	return or(and(i, m.charAt(i)), m.split(''));
@@ -145,12 +149,12 @@ function exprParser(a, b) {
 
 /**
  * Gets the chroma or lightness channel from the specified `m` or colorspace.
- * @param {'c'|'l' | string} c The channel key to get
+ * @param  c The channel key to get
  * @param {string} m The colorspace
  * @param {boolean} f Whether to return full mode channel string or key only
  * @returns {string}
  */
-function mcchn(c, m, f = true) {
+function mcchn(c: 'c' | 'l' | string, m: Colorspaces, f = true): string {
 	// Matches any string with c or s
 	m = or(m, 'lch');
 	let x, e, d;
@@ -248,10 +252,10 @@ function neq(x, y) {
 	return not(eq(x, y));
 }
 
-function not(x) {
+function not(x: unknown) {
 	return !x;
 }
-function inRange(n, s, e) {
+function inRange(n: number, s: number, e?: number) {
 	/* Built-in method references for those with the same name as other `lodash` methods. */
 
 	return and(gte(n, Math.min(s, e)), lt(n, Math.max(s, e)));
@@ -274,7 +278,7 @@ function norm(v, mc = '') {
 	);
 }
 
-function rand(mn, mx) {
+function rand(mn: number, mx: number) {
 	return Math.random() * Math.abs(mx - mn + mn);
 }
 
@@ -374,11 +378,11 @@ function map(u, cb) {
 	return o;
 }
 
-function min(x) {
+function min(x: Array<number>) {
 	return x.reduce((a, b) => Math.min(a, b), Infinity);
 }
 
-function max(x) {
+function max(x: Array<number>) {
 	return x.reduce((a, b) => Math.max(a, b), -Infinity);
 }
 

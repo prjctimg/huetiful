@@ -23,6 +23,8 @@ import { limits } from '../constants/index.js';
 import {
 	Collection,
 	ColorToken,
+	DistributionOptions,
+	FilterByOptions,
 	SortByOptions,
 	Stats,
 	StatsOptions
@@ -59,7 +61,10 @@ import {
  * @param {StatsOptions} options
  * @returns {Stats}
  */
-function stats(collection: Collection, options = undefined) {
+function stats<Iterable extends Collection, Options extends StatsOptions>(
+	collection: Iterable,
+	options: Options
+) {
 	let { factor, relative, colorspace, against } = options || {};
 
 	/*
@@ -209,10 +214,10 @@ console.log(
 
 // [ 'brown', 'red', 'green', 'purple' ]
  */
-function sortBy<T extends ColorToken>(
-	collection: Collection<T>,
-	options?: SortByOptions
-): Collection<T> {
+function sortBy<Iterable extends Collection, Options extends SortByOptions>(
+	collection: Iterable,
+	options?: Options
+): Collection {
 	const defaultOptions: SortByOptions = {
 		factor: undefined,
 		relative: false,
@@ -220,27 +225,33 @@ function sortBy<T extends ColorToken>(
 		against: 'cyan',
 		order: 'asc'
 	};
-	const { against, colorspace, factor, order, relative } =
-		options || defaultOptions;
+	const { against, colorspace, factor, order, relative } = or(
+		options,
+		defaultOptions
+	);
 
 	// lightness and chroma channel constants respectively
-	const [l, c] = ['l', 'c'].map((w) => mcchn(w, colorspace, false)),
+	const [lightnessChannel, chromaChannel] = ['l', 'c'].map((w) =>
+			mcchn(w, colorspace, false)
+		),
 		y = (a) => sortedColl(factor, a, order),
 		// returns factor cbs determined by the options
 		factorCallbacks = (h) => {
 			return or(
 				and(relative, {
-					chroma: y(chnDiff(against, mc(colorspace + '.' + c))),
+					chroma: y(chnDiff(against, mc(colorspace + '.' + chromaChannel))),
 					hue: y(chnDiff(against, mc(`${colorspace}.h`))),
 					luminance: (() => {
 						// @ts-ignore
 						let v = (a) => (b) => Math.abs(luminance(a) - luminance(b));
 						return y(v(against));
 					})(),
-					lightness: y(chnDiff(against, mc(colorspace + '.' + l)))
+					lightness: y(
+						chnDiff(against, mc(colorspace + '.' + lightnessChannel))
+					)
 				}),
 				{
-					chroma: y(mc(colorspace + '.' + c)),
+					chroma: y(mc(colorspace + '.' + chromaChannel)),
 					hue: y(mc(`${colorspace}.h`)),
 					luminance: y(luminance),
 					distance: (() => {
@@ -252,7 +263,7 @@ function sortBy<T extends ColorToken>(
 						const w = (a) => (c) => contrast(c, a);
 						return y(w(against));
 					})(),
-					lightness: y(mc(colorspace + '.' + l))
+					lightness: y(mc(colorspace + '.' + lightnessChannel))
 				}
 			)[h](collection);
 		};
@@ -264,14 +275,23 @@ function sortBy<T extends ColorToken>(
 /**
  * Distributes the specified `factor` of a color in the collection with the specified `extremum` (i.e the color with the smallest/largest `hue` angle or `chroma` value) to all color tokens in the collection.
  *@param {import('../types.js').Factor} [factor='hue'] The property you want to distribute to the colors in the collection for example `hue | luminance`
- * @param {import('../types.js').DistributionOptions} [options={}] Optional overrides to change the default configursation
+ * @param  Optional overrides to change the default configursation
 
   @returns {undefined}
  */
-function distribute(factor, options) {
+function distribute<
+	Iterable extends Collection,
+	Options extends DistributionOptions
+>(collection: Iterable, options?: Options): Collection {
 	// Destructure the opts to check before distributing the factor
-	let { extremum, excludeSelf, excludeAchromatic, colorspace, hueFixup } =
-			options || {},
+	let {
+			extremum,
+			excludeSelf,
+			excludeAchromatic,
+			colorspace,
+			hueFixup,
+			factor
+		} = options || {},
 		// @ts-ignore
 		get_cb,
 		// @ts-ignore
@@ -335,8 +355,7 @@ function distribute(factor, options) {
  *
  * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param {Collection} collection The collection of colors to filter.  
- * @param {import("../types.js").FilterByOptions} options
- * @returns {Collection}
+ * @param  options
  * @example
  * 
  * import { filterBy } from 'huetiful-js'
@@ -356,7 +375,10 @@ let sample = [
 ]
 
  */
-function filterBy(collection, options) {
+function filterBy<Iterable extends Collection, Options extends FilterByOptions>(
+	collection: Iterable,
+	options: Options
+): Collection {
 	let { against, colorspace, factor, ranges } = options || {};
 
 	factor = or(factor, undefined);
