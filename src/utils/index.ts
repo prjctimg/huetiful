@@ -368,9 +368,9 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 
 	/**
 	 * an array of channel keys from the source colorspace. If undefined it defaults to 'rgb'
-	 * @type {string[]}
+	 *
 	 */
-	let srcChannels = gmchn(srcMode) as string[],
+	let srcChannels = gmchn(srcMode),
 		/**
 		 * @type {number[]}
 		 * an array of channel values

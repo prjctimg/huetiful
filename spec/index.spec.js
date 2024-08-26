@@ -186,7 +186,7 @@ let specs = {
 		params: ['green', { hueStep: 6, num: 4, tone: 'dark' }],
 		description:
 			'Creates a scheme that consists of a scheme color that is incremented by a hueStep to get the final hue to pair with',
-		expect: ['#008000', '#348e2a', '#79b36f', '#cfe4cb']
+		expect: ['#008000ff', '#9d7c06ff', '#de7569ff', '#e18fc0ff']
 	},
 	pastel: {
 		params: ['green'],
@@ -206,7 +206,13 @@ _iterator(mods, specs);
 
 describe(`Test suite for utils`, function () {
 	it(`Sets/Gets the specified channel of the passed in color`, function () {
-		expect(mods.mc('lch.h')(mods.mc('lch.h')('blue', 10))).toBe(10);
+		expect(mods.mc('lch.h')('blue', 10)).toEqual({
+			mode: 'lch',
+			l: 29.568297153444703,
+			c: 131.2014771995311,
+			h: 10,
+			alpha: 1
+		});
 	});
 });
 
