@@ -36,8 +36,8 @@ import {
 	isValidArgs,
 	not,
 	keys
-} from '../internal/index.js';
-import { mc, token } from '../utils/index.js';
+} from './internal.js';
+import { mc, token } from './utils.js';
 import {
 	ColorToken,
 	TokenOptions,
@@ -46,7 +46,7 @@ import {
 	InterpolatorOptions,
 	DiscoverOptions,
 	HueshiftOptions
-} from '../types.js';
+} from './types.js';
 /**
  * Creates a palette of hue shifted colors from the passed in color.
  * 

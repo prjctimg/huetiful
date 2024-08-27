@@ -1,7 +1,3 @@
-/**
- *
- */
-
 import {
 	colorsNamed,
 	useMode,
@@ -43,17 +39,15 @@ import {
 	keys,
 	lte,
 	rand
-} from '../internal/index.js';
-import { hue } from '../constants/index.js';
+} from './internal.js';
+import { hue } from './constants.js';
 import {
 	ColorToken,
-	Fact,
-	FactObject,
 	BiasedHues,
 	TokenOptions,
 	ColorFamily,
 	ComplimentaryOptions
-} from '../types.js';
+} from './types.js';
 
 /**
  *

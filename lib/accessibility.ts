@@ -5,7 +5,7 @@
  * @typedef {import('../types.js').AdaptivePaletteOptions} AdaptivePaletteOptions
  */
 
-import { token } from "../utils/index.js";
+import { token } from './utils.js';
 import {
 	filterDeficiencyDeuter,
 	filterDeficiencyProt,
@@ -13,7 +13,7 @@ import {
 	filterGrayscale,
 	formatHex8
 } from 'culori/fn';
-import { eq, or } from '../internal/index.js';
+import { eq, or } from './internal.js';
 import { wcagContrast } from 'culori/fn';
 
 /**

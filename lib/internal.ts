@@ -6,7 +6,7 @@
  * @typedef {import('../types.js').TailwindColorFamilies} TailwindColorFamilies
  */
 
-import { limits } from '../constants/index.js';
+import { limits } from '../constants';
 
 import {
 	interpolatorSplineNatural,
@@ -15,8 +15,8 @@ import {
 	easingSmoothstep,
 	interpolatorLinear
 } from 'culori/fn';
-import { mc } from '../utils/index.js';
-import { Colorspaces } from '../types.js';
+import { mc } from './utils';
+import { Colorspaces } from './types.js';
 
 let { keys, entries, values } = Object;
 

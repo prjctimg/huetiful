@@ -9,9 +9,9 @@ import {
 	map,
 	eq,
 	filteredColl
-} from '../internal/index.js';
-import { family, luminance, mc, token } from '../utils/index.js';
-import { contrast } from '../accessibility/index.js';
+} from './internal.js';
+import { family, luminance, mc, token } from './utils.js';
+import { contrast } from './accessibility.js';
 import {
 	averageAngle,
 	averageNumber,
@@ -19,7 +19,7 @@ import {
 	fixupHueLonger,
 	fixupHueShorter
 } from 'culori/fn';
-import { limits } from '../constants/index.js';
+import { limits } from './constants.js';
 import {
 	Collection,
 	ColorToken,
@@ -28,7 +28,7 @@ import {
 	SortByOptions,
 	Stats,
 	StatsOptions
-} from '../types.js';
+} from './types.js';
 
 /**
  * Computes statistical values about the passed in color collection.
@@ -257,7 +257,7 @@ function sortBy<Iterable extends Collection, Options extends SortByOptions>(
 
 /**
  * Distributes the specified `factor` of a color in the collection with the specified `extremum` (i.e the color with the smallest/largest `hue` angle or `chroma` value) to all color tokens in the collection.
- *@param {import('../types.js').Factor} [factor='hue'] The property you want to distribute to the colors in the collection for example `hue | luminance`
+ *@param {import('./types.js').Factor} [factor='hue'] The property you want to distribute to the colors in the collection for example `hue | luminance`
  * @param  Optional overrides to change the default configursation
 
   @returns {undefined}

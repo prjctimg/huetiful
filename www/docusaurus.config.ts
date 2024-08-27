@@ -53,7 +53,7 @@ const config: Config = {
 			'docusaurus-plugin-typedoc',
 			{
 				// @ts-ignore
-				entryPoints: ['../src/index.ts'],
+				entryPoints: ['../lib/index.ts'],
 				excludeTags: ['@internal'],
 				outputFileStrategy: 'modules',
 				fileExtension: '.md',
@@ -63,7 +63,7 @@ const config: Config = {
 				excludeReferences: false,
 				modulesFileName: 'api',
 				plugin: ['typedoc-plugin-markdown', 'typedoc-plugin-remark'],
-				remarkPlugins: ['unified-prettier', 'remark-toc', 'remark-gfm'],
+				remarkPlugins: ['unified-prettier', 'remark-toc'], 
 				entryPointStrategy: 'resolve',
 				out: '.temp',
 				exclude: ['./internal'],
