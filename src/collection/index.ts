@@ -231,13 +231,11 @@ function sortBy<Iterable extends Collection, Options extends SortByOptions>(
 				w = (a) => (c) => contrast(c, a);
 			return or(
 				and(relative, {
-					chroma: callback(chnDiff(against, mc(colorspace + '.' + chromaChannel))),
+					chroma: callback(
+						chnDiff(against, mc(colorspace + '.' + chromaChannel))
+					),
 					hue: callback(chnDiff(against, mc(`${colorspace}.h`))),
-					luminance: 
-						
-
-						callback(v(against))
-					,
+					luminance: callback(v(against)),
 					lightness: callback(
 						chnDiff(against, mc(colorspace + '.' + lightnessChannel))
 					)
@@ -246,10 +244,8 @@ function sortBy<Iterable extends Collection, Options extends SortByOptions>(
 					chroma: callback(mc(colorspace + '.' + chromaChannel)),
 					hue: callback(mc(`${colorspace}.h`)),
 					luminance: callback(luminance),
-					distance:  callback(u(against)).
-,
-					contrast:callback(w(against))
-				,
+					distance: callback(u(against)),
+					contrast: callback(w(against)),
 					lightness: callback(mc(colorspace + '.' + lightnessChannel))
 				}
 			)[fact](collection);

@@ -3,17 +3,17 @@
     "src/types.d.ts"
     ],"exclude":["**/*/node_modules"],
   "compilerOptions": {
-    "lib":["es2023"],
-    "target":"es6",
-    "skipLibCheck": true,
-     "allowJs": true,
-    "checkJs": true,
-    "declaration": true,
-    "emitDeclarationOnly":true,
-    "declarationDir":"./types",
-    "isolatedModules": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext"
-  }
+		"lib": ["es2023"],
+		"target": "es6",
+		"skipLibCheck": true,
+		"allowJs": true,
+		"checkJs": true,
+		"declaration": true,
+		"emitDeclarationOnly": true,
+		"declarationDir": "./types",
+		"isolatedModules": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "NodeNext",
+		"module": "NodeNext"
+	}
 }
