@@ -69,7 +69,7 @@
 	},
 	"typedocOptions": {
 		"entryPoints": [
-			"./src/index.js"
+			"./src/index.ts"
 		],
 		"excludeTags": [
 			"@internal"

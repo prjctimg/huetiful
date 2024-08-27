@@ -139,21 +139,17 @@ function stats<Iterable extends Collection, Options extends StatsOptions>(
 		factorStats = (fact) => {
 			// we filter out falsy values from the collection to avoid getting NaN
 			// @ts-ignore
-			const n = (a, b) => (c) => map(a, b(c));
-
+			const callback = (a, b) => (c) => map(a, b(c)),
+				i = (a) => (b) => differenceHyab()(a, b),
+				h = (a) => (b) => contrast(a, b);
 			return {
-				chroma: n(mc(mcchn('c', colorspace)), averageNumber),
-				distance: (() => {
-					let i = (a) => (b) => differenceHyab()(a, b);
-					return n(i, averageNumber);
-				})(),
-				hue: n(mc(colorspace + `.h`), averageAngle),
-				lightness: n(mc(mcchn('l', colorspace)), averageNumber),
-				contrast: (() => {
-					let h = (a) => (b) => contrast(a, b);
-					return n(h, averageNumber);
-				})(),
-				luminance: n(luminance, averageNumber)
+				chroma: callback(mc(mcchn('c', colorspace)), averageNumber),
+				distance: callback(i, averageNumber),
+
+				hue: callback(mc(colorspace + `.h`), averageAngle),
+				lightness: callback(mc(mcchn('l', colorspace)), averageNumber),
+				contrast: callback(h, averageNumber),
+				luminance: callback(luminance, averageNumber)
 			}[fact];
 		},
 		commonStats = (fact) => {
@@ -170,18 +166,14 @@ function stats<Iterable extends Collection, Options extends StatsOptions>(
 				extremums: [x[fact], y[fact]],
 				families: [family(x['color']), family(y['color'])]
 			};
-		};
+		},
+		statsObject = factorIterator(factor, commonStats);
+	statsObject['achromatic'] =
+		// @ts-ignore
+		values(collection).filter(achromatic).length / len;
+	statsObject['colorspace'] = colorspace;
 
-	// @ts-ignore
-	return (() => {
-		const p = factorIterator(factor, commonStats);
-		p['achromatic'] =
-			// @ts-ignore
-			values(collection).filter(achromatic).length / len;
-		p['colorspace'] = colorspace;
-
-		return p;
-	})();
+	return statsObject;
 }
 
 /**
@@ -218,58 +210,53 @@ function sortBy<Iterable extends Collection, Options extends SortByOptions>(
 	collection: Iterable,
 	options?: Options
 ): Collection {
-	const defaultOptions: SortByOptions = {
-		factor: undefined,
-		relative: false,
-		colorspace: 'lch',
-		against: 'cyan',
-		order: 'asc'
-	};
-	const { against, colorspace, factor, order, relative } = or(
+	let { against, colorspace, factor, order, relative } = or(
 		options,
-		defaultOptions
+		{} as Options
 	);
-
+	factor = or(factor, undefined);
+	relative = or(relative, false);
+	colorspace = or(colorspace, 'lch');
+	against = or(against, 'cyan');
+	order = or(order, 'asc');
 	// lightness and chroma channel constants respectively
 	const [lightnessChannel, chromaChannel] = ['l', 'c'].map((w) =>
 			mcchn(w, colorspace, false)
 		),
-		y = (a) => sortedColl(factor, a, order),
+		callback = (a) => sortedColl(factor, a, order),
 		// returns factor cbs determined by the options
-		factorCallbacks = (h) => {
+		getFactor = (fact) => {
+			const v = (a) => (b) => Math.abs(luminance(a) - luminance(b)),
+				u = (a) => (c) => differenceHyab()(a, c),
+				w = (a) => (c) => contrast(c, a);
 			return or(
 				and(relative, {
-					chroma: y(chnDiff(against, mc(colorspace + '.' + chromaChannel))),
-					hue: y(chnDiff(against, mc(`${colorspace}.h`))),
-					luminance: (() => {
-						// @ts-ignore
-						let v = (a) => (b) => Math.abs(luminance(a) - luminance(b));
-						return y(v(against));
-					})(),
-					lightness: y(
+					chroma: callback(chnDiff(against, mc(colorspace + '.' + chromaChannel))),
+					hue: callback(chnDiff(against, mc(`${colorspace}.h`))),
+					luminance: 
+						
+
+						callback(v(against))
+					,
+					lightness: callback(
 						chnDiff(against, mc(colorspace + '.' + lightnessChannel))
 					)
 				}),
 				{
-					chroma: y(mc(colorspace + '.' + chromaChannel)),
-					hue: y(mc(`${colorspace}.h`)),
-					luminance: y(luminance),
-					distance: (() => {
-						const u = (a) => (c) => differenceHyab()(a, c);
-
-						return y(u(against));
-					})(),
-					contrast: (() => {
-						const w = (a) => (c) => contrast(c, a);
-						return y(w(against));
-					})(),
-					lightness: y(mc(colorspace + '.' + lightnessChannel))
+					chroma: callback(mc(colorspace + '.' + chromaChannel)),
+					hue: callback(mc(`${colorspace}.h`)),
+					luminance: callback(luminance),
+					distance:  callback(u(against)).
+,
+					contrast:callback(w(against))
+				,
+					lightness: callback(mc(colorspace + '.' + lightnessChannel))
 				}
-			)[h](collection);
+			)[fact](collection);
 		};
 
 	// @ts-ignore
-	return factorIterator(factor, factorCallbacks);
+	return factorIterator(factor, getFactor);
 }
 
 /**
