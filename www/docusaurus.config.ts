@@ -63,7 +63,7 @@ const config: Config = {
 				excludeReferences: false,
 				modulesFileName: 'api',
 				plugin: ['typedoc-plugin-markdown', 'typedoc-plugin-remark'],
-				remarkPlugins: ['unified-prettier', 'remark-toc'], 
+				remarkPlugins: ['unified-prettier', 'remark-toc'],
 				entryPointStrategy: 'resolve',
 				out: '.temp',
 				exclude: ['./internal'],
@@ -134,15 +134,15 @@ const config: Config = {
 						},
 						{
 							label: 'API ⛓️',
-							to: '/docs/globals'
+							to: '/docs/api'
 						},
 						{
 							label: 'Types 📊',
 							to: '/docs/types'
 						},
 						{
-							label: 'Errors and unexpected behaviours ⚠️ ',
-							to: '/docs/color'
+							label: 'Common errors⚠️  and defaults',
+							to: '/docs/errors_and_defaults'
 						},
 						{
 							label: 'Wiki 📜',
@@ -167,8 +167,8 @@ const config: Config = {
 			copyright: `©<a href='https://deantarisai.com'> ディーン・タリサイ</a>`
 		},
 		prism: {
-			theme: prismThemes.github,
-			darkTheme: prismThemes.dracula
+			theme: prismThemes.palenight,
+			darkTheme: prismThemes.duotoneDark
 		},
 		algolia: {
 			apiKey: 'f031ae0d71cbcbe66956cd02849d00e5',
