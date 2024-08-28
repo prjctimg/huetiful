@@ -53,20 +53,28 @@ const config: Config = {
 			'docusaurus-plugin-typedoc',
 			{
 				// @ts-ignore
-				entryPoints: ['../lib/index.ts'],
+				entryPoints: [
+					'../lib/palettes.ts',
+					'../lib/generators.ts',
+					'../lib/accessibility.ts',
+					'../lib/collection.ts',
+					'../lib/wrappers.ts',
+					'../lib/utils.ts'
+				],
 				excludeTags: ['@internal'],
 				outputFileStrategy: 'modules',
-				fileExtension: '.md',
+				modulesFileName: 'globals',
+				fileExtension: '.mdx',
 				expandObjects: true,
 				tsconfig: '../tsconfig.json',
 				excludeNotDocumented: true,
 				excludeReferences: false,
-				modulesFileName: 'api',
+
 				plugin: ['typedoc-plugin-markdown', 'typedoc-plugin-remark'],
 				remarkPlugins: ['unified-prettier', 'remark-toc'],
-				entryPointStrategy: 'resolve',
-				out: '.temp',
-				exclude: ['./internal'],
+				entryPointStrategy: 'expand',
+				out: 'docs',
+				exclude: ['../lib/internal.ts', '../lib/constants.ts'],
 				groupOrder: [
 					'Function',
 					'Class',
@@ -82,7 +90,8 @@ const config: Config = {
 				tsconfig: '../tsconfig.json',
 				disableSources: false,
 				skipErrorChecking: true,
-				readme: 'none'
+				readme: 'none',
+				cleanOutputDir: false
 			}
 		]
 	],
@@ -107,7 +116,7 @@ const config: Config = {
 					position: 'left',
 					label: 'Getting started'
 				},
-				{ to: '/docs/globals', label: 'API', position: 'left' },
+				{ to: '/docs/color', label: "What's a color ?", position: 'left' },
 				{
 					href: 'https://github.com/prjctimg/huetiful',
 					label: 'GitHub',
@@ -131,10 +140,6 @@ const config: Config = {
 						{
 							label: "What's a colour 🎨 ?",
 							to: '/docs/color'
-						},
-						{
-							label: 'API ⛓️',
-							to: '/docs/api'
 						},
 						{
 							label: 'Types 📊',
