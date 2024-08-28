@@ -34,6 +34,7 @@ jobs:
       - run: npm i
         if: ${{ steps.release.outputs.release_created }}
       - run: |
+          npm test
           npm run code:publish
           npm publish
         env:

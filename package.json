@@ -16,19 +16,19 @@
 		"cz-emoji-conventional": "^1.0.2",
 		"esbuild": "^0.17.19",
 		"eslint": "^8.57.0",
+		"github-markdown-css": "^5.6.1",
 		"jasmine": "5.1.0",
 		"prettier": "^3.2.0",
+		"tsup": "^8.2.4",
 		"typescript": "^5.0.2"
 	},
 	"scripts": {
 		"test": "npx jasmine",
-		"docs:publish": "cd www && npx docusaurus build",
 		"code:build": "npx esbuild ./lib/index.ts --format=esm --bundle --outfile=./build/huetiful.min.js --minify --minify-whitespace --minify-syntax & npx esbuild ./lib/index.ts --format=esm --bundle --outfile=./build/huetiful.js --keep-names & npx esbuild ./lib/index.ts --format=esm --bundle --outfile=./build/huetiful.esm.js --external:$'(node -p \"Object.keys(require('./package.json').dependencies).join(',')\")'",
-		"code:publish": "npm run code:build & npx tsc",
+		"code:publish": "npm run code:build & npx tsup  --format=esm ./lib/index.ts --dts-only --outDir=./build/types",
 		"code:format": "npx prettier \"./lib/*/index.ts\" --write",
 		"code:lint": "npx eslint --fix --ext ./lib/*/index.ts",
-		"start": "npx tsx watch app.ts",
-		"publish": "npm test && npm run code:publish & npm run docs:publish"
+		"start": "npx tsx watch app.ts"
 	},
 	"prettier": {
 		"semi": true,

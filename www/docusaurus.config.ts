@@ -1,7 +1,10 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import { description } from '../package.json';
+import { description, author, keywords } from '../package.json';
+import rehypeMeta from 'rehype-meta';
+import rehypeDocument from 'rehype-document';
+import rehypeStarryNight from 'rehype-starry-night';
 
 const config: Config = {
 	title: 'huetiful-js',
@@ -34,76 +37,29 @@ const config: Config = {
 		[
 			'classic',
 			{
+				theme: { customCss: '/css/github-markdown.css' },
 				docs: {
 					sidebarPath: './sidebars.ts',
 					// Please change this to your repo.
 					// Remove this to remove the "edit this page" links.
-					editUrl: 'https://github.com/prjctimg/huetiful/tree/main/www/docs',
-					showLastUpdateAuthor: true,
+					editUrl: 'https://github.com/prjctimg/huetiful/tree/main/www/',
 					showLastUpdateTime: true
 				},
-				theme: {
-					customCss: './src/css/custom.css'
-				}
+				googleAnalytics: { trackingID: 'G-0TXKRCERK8', anonymizeIP: true },
+				sitemap: { lastmod: 'datetime', changefreq: 'weekly' }
 			} satisfies Preset.Options
 		]
 	],
-	plugins: [
-		[
-			'docusaurus-plugin-typedoc',
-			{
-				// @ts-ignore
-				entryPoints: [
-					'../lib/palettes.ts',
-					'../lib/generators.ts',
-					'../lib/accessibility.ts',
-					'../lib/collection.ts',
-					'../lib/wrappers.ts',
-					'../lib/utils.ts'
-				],
-				excludeTags: ['@internal'],
-				outputFileStrategy: 'modules',
-				modulesFileName: 'globals',
-				fileExtension: '.mdx',
-				expandObjects: true,
-				tsconfig: '../tsconfig.json',
-				excludeNotDocumented: true,
-				excludeReferences: false,
 
-				plugin: ['typedoc-plugin-markdown', 'typedoc-plugin-remark'],
-				remarkPlugins: ['unified-prettier', 'remark-toc'],
-				entryPointStrategy: 'expand',
-				out: 'docs',
-				exclude: ['../lib/internal.ts', '../lib/constants.ts'],
-				groupOrder: [
-					'Function',
-					'Class',
-					'Constructor',
-					'Property',
-					'Method',
-					'TypeAlias'
-				],
-				hidePageTitle: true,
-				hidePageHeader: true,
-				hideGroupHeadings: false,
-				// @ts-ignore
-				tsconfig: '../tsconfig.json',
-				disableSources: false,
-				skipErrorChecking: true,
-				readme: 'none',
-				cleanOutputDir: false
-			}
-		]
-	],
 	themeConfig: {
 		// Replace with your project's social card
-		image: 'img/social.jpg',
+		image: 'static/img/social.jpg',
 		navbar: {
 			title: 'huetiful-js',
 			logo: {
 				alt: 'huetiful-js',
-				src: 'img/logo.svg',
-				srcDark: 'img/logo_dark.svg',
+				src: '/static/img/logo.svg',
+				srcDark: '/static/img/logo_dark.svg',
 				href: 'https://huetiful-js.com',
 				target: '_self',
 				width: 32,
@@ -111,15 +67,19 @@ const config: Config = {
 			},
 			items: [
 				{
-					type: 'docSidebar',
-					sidebarId: 'tutorialSidebar',
+					to: '/docs/quickstart',
 					position: 'left',
-					label: 'Getting started'
+					label: 'Quickstart ⚡︎'
 				},
-				{ to: '/docs/color', label: "What's a color ?", position: 'left' },
+				{ to: '/docs/color', label: "What's a color 🎨 ?", position: 'left' },
 				{
 					href: 'https://github.com/prjctimg/huetiful',
-					label: 'GitHub',
+					label: 'GitHub 🐈‍⬛',
+					position: 'right'
+				},
+				{
+					label: 'Wiki 📜',
+					href: 'https://github.com/prjctimg/huetiful/wiki',
 					position: 'right'
 				}
 			]
@@ -131,10 +91,10 @@ const config: Config = {
 			style: 'dark',
 			links: [
 				{
-					title: 'Docs 🏛️',
+					title: '🏛️',
 					items: [
 						{
-							label: 'Quickstart 🏁 ',
+							label: 'Quickstart ⚡︎ ',
 							to: '/docs/quickstart'
 						},
 						{
@@ -151,7 +111,7 @@ const config: Config = {
 						},
 						{
 							label: 'Wiki 📜',
-							to: 'https://github.com/prjctimg/huetiful/wiki'
+							href: 'https://github.com/prjctimg/huetiful/wiki'
 						},
 						{
 							label: 'GitHub 🐈‍⬛',
@@ -164,7 +124,7 @@ const config: Config = {
 
 						{
 							label: 'Contribute 🙋‍♂️',
-							href: 'https://github.com/prjctimg/huetiful' // link to contributing.md
+							href: 'https://github.com/prjctimg/huetiful/blob/main/CONTRIBUTING.md' // link to contributing.md
 						}
 					]
 				}
@@ -184,7 +144,7 @@ const config: Config = {
 		},
 		announcementBar: {
 			id: 'huetiful-js-announcement',
-			content: `V3 is here! Smaller API,better docs & more <a href=''>Learn more</a>`,
+			content: `V3 is here! Smaller API,better docs & more <a href='/docs/what's_new'>Learn more</a>`,
 			backgroundColor: '#333',
 			textColor: '#fff',
 			isCloseable: true

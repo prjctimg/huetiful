@@ -45,7 +45,9 @@ import {
 	Collection,
 	InterpolatorOptions,
 	DiscoverOptions,
-	HueshiftOptions
+	HueshiftOptions,
+	EarthtoneOptions,
+	SchemeOptions
 } from './types.js';
 /**
  * Creates a palette of hue shifted colors from the passed in color.
@@ -242,6 +244,7 @@ function pair<Color extends ColorToken, Options extends PairedSchemeOptions>(
 		colorspace: 'lch',
 		num: num * 2,
 		token: options?.token
+		// @ts-ignore
 	}).slice(0, num);
 }
 
@@ -288,7 +291,7 @@ console.log(interpolator(['pink', 'blue'], { num:8 }));
 function interpolator(
 	baseColors: Collection = [],
 	options: InterpolatorOptions = undefined
-): Array<ColorToken> {
+): Array<ColorToken> | ColorToken {
 	let { hueFixup, stops, easingFn, kind, closed, colorspace, num } =
 		options || {};
 	// Set the internal defaults
@@ -461,7 +464,7 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
  */
 function earthtone(
 	baseColor: ColorToken,
-	options: import('../types.js').EarthtoneOptions
+	options: EarthtoneOptions
 ): ColorToken | Array<ColorToken> {
 	let { num, earthtones, colorspace, kind, closed } = options || {};
 	baseColor = token(baseColor);

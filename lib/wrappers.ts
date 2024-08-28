@@ -1,3 +1,4 @@
+//  @ts-nocheck
 import { deficiency, contrast } from './accessibility.js';
 import { filterBy, sortBy, stats } from './collection.js';
 import {
@@ -10,6 +11,7 @@ import {
 } from './generators.js';
 import { or, gt, mcchn } from './internal.js';
 import { colors, nearest } from './palettes.js';
+import { ColorOptions } from './types.js';
 import {
 	mc,
 	lightness,
@@ -279,9 +281,9 @@ console.log(wrapper.color2hex());
 class Color {
 	/**
 	 * @param {ColorToken} [c= 'cyan'] The color to bind.
-	 * @param {import("../types.js").ColorOptions} [options= {}] Optional overrides and properties for the bound color.
+	 * @param options Optional overrides and properties for the bound color.
 	 */
-	constructor(c, options = {}) {
+	constructor(c, options?: ColorOptions) {
 		let {
 			alpha,
 			colorspace,

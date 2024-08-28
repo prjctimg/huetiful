@@ -2,13 +2,19 @@
 app.js
 huetiful.code-workspace
 /old.wiki
-package-lock.json
+**/package-lock.json
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 /app
 # dependencies
 **/node_modules
 /.pnp
 .pnp.js
+# Production
+/build
+
+# Generated files
+**/.docusaurus
+**/.cache-loader
 
 roadmap
 lodash-main

@@ -4,7 +4,7 @@
 		"lib/types.d.ts"
 	],
 	"exclude": [
-		"**/*/node_modules"
+		"**/node_modules"
 	],
 	"compilerOptions": {
 		"lib": [
@@ -14,9 +14,6 @@
 		"skipLibCheck": true,
 		"allowJs": true,
 		"checkJs": true,
-		"declaration": true,
-		"emitDeclarationOnly": true,
-		"declarationDir": "./build/types",
 		"isolatedModules": true,
 		"forceConsistentCasingInFileNames": true,
 		"moduleResolution": "NodeNext",

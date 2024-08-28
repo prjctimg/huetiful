@@ -248,6 +248,13 @@ const tailwind = {
 	}
 };
 
+let dab = {};
+
+for (const k of keys(tailwind)) {
+	dab[k] = tailwind[k];
+}
+
+const {} = dab;
 const {
 	indigo,
 	red,
@@ -807,7 +814,7 @@ function nearest(collection, options) {
 	num = or(num, 1);
 	against = or(against, 'cyan');
 	const f = (a, b) => {
-		let o = nrst(values(a), differenceHyab(), (c) => c)(b, num);
+		let o = nrst(values(a), differenceHyab(), (c) => c as string)(b, num);
 		return or(and(eq(num, 1), o[0]), o);
 	};
 
