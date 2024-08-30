@@ -23,7 +23,14 @@
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0"
 	},
+	"config": {
+		"commitizen": {
+			"path": "cz-emoji-conventional"
+		}
+	},
 	"devDependencies": {
+		"commitizen": "^4.3.0",
+		"cz-emoji-conventional": "^1.0.2",
 		"@docusaurus/module-type-aliases": "3.5.2",
 		"@docusaurus/plugin-google-tag-manager": "^3.5.2",
 		"@docusaurus/plugin-pwa": "^3.5.2",

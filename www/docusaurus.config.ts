@@ -1,10 +1,7 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import { description, author, keywords } from '../package.json';
-import rehypeMeta from 'rehype-meta';
-import rehypeDocument from 'rehype-document';
-import rehypeStarryNight from 'rehype-starry-night';
+import { description } from '../package.json';
 
 const config: Config = {
 	title: 'huetiful-js',
@@ -32,6 +29,42 @@ const config: Config = {
 		defaultLocale: 'en',
 		locales: ['en', 'es', 'fr', 'zh-Hans']
 	},
+	plugins: [
+		[
+			'docusaurus-plugin-typedoc',
+			{
+				entryPoints: ['../lib/index.ts'],
+				excludeTags: ['@internal'],
+				outputFileStrategy: 'modules',
+				fileExtension: '.mdx',
+				expandObjects: true,
+				tsconfig: '../tsconfig.json',
+				excludeNotDocumented: true,
+				excludeReferences: false,
+				modulesFileName: 'api',
+				plugin: ['typedoc-plugin-markdown', 'typedoc-plugin-remark'],
+				remarkPlugins: ['unified-prettier', 'remark-toc'],
+				entryPointStrategy: 'resolve',
+				out: '.temp',
+				exclude: ['./internal'],
+				groupOrder: [
+					'Function',
+					'Class',
+					'Constructor',
+					'Property',
+					'Method',
+					'TypeAlias'
+				],
+				hidePageTitle: true,
+				hidePageHeader: true,
+				hideGroupHeadings: false,
+
+				disableSources: false,
+				skipErrorChecking: true,
+				readme: 'none'
+			}
+		]
+	],
 
 	presets: [
 		[
