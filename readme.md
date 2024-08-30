@@ -8,7 +8,7 @@
 > 
 > JavaScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.
 
-Explore creative ways of manipulating color in your creative coding projects using simple and straight forward utilities inspired by color theory.
+Explore creative ways of manipulating color in your projects using straight forward and customizable utilities inspired by color theory.
 
 ### [Installing](https://huetiful-js.com/docs/guides/installation)
 
