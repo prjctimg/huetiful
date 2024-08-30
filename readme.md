@@ -26,7 +26,6 @@ Contributions of any kind are greatly appreciated! See🔍 the [contributing.md]
 <pre>
 <h5> License ⚖️</h5>
 
- © 2024, [ディーン・タリサイ](https://deantarisai.me)
-  
+ © 2024, <a href="https://deantarisai.me">ディーン・タリサイ</a>
   <h6>Released under the  [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) permissive license.</h6>
  </pre>
