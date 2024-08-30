@@ -3,29 +3,28 @@
 
 
 
-![huetiful-logo](./logo.svg)
+![huetiful-logo](https://github.com/prjctimg/huetiful/blob/dev/www/static/img/logo.svg)
 
 > 
 > JavaScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.
 
-### Quickstart
+Explore creative ways of manipulating color in your creative coding projects using simple and straight forward utilities inspired by color theory.
 
-[See the Quickstart here](https://huetiful-js.com/docs/guides/quickstart)
+### [Installing](https://huetiful-js.com/docs/guides/installation)
 
-#### Community
+### [API documentation](https://huetiful-js.com/docs/api)
 
-[See the discussions](https://github.com/xml-wizard/huetiful/discussions)
-
-#### Contributing
-
-Contributions of any kind are greatly appreciated! See🔍 the [contributing.md](./contributing.md) on how to get started.
+### [Guides](https://huetiful-js.com/docs/guides)
 
 
- 
+
+### [Community](https://github.com/xml-wizard/huetiful/discussions)
+
+### [Contributing](./contributing.md)
 
 <pre>
 <h5> License ⚖️</h5>
-
+<h6>Released under the  [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) permissive license.</h6>
  © 2024, <a href="https://deantarisai.me">ディーン・タリサイ</a>
-  <h6>Released under the  [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) permissive license.</h6>
+ 
  </pre>
