@@ -2,67 +2,70 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import { description } from '../package.json';
+import type { TypeDocOptions } from 'typedoc';
+import type { PluginOptions } from 'typedoc-plugin-markdown';
+
+const typedocOptions: TypeDocOptions & PluginOptions = {
+	entryPoints: [
+		'../lib/accessibility.ts',
+		'../lib/generators.ts',
+		'../lib/palettes.ts',
+		'../lib/wrappers.ts',
+		'../lib/utils.ts',
+		'../lib/collection.ts'
+	],
+	excludeTags: ['@internal'],
+	outputFileStrategy: 'modules',
+	fileExtension: '.mdx',
+	expandObjects: true,
+	tsconfig: '../tsconfig.json',
+	excludeNotDocumented: true,
+	excludeReferences: false,
+	modulesFileName: 'api',
+	plugin: ['typedoc-plugin-markdown', 'typedoc-plugin-remark'],
+	// @ts-ignore
+	remarkPlugins: ['unified-prettier', 'remark-toc'],
+	entryPointStrategy: 'resolve',
+	out: 'docs/api',
+	exclude: ['./internal'],
+	groupOrder: [
+		'Function',
+		'Class',
+		'Constructor',
+		'Property',
+		'Method',
+		'TypeAlias'
+	],
+	hidePageTitle: true,
+	hidePageHeader: true,
+	hideGroupHeadings: false,
+	cleanOutputDir: false,
+	disableSources: false,
+	skipErrorChecking: true,
+	readme: 'none',
+	entryModule: undefined
+};
 
 const config: Config = {
 	title: 'huetiful-js',
 	tagline: description,
 	favicon: 'img/favicon.ico',
-
-	// Set the production url of your site here
 	url: 'https://huetiful-js.com',
-	// Set the /<baseUrl>/ pathname under which your site is served
-	// For GitHub pages deployment, it is often '/<projectName>/'
 	baseUrl: '/',
-
-	// GitHub pages deployment config.
-	// If you aren't using GitHub pages, you don't need these.
-	// organizationName: 'facebook', // Usually your GitHub org/user name.
-	// projectName: 'docusaurus', // Usually your repo name.
 
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 
-	// Even if you don't use internationalization, you can use this field to set
-	// useful metadata like html lang. For example, if your site is Chinese, you
-	// may want to replace "en" with "zh-Hans".
 	i18n: {
 		defaultLocale: 'en',
 		locales: ['en', 'es', 'fr', 'zh-Hans']
 	},
 	plugins: [
 		[
+			// @ts-ignore
 			'docusaurus-plugin-typedoc',
-			{
-				entryPoints: ['../lib/index.ts'],
-				excludeTags: ['@internal'],
-				outputFileStrategy: 'modules',
-				fileExtension: '.mdx',
-				expandObjects: true,
-				tsconfig: '../tsconfig.json',
-				excludeNotDocumented: true,
-				excludeReferences: false,
-				modulesFileName: 'api',
-				plugin: ['typedoc-plugin-markdown', 'typedoc-plugin-remark'],
-				remarkPlugins: ['unified-prettier', 'remark-toc'],
-				entryPointStrategy: 'resolve',
-				out: '.temp',
-				exclude: ['./internal'],
-				groupOrder: [
-					'Function',
-					'Class',
-					'Constructor',
-					'Property',
-					'Method',
-					'TypeAlias'
-				],
-				hidePageTitle: true,
-				hidePageHeader: true,
-				hideGroupHeadings: false,
-
-				disableSources: false,
-				skipErrorChecking: true,
-				readme: 'none'
-			}
+			// @ts-ignore
+			typedocOptions
 		]
 	],
 
@@ -86,13 +89,13 @@ const config: Config = {
 
 	themeConfig: {
 		// Replace with your project's social card
-		image: 'static/img/social.jpg',
+		image: '/img/social.jpg',
 		navbar: {
 			title: 'huetiful-js',
 			logo: {
 				alt: 'huetiful-js',
-				src: '/static/img/logo.svg',
-				srcDark: '/static/img/logo_dark.svg',
+				src: '/img/logo.svg',
+				srcDark: '/img/logo_dark.svg',
 				href: 'https://huetiful-js.com',
 				target: '_self',
 				width: 32,
@@ -100,11 +103,20 @@ const config: Config = {
 			},
 			items: [
 				{
-					to: '/docs/quickstart',
+					to: '/docs/guides/quickstart',
 					position: 'left',
 					label: 'Quickstart ⚡︎'
 				},
-				{ to: '/docs/color', label: "What's a color 🎨 ?", position: 'left' },
+				{
+					to: '/docs/api/',
+					position: 'left',
+					label: 'API'
+				},
+				{
+					to: '/docs/guides/',
+					label: 'Guides?',
+					position: 'left'
+				},
 				{
 					href: 'https://github.com/prjctimg/huetiful',
 					label: 'GitHub 🐈‍⬛',
@@ -121,27 +133,11 @@ const config: Config = {
 			sidebar: { autoCollapseCategories: true, hideable: true }
 		},
 		footer: {
-			style: 'dark',
+			style: 'light',
 			links: [
 				{
 					title: '🏛️',
 					items: [
-						{
-							label: 'Quickstart ⚡︎ ',
-							to: '/docs/quickstart'
-						},
-						{
-							label: "What's a colour 🎨 ?",
-							to: '/docs/color'
-						},
-						{
-							label: 'Types 📊',
-							to: '/docs/types'
-						},
-						{
-							label: 'Common errors⚠️  and defaults',
-							to: '/docs/errors_and_defaults'
-						},
 						{
 							label: 'Wiki 📜',
 							href: 'https://github.com/prjctimg/huetiful/wiki'
@@ -177,7 +173,7 @@ const config: Config = {
 		},
 		announcementBar: {
 			id: 'huetiful-js-announcement',
-			content: `V3 is here! Smaller API,better docs & more <a href='/docs/what's_new'>Learn more</a>`,
+			content: `V3 is here! Smaller API,better docs & more <a href='/docs/changes>Learn more</a>`,
 			backgroundColor: '#333',
 			textColor: '#fff',
 			isCloseable: true
