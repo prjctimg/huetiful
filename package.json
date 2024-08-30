@@ -24,7 +24,7 @@
 	},
 	"scripts": {
 		"test": "npx jasmine",
-		"code:build": "npx esbuild ./lib/index.ts --format=esm --bundle --outfile=./build/huetiful.min.js --minify --minify-whitespace --minify-syntax & npx esbuild ./lib/index.ts --format=esm --bundle --outfile=./build/huetiful.js --keep-names & npx esbuild ./lib/index.ts --format=esm --bundle --outfile=./build/huetiful.esm.js --external:$'(node -p \"Object.keys(require('./package.json').dependencies).join(',')\")'",
+		"code:build": "npx esbuild ./lib/index.ts --format=esm --bundle --outfile=./build/huetiful.min.js --minify --minify-whitespace --minify-syntax & npx esbuild ./lib/index.ts --bundle --format=esm --outfile=./build/huetiful.esm.js --keep-names & npx esbuild ./lib/index.ts  --platform=node --format=esm --outfile=./build/huetiful.js --bundle --external:$'(node -p \"Object.keys(require('./package.json').dependencies.join(',')\")'",
 		"code:publish": "npm run code:build & npx tsup  --format=esm ./lib/index.ts --dts-only --outDir=./build/types",
 		"code:format": "npx prettier \"./lib/*/index.ts\" --write",
 		"code:lint": "npx eslint --fix --ext ./lib/*/index.ts",

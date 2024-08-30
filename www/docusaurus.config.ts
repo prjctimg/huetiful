@@ -94,8 +94,7 @@ const config: Config = {
 			title: 'huetiful-js',
 			logo: {
 				alt: 'huetiful-js',
-				src: '/img/logo.svg',
-				srcDark: '/img/logo_dark.svg',
+				src: '/img/favicon.ico',
 				href: 'https://huetiful-js.com',
 				target: '_self',
 				width: 32,

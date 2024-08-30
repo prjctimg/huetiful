@@ -389,10 +389,14 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 	} else if (eq(typeof color, 'object')) {
 		srcChannelValues = srcChannels?.map((a) => color[a]);
 	} else if (neq(typeof color, 'boolean')) {
-		// @ts-ignore
-		result = eq(typeof color, 'number') ? num2c() : parseToken(c2str(), 'rgb');
+		srcMode = 'rgb';
 
-		srcChannelValues = 'rgb'.split('').map((a) => result[a]);
+		// @ts-ignore
+		result = eq(typeof color, 'number')
+			? num2c()
+			: parseToken(c2str(), srcMode);
+
+		srcChannelValues = srcChannels.map((a) => result[a]);
 		// result is equivalent to the color now to allow proper iteration
 	}
 
@@ -407,7 +411,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 	}
 
 	function parseToken(col?, mode?) {
-		return useMode(modeDefinitions[or(mode, targetMode)])(or(col, result));
+		return useMode(modeDefinitions['rgb'])(or(col, result));
 	}
 	/**
 	 *
@@ -431,13 +435,15 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 		// If targetMode is defined, reassign channel  keys to that of  the targetMode
 		// to allow iteration to work correctly
 		if (targetMode) {
-			srcChannels = gmchn(targetMode) as string[];
+			srcChannels = gmchn(targetMode);
 
 			result = parseToken();
 		}
 		if (eq(k, 'obj')) {
-			omitMode ? result : (result['mode'] = targetMode ? targetMode : srcMode);
-			omitAlpha ? result : (result['alpha'] = alphaValue);
+			omitMode
+				? delete result['mode']
+				: (result['mode'] = targetMode ? targetMode : srcMode);
+			omitAlpha ? delete result['alpha'] : (result['alpha'] = alphaValue);
 			return result;
 		} else if (eq(k, 'arr')) {
 			let colorArray = [];

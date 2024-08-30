@@ -6,7 +6,7 @@
  * @typedef {import('../types.js').TailwindColorFamilies} TailwindColorFamilies
  */
 
-import { limits } from '../constants';
+import { limits } from './constants';
 
 import {
 	interpolatorSplineNatural,
@@ -356,34 +356,36 @@ function isSet(x) {
  *
  */
 function map(u, cb) {
-	let o, p;
+	let p;
 	p = or(or(and(isMap(u), new Map()), and(isSet(u), new Set())), false);
 	if (p) {
 		for (const [a, b] of entries(u)) {
 			p.set(a, cb(b));
 		}
-		o = p;
-	} else if (isArray(u)) {
-		o = new Array(u.length);
+		return p;
+	} else if (eq(typeof u, 'object')) {
+		p = isArray(u) ? new Array(u.length) : {};
 		for (const [a, b] of entries(u)) {
-			o[a] = cb(b);
-		}
-	} else {
-		o = {};
-		for (const [a, b] of entries(u)) {
-			o[a] = cb(b);
+			p[a] = cb(b);
 		}
 	}
 	// @ts-ignore
-	return o;
+	return p;
 }
 
-function min(x: Array<number>) {
-	return x.reduce((a, b) => Math.min(a, b), Infinity);
+function min(arr: Array<number>) {
+	return extremum('min', arr);
 }
 
-function max(x: Array<number>) {
-	return x.reduce((a, b) => Math.max(a, b), -Infinity);
+function extremum(e: 'min' | 'max', arr: Array<number> = []) {
+	return arr.reduce(
+		(a, b) => Math[e](a, b),
+		eq(e, 'max') ? -Infinity : Infinity
+	);
+}
+
+function max(arr: Array<number>) {
+	return extremum('max', arr);
 }
 
 function reNum(s = '') {
@@ -393,16 +395,17 @@ function reNum(s = '') {
 	return or(and(re.test(s), Number(re.exec(s)['0'])), undefined);
 }
 
-function reOp(s) {
+function reOp(s = '') {
 	s = s.toString();
 	let re = /^(\*|\+|\-|\/|>=|<=|<|>|={1,2}|!={0,2})/;
 
 	// @ts-ignore
-	return or(and(re.test(s), re.exec(s)['0']), undefined);
+
+	return re.test(s) ? re.exec(s)['0'] : undefined;
 }
-function sortedColl(f = 'factor', cb, o = 'asc', obj = false) {
+function sortedColl(fact = 'factor', cb, o = 'asc', obj = false) {
 	return (c) => {
-		let r = colorObjColl(f, cb)(c),
+		let r = colorObjColl(fact, cb)(c),
 			u;
 
 		// If the collection is not an Array  insert the sorted elements
@@ -412,7 +415,7 @@ function sortedColl(f = 'factor', cb, o = 'asc', obj = false) {
 				isArray(c),
 				(() => {
 					// @ts-ignore
-					u = r.sort(customSort(o, f));
+					u = r.sort(customSort(o, fact));
 
 					return or(
 						and(eq(obj, true), u),
@@ -424,7 +427,7 @@ function sortedColl(f = 'factor', cb, o = 'asc', obj = false) {
 				u = new Map();
 				let t = values(r)
 					// @ts-ignore
-					.sort(customSort(o, f));
+					.sort(customSort(o, fact));
 
 				for (const [z, v] of entries(t)) {
 					u.set(z, v);
@@ -441,36 +444,25 @@ function sortedColl(f = 'factor', cb, o = 'asc', obj = false) {
 	};
 }
 
-function filteredColl(f, cb) {
+function filteredColl(fact, cb) {
 	return (c, s, e) => {
-		return or(
-			and(
-				eq((typeof s, 'number')),
-				(() => {
-					return (
-						colorObjColl(
-							f,
-							cb
-						)(c)
-							// @ts-ignore
-							.filter((j) => inRange(j[f], s, e))
-							.map((j) => j['color'])
-					);
+		if (eq((typeof s, 'number'))) {
+			return (
+				colorObjColl(
+					fact,
+					cb
+				)(c)
+					// @ts-ignore
+					.filter((j) => inRange(j[fact], s, e))
+					.map((j) => j['color'])
+			);
+		} else {
+			const v = reNum(s),
+				w = reOp(s);
 
-					// If string, split the the string to an array of signature [sign,value] with sign being the type of predicate returned to mapFilter.
-				})()
-			),
-
-			(() => {
-				//The patterns to match
-
-				const v = reNum(s),
-					w = reOp(s);
-
-				return and(
-					w,
-					colorObjColl(
-						f,
+			return w
+				? colorObjColl(
+						fact,
 						cb
 					)(c)
 						// @ts-ignore
@@ -489,14 +481,11 @@ function filteredColl(f, cb) {
 								'*': mult,
 								'+': add,
 								'-': take
-							}[w](l[f], parseFloat(v.toString()));
+							}[w](l[fact], parseFloat(v.toString()));
 						})
 						.map((l) => l['color'])
-				);
-
-				// object with comparison symbols as keys
-			})()
-		);
+				: Error(`Unknown operator ${w}`);
+		}
 	};
 }
 
@@ -526,14 +515,14 @@ function getSrcMode(c) {
 	);
 }
 
-function isValidArgs(argsList, minArgs = 1) {
-	const len = argsList?.length;
+function isValidArgs(arg, minArgs = 1) {
+	const len = arg?.length;
 
 	if (gte(len, minArgs)) {
 		return true;
 	} else {
 		throw new Error(
-			`Color token collection cannot have a length smaller than 1 or be of type ${typeof argsList}`
+			`Color token collection cannot have a length smaller than 1 or be of type ${typeof arg}`
 		);
 	}
 }
