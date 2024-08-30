@@ -12,7 +12,7 @@ import {
 	mc,
 	colors,
 	filterBy
-} from './src/index.ts';
+} from './lib/index.ts';
 import { log } from 'node:console';
 //log(achromatic('cyan'));
 // log(token('cyan', { kind: 'obj' }));
@@ -24,7 +24,27 @@ import { log } from 'node:console';
 // 	})
 // );
 
-// log(complimentary('cyan'));
-// //log(mc('lch.h')('cyan', 10));
-const val = mc('lch.h')('blue', 10);
-log(val)
+let sample = [
+	'#00ffdc',
+	'#00ff78',
+	'#00c000',
+	'#007e00',
+	'#164100',
+	'#ffff00',
+	'#310000',
+	'#3e0000',
+	'#4e0000',
+	'#600000',
+	'#720000'
+];
+
+log(
+	filterBy(sample, {
+		factor: ['contrast'],
+		ranges: {
+			contrast: [8, 10]
+		},
+		colorspace: 'lch'
+	})
+);
+

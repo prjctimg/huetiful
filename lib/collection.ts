@@ -29,7 +29,8 @@ import {
 	FilterByOptions,
 	SortByOptions,
 	Stats,
-	StatsOptions
+	StatsOptions,
+	Factor
 } from './types.js';
 
 /**
@@ -364,172 +365,83 @@ function filterBy<Iterable extends Collection, Options extends FilterByOptions>(
 	collection: Iterable,
 	options: Options
 ): Collection {
-	let { against, colorspace, factor, ranges } = options || {};
-
+	let { against, colorspace, factor, ranges } = or(options, {} as Options),
+		start: number,
+		end: number;
 	factor = or(factor, undefined);
-	//	relative = or(relative, false);
 	colorspace = or(colorspace, 'lch');
 	against = or(against, 'cyan');
-	//	order = or(order, 'asc');
 
-	let w = (b, s, e) => {
-			return filteredColl(factor, b)(collection, s, e);
+	const filter = (cb, start, end) => {
+			return filteredColl(factor, cb)(collection, start, end);
 		},
-		p = (k) => {
-			/**
-			 * @type { string | number } x
-			 * The `start` or min extremum.
-			 */
-			let x,
-				/**
-				 * @type { string | number } x
-				 * The `end` or max extremum.
-				 */
-				y,
-				z,
-				// @ts-ignore
-				[c, l] = [mcchn('c', colorspace, false), mcchn('l', colorspace, false)];
+		chromaChannel = mcchn('c', colorspace, false),
+		lightnessChannel = mcchn('l', colorspace, false),
+		callback = (fact) => {
+			const defaultRanges: { [F in Factor] } = {
+					hue: [0, 359],
+					contrast: [0, 21],
+					chroma: [...limits[colorspace][chromaChannel]],
+					lightness: [...limits[colorspace][lightnessChannel]],
+					distance: [0, Infinity],
+					luminance: [0, 1]
+				},
+				ctrst = (a) => (b) => contrast(b, a),
+				dstnce = (a) => differenceHyab()(a, against);
+
 			if (isArray(factor) || undefined) {
-				x = ranges[k][0];
-				y = or(ranges[k][1], undefined);
-				switch (k) {
-					case 'chroma':
-						y = !y ? limits[colorspace][c][1] : y;
+				start = or(ranges[fact][0], defaultRanges[fact][0]);
+				end = or(ranges[fact][1], defaultRanges[fact][1]);
+			} else if (eq(typeof fact, 'string')) {
+				start = or(ranges[0], defaultRanges[fact][0]);
 
-						z = w(
-							mc(c),
-
-							// @ts-ignore
-							x,
-							y
-						);
-
-						break;
-					case 'contrast':
-						let q = (a) => (b) => contrast(b, a);
-
-						z = w(
-							q(against),
-
-							x,
-							y
-						);
-						break;
-					case 'distance':
-						/**
-						 * The `distance` factor callback.
-						 * @param {ColorToken} a The color ro compare against.
-						 * @returns
-						 */
-						// @ts-ignore
-						let u = (a) => differenceHyab()(a, against);
-
-						z = w(
-							u(token(against)),
-
-							// @ts-ignore
-							x,
-							y
-						);
-						break;
-					case 'hue':
-						z = w(
-							mc(`${colorspace}.h`),
-							// @ts-ignore
-							x,
-							y
-						);
-						break;
-					case 'lightness':
-						y = !y ? limits[colorspace][mcchn('l', colorspace, false)][1] : y;
-						z = w(
-							mc(mcchn('l', colorspace)),
-							// @ts-ignore
-							x,
-							y
-						);
-						break;
-					case 'luminance':
-						z = w(
-							luminance,
-							// @ts-ignore
-							x,
-							y
-						);
-						break;
-				}
-			} else {
-				x = ranges[0];
-
-				y = or(ranges[1], undefined);
-				switch (k) {
-					case 'chroma':
-						y = !ranges[1] ? limits[colorspace][c][1] : y;
-
-						z = w(
-							mc(mcchn('c', colorspace)),
-
-							// @ts-ignore
-							x,
-							y
-						);
-
-						break;
-					case 'contrast':
-						let q = (a) => contrast(against, a);
-
-						z = w(
-							q(against),
-							// @ts-ignore
-							x,
-							y
-						);
-						break;
-					case 'distance':
-						// @ts-ignore
-						let u = (b) => differenceHyab()(against, b);
-
-						z = w(
-							u(token(against)),
-
-							// @ts-ignore
-							x,
-							y
-						);
-						break;
-					case 'hue':
-						z = w(
-							mc(`${colorspace}.h`),
-							// @ts-ignore
-							x,
-							y
-						);
-						break;
-					case 'lightness':
-						y = !y ? limits[colorspace][c.split('.')[1]][1] : y;
-						z = w(
-							mc(mcchn('l', colorspace)),
-							// @ts-ignore
-							x,
-							y
-						);
-						break;
-					case 'luminance':
-						z = w(
-							luminance,
-							// @ts-ignore
-							x,
-							y
-						);
-						break;
-				}
+				end = or(ranges[1], defaultRanges[fact][1]);
 			}
 
-			return z;
+			return {
+				chroma: filter(
+					mc(mcchn('c', colorspace, true)),
+
+					// @ts-ignore
+					start,
+					end
+				),
+				lightness: filter(
+					mc(mcchn('l', colorspace, true)),
+					// @ts-ignore
+					start,
+					end
+				),
+				hue: filter(
+					mc(`${colorspace}.h`),
+					// @ts-ignore
+					start,
+					end
+				),
+				distance: filter(
+					dstnce(token(against)),
+
+					// @ts-ignore
+					start,
+					end
+				),
+				contrast: filter(
+					ctrst(against),
+
+					start,
+					end
+				),
+				luminance: filter(
+					luminance,
+					// @ts-ignore
+					start,
+					end
+				)
+			}[fact];
 		};
 
 	// @ts-ignore
-	return factorIterator(factor, p);
+	return factorIterator(factor, callback);
 }
 
 export { stats, sortBy, filterBy, distribute };
