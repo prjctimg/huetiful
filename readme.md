@@ -23,8 +23,8 @@ Explore creative ways of manipulating color in your creative coding projects usi
 ### [Contributing](./contributing.md)
 
 <pre>
-<h5> License ⚖️</h5>
-<h6>Released under the  [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) permissive license.</h6>
+ License ⚖️
+<h6>Released under the  <a href='http://www.apache.org/licenses/LICENSE-2.0'>Apache 2.0 permissive license </a></h6>
  © 2024, <a href="https://deantarisai.me">ディーン・タリサイ</a>
  
  </pre>
