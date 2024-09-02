@@ -1,7 +1,7 @@
 ---
 
 title: Quickstart
-description: Basic examples to help you get started.
+description: Basic examples from each module to help you get started.
 sidebar_position: 1
 
 ---
@@ -22,7 +22,7 @@ For more information about color tokens [see this page](/docs/guides/color)
 
 :::
 
-```js
+```ts
 import { token } from 'huetiful-js'
 
 let cssNamedColor = 'pink'
@@ -56,7 +56,7 @@ console.log(res)
 
 The library comes along with the default TailwindCSS palette included. This helps you get started easier when you're using [palette generators](/docs/api/generators).
 
-```js
+```ts
  import { colors } from "huetiful-js";
 
 
@@ -109,7 +109,7 @@ Here are some example using the filtering and sorting functions on an array of c
 
 #### Sorting colors
 
-An example of sorting colors by hue angle and distance between each color in the collection as compared against 'yellow':
+An example of sorting colors by hue angle and distance between each color in the collection as compared against 'yellow'. We get an object whose keys are the specified factors in the `factors` option:
 
 ```ts
 import { sortBy } from "huetiful-js";
@@ -161,9 +161,11 @@ console.log(sorted)
 
 #### Filtering colors
 
-An example of filtering colors by their relative contrast and luminance.
+An example of filtering colors by their relative contrast and luminance. In this case, we get an object whose keys are the specified `factor`s and values are the color tokens that are within the defined ranges.
 
-```js
+```ts
+
+
  let sample = [
   '#00ffdc',
   '#00ff78',
@@ -178,33 +180,20 @@ An example of filtering colors by their relative contrast and luminance.
   '#720000',
 ]
 
-filterByHue(sample, 20, 80)
-
-// [ '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
-
- // We can even use expressions as the condition e.g '>=50' which means return the colors with a hue angle greater than or equal to 50
-
- // Here are some examples
-console.log(filterByHue(sample, '>100')
-)
-// [ '#00ffdc', '#00ff78', '#00c000', '#007e00', '#164100' ]
-
-console.log(filterByHue(sample, '<=100')
-)
-// [ '#ffff00', '#310000', '#3e0000', '#4e0000', '#600000', '#720000' ]
 
 ```
 
-[See more about the parameter types and other filtering functions](https://prjctimg.github.io/huetiful/modules/sortBy.html)
+[See more functions for manipulating collections](https://huetiful-js.com/docs/api/collection)
 
 ### Palette generators
 
-A few simple palette generator functions are included in the library. One of my favourites is `hueShift`  (as a color becomes lighter, its hue shifts up and darker when its hue shifts down. ) .
+Here's an example of `hueshift` and paired palettes.
 
-```js
-import { hueShift } from "huetiful-js";
 
-let hueShiftedPalette = hueShift("#3e0000", {}, true);
+```ts
+import { hueshift } from "huetiful-js";
+
+let hueShiftedPalette = hueshift("#3e0000");
 
 console.log(hueShiftedPalette);
 
@@ -215,13 +204,12 @@ console.log(hueShiftedPalette);
   '#310000', '#34000f',
   '#38001e', '#3b002c',
   '#3b0c3a'
-]
-
+// ]
 
 
 ```
 
-[See more palette generator functions](https://prjctimg.github.io/huetiful/modules/generators.html)
+[See more palette generator functions](https://huetiful-js.com/docs/api/palettes)
 
 ### Predicates⚖️
 
@@ -229,8 +217,8 @@ Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? 
 
 ```js
 
-import { isAchromatic } from "huetiful-js";
-import { formatHex8, interpolate, samples } from "culori"
+import { achromatic,token } from "huetiful-js";
+import { interpolate, samples } from "culori"
 
 
 isAchromatic('pink')
@@ -243,11 +231,11 @@ let sample = [
   'pink'
 ];
 
-console.log(map(sample, isAchromatic));
+console.log(map(sample, achromatic));
 
 // [false, false, false,false]
 
-isAchromatic('gray')
+achromatic('gray')
 // true
 
 
@@ -273,7 +261,8 @@ console.log(map(grays, isAchromatic));
 ```
 
 
-```js
+```ts
+
 import { temp } from 'huetiful-js'
 
 let sample = [
@@ -282,21 +271,17 @@ let sample = [
   "#00c000"
 ];
 
+console.log(sample.map(temp));
 
-console.log(temp(sample[0]));
-// false
-
-console.log(map(sample, temp));
-
-// [ true,  false, true]
+// [ 'cool',  'warm', 'cool']
 
 
 ```
 
-Another use👷 case would be passing the predicate to an array method like `filter` to filter a collection of colors removing colors that return false for the passed in predicate. In the following example we use is `isWarm` to only return warm colors:
+Another use👷 case would be passing the predicate to an array method like `filter` to filter a collection of colors removing colors that are not warm/cool:
 
-```js
-import { isWarm } from 'huetiful-js'
+```ts
+import { temp } from 'huetiful-js'
 
 let sample = [
   "#00ffdc",
@@ -304,7 +289,7 @@ let sample = [
   "#00c000"
 ];
 
-console.log(sample.filter(isWarm))
+console.log(sample.filter((c)=> temp(c) === 'warm'))
 // [ '#00ff78' ]
 
 
