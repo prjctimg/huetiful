@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Pacifico';
+  src: url('/css/fonts/Pacifico.ttf');
+}
+
+
+.navbar__title{
+ font-family: "Pacifico", cursive !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}

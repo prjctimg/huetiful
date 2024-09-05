@@ -73,13 +73,14 @@ const config: Config = {
 		[
 			'classic',
 			{
-				theme: { customCss: '/css/github-markdown.css' },
+				theme: { customCss: '/css/styles.css' },
 				docs: {
 					sidebarPath: './sidebars.ts',
 					// Please change this to your repo.
 					// Remove this to remove the "edit this page" links.
 					editUrl: 'https://github.com/prjctimg/huetiful/tree/main/www/',
-					showLastUpdateTime: true
+					showLastUpdateTime: true,
+					routeBasePath: '/'
 				},
 				googleAnalytics: { trackingID: 'G-0TXKRCERK8', anonymizeIP: true },
 				sitemap: { lastmod: 'datetime', changefreq: 'weekly' }
@@ -89,31 +90,24 @@ const config: Config = {
 
 	themeConfig: {
 		// Replace with your project's social card
-		image: '/img/social.jpg',
+
 		navbar: {
 			title: 'huetiful-js',
-			logo: {
-				alt: 'huetiful-js',
-				src: '/img/favicon.ico',
-				href: 'https://huetiful-js.com',
-				target: '_self',
-				width: 32,
-				height: 32
-			},
+
 			items: [
 				{
-					to: '/docs/guides/quickstart',
+					to: '/',
 					position: 'left',
-					label: 'Quickstart ⚡︎'
+					label: 'Home 🏠'
 				},
 				{
-					to: '/docs/api/',
+					to: '/api/',
 					position: 'left',
-					label: 'API'
+					label: 'API 🗒️'
 				},
 				{
-					to: '/docs/guides/',
-					label: 'Guides?',
+					to: '/guides/',
+					label: 'Guides 👨‍🏫 ',
 					position: 'left'
 				},
 				{
@@ -121,10 +115,11 @@ const config: Config = {
 					label: 'GitHub 🐈‍⬛',
 					position: 'right'
 				},
+
 				{
-					label: 'Wiki 📜',
-					href: 'https://github.com/prjctimg/huetiful/wiki',
-					position: 'right'
+					position: 'right',
+					label: 'Buy me a coffee ☕',
+					href: 'https://ko-fi.com/prjctimg'
 				}
 			]
 		},
@@ -133,31 +128,8 @@ const config: Config = {
 		},
 		footer: {
 			style: 'light',
-			links: [
-				{
-					title: '🏛️',
-					items: [
-						{
-							label: 'Wiki 📜',
-							href: 'https://github.com/prjctimg/huetiful/wiki'
-						},
-						{
-							label: 'GitHub 🐈‍⬛',
-							href: 'https://github.com/prjctimg/huetiful'
-						},
-						{
-							label: 'Buy me a coffee ☕',
-							href: 'https://ko-fi.com/prjctimg'
-						},
 
-						{
-							label: 'Contribute 🙋‍♂️',
-							href: 'https://github.com/prjctimg/huetiful/blob/main/CONTRIBUTING.md' // link to contributing.md
-						}
-					]
-				}
-			],
-			copyright: `©<a href='https://deantarisai.com'> ディーン・タリサイ</a>`
+			copyright: `<h6>Released under the Apache 2.0 permissive license</h6> <br> ©<a href='https://deantarisai.com'> ディーン・タリサイ 🌊</a>`
 		},
 		prism: {
 			theme: prismThemes.palenight,
