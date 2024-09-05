@@ -1,5 +1,150 @@
 ---
-title: Quantifiable factors of a color
-description: Understanding how a color's properties can be used to make design decisions programmatically.
+title: What's new
+description: See what has changed in v3 and added improvements
 sidebar_position: 5
+
 ---
+
+### Slimmer API
+
+Prior to v3 the API was not very DRY, with utilities being over specialised for one particular task. Here's an example:
+
+```ts
+
+```
+
+### "One parser to convert them all"
+
+Initially each color token type had a standalone converter function. 
+
+```ts
+
+
+```
+
+All these functions have been merged into one function, `token()` which can parse and output color tokens in different types:
+
+
+```ts
+
+
+
+
+```
+
+### Method chaining with `color()` and `load()`
+
+Method chaining allows a more concise and readable syntax than nesting functions inside of each other.
+
+
+```ts
+
+
+// An example showing the same operation but with different syntaxes
+
+```
+
+### Smaller bundle 
+
+The library now supports a limited number of colorspaces because the mode definitions make the bundle really large.
+
+:::tip
+
+See the Culori docs for [more information on colorspaces](https://culorijs.org/guides/tree-shaking/#culori-css) that are included by default. 
+For conversion across many colorspaces use the Culori library instead.
+
+:::
+
+
+ Below is an exhaustive list of supported colorpaces:
+
+
+ ```ts
+
+export type Colorspaces =
+	| 'lab'
+	| 'lab65'
+	| 'rgb'
+	| 'lch'
+	| 'lch65'
+	| 'xyz65'
+	| 'xyz'
+	| 'rec2020'
+
+
+ ```
+
+ ### Sorting and filtering with customizable options
+
+ Prior to v3, each `factor` had a sorting and filtering function. This made the code unnecessarily complicated and hard to maintain. Now, we can customize the sorting/filtering behavior through an `options` object.
+
+
+ ```ts
+
+import { sortBy, filterBy } from 'huetiful-js'
+
+// sorting
+
+
+
+
+
+// filtering
+
+
+
+
+ ```
+
+ ### A few more `collection` methods
+
+ The library now comes with 2 new experimental functions for manipulating collections:
+ 
+ #### `stats()`
+
+ This function gets the statistics for a collection of color tokens alongside some extra meta which can be useful when you want to know certain info before making a decision during color manipulation. It also has an `options` object to customize how the stats are calculated.
+
+
+
+```ts
+
+
+```
+ 
+ 
+ #### `distribute()`
+
+ As the name suggests, this function opens a new avenue of creativity by distributing the specified `factor`s equally amongst other color tokens in the collection. Its behaviour can also be customized by passing an options object.
+
+ :::tip
+
+If you think this function can be further improved, [open an issue](https://github.com/prjctimg/huetiful/issues/new) on the project repository alongside some suggestions you may have in mind!
+
+
+ :::
+
+
+ ```ts
+
+// sample code
+
+
+ ```
+
+
+
+ ### Better types and code examples
+
+ The library is written in TypeScript for better editor autocomplete support and type definitions for the API. The code examples have also been updated to be more simple and straightforward.
+
+
+ :::tip
+
+Made something cool out of this ? You can share it [on my Twitter](https://x.com/prjctimg). 
+
+I'd love to see what can be built with this project!
+
+ :::
+
+
+ I hope you find this update useful! :rocket:
