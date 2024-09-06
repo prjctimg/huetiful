@@ -4,8 +4,9 @@
 }
 
 
-.navbar__title{
+.navbar__title, .pacifico{
  font-family: "Pacifico", cursive !important;
   font-weight: 400 !important;
   font-style: normal !important;
 }
+

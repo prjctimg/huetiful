@@ -89,8 +89,7 @@ const config: Config = {
 	],
 
 	themeConfig: {
-		// Replace with your project's social card
-
+		image: '/img/logo.png',
 		navbar: {
 			title: 'huetiful-js',
 
@@ -129,7 +128,7 @@ const config: Config = {
 		footer: {
 			style: 'light',
 
-			copyright: `<h6>Released under the Apache 2.0 permissive license</h6> <br> ©<a href='https://deantarisai.com'> ディーン・タリサイ 🌊</a>`
+			copyright: `<a href='https://huetiful-js.com'><b class='pacifico'>huetiful-js</b></a> <br> <a href='https://deantarisai.com'>© ディーン・タリサイ 🌊</a>`
 		},
 		prism: {
 			theme: prismThemes.palenight,
@@ -144,7 +143,7 @@ const config: Config = {
 		},
 		announcementBar: {
 			id: 'huetiful-js-announcement',
-			content: `V3 is here! Smaller API,better docs & more <a href='/docs/changes>Learn more</a>`,
+			content: `V3 is here! Smaller API footprint,better docs & more <a href='/guides/changes>Learn more</a>`,
 			backgroundColor: '#333',
 			textColor: '#fff',
 			isCloseable: true
