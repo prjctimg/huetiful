@@ -22,12 +22,12 @@ const typedocOptions: TypeDocOptions & PluginOptions = {
 	excludeNotDocumented: true,
 	excludeReferences: false,
 	modulesFileName: 'api',
-	plugin: ['typedoc-plugin-markdown', 'typedoc-plugin-remark'],
+	plugin: ['typedoc-plugin-markdown'],
 	// @ts-ignore
-	remarkPlugins: ['unified-prettier', 'remark-toc'],
+	remarkPlugins: ['unified-prettier'],
 	entryPointStrategy: 'resolve',
 	out: 'docs/api',
-	exclude: ['./internal'],
+	exclude: ['../lib/internal.ts'],
 	groupOrder: [
 		'Function',
 		'Class',

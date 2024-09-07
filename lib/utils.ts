@@ -1,21 +1,18 @@
-//  @ts-nocheck
-
 import {
 	colorsNamed,
 	useMode,
-	modeJch,
-	modeHsv,
 	modeLch65,
 	modeLrgb,
 	modeLab65,
-	modeOklch,
 	formatHex,
 	formatHex8,
 	modeLch,
 	modeXyz65,
 	modeLab,
 	wcagLuminance,
-	interpolate
+	interpolate,
+	modeRec2020,
+	modeXyz50
 } from 'culori/fn';
 import 'culori/css';
 import {
@@ -332,15 +329,14 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 	 *
 	 */
 	const modeDefinitions = {
-		hsv: modeHsv,
 		rgb: modeLrgb,
 		lab: modeLab,
 		lch65: modeLch65,
-		lab65: modeLab65,
-		oklch: modeOklch,
 		lch: modeLch,
-		xyz: modeXyz65,
-		jch: modeJch
+		xyz: modeXyz50,
+		xyz65: modeXyz65,
+		lab65: modeLab65,
+		rec2020: modeRec2020
 	};
 	let {
 		srcMode,
@@ -353,7 +349,10 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 	} = or(options, {} as Options);
 
 	kind = or(kind, 'str');
-	srcMode = getSrcMode(color);
+	console.log(`srcMode before: ${srcMode}`);
+	srcMode = srcMode ? srcMode : getSrcMode(color);
+
+	console.log(`srcMode after: ${srcMode}`);
 	normalizeRgb = or(normalizeRgb, true);
 	numType = or(numType, undefined);
 	omitMode = or(omitMode, false);

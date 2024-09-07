@@ -2,8 +2,6 @@ import { differenceHyab, nearest as nrst } from 'culori';
 import { or, values, and, eq, keys } from './internal.js';
 
 const tailwind = {
-	/*     black: '#000',
-          white: '#fff', */
 	indigo: {
 		50: '#f8fafc',
 		100: '#f1f5f9',
@@ -248,13 +246,6 @@ const tailwind = {
 	}
 };
 
-let dab = {};
-
-for (const k of keys(tailwind)) {
-	dab[k] = tailwind[k];
-}
-
-const {} = dab;
 const {
 	indigo,
 	red,

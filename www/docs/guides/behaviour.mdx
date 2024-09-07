@@ -2,27 +2,61 @@
 title: Errors and defaults
 description: Understanding the limits of this library,default behaviours and ways of handling common errors.
 sidebar_position: 4
+hide_title: true
 ---
 
 ## Default parameters and behaviours
 
-Whenever possible, the library passes internal defaults to make sure that the least amount of errors surface unnecessarily. For example all `options` objects are optional but in certain scenarios these options have to be specified to remove ambiguity.
+Whenever possible, the library passes internal defaults to make sure that the least amount of errors surface unnecessarily. 
 
+For example all `options` objects are optional but in certain scenarios these options have to be specified to remove ambiguity.
+
+
+### `token()`
+
+
+:::caution 
+
+A good example is with `token()`, if you pass in the color token as an array or plain object without the `mode` specified it will treat the color as if it is in the mode `'rgb'`. This can lead to incorrect final results or error.
 
 ```ts
 
-token parser example
+import { token } from 'huetiful-js';
 
 
+
+// c1 is an array of RGB channels
+const c1 = [0.8, 0.5, 0.3],
+	// c2 is an array of LCH channels.
+	// Its treated as RGB and normalized to the range [0,1]
+	// if normalizeRgb is true
+	c2 = [80, 55, 30],
+	// this works because the default srcMode is rgb
+	c3 = { r: 0.8, g: 0.5, b: 0.3 },
+	// this just produces black because the default channel keys 
+	// differ from the color token's
+	c4 = { l: 80, c: 55, h: 30 };
+
+const res = [];
+for (const c of [c1, c2, c3, c4]) {
+	res.push(token(c));
+}
+
+console.log(res)
+
+// [ '#cc804dff', '#50371eff', '#cc804dff', '#000000ff' ]
 
 ```
 
+Always try to define the mode of your color objects (be it arrays or plain objects) to get predictable output.
 
-### Colorspaces
 
-The default colorspace depends in the context of its use. For the token() utility, it takes two colorspaces namely srcMode and targetMode. Because the common colorspace is rgb, the srcMode defaults to consider the color token in that format if a valid srcMode cannot be inferred from the passed in color token.
+:::
+ 
 
-The colorspace is inferred from the passed in color token during parsing using token() in the following order of precedence:
+The default colorspace is `'rec2020'` (aliased as `'rgb'`). This is because it supports Wide Color Gamut.
+
+The `srcMode` is inferred from the passed in color token during parsing in the following order of precedence:
 
 0. A `mode` property (if object) or the first element (if array) which is expected to be of type `string`
 

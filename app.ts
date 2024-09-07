@@ -24,27 +24,29 @@ import { log } from 'node:console';
 // 	})
 // );
 
-let sample = [
-	'#00ffdc',
-	'#00ff78',
-	'#00c000',
-	'#007e00',
-	'#164100',
-	'#ffff00',
-	'#310000',
-	'#3e0000',
-	'#4e0000',
-	'#600000',
-	'#720000'
-];
+// let sample = [
+// 	'#00ffdc',
+// 	'#00ff78',
+// 	'#00c000',
+// 	'#007e00',
+// 	'#164100',
+// 	'#ffff00',
+// 	'#310000',
+// 	'#3e0000',
+// 	'#4e0000',
+// 	'#600000',
+// 	'#720000'
+// ];
 
-log(
-	filterBy(sample, {
-		factor: ['contrast'],
-		ranges: {
-			contrast: [8, 10]
-		},
-		colorspace: 'lch'
-	})
-);
+// log(
+// 	filterBy(sample, {
+// 		factor: ['contrast'],
+// 		ranges: {
+// 			contrast: [8, 10]
+// 		},
+// 		colorspace: 'lch'
+// 	})
+// );
+
+
 

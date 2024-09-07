@@ -513,17 +513,12 @@ export type Factor =
 export type Colorspaces =
 	| 'lab'
 	| 'lab65'
-	| 'lrgb'
-	| 'oklab'
 	| 'rgb'
 	| 'lch'
-	| 'jch'
-	| 'lch'
 	| 'lch65'
-	| 'oklch'
-	| 'hsv'
-	| 'hwb';
-
+	| 'xyz65'
+	| 'xyz'
+	| 'rec2020';
 /**
  * The value of the Tailwind color.
  */

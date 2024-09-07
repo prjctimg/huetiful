@@ -58,3 +58,5 @@ next-env.d.ts
 *.code-worspace
 /leonardo-main
 source/lib
+
+*storybook.log
