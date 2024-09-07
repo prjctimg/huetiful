@@ -5,6 +5,13 @@ sidebar_position: 4
 hide_title: true
 ---
 
+:::tip
+
+In this article when I say color object I mean a color token defined either as an `Array` instance or plain object.
+
+
+:::
+
 ## Default parameters and behaviours
 
 Whenever possible, the library passes internal defaults to make sure that the least amount of errors surface unnecessarily. 
@@ -48,38 +55,35 @@ console.log(res)
 
 ```
 
-Always try to define the mode of your color objects (be it arrays or plain objects) to get predictable output.
+Always try to define the mode of your color objects (be it arrays or plain objects) or explicitly via the `srcMode` property if your omit it from the color object.
 
 
 :::
- 
-
-The default colorspace is `'rec2020'` (aliased as `'rgb'`). This is because it supports Wide Color Gamut.
 
 The `srcMode` is inferred from the passed in color token during parsing in the following order of precedence:
 
-0. A `mode` property (if object) or the first element (if array) which is expected to be of type `string`
+0. A `mode` property (if `object`) or the first element (if `Array`) which is expected to be of type `string`.
+
+
+1. If the color token is of type `string` (regardless its a CSS named color, serialized color string or hex), `number` or `boolean` then the mode is `'rgb'`.
+
+However in utilities that perform hue dependant operations like `hueshift()`, then the default colorspace is `lch`.
+
+:::caution
+
+The `srcMode` property will override the color object's `mode`.
 
 ```ts
-var a  = 5
+// the mode will be 'lab'
+const c1 = ['lch',65,38,19,0.3]
 
+token(c1,{ srcMode:'lab',kind:'arr' })
 
+// ['lab',65,38,19,0.3]
 
 ```
 
-
-1. If the color token is of type `string` (regardless its a CSS named color, serialized color string or hex), `number` or `boolean` then the color is treated as being in 'rgb'.
-
-```ts
-
-
-
-
-
-```
-
-However in utilities that perform hue dependant operations like `hueshift()`, then the default colorspace is `lch65` which means the Lch colorspace using the D65 illuminant.
-
+:::
 
 ### baseColor
 
@@ -88,7 +92,7 @@ Every utility that takes an individual color token (known as `baseColor`) provid
 
 ### options
 
-For every utility that takes an options object, its internally guarded with default parameters to ensure that you can customize just what you want and let the rest be.
+For every utility that takes an `options` object, its internally guarded with default parameters to ensure that you can customize just what you want and let the rest be.
 
 ## Common errors
 
@@ -97,12 +101,12 @@ The sources of bias when manipulating color are nuanced and sometimes not immedi
 
 ### Why am I only getting achromatic (grey) colors ?
 
-One of the most infamous bugs I encountered was the one whereby I got gray colors if I tried to interpolate via black. The bug stemmed from the fact that black has an undefined hue channel therefore all the resulting colors would have NaN as their hue channel value. The way around this was to explicitly pass all channels as 0 in the target hue based colorspace.
+One of the bugs I encountered was when I got gray colors if I tried to interpolate via black. The bug stemmed from the fact that black has an `undefined` hue channel therefore all the resulting colors would have NaN as their hue channel value. The way around this was to explicitly pass all channels as 0 in the target hue based colorspace.
 
 
 ### Generated color samples are a bit off
 
-At the mopment there's inevitable precision loss when converting across certain colorspaces. This can slightly the final result of the color. In the future, I may provide a work around this.
+At the mopment there's inevitable precision loss when converting across certain colorspaces. This can slightly alter the final result of the color. In the future, I may provide a fix for this.
 
 
 

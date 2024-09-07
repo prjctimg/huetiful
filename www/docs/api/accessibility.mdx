@@ -25,17 +25,17 @@ The color to compare against.
 #### Example
 
 ```ts
-import { contrast } from 'huetiful-js';
+import { contrast } from 'huetiful-js'
 
-console.log(contrast('black', 'white'));
+console.log(contrast("black", "white"));
 // 21
 ```
 
 #### Defined in
 
-[accessibility.ts:33](https://github.com/prjctimg/huetiful/blob/a1c5d52e06e5e1ca0d2771d8459bc0293bb190a9/lib/accessibility.ts#L33)
+[accessibility.ts:33](https://github.com/prjctimg/huetiful/blob/c7b56f2f76c86f20353ae7f2e510c779a0dcea79/lib/accessibility.ts#L33)
 
----
+***
 
 ### deficiency()
 
@@ -45,9 +45,9 @@ Simulates how a color may be perceived by people with color vision deficiency.
 
 To avoid writing the long types, the expected parameters for the `kind` of blindness are simply the colors that are hard to perceive for the type of color blindness:
 
-- 'tritanopia' - An inability to distinguish the color 'blue'. The `kind` is `'blue'`.
-- 'deuteranopia' - An inability to distinguish the color 'green'.. The `kind` is `'green'`.
-- 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
+* 'tritanopia' - An inability to distinguish the color 'blue'. The `kind` is `'blue'`.
+* 'deuteranopia' - An inability to distinguish the color 'green'.. The `kind` is `'green'`.
+* 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
 
 #### Parameters
 
@@ -64,17 +64,15 @@ The color to return its simulated variant
 #### Example
 
 ```ts
-import { deficiency } from 'huetiful-js';
+import { deficiency } from 'huetiful-js'
 
 // Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
 // We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.5
 
-console.log(
-	deficiency(['rgb', 230, 100, 50, 0.5], { kind: 'blue', severity: 0.5 })
-);
+console.log(deficiency(['rgb', 230, 100, 50, 0.5],{ kind:'blue', severity:0.5 }))
 // '#dd663680'
 ```
 
 #### Defined in
 
-[accessibility.ts:141](https://github.com/prjctimg/huetiful/blob/a1c5d52e06e5e1ca0d2771d8459bc0293bb190a9/lib/accessibility.ts#L141)
+[accessibility.ts:141](https://github.com/prjctimg/huetiful/blob/c7b56f2f76c86f20353ae7f2e510c779a0dcea79/lib/accessibility.ts#L141)

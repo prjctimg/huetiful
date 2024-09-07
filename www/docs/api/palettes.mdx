@@ -8,12 +8,11 @@ Returns TailwindCSS color value(s) from the default palette.
 
 The function behaves as follows:
 
-- If called with both `shade` and `value` parameters, it returns that color as a hex string. For example `'blue'` and `'500'` would return the equivalent of `blue-500`.
-- If called with no parameters or just the `'all'` parameter as the `shade`, it returns an array of colors from `'050'` to `'900'` for every `shade`.
+* If called with both `shade` and `value` parameters, it returns that color as a hex string. For example `'blue'` and `'500'` would return the equivalent of `blue-500`.
+* If called with no parameters or just the `'all'` parameter as the `shade`, it returns an array of colors from `'050'` to `'900'` for every `shade`. 
 
 Note that to specify `'050'` as a number you just pass `50`. Values are all valid as string or number for example `'100'` and`100` .
-
-- If the `shade ` is `'all'` and the `value` is specified, it returns an array of colors at the specified `value` for each `shade`.
+* If the `shade ` is `'all'` and the `value` is specified, it returns an array of colors at the specified `value` for each `shade`.
 
 #### Parameters
 
@@ -51,9 +50,9 @@ console.log(colors('red','900'));
 
 #### Defined in
 
-[palettes.ts:855](https://github.com/prjctimg/huetiful/blob/a1c5d52e06e5e1ca0d2771d8459bc0293bb190a9/lib/palettes.ts#L855)
+[palettes.ts:855](https://github.com/prjctimg/huetiful/blob/c7b56f2f76c86f20353ae7f2e510c779a0dcea79/lib/palettes.ts#L855)
 
----
+***
 
 ### diverging()
 
@@ -89,9 +88,9 @@ console.log(diverging("Spectral"))
 
 #### Defined in
 
-[palettes.ts:549](https://github.com/prjctimg/huetiful/blob/a1c5d52e06e5e1ca0d2771d8459bc0293bb190a9/lib/palettes.ts#L549)
+[palettes.ts:549](https://github.com/prjctimg/huetiful/blob/c7b56f2f76c86f20353ae7f2e510c779a0dcea79/lib/palettes.ts#L549)
 
----
+***
 
 ### nearest()
 
@@ -99,8 +98,8 @@ console.log(diverging("Spectral"))
 
 Returns the nearest color(s) in a collection as compared `against` the passed in color using the `differenceHyab` metric function.
 
-- To get the nearest color from the Tailwind CSS default palette pass in the string `tailwind` as the `collection` parameter.
-- If the `num` parameter is more than 1, the returned collection of colors has the colors sorted starting with the nearest color first
+* To get the nearest color from the Tailwind CSS default palette pass in the string `tailwind` as the `collection` parameter.
+* If the `num` parameter is more than 1, the returned collection of colors has the colors sorted starting with the nearest color first
 
 #### Parameters
 
@@ -117,7 +116,7 @@ The collection of colors to search for nearest colors.
 #### Example
 
 ```ts
-let cols = colors('all', '500');
+let cols = colors('all', '500')
 
 console.log(nearest(cols, 'blue', 3));
 // [ '#a855f7', '#8b5cf6', '#d946ef' ]
@@ -125,9 +124,9 @@ console.log(nearest(cols, 'blue', 3));
 
 #### Defined in
 
-[palettes.ts:803](https://github.com/prjctimg/huetiful/blob/a1c5d52e06e5e1ca0d2771d8459bc0293bb190a9/lib/palettes.ts#L803)
+[palettes.ts:803](https://github.com/prjctimg/huetiful/blob/c7b56f2f76c86f20353ae7f2e510c779a0dcea79/lib/palettes.ts#L803)
 
----
+***
 
 ### qualitative()
 
@@ -163,9 +162,9 @@ console.log(qualitative("Accent"))
 
 #### Defined in
 
-[palettes.ts:691](https://github.com/prjctimg/huetiful/blob/a1c5d52e06e5e1ca0d2771d8459bc0293bb190a9/lib/palettes.ts#L691)
+[palettes.ts:691](https://github.com/prjctimg/huetiful/blob/c7b56f2f76c86f20353ae7f2e510c779a0dcea79/lib/palettes.ts#L691)
 
----
+***
 
 ### sequential()
 
@@ -203,4 +202,4 @@ console.log(sequential("OrRd"))
 
 #### Defined in
 
-[palettes.ts:315](https://github.com/prjctimg/huetiful/blob/a1c5d52e06e5e1ca0d2771d8459bc0293bb190a9/lib/palettes.ts#L315)
+[palettes.ts:315](https://github.com/prjctimg/huetiful/blob/c7b56f2f76c86f20353ae7f2e510c779a0dcea79/lib/palettes.ts#L315)
