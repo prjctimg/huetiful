@@ -2,10 +2,8 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import { description } from '../package.json';
-import type { TypeDocOptions } from 'typedoc';
-import type { PluginOptions } from 'typedoc-plugin-markdown';
 
-const typedocOptions: TypeDocOptions & PluginOptions = {
+const typedocOptions = {
 	entryPoints: [
 		'../lib/accessibility.ts',
 		'../lib/generators.ts',
@@ -129,8 +127,8 @@ const config: Config = {
 			copyright: `<a href='https://huetiful-js.com'><b class='pacifico'>huetiful-js</b></a> <br> <a href='https://deantarisai.com'>© ディーン・タリサイ 🌊</a>`
 		},
 		prism: {
-			theme: prismThemes.palenight,
-			darkTheme: prismThemes.duotoneDark
+			theme: prismThemes['shadesOfPurple'],
+			darkTheme: prismThemes['palenight']
 		},
 		algolia: {
 			apiKey: 'f031ae0d71cbcbe66956cd02849d00e5',

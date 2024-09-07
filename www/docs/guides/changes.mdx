@@ -1,48 +1,83 @@
 ---
-title: What's new
+
+title: What's new ?
 description: See what has changed in v3 and added improvements
 sidebar_position: 5
 
 ---
 
-### Slimmer API
+Prior to v3 the API was not very DRY, with utilities being over specialised for one particular task. Most notably, the `sortBy` and `filterBy` utilities have been merged and are now customizable through an `options` object.
 
-Prior to v3 the API was not very DRY, with utilities being over specialised for one particular task. Here's an example:
+## Slimmer API
+
+### [filterBy](/api/collection#filterBy)
+
+You can now get your passed in collection filtered using different factors and `ranges` for each `factor`.
 
 ```ts
+import { filterBy } from "huetiful-js";
+
+// before
+filterByHue(...)
+filterBySaturation(...)
+filterByLuminance(...)
+
+// after
+filterBy(...,{ factors:['hue','chroma','luminance'],
+ranges:{
+	hue:[...],
+	chroma:[...],
+	luminance:[...]
+}})
 
 ```
 
-### "One parser to convert them all"
-
-Initially each color token type had a standalone converter function. 
+### [sortBy](/api/collection#sortBy)
 
 ```ts
+import { sortBy } from "huetiful-js";
 
+// before
+sortByHue(...)
+sortBySaturation(...)
+sortByLuminance(...)
+
+// after
+sortBy(...,{ factor:['hue','chroma','luminance'], order:'desc' })
 
 ```
 
-All these functions have been merged into one function, `token()` which can parse and output color tokens in different types:
+Easier to customize iteration behaviour than maintain small functions
+
+### [token](/api/utils#token)
+
+> "One parser to ~rule~ convert them all"
+
+Initially each color token type had a standalone converter function.
+All these functions have been merged into one function, which can parse and output color tokens in different types.
 
 
 ```ts
+// Old syntax
+import { num2rgb, toHex } from 'huetiful-js'
 
+let cssNamedColor = 'pink'
+let colorNumber = 5000
+let colorObject = { l: 50, c: 20, h: 40, mode: 'lch' }
+let colorObjectWithAlpha = { l: 50, c: 20, h: 40, alpha: 0.5, mode: 'lch' }
+let arrColor = ['rgb', 120, 80, 50]
+let arrColorWithAlpha = ['rgb', 120, 80, 50, 0.1]
 
+// any of the above color tokens is valid
 
-
+token(...)
 ```
 
-### Method chaining with `color()` and `load()`
+
+### Method chaining with [color()](/api/wrappers#color) and [load()](/api/wrappers#load)
 
 Method chaining allows a more concise and readable syntax than nesting functions inside of each other.
 
-
-```ts
-
-
-// An example showing the same operation but with different syntaxes
-
-```
 
 ### Smaller bundle 
 
@@ -69,74 +104,37 @@ export type Colorspaces =
 	| 'lch65'
 	| 'xyz65'
 	| 'xyz'
-	| 'rec2020'
 
 
  ```
 
- ### Sorting and filtering with customizable options
+### A few more `collection` methods
 
- Prior to v3, each `factor` had a sorting and filtering function. This made the code unnecessarily complicated and hard to maintain. Now, we can customize the sorting/filtering behavior through an `options` object.
-
-
- ```ts
-
-import { sortBy, filterBy } from 'huetiful-js'
-
-// sorting
+:::caution
+These functions are still experimental and may have breaking changes in future versions.
 
 
-
-
-
-// filtering
-
-
-
-
- ```
-
- ### A few more `collection` methods
-
- The library now comes with 2 new experimental functions for manipulating collections:
+:::
  
- #### `stats()`
+#### [stats()](/api/collection#stats)
 
  This function gets the statistics for a collection of color tokens alongside some extra meta which can be useful when you want to know certain info before making a decision during color manipulation. It also has an `options` object to customize how the stats are calculated.
-
-
-
-```ts
-
-
-```
  
- 
- #### `distribute()`
+ #### [distribute()](/api/collection#distribute)
 
  As the name suggests, this function opens a new avenue of creativity by distributing the specified `factor`s equally amongst other color tokens in the collection. Its behaviour can also be customized by passing an options object.
 
  :::tip
 
-If you think this function can be further improved, [open an issue](https://github.com/prjctimg/huetiful/issues/new) on the project repository alongside some suggestions you may have in mind!
+If you think this function can be further improved, [open an issue](https://github.com/prjctimg/huetiful/issues/new0 on the project repository alongside some suggestions you may have in mind!
 
 
  :::
 
+### Better types and code examples
 
- ```ts
-
-// sample code
-
-
- ```
-
-
-
- ### Better types and code examples
-
- The library is written in TypeScript for better editor autocomplete support and type definitions for the API. The code examples have also been updated to be more simple and straightforward.
-
+The library is written in TypeScript for better editor autocomplete support and type definitions for the API. 
+ The code examples have also been updated to be more simple and straightforward.
 
  :::tip
 

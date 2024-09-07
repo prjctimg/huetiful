@@ -26,3 +26,12 @@ p,
 b {
 	font-family: 'Nunito' !important;
 }
+
+
+article h3 {
+  color: #3b82f6;
+}
+
+p strong {
+  color:#ec4899
+}

@@ -5,15 +5,9 @@ description: Basic examples from each module to help you get started.
 sidebar_position: 2
 ---
 
-
-
-
-
-
-## Color conversion
+### Color conversion
 
 A color can be defined using different types(arrays, strings, numbers, plain objects etc). Below are examples listing all the valid color tokens:
-
 
 :::tip
 
@@ -48,10 +42,10 @@ console.log(res)
 
 
 
-#### Builtin color maps🎨
+### Builtin color maps🎨
 
 
-##### Tailwind
+#### Tailwind
 
 The library comes along with the default TailwindCSS palette included. This helps you get started easier when you're using [palette generators](/docs/api/generators).
 
@@ -220,7 +214,7 @@ import { achromatic,token } from "huetiful-js";
 import { interpolate, samples } from "culori"
 
 
-isAchromatic('pink')
+achromatic('pink')
 // false
 
 let sample = [
@@ -294,26 +288,8 @@ console.log(sample.filter((c)=> temp(c) === 'warm'))
 
 ```
 
-Or maybe we want to know which color has the furthest hue distance in our sample collection against our target color 🤔:
+### What next ?
 
-```ts
+This was just a sample of what operations are possible with some of the utilities. Hopefully, you were able to get an idea of how to compose the functions to create dynamic and beautiful color scales.
 
-import { getFarthestHue } from 'huetiful-js'
-let sample = [
-    '#00ffdc',
-    '#00ff78',
-    '#00c000',
-    '#007e00',
-    '#164100',
-    '#ffff00',
-    '#310000',
-    '#3e0000',
-    '#4e0000',
-    '#600000',
-    '#720000',
-]
-
-console.log(getFarthestHue('lime', sample, 'lch'))
-// 112.60431681589854
-
-```
+Ready to dive in to the [full API](/api/) ?

@@ -1,14 +1,41 @@
 ---
-title: Installation
+title: Installation and usage
 pagination_next: guides/quickstart
 sidebar_position: 1
 ---
 
+:::note 
 
-You can install this package just like any other regular npm package.
+Note that the library is ESM only. If you want a UMD build you'll have to clone the repository and build from source. Here's a link to the [contributing.md](https://github.com/prjctimg/huetiful/tree/main/contributing.md) for instructions on setting up the project locally.
+
+
+:::
+
+Assuming you already have Node installed, you can use your preferred package manager to install:
 
 ```bash
+# npm
+npm i huetiful-js
 
+# yarn
+yarn add huetiful-js
 
+# pnpm
+pnpm add huetiful-js
 
 ```
+
+### In the browser and via CDNs
+
+You can use also a CDN in this example, jsdelivr to load the library remotely:
+
+```ts
+import {...} from 'https://cdn.jsdelivr.net/npm/huetiful-js/build/huetiful.esm.js'
+
+```
+
+:::tip
+
+You can also [download from GitHub](https://github.com/prjctimg/huetiful/releases/latest) directly as an archive.
+
+:::
