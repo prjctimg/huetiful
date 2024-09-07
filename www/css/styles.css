@@ -1,12 +1,28 @@
 @font-face {
-  font-family: 'Pacifico';
-  src: url('/css/fonts/Pacifico.ttf');
+	font-family: 'Pacifico';
+	src: url('/css/fonts/Pacifico.ttf');
 }
 
-
-.navbar__title, .pacifico{
- font-family: "Pacifico", cursive !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
+@font-face {
+	font-family: 'Nunito';
+	src: url('/css/fonts/Nunito.ttf');
 }
 
+.navbar__title,
+.pacifico {
+	font-family: 'Pacifico', cursive !important;
+	font-weight: 400 !important;
+	font-style: normal !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+p,
+b {
+	font-family: 'Nunito' !important;
+}
