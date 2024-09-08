@@ -92,7 +92,11 @@ const all300 = [
 
 // This object is for simple utils with no edge cases
 <<<<<<< HEAD
+<<<<<<< HEAD
 var specs = {
+=======
+let specs = {
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 =======
 let specs = {
 >>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
@@ -137,6 +141,7 @@ let specs = {
 		description:
 			'Takes an array of colors and finds the best matches for a set of predefined palettes.',
 <<<<<<< HEAD
+<<<<<<< HEAD
 		expect: {
 			0: ['#495569ff', '#5a5065ff', '#634d5fff'],
 			1: ['#4d5463ff', '#545362ff', '#614f58ff'],
@@ -162,6 +167,9 @@ let specs = {
 =======
 		expect: jasmine.anything()
 >>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
+=======
+		expect: jasmine.anything()
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 	},
 	earthtone: {
 		params: ['pink', { earthtones: 'clay', num: 5, closed: true }],
@@ -173,7 +181,11 @@ let specs = {
 		params: ['#3e00a6'],
 		description: 'Generates a palette of hue shifted colors',
 <<<<<<< HEAD
+<<<<<<< HEAD
 		expect: hueshiftPalette
+=======
+		expect: jasmine.anything()
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 =======
 		expect: jasmine.anything()
 >>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
@@ -188,6 +200,7 @@ let specs = {
 		expect: [
 			'#b2c3f1ff',
 <<<<<<< HEAD
+<<<<<<< HEAD
 			'#ff9ea9ff',
 			'#a6c44aff',
 			'#00d3d8ff',
@@ -195,12 +208,17 @@ let specs = {
 			'#e0a4ffff',
 			'#ffa5daff',
 =======
+=======
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 			'#ffaab6ff',
 			'#bfdd62ff',
 			'#00f7fbff',
 			'#56e1ffff',
 			'#fabcffff',
 			'#ffb2e7ff',
+<<<<<<< HEAD
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
+=======
 >>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 			'#f3bac1ff'
 		]
@@ -213,7 +231,11 @@ let specs = {
 	deficiency: {
 		params: [['rgb', 230, 100, 50, 0.5], { kind: 'blue', severity: 0.5 }],
 <<<<<<< HEAD
+<<<<<<< HEAD
 		expect: '#dd663680'
+=======
+		expect: '#ea614080'
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 =======
 		expect: '#ea614080'
 >>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
@@ -227,7 +249,11 @@ let specs = {
 		params: ['purple', { kind: 'tetradic' }],
 		description: `Returns a classic palette`,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		expect: true
+=======
+		expect: jasmine.anything()
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 =======
 		expect: jasmine.anything()
 >>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
@@ -237,7 +263,11 @@ let specs = {
 		description:
 			'Creates a scheme that consists of a scheme color that is incremented by a hueStep to get the final hue to pair with',
 <<<<<<< HEAD
+<<<<<<< HEAD
 		expect: ['#008000', '#348e2a', '#79b36f', '#cfe4cb']
+=======
+		expect: ['#008000ff', '#9d7c06ff', '#de7569ff', '#e18fc0ff']
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 =======
 		expect: ['#008000ff', '#9d7c06ff', '#de7569ff', '#e18fc0ff']
 >>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
