@@ -823,9 +823,10 @@ function nearest(collection, options) {
    * 
    * * If called with both `shade` and `value` parameters, it returns that color as a hex string. For example `'blue'` and `'500'` would return the equivalent of `blue-500`.
    * * If called with no parameters or just the `'all'` parameter as the `shade`, it returns an array of colors from `'050'` to `'900'` for every `shade`. 
-   * 
-   * Note that to specify `'050'` as a number you just pass `50`. Values are all valid as string or number for example `'100'` and`100` .
    * * If the `shade ` is `'all'` and the `value` is specified, it returns an array of colors at the specified `value` for each `shade`.
+   * :::tip
+   *  To specify `'050'` as a number you just pass `50`. Values are all valid as string or number for example `'100'` and`100` .
+   * :::
    * @param {import('../types.js').TailwindColorFamilies | 'all'} shade The hue family to return.
    * @param  {import('../types.js').ScaleValues} value The tone value of the shade. Values are in incrementals of `100`. For example numeric (`100`) and its string equivalent (`'100'`) are valid.
    * @returns {Array<string>|string} 
@@ -923,3 +924,40 @@ export {
 	colors,
 	nearest
 };
+
+
+
+
+// ...
+
+const blue2 = tailwind.blue;
+
+function createKeyframes(colors) {
+  let keyframes = '',len =Object.values(colors).length
+
+  Object.values(colors).forEach((color, index) => {
+		const from = `${(index * 100) / (len - 1)}%`;
+		const to = `${((index + 1) * 100) / len}%`;
+
+		keyframes += `
+      ${from} {
+        color: ${color};
+      }
+      ${to} {
+        color: ${color};
+      }
+    `;
+	});
+
+  return `
+    @keyframes blueKeyframes {
+      ${keyframes}
+    }
+  `;
+}
+
+const blueKeyframes = createKeyframes(blue2);
+
+console.log(blueKeyframes);
+
+// ...

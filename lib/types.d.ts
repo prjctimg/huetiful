@@ -131,7 +131,7 @@ export type PairedSchemeOptions = InterpolatorOptions & {
 	via?: Tone;
 
 	/**
-	 * The amount of hue angles to increment each iteration with.
+	 * The hue angle to increment each iteration with.
 	 */
 	hueStep?: number;
 };
@@ -418,6 +418,11 @@ export type HueshiftOptions = Pick<
 	 *  maxLightness  Maximum lightness value (range 0-100).
 	 */
 	maxLightness?: number;
+
+	/**
+	 * The hue angle to increment each iteration with.
+	 */
+	hueStep?: number;
 };
 
 /**

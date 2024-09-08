@@ -48,5 +48,14 @@ import { log } from 'node:console';
 // 	})
 // );
 
+// const c1 = { l: 65, a: 38, b: 19, alpha: 0.3 };
+
+// log(token(c1, { srcMode: 'lab', kind: 'obj' }));
+// filterBy([], { f });
 
 
+
+	let w = ['fea3aa','f8b88b','faf884','baed91','b2cefe','f2a2e8'],y
+
+y=	w.map(c=>token(c,{kind:'obj',targetMode:'lch'}))
+	log(y)
