@@ -131,7 +131,7 @@ export type PairedSchemeOptions = InterpolatorOptions & {
 	via?: Tone;
 
 	/**
-	 * The amount of hue angles to increment each iteration with.
+	 * The hue angle to increment each iteration with.
 	 */
 	hueStep?: number;
 };
@@ -418,6 +418,11 @@ export type HueshiftOptions = Pick<
 	 *  maxLightness  Maximum lightness value (range 0-100).
 	 */
 	maxLightness?: number;
+
+	/**
+	 * The hue angle to increment each iteration with.
+	 */
+	hueStep?: number;
 };
 
 /**
@@ -513,17 +518,12 @@ export type Factor =
 export type Colorspaces =
 	| 'lab'
 	| 'lab65'
-	| 'lrgb'
-	| 'oklab'
 	| 'rgb'
 	| 'lch'
-	| 'jch'
-	| 'lch'
 	| 'lch65'
-	| 'oklch'
-	| 'hsv'
-	| 'hwb';
-
+	| 'xyz65'
+	| 'xyz'
+	| 'rec2020';
 /**
  * The value of the Tailwind color.
  */

@@ -6,7 +6,10 @@
 
 Gets the contrast between the passed in colors.
 
+:::tip
 Swapping color `a` and `b` in the parameter list doesn't change the resulting value.
+
+:::
 
 #### Parameters
 
@@ -25,17 +28,21 @@ The color to compare against.
 #### Example
 
 ```ts
-import { contrast } from 'huetiful-js';
+import { contrast } from 'huetiful-js'
 
-console.log(contrast('black', 'white'));
+console.log(contrast("black", "white"));
 // 21
 ```
 
 #### Defined in
 
+<<<<<<< HEAD
 [accessibility.ts:33](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/accessibility.ts#L33)
+=======
+[accessibility.ts:37](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/accessibility.ts#L37)
+>>>>>>> dev
 
----
+***
 
 ### deficiency()
 
@@ -43,11 +50,13 @@ console.log(contrast('black', 'white'));
 
 Simulates how a color may be perceived by people with color vision deficiency.
 
+:::tip 
 To avoid writing the long types, the expected parameters for the `kind` of blindness are simply the colors that are hard to perceive for the type of color blindness:
 
-- 'tritanopia' - An inability to distinguish the color 'blue'. The `kind` is `'blue'`.
-- 'deuteranopia' - An inability to distinguish the color 'green'.. The `kind` is `'green'`.
-- 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
+* 'tritanopia' - An inability to distinguish the color 'blue'. The `kind` is `'blue'`.
+* 'deuteranopia' - An inability to distinguish the color 'green'.. The `kind` is `'green'`.
+* 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
+:::
 
 #### Parameters
 
@@ -64,17 +73,19 @@ The color to return its simulated variant
 #### Example
 
 ```ts
-import { deficiency } from 'huetiful-js';
+import { deficiency } from 'huetiful-js'
 
 // Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
 // We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.5
 
-console.log(
-	deficiency(['rgb', 230, 100, 50, 0.5], { kind: 'blue', severity: 0.5 })
-);
+console.log(deficiency(['rgb', 230, 100, 50, 0.5],{ kind:'blue', severity:0.5 }))
 // '#dd663680'
 ```
 
 #### Defined in
 
+<<<<<<< HEAD
 [accessibility.ts:141](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/accessibility.ts#L141)
+=======
+[accessibility.ts:147](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/accessibility.ts#L147)
+>>>>>>> dev

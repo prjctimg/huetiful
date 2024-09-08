@@ -4,12 +4,12 @@
 
 > **discover**(`colors`, `options`): `Collection`
 
-Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes.
+Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes. 
 
 The function returns different values based on the `kind` parameter passed in:
 
-- An array of colors for the `kind` of scheme, if the `kind` parameter is specified.
-- Else it returns an object of all the palette types as keys and their values as an array of colors.
+* An array of colors for the `kind` of scheme, if the `kind` parameter is specified.
+* Else it returns an object of all the palette types as keys and their values as an array of colors. 
 
 If no colors are valid for the palette types it returns an empty array for the palette results. It does not work with achromatic colors thus they're excluded from the resulting collection.
 
@@ -28,35 +28,39 @@ The collection of colors to create palettes from. Preferably use 6 or more color
 #### Example
 
 ```ts
-import { discover } from 'huetiful-js';
+import { discover } from 'huetiful-js'
 
 let sample = [
-	'#ffff00',
-	'#00ffdc',
-	'#00ff78',
-	'#00c000',
-	'#007e00',
-	'#164100',
-	'#720000',
-	'#600000',
-	'#4e0000',
-	'#3e0000',
-	'#310000'
-];
+ "#ffff00",
+ "#00ffdc",
+ "#00ff78",
+ "#00c000",
+ "#007e00",
+ "#164100",
+ "#720000",
+ "#600000",
+ "#4e0000",
+ "#3e0000",
+ "#310000",
+]
 
-console.log(discover(sample, { kind: 'tetradic' }));
+console.log(discover(sample, { kind:'tetradic' }))
 // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
 ```
 
 #### Defined in
 
+<<<<<<< HEAD
 [generators.ts:391](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/generators.ts#L391)
+=======
+[generators.ts:395](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L395)
+>>>>>>> dev
 
----
+***
 
 ### earthtone()
 
-> **earthtone**(`baseColor`, `options`): `ColorToken` | `ColorToken`\[]
+> **earthtone**(`baseColor`, `options`): `ColorToken` \| `ColorToken`[]
 
 Creates a color scale between an earth tone and any color token using spline interpolation.
 
@@ -72,22 +76,26 @@ Optional overrides for customising interpolation and easing functions.
 
 #### Returns
 
-`ColorToken` | `ColorToken`\[]
+`ColorToken` \| `ColorToken`[]
 
 #### Example
 
 ```ts
-import { earthtone } from 'huetiful-js';
+import { earthtone } from 'huetiful-js'
 
-console.log(earthtone('pink', 'lch', { earthtones: 'clay', samples: 5 }));
+console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 // [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
 ```
 
 #### Defined in
 
+<<<<<<< HEAD
 [generators.ts:465](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/generators.ts#L465)
+=======
+[generators.ts:469](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L469)
+>>>>>>> dev
 
----
+***
 
 ### hueshift()
 
@@ -95,14 +103,18 @@ console.log(earthtone('pink', 'lch', { earthtones: 'clay', samples: 5 }));
 
 Creates a palette of hue shifted colors from the passed in color.
 
+:::tip
+
 Hue shifting means that:
 
-- As a color becomes lighter, its hue shifts up (increases).
-- As a color becomes darker its hue shifts down (decreases).
+* As a color becomes lighter, its hue shifts up (increases).
+* As a color becomes darker its hue shifts down (decreases).
 
-The `minLightness` and `maxLightness` values determine how dark or light our color will be at either extreme respectively.
+The `minLightness` and `maxLightness` values determine how dark or light our color will be at either extreme respectively.'
 
-The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or `(num * 2) + 1`.
+:::
+
+ The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or `(num * 2) + 1`.
 
 #### Parameters
 
@@ -139,35 +151,38 @@ console.log(hueShiftedPalette);
 
 #### Defined in
 
+<<<<<<< HEAD
 [generators.ts:83](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/generators.ts#L83)
+=======
+[generators.ts:87](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L87)
+>>>>>>> dev
 
----
+***
 
 ### interpolator()
 
-> **interpolator**(`baseColors`, `options`): `ColorToken`\[] | `ColorToken`
+> **interpolator**(`baseColors`, `options`): `ColorToken`[] \| `ColorToken`
 
-Interpolates the passed in colors and returns a color scale that is evenly split into `num` amount of samples.
+Interpolates the passed in colors and returns a color scale that is evenly split into `num` amount of samples. 
 
 The interpolation behaviour can be overidden allowing us to get slightly different effects from the same `baseColors`.
 
 The behaviour of the interpolation can be customized by:
 
-- Changing the `kind` of interpolation
+* Changing the `kind` of interpolation
 
-  - natural
-  - basis
-  - monotone
-
-- Changing the easing function (`easingFn`)
-
-  -
+	* natural
+	* basis
+	* monotone
+* Changing the easing function (`easingFn`)
+ 
+  * 
 
 Some things to keep in mind when creating color scales using this function:
 
-- To create a color scale for cyclic values pass `true` to the `closed` parameter in the `options` object.
-- If `num` is 1 then a single color is returned from the resulting interpolation with the internal `t` value at `0.5` else a collection of the `num` of color scales is returned.
-- If the collection of colors contains an achromatic color, the resulting samples may all be grayscale or pure black.
+* To create a color scale for cyclic values pass `true` to the `closed` parameter in the `options` object. 
+* If `num` is 1 then a single color is returned from the resulting interpolation with the internal `t` value at `0.5` else a collection of the `num` of color scales is returned.
+* If the collection of colors contains an achromatic color, the resulting samples may all be grayscale or pure black.
 
 #### Parameters
 
@@ -181,7 +196,7 @@ Optional overrides.
 
 #### Returns
 
-`ColorToken`\[] | `ColorToken`
+`ColorToken`[] \| `ColorToken`
 
 #### Example
 
@@ -200,13 +215,17 @@ console.log(interpolator(['pink', 'blue'], { num:8 }));
 
 #### Defined in
 
+<<<<<<< HEAD
 [generators.ts:291](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/generators.ts#L291)
+=======
+[generators.ts:295](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L295)
+>>>>>>> dev
 
----
+***
 
 ### pair()
 
-> **pair**\<`Color`, `Options`>(`baseColor`, `options`?): `Collection`
+> **pair**\<`Color`, `Options`\>(`baseColor`, `options`?): `Collection`
 
 Creates a palette that consists of a `baseColor` that is incremented by a `hueStep` to get the final color to pair with.
 The colors are then spline interpolated via white or black.
@@ -215,9 +234,9 @@ A negative `hueStep` will pick a color that is `hueStep` degrees behind the base
 
 #### Type Parameters
 
-• **Color** _extends_ `ColorToken`
+• **Color** *extends* `ColorToken`
 
-• **Options** _extends_ `PairedSchemeOptions`
+• **Options** *extends* `PairedSchemeOptions`
 
 #### Parameters
 
@@ -236,17 +255,21 @@ The optional overrides object to customize per channel options like interpolatio
 #### Example
 
 ```ts
-import { pair } from 'huetiful-js';
+import { pair } from 'huetiful-js'
 
-console.log(pair('green', { hueStep: 6, num: 4, tone: 'dark' }));
+console.log(pair("green",{hueStep:6,num:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
 ```
 
 #### Defined in
 
+<<<<<<< HEAD
 [generators.ts:213](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/generators.ts#L213)
+=======
+[generators.ts:217](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L217)
+>>>>>>> dev
 
----
+***
 
 ### pastel()
 
@@ -271,18 +294,22 @@ A random pastel color.
 #### Example
 
 ```ts
-import { pastel } from 'huetiful-js';
+import { pastel } from 'huetiful-js'
 
-console.log(pastel('green'));
+console.log(pastel("green"))
 
 // #036103ff
 ```
 
 #### Defined in
 
+<<<<<<< HEAD
 [generators.ts:156](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/generators.ts#L156)
+=======
+[generators.ts:160](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L160)
+>>>>>>> dev
 
----
+***
 
 ### scheme()
 
@@ -292,19 +319,19 @@ Generates a randomised classic color scheme from the passed in color.
 
 The classic palette types are:
 
-- `triadic` - Picks 3 colors 120 degrees apart.
-- `tetradic` - Picks 4 colors 90 degrees apart.
-- `complimentary` - Picks 2 colors 180 degrees apart.
-- `monochromatic` - Picks `num` amount of colors from the same hue family .
-- `analogous` - Picks 3 colors 12 degrees apart.
+* `triadic` - Picks 3 colors 120 degrees apart.
+* `tetradic` - Picks 4 colors 90 degrees apart.
+* `complimentary` - Picks 2 colors 180 degrees apart.
+* `monochromatic` - Picks `num` amount of colors from the same hue family   .
+* `analogous` - Picks 3 colors 12 degrees apart.
 
 The `kind` parameter can either be a string or an array:
 
-- If it is an array, each element should be a `kind` of palette.
-  It will return a color map with the array elements as keys.
-  Duplicate values are simply ignored.
-- If it is a string it will return an array of colors of the specified `kind` of palette.
-- If it is falsy it will return a color map of all palettes.
+* If it is an array, each element should be a `kind` of palette. 
+It will return a color map with the array elements as keys.
+Duplicate values are simply ignored.
+* If it is a string it will return an array of colors of the specified `kind` of palette.
+* If it is falsy it will return a color map of all palettes.
 
 Note that the `num` parameter works on the `monochromatic` palette type only.
 
@@ -325,12 +352,16 @@ Optional overrides.
 #### Example
 
 ```ts
-import { scheme } from 'huetiful-js';
+import { scheme } from 'huetiful-js'
 
-console.log(scheme('triadic')('#a1bd2f'));
+console.log(scheme("triadic")("#a1bd2f"))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
 ```
 
 #### Defined in
 
+<<<<<<< HEAD
 [generators.ts:531](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/generators.ts#L531)
+=======
+[generators.ts:535](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L535)
+>>>>>>> dev

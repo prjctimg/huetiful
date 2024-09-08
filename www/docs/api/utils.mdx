@@ -19,38 +19,51 @@ The color token to test if it is achromatic or not.
 #### Example
 
 ```ts
-import { achromatic } from 'huetiful-js';
+import { achromatic } from "huetiful-js";
 
-achromatic('pink');
+achromatic('pink')
 // false
 
-let sample = ['#164100', '#ffff00', '#310000', 'pink'];
+let sample = [
+ "#164100",
+ "#ffff00",
+ "#310000",
+ 'pink'
+];
 
 console.log(sample.map(achromatic));
 
 // [false, false, false,false]
 
-achromatic('gray');
+achromatic('gray')
 // Returns true
 
 // We can expand this example by interpolating between black and white and then getting some samples to iterate through.
 
-import { interpolator } from 'huetiful-js';
+import { interpolator } from "huetiful-js"
 
 // we create an interpolation using black and white with 12 samples
-let grays = interpolator(['black', 'white'], { num: 12 });
+let grays = interpolator(["black", "white"],{ num:12 });
 
 console.log(grays.map(achromatic));
 
 //
-[false, true, true, true, true, true, true, true, true, true, true, false];
+[false, true, true,
+ true,  true, true,
+ true,  true, true,
+ true,  true, false
+]
 ```
 
 #### Defined in
 
+<<<<<<< HEAD
 [utils.ts:243](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/utils.ts#L243)
+=======
+[utils.ts:240](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L240)
+>>>>>>> dev
 
----
+***
 
 ### alpha()
 
@@ -58,12 +71,12 @@ console.log(grays.map(achromatic));
 
 Returns the color token's alpha channel value.
 
-If the the `amount` parameter is passed in, it sets the color token's alpha channel with the `amount` specified
+ If the the `amount` parameter is passed in, it sets the color token's alpha channel with the `amount` specified 
 and returns the color as a hex string.
 
-- Also supports math expressions as a `string` for the `amount` parameter.
-  For example `*0.5` which means the value multiply the current alpha by `0.5` and set the product as the new alpha value.
-  In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
+* Also supports math expressions as a `string` for the `amount` parameter. 
+For example `*0.5` which means the value multiply the current alpha by `0.5` and set the product as the new alpha value. 
+In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
 
 #### Parameters
 
@@ -83,42 +96,46 @@ The value to apply to the opacity channel. The value is between `[0,1]`
 
 ```ts
 // Getting the alpha
-console.log(alpha('#a1bd2f0d'));
+console.log(alpha('#a1bd2f0d'))
 // 0.050980392156862744
 
 // Setting the alpha
 
-let myColor = alpha('b2c3f1', 0.5);
+let myColor = alpha('b2c3f1', 0.5)
 
-console.log(myColor);
+console.log(myColor)
 
 // #b2c3f180
 ```
 
 #### Defined in
 
+<<<<<<< HEAD
 [utils.ts:82](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/utils.ts#L82)
+=======
+[utils.ts:79](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L79)
+>>>>>>> dev
 
----
+***
 
 ### complimentary()
 
-> **complimentary**\<`Color`, `Options`>(`baseColor`, `options`?): `ColorToken`
+> **complimentary**\<`Color`, `Options`\>(`baseColor`, `options`?): `ColorToken`
 
 Returns the complimentary color of the passed in color token. A complimentary color is 180 degrees away on the hue channel.
 
 The object (if the `obj` parameter is `true`) returns:
 
-- The complimentary color for the passed in color token
-- The hue family from which the complimentary color was found.
+* The complimentary color for the passed in color token
+* The hue family from which the complimentary color was found.
 
 The function is not guarded against achromatic colors which means no action will be done on a gray color and it will be returned as is. Pure black or white (`'#000000'` and `'#ffffff'` respectively) may return unexpected results.
 
 #### Type Parameters
 
-• **Color** _extends_ `ColorToken`
+• **Color** *extends* `ColorToken`
 
-• **Options** _extends_ `ComplimentaryOptions`
+• **Options** *extends* `ComplimentaryOptions`
 
 #### Parameters
 
@@ -135,24 +152,28 @@ The color to retrieve its complimentary equivalent.
 #### Example
 
 ```ts
-import { complimentary } from 'huetiful-js';
+import { complimentary } from "huetiful-js";
 
-console.log(complimentary('pink', true));
+console.log(complimentary("pink", true))
 //// { hue: 'blue-green', color: '#97dfd7ff' }
 
-console.log(complimentary('purple'));
+console.log(complimentary("purple"))
 // #005700
 ```
 
 #### Defined in
 
+<<<<<<< HEAD
 [utils.ts:756](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/utils.ts#L756)
+=======
+[utils.ts:761](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L761)
+>>>>>>> dev
 
----
+***
 
 ### family()
 
-> **family**\<`Color`, `HueFamily`>(`color`): `HueFamily`
+> **family**\<`Color`, `HueFamily`\>(`color`): `HueFamily`
 
 Gets the hue family which a color belongs to with the overtone included (if it has one.).
 
@@ -160,9 +181,9 @@ For example `'red'` or `'blue-green'`. If the color is achromatic it returns the
 
 #### Type Parameters
 
-• **Color** _extends_ `ColorToken`
+• **Color** *extends* `ColorToken`
 
-• **HueFamily** _extends_ `never`
+• **HueFamily** *extends* `never`
 
 #### Parameters
 
@@ -177,17 +198,21 @@ The color to query its shade or hue family.
 #### Example
 
 ```ts
-import { family } from 'huetiful-js';
+import { family } from 'huetiful-js'
 
-console.log(family('#310000'));
+console.log(family("#310000"))
 // 'red'
 ```
 
 #### Defined in
 
+<<<<<<< HEAD
 [utils.ts:636](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/utils.ts#L636)
+=======
+[utils.ts:641](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L641)
+>>>>>>> dev
 
----
+***
 
 ### lightness()
 
@@ -214,14 +239,14 @@ The amount to darken with. The value is expected to be in the range `[0,1]`. Def
 #### Example
 
 ```ts
-import { lightness } from 'huetiful-js';
+import { lightness } from "huetiful-js";
 
 // darkening a color
 console.log(lightness('blue', 0.3, true));
 
 // '#464646'
 
-// brightening a color, we can omit the final param
+// brightening a color, we can omit the final param 
 // because it's false by default.
 console.log(brighten('blue', 0.3));
 //#464646
@@ -229,13 +254,17 @@ console.log(brighten('blue', 0.3));
 
 #### Defined in
 
+<<<<<<< HEAD
 [utils.ts:282](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/utils.ts#L282)
+=======
+[utils.ts:279](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L279)
+>>>>>>> dev
 
----
+***
 
 ### luminance()
 
-> **luminance**\<`Color`, `Amount`>(`color`, `amount`?): `Amount` _extends_ `number` ? `ColorToken` : `number`
+> **luminance**\<`Color`, `Amount`\>(`color`, `amount`?): `Amount` *extends* `number` ? `ColorToken` : `number`
 
 Gets the luminance of the passed in color token.
 
@@ -243,7 +272,7 @@ If the `amount` parameter is not passed in else it will adjust the luminance by 
 
 #### Type Parameters
 
-• **Color** _extends_ `ColorToken`
+• **Color** *extends* `ColorToken`
 
 • **Amount**
 
@@ -255,11 +284,11 @@ The color to retrieve or adjust luminance.
 
 • **amount?**: `number`
 
-The amount of luminance to set. The value range is normalised between \[0,1]
+The amount of luminance to set. The value range is normalised between [0,1]
 
 #### Returns
 
-`Amount` _extends_ `number` ? `ColorToken` : `number`
+`Amount` *extends* `number` ? `ColorToken` : `number`
 
 #### Example
 
@@ -296,13 +325,17 @@ console.log(luminance(myColor))
 
 #### Defined in
 
+<<<<<<< HEAD
 [utils.ts:568](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/utils.ts#L568)
+=======
+[utils.ts:573](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L573)
+>>>>>>> dev
 
----
+***
 
 ### mc()
 
-> **mc**\<`Color`, `Value`>(`modeChannel`): (`color`, `value`?) => `Value` _extends_ `string` | `number` ? `ColorToken` : `number`
+> **mc**\<`Color`, `Value`\>(`modeChannel`): (`color`, `value`?) => `Value` *extends* `string` \| `number` ? `ColorToken` : `number`
 
 Sets the value of the specified channel on the passed in color.
 
@@ -310,7 +343,7 @@ If the `amount` parameter is `undefined` it gets the value of the specified chan
 
 #### Type Parameters
 
-• **Color** _extends_ `ColorToken`
+• **Color** *extends* `ColorToken`
 
 • **Value**
 
@@ -328,41 +361,45 @@ The mode and channel to be retrieved. For example `'rgb.b'` will return the valu
 
 • **color**: `Color`
 
-• **value?**: `string` | `number`
+• **value?**: `string` \| `number`
 
 ##### Returns
 
-`Value` _extends_ `string` | `number` ? `ColorToken` : `number`
+`Value` *extends* `string` \| `number` ? `ColorToken` : `number`
 
 #### Example
 
 ```ts
-import { mc } from 'huetiful-js';
+import { mc } from 'huetiful-js'
 
-console.log(mc('rgb.g')('#a1bd2f'));
+console.log(mc('rgb.g')('#a1bd2f'))
 // 0.7411764705882353
 ```
 
 #### Defined in
 
+<<<<<<< HEAD
 [utils.ts:155](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/utils.ts#L155)
+=======
+[utils.ts:152](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L152)
+>>>>>>> dev
 
----
+***
 
 ### overtone()
 
-> **overtone**\<`Color`, `Bias`>(`color`): `Bias` | `false`
+> **overtone**\<`Color`, `Bias`\>(`color`): `Bias` \| `false`
 
 Returns the name of the hue family which is biasing the passed in color using the `'lch'` colorspace.
 
-- If an achromatic color is passed in it returns the string `'gray'`
-- If the color has no bias it returns `false`.
+* If an achromatic color is passed in it returns the string `'gray'`
+* If the color has no bias it returns `false`.
 
 #### Type Parameters
 
-• **Color** _extends_ `ColorToken`
+• **Color** *extends* `ColorToken`
 
-• **Bias** _extends_ `ColorFamily`
+• **Bias** *extends* `ColorFamily`
 
 #### Parameters
 
@@ -372,38 +409,42 @@ The color to query its overtone.
 
 #### Returns
 
-`Bias` | `false`
+`Bias` \| `false`
 
 #### Example
 
 ```ts
-import { overtone } from 'huetiful-js';
+import { overtone } from "huetiful-js";
 
-console.log(overtone('fefefe'));
+console.log(overtone("fefefe"))
 // 'gray'
 
-console.log(overtone('cyan'));
+console.log(overtone("cyan"))
 // 'green'
 
-console.log(overtone('blue'));
+console.log(overtone("blue"))
 // false
 ```
 
 #### Defined in
 
+<<<<<<< HEAD
 [utils.ts:719](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/utils.ts#L719)
+=======
+[utils.ts:724](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L724)
+>>>>>>> dev
 
----
+***
 
 ### temp()
 
-> **temp**\<`Color`>(`color`): `"cool"` | `"warm"`
+> **temp**\<`Color`\>(`color`): `"cool"` \| `"warm"`
 
 Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'` using the `'lch'` colorspace.
 
 #### Type Parameters
 
-• **Color** _extends_ `ColorToken`
+• **Color** *extends* `ColorToken`
 
 #### Parameters
 
@@ -414,14 +455,18 @@ True if the color is cool else false.
 
 #### Returns
 
-`"cool"` | `"warm"`
+`"cool"` \| `"warm"`
 
 #### Example
 
 ```ts
-import { isCool } from 'huetiful-js';
+import { isCool } from 'huetiful-js'
 
-let sample = ['#00ffdc', '#00ff78', '#00c000'];
+let sample = [
+ "#00ffdc",
+ "#00ff78",
+ "#00c000"
+];
 
 console.log(isCool(sample[2]));
 // false
@@ -433,41 +478,44 @@ console.log(map(sample, isCool));
 
 #### Defined in
 
+<<<<<<< HEAD
 [utils.ts:683](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/utils.ts#L683)
+=======
+[utils.ts:688](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L688)
+>>>>>>> dev
 
----
+***
 
 ### token()
 
-> **token**\<`Color`, `Options`>(`color`, `options`?): `ColorToken`
+> **token**\<`Color`, `Options`\>(`color`, `options`?): `ColorToken`
 
 Parses any recognizable color to the specified `kind` of `ColorToken` type.
 
 The `kind` option supports the following types as options:
 
-- `'arr'` - Parses the color token to an array of channel values with the `colorspace` as the first element if the `omitMode` parameter is set to `false` in the `options` object.
+* `'arr'` - Parses the color token to an array of channel values with the `colorspace` as the first element if the `omitMode` parameter is set to `false` in the `options` object.
 
-- `'num'` - Parses the color token to its numerical equivalent to a number between `0` and `16,777,215`.
+* `'num'` - Parses the color token to its numerical equivalent to a number between `0` and `16,777,215`.
 
 The `numberType` can be used to specify which type of number to return if the `kind` option is set to `'number'`:
-
-- `'hex'` - Hexadecimal number
-- `'bin'` - Binary number
-- `'oct'` - Octal number
-- `'expo'` - Decimal exponential notation
+ - `'hex'` - Hexadecimal number
+ - `'bin'` - Binary number
+ - `'oct'` - Octal number
+ - `'expo'` - Decimal exponential notation
 
 * `'str'` - Parses the color token to its hexadecimal string equivalent.
 
 If the color token has an explicit `alpha` (specified by the `alpha` key in color objects and as the fourth and last number in a color array) the string will be 8 characters long instead of 6.
 
-- `'obj'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.
-- `'temp'` - Parses the color token to its RGB equivalent and expects the value to be between 0 and 30,000
+* `'obj'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.
+* `'temp'` - Parses the color token to its RGB equivalent and expects the value to be between 0 and 30,000
 
 #### Type Parameters
 
-• **Color** _extends_ `ColorToken`
+• **Color** *extends* `ColorToken`
 
-• **Options** _extends_ `TokenOptions`
+• **Options** *extends* `TokenOptions`
 
 #### Parameters
 
@@ -485,4 +533,8 @@ Options to customize the parsing and output behaviour.
 
 #### Defined in
 
+<<<<<<< HEAD
 [utils.ts:326](https://github.com/prjctimg/huetiful/blob/ff0d4b052126c1dea7b9f58330245db1c75be05b/lib/utils.ts#L326)
+=======
+[utils.ts:323](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L323)
+>>>>>>> dev

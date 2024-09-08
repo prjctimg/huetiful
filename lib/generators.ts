@@ -52,17 +52,21 @@ import {
 /**
  * Creates a palette of hue shifted colors from the passed in color.
  * 
+ * :::tip
+ * 
  * Hue shifting means that:
  * 
  * * As a color becomes lighter, its hue shifts up (increases).
  * * As a color becomes darker its hue shifts down (decreases).
  * 
- * The `minLightness` and `maxLightness` values determine how dark or light our color will be at either extreme respectively.
+ * The `minLightness` and `maxLightness` values determine how dark or light our color will be at either extreme respectively.'
+ * 
+ * :::
  * 
  *  The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or `(num * 2) + 1`.
  * 
  * @param baseColor The color to use as the base of the palette.
- * @param {HueshiftOptions} options The optional overrides object.
+ * @param options The optional overrides object.
  
  * @example
  * import { hueshift } from "huetiful-js";
@@ -80,17 +84,20 @@ console.log(hueShiftedPalette);
   '#3b0c3a'
 ]
  */
-function hueshift(baseColor, options: HueshiftOptions): Collection {
+function hueshift<Color extends ColorToken, Options extends HueshiftOptions>(
+	baseColor: Color,
+	options: Options
+): Collection {
 	let { num, hueStep, minLightness, maxLightness, easingFn } = options || {};
 
-	baseColor = or(baseColor, '#3fca2b');
+	baseColor = or(baseColor, '#3fca2b') as Color;
 	easingFn = or(easingFn, easingSmoothstep);
 	num = or(num, 6) + 1;
 	hueStep = or(hueStep, 5);
 	baseColor = token(baseColor, {
 		kind: 'obj',
 		targetMode: 'lch'
-	});
+	}) as Color;
 	let z = [baseColor];
 
 	// // if value is beyond max normalize all the values ensuring that the end is higher than start
@@ -117,7 +124,7 @@ function hueshift(baseColor, options: HueshiftOptions): Collection {
 			{
 				l: f(i, num, minLightness),
 				c: baseColor['c'],
-				// @ts-ignore
+
 				h: adjustHue(baseColor['h'] - hueStep * easingFn(j)),
 				mode: 'lch'
 			},
@@ -130,17 +137,20 @@ function hueshift(baseColor, options: HueshiftOptions): Collection {
 			}
 		];
 
-		z.push(x);
-		z.unshift(y);
+		z.push(x as Color);
+		z.unshift(y as Color);
 	}
 
-	//return z;
-	// //@ts-ignore
 	return Array.from(new Set(z)).map((c) => token(c));
 }
 
 /**
  * Returns a random pastel variant of the passed in color token.
+ * 
+ * :::tip
+ * Pastel colors are those soft hued colors like baby blue,pink and mauve.
+ * 
+ * :::
  * 
  * @param {ColorToken} baseColor The color to return a pastel variant of.
  * @param {TokenOptions|undefined} options
@@ -164,14 +174,14 @@ function pastel(
 	 * The elements in each array are chroma, lightness of the color in HSV and then the color in numerical representation. Got the values from sample pastel colors on the Wikipedia article
 	 */
 	let w = [
-		[0.3582677165354331, 0.996078431372549, 16538982.504333857],
-		[0.4395161290322581, 0.9725490196078431, 15694401.836627495],
-		[0.472, 0.9803921568627451, 15986490.838712374],
-		[0.3305785123966942, 0.9490196078431372, 14834893.772825705],
-		[0.2992125984251969, 0.996078431372549, 7446012.731034764],
-		[0.38818565400843885, 0.9294117647058824, 8247112.202928809]
-	];
-	const [u, v] = [w.map((o) => o[0]), w.map((o) => o[1])];
+			[0.3582677165354331, 0.996078431372549, 16538982.504333857],
+			[0.4395161290322581, 0.9725490196078431, 15694401.836627495],
+			[0.472, 0.9803921568627451, 15986490.838712374],
+			[0.3305785123966942, 0.9490196078431372, 14834893.772825705],
+			[0.2992125984251969, 0.996078431372549, 7446012.731034764],
+			[0.38818565400843885, 0.9294117647058824, 8247112.202928809]
+		],
+		[u, v] = [w.map((o) => o[0]), w.map((o) => o[1])];
 
 	const t = {
 		ms: averageNumber(u),
@@ -189,8 +199,6 @@ function pastel(
 		h: token(baseColor, { targetMode: 'hsv', kind: 'obj' })['h']
 	});
 
-	// check if it is displayable
-
 	// @ts-ignore
 	return token(q, options);
 }
@@ -199,7 +207,10 @@ function pastel(
  * Creates a palette that consists of a `baseColor` that is incremented by a `hueStep` to get the final color to pair with.
  * The colors are then spline interpolated via white or black.
  * 
+ * :::tip
  * A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color.
+ * 
+ * :::
  * @param {ColorToken} baseColor The color to return a paired color scheme from.
  * @param {PairedSchemeOptions} options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
  * @returns {Array<string|ColorToken>|string|ColorToken}
@@ -240,7 +251,7 @@ function pair<Color extends ColorToken, Options extends PairedSchemeOptions>(
 
 	// Return a slice of the array from the start to the half length of the array
 
-	return interpolator([baseColor, tone], {
+	return interpolator([baseColor, tone, destinationColor], {
 		colorspace: 'lch',
 		num: num * 2,
 		token: options?.token
@@ -262,14 +273,12 @@ function pair<Color extends ColorToken, Options extends PairedSchemeOptions>(
  * 	* monotone
  * * Changing the easing function (`easingFn`)
  *  
- *   * 
- * 
- * Some things to keep in mind when creating color scales using this function:
- * 
+ * :::tip
  * * To create a color scale for cyclic values pass `true` to the `closed` parameter in the `options` object. 
  * * If `num` is 1 then a single color is returned from the resulting interpolation with the internal `t` value at `0.5` else a collection of the `num` of color scales is returned.
  * * If the collection of colors contains an achromatic color, the resulting samples may all be grayscale or pure black.
- *  
+ * ::: 
+ * 
  * @param {Collection} baseColors The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result or making all the colors in the resulting interpolation gray.
  * @param {InterpolatorOptions} options Optional overrides.
  * @returns {Array<ColorToken>}
@@ -362,8 +371,10 @@ function interpolator(
  * 
  * * An array of colors for the `kind` of scheme, if the `kind` parameter is specified.
  * * Else it returns an object of all the palette types as keys and their values as an array of colors. 
- * 
+ * :::caution
  * If no colors are valid for the palette types it returns an empty array for the palette results. It does not work with achromatic colors thus they're excluded from the resulting collection.
+ * :::
+ * 
  * @param {Collection} colors The collection of colors to create palettes from. Preferably use 6 or more colors for better results.
 * @param {DiscoverOptions} options
  * @returns {Collection} 
@@ -500,14 +511,6 @@ function earthtone(
 /**
  * Generates a randomised classic color scheme from the passed in color.
  * 
- * The classic palette types are:
- * 
- * * `triadic` - Picks 3 colors 120 degrees apart.
- * * `tetradic` - Picks 4 colors 90 degrees apart.
- * * `complimentary` - Picks 2 colors 180 degrees apart.
- * * `monochromatic` - Picks `num` amount of colors from the same hue family   .
- * * `analogous` - Picks 3 colors 12 degrees apart.
- * 
  * The `kind` parameter can either be a string or an array:
  * 
  * * If it is an array, each element should be a `kind` of palette. 
@@ -516,7 +519,20 @@ function earthtone(
  * * If it is a string it will return an array of colors of the specified `kind` of palette.
  * * If it is falsy it will return a color map of all palettes.
  * 
+ * :::tip
+ * The classic palette types are:
+ * 
+ * * `triadic` - Picks 3 colors 120 degrees apart.
+ * * `tetradic` - Picks 4 colors 90 degrees apart.
+ * * `complimentary` - Picks 2 colors 180 degrees apart.
+ * * `monochromatic` - Picks `num` amount of colors from the same hue family   .
+ * * `analogous` - Picks 3 colors 12 degrees apart.
+ * :::
+ * 
+ * :::note
  * Note that the `num` parameter works on the `monochromatic` palette type only.
+ * :::
+ * 
  * @param {ColorToken} baseColor The color to create the palette(s) from.
  * @param {SchemeOptions} options Optional overrides.
  * @returns {Collection}

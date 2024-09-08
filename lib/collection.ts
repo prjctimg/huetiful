@@ -49,11 +49,14 @@ import {
  * * `colors` - An array of color tokens that have the minimum and maximum `extremum` values respectively.
  * * `mean` - The average value for the `factor`.
  *
+ * :::tip
  * The `mean` property can be overloaded by the `relativeMean` option:
  *
  * * If `relativeMean` is `true`, the `against` option will be used as a subtrahend for calculating the distance between each `extremum`.
  * For example, it will mean "Get the largest/smallest distance between `factor` as compared `against` this color token otherwise just get the smallest/largest `factor` from thr passed in collection."
  *
+ * :::
+ * 
  * These properties are available at the topmost level of the resultant object:
  *
  * * `achromatic` - The amount of colors which are gray out of the total colors in the collection as a value in the range [0,1].
@@ -189,11 +192,14 @@ function stats<Iterable extends Collection, Options extends StatsOptions>(
  * * `'distance'` - Sorts colors according to their distance.
  * The distance is computed from the `against` color token which is used for comparison for all the colors in the `collection`.
  * * `luminance` - Sorts colors according to their relative brightness as defined by the WCAG3 definition.
- * 
+ * :::tip
  * The return type is determined by the type of `collection`:
  * 
  * * Plain objects are returned as `Map` objects because they remember insertion order. `Map` objects are returned as is.
  * * `ArrayLike` objects are returned as plain arrays. Plain arrays are returned as is.
+ * 
+ * :::
+ * 
  * @param {Collection} collection The `collection` of colors to sort.
  * @param {SortByOptions} options
  * @returns {Collection}  
@@ -260,7 +266,7 @@ function sortBy<Iterable extends Collection, Options extends SortByOptions>(
 
 /**
  * Distributes the specified `factor` of a color in the collection with the specified `extremum` (i.e the color with the smallest/largest `hue` angle or `chroma` value) to all color tokens in the collection.
- *@param {import('./types.js').Factor} [factor='hue'] The property you want to distribute to the colors in the collection for example `hue | luminance`
+ *@param factor The property you want to distribute to the colors in the collection for example `hue | luminance`
  * @param  Optional overrides to change the default configursation
 
   @returns {undefined}
@@ -332,13 +338,13 @@ function distribute<
  * * `luminance` - Returns colors in the specified luminance range.
  * * `'hue'` - Returns colors in the specified hue ranges between 0 to 360.
  * 
- * 
+ * :::tip
  * For the `chroma` and `lightness` factors, the range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range. 
  * This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. 
  * But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
  * 
+ * :::
  * @see https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
- *
  * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param {Collection} collection The collection of colors to filter.  
  * @param  options

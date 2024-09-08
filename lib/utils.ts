@@ -1,21 +1,18 @@
-//  @ts-nocheck
-
 import {
 	colorsNamed,
 	useMode,
-	modeJch,
-	modeHsv,
 	modeLch65,
 	modeLrgb,
 	modeLab65,
-	modeOklch,
 	formatHex,
 	formatHex8,
 	modeLch,
 	modeXyz65,
 	modeLab,
 	wcagLuminance,
-	interpolate
+	interpolate,
+	modeRec2020,
+	modeXyz50
 } from 'culori/fn';
 import 'culori/css';
 import {
@@ -58,9 +55,11 @@ import {
  *  If the the `amount` parameter is passed in, it sets the color token's alpha channel with the `amount` specified 
  * and returns the color as a hex string.
  * 
+ * :::tip
  * * Also supports math expressions as a `string` for the `amount` parameter. 
  * For example `*0.5` which means the value multiply the current alpha by `0.5` and set the product as the new alpha value. 
  * In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
+ * :::
  * 
  * @param  color The color with the opacity/alpha channel to retrieve or set.
  * @param {number|string} amount The value to apply to the opacity channel. The value is between `[0,1]`
@@ -314,11 +313,14 @@ function lightness(color, amount, darken = false) {
  *
  * * `'str'` - Parses the color token to its hexadecimal string equivalent.
  *
- * If the color token has an explicit `alpha` (specified by the `alpha` key in color objects and as the fourth and last number in a color array) the string will be 8 characters long instead of 6.
- *
  * * `'obj'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.
  * * `'temp'` - Parses the color token to its RGB equivalent and expects the value to be between 0 and 30,000
  *
+ * :::tip
+ *  If the color token has an explicit `alpha` (specified by the `alpha` key in color objects and as the fourth and last number in a color array) the string will be 8 characters long instead of 6.
+
+ * 
+ * :::
  * @param  color The color token to parse or convert.
  * @param  options Options to customize the parsing and output behaviour.
  * @returns
@@ -332,15 +334,14 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 	 *
 	 */
 	const modeDefinitions = {
-		hsv: modeHsv,
 		rgb: modeLrgb,
 		lab: modeLab,
 		lch65: modeLch65,
-		lab65: modeLab65,
-		oklch: modeOklch,
 		lch: modeLch,
-		xyz: modeXyz65,
-		jch: modeJch
+		xyz: modeXyz50,
+		xyz65: modeXyz65,
+		lab65: modeLab65,
+		rec2020: modeRec2020
 	};
 	let {
 		srcMode,
@@ -353,13 +354,13 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 	} = or(options, {} as Options);
 
 	kind = or(kind, 'str');
-	srcMode = getSrcMode(color);
+	srcMode = srcMode ? srcMode : getSrcMode(color);
 	normalizeRgb = or(normalizeRgb, true);
 	numType = or(numType, undefined);
 	omitMode = or(omitMode, false);
 	omitAlpha = or(omitAlpha, false);
-	// Initialize defaults for the options
 
+	// Initialize defaults for the options
 	// Step 1 - Parse the color toke to an object
 
 	/**
@@ -411,13 +412,20 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 	}
 
 	function parseToken(col?, mode?) {
+<<<<<<< HEAD
 		return useMode(modeDefinitions['rgb'])(or(col, result));
+=======
+		return useMode(modeDefinitions['rgb'])(
+			or(col, result),
+			or(targetMode, srcMode)
+		);
+>>>>>>> dev
 	}
 	/**
 	 *
 	 * converts any color token to an array or object equivalent
 	 */
-	function c2col(k) {
+	function c2col(col) {
 		if (and(and(eq(srcMode, 'rgb'), normalizeRgb), not(targetMode))) {
 			/**
 			 *  Normalize the color back to the rgb gamut supported by culori
@@ -439,13 +447,17 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 
 			result = parseToken();
 		}
+<<<<<<< HEAD
 		if (eq(k, 'obj')) {
+=======
+		if (eq(col, 'obj')) {
+>>>>>>> dev
 			omitMode
 				? delete result['mode']
 				: (result['mode'] = targetMode ? targetMode : srcMode);
 			omitAlpha ? delete result['alpha'] : (result['alpha'] = alphaValue);
 			return result;
-		} else if (eq(k, 'arr')) {
+		} else if (eq(col, 'arr')) {
 			let colorArray = [];
 			for (const k of srcChannels) {
 				colorArray[srcChannels.indexOf(k)] = result[k];
@@ -536,7 +548,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 /**
  * Gets the luminance of the passed in color token.
  * 
- * If the `amount` parameter is not passed in else it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
+ * If the `amount` parameter is passed in, it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
  * @param { ColorToken } color The color to retrieve or adjust luminance.
  * @param { number } [amount=undefined] The amount of luminance to set. The value range is normalised between [0,1]
  * @returns { ColorToken  | number} 
@@ -738,16 +750,8 @@ function overtone<Color extends ColorToken, Bias extends ColorFamily>(
 
 /**
  * Returns the complimentary color of the passed in color token. A complimentary color is 180 degrees away on the hue channel.
- * 
- * The object (if the `obj` parameter is `true`) returns:
- * 
- * * The complimentary color for the passed in color token
- * * The hue family from which the complimentary color was found.
- * 
- * The function is not guarded against achromatic colors which means no action will be done on a gray color and it will be returned as is. Pure black or white (`'#000000'` and `'#ffffff'` respectively) may return unexpected results.
- * 
  * @param  baseColor The color to retrieve its complimentary equivalent.
- * @param obj Optional boolean whether to return an object with the result color's hue family or just the result color. Default is `false`.
+ * @param options Optional overrides to customize behaviour.
  * @example
  * 
  * import { complimentary } from "huetiful-js";

@@ -2,10 +2,8 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import { description } from '../package.json';
-import type { TypeDocOptions } from 'typedoc';
-import type { PluginOptions } from 'typedoc-plugin-markdown';
 
-const typedocOptions: TypeDocOptions & PluginOptions = {
+const typedocOptions = {
 	entryPoints: [
 		'../lib/accessibility.ts',
 		'../lib/generators.ts',
@@ -22,12 +20,10 @@ const typedocOptions: TypeDocOptions & PluginOptions = {
 	excludeNotDocumented: true,
 	excludeReferences: false,
 	modulesFileName: 'api',
-	plugin: ['typedoc-plugin-markdown', 'typedoc-plugin-remark'],
-	// @ts-ignore
-	remarkPlugins: ['unified-prettier', 'remark-toc'],
+	plugin: ['typedoc-plugin-markdown'],
 	entryPointStrategy: 'resolve',
 	out: 'docs/api',
-	exclude: ['./internal'],
+	exclude: ['../lib/internal.ts'],
 	groupOrder: [
 		'Function',
 		'Class',
@@ -73,13 +69,14 @@ const config: Config = {
 		[
 			'classic',
 			{
-				theme: { customCss: '/css/github-markdown.css' },
+				theme: { customCss: '/css/styles.css' },
 				docs: {
 					sidebarPath: './sidebars.ts',
 					// Please change this to your repo.
 					// Remove this to remove the "edit this page" links.
 					editUrl: 'https://github.com/prjctimg/huetiful/tree/main/www/',
-					showLastUpdateTime: true
+					showLastUpdateTime: true,
+					routeBasePath: '/'
 				},
 				googleAnalytics: { trackingID: 'G-0TXKRCERK8', anonymizeIP: true },
 				sitemap: { lastmod: 'datetime', changefreq: 'weekly' }
@@ -88,10 +85,10 @@ const config: Config = {
 	],
 
 	themeConfig: {
-		// Replace with your project's social card
-		image: '/img/social.jpg',
+		image: '/img/logo.png',
 		navbar: {
 			title: 'huetiful-js',
+<<<<<<< HEAD
 			logo: {
 				alt: 'huetiful-js',
 				src: '/img/favicon.ico',
@@ -100,20 +97,23 @@ const config: Config = {
 				width: 32,
 				height: 32
 			},
+=======
+
+>>>>>>> dev
 			items: [
 				{
-					to: '/docs/guides/quickstart',
+					to: '/',
 					position: 'left',
-					label: 'Quickstart ⚡︎'
+					label: 'Home 🏠'
 				},
 				{
-					to: '/docs/api/',
+					to: '/api/',
 					position: 'left',
-					label: 'API'
+					label: 'API 🗒️'
 				},
 				{
-					to: '/docs/guides/',
-					label: 'Guides?',
+					to: '/guides/',
+					label: 'Guides 👨‍🏫 ',
 					position: 'left'
 				},
 				{
@@ -121,10 +121,11 @@ const config: Config = {
 					label: 'GitHub 🐈‍⬛',
 					position: 'right'
 				},
+
 				{
-					label: 'Wiki 📜',
-					href: 'https://github.com/prjctimg/huetiful/wiki',
-					position: 'right'
+					position: 'right',
+					label: 'Buy me a coffee ☕',
+					href: 'https://ko-fi.com/prjctimg'
 				}
 			]
 		},
@@ -133,35 +134,12 @@ const config: Config = {
 		},
 		footer: {
 			style: 'light',
-			links: [
-				{
-					title: '🏛️',
-					items: [
-						{
-							label: 'Wiki 📜',
-							href: 'https://github.com/prjctimg/huetiful/wiki'
-						},
-						{
-							label: 'GitHub 🐈‍⬛',
-							href: 'https://github.com/prjctimg/huetiful'
-						},
-						{
-							label: 'Buy me a coffee ☕',
-							href: 'https://ko-fi.com/prjctimg'
-						},
 
-						{
-							label: 'Contribute 🙋‍♂️',
-							href: 'https://github.com/prjctimg/huetiful/blob/main/CONTRIBUTING.md' // link to contributing.md
-						}
-					]
-				}
-			],
-			copyright: `©<a href='https://deantarisai.com'> ディーン・タリサイ</a>`
+			copyright: `<a href='https://huetiful-js.com'><b class='pacifico'>huetiful-js</b></a> <br> <a href='https://deantarisai.com'>© ディーン・タリサイ 🌊</a>`
 		},
 		prism: {
-			theme: prismThemes.palenight,
-			darkTheme: prismThemes.duotoneDark
+			theme: prismThemes['shadesOfPurple'],
+			darkTheme: prismThemes['palenight']
 		},
 		algolia: {
 			apiKey: 'f031ae0d71cbcbe66956cd02849d00e5',
@@ -172,7 +150,7 @@ const config: Config = {
 		},
 		announcementBar: {
 			id: 'huetiful-js-announcement',
-			content: `V3 is here! Smaller API,better docs & more <a href='/docs/changes>Learn more</a>`,
+			content: `V3 is here! Smaller API footprint,better docs & more <a href='/guides/changes>Learn more</a>`,
 			backgroundColor: '#333',
 			textColor: '#fff',
 			isCloseable: true

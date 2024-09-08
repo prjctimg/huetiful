@@ -19,7 +19,11 @@ import { wcagContrast } from 'culori/fn';
 /**
  * Gets the contrast between the passed in colors.
  *
+ * :::tip
  * Swapping color `a` and `b` in the parameter list doesn't change the resulting value.
+ * 
+ * :::
+ * 
  * @param {ColorToken} a First color to query.
  * @param {ColorToken} b The color to compare against.
  * @returns {number}
@@ -119,12 +123,14 @@ function adaptive(color, options = undefined) {}
 /**
  * Simulates how a color may be perceived by people with color vision deficiency.
  * 
+ * :::tip 
  * To avoid writing the long types, the expected parameters for the `kind` of blindness are simply the colors that are hard to perceive for the type of color blindness:
  * 
  * * 'tritanopia' - An inability to distinguish the color 'blue'. The `kind` is `'blue'`.
  * * 'deuteranopia' - An inability to distinguish the color 'green'.. The `kind` is `'green'`.
  * * 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
- *
+ * :::
+
  * @param {ColorToken} color The color to return its simulated variant
  * @param {DeficiencyOptions} options
  * @example
