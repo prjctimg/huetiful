@@ -1,0 +1,804 @@
+## Type Aliases
+
+### AdaptivePaletteOptions
+
+> **AdaptivePaletteOptions**: \{`backgroundColor`: \{`dark`: [`ColorToken`](types.mdx#colortoken);`light`: [`ColorToken`](types.mdx#colortoken); \};`colorBlind`: `boolean`; \}
+
+#### Type declaration
+
+##### backgroundColor?
+
+> `optional` **backgroundColor**: \{`dark`: [`ColorToken`](types.mdx#colortoken);`light`: [`ColorToken`](types.mdx#colortoken); \}
+
+##### backgroundColor.dark?
+
+> `optional` **dark**: [`ColorToken`](types.mdx#colortoken)
+
+##### backgroundColor.light?
+
+> `optional` **light**: [`ColorToken`](types.mdx#colortoken)
+
+##### colorBlind?
+
+> `optional` **colorBlind**: `boolean`
+
+#### Defined in
+
+[types.d.ts:73](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L73)
+
+***
+
+### BiasedHues
+
+> **BiasedHues**: `"red-purple"` \| `"yellow-red"` \| `"green-yellow"` \| `"blue-green"` \| `"purple-blue"`
+
+Hue biases as seen when transitioning from one hue to another on the color wheel (Lch).
+
+#### Defined in
+
+[types.d.ts:436](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L436)
+
+***
+
+### Collection
+
+> **Collection**: [`ColorToken`](types.mdx#colortoken)[] \| `Map`\<`any`, [`ColorToken`](types.mdx#colortoken)\> \| `Set`\<[`ColorToken`](types.mdx#colortoken)\> \| `object`
+
+Any collection with enumerable keys that can be used to iterate through it to get the values which are expected to be valid color tokens.
+
+#### Defined in
+
+[types.d.ts:45](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L45)
+
+***
+
+### ColorFamily
+
+> **ColorFamily**: `"red"` \| `"green"` \| `"blue"` \| `"yellow"` \| `"red"` \| `"purple"` \| `"gray"`
+
+The basic color families (including gray).
+
+#### Defined in
+
+[types.d.ts:566](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L566)
+
+***
+
+### ColorOptions
+
+> **ColorOptions**: \{`alpha`: `number`;`colorspace`: [`Colorspaces`](types.mdx#colorspaces);`contrast`: `number`;`darkMode`: [`ColorToken`](types.mdx#colortoken);`lightMode`: [`ColorToken`](types.mdx#colortoken);`lightness`: `number`;`luminance`: `number`;`mode`: [`Colorspaces`](types.mdx#colorspaces);`saturation`: `number`;`temp`: `number`; \}
+
+Properties on an instance of the `Color` class. Some of these properties have corresponding methods.
+
+#### Type declaration
+
+##### alpha?
+
+> `optional` **alpha**: `number`
+
+##### colorspace?
+
+> `optional` **colorspace**: [`Colorspaces`](types.mdx#colorspaces)
+
+##### contrast?
+
+> `optional` **contrast**: `number`
+
+##### darkMode?
+
+> `optional` **darkMode**: [`ColorToken`](types.mdx#colortoken)
+
+##### lightMode?
+
+> `optional` **lightMode**: [`ColorToken`](types.mdx#colortoken)
+
+##### lightness?
+
+> `optional` **lightness**: `number`
+
+##### luminance?
+
+> `optional` **luminance**: `number`
+
+##### mode?
+
+> `optional` **mode**: [`Colorspaces`](types.mdx#colorspaces)
+
+##### saturation?
+
+> `optional` **saturation**: `number`
+
+##### temp?
+
+> `optional` **temp**: `number`
+
+#### Defined in
+
+[types.d.ts:54](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L54)
+
+***
+
+### ColorToken
+
+> **ColorToken**: `number` \| [`ColorTuple`](types.mdx#colortuple) \| `boolean` \| `string` \| `object`
+
+Any recognizable color token.
+
+#### Defined in
+
+[types.d.ts:497](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L497)
+
+***
+
+### ColorTuple
+
+> **ColorTuple**: (`number` \| `string`)[]
+
+An array of channel values for a color token with the `mode` (first element of type `string`) and `alpha` (last element of type `number` in the [0,1] range) being optional.
+
+It can also be in different variants as shown below:
+
+#### Example
+
+```ts
+// The first element can either be a string `mode` which denotes the colorspace the channel values are valid in.
+const colorTuple = ['rgb',0.1,0.5,0.8]
+const colorTupleWithAlpha = ['rgb',0.1,0.5,0.8,0.5]
+const colorTupleWithAlphaButNoMode = [0.1,0.5,0.8,0.5]
+const colorTupleWithNoAlphaAndMode = [0.1,0.5,0.8]
+
+When omitting the `mode` from the color tuple, be sure to specify the `srcMode` option in when passing it to `token()` or any function that has access to `TokenOptions`.
+```
+
+#### Defined in
+
+[types.d.ts:20](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L20)
+
+***
+
+### Colorspaces
+
+> **Colorspaces**: `"lab"` \| `"lab65"` \| `"rgb"` \| `"lch"` \| `"lch65"` \| `"xyz65"` \| `"xyz"` \| `"rec2020"`
+
+The `colorspace` or `mode` to use.
+
+#### Defined in
+
+[types.d.ts:513](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L513)
+
+***
+
+### DeficiencyOptions
+
+> **DeficiencyOptions**: \{`kind`: [`DeficiencyType`](types.mdx#deficiencytype);`severity`: `number`;`token`: [`TokenOptions`](types.mdx#tokenoptions); \}
+
+Overrides to specify the type of color blindness and filter intensity.
+
+#### Type declaration
+
+##### kind?
+
+> `optional` **kind**: [`DeficiencyType`](types.mdx#deficiencytype)
+
+The type of color vision deficiency.  Default is `'red'`
+
+##### severity?
+
+> `optional` **severity**: `number`
+
+The intensity of the filter. The exepected value is between [0,1]. Default is `0.1`.
+
+##### token?
+
+> `optional` **token**: [`TokenOptions`](types.mdx#tokenoptions)
+
+Specify the parsing behaviour and change output type of the `ColorToken`.
+
+#### Defined in
+
+[types.d.ts:259](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L259)
+
+***
+
+### DeficiencyType
+
+> **DeficiencyType**: `"red"` \| `"blue"` \| `"green"` \| `"monochromacy"`
+
+The type of color vision defeciency.
+
+#### Defined in
+
+[types.d.ts:431](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L431)
+
+***
+
+### DiscoverOptions
+
+> **DiscoverOptions**: \{`colorspace`: [`Colorspaces`](types.mdx#colorspaces);`kind`: [`SchemeType`](types.mdx#schemetype);`maxDistance`: `number`;`minDistance`: `number`;`token`: [`TokenOptions`](types.mdx#tokenoptions); \}
+
+Options for the `discover()` palette generator function.
+
+#### Type declaration
+
+##### colorspace?
+
+> `optional` **colorspace**: [`Colorspaces`](types.mdx#colorspaces)
+
+The colorspace to retrieve channel values from.
+
+##### kind?
+
+> `optional` **kind**: [`SchemeType`](types.mdx#schemetype)
+
+The palette type to return.
+Default is `undefined`
+
+##### maxDistance?
+
+> `optional` **maxDistance**: `number`
+
+The minimum distance between colors. May affect finally palette results
+Default is the `jnd` internal constant.
+
+##### minDistance?
+
+> `optional` **minDistance**: `number`
+
+The minimum distance between colors. May affect finally palette results.
+Default is 0
+
+##### token?
+
+> `optional` **token**: [`TokenOptions`](types.mdx#tokenoptions)
+
+Specify the parsing behaviour and change output type of the `ColorToken`.
+
+#### Defined in
+
+[types.d.ts:228](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L228)
+
+***
+
+### DistributionOptions
+
+> **DistributionOptions**: `Pick`\<[`InterpolatorOptions`](types.mdx#interpolatoroptions), `"hueFixup"`\> & \{`colorspace`: [`Colorspaces`](types.mdx#colorspaces);`excludeAchromatic`: `boolean`;`excludeSelf`: `boolean`;`extremum`: `"min"` \| `"max"` \| `"mean"`;`factor`: [`Factor`](types.mdx#factor) \| [`Factor`](types.mdx#factor)[];`token`: [`TokenOptions`](types.mdx#tokenoptions); \}
+
+Override options for factor distributed palettes.
+
+#### Type declaration
+
+##### colorspace?
+
+> `optional` **colorspace**: [`Colorspaces`](types.mdx#colorspaces)
+
+The colorspace to distribute the specified factor in. Defaults to `lch` when the passed in mode has no `'chroma' | 'hue' | 'lightness'` channel
+
+##### excludeAchromatic?
+
+> `optional` **excludeAchromatic**: `boolean`
+
+Exclude grayscale colors from the distribution operation. Default is `false`
+
+##### excludeSelf?
+
+> `optional` **excludeSelf**: `boolean`
+
+Exclude the color with the specified `extremum` from the distribution operation. Default is `false`
+
+##### extremum?
+
+> `optional` **extremum**: `"min"` \| `"max"` \| `"mean"`
+
+The extreme end for the `factor`  we wish to distribute. If `mean` is picked, it will map the `average` value of that factor in the passed in collection.
+
+##### factor
+
+> **factor**: [`Factor`](types.mdx#factor) \| [`Factor`](types.mdx#factor)[]
+
+The factor(s) to distribute amongst each color token in the passed in collection.
+
+##### token?
+
+> `optional` **token**: [`TokenOptions`](types.mdx#tokenoptions)
+
+Specify the parsing behaviour and change output type of the `ColorToken`.
+
+#### Defined in
+
+[types.d.ts:161](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L161)
+
+***
+
+### DivergingScheme
+
+> **DivergingScheme**: `"Spectral"` \| `"RdYlGn"` \| `"RdBu"` \| `"PiYG"` \| `"PRGn"` \| `"RdYlBu"` \| `"BrBG"` \| `"RdGy"` \| `"PuOr"`
+
+The `diverging` color scheme in the ColorBrewer colormap.
+
+#### Defined in
+
+[types.d.ts:446](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L446)
+
+***
+
+### EarthtoneOptions
+
+> **EarthtoneOptions**: [`InterpolatorOptions`](types.mdx#interpolatoroptions) & \{`earthtones`: `"light-gray"` \| `"silver"` \| `"sand"` \| `"tupe"` \| `"mahogany"` \| `"brick-red"` \| `"clay"` \| `"cocoa"` \| `"dark-brown"` \| `"dark"`; \}
+
+Options for the `earthtone()` palette generator function.
+
+#### Type declaration
+
+##### earthtones?
+
+> `optional` **earthtones**: `"light-gray"` \| `"silver"` \| `"sand"` \| `"tupe"` \| `"mahogany"` \| `"brick-red"` \| `"clay"` \| `"cocoa"` \| `"dark-brown"` \| `"dark"`
+
+*  earthtone The earthtone to interpolate with.
+
+#### Defined in
+
+[types.d.ts:142](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L142)
+
+***
+
+### Fact\<F\>
+
+> **Fact**\<`F`\>: `F` *extends* `true` ? \{`color`: [`ColorToken`](types.mdx#colortoken);`factor`: `number`; \} : `number`
+
+The value of the `factor` being queried usually a number but can also be falsy like `NaN` for edge cases or an object with the value of the factor and the color token associated with it.
+
+#### Type Parameters
+
+• **F**
+
+#### Defined in
+
+[types.d.ts:30](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L30)
+
+***
+
+### Factor
+
+> **Factor**: `"luminance"` \| `"chroma"` \| `"contrast"` \| `"distance"` \| `"lightness"` \| `"hue"`
+
+The color property being queried.
+
+#### Defined in
+
+[types.d.ts:502](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L502)
+
+***
+
+### FilterByOptions
+
+> **FilterByOptions**: \{`against`: [`ColorToken`](types.mdx#colortoken);`colorspace`: [`Colorspaces`](types.mdx#colorspaces);`factor`: [`Factor`](types.mdx#factor) \| [`Factor`](types.mdx#factor)[];`ranges`: \{ \[F in Factor\]?: (number \| string)\[\] \} \| (`number` \| `string`)[]; \}
+
+Overrides for setting filtering criterion, expected ranges and other behaviour.
+
+#### Type declaration
+
+##### against?
+
+> `optional` **against**: [`ColorToken`](types.mdx#colortoken)
+
+The color to compare the `factor` with. All the `factor`s are calculated between this color and the ones in the colors array. Only works for the `'distance'` and `'contrast'` factor.
+
+##### colorspace?
+
+> `optional` **colorspace**: [`Colorspaces`](types.mdx#colorspaces)
+
+The mode colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' | 'contrast' | 'distance'`.
+
+##### factor?
+
+> `optional` **factor**: [`Factor`](types.mdx#factor) \| [`Factor`](types.mdx#factor)[]
+
+The factor to use as a filtering criterion.
+
+Default is `'hue'`
+
+##### ranges?
+
+> `optional` **ranges**: \{ \[F in Factor\]?: (number \| string)\[\] \} \| (`number` \| `string`)[]
+
+The targeted start and end ranges for the factor:
+
+* If a single `factor` is specified, `ranges` is expected to be an array.
+* If multiple `factor`s are specified then `ranges` is expected to be an object with the factor(s) as keys and an array of the start and end as values.
+* The start and end values can be either numbers or string expressions.
+The end value is optional but the range value(s) are expected to be in an array.
+
+#### Defined in
+
+[types.d.ts:193](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L193)
+
+***
+
+### HueshiftOptions
+
+> **HueshiftOptions**: `Pick`\<[`InterpolatorOptions`](types.mdx#interpolatoroptions), `"colorspace"` \| `"easingFn"` \| `"num"` \| `"token"` \| `"hueStep"`\> & \{`maxLightness`: `number`;`minLightness`: `number`; \}
+
+Options for the `hueshift()` palette generator function.
+
+#### Type declaration
+
+##### maxLightness?
+
+> `optional` **maxLightness**: `number`
+
+maxLightness  Maximum lightness value (range 0-100).
+
+##### minLightness?
+
+> `optional` **minLightness**: `number`
+
+*  minLightness  Minimum lightness value (range 0-100).
+
+#### Defined in
+
+[types.d.ts:409](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L409)
+
+***
+
+### InterpolatorOptions
+
+> **InterpolatorOptions**: \{`closed`: `boolean`;`colorspace`: [`Colorspaces`](types.mdx#colorspaces);`easingFn`: (`t`) => `number`;`hueFixup`: `"longer"` \| `"shorter"`;`kind`: `"basis"` \| `"monotone"` \| `"natural"`;`num`: `number`;`stops`: `number`[];`token`: [`TokenOptions`](types.mdx#tokenoptions); \}
+
+Options for customizing the color interpolator behaviour. It is extended by some palette utilities
+
+#### Type declaration
+
+##### closed?
+
+> `optional` **closed**: `boolean`
+
+Optional parameter to return the `'closed'` variant of the 'kind' of interpolation method which can be useful for cyclical color scales. Default is `false`
+
+##### colorspace?
+
+> `optional` **colorspace**: [`Colorspaces`](types.mdx#colorspaces)
+
+The colorspace to perform the color space in. Prefer uniform color spaces for better results such as Lch or Jch.
+
+##### easingFn()?
+
+> `optional` **easingFn**: (`t`) => `number`
+
+The easing function to use.
+
+###### Parameters
+
+• **t**: `number`
+
+Any value between 0 and 1
+
+###### Returns
+
+`number`
+
+A number.
+
+##### hueFixup?
+
+> `optional` **hueFixup**: `"longer"` \| `"shorter"`
+
+The type of hue fixup to apply to the hue channels during interpolation.
+
+##### kind?
+
+> `optional` **kind**: `"basis"` \| `"monotone"` \| `"natural"`
+
+The type of the spline interpolation method. Default is basis.
+
+##### num?
+
+> `optional` **num**: `number`
+
+The amount of samples to return in the result collection.
+
+##### stops?
+
+> `optional` **stops**: `number`[]
+
+The positions of color stops to use during interpolation. Each number in the array is assigned to the colors in the collection according to the order the colors are passed in.
+
+Plain objects as collects do not remember insertion order so it may return unexpected results. Preferably use an ArrayLike or Map object.
+
+##### token?
+
+> `optional` **token**: [`TokenOptions`](types.mdx#tokenoptions)
+
+Specify the parsing behaviour and change output type of the `ColorToken`.
+
+#### Defined in
+
+[types.d.ts:81](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L81)
+
+***
+
+### Order
+
+> **Order**: `"asc"` \| `"desc"`
+
+The order to insert elements back into the result collection either ascending (`'asc'`) or descending (`'desc'`).
+
+#### Defined in
+
+[types.d.ts:25](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L25)
+
+***
+
+### PairedSchemeOptions
+
+> **PairedSchemeOptions**: [`InterpolatorOptions`](types.mdx#interpolatoroptions) & \{`hueStep`: `number`;`via`: [`Tone`](types.mdx#tone); \}
+
+Options for the `pair()` palette generator function.
+
+#### Type declaration
+
+##### hueStep?
+
+> `optional` **hueStep**: `number`
+
+The amount of hue angles to increment each iteration with.
+
+##### via?
+
+> `optional` **via**: [`Tone`](types.mdx#tone)
+
+The color to pass through during interpolation.
+
+#### Defined in
+
+[types.d.ts:127](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L127)
+
+***
+
+### QualitativeScheme
+
+> **QualitativeScheme**: `"Set2"` \| `"Accent"` \| `"Set1"` \| `"Set3"` \| `"Dark2"` \| `"Paired"` \| `"Pastel2"` \| `"Pastel1"`
+
+The `qualitative` color scheme in the ColorBrewer colormap.
+
+#### Defined in
+
+[types.d.ts:460](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L460)
+
+***
+
+### ScaleValues
+
+> **ScaleValues**: `"050"` \| `"100"` \| `"200"` \| `"300"` \| `"400"` \| `"500"` \| `"600"` \| `"700"` \| `"800"` \| `"900"` \| `"950"`
+
+The value of the Tailwind color.
+
+#### Defined in
+
+[types.d.ts:525](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L525)
+
+***
+
+### SchemeOptions
+
+> **SchemeOptions**: `Pick`\<[`InterpolatorOptions`](types.mdx#interpolatoroptions), `"easingFn"` \| `"colorspace"`\> & \{`kind`: [`SchemeType`](types.mdx#schemetype) \| [`SchemeType`](types.mdx#schemetype)[];`token`: [`TokenOptions`](types.mdx#tokenoptions); \}
+
+Options for the `scheme()` palette generator function.
+
+#### Type declaration
+
+##### kind?
+
+> `optional` **kind**: [`SchemeType`](types.mdx#schemetype) \| [`SchemeType`](types.mdx#schemetype)[]
+
+##### token?
+
+> `optional` **token**: [`TokenOptions`](types.mdx#tokenoptions)
+
+#### Defined in
+
+[types.d.ts:398](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L398)
+
+***
+
+### SchemeType
+
+> **SchemeType**: `"analogous"` \| `"triadic"` \| `"tetradic"` \| `"complementary"`
+
+The scheme to use when creating base palettes.
+
+#### Defined in
+
+[types.d.ts:40](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L40)
+
+***
+
+### SequentialScheme
+
+> **SequentialScheme**: `"OrRd"` \| `"PuBu"` \| `"BuPu"` \| `"Oranges"` \| `"BuGn"` \| `"YlOrBr"` \| `"YlGn"` \| `"Reds"` \| `"RdPu"` \| `"Greens"` \| `"YlGnBu"` \| `"Purples"` \| `"GnBu"` \| `"Greys"` \| `"YlOrRd"` \| `"PuRd"` \| `"Blues"` \| `"PuBuGn"` \| `"Viridis"`
+
+The `sequential` color scheme in the ColorBrewer colormap.
+
+#### Defined in
+
+[types.d.ts:473](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L473)
+
+***
+
+### SortByOptions
+
+> **SortByOptions**: \{`against`: [`ColorToken`](types.mdx#colortoken);`colorspace`: [`Colorspaces`](types.mdx#colorspaces);`factor`: [`Factor`](types.mdx#factor);`order`: `"asc"` \| `"desc"`;`relative`: `boolean`; \}
+
+Options for specifying sorting conditions.
+
+#### Type declaration
+
+##### against?
+
+> `optional` **against**: [`ColorToken`](types.mdx#colortoken)
+
+The color to compare the `factor` with.
+All the `factor`s are calculated between this color and the ones in the colors array.
+Only works for the `'distance'` and `'contrast'` factor.
+
+##### colorspace?
+
+> `optional` **colorspace**: [`Colorspaces`](types.mdx#colorspaces)
+
+The colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' | 'contrast' | 'distance'`.
+
+##### factor?
+
+> `optional` **factor**: [`Factor`](types.mdx#factor)
+
+The factor to use for sorting the colors.
+
+##### order?
+
+> `optional` **order**: `"asc"` \| `"desc"`
+
+The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`).
+
+##### relative?
+
+> `optional` **relative**: `boolean`
+
+Use the `against` comparison color when ordering the color tokens.
+
+It has no effect on `contrast` and `distance` factors because they're already relative.
+
+#### Defined in
+
+[types.d.ts:345](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L345)
+
+***
+
+### Stats
+
+> **Stats**: `{ [F in Factor]: Object }` \| \{`against`: [`ColorToken`](types.mdx#colortoken) \| `null`;`colors`: *typeof* `ColorToken`[];`extremums`: `number`[];`families`: ([`BiasedHues`](types.mdx#biasedhues) \| `"gray"`)[];`mean`: `number`; \} & \{`achromatic`: `number`;`colorspace`: [`Colorspaces`](types.mdx#colorspaces); \}
+
+The default structure of a `Stats` object as returned by `stats()` when invoked with default `options`.
+
+#### Defined in
+
+[types.d.ts:321](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L321)
+
+***
+
+### StatsOptions
+
+> **StatsOptions**: \{`against`: [`ColorToken`](types.mdx#colortoken);`colorspace`: [`Colorspaces`](types.mdx#colorspaces);`factor`: [`Factor`](types.mdx#factor) \| [`Factor`](types.mdx#factor)[];`relative`: `boolean`; \}
+
+Optional parameters to specify how the data should be computed.
+
+#### Type declaration
+
+##### against?
+
+> `optional` **against**: [`ColorToken`](types.mdx#colortoken)
+
+The color to compare the `factor` with. All the `factor`s are calculated between this color and the ones in the colors array. Only works for the `'distance'` and `'contrast'` factor.
+
+##### colorspace?
+
+> `optional` **colorspace**: [`Colorspaces`](types.mdx#colorspaces)
+
+The colorspace to perform the sorting operation in. It is ignored when the factor is `'luminance' | 'contrast' | 'distance'`.
+
+##### factor?
+
+> `optional` **factor**: [`Factor`](types.mdx#factor) \| [`Factor`](types.mdx#factor)[]
+
+##### relative?
+
+> `optional` **relative**: `boolean`
+
+Choose whether to use the `against` color token for factors that support it as an overload (that is, all factors except `distance` and `contrast)
+
+#### Defined in
+
+[types.d.ts:378](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L378)
+
+***
+
+### Tailwind
+
+> **Tailwind**: `"indigo"` \| `"gray"` \| `"zinc"` \| `"neutral"` \| `"stone"` \| `"red"` \| `"orange"` \| `"amber"` \| `"yellow"` \| `"lime"` \| `"green"` \| `"emerald"` \| `"teal"` \| `"sky"` \| `"blue"` \| `"violet"` \| `"purple"` \| `"fuchsia"` \| `"pink"` \| `"rose"`
+
+Color families in the default TailwindCSS palette.
+
+#### Defined in
+
+[types.d.ts:541](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L541)
+
+***
+
+### TokenOptions
+
+> **TokenOptions**: \{`kind`: `"num"` \| `"arr"` \| `"obj"` \| `"str"` \| `"temp"`;`normalizeRgb`: `boolean`;`numType`: `"expo"` \| `"hex"` \| `"oct"` \| `"bin"`;`omitAlpha`: `boolean`;`omitMode`: `boolean`;`srcMode`: [`Colorspaces`](types.mdx#colorspaces);`targetMode`: [`Colorspaces`](types.mdx#colorspaces); \}
+
+Overrides to customize the parsing and output behaviour.
+
+#### Type declaration
+
+##### kind?
+
+> `optional` **kind**: `"num"` \| `"arr"` \| `"obj"` \| `"str"` \| `"temp"`
+
+The type of color token to return. Default is `'str'`.
+
+##### normalizeRgb?
+
+> `optional` **normalizeRgb**: `boolean`
+
+If `true` and the passed in color token is an array or plain object and in the `srcMode` of `'rgb'` or `'lrgb'`,
+it will have all channels normalized back to [0,1] range if any of the channe values is beyond 1.
+
+This can help the parser to recognize RGB colors in the [0,255] range which Culori doesn't handle.
+
+Default is `true`.
+
+##### numType?
+
+> `optional` **numType**: `"expo"` \| `"hex"` \| `"oct"` \| `"bin"`
+
+The type of number to return. Only valid if kind is set to `'number'`. Default is `'literal'`
+
+##### omitAlpha?
+
+> `optional` **omitAlpha**: `boolean`
+
+If the `kind` is set to `'arr'` it will remove the alpha channel value from color tuple. Default is `false`.
+
+##### omitMode?
+
+> `optional` **omitMode**: `boolean`
+
+If the `kind` is set to `'arr'` it will remove the mode string from color tuple. Default is `false`.
+
+##### srcMode?
+
+> `optional` **srcMode**: [`Colorspaces`](types.mdx#colorspaces)
+
+The mode in which the channel values are valid in. It is used for color arrays if they have the `colorspace` string ommitted. Default is `'rgb'`.
+
+##### targetMode?
+
+> `optional` **targetMode**: [`Colorspaces`](types.mdx#colorspaces)
+
+The colorspace in which to return the color object or array in. Default is `'lch'`.
+
+#### Defined in
+
+[types.d.ts:277](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L277)
+
+***
+
+### Tone
+
+> **Tone**: `"light"` \| `"dark"`
+
+The tone to use.
+
+#### Defined in
+
+[types.d.ts:426](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L426)

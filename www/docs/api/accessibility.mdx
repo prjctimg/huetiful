@@ -36,7 +36,7 @@ console.log(contrast("black", "white"));
 
 #### Defined in
 
-[accessibility.ts:37](https://github.com/prjctimg/huetiful/blob/a6fe69d84b75dea5004f31de6ab5e6ce1811fa0b/lib/accessibility.ts#L37)
+[accessibility.ts:37](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/accessibility.ts#L37)
 
 ***
 
@@ -46,11 +46,13 @@ console.log(contrast("black", "white"));
 
 Simulates how a color may be perceived by people with color vision deficiency.
 
+:::tip 
 To avoid writing the long types, the expected parameters for the `kind` of blindness are simply the colors that are hard to perceive for the type of color blindness:
 
 * 'tritanopia' - An inability to distinguish the color 'blue'. The `kind` is `'blue'`.
 * 'deuteranopia' - An inability to distinguish the color 'green'.. The `kind` is `'green'`.
 * 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
+:::
 
 #### Parameters
 
@@ -78,4 +80,4 @@ console.log(deficiency(['rgb', 230, 100, 50, 0.5],{ kind:'blue', severity:0.5 })
 
 #### Defined in
 
-[accessibility.ts:145](https://github.com/prjctimg/huetiful/blob/a6fe69d84b75dea5004f31de6ab5e6ce1811fa0b/lib/accessibility.ts#L145)
+[accessibility.ts:147](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/accessibility.ts#L147)
