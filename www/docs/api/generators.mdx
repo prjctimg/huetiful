@@ -10,8 +10,9 @@ The function returns different values based on the `kind` parameter passed in:
 
 * An array of colors for the `kind` of scheme, if the `kind` parameter is specified.
 * Else it returns an object of all the palette types as keys and their values as an array of colors. 
-
+:::caution
 If no colors are valid for the palette types it returns an empty array for the palette results. It does not work with achromatic colors thus they're excluded from the resulting collection.
+:::
 
 #### Parameters
 
@@ -50,7 +51,7 @@ console.log(discover(sample, { kind:'tetradic' }))
 
 #### Defined in
 
-[generators.ts:395](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L395)
+[generators.ts:402](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L402)
 
 ***
 
@@ -85,13 +86,13 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 
 #### Defined in
 
-[generators.ts:469](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L469)
+[generators.ts:476](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L476)
 
 ***
 
 ### hueshift()
 
-> **hueshift**(`baseColor`, `options`): `Collection`
+> **hueshift**\<`Color`, `Options`\>(`baseColor`, `options`): `Collection`
 
 Creates a palette of hue shifted colors from the passed in color.
 
@@ -108,13 +109,19 @@ The `minLightness` and `maxLightness` values determine how dark or light our col
 
  The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or `(num * 2) + 1`.
 
+#### Type Parameters
+
+• **Color** *extends* `ColorToken`
+
+• **Options** *extends* `HueshiftOptions`
+
 #### Parameters
 
-• **baseColor**: `any`
+• **baseColor**: `Color`
 
 The color to use as the base of the palette.
 
-• **options**: `HueshiftOptions`
+• **options**: `Options`
 
 The optional overrides object.
 
@@ -143,7 +150,7 @@ console.log(hueShiftedPalette);
 
 #### Defined in
 
-[generators.ts:87](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L87)
+[generators.ts:87](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L87)
 
 ***
 
@@ -164,13 +171,11 @@ The behaviour of the interpolation can be customized by:
 	* monotone
 * Changing the easing function (`easingFn`)
  
-  * 
-
-Some things to keep in mind when creating color scales using this function:
-
+:::tip
 * To create a color scale for cyclic values pass `true` to the `closed` parameter in the `options` object. 
 * If `num` is 1 then a single color is returned from the resulting interpolation with the internal `t` value at `0.5` else a collection of the `num` of color scales is returned.
 * If the collection of colors contains an achromatic color, the resulting samples may all be grayscale or pure black.
+:::
 
 #### Parameters
 
@@ -203,7 +208,7 @@ console.log(interpolator(['pink', 'blue'], { num:8 }));
 
 #### Defined in
 
-[generators.ts:295](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L295)
+[generators.ts:300](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L300)
 
 ***
 
@@ -214,7 +219,10 @@ console.log(interpolator(['pink', 'blue'], { num:8 }));
 Creates a palette that consists of a `baseColor` that is incremented by a `hueStep` to get the final color to pair with.
 The colors are then spline interpolated via white or black.
 
+:::tip
 A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color.
+
+:::
 
 #### Type Parameters
 
@@ -247,7 +255,7 @@ console.log(pair("green",{hueStep:6,num:4,tone:'dark'}))
 
 #### Defined in
 
-[generators.ts:217](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L217)
+[generators.ts:224](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L224)
 
 ***
 
@@ -256,6 +264,11 @@ console.log(pair("green",{hueStep:6,num:4,tone:'dark'}))
 > **pastel**(`baseColor`, `options`): `ColorToken`
 
 Returns a random pastel variant of the passed in color token.
+
+:::tip
+Pastel colors are those soft hued colors like baby blue,pink and mauve.
+
+:::
 
 #### Parameters
 
@@ -283,7 +296,7 @@ console.log(pastel("green"))
 
 #### Defined in
 
-[generators.ts:160](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L160)
+[generators.ts:166](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L166)
 
 ***
 
@@ -293,14 +306,6 @@ console.log(pastel("green"))
 
 Generates a randomised classic color scheme from the passed in color.
 
-The classic palette types are:
-
-* `triadic` - Picks 3 colors 120 degrees apart.
-* `tetradic` - Picks 4 colors 90 degrees apart.
-* `complimentary` - Picks 2 colors 180 degrees apart.
-* `monochromatic` - Picks `num` amount of colors from the same hue family   .
-* `analogous` - Picks 3 colors 12 degrees apart.
-
 The `kind` parameter can either be a string or an array:
 
 * If it is an array, each element should be a `kind` of palette. 
@@ -309,7 +314,19 @@ Duplicate values are simply ignored.
 * If it is a string it will return an array of colors of the specified `kind` of palette.
 * If it is falsy it will return a color map of all palettes.
 
+:::tip
+The classic palette types are:
+
+* `triadic` - Picks 3 colors 120 degrees apart.
+* `tetradic` - Picks 4 colors 90 degrees apart.
+* `complimentary` - Picks 2 colors 180 degrees apart.
+* `monochromatic` - Picks `num` amount of colors from the same hue family   .
+* `analogous` - Picks 3 colors 12 degrees apart.
+:::
+
+:::note
 Note that the `num` parameter works on the `monochromatic` palette type only.
+:::
 
 #### Parameters
 
@@ -336,4 +353,4 @@ console.log(scheme("triadic")("#a1bd2f"))
 
 #### Defined in
 
-[generators.ts:535](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/generators.ts#L535)
+[generators.ts:547](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L547)

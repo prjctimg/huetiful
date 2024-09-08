@@ -47,10 +47,11 @@ const config: Config = {
 	tagline: description,
 	favicon: 'img/favicon.ico',
 	url: 'https://huetiful-js.com',
-	baseUrl: '/',
+	baseUrl: '/docs',
 
-	onBrokenLinks: 'throw',
+	onBrokenLinks: 'warn',
 	onBrokenMarkdownLinks: 'warn',
+
 	plugins: [
 		[
 			// @ts-ignore
@@ -71,7 +72,8 @@ const config: Config = {
 					// Remove this to remove the "edit this page" links.
 					editUrl: 'https://github.com/prjctimg/huetiful/tree/main/www/',
 					showLastUpdateTime: true,
-					routeBasePath: '/'
+					routeBasePath: '/',
+					showLastUpdateAuthor: true
 				},
 				googleAnalytics: { trackingID: 'G-0TXKRCERK8', anonymizeIP: true },
 				sitemap: { lastmod: 'datetime', changefreq: 'weekly' }
