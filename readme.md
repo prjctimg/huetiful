@@ -7,6 +7,7 @@
 > JavaScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ![huetiful-logo](https://github.com/prjctimg/huetiful/blob/dev/www/static/img/logo.svg)
 
 > 
@@ -18,6 +19,14 @@ Explore creative ways of manipulating color in your projects using straight forw
 
 ### [API documentation](https://huetiful-js.com/docs/api)
 
+=======
+Explore creative ways of manipulating color in your projects using straight forward and customizable utilities inspired by color theory.
+
+### [Installing](https://huetiful-js.com/docs/guides/installation)
+
+### [API documentation](https://huetiful-js.com/docs/api)
+
+>>>>>>> dev
 =======
 Explore creative ways of manipulating color in your projects using straight forward and customizable utilities inspired by color theory.
 

@@ -2,6 +2,7 @@
 
 title: Quickstart
 <<<<<<< HEAD
+<<<<<<< HEAD
 description: Basic examples to help you get started.
 sidebar_position: 1
 
@@ -22,10 +23,19 @@ description: Basic examples from each module to help you get started.
 sidebar_position: 2
 ---
 
+=======
+description: Basic examples from each module to help you get started.
+sidebar_position: 2
+---
+
+>>>>>>> dev
 ### Color conversion
 
 A color can be defined using different types(arrays, strings, numbers, plain objects etc). Below are examples listing all the valid color tokens:
 
+<<<<<<< HEAD
+>>>>>>> dev
+=======
 >>>>>>> dev
 :::tip
 
@@ -34,7 +44,11 @@ For more information about color tokens [see this page](/docs/guides/color)
 :::
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ```js
+=======
+```ts
+>>>>>>> dev
 =======
 ```ts
 >>>>>>> dev
@@ -65,6 +79,7 @@ console.log(res)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #### Builtin color maps🎨
 
 
@@ -74,6 +89,8 @@ The library comes along with the default TailwindCSS palette included. This help
 
 ```js
 =======
+=======
+>>>>>>> dev
 ### Builtin color maps🎨
 
 
@@ -82,6 +99,9 @@ The library comes along with the default TailwindCSS palette included. This help
 The library comes along with the default TailwindCSS palette included. This helps you get started easier when you're using [palette generators](/docs/api/generators).
 
 ```ts
+<<<<<<< HEAD
+>>>>>>> dev
+=======
 >>>>>>> dev
  import { colors } from "huetiful-js";
 
@@ -136,7 +156,11 @@ Here are some example using the filtering and sorting functions on an array of c
 #### Sorting colors
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 An example of sorting colors by hue angle and distance between each color in the collection as compared against 'yellow':
+=======
+An example of sorting colors by hue angle and distance between each color in the collection as compared against 'yellow'. We get an object whose keys are the specified factors in the `factors` option:
+>>>>>>> dev
 =======
 An example of sorting colors by hue angle and distance between each color in the collection as compared against 'yellow'. We get an object whose keys are the specified factors in the `factors` option:
 >>>>>>> dev
@@ -192,15 +216,21 @@ console.log(sorted)
 #### Filtering colors
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 An example of filtering colors by their relative contrast and luminance.
 
 ```js
 =======
+=======
+>>>>>>> dev
 An example of filtering colors by their relative contrast and luminance. In this case, we get an object whose keys are the specified `factor`s and values are the color tokens that are within the defined ranges.
 
 ```ts
 
 
+<<<<<<< HEAD
+>>>>>>> dev
+=======
 >>>>>>> dev
  let sample = [
   '#00ffdc',
@@ -216,6 +246,7 @@ An example of filtering colors by their relative contrast and luminance. In this
   '#720000',
 ]
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 filterByHue(sample, 20, 80)
 
@@ -245,6 +276,8 @@ import { hueShift } from "huetiful-js";
 
 let hueShiftedPalette = hueShift("#3e0000", {}, true);
 =======
+=======
+>>>>>>> dev
 
 ```
 
@@ -259,6 +292,9 @@ Here's an example of `hueshift` and paired palettes.
 import { hueshift } from "huetiful-js";
 
 let hueShiftedPalette = hueshift("#3e0000");
+<<<<<<< HEAD
+>>>>>>> dev
+=======
 >>>>>>> dev
 
 console.log(hueShiftedPalette);
@@ -271,8 +307,12 @@ console.log(hueShiftedPalette);
   '#38001e', '#3b002c',
   '#3b0c3a'
 <<<<<<< HEAD
+<<<<<<< HEAD
 ]
 
+=======
+// ]
+>>>>>>> dev
 =======
 // ]
 >>>>>>> dev
@@ -281,7 +321,11 @@ console.log(hueShiftedPalette);
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 [See more palette generator functions](https://prjctimg.github.io/huetiful/modules/generators.html)
+=======
+[See more palette generator functions](https://huetiful-js.com/docs/api/palettes)
+>>>>>>> dev
 =======
 [See more palette generator functions](https://huetiful-js.com/docs/api/palettes)
 >>>>>>> dev
@@ -293,17 +337,23 @@ Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? 
 ```js
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { isAchromatic } from "huetiful-js";
 import { formatHex8, interpolate, samples } from "culori"
 
 
 isAchromatic('pink')
 =======
+=======
+>>>>>>> dev
 import { achromatic,token } from "huetiful-js";
 import { interpolate, samples } from "culori"
 
 
 achromatic('pink')
+<<<<<<< HEAD
+>>>>>>> dev
+=======
 >>>>>>> dev
 // false
 
@@ -315,17 +365,23 @@ let sample = [
 ];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 console.log(map(sample, isAchromatic));
 
 // [false, false, false,false]
 
 isAchromatic('gray')
 =======
+=======
+>>>>>>> dev
 console.log(map(sample, achromatic));
 
 // [false, false, false,false]
 
 achromatic('gray')
+<<<<<<< HEAD
+>>>>>>> dev
+=======
 >>>>>>> dev
 // true
 
@@ -353,7 +409,12 @@ console.log(map(grays, isAchromatic));
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ```js
+=======
+```ts
+
+>>>>>>> dev
 =======
 ```ts
 
@@ -366,6 +427,7 @@ let sample = [
   "#00c000"
 ];
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 console.log(temp(sample[0]));
@@ -379,20 +441,31 @@ console.log(sample.map(temp));
 
 // [ 'cool',  'warm', 'cool']
 >>>>>>> dev
+=======
+console.log(sample.map(temp));
+
+// [ 'cool',  'warm', 'cool']
+>>>>>>> dev
 
 
 ```
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 Another use👷 case would be passing the predicate to an array method like `filter` to filter a collection of colors removing colors that return false for the passed in predicate. In the following example we use is `isWarm` to only return warm colors:
 
 ```js
 import { isWarm } from 'huetiful-js'
 =======
+=======
+>>>>>>> dev
 Another use👷 case would be passing the predicate to an array method like `filter` to filter a collection of colors removing colors that are not warm/cool:
 
 ```ts
 import { temp } from 'huetiful-js'
+<<<<<<< HEAD
+>>>>>>> dev
+=======
 >>>>>>> dev
 
 let sample = [
@@ -402,7 +475,11 @@ let sample = [
 ];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 console.log(sample.filter(isWarm))
+=======
+console.log(sample.filter((c)=> temp(c) === 'warm'))
+>>>>>>> dev
 =======
 console.log(sample.filter((c)=> temp(c) === 'warm'))
 >>>>>>> dev
@@ -411,6 +488,7 @@ console.log(sample.filter((c)=> temp(c) === 'warm'))
 
 ```
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 Or maybe we want to know which color has the furthest hue distance in our sample collection against our target color 🤔:
 
@@ -436,9 +514,15 @@ console.log(getFarthestHue('lime', sample, 'lch'))
 
 ```
 =======
+=======
+>>>>>>> dev
 ### What next ?
 
 This was just a sample of what operations are possible with some of the utilities. Hopefully, you were able to get an idea of how to compose the functions to create dynamic and beautiful color scales.
 
+<<<<<<< HEAD
+Ready to dive in to the [full API](/api/) ?
+>>>>>>> dev
+=======
 Ready to dive in to the [full API](/api/) ?
 >>>>>>> dev
