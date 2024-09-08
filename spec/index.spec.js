@@ -91,7 +91,15 @@ const all300 = [
 	cols = mods.colors('all', '500');
 
 // This object is for simple utils with no edge cases
+<<<<<<< HEAD
+<<<<<<< HEAD
+var specs = {
+=======
 let specs = {
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
+=======
+let specs = {
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 	family: {
 		params: ['cyan'],
 		description: `Gets the color"s hue family`,
@@ -132,7 +140,36 @@ let specs = {
 		params: [sample, { kind: 'tetradic' }],
 		description:
 			'Takes an array of colors and finds the best matches for a set of predefined palettes.',
+<<<<<<< HEAD
+<<<<<<< HEAD
+		expect: {
+			0: ['#495569ff', '#5a5065ff', '#634d5fff'],
+			1: ['#4d5463ff', '#545362ff', '#614f58ff'],
+			2: ['#53525bff', '#585058ff', '#52525bff'],
+			3: ['#525252ff', '#525252ff', '#525252ff'],
+			4: ['#57534eff', '#57534eff', '#54544eff'],
+			5: ['#da2a22ff', '#cb4400ff', '#c44c00ff'],
+			6: ['#e95908ff', '#d66a00ff', '#e06200ff'],
+			7: ['#d57900ff', '#d37b00ff', '#8f9900ff'],
+			8: ['#c68c00ff', '#bf8f00ff', '#a59a00ff'],
+			9: ['#60a413ff', '#1caa3bff', '#00ab44ff'],
+			10: ['#00a44eff', '#00a784ff', '#00a7a4ff'],
+			11: ['#00966dff', '#009787ff', '#00977aff'],
+			12: ['#099489ff', '#009491ff', '#2d8ebaff'],
+			13: ['#2083c8ff', '#7a73c4ff', '#a066b1ff'],
+			14: ['#425fe8ff', '#535ce6ff', '#3162eaff'],
+			15: ['#912be3ff', '#d90092ff', '#912ae3ff'],
+			16: ['#ac13daff', '#ec005cff', '#a421e0ff'],
+			17: ['#d200beff', '#e90093ff', '#cc09c6ff'],
+			18: ['#db2775ff', '#dc286cff', '#dc2869ff'],
+			19: ['#e11f46ff', '#db2f34ff', '#d8362bff']
+		}
+=======
 		expect: jasmine.anything()
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
+=======
+		expect: jasmine.anything()
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 	},
 	earthtone: {
 		params: ['pink', { earthtones: 'clay', num: 5, closed: true }],
@@ -143,7 +180,15 @@ let specs = {
 	hueshift: {
 		params: ['#3e00a6'],
 		description: 'Generates a palette of hue shifted colors',
+<<<<<<< HEAD
+<<<<<<< HEAD
+		expect: hueshiftPalette
+=======
 		expect: jasmine.anything()
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
+=======
+		expect: jasmine.anything()
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 	},
 	interpolator: {
 		params: [
@@ -154,12 +199,27 @@ let specs = {
 			'Returns a spline interpolator function with customizable interpolation methods',
 		expect: [
 			'#b2c3f1ff',
+<<<<<<< HEAD
+<<<<<<< HEAD
+			'#ff9ea9ff',
+			'#a6c44aff',
+			'#00d3d8ff',
+			'#00bfffff',
+			'#e0a4ffff',
+			'#ffa5daff',
+=======
+=======
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 			'#ffaab6ff',
 			'#bfdd62ff',
 			'#00f7fbff',
 			'#56e1ffff',
 			'#fabcffff',
 			'#ffb2e7ff',
+<<<<<<< HEAD
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
+=======
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 			'#f3bac1ff'
 		]
 	},
@@ -170,7 +230,15 @@ let specs = {
 	},
 	deficiency: {
 		params: [['rgb', 230, 100, 50, 0.5], { kind: 'blue', severity: 0.5 }],
+<<<<<<< HEAD
+<<<<<<< HEAD
+		expect: '#dd663680'
+=======
 		expect: '#ea614080'
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
+=======
+		expect: '#ea614080'
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 	},
 	nearest: {
 		params: [cols, { against: 'cyan', num: 1 }],
@@ -180,13 +248,29 @@ let specs = {
 	scheme: {
 		params: ['purple', { kind: 'tetradic' }],
 		description: `Returns a classic palette`,
+<<<<<<< HEAD
+<<<<<<< HEAD
+		expect: true
+=======
 		expect: jasmine.anything()
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
+=======
+		expect: jasmine.anything()
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 	},
 	pair: {
 		params: ['green', { hueStep: 6, num: 4, tone: 'dark' }],
 		description:
 			'Creates a scheme that consists of a scheme color that is incremented by a hueStep to get the final hue to pair with',
+<<<<<<< HEAD
+<<<<<<< HEAD
+		expect: ['#008000', '#348e2a', '#79b36f', '#cfe4cb']
+=======
 		expect: ['#008000ff', '#9d7c06ff', '#de7569ff', '#e18fc0ff']
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
+=======
+		expect: ['#008000ff', '#9d7c06ff', '#de7569ff', '#e18fc0ff']
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 	},
 	pastel: {
 		params: ['green'],

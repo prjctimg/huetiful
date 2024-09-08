@@ -916,3 +916,5 @@ class Color {
 		return new ColorArray(scheme(this['_color'], options));
 	}
 }
+
+
