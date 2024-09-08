@@ -1,0 +1,62 @@
+---
+title: Common errors,defaults and edge cases
+description: Understanding the limits of this library,default behaviour and ways of handling common errors.
+sidebar_position: 4
+---
+
+## Default parameters and behaviours
+
+### Colorspaces
+
+The default colorspace depends in the context of its use. For the token() utility, it takes two colorspaces namely srcMode and targetMode. Because the common colorspace is rgb, the srcMode defaults to consider the color token in that format if a valid srcMode cannot be inferred from the passed in color token.
+
+The colorspace is inferred from the passed in color token during parsing using token() in the following order of precedence:
+
+0. A `mode` property (if object) or the first element (if array) which is expected to be of type `string`
+
+```ts
+var a  = 5
+
+
+
+```
+
+
+1. If the color token is of type `string` (regardless its a CSS named color, serialized color string or hex), `number` or `boolean` then the color is treated as being in 'rgb'.
+
+```ts
+
+
+
+
+
+```
+
+However in utilities that perform hue dependant operations like `hueshift()`, then the default colorspace is `lch65` which means the Lch colorspace using the D65 illuminant.
+
+
+### baseColor
+
+Every utility that takes an individual color token (known as `baseColor`) provides `'cyan'` as the default color.
+
+
+### options
+
+For every utility that takes an options object, its internally guarded with default parameters to ensure that you can customize just what you want and let the rest be.
+
+## Common errors
+
+The sources of bias when manipulating color are nuanced and sometimes not immediately obvious.
+
+
+### Why am I only getting achromatic (grey) colors ?
+
+One of the most infamous bugs I encountered was the one whereby I got gray colors if I tried to interpolate via black. The bug stemmed from the fact that black has an undefined hue channel therefore all the resulting colors would have NaN as their hue channel value. The way around this was to explicitly pass all channels as 0 in the target hue based colorspace.
+
+
+### Generated color samples are a bit off
+
+At the mopment there's inevitable precision loss when converting across certain colorspaces. This can slightly the final result of the color. In the future, I may provide a work around this.
+
+
+

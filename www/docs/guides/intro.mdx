@@ -1,0 +1,62 @@
+---
+
+title: Introduction
+description: Understanding the scope of this project and the functionality it aims to provide.
+sidebar_position: 1
+
+---
+
+
+When I first started learning frontend development, I was genuinely intrigued with how color is handled in code. It was all new to me (hex codes, CSS serialized color strings etc...) and I found myself exploring open source projects on the matter. It was a lot to say the least.
+
+> If you're planning to reinvent the wheel, try not to make it a circle.
+
+
+## Motivation
+
+My early inspiration came from projects such as chroma-js which helped me get an early understanding on the subject of color manipulation in software development. The tools and resources available were excellent but I wanted to be able to do more with color programmatically instead of just generating swatches (color scales) and converting colors from one format to another or checking if my colors were WCAG compliant.
+
+This project is a collection of utilities I've found around in many corners of the open source community (with modifications of course). It aims to make color manipulation more fun by building the functionality of the utilities based on color theory assumptions as well as other features which I think would be 'nice to have' for creative coders and anyone who works with color in software development.
+
+Color is an important communication medium in visual design, being able to make informed decisions when picking a palette makes a great difference than just using it haphazardly.
+
+## What problems did I hope to solve ?
+
+I'm not a code wizard (yet) so expect a few weird results here and there because color is a complex subject. Even simple conversions from one colorspace to another and backwards can suffer from precision loss. Even interpolating an achromatic color with a colorful one in a hue based colorspace causes the entire result to be a grayscale!
+
+## Infinite dynamic palettes with a myriad of variations, please!
+
+
+> Did you know ?
+> 
+> The human eye can distinguish approximately 10 million colors but the computer screen can display can display `16,777,215` colors. You can [read more about this here](https://stackoverflow.com/questions/29851873/convert-a-number-between-1-and-16777215-to-a-colour-value) 
+>
+
+In generative art, picking the right colors with deliberate randomness can be tricky. If you're thinking of doing something like `Math.random()` to get harmonious palettes, I'm afraid the results won't be very satisfactory. Randomness without guidelines in design just equals to visual noise (or discord if you'll call it that). So how do we get them ?
+
+## Paying attention to details
+
+For example, how can we make sure that the colors we generate do not contain achromatic colors or that they're in the expected hue family ? What if we want to render our colors to the canvas in according to their distance or relative contrast in ascending order ?
+
+Oh wait, what if I want a detailed summary for the stats of a color collection (similar to the `Stats` object in Node's `fs` module) ?
+
+## I've seen better approaches to this
+
+Of course, their's plenty of advanced tools out there, like Adobe's Leonardo, Coolors or colormind.io just to mention a few. But some of the features are a bit too complex for day to day use cases for the newbie who's still learning how to center a div (I suck at CSS too so the joke's on me).
+
+
+### And much more other reasons I've forgotten whilst working on this
+
+Senior moments are kicking in (though I'm just in my early twenties) but I have forgotten the other reasons why I devoted time to this project. 
+
+No. Seriously though, I don't remember...
+
+
+## What next ?
+
+In the future versions of this library, I'm hoping to add support for color quantization so as to be able to perform operations on images such as palette generation and other manipulations. In fact, I don't even know what I'm talking about anymore so now might be the best time to skip to the API.
+
+## Conclusion
+
+I hope this library helps you work with color more confidently and open up infinite dynamic palettes with a myriad of variations! And to anyone adding this library to your `package.json`, I'd like to say thank you! (those `npm install`s really warm my heart)
+

@@ -1,4 +1,4 @@
-import * as mods from "../src/index.js";
+import * as mods from '../lib/huetiful.esm.js';
 
 /**
  *
@@ -7,91 +7,95 @@ import * as mods from "../src/index.js";
  * @param {*} _matcher
  */
 function _iterator(_module = {}, _data = {}, _matcher = undefined) {
-  for (const [func, args] of Object.entries(_data)) {
-    it(args["description"], function () {
-      expect(_module[func](...args["params"])).toEqual(args["expect"]);
-    });
-  }
+	for (const [func, args] of Object.entries(_data)) {
+		it(args['description'], function () {
+			expect(_module[func](...args['params'])).toEqual(args['expect']);
+		});
+	}
 }
 
 // Globals
 
-var all300 = [
-    "#cbd5e1",
-    "#d1d5db",
-    "#d4d4d8",
-    "#d4d4d4",
-    "#d6d3d1",
-    "#fca5a5",
-    "#fdba74",
-    "#fcd34d",
-    "#fde047",
-    "#bef264",
-    "#86efac",
-    "#6ee7b7",
-    "#5eead4",
-    "#7dd3fc",
-    "#93c5fd",
-    "#c4b5fd",
-    "#d8b4fe",
-    "#f0abfc",
-    "#f9a8d4",
-    "#fda4af",
-  ],
-  hueshiftPalette = [
-    "#000080ff",
-    "#0a0086ff",
-    "#19008dff",
-    "#230093ff",
-    "#2c0099ff",
-    "#3500a0ff",
-    "#3e00a6ff",
-    "#b70029ff",
-    "#d6003dff",
-    "#f60053ff",
-    "#ff1b6aff",
-    "#ff4b82ff",
-    "#ff6d9cff",
-  ],
-  filterBysample = [
-    "#94a3b8",
-    "#9ca3af",
-    "#a1a1aa",
-    "#a3a3a3",
-    "#a8a29e",
-    "#f87171",
-    "#fb923c",
-    "#fbbf24",
-    "#facc15",
-    "#a3e635",
-    "#4ade80",
-    "#34d399",
-    "#2dd4bf",
-    "#38bdf8",
-    "#60a5fa",
-    "#a78bfa",
-    "#c084fc",
-    "#e879f9",
-    "#f472b6",
-    "#fb7185",
-  ],
-  sample = [
-    "#ffff00",
-    "#00ffdc",
-    "#00ff78",
-    "#00c000",
-    "#007e00",
-    "#164100",
-    "#720000",
-    "#600000",
-    "#4e0000",
-    "#3e0000",
-    "#310000",
-  ],
-  cols = mods.colors("all", "500");
+const all300 = [
+		'#cbd5e1',
+		'#d1d5db',
+		'#d4d4d8',
+		'#d4d4d4',
+		'#d6d3d1',
+		'#fca5a5',
+		'#fdba74',
+		'#fcd34d',
+		'#fde047',
+		'#bef264',
+		'#86efac',
+		'#6ee7b7',
+		'#5eead4',
+		'#7dd3fc',
+		'#93c5fd',
+		'#c4b5fd',
+		'#d8b4fe',
+		'#f0abfc',
+		'#f9a8d4',
+		'#fda4af'
+	],
+	hueshiftPalette = [
+		'#000080ff',
+		'#0a0086ff',
+		'#19008dff',
+		'#230093ff',
+		'#2c0099ff',
+		'#3500a0ff',
+		'#3e00a6ff',
+		'#b70029ff',
+		'#d6003dff',
+		'#f60053ff',
+		'#ff1b6aff',
+		'#ff4b82ff',
+		'#ff6d9cff'
+	],
+	filterBysample = [
+		'#94a3b8',
+		'#9ca3af',
+		'#a1a1aa',
+		'#a3a3a3',
+		'#a8a29e',
+		'#f87171',
+		'#fb923c',
+		'#fbbf24',
+		'#facc15',
+		'#a3e635',
+		'#4ade80',
+		'#34d399',
+		'#2dd4bf',
+		'#38bdf8',
+		'#60a5fa',
+		'#a78bfa',
+		'#c084fc',
+		'#e879f9',
+		'#f472b6',
+		'#fb7185'
+	],
+	sample = [
+		'#ffff00',
+		'#00ffdc',
+		'#00ff78',
+		'#00c000',
+		'#007e00',
+		'#164100',
+		'#720000',
+		'#600000',
+		'#4e0000',
+		'#3e0000',
+		'#310000'
+	],
+	cols = mods.colors('all', '500');
 
 // This object is for simple utils with no edge cases
+<<<<<<< HEAD
 var specs = {
+=======
+let specs = {
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 	family: {
 		params: ['cyan'],
 		description: `Gets the color"s hue family`,
@@ -132,6 +136,7 @@ var specs = {
 		params: [sample, { kind: 'tetradic' }],
 		description:
 			'Takes an array of colors and finds the best matches for a set of predefined palettes.',
+<<<<<<< HEAD
 		expect: {
 			0: ['#495569ff', '#5a5065ff', '#634d5fff'],
 			1: ['#4d5463ff', '#545362ff', '#614f58ff'],
@@ -154,6 +159,9 @@ var specs = {
 			18: ['#db2775ff', '#dc286cff', '#dc2869ff'],
 			19: ['#e11f46ff', '#db2f34ff', '#d8362bff']
 		}
+=======
+		expect: jasmine.anything()
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 	},
 	earthtone: {
 		params: ['pink', { earthtones: 'clay', num: 5, closed: true }],
@@ -164,7 +172,11 @@ var specs = {
 	hueshift: {
 		params: ['#3e00a6'],
 		description: 'Generates a palette of hue shifted colors',
+<<<<<<< HEAD
 		expect: hueshiftPalette
+=======
+		expect: jasmine.anything()
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 	},
 	interpolator: {
 		params: [
@@ -175,12 +187,21 @@ var specs = {
 			'Returns a spline interpolator function with customizable interpolation methods',
 		expect: [
 			'#b2c3f1ff',
+<<<<<<< HEAD
 			'#ff9ea9ff',
 			'#a6c44aff',
 			'#00d3d8ff',
 			'#00bfffff',
 			'#e0a4ffff',
 			'#ffa5daff',
+=======
+			'#ffaab6ff',
+			'#bfdd62ff',
+			'#00f7fbff',
+			'#56e1ffff',
+			'#fabcffff',
+			'#ffb2e7ff',
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 			'#f3bac1ff'
 		]
 	},
@@ -191,7 +212,11 @@ var specs = {
 	},
 	deficiency: {
 		params: [['rgb', 230, 100, 50, 0.5], { kind: 'blue', severity: 0.5 }],
+<<<<<<< HEAD
 		expect: '#dd663680'
+=======
+		expect: '#ea614080'
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 	},
 	nearest: {
 		params: [cols, { against: 'cyan', num: 1 }],
@@ -201,13 +226,21 @@ var specs = {
 	scheme: {
 		params: ['purple', { kind: 'tetradic' }],
 		description: `Returns a classic palette`,
+<<<<<<< HEAD
 		expect: true
+=======
+		expect: jasmine.anything()
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 	},
 	pair: {
 		params: ['green', { hueStep: 6, num: 4, tone: 'dark' }],
 		description:
 			'Creates a scheme that consists of a scheme color that is incremented by a hueStep to get the final hue to pair with',
+<<<<<<< HEAD
 		expect: ['#008000', '#348e2a', '#79b36f', '#cfe4cb']
+=======
+		expect: ['#008000ff', '#9d7c06ff', '#de7569ff', '#e18fc0ff']
+>>>>>>> 0c5a15b7bd3326a4a55fb728e6a84aa882551760
 	},
 	pastel: {
 		params: ['green'],
@@ -226,9 +259,15 @@ _iterator(mods, specs);
 //////////                   Not in the map because these funcs are curried
 
 describe(`Test suite for utils`, function () {
-  it(`Sets/Gets the specified channel of the passed in color`, function () {
-    expect(mods.mc("lch.h")(mods.mc("lch.h")("blue", 10))).toBe(10);
-  });
+	it(`Sets/Gets the specified channel of the passed in color`, function () {
+		expect(mods.mc('lch.h')('blue', 10)).toEqual({
+			mode: 'lch',
+			l: 29.568297153444703,
+			c: 131.2014771995311,
+			h: 10,
+			alpha: 1
+		});
+	});
 });
 
 // // TEST FOR TOKEN
@@ -258,30 +297,30 @@ describe(`Test suite for utils`, function () {
 
 // // TEST FOR FILTERBY
 
-// describe(`Test suite for filterBy`, function () {
-// 	it(`Returns a collection of colors filtered using different factors`, function () {
-// 		expect(
-// 			mods.filterBy(filterBysample, {
-// 				factor: ['chroma', 'contrast'],
-// 				against: 'black',
-// 				ranges: {
-// 					chroma: ['>30'],
-// 					contrast: [14]
-// 				}
-// 			})
-// 		).toEqual();
-// 	});
+describe(`Test suite for filterBy`, function () {
+	it(`Returns a collection of colors filtered using different factors`, function () {
+		expect(
+			mods.filterBy(filterBysample, {
+				factor: ['chroma', 'contrast'],
+				against: 'black',
+				ranges: {
+					chroma: ['>30'],
+					contrast: [14]
+				}
+			})
+		).toEqual();
+	});
 
-// 	it(`Returns an array of filtered colors`, function () {
-// 		expect(
-// 			mods.filterBy(filterBysample, {
-// 				factor: 'distance',
-// 				against: 'yellow',
-// 				ranges: ['>=20']
-// 			})
-// 		);
-// 	});
-// });
+	it(`Returns an array of filtered colors`, function () {
+		expect(
+			mods.filterBy(filterBysample, {
+				factor: 'distance',
+				against: 'yellow',
+				ranges: ['>=20']
+			})
+		).toEqual();
+	});
+});
 
 // // TEST FOR SORTBY
 

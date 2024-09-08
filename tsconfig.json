@@ -1,19 +1,22 @@
 {
-  "include": [ "src/index.js",
-    "src/types.d.ts"
-    ],"exclude":["**/*/node_modules"],
-  "compilerOptions": {
-    "lib":["es2023"],
-    "target":"es6",
-    "skipLibCheck": true,
-     "allowJs": true,
-    "checkJs": true,
-    "declaration": true,
-    "emitDeclarationOnly":true,
-    "declarationDir":"./types",
-    "isolatedModules": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext"
-  }
+	"include": [
+		"lib/index.ts",
+		"lib/types.d.ts"
+	],
+	"exclude": [
+		"**/node_modules"
+	],
+	"compilerOptions": {
+		"lib": [
+			"es2023"
+		],
+		"target": "es6",
+		"skipLibCheck": true,
+		"allowJs": true,
+		"checkJs": true,
+		"isolatedModules": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "NodeNext",
+		"module": "NodeNext"
+	}
 }
