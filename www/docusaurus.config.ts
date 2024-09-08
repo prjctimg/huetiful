@@ -88,22 +88,7 @@ const config: Config = {
 		image: '/img/logo.png',
 		navbar: {
 			title: 'huetiful-js',
-<<<<<<< HEAD
-<<<<<<< HEAD
-			logo: {
-				alt: 'huetiful-js',
-				src: '/img/favicon.ico',
-				href: 'https://huetiful-js.com',
-				target: '_self',
-				width: 32,
-				height: 32
-			},
-=======
 
->>>>>>> dev
-=======
-
->>>>>>> dev
 			items: [
 				{
 					to: '/',

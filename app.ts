@@ -24,35 +24,6 @@ import { log } from 'node:console';
 // 	})
 // );
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-let sample = [
-	'#00ffdc',
-	'#00ff78',
-	'#00c000',
-	'#007e00',
-	'#164100',
-	'#ffff00',
-	'#310000',
-	'#3e0000',
-	'#4e0000',
-	'#600000',
-	'#720000'
-];
-
-log(
-	filterBy(sample, {
-		factor: ['contrast'],
-		ranges: {
-			contrast: [8, 10]
-		},
-		colorspace: 'lch'
-	})
-);
-
-=======
-=======
->>>>>>> dev
 // let sample = [
 // 	'#00ffdc',
 // 	'#00ff78',
@@ -87,9 +58,4 @@ log(
 	let w = ['fea3aa','f8b88b','faf884','baed91','b2cefe','f2a2e8'],y
 
 y=	w.map(c=>token(c,{kind:'obj',targetMode:'lch'}))
-<<<<<<< HEAD
 	log(y)
->>>>>>> dev
-=======
-	log(y)
->>>>>>> dev

@@ -412,20 +412,10 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 	}
 
 	function parseToken(col?, mode?) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-		return useMode(modeDefinitions['rgb'])(or(col, result));
-=======
-=======
->>>>>>> dev
 		return useMode(modeDefinitions['rgb'])(
 			or(col, result),
 			or(targetMode, srcMode)
 		);
-<<<<<<< HEAD
->>>>>>> dev
-=======
->>>>>>> dev
 	}
 	/**
 	 *
@@ -453,15 +443,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 
 			result = parseToken();
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
-		if (eq(k, 'obj')) {
-=======
 		if (eq(col, 'obj')) {
->>>>>>> dev
-=======
-		if (eq(col, 'obj')) {
->>>>>>> dev
 			omitMode
 				? delete result['mode']
 				: (result['mode'] = targetMode ? targetMode : srcMode);
