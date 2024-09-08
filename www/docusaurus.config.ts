@@ -51,11 +51,6 @@ const config: Config = {
 
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
-
-	i18n: {
-		defaultLocale: 'en',
-		locales: ['en', 'es', 'fr', 'zh-Hans']
-	},
 	plugins: [
 		[
 			// @ts-ignore
