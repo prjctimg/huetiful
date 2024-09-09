@@ -47,7 +47,7 @@ const config: Config = {
 	tagline: description,
 	favicon: 'img/favicon.ico',
 	url: 'https://huetiful-js.com',
-	baseUrl: '/docs',
+	baseUrl: '/',
 
 	// Handling broken links
 	onBrokenLinks: 'ignore',
