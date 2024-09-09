@@ -57,7 +57,7 @@ console.log(grays.map(achromatic));
 
 #### Defined in
 
-[utils.ts:240](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L240)
+[utils.ts:242](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L242)
 
 ***
 
@@ -70,9 +70,11 @@ Returns the color token's alpha channel value.
  If the the `amount` parameter is passed in, it sets the color token's alpha channel with the `amount` specified 
 and returns the color as a hex string.
 
+:::tip
 * Also supports math expressions as a `string` for the `amount` parameter. 
 For example `*0.5` which means the value multiply the current alpha by `0.5` and set the product as the new alpha value. 
 In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
+:::
 
 #### Parameters
 
@@ -106,7 +108,7 @@ console.log(myColor)
 
 #### Defined in
 
-[utils.ts:79](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L79)
+[utils.ts:81](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L81)
 
 ***
 
@@ -115,13 +117,6 @@ console.log(myColor)
 > **complimentary**\<`Color`, `Options`\>(`baseColor`, `options`?): `ColorToken`
 
 Returns the complimentary color of the passed in color token. A complimentary color is 180 degrees away on the hue channel.
-
-The object (if the `obj` parameter is `true`) returns:
-
-* The complimentary color for the passed in color token
-* The hue family from which the complimentary color was found.
-
-The function is not guarded against achromatic colors which means no action will be done on a gray color and it will be returned as is. Pure black or white (`'#000000'` and `'#ffffff'` respectively) may return unexpected results.
 
 #### Type Parameters
 
@@ -136,6 +131,8 @@ The function is not guarded against achromatic colors which means no action will
 The color to retrieve its complimentary equivalent.
 
 • **options?**: `Options`
+
+Optional overrides to customize behaviour.
 
 #### Returns
 
@@ -155,7 +152,7 @@ console.log(complimentary("purple"))
 
 #### Defined in
 
-[utils.ts:761](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L761)
+[utils.ts:758](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L758)
 
 ***
 
@@ -194,7 +191,7 @@ console.log(family("#310000"))
 
 #### Defined in
 
-[utils.ts:641](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L641)
+[utils.ts:646](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L646)
 
 ***
 
@@ -238,7 +235,7 @@ console.log(brighten('blue', 0.3));
 
 #### Defined in
 
-[utils.ts:279](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L279)
+[utils.ts:281](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L281)
 
 ***
 
@@ -248,7 +245,7 @@ console.log(brighten('blue', 0.3));
 
 Gets the luminance of the passed in color token.
 
-If the `amount` parameter is not passed in else it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
+If the `amount` parameter is passed in, it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
 
 #### Type Parameters
 
@@ -305,7 +302,7 @@ console.log(luminance(myColor))
 
 #### Defined in
 
-[utils.ts:573](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L573)
+[utils.ts:578](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L578)
 
 ***
 
@@ -354,7 +351,7 @@ console.log(mc('rgb.g')('#a1bd2f'))
 
 #### Defined in
 
-[utils.ts:152](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L152)
+[utils.ts:154](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L154)
 
 ***
 
@@ -400,7 +397,7 @@ console.log(overtone("blue"))
 
 #### Defined in
 
-[utils.ts:724](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L724)
+[utils.ts:729](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L729)
 
 ***
 
@@ -446,7 +443,7 @@ console.log(map(sample, isCool));
 
 #### Defined in
 
-[utils.ts:688](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L688)
+[utils.ts:693](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L693)
 
 ***
 
@@ -470,10 +467,13 @@ The `numberType` can be used to specify which type of number to return if the `k
 
 * `'str'` - Parses the color token to its hexadecimal string equivalent.
 
-If the color token has an explicit `alpha` (specified by the `alpha` key in color objects and as the fourth and last number in a color array) the string will be 8 characters long instead of 6.
-
 * `'obj'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.
 * `'temp'` - Parses the color token to its RGB equivalent and expects the value to be between 0 and 30,000
+
+:::tip
+ If the color token has an explicit `alpha` (specified by the `alpha` key in color objects and as the fourth and last number in a color array) the string will be 8 characters long instead of 6.
+
+:::
 
 #### Type Parameters
 
@@ -497,4 +497,4 @@ Options to customize the parsing and output behaviour.
 
 #### Defined in
 
-[utils.ts:323](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/utils.ts#L323)
+[utils.ts:328](https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L328)
