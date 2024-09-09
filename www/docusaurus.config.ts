@@ -47,20 +47,28 @@ const config: Config = {
 	tagline: description,
 	favicon: 'img/favicon.ico',
 	url: 'https://huetiful-js.com',
-	baseUrl: '/docs',
+	baseUrl: '/',
 
-	onBrokenLinks: 'warn',
-	onBrokenMarkdownLinks: 'warn',
+	// Handling broken links
+	onBrokenLinks: 'ignore',
+	onBrokenMarkdownLinks: 'ignore',
 
-	plugins: [
-		[
-			// @ts-ignore
-			'docusaurus-plugin-typedoc',
-			// @ts-ignore
-			typedocOptions
-		]
-	],
+	// i18n Configuration for supporting 'en' locale
+	i18n: {
+		defaultLocale: 'en', // Default language is English
+		locales: ['en'], // List of supported languages
+		localeConfigs: {
+			en: {
+				label: 'English',
+				direction: 'ltr'
+			}
+		}
+	},
 
+	// Typedoc plugin
+	plugins: [['docusaurus-plugin-typedoc', typedocOptions]],
+
+	// Presets (includes docs and other plugins)
 	presets: [
 		[
 			'classic',
@@ -68,8 +76,6 @@ const config: Config = {
 				theme: { customCss: '/css/styles.css' },
 				docs: {
 					sidebarPath: './sidebars.ts',
-					// Please change this to your repo.
-					// Remove this to remove the "edit this page" links.
 					editUrl: 'https://github.com/prjctimg/huetiful/tree/main/www/',
 					showLastUpdateTime: true,
 					routeBasePath: '/',
@@ -85,7 +91,6 @@ const config: Config = {
 		image: '/img/logo.png',
 		navbar: {
 			title: 'huetiful-js',
-
 			items: [
 				{
 					to: '/',
@@ -107,7 +112,6 @@ const config: Config = {
 					label: 'GitHub 🐈‍⬛',
 					position: 'right'
 				},
-
 				{
 					position: 'right',
 					label: 'Buy me a coffee ☕',
@@ -120,7 +124,6 @@ const config: Config = {
 		},
 		footer: {
 			style: 'light',
-
 			copyright: `<a href='https://huetiful-js.com'><b class='pacifico'>huetiful-js</b></a> <br> <a href='https://deantarisai.com'>© ディーン・タリサイ 🌊</a>`
 		},
 		prism: {
@@ -136,7 +139,7 @@ const config: Config = {
 		},
 		announcementBar: {
 			id: 'huetiful-js-announcement',
-			content: `V3 is here! Smaller API footprint,better docs & more <a href='/guides/changes>Learn more</a>`,
+			content: `V3 is here! Smaller API footprint, better docs & more <a href='/guides/changes'>Learn more</a>`,
 			backgroundColor: '#333',
 			textColor: '#fff',
 			isCloseable: true
