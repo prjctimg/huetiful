@@ -77,9 +77,8 @@ const config: Config = {
 				docs: {
 					sidebarPath: './sidebars.ts',
 					editUrl: 'https://github.com/prjctimg/huetiful/tree/main/www/',
-					showLastUpdateTime: true,
-					routeBasePath: '/',
-					showLastUpdateAuthor: true
+
+					routeBasePath: '/'
 				},
 				googleAnalytics: { trackingID: 'G-0TXKRCERK8', anonymizeIP: true },
 				sitemap: { lastmod: 'datetime', changefreq: 'weekly' }
@@ -138,7 +137,7 @@ const config: Config = {
 			insights: true
 		},
 		announcementBar: {
-			id: 'huetiful-js-announcement',
+			id: 'banner',
 			content: `V3 is here! Smaller API footprint, better docs & more <a href='/guides/changes'>Learn more</a>`,
 			backgroundColor: '#333',
 			textColor: '#fff',
