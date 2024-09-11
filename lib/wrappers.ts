@@ -14,9 +14,12 @@ import { colors, nearest } from "./palettes.js";
 import {
   Collection,
   ColorOptions,
+  DeficiencyOptions,
   DiscoverOptions,
   DistributionOptions,
+  EarthtoneOptions,
   FilterByOptions,
+  HueshiftOptions,
   InterpolatorOptions,
   SortByOptions,
   StatsOptions,
@@ -268,7 +271,6 @@ console.log(
 
 /**
  *
- @this {ColorArray}
  * Creates a lazy chain wrapper over a single color token that has all the functions that take a `ColorToken` as their first argument.
  *
  * @example
@@ -293,21 +295,22 @@ class Color {
       lightMode,
       darkMode,
       lightness,
+      implicitReturn,
     } = options;
 
     // Set the alpha of the color if its not explicitly passed in.
-    // @ts-ignore
+
     this["alpha"] = or(alpha, _opac(c));
 
     // if the color is undefined we cast pure black
     this["_color"] = c;
 
     // set the color's luminance if its not explicitly passed in
-    // @ts-ignore
+
     this["_luminance"] = or(luminance, _lmnce(c));
 
     // set the color's lightness if its not explicitly passed in the default lightness is in Lch but will be refactored soon
-    // @ts-ignore
+
     this["_lightness"] = or(lightness, mc("lch.l")(c));
 
     // set the default color space as jch if a color space is not specified. TODO: get the mode from object and array
@@ -316,7 +319,7 @@ class Color {
     // set the default saturation to that of the passed in color if the value is not explicitly set
     this["_saturation"] = or(
       saturation,
-      // @ts-ignore
+
       mc(mcchn(this["colorspace"]))(c)
     );
 
@@ -325,6 +328,16 @@ class Color {
 
     // dark mode default is gray-800
     this["darkMode"] = or(darkMode, colors("gray", "800"));
+
+    this["implicitReturn"] = or(implicitReturn, false) as boolean;
+  }
+
+  private #setThis(callback, options) {
+    this["color"] = options
+      ? callback(this["_color"], options)
+      : callback(this["_color"]);
+
+    return this["implicitReturn"] ? this.output() : this;
   }
 
   /**
@@ -349,13 +362,7 @@ class Color {
   // #b2c3f180
    */
   alpha(amount) {
-    if (amount) {
-      this["_color"] = alpha(this["_color"], amount);
-      return this;
-    } else {
-      // @ts-ignore
-      return alpha(this["_color"]);
-    }
+    return this.#setThis(alpha, amount);
   }
 
   /**
@@ -367,7 +374,6 @@ class Color {
     * @param {string|number} value The value to set on the queried channel. Also supports expressions as strings e.g `"#fc23a1"` `"*0.5"`
     *
     * The supported symbols `*` `+` `-` `/`
-   * @returns {number|Color}
    * @example
    *
    * import { color } from 'huetiful-js'
@@ -377,14 +383,8 @@ class Color {
    *
   */
   mc(modeChannel, value) {
-    if (value) {
-      this["_color"] = mc(modeChannel)(this["_color"], value);
-
-      return this;
-    } else {
-      // @ts-ignore
-      return mc(modeChannel)(this["_color"]);
-    }
+    const cb = (p) => mc(modeChannel)(p, value);
+    return this.#setThis(cb);
   }
 
   /**
@@ -394,29 +394,16 @@ class Color {
      * @param {ColorToken} origin The color to interpolate via.
      value is in the range [0,1]
       the easing and the interpolation methods /fixups.
-     * @returns {Color}
      */
   via(origin) {
-    this["_color"] = interpolator([origin, this["_color"]], {
-      num: 1,
-      colorspace: this["colorspace"],
-    });
-    return this;
+    const cb = (a) =>
+      interpolator([origin, this["_color"]], {
+        num: a,
+        colorspace: this["colorspace"],
+      });
+    return this.#setThis(cb, 1);
   }
 
-  /**
-     *
-     *
-     * The inverse of `darken`. Brightens the bound color by increasing the lightness channel.
-     * @param {number} amount The amount to brighten with. The value is expected to be in the range `[0,1]`. Default is  `0.1`.
-     * @returns {Color}
-     * @example
-     *
-     * import { color } from "huetiful-js";
-    
-    console.log(color('blue').brighten(0.3));
-    //#464646
-     */
   /**
      *
    *
@@ -430,12 +417,9 @@ class Color {
   //#464646
   
    */
-  lightness(amount, darken = undefined) {
-    if (!amount) {
-      return this["_lightness"];
-    }
-    this["_color"] = lightness(this["_color"], amount, darken);
-    return this;
+  lightness(amount?: number, darken = undefined) {
+    const params = [amount, darken];
+    return this.#setThis(lightness, ...params);
   }
 
   /**
@@ -462,7 +446,7 @@ class Color {
    * @returns {ColorToken}
    */
   token(options) {
-    return token(this["_color"], options);
+    return this.#setThis(token, options);
   }
 
   /**
@@ -479,9 +463,7 @@ class Color {
    * @return
    */
   pastel() {
-    // @ts-ignore
-    this["_color"] = pastel(this["_color"]);
-    return this;
+    return this.#setThis(pastel);
   }
 
   /**
@@ -500,13 +482,7 @@ class Color {
     // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
      */
   pair(options) {
-    if (gt(options?.num, 1)) {
-      // @ts-ignore
-      return new ColorArray(pair(this["_color"], options));
-    } else {
-      this["_color"] = pair(this["_color"], options);
-      return this;
-    }
+    return this.#setThis(pair);
   }
 
   /**
@@ -540,12 +516,8 @@ class Color {
       '#3b0c3a'
     ]
      */
-  hueshift(options) {
-    if (gt(options["num"], 1)) {
-      this["colors"] = hueshift(this["_color"], options);
-      //  @ts-ignore
-      return new ColorArray(this["colors"]);
-    }
+  hueshift(options?: HueshiftOptions) {
+    return this.#setThis(hueshift, options);
   }
 
   /**
@@ -560,14 +532,8 @@ class Color {
     // { hue: 'blue-green', color: '#97dfd7ff' }
     
      */
-  complimentary(colorObj) {
-    this["_color"] = complimentary(this["_color"], colorObj);
-    if (colorObj) {
-      // @ts-ignore
-      return complimentary(this["_color"], colorObj);
-    }
-
-    return this;
+  complimentary() {
+    return this.#setThis(complimentary);
   }
 
   /**
@@ -584,7 +550,7 @@ class Color {
   // 'red'
    */
   family() {
-    return family(this["_color"]);
+    return this.#setThis(family);
   }
 
   /**
@@ -622,18 +588,8 @@ class Color {
       '#940049', '#99004b'
     ]
      */
-  earthtone(options) {
-    this["colors"] = earthtone(this["_color"], options);
-
-    if (gt(options["num"], 1)) {
-      // @ts-ignore
-      return new ColorArray(this["colors"]);
-    } else {
-      // @ts-ignore
-      this["_color"] = this["colors"];
-
-      return this;
-    }
+  earthtone(options?: EarthtoneOptions) {
+    return this.#setThis(earthtone, options);
   }
 
   /**
@@ -650,19 +606,15 @@ class Color {
    * // 1.4322318222624262
    */
   contrast(against) {
-    let u;
-    switch (against) {
-      case "light":
-        u = contrast(this["_color"], this["background"]["lightMode"]);
-        break;
-      case "dark":
-        u = contrast(this["_color"], this["background"]["darkMode"]);
-        break;
-      default:
-        u = contrast(this["_color"], against);
-        break;
-    }
-    return u;
+    return this.#setThis(
+      contrast,
+      /light|dark/gi.test(against)
+        ? {
+            light: this["background"]["lightMode"],
+            dark: this["background"]["darkMode"],
+          }[against?.toLowerCase]
+        : against
+    );
   }
 
   /**
@@ -670,12 +622,11 @@ class Color {
    * Gets the luminance of the passed in color token.
    *
    * If the `amount` parameter is not passed in else it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
-     * @param {number} amount The `luminance` value to set on the bound color.
-     * @returns {number|Color}
-     *
-     * @example
-     * import { color } from 'huetiful-js'
-     *
+   * @param amount The `luminance` value to set on the bound color.
+   *
+   * @example
+   * import { color } from 'huetiful-js'
+   *
   let myColor = 'green';
   console.log(color(myColor).luminance());
   // 0.1543834296814607
@@ -685,18 +636,6 @@ class Color {
    
   console.log(color(myColor).luminance(0.5));
    
-   
-  
-  // Color {
-     alpha: 1,
-     _color: '#008000',
-     _luminance: 0.5,
-     lightness: 46.27770902748027,
-     colorspace: 'lch',
-     _saturation: undefined,
-     lightMode: '#f3f4f6',
-     darkMode: '#1f2937'
-   }
      */
   luminance(amount) {
     if (amount) {
@@ -705,7 +644,6 @@ class Color {
       return this;
     }
 
-    // @ts-ignore
     return luminance(this["_color"]);
   }
 
@@ -724,7 +662,6 @@ class Color {
    *
    */
   output() {
-    // @ts-ignore
     return this["_color"];
   }
 
@@ -749,22 +686,9 @@ class Color {
    *
    */
   saturation(amount) {
-    let c = mcchn("c", this["colorspace"]);
-    if (amount) {
-      // @ts-ignore
-      this["_color"] = mc(
-        c
-        // @ts-ignore
-      )(this["_color"], amount);
-
-      return this;
-    } else {
-      this["_saturation"] = mc(
-        c
-        // @ts-ignore
-      )(this["_color"]);
-      return this["_saturation"];
-    }
+    const c = mcchn("c", this["colorspace"]),
+      cb = (a) => mc(c)(a, amount);
+    return this.#setThis(cb, amount);
   }
 
   /**
@@ -817,14 +741,11 @@ class Color {
    
    */
   achromatic() {
-    // @ts-ignore
-    return achromatic(this["_color"]);
+    return this.#setThis(achromatic);
   }
 
   /**
     * Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'`.
-   *
-   * @returns {'warm' | 'cool'}
    *
    * import { color } from 'huetiful-js'
    
@@ -842,7 +763,7 @@ class Color {
    
    */
   temp() {
-    return temp(this["_color"]);
+    return this.#setThis(temp);
   }
 
   /**
@@ -855,8 +776,7 @@ class Color {
    * * 'deuteranopia' - An inability to distinguish the color 'green'.. The `kind` is `'green'`.
    * * 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
    *
-   * @param {import("../types.js").DeficiencyOptions} options
-   * @returns {Color}
+   * @param options
    *
    * @example
    *
@@ -873,9 +793,8 @@ class Color {
     console.log(protanopia)
     // #9f9f9f
      */
-  deficiency(options) {
-    this["_color"] = deficiency(options);
-    return this;
+  deficiency(options?: DeficiencyOptions) {
+    return this.#setThis(deficiency, options);
   }
 
   /**
@@ -883,7 +802,6 @@ class Color {
    *
    * * If an achromatic color is passed in it returns the string `'gray'`
    * * If the color has no bias it returns `false`.
-   * @returns {string|false}
    *
    * @example
    *
@@ -897,15 +815,12 @@ class Color {
   // false
    */
   overtone() {
-    return overtone(this["_color"]);
+    return this.#setThis(overtone);
   }
 
   /**
    *
-   *
    * Returns a randomised classic color scheme from the bound color.
-  
-   * @returns {ColorArray}
    * @example
    *
    import { color  } from 'huetiful-js'
@@ -914,6 +829,6 @@ class Color {
   // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
    */
   scheme(options) {
-    return new ColorArray(scheme(this["_color"], options));
+    return this.#setThis(scheme, options);
   }
 }
