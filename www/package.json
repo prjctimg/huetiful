@@ -1,20 +1,10 @@
 {
-  "name": "docs",
-  "version": "0.0.0",
-  "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
-    "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "serve": "docusaurus serve"
   },
   "dependencies": {
     "@docusaurus/core": "3.5.2",
@@ -31,7 +21,6 @@
     }
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^1.8.0",
     "@docusaurus/module-type-aliases": "3.5.2",
     "@docusaurus/plugin-google-tag-manager": "^3.5.2",
     "@docusaurus/plugin-pwa": "^3.5.2",
@@ -39,38 +28,13 @@
     "@docusaurus/theme-search-algolia": "^3.5.2",
     "@docusaurus/tsconfig": "3.5.2",
     "@docusaurus/types": "3.5.2",
-    "@storybook/addon-essentials": "^8.2.9",
-    "@storybook/addon-interactions": "^8.2.9",
-    "@storybook/addon-links": "^8.2.9",
-    "@storybook/addon-onboarding": "^8.2.9",
-    "@storybook/blocks": "^8.2.9",
-    "@storybook/react": "^8.2.9",
-    "@storybook/react-vite": "^8.2.9",
-    "@storybook/test": "^8.2.9",
     "commitizen": "^4.3.0",
     "cz-emoji-conventional": "^1.0.2",
     "docusaurus-plugin-typedoc": "^1.0.5",
-    "remark-toc": "^9.0.0",
-    "storybook": "^8.2.9",
     "typedoc": "^0.26.4",
     "typedoc-plugin-markdown": "^4.2.0",
     "typedoc-plugin-remark": "^1.0.2",
     "typescript": "~5.5.2",
     "unified-prettier": "^2.0.1"
-  },
-  "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 3 chrome version",
-      "last 3 firefox version",
-      "last 5 safari version"
-    ]
-  },
-  "engines": {
-    "node": ">=18.0"
   }
 }
