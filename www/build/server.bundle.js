@@ -1832,7 +1832,7 @@ const metadata = {
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "Dean prjctimg",
-  "lastUpdatedAt": 1725806485000,
+  "lastUpdatedAt": 1725812418000,
   "frontMatter": {}
 };
 const assets = {
@@ -1974,7 +1974,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/accessibility.ts#L37",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/accessibility.ts#L37",
         children: "accessibility.ts:37"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -2058,7 +2058,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/accessibility.ts#L147",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/accessibility.ts#L147",
         children: "accessibility.ts:147"
       })
     })]
@@ -2114,7 +2114,7 @@ const metadata = {
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "Dean prjctimg",
-  "lastUpdatedAt": 1725806485000,
+  "lastUpdatedAt": 1725812418000,
   "frontMatter": {}
 };
 const assets = {
@@ -2318,7 +2318,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/collection.ts#L274",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/collection.ts#L274",
         children: "collection.ts:274"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -2487,7 +2487,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/collection.ts#L370",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/collection.ts#L370",
         children: "collection.ts:370"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -2626,7 +2626,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/collection.ts#L218",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/collection.ts#L218",
         children: "collection.ts:218"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -2795,7 +2795,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/collection.ts#L70",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/collection.ts#L70",
         children: "collection.ts:70"
       })
     })]
@@ -2851,7 +2851,7 @@ const metadata = {
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "Dean prjctimg",
-  "lastUpdatedAt": 1725806485000,
+  "lastUpdatedAt": 1725812418000,
   "frontMatter": {}
 };
 const assets = {
@@ -3113,7 +3113,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L402",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L402",
         children: "generators.ts:402"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -3176,7 +3176,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L476",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L476",
         children: "generators.ts:476"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -3281,7 +3281,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L87",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L87",
         children: "generators.ts:87"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -3403,7 +3403,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L300",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L300",
         children: "generators.ts:300"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -3498,7 +3498,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L224",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L224",
         children: "generators.ts:224"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -3564,7 +3564,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L166",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L166",
         children: "generators.ts:166"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -3681,7 +3681,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/generators.ts#L547",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L547",
         children: "generators.ts:547"
       })
     })]
@@ -3849,7 +3849,7 @@ const metadata = {
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "Dean prjctimg",
-  "lastUpdatedAt": 1725806485000,
+  "lastUpdatedAt": 1725812418000,
   "frontMatter": {}
 };
 const assets = {
@@ -4104,7 +4104,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/palettes.ts#L856",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/palettes.ts#L856",
         children: "palettes.ts:856"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -4157,7 +4157,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/palettes.ts#L549",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/palettes.ts#L549",
         children: "palettes.ts:549"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -4230,7 +4230,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/palettes.ts#L803",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/palettes.ts#L803",
         children: "palettes.ts:803"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -4283,7 +4283,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/palettes.ts#L691",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/palettes.ts#L691",
         children: "palettes.ts:691"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -4338,7 +4338,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/palettes.ts#L315",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/palettes.ts#L315",
         children: "palettes.ts:315"
       })
     })]
@@ -7790,7 +7790,7 @@ const metadata = {
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "Dean prjctimg",
-  "lastUpdatedAt": 1725806485000,
+  "lastUpdatedAt": 1725812418000,
   "frontMatter": {}
 };
 const assets = {
@@ -8106,7 +8106,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L242",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L242",
         children: "utils.ts:242"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -8194,7 +8194,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L81",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L81",
         children: "utils.ts:81"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -8276,7 +8276,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L758",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L758",
         children: "utils.ts:758"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -8356,7 +8356,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L646",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L646",
         children: "utils.ts:646"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -8437,7 +8437,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L281",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L281",
         children: "utils.ts:281"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -8537,7 +8537,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L578",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L578",
         children: "utils.ts:578"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -8661,7 +8661,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L154",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L154",
         children: "utils.ts:154"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -8749,7 +8749,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L729",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L729",
         children: "utils.ts:729"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -8821,7 +8821,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L693",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L693",
         children: "utils.ts:693"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h3, {
@@ -8990,7 +8990,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/utils.ts#L328",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L328",
         children: "utils.ts:328"
       })
     })]
@@ -9046,7 +9046,7 @@ const metadata = {
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "Dean prjctimg",
-  "lastUpdatedAt": 1725806485000,
+  "lastUpdatedAt": 1725812418000,
   "frontMatter": {}
 };
 const assets = {
@@ -9304,7 +9304,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/wrappers.ts#L45",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L45",
         children: "wrappers.ts:45"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h4, {
@@ -9378,7 +9378,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/wrappers.ts#L139",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L139",
         children: "wrappers.ts:139"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h5, {
@@ -9513,7 +9513,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/wrappers.ts#L188",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L188",
         children: "wrappers.ts:188"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h5, {
@@ -9592,7 +9592,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/wrappers.ts#L96",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L96",
         children: "wrappers.ts:96"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h5, {
@@ -9659,7 +9659,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/wrappers.ts#L64",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L64",
         children: "wrappers.ts:64"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h5, {
@@ -9687,7 +9687,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/wrappers.ts#L263",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L263",
         children: "wrappers.ts:263"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h5, {
@@ -9788,7 +9788,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/wrappers.ts#L222",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L222",
         children: "wrappers.ts:222"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.h5, {
@@ -9913,7 +9913,7 @@ function _createMdxContent(props) {
       children: "Defined in"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.a, {
-        href: "https://github.com/prjctimg/huetiful/blob/266f2ea68c75a78e4043ec815051a8371740e340/lib/wrappers.ts#L252",
+        href: "https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L252",
         children: "wrappers.ts:252"
       })
     })]
@@ -11142,7 +11142,7 @@ function _createMdxContent(props) {
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.p, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components.img, {
         alt: "huetiful-logo",
-        src: (__webpack_require__(2519)/* ["default"] */ .A) + "",
+        src: (__webpack_require__(702)/* ["default"] */ .A) + "",
         width: "1080",
         height: "240"
       })
@@ -19610,7 +19610,7 @@ var interopRequireWildcard = __webpack_require__(9309);
 var lib = __webpack_require__(3259);
 var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 ;// CONCATENATED MODULE: ./.docusaurus/routesChunkNames.json
-const routesChunkNames_namespaceObject = /*#__PURE__*/JSON.parse('{"/docs/search-320":{"__comp":"1a4e3797","__context":{"plugin":"c141421f"}},"/docs/-b2d":{"__comp":"5e95c892","__context":{"plugin":"aba21aa0"}},"/docs/-7c0":{"__comp":"a7bd4aaa","__props":"11b43341"},"/docs/-4dd":{"__comp":"a94703ab"},"/docs/api/-085":{"__comp":"17896441","content":"9d0d7493"},"/docs/api/accessibility-9e3":{"__comp":"17896441","content":"20cb8386"},"/docs/api/collection-e06":{"__comp":"17896441","content":"8907709c"},"/docs/api/generators-062":{"__comp":"17896441","content":"8e5f24a9"},"/docs/api/palettes-49b":{"__comp":"17896441","content":"362b53f4"},"/docs/api/types-1f5":{"__comp":"17896441","content":"f1aa9e59"},"/docs/api/utils-ce4":{"__comp":"17896441","content":"737cd443"},"/docs/api/wrappers-972":{"__comp":"17896441","content":"e89f7b07"},"/docs/guides-b4c":{"__comp":"14eb3368","__props":"963c95ea"},"/docs/guides/behaviour-55d":{"__comp":"17896441","content":"ffa33388"},"/docs/guides/changes-d01":{"__comp":"17896441","content":"13c613a0"},"/docs/guides/installation-b17":{"__comp":"17896441","content":"17faf8cf"},"/docs/guides/intro-f5d":{"__comp":"17896441","content":"fd99ae79"},"/docs/guides/quickstart-5e5":{"__comp":"17896441","content":"4b073ecd"},"/docs/-9c5":{"__comp":"17896441","content":"4edc808e"}}');
+const routesChunkNames_namespaceObject = /*#__PURE__*/JSON.parse('{"/docs/search-320":{"__comp":"1a4e3797","__context":{"plugin":"c141421f"}},"/docs/-8b3":{"__comp":"5e95c892","__context":{"plugin":"aba21aa0"}},"/docs/-a06":{"__comp":"a7bd4aaa","__props":"11b43341"},"/docs/-e1f":{"__comp":"a94703ab"},"/docs/api/-085":{"__comp":"17896441","content":"9d0d7493"},"/docs/api/accessibility-1a0":{"__comp":"17896441","content":"20cb8386"},"/docs/api/collection-e76":{"__comp":"17896441","content":"8907709c"},"/docs/api/generators-9c8":{"__comp":"17896441","content":"8e5f24a9"},"/docs/api/palettes-004":{"__comp":"17896441","content":"362b53f4"},"/docs/api/types-1f5":{"__comp":"17896441","content":"f1aa9e59"},"/docs/api/utils-6a7":{"__comp":"17896441","content":"737cd443"},"/docs/api/wrappers-b19":{"__comp":"17896441","content":"e89f7b07"},"/docs/guides-b4c":{"__comp":"14eb3368","__props":"963c95ea"},"/docs/guides/behaviour-55d":{"__comp":"17896441","content":"ffa33388"},"/docs/guides/changes-d01":{"__comp":"17896441","content":"13c613a0"},"/docs/guides/installation-b17":{"__comp":"17896441","content":"17faf8cf"},"/docs/guides/intro-f5d":{"__comp":"17896441","content":"fd99ae79"},"/docs/guides/quickstart-5e5":{"__comp":"17896441","content":"4b073ecd"},"/docs/-9c5":{"__comp":"17896441","content":"4edc808e"}}');
 ;// CONCATENATED MODULE: ./.docusaurus/registry.js
 /* harmony default export */ const registry = ({"11b43341":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(5293))),"@generated/docusaurus-plugin-content-docs/default/p/docs-7fc.json",/*require.resolve*/(5293)],"13c613a0":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(4870))),"@site/docs/guides/changes.mdx",/*require.resolve*/(4870)],"14eb3368":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(8367))),"@theme/DocCategoryGeneratedIndexPage",/*require.resolve*/(8367)],"17896441":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(2581))),"@theme/DocItem",/*require.resolve*/(2581)],"17faf8cf":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(6113))),"@site/docs/guides/installation.mdx",/*require.resolve*/(6113)],"1a4e3797":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(757))),"@theme/SearchPage",/*require.resolve*/(757)],"20cb8386":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(926))),"@site/docs/api/accessibility.mdx",/*require.resolve*/(926)],"362b53f4":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(96))),"@site/docs/api/palettes.mdx",/*require.resolve*/(96)],"4b073ecd":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(5646))),"@site/docs/guides/quickstart.mdx",/*require.resolve*/(5646)],"4edc808e":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(6523))),"@site/docs/index.mdx",/*require.resolve*/(6523)],"5e95c892":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(7121))),"@theme/DocsRoot",/*require.resolve*/(7121)],"737cd443":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(6581))),"@site/docs/api/utils.mdx",/*require.resolve*/(6581)],"8907709c":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(8648))),"@site/docs/api/collection.mdx",/*require.resolve*/(8648)],"8e5f24a9":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(7106))),"@site/docs/api/generators.mdx",/*require.resolve*/(7106)],"963c95ea":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(3880))),"@generated/docusaurus-plugin-content-docs/default/p/docs-guides-014.json",/*require.resolve*/(3880)],"9d0d7493":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(2058))),"@site/docs/api/index.mdx",/*require.resolve*/(2058)],"a7bd4aaa":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(4532))),"@theme/DocVersionRoot",/*require.resolve*/(4532)],"a94703ab":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(8319))),"@theme/DocRoot",/*require.resolve*/(8319)],"aba21aa0":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(7093))),"@generated/docusaurus-plugin-content-docs/default/__plugin.json",/*require.resolve*/(7093)],"c141421f":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(936))),"@generated/docusaurus-theme-search-algolia/default/__plugin.json",/*require.resolve*/(936)],"e89f7b07":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(1588))),"@site/docs/api/wrappers.mdx",/*require.resolve*/(1588)],"f1aa9e59":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(7993))),"@site/docs/api/types.mdx",/*require.resolve*/(7993)],"fd99ae79":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(7443))),"@site/docs/guides/intro.mdx",/*require.resolve*/(7443)],"ffa33388":[()=>Promise.resolve().then(()=>(0,interopRequireWildcard/* default */.A)(__webpack_require__(2216))),"@site/docs/guides/behaviour.mdx",/*require.resolve*/(2216)]});
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
@@ -19676,7 +19676,7 @@ if(typeof chunk==='object'||typeof chunk==='function'){Object.keys(loadedModule)
 let val=loadedModules;const keyPaths=keyPath.split('.');keyPaths.slice(0,-1).forEach(k=>{val=val[k];});val[keyPaths[keyPaths.length-1]]=chunk;});/* eslint-disable no-underscore-dangle */const Component=loadedModules.__comp;delete loadedModules.__comp;const routeContext=loadedModules.__context;delete loadedModules.__context;const routeProps=loadedModules.__props;delete loadedModules.__props;/* eslint-enable no-underscore-dangle */// Is there any way to put this RouteContextProvider upper in the tree?
 return/*#__PURE__*/(0,jsx_runtime.jsx)(client_routeContext/* RouteContextProvider */.W,{value:routeContext,children:/*#__PURE__*/(0,jsx_runtime.jsx)(Component,{...loadedModules,...routeProps,...props})});}});}
 ;// CONCATENATED MODULE: ./.docusaurus/routes.js
-/* harmony default export */ const routes = ([{path:'/docs/search',component:ComponentCreator('/docs/search','320'),exact:true},{path:'/docs/',component:ComponentCreator('/docs/','b2d'),routes:[{path:'/docs/',component:ComponentCreator('/docs/','7c0'),routes:[{path:'/docs/',component:ComponentCreator('/docs/','4dd'),routes:[{path:'/docs/api/',component:ComponentCreator('/docs/api/','085'),exact:true},{path:'/docs/api/accessibility',component:ComponentCreator('/docs/api/accessibility','9e3'),exact:true},{path:'/docs/api/collection',component:ComponentCreator('/docs/api/collection','e06'),exact:true},{path:'/docs/api/generators',component:ComponentCreator('/docs/api/generators','062'),exact:true},{path:'/docs/api/palettes',component:ComponentCreator('/docs/api/palettes','49b'),exact:true},{path:'/docs/api/types',component:ComponentCreator('/docs/api/types','1f5'),exact:true},{path:'/docs/api/utils',component:ComponentCreator('/docs/api/utils','ce4'),exact:true},{path:'/docs/api/wrappers',component:ComponentCreator('/docs/api/wrappers','972'),exact:true},{path:'/docs/guides',component:ComponentCreator('/docs/guides','b4c'),exact:true,sidebar:"docs"},{path:'/docs/guides/behaviour',component:ComponentCreator('/docs/guides/behaviour','55d'),exact:true,sidebar:"docs"},{path:'/docs/guides/changes',component:ComponentCreator('/docs/guides/changes','d01'),exact:true,sidebar:"docs"},{path:'/docs/guides/installation',component:ComponentCreator('/docs/guides/installation','b17'),exact:true,sidebar:"docs"},{path:'/docs/guides/intro',component:ComponentCreator('/docs/guides/intro','f5d'),exact:true,sidebar:"docs"},{path:'/docs/guides/quickstart',component:ComponentCreator('/docs/guides/quickstart','5e5'),exact:true,sidebar:"docs"},{path:'/docs/',component:ComponentCreator('/docs/','9c5'),exact:true}]}]}]},{path:'*',component:ComponentCreator('*')}]);
+/* harmony default export */ const routes = ([{path:'/docs/search',component:ComponentCreator('/docs/search','320'),exact:true},{path:'/docs/',component:ComponentCreator('/docs/','8b3'),routes:[{path:'/docs/',component:ComponentCreator('/docs/','a06'),routes:[{path:'/docs/',component:ComponentCreator('/docs/','e1f'),routes:[{path:'/docs/api/',component:ComponentCreator('/docs/api/','085'),exact:true},{path:'/docs/api/accessibility',component:ComponentCreator('/docs/api/accessibility','1a0'),exact:true},{path:'/docs/api/collection',component:ComponentCreator('/docs/api/collection','e76'),exact:true},{path:'/docs/api/generators',component:ComponentCreator('/docs/api/generators','9c8'),exact:true},{path:'/docs/api/palettes',component:ComponentCreator('/docs/api/palettes','004'),exact:true},{path:'/docs/api/types',component:ComponentCreator('/docs/api/types','1f5'),exact:true},{path:'/docs/api/utils',component:ComponentCreator('/docs/api/utils','6a7'),exact:true},{path:'/docs/api/wrappers',component:ComponentCreator('/docs/api/wrappers','b19'),exact:true},{path:'/docs/guides',component:ComponentCreator('/docs/guides','b4c'),exact:true,sidebar:"docs"},{path:'/docs/guides/behaviour',component:ComponentCreator('/docs/guides/behaviour','55d'),exact:true,sidebar:"docs"},{path:'/docs/guides/changes',component:ComponentCreator('/docs/guides/changes','d01'),exact:true,sidebar:"docs"},{path:'/docs/guides/installation',component:ComponentCreator('/docs/guides/installation','b17'),exact:true,sidebar:"docs"},{path:'/docs/guides/intro',component:ComponentCreator('/docs/guides/intro','f5d'),exact:true,sidebar:"docs"},{path:'/docs/guides/quickstart',component:ComponentCreator('/docs/guides/quickstart','5e5'),exact:true,sidebar:"docs"},{path:'/docs/',component:ComponentCreator('/docs/','9c5'),exact:true}]}]}]},{path:'*',component:ComponentCreator('*')}]);
 
 /***/ }),
 
@@ -25909,7 +25909,7 @@ function createMemoryHistory(props) {
 "use strict";
 
 
-var reactIs = __webpack_require__(4363);
+var reactIs = __webpack_require__(3404);
 
 /**
  * Copyright 2015, Yahoo! Inc.
@@ -26014,6 +26014,42 @@ module.exports = hoistNonReactStatics;
 
 /***/ }),
 
+/***/ 3072:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+/** @license React v16.13.1
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var b="function"===typeof Symbol&&Symbol.for,c=b?Symbol.for("react.element"):60103,d=b?Symbol.for("react.portal"):60106,e=b?Symbol.for("react.fragment"):60107,f=b?Symbol.for("react.strict_mode"):60108,g=b?Symbol.for("react.profiler"):60114,h=b?Symbol.for("react.provider"):60109,k=b?Symbol.for("react.context"):60110,l=b?Symbol.for("react.async_mode"):60111,m=b?Symbol.for("react.concurrent_mode"):60111,n=b?Symbol.for("react.forward_ref"):60112,p=b?Symbol.for("react.suspense"):60113,q=b?
+Symbol.for("react.suspense_list"):60120,r=b?Symbol.for("react.memo"):60115,t=b?Symbol.for("react.lazy"):60116,v=b?Symbol.for("react.block"):60121,w=b?Symbol.for("react.fundamental"):60117,x=b?Symbol.for("react.responder"):60118,y=b?Symbol.for("react.scope"):60119;
+function z(a){if("object"===typeof a&&null!==a){var u=a.$$typeof;switch(u){case c:switch(a=a.type,a){case l:case m:case e:case g:case f:case p:return a;default:switch(a=a&&a.$$typeof,a){case k:case n:case t:case r:case h:return a;default:return u}}case d:return u}}}function A(a){return z(a)===m}exports.AsyncMode=l;exports.ConcurrentMode=m;exports.ContextConsumer=k;exports.ContextProvider=h;exports.Element=c;exports.ForwardRef=n;exports.Fragment=e;exports.Lazy=t;exports.Memo=r;exports.Portal=d;
+exports.Profiler=g;exports.StrictMode=f;exports.Suspense=p;exports.isAsyncMode=function(a){return A(a)||z(a)===l};exports.isConcurrentMode=A;exports.isContextConsumer=function(a){return z(a)===k};exports.isContextProvider=function(a){return z(a)===h};exports.isElement=function(a){return"object"===typeof a&&null!==a&&a.$$typeof===c};exports.isForwardRef=function(a){return z(a)===n};exports.isFragment=function(a){return z(a)===e};exports.isLazy=function(a){return z(a)===t};
+exports.isMemo=function(a){return z(a)===r};exports.isPortal=function(a){return z(a)===d};exports.isProfiler=function(a){return z(a)===g};exports.isStrictMode=function(a){return z(a)===f};exports.isSuspense=function(a){return z(a)===p};
+exports.isValidElementType=function(a){return"string"===typeof a||"function"===typeof a||a===e||a===m||a===g||a===f||a===p||a===q||"object"===typeof a&&null!==a&&(a.$$typeof===t||a.$$typeof===r||a.$$typeof===h||a.$$typeof===k||a.$$typeof===n||a.$$typeof===w||a.$$typeof===x||a.$$typeof===y||a.$$typeof===v)};exports.typeOf=z;
+
+
+/***/ }),
+
+/***/ 3404:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+if (true) {
+  module.exports = __webpack_require__(3072);
+} else {}
+
+
+/***/ }),
+
 /***/ 7927:
 /***/ ((module) => {
 
@@ -26069,16 +26105,6 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 };
 
 module.exports = invariant;
-
-
-/***/ }),
-
-/***/ 4634:
-/***/ ((module) => {
-
-module.exports = Array.isArray || function (arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
-};
 
 
 /***/ }),
@@ -26635,439 +26661,6 @@ function parsePart(string) {
 
 exports["default"] = parsePart;
 module.exports = parsePart;
-
-
-/***/ }),
-
-/***/ 5302:
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var isarray = __webpack_require__(4634)
-
-/**
- * Expose `pathToRegexp`.
- */
-module.exports = pathToRegexp
-module.exports.parse = parse
-module.exports.compile = compile
-module.exports.tokensToFunction = tokensToFunction
-module.exports.tokensToRegExp = tokensToRegExp
-
-/**
- * The main path matching regexp utility.
- *
- * @type {RegExp}
- */
-var PATH_REGEXP = new RegExp([
-  // Match escaped characters that would otherwise appear in future matches.
-  // This allows the user to escape special characters that won't transform.
-  '(\\\\.)',
-  // Match Express-style parameters and un-named parameters with a prefix
-  // and optional suffixes. Matches appear as:
-  //
-  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
-  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
-  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
-  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
-].join('|'), 'g')
-
-/**
- * Parse a string for the raw tokens.
- *
- * @param  {string}  str
- * @param  {Object=} options
- * @return {!Array}
- */
-function parse (str, options) {
-  var tokens = []
-  var key = 0
-  var index = 0
-  var path = ''
-  var defaultDelimiter = options && options.delimiter || '/'
-  var res
-
-  while ((res = PATH_REGEXP.exec(str)) != null) {
-    var m = res[0]
-    var escaped = res[1]
-    var offset = res.index
-    path += str.slice(index, offset)
-    index = offset + m.length
-
-    // Ignore already escaped sequences.
-    if (escaped) {
-      path += escaped[1]
-      continue
-    }
-
-    var next = str[index]
-    var prefix = res[2]
-    var name = res[3]
-    var capture = res[4]
-    var group = res[5]
-    var modifier = res[6]
-    var asterisk = res[7]
-
-    // Push the current path onto the tokens.
-    if (path) {
-      tokens.push(path)
-      path = ''
-    }
-
-    var partial = prefix != null && next != null && next !== prefix
-    var repeat = modifier === '+' || modifier === '*'
-    var optional = modifier === '?' || modifier === '*'
-    var delimiter = res[2] || defaultDelimiter
-    var pattern = capture || group
-
-    tokens.push({
-      name: name || key++,
-      prefix: prefix || '',
-      delimiter: delimiter,
-      optional: optional,
-      repeat: repeat,
-      partial: partial,
-      asterisk: !!asterisk,
-      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
-    })
-  }
-
-  // Match any characters still remaining.
-  if (index < str.length) {
-    path += str.substr(index)
-  }
-
-  // If the path exists, push it onto the end.
-  if (path) {
-    tokens.push(path)
-  }
-
-  return tokens
-}
-
-/**
- * Compile a string to a template function for the path.
- *
- * @param  {string}             str
- * @param  {Object=}            options
- * @return {!function(Object=, Object=)}
- */
-function compile (str, options) {
-  return tokensToFunction(parse(str, options), options)
-}
-
-/**
- * Prettier encoding of URI path segments.
- *
- * @param  {string}
- * @return {string}
- */
-function encodeURIComponentPretty (str) {
-  return encodeURI(str).replace(/[\/?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
-}
-
-/**
- * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
- *
- * @param  {string}
- * @return {string}
- */
-function encodeAsterisk (str) {
-  return encodeURI(str).replace(/[?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
-}
-
-/**
- * Expose a method for transforming tokens into the path function.
- */
-function tokensToFunction (tokens, options) {
-  // Compile all the tokens into regexps.
-  var matches = new Array(tokens.length)
-
-  // Compile all the patterns before compilation.
-  for (var i = 0; i < tokens.length; i++) {
-    if (typeof tokens[i] === 'object') {
-      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$', flags(options))
-    }
-  }
-
-  return function (obj, opts) {
-    var path = ''
-    var data = obj || {}
-    var options = opts || {}
-    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent
-
-    for (var i = 0; i < tokens.length; i++) {
-      var token = tokens[i]
-
-      if (typeof token === 'string') {
-        path += token
-
-        continue
-      }
-
-      var value = data[token.name]
-      var segment
-
-      if (value == null) {
-        if (token.optional) {
-          // Prepend partial segment prefixes.
-          if (token.partial) {
-            path += token.prefix
-          }
-
-          continue
-        } else {
-          throw new TypeError('Expected "' + token.name + '" to be defined')
-        }
-      }
-
-      if (isarray(value)) {
-        if (!token.repeat) {
-          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
-        }
-
-        if (value.length === 0) {
-          if (token.optional) {
-            continue
-          } else {
-            throw new TypeError('Expected "' + token.name + '" to not be empty')
-          }
-        }
-
-        for (var j = 0; j < value.length; j++) {
-          segment = encode(value[j])
-
-          if (!matches[i].test(segment)) {
-            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
-          }
-
-          path += (j === 0 ? token.prefix : token.delimiter) + segment
-        }
-
-        continue
-      }
-
-      segment = token.asterisk ? encodeAsterisk(value) : encode(value)
-
-      if (!matches[i].test(segment)) {
-        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
-      }
-
-      path += token.prefix + segment
-    }
-
-    return path
-  }
-}
-
-/**
- * Escape a regular expression string.
- *
- * @param  {string} str
- * @return {string}
- */
-function escapeString (str) {
-  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
-}
-
-/**
- * Escape the capturing group by escaping special characters and meaning.
- *
- * @param  {string} group
- * @return {string}
- */
-function escapeGroup (group) {
-  return group.replace(/([=!:$\/()])/g, '\\$1')
-}
-
-/**
- * Attach the keys as a property of the regexp.
- *
- * @param  {!RegExp} re
- * @param  {Array}   keys
- * @return {!RegExp}
- */
-function attachKeys (re, keys) {
-  re.keys = keys
-  return re
-}
-
-/**
- * Get the flags for a regexp from the options.
- *
- * @param  {Object} options
- * @return {string}
- */
-function flags (options) {
-  return options && options.sensitive ? '' : 'i'
-}
-
-/**
- * Pull out keys from a regexp.
- *
- * @param  {!RegExp} path
- * @param  {!Array}  keys
- * @return {!RegExp}
- */
-function regexpToRegexp (path, keys) {
-  // Use a negative lookahead to match only capturing groups.
-  var groups = path.source.match(/\((?!\?)/g)
-
-  if (groups) {
-    for (var i = 0; i < groups.length; i++) {
-      keys.push({
-        name: i,
-        prefix: null,
-        delimiter: null,
-        optional: false,
-        repeat: false,
-        partial: false,
-        asterisk: false,
-        pattern: null
-      })
-    }
-  }
-
-  return attachKeys(path, keys)
-}
-
-/**
- * Transform an array into a regexp.
- *
- * @param  {!Array}  path
- * @param  {Array}   keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function arrayToRegexp (path, keys, options) {
-  var parts = []
-
-  for (var i = 0; i < path.length; i++) {
-    parts.push(pathToRegexp(path[i], keys, options).source)
-  }
-
-  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options))
-
-  return attachKeys(regexp, keys)
-}
-
-/**
- * Create a path regexp from string input.
- *
- * @param  {string}  path
- * @param  {!Array}  keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function stringToRegexp (path, keys, options) {
-  return tokensToRegExp(parse(path, options), keys, options)
-}
-
-/**
- * Expose a function for taking tokens and returning a RegExp.
- *
- * @param  {!Array}          tokens
- * @param  {(Array|Object)=} keys
- * @param  {Object=}         options
- * @return {!RegExp}
- */
-function tokensToRegExp (tokens, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options)
-    keys = []
-  }
-
-  options = options || {}
-
-  var strict = options.strict
-  var end = options.end !== false
-  var route = ''
-
-  // Iterate over the tokens and create our regexp string.
-  for (var i = 0; i < tokens.length; i++) {
-    var token = tokens[i]
-
-    if (typeof token === 'string') {
-      route += escapeString(token)
-    } else {
-      var prefix = escapeString(token.prefix)
-      var capture = '(?:' + token.pattern + ')'
-
-      keys.push(token)
-
-      if (token.repeat) {
-        capture += '(?:' + prefix + capture + ')*'
-      }
-
-      if (token.optional) {
-        if (!token.partial) {
-          capture = '(?:' + prefix + '(' + capture + '))?'
-        } else {
-          capture = prefix + '(' + capture + ')?'
-        }
-      } else {
-        capture = prefix + '(' + capture + ')'
-      }
-
-      route += capture
-    }
-  }
-
-  var delimiter = escapeString(options.delimiter || '/')
-  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter
-
-  // In non-strict mode we allow a slash at the end of match. If the path to
-  // match already ends with a slash, we remove it for consistency. The slash
-  // is valid at the end of a path match, not in the middle. This is important
-  // in non-ending mode, where "/test/" shouldn't match "/test//route".
-  if (!strict) {
-    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?'
-  }
-
-  if (end) {
-    route += '$'
-  } else {
-    // In non-ending mode, we need the capturing groups to match as much as
-    // possible by using a positive lookahead to the end or next path segment.
-    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)'
-  }
-
-  return attachKeys(new RegExp('^' + route, flags(options)), keys)
-}
-
-/**
- * Normalize the given path string, returning a regular expression.
- *
- * An empty array can be passed in for the keys, which will hold the
- * placeholder key descriptions. For example, using `/user/:id`, `keys` will
- * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
- *
- * @param  {(string|RegExp|Array)} path
- * @param  {(Array|Object)=}       keys
- * @param  {Object=}               options
- * @return {!RegExp}
- */
-function pathToRegexp (path, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options)
-    keys = []
-  }
-
-  options = options || {}
-
-  if (path instanceof RegExp) {
-    return regexpToRegexp(path, /** @type {!Array} */ (keys))
-  }
-
-  if (isarray(path)) {
-    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
-  }
-
-  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
-}
 
 
 /***/ }),
@@ -28693,42 +28286,6 @@ function a(){return a=Object.assign||function(t){for(var e=1;e<arguments.length;
 
 /***/ }),
 
-/***/ 2799:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-/** @license React v16.13.1
- * react-is.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-var b="function"===typeof Symbol&&Symbol.for,c=b?Symbol.for("react.element"):60103,d=b?Symbol.for("react.portal"):60106,e=b?Symbol.for("react.fragment"):60107,f=b?Symbol.for("react.strict_mode"):60108,g=b?Symbol.for("react.profiler"):60114,h=b?Symbol.for("react.provider"):60109,k=b?Symbol.for("react.context"):60110,l=b?Symbol.for("react.async_mode"):60111,m=b?Symbol.for("react.concurrent_mode"):60111,n=b?Symbol.for("react.forward_ref"):60112,p=b?Symbol.for("react.suspense"):60113,q=b?
-Symbol.for("react.suspense_list"):60120,r=b?Symbol.for("react.memo"):60115,t=b?Symbol.for("react.lazy"):60116,v=b?Symbol.for("react.block"):60121,w=b?Symbol.for("react.fundamental"):60117,x=b?Symbol.for("react.responder"):60118,y=b?Symbol.for("react.scope"):60119;
-function z(a){if("object"===typeof a&&null!==a){var u=a.$$typeof;switch(u){case c:switch(a=a.type,a){case l:case m:case e:case g:case f:case p:return a;default:switch(a=a&&a.$$typeof,a){case k:case n:case t:case r:case h:return a;default:return u}}case d:return u}}}function A(a){return z(a)===m}exports.AsyncMode=l;exports.ConcurrentMode=m;exports.ContextConsumer=k;exports.ContextProvider=h;exports.Element=c;exports.ForwardRef=n;exports.Fragment=e;exports.Lazy=t;exports.Memo=r;exports.Portal=d;
-exports.Profiler=g;exports.StrictMode=f;exports.Suspense=p;exports.isAsyncMode=function(a){return A(a)||z(a)===l};exports.isConcurrentMode=A;exports.isContextConsumer=function(a){return z(a)===k};exports.isContextProvider=function(a){return z(a)===h};exports.isElement=function(a){return"object"===typeof a&&null!==a&&a.$$typeof===c};exports.isForwardRef=function(a){return z(a)===n};exports.isFragment=function(a){return z(a)===e};exports.isLazy=function(a){return z(a)===t};
-exports.isMemo=function(a){return z(a)===r};exports.isPortal=function(a){return z(a)===d};exports.isProfiler=function(a){return z(a)===g};exports.isStrictMode=function(a){return z(a)===f};exports.isSuspense=function(a){return z(a)===p};
-exports.isValidElementType=function(a){return"string"===typeof a||"function"===typeof a||a===e||a===m||a===g||a===f||a===p||a===q||"object"===typeof a&&null!==a&&(a.$$typeof===t||a.$$typeof===r||a.$$typeof===h||a.$$typeof===k||a.$$typeof===n||a.$$typeof===w||a.$$typeof===x||a.$$typeof===y||a.$$typeof===v)};exports.typeOf=z;
-
-
-/***/ }),
-
-/***/ 4363:
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-
-if (true) {
-  module.exports = __webpack_require__(2799);
-} else {}
-
-
-/***/ }),
-
 /***/ 3259:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
@@ -29168,9 +28725,9 @@ function renderRoutes(routes, extraProps, switchProps) {
 /* harmony import */ var history__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1513);
 /* harmony import */ var tiny_invariant__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1561);
 /* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8168);
-/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5302);
+/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8505);
 /* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(path_to_regexp__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4363);
+/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7564);
 /* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8587);
 /* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4146);
 /* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_3__);
@@ -30014,6 +29571,486 @@ if (false) { var secondaryBuildName, initialBuildName, buildNames, key, global$1
 
 /***/ }),
 
+/***/ 9375:
+/***/ ((module) => {
+
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+
+/***/ 8505:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var isarray = __webpack_require__(9375)
+
+/**
+ * Expose `pathToRegexp`.
+ */
+module.exports = pathToRegexp
+module.exports.parse = parse
+module.exports.compile = compile
+module.exports.tokensToFunction = tokensToFunction
+module.exports.tokensToRegExp = tokensToRegExp
+
+/**
+ * The main path matching regexp utility.
+ *
+ * @type {RegExp}
+ */
+var PATH_REGEXP = new RegExp([
+  // Match escaped characters that would otherwise appear in future matches.
+  // This allows the user to escape special characters that won't transform.
+  '(\\\\.)',
+  // Match Express-style parameters and un-named parameters with a prefix
+  // and optional suffixes. Matches appear as:
+  //
+  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
+].join('|'), 'g')
+
+/**
+ * Parse a string for the raw tokens.
+ *
+ * @param  {string}  str
+ * @param  {Object=} options
+ * @return {!Array}
+ */
+function parse (str, options) {
+  var tokens = []
+  var key = 0
+  var index = 0
+  var path = ''
+  var defaultDelimiter = options && options.delimiter || '/'
+  var res
+
+  while ((res = PATH_REGEXP.exec(str)) != null) {
+    var m = res[0]
+    var escaped = res[1]
+    var offset = res.index
+    path += str.slice(index, offset)
+    index = offset + m.length
+
+    // Ignore already escaped sequences.
+    if (escaped) {
+      path += escaped[1]
+      continue
+    }
+
+    var next = str[index]
+    var prefix = res[2]
+    var name = res[3]
+    var capture = res[4]
+    var group = res[5]
+    var modifier = res[6]
+    var asterisk = res[7]
+
+    // Push the current path onto the tokens.
+    if (path) {
+      tokens.push(path)
+      path = ''
+    }
+
+    var partial = prefix != null && next != null && next !== prefix
+    var repeat = modifier === '+' || modifier === '*'
+    var optional = modifier === '?' || modifier === '*'
+    var delimiter = res[2] || defaultDelimiter
+    var pattern = capture || group
+
+    tokens.push({
+      name: name || key++,
+      prefix: prefix || '',
+      delimiter: delimiter,
+      optional: optional,
+      repeat: repeat,
+      partial: partial,
+      asterisk: !!asterisk,
+      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
+    })
+  }
+
+  // Match any characters still remaining.
+  if (index < str.length) {
+    path += str.substr(index)
+  }
+
+  // If the path exists, push it onto the end.
+  if (path) {
+    tokens.push(path)
+  }
+
+  return tokens
+}
+
+/**
+ * Compile a string to a template function for the path.
+ *
+ * @param  {string}             str
+ * @param  {Object=}            options
+ * @return {!function(Object=, Object=)}
+ */
+function compile (str, options) {
+  return tokensToFunction(parse(str, options), options)
+}
+
+/**
+ * Prettier encoding of URI path segments.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeURIComponentPretty (str) {
+  return encodeURI(str).replace(/[\/?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeAsterisk (str) {
+  return encodeURI(str).replace(/[?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Expose a method for transforming tokens into the path function.
+ */
+function tokensToFunction (tokens, options) {
+  // Compile all the tokens into regexps.
+  var matches = new Array(tokens.length)
+
+  // Compile all the patterns before compilation.
+  for (var i = 0; i < tokens.length; i++) {
+    if (typeof tokens[i] === 'object') {
+      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$', flags(options))
+    }
+  }
+
+  return function (obj, opts) {
+    var path = ''
+    var data = obj || {}
+    var options = opts || {}
+    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent
+
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i]
+
+      if (typeof token === 'string') {
+        path += token
+
+        continue
+      }
+
+      var value = data[token.name]
+      var segment
+
+      if (value == null) {
+        if (token.optional) {
+          // Prepend partial segment prefixes.
+          if (token.partial) {
+            path += token.prefix
+          }
+
+          continue
+        } else {
+          throw new TypeError('Expected "' + token.name + '" to be defined')
+        }
+      }
+
+      if (isarray(value)) {
+        if (!token.repeat) {
+          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
+        }
+
+        if (value.length === 0) {
+          if (token.optional) {
+            continue
+          } else {
+            throw new TypeError('Expected "' + token.name + '" to not be empty')
+          }
+        }
+
+        for (var j = 0; j < value.length; j++) {
+          segment = encode(value[j])
+
+          if (!matches[i].test(segment)) {
+            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
+          }
+
+          path += (j === 0 ? token.prefix : token.delimiter) + segment
+        }
+
+        continue
+      }
+
+      segment = token.asterisk ? encodeAsterisk(value) : encode(value)
+
+      if (!matches[i].test(segment)) {
+        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
+      }
+
+      path += token.prefix + segment
+    }
+
+    return path
+  }
+}
+
+/**
+ * Escape a regular expression string.
+ *
+ * @param  {string} str
+ * @return {string}
+ */
+function escapeString (str) {
+  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
+}
+
+/**
+ * Escape the capturing group by escaping special characters and meaning.
+ *
+ * @param  {string} group
+ * @return {string}
+ */
+function escapeGroup (group) {
+  return group.replace(/([=!:$\/()])/g, '\\$1')
+}
+
+/**
+ * Attach the keys as a property of the regexp.
+ *
+ * @param  {!RegExp} re
+ * @param  {Array}   keys
+ * @return {!RegExp}
+ */
+function attachKeys (re, keys) {
+  re.keys = keys
+  return re
+}
+
+/**
+ * Get the flags for a regexp from the options.
+ *
+ * @param  {Object} options
+ * @return {string}
+ */
+function flags (options) {
+  return options && options.sensitive ? '' : 'i'
+}
+
+/**
+ * Pull out keys from a regexp.
+ *
+ * @param  {!RegExp} path
+ * @param  {!Array}  keys
+ * @return {!RegExp}
+ */
+function regexpToRegexp (path, keys) {
+  // Use a negative lookahead to match only capturing groups.
+  var groups = path.source.match(/\((?!\?)/g)
+
+  if (groups) {
+    for (var i = 0; i < groups.length; i++) {
+      keys.push({
+        name: i,
+        prefix: null,
+        delimiter: null,
+        optional: false,
+        repeat: false,
+        partial: false,
+        asterisk: false,
+        pattern: null
+      })
+    }
+  }
+
+  return attachKeys(path, keys)
+}
+
+/**
+ * Transform an array into a regexp.
+ *
+ * @param  {!Array}  path
+ * @param  {Array}   keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function arrayToRegexp (path, keys, options) {
+  var parts = []
+
+  for (var i = 0; i < path.length; i++) {
+    parts.push(pathToRegexp(path[i], keys, options).source)
+  }
+
+  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options))
+
+  return attachKeys(regexp, keys)
+}
+
+/**
+ * Create a path regexp from string input.
+ *
+ * @param  {string}  path
+ * @param  {!Array}  keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function stringToRegexp (path, keys, options) {
+  return tokensToRegExp(parse(path, options), keys, options)
+}
+
+/**
+ * Expose a function for taking tokens and returning a RegExp.
+ *
+ * @param  {!Array}          tokens
+ * @param  {(Array|Object)=} keys
+ * @param  {Object=}         options
+ * @return {!RegExp}
+ */
+function tokensToRegExp (tokens, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options)
+    keys = []
+  }
+
+  options = options || {}
+
+  var strict = options.strict
+  var end = options.end !== false
+  var route = ''
+
+  // Iterate over the tokens and create our regexp string.
+  for (var i = 0; i < tokens.length; i++) {
+    var token = tokens[i]
+
+    if (typeof token === 'string') {
+      route += escapeString(token)
+    } else {
+      var prefix = escapeString(token.prefix)
+      var capture = '(?:' + token.pattern + ')'
+
+      keys.push(token)
+
+      if (token.repeat) {
+        capture += '(?:' + prefix + capture + ')*'
+      }
+
+      if (token.optional) {
+        if (!token.partial) {
+          capture = '(?:' + prefix + '(' + capture + '))?'
+        } else {
+          capture = prefix + '(' + capture + ')?'
+        }
+      } else {
+        capture = prefix + '(' + capture + ')'
+      }
+
+      route += capture
+    }
+  }
+
+  var delimiter = escapeString(options.delimiter || '/')
+  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter
+
+  // In non-strict mode we allow a slash at the end of match. If the path to
+  // match already ends with a slash, we remove it for consistency. The slash
+  // is valid at the end of a path match, not in the middle. This is important
+  // in non-ending mode, where "/test/" shouldn't match "/test//route".
+  if (!strict) {
+    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?'
+  }
+
+  if (end) {
+    route += '$'
+  } else {
+    // In non-ending mode, we need the capturing groups to match as much as
+    // possible by using a positive lookahead to the end or next path segment.
+    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)'
+  }
+
+  return attachKeys(new RegExp('^' + route, flags(options)), keys)
+}
+
+/**
+ * Normalize the given path string, returning a regular expression.
+ *
+ * An empty array can be passed in for the keys, which will hold the
+ * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+ * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+ *
+ * @param  {(string|RegExp|Array)} path
+ * @param  {(Array|Object)=}       keys
+ * @param  {Object=}               options
+ * @return {!RegExp}
+ */
+function pathToRegexp (path, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options)
+    keys = []
+  }
+
+  options = options || {}
+
+  if (path instanceof RegExp) {
+    return regexpToRegexp(path, /** @type {!Array} */ (keys))
+  }
+
+  if (isarray(path)) {
+    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
+  }
+
+  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
+}
+
+
+/***/ }),
+
+/***/ 4912:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+var __webpack_unused_export__;
+/** @license React v16.13.1
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var b="function"===typeof Symbol&&Symbol.for,c=b?Symbol.for("react.element"):60103,d=b?Symbol.for("react.portal"):60106,e=b?Symbol.for("react.fragment"):60107,f=b?Symbol.for("react.strict_mode"):60108,g=b?Symbol.for("react.profiler"):60114,h=b?Symbol.for("react.provider"):60109,k=b?Symbol.for("react.context"):60110,l=b?Symbol.for("react.async_mode"):60111,m=b?Symbol.for("react.concurrent_mode"):60111,n=b?Symbol.for("react.forward_ref"):60112,p=b?Symbol.for("react.suspense"):60113,q=b?
+Symbol.for("react.suspense_list"):60120,r=b?Symbol.for("react.memo"):60115,t=b?Symbol.for("react.lazy"):60116,v=b?Symbol.for("react.block"):60121,w=b?Symbol.for("react.fundamental"):60117,x=b?Symbol.for("react.responder"):60118,y=b?Symbol.for("react.scope"):60119;
+function z(a){if("object"===typeof a&&null!==a){var u=a.$$typeof;switch(u){case c:switch(a=a.type,a){case l:case m:case e:case g:case f:case p:return a;default:switch(a=a&&a.$$typeof,a){case k:case n:case t:case r:case h:return a;default:return u}}case d:return u}}}function A(a){return z(a)===m}__webpack_unused_export__=l;__webpack_unused_export__=m;__webpack_unused_export__=k;__webpack_unused_export__=h;__webpack_unused_export__=c;__webpack_unused_export__=n;__webpack_unused_export__=e;__webpack_unused_export__=t;__webpack_unused_export__=r;__webpack_unused_export__=d;
+__webpack_unused_export__=g;__webpack_unused_export__=f;__webpack_unused_export__=p;__webpack_unused_export__=function(a){return A(a)||z(a)===l};__webpack_unused_export__=A;__webpack_unused_export__=function(a){return z(a)===k};__webpack_unused_export__=function(a){return z(a)===h};__webpack_unused_export__=function(a){return"object"===typeof a&&null!==a&&a.$$typeof===c};__webpack_unused_export__=function(a){return z(a)===n};__webpack_unused_export__=function(a){return z(a)===e};__webpack_unused_export__=function(a){return z(a)===t};
+__webpack_unused_export__=function(a){return z(a)===r};__webpack_unused_export__=function(a){return z(a)===d};__webpack_unused_export__=function(a){return z(a)===g};__webpack_unused_export__=function(a){return z(a)===f};__webpack_unused_export__=function(a){return z(a)===p};
+__webpack_unused_export__=function(a){return"string"===typeof a||"function"===typeof a||a===e||a===m||a===g||a===f||a===p||a===q||"object"===typeof a&&null!==a&&(a.$$typeof===t||a.$$typeof===r||a.$$typeof===h||a.$$typeof===k||a.$$typeof===n||a.$$typeof===w||a.$$typeof===x||a.$$typeof===y||a.$$typeof===v)};__webpack_unused_export__=z;
+
+
+/***/ }),
+
+/***/ 7564:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+if (true) {
+  /* unused reexport */ __webpack_require__(4912);
+} else {}
+
+
+/***/ }),
+
 /***/ 1020:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -30186,7 +30223,7 @@ module.exports = function shallowEqual(objA, objB, compare, compareContext) {
 
 /***/ }),
 
-/***/ 2519:
+/***/ 702:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -31934,7 +31971,7 @@ Prism.languages.markup = { comment: { pattern: /<!--(?:(?!<!--)[\s\S])*?-->/, gr
   })), lookbehind: true }, /\b[A-Z]\w*(?=\s*::\s*\w+\s*\()/, /\b[A-Z_]\w*(?=\s*::\s*~\w+\s*\()/i, /\b\w+(?=\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>\s*::\s*\w+\s*\()/], keyword: n, number: { pattern: /(?:\b0b[01']+|\b0x(?:[\da-f']+(?:\.[\da-f']*)?|\.[\da-f']+)(?:p[+-]?[\d']+)?|(?:\b[\d']+(?:\.[\d']*)?|\B\.[\d']+)(?:e[+-]?[\d']+)?)[ful]{0,4}/i, greedy: true }, operator: />>=?|<<=?|->|--|\+\+|&&|\|\||[?:~]|<=>|[-+*/%&|^!=<>]=?|\b(?:and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/, boolean: /\b(?:false|true)\b/ }), e.languages.insertBefore("cpp", "string", { module: { pattern: RegExp(/(\b(?:import|module)\s+)/.source + "(?:" + /"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|<[^<>\r\n]*>/.source + "|" + /<mod-name>(?:\s*:\s*<mod-name>)?|:\s*<mod-name>/.source.replace(/<mod-name>/g, function() {
     return t;
   }) + ")"), lookbehind: true, greedy: true, inside: { string: /^[<"][\s\S]+/, operator: /:/, punctuation: /\./ } }, "raw-string": { pattern: /R"([^()\\ ]{0,16})\([\s\S]*?\)\1"/, alias: "string", greedy: true } }), e.languages.insertBefore("cpp", "keyword", { "generic-function": { pattern: /\b(?!operator\b)[a-z_]\w*\s*<(?:[^<>]|<[^<>]*>)*>(?=\s*\()/i, inside: { function: /^\w+/, generic: { pattern: /<[\s\S]+/, alias: "class-name", inside: e.languages.cpp } } } }), e.languages.insertBefore("cpp", "operator", { "double-colon": { pattern: /::/, alias: "punctuation" } }), e.languages.insertBefore("cpp", "class-name", { "base-clause": { pattern: /(\b(?:class|struct)\s+\w+\s*:\s*)[^;{}"'\s]+(?:\s+[^;{}"'\s]+)*(?=\s*[;{])/, lookbehind: true, greedy: true, inside: e.languages.extend("cpp", {}) } }), e.languages.insertBefore("inside", "double-colon", { "class-name": /\b[a-z_]\w*\b(?!\s*::)/i }, e.languages.cpp["base-clause"]);
-}(Prism), Prism.languages.python = { comment: { pattern: /(^|[^\\])#.*/, lookbehind: true, greedy: true }, "string-interpolation": { pattern: /(?:f|fr|rf)(?:("""|''')[\s\S]*?\1|("|')(?:\\.|(?!\2)[^\\\r\n])*\2)/i, greedy: true, inside: { interpolation: { pattern: /((?:^|[^{])(?:\{\{)*)\{(?!\{)(?:[^{}]|\{(?!\{)(?:[^{}]|\{(?!\{)(?:[^{}])+\})+\})+\}/, lookbehind: true, inside: { "format-spec": { pattern: /(:)[^:(){}]+(?=\}$)/, lookbehind: true }, "conversion-option": { pattern: /![sra](?=[:}]$)/, alias: "punctuation" }, rest: null } }, string: /[\s\S]+/ } }, "triple-quoted-string": { pattern: /(?:[rub]|br|rb)?("""|''')[\s\S]*?\1/i, greedy: true, alias: "string" }, string: { pattern: /(?:[rub]|br|rb)?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/i, greedy: true }, function: { pattern: /((?:^|\s)def[ \t]+)[a-zA-Z_]\w*(?=\s*\()/g, lookbehind: true }, "class-name": { pattern: /(\bclass\s+)\w+/i, lookbehind: true }, decorator: { pattern: /(^[\t ]*)@\w+(?:\.\w+)*/m, lookbehind: true, alias: ["annotation", "punctuation"], inside: { punctuation: /\./ } }, keyword: /\b(?:_(?=\s*:)|and|as|assert|async|await|break|case|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|match|nonlocal|not|or|pass|print|raise|return|try|while|with|yield)\b/, builtin: /\b(?:__import__|abs|all|any|apply|ascii|basestring|bin|bool|buffer|bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|complex|delattr|dict|dir|divmod|enumerate|eval|execfile|file|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|intern|isinstance|issubclass|iter|len|list|locals|long|map|max|memoryview|min|next|object|oct|open|ord|pow|property|range|raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|vars|xrange|zip)\b/, boolean: /\b(?:False|None|True)\b/, number: /\b0(?:b(?:_?[01])+|o(?:_?[0-7])+|x(?:_?[a-f0-9])+)\b|(?:\b\d+(?:_\d+)*(?:\.(?:\d+(?:_\d+)*)?)?|\B\.\d+(?:_\d+)*)(?:e[+-]?\d+(?:_\d+)*)?j?(?!\w)/i, operator: /[-+%=]=?|!=|:=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/, punctuation: /[{}[\];(),.:]/ }, Prism.languages.python["string-interpolation"].inside.interpolation.inside.rest = Prism.languages.python, Prism.languages.py = Prism.languages.python;
+}(Prism), Prism.languages.python = { comment: { pattern: /(^|[^\\])#.*/, lookbehind: true, greedy: true }, "string-interpolation": { pattern: /(?:f|fr|rf)(?:("""|''')[\s\S]*?\1|("|')(?:\\.|(?!\2)[^\\\r\n])*\2)/i, greedy: true, inside: { interpolation: { pattern: /((?:^|[^{])(?:\{\{)*)\{(?!\{)(?:[^{}]|\{(?!\{)(?:[^{}]|\{(?!\{)(?:[^{}])+\})+\})+\}/, lookbehind: true, inside: { "format-spec": { pattern: /(:)[^:(){}]+(?=\}$)/, lookbehind: true }, "conversion-option": { pattern: /![sra](?=[:}]$)/, alias: "punctuation" }, rest: null } }, string: /[\s\S]+/ } }, "triple-quoted-string": { pattern: /(?:[rub]|br|rb)?("""|''')[\s\S]*?\1/i, greedy: true, alias: "string" }, string: { pattern: /(?:[rub]|br|rb)?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/i, greedy: true }, function: { pattern: /((?:^|\s)def[ \t]+)[a-zA-Z_]\w*(?=\s*\()/g, lookbehind: true }, "class-name": { pattern: /(\bclass\s+)\w+/i, lookbehind: true }, decorator: { pattern: /(^[\t ]*)@\w+(?:\.\w+)*/m, lookbehind: true, alias: ["annotation", "punctuation"], inside: { punctuation: /\./ } }, keyword: /\b(?:_(?=\s*:)|and|as|assert|async|await|break|case|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|match|nonlocal|not|or|pass|print|raise|return|try|while|with|yield)\b/, builtin: /\b(?:__import__|abs|all|any|apply|ascii|basestring|bin|bool|buffer|bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|complex|delattr|dict|dir|divmod|enumerate|eval|execfile|file|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|intern|isinstance|issubclass|iter|len|list|locals|long|map|max|memoryview|min|next|object|oct|open|ord|pow|property|range|raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|vars|xrange|zip)\b/, boolean: /\b(?:False|None|True)\b/, number: /\b0(?:b(?:_?[01])+|o(?:_?[0-7])+|x(?:_?[a-f0-9])+)\b|(?:\b\d+(?:_\d+)*(?:\.(?:\d+(?:_\d+)*)?)?|\B\.\d+(?:_\d+)*)(?:e[+-]?\d+(?:_\d+)*)?j?(?!\w)/i, operator: /[-+%=]=?|!=|:=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/, punctuation: /[{}[\];(),.:]/ }, Prism.languages.python["string-interpolation"].inside.interpolation.inside.rest = Prism.languages.python, Prism.languages.py = Prism.languages.python, Prism.languages.json = { property: { pattern: /(^|[^\\])"(?:\\.|[^\\"\r\n])*"(?=\s*:)/, lookbehind: true, greedy: true }, string: { pattern: /(^|[^\\])"(?:\\.|[^\\"\r\n])*"(?!\s*:)/, lookbehind: true, greedy: true }, comment: { pattern: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/, greedy: true }, number: /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i, punctuation: /[{}[\],]/, operator: /:/, boolean: /\b(?:false|true)\b/, null: { pattern: /\bnull\b/, alias: "keyword" } }, Prism.languages.webmanifest = Prism.languages.json;
 
 // src/themes/index.ts
 var themes_exports = {};
@@ -31943,6 +31980,8 @@ __export(themes_exports, {
   duotoneDark: () => duotoneDark_default,
   duotoneLight: () => duotoneLight_default,
   github: () => github_default,
+  gruvboxMaterialDark: () => gruvboxMaterialDark_default,
+  gruvboxMaterialLight: () => gruvboxMaterialLight_default,
   jettwaveDark: () => jettwaveDark_default,
   jettwaveLight: () => jettwaveLight_default,
   nightOwl: () => nightOwl_default,
@@ -33710,6 +33749,159 @@ var theme18 = {
 };
 var oneLight_default = theme18;
 
+// src/themes/gruvboxMaterialDark.ts
+var theme19 = {
+  plain: {
+    color: "#ebdbb2",
+    backgroundColor: "#292828"
+  },
+  styles: [
+    {
+      types: [
+        "imports",
+        "class-name",
+        "maybe-class-name",
+        "constant",
+        "doctype",
+        "builtin",
+        "function"
+      ],
+      style: {
+        color: "#d8a657"
+      }
+    },
+    {
+      types: ["property-access"],
+      style: {
+        color: "#7daea3"
+      }
+    },
+    {
+      types: ["tag"],
+      style: {
+        color: "#e78a4e"
+      }
+    },
+    {
+      types: ["attr-name", "char", "url", "regex"],
+      style: {
+        color: "#a9b665"
+      }
+    },
+    {
+      types: ["attr-value", "string"],
+      style: {
+        color: "#89b482"
+      }
+    },
+    {
+      types: ["comment", "prolog", "cdata", "operator", "inserted"],
+      style: {
+        color: "#a89984"
+      }
+    },
+    {
+      types: [
+        "delimiter",
+        "boolean",
+        "keyword",
+        "selector",
+        "important",
+        "atrule",
+        "property",
+        "variable",
+        "deleted"
+      ],
+      style: {
+        color: "#ea6962"
+      }
+    },
+    {
+      types: ["entity", "number", "symbol"],
+      style: {
+        color: "#d3869b"
+      }
+    }
+  ]
+};
+var gruvboxMaterialDark_default = theme19;
+
+// src/themes/gruvboxMaterialLight.ts
+var theme20 = {
+  plain: {
+    color: "#654735",
+    backgroundColor: "#f9f5d7"
+  },
+  styles: [
+    {
+      types: [
+        "delimiter",
+        "boolean",
+        "keyword",
+        "selector",
+        "important",
+        "atrule",
+        "property",
+        "variable",
+        "deleted"
+      ],
+      style: {
+        color: "#af2528"
+      }
+    },
+    {
+      types: [
+        "imports",
+        "class-name",
+        "maybe-class-name",
+        "constant",
+        "doctype",
+        "builtin"
+      ],
+      style: {
+        color: "#b4730e"
+      }
+    },
+    {
+      types: ["string", "attr-value"],
+      style: {
+        color: "#477a5b"
+      }
+    },
+    {
+      types: ["property-access"],
+      style: {
+        color: "#266b79"
+      }
+    },
+    {
+      types: ["function", "attr-name", "char", "url"],
+      style: {
+        color: "#72761e"
+      }
+    },
+    {
+      types: ["tag"],
+      style: {
+        color: "#b94c07"
+      }
+    },
+    {
+      types: ["comment", "prolog", "cdata", "operator", "inserted"],
+      style: {
+        color: "#a89984"
+      }
+    },
+    {
+      types: ["entity", "number", "symbol"],
+      style: {
+        color: "#924f79"
+      }
+    }
+  ]
+};
+var gruvboxMaterialLight_default = theme20;
+
 // src/index.ts
 
 
@@ -33717,9 +33909,9 @@ var oneLight_default = theme18;
 
 
 // src/utils/themeToDict.ts
-var themeToDict = (theme19, language) => {
-  const { plain } = theme19;
-  const themeDict = theme19.styles.reduce((acc, themeEntry) => {
+var themeToDict = (theme21, language) => {
+  const { plain } = theme21;
+  const themeDict = theme21.styles.reduce((acc, themeEntry) => {
     const { languages: languages2, style } = themeEntry;
     if (languages2 && !languages2.includes(language)) {
       return acc;
@@ -33737,19 +33929,19 @@ var themeToDict = (theme19, language) => {
 var themeToDict_default = themeToDict;
 
 // src/components/useThemeDictionary.ts
-var useThemeDictionary = (language, theme19) => {
+var useThemeDictionary = (language, theme21) => {
   const [themeDictionary, setThemeDictionary] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(
-    themeToDict_default(theme19, language)
+    themeToDict_default(theme21, language)
   );
   const previousTheme = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   const previousLanguage = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (theme19 !== previousTheme.current || language !== previousLanguage.current) {
-      previousTheme.current = theme19;
+    if (theme21 !== previousTheme.current || language !== previousLanguage.current) {
+      previousTheme.current = theme21;
       previousLanguage.current = language;
-      setThemeDictionary(themeToDict_default(theme19, language));
+      setThemeDictionary(themeToDict_default(theme21, language));
     }
-  }, [language, theme19]);
+  }, [language, theme21]);
   return themeDictionary;
 };
 
@@ -33913,11 +34105,11 @@ var Highlight = ({
   children,
   language: _language,
   code,
-  theme: theme19,
+  theme: theme21,
   prism
 }) => {
   const language = _language.toLowerCase();
-  const themeDictionary = useThemeDictionary(language, theme19);
+  const themeDictionary = useThemeDictionary(language, theme21);
   const getLineProps = useGetLineProps(themeDictionary);
   const getTokenProps = useGetTokenProps(themeDictionary);
   const grammar = prism.languages[language];
