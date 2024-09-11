@@ -9,15 +9,15 @@
 
 Explore creative ways of manipulating color in your projects using straight forward and customizable utilities inspired by color theory.
 
-### [Installing](https://huetiful-js.com/docs/guides/installation)
+### [Installing](https://huetiful-js.com/guides/installation)
 
-### [API documentation](https://huetiful-js.com/docs/api)
+### [API documentation](https://huetiful-js.com/api)
 
-### [Guides](https://huetiful-js.com/docs/guides)
+### [Guides](https://huetiful-js.com/guides)
 
 
 
-### [Community](https://github.com/xml-wizard/huetiful/discussions)
+### [Community](https://github.com/prjctimg/huetiful/discussions)
 
 ### [Contributing](./contributing.md)
 
