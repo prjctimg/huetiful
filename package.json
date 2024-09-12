@@ -16,8 +16,6 @@
     "cz-emoji-conventional": "^1.0.2",
     "esbuild": "^0.17.19",
     "eslint": "^8.57.0",
-
-    "jasmine": "5.1.0",
     "prettier": "^3.2.0",
     "tsup": "^8.2.4",
     "typescript": "^5.0.2"
@@ -39,7 +37,10 @@
     "trailingComma": "none",
     "bracketSpacing": true
   },
-  "eslintIgnore": ["*.cjs", ".mjs"],
+  "eslintIgnore": [
+    "*.cjs",
+    ".mjs"
+  ],
   "config": {
     "commitizen": {
       "path": "cz-emoji-conventional"
@@ -59,7 +60,13 @@
       "ecmaVersion": "latest"
     }
   },
-  "files": ["build", "CHANGELOG.md", "readme.md", "contributing.md", "license"],
+  "files": [
+    "build",
+    "CHANGELOG.md",
+    "readme.md",
+    "contributing.md",
+    "license"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/prjctimg/huetiful.git"
