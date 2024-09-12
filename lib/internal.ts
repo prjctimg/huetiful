@@ -6,17 +6,17 @@
  * @typedef {import('../types.js').TailwindColorFamilies} TailwindColorFamilies
  */
 
-import { limits } from './constants';
+import { limits } from "./constants";
 
 import {
-	interpolatorSplineNatural,
-	fixupHueShorter,
-	interpolatorSplineBasisClosed,
-	easingSmoothstep,
-	interpolatorLinear
-} from 'culori/fn';
-import { mc } from './utils';
-import { Colorspaces } from './types.js';
+  interpolatorSplineNatural,
+  fixupHueShorter,
+  interpolatorSplineBasisClosed,
+  easingSmoothstep,
+  interpolatorLinear,
+} from "culori/fn";
+import { mc } from "./utils";
+import { Colorspaces } from "./types.js";
 
 let { keys, entries, values } = Object;
 
@@ -28,7 +28,7 @@ let { keys, entries, values } = Object;
  * @returns  The first truthy value
  */
 function or<T, U>(arg: T, def: U) {
-	return arg || def;
+  return arg || def;
 }
 
 /**
@@ -36,7 +36,7 @@ function or<T, U>(arg: T, def: U) {
 
  */
 function and<T, U>(a: U, b: T) {
-	return a && b;
+  return a && b;
 }
 
 /**
@@ -47,33 +47,33 @@ function and<T, U>(a: U, b: T) {
  * @returns {Collection}
  */
 function factorIterator(
-	t,
-	z,
-	y = ['hue', 'chroma', 'lightness', 'distance', 'contrast', 'luminance']
+  t,
+  z,
+  y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"]
 ) {
-	let p = {};
+  let p = {};
 
-	if (isArray(t)) {
-		for (const k of values(t)) {
-			p[k] = z(k);
-		}
-	} else if (eq(typeof t, 'string')) {
-		p = z(t);
-	} else {
-		for (const k of y) {
-			p[k] = z(k);
-		}
-	}
-	// if factor is an array add each factor as a key to the object
-	return p;
+  if (isArray(t)) {
+    for (const k of values(t)) {
+      p[k] = z(k);
+    }
+  } else if (eq(typeof t, "string")) {
+    p = z(t);
+  } else {
+    for (const k of y) {
+      p[k] = z(k);
+    }
+  }
+  // if factor is an array add each factor as a key to the object
+  return p;
 }
 
 let [ci, ef, hf, hi, li] = [
-	interpolatorSplineNatural,
-	easingSmoothstep,
-	fixupHueShorter,
-	interpolatorSplineBasisClosed,
-	interpolatorLinear
+  interpolatorSplineNatural,
+  easingSmoothstep,
+  fixupHueShorter,
+  interpolatorSplineBasisClosed,
+  interpolatorLinear,
 ];
 
 /**
@@ -90,61 +90,61 @@ let [ci, ef, hf, hi, li] = [
  * li => lightness interpolator
  */
 const pltrconfg = {
-	ef,
-	ci,
-	hf,
-	hi,
-	li
+  ef,
+  ci,
+  hf,
+  hi,
+  li,
 };
 
 function gmchn<I extends unknown>(
-	m = '',
-	i?: I
+  m = "",
+  i?: I
 ): I extends number ? string : string[] {
-	m = m.replace(/\d|ok/g, '');
+  m = m.replace(/\d|ok/g, "");
 
-	return or(and(i, m.charAt(i)), m.split(''));
+  return or(and(i, m.charAt(i)), m.split(""));
 }
 
 function mult(x, y) {
-	return x * y;
+  return x * y;
 }
 
 function give(x, y) {
-	return x / y;
+  return x / y;
 }
 
 function add(x, y) {
-	return x + y;
+  return x + y;
 }
 
 function take(x, y) {
-	return x - y;
+  return x - y;
 }
 
 function exprParser(a, b) {
-	// regExp to match arithmetic operator and the value
+  // regExp to match arithmetic operator and the value
 
-	// Create operator map
-	let u = {
-		'!=': neq,
-		'==': eq,
-		'>=': gte,
-		'<=': lte,
-		'>': gt,
-		'<': lt,
-		'===': eq,
-		'!==': neq,
-		'!': not,
-		'/': give,
-		'*': mult,
-		'+': add,
-		'-': take
-	};
+  // Create operator map
+  let u = {
+    "!=": neq,
+    "==": eq,
+    ">=": gte,
+    "<=": lte,
+    ">": gt,
+    "<": lt,
+    "===": eq,
+    "!==": neq,
+    "!": not,
+    "/": give,
+    "*": mult,
+    "+": add,
+    "-": take,
+  };
 
-	return and(eq(typeof b, 'string'), u[reOp(b)](a, reNum(b)));
+  return and(eq(typeof b, "string"), u[reOp(b)](a, reNum(b)));
 
-	// @ts-ignore
+  // @ts-ignore
 }
 
 /**
@@ -154,171 +154,171 @@ function exprParser(a, b) {
  * @param {boolean} f Whether to return full mode channel string or key only
  * @returns {string}
  */
-function mcchn(c: 'c' | 'l' | string, m: Colorspaces, f = true): string {
-	// Matches any string with c or s
-	m = or(m, 'lch');
-	let x, e, d;
+function mcchn(c: "c" | "l" | string, m?: Colorspaces, f = true): string {
+  // Matches any string with c or s
+  m = or(m, "lch");
+  let x, e, d;
 
-	if (eq(c, 'l')) {
-		x = /(j|l)/i;
-		e = `The color space ${m} has no lightness channel.`;
-	} else {
-		x = /(s|c)/i;
-		e = `The color space ${m} has no chroma/saturation channel.`;
-	}
+  if (eq(c, "l")) {
+    x = /(j|l)/i;
+    e = `The color space ${m} has no lightness channel.`;
+  } else {
+    x = /(s|c)/i;
+    e = `The color space ${m} has no chroma/saturation channel.`;
+  }
 
-	d = x.exec(m)['0'];
+  d = x.exec(m)["0"];
 
-	// @ts-ignore
-	return x.test(m) ? or(and(f, `${m}.${d}`), d) : Error(e);
+  // @ts-ignore
+  return x.test(m) ? or(and(f, `${m}.${d}`), d) : Error(e);
 }
 
 function colorObj(a, b) {
-	return (c) => {
-		return { [a]: b(c), color: c };
-	};
+  return (c) => {
+    return { [a]: b(c), color: c };
+  };
 }
 
 function customFindKey(u, v) {
-	// If the color is achromatic return the string gray
-	return keys(u)
-		.filter((a) => {
-			const t = customConcat(u[a]);
+  // If the color is achromatic return the string gray
+  return keys(u)
+    .filter((a) => {
+      const t = customConcat(u[a]);
 
-			const [mn, mx] = [min(...t), max(...t)];
+      const [mn, mx] = [min(...t), max(...t)];
 
-			// Capture the min and max values and see if the passed in color is within that range
-			return inRange(v, mn, mx);
-		})
-		.toString();
+      // Capture the min and max values and see if the passed in color is within that range
+      return inRange(v, mn, mx);
+    })
+    .toString();
 }
 
 function customConcat(h = {}) {
-	return and(
-		eq(typeof h, 'object'),
-		(() => {
-			let res = [];
-			const k = keys(h);
+  return and(
+    eq(typeof h, "object"),
+    (() => {
+      let res = [];
+      const k = keys(h);
 
-			//@ts-ignore
+      //@ts-ignore
 
-			for (const g of k) {
-				res.push(...h[g]);
-			}
+      for (const g of k) {
+        res.push(...h[g]);
+      }
 
-			return res.flat(1);
-		})()
-	);
+      return res.flat(1);
+    })()
+  );
 }
 
 function adjustHue(val) {
-	if (val < 0) val += Math.ceil(-val / 360) * 360;
+  if (val < 0) val += Math.ceil(-val / 360) * 360;
 
-	return val % 360;
-	// return or(and(lt(x, 0), (x += Math.ceil(mult(give(-x, 360)), 360))), x % 360);
+  return val % 360;
+  // return or(and(lt(x, 0), (x += Math.ceil(mult(give(-x, 360)), 360))), x % 360);
 }
 
 function chnDiff(x, s) {
-	return (y) => {
-		const cb = (color) => mc(s)(color);
+  return (y) => {
+    const cb = (color) => mc(s)(color);
 
-		return or(and(lt(cb(x), cb(y)), take(cb(y), cb(x))), take(cb(x), cb(y)));
-	};
+    return or(and(lt(cb(x), cb(y)), take(cb(y), cb(x))), take(cb(x), cb(y)));
+  };
 }
 
 // Comparison operators
 
 function gt(x, y) {
-	return x > y;
+  return x > y;
 }
 
 function lt(x, y) {
-	return x < y;
+  return x < y;
 }
 
 function gte(x, y) {
-	return x >= y;
+  return x >= y;
 }
 
 function lte(x, y) {
-	return x <= y;
+  return x <= y;
 }
 
 function eq(x, y) {
-	return x === y;
+  return x === y;
 }
 
 function neq(x, y) {
-	return not(eq(x, y));
+  return not(eq(x, y));
 }
 
 function not(x: unknown) {
-	return !x;
+  return !x;
 }
 function inRange(n: number, s: number, e?: number) {
-	/* Built-in method references for those with the same name as other `lodash` methods. */
+  /* Built-in method references for those with the same name as other `lodash` methods. */
 
-	return and(gte(n, Math.min(s, e)), lt(n, Math.max(s, e)));
+  return and(gte(n, Math.min(s, e)), lt(n, Math.max(s, e)));
 }
 
 function isInt(n) {
-	return /^-?[0-9]+$/.test(n.toString());
+  return /^-?[0-9]+$/.test(n.toString());
 }
 
-function norm(v, mc = '') {
-	const channel = mc.split('.'),
-		[start, end] = limits[channel[0]][channel[1]];
+function norm(v, mc = "") {
+  const channel = mc.split("."),
+    [start, end] = limits[channel[0]][channel[1]];
 
-	return and(
-		not(inRange(v, start, end)),
-		or(
-			and(lte(v, 1), (v = mult(end, v))),
-			or(and(lte(end, 100), mult(end, give(v, 100))), mult(end, give(v, end)))
-		)
-	);
+  return and(
+    not(inRange(v, start, end)),
+    or(
+      and(lte(v, 1), (v = mult(end, v))),
+      or(and(lte(end, 100), mult(end, give(v, 100))), mult(end, give(v, end)))
+    )
+  );
 }
 
 function rand(mn: number, mx: number) {
-	return Math.random() * Math.abs(mx - mn + mn);
+  return Math.random() * Math.abs(mx - mn + mn);
 }
 
 function floorCeil(n) {
-	return and(
-		not(isInt(n)),
-		or(
-			and(
-				eq(/^[0-4]$/.test(n.toString().split('.')[1].charAt(0)), true),
-				Math.floor(n)
-			),
-			Math.ceil(n)
-		)
-	);
+  return and(
+    not(isInt(n)),
+    or(
+      and(
+        eq(/^[0-4]$/.test(n.toString().split(".")[1].charAt(0)), true),
+        Math.floor(n)
+      ),
+      Math.ceil(n)
+    )
+  );
 
-	//If the decimal value is .4  and below it will be rounded down else it will be rounded up.
+  //If the decimal value is .4  and below it will be rounded down else it will be rounded up.
 }
 
-function customSort(o = 'asc', x = 'factor') {
-	// a-b gives asc order & b-a gives desc order
+function customSort(o = "asc", x = "factor") {
+  // a-b gives asc order & b-a gives desc order
 
-	return (a, b) => {
-		return or(
-			and(eq(o, or('asc', 'min')), a[x] - b[x]),
-			and(eq(o, or('desc', 'max')), b[x] - a[x])
-		);
-	};
+  return (a, b) => {
+    return or(
+      and(eq(o, or("asc", "min")), a[x] - b[x]),
+      and(eq(o, or("desc", "max")), b[x] - a[x])
+    );
+  };
 }
 
-function colorObjColl(a = 'factor', b) {
-	let u = colorObj(a, b);
-	/**
-	 * @param collection The array or object of colors to iterate over. If an object is passed, its values are expected to be valid color tokens.
-	 */
-	return (z) => {
-		// Check if the collection is an array else treat it like a plain object
-		// Convert object into a Map which remembers sorting order in a more predictable way
+function colorObjColl(a = "factor", b) {
+  let u = colorObj(a, b);
+  /**
+   * @param collection The array or object of colors to iterate over. If an object is passed, its values are expected to be valid color tokens.
+   */
+  return (z) => {
+    // Check if the collection is an array else treat it like a plain object
+    // Convert object into a Map which remembers sorting order in a more predictable way
 
-		return map(z, u);
-	};
+    return map(z, u);
+  };
 }
 
 /**
@@ -327,7 +327,7 @@ function colorObjColl(a = 'factor', b) {
  * @returns {boolean}
  */
 function isArray(x) {
-	return Array.isArray(x);
+  return Array.isArray(x);
 }
 
 /**
@@ -336,7 +336,7 @@ function isArray(x) {
  * @returns {boolean}
  */
 function isMap(x) {
-	return x instanceof Map;
+  return x instanceof Map;
 }
 
 /**
@@ -345,7 +345,7 @@ function isMap(x) {
  * @returns {boolean}
  */
 function isSet(x) {
-	return x instanceof Set;
+  return x instanceof Set;
 }
 
 /**
@@ -356,151 +356,151 @@ function isSet(x) {
  *
  */
 function map(u, cb) {
-	let p;
-	p = or(or(and(isMap(u), new Map()), and(isSet(u), new Set())), false);
-	if (p) {
-		for (const [a, b] of entries(u)) {
-			p.set(a, cb(b));
-		}
-		return p;
-	} else if (eq(typeof u, 'object')) {
-		p = isArray(u) ? new Array(u.length) : {};
-		for (const [a, b] of entries(u)) {
-			p[a] = cb(b);
-		}
-	}
-	// @ts-ignore
-	return p;
+  let p;
+  p = or(or(and(isMap(u), new Map()), and(isSet(u), new Set())), false);
+  if (p) {
+    for (const [a, b] of entries(u)) {
+      p.set(a, cb(b));
+    }
+    return p;
+  } else if (eq(typeof u, "object")) {
+    p = isArray(u) ? new Array(u.length) : {};
+    for (const [a, b] of entries(u)) {
+      p[a] = cb(b);
+    }
+  }
+  // @ts-ignore
+  return p;
 }
 
 function min(arr: Array<number>) {
-	return extremum('min', arr);
+  return extremum("min", arr);
 }
 
-function extremum(e: 'min' | 'max', arr: Array<number> = []) {
-	return arr.reduce(
-		(a, b) => Math[e](a, b),
-		eq(e, 'max') ? -Infinity : Infinity
-	);
+function extremum(e: "min" | "max", arr: Array<number> = []) {
+  return arr.reduce(
+    (a, b) => Math[e](a, b),
+    eq(e, "max") ? -Infinity : Infinity
+  );
 }
 
 function max(arr: Array<number>) {
-	return extremum('max', arr);
+  return extremum("max", arr);
 }
 
-function reNum(s = '') {
-	s = s.toString();
-	let re = /[0-9]*\.?[0-9]+/;
-	// @ts-ignore
-	return or(and(re.test(s), Number(re.exec(s)['0'])), undefined);
+function reNum(s = "") {
+  s = s.toString();
+  let re = /[0-9]*\.?[0-9]+/;
+  // @ts-ignore
+  return or(and(re.test(s), Number(re.exec(s)["0"])), undefined);
 }
 
-function reOp(s = '') {
-	s = s.toString();
-	let re = /^(\*|\+|\-|\/|>=|<=|<|>|={1,2}|!={0,2})/;
+function reOp(s = "") {
+  s = s.toString();
+  let re = /^(\*|\+|\-|\/|>=|<=|<|>|={1,2}|!={0,2})/;
 
-	// @ts-ignore
+  // @ts-ignore
 
-	return re.test(s) ? re.exec(s)['0'] : undefined;
+  return re.test(s) ? re.exec(s)["0"] : undefined;
 }
-function sortedColl(fact = 'factor', cb, o = 'asc', obj = false) {
-	return (c) => {
-		let r = colorObjColl(fact, cb)(c),
-			u;
+function sortedColl(fact = "factor", cb, o = "asc", obj = false) {
+  return (c) => {
+    let r = colorObjColl(fact, cb)(c),
+      u;
 
-		// If the collection is not an Array  insert the sorted elements
-		// Sort the array using our customSort helper function
-		return or(
-			and(
-				isArray(c),
-				(() => {
-					// @ts-ignore
-					u = r.sort(customSort(o, fact));
+    // If the collection is not an Array  insert the sorted elements
+    // Sort the array using our customSort helper function
+    return or(
+      and(
+        isArray(c),
+        (() => {
+          // @ts-ignore
+          u = r.sort(customSort(o, fact));
 
-					return or(
-						and(eq(obj, true), u),
-						u.map((w) => w['color'])
-					);
-				})()
-			),
-			(() => {
-				u = new Map();
-				let t = values(r)
-					// @ts-ignore
-					.sort(customSort(o, fact));
+          return or(
+            and(eq(obj, true), u),
+            u.map((w) => w["color"])
+          );
+        })()
+      ),
+      (() => {
+        u = new Map();
+        let t = values(r)
+          // @ts-ignore
+          .sort(customSort(o, fact));
 
-				for (const [z, v] of entries(t)) {
-					u.set(z, v);
-				}
+        for (const [z, v] of entries(t)) {
+          u.set(z, v);
+        }
 
-				if (eq(obj, false)) {
-					for (const [z, v] of entries(u)) {
-						u.set(z, v['color']);
-					}
-				}
-				return u;
-			})()
-		);
-	};
+        if (eq(obj, false)) {
+          for (const [z, v] of entries(u)) {
+            u.set(z, v["color"]);
+          }
+        }
+        return u;
+      })()
+    );
+  };
 }
 
 function filteredColl(fact, cb) {
-	return (c, s, e) => {
-		if (eq((typeof s, 'number'))) {
-			return (
-				colorObjColl(
-					fact,
-					cb
-				)(c)
-					// @ts-ignore
-					.filter((j) => inRange(j[fact], s, e))
-					.map((j) => j['color'])
-			);
-		} else {
-			const v = reNum(s),
-				w = reOp(s);
+  return (c, s, e) => {
+    if (eq((typeof s, "number"))) {
+      return (
+        colorObjColl(
+          fact,
+          cb
+        )(c)
+          // @ts-ignore
+          .filter((j) => inRange(j[fact], s, e))
+          .map((j) => j["color"])
+      );
+    } else {
+      const v = reNum(s),
+        w = reOp(s);
 
-			return w
-				? colorObjColl(
-						fact,
-						cb
-					)(c)
-						// @ts-ignore
-						.filter((l) => {
-							return {
-								'!=': neq,
-								'==': eq,
-								'>=': gte,
-								'<=': lte,
-								'>': gt,
-								'<': lt,
-								'===': eq,
-								'!==': neq,
-								'!': not,
-								'/': give,
-								'*': mult,
-								'+': add,
-								'-': take
-							}[w](l[fact], parseFloat(v.toString()));
-						})
-						.map((l) => l['color'])
-				: Error(`Unknown operator ${w}`);
-		}
-	};
+      return w
+        ? colorObjColl(
+            fact,
+            cb
+          )(c)
+            // @ts-ignore
+            .filter((l) => {
+              return {
+                "!=": neq,
+                "==": eq,
+                ">=": gte,
+                "<=": lte,
+                ">": gt,
+                "<": lt,
+                "===": eq,
+                "!==": neq,
+                "!": not,
+                "/": give,
+                "*": mult,
+                "+": add,
+                "-": take,
+              }[w](l[fact], parseFloat(v.toString()));
+            })
+            .map((l) => l["color"])
+        : Error(`Unknown operator ${w}`);
+    }
+  };
 }
 
 function clamp(v, mn = -Infinity, mx = Infinity) {
-	if (typeof v === 'number') {
-		if (gt(v, mx)) {
-			return mx;
-		} else if (lt(v, mn)) {
-			return mn;
-		} else {
-			return v;
-		}
-	} else {
-		throw Error(`${v} is not a number`);
-	}
+  if (typeof v === "number") {
+    if (gt(v, mx)) {
+      return mx;
+    } else if (lt(v, mn)) {
+      return mn;
+    } else {
+      return v;
+    }
+  } else {
+    throw Error(`${v} is not a number`);
+  }
 }
 
 /**
@@ -509,66 +509,66 @@ function clamp(v, mn = -Infinity, mx = Infinity) {
  * @returns {import('../types.js').Colorspaces}
  */
 function getSrcMode(c) {
-	return or(
-		or(and(and(isArray(c), neq(typeof c[0], 'number')), c[0]), c?.mode),
-		'rgb'
-	);
+  return or(
+    or(and(and(isArray(c), neq(typeof c[0], "number")), c[0]), c?.mode),
+    "rgb"
+  );
 }
 
 function isValidArgs(arg, minArgs = 1) {
-	const len = arg?.length;
+  const len = arg?.length;
 
-	if (gte(len, minArgs)) {
-		return true;
-	} else {
-		throw new Error(
-			`Color token collection cannot have a length smaller than 1 or be of type ${typeof arg}`
-		);
-	}
+  if (gte(len, minArgs)) {
+    return true;
+  } else {
+    throw new Error(
+      `Color token collection cannot have a length smaller than 1 or be of type ${typeof arg}`
+    );
+  }
 }
 
 export {
-	isValidArgs,
-	map,
-	clamp,
-	not,
-	getSrcMode,
-	exprParser,
-	mcchn,
-	min,
-	max,
-	customSort,
-	colorObjColl,
-	sortedColl,
-	filteredColl,
-	customFindKey,
-	colorObj,
-	customConcat,
-	inRange,
-	rand,
-	isInt,
-	floorCeil,
-	adjustHue,
-	chnDiff,
-	lt,
-	neq,
-	gt,
-	gte,
-	lte,
-	eq,
-	norm,
-	or,
-	gmchn,
-	pltrconfg,
-	isArray,
-	reOp,
-	reNum,
-	entries,
-	values,
-	keys,
-	factorIterator,
-	and,
-	give,
-	add,
-	take
+  isValidArgs,
+  map,
+  clamp,
+  not,
+  getSrcMode,
+  exprParser,
+  mcchn,
+  min,
+  max,
+  customSort,
+  colorObjColl,
+  sortedColl,
+  filteredColl,
+  customFindKey,
+  colorObj,
+  customConcat,
+  inRange,
+  rand,
+  isInt,
+  floorCeil,
+  adjustHue,
+  chnDiff,
+  lt,
+  neq,
+  gt,
+  gte,
+  lte,
+  eq,
+  norm,
+  or,
+  gmchn,
+  pltrconfg,
+  isArray,
+  reOp,
+  reNum,
+  entries,
+  values,
+  keys,
+  factorIterator,
+  and,
+  give,
+  add,
+  take,
 };

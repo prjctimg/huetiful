@@ -1,4 +1,3 @@
-//  @ts-nocheck
 import { deficiency, contrast } from "./accessibility.js";
 import { filterBy, sortBy, stats, distribute } from "./collection.js";
 import {
@@ -32,10 +31,11 @@ import {
   token,
   complimentary,
   family,
-  luminance,
+  luminance as _lmnce,
   temp,
   overtone,
-  alpha,
+  alpha as _opac,
+  achromatic,
 } from "./utils.js";
 
 /**
@@ -69,7 +69,7 @@ export class ColorArray<C extends Collection, Options extends object> {
     return this;
   }
 
-  private #setThis(callback, options) {
+  #setThis(callback, options) {
     this["colors"] = callback(options);
 
     return this["implicitReturn"] ? this.output() : this;
@@ -259,7 +259,7 @@ console.log(
     return this.#setThis(stats, options);
   }
 
-  distribute(options?: ?DistributionOptions) {
+  distribute(options?: DistributionOptions) {
     return this.#setThis(distribute, options);
   }
   /**
@@ -299,7 +299,7 @@ class Color {
       darkMode,
       lightness,
       implicitReturn,
-    } = options;
+    } = or(options, {}) as ColorOptions;
 
     // Set the alpha of the color if its not explicitly passed in.
 
@@ -323,7 +323,7 @@ class Color {
     this["_saturation"] = or(
       saturation,
 
-      mc(mcchn(this["colorspace"]))(c)
+      mc(mcchn("c", this["colorspace"]))(c)
     );
 
     // light mode default is gray-100
@@ -335,7 +335,7 @@ class Color {
     this["implicitReturn"] = or(implicitReturn, false) as boolean;
   }
 
-  private #setThis(callback, options) {
+  #setThis(callback, options?) {
     this["color"] = options
       ? callback(this["_color"], options)
       : callback(this["_color"]);
@@ -365,7 +365,7 @@ class Color {
   // #b2c3f180
    */
   alpha(amount) {
-    return this.#setThis(alpha, amount);
+    return this.#setThis(_opac, amount);
   }
 
   /**
@@ -633,13 +633,7 @@ class Color {
    
      */
   luminance(amount) {
-    if (amount) {
-      this["_color"] = luminance(this["_color"], amount);
-
-      return this;
-    }
-
-    return luminance(this["_color"]);
+    return this.#setThis(_lmnce, amount);
   }
 
   /**
