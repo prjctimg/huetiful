@@ -1,6 +1,6 @@
 #!/usr/bin/env ts-node
 
-import { formatHex8 } from "culori";
+import { formatHex8 } from "culori/fn";
 import {
   deficiency,
   family,
@@ -56,5 +56,6 @@ import { log } from "node:console";
 let w = ["fea3aa", "f8b88b", "faf884", "baed91", "b2cefe", "f2a2e8"],
   y;
 
-y = w.map((c) => token(c, { kind: "str", targetMode: "lch" }));
-log(y);
+// y = w.map((c) => token(c, { kind: "str", targetMode: "lch" }));
+// log(y);
+log(formatHex8());
