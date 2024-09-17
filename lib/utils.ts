@@ -13,6 +13,7 @@ import {
   interpolate,
   modeRec2020,
   modeXyz50,
+  modeHsv,
 } from "culori/fn";
 import "culori/css";
 import {
@@ -172,9 +173,10 @@ function mc<Color extends ColorToken, Value>(modeChannel: string) {
 
     if (eq(typeof color, "object")) {
       if (isArray(color)) {
-        currentChannel = (
-          eq(typeof color[0], "string") ? color.slice(1) : color
-        )[gmchn(mode).indexOf(channel)];
+        currentChannel = // @ts-ignore
+          (eq(typeof color[0], "string") ? color.slice(1) : color)[
+            gmchn(mode).indexOf(channel)
+          ];
       }
     } else {
       currentChannel = colorObject[channel];
@@ -338,6 +340,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
     xyz65: modeXyz65,
     lab65: modeLab65,
     rgb: modeRec2020,
+    hsv: modeHsv,
   };
   let {
     srcMode,

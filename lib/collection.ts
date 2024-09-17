@@ -78,9 +78,6 @@ function stats<Iterable extends Collection, Options extends StatsOptions>(
   collection = map(collection, token);
 
   const getStatsObject = (fact) => {
-      // if relativeMean is true
-      // use the overload on all other factors when fetching their mean
-
       const [sortedTokens, getChannel, getContrast] = [
         (a, b) => sortedColl(a, b, "asc", true)(collection),
         (a) => (b) => mc(a)(b),
