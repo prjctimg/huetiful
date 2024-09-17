@@ -523,7 +523,7 @@ export type Colorspaces =
   | "lch65"
   | "xyz65"
   | "xyz"
-  | "rec2020";
+  | "lrgb";
 /**
  * The value of the Tailwind color.
  */
