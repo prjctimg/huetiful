@@ -278,7 +278,7 @@ export type TokenOptions = {
   /**
    * The type of color token to return. Default is `'str'`.
    */
-  kind?: "num" | "arr" | "obj" | "str" | "temp";
+  kind?: "num" | "arr" | "obj" | "str";
   /**
    * If the `kind` is set to `'arr'` it will remove the mode string from color tuple. Default is `false`.
    */

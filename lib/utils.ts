@@ -397,11 +397,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
   }
 
   function parseToken(col?, mode?) {
-    return useMode(modeDefinitions[targetMode])(
-      or(col, result),
-
-      or(mode, srcMode)
-    );
+    return useMode(modeDefinitions[mode])(or(col, result));
   }
   /**
    *
@@ -409,16 +405,18 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
    */
   function c2col(col) {
     let res = targetMode ? parseToken(result, targetMode) : result;
+    srcChannels = targetMode ? gmchn(targetMode) : srcChannels;
+
     if (and(and(eq(srcMode, "rgb"), normalizeRgb), not(targetMode))) {
       let checkGamut = srcChannels.some((c) => gt(Math.abs(result[c]), 1));
-      srcChannels = targetMode ? gmchn(targetMode) : srcChannels;
+
       if (checkGamut) {
         for (const k of srcChannels) {
           result[k] /= 255;
         }
       }
     }
-
+    console.log(res, srcChannels);
     if (eq(col, "obj")) {
       omitMode
         ? delete res["mode"]
@@ -428,7 +426,6 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
     } else if (eq(col, "arr")) {
       let colorArray = [];
       for (const k of srcChannels) {
-        console.log(srcChannels);
         colorArray[srcChannels.indexOf(k)] = res[k];
       }
 
@@ -446,7 +443,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
    * converts a color token to its numerical equivalent
    */
   function c2num() {
-    const rgbObject: object = parseToken(undefined, "rgb");
+    const rgbObject: object = parseToken(c2str(), "rgb");
 
     /**
      * @type {number|string}

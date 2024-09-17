@@ -56,5 +56,5 @@ import { log } from "node:console";
 let w = ["fea3aa", "f8b88b", "faf884", "baed91", "b2cefe", "f2a2e8"],
   y;
 
-y = w.map((c) => token(c, { kind: "obj", targetMode: "lch" }));
+y = w.map((c) => token(c, { kind: "str", targetMode: "lch" }));
 log(y);
