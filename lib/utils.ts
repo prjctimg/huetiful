@@ -172,9 +172,10 @@ function mc<Color extends ColorToken, Value>(modeChannel: string) {
 
     if (eq(typeof color, "object")) {
       if (isArray(color)) {
-        currentChannel = (
-          eq(typeof color[0], "string") ? color.slice(1) : color
-        )[gmchn(mode).indexOf(channel)];
+        currentChannel = // @ts-expect-error
+        (eq(typeof color[0], "string") ? color.slice(1) : color)[
+          gmchn(mode).indexOf(channel)
+        ];
       }
     } else {
       currentChannel = colorObject[channel];
