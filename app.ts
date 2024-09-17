@@ -1,19 +1,19 @@
 #!/usr/bin/env ts-node
 
-import { formatHex8 } from 'culori';
+import { formatHex8 } from "culori";
 import {
-	deficiency,
-	family,
-	achromatic,
-	token,
-	sortBy,
-	complimentary,
-	pair,
-	mc,
-	colors,
-	filterBy
-} from './lib/index.ts';
-import { log } from 'node:console';
+  deficiency,
+  family,
+  achromatic,
+  token,
+  sortBy,
+  complimentary,
+  pair,
+  mc,
+  colors,
+  filterBy,
+} from "./lib/index.ts";
+import { log } from "node:console";
 //log(achromatic('cyan'));
 // log(token('cyan', { kind: 'obj' }));
 
@@ -53,9 +53,8 @@ import { log } from 'node:console';
 // log(token(c1, { srcMode: 'lab', kind: 'obj' }));
 // filterBy([], { f });
 
+let w = ["fea3aa", "f8b88b", "faf884", "baed91", "b2cefe", "f2a2e8"],
+  y;
 
-
-	let w = ['fea3aa','f8b88b','faf884','baed91','b2cefe','f2a2e8'],y
-
-y=	w.map(c=>token(c,{kind:'obj',targetMode:'lch'}))
-	log(y)
+y = w.map((c) => token(c, { kind: "str", targetMode: "lch" }));
+log(y);
