@@ -1,3 +1,8 @@
+---
+title: Types
+description: The type definitions used throughout the library.
+---
+
 ## Type Aliases
 
 ### AdaptivePaletteOptions
@@ -24,7 +29,7 @@
 
 #### Defined in
 
-[types.d.ts:73](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L73)
+[types.d.ts:73](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L73)
 
 ***
 
@@ -36,7 +41,7 @@ Hue biases as seen when transitioning from one hue to another on the color wheel
 
 #### Defined in
 
-[types.d.ts:436](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L436)
+[types.d.ts:441](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L441)
 
 ***
 
@@ -48,7 +53,7 @@ Any collection with enumerable keys that can be used to iterate through it to ge
 
 #### Defined in
 
-[types.d.ts:45](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L45)
+[types.d.ts:45](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L45)
 
 ***
 
@@ -60,13 +65,13 @@ The basic color families (including gray).
 
 #### Defined in
 
-[types.d.ts:566](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L566)
+[types.d.ts:572](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L572)
 
 ***
 
 ### ColorOptions
 
-> **ColorOptions**: \{`alpha`: `number`;`colorspace`: [`Colorspaces`](types.mdx#colorspaces);`contrast`: `number`;`darkMode`: [`ColorToken`](types.mdx#colortoken);`lightMode`: [`ColorToken`](types.mdx#colortoken);`lightness`: `number`;`luminance`: `number`;`mode`: [`Colorspaces`](types.mdx#colorspaces);`saturation`: `number`;`temp`: `number`; \}
+> **ColorOptions**: \{`alpha`: `number`;`colorspace`: [`Colorspaces`](types.mdx#colorspaces);`contrast`: `number`;`darkMode`: [`ColorToken`](types.mdx#colortoken);`implicitReturn`: `boolean`;`lightMode`: [`ColorToken`](types.mdx#colortoken);`lightness`: `number`;`luminance`: `number`;`mode`: [`Colorspaces`](types.mdx#colorspaces);`saturation`: `number`;`temp`: `number`; \}
 
 Properties on an instance of the `Color` class. Some of these properties have corresponding methods.
 
@@ -87,6 +92,10 @@ Properties on an instance of the `Color` class. Some of these properties have co
 ##### darkMode?
 
 > `optional` **darkMode**: [`ColorToken`](types.mdx#colortoken)
+
+##### implicitReturn?
+
+> `optional` **implicitReturn**: `boolean`
 
 ##### lightMode?
 
@@ -114,7 +123,7 @@ Properties on an instance of the `Color` class. Some of these properties have co
 
 #### Defined in
 
-[types.d.ts:54](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L54)
+[types.d.ts:54](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L54)
 
 ***
 
@@ -126,7 +135,7 @@ Any recognizable color token.
 
 #### Defined in
 
-[types.d.ts:497](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L497)
+[types.d.ts:502](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L502)
 
 ***
 
@@ -152,19 +161,19 @@ When omitting the `mode` from the color tuple, be sure to specify the `srcMode` 
 
 #### Defined in
 
-[types.d.ts:20](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L20)
+[types.d.ts:20](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L20)
 
 ***
 
 ### Colorspaces
 
-> **Colorspaces**: `"lab"` \| `"lab65"` \| `"rgb"` \| `"lch"` \| `"lch65"` \| `"xyz65"` \| `"xyz"` \| `"rec2020"`
+> **Colorspaces**: `"lab"` \| `"lab65"` \| `"rgb"` \| `"lch"` \| `"lch65"` \| `"xyz65"` \| `"xyz"` \| `"lrgb"` \| `"hsv"`
 
 The `colorspace` or `mode` to use.
 
 #### Defined in
 
-[types.d.ts:513](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L513)
+[types.d.ts:518](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L518)
 
 ***
 
@@ -196,7 +205,7 @@ Specify the parsing behaviour and change output type of the `ColorToken`.
 
 #### Defined in
 
-[types.d.ts:259](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L259)
+[types.d.ts:259](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L259)
 
 ***
 
@@ -208,7 +217,7 @@ The type of color vision defeciency.
 
 #### Defined in
 
-[types.d.ts:431](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L431)
+[types.d.ts:436](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L436)
 
 ***
 
@@ -255,7 +264,7 @@ Specify the parsing behaviour and change output type of the `ColorToken`.
 
 #### Defined in
 
-[types.d.ts:228](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L228)
+[types.d.ts:228](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L228)
 
 ***
 
@@ -305,7 +314,7 @@ Specify the parsing behaviour and change output type of the `ColorToken`.
 
 #### Defined in
 
-[types.d.ts:161](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L161)
+[types.d.ts:161](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L161)
 
 ***
 
@@ -317,7 +326,7 @@ The `diverging` color scheme in the ColorBrewer colormap.
 
 #### Defined in
 
-[types.d.ts:446](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L446)
+[types.d.ts:451](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L451)
 
 ***
 
@@ -337,7 +346,7 @@ Options for the `earthtone()` palette generator function.
 
 #### Defined in
 
-[types.d.ts:142](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L142)
+[types.d.ts:142](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L142)
 
 ***
 
@@ -353,7 +362,7 @@ The value of the `factor` being queried usually a number but can also be falsy l
 
 #### Defined in
 
-[types.d.ts:30](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L30)
+[types.d.ts:30](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L30)
 
 ***
 
@@ -365,7 +374,7 @@ The color property being queried.
 
 #### Defined in
 
-[types.d.ts:502](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L502)
+[types.d.ts:507](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L507)
 
 ***
 
@@ -410,17 +419,23 @@ The end value is optional but the range value(s) are expected to be in an array.
 
 #### Defined in
 
-[types.d.ts:193](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L193)
+[types.d.ts:193](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L193)
 
 ***
 
 ### HueshiftOptions
 
-> **HueshiftOptions**: `Pick`\<[`InterpolatorOptions`](types.mdx#interpolatoroptions), `"colorspace"` \| `"easingFn"` \| `"num"` \| `"token"` \| `"hueStep"`\> & \{`maxLightness`: `number`;`minLightness`: `number`; \}
+> **HueshiftOptions**: `Pick`\<[`InterpolatorOptions`](types.mdx#interpolatoroptions), `"colorspace"` \| `"easingFn"` \| `"num"` \| `"token"` \| `"hueStep"`\> & \{`hueStep`: `number`;`maxLightness`: `number`;`minLightness`: `number`; \}
 
 Options for the `hueshift()` palette generator function.
 
 #### Type declaration
+
+##### hueStep?
+
+> `optional` **hueStep**: `number`
+
+The hue angle to increment each iteration with.
 
 ##### maxLightness?
 
@@ -436,7 +451,7 @@ maxLightness  Maximum lightness value (range 0-100).
 
 #### Defined in
 
-[types.d.ts:409](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L409)
+[types.d.ts:409](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L409)
 
 ***
 
@@ -512,7 +527,7 @@ Specify the parsing behaviour and change output type of the `ColorToken`.
 
 #### Defined in
 
-[types.d.ts:81](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L81)
+[types.d.ts:81](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L81)
 
 ***
 
@@ -524,7 +539,7 @@ The order to insert elements back into the result collection either ascending (`
 
 #### Defined in
 
-[types.d.ts:25](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L25)
+[types.d.ts:25](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L25)
 
 ***
 
@@ -540,7 +555,7 @@ Options for the `pair()` palette generator function.
 
 > `optional` **hueStep**: `number`
 
-The amount of hue angles to increment each iteration with.
+The hue angle to increment each iteration with.
 
 ##### via?
 
@@ -550,7 +565,7 @@ The color to pass through during interpolation.
 
 #### Defined in
 
-[types.d.ts:127](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L127)
+[types.d.ts:127](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L127)
 
 ***
 
@@ -562,7 +577,7 @@ The `qualitative` color scheme in the ColorBrewer colormap.
 
 #### Defined in
 
-[types.d.ts:460](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L460)
+[types.d.ts:465](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L465)
 
 ***
 
@@ -574,7 +589,7 @@ The value of the Tailwind color.
 
 #### Defined in
 
-[types.d.ts:525](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L525)
+[types.d.ts:531](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L531)
 
 ***
 
@@ -596,7 +611,7 @@ Options for the `scheme()` palette generator function.
 
 #### Defined in
 
-[types.d.ts:398](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L398)
+[types.d.ts:398](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L398)
 
 ***
 
@@ -608,7 +623,7 @@ The scheme to use when creating base palettes.
 
 #### Defined in
 
-[types.d.ts:40](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L40)
+[types.d.ts:40](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L40)
 
 ***
 
@@ -620,7 +635,7 @@ The `sequential` color scheme in the ColorBrewer colormap.
 
 #### Defined in
 
-[types.d.ts:473](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L473)
+[types.d.ts:478](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L478)
 
 ***
 
@@ -668,7 +683,7 @@ It has no effect on `contrast` and `distance` factors because they're already re
 
 #### Defined in
 
-[types.d.ts:345](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L345)
+[types.d.ts:345](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L345)
 
 ***
 
@@ -680,7 +695,7 @@ The default structure of a `Stats` object as returned by `stats()` when invoked 
 
 #### Defined in
 
-[types.d.ts:321](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L321)
+[types.d.ts:321](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L321)
 
 ***
 
@@ -716,7 +731,7 @@ Choose whether to use the `against` color token for factors that support it as a
 
 #### Defined in
 
-[types.d.ts:378](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L378)
+[types.d.ts:378](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L378)
 
 ***
 
@@ -728,13 +743,13 @@ Color families in the default TailwindCSS palette.
 
 #### Defined in
 
-[types.d.ts:541](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L541)
+[types.d.ts:547](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L547)
 
 ***
 
 ### TokenOptions
 
-> **TokenOptions**: \{`kind`: `"num"` \| `"arr"` \| `"obj"` \| `"str"` \| `"temp"`;`normalizeRgb`: `boolean`;`numType`: `"expo"` \| `"hex"` \| `"oct"` \| `"bin"`;`omitAlpha`: `boolean`;`omitMode`: `boolean`;`srcMode`: [`Colorspaces`](types.mdx#colorspaces);`targetMode`: [`Colorspaces`](types.mdx#colorspaces); \}
+> **TokenOptions**: \{`kind`: `"num"` \| `"arr"` \| `"obj"` \| `"str"`;`normalizeRgb`: `boolean`;`numType`: `"expo"` \| `"hex"` \| `"oct"` \| `"bin"`;`omitAlpha`: `boolean`;`omitMode`: `boolean`;`srcMode`: [`Colorspaces`](types.mdx#colorspaces);`targetMode`: [`Colorspaces`](types.mdx#colorspaces); \}
 
 Overrides to customize the parsing and output behaviour.
 
@@ -742,7 +757,7 @@ Overrides to customize the parsing and output behaviour.
 
 ##### kind?
 
-> `optional` **kind**: `"num"` \| `"arr"` \| `"obj"` \| `"str"` \| `"temp"`
+> `optional` **kind**: `"num"` \| `"arr"` \| `"obj"` \| `"str"`
 
 The type of color token to return. Default is `'str'`.
 
@@ -789,7 +804,7 @@ The colorspace in which to return the color object or array in. Default is `'lch
 
 #### Defined in
 
-[types.d.ts:277](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L277)
+[types.d.ts:277](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L277)
 
 ***
 
@@ -801,4 +816,4 @@ The tone to use.
 
 #### Defined in
 
-[types.d.ts:426](https://github.com/prjctimg/huetiful/blob/485216aabcfcb8047458680047f60d407f93d38f/lib/types.d.ts#L426)
+[types.d.ts:431](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/types.d.ts#L431)

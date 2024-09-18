@@ -419,7 +419,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
         }
       }
     }
-    console.log(res, srcChannels);
+
     if (eq(col, "obj")) {
       omitMode
         ? delete res["mode"]

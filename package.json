@@ -11,7 +11,9 @@
     "culori": "^4.0.1"
   },
   "devDependencies": {
+    "@types/bun": "^1.1.9",
     "@types/culori": "^2.1.0",
+    "bun": "^1.1.27",
     "commitizen": "^4.3.0",
     "cz-emoji-conventional": "^1.0.2",
     "esbuild": "^0.17.19",

@@ -1,49 +1,67 @@
+---
+title: Wrappers
+description: Classes for method chaining.
+---
+
 ## Classes
 
-### ColorArray
+### ColorArray\<C, Options\>
 
 Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
-*
+
+:::tip
+The `ColorArray` class is also exposed via a wrapper function `load()`, 
+if you prefer not to explicitly instantiate a `new ColorArray`.
+
+:::
+
+ *
 
 #### Example
 
 ```ts
 * import { ColorArray } from 'huetiful-js'
-*
+ *
 let sample = ['blue', 'pink', 'yellow', 'green'];
 let wrapper = new ColorArray(sample);
-// We can even chain the methods and get the result by calling output()
-
-console.log(wrapper.sortByHue('desc', 'lch').output());
+// We can even chain the methods and get the result by calling `.output()`
 
 // [ 'blue', 'green', 'yellow', 'pink' ]
 ```
+
+#### Type Parameters
+
+• **C** *extends* [`Collection`](types.mdx#collection)
+
+• **Options** *extends* `object`
 
 #### Constructors
 
 ##### new ColorArray()
 
-> **new ColorArray**(`colors`): [`ColorArray`](wrappers.mdx#colorarray)
+> **new ColorArray**\<`C`, `Options`\>(`colors`, `implicitReturn`?): [`ColorArray`](wrappers.mdx#colorarrayc-options)\<`C`, `Options`\>
 
 ###### Parameters
 
-• **colors**: `any`
+• **colors**: `C`
 
 The collection of colors to bind.
 
+• **implicitReturn?**: `boolean`
+
 ###### Returns
 
-[`ColorArray`](wrappers.mdx#colorarray)
+[`ColorArray`](wrappers.mdx#colorarrayc-options)\<`C`, `Options`\>
 
 ###### Defined in
 
-[wrappers.ts:45](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L45)
+[wrappers.ts:66](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/wrappers.ts#L66)
 
 #### Methods
 
 ##### discover()
 
-> **discover**(`options`): [`ColorArray`](wrappers.mdx#colorarray)
+> **discover**(`options`?): `any`
 
 Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes.
 
@@ -56,11 +74,11 @@ If no colors are valid for the palette types it returns an empty array for the p
 
 ###### Parameters
 
-• **options**: `any`
+• **options?**: [`DiscoverOptions`](types.mdx#discoveroptions)
 
 ###### Returns
 
-[`ColorArray`](wrappers.mdx#colorarray)
+`any`
 
 ###### Example
 
@@ -87,11 +105,11 @@ console.log(load(sample).discover({kind:'tetradic'}).output())
 
 ###### Defined in
 
-[wrappers.ts:139](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L139)
+[wrappers.ts:150](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/wrappers.ts#L150)
 
 ##### filterBy()
 
-> **filterBy**(`options`): `Collection`
+> **filterBy**(`options`?): `any`
 
 Filters a collection of colors using the specified `factor` as the criterion. The supported options are:
 * `'contrast'` - Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
@@ -102,22 +120,23 @@ Filters a collection of colors using the specified `factor` as the criterion. Th
 * `luminance` - Returns colors in the specified luminance range.
 * `'hue'` - Returns colors in the specified hue ranges between 0 to 360.
 
+:::tip
 For the `chroma` and `lightness` factors, the range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
 This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range.
 But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
+:::
 
 ###### Parameters
 
-• **options**: `any`
+• **options?**: [`FilterByOptions`](types.mdx#filterbyoptions)
 
 ###### Returns
 
-`Collection`
+`any`
 
 ###### See
 
 https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
-
 Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
 
 ###### Example
@@ -148,69 +167,57 @@ console.log(load(sample).filterBy({start:'>=3', factor:'contrast',against:'green
 
 ###### Defined in
 
-[wrappers.ts:188](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L188)
+[wrappers.ts:197](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/wrappers.ts#L197)
 
 ##### interpolator()
 
-> **interpolator**(`options`): [`ColorArray`](wrappers.mdx#colorarray)
+> **interpolator**(`options`?): `any`
 
 Interpolates the passed in colors and returns a collection of colors from the interpolation.
 
-Some things to keep in mind when creating color scales using this function:
+:::tip
 
 * To create a color scale for cyclic values pass `true` to the `closed` parameter in the `options` object.
 * If `num` is 1 then a single color is returned from the resulting interpolation with the internal `t` value at `0.5` else a collection of the `num` of color scales is returned.
 * If the collection of colors contains an achromatic color, the resulting samples may all be grayscale or pure black.
+:::
 
 ###### Parameters
 
-• **options**: `any`
+• **options?**: [`InterpolatorOptions`](types.mdx#interpolatoroptions)
 
 Optional channel specific overrides.
 
 ###### Returns
 
-[`ColorArray`](wrappers.mdx#colorarray)
+`any`
 
 ###### Example
 
 ```ts
 import { load } from 'huetiful-js';
  
- console.log(load(['pink', 'blue']).interpolateSpline({num:8, colorspace:'lch'}));
- 
- // [
-'#ffc0cb', '#ff9ebe',
-'#f97bbb', '#ed57bf',
-'#d830c9', '#b800d9',
-'#8700eb', '#0000ff'
- ]
  *
 ```
 
 ###### Defined in
 
-[wrappers.ts:96](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L96)
+[wrappers.ts:114](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/wrappers.ts#L114)
 
 ##### nearest()
 
-> **nearest**(`against`, `num`): [`ColorArray`](wrappers.mdx#colorarray)
+> **nearest**(`options`): `any`
 
 Returns the nearest color(s) in the bound collection against
+the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric.
 
 ###### Parameters
 
-• **against**: `any`
-
-The color to use for distance comparison.
-
-• **num**: `any`
-
-The number of colors to return, if the value is above the colors in the available sample, the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric.
+• **options**: `any`
 
 ###### Returns
 
-[`ColorArray`](wrappers.mdx#colorarray)
+`any`
 
 ###### Example
 
@@ -225,25 +232,26 @@ console.log(load(cols).nearest('blue', 3));
 
 ###### Defined in
 
-[wrappers.ts:64](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L64)
+[wrappers.ts:90](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/wrappers.ts#L90)
 
 ##### output()
 
 > **output**(): `any`
 
+Returns the result value from the chain.
+Can be omitted from invocation when `implicitReturn` is set to true.
+
 ###### Returns
 
 `any`
 
-Returns the result value from the chain.
-
 ###### Defined in
 
-[wrappers.ts:263](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L263)
+[wrappers.ts:270](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/wrappers.ts#L270)
 
 ##### sortBy()
 
-> **sortBy**(`options`): `Collection`
+> **sortBy**(`options`?): `any`
 
 Sorts colors according to the specified `factor`. The supported options are:
 
@@ -262,11 +270,11 @@ The return type is determined by the type of `collection`:
 
 ###### Parameters
 
-• **options**: `any`
+• **options?**: [`SortByOptions`](types.mdx#sortbyoptions)
 
 ###### Returns
 
-`Collection`
+`any`
 
 ###### Example
 
@@ -283,11 +291,11 @@ console.log(
 
 ###### Defined in
 
-[wrappers.ts:222](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L222)
+[wrappers.ts:230](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/wrappers.ts#L230)
 
 ##### stats()
 
-> **stats**(`options`): \{\}
+> **stats**(`options`?): `any`
 
 Computes statistical values about the passed in color collection.
 
@@ -311,14 +319,14 @@ For example, it will mean "Get the largest/smallest distance between `factor` as
 
 ###### Parameters
 
-• **options**: `any`
+• **options?**: [`StatsOptions`](types.mdx#statsoptions)
 
 Optional parameters to specify how the data should be computed.
 
 ###### Returns
 
-\{\}
+`any`
 
 ###### Defined in
 
-[wrappers.ts:252](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/wrappers.ts#L252)
+[wrappers.ts:258](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/wrappers.ts#L258)

@@ -1,29 +1,22 @@
-/**
- * @typedef { import('../types.js').ColorToken} ColorToken
- * @typedef { import('../types.js').DeficiencyType} DeficiencyType
- * @typedef {import('../types.js').DeficiencyOptions} DeficiencyOptions
- * @typedef {import('../types.js').AdaptivePaletteOptions} AdaptivePaletteOptions
- */
-
-import { token } from './utils.js';
+import { token } from "./utils.js";
 import {
-	filterDeficiencyDeuter,
-	filterDeficiencyProt,
-	filterDeficiencyTrit,
-	filterGrayscale,
-	formatHex8
-} from 'culori/fn';
-import { eq, or } from './internal.js';
-import { wcagContrast } from 'culori/fn';
+  filterDeficiencyDeuter,
+  filterDeficiencyProt,
+  filterDeficiencyTrit,
+  filterGrayscale,
+  formatHex8,
+} from "culori/fn";
+import { eq, or } from "./internal.js";
+import { wcagContrast } from "culori/fn";
 
 /**
  * Gets the contrast between the passed in colors.
  *
  * :::tip
  * Swapping color `a` and `b` in the parameter list doesn't change the resulting value.
- * 
+ *
  * :::
- * 
+ *
  * @param {ColorToken} a First color to query.
  * @param {ColorToken} b The color to compare against.
  * @returns {number}
@@ -35,8 +28,8 @@ import { wcagContrast } from 'culori/fn';
  * // 21
  */
 function contrast(a, b) {
-	// @ts-ignore
-	return wcagContrast(token(a), token(b));
+  // @ts-ignore
+  return wcagContrast(token(a), token(b));
 }
 
 // This module is focused on creating color blind safe palettes that adhere to the minimum contrast requirements
@@ -145,25 +138,25 @@ console.log(deficiency(['rgb', 230, 100, 50, 0.5],{ kind:'blue', severity:0.5 })
 
  */
 function deficiency(color, options) {
-	let { kind, severity } = options || {};
-	color = token(color);
-	const func = (c, t = 1) =>
-			({
-				blue: filterDeficiencyTrit(t)(c),
-				red: filterDeficiencyProt(t)(c),
-				green: filterDeficiencyDeuter(t)(c),
-				monochromacy: filterGrayscale(t, 'lch')(c)
-			})[kind],
-		defs = ['red', 'blue', 'green', 'monochromacy'];
+  let { kind, severity } = options || {};
+  color = token(color);
+  const func = (c, t = 1) =>
+      ({
+        blue: filterDeficiencyTrit(t)(c),
+        red: filterDeficiencyProt(t)(c),
+        green: filterDeficiencyDeuter(t)(c),
+        monochromacy: filterGrayscale(t, "lch")(c),
+      }[kind]),
+    defs = ["red", "blue", "green", "monochromacy"];
 
-	kind = or(kind, 'red');
-	severity = or(severity, 0.5);
+  kind = or(kind, "red");
+  severity = or(severity, 0.5);
 
-	return defs.some((el) => eq(el, kind.toLowerCase()))
-		? formatHex8(func(color, severity))
-		: Error(
-				`Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
-			);
+  return defs.some((el) => eq(el, kind.toLowerCase()))
+    ? formatHex8(func(color, severity))
+    : Error(
+        `Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
+      );
 }
 
 export { deficiency, contrast, adaptive };

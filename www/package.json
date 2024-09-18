@@ -32,6 +32,7 @@
     "cz-emoji-conventional": "^1.0.2",
     "docusaurus-plugin-typedoc": "^1.0.5",
     "typedoc": "^0.26.4",
+    "typedoc-plugin-frontmatter": "^1.0.0",
     "typedoc-plugin-markdown": "^4.2.0",
     "typedoc-plugin-remark": "^1.0.2",
     "typescript": "~5.5.2",
