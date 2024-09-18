@@ -1,14 +1,23 @@
+---
+title: Utils
+description: Functions for querying color tokens.
+---
+
 ## Functions
 
 ### achromatic()
 
-> **achromatic**(`color`): `boolean`
+> **achromatic**\<`Color`\>(`color`): `boolean`
 
 Checks if a color token is achromatic (without hue or simply grayscale).
 
+#### Type Parameters
+
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
+
 #### Parameters
 
-• **color**: `any`
+• **color**: `Color`
 
 The color token to test if it is achromatic or not.
 
@@ -57,7 +66,7 @@ console.log(grays.map(achromatic));
 
 #### Defined in
 
-[utils.ts:242](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L242)
+[utils.ts:245](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L245)
 
 ***
 
@@ -108,19 +117,19 @@ console.log(myColor)
 
 #### Defined in
 
-[utils.ts:81](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L81)
+[utils.ts:83](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L83)
 
 ***
 
 ### complimentary()
 
-> **complimentary**\<`Color`, `Options`\>(`baseColor`, `options`?): `ColorToken`
+> **complimentary**\<`Color`, `Options`\>(`baseColor`, `options`?): [`ColorToken`](types.mdx#colortoken)
 
 Returns the complimentary color of the passed in color token. A complimentary color is 180 degrees away on the hue channel.
 
 #### Type Parameters
 
-• **Color** *extends* `ColorToken`
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
 
 • **Options** *extends* `ComplimentaryOptions`
 
@@ -136,7 +145,7 @@ Optional overrides to customize behaviour.
 
 #### Returns
 
-`ColorToken`
+[`ColorToken`](types.mdx#colortoken)
 
 #### Example
 
@@ -152,7 +161,7 @@ console.log(complimentary("purple"))
 
 #### Defined in
 
-[utils.ts:758](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L758)
+[utils.ts:735](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L735)
 
 ***
 
@@ -166,7 +175,7 @@ For example `'red'` or `'blue-green'`. If the color is achromatic it returns the
 
 #### Type Parameters
 
-• **Color** *extends* `ColorToken`
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
 
 • **HueFamily** *extends* `never`
 
@@ -191,13 +200,13 @@ console.log(family("#310000"))
 
 #### Defined in
 
-[utils.ts:646](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L646)
+[utils.ts:623](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L623)
 
 ***
 
 ### lightness()
 
-> **lightness**(`color`, `amount`, `darken`): `ColorToken`
+> **lightness**(`color`, `amount`, `darken`): [`ColorToken`](types.mdx#colortoken)
 
 Darkens the color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
 
@@ -215,7 +224,7 @@ The amount to darken with. The value is expected to be in the range `[0,1]`. Def
 
 #### Returns
 
-`ColorToken`
+[`ColorToken`](types.mdx#colortoken)
 
 #### Example
 
@@ -235,13 +244,13 @@ console.log(brighten('blue', 0.3));
 
 #### Defined in
 
-[utils.ts:281](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L281)
+[utils.ts:284](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L284)
 
 ***
 
 ### luminance()
 
-> **luminance**\<`Color`, `Amount`\>(`color`, `amount`?): `Amount` *extends* `number` ? `ColorToken` : `number`
+> **luminance**\<`Color`, `Amount`\>(`color`, `amount`?): `Amount` *extends* `number` ? [`ColorToken`](types.mdx#colortoken) : `number`
 
 Gets the luminance of the passed in color token.
 
@@ -249,7 +258,7 @@ If the `amount` parameter is passed in, it will adjust the luminance by interpol
 
 #### Type Parameters
 
-• **Color** *extends* `ColorToken`
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
 
 • **Amount**
 
@@ -265,7 +274,7 @@ The amount of luminance to set. The value range is normalised between [0,1]
 
 #### Returns
 
-`Amount` *extends* `number` ? `ColorToken` : `number`
+`Amount` *extends* `number` ? [`ColorToken`](types.mdx#colortoken) : `number`
 
 #### Example
 
@@ -302,13 +311,13 @@ console.log(luminance(myColor))
 
 #### Defined in
 
-[utils.ts:578](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L578)
+[utils.ts:555](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L555)
 
 ***
 
 ### mc()
 
-> **mc**\<`Color`, `Value`\>(`modeChannel`): (`color`, `value`?) => `Value` *extends* `string` \| `number` ? `ColorToken` : `number`
+> **mc**\<`Color`, `Value`\>(`modeChannel`): (`color`, `value`?) => `Value` *extends* `string` \| `number` ? [`ColorToken`](types.mdx#colortoken) : `number`
 
 Sets the value of the specified channel on the passed in color.
 
@@ -316,7 +325,7 @@ If the `amount` parameter is `undefined` it gets the value of the specified chan
 
 #### Type Parameters
 
-• **Color** *extends* `ColorToken`
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
 
 • **Value**
 
@@ -338,7 +347,7 @@ The mode and channel to be retrieved. For example `'rgb.b'` will return the valu
 
 ##### Returns
 
-`Value` *extends* `string` \| `number` ? `ColorToken` : `number`
+`Value` *extends* `string` \| `number` ? [`ColorToken`](types.mdx#colortoken) : `number`
 
 #### Example
 
@@ -351,7 +360,7 @@ console.log(mc('rgb.g')('#a1bd2f'))
 
 #### Defined in
 
-[utils.ts:154](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L154)
+[utils.ts:156](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L156)
 
 ***
 
@@ -366,9 +375,9 @@ Returns the name of the hue family which is biasing the passed in color using th
 
 #### Type Parameters
 
-• **Color** *extends* `ColorToken`
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
 
-• **Bias** *extends* `ColorFamily`
+• **Bias** *extends* [`ColorFamily`](types.mdx#colorfamily)
 
 #### Parameters
 
@@ -397,7 +406,7 @@ console.log(overtone("blue"))
 
 #### Defined in
 
-[utils.ts:729](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L729)
+[utils.ts:706](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L706)
 
 ***
 
@@ -409,7 +418,7 @@ Returns a rough estimation of a color's temperature as either `'cool'` or `'warm
 
 #### Type Parameters
 
-• **Color** *extends* `ColorToken`
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
 
 #### Parameters
 
@@ -443,13 +452,13 @@ console.log(map(sample, isCool));
 
 #### Defined in
 
-[utils.ts:693](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L693)
+[utils.ts:670](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L670)
 
 ***
 
 ### token()
 
-> **token**\<`Color`, `Options`\>(`color`, `options`?): `ColorToken`
+> **token**\<`Color`, `Options`\>(`color`, `options`?): [`ColorToken`](types.mdx#colortoken)
 
 Parses any recognizable color to the specified `kind` of `ColorToken` type.
 
@@ -477,9 +486,9 @@ The `numberType` can be used to specify which type of number to return if the `k
 
 #### Type Parameters
 
-• **Color** *extends* `ColorToken`
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
 
-• **Options** *extends* `TokenOptions`
+• **Options** *extends* [`TokenOptions`](types.mdx#tokenoptions)
 
 #### Parameters
 
@@ -493,8 +502,8 @@ Options to customize the parsing and output behaviour.
 
 #### Returns
 
-`ColorToken`
+[`ColorToken`](types.mdx#colortoken)
 
 #### Defined in
 
-[utils.ts:328](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/utils.ts#L328)
+[utils.ts:330](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L330)

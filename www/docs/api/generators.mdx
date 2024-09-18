@@ -1,8 +1,13 @@
+---
+title: Generators
+description: Functions for making color scales and palettes.
+---
+
 ## Functions
 
 ### discover()
 
-> **discover**(`colors`, `options`): `Collection`
+> **discover**(`colors`, `options`): [`Collection`](types.mdx#collection)
 
 Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes. 
 
@@ -16,15 +21,15 @@ If no colors are valid for the palette types it returns an empty array for the p
 
 #### Parameters
 
-• **colors**: `Collection` = `[]`
+• **colors**: [`Collection`](types.mdx#collection) = `[]`
 
 The collection of colors to create palettes from. Preferably use 6 or more colors for better results.
 
-• **options**: `DiscoverOptions`
+• **options**: [`DiscoverOptions`](types.mdx#discoveroptions)
 
 #### Returns
 
-`Collection`
+[`Collection`](types.mdx#collection)
 
 #### Example
 
@@ -51,29 +56,29 @@ console.log(discover(sample, { kind:'tetradic' }))
 
 #### Defined in
 
-[generators.ts:402](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L402)
+[generators.ts:402](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L402)
 
 ***
 
 ### earthtone()
 
-> **earthtone**(`baseColor`, `options`): `ColorToken` \| `ColorToken`[]
+> **earthtone**(`baseColor`, `options`): [`ColorToken`](types.mdx#colortoken) \| [`ColorToken`](types.mdx#colortoken)[]
 
 Creates a color scale between an earth tone and any color token using spline interpolation.
 
 #### Parameters
 
-• **baseColor**: `ColorToken`
+• **baseColor**: [`ColorToken`](types.mdx#colortoken)
 
 The color to interpolate an earth tone with.
 
-• **options**: `EarthtoneOptions`
+• **options**: [`EarthtoneOptions`](types.mdx#earthtoneoptions)
 
 Optional overrides for customising interpolation and easing functions.
 
 #### Returns
 
-`ColorToken` \| `ColorToken`[]
+[`ColorToken`](types.mdx#colortoken) \| [`ColorToken`](types.mdx#colortoken)[]
 
 #### Example
 
@@ -86,13 +91,13 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 
 #### Defined in
 
-[generators.ts:476](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L476)
+[generators.ts:476](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L476)
 
 ***
 
 ### hueshift()
 
-> **hueshift**\<`Color`, `Options`\>(`baseColor`, `options`): `Collection`
+> **hueshift**\<`Color`, `Options`\>(`baseColor`, `options`): [`Collection`](types.mdx#collection)
 
 Creates a palette of hue shifted colors from the passed in color.
 
@@ -111,9 +116,9 @@ The `minLightness` and `maxLightness` values determine how dark or light our col
 
 #### Type Parameters
 
-• **Color** *extends* `ColorToken`
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
 
-• **Options** *extends* `HueshiftOptions`
+• **Options** *extends* [`HueshiftOptions`](types.mdx#hueshiftoptions)
 
 #### Parameters
 
@@ -127,7 +132,7 @@ The optional overrides object.
 
 #### Returns
 
-`Collection`
+[`Collection`](types.mdx#collection)
 
 #### Example
 
@@ -150,13 +155,13 @@ console.log(hueShiftedPalette);
 
 #### Defined in
 
-[generators.ts:87](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L87)
+[generators.ts:87](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L87)
 
 ***
 
 ### interpolator()
 
-> **interpolator**(`baseColors`, `options`): `ColorToken`[] \| `ColorToken`
+> **interpolator**(`baseColors`, `options`): [`ColorToken`](types.mdx#colortoken)[] \| [`ColorToken`](types.mdx#colortoken)
 
 Interpolates the passed in colors and returns a color scale that is evenly split into `num` amount of samples. 
 
@@ -179,17 +184,17 @@ The behaviour of the interpolation can be customized by:
 
 #### Parameters
 
-• **baseColors**: `Collection` = `[]`
+• **baseColors**: [`Collection`](types.mdx#collection) = `[]`
 
 The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result or making all the colors in the resulting interpolation gray.
 
-• **options**: `InterpolatorOptions` = `undefined`
+• **options**: [`InterpolatorOptions`](types.mdx#interpolatoroptions) = `undefined`
 
 Optional overrides.
 
 #### Returns
 
-`ColorToken`[] \| `ColorToken`
+[`ColorToken`](types.mdx#colortoken)[] \| [`ColorToken`](types.mdx#colortoken)
 
 #### Example
 
@@ -208,13 +213,13 @@ console.log(interpolator(['pink', 'blue'], { num:8 }));
 
 #### Defined in
 
-[generators.ts:300](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L300)
+[generators.ts:300](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L300)
 
 ***
 
 ### pair()
 
-> **pair**\<`Color`, `Options`\>(`baseColor`, `options`?): `Collection`
+> **pair**\<`Color`, `Options`\>(`baseColor`, `options`?): [`Collection`](types.mdx#collection)
 
 Creates a palette that consists of a `baseColor` that is incremented by a `hueStep` to get the final color to pair with.
 The colors are then spline interpolated via white or black.
@@ -226,9 +231,9 @@ A negative `hueStep` will pick a color that is `hueStep` degrees behind the base
 
 #### Type Parameters
 
-• **Color** *extends* `ColorToken`
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
 
-• **Options** *extends* `PairedSchemeOptions`
+• **Options** *extends* [`PairedSchemeOptions`](types.mdx#pairedschemeoptions)
 
 #### Parameters
 
@@ -242,7 +247,7 @@ The optional overrides object to customize per channel options like interpolatio
 
 #### Returns
 
-`Collection`
+[`Collection`](types.mdx#collection)
 
 #### Example
 
@@ -255,13 +260,13 @@ console.log(pair("green",{hueStep:6,num:4,tone:'dark'}))
 
 #### Defined in
 
-[generators.ts:224](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L224)
+[generators.ts:224](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L224)
 
 ***
 
 ### pastel()
 
-> **pastel**(`baseColor`, `options`): `ColorToken`
+> **pastel**(`baseColor`, `options`): [`ColorToken`](types.mdx#colortoken)
 
 Returns a random pastel variant of the passed in color token.
 
@@ -272,15 +277,15 @@ Pastel colors are those soft hued colors like baby blue,pink and mauve.
 
 #### Parameters
 
-• **baseColor**: `ColorToken`
+• **baseColor**: [`ColorToken`](types.mdx#colortoken)
 
 The color to return a pastel variant of.
 
-• **options**: `TokenOptions` = `undefined`
+• **options**: [`TokenOptions`](types.mdx#tokenoptions) = `undefined`
 
 #### Returns
 
-`ColorToken`
+[`ColorToken`](types.mdx#colortoken)
 
 A random pastel color.
 
@@ -296,13 +301,13 @@ console.log(pastel("green"))
 
 #### Defined in
 
-[generators.ts:166](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L166)
+[generators.ts:166](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L166)
 
 ***
 
 ### scheme()
 
-> **scheme**(`baseColor`, `options`): `Collection`
+> **scheme**(`baseColor`, `options`): [`Collection`](types.mdx#collection)
 
 Generates a randomised classic color scheme from the passed in color.
 
@@ -330,17 +335,17 @@ Note that the `num` parameter works on the `monochromatic` palette type only.
 
 #### Parameters
 
-• **baseColor**: `ColorToken` = `...`
+• **baseColor**: [`ColorToken`](types.mdx#colortoken) = `...`
 
 The color to create the palette(s) from.
 
-• **options**: `SchemeOptions` = `{}`
+• **options**: [`SchemeOptions`](types.mdx#schemeoptions) = `{}`
 
 Optional overrides.
 
 #### Returns
 
-`Collection`
+[`Collection`](types.mdx#collection)
 
 #### Example
 
@@ -353,4 +358,4 @@ console.log(scheme("triadic")("#a1bd2f"))
 
 #### Defined in
 
-[generators.ts:547](https://github.com/prjctimg/huetiful/blob/e845c4f7010a0b74a51d772e9a4c4508460ec043/lib/generators.ts#L547)
+[generators.ts:547](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L547)

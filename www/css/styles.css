@@ -29,8 +29,11 @@ b {
 }
 
 
+
+
 article h3 {
   color: #3b82f6;
+  animation: textColorAnimation 10s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
 }
 
 p strong {
