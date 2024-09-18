@@ -27,6 +27,7 @@ const typedocOptions = {
     "typedoc-plugin-frontmatter",
     "./plugin.mjs",
   ],
+  skipErrorChecking: true,
   frontmatterCommentTags: ["author", "description"],
   entryPointStrategy: "resolve",
   out: "docs/api",
