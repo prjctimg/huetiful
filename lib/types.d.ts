@@ -320,24 +320,17 @@ export type TokenOptions = {
  */
 export type Stats =
   | {
-      [F in Factor]: {
+      [T in Factor]: {
         extremums?: Array<number>;
         colors?: Array<typeof ColorToken>;
         against?: ColorToken | null;
         mean?: number;
         families?: Array<BiasedHues | "gray">;
+      } & {
+        colorspace?: Colorspaces;
+        achromatic?: number;
       };
-    }
-  | ({
-      extremums?: Array<number>;
-      colors?: Array<typeof ColorToken>;
-      against?: ColorToken | null;
-      mean?: number;
-      families?: Array<BiasedHues | "gray">;
-    } & {
-      colorspace?: Colorspaces;
-      achromatic?: number;
-    });
+    };
 
 /**
  * Options for specifying sorting conditions.

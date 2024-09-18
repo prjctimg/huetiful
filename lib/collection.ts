@@ -1,5 +1,3 @@
-//  @ts-nocheck
-
 import {
   sortedColl,
   mcchn,
@@ -11,8 +9,9 @@ import {
   map,
   eq,
   filteredColl,
+  values,
 } from "./internal.js";
-import { family, luminance, mc, token } from "./utils.js";
+import { achromatic, family, luminance, mc, token } from "./utils.js";
 import { contrast } from "./accessibility.js";
 import {
   averageAngle,
@@ -29,6 +28,7 @@ import {
   SortByOptions,
   StatsOptions,
   Factor,
+  Stats,
 } from "./types.js";
 
 /**
@@ -67,7 +67,7 @@ import {
 function stats<Iterable extends Collection, Options extends StatsOptions>(
   collection: Iterable,
   options: Options
-) {
+): Stats {
   let { factor, relative, colorspace, against } = options || {};
 
   factor = or(factor, undefined);
@@ -142,11 +142,10 @@ function stats<Iterable extends Collection, Options extends StatsOptions>(
     },
     statsObject = factorIterator(factor, commonStats);
   statsObject["achromatic"] =
-    // @ts-ignore
     values(collection).filter(achromatic).length / len;
   statsObject["colorspace"] = colorspace;
 
-  return statsObject;
+  return statsObject as Stats;
 }
 
 /**
@@ -167,10 +166,8 @@ function stats<Iterable extends Collection, Options extends StatsOptions>(
  * 
  * :::
  * 
- * @param {Collection} collection The `collection` of colors to sort.
- * @param {SortByOptions} options
- * @returns {Collection}  
-
+ * @param collection The `collection` of colors to sort.
+ * @param  options 
  * @example
 
 import { sortBy } from 'huetiful-js'
@@ -233,10 +230,9 @@ function sortBy<Iterable extends Collection, Options extends SortByOptions>(
 
 /**
  * Distributes the specified `factor` of a color in the collection with the specified `extremum` (i.e the color with the smallest/largest `hue` angle or `chroma` value) to all color tokens in the collection.
- *@param factor The property you want to distribute to the colors in the collection for example `hue | luminance`
- * @param  Optional overrides to change the default configursation
+ *@param collection The property you want to distribute to the colors in the collection for example `hue | luminance`
+ * @param options  Optional overrides to change the default configursation
 
-  @returns {undefined}
  */
 function distribute<
   Iterable extends Collection,
@@ -293,6 +289,9 @@ function distribute<
    * @param {any} collection The colors to manipulate.
    * @returns {any} The collection with each color's `factor` adjusted.
    */
+
+  let a;
+  return a as Collection;
 }
 
 /**
@@ -313,7 +312,7 @@ function distribute<
  * :::
  * @see https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
  * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
- * @param {Collection} collection The collection of colors to filter.  
+ * @param collection The collection of colors to filter.  
  * @param  options
  * @example
  * 
@@ -345,7 +344,7 @@ function filterBy<Iterable extends Collection, Options extends FilterByOptions>(
   colorspace = or(colorspace, "lch");
   against = or(against, "cyan");
 
-  const filter = (cb, start, end) => {
+  const filter = (cb) => {
       return filteredColl(factor, cb)(collection, start, end);
     },
     chromaChannel = mcchn("c", colorspace, false),
@@ -360,7 +359,7 @@ function filterBy<Iterable extends Collection, Options extends FilterByOptions>(
           luminance: [0, 1],
         },
         ctrst = (a) => (b) => contrast(b, a),
-        dstnce = (a) => differenceHyab()(a, against);
+        dstnce = (a) => differenceHyab()(a, against as string);
 
       if (isArray(factor) || undefined) {
         start = or(ranges[fact][0], defaultRanges[fact][0]);
@@ -372,49 +371,16 @@ function filterBy<Iterable extends Collection, Options extends FilterByOptions>(
       }
 
       return {
-        chroma: filter(
-          mc(mcchn("c", colorspace, true)),
-
-          // @ts-ignore
-          start,
-          end
-        ),
-        lightness: filter(
-          mc(mcchn("l", colorspace, true)),
-          // @ts-ignore
-          start,
-          end
-        ),
-        hue: filter(
-          mc(`${colorspace}.h`),
-          // @ts-ignore
-          start,
-          end
-        ),
-        distance: filter(
-          dstnce(token(against)),
-
-          // @ts-ignore
-          start,
-          end
-        ),
-        contrast: filter(
-          ctrst(against),
-
-          start,
-          end
-        ),
-        luminance: filter(
-          luminance,
-          // @ts-ignore
-          start,
-          end
-        ),
+        chroma: filter(mc(mcchn("c", colorspace, true))),
+        lightness: filter(mc(mcchn("l", colorspace, true))),
+        hue: filter(mc(`${colorspace}.h`)),
+        distance: filter(dstnce(token(against))),
+        contrast: filter(ctrst(against)),
+        luminance: filter(luminance),
       }[fact];
     };
 
-  // @ts-ignore
-  return factorIterator(factor, callback);
+  return factorIterator(factor, callback) as Collection;
 }
 
 export { stats, sortBy, filterBy, distribute };
