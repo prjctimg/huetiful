@@ -13,7 +13,6 @@ import {
   easingSmoothstep,
   averageNumber,
   random,
-  Color,
 } from "culori/fn";
 import {
   or,
@@ -88,9 +87,12 @@ function hueshift<Color extends ColorToken, Options extends HueshiftOptions>(
   baseColor: Color,
   options: Options
 ): Collection {
-  let { num, hueStep, minLightness, maxLightness, easingFn } = options || {};
+  let { num, hueStep, minLightness, maxLightness, easingFn, tokenOptions } = or(
+    options,
+    {}
+  ) as Options;
 
-  baseColor = or(baseColor, "#3fca2b") as Color;
+  baseColor = or(baseColor, "cyan") as Color;
   easingFn = or(easingFn, easingSmoothstep);
   num = or(num, 6) + 1;
   hueStep = or(hueStep, 5);
@@ -141,7 +143,7 @@ function hueshift<Color extends ColorToken, Options extends HueshiftOptions>(
     z.unshift(y as Color);
   }
 
-  return Array.from(new Set(z)).map((c) => token(c));
+  return Array.from(new Set(z)).map((c) => token(c, tokenOptions));
 }
 
 /**
@@ -247,7 +249,7 @@ function pair<Color extends ColorToken, Options extends PairedSchemeOptions>(
   return interpolator([baseColor, tone, destinationColor], {
     colorspace: "lch",
     num: num * 2,
-    token: options?.token,
+    tokenOptions: options?.tokenOptions,
     // @ts-ignore
   }).slice(0, num);
 }
@@ -350,10 +352,10 @@ function interpolator(
     and(
       gt(num, 1),
       //  @ts-ignore
-      samples(num).map((s) => token(func(s), options?.token))
+      samples(num).map((s) => token(func(s), options?.tokenOptions))
     ),
     // @ts-ignore
-    token(func(0.5), options?.token)
+    token(func(0.5), options?.tokenOptions)
   );
 }
 
@@ -497,7 +499,7 @@ function earthtone(
     num: num,
     closed: closed,
     kind: kind,
-    token: options?.token,
+    tokenOptions: options?.tokenOptions,
   });
 }
 

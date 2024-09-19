@@ -912,6 +912,8 @@ function colors<S extends ScaleValues, F extends Tailwind>(
 
   return o;
 }
+
+colors("all");
 export {
   indigo,
   red,

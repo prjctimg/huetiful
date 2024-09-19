@@ -93,7 +93,7 @@ export type InterpolatorOptions = {
   /**
    * Specify the parsing behaviour and change output type of the `ColorToken`.
    */
-  token?: TokenOptions;
+  tokenOptions?: TokenOptions;
   /**
    * The easing function to use.
    * @param  t Any value between 0 and 1
@@ -322,7 +322,7 @@ export type Stats =
   | {
       [T in Factor]: {
         extremums?: Array<number>;
-        colors?: Array<typeof ColorToken>;
+        colors?: Array<ColorToken>;
         against?: ColorToken | null;
         mean?: number;
         families?: Array<BiasedHues | "gray">;
@@ -401,7 +401,7 @@ export type SchemeOptions = Pick<
  */
 export type HueshiftOptions = Pick<
   InterpolatorOptions,
-  "colorspace" | "easingFn" | "num" | "token" | "hueStep"
+  "colorspace" | "easingFn" | "num" | "tokenOptions"
 > & {
   /**
    * *  minLightness  Minimum lightness value (range 0-100).
@@ -590,7 +590,7 @@ export type ComplimentaryOptions = {
 export type Swatch<T extends string, V extends ScaleValues> = T extends Tailwind
   ? V extends ScaleValues
     ? `${T}[${V}]`
-    : `all[${V | "500"}]`
+    : Array<`all[${V | "500"}]`>
   : Array<T>;
 
 export type LightnessOptions = { amount?: number; darken?: boolean };

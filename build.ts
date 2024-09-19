@@ -22,9 +22,8 @@ await $`rm -rf build  && echo 'Cleaned build/ directory'`;
 // library bundle minified
 await build({
   ...baseOptions,
-
   naming: "browser/huetiful.min.js",
-}).then(logger("Browser (minified) entire library"));
+}).then(logger("Browser ESM (minified) entire library"));
 
 // node bundle
 await build({
@@ -36,3 +35,4 @@ await build({
   naming: "node/huetiful.esm.js",
 }).then(logger("Node"));
 await $`bun tsup  --format=esm ./lib/index.ts --dts-only --outDir=./build/types`;
+await $`du -sh build/*`;
