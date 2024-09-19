@@ -30,10 +30,7 @@
     "trailingComma": "none",
     "bracketSpacing": true
   },
-  "eslintIgnore": [
-    "*.cjs",
-    ".mjs"
-  ],
+  "eslintIgnore": ["*.cjs", ".mjs"],
   "config": {
     "commitizen": {
       "path": "cz-emoji-conventional"
@@ -53,13 +50,7 @@
       "ecmaVersion": "latest"
     }
   },
-  "files": [
-    "build",
-    "CHANGELOG.md",
-    "readme.md",
-    "contributing.md",
-    "license"
-  ],
+  "files": ["build", "CHANGELOG.md", "readme.md", "contributing.md", "license"],
   "repository": {
     "type": "git",
     "url": "https://github.com/prjctimg/huetiful.git"
@@ -79,8 +70,5 @@
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/prjctimg/huetiful/issues"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   }
 }
