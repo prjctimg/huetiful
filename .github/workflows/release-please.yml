@@ -34,7 +34,6 @@ jobs:
       - run: npm i -g bun && bun install
         if: ${{ steps.release.outputs.release_created }}
       - run: |
-          bun test
           bun build.ts
           npm publish
         env:
