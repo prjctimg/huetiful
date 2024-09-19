@@ -586,3 +586,11 @@ export type ComplimentaryOptions = {
    */
   extremums?: [number?, number?];
 };
+
+export type Swatch<T extends string, V extends ScaleValues> = T extends Tailwind
+  ? V extends ScaleValues
+    ? `${T}[${V}]`
+    : `all[${V | "500"}]`
+  : Array<T>;
+
+export type LightnessOptions = { amount?: number; darken?: boolean };

@@ -1,4 +1,15 @@
-import { differenceHyab, nearest as nrst } from "culori";
+import { differenceHyab, nearest as nrst } from "culori/fn";
+import type {
+  SequentialScheme,
+  DivergingScheme,
+  QualitativeScheme,
+  ColorFamily,
+  ColorToken,
+  Collection,
+  ScaleValues,
+  Swatch,
+  Tailwind,
+} from "./types.d.ts";
 import { or, values, and, eq, keys } from "./internal.js";
 
 const tailwind = {
@@ -292,7 +303,7 @@ function hasScheme(s, obj) {
 }
 /**
  *  A wrapper function for ColorBrewer's map of sequential color schemes.
- * @param {SequentialScheme} scheme The name of the scheme.
+ * @param  scheme The name of the scheme.
  * @returns {Collection|import('../types.js').ColorToken}  A collection of colors in the specified colorspace. The default is hex if `colorspace` is `undefined.`
  * @example
  *
@@ -312,7 +323,9 @@ console.log(sequential("OrRd"))
 
 
  */
-function sequential(scheme) {
+function sequential<Scheme extends SequentialScheme>(
+  scheme?: Scheme
+): Scheme[] {
   const so = {
     OrRd: [
       "#fff7ec",
@@ -528,10 +541,11 @@ function sequential(scheme) {
   // @ts-ignore
   return hasScheme(scheme, so);
 }
+
+sequential("Blues");
 /**
  *  A wrapper function for ColorBrewer's map of diverging color schemes.
- * @param {DivergingScheme} scheme The name of the scheme.
- * @returns {Collection} The collection of colors from the specified `scheme`.
+ * @param  scheme The name of the scheme.
  * @example
  *
  * import { diverging } from 'huetiful-js'
@@ -546,7 +560,7 @@ console.log(diverging("Spectral"))
   '#bf5b17', '#666666'
 ]
  */
-function diverging(scheme) {
+function diverging<Scheme extends DivergingScheme>(scheme?: Scheme): Scheme[] {
   const so = {
     Spectral: [
       "#9e0142",
@@ -667,13 +681,11 @@ function diverging(scheme) {
     ],
   };
 
-  // @ts-ignore
   return hasScheme(scheme, so);
 }
 /**
  *  A wrapper function for ColorBrewer's map of qualitative color schemes.
- * @param {QualitativeScheme} scheme The name of the scheme
- * @returns {Collection} The collection of colors from the specified `scheme`.
+ * @param scheme The name of the scheme
  * @example
  *
  * import { qualitative } from 'huetiful-js'
@@ -688,7 +700,9 @@ console.log(qualitative("Accent"))
 ]
 
  */
-function qualitative(scheme) {
+function qualitative<Scheme extends QualitativeScheme>(
+  scheme?: Scheme
+): Scheme[] {
   const so = {
     Set2: [
       "#66c2a5",
@@ -781,7 +795,7 @@ function qualitative(scheme) {
       "#f2f2f2",
     ],
   };
-  // @ts-ignore
+
   return hasScheme(scheme, so);
 }
 
@@ -790,9 +804,8 @@ function qualitative(scheme) {
  * 
  * * To get the nearest color from the Tailwind CSS default palette pass in the string `tailwind` as the `collection` parameter.
  * * If the `num` parameter is more than 1, the returned collection of colors has the colors sorted starting with the nearest color first
- * 
- * @param {Collection | 'tailwind'} collection The collection of colors to search for nearest colors.
- * @returns {Collection}
+ * @param  collection The collection of colors to search for nearest colors.
+ * @param options Optional overrides.
  * @example
  *
  * let cols = colors('all', '500')
@@ -800,7 +813,7 @@ function qualitative(scheme) {
 console.log(nearest(cols, 'blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
-function nearest(collection, options) {
+function nearest(collection: Collection | "tailwind", options) {
   let { against, num } = options || {};
   num = or(num, 1);
   against = or(against, "cyan");
@@ -827,8 +840,8 @@ function nearest(collection, options) {
    * :::tip
    *  To specify `'050'` as a number you just pass `50`. Values are all valid as string or number for example `'100'` and`100` .
    * :::
-   * @param {import('../types.js').TailwindColorFamilies | 'all'} shade The hue family to return.
-   * @param  {import('../types.js').ScaleValues} value The tone value of the shade. Values are in incrementals of `100`. For example numeric (`100`) and its string equivalent (`'100'`) are valid.
+   * @param  shade The hue family to return.
+   * @param   value The tone value of the shade. Values are in incrementals of `100`. For example numeric (`100`) and its string equivalent (`'100'`) are valid.
    * @returns {Array<string>|string} 
    * @example
    *
@@ -853,9 +866,12 @@ function nearest(collection, options) {
   
    */
 
-function colors(shade = "all", value = undefined) {
+function colors<S extends ScaleValues, F extends Tailwind>(
+  shade?: F | "all",
+  value?: S
+): Swatch<F, S> {
   let w = tailwind;
-
+  value = value.toString() as S;
   let [d, k] = ["all", keys(w)];
 
   let [p, q] = [
@@ -876,9 +892,8 @@ function colors(shade = "all", value = undefined) {
       ].includes(i?.toString()),
   ];
 
-  // @ts-ignore
-  shade = shade.toLowerCase();
-  let o;
+  shade = shade.toLowerCase() as F;
+  let o: any;
   if (eq(shade, d)) {
     if (q(value)) {
       o = k.map((y) => w[y][value]);
@@ -887,16 +902,16 @@ function colors(shade = "all", value = undefined) {
     }
   } else if (p(shade)) {
     if (q(value)) {
-      o = w[shade][value];
+      o = w[shade][value as string];
     } else {
       o = values(w[shade]);
     }
   } else if (or(!shade, and(!shade, !value))) {
     o = k.map((h) => w[h]);
   }
+
   return o;
 }
-
 export {
   indigo,
   red,

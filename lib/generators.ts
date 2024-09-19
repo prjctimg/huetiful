@@ -166,12 +166,6 @@ function pastel<Color extends ColorToken, Options extends TokenOptions>(
   baseColor: Color,
   options?: Options
 ): ColorToken {
-  /**
-   * The colors from which the randomized values are obtained from were extracted from this article:
-   *
-   * @see www.wikipedia.com Wikipedia
-   * The elements in each array are chroma, lightness of the color in HSV and then the color in numerical representation. Got the values from sample pastel colors on the Wikipedia article
-   */
   let w = [
       [0.3582677165354331, 0.996078431372549, 16538982.504333857],
       [0.4395161290322581, 0.9725490196078431, 15694401.836627495],
@@ -199,7 +193,7 @@ function pastel<Color extends ColorToken, Options extends TokenOptions>(
   });
 
   // @ts-ignore
-  return token(q, options);
+  return token(q, options?.tokenOptions);
 }
 
 /**
