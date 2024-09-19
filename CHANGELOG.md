@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.4](https://github.com/prjctimg/huetiful/compare/v3.0.3...v3.0.4) (2024-09-19)
+
+
+### Bug Fixes
+
+* fixed undefined error ([778a646](https://github.com/prjctimg/huetiful/commit/778a646227de80c6ad38b1f0a91e1d6722d8b812))
+* fixed undefined error ([e3224a5](https://github.com/prjctimg/huetiful/commit/e3224a5bdf3f00216b7a13dd4c0e0ab66e225084))
+
 ## [3.0.3](https://github.com/prjctimg/huetiful/compare/v3.0.2...v3.0.3) (2024-09-19)
 
 
