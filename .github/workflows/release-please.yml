@@ -35,7 +35,7 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
       - run: |
           bun test
-	  bun build.ts
+          bun build.ts
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH}}
