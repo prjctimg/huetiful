@@ -93,7 +93,7 @@ export type InterpolatorOptions = {
   /**
    * Specify the parsing behaviour and change output type of the `ColorToken`.
    */
-  token?: TokenOptions;
+  tokenOptions?: TokenOptions;
   /**
    * The easing function to use.
    * @param  t Any value between 0 and 1
@@ -320,24 +320,17 @@ export type TokenOptions = {
  */
 export type Stats =
   | {
-      [F in Factor]: {
+      [T in Factor]: {
         extremums?: Array<number>;
-        colors?: Array<typeof ColorToken>;
+        colors?: ColorToken[];
         against?: ColorToken | null;
         mean?: number;
         families?: Array<BiasedHues | "gray">;
+      } & {
+        colorspace?: Colorspaces;
+        achromatic?: number;
       };
-    }
-  | ({
-      extremums?: Array<number>;
-      colors?: Array<typeof ColorToken>;
-      against?: ColorToken | null;
-      mean?: number;
-      families?: Array<BiasedHues | "gray">;
-    } & {
-      colorspace?: Colorspaces;
-      achromatic?: number;
-    });
+    };
 
 /**
  * Options for specifying sorting conditions.
@@ -408,7 +401,7 @@ export type SchemeOptions = Pick<
  */
 export type HueshiftOptions = Pick<
   InterpolatorOptions,
-  "colorspace" | "easingFn" | "num" | "token" | "hueStep"
+  "colorspace" | "easingFn" | "num" | "tokenOptions"
 > & {
   /**
    * *  minLightness  Minimum lightness value (range 0-100).
@@ -593,3 +586,11 @@ export type ComplimentaryOptions = {
    */
   extremums?: [number?, number?];
 };
+
+export type Swatch<T extends string, V extends ScaleValues> = T extends Tailwind
+  ? V extends ScaleValues
+    ? `${T}[${V}]`
+    : Array<`all[${V | "500"}]`>
+  : Array<T>;
+
+export type LightnessOptions = { amount?: number; darken?: boolean };

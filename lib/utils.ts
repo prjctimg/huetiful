@@ -48,6 +48,7 @@ import {
   ColorFamily,
   ComplimentaryOptions,
   ColorTuple,
+  LightnessOptions,
 } from "./types.js";
 
 /**
@@ -64,8 +65,8 @@ import {
  * :::
  * 
  * @param  color The color with the opacity/alpha channel to retrieve or set.
- * @param {number|string} amount The value to apply to the opacity channel. The value is between `[0,1]`
- * @returns {number|string}
+ * @param amount The value to apply to the opacity channel. The value is between `[0,1]`
+
  * @example
  *
  * // Getting the alpha
@@ -80,25 +81,30 @@ console.log(myColor)
 
 // #b2c3f180
  */
-function alpha(color, amount = undefined) {
+function alpha<Color extends ColorToken, Amount>(
+  color: Color,
+  amount?: Amount
+): Amount extends undefined ? number : Color {
   let alphaChannel;
 
   if (isArray(color)) {
     alphaChannel = eq(
-      color.filter((channel) => eq(typeof channel, "number")).length,
+      (color as ColorTuple).filter((channel) => eq(typeof channel, "number"))
+        .length,
       4
     )
-      ? color[color?.length - 1]
+      ? color[(color as ColorTuple)?.length - 1]
       : 1;
   } else if (eq(typeof color, "string")) {
     alphaChannel = and(
-      gte(color?.length, 8),
+      gte((color as ColorTuple)?.length, 8),
       // @ts-ignore
       not(colorsNamed?.color?.toLowerCase())
     )
-      ? parseInt(color?.slice(color?.length - 2), 16)
+      ? parseInt((color as string)?.slice((color as string)?.length - 2), 16)
       : 1;
   } else if (eq(typeof color, "object")) {
+    // @ts-ignore
     alphaChannel = color?.alpha;
   }
 
@@ -107,7 +113,7 @@ function alpha(color, amount = undefined) {
   } else {
     amount = or(
       and(neq(typeof amount, "number"), exprParser(alphaChannel, amount)),
-      or(and(inRange(amount, 0, 1), amount), give(amount, 100))
+      or(and(inRange(amount as number, 0, 1), amount), give(amount, 100))
     );
 
     if (isArray(color)) {
@@ -117,10 +123,10 @@ function alpha(color, amount = undefined) {
         or(
           and(
             or(
-              eq(color.length, 5),
-              and(neq(color[0], "string"), eq(color.length, 4))
+              eq((color as ColorTuple).length, 5),
+              and(neq(color[0], "string"), eq((color as ColorTuple)?.length, 4))
             ),
-            take(color.length, 1)
+            take((color as ColorTuple).length, 1)
           ),
           3
         )
@@ -132,8 +138,9 @@ function alpha(color, amount = undefined) {
     } else {
       let colorObject = token(color, { kind: "obj" });
       colorObject["alpha"] = amount;
-      color = colorObject;
+      color = colorObject as Color;
     }
+    // @ts-ignore
     return color;
   }
 }
@@ -142,7 +149,7 @@ function alpha(color, amount = undefined) {
  * Sets the value of the specified channel on the passed in color.
  * 
  * If the `amount` parameter is `undefined` it gets the value of the specified channel.
- * @param {string} modeChannel The mode and channel to be retrieved. For example `'rgb.b'` will return the value of the blue channel in the RGB color space of that color.
+ * @param  modeChannel The mode and channel to be retrieved. For example `'rgb.b'` will return the value of the blue channel in the RGB color space of that color.
  
  * @example
  *
@@ -203,7 +210,6 @@ function mc<Color extends ColorToken, Value>(modeChannel: string) {
  * Checks if a color token is achromatic (without hue or simply grayscale).
  * 
  * @param  color The color token to test if it is achromatic or not.
- * @returns {boolean}
  * @example
 
 import { achromatic } from "huetiful-js";
@@ -242,7 +248,7 @@ console.log(grays.map(achromatic));
 ]
 
  */
-function achromatic<Color extends ColorToken>(color: Color) {
+function achromatic<Color extends ColorToken>(color: Color): boolean {
   // @ts-expect-error
   color = token(color, { kind: "obj", targetMode: "lch" });
 
@@ -281,7 +287,14 @@ console.log(brighten('blue', 0.3));
 
 
  */
-function lightness(color, amount, darken = false) {
+function lightness<Color extends ColorToken, Options extends LightnessOptions>(
+  color: Color,
+  options?: Options
+) {
+  let { amount, darken } = or(options, {}) as Options;
+  amount = or(amount, 0.1);
+  darken = or(darken, false);
+
   let f = () => {
     let colorObject = token(color, { kind: "obj", targetMode: "lab65" });
     if (typeof amount === "number") {
@@ -518,9 +531,8 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
  * Gets the luminance of the passed in color token.
  * 
  * If the `amount` parameter is passed in, it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
- * @param { ColorToken } color The color to retrieve or adjust luminance.
- * @param { number } [amount=undefined] The amount of luminance to set. The value range is normalised between [0,1]
- * @returns { ColorToken  | number} 
+ * @param  color The color to retrieve or adjust luminance.
+ * @param amount The amount of luminance to set. The value range is normalised between [0,1]
  * @example
  *
  * import { luminance } from 'huetiful-js'

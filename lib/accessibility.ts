@@ -8,6 +8,7 @@ import {
 } from "culori/fn";
 import { eq, or } from "./internal.js";
 import { wcagContrast } from "culori/fn";
+import { ColorToken, DeficiencyOptions } from "./types.js";
 
 /**
  * Gets the contrast between the passed in colors.
@@ -17,9 +18,8 @@ import { wcagContrast } from "culori/fn";
  *
  * :::
  *
- * @param {ColorToken} a First color to query.
- * @param {ColorToken} b The color to compare against.
- * @returns {number}
+ * @param  a First color to query.
+ * @param  b The color to compare against.
  * @example
  *
  * import { contrast } from 'huetiful-js'
@@ -27,7 +27,7 @@ import { wcagContrast } from "culori/fn";
  * console.log(contrast("black", "white"));
  * // 21
  */
-function contrast(a, b) {
+function contrast<Color extends ColorToken>(a: Color, b: Color): number {
   // @ts-ignore
   return wcagContrast(token(a), token(b));
 }
@@ -124,8 +124,8 @@ function adaptive(color, options = undefined) {}
  * * 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
  * :::
 
- * @param {ColorToken} color The color to return its simulated variant
- * @param {DeficiencyOptions} options
+ * @param  color The color to return its simulated variant
+ * @param  options
  * @example
  *
  * import { deficiency } from 'huetiful-js'
@@ -137,9 +137,12 @@ console.log(deficiency(['rgb', 230, 100, 50, 0.5],{ kind:'blue', severity:0.5 })
 // '#dd663680'
 
  */
-function deficiency(color, options) {
+function deficiency<
+  Color extends ColorToken,
+  Options extends DeficiencyOptions
+>(color: Color, options?: Options): ColorToken {
   let { kind, severity } = options || {};
-  color = token(color);
+  color = token(color) as Color;
   const func = (c, t = 1) =>
       ({
         blue: filterDeficiencyTrit(t)(c),

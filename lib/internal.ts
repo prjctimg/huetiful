@@ -1,12 +1,4 @@
-// @ts-nocheck
-/**
- * @typedef { import('../types.js').Collection} ColorToken
- * @typedef { import('../types.js').Collection} Collection
- * @typedef {import('../types.js').InterpolatorOptions} InterpolatorOptions
- * @typedef {import('../types.js').TailwindColorFamilies} TailwindColorFamilies
- */
-
-import { limits } from "./constants";
+import { limits } from "./constants.js";
 
 import {
   interpolatorSplineNatural,
@@ -15,14 +7,14 @@ import {
   easingSmoothstep,
   interpolatorLinear,
 } from "culori/fn";
-import { mc } from "./utils";
+import { mc } from "./utils.js";
 import { Colorspaces } from "./types.js";
 
 let { keys, entries, values } = Object;
 
 /**
  *
- *  Returns the first truthy value.
+ * Returns the first truthy value.
  * @param  arg The value to check
  * @param def The value to cast if arg is falsy
  * @returns  The first truthy value
@@ -33,7 +25,6 @@ function or<T, U>(arg: T, def: U) {
 
 /**
  * Logical AND expression for `a` and `b`.
-
  */
 function and<T, U>(a: U, b: T) {
   return a && b;
@@ -256,8 +247,6 @@ function not(x: unknown) {
   return !x;
 }
 function inRange(n: number, s: number, e?: number) {
-  /* Built-in method references for those with the same name as other `lodash` methods. */
-
   return and(gte(n, Math.min(s, e)), lt(n, Math.max(s, e)));
 }
 
@@ -293,8 +282,6 @@ function floorCeil(n) {
       Math.ceil(n)
     )
   );
-
-  //If the decimal value is .4  and below it will be rounded down else it will be rounded up.
 }
 
 function customSort(o = "asc", x = "factor") {
