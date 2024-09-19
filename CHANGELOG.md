@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.2](https://github.com/prjctimg/huetiful/compare/v3.0.1...v3.0.2) (2024-09-19)
+
+
+### Bug Fixes
+
+* 3.0.3 ([7bd178b](https://github.com/prjctimg/huetiful/commit/7bd178bc6a427bc10202c7e7bae9e44759935b2b))
+* token parser works normally ([a8c960f](https://github.com/prjctimg/huetiful/commit/a8c960faadddd35eac45ed2886c4de1e30c5fe51))
+
 ## [3.0.1](https://github.com/prjctimg/huetiful/compare/v2.3.0...v3.0.1) (2024-09-17)
 
 
