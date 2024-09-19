@@ -5,7 +5,7 @@
   "module": "./build/huetiful.esm.js",
   "browser": "./build/huetiful.min.js",
   "jsdelivr": "./build/huetiful.min.js",
-  "types": "./build/types/index.d.ts",
+  "types": "./build/index.d.ts",
   "description": "JavaScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.",
   "dependencies": {
     "culori": "^4.0.1"
@@ -16,14 +16,10 @@
     "bun": "^1.1.27",
     "commitizen": "^4.3.0",
     "cz-emoji-conventional": "^1.0.2",
-    "esbuild": "^0.17.19",
     "eslint": "^8.57.0",
     "prettier": "^3.2.0",
     "tsup": "^8.2.4",
     "typescript": "^5.0.2"
-  },
-  "scripts": {
-    "build": "bun build.ts"
   },
   "prettier": {
     "semi": true,
@@ -60,23 +56,13 @@
     "url": "https://github.com/prjctimg/huetiful.git"
   },
   "keywords": [
-    "small",
-    "lch",
-    "D65",
-    "lab",
-    "oklch",
-    "rgb",
-    "jch",
-    "color-schemes",
-    "colors",
+    "color",
     "culori",
     "palettes",
-    "colors",
     "generator",
-    "filter",
-    "sort",
-    "luminance",
-    "contrast"
+    "utilities",
+    "manipulation",
+    "typescript"
   ],
   "author": "ディーン・タリサイ",
   "email": "prjctimg@outlook.com",

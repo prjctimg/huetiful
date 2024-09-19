@@ -31,10 +31,11 @@ jobs:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm i
+      - run: npm i -g bun && bun install
         if: ${{ steps.release.outputs.release_created }}
       - run: |
-          npm run code:publish
+          bun test
+	  bun build.ts
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH}}

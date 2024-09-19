@@ -322,7 +322,7 @@ export type Stats =
   | {
       [T in Factor]: {
         extremums?: Array<number>;
-        colors?: Array<ColorToken>;
+        colors?: ColorToken[];
         against?: ColorToken | null;
         mean?: number;
         families?: Array<BiasedHues | "gray">;
