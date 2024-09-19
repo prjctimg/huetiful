@@ -2,7 +2,7 @@
   "name": "huetiful-js",
   "version": "3.0.4",
   "type": "module",
-  "module": "./build/huetiful.esm.js",
+  "main": "./build/huetiful.esm.js",
   "browser": "./build/huetiful.min.js",
   "jsdelivr": "./build/huetiful.min.js",
   "types": "./build/index.d.ts",
