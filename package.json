@@ -1,6 +1,6 @@
 {
   "name": "huetiful-js",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "type": "module",
   "module": "./build/huetiful.esm.js",
   "browser": "./build/huetiful.min.js",
@@ -30,7 +30,10 @@
     "trailingComma": "none",
     "bracketSpacing": true
   },
-  "eslintIgnore": ["*.cjs", ".mjs"],
+  "eslintIgnore": [
+    "*.cjs",
+    ".mjs"
+  ],
   "config": {
     "commitizen": {
       "path": "cz-emoji-conventional"
@@ -50,7 +53,13 @@
       "ecmaVersion": "latest"
     }
   },
-  "files": ["build", "CHANGELOG.md", "readme.md", "contributing.md", "license"],
+  "files": [
+    "build",
+    "CHANGELOG.md",
+    "readme.md",
+    "contributing.md",
+    "license"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/prjctimg/huetiful.git"
