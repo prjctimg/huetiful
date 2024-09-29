@@ -21,7 +21,11 @@ Distributes the specified `factor` of a color in the collection with the specifi
 
 • **collection**: `Iterable`
 
+The property you want to distribute to the colors in the collection for example `hue | luminance`
+
 • **options?**: `Options`
+
+Optional overrides to change the default configursation
 
 #### Returns
 
@@ -29,7 +33,7 @@ Distributes the specified `factor` of a color in the collection with the specifi
 
 #### Defined in
 
-[collection.ts:241](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/collection.ts#L241)
+[collection.ts:237](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/collection.ts#L237)
 
 ***
 
@@ -98,7 +102,7 @@ let sample = [
 
 #### Defined in
 
-[collection.ts:337](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/collection.ts#L337)
+[collection.ts:336](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/collection.ts#L336)
 
 ***
 
@@ -156,13 +160,13 @@ console.log(
 
 #### Defined in
 
-[collection.ts:185](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/collection.ts#L185)
+[collection.ts:182](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/collection.ts#L182)
 
 ***
 
 ### stats()
 
-> **stats**\<`Iterable`, `Options`\>(`collection`, `options`): \{\}
+> **stats**\<`Iterable`, `Options`\>(`collection`, `options`): [`Stats`](types.mdx#stats)
 
 Computes statistical values about the passed in color collection.
 
@@ -208,8 +212,8 @@ The collection to compute stats from. Any collection with color tokens as values
 
 #### Returns
 
-\{\}
+[`Stats`](types.mdx#stats)
 
 #### Defined in
 
-[collection.ts:67](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/collection.ts#L67)
+[collection.ts:67](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/collection.ts#L67)

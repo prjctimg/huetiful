@@ -871,7 +871,7 @@ function colors<S extends ScaleValues, F extends Tailwind>(
   value?: S
 ): Swatch<F, S> {
   let w = tailwind;
-
+  value = value?.toString() as S;
   let [d, k] = ["all", keys(w)];
 
   let [p, q] = [

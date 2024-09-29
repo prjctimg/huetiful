@@ -66,13 +66,13 @@ console.log(grays.map(achromatic));
 
 #### Defined in
 
-[utils.ts:245](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L245)
+[utils.ts:251](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/utils.ts#L251)
 
 ***
 
 ### alpha()
 
-> **alpha**(`color`, `amount`): `any`
+> **alpha**\<`Color`, `Amount`\>(`color`, `amount`?): `Amount` *extends* `undefined` ? `number` : `Color`
 
 Returns the color token's alpha channel value.
 
@@ -85,19 +85,25 @@ For example `*0.5` which means the value multiply the current alpha by `0.5` and
 In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
 :::
 
+#### Type Parameters
+
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
+
+• **Amount**
+
 #### Parameters
 
-• **color**: `any`
+• **color**: `Color`
 
 The color with the opacity/alpha channel to retrieve or set.
 
-• **amount**: `any` = `undefined`
+• **amount?**: `Amount`
 
 The value to apply to the opacity channel. The value is between `[0,1]`
 
 #### Returns
 
-`any`
+`Amount` *extends* `undefined` ? `number` : `Color`
 
 #### Example
 
@@ -117,7 +123,7 @@ console.log(myColor)
 
 #### Defined in
 
-[utils.ts:83](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L83)
+[utils.ts:84](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/utils.ts#L84)
 
 ***
 
@@ -161,7 +167,7 @@ console.log(complimentary("purple"))
 
 #### Defined in
 
-[utils.ts:735](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L735)
+[utils.ts:747](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/utils.ts#L747)
 
 ***
 
@@ -200,27 +206,29 @@ console.log(family("#310000"))
 
 #### Defined in
 
-[utils.ts:623](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L623)
+[utils.ts:635](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/utils.ts#L635)
 
 ***
 
 ### lightness()
 
-> **lightness**(`color`, `amount`, `darken`): [`ColorToken`](types.mdx#colortoken)
+> **lightness**\<`Color`, `Options`\>(`color`, `options`?): [`ColorToken`](types.mdx#colortoken)
 
 Darkens the color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
 
+#### Type Parameters
+
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
+
+• **Options** *extends* `LightnessOptions`
+
 #### Parameters
 
-• **color**: `any`
+• **color**: `Color`
 
 The color to darken.
 
-• **amount**: `any`
-
-The amount to darken with. The value is expected to be in the range `[0,1]`. Default is `0.1`.
-
-• **darken**: `boolean` = `false`
+• **options?**: `Options`
 
 #### Returns
 
@@ -244,7 +252,7 @@ console.log(brighten('blue', 0.3));
 
 #### Defined in
 
-[utils.ts:284](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L284)
+[utils.ts:290](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/utils.ts#L290)
 
 ***
 
@@ -311,7 +319,7 @@ console.log(luminance(myColor))
 
 #### Defined in
 
-[utils.ts:555](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L555)
+[utils.ts:567](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/utils.ts#L567)
 
 ***
 
@@ -360,7 +368,7 @@ console.log(mc('rgb.g')('#a1bd2f'))
 
 #### Defined in
 
-[utils.ts:156](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L156)
+[utils.ts:163](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/utils.ts#L163)
 
 ***
 
@@ -406,7 +414,7 @@ console.log(overtone("blue"))
 
 #### Defined in
 
-[utils.ts:706](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L706)
+[utils.ts:718](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/utils.ts#L718)
 
 ***
 
@@ -452,7 +460,7 @@ console.log(map(sample, isCool));
 
 #### Defined in
 
-[utils.ts:670](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L670)
+[utils.ts:682](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/utils.ts#L682)
 
 ***
 
@@ -488,7 +496,7 @@ The `numberType` can be used to specify which type of number to return if the `k
 
 • **Color** *extends* [`ColorToken`](types.mdx#colortoken)
 
-• **Options** *extends* [`TokenOptions`](types.mdx#tokenoptions)
+• **Options** *extends* [`TokenOptions`](types.mdx#tokenoptions-1)
 
 #### Parameters
 
@@ -506,4 +514,4 @@ Options to customize the parsing and output behaviour.
 
 #### Defined in
 
-[utils.ts:330](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/utils.ts#L330)
+[utils.ts:343](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/utils.ts#L343)
