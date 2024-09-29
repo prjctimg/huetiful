@@ -56,7 +56,7 @@ console.log(discover(sample, { kind:'tetradic' }))
 
 #### Defined in
 
-[generators.ts:402](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L402)
+[generators.ts:397](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/generators.ts#L397)
 
 ***
 
@@ -91,7 +91,7 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 
 #### Defined in
 
-[generators.ts:476](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L476)
+[generators.ts:471](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/generators.ts#L471)
 
 ***
 
@@ -155,7 +155,7 @@ console.log(hueShiftedPalette);
 
 #### Defined in
 
-[generators.ts:87](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L87)
+[generators.ts:86](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/generators.ts#L86)
 
 ***
 
@@ -213,7 +213,7 @@ console.log(interpolator(['pink', 'blue'], { num:8 }));
 
 #### Defined in
 
-[generators.ts:300](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L300)
+[generators.ts:295](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/generators.ts#L295)
 
 ***
 
@@ -260,13 +260,13 @@ console.log(pair("green",{hueStep:6,num:4,tone:'dark'}))
 
 #### Defined in
 
-[generators.ts:224](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L224)
+[generators.ts:219](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/generators.ts#L219)
 
 ***
 
 ### pastel()
 
-> **pastel**(`baseColor`, `options`): [`ColorToken`](types.mdx#colortoken)
+> **pastel**\<`Color`, `Options`\>(`baseColor`, `options`?): [`ColorToken`](types.mdx#colortoken)
 
 Returns a random pastel variant of the passed in color token.
 
@@ -275,19 +275,23 @@ Pastel colors are those soft hued colors like baby blue,pink and mauve.
 
 :::
 
+#### Type Parameters
+
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
+
+• **Options** *extends* [`TokenOptions`](types.mdx#tokenoptions-1)
+
 #### Parameters
 
-• **baseColor**: [`ColorToken`](types.mdx#colortoken)
+• **baseColor**: `Color`
 
 The color to return a pastel variant of.
 
-• **options**: [`TokenOptions`](types.mdx#tokenoptions) = `undefined`
+• **options?**: `Options`
 
 #### Returns
 
 [`ColorToken`](types.mdx#colortoken)
-
-A random pastel color.
 
 #### Example
 
@@ -301,7 +305,7 @@ console.log(pastel("green"))
 
 #### Defined in
 
-[generators.ts:166](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L166)
+[generators.ts:167](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/generators.ts#L167)
 
 ***
 
@@ -358,4 +362,4 @@ console.log(scheme("triadic")("#a1bd2f"))
 
 #### Defined in
 
-[generators.ts:547](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/generators.ts#L547)
+[generators.ts:542](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/generators.ts#L542)

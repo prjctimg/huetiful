@@ -7,7 +7,7 @@ description: Functions for handling color accessibility.
 
 ### contrast()
 
-> **contrast**(`a`, `b`): `number`
+> **contrast**\<`Color`\>(`a`, `b`): `number`
 
 Gets the contrast between the passed in colors.
 
@@ -16,13 +16,17 @@ Swapping color `a` and `b` in the parameter list doesn't change the resulting va
 
 :::
 
+#### Type Parameters
+
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
+
 #### Parameters
 
-• **a**: `any`
+• **a**: `Color`
 
 First color to query.
 
-• **b**: `any`
+• **b**: `Color`
 
 The color to compare against.
 
@@ -41,13 +45,13 @@ console.log(contrast("black", "white"));
 
 #### Defined in
 
-[accessibility.ts:30](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/accessibility.ts#L30)
+[accessibility.ts:30](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/accessibility.ts#L30)
 
 ***
 
 ### deficiency()
 
-> **deficiency**(`color`, `options`): `Error`
+> **deficiency**\<`Color`, `Options`\>(`color`, `options`?): [`ColorToken`](types.mdx#colortoken)
 
 Simulates how a color may be perceived by people with color vision deficiency.
 
@@ -59,17 +63,23 @@ To avoid writing the long types, the expected parameters for the `kind` of blind
 * 'protanopia' - An inability to distinguish the color 'red'. The `kind` is `'red'`.
 :::
 
+#### Type Parameters
+
+• **Color** *extends* [`ColorToken`](types.mdx#colortoken)
+
+• **Options** *extends* [`DeficiencyOptions`](types.mdx#deficiencyoptions)
+
 #### Parameters
 
-• **color**: `any`
+• **color**: `Color`
 
 The color to return its simulated variant
 
-• **options**: `any`
+• **options?**: `Options`
 
 #### Returns
 
-`Error`
+[`ColorToken`](types.mdx#colortoken)
 
 #### Example
 
@@ -85,4 +95,4 @@ console.log(deficiency(['rgb', 230, 100, 50, 0.5],{ kind:'blue', severity:0.5 })
 
 #### Defined in
 
-[accessibility.ts:140](https://github.com/prjctimg/huetiful/blob/bbe3dc6ed491b58806fe97165f7fab02edf2a2ac/lib/accessibility.ts#L140)
+[accessibility.ts:140](https://github.com/prjctimg/huetiful/blob/d07000fddff896b916bf99e717462d82d74f1005/lib/accessibility.ts#L140)

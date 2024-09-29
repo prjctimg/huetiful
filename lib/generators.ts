@@ -25,14 +25,14 @@ import {
   min,
   max,
   values,
-  factorIterator,
+  iterator,
   entries,
   and,
   eq,
   adjustHue,
   rand,
   inRange,
-  isValidArgs,
+
   not,
   keys,
 } from "./internal.js";
@@ -398,7 +398,7 @@ function discover(
   colors: Collection = [],
   options: DiscoverOptions
 ): Collection {
-  if (isValidArgs(colors, 4)) {
+
     //  Initialize and sanitize parameters
     const colorTokenValues = values(colors),
       colorTokenKeys = keys(colors);
@@ -451,7 +451,7 @@ function discover(
 
     // @ts-ignore
     return palettes;
-  }
+  
 }
 
 /**
@@ -596,7 +596,7 @@ function scheme(
       return palettes;
     };
 
-  return factorIterator(kind, callback, keys(PALETTE_TYPES));
+  return iterator(kind, callback, keys(PALETTE_TYPES));
 }
 
 export { pair, discover, hueshift, pastel, earthtone, scheme, interpolator };
