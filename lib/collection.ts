@@ -36,9 +36,7 @@ import {
  *
  * The properties from each returned `factor` object are:
  *
- * * `against` - The color being used for comparison.
- *
- * Required for the `distance` and `contrast` factors.
+ * * `against` - The color being used for comparison. Required for the `distance` and `contrast` factors.
  * If `relativeMean` is `false`, other factors that take the comparison color token as an overload will have this property's value as `null`.
  * * `colorspace` - The colorspace in which the factors were computed in. It has no effect on the `contrast` or `distance` factors (for now).
  *
@@ -61,6 +59,14 @@ import {
  * * `colorspace` - The colorspace in which the values were computed from, expected to be hue based.
  * Defaults to `lch` if an invalid mode like `rgb` is used.
  *
+ * :::tip
+ * 
+ * * The `factor` is expected to be an array of strings with each element being a valid `factor`. Every key is a `factor`, with the stats of that `factor` as the value in the result object. 
+ * 
+ * To get all the factors in the result object pass `undefined` to `factor`.
+ * 
+ * :::
+ * 
  * @param  collection The collection to compute stats from. Any collection with color tokens as values will work.
  * @param options
  */
@@ -151,6 +157,14 @@ function stats<Iterable extends Collection, Options extends StatsOptions>(
 /**
  * Sorts colors according to the specified `factor`. The supported options are:
  *
+ * :::tip
+ * 
+ * * The `factor` is expected to be an array of strings with each element being a valid `factor`. Every key is a `factor`, with the sorted collection as the value in the result object. 
+ * 
+ * To get all the factors in the result object pass `undefined` to `factor`.
+ * 
+ * :::
+ * 
  * * `'contrast'` - Sorts colors according to their contrast value as defined by WCAG.
  * The contrast is tested `against` a comparison color  which can be specified in the `options` object.
  * * `'lightness'` - Sorts colors according to their lightness.
@@ -158,6 +172,7 @@ function stats<Iterable extends Collection, Options extends StatsOptions>(
  * * `'distance'` - Sorts colors according to their distance.
  * The distance is computed from the `against` color token which is used for comparison for all the colors in the `collection`.
  * * `luminance` - Sorts colors according to their relative brightness as defined by the WCAG3 definition.
+ * 
  * :::tip
  * The return type is determined by the type of `collection`:
  * 
@@ -293,7 +308,17 @@ function distribute<
 }
 
 /**
- * Filters a collection of colors using the specified `factor` as the criterion. The supported options are:
+ * Filters a collection of colors using the specified `factor` as the criterion. 
+ * 
+ * :::tip
+ * 
+ * * The `factor` is expected to be an array of strings with each element being a valid `factor`. Every key is a `factor`, with the filtered collection as the value in the result object. 
+ * 
+ * To get all the factors in the result object pass `undefined` to `factor`.
+ * 
+ * :::
+ * 
+ * The supported options are:
  * * `'contrast'` - Returns colors with the specified contrast range. The contrast is tested against a comparison color (the 'against' param) and the specified contrast ranges.
  * * `'lightness'` - Returns colors in the specified lightness range.
  * * `'chroma'` - Returns colors in the specified `saturation` or `chroma` range. The range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
@@ -305,13 +330,15 @@ function distribute<
  * :::tip
  * For the `chroma` and `lightness` factors, the range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range. 
  * This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range. 
- * But if the value of either start or end is above 1 AND the `colorspace` in use has an end range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
+ * But if the value of either `start` or `end` is above 1 AND the `colorspace` in use has an `end` range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
+ * 
+ * [See the color spaces page](https://culorijs.org/color-spaces/) for the expected ranges.
  * 
  * :::
- * @see https://culorijs.org/color-spaces/ For the expected ranges per colorspace.
+ * 
  * Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === | != | !== | >= | <= | < | >`
  * @param collection The collection of colors to filter.  
- * @param  options
+ * @param  options Options to customise filtering behaviour.
  * @example
  * 
  * import { filterBy } from 'huetiful-js'
