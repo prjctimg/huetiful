@@ -1,16 +1,36 @@
-import { limits } from './constants.js';
+// deno-lint-ignore-file ban-ts-comment
+
 
 import {
 	interpolatorSplineNatural,
 	fixupHueShorter,
 	interpolatorSplineBasisClosed,
 	easingSmoothstep,
-	interpolatorLinear
-} from 'culori/fn';
-import { mc } from './utils.js';
-import { Colorspaces } from './types.js';
+	interpolatorLinear,
+	differenceHyab,
+} from "culori/fn";
+import { mc } from "./utils.ts";
 
-let { keys, entries, values } = Object;
+import { contrast } from "./accessibility.ts";
+import type { Collection, ColorToken, Factor,Colorspaces } from "./types.d.ts";
+
+const { keys, entries, values } = Object;
+
+const operators = {
+			"!=": neq,
+			"==": eq,
+			">=": gte,
+			"<=": lte,
+			">": gt,
+			"<": lt,
+			"===": eq,
+			"!==": neq,
+			"!": not,
+			"/": give,
+			"*": mult,
+			"+": add,
+			"-": take,
+		};
 
 /**
  *
@@ -19,7 +39,7 @@ let { keys, entries, values } = Object;
  * @param def The value to cast if arg is falsy
  * @returns  The first truthy value
  */
-function or<T, U>(arg: T, def: U) {
+function or<T, U>(arg: T, def: U): T | U {
 	return arg || def;
 }
 
@@ -31,6 +51,14 @@ function and<T, U>(a: U, b: T) {
 }
 
 /**
+ * Fetche
+ * @param a The color to compare against.
+ * Its a string because Culori experts it to be a string or plain color object.
+ */
+const dstnce = (a: unknown) => (b: unknown) =>
+	differenceHyab()(a as string, b as string);
+
+/**
  * Helper func to return fact(s)
  * @param  t The factor array
  * @param {*} z callback that takes a factor as its only argument
@@ -38,27 +66,28 @@ function and<T, U>(a: U, b: T) {
  * @returns {Collection}
  */
 function iterator(
-	t: string[] | string,
-	z,
-	y = ['hue', 'chroma', 'lightness', 'distance', 'contrast', 'luminance']
+	t: string[] | string | undefined,
+	z:unknown,
+	y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"],
 ) {
-	let p = {};
-
+	const p = {};
+// @ts-ignore
 	if (isArray(t)) for (const k of values(t)) p[k] = z(k);
+	// @ts-ignore
+	if (eq(typeof t, "string")) p[t as string] = z(t);
 
-	if (eq(typeof t, 'string')) p[t as string] = z(t);
+	// @ts-ignore
 	if (eq(t, undefined)) for (const k of y) p[k] = z(k);
 
-	// if factor is an array add each factor as a key to the object
 	return p;
 }
 
-let [ci, ef, hf, hi, li] = [
+const [ci, ef, hf, hi, li] = [
 	interpolatorSplineNatural,
 	easingSmoothstep,
 	fixupHueShorter,
 	interpolatorSplineBasisClosed,
-	interpolatorLinear
+	interpolatorLinear,
 ];
 
 /**
@@ -79,54 +108,37 @@ const pltrconfg = {
 	ci,
 	hf,
 	hi,
-	li
+	li,
 };
 
-function gmchn(m = '', i?) {
-	m = m.replace(/\d|ok/g, '');
+function gmchn(m = "", i?:number) {
+	const out = m.replace(/\d|ok/g, "");
 
-	return or(and(i, m.charAt(i)), m.split(''));
+	return or(and(i, out.charAt(i as number)), out.split(""));
 }
 
-function mult(x, y) {
+function mult(x:number, y:number):number {
 	return x * y;
 }
 
-function give(x, y) {
+function give(x:number, y:number):number {
 	return x / y;
 }
 
-function add(x, y) {
+function add(x:number, y:number):number {
 	return x + y;
 }
 
-function take(x, y) {
+function take(x:number, y:number):number {
 	return x - y;
 }
 
-function exprParser(a, b) {
-	// regExp to match arithmetic operator and the value
+function exprParser(a:string, b:string) {
 
-	// Create operator map
-	let u = {
-		'!=': neq,
-		'==': eq,
-		'>=': gte,
-		'<=': lte,
-		'>': gt,
-		'<': lt,
-		'===': eq,
-		'!==': neq,
-		'!': not,
-		'/': give,
-		'*': mult,
-		'+': add,
-		'-': take
-	};
+// @ts-ignore
+	return and(eq(typeof b, "string"), operators[reOp(b)](a, reNum(b)));
 
-	return and(eq(typeof b, 'string'), u[reOp(b)](a, reNum(b)));
-
-	// @ts-ignore
+	
 }
 
 /**
@@ -136,35 +148,38 @@ function exprParser(a, b) {
  * @param {boolean} f Whether to return full mode channel string or key only
  * @returns {string}
  */
-function mcchn(c: 'c' | 'l' | string, m?: Colorspaces, f = true): string {
+function mcchn(c: "c" | "l" | string, m='lch', f = true): string {
 	// Matches any string with c or s
-	m = or(m, 'lch');
-	let x, e, d;
+	
+	let x:RegExp;
+	let e:string;
+	
 
-	if (eq(c, 'l')) {
+	if (eq(c, "l")) {
 		x = /(j|l)/i;
 		e = `The color space ${m} has no lightness channel.`;
 	} else {
 		x = /(s|c)/i;
 		e = `The color space ${m} has no chroma/saturation channel.`;
 	}
-
-	d = x.exec(m)['0'];
+// @ts-ignore
+const	d = x.exec(m)["0"];
 
 	// @ts-ignore
 	return x.test(m) ? or(and(f, `${m}.${d}`), d) : Error(e);
 }
 
-function colorObj(a, b) {
-	return (c) => {
-		return { [a]: b(c), color: c };
-	};
+function colorObj(a:string, b:unknown) {
+// @ts-ignore
+	return (c:ColorToken) =>  ({ [a]: b(c), color: c })
+
 }
 
-function customFindKey(u, v) {
+function customFindKey(u:object, v:number) {
 	// If the color is achromatic return the string gray
 	return keys(u)
 		.filter((a) => {
+		// @ts-ignore
 			const t = customConcat(u[a]);
 
 			// @ts-ignore
@@ -178,32 +193,34 @@ function customFindKey(u, v) {
 
 function customConcat(h = {}) {
 	return and(
-		eq(typeof h, 'object'),
+		eq(typeof h, "object"),
 		(() => {
-			let res = [];
+			const res = [];
 			const k = keys(h);
 
-			//@ts-ignore
+	
 
 			for (const g of k) {
+						//@ts-ignore
 				res.push(...h[g]);
 			}
 
 			return res.flat(1);
-		})()
+		})(),
 	);
 }
 
-function adjustHue(val) {
-	if (val < 0) val += Math.ceil(-val / 360) * 360;
+function adjustHue(val:number) {
 
-	return val % 360;
-	// return or(and(lt(x, 0), (x += Math.ceil(mult(give(-x, 360)), 360))), x % 360);
+	let out=0
+	if (val < 0) out += Math.ceil(-val / 360) * 360;
+
+	return out % 360;
 }
 
-function chnDiff(x, s) {
-	return (y) => {
-		const cb = (color) => mc(s)(color);
+function chnDiff(x:ColorToken, s:string) {
+	return (y:ColorToken) => {
+		const cb = (c:ColorToken) => mc(s)(c);
 
 		return or(and(lt(cb(x), cb(y)), take(cb(y), cb(x))), take(cb(x), cb(y)));
 	};
@@ -211,27 +228,27 @@ function chnDiff(x, s) {
 
 // Comparison operators
 
-function gt(x, y) {
+function gt(x:number, y:number) {
 	return x > y;
 }
 
-function lt(x, y) {
+function lt(x:number, y:number) {
 	return x < y;
 }
 
-function gte(x, y) {
+function gte(x:number, y:number) {
 	return x >= y;
 }
 
-function lte(x, y) {
+function lte(x:number, y:number) {
 	return x <= y;
 }
 
-function eq(x, y) {
+function eq(x:unknown, y:unknown) {
 	return x === y;
 }
 
-function neq(x, y) {
+function neq(x:unknown, y:unknown) {
 	return not(eq(x, y));
 }
 
@@ -239,65 +256,57 @@ function not(x: unknown) {
 	return !x;
 }
 function inRange(n: number, s: number, e?: number) {
+// @ts-ignore
 	return and(gte(n, Math.min(s, e)), lt(n, Math.max(s, e)));
 }
 
-function isInt(n) {
+function isInt(n:number):boolean {
 	return /^-?[0-9]+$/.test(n.toString());
-}
-
-function norm(v, mc = '') {
-	const channel = mc.split('.'),
-		[start, end] = limits[channel[0]][channel[1]];
-
-	return and(
-		not(inRange(v, start, end)),
-		or(
-			and(lte(v, 1), (v = mult(end, v))),
-			or(and(lte(end, 100), mult(end, give(v, 100))), mult(end, give(v, end)))
-		)
-	);
 }
 
 function rand(mn: number, mx: number) {
 	return Math.random() * Math.abs(mx - mn + mn);
 }
 
-function floorCeil(n) {
+function floorCeil(n: number) {
 	return and(
 		not(isInt(n)),
 		or(
 			and(
-				eq(/^[0-4]$/.test(n.toString().split('.')[1].charAt(0)), true),
-				Math.floor(n)
+				eq(/^[0-4]$/.test(n.toString().split(".")[1].charAt(0)), true),
+				Math.floor(n),
 			),
-			Math.ceil(n)
-		)
+			Math.ceil(n),
+		),
 	);
 }
 
-function customSort(o = 'asc', x = 'factor') {
+
+
+/**
+ * 
+ * @param o The order to return the results in.
+ * @param x The factor to sort with. Used as a key.
+ */
+function customSort(o = "asc", x = "factor") {
 	// a-b gives asc order & b-a gives desc order
 
-	return (a, b) => {
-		return or(
-			and(eq(o, or('asc', 'min')), a[x] - b[x]),
-			and(eq(o, or('desc', 'max')), b[x] - a[x])
+
+	//  @ts-ignore
+	return (a, b) =>
+		or(
+			and(eq(o, or("asc", "min")), a[x] - b[x]),
+			and(eq(o, or("desc", "max")), b[x] - a[x])
 		);
-	};
+
 }
 
-function colorObjColl(a = 'factor', b) {
-	let u = colorObj(a, b);
-	/**
-	 * @param collection The array or object of colors to iterate over. If an object is passed, its values are expected to be valid color tokens.
-	 */
-	return (z) => {
-		// Check if the collection is an array else treat it like a plain object
-		// Convert object into a Map which remembers sorting order in a more predictable way
+function colorObjColl(a: Factor, b: unknown) {
 
-		return map(z, u);
-	};
+	return (z: unknown) =>
+
+		map(z, colorObj(a, b));
+
 }
 
 /**
@@ -305,7 +314,7 @@ function colorObjColl(a = 'factor', b) {
  * @param {any} x The value to check.
  * @returns {boolean}
  */
-function isArray(x) {
+function isArray(x: unknown) {
 	return Array.isArray(x);
 }
 
@@ -314,7 +323,7 @@ function isArray(x) {
  * @param {any} x The value to check.
  * @returns {boolean}
  */
-function isMap(x) {
+function isMap(x: unknown) {
 	return x instanceof Map;
 }
 
@@ -323,180 +332,160 @@ function isMap(x) {
  * @param {any} x The value to check.
  * @returns {boolean}
  */
-function isSet(x) {
+function isSet(x: unknown) {
 	return x instanceof Set;
 }
 
 /**
  * Iterates over any collection invoking `cb` on every element in the `collection`.
- * @param {Collection} u The collection to map over.
- * @param {(a)=>any} cb The callback function invoked per element in the collection. The callback is expected to be unary.
- * @returns {Collection}
+ * @param  u The collection to map over.
+ * @param  cb The callback function invoked per element in the collection. The callback is expected to be unary.
  *
  */
-function map(u, cb) {
-	let p;
-	p = or(or(and(isMap(u), new Map()), and(isSet(u), new Set())), false);
+function map<T extends object>(u: T | unknown, cb: unknown) {
+
+	let p = or(or(and(isMap(u), new Map()), and(isSet(u), new Set())), false);
 	if (p) {
+	// @ts-ignore
 		for (const [a, b] of entries(u)) {
+			// @ts-ignore: p is a Map or Set object otherwise this code block doesn't execute
 			p.set(a, cb(b));
 		}
 		return p;
-	} else if (eq(typeof u, 'object')) {
-		p = isArray(u) ? new Array(u.length) : {};
-		for (const [a, b] of entries(u)) {
-			p[a] = cb(b);
-		}
 	}
 	// @ts-ignore
-	return p;
+	p = isArray(u) ? new Array(u.length) : {};
+	// @ts-ignore
+	for (const [a, b] of entries(u)) {
+		// @ts-ignore
+		p[a] = cb(b);
+
+	}
+
+	return p as T;
 }
 
 function min(arr: Array<number>) {
-	return extremum('min', arr);
+	return extremum("min", arr);
 }
 
-function extremum(e: 'min' | 'max', arr: Array<number> = []) {
+function extremum(e: "min" | "max", arr: Array<number> = []) {
 	return arr.reduce(
 		(a, b) => Math[e](a, b),
-		eq(e, 'max') ? -Infinity : Infinity
+		eq(e, "max") ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY,
 	);
 }
 
 function max(arr: Array<number>) {
-	return extremum('max', arr);
+	return extremum("max", arr);
 }
 
-function reNum(s = '') {
-	s = s.toString();
-	let re = /[0-9]*\.?[0-9]+/;
-	// @ts-ignore
-	return or(and(re.test(s), Number(re.exec(s)['0'])), undefined);
-}
+function reNum(s: unknown) {
 
-function reOp(s = '') {
-	s = s.toString();
-	let re = /^(\*|\+|\-|\/|>=|<=|<|>|={1,2}|!={0,2})/;
+	const re = /[0-9]*\.?[0-9]+/;
+
 
 	// @ts-ignore
-
-	return re.test(s) ? re.exec(s)['0'] : undefined;
-}
-function sortedColl(fact = 'factor', cb, o = 'asc', obj = false) {
-	return (c) => {
-		let r = colorObjColl(fact, cb)(c),
-			u;
-
-		// If the collection is not an Array  insert the sorted elements
-		// Sort the array using our customSort helper function
-		return or(
-			and(
-				isArray(c),
-				(() => {
-					// @ts-ignore
-					u = r.sort(customSort(o, fact));
-
-					return or(
-						and(eq(obj, true), u),
-						u.map((w) => w['color'])
-					);
-				})()
-			),
-			(() => {
-				u = new Map();
-				let t = values(r)
-					// @ts-ignore
-					.sort(customSort(o, fact));
-
-				for (const [z, v] of entries(t)) {
-					u.set(z, v);
-				}
-
-				if (eq(obj, false)) {
-					for (const [z, v] of entries(u)) {
-						u.set(z, v['color']);
-					}
-				}
-				return u;
-			})()
-		);
-	};
+	return and(re.test(s), Number(re.exec(s)["0"]))
 }
 
-function filteredColl(fact, cb) {
-	return (c, s, e) => {
-		if (eq(typeof s, 'number')) {
-			return (
-				colorObjColl(
-					fact,
-					cb
-				)(c)
-					// @ts-ignore
-					.filter((j) => inRange(j[fact], s, e))
-					.map((j) => j['color'])
-			);
-		} else {
-			const v = reNum(s),
-				w = reOp(s);
+function reOp(s: unknown) {
 
-			return w
-				? colorObjColl(
-						fact,
-						cb
-					)(c)
-						// @ts-ignore
-						.filter((l) => {
-							return {
-								'!=': neq,
-								'==': eq,
-								'>=': gte,
-								'<=': lte,
-								'>': gt,
-								'<': lt,
-								'===': eq,
-								'!==': neq,
-								'!': not,
-								'/': give,
-								'*': mult,
-								'+': add,
-								'-': take
-							}[w](l[fact], parseFloat(v.toString()));
-						})
-						.map((l) => l['color'])
-				: Error(`Unknown operator ${w}`);
+	const re = /^(\*|\+|\-|\/|>=|<=|<|>|={1,2}|!={0,2})/;
+
+	// @ts-ignore
+	return and(re.test(s), String(re.exec(s)["0"]))
+}
+function sortedColl(fact: Factor, cb: unknown, o = "asc") {
+	return (c: Collection) => {
+
+
+
+		const data = values(colorObjColl(fact, cb)(c))
+			.sort(customSort(o, fact));
+
+
+
+		if (isArray(c)){
+		return data
 		}
-	};
-}
+			
 
-function clamp(v, mn = -Infinity, mx = Infinity) {
-	if (typeof v === 'number') {
-		if (gt(v, mx)) {
-			return mx;
-		} else if (lt(v, mn)) {
-			return mn;
-		} else {
-			return v;
+		const out = new Map();
+
+
+
+		for (const [z, v] of entries(data)) {
+			out.set(z, v) as Map<typeof z, typeof v>;
 		}
-	} else {
-		throw Error(`${v} is not a number`);
+
+		return out;
 	}
+};
+
+
+function filteredColl(fact: Factor, cb: unknown) {
+	return (c: unknown, s: string | number, e: string | number | undefined) => {
+
+
+
+		let data = values(colorObjColl(
+			fact,
+			cb,
+		)(c))
+
+
+
+		if (and(eq(typeof s, "number"), eq(typeof e, "number"))) {
+			data= data
+				.filter((j) => inRange(j[fact], s as number, e as number))
+
+		}
+		
+		const startOp = reOp(s) as keyof typeof operators
+		const endOp = reOp(e) as keyof typeof operators
+		const start: number = Number.parseFloat(reNum(s).toString())
+		const end: number = Number.parseFloat(reNum(e).toString())
+
+		if (and(startOp, endOp)) {
+			
+			data=data
+			.filter((l) =>
+				and(operators[startOp](l[fact], start), operators[endOp](l[fact], end))
+			)
+	
+
+		}
+		else{
+		data= data.filter((l) =>  end ? and(operators[or(startOp, endOp)](l[fact], start),inRange(l[fact],end)):operators[or(startOp, endOp)](l[fact], start)
+			)	
+
+		}
+
+		return data.map((l) => l.color)
+
+	}
+
 }
+
 
 /**
  * Parses the colorspace of the passed in color token. Meant for arrays and color objects.
- * @param {*} c The color token
- * @returns {import('../types.js').Colorspaces}
+ * @param c The color token
+ 
  */
-function getSrcMode(c) {
-	return or(
-		or(and(and(isArray(c), neq(typeof c[0], 'number')), c[0]), c?.mode),
-		'rgb'
-	);
+function getSrcMode(c:ColorToken):Colorspaces {
+	
+
+	// @ts-ignore
+	return  and(isArray(c), neq(typeof c[0], "number")) ? c[0]:eq(typeof 'object',c)?c?.mode :'rgb'
 }
 
+const ctrst = (a: unknown) => (b: unknown) =>
+	contrast(b as ColorToken, a as ColorToken);
 export {
 	map,
-	clamp,
+	
 	not,
 	getSrcMode,
 	exprParser,
@@ -522,7 +511,6 @@ export {
 	gte,
 	lte,
 	eq,
-	norm,
 	or,
 	gmchn,
 	pltrconfg,
@@ -536,5 +524,7 @@ export {
 	and,
 	give,
 	add,
-	take
+	take,
+	dstnce,
+	ctrst,
 };
