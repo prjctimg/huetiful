@@ -1,38 +1,35 @@
 import {
-  and,
-  chnDiff,
-  eq,
-  filteredColl,
-  gt,
-  gte,
-  isArray,
-  iterator,
-  keys,
-  map,
-  mcchn,
-  or,
-  sortedColl,
-  values,
-} from "./internal.js";
-import { achromatic, family, luminance, mc, token } from "./utils.js";
-import { contrast } from "./accessibility.js";
+	and,
+	chnDiff,
+	eq,
+	filteredColl,
+	iterator,
+	map,
+	mcchn,
+	or,
+	sortedColl,
+	values,dstnce,ctrst
+} from "./internal.ts";
+import { achromatic, family, luminance, mc, token } from "./utils.ts";
+import { contrast } from "./accessibility.ts";
 import {
-  averageAngle,
-  averageNumber,
-  differenceHyab,
-  fixupHueLonger,
-  fixupHueShorter,
+	averageAngle,
+	averageNumber,
+	differenceHyab,
+	fixupHueLonger,
+	fixupHueShorter,
 } from "culori/fn";
-import { limits } from "./constants.js";
-import {
-  Collection,
-  DistributionOptions,
-  Factor,
-  FilterByOptions,
-  SortByOptions,
-  Stats,
-  StatsOptions,
-} from "./types.js";
+import { limits } from "./constants.ts";
+import type {
+	Collection,
+	DistributionOptions,
+	Factor,
+	FilterByOptions,
+	SortByOptions,
+	Stats,
+	StatsOptions,
+} from "./types.d.ts";
+import type { ColorToken } from "./types.d.ts";
 
 /**
  * Computes statistical values about the passed in color collection.
@@ -73,87 +70,87 @@ import {
  * @param options
  */
 function stats<Iterable extends Collection, Options extends StatsOptions>(
-  collection: Iterable,
-  options: Options,
+	collection: Iterable,
+	options?: Options,
 ): Stats {
-  let { factor, relative, colorspace, against } = options || {};
+	let { factor, relative, colorspace, against } = or(options, {}) as Options;
 
-  factor = or(factor, undefined);
-  relative = or(relative, false);
-  colorspace = or(colorspace, "lch");
-  against = or(against, "cyan");
+	factor = or(factor, undefined);
+	relative = or(relative, false);
+	colorspace = or(colorspace, "lch");
+	against = or(against, "cyan");
 
-  collection = map(collection, token);
+	const hexColors = map(collection, token);
 
-  const getStatsObject = (fact) => {
-      const [sortedTokens, getChannel, getContrast] = [
-        (a, b) => sortedColl(a, b, "asc", true)(collection),
-        (a) => (b) => mc(a)(b),
-        (a) => contrast(a, against),
-      ];
-      return or(
-        and(eq(relative, true), {
-          chroma: sortedTokens(fact, chnDiff(against, mcchn("c", colorspace))),
-          luminance: (() => {
-            // @ts-ignore
-            let cb1 = (a) => (b) => Math.abs(luminance(a) - luminance(b));
-            return sortedTokens(fact, cb1(against));
-          })(),
-          lightness: sortedTokens(
-            fact,
-            chnDiff(against, mcchn("l", colorspace)),
-          ),
-          hue: sortedTokens(fact, chnDiff(against, `${colorspace}.h`)),
-          contrast: sortedTokens(fact, getContrast),
-        }),
-        {
-          chroma: sortedTokens(fact, getChannel(mcchn("c", colorspace))),
-          luminance: sortedTokens(fact, luminance),
-          lightness: sortedTokens(fact, getChannel(mcchn("l", colorspace))),
-          hue: sortedTokens(fact, getChannel(colorspace + `.h`)),
-        },
-      )[fact];
-    },
-    len =
-      // @ts-ignore
-      collection.length,
-    factorStats = (fact) => {
-      // we filter out falsy values from the collection to avoid getting NaN
-      // @ts-ignore
-      const callback = (a, b) => (c) => map(a, b(c)),
-        i = (a) => (b) => differenceHyab()(a, b),
-        h = (a) => (b) => contrast(a, b);
-      return {
-        chroma: callback(mc(mcchn("c", colorspace)), averageNumber),
-        distance: callback(i, averageNumber),
+	const getStatsObject = (fact:Factor) => {
+		const sortedTokens = 
+			(a, b) => sortedColl(a, b, "asc", true)(hexColors)
+	
+		
 
-        hue: callback(mc(colorspace + `.h`), averageAngle),
-        lightness: callback(mc(mcchn("l", colorspace)), averageNumber),
-        contrast: callback(h, averageNumber),
-        luminance: callback(luminance, averageNumber),
-      }[fact];
-    },
-    commonStats = (fact) => {
-      const [x, y] = [getStatsObject(fact)[0], getStatsObject(fact)[len - 1]];
+		// @ts-ignore:
+		return or(
+			and(eq(relative, true), {
+				chroma: sortedTokens(fact, chnDiff(against, mcchn("c", colorspace))),
+				luminance: (() => {
+					const cb1 = (a: ColorToken) => (b: ColorToken) =>
+						Math.abs(luminance(a) - luminance(b));
+					return sortedTokens(fact, cb1(against as ColorToken));
+				})(),
+				lightness: sortedTokens(fact, chnDiff(against, mcchn("l", colorspace))),
+				hue: sortedTokens(fact, chnDiff(against, `${colorspace}.h`)),
+				contrast: sortedTokens(fact, ctrst(against)),
+			}),
+			{
+				chroma: sortedTokens(fact, mc(mcchn("c", colorspace))),
+				luminance: sortedTokens(fact, luminance),
+				lightness: sortedTokens(fact, mc(mcchn("l", colorspace))),
+				hue: sortedTokens(fact, mc(`${colorspace}.h`)),
+			},
+		)[fact];
+	};
+	const len: number = values(collection).length;
+	const factorStats = (fact: Factor) => {
+		// @ts-ignore:
+		const callback = (a, b) => (c) => map(a, b(c));
+		const h = (a: ColorToken) => (b: ColorToken) => contrast(a, b);
 
-      return {
-        against: or(
-          and(or(relative, eq(fact, or("contrast", "distance"))), against),
-          null,
-        ),
-        colors: [x["color"], y["color"]],
-        // @ts-ignore
-        mean: factorStats(fact)(collection),
-        extremums: [x[fact], y[fact]],
-        families: [family(x["color"]), family(y["color"])],
-      };
-    },
-    statsObject = iterator(factor, commonStats);
-  statsObject["achromatic"] = values(collection).filter(achromatic).length /
-    len;
-  statsObject["colorspace"] = colorspace;
+		// @ts-ignore:
+		return {
+			chroma: callback(mc(mcchn("c", colorspace)), averageNumber),
+			distance: callback(dstnce, averageNumber),
 
-  return statsObject as Stats;
+			hue: callback(mc(`${colorspace}.h`), averageAngle),
+			lightness: callback(mc(mcchn("l", colorspace)), averageNumber),
+			contrast: callback(h, averageNumber),
+			luminance: callback(luminance, averageNumber),
+		}[fact];
+	};
+	const commonStats = (fact: Factor) => {
+		const [x, y] = [getStatsObject(fact)[0], getStatsObject(fact)[len - 1]];
+
+		return {
+			against: or(
+				and(or(relative, eq(fact, or("contrast", "distance"))), against),
+				null,
+			),
+			colors: [x.color, y.color],
+			// @ts-ignore:
+			mean: factorStats(fact)(collection),
+			extremums: [x[fact], y[fact]],
+
+			families: [family(x.color), family(y.color)],
+		};
+	};
+	const statsObject = iterator(factor, commonStats);
+
+	// @ts-ignore:
+	statsObject.achromatic = values(collection).filter(achromatic).length / len;
+
+	// @ts-ignore:
+	statsObject.colorspace = colorspace;
+
+	return statsObject as Stats;
 }
 
 /**
@@ -197,50 +194,54 @@ console.log(
 // [ 'brown', 'red', 'green', 'purple' ]
  */
 function sortBy<Iterable extends Collection, Options extends SortByOptions>(
-  collection: Iterable,
-  options?: Options,
+	collection: Iterable,
+	options?: Options,
 ): Collection {
-  let { against, colorspace, factor, order, relative } = or(
-    options,
-    {} as Options,
-  );
-  factor = or(factor, "hue");
-  relative = or(relative, false);
-  colorspace = or(colorspace, "lch");
-  against = or(against, "cyan");
-  order = or(order, "asc");
-  // lightness and chroma channel constants respectively
-  const [lightnessChannel, chromaChannel] = ["l", "c"].map((w) =>
-      mcchn(w, colorspace, false)
-    ),
-    sort = (a) => sortedColl(factor, a, order),
-    // returns factor cbs determined by the options
-    callback = (fact) => {
-      const v = (a) => (b) => Math.abs(luminance(a) - luminance(b)),
-        u = (a) => (c) => differenceHyab()(a, c),
-        w = (a) => (c) => contrast(c, a);
-      return or(
-        and(relative, {
-          chroma: sort(chnDiff(against, mc(colorspace + "." + chromaChannel))),
-          hue: sort(chnDiff(against, mc(`${colorspace}.h`))),
-          luminance: sort(v(against)),
-          lightness: sort(
-            chnDiff(against, mc(colorspace + "." + lightnessChannel)),
-          ),
-        }),
-        {
-          chroma: sort(mc(colorspace + "." + chromaChannel)),
-          hue: sort(mc(`${colorspace}.h`)),
-          luminance: sort(luminance),
-          distance: sort(u(against)),
-          contrast: sort(w(against)),
-          lightness: sort(mc(colorspace + "." + lightnessChannel)),
-        },
-      )[fact](collection);
-    };
 
-  // @ts-ignore
-  return iterator(factor, callback);
+  // @ts-ignore:
+	let { against, colorspace, factor, order, relative } = or(
+		options,
+		{} as Options,
+	);
+	factor = or(factor, "hue");
+	relative = or(relative, false);
+	colorspace = or(colorspace, "lch");
+	against = or(against, "cyan");
+	order = or(order, "asc");
+	// lightness and chroma channel constants respectively
+	const [lightnessChannel, chromaChannel] = ["l", "c"].map((w) =>
+			mcchn(w, colorspace, false),
+		);
+	const sort = (a) => sortedColl(factor, a, order);
+	// returns factor cbs determined by the options
+	const callback = (fact:Factor) => {
+			const v = (a:ColorToken) => (b:ColorToken) => Math.abs(luminance(a) - luminance(b));
+			const u = (a:string) => (c:string) => differenceHyab()(a, c);
+			const w = (a:ColorToken) => (c:ColorToken) => contrast(c, a);
+
+
+      // @ts-ignore:
+			return or(
+				and(relative, {
+					chroma: sort(chnDiff(against, mc(`${colorspace}.${chromaChannel}`))),
+					hue: sort(chnDiff(against, mc(`${colorspace}.h`))),
+					luminance: sort(v(against)),
+					lightness: sort(
+						chnDiff(against, mc(`${colorspace}.${lightnessChannel}`)),
+					),
+				}),
+				{
+					chroma: sort(mc(`${colorspace}.${chromaChannel}`)),
+					hue: sort(mc(`${colorspace}.h`)),
+					luminance: sort(luminance),
+					distance: sort(u(against)),
+					contrast: sort(w(against)),
+					lightness: sort(mc(`${colorspace}.${lightnessChannel}`)),
+				},
+			)[fact](collection);
+		};
+
+	return iterator(factor, callback);
 }
 
 /**
@@ -249,49 +250,46 @@ function sortBy<Iterable extends Collection, Options extends SortByOptions>(
  * @param options  Optional overrides to change the default configursation
  */
 function distribute<
-  Iterable extends Collection,
-  Options extends DistributionOptions,
+	Iterable extends Collection,
+	Options extends DistributionOptions,
 >(collection: Iterable, options?: Options): Collection {
-  // Destructure the opts to check before distributing the factor
-  let {
-    extremum,
-    excludeSelf,
-    excludeAchromatic,
-    colorspace,
-    hueFixup,
-    factor,
-  } = or(options, {}) as Options;
-  // Set the extremum to distribute to default to max if its not min
-  extremum = or(extremum, "max");
+	// Destructure the opts to check before distributing the factor
+	let {
+		extremum,
+		excludeSelf,
+		excludeAchromatic,
+		colorspace,
+		hueFixup,
+		factor,
+	} = or(options, {}) as Options;
+	// Set the extremum to distribute to default to max if its not min
+	extremum = or(extremum, "max");
 
-  // Exclude the colorToken with the specified factor extremum being distributed
-  excludeSelf = or(excludeSelf, false);
+	// Exclude the colorToken with the specified factor extremum being distributed
+	excludeSelf = or(excludeSelf, false);
 
-  // Exclude achromatic colors from the manipulations. The colors are returned in the resultant collection
-  excludeAchromatic = or(excludeAchromatic, false);
+	// Exclude achromatic colors from the manipulations. The colors are returned in the resultant collection
+	excludeAchromatic = or(excludeAchromatic, false);
 
-  // The fixup to use when tweaking the hue channels
-  // @ts-ignore
-  hueFixup = factor === "hue"
-    ? hueFixup === "longer" ? fixupHueLonger : fixupHueShorter
-    : null;
-  colorspace = or(colorspace, "lch");
-  const facts: { [K in Factor] } = {
-    hue: "h",
-    lightness: mcchn("l", colorspace),
-    chroma: mcchn("c", colorspace),
-    distance: 0,
-    luminance: 0,
-    contrast: 0,
-  };
-  // v is expected to be a color object so that we can access the color's hue property during the mapping
-  // set the callbacks depending on the type of factorStats
-  //
-
-  for (const col of values(collection)) {
-    // col[facts[factor]]=/
-  }
-  return a as Collection;
+	// The fixup to use when tweaking the hue channels
+	// @ts-ignore
+	hueFixup =
+		factor === "hue"
+			? hueFixup === "longer"
+				? fixupHueLonger
+				: fixupHueShorter
+			: null;
+	colorspace = or(colorspace, "lch");
+	const facts: { [K in Factor] } = {
+		hue: "h",
+		lightness: mcchn("l", colorspace),
+		chroma: mcchn("c", colorspace),
+		distance: 0,
+		luminance: 0,
+		contrast: 0,
+	};
+	// v is expected to be a color object so that we can access the color's hue property during the mapping
+	// set the callbacks depending on the type of factorStats
 }
 
 /**
@@ -342,49 +340,52 @@ let sample = [
   '#4e0000',
   '#600000',
   '#720000',
-]
+] 
 
  */
 function filterBy<Iterable extends Collection, Options extends FilterByOptions>(
-  collection: Iterable,
-  options: Options,
+	collection: Iterable,
+	options: Options,
 ): Collection {
-  let { against, colorspace, factor, ranges } = or(options, {} as Options),
-    start: number,
-    end: number;
-  factor = or(factor, "hue");
-  colorspace = or(colorspace, "lch");
-  against = or(against, "cyan");
+	let { against, colorspace, factor, ranges } = or(options, {} ) as Options;
+	let start: number;
+	let end: number;
+	factor = or(factor, "hue");
+	colorspace = or(colorspace, "lch");
+	against = or(against, "cyan");
 
-  const filter = (cb) => (fact) =>
-      filteredColl(fact, cb)(collection, start, end),
-    chromaChannel = mcchn("c", colorspace, false),
-    lightnessChannel = mcchn("l", colorspace, false),
-    defaultRanges: { [F in Factor] } = {
-      hue: [0, 359],
-      contrast: [0, 21],
-      chroma: [...limits[colorspace][chromaChannel]],
-      lightness: [...limits[colorspace][lightnessChannel]],
-      distance: [0, Infinity],
-      luminance: [0, 1],
-    },
-    ctrst = (a) => (b) => contrast(b, a),
-    dstnce = (a) => differenceHyab()(a, against as string),
-    callback = (fact: Factor) => {
-      start = or(ranges[fact][0], defaultRanges[fact][0]);
-      end = or(ranges[fact][1], defaultRanges[fact][1]);
+	const filter = (cb) => (fact:string) =>
+			filteredColl(fact, cb)(collection, start, end);
+	const chromaChannel = mcchn("c", colorspace, false);
+	const lightnessChannel = mcchn("l", colorspace, false);
+	const defaultRanges= {
+			hue: [0, 359],
+			contrast: [0, 21],
+      // @ts-ignore:
+			chroma: [...limits[colorspace][chromaChannel]],
+      // @ts-ignore:
+			lightness: [...limits[colorspace][lightnessChannel]],
+			distance: [0, Number.POSITIVE_INFINITY],
+			luminance: [0, 1],
+		};
 
-      return {
-        chroma: filter(mc(mcchn("c", colorspace, true))),
-        lightness: filter(mc(mcchn("l", colorspace, true))),
-        hue: filter(mc(`${colorspace}.h`)),
-        distance: filter(dstnce(token(against))),
-        contrast: filter(ctrst(against)),
-        luminance: filter(luminance),
-      }[fact](fact);
-    };
 
-  return iterator(factor, callback) as Collection;
+	const callback = (fact: Factor) => {
+    
+			start = or(ranges[fact][0], defaultRanges[fact][0]);
+			end = or(ranges[fact][1], defaultRanges[fact][1]);
+
+			return {
+				chroma: filter(mc(mcchn("c", colorspace, true))),
+				lightness: filter(mc(mcchn("l", colorspace, true))),
+				hue: filter(mc(`${colorspace}.h`)),
+				distance: filter(dstnce(token(against))),
+				contrast: filter(ctrst(against)),
+				luminance: filter(luminance),
+			}[fact](fact);
+		};
+
+	return iterator(factor, callback) as Collection;
 }
 
 export { distribute, filterBy, sortBy, stats };
