@@ -11,10 +11,13 @@
       "es2023"
     ],
     "noEmit": true,
+    "strictNullChecks": false,
     "noImplicitAny": false,
     "target": "es6",
     "skipLibCheck": true,
     "allowJs": true,
+    "noUnusedLocals": true,
+    "strict": false,
     "checkJs": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,

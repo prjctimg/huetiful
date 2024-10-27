@@ -144,9 +144,9 @@ function exprParser(a:string, b:string) {
 /**
  * Gets the chroma or lightness channel from the specified `m` or colorspace.
  * @param  c The channel key to get
- * @param {string} m The colorspace
- * @param {boolean} f Whether to return full mode channel string or key only
- * @returns {string}
+ * @param  m The colorspace
+ * @param f Whether to return full mode channel string or key only
+ * @returns 
  */
 function mcchn(c: "c" | "l" | string, m='lch', f = true): string {
 	// Matches any string with c or s
