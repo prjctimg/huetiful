@@ -1,14 +1,14 @@
-import { token } from "./utils.js";
-import {
+import { token } from "./utils.ts";
+import { 
   filterDeficiencyDeuter,
   filterDeficiencyProt,
   filterDeficiencyTrit,
   filterGrayscale,
   formatHex8,
 } from "culori/fn";
-import { eq, or } from "./internal.js";
+import { eq, or } from "./internal.ts";
 import { wcagContrast } from "culori/fn";
-import { ColorToken, DeficiencyOptions } from "./types.js";
+import type { ColorToken, DeficiencyOptions } from "./types.d.ts";
 
 /**
  * Gets the contrast between the passed in colors.
@@ -28,7 +28,7 @@ import { ColorToken, DeficiencyOptions } from "./types.js";
  * // 21
  */
 function contrast<Color extends ColorToken>(a: Color, b: Color): number {
-  // @ts-ignore
+  // @ts-ignore:
   return wcagContrast(token(a), token(b));
 }
 
@@ -40,7 +40,7 @@ function contrast<Color extends ColorToken>(a: Color, b: Color): number {
 // 4. Find out which channels do I need to tweak in order to fix up the colors.
 // 5. Maybe provide an optional adaptive boolean which returns dark/light mode variant colors of the color blind safe palettes.
 // Add reference to articles
-// Read more about the minimum accepted values for palette accessibility
+// Read more about the minimum accepted values for palette accessibility\
 
 // Things I need to understand first:
 // 1. What is adaptive color exactly
@@ -111,7 +111,7 @@ function contrast<Color extends ColorToken>(a: Color, b: Color): number {
 
 // export { adaptive };
 
-function adaptive(color, options = undefined) {}
+//function adaptive(color, options = undefined) {}
 
 /**
  * Simulates how a color may be perceived by people with color vision deficiency.
@@ -142,24 +142,24 @@ function deficiency<
   Options extends DeficiencyOptions
 >(color: Color, options?: Options): ColorToken {
   let { kind, severity } = options || {};
-  color = token(color) as Color;
-  const func = (c, t = 1) =>
+  
+  const func = (c:string, t = 1) =>
       ({
         blue: filterDeficiencyTrit(t)(c),
         red: filterDeficiencyProt(t)(c),
         green: filterDeficiencyDeuter(t)(c),
         monochromacy: filterGrayscale(t, "lch")(c),
-      }[kind]),
+      }[kind as string]),
     defs = ["red", "blue", "green", "monochromacy"];
 
-  kind = or(kind, "red");
+  kind = or(kind, "red")
   severity = or(severity, 0.5);
 
-  return defs.some((el) => eq(el, kind.toLowerCase()))
-    ? formatHex8(func(color, severity))
+  return defs.some((el) => eq(el, kind?.toLowerCase()))
+    ? formatHex8(func(token(color), severity))
     : Error(
         `Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`
       );
 }
 
-export { deficiency, contrast, adaptive };
+export { deficiency, contrast };

@@ -1,5 +1,5 @@
 import { deficiency, contrast } from "./accessibility.js";
-import { filterBy, sortBy, stats, distribute } from "./collection.js";
+import { filterBy, sortBy, stats } from "./collection.js";
 import {
   interpolator,
   discover,
@@ -259,9 +259,9 @@ console.log(
     return this.#setThis(stats, options);
   }
 
-  distribute(options?: DistributionOptions) {
-    return this.#setThis(distribute, options);
-  }
+  // distribute(options?: DistributionOptions) {
+  //   return this.#setThis(distribute, options);
+  // }
   /**
    *
    * Returns the result value from the chain.
