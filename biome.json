@@ -1,15 +1,18 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "files":{
-    "ignoreUnknown": true
-  },"vcs":{
+    "ignoreUnknown": true,"maxSize": 32768
+  },"vcs":{"enabled": true,
+  "clientKind":"git","defaultBranch": "dev",
     "useIgnoreFile": true
   },"linter":{
     "enabled": true,
     "rules":{
         "style":{
-            "useSingleVarDeclarator":"off"
+            "useSingleVarDeclarator":"off","noParameterAssign":"off"
         }
     }
+  },"formatter":{
+    "indentWidth":4,"indentStyle":"tab","lineWidth":60
   }
 }

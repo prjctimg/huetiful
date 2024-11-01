@@ -485,7 +485,7 @@ const ctrst = (a: unknown) => (b: unknown) =>
 	contrast(b as ColorToken, a as ColorToken);
 export {
 	map,
-	
+	ci,li,ef,hf,hi,
 	not,
 	getSrcMode,
 	exprParser,

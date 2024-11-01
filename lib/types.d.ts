@@ -510,7 +510,6 @@ export type Factor =
  */
 export type Colorspaces =
   | "lab"
-  | "lab65"
   | "rgb"
   | "lch"
   | "lch65"
