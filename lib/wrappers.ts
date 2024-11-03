@@ -12,6 +12,7 @@ import {
 import { or, mcchn } from "./internal.ts";
 import { colors, nearest } from "./palettes.ts";
 import type {
+  ColorToken,TokenOptions,NearestOptions,SchemeOptions ,ColorFamily,
   Collection,
   ColorOptions,
   DeficiencyOptions,
@@ -59,20 +60,22 @@ let wrapper = new ColorArray(sample);
 // [ 'blue', 'green', 'yellow', 'pink' ]
  */
 class ColorArray<C extends Collection, Options extends object> {
+  colors: Collection;
+  implicitReturn: boolean;
   /**
    *
    * @param colors The collection of colors to bind.
    */
   constructor(colors: C, implicitReturn?: boolean) {
-    this["colors"] = colors;
-    this["implicitReturn"] = or(implicitReturn, false) as boolean;
-    return this;
+    this.colors = colors;
+    this.implicitReturn = or(implicitReturn, false) as boolean;
+    return;
   }
 
-  #setThis(callback, options) {
-    this["colors"] = callback(options);
-
-    return this["implicitReturn"] ? this.output() : this;
+  #setThis(callback: (x:Collection,y:unknown)=>Collection,options:unknown) {
+    this.colors = callback(this.colors,options);
+// @ts-ignore:
+    return this.implicitReturn ? this.output() : this;
   }
 
   /**
@@ -87,7 +90,8 @@ class ColorArray<C extends Collection, Options extends object> {
 console.log(load(cols).nearest('blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
-  nearest(options) {
+  nearest(options?:NearestOptions) {
+    // @ts-ignore:
     return this.#setThis(nearest, options);
   }
 
@@ -112,6 +116,7 @@ console.log(load(cols).nearest('blue', 3));
 	 */
 
   interpolator(options?: InterpolatorOptions) {
+    // @ts-ignore:
     return this.#setThis(interpolator, options);
   }
 
@@ -148,6 +153,7 @@ console.log(load(cols).nearest('blue', 3));
   // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
    */
   discover(options?: DiscoverOptions) {
+// @ts-ignore:
     return this.#setThis(discover, options);
   }
 
@@ -195,6 +201,7 @@ console.log(load(sample).filterBy({start:'>=3', factor:'contrast',against:'green
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
  */
   filterBy(options?: FilterByOptions) {
+    // @ts-ignore:
     return this.#setThis(filterBy, options);
   }
 
@@ -228,6 +235,7 @@ console.log(
 // [ 'brown', 'red', 'green', 'purple' ]
  */
   sortBy(options?: SortByOptions) {
+    // @ts-ignore:
     return this.#setThis(sortBy, options);
   }
 
@@ -256,6 +264,7 @@ console.log(
    * @param  options Optional parameters to specify how the data should be computed.
    */
   stats(options?: StatsOptions) {
+    // @ts-ignore:
     return this.#setThis(stats, options);
   }
 
@@ -268,7 +277,7 @@ console.log(
    * Can be omitted from invocation when `implicitReturn` is set to true.
    */
   output() {
-    return this["colors"];
+    return this.colors;
   }
 }
 
@@ -286,10 +295,10 @@ console.log(wrapper.color2hex());
  */
 class Color {
   /**
-   * @param {ColorToken} [c= 'cyan'] The color to bind.
+   * @param c The color to bind.
    * @param options Optional overrides and properties for the bound color.
    */
-  constructor(c, options?: ColorOptions) {
+  constructor(c:ColorToken='cyan', options?: ColorOptions) {
     const {
       alpha,
       colorspace,
@@ -302,45 +311,50 @@ class Color {
     } = or(options, {}) as ColorOptions;
 
     // Set the alpha of the color if its not explicitly passed in.
-
-    this["alpha"] = or(alpha, _opac(c));
+// @ts-ignore:
+    this.alpha = or(alpha, _opac(c));
 
     // if the color is undefined we cast pure black
-    this["_color"] = c;
+    // @ts-ignore:
+    this._color = c;
 
     // set the color's luminance if its not explicitly passed in
-
-    this["_luminance"] = or(luminance, _lmnce(c));
+// @ts-ignore:
+    this._luminance = or(luminance, _lmnce(c));
 
     // set the color's lightness if its not explicitly passed in the default lightness is in Lch but will be refactored soon
-
-    this["_lightness"] = or(lightness, mc("lch.l")(c));
-
+// @ts-ignore:
+    this._lightness = or(lightness, mc("lch.l")(c));
+// @ts-ignore:
     // set the default color space as jch if a color space is not specified. TODO: get the mode from object and array
-    this["colorspace"] = or(colorspace, "lch");
-
+    this.colorspace = or(colorspace, "lch");
+// @ts-ignore:
     // set the default saturation to that of the passed in color if the value is not explicitly set
-    this["_saturation"] = or(
+    this._saturation = or(
       saturation,
-
-      mc(mcchn("c", this["colorspace"]))(c)
+// @ts-ignore:
+      mc(mcchn("c", this.colorspace))(c)
     );
-
+// @ts-ignore:
     // light mode default is gray-100
-    this["lightMode"] = or(lightMode, colors("gray", "100"));
-
+    this.lightMode = or(lightMode, colors("gray", "100"));
+// @ts-ignore:
     // dark mode default is gray-800
-    this["darkMode"] = or(darkMode, colors("gray", "800"));
-
-    this["implicitReturn"] = or(implicitReturn, false) as boolean;
+    this.darkMode = or(darkMode, colors("gray", "800"));
+// @ts-ignore:
+    this.implicitReturn = or(implicitReturn, false) as boolean;
   }
-
-  #setThis(callback, options?) {
-    this["color"] = options
-      ? callback(this["_color"], options)
-      : callback(this["_color"]);
-
-    return this["implicitReturn"] ? this.output() : this;
+// @ts-ignore:
+  
+#setThis(callback, options?) {
+// @ts-ignore:
+  this.color = options
+  // @ts-ignore:
+      ? callback(this._color, options)
+      // @ts-ignore:
+      : callback(this._color);
+// @ts-ignore:
+    return this.implicitReturn ? this.output() : this;
   }
 
   /**
@@ -364,7 +378,7 @@ class Color {
    
   // #b2c3f180
    */
-  alpha(amount) {
+  alpha(amount?:string|number) {
     return this.#setThis(_opac, amount);
   }
 
@@ -385,8 +399,8 @@ class Color {
   // 0.7411764705882353
    *
   */
-  mc(modeChannel, value) {
-    const cb = (p) => mc(modeChannel)(p, value);
+  mc(modeChannel:string, value?:string|number) {
+    const cb = (p:ColorToken) => mc(modeChannel)(p, value);
     return this.#setThis(cb);
   }
 
@@ -398,11 +412,12 @@ class Color {
      value is in the range [0,1]
       the easing and the interpolation methods /fixups.
      */
-  via(origin) {
-    const cb = (a) =>
+  via(origin:ColorToken) {
+    const cb = (a:ColorToken) =>
       interpolator([origin, a], {
         num: 1,
-        colorspace: this["colorspace"],
+        // @ts-ignore:
+        colorspace: this.colorspace,
       });
     return this.#setThis(cb);
   }
@@ -446,7 +461,7 @@ class Color {
    * * `'object'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.
    *
    */
-  token(options) {
+  token(options?:TokenOptions) {
     return this.#setThis(token, options);
   }
 
@@ -600,14 +615,19 @@ class Color {
    * console.log(color('pink').contrast('yellow'))
    * // 1.4322318222624262
    */
-  contrast(against) {
+  contrast(against:ColorToken) {
     return this.#setThis(
       contrast,
+      // @ts-ignore:
       /light|dark/gi.test(against)
+      // @ts-ignore:
         ? {
-            light: this["background"]["lightMode"],
-            dark: this["background"]["darkMode"],
-          }[against?.toLowerCase]
+          // @ts-ignore:
+            light: this?.background?.lightMode,
+            // @ts-ignore:
+            dark: this?.background?.darkMode,
+            // @ts-ignore:
+          }[against?.toLowerCase()]
         : against
     );
   }
@@ -632,7 +652,7 @@ class Color {
   console.log(color(myColor).luminance(0.5));
    
      */
-  luminance(amount) {
+  luminance(amount?:number) {
     return this.#setThis(_lmnce, amount);
   }
 
@@ -655,9 +675,10 @@ class Color {
    * // ['lch',60,19.9,0.5]
    *
    */
-  saturation(amount) {
-    const c = mcchn("c", this["colorspace"]),
-      cb = (a) => mc(c)(a, amount);
+  saturation(amount?:number) {
+    // @ts-ignore:
+    const c = mcchn("c", this.colorspace),
+      cb = (a:ColorToken) => mc(c)(a, amount);
     return this.#setThis(cb, amount);
   }
 
@@ -731,7 +752,8 @@ class Color {
    
    
    */
-  temp() {
+  temp():'warm'|'cool' {
+    // @ts-ignore:
     return this.#setThis(temp);
   }
 
@@ -783,7 +805,8 @@ class Color {
   console.log(color("blue").overtone())
   // false
    */
-  overtone() {
+  overtone():ColorFamily {
+    // @ts-ignore:
     return this.#setThis(overtone);
   }
 
@@ -797,7 +820,7 @@ class Color {
   console.log(color("#a1bd2f").scheme("triadic"))
   // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
    */
-  scheme(options) {
+  scheme(options?:SchemeOptions) {
     return this.#setThis(scheme, options);
   }
 
@@ -814,8 +837,9 @@ class Color {
    * // ['rgb',200,34,65]
    *
    */
-  output() {
-    return this["_color"];
+  output():ColorToken {
+    // @ts-ignore:
+    return this._color
   }
 }
 

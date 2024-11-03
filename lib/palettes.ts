@@ -256,28 +256,6 @@ const tailwind = {
 	},
 };
 
-const {
-	indigo,
-	red,
-	rose,
-	gray,
-	green,
-	pink,
-	purple,
-	blue,
-	sky,
-	violet,
-	amber,
-	emerald,
-	fuchsia,
-	lime,
-	neutral,
-	orange,
-	stone,
-	teal,
-	yellow,
-	zinc,
-} = tailwind;
 
 /**
  * Returns the specified scheme from the passed in color map
@@ -906,29 +884,14 @@ function colors<S extends ScaleValues, F extends Tailwind>(
 	return o as Swatch<F, S>;
 }
 export {
-	amber,
-	blue,
+	
 	colors,
 	diverging,
-	emerald,
-	fuchsia,
-	gray,
-	green,
-	indigo,
-	lime,
+
 	nearest,
-	neutral,
-	orange,
-	pink,
-	purple,
+
 	qualitative,
-	red,
-	rose,
+	
 	sequential,
-	sky,
-	stone,
-	teal,
-	violet,
-	yellow,
-	zinc,
+
 };

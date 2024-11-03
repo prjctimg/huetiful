@@ -13,7 +13,7 @@
   "devDependencies": {
     "@types/bun": "^1.1.9",
     "@types/culori": "^2.1.0",
-    "bun": "^1.1.27",
+    "bun": "^1.1.34",
     "commitizen": "^4.3.0",
     "cz-emoji-conventional": "^1.0.2",
     "eslint": "^8.57.0",

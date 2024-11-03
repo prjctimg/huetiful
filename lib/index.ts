@@ -1,4 +1,4 @@
-//@ts-nocheck
+//@ts-nocheck:
 export * from './utils.ts';
 export * from './palettes.ts';
 export * from './accessibility.ts';

@@ -44,9 +44,15 @@ export type SchemeType = "analogous" | "triadic" | "tetradic" | "complementary";
  */
 export type Collection =
   | Array<ColorToken>
-  | Map<any, ColorToken>
+  | Map<string|number, ColorToken>
   | Set<ColorToken>
   | object;
+
+
+export type NearestOptions = {
+  against?:ColorToken
+  num?:number
+}
 
 /**
  * Properties on an instance of the `Color` class. Some of these properties have corresponding methods.

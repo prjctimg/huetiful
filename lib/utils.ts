@@ -85,7 +85,8 @@ function alpha<Color extends ColorToken, Amount>(
 	color: Color,
 	amount?: Amount,
 ): Amount extends undefined ? number : Color {
-	let alphaChannel;
+	// @ts-ignore:
+	let alphaChannel:number;
 
 	if (isArray(color)) {
 		alphaChannel = eq(
@@ -103,7 +104,7 @@ function alpha<Color extends ColorToken, Amount>(
 				// @ts-ignore:
 				not(colorsNamed?.color?.toLowerCase()),
 			)
-			? parseInt(
+			? Number.parseInt(
 				(color as string)?.slice((color as string)?.length - 2),
 				16,
 			)
@@ -114,9 +115,11 @@ function alpha<Color extends ColorToken, Amount>(
 	}
 
 	if (not(amount)) {
+		// @ts-ignore:
 		return alphaChannel;
-	} else {
+	} 
 		amount = or(
+			// @ts-ignore:
 			and(neq(typeof amount, "number"), exprParser(alphaChannel, amount)),
 			or(and(inRange(amount, 0, 1), amount), give(amount, 100)),
 		);
@@ -152,7 +155,7 @@ function alpha<Color extends ColorToken, Amount>(
 		}
 		// @ts-ignore:
 		return color;
-	}
+	
 }
 
 /**
@@ -183,10 +186,10 @@ function mc<Color extends ColorToken, Value>(modeChannel: string) {
 		color: Color,
 		value?: number | string,
 	): Value extends number | string ? ColorToken : number => {
-		const [mode, channel] = modeChannel.split("."),
+		const [mode, channel] = modeChannel.split(".");
 			// @ts-ignore:
-			colorObject = token(color, { targetMode: mode, kind: "obj" });
-		let currentChannel;
+		let	colorObject = token(color, { targetMode: mode, kind: "obj" });
+		let currentChannel:number;
 
 		if (eq(typeof color, "object")) {
 			if (isArray(color)) {
@@ -213,8 +216,9 @@ function mc<Color extends ColorToken, Value>(modeChannel: string) {
 				);
 			}
 
-			// @ts-ignore:
+		
 		}
+			// @ts-ignore:
 		return not(value) ? currentChannel : colorObject;
 	};
 }
@@ -269,7 +273,7 @@ function achromatic<Color extends ColorToken>(color: Color): boolean {
 	// so its technically not achromatic since white and black are not grayscale
 	// @ts-ignore:
 	const isFalsy = (x: unknown) =>
-		or(or(eq(typeof x, "undefined"), eq(x, 0)), isNaN(x as number));
+		or(or(eq(typeof x, "undefined"), eq(x, 0)), Number.isNaN(x as number));
 
 	return or(
 		and(
@@ -458,7 +462,8 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 				// @ts-ignore:
 				? delete res.mode
 				// @ts-ignore:
-				: (res.mode = targetMode ? targetMode : srcMode);
+
+				: (res.mode =or(and(targetMode,targetMode),srcMode));
 		}
 		// @ts-ignore:
 		omitAlpha ? delete res.alpha : (res.alpha = alphaValue);
@@ -486,7 +491,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 		 * @type {number|string}
 		 */
 		// @ts-ignore:
-		const result = ((255 * rgbObject["r"]) << 16) +
+		const result = ((255 * rgbObject.r) << 16) +
 			// @ts-ignore:
 			((255 * rgbObject.g) << 8) +
 			// @ts-ignore:
@@ -542,7 +547,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 				b: (color as number & 0xff) / 255,
 				mode: "rgb",
 			}
-			: Error("unknown num color: " + color);
+			: Error(`unknown num color:   ${color}`);
 	}
 
 	return {
@@ -595,11 +600,12 @@ function luminance<Color extends ColorToken, Amount>(
 	amount?: number,
 ): Amount extends number ? ColorToken : number {
 	color = token(color) as Color;
-	let result;
+		// @ts-ignore:
+	let result:unknown;
 	if (!amount) {
 		// @ts-ignore:
 		return wcagLuminance(color);
-	} else {
+	} 
 		const w = "#ffffff",
 			b = "#000000";
 
@@ -629,9 +635,9 @@ function luminance<Color extends ColorToken, Amount>(
 
 				if (gt(low, amount)) {
 					return f(u, mid);
-				} else {
+				} 
 					return f(mid, v);
-				}
+				
 			};
 
 			if (gt(currentLuminance, amount)) {
@@ -642,7 +648,7 @@ function luminance<Color extends ColorToken, Amount>(
 		}
 		// @ts-ignore:
 		return token(result);
-	}
+	
 }
 
 /**
@@ -664,7 +670,7 @@ function family<
 >(color: Color): HueFamily {
 	if (neq(achromatic(color), true)) {
 		const [hueAngle, hueFamilies] = [
-			mc(`lch.h`)(color),
+			mc('lch.h')(color),
 			keys(hue) as HueFamily[],
 		];
 
@@ -712,9 +718,9 @@ function temp<Color extends ColorToken>(color: Color): "cool" | "warm" {
 				inRange(
 					floorCeil(mc("lch.h")(color)),
 					// @ts-ignore:
-					hue[hueFamily]["cool"][0],
+					hue[hueFamily].cool[0],
 					// @ts-ignore:
-					hue[hueFamily]["cool"][1],
+					hue[hueFamily].cool[1],
 				)
 			),
 			"cool",
@@ -754,7 +760,7 @@ function overtone<Color extends ColorToken, Bias extends ColorFamily>(
 		and(achromatic(color), "gray"),
 		// @ts-ignore:
 		or(and(/-/.test(hueFamily), hueFamily.split("-")[1]), false),
-	);
+	) as Bias
 }
 
 /**

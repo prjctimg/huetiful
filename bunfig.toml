@@ -1,8 +1,8 @@
 # Reduce memory usage at the cost of performance
-smol = true
+smol = false
 
 [test]
-smol = true
+smol = false
 
 [install]
 auto = "auto"

@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import { build, $ } from "bun";
-import { readdirSync } from "node:fs";
+import { $, build } from "bun";
+
 import { log } from "node:console";
 
 const baseOptions = {
@@ -17,22 +17,20 @@ const baseOptions = {
   },
   logger = (env) => log(`${env} build complete🏗`);
 
-await $`rm -rf build  && echo 'Cleaned build/ directory'`;
+await $`sudo rm -rf build  && echo 'Cleaned build/ directory'`;
 
 // library bundle minified
 await build({
   ...baseOptions,
   naming: "browser/huetiful.min.js",
-}).then(logger("Browser ESM (minified) entire library"));
+}).then(logger("Browser ESM (minified) entire library")) &&
+  await build({
+    ...baseOptions,
 
-// node bundle
-await build({
-  ...baseOptions,
-
-  minify: false,
-  target: "node",
-  external: ["culori"],
-  naming: "node/huetiful.esm.js",
-}).then(logger("Node"));
+    minify: false,
+    target: "node",
+    external: ["culori"],
+    naming: "node/huetiful.esm.js",
+  }).then(logger("Node"));
 await $`bun tsup  --format=esm ./lib/index.ts --dts-only --outDir=./build`;
 await $`du -sh build/*`;
