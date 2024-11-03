@@ -145,8 +145,11 @@ function deficiency<
   
   const func = (c:string, t = 1) =>
       ({
+        // @ts-ignore:
         blue: filterDeficiencyTrit(t)(c),
+        // @ts-ignore:
         red: filterDeficiencyProt(t)(c),
+        // @ts-ignore:
         green: filterDeficiencyDeuter(t)(c),
         monochromacy: filterGrayscale(t, "lch")(c),
       }[kind as string]),
@@ -154,8 +157,9 @@ function deficiency<
 
   kind = or(kind, "red")
   severity = or(severity, 0.5);
-
+// @ts-ignore:
   return defs.some((el) => eq(el, kind?.toLowerCase()))
+  // @ts-ignore:
     ? formatHex8(func(token(color), severity))
     : Error(
         `Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`

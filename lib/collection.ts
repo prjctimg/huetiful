@@ -400,7 +400,7 @@ function filterBy<
 
 	factor = or(factor, "hue");
 	colorspace = or(colorspace, "lch") as Colorspaces;
-	against = or(against, "cyan");
+	against = or(against, "cyan") as ColorToken
 
 	const filter = (cb: unknown) => (fact: Factor) =>
 			filteredColl(fact, cb)(collection, start, end),

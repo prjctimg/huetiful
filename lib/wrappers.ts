@@ -1,5 +1,5 @@
-import { deficiency, contrast } from "./accessibility.js";
-import { filterBy, sortBy, stats } from "./collection.js";
+import { deficiency, contrast } from "./accessibility.ts";
+import { filterBy, sortBy, stats } from "./collection.ts";
 import {
   interpolator,
   discover,
@@ -8,15 +8,15 @@ import {
   pastel,
   scheme,
   pair,
-} from "./generators.js";
-import { or, mcchn } from "./internal.js";
-import { colors, nearest } from "./palettes.js";
-import {
+} from "./generators.ts";
+import { or, mcchn } from "./internal.ts";
+import { colors, nearest } from "./palettes.ts";
+import type {
   Collection,
   ColorOptions,
   DeficiencyOptions,
   DiscoverOptions,
-  DistributionOptions,
+  
   EarthtoneOptions,
   FilterByOptions,
   HueshiftOptions,
@@ -24,7 +24,7 @@ import {
   PairedSchemeOptions,
   SortByOptions,
   StatsOptions,
-} from "./types.js";
+} from "./types.d.ts";
 import {
   mc,
   lightness,
@@ -36,7 +36,7 @@ import {
   overtone,
   alpha as _opac,
   achromatic,
-} from "./utils.js";
+} from "./utils.ts";
 
 /**
 * Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
@@ -58,7 +58,7 @@ let wrapper = new ColorArray(sample);
 
 // [ 'blue', 'green', 'yellow', 'pink' ]
  */
-export class ColorArray<C extends Collection, Options extends object> {
+class ColorArray<C extends Collection, Options extends object> {
   /**
    *
    * @param colors The collection of colors to bind.
@@ -290,7 +290,7 @@ class Color {
    * @param options Optional overrides and properties for the bound color.
    */
   constructor(c, options?: ColorOptions) {
-    let {
+    const {
       alpha,
       colorspace,
       luminance,
@@ -482,7 +482,7 @@ class Color {
     console.log(color("green").pairedScheme({hueStep:6,samples:4,tone:'dark'}))
     // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
      */
-  pair(options?: PairedSchemeOptions) {
+  pair(_options?: PairedSchemeOptions) {
     return this.#setThis(pair);
   }
 
@@ -818,3 +818,6 @@ class Color {
     return this["_color"];
   }
 }
+
+
+export { Color,ColorArray}

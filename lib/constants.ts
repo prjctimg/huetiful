@@ -1,6 +1,6 @@
 // Extracted from The Color Strategist  color wheel. Each hue has two properties :warm and cool as well an [] for each prop with the signature [start,end]
 
-import { BiasedHues, ColorFamily } from './types.js';
+import { BiasedHues, ColorFamily } from './types.d.ts';
 
 /**
  * @internal

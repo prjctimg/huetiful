@@ -360,7 +360,7 @@ function lightness<Color extends ColorToken, Options extends LightnessOptions>(
  * @returns
  */
 function token<Color extends ColorToken, Options extends TokenOptions>(
-	color: Color,
+	color?: Color,
 	options?: Options,
 ): ColorToken {
 	const modeDefinitions = {
@@ -387,7 +387,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 	// Initialize defaults for the options
 
 	kind = or(kind, "str");
-	srcMode = srcMode ? srcMode : getSrcMode(color);
+	srcMode = srcMode ? srcMode : getSrcMode(color as Color);
 	normalizeRgb = or(normalizeRgb, true);
 	numType = or(numType, undefined);
 	omitMode = or(omitMode, false);
