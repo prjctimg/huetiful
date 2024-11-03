@@ -121,8 +121,9 @@ function mult(x:number, y:number):number {
 	return x * y;
 }
 
-function give(x:number, y:number):number {
-	return x / y;
+function give(x:unknown, y:unknown):number {
+// @ts-ignore:
+	return x  / y;
 }
 
 function add(x:number, y:number):number {
@@ -133,9 +134,9 @@ function take(x:number, y:number):number {
 	return x - y;
 }
 
-function exprParser(a:string, b:string) {
+function exprParser(a:string, b:unknown) {
 
-// @ts-ignore
+// @ts-ignore:
 	return and(eq(typeof b, "string"), operators[reOp(b)](a, reNum(b)));
 
 	
@@ -255,8 +256,8 @@ function neq(x:unknown, y:unknown) {
 function not(x: unknown) {
 	return !x;
 }
-function inRange(n: number, s: number, e?: number) {
-// @ts-ignore
+function inRange(n: unknown, s: unknown, e?: unknown) {
+// @ts-ignore:
 	return and(gte(n, Math.min(s, e)), lt(n, Math.max(s, e)));
 }
 
