@@ -24,20 +24,6 @@
       "path": "cz-emoji-conventional"
     }
   },
-  "eslintConfig": {
-    "rules": {
-      "prefer-const": 0,
-      "no-console": 1,
-      "no-ternary": 0,
-      "no-var": 1,
-      "no-explicit-any": 0,
-      "no-useless-escape": 0
-    },
-    "parserOptions": {
-      "sourceType": "module",
-      "ecmaVersion": "latest"
-    }
-  },
   "files": [
     "build",
     "CHANGELOG.md",

@@ -1,8 +1,8 @@
-// @ts-nocheck
+// @ts-nocheck:
 
 import { $, build } from "bun";
 
-import { log } from "node:console";
+
 
 const baseOptions = {
     entrypoints: ["./lib/index.ts"],
@@ -15,7 +15,7 @@ const baseOptions = {
     target: "browser",
     format: "esm",
   },
-  logger = (env) => log(`${env} build complete🏗`);
+  logger = (env) => console.log(`${env} build complete🏗`);
 
 await $`sudo rm -rf build  && echo 'Cleaned build/ directory'`;
 

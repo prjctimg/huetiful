@@ -27,11 +27,10 @@ export type Order = "asc" | "desc";
 /**
  * The value of the `factor` being queried usually a number but can also be falsy like `NaN` for edge cases or an object with the value of the factor and the color token associated with it.
  */
-export type Fact<F> = F extends true
-  ? {
-      factor: number;
-      color: ColorToken;
-    }
+export type Fact<F> = F extends true ? {
+    factor: number;
+    color: ColorToken;
+  }
   : number;
 
 /**
@@ -44,15 +43,14 @@ export type SchemeType = "analogous" | "triadic" | "tetradic" | "complementary";
  */
 export type Collection =
   | Array<ColorToken>
-  | Map<string|number, ColorToken>
+  | Map<string | number, ColorToken>
   | Set<ColorToken>
   | object;
 
-
 export type NearestOptions = {
-  against?:ColorToken
-  num?:number
-}
+  against?: ColorToken;
+  num?: number;
+};
 
 /**
  * Properties on an instance of the `Color` class. Some of these properties have corresponding methods.
@@ -214,8 +212,8 @@ export type FilterByOptions = {
    */
   ranges?:
     | {
-        [F in Factor]?: Array<number | string>;
-      }
+      [F in Factor]?: Array<number | string>;
+    }
     | Array<number | string>;
 
   /**
@@ -324,19 +322,18 @@ export type TokenOptions = {
 /**
  * The default structure of a `Stats` object as returned by `stats()` when invoked with default `options`.
  */
-export type Stats =
-  | {
-      [T in Factor]: {
-        extremums?: Array<number>;
-        colors?: ColorToken[];
-        against?: ColorToken | null;
-        mean?: number;
-        families?: Array<BiasedHues | "gray">;
-      } & {
-        colorspace?: Colorspaces;
-        achromatic?: number;
-      };
-    };
+export type Stats = {
+  [T in Factor]: {
+    extremums?: Array<number>;
+    colors?: ColorToken[];
+    against?: ColorToken | null;
+    mean?: number;
+    families?: Array<BiasedHues | "gray">;
+  } & {
+    colorspace?: Colorspaces;
+    achromatic?: number;
+  };
+};
 
 /**
  * Options for specifying sorting conditions.
@@ -350,14 +347,13 @@ export type SortByOptions = {
   relative?: boolean;
 
   /**
-   
+
    * The factor to use for sorting the colors.
    */
   factor?: Factor;
   /**
-      * The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`).
-
-     */
+   * The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`).
+   */
   order?: "asc" | "desc";
   /**
    * The color to compare the `factor` with.
@@ -394,35 +390,39 @@ export type StatsOptions = {
 /**
  * Options for the `scheme()` palette generator function.
  */
-export type SchemeOptions = Pick<
-  InterpolatorOptions,
-  "easingFn" | "colorspace"
-> & {
-  kind?: SchemeType | Array<SchemeType>;
-  token?: TokenOptions;
-};
+export type SchemeOptions =
+  & Pick<
+    InterpolatorOptions,
+    "easingFn" | "colorspace"
+  >
+  & {
+    kind?: SchemeType | Array<SchemeType>;
+    token?: TokenOptions;
+  };
 
 /**
  * Options for the `hueshift()` palette generator function.
  */
-export type HueshiftOptions = Pick<
-  InterpolatorOptions,
-  "colorspace" | "easingFn" | "num" | "tokenOptions"
-> & {
-  /**
-   * *  minLightness  Minimum lightness value (range 0-100).
-   */
-  minLightness?: number;
-  /**
-   *  maxLightness  Maximum lightness value (range 0-100).
-   */
-  maxLightness?: number;
+export type HueshiftOptions =
+  & Pick<
+    InterpolatorOptions,
+    "colorspace" | "easingFn" | "num" | "tokenOptions"
+  >
+  & {
+    /**
+     * *  minLightness  Minimum lightness value (range 0-100).
+     */
+    minLightness?: number;
+    /**
+     *  maxLightness  Maximum lightness value (range 0-100).
+     */
+    maxLightness?: number;
 
-  /**
-   * The hue angle to increment each iteration with.
-   */
-  hueStep?: number;
-};
+    /**
+     * The hue angle to increment each iteration with.
+     */
+    hueStep?: number;
+  };
 
 /**
  * The tone to use.
@@ -432,7 +432,7 @@ export type Tone = "light" | "dark";
 /**
  * The type of color vision defeciency.
  */
-export type DeficiencyType = "red" | "blue" | "green" | "monochromacy";
+export type DeficiencyType = "red" | "blue" | "green" | "mono";
 
 /**
  * Hue biases as seen when transitioning from one hue to another on the color wheel (Lch).
@@ -593,9 +593,8 @@ export type ComplimentaryOptions = {
 };
 
 export type Swatch<T extends string, V extends ScaleValues> = T extends Tailwind
-  ? V extends ScaleValues
-    ? `${T}[${V}]`
-    : Array<`all[${V | "500"}]`>
+  ? V extends ScaleValues ? `${T}[${V}]`
+  : Array<`all[${V | "500"}]`>
   : Array<T>;
 
 export type LightnessOptions = { amount?: number; darken?: boolean };
