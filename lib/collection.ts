@@ -12,8 +12,13 @@ import {
 	sortedColl,
 	values,
 } from "./internal.ts";
-import { achromatic, family, luminance, mc, token } from "./utils.ts";
-import { contrast } from "./accessibility.ts";
+import {
+	achromatic,
+	family,
+	luminance,
+	mc,
+	token,
+} from "./utils.ts"
 import { averageAngle, averageNumber } from "culori/fn";
 import { limits } from "./constants.ts";
 import type {
@@ -28,7 +33,7 @@ import type {
 import type { ColorToken } from "./types.d.ts";
 
 /**
- * Computes statistical values about the passed in color collection.
+ * Computes statistical values about the factors the passed in collection.
  *
  * The properties from each returned `factor` object are:
  *
@@ -63,7 +68,7 @@ import type { ColorToken } from "./types.d.ts";
  * :::
  *
  * @param  collection The collection to compute stats from. Any collection with color tokens as values will work.
- * @param options
+ * @param options The optional overrides to customize the computing behaviour for the factors.
  */
 function stats<
 	Iterable extends Collection,
@@ -96,10 +101,12 @@ function stats<
 					),
 				),
 				luminance: (() => {
-					const cb1 = (a: ColorToken) => (b: ColorToken) =>
-						Math.abs(
-							luminance(a) - luminance(b),
-						);
+					const cb1 =
+						(a: ColorToken) =>
+							(b: ColorToken) =>
+								Math.abs(
+									luminance(a) - luminance(b),
+								);
 					return sortedTokens(fact, cb1(against));
 				})(),
 				lightness: sortedTokens(
@@ -138,27 +145,35 @@ function stats<
 	const len: number = values(collection).length;
 	const factorStats = (fact: Factor) => {
 		// @ts-ignore:
-		const callback = (a, b) => (c) => map(a, b(c));
-		const h = (a: ColorToken) => (b: ColorToken) => contrast(a, b);
+		/**
+		 *
+		 * @param b The callback func for computing the targeted factor. Must be unary
+		 * @param c The function to wrap the resulting collection of computed factors in.
+		 */
+		const callback =
+			(b: (x: ColorToken) => number) =>
+				(c: (x: unknown) => number) =>
+					c(map(collection, b));
 
 		// @ts-ignore:
 		return {
-			chroma: callback(
-				mc(mcchn("c", colorspace)),
+			chroma: callback(mc(mcchn("c", colorspace)))(
 				averageNumber,
 			),
-			distance: callback(dstnce, averageNumber),
+			distance: callback(dstnce(against))(
+				averageNumber,
+			),
 
-			hue: callback(
-				mc(`${colorspace}.h`),
+			hue: callback(mc(`${colorspace}.h`))(
 				averageAngle,
 			),
-			lightness: callback(
-				mc(mcchn("l", colorspace)),
+			lightness: callback(mc(mcchn("l", colorspace)))(
 				averageNumber,
 			),
-			contrast: callback(h, averageNumber),
-			luminance: callback(luminance, averageNumber),
+			contrast: callback(ctrst(against))(
+				averageNumber,
+			),
+			luminance: callback(luminance)(averageNumber),
 		}[fact];
 	};
 	const commonStats = (fact: Factor) => {
@@ -189,15 +204,16 @@ function stats<
 			families: [family(x.color), family(y.color)],
 		};
 	};
-	const statsObject = iterator(factor, commonStats);
+	const statsObject = iterator(factor, commonStats) as Stats
 
 	// @ts-ignore:
-	statsObject.achromatic = values(collection).filter(achromatic).length / len;
+	statsObject.achromatic =
+		values(collection).filter(achromatic).length / len;
 
 	// @ts-ignore:
 	statsObject.colorspace = colorspace;
 
-	return statsObject as Stats;
+	return statsObject
 }
 
 /**
@@ -228,28 +244,25 @@ function stats<
  * :::
  *
  * @param collection The `collection` of colors to sort.
- * @param  options
+ * @param  options The optional overrides to customize the sorting behaviour.
  * @example
 
 import { sortBy } from 'huetiful-js'
 
 let sample = ['purple', 'green', 'red', 'brown']
 console.log(
-  sortBy(sample,{ against:'yellow' kind:'distance',order:'desc',})
+  sortBy(sample,{ against:'yellow' kind:['distance'],order:'desc',})
 )
 
 // [ 'brown', 'red', 'green', 'purple' ]
  */
 function sortBy<
-	Iterable extends Collection,
 	Options extends SortByOptions,
->(collection: Iterable, options?: Options): Collection {
+>(collection: Collection, options?: Options): Collection {
 	// @ts-ignore:
-	let { against, colorspace, factor, order, relative } = or(
-		options,
-		{} as Options,
-	);
-	factor = or(factor, "hue");
+	let { against, colorspace, factor, order, relative } =
+		or(options, {} as Options);
+	factor = or(factor, ["hue"]);
 	relative = or(relative, false);
 	colorspace = or(colorspace, "lch");
 	against = or(against, "cyan");
@@ -259,11 +272,12 @@ function sortBy<
 		"l",
 		"c",
 	].map((w) => mcchn(w, colorspace, false));
-	const sort = (a: unknown) => sortedColl(factor, a, order);
+
 	// returns factor cbs determined by the options
 	const callback = (fact: Factor) => {
 		const lmnce = (b: ColorToken) =>
-			Math.abs(luminance(against) - luminance(b));
+			Math.abs(luminance(against) - luminance(b)), sort = (a: unknown) =>
+				sortedColl(fact, a, order);
 		const u = (ch: string) =>
 			mc(`${colorspace}.${ch}`) as unknown as string;
 
@@ -359,6 +373,7 @@ function sortBy<
  * * `'hue'` - Returns colors in the specified hue ranges between 0 to 360.
  *
  * :::tip
+ * 
  * For the `chroma` and `lightness` factors, the range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
  * This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range.
  * But if the value of either `start` or `end` is above 1 AND the `colorspace` in use has an `end` range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
@@ -374,46 +389,46 @@ function sortBy<
  *
  * import { filterBy } from 'huetiful-js'
 
-let sample = [
-  '#00ffdc',
-  '#00ff78',
-  '#00c000',
-  '#007e00',
-  '#164100',
-  '#ffff00',
-  '#310000',
-  '#3e0000',
-  '#4e0000',
-  '#600000',
-  '#720000',
-]
+	let sample = [
+	'#00ffdc',
+	'#00ff78',
+	'#00c000',
+	'#007e00',
+	'#164100',
+	'#ffff00',
+	'#310000',
+	'#3e0000',
+	'#4e0000',
+	'#600000',
+	'#720000',
+	]
 
  */
 function filterBy<
-	Iterable extends Collection,
+
 	Options extends FilterByOptions,
->(collection: Iterable, options: Options): Collection {
+>(collection: Collection, options: Options): Collection {
 	let { against, colorspace, factor, ranges } = or(
 		options,
 		{},
 	) as Options;
 
-	factor = or(factor, "hue");
+	factor = or(factor, undefined);
 	colorspace = or(colorspace, "lch") as Colorspaces;
-	against = or(against, "cyan") as ColorToken
+	against = or(against, "cyan") as ColorToken;
 
 	const filter = (cb: unknown) => (fact: Factor) =>
-			filteredColl(fact, cb)(collection, start, end),
+		filteredColl(fact, cb)(collection, start, end),
 		chromaChannel = mcchn("c", colorspace, false),
 		lightnessChannel = mcchn("l", colorspace, false),
 		defaultRanges = {
 			hue: [0, 359],
 			contrast: [0, 21],
-			// @ts-ignore:
+
 			chroma: [...limits[colorspace][chromaChannel]],
-		
+
 			lightness: [
-					// @ts-ignore:
+
 				...limits[colorspace][lightnessChannel],
 			],
 			distance: [0, Number.POSITIVE_INFINITY],
@@ -422,9 +437,9 @@ function filterBy<
 	let start: number, end: number;
 
 	const callback = (fact: Factor) => {
-		// @ts-ignore:
+
 		start = or(ranges[fact][0], defaultRanges[fact][0]);
-		// @ts-ignore:
+
 		end = or(ranges[fact][1], defaultRanges[fact][1]);
 
 		return {
@@ -441,7 +456,7 @@ function filterBy<
 		}[fact](fact);
 	};
 
-	return iterator(factor, callback) as Collection;
+	return iterator(factor, callback);
 }
 
 export { filterBy, sortBy, stats };

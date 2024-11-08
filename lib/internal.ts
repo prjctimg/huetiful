@@ -12,25 +12,25 @@ import {
 import { mc } from "./utils.ts";
 
 import { contrast } from "./accessibility.ts";
-import type { Collection, ColorToken, Factor,Colorspaces } from "./types.d.ts";
+import type { Collection, ColorToken, Factor, Colorspaces } from "./types.d.ts";
 
 const { keys, entries, values } = Object;
 
 const operators = {
-			"!=": neq,
-			"==": eq,
-			">=": gte,
-			"<=": lte,
-			">": gt,
-			"<": lt,
-			"===": eq,
-			"!==": neq,
-			"!": not,
-			"/": give,
-			"*": mult,
-			"+": add,
-			"-": take,
-		};
+	"!=": neq,
+	"==": eq,
+	">=": gte,
+	"<=": lte,
+	">": gt,
+	"<": lt,
+	"===": eq,
+	"!==": neq,
+	"!": not,
+	"/": give,
+	"*": mult,
+	"+": add,
+	"-": take,
+};
 
 /**
  *
@@ -66,17 +66,14 @@ const dstnce = (a: unknown) => (b: unknown) =>
  * @returns {Collection}
  */
 function iterator(
-	t: string[] | string | undefined,
-	z:unknown,
+	t: string[] | undefined,
+	z: (x: unknown) => unknown,
 	y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"],
 ) {
 	const p = {};
-// @ts-ignore
-	if (isArray(t)) for (const k of values(t)) p[k] = z(k);
-	// @ts-ignore
-	if (eq(typeof t, "string")) p[t as string] = z(t);
+	if (gt(values(t).length, 1))
+		if (isArray(t)) for (const k of values(t)) p[k] = z(k);
 
-	// @ts-ignore
 	if (eq(t, undefined)) for (const k of y) p[k] = z(k);
 
 	return p;
@@ -111,35 +108,35 @@ const pltrconfg = {
 	li,
 };
 
-function gmchn(m = "", i?:number) {
+function gmchn(m = "", i?: number) {
 	const out = m.replace(/\d|ok/g, "");
 
 	return or(and(i, out.charAt(i as number)), out.split(""));
 }
 
-function mult(x:number, y:number):number {
+function mult(x: number, y: number): number {
 	return x * y;
 }
 
-function give(x:unknown, y:unknown):number {
-// @ts-ignore:
-	return x  / y;
+function give(x: unknown, y: unknown): number {
+	// @ts-ignore:
+	return x / y;
 }
 
-function add(x:number, y:number):number {
+function add(x: number, y: number): number {
 	return x + y;
 }
 
-function take(x:number, y:number):number {
+function take(x: number, y: number): number {
 	return x - y;
 }
 
-function exprParser(a:string, b:unknown) {
+function exprParser(a: string, b: unknown) {
 
-// @ts-ignore:
+	// @ts-ignore:
 	return and(eq(typeof b, "string"), operators[reOp(b)](a, reNum(b)));
 
-	
+
 }
 
 /**
@@ -149,12 +146,12 @@ function exprParser(a:string, b:unknown) {
  * @param f Whether to return full mode channel string or key only
  * @returns 
  */
-function mcchn(c: "c" | "l" | string, m='lch', f = true): string {
+function mcchn(c: "c" | "l" | string, m = 'lch', f = true): string {
 	// Matches any string with c or s
-	
-	let x:RegExp;
-	let e:string;
-	
+
+	let x: RegExp;
+	let e: string;
+
 
 	if (eq(c, "l")) {
 		x = /(j|l)/i;
@@ -163,24 +160,24 @@ function mcchn(c: "c" | "l" | string, m='lch', f = true): string {
 		x = /(s|c)/i;
 		e = `The color space ${m} has no chroma/saturation channel.`;
 	}
-// @ts-ignore
-const	d = x.exec(m)["0"];
+	// @ts-ignore
+	const d = x.exec(m)["0"];
 
 	// @ts-ignore
 	return x.test(m) ? or(and(f, `${m}.${d}`), d) : Error(e);
 }
 
-function colorObj(a:string, b:unknown) {
-// @ts-ignore
-	return (c:ColorToken) =>  ({ [a]: b(c), color: c })
+function colorObj(a: string, b: unknown) {
+	// @ts-ignore
+	return (c: ColorToken) => ({ [a]: b(c), color: c })
 
 }
 
-function customFindKey(u:object, v:number) {
+function customFindKey(u: object, v: number) {
 	// If the color is achromatic return the string gray
 	return keys(u)
 		.filter((a) => {
-		// @ts-ignore
+			// @ts-ignore
 			const t = customConcat(u[a]);
 
 			// @ts-ignore
@@ -199,10 +196,10 @@ function customConcat(h = {}) {
 			const res = [];
 			const k = keys(h);
 
-	
+
 
 			for (const g of k) {
-						//@ts-ignore
+				//@ts-ignore
 				res.push(...h[g]);
 			}
 
@@ -211,17 +208,17 @@ function customConcat(h = {}) {
 	);
 }
 
-function adjustHue(val:number) {
+function adjustHue(val: number) {
 
-	let out=0
+	let out = 0
 	if (val < 0) out += Math.ceil(-val / 360) * 360;
 
 	return out % 360;
 }
 
-function chnDiff(x:ColorToken, s:string) {
-	return (y:ColorToken) => {
-		const cb = (c:ColorToken) => mc(s)(c);
+function chnDiff(x: ColorToken, s: string) {
+	return (y: ColorToken) => {
+		const cb = (c: ColorToken) => mc(s)(c);
 
 		return or(and(lt(cb(x), cb(y)), take(cb(y), cb(x))), take(cb(x), cb(y)));
 	};
@@ -229,27 +226,27 @@ function chnDiff(x:ColorToken, s:string) {
 
 // Comparison operators
 
-function gt(x:number, y:number) {
+function gt(x: number, y: number) {
 	return x > y;
 }
 
-function lt(x:number, y:number) {
+function lt(x: number, y: number) {
 	return x < y;
 }
 
-function gte(x:number, y:number) {
+function gte(x: number, y: number) {
 	return x >= y;
 }
 
-function lte(x:number, y:number) {
+function lte(x: number, y: number) {
 	return x <= y;
 }
 
-function eq(x:unknown, y:unknown) {
+function eq(x: unknown, y: unknown) {
 	return x === y;
 }
 
-function neq(x:unknown, y:unknown) {
+function neq(x: unknown, y: unknown) {
 	return not(eq(x, y));
 }
 
@@ -257,11 +254,11 @@ function not(x: unknown) {
 	return !x;
 }
 function inRange(n: unknown, s: unknown, e?: unknown) {
-// @ts-ignore:
+	// @ts-ignore:
 	return and(gte(n, Math.min(s, e)), lt(n, Math.max(s, e)));
 }
 
-function isInt(n:number):boolean {
+function isInt(n: number): boolean {
 	return /^-?[0-9]+$/.test(n.toString());
 }
 
@@ -347,7 +344,7 @@ function map<T extends object>(u: T | unknown, cb: unknown) {
 
 	let p = or(or(and(isMap(u), new Map()), and(isSet(u), new Set())), false);
 	if (p) {
-	// @ts-ignore
+		// @ts-ignore
 		for (const [a, b] of entries(u)) {
 			// @ts-ignore: p is a Map or Set object otherwise this code block doesn't execute
 			p.set(a, cb(b));
@@ -407,18 +404,18 @@ function sortedColl(fact: Factor, cb: unknown, o = "asc") {
 
 
 
-		if (isArray(c)){
-		return data
+		if (isArray(c)) {
+			return data
 		}
-			
+
 
 		const out = new Map();
 
 
 
-		for (const [z, v] of entries(data)) {
+		for (const [z, v] of entries(data))
 			out.set(z, v) as Map<typeof z, typeof v>;
-		}
+
 
 		return out;
 	}
@@ -438,28 +435,28 @@ function filteredColl(fact: Factor, cb: unknown) {
 
 
 		if (and(eq(typeof s, "number"), eq(typeof e, "number"))) {
-			data= data
+			data = data
 				.filter((j) => inRange(j[fact], s as number, e as number))
 
 		}
-		
+
 		const startOp = reOp(s) as keyof typeof operators
 		const endOp = reOp(e) as keyof typeof operators
 		const start: number = Number.parseFloat(reNum(s).toString())
 		const end: number = Number.parseFloat(reNum(e).toString())
 
 		if (and(startOp, endOp)) {
-			
-			data=data
-			.filter((l) =>
-				and(operators[startOp](l[fact], start), operators[endOp](l[fact], end))
-			)
-	
+
+			data = data
+				.filter((l) =>
+					and(operators[startOp](l[fact], start), operators[endOp](l[fact], end))
+				)
+
 
 		}
-		else{
-		data= data.filter((l) =>  end ? and(operators[or(startOp, endOp)](l[fact], start),inRange(l[fact],end)):operators[or(startOp, endOp)](l[fact], start)
-			)	
+		else {
+			data = data.filter((l) => end ? and(operators[or(startOp, endOp)](l[fact], start), inRange(l[fact], end)) : operators[or(startOp, endOp)](l[fact], start)
+			)
 
 		}
 
@@ -475,18 +472,18 @@ function filteredColl(fact: Factor, cb: unknown) {
  * @param c The color token
  
  */
-function getSrcMode(c:ColorToken):Colorspaces {
-	
+function getSrcMode(c: ColorToken): Colorspaces {
+
 
 	// @ts-ignore
-	return  and(isArray(c), neq(typeof c[0], "number")) ? c[0]:eq(typeof 'object',c)?c?.mode :'rgb'
+	return and(isArray(c), neq(typeof c[0], "number")) ? c[0] : eq(typeof 'object', c) ? c?.mode : 'rgb'
 }
 
 const ctrst = (a: unknown) => (b: unknown) =>
 	contrast(b as ColorToken, a as ColorToken);
 export {
 	map,
-	ci,li,ef,hf,hi,
+	ci, li, ef, hf, hi,
 	not,
 	getSrcMode,
 	exprParser,

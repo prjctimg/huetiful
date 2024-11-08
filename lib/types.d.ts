@@ -28,9 +28,9 @@ export type Order = "asc" | "desc";
  * The value of the `factor` being queried usually a number but can also be falsy like `NaN` for edge cases or an object with the value of the factor and the color token associated with it.
  */
 export type Fact<F> = F extends true ? {
-    factor: number;
-    color: ColorToken;
-  }
+  factor: number;
+  color: ColorToken;
+}
   : number;
 
 /**
@@ -148,19 +148,19 @@ export type EarthtoneOptions = InterpolatorOptions & {
    * *  earthtone The earthtone to interpolate with.
    */
   earthtones?:
-    | "light-gray"
-    | "silver"
-    | "sand"
-    | "tupe"
-    | "mahogany"
-    | "brick-red"
-    | "clay"
-    | "cocoa"
-    | "dark-brown"
-    | "dark";
+  | "light-gray"
+  | "silver"
+  | "sand"
+  | "tupe"
+  | "mahogany"
+  | "brick-red"
+  | "clay"
+  | "cocoa"
+  | "dark-brown"
+  | "dark";
 };
 /**
- * Override options for factor distributed palettes.
+ * Override for factor distributed palettes.
  */
 export type DistributionOptions = Pick<InterpolatorOptions, "hueFixup"> & {
   /**
@@ -188,7 +188,7 @@ export type DistributionOptions = Pick<InterpolatorOptions, "hueFixup"> & {
   /**
    * The factor(s) to distribute amongst each color token in the passed in collection.
    */
-  factor: Factor | Array<Factor>;
+  factor: Array<Factor>;
 };
 
 /**
@@ -200,7 +200,7 @@ export type FilterByOptions = {
    *
    * Default is `'hue'`
    */
-  factor?: Factor | Array<Factor>;
+  factor?: Array<Factor>;
 
   /**
    * The targeted start and end ranges for the factor:
@@ -211,10 +211,10 @@ export type FilterByOptions = {
    * The end value is optional but the range value(s) are expected to be in an array.
    */
   ranges?:
-    | {
-      [F in Factor]?: Array<number | string>;
-    }
-    | Array<number | string>;
+  | {
+    [F in Factor]?: Array<number | string>;
+  }
+  | Array<number | string>;
 
   /**
    * The color to compare the `factor` with. All the `factor`s are calculated between this color and the ones in the colors array. Only works for the `'distance'` and `'contrast'` factor.
@@ -350,7 +350,7 @@ export type SortByOptions = {
 
    * The factor to use for sorting the colors.
    */
-  factor?: Factor;
+  factor?: Array<Factor>;
   /**
    * The arrangement order of the colors either `asc | desc`. Default is ascending (`asc`).
    */
@@ -384,7 +384,7 @@ export type StatsOptions = {
    * Choose whether to use the `against` color token for factors that support it as an overload (that is, all factors except `distance` and `contrast)
    */
   relative?: boolean;
-  factor?: Factor | Array<Factor>;
+  factor?: Array<Factor>;
 };
 
 /**

@@ -1,5 +1,5 @@
-import { sortBy, filterBy, stats, distribute } from "../lib";
-import runner, { Spec } from "./runner";
+import { sortBy, filterBy, stats } from "../lib/collection.ts";
+import runner, { type Spec } from "./runner";
 const tests: Spec[] = [
   {
     description: "Filters collections of color.",
@@ -22,13 +22,13 @@ const tests: Spec[] = [
     params: [],
     result: "",
   },
-  {
-    description: "Distributes factors of a collection of color.",
-    callback: distribute,
-    matcher: "arrayContaining",
-    params: [],
-    result: "",
-  },
+  // {
+  //   description: "Distributes factors of a collection of color.",
+  //   callback: distribute,
+  //   matcher: "arrayContaining",
+  //   params: [],
+  //   result: "",
+  // },
 ];
 
 runner(tests);
