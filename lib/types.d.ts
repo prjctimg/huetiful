@@ -396,7 +396,7 @@ export type SchemeOptions =
     "easingFn" | "colorspace"
   >
   & {
-    kind?: SchemeType | Array<SchemeType>;
+    kind?: Array<SchemeType> | undefined;
     token?: TokenOptions;
   };
 

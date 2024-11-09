@@ -1,6 +1,6 @@
 import {
   averageNumber,
-  
+
   easingSmoothstep,
   fixupHueLonger,
   fixupHueShorter,
@@ -31,12 +31,12 @@ import {
   lte,
   max,
   mcchn,
-  min,dstnce,
+  min, dstnce,
   not,
   or,
-  pltrconfg,
   rand,
   values,
+  hi,
 } from "./internal.ts";
 import { mc, token } from "./utils.ts";
 import type {
@@ -50,6 +50,8 @@ import type {
   SchemeOptions,
   TokenOptions,
 } from "./types.d.ts";
+
+
 /**
  * Creates a palette of hue shifted colors from the passed in color.
  *
@@ -60,11 +62,11 @@ import type {
  * * As a color becomes lighter, its hue shifts up (increases).
  * * As a color becomes darker its hue shifts down (decreases).
  *
- * The `minLightness` and `maxLightness` values determine how dark or light our color will be at either extreme respectively.'
+ * The `minLightness` and `maxLightness` values determine how dark or light our color will be at either extremum respectively.'
  *
  * :::
  *
- *  The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or `(num * 2) + 1`.
+ *  The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or simply `(num * 2) + 1`.
  *
  * @param baseColor The color to use as the base of the palette.
  * @param options The optional overrides object.
@@ -86,7 +88,7 @@ console.log(hueShiftedPalette);
 ]
  */
 function hueshift<Color extends ColorToken, Options extends HueshiftOptions>(
-  { baseColor, options }: { baseColor?: Color; options?: Options },
+  baseColor?: Color, options?: Options
 ): Collection {
   let { num, hueStep, minLightness, maxLightness, easingFn, tokenOptions } = or(
     options,
@@ -176,13 +178,13 @@ function pastel<Color extends ColorToken, Options extends TokenOptions>(
   options?: Options,
 ): ColorToken {
   const w = [
-      [0.3582677165354331, 0.996078431372549, 16538982.504333857],
-      [0.4395161290322581, 0.9725490196078431, 15694401.836627495],
-      [0.472, 0.9803921568627451, 15986490.838712374],
-      [0.3305785123966942, 0.9490196078431372, 14834893.772825705],
-      [0.2992125984251969, 0.996078431372549, 7446012.731034764],
-      [0.38818565400843885, 0.9294117647058824, 8247112.202928809],
-    ],
+    [0.3582677165354331, 0.996078431372549, 16538982.504333857],
+    [0.4395161290322581, 0.9725490196078431, 15694401.836627495],
+    [0.472, 0.9803921568627451, 15986490.838712374],
+    [0.3305785123966942, 0.9490196078431372, 14834893.772825705],
+    [0.2992125984251969, 0.996078431372549, 7446012.731034764],
+    [0.38818565400843885, 0.9294117647058824, 8247112.202928809],
+  ],
     [u, v] = [w.map((o) => o[0]), w.map((o) => o[1])];
 
   const t = {
@@ -211,12 +213,13 @@ function pastel<Color extends ColorToken, Options extends TokenOptions>(
  * The colors are then spline interpolated via white or black.
  *
  * :::tip
+ * 
  * A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color.
  *
  * :::
- * @param {ColorToken} baseColor The color to return a paired color scheme from.
- * @param {PairedSchemeOptions} options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
- * @returns {Array<string|ColorToken>|string|ColorToken}
+ * @param baseColor The color to return a paired color scheme from.
+ * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
+
  * @example
  *
  * import { pair } from 'huetiful-js'
@@ -227,7 +230,7 @@ console.log(pair("green",{hueStep:6,num:4,tone:'dark'}))
 function pair<Color extends ColorToken, Options extends PairedSchemeOptions>(
   baseColor: Color,
   options?: Options,
-): Collection {
+): Collection | ColorToken {
   let { num, via, hueStep, colorspace } = or(options, {}) as Options;
   via = or(via, "light");
   hueStep = or(hueStep, 5);
@@ -282,9 +285,9 @@ function pair<Color extends ColorToken, Options extends PairedSchemeOptions>(
  * * If the collection of colors contains an achromatic color, the resulting samples may all be grayscale or pure black.
  * :::
  *
- * @param {Collection} baseColors The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result or making all the colors in the resulting interpolation gray.
- * @param {InterpolatorOptions} options Optional overrides.
- * @returns {Array<ColorToken>}
+ * @param baseColors The collection of colors to interpolate. If a color has a falsy channel for example black has an undefined hue channel some interpolation methods may return NaN affecting the final result or making all the colors in the resulting interpolation gray.
+ * @param  options Optional overrides to customize parameters such as interpolation methods and per channel eeasings.
+ * @returns 
  *
  * @example
  *
@@ -330,7 +333,7 @@ function interpolator(
   const len = stops?.length as number;
 
   const data = gt(len, 0)
-  // @ts-ignore:
+    // @ts-ignore:
     ? values(baseColors)?.slice(0, len - 1).map((c, i) => [c, stops[i]]).concat(
       values(baseColors).slice(len),
     )
@@ -341,7 +344,7 @@ function interpolator(
     // @ts-ignore:
     h: {
       fixup: hueFixup,
-      use: or(method, pltrconfg.hi),
+      use: or(method, hi),
     },
     [mcchn("l", colorspace, false)]: {
       use: or(method, li),
@@ -402,7 +405,7 @@ console.log(discover(sample, { kind:'tetradic' }))
  */
 function discover(
   colors: Collection = [],
-  options: DiscoverOptions={},
+  options: DiscoverOptions = {},
 ): Collection {
   //  Initialize and sanitize parameters
   const colorTokenValues = values(colors),
@@ -413,10 +416,10 @@ function discover(
   minDistance = or(minDistance, 0) as number
 
   const palettes = {},
-    
-    customInRange = (c:string, d:string) =>
+
+    customInRange = (c: string, d: string) =>
       inRange(dstnce(c)(d), minDistance, maxDistance),
-    availableColors = (arg:string, obj = {}) =>
+    availableColors = (arg: string, obj = {}) =>
       // @ts-ignore:
       obj[arg]?.filter((c) =>
         colorTokenValues.some((d) => not(customInRange(c, d)))
@@ -428,7 +431,7 @@ function discover(
     palettes[key] = scheme(colors[key], { kind: kind });
   }
 
-// @ts-ignore:
+  // @ts-ignore:
   let currentPalette = [];
   for (const key of colorTokenKeys) {
     if (eq(typeof kind, "string")) {
@@ -441,7 +444,7 @@ function discover(
           not(customInRange(a, currentPalette[b]))
         );
       }
-// @ts-ignore:
+      // @ts-ignore:
       currentPalette = palettes[key];
     } else {
       // if the color token value is an object, iterate through the available palette keys
@@ -457,7 +460,7 @@ function discover(
     }
   }
 
-  // Get the values of any collection
+
 
   // @ts-ignore:
   return palettes;
@@ -497,11 +500,10 @@ function earthtone(
     "dark-brown": "#473b31",
     dark: "#352a21",
   };
-// @ts-ignore:
+  // @ts-ignore:
   const currentEarthtone = earthtoneSamples[earthtones.toLowerCase()];
 
-  // Get the channels to be lerped for each color
-  // The t values will be similar. For each color at the point tx,ty allocate the values to each respective channel
+
 
   return interpolator([currentEarthtone, baseColor], {
     colorspace: colorspace,
@@ -513,33 +515,34 @@ function earthtone(
 }
 
 /**
- * Generates a randomised classic color scheme from the passed in color.
+ * Generates a randomised classic scheme from the passed in color.
  *
- * The `kind` parameter can either be a string or an array:
+ * The `kind` parameter can either be an array or `undefined`:
  *
- * * If it is an array, each element should be a `kind` of palette.
- * It will return a color map with the array elements as keys.
- * Duplicate values are simply ignored.
- * * If it is a string it will return an array of colors of the specified `kind` of palette.
+ * * If it is an array, each element should be a valid `kind` of scheme.
+ * It will return a color map with the array elements (which are valid schemes)  as keys.
+ * Duplicate schemes are simply ignored.
  * * If it is falsy it will return a color map of all palettes.
  *
  * :::tip
- * The classic palette types are:
+ * 
+ * The classic schemes are are:
  *
  * * `triadic` - Picks 3 colors 120 degrees apart.
  * * `tetradic` - Picks 4 colors 90 degrees apart.
  * * `complimentary` - Picks 2 colors 180 degrees apart.
- * * `monochromatic` - Picks `num` amount of colors from the same hue family   .
+ * * `mono` - Picks `num` amount of colors from the same hue family   .
  * * `analogous` - Picks 3 colors 12 degrees apart.
  * :::
  *
  * :::note
- * Note that the `num` parameter works on the `monochromatic` palette type only.
+ * 
+ * Note that the `num` parameter works on the `monochromatic` palette type only. Other schemes will return a constant amount of samples.
+ * 
  * :::
  *
- * @param {ColorToken} baseColor The color to create the palette(s) from.
- * @param {SchemeOptions} options Optional overrides.
- * @returns {Collection}
+ * @param baseColor The color to create the palette(s) from.
+ * @param options Optional overrides.
  * @example
  *
  import { scheme } from 'huetiful-js'
@@ -548,9 +551,9 @@ console.log(scheme("triadic")("#a1bd2f"))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
  */
 // @ts-ignore:
-function scheme(
-  baseColor: ColorToken = { l: 8, c: 40, h: 87, mode: "lch" },
-  options: SchemeOptions = {},
+function scheme<Options extends SchemeOptions>(
+  baseColor: ColorToken = 'cyan',
+  options?: Options,
 ): Collection {
   let { colorspace, kind, easingFn } = options || {};
   // @ts-ignore:
@@ -561,16 +564,16 @@ function scheme(
 
   // // extremums
   const [lowMin, lowMax, highMin, highMax] = [0.05, 0.495, 0.5, 0.995],
-  // @ts-ignore:
+    // @ts-ignore:
     generateSteps = (stops, step) => {
-      const res:unknown[] = [];
+      const res: unknown[] = [];
 
       for (let [k, v] of entries(samples(stops))) {
         v = adjustHue(
           // @ts-ignore:
           (baseColor.h + step) * (v * or(easingFn, easingSmoothstep)(v)),
         );
-// @ts-ignore:
+        // @ts-ignore:
         res[k] = rand(v * lowMax, v * lowMin) +
           rand(v * highMax, v * highMin) / 2;
       }
@@ -590,11 +593,11 @@ function scheme(
       // // The map for steps to obtain the targeted palettes
 
       const [lightnessChan, chromaChan] = ["l", "c"].map((a) =>
-          mcchn(a, colorspace, false)
-        ),
+        mcchn(a, colorspace, false)
+      ),
         // @ts-ignore:
         palettes = [];
-// @ts-ignore:
+      // @ts-ignore:
       for (const [idx, step] of entries(PALETTE_TYPES[kind])) {
         // @ts-ignore:
         palettes[idx] = token(
@@ -604,7 +607,7 @@ function scheme(
             // @ts-ignore:
             [chromaChan]: baseColor[chromaChan],
             // @ts-ignore:
-            h: adjustHue(baseColor["h"] + step),
+            h: adjustHue(baseColor.h + step),
             mode: colorspace,
           },
           options?.token,

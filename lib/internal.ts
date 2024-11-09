@@ -87,26 +87,7 @@ const [ci, ef, hf, hi, li] = [
 	interpolatorLinear,
 ];
 
-/**
- * Defaults for the interpolator.
- *
- * ef => easing function
- *
- * ci => chroma interpolator
- *
- * hf => hue fixup method
- *
- * hi => hue interpolator
- *
- * li => lightness interpolator
- */
-const pltrconfg = {
-	ef,
-	ci,
-	hf,
-	hi,
-	li,
-};
+
 
 function gmchn(m = "", i?: number) {
 	const out = m.replace(/\d|ok/g, "");
@@ -118,8 +99,8 @@ function mult(x: number, y: number): number {
 	return x * y;
 }
 
-function give(x: unknown, y: unknown): number {
-	// @ts-ignore:
+function give(x: number, y: number): number {
+
 	return x / y;
 }
 
@@ -387,12 +368,13 @@ function reNum(s: unknown) {
 	return and(re.test(s), Number(re.exec(s)["0"]))
 }
 
-function reOp(s: unknown) {
+function reOp(s: unknown): string {
 
-	const re = /^(\*|\+|\-|\/|>=|<=|<|>|={1,2}|!={0,2})/;
+	// used character classes, more concise
+	const re = /^[\*+\-/<>]|={1,2}|!={0,2}/;
 
-	// @ts-ignore
-	return and(re.test(s), String(re.exec(s)["0"]))
+
+	return and(re.test(s as string), String(re.exec(s as string)["0"]))
 }
 function sortedColl(fact: Factor, cb: unknown, o = "asc") {
 	return (c: Collection) => {
@@ -511,7 +493,7 @@ export {
 	eq,
 	or,
 	gmchn,
-	pltrconfg,
+
 	isArray,
 	reOp,
 	reNum,

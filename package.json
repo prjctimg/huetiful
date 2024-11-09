@@ -1,54 +1,49 @@
 {
-  "name": "huetiful-js",
-  "version": "3.0.6",
-  "type": "module",
-  "main": "./build/huetiful.esm.js",
-  "browser": "./build/huetiful.min.js",
-  "jsdelivr": "./build/huetiful.min.js",
-  "types": "./build/index.d.ts",
-  "description": "TypeScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.",
-  "dependencies": {
-    "culori": "^4.0.1"
-  },
-  "devDependencies": {
-    "@types/bun": "^1.1.9",
-    "@types/culori": "^2.1.0",
-    "bun": "^1.1.34",
-    "commitizen": "^4.3.0",
-    "cz-emoji-conventional": "^1.0.2",
-    "tsup": "^8.2.4",
-    "typescript": "^5.0.2"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-emoji-conventional"
-    }
-  },
-  "files": [
-    "build",
-    "CHANGELOG.md",
-    "readme.md",
-    "contributing.md",
-    "license"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/prjctimg/huetiful.git"
-  },
-  "keywords": [
-    "color",
-    "culori",
-    "palettes",
-    "generator",
-    "utilities",
-    "manipulation",
-    "typescript"
-  ],
-  "author": "ディーン・タリサイ",
-  "email": "prjctimg@outlook.com",
-  "homepage": "https://huetiful-js.com",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/prjctimg/huetiful/issues"
-  }
+	"name": "huetiful-js",
+	"version": "3.0.6",
+	"type": "module",
+	"main": "./build/huetiful.esm.js",
+	"browser": "./build/huetiful.min.js",
+	"jsdelivr": "./build/huetiful.min.js",
+	"types": "./build/index.d.ts",
+	"description": "TypeScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.",
+	"dependencies": {
+		"culori": "^4.0.1"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.1.9",
+		"@types/culori": "^2.1.0",
+		"bun": "^1.1.34",
+
+		"tsup": "^8.2.4",
+		"typescript": "^5.0.2"
+	},
+	"files": [
+		"build",
+		"CHANGELOG.md",
+		"readme.md",
+		"contributing.md",
+		"license"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/prjctimg/huetiful.git"
+	},
+	"keywords": [
+		"color",
+		"stats",
+		"culori",
+		"palettes",
+		"generator",
+		"utilities",
+		"manipulation",
+		"typescript"
+	],
+	"author": "ディーン・タリサイ",
+	"email": "prjctimg@outlook.com",
+	"homepage": "https://huetiful-js.com",
+	"license": "Apache-2.0",
+	"bugs": {
+		"url": "https://github.com/prjctimg/huetiful/issues"
+	}
 }
