@@ -15,21 +15,27 @@
 		{
 			"type": "bun",
 			"script": "bun test",
-
 			"label": "Test 🧪",
 			"detail": "Run the test suites for all publicly exported functions."
 		},
-
 		{
 			"type": "bun",
 			"script": "bun run build.ts",
-
 			"detail": "Build library and types to the local filesystem. For development only.",
 			"label": "Build 🏗",
 			"group": {
 				"kind": "build",
 				"isDefault": true
 			}
+		},
+		{
+			"type": "deno",
+			"command": "lint",
+			"args": ["./lib/*.ts", "--watch"],
+			"problemMatcher": ["$deno-lint"],
+			"group": "test",
+			"label": "Lint 🔎",
+			"detail": "Check the source files for Deno compliancy or regressions."
 		}
 	]
 }

@@ -175,7 +175,7 @@ console.log(mc('rgb.g')('#a1bd2f'))
 
 
 
-function mc<Value>(modeChannel: string = 'lch.h') {
+function mc<Value>(modeChannel = 'lch.h') {
 	/**
 
    * @param  color Any recognizable color token.
@@ -690,7 +690,7 @@ function family
  * True if the color is cool else false.
  * @example
  *
- * import { isCool } from 'huetiful-js'
+ * import { temp } from 'huetiful-js'
 
 let sample = [
   "#00ffdc",
@@ -699,7 +699,7 @@ let sample = [
 ];
 
 
-console.log(isCool(sample[2]));
+console.log(temp(sample[2]));
 // false
 
 console.log(map(sample, isCool));
@@ -709,7 +709,7 @@ console.log(map(sample, isCool));
 
 
  */
-function temp(color: ColorToken): "cool" | "warm" {
+function temp(color: ColorToken = 'cyan'): "cool" | "warm" {
 	return or(
 		and(
 			keys(hue).some((hueFamily) =>
