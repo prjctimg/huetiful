@@ -405,15 +405,16 @@ console.log(discover(sample, { kind:'tetradic' }))
  */
 function discover(
   colors: Collection = [],
-  options: DiscoverOptions = {},
+  options: DiscoverOptions = {
+    maxDistance: 0.0014,
+    minDistance: 0, kind: undefined
+  },
 ): Collection {
   //  Initialize and sanitize parameters
   const colorTokenValues = values(colors),
     colorTokenKeys = keys(colors);
-  let { kind, maxDistance, minDistance } = options || {};
+  const { kind, maxDistance, minDistance } = options || {};
 
-  maxDistance = or(maxDistance, 0.0014) as number
-  minDistance = or(minDistance, 0) as number
 
   const palettes = {},
 
@@ -468,9 +469,8 @@ function discover(
 
 /**
  * Creates a color scale between an earth tone and any color token using spline interpolation.
- * @param {ColorToken} baseColor The color to interpolate an earth tone with.
- * @param {import("../types.js").EarthtoneOptions} options Optional overrides for customising interpolation and easing functions.
- * @returns {ColorToken | Array<ColorToken>}
+ * @param  baseColor The color to interpolate an earth tone with.
+ * @param  options Optional overrides for customising interpolation and easing functions.
  * @example
  *
  * import { earthtone } from 'huetiful-js'
@@ -485,7 +485,7 @@ function earthtone(
   options: EarthtoneOptions,
 ): ColorToken | Array<ColorToken> {
   let { num, earthtones, colorspace, kind, closed } = options || {};
-  baseColor = token(baseColor);
+
 
   earthtones = or(earthtones, "dark");
   const earthtoneSamples = {
@@ -551,14 +551,15 @@ console.log(scheme("triadic")("#a1bd2f"))
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
  */
 // @ts-ignore:
-function scheme<Options extends SchemeOptions>(
+function scheme(
   baseColor: ColorToken = 'cyan',
-  options?: Options,
+  options: SchemeOptions = {
+    colorspace: 'lch',
+    kind: ['analogous'], easingFn: ef
+  },
 ): Collection {
-  let { colorspace, kind, easingFn } = options || {};
-  // @ts-ignore:
-  kind = or(kind, "analogous");
-  colorspace = or(colorspace, "lch");
+  const { colorspace, kind, easingFn } = options || {};
+
   // @ts-ignore:
   baseColor = token(baseColor, { targetMode: colorspace, kind: "obj" });
 

@@ -23,7 +23,6 @@ import { averageAngle, averageNumber } from "culori/fn";
 import { limits } from "./constants.ts";
 import type {
 	Collection,
-	Colorspaces,
 	Factor,
 	FilterByOptions,
 	SortByOptions,
@@ -31,6 +30,7 @@ import type {
 	StatsOptions,
 } from "./types.d.ts";
 import type { ColorToken } from "./types.d.ts";
+
 
 /**
  * Computes statistical values about the factors the passed in collection.
@@ -70,27 +70,19 @@ import type { ColorToken } from "./types.d.ts";
  * @param  collection The collection to compute stats from. Any collection with color tokens as values will work.
  * @param options The optional overrides to customize the computing behaviour for the factors.
  */
-function stats<
-	Iterable extends Collection,
-	Options extends StatsOptions,
->(collection: Iterable, options?: Options): Stats {
-	let { factor, relative, colorspace, against } = or(
-		options,
-		{},
-	) as Options;
+function stats(collection: Collection = [], options: StatsOptions = {
+	factor: undefined, relative: false, colorspace: 'lch', against: 'cyan'
+}
+): Stats {
 
-	factor = or(factor, undefined);
-	relative = or(relative, false);
-	colorspace = or(colorspace, "lch");
-	against = or(against, "cyan") as ColorToken;
-
+	const { factor, relative, against, colorspace } = options
 	const hexColors = map(collection, token);
 
 	const getStatsObject = (fact: Factor) => {
 		const sortedTokens = (a: Factor, b: unknown) =>
 			sortedColl(a, b, "asc")(hexColors);
 
-		// @ts-ignore:
+		// @ts-ignore:`
 		return or(
 			and(eq(relative, true), {
 				chroma: sortedTokens(
@@ -101,9 +93,11 @@ function stats<
 					),
 				),
 				luminance: (() => {
+
+
 					const cb1 =
-						(a: ColorToken) =>
-							(b: ColorToken) =>
+						(a?: ColorToken) =>
+							(b?: ColorToken) =>
 								Math.abs(
 									luminance(a) - luminance(b),
 								);
@@ -151,9 +145,9 @@ function stats<
 		 * @param c The function to wrap the resulting collection of computed factors in.
 		 */
 		const callback =
-			(b: (x: ColorToken) => number) =>
-				(c: (x: unknown) => number) =>
-					c(map(collection, b));
+			(b: (x?: ColorToken) => number) =>
+				(c: (x: number[]) => number) =>
+					c(map(collection, b) as number[]);
 
 		// @ts-ignore:
 		return {
@@ -204,6 +198,8 @@ function stats<
 			families: [family(x.color), family(y.color)],
 		};
 	};
+
+	// @ts-ignore:
 	const statsObject = iterator(factor, commonStats) as Stats
 
 	// @ts-ignore:
@@ -256,17 +252,13 @@ console.log(
 
 // [ 'brown', 'red', 'green', 'purple' ]
  */
-function sortBy<
-	Options extends SortByOptions,
->(collection: Collection, options?: Options): Collection {
+function sortBy(collection: Collection = [], options: SortByOptions = {
+	factor: undefined, relative: false,
+	colorspace: 'lch', against: 'cyan', order: 'asc'
+}): Collection {
 	// @ts-ignore:
-	let { against, colorspace, factor, order, relative } =
-		or(options, {} as Options);
-	factor = or(factor, ["hue"]);
-	relative = or(relative, false);
-	colorspace = or(colorspace, "lch");
-	against = or(against, "cyan");
-	order = or(order, "asc");
+	const { against, colorspace, factor, order, relative } =
+		options
 	// lightness and chroma channel constants respectively
 	const [lightnessChannel, chromaChannel] = [
 		"l",
@@ -303,7 +295,7 @@ function sortBy<
 			},
 		)[fact](collection);
 	};
-
+	// @ts-ignore:
 	return iterator(factor, callback);
 }
 
@@ -351,6 +343,11 @@ function sortBy<
 // 	// v is expected to be a color object so that we can access the color's hue property during the mapping
 // 	// set the callbacks depending on the type of factorStats
 // }
+
+
+
+
+
 
 /**
  * Filters a collection of colors using the specified `factor` as the criterion.
@@ -404,31 +401,24 @@ function sortBy<
 	]
 
  */
-function filterBy<
-
-	Options extends FilterByOptions,
->(collection: Collection, options: Options): Collection {
-	let { against, colorspace, factor, ranges } = or(
-		options,
-		{},
-	) as Options;
-
-	factor = or(factor, undefined);
-	colorspace = or(colorspace, "lch") as Colorspaces;
-	against = or(against, "cyan") as ColorToken;
+function filterBy(collection: Collection = [], options: FilterByOptions = {
+	against: 'cyan', colorspace: 'lch', factor: undefined, ranges: undefined
+}): Collection {
+	const { against, colorspace, factor, ranges } = options
 
 	const filter = (cb: unknown) => (fact: Factor) =>
 		filteredColl(fact, cb)(collection, start, end),
 		chromaChannel = mcchn("c", colorspace, false),
 		lightnessChannel = mcchn("l", colorspace, false),
-		defaultRanges = {
+		def_ranges = {
 			hue: [0, 359],
 			contrast: [0, 21],
 
+			// @ts-ignore:
 			chroma: [...limits[colorspace][chromaChannel]],
 
 			lightness: [
-
+				// @ts-ignore:
 				...limits[colorspace][lightnessChannel],
 			],
 			distance: [0, Number.POSITIVE_INFINITY],
@@ -437,10 +427,10 @@ function filterBy<
 	let start: number, end: number;
 
 	const callback = (fact: Factor) => {
-
-		start = or(ranges[fact][0], defaultRanges[fact][0]);
-
-		end = or(ranges[fact][1], defaultRanges[fact][1]);
+		// @ts-ignore:
+		start = or(ranges[fact][0], def_ranges[fact][0]);
+		// @ts-ignore:
+		end = or(ranges[fact][1], def_ranges[fact][1]);
 
 		return {
 			chroma: filter(
@@ -455,7 +445,7 @@ function filterBy<
 			luminance: filter(luminance),
 		}[fact](fact);
 	};
-
+	// @ts-ignore:
 	return iterator(factor, callback);
 }
 

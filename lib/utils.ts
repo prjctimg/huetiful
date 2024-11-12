@@ -81,29 +81,28 @@ console.log(myColor)
 
 // #b2c3f180
  */
-function alpha<Color extends ColorToken, Amount>(
-	color: Color,
-	amount?: Amount,
-): Amount extends undefined ? number : Color {
+function alpha<Amount>(color: ColorToken = 'cyan',
+	amount: Amount | undefined = undefined,
+): Amount extends undefined ? number : ColorToken {
 	// @ts-ignore:
-	let alphaChannel:number;
+	let alphaChannel: number;
 
 	if (isArray(color)) {
 		alphaChannel = eq(
-				(color as ColorTuple).filter((channel) =>
-					eq(typeof channel, "number")
-				)
-					.length,
-				4,
+			(color as ColorTuple).filter((channel) =>
+				eq(typeof channel, "number")
 			)
+				.length,
+			4,
+		)
 			? color[(color as ColorTuple)?.length - 1]
 			: 1;
 	} else if (eq(typeof color, "string")) {
 		alphaChannel = and(
-				gte((color as ColorTuple)?.length, 8),
-				// @ts-ignore:
-				not(colorsNamed?.color?.toLowerCase()),
-			)
+			gte((color as ColorTuple)?.length, 8),
+			// @ts-ignore:
+			not(colorsNamed?.color?.toLowerCase()),
+		)
 			? Number.parseInt(
 				(color as string)?.slice((color as string)?.length - 2),
 				16,
@@ -117,45 +116,46 @@ function alpha<Color extends ColorToken, Amount>(
 	if (not(amount)) {
 		// @ts-ignore:
 		return alphaChannel;
-	} 
-		amount = or(
-			// @ts-ignore:
-			and(neq(typeof amount, "number"), exprParser(alphaChannel, amount)),
-			or(and(inRange(amount, 0, 1), amount), give(amount, 100)),
-		);
-
-		if (isArray(color)) {
-			// Get the alpha index
-
-			color[
-				or(
-					and(
-						or(
-							eq((color as ColorTuple).length, 5),
-							and(
-								neq(color[0], "string"),
-								eq((color as ColorTuple)?.length, 4),
-							),
-						),
-						take((color as ColorTuple).length, 1),
-					),
-					3,
-				)
-			] = amount;
-		}
-
-		if (eq(typeof color, "object")) {
-			// @ts-ignore:
-			color.alpha = amount;
-		} else {
-			const colorObject = token(color, { kind: "obj" });
-			// @ts-ignore:
-			colorObject.alpha = amount;
-			color = colorObject as Color;
-		}
+	}
+	amount = or(
 		// @ts-ignore:
-		return color;
-	
+		and(neq(typeof amount, "number"), exprParser(alphaChannel, amount)),
+		// @ts-ignore:
+		or(and(inRange(amount, 0, 1), amount), give(amount, 100)),
+	);
+
+	if (isArray(color)) {
+		// Get the alpha index
+
+		color[
+			or(
+				and(
+					or(
+						eq((color as ColorTuple).length, 5),
+						and(
+							neq(color[0], "string"),
+							eq((color as ColorTuple)?.length, 4),
+						),
+					),
+					take((color as ColorTuple).length, 1),
+				),
+				3,
+			)
+		] = amount;
+	}
+
+	if (eq(typeof color, "object")) {
+		// @ts-ignore:
+		color.alpha = amount;
+	} else {
+		const colorObject = token(color, { kind: "obj" });
+		// @ts-ignore:
+		colorObject.alpha = amount;
+		color = colorObject as ColorToken;
+	}
+	// @ts-ignore:
+	return color;
+
 }
 
 /**
@@ -165,7 +165,7 @@ function alpha<Color extends ColorToken, Amount>(
  * @param  modeChannel The mode and channel to be retrieved. For example `'rgb.b'` will return the value of the blue channel in the RGB color space of that color.
 
  * @example
- *
+| *
  * import { mc } from 'huetiful-js'
 
 console.log(mc('rgb.g')('#a1bd2f'))
@@ -173,7 +173,9 @@ console.log(mc('rgb.g')('#a1bd2f'))
  *
 */
 
-function mc<Color extends ColorToken, Value>(modeChannel: string) {
+
+
+function mc<Value>(modeChannel: string = 'lch.h') {
 	/**
 
    * @param  color Any recognizable color token.
@@ -183,19 +185,19 @@ function mc<Color extends ColorToken, Value>(modeChannel: string) {
 
    */
 	return (
-		color: Color,
+		color: ColorToken = 'cyan',
 		value?: number | string,
 	): Value extends number | string ? ColorToken : number => {
 		const [mode, channel] = modeChannel.split(".");
-			// @ts-ignore:
-		let	colorObject = token(color, { targetMode: mode, kind: "obj" });
-		let currentChannel:number;
+		// @ts-ignore:
+		let colorObject = token(color, { targetMode: mode, kind: "obj" });
+		let currentChannel: number;
 
 		if (eq(typeof color, "object")) {
 			if (isArray(color)) {
 				currentChannel = // @ts-ignore:
 					(eq(typeof color[0], "string") ? color.slice(1) : color)[
-						gmchn(mode).indexOf(channel)
+					gmchn(mode).indexOf(channel)
 					];
 			}
 		} else {
@@ -216,9 +218,9 @@ function mc<Color extends ColorToken, Value>(modeChannel: string) {
 				);
 			}
 
-		
+
 		}
-			// @ts-ignore:
+		// @ts-ignore:
 		return not(value) ? currentChannel : colorObject;
 	};
 }
@@ -265,7 +267,7 @@ console.log(grays.map(achromatic));
 ]
 
  */
-function achromatic<Color extends ColorToken>(color: Color): boolean {
+function achromatic(color: ColorToken = 'cyan'): boolean {
 	// @ts-ignore:
 	color = token(color, { kind: "obj", targetMode: "lch" });
 
@@ -309,13 +311,14 @@ console.log(brighten('blue', 0.3));
 
 
  */
-function lightness<Color extends ColorToken, Options extends LightnessOptions>(
-	color: Color,
-	options?: Options,
-) {
-	let { amount, darken } = or(options, {}) as Options;
-	amount = or(amount, 0.1);
-	darken = or(darken, false);
+function lightness(
+	color: ColorToken = 'cyan',
+	options: LightnessOptions = {
+		amount: 0.1, darken: false
+	},
+): ColorToken {
+	const { amount, darken } = options;
+
 
 	const f = () => {
 		const colorObject = token(color, { kind: "obj", targetMode: "lab" });
@@ -363,9 +366,11 @@ function lightness<Color extends ColorToken, Options extends LightnessOptions>(
  * @param  options Options to customize the parsing and output behaviour.
  * @returns
  */
-function token<Color extends ColorToken, Options extends TokenOptions>(
-	color?: Color,
-	options?: Options,
+function token(
+	color: ColorToken = 'cyan',
+	options: TokenOptions = {
+		srcMode: undefined, normalizeRgb: true, numType: undefined, omitMode: false, omitAlpha: false
+	}
 ): ColorToken {
 	const modeDefinitions = {
 		lrgb: modeLrgb,
@@ -386,23 +391,18 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 		numType,
 		omitAlpha,
 		normalizeRgb,
-	} = or(options, {}) as Options;
+	} = options
 
-	// Initialize defaults for the options
 
-	kind = or(kind, "str");
-	srcMode = srcMode ? srcMode : getSrcMode(color as Color);
-	normalizeRgb = or(normalizeRgb, true);
-	numType = or(numType, undefined);
-	omitMode = or(omitMode, false);
-	omitAlpha = or(omitAlpha, false);
+	// so that stuff doesn't break 
+	srcMode = srcMode ? srcMode : getSrcMode(color as ColorToken);
+
 
 	/**
 	 * An array of channel keys from the source colorspace. If undefined it defaults to 'rgb'
 	 */
 	let srcChannels = gmchn(srcMode),
 		/**
-		 * @type {number[]}
 		 * an array of channel values
 		 */
 		srcChannelValues: number[];
@@ -463,7 +463,7 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 				? delete res.mode
 				// @ts-ignore:
 
-				: (res.mode =or(and(targetMode,targetMode),srcMode));
+				: (res.mode = or(and(targetMode, targetMode), srcMode));
 		}
 		// @ts-ignore:
 		omitAlpha ? delete res.alpha : (res.alpha = alphaValue);
@@ -536,9 +536,9 @@ function token<Color extends ColorToken, Options extends TokenOptions>(
 		//
 		//
 		return and(
-				and(eq(typeof color, "number"), gte(color as number, 0)),
-				lte(color as number, 0xffffff),
-			)
+			and(eq(typeof color, "number"), gte(color as number, 0)),
+			lte(color as number, 0xffffff),
+		)
 			? {
 				r: ((color as number) >> 16) / 255,
 
@@ -595,60 +595,59 @@ let myColor = luminance('#a1bd2f', 0.5)
 console.log(luminance(myColor))
 // 0.4999999136285792
  */
-function luminance<Color extends ColorToken, Amount>(
-	color: Color,
-	amount?: number,
+function luminance<Amount>(
+	color: ColorToken = 'cyan',
+	amount: number | undefined = undefined,
 ): Amount extends number ? ColorToken : number {
-	color = token(color) as Color;
-		// @ts-ignore:
-	let result:unknown;
+	color = token(color)
+	// @ts-ignore:
+	let result: unknown;
 	if (!amount) {
 		// @ts-ignore:
 		return wcagLuminance(color);
-	} 
-		const w = "#ffffff",
-			b = "#000000";
+	}
+	const w = "#ffffff",
+		b = "#000000";
 
-		const EPS = 1e-7;
-		let MAX_ITER = 20;
+	const EPS = 1e-7;
+	let MAX_ITER = 20;
 
-		if (eq(typeof amount, "number")) {
-			// compute new color using...
+	if (eq(typeof amount, "number")) {
 
-			const currentLuminance = wcagLuminance(color as string);
+		const currentLuminance = wcagLuminance(color as string);
 
-			//Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
-			// use a bilinear interpolation
-			// @ts-ignore:
-			const f = (u, v) => {
-				const [mid, low] = [
-					interpolate([u, v])(0.5),
-					// @ts-ignore:
-					wcagLuminance(color),
-				];
-
-				// @ts-ignore:
-				if (Math.abs(amount - low > EPS) || !MAX_ITER--) {
-					// close enough
-					return mid;
-				}
-
-				if (gt(low, amount)) {
-					return f(u, mid);
-				} 
-					return f(mid, v);
-				
-			};
-
-			if (gt(currentLuminance, amount)) {
-				result = f(b, color);
-			} else {
-				result = f(color, w);
-			}
-		}
+		//Must add the overrides object to change parameters like easings, fixups, and the mode to perform the computations in.
+		// use a bilinear interpolation
 		// @ts-ignore:
-		return token(result);
-	
+		const f = (u, v) => {
+			const [mid, low] = [
+				interpolate([u, v])(0.5),
+				// @ts-ignore:
+				wcagLuminance(color),
+			];
+
+			// @ts-ignore:
+			if (Math.abs(amount - low > EPS) || !MAX_ITER--) {
+				// close enough
+				return mid;
+			}
+
+			if (gt(low, amount)) {
+				return f(u, mid);
+			}
+			return f(mid, v);
+
+		};
+
+		if (gt(currentLuminance, amount)) {
+			result = f(b, color);
+		} else {
+			result = f(color, w);
+		}
+	}
+	// @ts-ignore:
+	return token(result);
+
 }
 
 /**
@@ -664,18 +663,17 @@ function luminance<Color extends ColorToken, Amount>(
 console.log(family("#310000"))
 // 'red'
  */
-function family<
-	Color extends ColorToken,
-	HueFamily extends BiasedHues & ColorFamily,
->(color: Color): HueFamily {
+function family
+	(color: ColorToken): BiasedHues & ColorFamily {
 	if (neq(achromatic(color), true)) {
 		const [hueAngle, hueFamilies] = [
 			mc('lch.h')(color),
-			keys(hue) as HueFamily[],
+			keys(hue),
 		];
 
 		// @ts-ignore:
 		return hueFamilies.find((o) => {
+			// @ts-ignore:
 			const hueRanges = customConcat(hue[o]);
 			return inRange(hueAngle, min(hueRanges), max(hueRanges));
 		});
@@ -711,7 +709,7 @@ console.log(map(sample, isCool));
 
 
  */
-function temp<Color extends ColorToken>(color: Color): "cool" | "warm" {
+function temp(color: ColorToken): "cool" | "warm" {
 	return or(
 		and(
 			keys(hue).some((hueFamily) =>
@@ -749,9 +747,9 @@ console.log(overtone("cyan"))
 console.log(overtone("blue"))
 // false
  */
-function overtone<Color extends ColorToken, Bias extends ColorFamily>(
-	color: Color,
-): Bias | false {
+function overtone(
+	color: ColorToken = 'cyan',
+): ColorFamily | false {
 	const hueFamily = family(color);
 
 	// We check if the color can be found in the defined ranges
@@ -760,7 +758,7 @@ function overtone<Color extends ColorToken, Bias extends ColorFamily>(
 		and(achromatic(color), "gray"),
 		// @ts-ignore:
 		or(and(/-/.test(hueFamily), hueFamily.split("-")[1]), false),
-	) as Bias
+	)
 }
 
 /**
@@ -778,24 +776,23 @@ console.log(complimentary("pink", true))
 console.log(complimentary("purple"))
 // #005700
  */
-function complimentary<
-	Color extends ColorToken,
-	Options extends ComplimentaryOptions,
->(baseColor: Color, options?: Options) {
-	const { randomOffset, extremums } = or(options, {}) as Options;
+function complimentary(baseColor: ColorToken, options: ComplimentaryOptions = {
+	randomOffset: true, extremums: [0, 1]
+}): ColorToken {
+	const { randomOffset, extremums } = options
 	const MIN_EXTREMUM = 0.965995,
 		MAX_EXTREMUM = 1;
 	const complimentaryHueAngle = adjustHue(
 		mc("lch.h")(baseColor) +
-			(randomOffset
-				? 180 *
-					rand(
-						// @ts-ignore:
-						or(extremums[0], MIN_EXTREMUM),
-						// @ts-ignore:
-						or(extremums[1], MAX_EXTREMUM),
-					)
-				: 180),
+		(randomOffset
+			? 180 *
+			rand(
+				// @ts-ignore:
+				or(extremums[0], MIN_EXTREMUM),
+				// @ts-ignore:
+				or(extremums[1], MAX_EXTREMUM),
+			)
+			: 180),
 	);
 
 	// @ts-ignore:

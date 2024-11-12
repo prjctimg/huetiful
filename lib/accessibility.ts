@@ -67,22 +67,24 @@ console.log(deficiency(['rgb', 230, 100, 50, 0.5],{ kind:'blue', severity:0.5 })
 // '#dd663680'
 
  */
-function deficiency<Options extends DeficiencyOptions>(
-	color?: ColorToken,
-	options?: Options,
+function deficiency(
+	color: ColorToken = 'cyan',
+	options: DeficiencyOptions = {
+		kind: 'red', severity: 0.5
+	},
 ): ColorToken {
 	let { kind, severity } = options || {};
 
 	const func = (c: string, t = 1) =>
-			({
-				// @ts-ignore:
-				blue: filterDeficiencyTrit(t)(c),
-				// @ts-ignore:
-				red: filterDeficiencyProt(t)(c),
-				// @ts-ignore:
-				green: filterDeficiencyDeuter(t)(c),
-				monochromacy: filterGrayscale(t, "lch")(c),
-			})[kind as string],
+		({
+			// @ts-ignore:
+			blue: filterDeficiencyTrit(t)(c),
+			// @ts-ignore:
+			red: filterDeficiencyProt(t)(c),
+			// @ts-ignore:
+			green: filterDeficiencyDeuter(t)(c),
+			monochromacy: filterGrayscale(t, "lch")(c),
+		})[kind as string],
 		defs = ["red", "blue", "green", "mono"];
 
 	kind = or(kind, "red");
@@ -90,10 +92,10 @@ function deficiency<Options extends DeficiencyOptions>(
 	// @ts-ignore:
 	return defs.some((el) => eq(el, kind?.toLowerCase()))
 		? // @ts-ignore:
-			formatHex8(func(token(color), severity))
+		formatHex8(func(token(color), severity))
 		: Error(
-				`Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`,
-			);
+			`Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`,
+		);
 }
 
 export { contrast, deficiency };

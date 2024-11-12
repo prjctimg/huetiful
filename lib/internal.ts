@@ -71,9 +71,11 @@ function iterator(
 	y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"],
 ) {
 	const p = {};
+	//  @ts-ignore:
 	if (gt(values(t).length, 1))
+		//  @ts-ignore:
 		if (isArray(t)) for (const k of values(t)) p[k] = z(k);
-
+	// @ts-ignore:
 	if (eq(t, undefined)) for (const k of y) p[k] = z(k);
 
 	return p;
@@ -130,8 +132,8 @@ function exprParser(a: string, b: unknown) {
 function mcchn(c: "c" | "l" | string, m = 'lch', f = true): string {
 	// Matches any string with c or s
 
-	let x: RegExp;
-	let e: string;
+	let x: RegExp,
+		e: string;
 
 
 	if (eq(c, "l")) {
@@ -197,9 +199,9 @@ function adjustHue(val: number) {
 	return out % 360;
 }
 
-function chnDiff(x: ColorToken, s: string) {
-	return (y: ColorToken) => {
-		const cb = (c: ColorToken) => mc(s)(c);
+function chnDiff(x?: ColorToken, s?: string) {
+	return (y?: ColorToken) => {
+		const cb = (c?: ColorToken) => mc(s)(c);
 
 		return or(and(lt(cb(x), cb(y)), take(cb(y), cb(x))), take(cb(x), cb(y)));
 	};
@@ -368,13 +370,13 @@ function reNum(s: unknown) {
 	return and(re.test(s), Number(re.exec(s)["0"]))
 }
 
-function reOp(s: unknown): string {
+function reOp(s: unknown = ''): string {
 
 	// used character classes, more concise
 	const re = /^[\*+\-/<>]|={1,2}|!={0,2}/;
 
 
-	return and(re.test(s as string), String(re.exec(s as string)["0"]))
+	return and(re.test(s as string), String(re.exec(s as string)?.[0]))
 }
 function sortedColl(fact: Factor, cb: unknown, o = "asc") {
 	return (c: Collection) => {

@@ -1,5 +1,5 @@
 {
-	"name": "huetiful-js",
+	"name": "@prjctimg/huetiful",
 	"version": "3.0.6",
 	"type": "module",
 	"main": "./build/huetiful.esm.js",
@@ -14,7 +14,6 @@
 		"@types/bun": "^1.1.9",
 		"@types/culori": "^2.1.0",
 		"bun": "^1.1.34",
-
 		"tsup": "^8.2.4",
 		"typescript": "^5.0.2"
 	},
@@ -27,7 +26,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/prjctimg/huetiful.git"
+		"url": "git+https://github.com/prjctimg/huetiful.git"
 	},
 	"keywords": [
 		"color",
@@ -45,5 +44,12 @@
 	"license": "Apache-2.0",
 	"bugs": {
 		"url": "https://github.com/prjctimg/huetiful/issues"
+	},
+	"directories": {
+		"lib": "lib",
+		"test": "tests"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
 	}
 }

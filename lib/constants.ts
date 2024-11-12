@@ -1,11 +1,11 @@
-// Extracted from The Color Strategist  color wheel. Each hue has two properties :warm and cool as well an [] for each prop with the signature [start,end]
 
 import type { BiasedHues, ColorFamily } from './types.d.ts';
 
 /**
  * @internal
  * One dimensional array with each element an array. Index 0 has the hue-family name and indexes 1 and 2 have arrays of the start and end ranges of the warm and cool temp respectively.
- *
+ *  // Extracted from The Color Strategist  color wheel. Each hue has two properties :warm and cool as well an [] for each prop with the signature [start,end]
+
  * - 0 is ColorFamily
  * - 1 is warm ranges
  * - 2 is ccol ranges
@@ -46,5 +46,6 @@ const hue: Array<
 		oklab: { l: [0, 1] },
 		oklch: { l: [0, 1], c: [0, 0.4] }
 	};
+
 
 export { limits, hue };

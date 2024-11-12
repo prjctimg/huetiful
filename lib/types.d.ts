@@ -234,7 +234,7 @@ export type DiscoverOptions = {
    * The palette type to return.
    * Default is `undefined`
    */
-  kind?: SchemeType | undefined;
+  kind?: Array<SchemeType> | undefined;
   /**
    * The minimum distance between colors. May affect finally palette results.
    * Default is 0
