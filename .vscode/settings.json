@@ -1,7 +1,7 @@
 {
-    "liveServer.settings.multiRootWorkspaceName": "huetiful",
-    "files.exclude": {
-        "*.code-workspace": true
-    },
-    "deno.enable": true
+	"liveServer.settings.multiRootWorkspaceName": "huetiful",
+	"files.exclude": {
+		"*.code-workspace": true
+	},
+	"deno.enable": true
 }

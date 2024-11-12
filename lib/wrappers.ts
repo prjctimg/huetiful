@@ -12,12 +12,12 @@ import {
 import { or, mcchn } from "./internal.ts";
 import { colors, nearest } from "./palettes.ts";
 import type {
-  ColorToken,TokenOptions,NearestOptions,SchemeOptions ,ColorFamily,
+  ColorToken, TokenOptions, NearestOptions, SchemeOptions, ColorFamily,
   Collection,
   ColorOptions,
   DeficiencyOptions,
   DiscoverOptions,
-  
+
   EarthtoneOptions,
   FilterByOptions,
   HueshiftOptions,
@@ -25,6 +25,7 @@ import type {
   PairedSchemeOptions,
   SortByOptions,
   StatsOptions,
+  BiasedHues,
 } from "./types.d.ts";
 import {
   mc,
@@ -72,9 +73,9 @@ class ColorArray<C extends Collection, Options extends object> {
     return;
   }
 
-  #setThis(callback: (x:Collection,y:unknown)=>Collection,options:unknown) {
-    this.colors = callback(this.colors,options);
-// @ts-ignore:
+  #setThis(callback: (x: Collection, y: unknown) => Collection, options: unknown) {
+    this.colors = callback(this.colors, options);
+    // @ts-ignore:
     return this.implicitReturn ? this.output() : this;
   }
 
@@ -90,7 +91,7 @@ class ColorArray<C extends Collection, Options extends object> {
 console.log(load(cols).nearest('blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
-  nearest(options?:NearestOptions) {
+  nearest(options?: NearestOptions): Collection | this {
     // @ts-ignore:
     return this.#setThis(nearest, options);
   }
@@ -112,10 +113,10 @@ console.log(load(cols).nearest('blue', 3));
  *
  * import { load } from 'huetiful-js';
   
-	 *
-	 */
+   *
+   */
 
-  interpolator(options?: InterpolatorOptions) {
+  interpolator(options?: InterpolatorOptions): Collection | this {
     // @ts-ignore:
     return this.#setThis(interpolator, options);
   }
@@ -136,24 +137,24 @@ console.log(load(cols).nearest('blue', 3));
  * import { load } from 'huetiful-js'
   
   let sample = [
-	"#ffff00",
-	"#00ffdc",
-	"#00ff78",
-	"#00c000",
-	"#007e00",
-	"#164100",
-	"#720000",
-	"#600000",
-	"#4e0000",
-	"#3e0000",
-	"#310000",
+  "#ffff00",
+  "#00ffdc",
+  "#00ff78",
+  "#00c000",
+  "#007e00",
+  "#164100",
+  "#720000",
+  "#600000",
+  "#4e0000",
+  "#3e0000",
+  "#310000",
   ]
   
   console.log(load(sample).discover({kind:'tetradic'}).output())
   // [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
    */
-  discover(options?: DiscoverOptions) {
-// @ts-ignore:
+  discover(options?: DiscoverOptions): Collection | this {
+    // @ts-ignore:
     return this.#setThis(discover, options);
   }
 
@@ -200,7 +201,7 @@ let sample = [
 console.log(load(sample).filterBy({start:'>=3', factor:'contrast',against:'green' }))
 // [ '#00ffdc', '#00ff78', '#ffff00', '#310000', '#3e0000', '#4e0000' ]
  */
-  filterBy(options?: FilterByOptions) {
+  filterBy(options?: FilterByOptions): Collection | this {
     // @ts-ignore:
     return this.#setThis(filterBy, options);
   }
@@ -234,7 +235,7 @@ console.log(
 
 // [ 'brown', 'red', 'green', 'purple' ]
  */
-  sortBy(options?: SortByOptions) {
+  sortBy(options?: SortByOptions): Collection | this {
     // @ts-ignore:
     return this.#setThis(sortBy, options);
   }
@@ -263,7 +264,7 @@ console.log(
    *
    * @param  options Optional parameters to specify how the data should be computed.
    */
-  stats(options?: StatsOptions) {
+  stats(options?: StatsOptions): Collection | this {
     // @ts-ignore:
     return this.#setThis(stats, options);
   }
@@ -276,7 +277,7 @@ console.log(
    * Returns the result value from the chain.
    * Can be omitted from invocation when `implicitReturn` is set to true.
    */
-  output() {
+  output(): Collection {
     return this.colors;
   }
 }
@@ -298,7 +299,7 @@ class Color {
    * @param c The color to bind.
    * @param options Optional overrides and properties for the bound color.
    */
-  constructor(c:ColorToken='cyan', options?: ColorOptions) {
+  constructor(c: ColorToken = 'cyan', options?: ColorOptions) {
     const {
       alpha,
       colorspace,
@@ -311,7 +312,7 @@ class Color {
     } = or(options, {}) as ColorOptions;
 
     // Set the alpha of the color if its not explicitly passed in.
-// @ts-ignore:
+    // @ts-ignore:
     this.alpha = or(alpha, _opac(c));
 
     // if the color is undefined we cast pure black
@@ -319,42 +320,42 @@ class Color {
     this._color = c;
 
     // set the color's luminance if its not explicitly passed in
-// @ts-ignore:
+    // @ts-ignore:
     this._luminance = or(luminance, _lmnce(c));
 
     // set the color's lightness if its not explicitly passed in the default lightness is in Lch but will be refactored soon
-// @ts-ignore:
+    // @ts-ignore:
     this._lightness = or(lightness, mc("lch.l")(c));
-// @ts-ignore:
+    // @ts-ignore:
     // set the default color space as jch if a color space is not specified. TODO: get the mode from object and array
     this.colorspace = or(colorspace, "lch");
-// @ts-ignore:
+    // @ts-ignore:
     // set the default saturation to that of the passed in color if the value is not explicitly set
     this._saturation = or(
       saturation,
-// @ts-ignore:
+      // @ts-ignore:
       mc(mcchn("c", this.colorspace))(c)
     );
-// @ts-ignore:
+    // @ts-ignore:
     // light mode default is gray-100
     this.lightMode = or(lightMode, colors("gray", "100"));
-// @ts-ignore:
+    // @ts-ignore:
     // dark mode default is gray-800
     this.darkMode = or(darkMode, colors("gray", "800"));
-// @ts-ignore:
+    // @ts-ignore:
     this.implicitReturn = or(implicitReturn, false) as boolean;
   }
-// @ts-ignore:
-  
-#setThis(callback, options?) {
-// @ts-ignore:
-  this.color = options
   // @ts-ignore:
+
+  #setThis(callback, options?) {
+    // @ts-ignore:
+    this.color = options
+      // @ts-ignore:
       ? callback(this._color, options)
       // @ts-ignore:
       : callback(this._color);
-// @ts-ignore:
-    return this.implicitReturn ? this.output() : this;
+    // @ts-ignore:
+    return this.implicitReturn ? this.output() : this as typeof callback
   }
 
   /**
@@ -378,7 +379,7 @@ class Color {
    
   // #b2c3f180
    */
-  alpha(amount?:string|number) {
+  alpha(amount?: string | number): ColorToken | number {
     return this.#setThis(_opac, amount);
   }
 
@@ -399,8 +400,8 @@ class Color {
   // 0.7411764705882353
    *
   */
-  mc(modeChannel:string, value?:string|number) {
-    const cb = (p:ColorToken) => mc(modeChannel)(p, value);
+  mc(modeChannel: string, value?: string | number): ColorToken | number {
+    const cb = (p: ColorToken) => mc(modeChannel)(p, value);
     return this.#setThis(cb);
   }
 
@@ -412,8 +413,8 @@ class Color {
      value is in the range [0,1]
       the easing and the interpolation methods /fixups.
      */
-  via(origin:ColorToken) {
-    const cb = (a:ColorToken) =>
+  via(origin: ColorToken): ColorToken {
+    const cb = (a: ColorToken) =>
       interpolator([origin, a], {
         num: 1,
         // @ts-ignore:
@@ -434,7 +435,7 @@ class Color {
   //#464646
   
    */
-  lightness(amount?: number, darken = undefined) {
+  lightness(amount?: number, darken = undefined): ColorToken {
     const params = [amount, darken];
     return this.#setThis(lightness, ...params);
   }
@@ -461,7 +462,7 @@ class Color {
    * * `'object'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.
    *
    */
-  token(options?:TokenOptions) {
+  token(options?: TokenOptions): ColorToken {
     return this.#setThis(token, options);
   }
 
@@ -478,7 +479,7 @@ class Color {
    * // #036103ff
    *
    */
-  pastel() {
+  pastel(): ColorToken {
     return this.#setThis(pastel);
   }
 
@@ -497,8 +498,8 @@ class Color {
     console.log(color("green").pairedScheme({hueStep:6,samples:4,tone:'dark'}))
     // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
      */
-  pair(_options?: PairedSchemeOptions) {
-    return this.#setThis(pair);
+  pair(options?: PairedSchemeOptions): ColorToken | Collection {
+    return this.#setThis(pair, options);
   }
 
   /**
@@ -532,7 +533,7 @@ class Color {
       '#3b0c3a'
     ]
      */
-  hueshift(options?: HueshiftOptions) {
+  hueshift(options?: HueshiftOptions): Collection {
     return this.#setThis(hueshift, options);
   }
 
@@ -547,7 +548,7 @@ class Color {
     // { hue: 'blue-green', color: '#97dfd7ff' }
     
      */
-  complimentary() {
+  complimentary(): ColorToken {
     return this.#setThis(complimentary);
   }
 
@@ -563,7 +564,9 @@ class Color {
   console.log(color("#310000").family())
   // 'red'
    */
-  family() {
+  family(): BiasedHues & ColorFamily {
+    // @ts-ignore:
+
     return this.#setThis(family);
   }
 
@@ -600,14 +603,14 @@ class Color {
       '#940049', '#99004b'
     ]
      */
-  earthtone(options?: EarthtoneOptions) {
+  earthtone(options?: EarthtoneOptions): ColorToken | Collection {
     return this.#setThis(earthtone, options);
   }
 
   /**
    *
    * Gets the contrast value between the bound and  comparison ( or `against`) color.
-   * @param against The color to use for comparison.
+   * @param against The color to use for comparison. The default is `'black'`.
    * @example
    *
    * import { color } from 'huetiful-js'
@@ -615,19 +618,19 @@ class Color {
    * console.log(color('pink').contrast('yellow'))
    * // 1.4322318222624262
    */
-  contrast(against:ColorToken) {
+  contrast(against?: ColorToken): number {
     return this.#setThis(
       contrast,
       // @ts-ignore:
       /light|dark/gi.test(against)
-      // @ts-ignore:
+        // @ts-ignore:
         ? {
           // @ts-ignore:
-            light: this?.background?.lightMode,
-            // @ts-ignore:
-            dark: this?.background?.darkMode,
-            // @ts-ignore:
-          }[against?.toLowerCase()]
+          light: this?.background?.lightMode,
+          // @ts-ignore:
+          dark: this?.background?.darkMode,
+          // @ts-ignore:
+        }[against?.toLowerCase()]
         : against
     );
   }
@@ -652,7 +655,7 @@ class Color {
   console.log(color(myColor).luminance(0.5));
    
      */
-  luminance(amount?:number) {
+  luminance(amount?: number): number | ColorToken {
     return this.#setThis(_lmnce, amount);
   }
 
@@ -675,10 +678,10 @@ class Color {
    * // ['lch',60,19.9,0.5]
    *
    */
-  saturation(amount?:number) {
+  saturation(amount?: number): number | ColorToken {
     // @ts-ignore:
     const c = mcchn("c", this.colorspace),
-      cb = (a:ColorToken) => mc(c)(a, amount);
+      cb = (a: ColorToken) => mc(c)(a, amount);
     return this.#setThis(cb, amount);
   }
 
@@ -730,7 +733,7 @@ class Color {
   ]
    
    */
-  achromatic() {
+  achromatic(): boolean {
     return this.#setThis(achromatic);
   }
 
@@ -752,7 +755,7 @@ class Color {
    
    
    */
-  temp():'warm'|'cool' {
+  temp(): 'warm' | 'cool' {
     // @ts-ignore:
     return this.#setThis(temp);
   }
@@ -784,7 +787,7 @@ class Color {
     console.log(protanopia)
     // #9f9f9f
      */
-  deficiency(options?: DeficiencyOptions) {
+  deficiency(options?: DeficiencyOptions): ColorToken {
     return this.#setThis(deficiency, options);
   }
 
@@ -805,7 +808,7 @@ class Color {
   console.log(color("blue").overtone())
   // false
    */
-  overtone():ColorFamily {
+  overtone(): ColorFamily {
     // @ts-ignore:
     return this.#setThis(overtone);
   }
@@ -820,7 +823,7 @@ class Color {
   console.log(color("#a1bd2f").scheme("triadic"))
   // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
    */
-  scheme(options?:SchemeOptions) {
+  scheme(options?: SchemeOptions): Collection {
     return this.#setThis(scheme, options);
   }
 
@@ -837,11 +840,11 @@ class Color {
    * // ['rgb',200,34,65]
    *
    */
-  output():ColorToken {
+  output(): ColorToken {
     // @ts-ignore:
     return this._color
   }
 }
 
 
-export { Color,ColorArray}
+export { Color, ColorArray }
