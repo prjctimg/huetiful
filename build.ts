@@ -5,16 +5,16 @@ import { $, build } from "bun";
 
 
 const baseOptions = {
-    entrypoints: ["./lib/index.ts"],
-    outdir: "./build",
-    minify: {
-      whitespace: true,
-      syntax: true,
-      identifiers: true,
-    },
-    target: "browser",
-    format: "esm",
+  entrypoints: ["./lib/index.ts"],
+  outdir: "./build",
+  minify: {
+    whitespace: true,
+    syntax: true,
+    identifiers: true,
   },
+  target: "browser",
+  format: "esm",
+},
   logger = (env) => console.log(`${env} build complete🏗`);
 
 await $`sudo rm -rf build  && echo 'Cleaned build/ directory'`;

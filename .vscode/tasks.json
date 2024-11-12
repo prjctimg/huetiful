@@ -6,7 +6,7 @@
 		{
 			"type": "deno",
 			"command": "lint",
-			"args": ["./**/*.ts", "--watch"],
+			"args": ["./lib/*.ts", "--watch"],
 			"problemMatcher": ["$deno-lint"],
 			"group": "test",
 			"label": "Lint 🔎",
