@@ -1,43 +1,43 @@
-import { deficiency, contrast } from "./accessibility.ts";
+import { contrast, deficiency } from "./accessibility.ts";
 import { filterBy, sortBy, stats } from "./collection.ts";
 import {
-  interpolator,
   discover,
-  hueshift,
   earthtone,
+  hueshift,
+  interpolator,
+  pair,
   pastel,
   scheme,
-  pair,
 } from "./generators.ts";
-import { or, mcchn } from "./internal.ts";
+import { mcchn, or } from "./internal.ts";
 import { colors, nearest } from "./palettes.ts";
 import type {
-  ColorToken, TokenOptions, NearestOptions, SchemeOptions, ColorFamily,
-  Collection,
+  BiasedHues,
+  Collection, ColorFamily,
   ColorOptions,
+  ColorToken,
   DeficiencyOptions,
   DiscoverOptions,
 
   EarthtoneOptions,
   FilterByOptions,
   HueshiftOptions,
-  InterpolatorOptions,
-  PairedSchemeOptions,
+  InterpolatorOptions, NearestOptions,
+  PairedSchemeOptions, SchemeOptions,
   SortByOptions,
-  StatsOptions,
-  BiasedHues,
+  StatsOptions, TokenOptions,
 } from "./types.d.ts";
 import {
-  mc,
-  lightness,
-  token,
-  complimentary,
-  family,
   luminance as _lmnce,
-  temp,
-  overtone,
   alpha as _opac,
   achromatic,
+  complimentary,
+  family,
+  lightness,
+  mc,
+  overtone,
+  temp,
+  token,
 } from "./utils.ts";
 
 /**
