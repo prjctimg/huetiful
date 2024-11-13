@@ -459,8 +459,9 @@ function filteredColl(fact: Factor, cb: unknown) {
 function getSrcMode(c: ColorToken): Colorspaces {
 
 
+
 	// @ts-ignore
-	return and(isArray(c), neq(typeof c[0], "number")) ? c[0] : eq(typeof 'object', c) ? c?.mode : 'rgb'
+	return and(isArray(c), neq(typeof c[0], "number")) ? c[0] : eq(typeof c, 'object') ? c?.mode : 'rgb'
 }
 
 const ctrst = (a: unknown) => (b: unknown) =>

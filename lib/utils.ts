@@ -369,11 +369,11 @@ function lightness(
 function token(
 	color: ColorToken = 'cyan',
 	options: TokenOptions = {
-		srcMode: undefined,
+
 		normalizeRgb: true,
 		numType: undefined,
 		omitMode: false,
-		omitAlpha: false
+		omitAlpha: false, kind: 'str'
 	}
 ): ColorToken {
 
@@ -399,17 +399,17 @@ function token(
 		numType,
 		omitAlpha,
 		normalizeRgb,
-	} = options
+	} = options;
 
+
+	console.log(options)
 
 	srcMode = srcMode ?
 		srcMode
 		: getSrcMode(color as ColorToken);
+	console.log(srcMode)
 
 
-
-	// TODO: We want to parse color tokens from different types
-	//
 
 	/**
 	 * An array of channel keys from the source colorspace. If undefined it defaults to 'rgb'
@@ -427,29 +427,37 @@ function token(
 	const alphaValue = alpha(color);
 	let result = {};
 
+
+
+	// Get the channels from passed in color token
+	// if the color token is a string or number we just convert it to an object
+
 	if (isArray(color)) {
 		// @ts-ignore:
-		srcChannelValues = (color as ColorTuple).filter((a) =>
-			eq(typeof a, "number")
-		);
+		srcChannelValues = (color as ColorTuple)
+			.filter((a) => eq(typeof a, "number")
+			);
 	}
-	if (eq(typeof color, "object")) {
+
+	if (eq(typeof color, "object"))
 		// @ts-ignore:
 		srcChannelValues = srcChannels.map((a) => color[a]);
-	}
-	if (eq(typeof color, "string")) {
+
+	if (eq(typeof color, "string"))
 		// @ts-ignore:
 		result = eq(typeof color, "number")
 			? num2c()
 			: parseToken(c2str(), "rgb");
-	}
+
 	// @ts-ignore:
-	if (srcChannelValues) {
+	if (srcChannelValues)
 		for (const channel of srcChannels) {
 			// @ts-ignore:
 			result[channel] = srcChannelValues[srcChannels.indexOf(channel)];
 		}
-	}
+	console.log(srcChannels, srcChannelValues)
+
+
 
 	function parseToken(col: unknown, mode?: unknown) {
 		// @ts-ignore:
