@@ -1,22 +1,33 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "files":{
-    "ignoreUnknown": true,"maxSize": 32768
-  },"vcs":{"enabled": true,
-  "clientKind":"git","defaultBranch": "dev",
-    "useIgnoreFile": true
-  },"linter":{
-    "enabled": true,
-    "rules":{
-        "style":{
-            "useSingleVarDeclarator":"off","noParameterAssign":"off"
-        },"suspicious":{
-          "noAssignInExpressions":"off"
-        },"performance":{
-          "noDelete":"off"
-        }
-    }
-  },"formatter":{
-    "indentWidth":4,"indentStyle":"tab","lineWidth":60
-  }
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"files": {
+		"ignoreUnknown": true,
+		"maxSize": 32768
+	},
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"defaultBranch": "dev",
+		"useIgnoreFile": true
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"style": {
+				"useSingleVarDeclarator": "off",
+				"noParameterAssign": "off"
+			},
+			"suspicious": {
+				"noAssignInExpressions": "off"
+			},
+			"performance": {
+				"noDelete": "off"
+			}
+		}
+	},
+	"formatter": {
+		"indentWidth": 2,
+		"indentStyle": "tab",
+		"lineWidth": 50
+	}
 }

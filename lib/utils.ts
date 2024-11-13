@@ -214,7 +214,7 @@ function mc<Value>(modeChannel = 'lch.h') {
 				colorObject = exprParser(colorObject[channel], value);
 			} else {
 				throw Error(
-					`${typeof value}} ${value} is an unsupported value to set on a color token`,
+					`${typeof value}} ${value} is not a valid value for a color token`,
 				);
 			}
 
@@ -354,10 +354,10 @@ function lightness(
  *
  * * `'str'` - Parses the color token to its hexadecimal string equivalent.
  *
- * * `'obj'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.
- * * `'temp'` - Parses the color token to its RGB equivalent and expects the value to be between 0 and 30,000
+ * * `'obj'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.t
  *
  * :::tip
+ * 
  *  If the color token has an explicit `alpha` (specified by the `alpha` key in color objects and as the fourth and last number in a color array) the string will be 8 characters long instead of 6.
 
  *
@@ -369,9 +369,17 @@ function lightness(
 function token(
 	color: ColorToken = 'cyan',
 	options: TokenOptions = {
-		srcMode: undefined, normalizeRgb: true, numType: undefined, omitMode: false, omitAlpha: false
+		srcMode: undefined,
+		normalizeRgb: true,
+		numType: undefined,
+		omitMode: false,
+		omitAlpha: false
 	}
 ): ColorToken {
+
+
+
+	// the mode definitions
 	const modeDefinitions = {
 		lrgb: modeLrgb,
 		lab: modeLab,
@@ -394,9 +402,14 @@ function token(
 	} = options
 
 
-	// so that stuff doesn't break 
-	srcMode = srcMode ? srcMode : getSrcMode(color as ColorToken);
+	srcMode = srcMode ?
+		srcMode
+		: getSrcMode(color as ColorToken);
 
+
+
+	// TODO: We want to parse color tokens from different types
+	//
 
 	/**
 	 * An array of channel keys from the source colorspace. If undefined it defaults to 'rgb'

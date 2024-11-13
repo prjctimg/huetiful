@@ -68,9 +68,10 @@ console.log(deficiency(['rgb', 230, 100, 50, 0.5],{ kind:'blue', severity:0.5 })
 
  */
 function deficiency(
-	color: ColorToken = 'cyan',
+	color: ColorToken = "cyan",
 	options: DeficiencyOptions = {
-		kind: 'red', severity: 0.5
+		kind: "red",
+		severity: 0.5,
 	},
 ): ColorToken {
 	let { kind, severity } = options || {};
