@@ -115,7 +115,7 @@ function alpha<Amount>(color: ColorToken = 'cyan',
 
 	if (not(amount)) {
 		// @ts-ignore:
-		return alphaChannel;
+		return alphaChannel ? alphaChannel : 1
 	}
 	amount = or(
 		// @ts-ignore:
@@ -455,7 +455,7 @@ function token(
 			// @ts-ignore:
 			result[channel] = srcChannelValues[srcChannels.indexOf(channel)];
 		}
-	console.log(srcChannels, srcChannelValues)
+	console.log(srcChannels, srcChannelValues, result)
 
 
 
@@ -470,13 +470,13 @@ function token(
 		const res = targetMode ? parseToken(result, targetMode) : result;
 		srcChannels = targetMode ? gmchn(targetMode) : srcChannels;
 
-		if (and(and(eq(srcMode, "rgb"), normalizeRgb), not(targetMode))) {
+		if (and(and(eq(srcMode, "rgb"), normalizeRgb), not(targetMode)))
 			// @ts-ignore:
-			if (srcChannels.some((c) => gt(Math.abs(result[c]), 1))) {
+			if (srcChannels.some((c) => gt(Math.abs(result[c]), 1)))
 				// @ts-ignore:
 				for (const k of srcChannels) result[k] /= 255;
-			}
-		}
+
+
 
 		if (eq(col, "obj")) {
 			omitMode
@@ -485,21 +485,26 @@ function token(
 				// @ts-ignore:
 
 				: (res.mode = or(and(targetMode, targetMode), srcMode));
+
+
+			// @ts-ignore:
+			omitAlpha ? delete res.alpha : (res.alpha = alphaValue);
+			return res
 		}
-		// @ts-ignore:
-		omitAlpha ? delete res.alpha : (res.alpha = alphaValue);
 
 		if (eq(col, "arr")) srcChannelValues = [];
-		for (const k of srcChannels) {
+		for (const k of srcChannels)
 			// @ts-ignore:
 			srcChannelValues[srcChannels.indexOf(k)] = res[k];
-		}
+
 		// @ts-ignore:
 		omitAlpha ? srcChannelValues : srcChannelValues.push(alphaValue);
 		omitMode
 			? srcChannelValues
 			// @ts-ignore:
 			: srcChannelValues.unshift(targetMode ? targetMode : srcMode);
+		return srcChannelValues
+
 	}
 
 	/**
