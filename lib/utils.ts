@@ -64,11 +64,14 @@ import type {
  * In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
  * :::
  *
+ * If the `alpha` channel is `undefined`, it defaults to `1`.
+ * 
  * @param  color The color with the opacity/alpha channel to retrieve or set.
  * @param amount The value to apply to the opacity channel. The value is between `[0,1]`
 
  * @example
- *
+ * import { alpha } from '@prjctimg/huetiful'
+ * 
  * // Getting the alpha
 console.log(alpha('#a1bd2f0d'))
 // 0.050980392156862744

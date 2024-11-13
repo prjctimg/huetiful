@@ -133,8 +133,8 @@ const config: Config = {
       copyright: `<a href='https://huetiful-js.com'><b class='pacifico'>huetiful-js</b></a> <br> <a href='https://deantarisai.com'>© ディーン・タリサイ 🌊</a>`,
     },
     prism: {
-      theme: prismThemes["shadesOfPurple"],
-      darkTheme: prismThemes["palenight"],
+      theme: prismThemes.shadesOfPurple,
+      darkTheme: prismThemes.palenight,
     },
     algolia: {
       apiKey: "f031ae0d71cbcbe66956cd02849d00e5",
