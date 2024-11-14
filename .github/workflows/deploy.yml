@@ -29,10 +29,10 @@ jobs:
           node-version: lts/*
 
       - name: Install step
-        run: "cd www/;npm install"
+        run: "cd www/;npm install bun -g; bun install"
 
       - name: Build step
-        run: "cd www/;npx docusaurus build"
+        run: "cd www/;bunx docusaurus build"
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
