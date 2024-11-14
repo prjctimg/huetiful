@@ -70,7 +70,7 @@ import type {
  * @param amount The value to apply to the opacity channel. The value is between `[0,1]`
 
  * @example
- * import { alpha } from '@prjctimg/huetiful'
+ * import { alpha } from 'huetiful-js'
  * 
  * // Getting the alpha
 console.log(alpha('#a1bd2f0d'))

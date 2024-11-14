@@ -10,7 +10,7 @@ bun.lockb
 /.pnp
 .pnp.js
 # Production
-/build
+**/*/build/
 
 # Generated files
 **/.docusaurus

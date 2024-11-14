@@ -73,7 +73,7 @@ const config: Config = {
   },
 
   // Typedoc plugin
-  plugins: [["docusaurus-plugin-typedoc", typedocOptions]],
+  plugins: [["docusaurus-plugin-typedoc", typedocOptions], require.resolve('docusaurus-lunr-search')],
 
   // Presets (includes docs and other plugins)
   presets: [
@@ -135,13 +135,6 @@ const config: Config = {
     prism: {
       theme: prismThemes.shadesOfPurple,
       darkTheme: prismThemes.palenight,
-    },
-    algolia: {
-      apiKey: "f031ae0d71cbcbe66956cd02849d00e5",
-      indexName: "huetiful-js",
-      appId: "DOKF6OB7K0",
-      contextualSearch: true,
-      insights: true,
     },
     announcementBar: {
       id: "banner",
