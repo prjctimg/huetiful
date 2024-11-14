@@ -21,7 +21,7 @@ jobs:
       - name: Install Deno
         uses: denoland/setup-deno@v2
         with:
-          deno-version: v1.x
+          deno-version: v2.x
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -32,13 +32,13 @@ jobs:
         run: "cd www/;npm install"
 
       - name: Build step
-        run: "cd www; npx docusaurus build"
+        run: "cd www/;npx docusaurus build"
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
           project: "huetiful"
-          entrypoint: ""
-          root: "./www/build/"
+          entrypoint: "https://deno.land/std@0.217.0/http/file_server.ts"
+          root: "www/build"
           
           
