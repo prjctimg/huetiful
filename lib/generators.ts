@@ -48,7 +48,7 @@ import type {
   InterpolatorOptions,
   PairedSchemeOptions,
   SchemeOptions,
-  TokenOptions,
+  
 } from "./types.d.ts";
 
 
@@ -87,13 +87,13 @@ console.log(hueShiftedPalette);
   '#3b0c3a'
 ]
  */
-function hueshift<Color extends ColorToken, Options extends HueshiftOptions>(
-  baseColor?: Color, options?: Options
+function hueshift(
+  baseColor?: ColorToken, options: HueshiftOptions={}
 ): Collection {
   let { num, hueStep, minLightness, maxLightness, easingFn, tokenOptions } = or(
     options,
     {},
-  ) as Options;
+  ) as HueshiftOptions;
 
   easingFn = or(easingFn, ef);
   // @ts-ignore:
@@ -102,7 +102,7 @@ function hueshift<Color extends ColorToken, Options extends HueshiftOptions>(
   baseColor = token(baseColor, {
     kind: "obj",
     targetMode: "lch",
-  }) as Color;
+  }) as ColorToken;
   const z = [baseColor];
 
   // // if value is beyond max normalize all the values ensuring that the end is higher than start
@@ -148,8 +148,8 @@ function hueshift<Color extends ColorToken, Options extends HueshiftOptions>(
       },
     ];
 
-    z.push(x as Color);
-    z.unshift(y as Color);
+    z.push(x as ColorToken);
+    z.unshift(y as ColorToken);
   }
 
   return Array.from(new Set(z)).map((c) => token(c, tokenOptions));
@@ -173,9 +173,8 @@ console.log(pastel("green"))
 
 // #036103ff
  */
-function pastel<Color extends ColorToken, Options extends TokenOptions>(
-  baseColor: Color,
-  options?: Options,
+function pastel(
+  baseColor?: ColorToken,
 ): ColorToken {
   const w = [
     [0.3582677165354331, 0.996078431372549, 16538982.504333857],
@@ -204,8 +203,8 @@ function pastel<Color extends ColorToken, Options extends TokenOptions>(
     h: token(baseColor, { targetMode: "hsv", kind: "obj" }).h,
   });
 
-  // @ts-ignore:
-  return token(q, options?.tokenOptions);
+  
+  return q
 }
 
 /**
@@ -227,11 +226,11 @@ function pastel<Color extends ColorToken, Options extends TokenOptions>(
 console.log(pair("green",{hueStep:6,num:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
  */
-function pair<Color extends ColorToken, Options extends PairedSchemeOptions>(
-  baseColor: Color,
-  options?: Options,
+function pair(
+  baseColor?: ColorToken,
+  options?: PairedSchemeOptions,
 ): Collection | ColorToken {
-  let { num, via, hueStep, colorspace } = or(options, {}) as Options;
+  let { num, via, hueStep, colorspace } = options as PairedSchemeOptions
   via = or(via, "light");
   hueStep = or(hueStep, 5);
   colorspace = or(colorspace, "lch65");
@@ -251,10 +250,6 @@ function pair<Color extends ColorToken, Options extends PairedSchemeOptions>(
     light: { l: 100, c: 0, h: 0, mode: colorspace },
   }[via as string];
 
-  // Since the interpolation returns half duplicate values we double the sample value
-  // Guard the num param against negative values and floats
-
-  // Return a slice of the array from the start to the half length of the array
 
   return interpolator([baseColor, tone, destinationColor], {
     colorspace: "lch",
@@ -368,7 +363,7 @@ function interpolator(
     token(func(0.5), options?.tokenOptions),
   );
 }
-
+ interpolator([{l:8,c:3,h:45,mode:'lch'},'yellow'])
 /**
  * Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes.
  *
@@ -481,10 +476,10 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
 
  */
 function earthtone(
-  baseColor: ColorToken,
-  options: EarthtoneOptions,
+  baseColor?: ColorToken,
+  options: EarthtoneOptions={},
 ): ColorToken | Array<ColorToken> {
-  let { num, earthtones, colorspace, kind, closed } = options || {};
+  let { num, earthtones, colorspace, kind, closed } = options;
 
 
   earthtones = or(earthtones, "dark");
@@ -552,13 +547,13 @@ console.log(scheme("triadic")("#a1bd2f"))
  */
 // @ts-ignore:
 function scheme(
-  baseColor: ColorToken = 'cyan',
+  baseColor?: ColorToken,
   options: SchemeOptions = {
     colorspace: 'lch',
     kind: ['analogous'], easingFn: ef
   },
 ): Collection {
-  const { colorspace, kind, easingFn } = options || {};
+  const { colorspace, kind, easingFn } = options|| {}
 
   // @ts-ignore:
   baseColor = token(baseColor, { targetMode: colorspace, kind: "obj" });

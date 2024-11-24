@@ -13,13 +13,13 @@
 			"detail": "Check the source files for Deno compliancy or regressions."
 		},
 		{
-			"type": "bun",
+			"type": "npm",
 			"script": "bun test",
 			"label": "Test 🧪",
 			"detail": "Run the test suites for all publicly exported functions."
 		},
 		{
-			"type": "bun",
+			"type": "npm",
 			"script": "bun run build.ts",
 			"detail": "Build library and types to the local filesystem. For development only.",
 			"label": "Build 🏗",
