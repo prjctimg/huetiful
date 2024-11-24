@@ -707,18 +707,18 @@ let sample = [
 
 
 console.log(temp(sample[2]));
-// false
+// 'cool'
 
-console.log(map(sample, isCool));
+console.log(map(sample, temp));
 
-// [ true,  false, true]
+// [ 'cool',  'warm', 'cool']
 
 
 
  */
 function temp(color: ColorToken = "cyan"): "cool" | "warm" {
-	return or(
-		and(
+	return (
+		(
 			keys(hue).some((hueFamily) =>
 				inRange(
 					floorCeil(mc("lch.h")(color)),
@@ -727,10 +727,10 @@ function temp(color: ColorToken = "cyan"): "cool" | "warm" {
 					// @ts-ignore:
 					hue[hueFamily].cool[1],
 				)
-			),
-			"cool",
-		),
-		"warm",
+			) &&
+			"cool"
+		) ||
+		"warm"
 	);
 }
 
@@ -761,10 +761,10 @@ function overtone(
 
 	// We check if the color can be found in the defined ranges
 	// @ts-ignore:
-	return or(
-		and(achromatic(color), "gray"),
+	return (
+		(achromatic(color) && "gray")
 		// @ts-ignore:
-		or(and(/-/.test(hueFamily), hueFamily.split("-")[1]), false),
+		|| ((/-/.test(hueFamily) && hueFamily.split("-")[1]) || false)
 	);
 }
 

@@ -48,7 +48,7 @@ import type {
   InterpolatorOptions,
   PairedSchemeOptions,
   SchemeOptions,
-  
+
 } from "./types.d.ts";
 
 
@@ -88,7 +88,7 @@ console.log(hueShiftedPalette);
 ]
  */
 function hueshift(
-  baseColor?: ColorToken, options: HueshiftOptions={}
+  baseColor?: ColorToken, options: HueshiftOptions = {}
 ): Collection {
   let { num, hueStep, minLightness, maxLightness, easingFn, tokenOptions } = or(
     options,
@@ -203,7 +203,7 @@ function pastel(
     h: token(baseColor, { targetMode: "hsv", kind: "obj" }).h,
   });
 
-  
+
   return q
 }
 
@@ -363,7 +363,7 @@ function interpolator(
     token(func(0.5), options?.tokenOptions),
   );
 }
- interpolator([{l:8,c:3,h:45,mode:'lch'},'yellow'])
+
 /**
  * Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes.
  *
@@ -422,10 +422,10 @@ function discover(
       );
   // Create the classic palettes per valid color token  in the collection
 
-  for (const key of colorTokenKeys) {
+  for (const key of colorTokenKeys)
     // @ts-ignore:
     palettes[key] = scheme(colors[key], { kind: kind });
-  }
+
 
   // @ts-ignore:
   let currentPalette = [];
@@ -433,26 +433,26 @@ function discover(
     if (eq(typeof kind, "string")) {
       // @ts-ignore:
       palettes[key] = availableColors(key, palettes);
-      if (gt(currentPalette.length, 1)) {
+      if (gt(currentPalette.length, 1))
         // @ts-ignore:
         palettes[key] = palettes[key].filter((a, b) =>
           // @ts-ignore:
           not(customInRange(a, currentPalette[b]))
         );
-      }
+
       // @ts-ignore:
       currentPalette = palettes[key];
     } else {
       // if the color token value is an object, iterate through the available palette keys
       // @ts-ignore:
-      for (const paletteType of keys(palettes[key])) {
+      for (const paletteType of keys(palettes[key]))
         // @ts-ignore:
         palettes[key][paletteType] = availableColors(
           paletteType,
           // @ts-ignore:
           palettes[key],
         );
-      }
+
     }
   }
 
@@ -477,7 +477,7 @@ console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
  */
 function earthtone(
   baseColor?: ColorToken,
-  options: EarthtoneOptions={},
+  options: EarthtoneOptions = {},
 ): ColorToken | Array<ColorToken> {
   let { num, earthtones, colorspace, kind, closed } = options;
 
@@ -553,7 +553,7 @@ function scheme(
     kind: ['analogous'], easingFn: ef
   },
 ): Collection {
-  const { colorspace, kind, easingFn } = options|| {}
+  const { colorspace, kind, easingFn } = options || {}
 
   // @ts-ignore:
   baseColor = token(baseColor, { targetMode: colorspace, kind: "obj" });
