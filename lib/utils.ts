@@ -796,9 +796,9 @@ function complimentary(baseColor?: ColorToken, options: ComplimentaryOptions = {
 			? 180 *
 			rand(
 				// @ts-ignore:
-				or(extremums[0], MIN_EXTREMUM),
+				(extremums[0] || MIN_EXTREMUM),
 				// @ts-ignore:
-				or(extremums[1], MAX_EXTREMUM),
+				(extremums[1] || MAX_EXTREMUM),
 			)
 			: 180),
 	);
