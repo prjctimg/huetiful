@@ -1,6 +1,6 @@
 // @ts-nocheck:
 
-import { expect, test } from "bun:test";
+import { expect } from "jsr:@std/expect";
 
 export type Spec = {
 	description?: string;
@@ -12,7 +12,7 @@ export type Spec = {
 };
 export default function (specs: Spec[]) {
 	for (const spec of specs) {
-		test(spec?.description || "Running test...", () => {
+		Deno.test(spec?.description || "Running test...", () => {
 			expect(spec.callback(...spec.params))[
 				spec?.matcher || "toEqual"
 			](spec.result);

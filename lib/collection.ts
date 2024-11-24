@@ -83,8 +83,8 @@ function stats(collection: Collection = [], options: StatsOptions = {
 			sortedColl(a, b, "asc")(hexColors);
 
 		// @ts-ignore:`
-		return or(
-			and(eq(relative, true), {
+		return (
+			(eq(relative, true) && {
 				chroma: sortedTokens(
 					fact,
 					chnDiff(
@@ -118,7 +118,7 @@ function stats(collection: Collection = [], options: StatsOptions = {
 					fact,
 					ctrst(against),
 				),
-			}),
+			}) ||
 			{
 				chroma: sortedTokens(
 					fact,
@@ -133,7 +133,7 @@ function stats(collection: Collection = [], options: StatsOptions = {
 					fact,
 					mc(`${colorspace}.h`),
 				),
-			},
+			}
 		)[fact];
 	};
 	const len: number = values(collection).length;
@@ -177,18 +177,18 @@ function stats(collection: Collection = [], options: StatsOptions = {
 		];
 
 		return {
-			against: or(
-				and(
-					or(
-						relative,
+			against: (
+				(
+					(
+						relative ||
 						eq(
 							fact,
 							or("contrast", "distance"),
-						),
-					),
-					against,
-				),
-				null,
+						)
+					) &&
+					against
+				)
+				|| null
 			),
 			colors: [x.color, y.color],
 			// @ts-ignore:
@@ -274,8 +274,8 @@ function sortBy(collection: Collection = [], options: SortByOptions = {
 			mc(`${colorspace}.${ch}`) as unknown as string;
 
 		// @ts-ignore: fact is used as the index
-		return or(
-			and(relative, {
+		return (
+			(relative && {
 				chroma: sort(
 					chnDiff(against, u(chromaChannel)),
 				),
@@ -284,7 +284,7 @@ function sortBy(collection: Collection = [], options: SortByOptions = {
 				lightness: sort(
 					chnDiff(against, u(lightnessChannel)),
 				),
-			}),
+			}) ||
 			{
 				chroma: sort(u(chromaChannel)),
 				hue: sort(u("h")),
@@ -292,7 +292,7 @@ function sortBy(collection: Collection = [], options: SortByOptions = {
 				distance: sort(dstnce(against)),
 				contrast: sort(ctrst(against)),
 				lightness: sort(u(lightnessChannel)),
-			},
+			}
 		)[fact](collection);
 	};
 	// @ts-ignore:
