@@ -1,7 +1,7 @@
 import { differenceHyab, nearest as nrst } from "culori/fn";
 import type {
 	Collection,
-	ColorToken,
+
 	DivergingScheme,
 	QualitativeScheme,
 	ScaleValues,
@@ -9,7 +9,7 @@ import type {
 	Swatch,
 	Tailwind,
 } from "./types.d.ts";
-import { and, eq, gt, isArray, keys, or, values } from "./internal.ts";
+import { and, eq, isArray, keys, or, values } from "./internal.ts";
 
 const tailwind = {
 	indigo: {
