@@ -259,9 +259,9 @@ const tailwind = {
 
 /**
  * Returns the specified scheme from the passed in color map
- * @param {string} s The palette type to return.
- * @param {Collection} obj The color map with the `scheme`s as keys and `ColorToken | Array<ColorToken>` as values.
- * @returns {Collection} The collection of colors from the specified `scheme`.
+ * @param  s The palette type to return.
+ * @param  obj The color map with the `scheme`s as keys and `ColorToken | Array<ColorToken>` as values.
+ 
  */
 function hasScheme(s: string = '', obj: Collection = {}) {
 	// Map all schemes keys to lower case
@@ -852,12 +852,12 @@ function nearest(collection: Collection | "tailwind", options: { num: 1; against
 
    */
 
-function colors<S extends ScaleValues, F extends Tailwind>(
-	shade?: F | "all",
-	value?: S,
-) {
+function colors(
+	shade?: Tailwind | "all",
+	value?: ScaleValues,
+): Array<string> {
 	const w = tailwind;
-	value = value?.toString() as S;
+	value = value?.toString() as ScaleValues;
 	const [d, k] = ["all", keys(w)];
 
 	const [p, q] = [
@@ -878,21 +878,23 @@ function colors<S extends ScaleValues, F extends Tailwind>(
 			].includes(i?.toString()),
 	];
 
-	shade = shade?.toLowerCase() as F;
-	let o: unknown;
-	if (eq(shade, d)) {
+	shade = shade?.toLowerCase() as Tailwind;
+	let o: string[];
+	if (eq(shade, d))
 		// @ts-ignore:
 		if (q(value)) o = k.map((y) => w[y][value]);
 		// @ts-ignore:
 		else o = k.map((y) => values(w[y])).flat(2);
-	} else if (p(shade)) {
+	else if (p(shade))
 		// @ts-ignore:
 		if (q(value)) o = w[shade][value as string];
 		else o = values(w[shade]);
-		// @ts-ignore:
-	} else if (or(!shade, and(!shade, !value))) o = k.map((h) => w[h]);
+	// @ts-ignore:
+	else if (or(!shade, and(!shade, !value))) o = k.map((h) => w[h]);
 
-	return o as Swatch<F, S>;
+
+	// @ts-ignore:
+	return o;
 }
 export {
 

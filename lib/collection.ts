@@ -85,7 +85,7 @@ function stats(collection: Collection = [], options: StatsOptions = {
 
 		// @ts-ignore:`
 		return (
-			(eq(relative, true) && {
+			relative === true && {
 				chroma: sortedTokens(
 					fact,
 					chnDiff(
@@ -119,7 +119,7 @@ function stats(collection: Collection = [], options: StatsOptions = {
 					fact,
 					ctrst(against),
 				),
-			}) ||
+			} ||
 			{
 				chroma: sortedTokens(
 					fact,
@@ -137,40 +137,40 @@ function stats(collection: Collection = [], options: StatsOptions = {
 			}
 		)[fact];
 	};
-	const len: number = values(collection).length;
-	const factorStats = (fact: Factor) => {
-		// @ts-ignore:
-		/**
-		 *
-		 * @param b The callback func for computing the targeted factor. Must be unary
-		 * @param c The function to wrap the resulting collection of computed factors in.
-		 */
-		const callback =
-			(b: (x?: ColorToken) => number) =>
-				(c: (x: number[]) => number) =>
-					c(map(collection, b) as number[]);
+	const len: number = values(collection).length,
+		factorStats = (fact: Factor) => {
+			// @ts-ignore:
+			/**
+			 *
+			 * @param b The callback func for computing the targeted factor. Must be unary
+			 * @param c The function to wrap the resulting collection of computed factors in.
+			 */
+			const callback =
+				(b: (x?: ColorToken) => number) =>
+					(c: (x: number[]) => number) =>
+						c(map(collection, b) as number[]);
 
-		// @ts-ignore:
-		return {
-			chroma: callback(mc(mcchn("c", colorspace)))(
-				averageNumber,
-			),
-			distance: callback(dstnce(against))(
-				averageNumber,
-			),
+			// @ts-ignore:
+			return {
+				chroma: callback(mc(mcchn("c", colorspace)))(
+					averageNumber,
+				),
+				distance: callback(dstnce(against))(
+					averageNumber,
+				),
 
-			hue: callback(mc(`${colorspace}.h`))(
-				averageAngle,
-			),
-			lightness: callback(mc(mcchn("l", colorspace)))(
-				averageNumber,
-			),
-			contrast: callback(ctrst(against))(
-				averageNumber,
-			),
-			luminance: callback(luminance)(averageNumber),
-		}[fact];
-	};
+				hue: callback(mc(`${colorspace}.h`))(
+					averageAngle,
+				),
+				lightness: callback(mc(mcchn("l", colorspace)))(
+					averageNumber,
+				),
+				contrast: callback(ctrst(against))(
+					averageNumber,
+				),
+				luminance: callback(luminance)(averageNumber),
+			}[fact];
+		};
 	const commonStats = (fact: Factor) => {
 		const [x, y] = [
 			getStatsObject(fact)[0],
@@ -182,9 +182,9 @@ function stats(collection: Collection = [], options: StatsOptions = {
 				(
 					(
 						relative ||
-						eq(
-							fact,
-							or("contrast", "distance"),
+						(
+							fact ===
+							"contrast" || "distance"
 						)
 					) &&
 					against
@@ -193,7 +193,7 @@ function stats(collection: Collection = [], options: StatsOptions = {
 			),
 			colors: [x.color, y.color],
 			// @ts-ignore:
-			mean: factorStats(fact)(collection),
+			mean: factorStats(fact),
 			extremums: [x[fact], y[fact]],
 
 			families: [family(x.color), family(y.color)],
@@ -214,8 +214,6 @@ function stats(collection: Collection = [], options: StatsOptions = {
 }
 
 
-//  @ts-ignore:
-console.log(stats(colors('all', '500')))
 /**
  * Sorts colors according to the specified `factor`. The supported options are:
  *
@@ -408,7 +406,16 @@ function sortBy(collection: Collection = [], options: SortByOptions = {
 function filterBy(collection: Collection = [], options: FilterByOptions = {
 	against: 'cyan', colorspace: 'lch', factor: undefined, ranges: undefined
 }): Collection {
-	const { against, colorspace, factor, ranges } = options
+	let { against, colorspace, factor, ranges } = options || {}
+
+
+	//  handling defaults internally helps avoid undefined values as compared to passing it to the parameter list
+	against = against || 'cyan'
+	colorspace = colorspace || 'lch'
+	factor = factor || undefined
+
+
+
 
 	const filter = (cb: unknown) => (fact: Factor) =>
 		filteredColl(fact, cb)(collection, start, end),
@@ -432,9 +439,9 @@ function filterBy(collection: Collection = [], options: FilterByOptions = {
 
 	const callback = (fact: Factor) => {
 		// @ts-ignore:
-		start = or(ranges[fact][0], def_ranges[fact][0]);
+		start = ranges[fact][0] || def_ranges[fact][0]
 		// @ts-ignore:
-		end = or(ranges[fact][1], def_ranges[fact][1]);
+		end = ranges[fact][1] || def_ranges[fact][1]
 
 		return {
 			chroma: filter(

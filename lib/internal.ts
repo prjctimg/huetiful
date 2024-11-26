@@ -68,13 +68,14 @@ const dstnce = (a: unknown) => (b: unknown) =>
 function iterator(
 	t: string[] | undefined,
 	z: (x: unknown) => unknown,
-	y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"],
+
 ) {
-	const p = {};
+	const p = {},
+		y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"]
 	//  @ts-ignore:
-	if (gt(values(t).length, 1))
-		//  @ts-ignore:
-		if (isArray(t)) for (const k of values(t)) p[k] = z(k);
+
+	//  @ts-ignore:
+	if (isArray(t) && t?.length >= 1) for (const k of values(t)) p[k] = z(k);
 	// @ts-ignore:
 	if (eq(t, undefined)) for (const k of y) p[k] = z(k);
 
