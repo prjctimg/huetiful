@@ -30,6 +30,7 @@ import type {
 	StatsOptions,
 } from "./types.d.ts";
 import type { ColorToken } from "./types.d.ts";
+import { colors } from "./palettes.ts";
 
 
 /**
@@ -212,6 +213,9 @@ function stats(collection: Collection = [], options: StatsOptions = {
 	return statsObject
 }
 
+
+//  @ts-ignore:
+console.log(stats(colors('all', '500')))
 /**
  * Sorts colors according to the specified `factor`. The supported options are:
  *

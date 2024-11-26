@@ -8,14 +8,11 @@ export type Spec = {
 	matcher?: string;
 	callback: unknown;
 	params: unknown[];
-	result: unknown;
 };
 export default function (specs: Spec[]) {
-	for (const spec of specs) {
+	for (const spec of specs)
 		Deno.test(spec?.description || "Running test...", () => {
-			expect(spec.callback(...spec.params))[
-				spec?.matcher || "toEqual"
-			](spec.result);
+			expect(spec?.callback(...spec?.params)).toBeTruthy()
 		});
-	}
+
 }

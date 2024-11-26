@@ -9,7 +9,7 @@ import type {
 	Swatch,
 	Tailwind,
 } from "./types.d.ts";
-import { and, eq, gt, keys, or, values } from "./internal.ts";
+import { and, eq, gt, isArray, keys, or, values } from "./internal.ts";
 
 const tailwind = {
 	indigo: {
@@ -263,18 +263,30 @@ const tailwind = {
  * @param {Collection} obj The color map with the `scheme`s as keys and `ColorToken | Array<ColorToken>` as values.
  * @returns {Collection} The collection of colors from the specified `scheme`.
  */
-function hasScheme(s: string, obj: Collection) {
+function hasScheme(s: string = '', obj: Collection = {}) {
 	// Map all schemes keys to lower case
-	const o = keys(obj).map((k) => k.toLowerCase()), p = s.toLowerCase();
+	// @ts-ignore:
+	const o = keys(obj), cb = x => obj[o.find((v) => v.toLowerCase() === x.toLowerCase())]
 
-	return gt(o.indexOf(p), -1)
+	let res = {}
+
+
+	if (isArray(s))
+
+		for (const x of s)
+			// @ts-ignore:
+			res[x.toLowerCase()] = cb(x);
+	else
 		// @ts-ignore:
-		? obj[p]
-		: Error(`${s} is an invalid scheme option.`);
+		res = cb(s);
+
+
+	return res
+		|| Error(`${s} is an invalid scheme option.`);
 }
 /**
  *  A wrapper function for ColorBrewer's map of sequential color schemes.
- * @param  scheme The name of the scheme.
+ * @param  scheme The name of the scheme. 
  * @returns {Collection|import('../types.js').ColorToken}  A collection of colors in the specified colorspace. The default is hex if `colorspace` is `undefined.`
  * @example
  *
@@ -295,7 +307,7 @@ console.log(sequential("OrRd"))
 
  */
 function sequential<Scheme extends SequentialScheme>(
-	scheme?: Scheme,
+	scheme?: Scheme | Array<Scheme>,
 ): Scheme[] {
 	const so = {
 		OrRd: [
@@ -530,7 +542,7 @@ console.log(diverging("Spectral"))
   '#bf5b17', '#666666'
 ]
  */
-function diverging<Scheme extends DivergingScheme>(scheme?: Scheme): Scheme[] {
+function diverging<Scheme extends DivergingScheme>(scheme?: Scheme | Array<Scheme>): Scheme[] {
 	const so = {
 		Spectral: [
 			"#9e0142",
@@ -672,7 +684,7 @@ console.log(qualitative("Accent"))
 
  */
 function qualitative<Scheme extends QualitativeScheme>(
-	scheme?: Scheme,
+	scheme?: Scheme | Array<Scheme>,
 ): Scheme[] {
 	const so = {
 		Set2: [
@@ -784,18 +796,17 @@ function qualitative<Scheme extends QualitativeScheme>(
 console.log(nearest(cols, 'blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
-function nearest(collection: Collection | "tailwind", options:{num?:number;against?:ColorToken}) {
-	let { against, num } = options || {};
-	num = or(num, 1);
-	against = or(against, "cyan");
-	const f = (a: unknown, b: unknown) => {
-		const o = nrst(
-			values(a as object),
-			differenceHyab(),
-			(c) => c as string,
-		)(b as string, num);
-		return or(and(eq(num, 1), o[0]), o);
-	};
+function nearest(collection: Collection | "tailwind", options: { num: 1; against: 'cyan' }) {
+	const { against, num } = options,
+
+		f = (a: unknown, b: unknown) => {
+			const o = nrst(
+				values(a as object),
+				differenceHyab(),
+				(c) => c as string,
+			)(b as string, num);
+			return or(and(eq(num, 1), o[0]), o);
+		};
 
 	return or(
 		and(eq(collection, "tailwind"), f(colors("all"), against)),
@@ -826,11 +837,11 @@ function nearest(collection: Collection | "tailwind", options:{num?:number;again
   // It returns a function that can be called with an optional value parameter
   console.log(colors('red'));
   // [
-    '#fef2f2', '#fee2e2',
-    '#fecaca', '#fca5a5',
-    '#f87171', '#ef4444',
-    '#dc2626', '#b91c1c',
-    '#991b1b', '#7f1d1d'
+	'#fef2f2', '#fee2e2',
+	'#fecaca', '#fca5a5',
+	'#f87171', '#ef4444',
+	'#dc2626', '#b91c1c',
+	'#991b1b', '#7f1d1d'
   ]
 
 
@@ -884,14 +895,14 @@ function colors<S extends ScaleValues, F extends Tailwind>(
 	return o as Swatch<F, S>;
 }
 export {
-	
+
 	colors,
 	diverging,
 
 	nearest,
 
 	qualitative,
-	
+
 	sequential,
 
 };
