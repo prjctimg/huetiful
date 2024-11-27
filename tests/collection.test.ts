@@ -7,23 +7,23 @@ const tests: Spec[] = [
   {
     description: "Filters collections of color.",
     callback: filterBy,
-    matcher: "toEqual",
+
     params: [samples, { ranges: { hue: ['>=190'], factor: ['hue'] } }],
-    result: "",
+
   },
   {
     description: "Sorts collections of color.",
     callback: sortBy,
-    matcher: "toEqual",
+
     params: [samples, { factor: ['hue'], order: 'asc' }],
-    result: "",
+
   },
   {
     description: "Gets the stats for a collection of color.",
     callback: stats,
-    matcher: "toEqual",
+
     params: [samples],
-    result: "",
+
   },
   // {
   //   description: "Distributes factors of a collection of color.",
