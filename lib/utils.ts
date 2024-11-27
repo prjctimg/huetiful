@@ -424,8 +424,8 @@ function token(
 		srcChannelValues = (color as ColorTuple)
 			.filter((a) => eq(typeof a, "number"));
 
-
-	if (eq(typeof color, "object"))
+	// @ts-ignore:
+	if (eq(typeof color, "object") && !color?.length)
 		// @ts-ignore:
 		srcChannelValues = srcChannels.map((a) => color[a]);
 
@@ -456,13 +456,13 @@ function token(
 		const res = targetMode ? parseToken(result, targetMode) : result;
 		srcChannels = targetMode ? gmchn(targetMode) : srcChannels;
 
-		if (and(and(eq(srcMode, "rgb"), normalizeRgb), not(targetMode))) {
+		if (and(and(eq(srcMode, "rgb"), normalizeRgb), not(targetMode)))
 			// @ts-ignore:
-			if (srcChannels.some((c) => gt(Math.abs(result[c]), 1))) {
+			if (srcChannels.some((c) => gt(Math.abs(result[c]), 1)))
 				// @ts-ignore:
 				for (const k of srcChannels) result[k] /= 255;
-			}
-		}
+
+
 
 		if (eq(col, "obj")) {
 			omitMode
