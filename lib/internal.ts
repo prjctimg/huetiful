@@ -204,7 +204,12 @@ function chnDiff(x?: ColorToken, s?: string) {
 	return (y?: ColorToken) => {
 		const cb = (c?: ColorToken) => mc(s)(c);
 
-		return or(and(lt(cb(x), cb(y)), take(cb(y), cb(x))), take(cb(x), cb(y)));
+		return (
+
+			(
+
+				lt(cb(x), cb(y)) && take(cb(y), cb(x))) || take(cb(x), cb(y))
+		);
 	};
 }
 
@@ -389,9 +394,9 @@ function sortedColl(fact: Factor, cb: unknown, o = "asc") {
 
 
 
-		if (isArray(c)) {
-			return data
-		}
+		if (isArray(c))
+			return data;
+
 
 
 		const out = new Map();

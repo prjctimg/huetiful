@@ -368,13 +368,7 @@ function lightness(
  */
 function token(
 	color: ColorToken = "cyan",
-	options: TokenOptions = {
-		normalizeRgb: true,
-		numType: undefined,
-		omitMode: false,
-		omitAlpha: false,
-		kind: "str",
-	},
+	options?: TokenOptions,
 ): ColorToken {
 	// the mode definitions
 	const modeDefinitions = {
@@ -396,8 +390,15 @@ function token(
 		numType,
 		omitAlpha,
 		normalizeRgb,
-	} = options;
+	} = options || {}
 
+
+	// Always handle defaults internally because if some property is not specified it will be null
+	normalizeRgb = normalizeRgb || false
+	numType = numType || undefined
+	omitAlpha = omitAlpha || false
+	kind = kind || 'str'
+	omitMode = omitMode || false
 	srcMode = srcMode ? srcMode : getSrcMode(color as ColorToken);
 
 	/**

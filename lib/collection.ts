@@ -3,6 +3,7 @@ import {
 	chnDiff,
 	ctrst,
 	dstnce,
+	entries,
 	eq,
 	filteredColl,
 	iterator,
@@ -12,13 +13,7 @@ import {
 	sortedColl,
 	values,
 } from "./internal.ts";
-import {
-	achromatic,
-	family,
-	luminance,
-	mc,
-	token,
-} from "./utils.ts"
+import { achromatic, family, luminance, mc, token } from "./utils.ts";
 import { averageAngle, averageNumber } from "culori/fn";
 import { limits } from "./constants.ts";
 import type {
@@ -31,7 +26,6 @@ import type {
 } from "./types.d.ts";
 import type { ColorToken } from "./types.d.ts";
 import { colors } from "./palettes.ts";
-
 
 /**
  * Computes statistical values about the factors the passed in collection.
@@ -72,11 +66,12 @@ import { colors } from "./palettes.ts";
  * @param options The optional overrides to customize the computing behaviour for the factors.
  */
 function stats(collection: Collection = [], options: StatsOptions = {
-	factor: undefined, relative: false, colorspace: 'lch', against: 'cyan'
-}
-): Stats {
-
-	const { factor, relative, against, colorspace } = options
+	factor: undefined,
+	relative: false,
+	colorspace: "lch",
+	against: "cyan",
+}): Stats {
+	const { factor, relative, against, colorspace } = options;
 	const hexColors = map(collection, token);
 
 	const getStatsObject = (fact: Factor) => {
@@ -94,14 +89,10 @@ function stats(collection: Collection = [], options: StatsOptions = {
 					),
 				),
 				luminance: (() => {
-
-
-					const cb1 =
-						(a?: ColorToken) =>
-							(b?: ColorToken) =>
-								Math.abs(
-									luminance(a) - luminance(b),
-								);
+					const cb1 = (a?: ColorToken) => (b?: ColorToken) =>
+						Math.abs(
+							luminance(a) - luminance(b),
+						);
 					return sortedTokens(fact, cb1(against));
 				})(),
 				lightness: sortedTokens(
@@ -141,7 +132,6 @@ function stats(collection: Collection = [], options: StatsOptions = {
 		factorStats = (fact: Factor) => {
 			// @ts-ignore:
 			/**
-			 *
 			 * @param b The callback func for computing the targeted factor. Must be unary
 			 * @param c The function to wrap the resulting collection of computed factors in.
 			 */
@@ -188,8 +178,8 @@ function stats(collection: Collection = [], options: StatsOptions = {
 						)
 					) &&
 					against
-				)
-				|| null
+				) ||
+				null
 			),
 			colors: [x.color, y.color],
 			// @ts-ignore:
@@ -201,18 +191,16 @@ function stats(collection: Collection = [], options: StatsOptions = {
 	};
 
 	// @ts-ignore:
-	const statsObject = iterator(factor, commonStats) as Stats
+	const statsObject = iterator(factor, commonStats) as Stats;
 
 	// @ts-ignore:
-	statsObject.achromatic =
-		values(collection).filter(achromatic).length / len;
+	statsObject.achromatic = values(collection).filter(achromatic).length / len;
 
 	// @ts-ignore:
 	statsObject.colorspace = colorspace;
 
-	return statsObject
+	return statsObject;
 }
-
 
 /**
  * Sorts colors according to the specified `factor`. The supported options are:
@@ -254,49 +242,58 @@ console.log(
 
 // [ 'brown', 'red', 'green', 'purple' ]
  */
-function sortBy(collection: Collection = [], options: SortByOptions = {
-	factor: undefined, relative: false,
-	colorspace: 'lch', against: 'cyan', order: 'asc'
-}): Collection {
+function sortBy(collection: Collection = [], options?: SortByOptions): Collection {
 	// @ts-ignore:
-	const { against, colorspace, factor, order, relative } =
-		options
+	let { against, colorspace, factor, order, relative } = options || {};
+
+	factor = factor || undefined
+	against = against || 'cyan'
+	colorspace = colorspace || 'lch'
+	relative = relative || false
+	order = order || 'asc'
 	// lightness and chroma channel constants respectively
 	const [lightnessChannel, chromaChannel] = [
 		"l",
 		"c",
 	].map((w) => mcchn(w, colorspace, false));
+	for (const c in entries(collection))
+		//  @ts-ignore: 
+		collection[c[0]] = token(c[1], { kind: 'obj', targetMode: 'lch' });
+
+
 
 	// returns factor cbs determined by the options
 	const callback = (fact: Factor) => {
 		const lmnce = (b: ColorToken) =>
-			Math.abs(luminance(against) - luminance(b)), sort = (a: unknown) =>
-				sortedColl(fact, a, order);
+			Math.abs(luminance(against) - luminance(b)),
+			sort = (a: unknown) => sortedColl(fact, a, order);
 		const u = (ch: string) =>
 			mc(`${colorspace}.${ch}`) as unknown as string;
 
 		// @ts-ignore: fact is used as the index
-		return (
-			(relative && {
-				chroma: sort(
-					chnDiff(against, u(chromaChannel)),
-				),
-				hue: sort(chnDiff(against, u("h"))),
-				luminance: sort(lmnce),
-				lightness: sort(
-					chnDiff(against, u(lightnessChannel)),
-				),
-			}) ||
-			{
-				chroma: sort(u(chromaChannel)),
-				hue: sort(u("h")),
-				luminance: sort(luminance),
-				distance: sort(dstnce(against)),
-				contrast: sort(ctrst(against)),
-				lightness: sort(u(lightnessChannel)),
-			}
-		)[fact](collection);
+		return (relative && {
+			chroma: sort(
+				chnDiff(against, u(chromaChannel)),
+			),
+			hue: sort(chnDiff(against, u("h"))),
+			luminance: sort(lmnce),
+			lightness: sort(
+				chnDiff(against, u(lightnessChannel)),
+			),
+		} ||
+		{
+			chroma: sort(u(chromaChannel)),
+			hue: sort(u("h")),
+			luminance: sort(luminance),
+			distance: sort(dstnce(against)),
+			contrast: sort(ctrst(against)),
+			lightness: sort(u(lightnessChannel)),
+		})
+		[fact](collection);
 	};
+
+
+
 	// @ts-ignore:
 	return iterator(factor, callback);
 }
@@ -346,11 +343,6 @@ function sortBy(collection: Collection = [], options: SortByOptions = {
 // 	// set the callbacks depending on the type of factorStats
 // }
 
-
-
-
-
-
 /**
  * Filters a collection of colors using the specified `factor` as the criterion.
  *
@@ -372,7 +364,7 @@ function sortBy(collection: Collection = [], options: SortByOptions = {
  * * `'hue'` - Returns colors in the specified hue ranges between 0 to 360.
  *
  * :::tip
- * 
+ *
  * For the `chroma` and `lightness` factors, the range is internally normalized to the supported ranges by the `colorspace` in use if it is out of range.
  * This means a value in the range `[0,1]` will return, for example if you pass `startLightness` as `0.3` it means `0.3 (or 30%)` of the channel's supported range.
  * But if the value of either `start` or `end` is above 1 AND the `colorspace` in use has an `end` range higher than 1 then the value is treated as is else the value is treated as if in the range `[0,100]` and will return the normalized value.
@@ -404,18 +396,17 @@ function sortBy(collection: Collection = [], options: SortByOptions = {
 
  */
 function filterBy(collection: Collection = [], options: FilterByOptions = {
-	against: 'cyan', colorspace: 'lch', factor: undefined, ranges: undefined
+	against: "cyan",
+	colorspace: "lch",
+	factor: undefined,
+	ranges: undefined,
 }): Collection {
-	let { against, colorspace, factor, ranges } = options || {}
-
+	let { against, colorspace, factor, ranges } = options || {};
 
 	//  handling defaults internally helps avoid undefined values as compared to passing it to the parameter list
-	against = against || 'cyan'
-	colorspace = colorspace || 'lch'
-	factor = factor || undefined
-
-
-
+	against = against || "cyan";
+	colorspace = colorspace || "lch";
+	factor = factor || undefined;
 
 	const filter = (cb: unknown) => (fact: Factor) =>
 		filteredColl(fact, cb)(collection, start, end),
@@ -439,9 +430,9 @@ function filterBy(collection: Collection = [], options: FilterByOptions = {
 
 	const callback = (fact: Factor) => {
 		// @ts-ignore:
-		start = ranges[fact][0] || def_ranges[fact][0]
+		start = ranges[fact][0] || def_ranges[fact][0];
 		// @ts-ignore:
-		end = ranges[fact][1] || def_ranges[fact][1]
+		end = ranges[fact][1] || def_ranges[fact][1];
 
 		return {
 			chroma: filter(
