@@ -1,15 +1,12 @@
 import {
-	and,
 	chnDiff,
 	ctrst,
 	dstnce,
 	entries,
-	eq,
 	filteredColl,
 	iterator,
 	map,
 	mcchn,
-	or,
 	sortedColl,
 	values,
 } from "./internal.ts";
@@ -25,7 +22,6 @@ import type {
 	StatsOptions,
 } from "./types.d.ts";
 import type { ColorToken } from "./types.d.ts";
-import { colors } from "./palettes.ts";
 
 /**
  * Computes statistical values about the factors the passed in collection.

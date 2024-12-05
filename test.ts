@@ -1,6 +1,7 @@
 // import { token } from './lib/utils.ts'
 
 import { diverging, sortBy, filterBy, stats, colors } from "./lib/index.ts";
+import { mc, token } from "./lib/utils.ts";
 
 // console.log(stats(colors('all', '600'), {
 //     factor: ['chroma', 'hue'], colorspace: 'lch'
@@ -14,5 +15,8 @@ import { diverging, sortBy, filterBy, stats, colors } from "./lib/index.ts";
 // }))
 
 
-console.info(sortBy(['purple', 'blue'], { relative: true, factor: ['chroma', 'hue'] }))
+//console.info(sortBy(['purple', 'blue'], { relative: true, factor: ['chroma', 'hue'] }))
 
+//console.log(mc('rgb.b')(['rgb', 0.4, 0.3, 0.1]))
+console.log(mc('lch.h')({ r: 0.2, g: 0.4, b: 0.5, mode: 'rgb' }))
+console.log(token({ r: 0.2, g: 0.4, b: 0.5, mode: 'rgb' }, { kind: 'obj', targetMode: 'lch' }))

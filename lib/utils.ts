@@ -59,9 +59,11 @@ import type {
  * and returns the color as a hex string.
  *
  * :::tip
+ * 
  * * Also supports math expressions as a `string` for the `amount` parameter.
  * For example `*0.5` which means the value multiply the current alpha by `0.5` and set the product as the new alpha value.
  * In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
+ * 
  * :::
  *
  * If the `alpha` channel is `undefined`, it defaults to `1`.
@@ -70,9 +72,9 @@ import type {
  * @param amount The value to apply to the opacity channel. The value is between `[0,1]`
 
  * @example
- * import { alpha } from 'huetiful-js'
- *
- * // Getting the alpha
+  import { alpha } from 'huetiful-js'
+ 
+ // Getting the alpha
 console.log(alpha('#a1bd2f0d'))
 // 0.050980392156862744
 
@@ -91,7 +93,7 @@ function alpha<Amount>(
 	// @ts-ignore:
 	let alphaChannel: number;
 
-	if (isArray(color)) {
+	if (isArray(color))
 		alphaChannel = eq(
 			(color as ColorTuple).filter((channel) =>
 				eq(typeof channel, "number")
@@ -101,34 +103,34 @@ function alpha<Amount>(
 		)
 			? color[(color as ColorTuple)?.length - 1]
 			: 1;
-	} else if (eq(typeof color, "string")) {
-		alphaChannel = and(
-			gte((color as ColorTuple)?.length, 8),
+	else if (eq(typeof color, "string"))
+		alphaChannel = (
+			gte((color as ColorTuple)?.length, 8) &&
 			// @ts-ignore:
-			not(colorsNamed?.color?.toLowerCase()),
+			not(colorsNamed?.color?.toLowerCase())
 		)
 			? Number.parseInt(
 				(color as string)?.slice((color as string)?.length - 2),
 				16,
 			)
 			: 1;
-	} else if (eq(typeof color, "object")) {
+	else if (eq(typeof color, "object"))
 		// @ts-ignore:
 		alphaChannel = color?.alpha;
-	}
 
-	if (not(amount)) {
+
+	if (!amount)
 		// @ts-ignore:
 		return alphaChannel ? alphaChannel : 1;
-	}
-	amount = or(
+
+	amount = (
 		// @ts-ignore:
-		and(neq(typeof amount, "number"), exprParser(alphaChannel, amount)),
+		((typeof amount !== "number") && exprParser(alphaChannel, amount)) ||
 		// @ts-ignore:
-		or(and(inRange(amount, 0, 1), amount), give(amount, 100)),
+		((inRange(amount, 0, 1) && amount) || give(amount, 100))
 	);
 
-	if (isArray(color)) {
+	if (isArray(color))
 		// Get the alpha index
 
 		color[
@@ -143,12 +145,12 @@ function alpha<Amount>(
 				take((color as ColorTuple).length, 1)
 			) || 3
 		] = amount;
-	}
 
-	if (eq(typeof color, "object")) {
+
+	if (eq(typeof color, "object"))
 		// @ts-ignore:
 		color.alpha = amount;
-	} else {
+	else {
 		const colorObject = token(color, { kind: "obj" });
 		// @ts-ignore:
 		colorObject.alpha = amount;
@@ -186,25 +188,15 @@ function mc(modeChannel = "lch.h") {
 		color?: ColorToken,
 		value?: Value,
 	): Value extends number ? ColorToken : number => {
+
+
 		const [mode, channel] = modeChannel.split(".");
+
 		// @ts-ignore:
 		let colorObject = token(color, { targetMode: mode, kind: "obj" });
-		let currentChannel: number;
+		// @ts-ignore:
+		const currentChannel: number = colorObject[channel];
 
-		if (eq(typeof color, "object")) {
-			if (isArray(color)) {
-				currentChannel = // @ts-ignore:
-					(eq(typeof color[0], "string") ? color.slice(1) : color)[
-					gmchn(mode).indexOf(channel)
-					];
-			}
-
-
-			else
-				// @ts-ignore:
-				currentChannel = colorObject[channel];
-
-		}
 
 		if (value)
 			if (eq(typeof value, "number"))
@@ -215,13 +207,15 @@ function mc(modeChannel = "lch.h") {
 				colorObject = exprParser(colorObject[channel], value);
 			else
 				throw Error(
-					`${typeof value}} ${value} is not a valid value for a color token`,
+					`${typeof value} ${value} is not a valid value for a color token`,
 				);
 
 
 
 		// @ts-ignore:
-		return not(value) ? currentChannel : colorObject;
+		return value && colorObject || currentChannel;
+
+
 	};
 }
 
@@ -232,7 +226,7 @@ function mc(modeChannel = "lch.h") {
  * @example
 
 import { achromatic } from "huetiful-js";
-
+S
  achromatic('pink')
 // false
 
@@ -275,20 +269,19 @@ function achromatic(color: ColorToken = "cyan"): boolean {
 	// so its technically not achromatic since white and black are not grayscale
 	// @ts-ignore:
 	const isFalsy = (x: unknown) =>
-		((eq(typeof x, "undefined") || eq(x, 0)) || Number.isNaN(x as number));
+		((typeof x === "undefined" || x === 0) || Number.isNaN(x as number));
 
 	return (
-		(
-			( // @ts-ignore:
-				(isFalsy(color.l) || gte(color.l, 100)) &&
-				// @ts-ignore:
-				(not(isFalsy(color.c)) || isFalsy(color.c))
-			) &&
-			false
-		) ||
+		( // @ts-ignore:
+			(isFalsy(color.l) || color.l >= 100) &&
+			// @ts-ignore:
+			(!(isFalsy(color.c)) || isFalsy(color.c))
+		) &&
+		false
+	) ||
 		// @ts-ignore:
-		((isFalsy(color.c) && true) || false)
-	);
+		(isFalsy(color.c) && true || false)
+
 }
 
 /**
@@ -399,7 +392,7 @@ function token(
 	omitAlpha = omitAlpha || false
 	kind = kind || 'str'
 	omitMode = omitMode || false
-	srcMode = srcMode ? srcMode : getSrcMode(color as ColorToken);
+	srcMode = srcMode && srcMode || getSrcMode(color as ColorToken);
 
 	/**
 	 * An array of channel keys from the source colorspace. If undefined it defaults to 'rgb'
@@ -411,14 +404,15 @@ function token(
 		srcChannelValues: number[];
 	/**
 	 * the alpha channel captured if it exists in the color token
-	 * @type{number}
+
 	 */
 	// @ts-ignore:
 	const alphaValue = alpha(color);
-	let result = {};
-
+	let result: { [x: string]: number | string } = {};
+	result.mode = srcMode
 	// Get the channels from passed in color token
 	// if the color token is a string or number we just convert it to an object
+
 
 	if (isArray(color))
 		// @ts-ignore:
@@ -441,10 +435,16 @@ function token(
 	// @ts-ignore:
 	if (srcChannelValues)
 		for (const channel of srcChannels)
-			// @ts-ignore:
 			result[channel] = srcChannelValues[srcChannels.indexOf(channel)];
 
 
+	if (((srcMode === "rgb" && normalizeRgb)))
+		// @ts-ignore:
+		if (srcChannels.some((c) => Math.abs(result[c]) > 1))
+
+			for (const k of srcChannels) (result[k] as number) /= 255;
+
+	if (targetMode) result = parseToken(result, targetMode);
 
 	function parseToken(col: unknown, mode?: unknown) {
 		// @ts-ignore:
@@ -453,30 +453,28 @@ function token(
 	/**
 	 * converts any color token to an array or object equivalent
 	 */
-	function c2col(col: unknown) {
+	function c2col(col: 'obj' | 'arr') {
 
 
 		const res = targetMode
-			? parseToken(result, targetMode)
-			: result;
-		srcChannels = targetMode
-			? gmchn(targetMode)
-			: srcChannels;
+			&& parseToken(result, targetMode)
+			|| result;
 
-		if (((srcMode === "rgb" && normalizeRgb) && !targetMode))
-			// @ts-ignore:
-			if (srcChannels.some((c) => Math.abs(result[c]) > 1))
-				// @ts-ignore:
-				for (const k of srcChannels) result[k] /= 255;
+
+		if (targetMode)
+
+			// 🖕🏿
+			srcChannels = gmchn(targetMode);
 
 
 
 		if (eq(col, "obj")) {
+
 			omitMode
 				// @ts-ignore:
 				? delete res.mode
 				// @ts-ignore:
-				: (res.mode = or(and(targetMode, targetMode), srcMode));
+				: (res.mode = (targetMode && targetMode) || srcMode);
 
 			// @ts-ignore:
 			omitAlpha ? delete res.alpha : (res.alpha = alphaValue);
@@ -504,9 +502,6 @@ function token(
 	function c2num() {
 		const rgbObject: object = parseToken(c2str(), "rgb");
 
-		/**
-		 * @type {number|string}
-		 */
 		// @ts-ignore:
 		const result = ((255 * rgbObject.r) << 16) +
 			// @ts-ignore:

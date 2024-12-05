@@ -424,31 +424,31 @@ function filteredColl(fact: Factor, cb: unknown) {
 
 
 
-		if (and(eq(typeof s, "number"), eq(typeof e, "number"))) {
+		if (and(eq(typeof s, "number"), eq(typeof e, "number")))
+
 			data = data
 				.filter((j) => inRange(j[fact], s as number, e as number))
 
-		}
+
 
 		const startOp = reOp(s) as keyof typeof operators
 		const endOp = reOp(e) as keyof typeof operators
 		const start: number = Number.parseFloat(reNum(s).toString())
 		const end: number = Number.parseFloat(reNum(e).toString())
 
-		if (and(startOp, endOp)) {
+		if (and(startOp, endOp))
 
 			data = data
 				.filter((l) =>
 					and(operators[startOp](l[fact], start), operators[endOp](l[fact], end))
-				)
+				);
 
 
-		}
-		else {
+		else
 			data = data.filter((l) => end ? and(operators[or(startOp, endOp)](l[fact], start), inRange(l[fact], end)) : operators[or(startOp, endOp)](l[fact], start)
-			)
+			);
 
-		}
+
 
 		return data.map((l) => l.color)
 
@@ -467,7 +467,7 @@ function getSrcMode(c: ColorToken): Colorspaces {
 
 
 	// @ts-ignore
-	return and(isArray(c), neq(typeof c[0], "number")) ? c[0] : eq(typeof c, 'object') ? c?.mode : 'rgb'
+	return isArray(c) && typeof c[0] != "number" ? c[0] : typeof c === 'object' ? c?.mode : 'rgb'
 }
 
 const ctrst = (a: unknown) => (b: unknown) =>
