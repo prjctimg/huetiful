@@ -68,13 +68,14 @@ const dstnce = (a: unknown) => (b: unknown) =>
 function iterator(
 	t: string[] | undefined,
 	z: (x: unknown) => unknown,
-	y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"],
+
 ) {
-	const p = {};
+	const p = {},
+		y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"]
 	//  @ts-ignore:
-	if (gt(values(t).length, 1))
-		//  @ts-ignore:
-		if (isArray(t)) for (const k of values(t)) p[k] = z(k);
+
+	//  @ts-ignore:
+	if (isArray(t) && t?.length >= 1) for (const k of values(t)) p[k] = z(k);
 	// @ts-ignore:
 	if (eq(t, undefined)) for (const k of y) p[k] = z(k);
 
@@ -203,7 +204,12 @@ function chnDiff(x?: ColorToken, s?: string) {
 	return (y?: ColorToken) => {
 		const cb = (c?: ColorToken) => mc(s)(c);
 
-		return or(and(lt(cb(x), cb(y)), take(cb(y), cb(x))), take(cb(x), cb(y)));
+		return (
+
+			(
+
+				lt(cb(x), cb(y)) && take(cb(y), cb(x))) || take(cb(x), cb(y))
+		);
 	};
 }
 
@@ -388,9 +394,9 @@ function sortedColl(fact: Factor, cb: unknown, o = "asc") {
 
 
 
-		if (isArray(c)) {
-			return data
-		}
+		if (isArray(c))
+			return data;
+
 
 
 		const out = new Map();
@@ -418,31 +424,31 @@ function filteredColl(fact: Factor, cb: unknown) {
 
 
 
-		if (and(eq(typeof s, "number"), eq(typeof e, "number"))) {
+		if (and(eq(typeof s, "number"), eq(typeof e, "number")))
+
 			data = data
 				.filter((j) => inRange(j[fact], s as number, e as number))
 
-		}
+
 
 		const startOp = reOp(s) as keyof typeof operators
 		const endOp = reOp(e) as keyof typeof operators
 		const start: number = Number.parseFloat(reNum(s).toString())
 		const end: number = Number.parseFloat(reNum(e).toString())
 
-		if (and(startOp, endOp)) {
+		if (and(startOp, endOp))
 
 			data = data
 				.filter((l) =>
 					and(operators[startOp](l[fact], start), operators[endOp](l[fact], end))
-				)
+				);
 
 
-		}
-		else {
+		else
 			data = data.filter((l) => end ? and(operators[or(startOp, endOp)](l[fact], start), inRange(l[fact], end)) : operators[or(startOp, endOp)](l[fact], start)
-			)
+			);
 
-		}
+
 
 		return data.map((l) => l.color)
 
@@ -461,7 +467,7 @@ function getSrcMode(c: ColorToken): Colorspaces {
 
 
 	// @ts-ignore
-	return and(isArray(c), neq(typeof c[0], "number")) ? c[0] : eq(typeof c, 'object') ? c?.mode : 'rgb'
+	return isArray(c) && typeof c[0] != "number" ? c[0] : typeof c === 'object' ? c?.mode : 'rgb'
 }
 
 const ctrst = (a: unknown) => (b: unknown) =>
