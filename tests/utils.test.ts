@@ -1,11 +1,14 @@
-import { mc, token } from "../lib/utils.ts";
+import { alpha, mc, token } from "../lib/utils.ts";
 import runner, { type Spec } from "./runner.ts";
 
 
 
 
-const str = '#ffc3003f', arr = ['rgb', 0.4, 0.3, 0.1, 0.7], obj = { r: 0.2, g: 0.4, b: 0.5, mode: 'rgb' }, fn_mc = (a: string, b: string) => mc(a)(b)
+const str = '#ffc3003f', arr = ['rgb', 0.4, 0.3, 0.1, 0.7], obj = { r: 0.2, g: 0.4, b: 0.5, mode: 'rgb' },
+    fn_mc = (a: string, b: string, c: number | string) => mc(a)(b, c)
 const specs: Spec[] = [{
+
+    // ? token()
     description: "converts an object to a number",
     callback: token,
     params: [obj, { kind: 'num', }]
@@ -37,15 +40,55 @@ const specs: Spec[] = [{
 },
 
 
-// modeChannel tests
+// ? mc()
+// * getting
 {
     description: 'gets the channel value of a color object',
     callback: fn_mc,
-    params: ['lch.l', obj]
+    params: ['lch.c', obj]
 }, {
+    description: 'gets the channel value of color array',
+    callback: fn_mc, params: ['lch.c', arr]
+},
+{
+    description: 'gets the channel value of color string',
+    callback: fn_mc, params: ['lch.c', str]
+},
+// * setting
+
+{
     description: 'sets the channel value of a color object',
     callback: fn_mc,
     params: ['lch.h', obj, '*0.2']
+},
+
+
+
+{
+    description: 'sets the channel value of a color array',
+    callback: fn_mc,
+    params: ['lch.h', arr, 20]
+},
+
+// ? alpha()
+//  * setting 
+{
+    description: 'sets the alpha channel value on a color object', callback: alpha, params: [obj, 0.05]
+}, {
+    description: 'sets the alpha channel value on a color string', callback: alpha, params: [str, 0.05]
+}, {
+    description: 'sets the alpha channel value on a color array', callback: alpha, params: [arr, 0.05]
+},
+
+// * getting
+{
+    description: 'gets the alpha channel value from a color object', callback: alpha, params: [obj]
+}, {
+    description: 'gets the alpha channel value from a color array',
+    callback: alpha, params: [arr]
+}, {
+    description: 'gets the alpha channel value from a color string',
+    callback: alpha, params: [str]
 }
 ];
 

@@ -86,6 +86,8 @@ console.log(myColor)
 
 // #b2c3f180
  */
+
+// ! fix bug when setting alpha value to array'./
 function alpha<Amount>(
 	color: ColorToken = "cyan",
 	amount: Amount | undefined = undefined,
@@ -94,15 +96,15 @@ function alpha<Amount>(
 	let alphaChannel: number;
 
 	if (isArray(color))
-		alphaChannel = eq(
+		alphaChannel =
 			(color as ColorTuple).filter((channel) =>
 				eq(typeof channel, "number")
 			)
-				.length,
-			4,
-		)
-			? color[(color as ColorTuple)?.length - 1]
-			: 1;
+				.length ===
+			4
+
+			&& color[(color as ColorTuple)?.length - 1]
+			|| 1;
 	else if (eq(typeof color, "string"))
 		alphaChannel = (
 			gte((color as ColorTuple)?.length, 8) &&
@@ -114,14 +116,16 @@ function alpha<Amount>(
 				16,
 			)
 			: 1;
-	else if (eq(typeof color, "object"))
+
+	// @ts-ignore:
+	else if (typeof color === "object" && !color?.length)
 		// @ts-ignore:
 		alphaChannel = color?.alpha;
 
 
 	if (!amount)
 		// @ts-ignore:
-		return alphaChannel ? alphaChannel : 1;
+		return alphaChannel && alphaChannel || 1;
 
 	amount = (
 		// @ts-ignore:
@@ -136,18 +140,18 @@ function alpha<Amount>(
 		color[
 			(
 				(
-					eq((color as ColorTuple).length, 5) ||
+					(color as ColorTuple).length === 5 ||
 					(
-						neq(color[0], "string") &&
-						eq((color as ColorTuple)?.length, 4)
+						(color[0] !== "string") &&
+						((color as ColorTuple)?.length === 4)
 					)
 				) &&
-				take((color as ColorTuple).length, 1)
+				(color as ColorTuple).length - 1
 			) || 3
 		] = amount;
 
-
-	if (eq(typeof color, "object"))
+	// @ts-ignore:
+	if (eq(typeof color, "object") && !color?.length)
 		// @ts-ignore:
 		color.alpha = amount;
 	else {
