@@ -427,9 +427,9 @@ function token(
 
 	if (eq(typeof color, "string"))
 		// @ts-ignore:
-		result = eq(typeof color, "number")
-			? num2c()
-			: parseToken(c2str(), "rgb");
+		result = (typeof color === "number"
+			&& num2c())
+			|| parseToken(c2str(), "rgb");
 
 
 	// @ts-ignore:

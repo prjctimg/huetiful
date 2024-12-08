@@ -6,6 +6,7 @@
 		"yoavbls.pretty-ts-errors",
 		"bradlc.vscode-tailwindcss",
 		"unifiedjs.vscode-mdx",
-		"github.vscode-github-actions"
+		"github.vscode-github-actions",
+		"aaron-bond.better-comments"
 	]
 }
