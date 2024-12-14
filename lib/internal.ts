@@ -13,6 +13,7 @@ import { mc } from "./utils.ts";
 
 import { contrast } from "./accessibility.ts";
 import type { Collection, ColorToken, Factor, Colorspaces } from "./types.d.ts";
+import { hue } from "./constants.ts";
 
 const { keys, entries, values } = Object;
 
@@ -157,7 +158,19 @@ function colorObj(a: string, b: unknown) {
 
 }
 
-function customFindKey(u: object, v: number) {
+
+
+
+// customCConcat ??? 
+// capture the amount of elements in hue
+// for each element; slice the array from index 0 (the color family string index)
+// 
+function customFindKey(u: typeof hue, v: number) {
+
+
+
+
+
 	// If the color is achromatic return the string gray
 	return keys(u)
 		.filter((a) => {
@@ -171,25 +184,6 @@ function customFindKey(u: object, v: number) {
 			return inRange(v, mn, mx);
 		})
 		.toString();
-}
-
-function customConcat(h = {}) {
-	return and(
-		eq(typeof h, "object"),
-		(() => {
-			const res = [];
-			const k = keys(h);
-
-
-
-			for (const g of k) {
-				//@ts-ignore
-				res.push(...h[g]);
-			}
-
-			return res.flat(1);
-		})(),
-	);
 }
 
 function adjustHue(val: number) {
@@ -487,7 +481,6 @@ export {
 	filteredColl,
 	customFindKey,
 	colorObj,
-	customConcat,
 	inRange,
 	rand,
 	isInt,

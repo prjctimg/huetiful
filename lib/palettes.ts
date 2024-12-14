@@ -6,7 +6,6 @@ import type {
 	QualitativeScheme,
 	ScaleValues,
 	SequentialScheme,
-	Swatch,
 	Tailwind,
 } from "./types.d.ts";
 import { and, eq, isArray, keys, or, values } from "./internal.ts";
@@ -290,7 +289,7 @@ function hasScheme(s: string = '', obj: Collection = {}) {
  * @returns {Collection|import('../types.js').ColorToken}  A collection of colors in the specified colorspace. The default is hex if `colorspace` is `undefined.`
  * @example
  *
- * import { sequential } from 'huetiful-js
+ * import { sequential } from 'huetiful-js'
 
 
 console.log(sequential("OrRd"))

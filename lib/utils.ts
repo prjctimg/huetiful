@@ -34,11 +34,9 @@ import {
 	lte,
 	max,
 	min,
-	neq,
 	not,
 	or,
 	rand,
-	take,
 } from "./internal.ts";
 import { hue } from "./constants.ts";
 import type {
@@ -79,7 +77,7 @@ console.log(alpha('#a1bd2f0d'))
 // 0.050980392156862744
 
 // Setting the alpha
-
+ 
 let myColor = alpha('b2c3f1', 0.5)
 
 console.log(myColor)
@@ -678,16 +676,18 @@ console.log(family("#310000"))
 // 'red'
  */
 function family(color?: ColorToken): BiasedHues & ColorFamily {
-	if (neq(achromatic(color), true)) {
+	if (!(achromatic(color))) {
 		const [hueAngle, hueFamilies] = [
 			mc("lch.h")(color),
-			keys(hue),
+			hue.map(arr => arr[0])
 		];
-
+		console.log(hueAngle, hueFamilies)
 		// @ts-ignore:
 		return hueFamilies.find((o) => {
 			// @ts-ignore:
 			const hueRanges = customConcat(hue[o]);
+
+			console.log(hueRanges)
 			return inRange(hueAngle, min(hueRanges), max(hueRanges));
 		});
 	}
@@ -725,13 +725,13 @@ console.log(map(sample, temp));
 function temp(color: ColorToken = "cyan"): "cool" | "warm" {
 	return (
 		(
-			keys(hue).some((hueFamily) =>
+			keys(hue).some((fam) =>
 				inRange(
 					floorCeil(mc("lch.h")(color)),
 					// @ts-ignore:
-					hue[hueFamily].cool[0],
+					hue[fam].cool[0],
 					// @ts-ignore:
-					hue[hueFamily].cool[1],
+					hue[fam].cool[1],
 				)
 			) &&
 			"cool"

@@ -89,6 +89,11 @@ const specs: Spec[] = [{
 }, {
     description: 'gets the alpha channel value from a color string',
     callback: alpha, params: [str]
+},
+{
+    description: 'sets the ',
+    params: [str],
+    callback: undefined
 }
 ];
 
