@@ -1,4 +1,4 @@
-import { alpha, mc, token } from "../lib/utils.ts";
+import { alpha, family, mc, token } from "../lib/utils.ts";
 import runner, { type Spec } from "./runner.ts";
 
 
@@ -91,9 +91,9 @@ const specs: Spec[] = [{
     callback: alpha, params: [str]
 },
 {
-    description: 'sets the ',
+    description: 'gets the hue family of a color token',
     params: [str],
-    callback: undefined
+    callback: family
 }
 ];
 

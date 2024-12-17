@@ -19,7 +19,7 @@ import "culori/css";
 import {
 	adjustHue,
 	and,
-	customConcat,
+
 	eq,
 	exprParser,
 	floorCeil,
@@ -676,21 +676,21 @@ console.log(family("#310000"))
 // 'red'
  */
 function family(color?: ColorToken): BiasedHues & ColorFamily {
-	if (!(achromatic(color))) {
-		const [hueAngle, hueFamilies] = [
-			mc("lch.h")(color),
-			hue.map(arr => arr[0])
-		];
-		console.log(hueAngle, hueFamilies)
-		// @ts-ignore:
-		return hueFamilies.find((o) => {
-			// @ts-ignore:
-			const hueRanges = customConcat(hue[o]);
 
-			console.log(hueRanges)
-			return inRange(hueAngle, min(hueRanges), max(hueRanges));
-		});
-	}
+	if (!achromatic(color))
+
+
+
+
+
+		// @ts-ignore:
+		return hue.find((arr) => {
+			// @ts-ignore:
+			const hueRanges = arr.slice(1).flat(1) as number[]
+
+			return inRange(mc("lch.h")(color), min(hueRanges), max(hueRanges))
+		})[0];
+
 
 	// @ts-ignore:
 	return "gray";
