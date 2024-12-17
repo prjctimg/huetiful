@@ -1,4 +1,4 @@
-import { alpha, family, mc, temp, token } from "../lib/utils.ts";
+import { achromatic, alpha, family, mc, temp, token } from "../lib/utils.ts";
 import runner, { type Spec } from "./runner.ts";
 
 
@@ -103,6 +103,11 @@ const specs: Spec[] = [{
     description: 'gets the estimated color temperature of a color token',
     params: [str],
     callback: temp
+},
+{
+    description: 'checks if a color is grayscale or not',
+    params: [str],
+    callback: achromatic
 }
 
 ];
