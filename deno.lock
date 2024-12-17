@@ -33,6 +33,7 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:@biomejs/biome@1.9.4",
         "npm:@types/bun@^1.1.9",
         "npm:@types/culori@^2.1.0",
         "npm:bun@^1.1.34",

@@ -667,33 +667,37 @@ function luminance<Amount>(
  *
  * For example `'red'` or `'blue-green'`. If the color is achromatic it returns the string `'gray'`.
  * @param  color The color to query its shade or hue family.
+ * @param [bias=false] Returns the name of the hue family which is biasing the passed in color using the `'lch'` colorspace. If it has no bias it returns `false` on the `bias` property of the returned object.
+ * :::note
+ * 
+ * This `bias` parameter replaces the `overtone()` function.
+ * 
+ :::
+ * 
  * @example
  *
  * import { family } from 'huetiful-js'
 
 
 console.log(family("#310000"))
+
 // 'red'
  */
-function family(color?: ColorToken): BiasedHues & ColorFamily {
-
-	if (!achromatic(color))
-
-
-
-
-
+function family(color?: ColorToken, bias = false): BiasedHues & ColorFamily | { hue: BiasedHues & ColorFamily; bias: false | ColorFamily } {
+	// @ts-ignore:
+	const res = !achromatic(color) && hue.find((arr) => {
 		// @ts-ignore:
-		return hue.find((arr) => {
-			// @ts-ignore:
-			const hueRanges = arr.slice(1).flat(1) as number[]
+		const hueRanges = arr.slice(1).flat(1) as number[]
 
-			return inRange(mc("lch.h")(color), min(hueRanges), max(hueRanges))
-		})[0];
-
+		return inRange(mc("lch.h")(color), min(hueRanges), max(hueRanges))
+	})[0] || "gray";
 
 	// @ts-ignore:
-	return "gray";
+	return bias && {
+		hue: res,
+		bias: ((/-/.test(res) && res.split("-")[1]) || false)
+	} || res
+
 }
 
 /**
@@ -740,39 +744,6 @@ function temp(color: ColorToken = "cyan"): "cool" | "warm" {
 	);
 }
 
-/**
- * Returns the name of the hue family which is biasing the passed in color using the `'lch'` colorspace.
- *
- * * If an achromatic color is passed in it returns the string `'gray'`
- * * If the color has no bias it returns `false`.
- * @param  color The color to query its overtone.
-
- * @example
- *
- * import { overtone } from "huetiful-js";
- *
-console.log(overtone("fefefe"))
-// 'gray'
-
-console.log(overtone("cyan"))
-// 'green'
-
-console.log(overtone("blue"))
-// false
- */
-function overtone(
-	color?: ColorToken,
-): ColorFamily | false {
-	const hueFamily = family(color);
-
-	// We check if the color can be found in the defined ranges
-	// @ts-ignore:
-	return (
-		(achromatic(color) && "gray")
-		// @ts-ignore:
-		|| ((/-/.test(hueFamily) && hueFamily.split("-")[1]) || false)
-	);
-}
 
 /**
  * Returns the complimentary color of the passed in color token. A complimentary color is 180 degrees away on the hue channel.
@@ -821,7 +792,7 @@ export {
 	lightness,
 	luminance,
 	mc,
-	overtone,
+
 	temp,
 	token,
 };

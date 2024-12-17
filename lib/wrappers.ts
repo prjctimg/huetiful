@@ -35,7 +35,7 @@ import {
   family,
   lightness,
   mc,
-  overtone,
+
   temp,
   token,
 } from "./utils.ts";
@@ -561,7 +561,7 @@ class Color {
   console.log(color("#310000").family())
   // 'red'
    */
-  family(): BiasedHues & ColorFamily {
+  family(): BiasedHues & ColorFamily | { hue: BiasedHues & ColorFamily; bias: false | ColorFamily } {
     // @ts-ignore:
 
     return this.#setThis(family);
@@ -789,27 +789,6 @@ class Color {
     return this.#setThis(deficiency, options);
   }
 
-  /**
-   * Returns the name of the hue family which is biasing the passed in color.
-   *
-   * * If an achromatic color is passed in it returns the string `'gray'`
-   * * If the color has no bias it returns `false`.
-   *
-   * @example
-   *
-  console.log(color("fefefe").overtone())
-  // 'gray'
-   
-  console.log(color("cyan").overtone())
-  // 'green'
-   
-  console.log(color("blue").overtone())
-  // false
-   */
-  overtone(): ColorFamily {
-    // @ts-ignore:
-    return this.#setThis(overtone);
-  }
 
   /**
    *

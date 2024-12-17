@@ -92,9 +92,11 @@ const specs: Spec[] = [{
 },
 {
     description: 'gets the hue family of a color token',
-    params: [str],
+    params: [str, true],
     callback: family
-}
+},
+
+
 ];
 
 
