@@ -31,7 +31,7 @@ import {
   luminance as _lmnce,
   alpha as _opac,
   achromatic,
-  complimentary,
+
   family,
   lightness,
   mc,
@@ -533,21 +533,6 @@ class Color {
     return this.#setThis(hueshift, options);
   }
 
-  /**
-     * Returns the complementary hue of the bound color. The function returns `'gray'` when you pass in an achromatic color.
-     * @param colorObj Optional boolean whether to return a custom object with the color `name` and `hueFamily` as keys or just the result color. Default is `false`.
-     * @example
-
-     * import { color } from "huetiful-js";
-     *
-     
-    console.log(color("pink").getComplimentaryHue(true))
-    // { hue: 'blue-green', color: '#97dfd7ff' }
-    
-     */
-  complimentary(): ColorToken {
-    return this.#setThis(complimentary);
-  }
 
   /**
    * Gets the hue family which a color belongs to with the overtone included (if it has one.).

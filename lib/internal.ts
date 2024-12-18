@@ -68,11 +68,10 @@ const dstnce = (a: unknown) => (b: unknown) =>
  */
 function iterator(
 	t: string[] | undefined,
-	z: (x: unknown) => unknown,
+	z: (x: unknown) => unknown, y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"]
 
 ) {
-	const p = {},
-		y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"]
+	const p = {}
 	//  @ts-ignore:
 
 	//  @ts-ignore:

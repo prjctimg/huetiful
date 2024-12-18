@@ -17,7 +17,7 @@ import {
 } from "culori/fn";
 import "culori/css";
 import {
-	adjustHue,
+
 	and,
 	eq,
 	exprParser,
@@ -29,7 +29,6 @@ import {
 	gte,
 	inRange,
 	isArray,
-	keys,
 	lte,
 	max,
 	min,
@@ -281,7 +280,7 @@ function achromatic(color: ColorToken = "cyan"): boolean {
 
 /**
  * Darkens the color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
- * @param  color The color to darken.
+ * @param  color The color to darken or lighten.
  * @param  amount The amount to darken with. The value is expected to be in the range `[0,1]`. Default is `0.1`.
  * @example
  *
@@ -310,14 +309,13 @@ function lightness(
 
 	const f = () => {
 		const colorObject = token(color, { kind: "obj", targetMode: "lab" });
-		if (typeof amount === "number") {
+		if (amount)
 			// @ts-ignore:
 			colorObject.l = (darken ? max : min)([
 				100,
 				// @ts-ignore:
 				colorObject.l + 100 * (darken ? -amount : amount),
 			]);
-		}
 
 		// @ts-ignore:
 		return token(colorObject);
@@ -600,7 +598,7 @@ function luminance<Amount>(
 	color?: ColorToken,
 	amount: number | undefined = undefined,
 ): Amount extends number ? ColorToken : number {
-	color = token(color);
+	color = token(color, { kind: 'obj', srcMode: 'rgb' });
 	// @ts-ignore:
 	let result: unknown;
 	if (!amount) {
