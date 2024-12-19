@@ -83,44 +83,34 @@ console.log(myColor)
 // #b2c3f180
  */
 
-// ! fix bug when setting alpha value to array'./
 function alpha<Amount>(
 	color: ColorToken = "cyan",
 	amount: Amount | undefined = undefined,
 ): Amount extends undefined ? number : ColorToken {
 	// @ts-ignore:
-	let alphaChannel: number;
-
-	// @ts-ignore:
-	let len: number,
+	let alphaChannel: number,
+		len: number,
 		hasMode: string | undefined,
 		hasAlpha: boolean,
 		alphaIdx: number
 
-	//  @ts-ignore:
 
 
-	if (isArray(color)) {
-
-		len = color?.length
+	if (isArray(color))
 		//  @ts-ignore:
-		hasMode = (color as ColorTuple).find((c) =>
-			eq(typeof c, "string")
-		)
-		hasAlpha = (color as ColorTuple).filter((channel) =>
-			eq(typeof channel, "number")
-		)
-			//  if the length is 4 then the alpha is arr.length - 1
-			.length ===
-			4
 
+		[len, hasMode, hasAlpha, alphaIdx, alphaChannel] =
+			[color?.length, (color as ColorTuple).find((c) =>
+				eq(typeof c, "string")
+			),
+			(color as ColorTuple).filter((channel) =>
+				eq(typeof channel, "number")
+			).length === 4,
 
-		alphaIdx = hasAlpha ? len - 1 : hasMode ? 4 : 3
+			//  @ts-ignore:
 
-
-		alphaChannel = color[alphaIdx]
-	}
-
+			hasAlpha ? len - 1 : hasMode ? 4 : 3, color[alphaIdx]
+			];
 
 
 
