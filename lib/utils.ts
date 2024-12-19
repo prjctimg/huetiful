@@ -49,9 +49,9 @@ import type {
 
 /**
  *
- * Returns the color token's alpha channel value.
+ * Sets and retrieves the color token's alpha (or opacity).
  *
- *  If the the `amount` parameter is passed in, it sets the color token's alpha channel with the `amount` specified
+ *  If the the `amount` argument is passed in, it sets the color token's alpha channel with the `amount` specified
  * and returns the color as a hex string.
  *
  * :::tip
@@ -74,7 +74,7 @@ import type {
 console.log(alpha('#a1bd2f0d'))
 // 0.050980392156862744
 
-// Setting the alpha
+// Setting the alpha 
 
 let myColor = alpha('b2c3f1', 0.5)
 
@@ -91,65 +91,87 @@ function alpha<Amount>(
 	// @ts-ignore:
 	let alphaChannel: number;
 
+	// @ts-ignore:
+	let len: number,
+		hasMode: string | undefined,
+		hasAlpha: boolean,
+		alphaIdx: number
+
+	//  @ts-ignore:
+
+
 	if (isArray(color)) {
-		alphaChannel = (color as ColorTuple).filter((channel) =>
+
+		len = color?.length
+		//  @ts-ignore:
+		hasMode = (color as ColorTuple).find((c) =>
+			eq(typeof c, "string")
+		)
+		hasAlpha = (color as ColorTuple).filter((channel) =>
 			eq(typeof channel, "number")
 		)
+			//  if the length is 4 then the alpha is arr.length - 1
 			.length ===
-			4 &&
-			color[(color as ColorTuple)?.length - 1] ||
-			1;
-	} else if (eq(typeof color, "string")) {
+			4
+
+
+		alphaIdx = hasAlpha ? len - 1 : hasMode ? 4 : 3
+
+
+		alphaChannel = color[alphaIdx]
+	}
+
+
+
+
+	if (eq(typeof color, "string"))
 		alphaChannel = (
 			gte((color as ColorTuple)?.length, 8) &&
 			// @ts-ignore:
-			not(colorsNamed?.color?.toLowerCase())
+			!colorsNamed[(color as string).toLowerCase()]
 		)
 			? Number.parseInt(
 				(color as string)?.slice((color as string)?.length - 2),
 				16,
-			)
+			) / 255
 			: 1;
-	} // @ts-ignore:
-	else if (typeof color === "object" && !color?.length) {
+	// @ts-ignore:
+	if (typeof color === "object" && !len)
 		// @ts-ignore:
 		alphaChannel = color?.alpha;
-	}
 
-	if (!amount) {
+
+
+
+	//  if amount is undefined, return the alpha channel 
+	if (typeof amount == 'undefined')
 		// @ts-ignore:
 		return alphaChannel && alphaChannel || 1;
+
+
+
+
+	switch (typeof amount) {
+		case 'number':
+			// @ts-ignore:
+			amount = (inRange(amount, 0, 1) && amount) || give(amount, 100)
+			break;
+		// @ts-ignore:
+		case 'string': amount = exprParser(alphaChannel, amount)
+
 	}
 
-	amount = (
-		// @ts-ignore:
-		((typeof amount !== "number") && exprParser(alphaChannel, amount)) ||
-		// @ts-ignore:
-		((inRange(amount, 0, 1) && amount) || give(amount, 100))
-	);
 
-	if (isArray(color)) {
-		// Get the alpha index
+	if (isArray(color))
+		// @ts-ignore:
+		color[alphaIdx] = amount;
 
-		color[
-			(
-				(
-					(color as ColorTuple).length === 5 ||
-					(
-						(color[0] !== "string") &&
-						((color as ColorTuple)?.length === 4)
-					)
-				) &&
-				(color as ColorTuple).length - 1
-			) || 3
-		] = amount;
-	}
 
 	// @ts-ignore:
-	if (eq(typeof color, "object") && !color?.length) {
+	if (eq(typeof color, "object") && !len)
 		// @ts-ignore:
 		color.alpha = amount;
-	} else {
+	if (typeof color == 'number' || typeof color == 'string') {
 		const colorObject = token(color, { kind: "obj" });
 		// @ts-ignore:
 		colorObject.alpha = amount;
@@ -190,26 +212,18 @@ function mc(modeChannel = "lch.h") {
 		const [mode, channel] = modeChannel.split(".");
 
 		// @ts-ignore:
-		let colorObject = token(color, { targetMode: mode, kind: "obj" });
+		const colorObject = token(color, { targetMode: mode, kind: "obj" });
 		// @ts-ignore:
 		const currentChannel: number = colorObject[channel];
 
-		if (value) {
-			if (eq(typeof value, "number")) {
-				// @ts-ignore:
-				colorObject[channel] = value;
-			} else if (eq(typeof value, "string")) {
-				// @ts-ignore:
-				colorObject = exprParser(colorObject[channel], value);
-			} else {
-				throw Error(
-					`${typeof value} ${value} is not a valid value for a color token`,
-				);
-			}
-		}
-
+		if (typeof value != 'undefined')
+			// @ts-ignore:
+			colorObject[channel] = typeof value === 'number' && value || exprParser(colorObject[channel], value);
 		// @ts-ignore:
 		return value && colorObject || currentChannel;
+
+
+
 	};
 }
 
@@ -299,14 +313,14 @@ console.log(brighten('blue', 0.3));
 
  */
 function lightness(
-	color?: ColorToken,
-	options: LightnessOptions = {
-		amount: 0.1,
-		darken: false,
-	},
+	color: ColorToken,
+	options?: LightnessOptions
 ): ColorToken {
-	const { amount, darken } = options;
+	let { amount, darken } = options || {} as LightnessOptions
 
+
+	amount = amount || 0.1
+	darken = darken || false
 	const f = () => {
 		const colorObject = token(color, { kind: "obj", targetMode: "lab" });
 		if (amount)

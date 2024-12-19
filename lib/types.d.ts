@@ -576,9 +576,5 @@ export type ColorFamily =
   | "purple"
   | "gray";
 
-export type Swatch<T extends string, V extends ScaleValues> = T extends Tailwind
-  ? V extends ScaleValues ? `${T}[${V}]`
-  : Array<`all[${V | "500"}]`>
-  : Array<T>;
 
 export type LightnessOptions = { amount?: number; darken?: boolean };

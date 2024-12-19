@@ -5,7 +5,7 @@ import runner, { type Spec } from "./runner.ts";
 
 
 
-const str = '#ffc3b0ff', arr = ['rgb', 0.4, 0.3, 0.1, 0.7], obj = { r: 0.2, g: 0.4, b: 0.5, mode: 'rgb' },
+const str = '#ffc3b03b', arr = ['rgb', 0.4, 0.3, 0.1, 0.7], obj = { r: 0.2, g: 0.4, b: 0.5, mode: 'rgb' },
     fn_mc = (a: string, b: string, c: number | string) => mc(a)(b, c)
 const specs: Spec[] = [{
 
