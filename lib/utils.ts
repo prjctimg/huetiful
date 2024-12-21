@@ -2,7 +2,6 @@ import {
 	colorsNamed,
 	formatHex,
 	formatHex8,
-	interpolate,
 	modeHsv,
 	modeLab,
 	modeLab65,
@@ -32,7 +31,6 @@ import {
 	lte,
 	max,
 	min,
-	not,
 	or,
 
 } from "./internal.ts";
@@ -46,6 +44,7 @@ import type {
 	LightnessOptions,
 	TokenOptions,
 } from "./types.d.ts";
+import { interpolator } from "./generators.ts";
 
 /**
  *
@@ -76,7 +75,7 @@ console.log(alpha('#a1bd2f0d'))
 
 // Setting the alpha 
 
-let myColor = alpha('b2c3f1', 0.5)
+const myColor = alpha('b2c3f1', 0.5)
 
 console.log(myColor)
 
@@ -134,7 +133,7 @@ function alpha<Amount>(
 
 
 	//  if amount is undefined, return the alpha channel 
-	if (typeof amount == 'undefined')
+	if (typeof amount === 'undefined')
 		// @ts-ignore:
 		return alphaChannel && alphaChannel || 1;
 
@@ -158,7 +157,7 @@ function alpha<Amount>(
 
 
 	// @ts-ignore:
-	if (eq(typeof color, "object") && !len)
+	if (typeof color === "object" && !len)
 		// @ts-ignore:
 		color.alpha = amount;
 	if (typeof color == 'number' || typeof color == 'string') {
@@ -186,13 +185,12 @@ console.log(mc('rgb.g')('#a1bd2f'))
  *
 */
 
-function mc(modeChannel = "lch.h") {
+function mc(modeChannel = '') {
 	/**
 
    * @param  color Any recognizable color token.
   * @param The value to set on the queried channel. Also supports expressions as strings e.g `"#fc23a1"` `"*0.5"`
 
-   * @returns  {number|ColorToken}
 
    */
 	return <Value extends unknown>(
@@ -208,7 +206,9 @@ function mc(modeChannel = "lch.h") {
 
 		if (typeof value != 'undefined')
 			// @ts-ignore:
-			colorObject[channel] = typeof value === 'number' && value || exprParser(colorObject[channel], value);
+			colorObject[channel] = typeof value === 'number'
+				// @ts-ignore:
+				&& value || exprParser(colorObject[channel], value);
 		// @ts-ignore:
 		return value && colorObject || currentChannel;
 
@@ -259,7 +259,7 @@ console.log(grays.map(achromatic));
 ]
 
  */
-function achromatic(color: ColorToken = "cyan"): boolean {
+function achromatic(color: ColorToken): boolean {
 	// @ts-ignore:
 	color = token(color, { kind: "obj", targetMode: "lch" });
 
@@ -309,8 +309,8 @@ function lightness(
 	let { amount, darken } = options || {} as LightnessOptions
 
 
-	amount = amount || 0.1
-	darken = darken || false
+	amount = amount || 0.1;
+	darken = darken || false;
 	const f = () => {
 		const colorObject = token(color, { kind: "obj", targetMode: "lab" });
 		if (amount)
@@ -329,23 +329,23 @@ function lightness(
 }
 
 /**
- * Parses any recognizable color to the specified `kind` of `ColorToken` type.
+ * Parses any recognizable color to the specified `kind`.
  *
- * The `kind` option supports the following types as options:
+ * The `kind` option supports the following types as options (case-insensitive):
  *
  * * `'arr'` - Parses the color token to an array of channel values with the `colorspace` as the first element if the `omitMode` parameter is set to `false` in the `options` object.
  *
  * * `'num'` - Parses the color token to its numerical equivalent to a number between `0` and `16,777,215`.
  *
- * The `numberType` can be used to specify which type of number to return if the `kind` option is set to `'number'`:
+ * The `numberType` can be used to specify which type of number to return if the `kind` option is set to `'num'`:
  *  - `'hex'` - Hexadecimal number
  *  - `'bin'` - Binary number
  *  - `'oct'` - Octal number
  *  - `'expo'` - Decimal exponential notation
  *
- * * `'str'` - Parses the color token to its hexadecimal string equivalent.
+ *  - `'str'` - Parses the color token to its hexadecimal string equivalent.
  *
- * * `'obj'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.t
+ *  - `'obj'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.t
  *
  * :::tip
  *
@@ -355,7 +355,7 @@ function lightness(
  * :::
  * @param  color The color token to parse or convert.
  * @param  options Options to customize the parsing and output behaviour.
- * @returns
+ 
  */
 function token(
 	color: ColorToken = "cyan",
@@ -387,7 +387,7 @@ function token(
 	normalizeRgb = normalizeRgb || false;
 	numType = numType || undefined;
 	omitAlpha = omitAlpha || false;
-	kind = kind || "str";
+	kind = (kind || "str")?.toLowerCase() as typeof kind;
 	omitMode = omitMode || false;
 	srcMode = srcMode && srcMode || getSrcMode(color as ColorToken);
 
@@ -409,38 +409,38 @@ function token(
 	// Get the channels from passed in color token
 	// if the color token is a string or number we just convert it to an object
 
-	if (isArray(color)) {
+	if (isArray(color))
 		// @ts-ignore:
 		srcChannelValues = (color as ColorTuple)
 			.filter((a) => eq(typeof a, "number"));
-	}
+
 
 	// @ts-ignore: check if it does not have a length as well
-	if (eq(typeof color, "object") && !color?.length) {
+	if (eq(typeof color, "object") && !color?.length)
 		// @ts-ignore:
 		srcChannelValues = srcChannels.map((a) => color[a]);
-	}
 
-	if (eq(typeof color, "string")) {
+
+	if (eq(typeof color, "string"))
 		// @ts-ignore:
 		result = (typeof color === "number" &&
 			num2c()) ||
 			parseToken(c2str(), "rgb");
-	}
+
 
 	// @ts-ignore:
-	if (srcChannelValues) {
-		for (const channel of srcChannels) {
+	if (srcChannelValues)
+		for (const channel of srcChannels)
 			result[channel] = srcChannelValues[srcChannels.indexOf(channel)];
-		}
-	}
 
-	if ((srcMode === "rgb" && normalizeRgb)) {
+
+
+	if ((srcMode === "rgb" && normalizeRgb))
 		// @ts-ignore:
-		if (srcChannels.some((c) => Math.abs(result[c]) > 1)) {
+		if (srcChannels.some((c) => Math.abs(result[c]) > 1))
 			for (const k of srcChannels) (result[k] as number) /= 255;
-		}
-	}
+
+
 
 	if (targetMode) result = parseToken(result, targetMode);
 
@@ -456,10 +456,10 @@ function token(
 			parseToken(result, targetMode) ||
 			result;
 
-		if (targetMode) {
+		if (targetMode)
 			// 🖕🏿
 			srcChannels = gmchn(targetMode);
-		}
+
 
 		if (eq(col, "obj")) {
 			omitMode
@@ -474,10 +474,10 @@ function token(
 		}
 
 		if (eq(col, "arr")) srcChannelValues = [];
-		for (const k of srcChannels) {
+		for (const k of srcChannels)
 			// @ts-ignore:
 			srcChannelValues[srcChannels.indexOf(k)] = res[k];
-		}
+
 
 		// @ts-ignore:
 		omitAlpha ? srcChannelValues : srcChannelValues.push(alphaValue);
@@ -562,9 +562,11 @@ function token(
 }
 
 /**
- * Gets the luminance of the passed in color token.
+ * Sets/Gets the luminance of the passed in color token.
  *
- * If the `amount` parameter is passed in, it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
+ * If the `amount` argument is passed in, it will adjust the luminance by interpolating the color with black (to decrease luminance) or white (to increase the luminance) by the specified `amount`.
+ * 
+ * If the `amount` argument is not passed in however, it will simply return the color token's luminance.
  * @param  color The color to retrieve or adjust luminance.
  * @param amount The amount of luminance to set. The value range is normalised between [0,1]
  * @example
@@ -603,12 +605,14 @@ function luminance<Amount>(
 	amount: number | undefined = undefined,
 ): Amount extends number ? ColorToken : number {
 	color = token(color, { kind: 'obj', srcMode: 'rgb' });
+
+
 	// @ts-ignore:
 	let result: unknown;
-	if (!amount) {
+	if (typeof amount === 'undefined')
 		// @ts-ignore:
 		return wcagLuminance(color);
-	}
+
 
 	const w = "#ffffff",
 		b = "#000000";
@@ -623,44 +627,45 @@ function luminance<Amount>(
 		// use a bilinear interpolation
 		// @ts-ignore:
 		const f = (u, v) => {
-			const [mid, low] = [
-				interpolate([u, v])(0.5),
-				// @ts-ignore:
-				wcagLuminance(color),
-			];
+			// @ts-ignore:
+			const [mid, low] =
+				interpolator([u, v], { num: 2 })
+			// @ts-ignore:
+
+
 
 			// @ts-ignore:
-			if (Math.abs(amount - low > EPS) || !MAX_ITER--) {
+			if (Math.abs(amount - low > EPS) || !MAX_ITER--)
 				// close enough
 				return mid;
-			}
 
-			if (gt(low, amount)) {
+
+			if (gt(low, amount))
 				return f(u, mid);
-			}
+
 
 			return f(mid, v);
 		};
 
-		if (gt(currentLuminance, amount)) {
+		if (gt(currentLuminance, amount))
 			result = f(b, color);
-		} else {
+		else
 			result = f(color, w);
-		}
+
 	}
 	// @ts-ignore:
 	return token(result);
 }
 
 /**
- * Gets the hue family which a color belongs to with the overtone included (if it has one.).
+ * Returns the hue family which the passed in color belongs to with the "overtone" included (if it has one.).
  *
  * For example `'red'` or `'blue-green'`. If the color is achromatic it returns the string `'gray'`.
  * @param  color The color to query its shade or hue family.
- * @param [bias=false] Returns the name of the hue family which is biasing the passed in color using the `'lch'` colorspace. If it has no bias it returns `false` on the `bias` property of the returned object.
+ * @param bias Returns the name of the hue family which is biasing the passed in color using the `'lch'` colorspace. If it has no bias it returns `false` on the `bias` property of the returned object.
  * :::note
  *
- * This `bias` parameter replaces the `overtone()` function.
+ * This `bias` parameter replaces the `overtone()` function prior version `3.0.x`.
  *
  :::
  *
@@ -674,7 +679,7 @@ console.log(family("#310000"))
 // 'red'
  */
 function family(
-	color?: ColorToken,
+	color: ColorToken,
 	bias = false,
 ): BiasedHues & ColorFamily | {
 	hue: BiasedHues & ColorFamily;
