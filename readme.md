@@ -4,13 +4,9 @@
 
 ![huetiful-logo](www/static/img/logo.svg)
 
-TypeScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.
+Library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.
 
-## Contents {ignore=true}
-
-<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
+## Contents  
 
 - [What is this?](#what-is-this)
 - [When should I use this](#when-should-i-use-this)
@@ -26,8 +22,6 @@ TypeScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color
   - [Palette generators](#palette-generators)
   - [Predicates⚖️](#predicates️)
 - [API](#api)
-- [Gotchas](#gotchas)
-- [Types](#types)
   - [Community](#community)
   - [Contributing](#contributing)
 
@@ -35,13 +29,13 @@ TypeScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color
 
 ## What is this?
 
-This library uses color theory principles to provide functions that allow you to work with color as both individual tokens or collections. The source is written in TypeScript.
+I made this collection of functions when I was learning how to manipulate color programmatically to achieve different end results as well as understand color from a more "programmer" perspective. Some parts of code were collected from [various places on the internet](/references.md).
 
-Under the hood it depends on Culori for all kinds of color manipulation wizadry.
+It's still a work in progress so so I'm [open to suggestions]()
 
 ## When should I use this
 
-You can use this library when you want to do cool stuff with color and code 😎 such as:
+You may find this package useful if you wish to do things like:
 
 - Parse and convert all CSS supported color strings plus `number`, `Array`, `object`, `Map`/`Set` and even `boolean`values to other color spaces.
 - Query properties about color or collections of colors
@@ -52,7 +46,7 @@ You can use this library when you want to do cool stuff with color and code 😎
 
 ## Install
 
-> The library uses ES modules and has no default export. If you wish to have a UMD variant (for some reason known to self), you can build from source. See [BUILD.md]() for more info
+> The library uses ES modules and has no default export. If you wish to have a UMD build (for some reason known to self), you can build from source. See [BUILD.md](./build.md) for more info
 
 ```sh
 npm i huetiful-js
@@ -64,27 +58,32 @@ npm i huetiful-js
 # bun add huetiful-js
 ```
 
-For Deno users, the library is available on JSR under a different alias:
+For Deno users, the library is available on JSR under a different alias because this package is now under the `@algorist` namespace.
+
+> You can read more about what this project is about here:
 
 ```sh
 deno add jsr:@algorist/color
 
 ```
 
-You can check the library on JSR here
+You can check the library on [JSR here]()
 
 ## Use
 
-These examples are only compatible with version 3.x. Versions prior to that are deprecated.
+These examples are only compatible with version 3.x and upwards. Versions prior to that are deprecated.
 
 ### Color conversion
 
-A color can be defined using different types(arrays, strings, numbers, plain objects etc). Below are examples listing all the valid color tokens:
+A color can be defined using different types (arrays, strings, numbers, plain objects etc). Below are examples listing all the valid color tokens:
 
 [See more about the expected types of color tokens](https://huetiful-js/docs/guides/color)
 
-```ts
+```typescript
 import { token } from "huetiful-js";
+
+
+// all these are valid color tokens
 
 let cssNamedColor = "pink";
 let colorNumber = 5000;
@@ -92,6 +91,8 @@ let colorObject = { l: 50, c: 20, h: 40, mode: "lch" };
 let colorObjectWithAlpha = { l: 50, c: 20, h: 40, alpha: 0.5, mode: "lch" };
 let arrColor = ["rgb", 120, 80, 50];
 let arrColorWithAlpha = ["rgb", 120, 80, 50, 0.1];
+let black = false;
+let white = true;
 
 let allColors = [
   cssNamedColor,
@@ -118,7 +119,7 @@ console.log(res);
 
 The library comes along with the default TailwindCSS palette included. This helps you get started easier when you're using [palette generators](/docs/api/generators).
 
-```ts
+```typescript
  import { colors } from "huetiful-js";
 
 
@@ -171,7 +172,7 @@ Here are some example using the filtering and sorting functions on an array of c
 
 An example of sorting colors by hue angle and distance between each color in the collection as compared against 'yellow'. We get an object whose keys are the specified factors in the `factors` option:
 
-```ts
+```typescript
 import { sortBy } from "huetiful-js";
 
 let sample = [
@@ -219,7 +220,7 @@ console.log(sorted);
 
 An example of filtering colors by their relative contrast and luminance. In this case, we get an object whose keys are the specified `factor`s and values are the color tokens that are within the defined ranges.
 
-```ts
+```typescript
 let sample = [
   "#00ffdc",
   "#00ff78",
@@ -241,7 +242,7 @@ let sample = [
 
 Here's an example of `hueshift` and paired palettes.
 
-```ts
+```typescript
 import { hueshift } from "huetiful-js";
 
 let hueShiftedPalette = hueshift("#3e0000");
@@ -269,7 +270,7 @@ console.log(hueShiftedPalette);
 
 Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? Though its easy to tell colors apart visually when they're displayed on the screen📺 it can be a bit confusing to tell colors apart using code🔢. Below is an example showing how to determine if a color is gray or not:
 
-```js
+```typescript
 import { achromatic, token } from "huetiful-js";
 import { interpolate, samples } from "culori";
 
@@ -300,7 +301,7 @@ console.log(map(grays, isAchromatic));
 [false, true, true, true, true, true, true, true, true, true, true, false];
 ```
 
-```ts
+```typescript
 import { temp } from "huetiful-js";
 
 let sample = ["#00ffdc", "#00ff78", "#00c000"];
@@ -312,7 +313,7 @@ console.log(sample.map(temp));
 
 Another use👷 case would be passing the predicate to an array method like `filter` to filter a collection of colors removing colors that are not warm/cool:
 
-```ts
+```typescript
 import { temp } from "huetiful-js";
 
 let sample = ["#00ffdc", "#00ff78", "#00c000"];
@@ -327,20 +328,6 @@ Every function in this package expects either a valid color token or collection 
 
 [See the complete documentation here]()
 
-## Gotchas
-
-The functions come along with mostly sane🤡 defaults.
-
-Let's look at the [token()]() function for example, infers the color's source color space by first trying to gather info from the color token itself and then default to `rgb`. In this case, I'd recommend only specifying the `srcMode` only if you're omitting
-
-## Types
-
-[huetiful-js](https://huetiful-js.com) is a color manipulation library built on top of Culori with primarily targeting creative coders (a.k.a algorists).
-
-### Community
-
-[Community](https://github.com/prjctimg/huetiful/discussions)
-
 ### Contributing
 
 [Contributing](https://github.com/prjctimg/huetiful/blob/main/contributing.md)
@@ -348,6 +335,6 @@ Let's look at the [token()]() function for example, infers the color's source co
 <pre>
  License ⚖️
 <h6>Released under the  <a href='http://www.apache.org/licenses/LICENSE-2.0'>Apache 2.0 permissive license </a></h6>
- © 2024, <a href="https://deantarisai.me">ディーン・タリサイ</a>
- 
+ © 2023 - present, <a href="https://deantarisai.me">ディーン・タリサイ</a>
+
  </pre>

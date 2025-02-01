@@ -1,14 +1,23 @@
-import { differenceHyab, nearest as nrst } from "culori/fn";
+import {
+	differenceHyab,
+	nearest as nrst,
+} from "culori/fn";
 import type {
 	Collection,
-
 	DivergingScheme,
 	QualitativeScheme,
 	ScaleValues,
 	SequentialScheme,
 	Tailwind,
 } from "./types.d.ts";
-import { and, eq, isArray, keys, or, values } from "./internal.ts";
+import {
+	and,
+	eq,
+	isArray,
+	keys,
+	or,
+	values,
+} from "./internal.ts";
 
 const tailwind = {
 	indigo: {
@@ -255,33 +264,37 @@ const tailwind = {
 	},
 };
 
-
 /**
  * Returns the specified scheme from the passed in color map
  * @param  s The palette type to return.
  * @param  obj The color map with the `scheme`s as keys and `ColorToken | Array<ColorToken>` as values.
  
  */
-function hasScheme(s: string = '', obj: Collection = {}) {
+function hasScheme(s = "", obj: Collection = {}) {
 	// Map all schemes keys to lower case
 	// @ts-ignore:
-	const o = keys(obj), cb = x => obj[o.find((v) => v.toLowerCase() === x.toLowerCase())]
+	const o = keys(obj),
+		cb = (x: string) =>
+			obj[
+				o.find(
+					(v) =>
+						v.toLowerCase() === x.toLowerCase(),
+				)
+			];
 
-	let res = {}
-
+	let res = {};
 
 	if (isArray(s))
-
-		for (const x of s)
-			// @ts-ignore:
-			res[x.toLowerCase()] = cb(x);
-	else
 		// @ts-ignore:
-		res = cb(s);
+		for (const x of s)
+			res[x.toLowerCase()] = cb(x);
+	// @ts-ignore:
+	else res = cb(s);
 
-
-	return res
-		|| Error(`${s} is an invalid scheme option.`);
+	return (
+		res ||
+		Error(`${s} is an invalid scheme option.`)
+	);
 }
 /**
  *  A wrapper function for ColorBrewer's map of sequential color schemes.
@@ -305,9 +318,9 @@ console.log(sequential("OrRd"))
 
 
  */
-function sequential<Scheme extends SequentialScheme>(
-	scheme?: Scheme | Array<Scheme>,
-): Scheme[] {
+function sequential<
+	Scheme extends SequentialScheme,
+>(scheme?: Scheme | Array<Scheme>): Scheme[] {
 	const so = {
 		OrRd: [
 			"#fff7ec",
@@ -541,7 +554,9 @@ console.log(diverging("Spectral"))
   '#bf5b17', '#666666'
 ]
  */
-function diverging<Scheme extends DivergingScheme>(scheme?: Scheme | Array<Scheme>): Scheme[] {
+function diverging<
+	Scheme extends DivergingScheme,
+>(scheme?: Scheme | Array<Scheme>): Scheme[] {
 	const so = {
 		Spectral: [
 			"#9e0142",
@@ -682,9 +697,9 @@ console.log(qualitative("Accent"))
 ]
 
  */
-function qualitative<Scheme extends QualitativeScheme>(
-	scheme?: Scheme | Array<Scheme>,
-): Scheme[] {
+function qualitative<
+	Scheme extends QualitativeScheme,
+>(scheme?: Scheme | Array<Scheme>): Scheme[] {
 	const so = {
 		Set2: [
 			"#66c2a5",
@@ -795,9 +810,11 @@ function qualitative<Scheme extends QualitativeScheme>(
 console.log(nearest(cols, 'blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
-function nearest(collection: Collection | "tailwind", options: { num: 1; against: 'cyan' }) {
+function nearest(
+	collection: Collection | "tailwind",
+	options: { num: 1; against: "cyan" },
+) {
 	const { against, num } = options,
-
 		f = (a: unknown, b: unknown) => {
 			const o = nrst(
 				values(a as object),
@@ -808,7 +825,10 @@ function nearest(collection: Collection | "tailwind", options: { num: 1; against
 		};
 
 	return or(
-		and(eq(collection, "tailwind"), f(colors("all"), against)),
+		and(
+			eq(collection, "tailwind"),
+			f(colors("all"), against),
+		),
 		f(collection, against),
 	);
 }
@@ -880,30 +900,27 @@ function colors(
 	shade = shade?.toLowerCase() as Tailwind;
 	let o: string[];
 	if (eq(shade, d))
-		// @ts-ignore:
-		if (q(value)) o = k.map((y) => w[y][value]);
+		if (q(value))
+			// @ts-ignore:
+			o = k.map((y) => w[y][value]);
 		// @ts-ignore:
 		else o = k.map((y) => values(w[y])).flat(2);
 	else if (p(shade))
-		// @ts-ignore:
-		if (q(value)) o = w[shade][value as string];
+		if (q(value))
+			// @ts-ignore:
+			o = w[shade][value as string];
 		else o = values(w[shade]);
 	// @ts-ignore:
-	else if (or(!shade, and(!shade, !value))) o = k.map((h) => w[h]);
-
+	else if (or(!shade, and(!shade, !value)))
+		o = k.map((h) => w[h]);
 
 	// @ts-ignore:
 	return o;
 }
 export {
-
 	colors,
 	diverging,
-
 	nearest,
-
 	qualitative,
-
 	sequential,
-
 };
