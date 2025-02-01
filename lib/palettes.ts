@@ -877,11 +877,11 @@ function colors(
 ): Array<string> {
 	const w = tailwind;
 	value = value?.toString() as ScaleValues;
-	const [d, k] = ["all", keys(w)];
+	const d = "all",
+		k = keys(w);
 
-	const [p, q] = [
-		(h: string) => k.includes(h),
-		(i: string) =>
+	const p = (h: string) => k.includes(h),
+		q = (i: string) =>
 			[
 				"50",
 				"050",
@@ -894,11 +894,11 @@ function colors(
 				"700",
 				"800",
 				"900",
-			].includes(i?.toString()),
-	];
+			].includes(i?.toString());
 
 	shade = shade?.toLowerCase() as Tailwind;
 	let o: string[];
+
 	if (eq(shade, d))
 		if (q(value))
 			// @ts-ignore:
@@ -911,7 +911,7 @@ function colors(
 			o = w[shade][value as string];
 		else o = values(w[shade]);
 	// @ts-ignore:
-	else if (or(!shade, and(!shade, !value)))
+	else if (!shade || (!shade && !value))
 		o = k.map((h) => w[h]);
 
 	// @ts-ignore:
