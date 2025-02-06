@@ -268,7 +268,7 @@ console.log(hueShiftedPalette);
 
 ### Predicates⚖️
 
-Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? Though its easy to tell colors apart visually when they're displayed on the screen📺 it can be a bit confusing to tell colors apart using code🔢. Below is an example showing how to determine if a color is gray or not:
+Is this color cool🥶 or warm 🥵, is it achromatic (greyscale) or chromatic? Though its easy to tell colors apart visually when they're displayed on the screen📺 it can be a bit confusing to tell colors apart using code🔢. Below is an example showing how to determine if a color is gray or not:
 
 ```typescript
 import { achromatic, token } from "huetiful-js";
