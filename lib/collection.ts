@@ -327,45 +327,54 @@ function sortBy(
  * @param collection The property you want to distribute to the colors in the collection for example `hue | luminance`
  * @param options  Optional overrides to change the default configursation
  */
-// function distribute<
-// 	Iterable extends Collection,
-// 	Options extends DistributionOptions,
-// >(collection: Iterable, options?: Options): Collection {
-// 	// Destructure the opts to check before distributing the factor
-// 	let {
-// 		extremum,
-// 		excludeSelf,
-// 		excludeAchromatic,
-// 		colorspace,
-// 		hueFixup,
-// 		factor,
-// 	} = or(options, {}) as Options;
-// 	// Set the extremum to distribute to default to max if its not min
-// 	extremum = or(extremum, "max");
+function distribute<
+	Iterable extends Collection,
+	Options extends DistributionOptions,
+>(
+	collection: Iterable,
+	options?: Options,
+): Collection {
+	// Destructure the opts to check before distributing the factor
+	let {
+		extremum,
+		excludeSelf,
+		excludeAchromatic,
+		colorspace,
+		hueFixup,
+		factor,
+	} = or(options, {}) as Options;
+	// Set the extremum to distribute to default to max if its not min
+	extremum = or(extremum, "max");
 
-// 	// Exclude the colorToken with the specified factor extremum being distributed
-// 	excludeSelf = or(excludeSelf, false);
+	// Exclude the colorToken with the specified factor extremum being distributed
+	excludeSelf = or(excludeSelf, false);
 
-// 	// Exclude achromatic colors from the manipulations. The colors are returned in the resultant collection
-// 	excludeAchromatic = or(excludeAchromatic, false);
+	// Exclude achromatic colors from the manipulations. The colors are returned in the resultant collection
+	excludeAchromatic = or(
+		excludeAchromatic,
+		false,
+	);
 
-// 	// The fixup to use when tweaking the hue channels
-// 	// @ts-ignore
-// 	hueFixup = factor === "hue"
-// 		? hueFixup === "longer" ? fixupHueLonger : fixupHueShorter
-// 		: null;
-// 	colorspace = or(colorspace, "lch");
-// 	const facts: { [K in Factor] } = {
-// 		hue: "h",
-// 		lightness: mcchn("l", colorspace),
-// 		chroma: mcchn("c", colorspace),
-// 		distance: 0,
-// 		luminance: 0,
-// 		contrast: 0,
-// 	};
-// 	// v is expected to be a color object so that we can access the color's hue property during the mapping
-// 	// set the callbacks depending on the type of factorStats
-// }
+	// The fixup to use when tweaking the hue channels
+	// @ts-ignore
+	hueFixup =
+		factor === "hue"
+			? hueFixup === "longer"
+				? fixupHueLonger
+				: fixupHueShorter
+			: null;
+	colorspace = or(colorspace, "lch");
+	const facts: { [K in Factor] } = {
+		hue: "h",
+		lightness: mcchn("l", colorspace),
+		chroma: mcchn("c", colorspace),
+		distance: 0,
+		luminance: 0,
+		contrast: 0,
+	};
+	// v is expected to be a color object so that we can access the color's hue property during the mapping
+	// set the callbacks depending on the type of factorStats
+}
 
 /**
  * Filters a collection of colors using the specified `factor` as the criterion.
