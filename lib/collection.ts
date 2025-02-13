@@ -1,29 +1,27 @@
 import {
+	averageAngle,
+	averageNumber,
+	fixupHueLonger,
+	fixupHueShorter,
+} from "culori/fn";
+import { limits } from "./constants.ts";
+import {
 	chnDiff,
 	ctrst,
 	dstnce,
-	entries,
 	filteredColl,
+	isArray,
 	iterator,
+	keys,
 	map,
 	mcchn,
+	or,
 	sortedColl,
 	values,
 } from "./internal.ts";
-import {
-	achromatic,
-	family,
-	luminance,
-	mc,
-	token,
-} from "./utils.ts";
-import {
-	averageAngle,
-	averageNumber,
-} from "culori/fn";
-import { limits } from "./constants.ts";
 import type {
 	Collection,
+	DistributionOptions,
 	Factor,
 	FilterByOptions,
 	IdentityFunc,
@@ -32,6 +30,13 @@ import type {
 	StatsOptions,
 } from "./types.d.ts";
 import type { ColorToken } from "./types.d.ts";
+import {
+	achromatic,
+	family,
+	luminance,
+	mc,
+	token,
+} from "./utils.ts";
 
 /**
  * Computes statistical values about the factors the passed in collection.
@@ -265,7 +270,6 @@ function sortBy(
 		factorObject,
 	} = options || {};
 
-	factor = factor || undefined;
 	against = against || "cyan";
 	colorspace = colorspace || "lch";
 	relative = relative || false;
@@ -276,11 +280,12 @@ function sortBy(
 		"c",
 	].map((w) => mcchn(w, colorspace, false));
 	//  @ts-ignore:
-	for (const c in entries(collection))
-		collection[c[0]] = token(c[1], {
+	for (const c of collection) {
+		collection[c] = token(collection[c], {
 			kind: "obj",
 			targetMode: "lch",
 		});
+	}
 
 	// returns factor cbs determined by the options
 	const callback = (fact: Factor) => {
@@ -323,57 +328,111 @@ function sortBy(
 // distributionFunc => the function to use when tweaking the channel values. We use Culori's mapper function
 
 /**
- * Distributes the specified `factor` of a color in the collection with the specified `extremum` (i.e the color with the smallest/largest `hue` angle or `chroma` value) to all color tokens in the collection.
+ * Distributes the specified `factor`s of a color in the collection with the specified `extremum` (i.e the color with the smallest/largest `hue` angle or `chroma` value) to all color tokens in the collection.
+ *
+ * You can also specify `extremum` as `'mean'` in which case the average value(s) for each factor is calculated from each color token with a valid factor that is not `NaN` or any falsy value or that is not of type `number` in the passed in `collection`
  * @param collection The property you want to distribute to the colors in the collection for example `hue | luminance`
- * @param options  Optional overrides to change the default configursation
+ * @param options  Optional overrides to change the default configuration.
  */
 function distribute<
-	Iterable extends Collection,
 	Options extends DistributionOptions,
 >(
-	collection: Iterable,
+	collection: Collection,
 	options?: Options,
 ): Collection {
 	// Destructure the opts to check before distributing the factor
+
 	let {
 		extremum,
 		excludeSelf,
 		excludeAchromatic,
 		colorspace,
 		hueFixup,
-		factor,
 	} = or(options, {}) as Options;
-	// Set the extremum to distribute to default to max if its not min
-	extremum = or(extremum, "max");
+	// Set the extremum default to max if its not min
 
-	// Exclude the colorToken with the specified factor extremum being distributed
+	extremum = extremum || "max";
+
+	// Exclude the colorToken with the specified factor extremum being distributed from the iteration
 	excludeSelf = or(excludeSelf, false);
 
-	// Exclude achromatic colors from the manipulations. The colors are returned in the resultant collection
-	excludeAchromatic = or(
-		excludeAchromatic,
-		false,
+	// Exclude achromatic colors from the manipulations. The colors are discarded in the resultant collection
+	excludeAchromatic = excludeAchromatic || false;
+
+	// The fixup to use when tweaking the hue channels. Only applies if the `factor` is `hue`
+	// @ts-ignore:
+	hueFixup =
+		hueFixup?.toLowerCase() === "longer"
+			? fixupHueLonger
+			: fixupHueShorter;
+
+	colorspace = colorspace || "lch";
+
+	// The color token(s) with the specified extremum. Returned as a map object
+	const extremumColor: ColorToken = sortBy(
+		collection,
+		{
+			order:
+				(extremum === "min" && "asc") || "desc",
+			factorObject: true,
+		},
 	);
 
-	// The fixup to use when tweaking the hue channels
-	// @ts-ignore
-	hueFixup =
-		factor === "hue"
-			? hueFixup === "longer"
-				? fixupHueLonger
-				: fixupHueShorter
-			: null;
-	colorspace = or(colorspace, "lch");
-	const facts: { [K in Factor] } = {
-		hue: "h",
-		lightness: mcchn("l", colorspace),
-		chroma: mcchn("c", colorspace),
-		distance: 0,
-		luminance: 0,
-		contrast: 0,
+	const cb = (ch: string) =>
+			mcchn(ch, colorspace),
+		cb2 = (func) => (ct, val) => func(ct, val);
+
+	// the current value obtained from the division
+	// of the extremum's value by the length of the color collection
+	let currentDiv: number;
+
+	// set the callback to  modify the color token's factor with
+	// as it iterates over the entire `collection`
+	const factsCallbacks = {
+		chroma: cb2(mc(cb("c"))),
+		lightness: cb2(mc(cb("l"))),
+		hue: cb2(mc(`${colorspace}.h`)),
+		luminance: cb2(luminance),
 	};
-	// v is expected to be a color object so that we can access the color's hue property during the mapping
-	// set the callbacks depending on the type of factorStats
+
+	// before the collection is iterated
+	// check if achromatic colors are to be included in the operation
+	// this may produce weird results though and in the case that one of the values is falsy
+	// e.g the hue channel is `NaN` when the color is achromatic or the chroma channel is `0` then the larger/ valid value is kept
+	let finalCollection = isArray(collection)
+		? []
+		: {};
+
+	if (excludeAchromatic) {
+		// @ts-ignore:
+		for (const k of collection) {
+			if (!achromatic(collection[k])) {
+				finalCollection[k] = collection[k];
+			} else finalCollection = collection;
+		}
+	}
+	// @ts-ignore
+	for (const k of extremumColor) {
+		// For each `factor` specified in the `options`
+		// set the currentDiv value to  the value of the factor divided by the number of color tokens
+		// is variable assignment computationally expensive ?
+		currentDiv =
+			extremumColor[k][0].factor /
+			keys(finalCollection).length;
+
+		// set the callback to  modify the color token's factor with
+		// as it iterates over the entire `collection`
+
+		// @ts-ignore
+
+		for (const g of finalCollection) {
+			finalCollection[g] = factsCallbacks[k](
+				finalCollection[g],
+				currentDiv,
+			);
+		}
+	}
+	return finalCollection;
 }
 
 /**
@@ -505,4 +564,4 @@ function filterBy(
 	return iterator(factor, callback, factorObject);
 }
 
-export { filterBy, sortBy, stats };
+export { distribute, filterBy, sortBy, stats };

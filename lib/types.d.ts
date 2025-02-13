@@ -217,7 +217,7 @@ export type FilterByOptions = {
 
 	/**
 	 *
-	 * Return an array of {factor:number, color:ColorToken} objects instead of just color tokens.
+	 * Return an array of  objects instead of just color tokens.
 	 * Default is `false`.
 	 */
 	factorObject?: boolean;
@@ -372,7 +372,7 @@ export type SortByOptions = {
 
 	/**
 	 *
-	 * Return an array of {factor:number, color:ColorToken} objects instead of just color tokens.
+	 * Return an array of objects instead of just color tokens.
 	 * Default is `false`.
 	 */
 	factorObject?: boolean;

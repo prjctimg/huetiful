@@ -74,6 +74,7 @@ const dstnce = (a: unknown) => (b: unknown) =>
 function iterator(
 	t: string[] | undefined,
 	z: IdentityFunc,
+	o = false,
 	y = [
 		"hue",
 		"chroma",
@@ -82,20 +83,21 @@ function iterator(
 		"contrast",
 		"luminance",
 	],
-	o = false,
 ) {
 	const p = {};
 
 	if (isArray(t) && t.length >= 1)
-		for (const k of values(t)) p[k] = z(k);
+		// @ts-ignore:
+		for (const k of t) p[k] = z(k);
 	// @ts-ignore:
 	if (eq(t, undefined))
 		for (const k of y) p[k] = z(k);
 
 	if (!o)
-		for (const [k, v] of entries(p))
-			for (const i of keys(v))
-				p[k][i] = v[i]?.color;
+		// for each factor key in p, iterate through the value array
+		for (const k in p)
+			for (const i in p[k])
+				p[k][i] = p[k][i]?.color;
 
 	return p;
 }
@@ -145,7 +147,7 @@ function exprParser(a: string, b: unknown) {
  * Gets the chroma or lightness channel from the specified `m` or colorspace.
  * @param  c The channel key to get
  * @param  m The colorspace
- * @param f Whether to return full mode channel string or key only
+ * @param f Whether to return full mode channel string or key only. Default is `true`
  * @returns
  */
 function mcchn(
@@ -169,7 +171,7 @@ function mcchn(
 
 	// @ts-ignore
 	return x.test(m)
-		? or(and(f, `${m}.${d}`), d)
+		? (f && `${m}.${d}`) || d
 		: Error(e);
 }
 
@@ -331,6 +333,21 @@ function isMap(x: unknown): boolean {
  */
 function isSet(x: unknown) {
 	return x instanceof Set;
+}
+
+function checkType(
+	arg: unknown,
+	expected:
+		| "string"
+		| "number"
+		| "object"
+		| "array"
+		| "boolean"
+		| "fn",
+): boolean {
+	const argType = typeof arg;
+
+	return argType === expected;
 }
 
 /**
@@ -507,6 +524,9 @@ function getSrcMode(c: ColorToken): Colorspaces {
 
 const ctrst = (a: unknown) => (b: unknown) =>
 	contrast(b as ColorToken, a as ColorToken);
+/**
+ * [TODO:class]
+ */
 export {
 	map,
 	ci,
@@ -553,4 +573,5 @@ export {
 	take,
 	dstnce,
 	ctrst,
+	checkType,
 };

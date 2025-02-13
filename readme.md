@@ -1,17 +1,19 @@
-# [`huetiful-js`](https://huetiful-js.com)
+## [`huetiful-js`](https://huetiful-js.com)
 
 [![NPM publish 📦](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml/badge.svg)](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml)
 
 ![huetiful-logo](www/static/img/logo.svg)
 
+[![NPM publish 📦](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml/badge.svg)](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml)
+
+![huetiful-logo](/img/logo.svg)
+
 Library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.
 
-## Contents  
+## Contents
 
-- [What is this?](#what-is-this)
 - [When should I use this](#when-should-i-use-this)
-- [Install](#install)
-  - [Deno](#deno)
+- [Installing](#installing)
 - [Use](#use)
   - [Color conversion](#color-conversion)
   - [Builtin color maps🎨](#builtin-color-maps)
@@ -22,16 +24,10 @@ Library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.
   - [Palette generators](#palette-generators)
   - [Predicates⚖️](#predicates️)
 - [API](#api)
-  - [Community](#community)
-  - [Contributing](#contributing)
-
-<!-- /code_chunk_output -->
-
-## What is this?
 
 I made this collection of functions when I was learning how to manipulate color programmatically to achieve different end results as well as understand color from a more "programmer" perspective. Some parts of code were collected from [various places on the internet](/references.md).
-
-It's still a work in progress so so I'm [open to suggestions]()
+> [!WARNING]
+> This is still a work in progress and not guaranteed to be production ready...yet
 
 ## When should I use this
 
@@ -39,12 +35,12 @@ You may find this package useful if you wish to do things like:
 
 - Parse and convert all CSS supported color strings plus `number`, `Array`, `object`, `Map`/`Set` and even `boolean`values to other color spaces.
 - Query properties about color or collections of colors
-- Filter colors that don't match a certain criteria
-- Sort colors in a collection before manipulating them further
-- Generate palettes using a single color or collection as a starting point
+- Sort and filter colors using their `factors` in a collection before manipulating them further
+- Generate multiple palettes using a single color or collection (for interpolations) as a starting point
 - Grab some color scales from Tailwind or Colorbrewer palettes
+- Want to experiment with generating palettes from distributing `factors` in collections of color tokens
 
-## Install
+## Installing
 
 > The library uses ES modules and has no default export. If you wish to have a UMD build (for some reason known to self), you can build from source. See [BUILD.md](./build.md) for more info
 
@@ -67,11 +63,9 @@ deno add jsr:@algorist/color
 
 ```
 
-You can check the library on [JSR here]()
-
 ## Use
 
-These examples are only compatible with version 3.x and upwards. Versions prior to that are deprecated.
+These examples are only compatible with version `3.x.x` and upwards. Versions prior to that are deprecated.
 
 ### Color conversion
 
@@ -81,7 +75,6 @@ A color can be defined using different types (arrays, strings, numbers, plain ob
 
 ```typescript
 import { token } from "huetiful-js";
-
 
 // all these are valid color tokens
 
@@ -104,9 +97,7 @@ let allColors = [
 ];
 
 let res = [];
-for (const color of allColors) 
-  res.push(token(color));
-
+for (const color of allColors) res.push(token(color));
 
 console.log(res);
 
@@ -326,15 +317,14 @@ console.log(sample.filter((c) => temp(c) === "warm"));
 
 Every function in this package expects either a valid color token or collection of color tokens as input.
 
-[See the complete documentation here]()
-
-### Contributing
-
-[Contributing](https://github.com/prjctimg/huetiful/blob/main/contributing.md)
+[See the complete documentation here](https://huetiful-js.com/api)
 
 <pre>
- License ⚖️
-<h6>Released under the  <a href='http://www.apache.org/licenses/LICENSE-2.0'>Apache 2.0 permissive license </a></h6>
- © 2023 - present, <a href="https://deantarisai.me">ディーン・タリサイ</a>
-
- </pre>
+  License ⚖️
+  <h6>
+    <a href="http://www.apache.org/licenses/LICENSE-2.0">
+      Released under the Apache 2.0 permissive License.
+    </a>
+  </h6>
+  © 2024 - present,<a href="https://deantarisai.me">ディーン・タリサイ</a>
+</pre>
