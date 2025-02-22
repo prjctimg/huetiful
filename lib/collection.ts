@@ -6,8 +6,8 @@ import {
 } from "culori/fn";
 import { limits } from "./constants.ts";
 import {
-	chnDiff,
 	COLOR_SPACES,
+	chnDiff,
 	ctrst,
 	dstnce,
 	entries,
@@ -22,8 +22,8 @@ import {
 } from "./internal.ts";
 import type {
 	Collection,
-	Colorspaces,
 	ColorToken,
+	Colorspaces,
 	DistributionOptions,
 	Factor,
 	FilterByOptions,
@@ -32,6 +32,7 @@ import type {
 	StatsOptions,
 } from "./types.d.ts";
 import {
+	achromatic,
 	family,
 	luminance,
 	mc,
@@ -89,46 +90,54 @@ function stats(
 	relative = false;
 
 	const getStatsObject = (fact: Factor) => {
-		const sortedTokens = (
-			b: (x: unknown) => unknown,
-		) => sortedColl(fact, b)(collection);
-
-		// @ts-ignore:`
-		const meanCallback = (relative === true && {
-			chroma:
-				// @ts-ignore:
-				chnDiff(against, mcchn("c", colorspace)),
-
-			luminance: (a: ColorToken) =>
-				Math.abs(
-					luminance(a) - luminance(against),
-				),
-			lightness: chnDiff(
-				against,
-				mcchn("l", colorspace),
-			),
-			hue: chnDiff(against, `${colorspace}.h`),
-
-			contrast: ctrst(against),
-			distance: dstnce(against),
-		}) || {
-			chroma: mc(mcchn("c", colorspace)),
-
-			luminance: luminance,
-			lightness: mc(mcchn("l", colorspace)),
-
-			hue: mc(`${colorspace}.h`),
-		};
-
-		// if the relative is true then exit
-		if (
-			["contrast", "distance"].includes(fact) &&
-			relative
-		) {
-			return;
-		}
+		/**
+		 * The callback to use for calculating the specified factor's mean.
+		 * */
 		// @ts-ignore:
-		return sortedTokens(meanCallback[fact]);
+		let meanCallback;
+		if (
+			relative &&
+			!["contrast", "distance"].includes(
+				fact?.toLowerCase(),
+			)
+		) {
+			meanCallback = {
+				chroma:
+					// @ts-ignore:
+					chnDiff(
+						against,
+						mcchn("c", colorspace),
+					),
+
+				luminance: (a: ColorToken) =>
+					Math.abs(
+						luminance(a) - luminance(against),
+					),
+				lightness: chnDiff(
+					against,
+					mcchn("l", colorspace),
+				),
+				hue: chnDiff(against, `${colorspace}.h`),
+			};
+
+			// @ts-ignore:
+		} else {
+			meanCallback = {
+				contrast: ctrst(against),
+				distance: dstnce(against),
+				chroma: mc(mcchn("c", colorspace)),
+
+				luminance: luminance,
+				lightness: mc(mcchn("l", colorspace)),
+
+				hue: mc(`${colorspace}.h`),
+			};
+		}
+
+		return sortedColl(
+			fact,
+			meanCallback[fact],
+		)(collection);
 	};
 
 	/**
@@ -141,31 +150,27 @@ function stats(
 			c(map(collection, b) as number[]);
 
 	const len: number = values(collection).length;
-	const factorStats = {
-		chroma: callback(mc(mcchn("c", colorspace)))(
-			averageNumber,
-		),
-		distance: callback(dstnce(against))(
-			averageNumber,
-		),
-
-		hue: callback(mc(`${colorspace}.h`))(
-			averageAngle,
-		),
-		lightness: callback(
-			mc(mcchn("l", colorspace)),
-		)(averageNumber),
-		contrast: callback(ctrst(against))(
-			averageNumber,
-		),
-		luminance: callback(luminance)(averageNumber),
-	};
 
 	const commonStats = (fact: Factor) => {
 		// @ts-ignore:
 		const x = getStatsObject(fact)[0];
 		// @ts-ignore:
 		const y = getStatsObject(fact)[len - 1];
+		const factorStats = {
+			chroma: [
+				mc(mcchn("c", colorspace)),
+				averageNumber,
+			],
+			distance: [dstnce(against), averageNumber],
+
+			hue: [mc(`${colorspace}.h`), averageAngle],
+			lightness: [
+				mc(mcchn("l", colorspace)),
+				averageNumber,
+			],
+			contrast: [ctrst(against), averageNumber],
+			luminance: [luminance, averageNumber],
+		}[fact];
 
 		const res = {
 			against:
@@ -175,7 +180,9 @@ function stats(
 					: null,
 			colors: [x?.color, y?.color],
 			// @ts-ignore:
-			mean: factorStats[fact],
+			mean: callback(factorStats[0])(
+				factorStats[1],
+			),
 			extremums: [x[fact], y[fact]],
 
 			families: [
@@ -186,25 +193,23 @@ function stats(
 		return res;
 	};
 
-	console.log(commonStats("distance"));
-	// console.log(factorStats.contrast);
 	// @ts-ignore:
-	// const statsObject = iterator(
-	// 	factor,
-	// 	// @ts-ignore:
-	// 	commonStats,
-	// 	true,
-	// ) as Stats;
-	//
-	// // @ts-ignore:
-	// statsObject.achromatic =
-	// 	values(collection).filter(achromatic).length /
-	// 	len;
-	//
-	// // @ts-ignore:
-	// statsObject.colorspace = colorspace;
-	//
-	// console.log(statsObject);
+	const statsObject = iterator(
+		factor,
+		// @ts-ignore:
+		commonStats,
+		true,
+	) as Stats;
+
+	// @ts-ignore:
+	statsObject.achromatic =
+		values(collection).filter(achromatic).length /
+		len;
+
+	// @ts-ignore:
+	statsObject.colorspace = colorspace;
+
+	return statsObject;
 }
 
 /**
@@ -281,8 +286,8 @@ function sortBy(
 	].map((w) => mcchn(w, colorspace, false));
 	//  @ts-ignore:
 	// @ts-ignore:
-	for (const c in entries(collection))
-		collection[c[0]] = token(c[1], {
+	for (const c in collection)
+		collection[c] = token(collection[c], {
 			kind: "obj",
 			targetMode: "lch",
 		});
@@ -290,19 +295,25 @@ function sortBy(
 	// returns factor cbs determined by the options
 	const callback = (fact: Factor) => {
 		const lmnce = (b: ColorToken) =>
-				Math.abs(
-					luminance(against) - luminance(b),
-				),
-			sort = (a: unknown) =>
-				// @ts-ignore:
-				sortedColl(fact, a, order)(collection);
+			Math.abs(luminance(against) - luminance(b));
 		const u = (ch: string) =>
 			mc(
 				`${colorspace}.${ch}`,
 			) as unknown as string;
 
-		// biome-ignore lint/suspicious/noImplicitAnyLet: don't really need to be explicit with types in here...
-		let sortingCallbacks;
+		let sortingCallbacks: {
+			[x: string]: unknown;
+			chroma?:
+				| string
+				| ((y?: ColorToken) => number);
+			hue?: string | ((y?: ColorToken) => number);
+			lightness?:
+				| string
+				| ((y?: ColorToken) => number);
+			luminance?: (b: ColorToken) => number;
+			distance?: (b: unknown) => number;
+			contrast?: (b: unknown) => number;
+		};
 		// if relative is true and the fact is not [contrast,distance,luminance]....
 		if (
 			relative &&
@@ -339,8 +350,12 @@ function sortBy(
 			};
 		}
 
+		return sortedColl(
+			fact,
+			sortingCallbacks[fact],
+			order,
+		)(collection);
 		// get our collection with the specified factor
-		return sort(sortingCallbacks[fact]);
 	};
 
 	// @ts-ignore:
@@ -563,3 +578,6 @@ function filterBy(
 }
 
 export { distribute, filterBy, sortBy, stats };
+
+// BUG: fix stats() by removing unnecessary execution contexts
+// TODO: fix distribute() function by properly laying out the process flow

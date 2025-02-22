@@ -18,7 +18,8 @@
 				"noParameterAssign": "off"
 			},
 			"suspicious": {
-				"noAssignInExpressions": "off"
+				"noAssignInExpressions": "off",
+				"noImplicitAnyLet": "off"
 			},
 			"performance": {
 				"noDelete": "off"

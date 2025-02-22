@@ -29,13 +29,13 @@ const tests: Spec[] = [
 			{ factor: ["hue"], order: "asc" },
 		],
 	},
-	// {
-	// 	description:
-	// 		"Gets the stats for a collection of color.",
-	// 	callback: stats,
-	//
-	// 	params: [samples],
-	// },
+	{
+		description:
+			"Gets the stats for a collection of color.",
+		callback: stats,
+
+		params: [samples],
+	},
 	// {
 	//   description: "Distributes factors of a collection of color.",
 	//   callback: distribute,
