@@ -75,10 +75,6 @@ export type ColorOptions = {
 	mode?: Colorspaces;
 };
 
-export type IdentityFunc = (
-	x: ColorToken,
-) => unknown;
-
 /**
  * @type
  * This object returns the lightMode and darkMode optimized version of a color with support to add color vision deficiency simulation to the final color result.
@@ -220,6 +216,12 @@ export type FilterByOptions = {
 	factor?: Array<Factor>;
 
 	/**
+	 * Return an array of `{factor:number, color:ColorToken}` objects instead of just color tokens.
+	 * Default is `false`.
+	 */
+	factorObject?: boolean;
+
+	/**
 	 * The targeted start and end ranges for the factor:
 	 *
 	 * * If a single `factor` is specified, `ranges` is expected to be an array.
@@ -352,6 +354,10 @@ export type Stats = {
 	};
 };
 
+export type IdentityFunc = (
+	x: unknown,
+) => unknown;
+
 /**
  * Options for specifying sorting conditions.
  */
@@ -362,6 +368,12 @@ export type SortByOptions = {
 	 * It has no effect on `contrast` and `distance` factors because they're already relative.
 	 */
 	relative?: boolean;
+
+	/**
+	 * Return an array of `{factor:number, color:ColorToken}` objects instead of just color tokens.
+	 * Default is `false`.
+	 */
+	factorObject?: boolean;
 
 	/**
 

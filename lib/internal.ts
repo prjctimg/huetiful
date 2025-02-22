@@ -22,6 +22,46 @@ import type {
 
 const { keys, entries, values } = Object;
 
+export const COLOR_SPACES: Array<Colorspaces> = [
+	"lch",
+	"lab",
+	"rgb",
+	"lch",
+	"lch65",
+	"xyz65",
+	"xyz",
+	"lrgb",
+	"hsv",
+];
+
+/**
+ *
+ * Handles assigning the colorspace to work in by checking if the passed in colorspace is valid.
+ * If a hue based colorspace is desired you can specify  `h` to be true. It will optionally check if the passed colorspace is hue based
+ * and return a default `def` or `lch` if `def is not defined.`
+ * @param cspace The colorspace passed in
+ * @param h Whether or not a hue based colorspace is needed. Default is `false`
+ * @param def The default value to return if a nonj compliant colorspace is specified.
+ * If a non hue based default is specified with `h` set to true, it will default to 'lch'.
+ * */
+function initCspace(
+	cspace?: string,
+	h = false,
+	def?: string,
+) {
+	const re = (x) => /h/gi.test(x);
+	return (
+		(COLOR_SPACES.includes(
+			cspace?.toLowerCase() as Colorspaces,
+		) &&
+			h &&
+			((re(cspace) && cspace) ||
+				(re(def) && def) ||
+				"lch")) ||
+		def ||
+		"rgb"
+	);
+}
 const operators = {
 	"!=": neq,
 	"==": eq,
@@ -569,4 +609,5 @@ export {
 	sortedColl,
 	take,
 	values,
+	initCspace,
 };

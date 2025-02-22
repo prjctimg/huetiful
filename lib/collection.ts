@@ -7,6 +7,7 @@ import {
 import { limits } from "./constants.ts";
 import {
 	chnDiff,
+	COLOR_SPACES,
 	ctrst,
 	dstnce,
 	entries,
@@ -21,17 +22,16 @@ import {
 } from "./internal.ts";
 import type {
 	Collection,
+	Colorspaces,
+	ColorToken,
 	DistributionOptions,
 	Factor,
 	FilterByOptions,
-	IdentityFunc,
 	SortByOptions,
 	Stats,
 	StatsOptions,
 } from "./types.d.ts";
-import type { ColorToken } from "./types.d.ts";
 import {
-	achromatic,
 	family,
 	luminance,
 	mc,
@@ -83,7 +83,7 @@ function stats(
 	let { factor, relative, against, colorspace } =
 		options || ({} as StatsOptions);
 
-	relative = false;
+	relative = relative || false;
 	colorspace = "lch";
 	against = "cyan";
 	relative = false;
@@ -120,6 +120,7 @@ function stats(
 			hue: mc(`${colorspace}.h`),
 		};
 
+		// if the relative is true then exit
 		if (
 			["contrast", "distance"].includes(fact) &&
 			relative
@@ -258,12 +259,21 @@ function sortBy(
 		order,
 		relative,
 		factorObject,
-	} = options || {};
+	} = options || ({} as SortByOptions);
 
 	against = against || "cyan";
-	colorspace = colorspace || "lch";
+	colorspace =
+		COLOR_SPACES.includes(
+			colorspace?.toLowerCase() as Colorspaces,
+		) && /h/gi.test(colorspace)
+			? colorspace
+			: "lch";
 	relative = relative || false;
-	order = order || "asc";
+	order = ["desc", "asc"].includes(
+		order?.toLowerCase(),
+	)
+		? order
+		: "asc";
 	// lightness and chroma channel constants respectively
 	const [lightnessChannel, chromaChannel] = [
 		"l",
@@ -285,30 +295,52 @@ function sortBy(
 				),
 			sort = (a: unknown) =>
 				// @ts-ignore:
-				sortedColl(fact, a, order);
+				sortedColl(fact, a, order)(collection);
 		const u = (ch: string) =>
 			mc(
 				`${colorspace}.${ch}`,
 			) as unknown as string;
 
-		// @ts-ignore: fact is used as the index
-		return ((relative && {
-			chroma: sort(
-				chnDiff(against, u(chromaChannel)),
-			),
-			hue: sort(chnDiff(against, u("h"))),
-			luminance: sort(lmnce),
-			lightness: sort(
-				chnDiff(against, u(lightnessChannel)),
-			),
-		}) || {
-			chroma: sort(u(chromaChannel)),
-			hue: sort(u("h")),
-			luminance: sort(luminance),
-			distance: sort(dstnce(against)),
-			contrast: sort(ctrst(against)),
-			lightness: sort(u(lightnessChannel)),
-		})[fact](collection);
+		// biome-ignore lint/suspicious/noImplicitAnyLet: don't really need to be explicit with types in here...
+		let sortingCallbacks;
+		// if relative is true and the fact is not [contrast,distance,luminance]....
+		if (
+			relative &&
+			![
+				"contrast",
+				"distance",
+				"luminance",
+			].includes(fact.toLowerCase())
+		) {
+			// then return an object of callback fns that do not use the `against` parameter to work.
+			// This creates a sort of 'overloaded' comparator fn
+			sortingCallbacks = {
+				chroma: chnDiff(
+					against,
+					u(chromaChannel),
+				),
+				hue: chnDiff(against, u("h")),
+				lightness: chnDiff(
+					against,
+					u(lightnessChannel),
+				),
+			};
+		} else {
+			// return an object with the default comparator fns
+			// including the ones we did NOT want in the if... clause
+			// because they're not overloadable with rhe `against` parameter
+			sortingCallbacks = {
+				chroma: u(chromaChannel),
+				hue: u("h"),
+				luminance: lmnce,
+				distance: dstnce(against),
+				contrast: ctrst(against),
+				lightness: u(lightnessChannel),
+			};
+		}
+
+		// get our collection with the specified factor
+		return sort(sortingCallbacks[fact]);
 	};
 
 	// @ts-ignore:
@@ -462,78 +494,72 @@ function filterBy(
 		factor,
 		ranges,
 		factorObject,
-	} = options || {};
+	} = options || ({} as FilterByOptions);
 
 	//  handling defaults internally helps avoid undefined values as compared to passing it to the parameter list
 	against = against || "cyan";
-	colorspace = colorspace || "lch";
+	colorspace =
+		COLOR_SPACES.includes(
+			colorspace?.toLowerCase() as Colorspaces,
+		) && /h/gi.test(colorspace)
+			? colorspace
+			: "lch";
 
-	const filter =
-			(cb: IdentityFunc) =>
-			(fact: Factor = "hue") =>
-				filteredColl(fact, cb)(
-					collection,
-					start,
-					end,
-				),
-		//  get the saturation and lightness channels
-		chromaChannel = mcchn("c", colorspace, false),
-		lightnessChannel = mcchn(
-			"l",
-			colorspace,
-			false,
-		),
-		defRanges = {
-			hue: [0, 359],
-			contrast: [0, 21],
+	//  get the saturation and lightness channels
+	const chromaChannel = mcchn(
+		"c",
+		colorspace,
+		false,
+	);
 
+	const lightnessChannel = mcchn(
+		"l",
+		colorspace,
+		false,
+	);
+	const defRanges = {
+		hue: [0, 359],
+		contrast: [0, 21],
+
+		// @ts-ignore:
+		chroma:
 			// @ts-ignore:
-			chroma:
-				// @ts-ignore:
-				limits[colorspace][chromaChannel],
+			limits[colorspace][chromaChannel],
 
-			lightness:
-				// @ts-ignore:
-				limits[colorspace][lightnessChannel],
+		lightness:
+			// @ts-ignore:
+			limits[colorspace][lightnessChannel],
 
-			distance: [0, Number.POSITIVE_INFINITY],
-			luminance: [0, 1],
-		};
+		distance: [0, Number.POSITIVE_INFINITY],
+		luminance: [0, 1],
+	};
 	let start: number, end: number;
 
 	const callback = (fact: Factor) => {
-		// @ts-ignore:
 		start = ranges[fact][0] || defRanges[fact][0];
-		// @ts-ignore:
 		end = ranges[fact][1] || defRanges[fact][1];
 
-		return {
-			chroma: filter(
-				// @ts-ignore:
-				mc(mcchn("c", colorspace)),
-			),
-			lightness: filter(
-				// @ts-ignore:
+		// the callback fn to use when comparing factors
 
-				mc(mcchn("l", colorspace)),
-			),
-			hue: filter(
-				// @ts-ignore:
+		const filteringCallback = {
+			chroma: mc(mcchn("c", colorspace)),
 
-				mc(`${colorspace}.h`),
-			),
-			distance: filter(dstnce(token(against))),
-			contrast: filter(ctrst(against)),
-			luminance: filter(
-				// @ts-ignore:
+			lightness: mc(mcchn("l", colorspace)),
+			hue: mc(`${colorspace}.h`),
+			distance: dstnce(token(against)),
+			contrast: ctrst(against),
+			luminance: luminance,
+		}[fact];
 
-				luminance,
-			),
-		}[fact](fact);
+		return filteredColl(fact, filteringCallback)(
+			collection,
+			start,
+			end,
+		);
 	};
 
 	// @ts-ignore:
 	return iterator(factor, callback, factorObject);
 }
 
-export { filterBy, sortBy, stats, distribute };
+export { distribute, filterBy, sortBy, stats };
