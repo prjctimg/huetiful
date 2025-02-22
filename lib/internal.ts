@@ -1,30 +1,16 @@
 // deno-lint-ignore-file ban-ts-comment
 
-
 import {
-<<<<<<< Updated upstream
-	interpolatorSplineNatural,
-	fixupHueShorter,
-	interpolatorSplineBasisClosed,
-	easingSmoothstep,
-	interpolatorLinear,
-	differenceHyab,
-=======
 	differenceHyab,
 	easingSmoothstep,
 	fixupHueShorter,
 	interpolatorLinear,
 	interpolatorSplineBasisClosed,
 	interpolatorSplineNatural,
->>>>>>> Stashed changes
 } from "culori/fn";
 import { mc } from "./utils.ts";
 
 import { contrast } from "./accessibility.ts";
-<<<<<<< Updated upstream
-import type { Collection, ColorToken, Factor, Colorspaces } from "./types.d.ts";
-import { hue } from "./constants.ts";
-=======
 import type { hue } from "./constants.ts";
 import type {
 	Collection,
@@ -33,7 +19,6 @@ import type {
 	Factor,
 	IdentityFunc,
 } from "./types.d.ts";
->>>>>>> Stashed changes
 
 const { keys, entries, values } = Object;
 
@@ -54,7 +39,6 @@ const operators = {
 };
 
 /**
- *
  * Returns the first truthy value.
  * @param  arg The value to check
  * @param def The value to cast if arg is falsy
@@ -84,23 +68,10 @@ const dstnce = (a: unknown) => (b: unknown) =>
  * @param  t The factor array
  * @param {*} z callback that takes a factor as its only argument
  * @param y = Optional array of factor keys
- * @returns {Collection}
+ * @param [o=false] Used to specify whether to return an object with the factor key as wellor just an array of the color tokens
  */
 function iterator(
 	t: string[] | undefined,
-<<<<<<< Updated upstream
-	z: (x: unknown) => unknown, y = ["hue", "chroma", "lightness", "distance", "contrast", "luminance"]
-
-) {
-	const p = {}
-	//  @ts-ignore:
-
-	//  @ts-ignore:
-	if (isArray(t) && t?.length >= 1) for (const k of values(t)) p[k] = z(k);
-	// @ts-ignore:
-	if (eq(t, undefined)) for (const k of y) p[k] = z(k);
-
-=======
 	z: IdentityFunc,
 
 	o = false,
@@ -137,7 +108,6 @@ function iterator(
 			}
 		}
 
->>>>>>> Stashed changes
 	return p;
 }
 
@@ -149,14 +119,6 @@ const [ci, ef, hf, hi, li] = [
 	interpolatorLinear,
 ];
 
-<<<<<<< Updated upstream
-
-
-function gmchn(m = "", i?: number) {
-	const out = m.replace(/\d|ok/g, "");
-
-	return or(and(i, out.charAt(i as number)), out.split(""));
-=======
 function gmchn(m = "", i?: number) {
 	const out = m.replace(/\d|ok/g, "");
 
@@ -164,7 +126,6 @@ function gmchn(m = "", i?: number) {
 		and(i, out.charAt(i as number)),
 		out.split(""),
 	);
->>>>>>> Stashed changes
 }
 
 function mult(x: number, y: number): number {
@@ -172,10 +133,6 @@ function mult(x: number, y: number): number {
 }
 
 function give(x: number, y: number): number {
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 	return x / y;
 }
 
@@ -188,20 +145,12 @@ function take(x: number, y: number): number {
 }
 
 function exprParser(a: string, b: unknown) {
-<<<<<<< Updated upstream
-
-	// @ts-ignore:
-	return and(eq(typeof b, "string"), operators[reOp(b)](a, reNum(b)));
-
-
-=======
 	// @ts-ignore:
 	return and(
 		eq(typeof b, "string"),
 		// @ts-ignore:
 		operators[reOp(b)](a, reNum(b)),
 	);
->>>>>>> Stashed changes
 }
 
 /**
@@ -209,35 +158,8 @@ function exprParser(a: string, b: unknown) {
  * @param  c The channel key to get
  * @param  m The colorspace
  * @param f Whether to return full mode channel string or key only
- * @returns 
+ * @returns
  */
-<<<<<<< Updated upstream
-function mcchn(c: "c" | "l" | string, m = 'lch', f = true): string {
-	// Matches any string with c or s
-
-	let x: RegExp,
-		e: string;
-
-
-	if (eq(c, "l")) {
-		x = /(j|l)/i;
-		e = `The color space ${m} has no lightness channel.`;
-	} else {
-		x = /(s|c)/i;
-		e = `The color space ${m} has no chroma/saturation channel.`;
-	}
-	// @ts-ignore
-	const d = x.exec(m)["0"];
-
-	// @ts-ignore
-	return x.test(m) ? or(and(f, `${m}.${d}`), d) : Error(e);
-}
-
-function colorObj(a: string, b: unknown) {
-	// @ts-ignore
-	return (c: ColorToken) => ({ [a]: b(c), color: c })
-
-=======
 function mcchn(
 	c: "c" | "l" | string,
 	m = "lch",
@@ -269,23 +191,13 @@ function colorObj(a: string, b: IdentityFunc) {
 		[a]: b(c),
 		color: c,
 	});
->>>>>>> Stashed changes
 }
 
-
-
-
-// customCConcat ??? 
+// customCConcat ???
 // capture the amount of elements in hue
 // for each element; slice the array from index 0 (the color family string index)
-// 
+//
 function customFindKey(u: typeof hue, v: number) {
-<<<<<<< Updated upstream
-
-
-
-
-
 	// If the color is achromatic return the string gray
 	return keys(u)
 		.filter((a) => {
@@ -295,17 +207,6 @@ function customFindKey(u: typeof hue, v: number) {
 			// @ts-ignore
 			const [mn, mx] = [min(...t), max(...t)];
 
-=======
-	// If the color is achromatic return the string gray
-	return keys(u)
-		.filter((a) => {
-			// @ts-ignore
-			const t = customConcat(u[a]);
-
-			// @ts-ignore
-			const [mn, mx] = [min(...t), max(...t)];
-
->>>>>>> Stashed changes
 			// Capture the min and max values and see if the passed in color is within that range
 			return inRange(v, mn, mx);
 		})
@@ -313,16 +214,9 @@ function customFindKey(u: typeof hue, v: number) {
 }
 
 function adjustHue(val: number) {
-<<<<<<< Updated upstream
-
-	let out = 0
-	if (val < 0) out += Math.ceil(-val / 360) * 360;
-
-=======
 	let out = 0;
 	if (val < 0) out += Math.ceil(-val / 360) * 360;
 
->>>>>>> Stashed changes
 	return out % 360;
 }
 
@@ -331,15 +225,8 @@ function chnDiff(x?: ColorToken, s?: string) {
 		const cb = (c?: ColorToken) => mc(s)(c);
 
 		return (
-<<<<<<< Updated upstream
-
-			(
-
-				lt(cb(x), cb(y)) && take(cb(y), cb(x))) || take(cb(x), cb(y))
-=======
 			(lt(cb(x), cb(y)) && take(cb(y), cb(x))) ||
 			take(cb(x), cb(y))
->>>>>>> Stashed changes
 		);
 	};
 }
@@ -373,11 +260,6 @@ function neq(x: unknown, y: unknown) {
 function not(x: unknown) {
 	return !x;
 }
-<<<<<<< Updated upstream
-function inRange(n: unknown, s: unknown, e?: unknown) {
-	// @ts-ignore:
-	return and(gte(n, Math.min(s, e)), lt(n, Math.max(s, e)));
-=======
 function inRange(
 	n: number,
 	s: number,
@@ -390,7 +272,6 @@ function inRange(
 		// @ts-ignore:
 		lt(n, Math.max(s, e)),
 	);
->>>>>>> Stashed changes
 }
 
 function isInt(n: number): boolean {
@@ -406,16 +287,12 @@ function floorCeil(n: number) {
 		not(isInt(n)),
 		or(
 			and(
-<<<<<<< Updated upstream
-				eq(/^[0-4]$/.test(n.toString().split(".")[1].charAt(0)), true),
-=======
 				eq(
 					/^[0-4]$/.test(
 						n.toString().split(".")[1].charAt(0),
 					),
 					true,
 				),
->>>>>>> Stashed changes
 				Math.floor(n),
 			),
 			Math.ceil(n),
@@ -423,34 +300,12 @@ function floorCeil(n: number) {
 	);
 }
 
-
-
 /**
- * 
  * @param o The order to return the results in.
  * @param x The factor to sort with. Used as a key.
  */
 function customSort(o = "asc", x = "factor") {
 	// a-b gives asc order & b-a gives desc order
-<<<<<<< Updated upstream
-
-
-	//  @ts-ignore
-	return (a, b) =>
-		or(
-			and(eq(o, or("asc", "min")), a[x] - b[x]),
-			and(eq(o, or("desc", "max")), b[x] - a[x])
-		);
-
-}
-
-function colorObjColl(a: Factor, b: unknown) {
-
-	return (z: unknown) =>
-
-		map(z, colorObj(a, b));
-
-=======
 	type x = { [x: string]: number };
 	//  @ts-ignore
 	return (a: x, b: x) =>
@@ -465,13 +320,11 @@ function colorObjColl(
 	b: (x: unknown) => unknown,
 ) {
 	return (z: unknown) => map(z, colorObj(a, b));
->>>>>>> Stashed changes
 }
 
 /**
  * Checks if value is an array.
  * @param {any} x The value to check.
- * @returns {boolean}
  */
 function isArray(x: unknown) {
 	return Array.isArray(x);
@@ -480,20 +333,14 @@ function isArray(x: unknown) {
 /**
  * Checks if the value is an instance of a `Map`.
  * @param {any} x The value to check.
- * @returns {boolean}
  */
-<<<<<<< Updated upstream
-function isMap(x: unknown) {
-=======
 function isMap(x: unknown): boolean {
->>>>>>> Stashed changes
 	return x instanceof Map;
 }
 
 /**
  * Checks if the value is an instance of a `Set`.
  * @param {any} x The value to check.
- * @returns {boolean}
  */
 function isSet(x: unknown) {
 	return x instanceof Set;
@@ -503,30 +350,7 @@ function isSet(x: unknown) {
  * Iterates over any collection invoking `cb` on every element in the `collection`.
  * @param  u The collection to map over.
  * @param  cb The callback function invoked per element in the collection. The callback is expected to be unary.
- *
  */
-<<<<<<< Updated upstream
-function map<T extends object>(u: T | unknown, cb: unknown) {
-
-	let p = or(or(and(isMap(u), new Map()), and(isSet(u), new Set())), false);
-	if (p) {
-		// @ts-ignore
-		for (const [a, b] of entries(u)) {
-			// @ts-ignore: p is a Map or Set object otherwise this code block doesn't execute
-			p.set(a, cb(b));
-		}
-		return p;
-	}
-	// @ts-ignore
-	p = isArray(u) ? new Array(u.length) : {};
-	// @ts-ignore
-	for (const [a, b] of entries(u)) {
-		// @ts-ignore
-		p[a] = cb(b);
-
-	}
-
-=======
 function map<T extends object>(
 	u: T | unknown,
 	cb: unknown,
@@ -554,7 +378,6 @@ function map<T extends object>(
 		p[a] = cb(b);
 	}
 
->>>>>>> Stashed changes
 	return p as T;
 }
 
@@ -562,12 +385,6 @@ function min(arr: Array<number>) {
 	return extremum("min", arr);
 }
 
-<<<<<<< Updated upstream
-function extremum(e: "min" | "max", arr: Array<number> = []) {
-	return arr.reduce(
-		(a, b) => Math[e](a, b),
-		eq(e, "max") ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY,
-=======
 function extremum(
 	e: "min" | "max",
 	arr: Array<number> = [],
@@ -577,7 +394,6 @@ function extremum(
 		eq(e, "max")
 			? Number.NEGATIVE_INFINITY
 			: Number.POSITIVE_INFINITY,
->>>>>>> Stashed changes
 	);
 }
 
@@ -586,96 +402,6 @@ function max(arr: Array<number>) {
 }
 
 function reNum(s: unknown) {
-<<<<<<< Updated upstream
-
-	const re = /[0-9]*\.?[0-9]+/;
-
-
-	// @ts-ignore
-	return and(re.test(s), Number(re.exec(s)["0"]))
-}
-
-function reOp(s: unknown = ''): string {
-
-	// used character classes, more concise
-	const re = /^[\*+\-/<>]|={1,2}|!={0,2}/;
-
-
-	return and(re.test(s as string), String(re.exec(s as string)?.[0]))
-}
-function sortedColl(fact: Factor, cb: unknown, o = "asc") {
-	return (c: Collection) => {
-
-
-
-		const data = values(colorObjColl(fact, cb)(c))
-			.sort(customSort(o, fact));
-
-
-
-		if (isArray(c))
-			return data;
-
-
-
-		const out = new Map();
-
-
-
-		for (const [z, v] of entries(data))
-			out.set(z, v) as Map<typeof z, typeof v>;
-
-
-		return out;
-	}
-};
-
-
-function filteredColl(fact: Factor, cb: unknown) {
-	return (c: unknown, s: string | number, e: string | number | undefined) => {
-
-
-
-		let data = values(colorObjColl(
-			fact,
-			cb,
-		)(c))
-
-
-
-		if (and(eq(typeof s, "number"), eq(typeof e, "number")))
-
-			data = data
-				.filter((j) => inRange(j[fact], s as number, e as number))
-
-
-
-		const startOp = reOp(s) as keyof typeof operators
-		const endOp = reOp(e) as keyof typeof operators
-		const start: number = Number.parseFloat(reNum(s).toString())
-		const end: number = Number.parseFloat(reNum(e).toString())
-
-		if (and(startOp, endOp))
-
-			data = data
-				.filter((l) =>
-					and(operators[startOp](l[fact], start), operators[endOp](l[fact], end))
-				);
-
-
-		else
-			data = data.filter((l) => end ? and(operators[or(startOp, endOp)](l[fact], start), inRange(l[fact], end)) : operators[or(startOp, endOp)](l[fact], start)
-			);
-
-
-
-		return data.map((l) => l.color)
-
-	}
-
-}
-
-=======
 	const re = /[0-9]*\.?[0-9]+/;
 
 	// @ts-ignore
@@ -780,77 +506,22 @@ function filteredColl(
 		return data;
 	};
 }
->>>>>>> Stashed changes
 
 /**
  * Parses the colorspace of the passed in color token. Meant for arrays and color objects.
  * @param c The color token
- 
  */
 function getSrcMode(c: ColorToken): Colorspaces {
-<<<<<<< Updated upstream
-
-
-
-	// @ts-ignore
-	return isArray(c) && typeof c[0] != "number" ? c[0] : typeof c === 'object' ? c?.mode : 'rgb'
-=======
 	// @ts-ignore
 	return isArray(c) && typeof c[0] !== "number"
 		? c[0]
 		: typeof c === "object" && "mode" in c
 			? c?.mode
 			: "rgb";
->>>>>>> Stashed changes
 }
 
 const ctrst = (a: unknown) => (b: unknown) =>
 	contrast(b as ColorToken, a as ColorToken);
-<<<<<<< Updated upstream
-export {
-	map,
-	ci, li, ef, hf, hi,
-	not,
-	getSrcMode,
-	exprParser,
-	mcchn,
-	min,
-	max,
-	customSort,
-	colorObjColl,
-	sortedColl,
-	filteredColl,
-	customFindKey,
-	colorObj,
-	inRange,
-	rand,
-	isInt,
-	floorCeil,
-	adjustHue,
-	chnDiff,
-	lt,
-	neq,
-	gt,
-	gte,
-	lte,
-	eq,
-	or,
-	gmchn,
-
-	isArray,
-	reOp,
-	reNum,
-	entries,
-	values,
-	keys,
-	iterator,
-	and,
-	give,
-	add,
-	take,
-	dstnce,
-	ctrst,
-=======
 
 export {
 	add,
@@ -898,5 +569,4 @@ export {
 	sortedColl,
 	take,
 	values,
->>>>>>> Stashed changes
 };
