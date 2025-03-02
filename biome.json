@@ -7,7 +7,7 @@
 	"vcs": {
 		"enabled": true,
 		"clientKind": "git",
-		"defaultBranch": "dev",
+		"defaultBranch": "wip",
 		"useIgnoreFile": true
 	},
 	"linter": {

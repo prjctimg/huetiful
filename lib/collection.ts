@@ -1,18 +1,21 @@
 import {
 	averageAngle,
 	averageNumber,
+	clampChroma,
 	fixupHueLonger,
 	fixupHueShorter,
 } from "culori/fn";
 import { limits } from "./constants.ts";
 import {
 	COLOR_SPACES,
+	adjustHue,
 	chnDiff,
 	ctrst,
 	dstnce,
 	entries,
 	filteredColl,
 	hf,
+	inRange,
 	iterator,
 	map,
 	mcchn,
@@ -40,6 +43,7 @@ import {
 } from "./utils.ts";
 
 /**
+ *
  * Computes statistical values about the specified `factor(s)` from the passedin collection.
  *
  * The properties from each returned `factor` object are:
@@ -85,6 +89,7 @@ function stats(
 		options || ({} as StatsOptions);
 
 	relative = relative || false;
+
 	colorspace = "lch";
 	against = "cyan";
 	relative = false;
@@ -94,7 +99,7 @@ function stats(
 		 * The callback to use for calculating the specified factor's mean.
 		 * */
 		// @ts-ignore:
-		let meanCallback;
+		let meanCallback: unknown;
 		if (
 			relative &&
 			!["contrast", "distance"].includes(
@@ -136,6 +141,7 @@ function stats(
 
 		return sortedColl(
 			fact,
+			// @ts-ignore:
 			meanCallback[fact],
 		)(collection);
 	};
@@ -150,7 +156,6 @@ function stats(
 			c(map(collection, b) as number[]);
 
 	const len: number = values(collection).length;
-
 	const commonStats = (fact: Factor) => {
 		// @ts-ignore:
 		const x = getStatsObject(fact)[0];
@@ -270,11 +275,13 @@ function sortBy(
 	colorspace =
 		COLOR_SPACES.includes(
 			colorspace?.toLowerCase() as Colorspaces,
+			// @ts-ignore:
 		) && /h/gi.test(colorspace)
 			? colorspace
 			: "lch";
 	relative = relative || false;
 	order = ["desc", "asc"].includes(
+		// @ts-ignore:
 		order?.toLowerCase(),
 	)
 		? order
@@ -284,14 +291,15 @@ function sortBy(
 		"l",
 		"c",
 	].map((w) => mcchn(w, colorspace, false));
-	//  @ts-ignore:
 	// @ts-ignore:
-	for (const c in collection)
+	for (const c in collection) {
+		// @ts-ignore:
+
 		collection[c] = token(collection[c], {
 			kind: "obj",
 			targetMode: "lch",
 		});
-
+	}
 	// returns factor cbs determined by the options
 	const callback = (fact: Factor) => {
 		const lmnce = (b: ColorToken) =>
@@ -339,7 +347,7 @@ function sortBy(
 		} else {
 			// return an object with the default comparator fns
 			// including the ones we did NOT want in the if... clause
-			// because they're not overloadable with rhe `against` parameter
+			// because they're not overloadable with the `against` parameter
 			sortingCallbacks = {
 				chroma: u(chromaChannel),
 				hue: u("h"),
@@ -352,6 +360,7 @@ function sortBy(
 
 		return sortedColl(
 			fact,
+			// @ts-ignore:
 			sortingCallbacks[fact],
 			order,
 		)(collection);
@@ -387,20 +396,19 @@ function distribute<
 	// Set the extremum to distribute to default to max if its not min
 	extremum = extremum || "max";
 
-	factor = ["chroma"];
+	factor = factor || ["chroma"];
 	// Exclude the colorToken with the specified factor extremum being distributed from the mapping
 	excludeSelf = excludeSelf || false;
 
-	// Exclude achromatic colors from the manipulations. The colors are returned in the resultant collection
 	excludeAchromatic = excludeAchromatic || false;
 
-	// if(excludeAchromatic)
-	//   collection  =  map(collection,achromatic);
+	if (excludeAchromatic)
+		collection = map(collection, achromatic);
 
 	// The fixup to use when tweaking the hue channels
 	// @ts-ignore:
 	hueFixup = factor.includes("hue")
-		? hueFixup === "longer"
+		? hueFixup?.toLowerCase() === "longer"
 			? fixupHueLonger
 			: fixupHueShorter
 		: hf;
@@ -414,30 +422,42 @@ function distribute<
 			  }>
 			| Array<{ [K in Factor]: number }>;
 	};
-	const extremumsObject = sortBy(collection, {
-		factorObject: true,
-		factor: factor,
-		order:
-			extremum !== "mean" && extremum === "max"
-				? "desc"
-				: "asc",
-	}) as ExtremumObject;
-	console.log(values(extremumsObject));
+	// @ts-ignore:
 
-	if (extremum !== "mean")
-		// @ts-ignore:
-		for (const k of factor)
+	const callback = (fact: Factor) => {
+		const extremumsObject = sortBy(collection, {
+			factorObject: true,
+			factor: factor,
+			order:
+				extremum?.toLowerCase() === "max"
+					? "desc"
+					: "asc",
+		}) as ExtremumObject;
+
+		const clampFns = {
+			chroma: clampChroma,
+			lightness: inRange,
+			hue: adjustHue,
+		};
+
+		for (const k in extremumsObject) {
+			// @ts-ignore:
 			extremumsObject[k] =
-				// @ts-ignore:
 				extremumsObject[k][0][k];
-	if (extremum === "mean")
-		// @ts-ignore:
-		for (const k of factor)
-			extremumsObject[k] = extremumsObject[k].map(
-				(o) => o[factor],
-			);
-
-	return extremumsObject;
+		}
+		const increment =
+			// @ts-ignore:
+			extremumsObject[fact] /
+			values(collection).length;
+		// if the fact is hue pass the current hue angle and the increment to the fixup function
+		// if the fact is chroma then pass it to clampChroma
+		// if  the fact is lightness then pass the values to a naive clamp function
+	};
+	return iterator(factor, callback, [
+		"chroma",
+		"hue",
+		"lightness",
+	]);
 }
 
 /**
@@ -516,6 +536,7 @@ function filterBy(
 	colorspace =
 		COLOR_SPACES.includes(
 			colorspace?.toLowerCase() as Colorspaces,
+			// @ts-ignore:
 		) && /h/gi.test(colorspace)
 			? colorspace
 			: "lch";
@@ -551,7 +572,9 @@ function filterBy(
 	let start: number, end: number;
 
 	const callback = (fact: Factor) => {
+		// @ts-ignore:
 		start = ranges[fact][0] || defRanges[fact][0];
+		// @ts-ignore:
 		end = ranges[fact][1] || defRanges[fact][1];
 
 		// the callback fn to use when comparing factors
@@ -565,7 +588,7 @@ function filterBy(
 			contrast: ctrst(against),
 			luminance: luminance,
 		}[fact];
-
+		// @ts-ignore:
 		return filteredColl(fact, filteringCallback)(
 			collection,
 			start,
@@ -579,5 +602,4 @@ function filterBy(
 
 export { distribute, filterBy, sortBy, stats };
 
-// BUG: fix stats() by removing unnecessary execution contexts
 // TODO: fix distribute() function by properly laying out the process flow

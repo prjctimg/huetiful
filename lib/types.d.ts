@@ -201,7 +201,7 @@ export type DistributionOptions = Pick<
 	/**
 	 * The factor(s) to distribute amongst each color token in the passed in collection.
 	 */
-	factor: Array<Factor>;
+	factor?: Array<Factor>;
 };
 
 /**
@@ -285,7 +285,7 @@ export type DeficiencyOptions = {
 	 */
 	kind?: DeficiencyType;
 	/**
-	 * The intensity of the filter. The exepected value is between [0,1]. Default is `0.1`.
+	 * The intensity of the filter. The expected value is between [0,1]. Default is `0.1`.
 	 */
 	severity?: number;
 	/**
@@ -314,7 +314,7 @@ export type TokenOptions = {
 
 	/**
 	 * If `true` and the passed in color token is an array or plain object and in the `srcMode` of `'rgb'` or `'lrgb'`,
-	 * it will have all channels normalized back to [0,1] range if any of the channe values is beyond 1.
+	 * it will have all channels normalized back to [0,1] range if any of the channel values is beyond 1.
 	 *
 	 * This can help the parser to recognize RGB colors in the [0,255] range which Culori doesn't handle.
 	 *
@@ -328,7 +328,7 @@ export type TokenOptions = {
 	numType?: "expo" | "hex" | "oct" | "bin";
 
 	/**
-	 *  The mode in which the channel values are valid in. It is used for color arrays if they have the `colorspace` string ommitted. Default is `'rgb'`.
+	 *  The mode in which the channel values are valid in. It is used for color arrays if they have the `colorspace` string omitted. Default is `'rgb'`.
 	 */
 	srcMode?: Colorspaces;
 
