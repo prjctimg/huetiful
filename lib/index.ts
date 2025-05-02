@@ -1,8 +1,8 @@
 //@ts-nocheck:
-export * from './utils.ts';
-export * from './palettes.ts';
-export * from './accessibility.ts';
-export * from './collection.ts';
-export * from './generators.ts';
-export * from './wrappers.ts';
-export * from './constants.ts';
+export * from './utils';
+export * from './palettes';
+export * from './accessibility';
+export * from './collection';
+export * from './generators';
+export * from './wrappers';
+export * from './constants';

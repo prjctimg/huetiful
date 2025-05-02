@@ -1,5 +1,5 @@
-import { contrast, deficiency } from "./accessibility.ts";
-import { filterBy, sortBy, stats } from "./collection.ts";
+import { contrast, deficiency } from "../accessibility";
+import { filterBy, sortBy, stats } from "../collection";
 import {
   discover,
   earthtone,
@@ -8,9 +8,9 @@ import {
   pair,
   pastel,
   scheme,
-} from "./generators.ts";
-import { mcchn, or } from "./internal.ts";
-import { colors, nearest } from "./palettes.ts";
+} from "../generators";
+import { mcchn, or } from "../internal";
+import { colors, nearest } from "../palettes";
 import type {
   BiasedHues,
   Collection, ColorFamily,
@@ -26,7 +26,7 @@ import type {
   PairedSchemeOptions, SchemeOptions,
   SortByOptions,
   StatsOptions, TokenOptions,
-} from "./types.d.ts";
+} from "../types.d.ts";
 import {
   luminance as _lmnce,
   alpha as _opac,

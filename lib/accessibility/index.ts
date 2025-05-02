@@ -1,17 +1,17 @@
-import { token } from "./utils.ts";
+import { token } from "../utils";
 import {
-	filterDeficiencyDeuter,
-	filterDeficiencyProt,
-	filterDeficiencyTrit,
-	filterGrayscale,
-	formatHex8,
+  filterDeficiencyDeuter,
+  filterDeficiencyProt,
+  filterDeficiencyTrit,
+  filterGrayscale,
+  formatHex8,
 } from "culori/fn";
-import { eq, or } from "./internal.ts";
+import { eq, or } from "../internal";
 import { wcagContrast } from "culori/fn";
 import type {
-	ColorToken,
-	DeficiencyOptions,
-} from "./types.d.ts";
+  ColorToken,
+  DeficiencyOptions,
+} from "../types.d.ts";
 
 /**
  * Gets the contrast between the passed in colors.
@@ -32,11 +32,11 @@ import type {
  * // 21
  */
 function contrast(
-	a: ColorToken = "white",
-	b: ColorToken = "black",
+  a: ColorToken = "white",
+  b: ColorToken = "black",
 ): number {
-	// @ts-ignore:
-	return wcagContrast(token(a), token(b));
+  // @ts-ignore:
+  return wcagContrast(token(a), token(b));
 }
 
 /**
@@ -68,35 +68,35 @@ console.log(deficiency(['rgb', 230, 100, 50, 0.5],{ kind:'blue', severity:0.5 })
 
  */
 function deficiency(
-	color: ColorToken = "cyan",
-	options: DeficiencyOptions = {
-		kind: "red",
-		severity: 0.5,
-	},
+  color: ColorToken = "cyan",
+  options: DeficiencyOptions = {
+    kind: "red",
+    severity: 0.5,
+  },
 ): ColorToken {
-	let { kind, severity } = options || {};
+  let { kind, severity } = options || {};
 
-	const func = (c: string, t = 1) =>
-		({
-			// @ts-ignore:
-			blue: filterDeficiencyTrit(t)(c),
-			// @ts-ignore:
-			red: filterDeficiencyProt(t)(c),
-			// @ts-ignore:
-			green: filterDeficiencyDeuter(t)(c),
-			monochromacy: filterGrayscale(t, "lch")(c),
-		})[kind as string],
-		defs = ["red", "blue", "green", "mono"];
+  const func = (c: string, t = 1) =>
+    ({
+      // @ts-ignore:
+      blue: filterDeficiencyTrit(t)(c),
+      // @ts-ignore:
+      red: filterDeficiencyProt(t)(c),
+      // @ts-ignore:
+      green: filterDeficiencyDeuter(t)(c),
+      monochromacy: filterGrayscale(t, "lch")(c),
+    })[kind as string],
+    defs = ["red", "blue", "green", "mono"];
 
-	kind = or(kind, "red");
-	severity = or(severity, 0.5);
-	// @ts-ignore:
-	return defs.some((el) => eq(el, kind?.toLowerCase()))
-		? // @ts-ignore:
-		formatHex8(func(token(color), severity))
-		: Error(
-			`Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`,
-		);
+  kind = or(kind, "red");
+  severity = or(severity, 0.5);
+  // @ts-ignore:
+  return defs.some((el) => eq(el, kind?.toLowerCase()))
+    ? // @ts-ignore:
+    formatHex8(func(token(color), severity))
+    : Error(
+      `Unknown color vision deficiency ${kind}. The options are the strings 'red' | 'blue' | 'green' | 'monochromacy'`,
+    );
 }
 
 export { contrast, deficiency };
