@@ -10,7 +10,7 @@
 
 
 
-//      ## Types of valid color tokens
+// Types of valid color tokens
 
 
 
@@ -18,38 +18,37 @@
 
 
 /**
- * An array of channel values for a color token with the `mode` (first element of type `string`) and `alpha` (last element of type `number` in the [0,1] range) being optional.
+ * An array of channel values for a color token with the `mode` (first element of type `string`) and `alpha` (last element of type `number` in the [0,1] range) being optional. This means a ColorTuple length is `>= 3 <= 5`.
  *
- * It can also be in different variants as shown below:
+ * The defaults are inferred by `token()` to allow consistent parsing behaviour.
+ *
+ * Below are the different variants of a ColorTuple:
  *
  * @example
  * // The first element can either be a string `mode` which denotes the colorspace the channel values are valid in.
- * const colorTuple = ['rgb',0.1,0.5,0.8]
+ * const colorTupleWithMode = ['rgb',0.1,0.5,0.8]
  * const colorTupleWithAlpha = ['rgb',0.1,0.5,0.8,0.5]
  * const colorTupleWithAlphaButNoMode = [0.1,0.5,0.8,0.5]
- * const colorTupleWithNoAlphaAndMode = [0.1,0.5,0.8]
+ * const colorTupleWithNoAlpha = [0.1,0.5,0.8]
  *
- * When omitting the `mode` from the color tuple, be sure to specify the `srcMode` option in when passing it to `token()` or any function that has access to `TokenOptions`.
+ * When omitting the `mode` from the color tuple, be sure to specify the `srcMode` option when passing the ColorTuple to `token()` or any function that has access to `TokenOptions` else it may  infer the wrong colorspace which leads to unexpected output.
+ *
  */
-export type ColorTuple = Array<number | string>;
+export type ColorTuple = [string?, number, number, number, number?];
+
 
 /**
  * The order to insert elements back into the result collection either ascending (`'asc'`) or descending (`'desc'`).
+ *
+ * The default is ascending order.
  */
 export type Order = "asc" | "desc";
 
-/**
- * The value of the `factor` being queried usually a number but can also be falsy like `NaN` for edge cases or an object with the value of the factor and the color token associated with it.
- */
-export type Fact<F> = F extends true
-  ? {
-    factor: number;
-    color: ColorToken;
-  }
-  : number;
 
 /**
- * The scheme to use when creating base palettes.
+ * The color scheme to use when creating base palettes. 
+ *
+ * Based on the classical color theory palette schemes.
  */
 export type SchemeType =
   | "analogous"
@@ -59,12 +58,21 @@ export type SchemeType =
 
 /**
  * Any collection with enumerable keys that can be used to iterate through it to get the values which are expected to be valid color tokens.
+ *
+ * When working with palette generators, the final collection returned containing color tokens is either a `Map` or `Set` object.
+ * The `Map` is the preferred data structure for most use cases because it has keys no when initialized.
+ * This helps with key and value deduplication.
  */
 export type Collection =
   | Array<ColorToken>
   | Map<string | number, ColorToken>
   | Set<ColorToken>
-  | object;
+  | { [string | number]: ColorToken };
+
+
+
+
+//  Options for exported functions
 
 export type NearestOptions = {
   against?: ColorToken;
@@ -411,7 +419,7 @@ export type SortByOptions = {
 };
 
 /**
- * Optional parameters to specify how the data should be computed.
+ * Optionals to specify how the data should be computed.
  */
 export type StatsOptions = {
   /**
@@ -441,6 +449,18 @@ export type SchemeOptions = Pick<
   token?: TokenOptions;
 };
 
+
+
+/**
+ * Options for the `lightness()` utility function.
+ */
+
+export type LightnessOptions = {
+  amount?: number;
+  darken?: boolean;
+};
+
+
 /**
  * Options for the `hueshift()` palette generator function.
  */
@@ -466,6 +486,13 @@ export type HueshiftOptions = Pick<
   hueStep?: number;
 };
 
+
+
+
+
+// //// Color schemes and themes
+
+
 /**
  * The tone to use.
  */
@@ -490,10 +517,16 @@ export type BiasedHues =
   | "blue-green"
   | "purple-blue";
 
-/**
- * The `diverging` color scheme in the ColorBrewer colormap.
- */
-export type DivergingScheme =
+
+
+
+
+export type ColorBrewerSchemes = {
+
+  /**
+   * The `diverging` color scheme in the ColorBrewer colormap.
+   */
+  Diverging:
   | "Spectral"
   | "RdYlGn"
   | "RdBu"
@@ -504,10 +537,13 @@ export type DivergingScheme =
   | "RdGy"
   | "PuOr";
 
-/**
- * The `qualitative` color scheme in the ColorBrewer colormap.
- */
-export type QualitativeScheme =
+
+
+
+  /**
+   * The `qualitative` color scheme in the ColorBrewer colormap.
+   */
+  Qualitative:
   | "Set2"
   | "Accent"
   | "Set1"
@@ -517,10 +553,10 @@ export type QualitativeScheme =
   | "Pastel2"
   | "Pastel1";
 
-/**
- * The `sequential` color scheme in the ColorBrewer colormap.
- */
-export type SequentialScheme =
+  /**
+   * The `sequential` color scheme in the ColorBrewer colormap.
+   */
+  Sequential:
   | "OrRd"
   | "PuBu"
   | "BuPu"
@@ -540,6 +576,10 @@ export type SequentialScheme =
   | "Blues"
   | "PuBuGn"
   | "Viridis";
+
+
+}
+
 
 /**
  * Any recognizable color token.
@@ -627,7 +667,4 @@ export type ColorFamily =
   | "purple"
   | "gray";
 
-export type LightnessOptions = {
-  amount?: number;
-  darken?: boolean;
-};
+
