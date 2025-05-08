@@ -1,24 +1,5 @@
 import {
-  averageNumber,
 
-  easingSmoothstep,
-  fixupHueLonger,
-  fixupHueShorter,
-  interpolate,
-  interpolatorSplineBasis,
-  interpolatorSplineBasisClosed,
-  interpolatorSplineMonotone,
-  interpolatorSplineMonotoneClosed,
-  interpolatorSplineNatural,
-  interpolatorSplineNaturalClosed,
-  random,
-  samples,
-} from "culori/fn";
-import {
-  adjustHue,
-  and,
-  ci,
-  ef,
   entries,
   eq,
   gt,
@@ -37,8 +18,12 @@ import {
   rand,
   values,
   hi,
-} from "./internal.ts";
-import { mc, token } from "./utils.ts";
+  adjustHue,
+  and,
+  ci,
+  ef,
+} from "../internal";
+import { mc, token } from "../utils";
 import type {
   Collection,
   ColorToken,
@@ -49,7 +34,8 @@ import type {
   PairedSchemeOptions,
   SchemeOptions,
 
-} from "./types.d.ts";
+} from "../types.d.ts";
+import { averageNumber, interpolatorSplineBasisClosed, interpolatorSplineBasis, interpolatorSplineNaturalClosed, interpolatorSplineNatural, interpolatorSplineMonotoneClosed, interpolatorSplineMonotone, samples } from "culori";
 
 
 /**
@@ -211,11 +197,9 @@ function pastel(
  * Creates a palette that consists of a `baseColor` that is incremented by a `hueStep` to get the final color to pair with.
  * The colors are then spline interpolated via white or black.
  *
- * :::tip
  * 
  * A negative `hueStep` will pick a color that is `hueStep` degrees behind the base color.
  *
- * :::
  * @param baseColor The color to return a paired color scheme from.
  * @param options The optional overrides object to customize per channel options like interpolation methods and channel fixups.
 
@@ -396,7 +380,7 @@ let sample = [
 ]
 
 console.log(discover(sample, { kind:'tetradic' }))
-// [ '#ffff00ff', '#00ffdcff', '#310000ff', '#720000ff' ]
+// [ '#ffff00', '#00ffdc', '#310000', '#720000' ]
  */
 function discover(
   colors: Collection = [],
@@ -472,7 +456,7 @@ function discover(
 
 
 console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
-// [ '#6a5c52ff', '#8d746aff', '#b38d86ff', '#d9a6a6ff', '#ffc0cbff' ]
+// [ '#6a5c52', '#8d746a', '#b38d86', '#d9a6a6', '#ffc0cb' ]
 
  */
 function earthtone(
@@ -519,7 +503,6 @@ function earthtone(
  * Duplicate schemes are simply ignored.
  * * If it is falsy it will return a color map of all palettes.
  *
- * :::tip
  * 
  * The classic schemes are are:
  *
@@ -528,13 +511,10 @@ function earthtone(
  * * `complimentary` - Picks 2 colors 180 degrees apart.
  * * `mono` - Picks `num` amount of colors from the same hue family   .
  * * `analogous` - Picks 3 colors 12 degrees apart.
- * :::
  *
- * :::note
  * 
  * Note that the `num` parameter works on the `monochromatic` palette type only. Other schemes will return a constant amount of samples.
  * 
- * :::
  *
  * @param baseColor The color to create the palette(s) from.
  * @param options Optional overrides.
@@ -543,7 +523,7 @@ function earthtone(
  import { scheme } from 'huetiful-js'
 
 console.log(scheme("triadic")("#a1bd2f"))
-// [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
+// [ '#a1bd2f', '#00caff', '#ff78c9' ]
  */
 // @ts-ignore:
 function scheme(

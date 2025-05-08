@@ -1,13 +1,11 @@
 import { differenceHyab, nearest as nrst } from "culori/fn";
 import type {
   Collection,
-  DivergingScheme,
-  QualitativeScheme,
   ScaleValues,
-  SequentialScheme,
   Tailwind,
+  ColorBrewerSchemes
 } from "../types.d.ts";
-import { and, eq, isArray, keys, or, values } from "../internal.ts";
+import { and, eq, isArray, keys, or, values } from "../internal";
 
 const tailwind = {
   indigo: {
@@ -261,9 +259,10 @@ const tailwind = {
  */
 function hasScheme(s: string = "", obj: Collection = {}) {
   // Map all schemes keys to lower case
-  // @ts-ignore:
-  const o = keys(obj),
-    cb = (x) => obj[o.find((v) => v.toLowerCase() === x.toLowerCase())];
+  const o = keys(obj) as Array<string>,
+    cb = (x) =>
+      obj[o.find((v) =>
+        v.toLowerCase() === x.toLowerCase()) as string];
 
   let res = {};
 
@@ -302,7 +301,7 @@ console.log(sequential("OrRd"))
 
 
  */
-function sequential<Scheme extends SequentialScheme>(
+function sequential<Scheme extends ColorBrewerSchemes['Sequential']>(
   scheme?: Scheme | Array<Scheme>,
 ): Scheme[] {
   const so = {
@@ -538,7 +537,7 @@ console.log(diverging("Spectral"))
   '#bf5b17', '#666666'
 ]
  */
-function diverging<Scheme extends DivergingScheme>(
+function diverging<Scheme extends ColorBrewerSchemes['Diverging']>(
   scheme?: Scheme | Array<Scheme>,
 ): Scheme[] {
   const so = {
@@ -681,7 +680,7 @@ console.log(qualitative("Accent"))
 ]
 
  */
-function qualitative<Scheme extends QualitativeScheme>(
+function qualitative<Scheme extends ColorBrewerSchemes['Qualitative']>(
   scheme?: Scheme | Array<Scheme>,
 ): Scheme[] {
   const so = {
