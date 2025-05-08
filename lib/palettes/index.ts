@@ -795,7 +795,7 @@ function qualitative<Scheme extends QualitativeScheme>(
 console.log(nearest(cols, 'blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
-function nearest(collection: Collection | "tailwind", options: { num: 1; against: 'cyan' }) {
+function nearest(collection: Collection | "tailwind" = [], options: { num: 1; against: 'cyan' }) {
   const { against, num } = options,
 
     f = (a: unknown, b: unknown) => {
