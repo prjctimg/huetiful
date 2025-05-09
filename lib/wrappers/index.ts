@@ -38,7 +38,7 @@ import {
 
   temp,
   token,
-} from "./utils.ts";
+} from "../utils";
 
 /**
 * Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
@@ -73,7 +73,6 @@ class ColorArray<C extends Collection, Options extends object> {
 
   #setThis(callback: (x: Collection, y: unknown) => Collection, options: unknown) {
     this.colors = callback(this.colors, options);
-    // @ts-ignore:
     return this.implicitReturn ? this.output() : this;
   }
 
@@ -90,7 +89,7 @@ console.log(load(cols).nearest('blue', 3));
  // [ '#a855f7', '#8b5cf6', '#d946ef' ]
  */
   nearest(options?: NearestOptions): Collection | this {
-    // @ts-ignore:
+    // @ts-ignore;
     return this.#setThis(nearest, options);
   }
 
