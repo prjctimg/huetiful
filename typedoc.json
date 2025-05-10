@@ -8,23 +8,16 @@
     "./lib/collection/*",
     "./lib/types.d.ts"
   ],
-  "excludeTags": [
-    "@internal"
-  ],
+  "excludeTags": ["@internal"],
   "router": "module",
   "fileExtension": ".md",
   "expandObjects": true,
   "excludeNotDocumented": true,
-  "plugin": [
-    "typedoc-plugin-markdown"
-  ],
-  "publicPath": "huetiful.gitbook.io",
+  "plugin": ["typedoc-plugin-markdown"],
   "skipErrorChecking": true,
   "entryPointStrategy": "resolve",
   "out": "docs/api",
-  "exclude": [
-    "./lib/internal"
-  ],
+  "exclude": ["./lib/internal"],
   "formatWithPrettier": true,
   "groupOrder": [
     "Function",
@@ -38,7 +31,8 @@
   "hidePageTitle": true,
   "hidePageHeader": true,
   "hideGroupHeadings": true,
-  "cleanOutputDir": false,
+  "cleanOutputDir": true,
   "disableSources": false,
-  "hideGenerator": true
+  "hideGenerator": true,
+  "hideBreadcrumbs": true
 }

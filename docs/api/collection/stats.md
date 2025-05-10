@@ -1,10 +1,8 @@
-[@prjctimg/huetiful](huetiful.gitbook.io/README.md) / collection/stats
-
 ## default()
 
-> **default**(`collection`, `options?`): [`Stats`](huetiful.gitbook.io/types.md#stats)
+> **default**(`collection`, `options?`): [`Stats`](../types.md#stats)
 
-Defined in: [collection/stats.ts:51](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/collection/stats.ts#L51)
+Defined in: [collection/stats.ts:51](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/collection/stats.ts#L51)
 
 Computes statistical values about the specified `factor(s)` from the passedin collection.
 
@@ -37,16 +35,16 @@ To get all the factors in the result object pass `undefined` to `factor`.
 
 #### collection
 
-[`Collection`](huetiful.gitbook.io/types.md#collection) = `[]`
+[`Collection`](../types.md#collection) = `[]`
 
 The collection to compute stats from. Any collection with color tokens as values will work.
 
 #### options?
 
-[`StatsOptions`](huetiful.gitbook.io/types.md#statsoptions)
+[`StatsOptions`](../types.md#statsoptions)
 
 The optional overrides to customize the computing behaviour for the factors.
 
 ### Returns
 
-[`Stats`](huetiful.gitbook.io/types.md#stats)
+[`Stats`](../types.md#stats)

@@ -1,10 +1,8 @@
-[@prjctimg/huetiful](huetiful.gitbook.io/README.md) / collection/filterBy
-
 ## default()
 
-> **default**(`collection`, `options`): [`Collection`](huetiful.gitbook.io/types.md#collection)
+> **default**(`collection`, `options`): [`Collection`](../types.md#collection)
 
-Defined in: [collection/filterBy.ts:68](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/collection/filterBy.ts#L68)
+Defined in: [collection/filterBy.ts:68](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/collection/filterBy.ts#L68)
 
 Filters a collection of colors using the specified `factor` as the criterion.
 
@@ -36,19 +34,19 @@ The supported symbols are `== | === | != | !== | >= | <= | < | >`
 
 #### collection
 
-[`Collection`](huetiful.gitbook.io/types.md#collection) = `[]`
+[`Collection`](../types.md#collection) = `[]`
 
 The collection of colors to filter. Any object with enumerable keys and color tokens as values will work.
 
 #### options
 
-[`FilterByOptions`](huetiful.gitbook.io/types.md#filterbyoptions) = `...`
+[`FilterByOptions`](../types.md#filterbyoptions) = `...`
 
 Options to customise filtering behaviour.
 
 ### Returns
 
-[`Collection`](huetiful.gitbook.io/types.md#collection)
+[`Collection`](../types.md#collection)
 
 ### Example
 

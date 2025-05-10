@@ -1,10 +1,8 @@
-[@prjctimg/huetiful](huetiful.gitbook.io/README.md) / palettes
-
 ## colors()
 
 > **colors**(`shade?`, `value?`): `string`[]
 
-Defined in: [palettes/index.ts:853](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/palettes/index.ts#L853)
+Defined in: [palettes/index.ts:853](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/palettes/index.ts#L853)
 
 Returns TailwindCSS color value(s) from the default palette.
 
@@ -24,11 +22,11 @@ The function behaves as follows:
 
 The hue family to return.
 
-[`Tailwind`](huetiful.gitbook.io/types.md#tailwind) | `"all"`
+[`Tailwind`](types.md#tailwind) | `"all"`
 
 #### value?
 
-[`ScaleValues`](huetiful.gitbook.io/types.md#scalevalues)
+[`ScaleValues`](types.md#scalevalues)
 
 The tone value of the shade. Values are in incrementals of `100`. For example numeric (`100`) and its string equivalent (`'100'`) are valid.
 
@@ -62,7 +60,7 @@ console.log(colors('red','900'));
 
 > **diverging**\<`Scheme`\>(`scheme?`): `Scheme`[]
 
-Defined in: [palettes/index.ts:538](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/palettes/index.ts#L538)
+Defined in: [palettes/index.ts:538](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/palettes/index.ts#L538)
 
 A wrapper function for ColorBrewer's map of diverging color schemes.
 
@@ -70,7 +68,7 @@ A wrapper function for ColorBrewer's map of diverging color schemes.
 
 #### Scheme
 
-`Scheme` _extends_ [`DivergingScheme`](huetiful.gitbook.io/types.md#divergingscheme)
+`Scheme` _extends_ [`DivergingScheme`](types.md#divergingscheme)
 
 ### Parameters
 
@@ -104,7 +102,7 @@ console.log(diverging("Spectral"))
 
 > **nearest**(`collection`, `options`): `any`
 
-Defined in: [palettes/index.ts:794](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/palettes/index.ts#L794)
+Defined in: [palettes/index.ts:794](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/palettes/index.ts#L794)
 
 Returns the nearest color(s) in a collection as compared `against` the passed in color using the `differenceHyab` metric function.
 
@@ -117,7 +115,7 @@ Returns the nearest color(s) in a collection as compared `against` the passed in
 
 The collection of colors to search for nearest colors.
 
-[`Collection`](huetiful.gitbook.io/types.md#collection) | `"tailwind"`
+[`Collection`](types.md#collection) | `"tailwind"`
 
 #### options
 
@@ -150,7 +148,7 @@ console.log(nearest(cols, "blue", 3));
 
 > **qualitative**\<`Scheme`\>(`scheme?`): `Scheme`[]
 
-Defined in: [palettes/index.ts:681](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/palettes/index.ts#L681)
+Defined in: [palettes/index.ts:681](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/palettes/index.ts#L681)
 
 A wrapper function for ColorBrewer's map of qualitative color schemes.
 
@@ -158,7 +156,7 @@ A wrapper function for ColorBrewer's map of qualitative color schemes.
 
 #### Scheme
 
-`Scheme` _extends_ [`QualitativeScheme`](huetiful.gitbook.io/types.md#qualitativescheme)
+`Scheme` _extends_ [`QualitativeScheme`](types.md#qualitativescheme)
 
 ### Parameters
 
@@ -192,7 +190,7 @@ console.log(qualitative("Accent"))
 
 > **sequential**\<`Scheme`\>(`scheme?`): `Scheme`[]
 
-Defined in: [palettes/index.ts:302](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/palettes/index.ts#L302)
+Defined in: [palettes/index.ts:302](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/palettes/index.ts#L302)
 
 A wrapper function for ColorBrewer's map of sequential color schemes.
 
@@ -200,7 +198,7 @@ A wrapper function for ColorBrewer's map of sequential color schemes.
 
 #### Scheme
 
-`Scheme` _extends_ [`SequentialScheme`](huetiful.gitbook.io/types.md#sequentialscheme)
+`Scheme` _extends_ [`SequentialScheme`](types.md#sequentialscheme)
 
 ### Parameters
 

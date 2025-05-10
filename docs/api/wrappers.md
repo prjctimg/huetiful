@@ -1,8 +1,6 @@
-[@prjctimg/huetiful](huetiful.gitbook.io/README.md) / wrappers
-
 ## Color
 
-Defined in: [wrappers/index.ts:300](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L300)
+Defined in: [wrappers/index.ts:300](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L300)
 
 Creates a lazy chain wrapper over a single color token that has all the functions that take a `ColorToken` as their first argument.
 
@@ -21,27 +19,27 @@ console.log(wrapper.color2hex());
 
 #### Constructor
 
-> **new Color**(`c`, `options?`): [`Color`](huetiful.gitbook.io/wrappers.md#color)
+> **new Color**(`c`, `options?`): [`Color`](#color)
 
-Defined in: [wrappers/index.ts:305](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L305)
+Defined in: [wrappers/index.ts:305](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L305)
 
 ##### Parameters
 
 ###### c
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken) = `"cyan"`
+[`ColorToken`](types.md#colortoken) = `"cyan"`
 
 The color to bind.
 
 ###### options?
 
-[`ColorOptions`](huetiful.gitbook.io/types.md#coloroptions)
+[`ColorOptions`](types.md#coloroptions)
 
 Optional overrides and properties for the bound color.
 
 ##### Returns
 
-[`Color`](huetiful.gitbook.io/wrappers.md#color)
+[`Color`](#color)
 
 ### Methods
 
@@ -49,7 +47,7 @@ Optional overrides and properties for the bound color.
 
 > **achromatic**(): `boolean`
 
-Defined in: [wrappers/index.ts:722](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L722)
+Defined in: [wrappers/index.ts:722](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L722)
 
 Returns `true` if the bound color has hue or is grayscale elsColorspaces} [colorspace='lch'] The colorspace to use when checking if the `color` is grayscale or not.
 
@@ -92,9 +90,9 @@ console.log(grays.map(test));
 
 #### alpha()
 
-> **alpha**(`amount?`): [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+> **alpha**(`amount?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:383](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L383)
+Defined in: [wrappers/index.ts:383](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L383)
 
 Sets/Gets the opacity or `alpha` channel of a color. If the `value` parameter is omitted it gets the bound color's `alpha` value.
 
@@ -108,7 +106,7 @@ The value to apply to the opacity channel. The value is normalized to the range 
 
 ##### Returns
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+[`ColorToken`](types.md#colortoken)
 
 ##### Example
 
@@ -131,7 +129,7 @@ console.log(myColor)
 
 > **contrast**(`against?`): `number`
 
-Defined in: [wrappers/index.ts:607](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L607)
+Defined in: [wrappers/index.ts:607](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L607)
 
 Gets the contrast value between the bound and comparison ( or `against`) color.
 
@@ -139,7 +137,7 @@ Gets the contrast value between the bound and comparison ( or `against`) color.
 
 ###### against?
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+[`ColorToken`](types.md#colortoken)
 
 The color to use for comparison. The default is `'black'`.
 
@@ -158,9 +156,9 @@ console.log(color("pink").contrast("yellow"));
 
 #### deficiency()
 
-> **deficiency**(`options?`): [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+> **deficiency**(`options?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:777](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L777)
+Defined in: [wrappers/index.ts:777](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L777)
 
 Simulates how a color may be perceived by people with color vision deficiency.
 
@@ -174,11 +172,11 @@ To avoid writing the long types, the expected parameters for the `kind` of blind
 
 ###### options?
 
-[`DeficiencyOptions`](huetiful.gitbook.io/types.md#deficiencyoptions)
+[`DeficiencyOptions`](types.md#deficiencyoptions)
 
 ##### Returns
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+[`ColorToken`](types.md#colortoken)
 
 ##### Example
 
@@ -204,9 +202,9 @@ console.log(protanopia);
 
 #### earthtone()
 
-> **earthtone**(`options?`): `string` \| `number` \| `boolean` \| `object` \| [`ColorTuple`](huetiful.gitbook.io/types.md#colortuple) \| [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)[] \| `Map`\<`string` \| `number`, [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)\> \| `Set`\<[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)\>
+> **earthtone**(`options?`): `string` \| `number` \| `boolean` \| `object` \| [`ColorTuple`](types.md#colortuple) \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`string` \| `number`, [`ColorToken`](types.md#colortoken)\> \| `Set`\<[`ColorToken`](types.md#colortoken)\>
 
-Defined in: [wrappers/index.ts:592](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L592)
+Defined in: [wrappers/index.ts:592](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L592)
 
 Creates a color scale between an earth tone and any color token using spline interpolation.
 
@@ -214,11 +212,11 @@ Creates a color scale between an earth tone and any color token using spline int
 
 ###### options?
 
-[`EarthtoneOptions`](huetiful.gitbook.io/types.md#earthtoneoptions)
+[`EarthtoneOptions`](types.md#earthtoneoptions)
 
 ##### Returns
 
-`string` \| `number` \| `boolean` \| `object` \| [`ColorTuple`](huetiful.gitbook.io/types.md#colortuple) \| [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)[] \| `Map`\<`string` \| `number`, [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)\> \| `Set`\<[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)\>
+`string` \| `number` \| `boolean` \| `object` \| [`ColorTuple`](types.md#colortuple) \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`string` \| `number`, [`ColorToken`](types.md#colortoken)\> \| `Set`\<[`ColorToken`](types.md#colortoken)\>
 
 ##### Example
 
@@ -251,9 +249,9 @@ console.log(color(base).earthtone({ iterations:8 }).output())
 
 #### family()
 
-> **family**(): \{ `bias`: `false` \| [`ColorFamily`](huetiful.gitbook.io/types.md#colorfamily); `hue`: `never`; \}
+> **family**(): \{ `bias`: `false` \| [`ColorFamily`](types.md#colorfamily); `hue`: `never`; \}
 
-Defined in: [wrappers/index.ts:551](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L551)
+Defined in: [wrappers/index.ts:551](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L551)
 
 Gets the hue family which a color belongs to with the overtone included (if it has one.).
 
@@ -261,11 +259,11 @@ For example `'red'` or `'blue-green'`. If the color is achromatic it returns the
 
 ##### Returns
 
-\{ `bias`: `false` \| [`ColorFamily`](huetiful.gitbook.io/types.md#colorfamily); `hue`: `never`; \}
+\{ `bias`: `false` \| [`ColorFamily`](types.md#colorfamily); `hue`: `never`; \}
 
 ###### bias
 
-> **bias**: `false` \| [`ColorFamily`](huetiful.gitbook.io/types.md#colorfamily)
+> **bias**: `false` \| [`ColorFamily`](types.md#colorfamily)
 
 ###### hue
 
@@ -282,9 +280,9 @@ console.log(color("#310000").family());
 
 #### hueshift()
 
-> **hueshift**(`options?`): [`Collection`](huetiful.gitbook.io/types.md#collection)
+> **hueshift**(`options?`): [`Collection`](types.md#collection)
 
-Defined in: [wrappers/index.ts:535](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L535)
+Defined in: [wrappers/index.ts:535](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L535)
 
 - Creates a palette of hue shifted colors from the passed in color.
 
@@ -301,13 +299,13 @@ The length of the resultant array is the number of samples (`num`) multiplied by
 
 ###### options?
 
-[`HueshiftOptions`](huetiful.gitbook.io/types.md#hueshiftoptions)
+[`HueshiftOptions`](types.md#hueshiftoptions)
 
 The optional overrides object to customize the `HueShiftOptions` like easing function.
 
 ##### Returns
 
-[`Collection`](huetiful.gitbook.io/types.md#collection)
+[`Collection`](types.md#collection)
 
 ##### Example
 
@@ -330,9 +328,9 @@ import { color } from "huetiful-js";
 
 #### lightness()
 
-> **lightness**(`amount?`, `darken?`): [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+> **lightness**(`amount?`, `darken?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:439](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L439)
+Defined in: [wrappers/index.ts:439](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L439)
 
 Darkens the bound color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
 
@@ -350,7 +348,7 @@ The amount to darken with. The value is expected to be in the range `[0,1]`. Def
 
 ##### Returns
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+[`ColorToken`](types.md#colortoken)
 
 ##### Example
 
@@ -362,9 +360,9 @@ console.log(color("blue").darken(0.3));
 
 #### luminance()
 
-> **luminance**(`amount?`): [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+> **luminance**(`amount?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:644](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L644)
+Defined in: [wrappers/index.ts:644](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L644)
 
 Gets the luminance of the passed in color token.
 
@@ -380,7 +378,7 @@ The `luminance` value to set on the bound color.
 
 ##### Returns
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+[`ColorToken`](types.md#colortoken)
 
 ##### Example
 
@@ -399,9 +397,9 @@ console.log(color(myColor).luminance(0.5));
 
 #### mc()
 
-> **mc**(`modeChannel`, `value?`): [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+> **mc**(`modeChannel`, `value?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:404](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L404)
+Defined in: [wrappers/index.ts:404](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L404)
 
 Sets the value of the specified channel on the passed in color.
 
@@ -430,7 +428,7 @@ The value to set on the queried channel. Also supports expressions as strings e.
 
 ##### Returns
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+[`ColorToken`](types.md#colortoken)
 
 ##### Example
 
@@ -443,15 +441,15 @@ console.log(color("#a1bd2f").mc("rgb.g"));
 
 #### output()
 
-> **output**(): [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+> **output**(): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:808](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L808)
+Defined in: [wrappers/index.ts:808](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L808)
 
 Returns the final value from the chain.
 
 ##### Returns
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+[`ColorToken`](types.md#colortoken)
 
 ##### Example
 
@@ -466,9 +464,9 @@ console.log(myOutput);
 
 #### pair()
 
-> **pair**(`options?`): `string` \| `number` \| `boolean` \| `object` \| [`ColorTuple`](huetiful.gitbook.io/types.md#colortuple) \| [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)[] \| `Map`\<`string` \| `number`, [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)\> \| `Set`\<[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)\>
+> **pair**(`options?`): `string` \| `number` \| `boolean` \| `object` \| [`ColorTuple`](types.md#colortuple) \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`string` \| `number`, [`ColorToken`](types.md#colortoken)\> \| `Set`\<[`ColorToken`](types.md#colortoken)\>
 
-Defined in: [wrappers/index.ts:501](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L501)
+Defined in: [wrappers/index.ts:501](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L501)
 
 Creates a palette that consists of a `baseColor` that is incremented by a `hueStep` to get the final color to pair with.
 The colors are then spline interpolated via white or black.
@@ -479,13 +477,13 @@ A negative `hueStep` will pick a color that is `hueStep` degrees behind the base
 
 ###### options?
 
-[`PairedSchemeOptions`](huetiful.gitbook.io/types.md#pairedschemeoptions)
+[`PairedSchemeOptions`](types.md#pairedschemeoptions)
 
 The optional overrides object to customize per channel options like interpolation methods and channel fixups.
 
 ##### Returns
 
-`string` \| `number` \| `boolean` \| `object` \| [`ColorTuple`](huetiful.gitbook.io/types.md#colortuple) \| [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)[] \| `Map`\<`string` \| `number`, [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)\> \| `Set`\<[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)\>
+`string` \| `number` \| `boolean` \| `object` \| [`ColorTuple`](types.md#colortuple) \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`string` \| `number`, [`ColorToken`](types.md#colortoken)\> \| `Set`\<[`ColorToken`](types.md#colortoken)\>
 
 ##### Example
 
@@ -500,15 +498,15 @@ console.log(
 
 #### pastel()
 
-> **pastel**(): [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+> **pastel**(): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:483](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L483)
+Defined in: [wrappers/index.ts:483](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L483)
 
 Returns a randomized pastel variant of the bound color token. Preserves the bound `ColorToken` type.
 
 ##### Returns
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+[`ColorToken`](types.md#colortoken)
 
 ##### Example
 
@@ -522,9 +520,9 @@ console.log(color("green").pastel());
 
 #### saturation()
 
-> **saturation**(`amount?`): [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+> **saturation**(`amount?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:667](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L667)
+Defined in: [wrappers/index.ts:667](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L667)
 
 Sets/Gets the saturation value of the bound color.
 
@@ -538,7 +536,7 @@ The amount of `saturation` to set on the bound color token. Also supports string
 
 ##### Returns
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+[`ColorToken`](types.md#colortoken)
 
 ##### Example
 
@@ -557,9 +555,9 @@ console.log(color(myColor).saturation("*0.3"));
 
 #### scheme()
 
-> **scheme**(`options?`): [`Collection`](huetiful.gitbook.io/types.md#collection)
+> **scheme**(`options?`): [`Collection`](types.md#collection)
 
-Defined in: [wrappers/index.ts:791](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L791)
+Defined in: [wrappers/index.ts:791](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L791)
 
 Returns a randomised classic color scheme from the bound color.
 
@@ -567,11 +565,11 @@ Returns a randomised classic color scheme from the bound color.
 
 ###### options?
 
-[`SchemeOptions`](huetiful.gitbook.io/types.md#schemeoptions)
+[`SchemeOptions`](types.md#schemeoptions)
 
 ##### Returns
 
-[`Collection`](huetiful.gitbook.io/types.md#collection)
+[`Collection`](types.md#collection)
 
 ##### Example
 
@@ -586,7 +584,7 @@ console.log(color("#a1bd2f").scheme("triadic"));
 
 > **temp**(): `"warm"` \| `"cool"`
 
-Defined in: [wrappers/index.ts:745](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L745)
+Defined in: [wrappers/index.ts:745](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L745)
 
 Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'`.
 
@@ -607,9 +605,9 @@ console.log(color(sample[2]).temp());
 
 #### token()
 
-> **token**(`options?`): [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+> **token**(`options?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:466](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L466)
+Defined in: [wrappers/index.ts:466](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L466)
 
 Parses any recognizable color to the specified `kind` of `ColorToken` type.
 
@@ -635,17 +633,17 @@ If the color token has an explicit `alpha` (specified by the `alpha` key in colo
 
 ###### options?
 
-[`TokenOptions`](huetiful.gitbook.io/types.md#tokenoptions-1)
+[`TokenOptions`](types.md#tokenoptions-1)
 
 ##### Returns
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+[`ColorToken`](types.md#colortoken)
 
 #### via()
 
-> **via**(`origin`): [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+> **via**(`origin`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:417](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L417)
+Defined in: [wrappers/index.ts:417](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L417)
 
 Interpolates the bound color via the `origin` with the point `t` at `0.5`.
 
@@ -653,7 +651,7 @@ Interpolates the bound color via the `origin` with the point `t` at `0.5`.
 
 ###### origin
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+[`ColorToken`](types.md#colortoken)
 
 The color to interpolate via.
 value is in the range [0,1]
@@ -661,13 +659,13 @@ the easing and the interpolation methods /fixups.
 
 ##### Returns
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+[`ColorToken`](types.md#colortoken)
 
 ---
 
 ## ColorArray\<C, Options\>
 
-Defined in: [wrappers/index.ts:62](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L62)
+Defined in: [wrappers/index.ts:62](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L62)
 
 Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
 
@@ -692,7 +690,7 @@ let wrapper = new ColorArray(sample);
 
 #### C
 
-`C` _extends_ [`Collection`](huetiful.gitbook.io/types.md#collection)
+`C` _extends_ [`Collection`](types.md#collection)
 
 #### Options
 
@@ -702,9 +700,9 @@ let wrapper = new ColorArray(sample);
 
 #### Constructor
 
-> **new ColorArray**\<`C`, `Options`\>(`colors`, `implicitReturn?`): [`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+> **new ColorArray**\<`C`, `Options`\>(`colors`, `implicitReturn?`): [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:69](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L69)
+Defined in: [wrappers/index.ts:69](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L69)
 
 ##### Parameters
 
@@ -720,15 +718,15 @@ The collection of colors to bind.
 
 ##### Returns
 
-[`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+[`ColorArray`](#colorarray)\<`C`, `Options`\>
 
 ### Methods
 
 #### discover()
 
-> **discover**(`options?`): [`Collection`](huetiful.gitbook.io/types.md#collection) \| [`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+> **discover**(`options?`): [`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:157](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L157)
+Defined in: [wrappers/index.ts:157](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L157)
 
 Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes.
 
@@ -743,11 +741,11 @@ If no colors are valid for the palette types it returns an empty array for the p
 
 ###### options?
 
-[`DiscoverOptions`](huetiful.gitbook.io/types.md#discoveroptions)
+[`DiscoverOptions`](types.md#discoveroptions)
 
 ##### Returns
 
-[`Collection`](huetiful.gitbook.io/types.md#collection) \| [`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+[`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
 ##### Example
 
@@ -774,9 +772,9 @@ console.log(load(sample).discover({ kind: "tetradic" }).output());
 
 #### filterBy()
 
-> **filterBy**(`options?`): [`Collection`](huetiful.gitbook.io/types.md#collection) \| [`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+> **filterBy**(`options?`): [`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:207](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L207)
+Defined in: [wrappers/index.ts:207](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L207)
 
 Filters a collection of colors using the specified `factor` as the criterion. The supported options are:
 
@@ -799,11 +797,11 @@ But if the value of either start or end is above 1 AND the `colorspace` in use h
 
 ###### options?
 
-[`FilterByOptions`](huetiful.gitbook.io/types.md#filterbyoptions)
+[`FilterByOptions`](types.md#filterbyoptions)
 
 ##### Returns
 
-[`Collection`](huetiful.gitbook.io/types.md#collection) \| [`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+[`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
 ##### See
 
@@ -838,9 +836,9 @@ console.log(
 
 #### interpolator()
 
-> **interpolator**(`options?`): [`Collection`](huetiful.gitbook.io/types.md#collection) \| [`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+> **interpolator**(`options?`): [`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:120](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L120)
+Defined in: [wrappers/index.ts:120](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L120)
 
 Interpolates the passed in colors and returns a collection of colors from the interpolation.
 
@@ -855,13 +853,13 @@ Interpolates the passed in colors and returns a collection of colors from the in
 
 ###### options?
 
-[`InterpolatorOptions`](huetiful.gitbook.io/types.md#interpolatoroptions)
+[`InterpolatorOptions`](types.md#interpolatoroptions)
 
 Optional channel specific overrides.
 
 ##### Returns
 
-[`Collection`](huetiful.gitbook.io/types.md#collection) \| [`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+[`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
 ##### Example
 
@@ -873,9 +871,9 @@ import { load } from 'huetiful-js';
 
 #### nearest()
 
-> **nearest**(`options?`): [`Collection`](huetiful.gitbook.io/types.md#collection) \| [`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+> **nearest**(`options?`): [`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:95](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L95)
+Defined in: [wrappers/index.ts:95](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L95)
 
 Returns the nearest color(s) in the bound collection against
 the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric.
@@ -888,7 +886,7 @@ the entire collection is returned with colors ordered in ascending order using t
 
 ##### Returns
 
-[`Collection`](huetiful.gitbook.io/types.md#collection) \| [`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+[`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
 ##### Example
 
@@ -903,22 +901,22 @@ console.log(load(cols).nearest("blue", 3));
 
 #### output()
 
-> **output**(): [`Collection`](huetiful.gitbook.io/types.md#collection)
+> **output**(): [`Collection`](types.md#collection)
 
-Defined in: [wrappers/index.ts:282](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L282)
+Defined in: [wrappers/index.ts:282](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L282)
 
 Returns the result value from the chain.
 Can be omitted from invocation when `implicitReturn` is set to true.
 
 ##### Returns
 
-[`Collection`](huetiful.gitbook.io/types.md#collection)
+[`Collection`](types.md#collection)
 
 #### sortBy()
 
-> **sortBy**(`options?`): [`Collection`](huetiful.gitbook.io/types.md#collection) \| [`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+> **sortBy**(`options?`): [`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:240](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L240)
+Defined in: [wrappers/index.ts:240](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L240)
 
 Sorts colors according to the specified `factor`. The supported options are:
 
@@ -939,11 +937,11 @@ The return type is determined by the type of `collection`:
 
 ###### options?
 
-[`SortByOptions`](huetiful.gitbook.io/types.md#sortbyoptions)
+[`SortByOptions`](types.md#sortbyoptions)
 
 ##### Returns
 
-[`Collection`](huetiful.gitbook.io/types.md#collection) \| [`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+[`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
 ##### Example
 
@@ -961,9 +959,9 @@ console.log(
 
 #### stats()
 
-> **stats**(`options?`): [`Collection`](huetiful.gitbook.io/types.md#collection) \| [`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+> **stats**(`options?`): [`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:269](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/wrappers/index.ts#L269)
+Defined in: [wrappers/index.ts:269](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L269)
 
 Computes statistical values about the passed in color collection.
 
@@ -990,10 +988,10 @@ The `mean` property can be overloaded by the `relativeMean` option:
 
 ###### options?
 
-[`StatsOptions`](huetiful.gitbook.io/types.md#statsoptions)
+[`StatsOptions`](types.md#statsoptions)
 
 Optional parameters to specify how the data should be computed.
 
 ##### Returns
 
-[`Collection`](huetiful.gitbook.io/types.md#collection) \| [`ColorArray`](huetiful.gitbook.io/wrappers.md#colorarray)\<`C`, `Options`\>
+[`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>

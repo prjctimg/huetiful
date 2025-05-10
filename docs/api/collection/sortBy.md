@@ -1,10 +1,8 @@
-[@prjctimg/huetiful](huetiful.gitbook.io/README.md) / collection/sortBy
-
 ## default()
 
-> **default**(`collection`, `options?`): [`Collection`](huetiful.gitbook.io/types.md#collection)
+> **default**(`collection`, `options?`): [`Collection`](../types.md#collection)
 
-Defined in: [collection/sortBy.ts:55](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/collection/sortBy.ts#L55)
+Defined in: [collection/sortBy.ts:55](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/collection/sortBy.ts#L55)
 
 Sorts colors according to the specified `factor(s)`. The supported options are:
 
@@ -29,19 +27,19 @@ The return type is determined by the type of `collection`:
 
 #### collection
 
-[`Collection`](huetiful.gitbook.io/types.md#collection) = `[]`
+[`Collection`](../types.md#collection) = `[]`
 
 The `collection` of colors to sort. Any object with enumerable keys and color tokens as values will work.
 
 #### options?
 
-[`SortByOptions`](huetiful.gitbook.io/types.md#sortbyoptions)
+[`SortByOptions`](../types.md#sortbyoptions)
 
 The optional overrides to customize the sorting behaviour.
 
 ### Returns
 
-[`Collection`](huetiful.gitbook.io/types.md#collection)
+[`Collection`](../types.md#collection)
 
 ### Example
 

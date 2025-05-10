@@ -1,10 +1,8 @@
-[@prjctimg/huetiful](huetiful.gitbook.io/README.md) / collection/distribute
-
 ## default()
 
-> **default**\<`Options`\>(`collection`, `options?`): [`Collection`](huetiful.gitbook.io/types.md#collection)
+> **default**\<`Options`\>(`collection`, `options?`): [`Collection`](../types.md#collection)
 
-Defined in: [collection/distribute.ts:27](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/collection/distribute.ts#L27)
+Defined in: [collection/distribute.ts:27](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/collection/distribute.ts#L27)
 
 distributes the `factor`(s) of a color in the collection at the specified `extremum` (i.e the color with the smallest/largest `hue` angle or `chroma` value) to all color tokens in the collection.
 
@@ -12,13 +10,13 @@ distributes the `factor`(s) of a color in the collection at the specified `extre
 
 #### Options
 
-`Options` _extends_ [`DistributionOptions`](huetiful.gitbook.io/types.md#distributionoptions)
+`Options` _extends_ [`DistributionOptions`](../types.md#distributionoptions)
 
 ### Parameters
 
 #### collection
 
-[`Collection`](huetiful.gitbook.io/types.md#collection)
+[`Collection`](../types.md#collection)
 
 the property you want to distribute to the colors in the collection for example `hue | luminance`
 
@@ -30,4 +28,4 @@ optional overrides to change the default configursation
 
 ### Returns
 
-[`Collection`](huetiful.gitbook.io/types.md#collection)
+[`Collection`](../types.md#collection)

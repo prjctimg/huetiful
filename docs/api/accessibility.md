@@ -1,10 +1,8 @@
-[@prjctimg/huetiful](huetiful.gitbook.io/README.md) / accessibility
-
 ## contrast()
 
 > **contrast**(`a`, `b`): `number`
 
-Defined in: [accessibility/index.ts:31](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/accessibility/index.ts#L31)
+Defined in: [accessibility/index.ts:31](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/accessibility/index.ts#L31)
 
 Gets the contrast between the passed in colors.
 
@@ -18,13 +16,13 @@ Swapping color `a` and `b` in the parameter list doesn't change the resulting va
 
 #### a
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken) = `"white"`
+[`ColorToken`](types.md#colortoken) = `"white"`
 
 First color to query. The default is `white`.
 
 #### b
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken) = `"black"`
+[`ColorToken`](types.md#colortoken) = `"black"`
 
 The color to compare against. The default is `black`.
 
@@ -45,9 +43,9 @@ console.log(contrast("blue", "red"));
 
 ## deficiency()
 
-> **deficiency**(`color`, `options`): [`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+> **deficiency**(`color`, `options`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [accessibility/index.ts:64](https://github.com/prjctimg/huetiful/blob/0b456f741596cb40d2578e331d8e03e4c0a4eeb5/lib/accessibility/index.ts#L64)
+Defined in: [accessibility/index.ts:64](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/accessibility/index.ts#L64)
 
 Simulates how a color may be perceived by people with color vision deficiency.
 
@@ -67,19 +65,19 @@ To avoid writing the long types, the expected parameters for the `kind` of blind
 
 #### color
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken) = `"cyan"`
+[`ColorToken`](types.md#colortoken) = `"cyan"`
 
 The color to return its simulated variant. The default is `cyan`.
 
 #### options
 
-[`DeficiencyOptions`](huetiful.gitbook.io/types.md#deficiencyoptions) = `...`
+[`DeficiencyOptions`](types.md#deficiencyoptions) = `...`
 
 The optional overrides for tweaking the final output.
 
 ### Returns
 
-[`ColorToken`](huetiful.gitbook.io/types.md#colortoken)
+[`ColorToken`](types.md#colortoken)
 
 ### Example
 
