@@ -1,0 +1,44 @@
+{
+  "entryPoints": [
+    "./lib/accessibility/*",
+    "./lib/generators/*",
+    "./lib/palettes/*",
+    "./lib/wrappers/*",
+    "./lib/utils/*",
+    "./lib/collection/*",
+    "./lib/types.d.ts"
+  ],
+  "excludeTags": [
+    "@internal"
+  ],
+  "router": "module",
+  "fileExtension": ".md",
+  "expandObjects": true,
+  "excludeNotDocumented": true,
+  "plugin": [
+    "typedoc-plugin-markdown"
+  ],
+  "publicPath": "huetiful.gitbook.io",
+  "skipErrorChecking": true,
+  "entryPointStrategy": "resolve",
+  "out": "docs/api",
+  "exclude": [
+    "./lib/internal"
+  ],
+  "formatWithPrettier": true,
+  "groupOrder": [
+    "Function",
+    "Class",
+    "Constructor",
+    "Property",
+    "Method",
+    "TypeAlias"
+  ],
+  "gitRemote": "main",
+  "hidePageTitle": true,
+  "hidePageHeader": true,
+  "hideGroupHeadings": true,
+  "cleanOutputDir": false,
+  "disableSources": false,
+  "hideGenerator": true
+}

@@ -1,0 +1,28 @@
+{
+  "include": [
+    "lib/index.ts",
+    "lib/types.d.ts"
+  ],
+  "exclude": [
+    "**/node_modules"
+  ],
+  "compilerOptions": {
+    "lib": [
+      "es2023"
+    ],
+    "noEmit": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "target": "es6",
+    "skipLibCheck": true,
+    "allowJs": true,
+    "noUnusedLocals": true,
+    "strict": false,
+    "checkJs": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "bundler",
+    "module": "Preserve",
+    "allowImportingTsExtensions": true
+  }
+}

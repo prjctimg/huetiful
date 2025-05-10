@@ -1,0 +1,46 @@
+import { or } from "../internal";
+import type { ColorToken, EarthtoneOptions } from "../types.d.ts";
+
+/**
+ * Creates a color scale between an earth tone and any color token using spline interpolation.
+ * @param  baseColor The color to interpolate an earth tone with.
+ * @param  options Optional overrides for customising interpolation and easing functions.
+ * @example
+ *
+ * import { earthtone } from 'huetiful-js'
+
+
+console.log(earthtone("pink",'lch',{earthtones:'clay',samples:5 }))
+// [ '#6a5c52', '#8d746a', '#b38d86', '#d9a6a6', '#ffc0cb' ]
+
+ */
+export default function earthtone(
+  baseColor?: ColorToken,
+  options: EarthtoneOptions = {},
+): ColorToken | Array<ColorToken> {
+  let { num, earthtones, colorspace, kind, closed } = options;
+
+  earthtones = or(earthtones, "dark");
+  const earthtoneSamples = {
+    "light-gray": "#e5e5e5",
+    silver: "#f5f5f5",
+    sand: "#c2b2a4",
+    tupe: "#a79e8a",
+    mahogany: "#958c7c",
+    "brick-red": "#7d7065",
+    clay: "#6a5c52",
+    cocoa: "#584a3e",
+    "dark-brown": "#473b31",
+    dark: "#352a21",
+  };
+  // @ts-ignore:
+  const currentEarthtone = earthtoneSamples[earthtones.toLowerCase()];
+
+  return interpolator([currentEarthtone, baseColor], {
+    colorspace: colorspace,
+    num: num,
+    closed: closed,
+    kind: kind,
+    tokenOptions: options?.tokenOptions,
+  });
+}

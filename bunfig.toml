@@ -1,0 +1,11 @@
+# Reduce memory usage at the cost of performance
+smol = false
+
+[test]
+smol = false
+
+[install]
+auto = "auto"
+
+[run]
+silent = true

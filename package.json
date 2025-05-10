@@ -1,0 +1,56 @@
+{
+  "name": "@prjctimg/huetiful",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./build/huetiful.esm.js",
+  "browser": "./build/huetiful.min.js",
+  "jsdelivr": "./build/huetiful.min.js",
+  "types": "./build/index.d.ts",
+  "description": "TypeScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.",
+  "devDependencies": {
+    "@types/bun": "1.1.9",
+    "@types/culori": "2.1.0",
+    "bun": "1.1.34",
+    "prettier": "3.5.3",
+    "tsup": "8.2.4",
+    "typedoc": "0.28.3",
+    "typedoc-plugin-markdown": "4.6.3",
+    "typescript": "5.0.2"
+  },
+  "files": [
+    "build",
+    "CHANGELOG.md",
+    "readme.md",
+    "contributing.md",
+    "license"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prjctimg/huetiful.git"
+  },
+  "keywords": [
+    "color",
+    "stats",
+    "culori",
+    "palettes",
+    "generator",
+    "utilities",
+    "manipulation",
+    "typescript"
+  ],
+  "author": "Dean Tarisai",
+  "email": "prjctimg@outlook.com",
+  "homepage": "https://huetiful-js.com",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/prjctimg/huetiful/issues"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "fmt": " npx prettier --write ./lib/**/*.ts"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}
