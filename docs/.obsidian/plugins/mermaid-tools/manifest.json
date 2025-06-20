@@ -1,0 +1,11 @@
+{
+	"id": "mermaid-tools",
+	"name": "Mermaid Tools",
+	"version": "1.2.0",
+	"minAppVersion": "1.4.0",
+	"description": "Improved Mermaid.js experience for Obsidian: visual toolbar with common elements & more",
+	"author": "dartungar",
+	"authorUrl": "https://dartungar.com",
+	"fundingUrl": "https://www.paypal.com/paypalme/dartungar",	
+	"isDesktopOnly": false
+}
