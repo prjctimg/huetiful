@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "api/collection.md",
+                "file": "examples/cvd.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "collection"
+              "title": "cvd"
             }
           }
         ]
@@ -150,6 +150,16 @@
               "icon": "lucide-list",
               "title": "Outline of collection"
             }
+          },
+          {
+            "id": "4a4800ecd11d1ce3",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
           }
         ]
       }
@@ -160,12 +170,15 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-git:Open Git source control": false,
+      "pomodoro-timer:Toggle timer panel": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "mermaid-tools:Open Mermaid Toolbar": false
     }
   },
   "active": "6100d52eef022cf1",
