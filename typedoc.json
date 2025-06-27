@@ -34,5 +34,6 @@
   "cleanOutputDir": true,
   "disableSources": false,
   "hideGenerator": true,
-  "hideBreadcrumbs": true
+  "hideBreadcrumbs": true,
+  "entryFileName": "./README.md"
 }

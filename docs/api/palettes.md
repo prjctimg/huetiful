@@ -2,7 +2,7 @@
 
 > **colors**(`shade?`, `value?`): `string`[]
 
-Defined in: [palettes/index.ts:853](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/palettes/index.ts#L853)
+Defined in: palettes/index.ts:853
 
 Returns TailwindCSS color value(s) from the default palette.
 
@@ -60,7 +60,7 @@ console.log(colors('red','900'));
 
 > **diverging**\<`Scheme`\>(`scheme?`): `Scheme`[]
 
-Defined in: [palettes/index.ts:538](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/palettes/index.ts#L538)
+Defined in: palettes/index.ts:538
 
 A wrapper function for ColorBrewer's map of diverging color schemes.
 
@@ -102,7 +102,7 @@ console.log(diverging("Spectral"))
 
 > **nearest**(`collection`, `options`): `any`
 
-Defined in: [palettes/index.ts:794](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/palettes/index.ts#L794)
+Defined in: palettes/index.ts:794
 
 Returns the nearest color(s) in a collection as compared `against` the passed in color using the `differenceHyab` metric function.
 
@@ -148,7 +148,7 @@ console.log(nearest(cols, "blue", 3));
 
 > **qualitative**\<`Scheme`\>(`scheme?`): `Scheme`[]
 
-Defined in: [palettes/index.ts:681](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/palettes/index.ts#L681)
+Defined in: palettes/index.ts:681
 
 A wrapper function for ColorBrewer's map of qualitative color schemes.
 
@@ -190,7 +190,7 @@ console.log(qualitative("Accent"))
 
 > **sequential**\<`Scheme`\>(`scheme?`): `Scheme`[]
 
-Defined in: [palettes/index.ts:302](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/palettes/index.ts#L302)
+Defined in: palettes/index.ts:302
 
 A wrapper function for ColorBrewer's map of sequential color schemes.
 

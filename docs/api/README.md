@@ -51,7 +51,6 @@ npm i huetiful-js
 
 # Or if you have different package manager...
 
-# pnpm add huetiful-js
 # yarn add huetiful-js
 # bun add huetiful-js
 ```
@@ -74,7 +73,7 @@ A color can be defined using different types(arrays, strings, numbers, plain obj
 [See more about the expected types of color tokens](https://huetiful-js/docs/guides/color)
 
 ```ts
-import { token } from "huetiful-js";
+import { token } from "@prjctimg/huetiful";
 
 let cssNamedColor = "pink";
 let colorNumber = 5000;
@@ -252,7 +251,7 @@ console.log(hueShiftedPalette);
 Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? Though its easy to tell colors apart visually when they're displayed on the screen📺 it can be a bit confusing to tell colors apart using code🔢. Below is an example showing how to determine if a color is gray or not:
 
 ```js
-import { achromatic, token } from "huetiful-js";
+import { achromatic, token } from "@prjctimg/huetiful";
 import { interpolate, samples } from "culori";
 
 achromatic("pink");
@@ -283,7 +282,7 @@ console.log(map(grays, isAchromatic));
 ```
 
 ```ts
-import { temp } from "huetiful-js";
+import { temp } from "@prjctimg/huetiful";
 
 let sample = ["#00ffdc", "#00ff78", "#00c000"];
 
@@ -295,7 +294,7 @@ console.log(sample.map(temp));
 Another use👷 case would be passing the predicate to an array method like `filter` to filter a collection of colors removing colors that are not warm/cool:
 
 ```ts
-import { temp } from "huetiful-js";
+import { temp } from "@prjctimg/huetiful";
 
 let sample = ["#00ffdc", "#00ff78", "#00c000"];
 
@@ -321,4 +320,4 @@ License ⚖️
 
 ###### This is free software. Released under the GNU GPL-3.0 license
 
-© 2024, <a href="https://deantarisai.me">Dean Tarisai</a>
+© 2021 - 2025, [ディーン・タリサイ]("https://prjctimg.netlify.app")

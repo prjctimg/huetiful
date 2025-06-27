@@ -1,12 +1,10 @@
-
 [![NPM publish 📦](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml/badge.svg)](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml)
-
 
 ![huetiful-logo]()
 
 TypeScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.
 
-## Contents 
+## Contents
 
 - [What is this?](#what-is-this)
 - [When should I use this](#when-should-i-use-this)
@@ -26,7 +24,6 @@ TypeScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color
 - [Types](#types)
   - [Community](#community)
   - [Contributing](#contributing)
-
 
 ## What is this?
 
@@ -54,7 +51,6 @@ npm i huetiful-js
 
 # Or if you have different package manager...
 
-# pnpm add huetiful-js
 # yarn add huetiful-js
 # bun add huetiful-js
 ```
@@ -65,7 +61,6 @@ For Deno users, the library is available on JSR under a different alias:
 deno add jsr:@algorist/color
 
 ```
-
 
 ## Use
 
@@ -78,7 +73,7 @@ A color can be defined using different types(arrays, strings, numbers, plain obj
 [See more about the expected types of color tokens](https://huetiful-js/docs/guides/color)
 
 ```ts
-import { token } from "huetiful-js";
+import { token } from "@prjctimg/huetiful";
 
 let cssNamedColor = "pink";
 let colorNumber = 5000;
@@ -97,9 +92,7 @@ let allColors = [
 ];
 
 let res = [];
-for (const color of allColors) 
-  res.push(token(color));
-
+for (const color of allColors) res.push(token(color));
 
 console.log(res);
 
@@ -153,9 +146,7 @@ console.log(red100)
 
 We can sort and filter colors using their property or channel values values like saturation,lightness and even contrast.
 
-
 See the [Factors](docs/guides/factors) page to understand how color properties or attributes are used.
-
 
 Here are some example using the filtering and sorting functions on an array of colors:
 
@@ -262,7 +253,7 @@ console.log(hueShiftedPalette);
 Is this color cool🥶 or warm 🥵, is it achromatic (grayscale) or chromatic? Though its easy to tell colors apart visually when they're displayed on the screen📺 it can be a bit confusing to tell colors apart using code🔢. Below is an example showing how to determine if a color is gray or not:
 
 ```js
-import { achromatic, token } from "huetiful-js";
+import { achromatic, token } from "@prjctimg/huetiful";
 import { interpolate, samples } from "culori";
 
 achromatic("pink");
@@ -293,7 +284,7 @@ console.log(map(grays, isAchromatic));
 ```
 
 ```ts
-import { temp } from "huetiful-js";
+import { temp } from "@prjctimg/huetiful";
 
 let sample = ["#00ffdc", "#00ff78", "#00c000"];
 
@@ -305,7 +296,7 @@ console.log(sample.map(temp));
 Another use👷 case would be passing the predicate to an array method like `filter` to filter a collection of colors removing colors that are not warm/cool:
 
 ```ts
-import { temp } from "huetiful-js";
+import { temp } from "@prjctimg/huetiful";
 
 let sample = ["#00ffdc", "#00ff78", "#00c000"];
 
@@ -327,7 +318,8 @@ Every function in this package expects either a valid color token or collection 
 
 [Contributing](https://github.com/prjctimg/huetiful/blob/main/contributing.md)
 
- License ⚖️
+License ⚖️
+
 ###### This is free software. Released under the GNU GPL-3.0 license
- © 2024, <a href="https://deantarisai.me">Dean Tarisai</a>
- 
+
+© 2021 - 2025, [ディーン・タリサイ]("https://prjctimg.netlify.app")

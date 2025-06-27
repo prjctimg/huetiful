@@ -1,15 +1,8 @@
 {
-  "include": [
-    "lib/index.ts",
-    "lib/types.d.ts"
-  ],
-  "exclude": [
-    "**/node_modules"
-  ],
+  "include": ["./lib/**/*.ts"],
+  "exclude": ["**/node_modules"],
   "compilerOptions": {
-    "lib": [
-      "es2023"
-    ],
+    "lib": ["es2023"],
     "noEmit": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
@@ -22,7 +15,6 @@
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "bundler",
-    "module": "Preserve",
     "allowImportingTsExtensions": true
   }
 }

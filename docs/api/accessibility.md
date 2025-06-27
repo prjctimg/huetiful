@@ -2,7 +2,7 @@
 
 > **contrast**(`a`, `b`): `number`
 
-Defined in: [accessibility/index.ts:31](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/accessibility/index.ts#L31)
+Defined in: accessibility/index.ts:31
 
 Gets the contrast between the passed in colors.
 
@@ -45,7 +45,7 @@ console.log(contrast("blue", "red"));
 
 > **deficiency**(`color`, `options`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [accessibility/index.ts:64](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/accessibility/index.ts#L64)
+Defined in: accessibility/index.ts:64
 
 Simulates how a color may be perceived by people with color vision deficiency.
 

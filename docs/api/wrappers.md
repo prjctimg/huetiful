@@ -1,6 +1,6 @@
 ## Color
 
-Defined in: [wrappers/index.ts:300](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L300)
+Defined in: wrappers/index.ts:300
 
 Creates a lazy chain wrapper over a single color token that has all the functions that take a `ColorToken` as their first argument.
 
@@ -21,7 +21,7 @@ console.log(wrapper.color2hex());
 
 > **new Color**(`c`, `options?`): [`Color`](#color)
 
-Defined in: [wrappers/index.ts:305](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L305)
+Defined in: wrappers/index.ts:305
 
 ##### Parameters
 
@@ -47,7 +47,7 @@ Optional overrides and properties for the bound color.
 
 > **achromatic**(): `boolean`
 
-Defined in: [wrappers/index.ts:722](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L722)
+Defined in: wrappers/index.ts:722
 
 Returns `true` if the bound color has hue or is grayscale elsColorspaces} [colorspace='lch'] The colorspace to use when checking if the `color` is grayscale or not.
 
@@ -92,7 +92,7 @@ console.log(grays.map(test));
 
 > **alpha**(`amount?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:383](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L383)
+Defined in: wrappers/index.ts:383
 
 Sets/Gets the opacity or `alpha` channel of a color. If the `value` parameter is omitted it gets the bound color's `alpha` value.
 
@@ -129,7 +129,7 @@ console.log(myColor)
 
 > **contrast**(`against?`): `number`
 
-Defined in: [wrappers/index.ts:607](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L607)
+Defined in: wrappers/index.ts:607
 
 Gets the contrast value between the bound and comparison ( or `against`) color.
 
@@ -158,7 +158,7 @@ console.log(color("pink").contrast("yellow"));
 
 > **deficiency**(`options?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:777](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L777)
+Defined in: wrappers/index.ts:777
 
 Simulates how a color may be perceived by people with color vision deficiency.
 
@@ -204,7 +204,7 @@ console.log(protanopia);
 
 > **earthtone**(`options?`): `string` \| `number` \| `boolean` \| `object` \| [`ColorTuple`](types.md#colortuple) \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`string` \| `number`, [`ColorToken`](types.md#colortoken)\> \| `Set`\<[`ColorToken`](types.md#colortoken)\>
 
-Defined in: [wrappers/index.ts:592](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L592)
+Defined in: wrappers/index.ts:592
 
 Creates a color scale between an earth tone and any color token using spline interpolation.
 
@@ -251,7 +251,7 @@ console.log(color(base).earthtone({ iterations:8 }).output())
 
 > **family**(): \{ `bias`: `false` \| [`ColorFamily`](types.md#colorfamily); `hue`: `never`; \}
 
-Defined in: [wrappers/index.ts:551](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L551)
+Defined in: wrappers/index.ts:551
 
 Gets the hue family which a color belongs to with the overtone included (if it has one.).
 
@@ -282,7 +282,7 @@ console.log(color("#310000").family());
 
 > **hueshift**(`options?`): [`Collection`](types.md#collection)
 
-Defined in: [wrappers/index.ts:535](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L535)
+Defined in: wrappers/index.ts:535
 
 - Creates a palette of hue shifted colors from the passed in color.
 
@@ -330,7 +330,7 @@ import { color } from "huetiful-js";
 
 > **lightness**(`amount?`, `darken?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:439](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L439)
+Defined in: wrappers/index.ts:439
 
 Darkens the bound color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
 
@@ -362,7 +362,7 @@ console.log(color("blue").darken(0.3));
 
 > **luminance**(`amount?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:644](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L644)
+Defined in: wrappers/index.ts:644
 
 Gets the luminance of the passed in color token.
 
@@ -399,7 +399,7 @@ console.log(color(myColor).luminance(0.5));
 
 > **mc**(`modeChannel`, `value?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:404](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L404)
+Defined in: wrappers/index.ts:404
 
 Sets the value of the specified channel on the passed in color.
 
@@ -443,7 +443,7 @@ console.log(color("#a1bd2f").mc("rgb.g"));
 
 > **output**(): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:808](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L808)
+Defined in: wrappers/index.ts:808
 
 Returns the final value from the chain.
 
@@ -466,7 +466,7 @@ console.log(myOutput);
 
 > **pair**(`options?`): `string` \| `number` \| `boolean` \| `object` \| [`ColorTuple`](types.md#colortuple) \| [`ColorToken`](types.md#colortoken)[] \| `Map`\<`string` \| `number`, [`ColorToken`](types.md#colortoken)\> \| `Set`\<[`ColorToken`](types.md#colortoken)\>
 
-Defined in: [wrappers/index.ts:501](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L501)
+Defined in: wrappers/index.ts:501
 
 Creates a palette that consists of a `baseColor` that is incremented by a `hueStep` to get the final color to pair with.
 The colors are then spline interpolated via white or black.
@@ -500,7 +500,7 @@ console.log(
 
 > **pastel**(): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:483](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L483)
+Defined in: wrappers/index.ts:483
 
 Returns a randomized pastel variant of the bound color token. Preserves the bound `ColorToken` type.
 
@@ -522,7 +522,7 @@ console.log(color("green").pastel());
 
 > **saturation**(`amount?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:667](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L667)
+Defined in: wrappers/index.ts:667
 
 Sets/Gets the saturation value of the bound color.
 
@@ -557,7 +557,7 @@ console.log(color(myColor).saturation("*0.3"));
 
 > **scheme**(`options?`): [`Collection`](types.md#collection)
 
-Defined in: [wrappers/index.ts:791](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L791)
+Defined in: wrappers/index.ts:791
 
 Returns a randomised classic color scheme from the bound color.
 
@@ -584,7 +584,7 @@ console.log(color("#a1bd2f").scheme("triadic"));
 
 > **temp**(): `"warm"` \| `"cool"`
 
-Defined in: [wrappers/index.ts:745](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L745)
+Defined in: wrappers/index.ts:745
 
 Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'`.
 
@@ -607,7 +607,7 @@ console.log(color(sample[2]).temp());
 
 > **token**(`options?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:466](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L466)
+Defined in: wrappers/index.ts:466
 
 Parses any recognizable color to the specified `kind` of `ColorToken` type.
 
@@ -643,7 +643,7 @@ If the color token has an explicit `alpha` (specified by the `alpha` key in colo
 
 > **via**(`origin`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [wrappers/index.ts:417](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L417)
+Defined in: wrappers/index.ts:417
 
 Interpolates the bound color via the `origin` with the point `t` at `0.5`.
 
@@ -665,7 +665,7 @@ the easing and the interpolation methods /fixups.
 
 ## ColorArray\<C, Options\>
 
-Defined in: [wrappers/index.ts:62](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L62)
+Defined in: wrappers/index.ts:62
 
 Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).
 
@@ -702,7 +702,7 @@ let wrapper = new ColorArray(sample);
 
 > **new ColorArray**\<`C`, `Options`\>(`colors`, `implicitReturn?`): [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:69](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L69)
+Defined in: wrappers/index.ts:69
 
 ##### Parameters
 
@@ -726,7 +726,7 @@ The collection of colors to bind.
 
 > **discover**(`options?`): [`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:157](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L157)
+Defined in: wrappers/index.ts:157
 
 Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes.
 
@@ -774,7 +774,7 @@ console.log(load(sample).discover({ kind: "tetradic" }).output());
 
 > **filterBy**(`options?`): [`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:207](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L207)
+Defined in: wrappers/index.ts:207
 
 Filters a collection of colors using the specified `factor` as the criterion. The supported options are:
 
@@ -838,7 +838,7 @@ console.log(
 
 > **interpolator**(`options?`): [`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:120](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L120)
+Defined in: wrappers/index.ts:120
 
 Interpolates the passed in colors and returns a collection of colors from the interpolation.
 
@@ -873,7 +873,7 @@ import { load } from 'huetiful-js';
 
 > **nearest**(`options?`): [`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:95](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L95)
+Defined in: wrappers/index.ts:95
 
 Returns the nearest color(s) in the bound collection against
 the entire collection is returned with colors ordered in ascending order using the `differenceHyab` metric.
@@ -903,7 +903,7 @@ console.log(load(cols).nearest("blue", 3));
 
 > **output**(): [`Collection`](types.md#collection)
 
-Defined in: [wrappers/index.ts:282](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L282)
+Defined in: wrappers/index.ts:282
 
 Returns the result value from the chain.
 Can be omitted from invocation when `implicitReturn` is set to true.
@@ -916,7 +916,7 @@ Can be omitted from invocation when `implicitReturn` is set to true.
 
 > **sortBy**(`options?`): [`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:240](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L240)
+Defined in: wrappers/index.ts:240
 
 Sorts colors according to the specified `factor`. The supported options are:
 
@@ -961,7 +961,7 @@ console.log(
 
 > **stats**(`options?`): [`Collection`](types.md#collection) \| [`ColorArray`](#colorarray)\<`C`, `Options`\>
 
-Defined in: [wrappers/index.ts:269](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/wrappers/index.ts#L269)
+Defined in: wrappers/index.ts:269
 
 Computes statistical values about the passed in color collection.
 

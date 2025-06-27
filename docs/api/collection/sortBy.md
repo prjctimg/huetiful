@@ -2,7 +2,7 @@
 
 > **default**(`collection`, `options?`): [`Collection`](../types.md#collection)
 
-Defined in: [collection/sortBy.ts:55](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/collection/sortBy.ts#L55)
+Defined in: collection/sortBy.ts:55
 
 Sorts colors according to the specified `factor(s)`. The supported options are:
 

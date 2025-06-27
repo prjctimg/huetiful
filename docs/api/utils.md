@@ -2,7 +2,7 @@
 
 > **achromatic**(`color`): `boolean`
 
-Defined in: [utils/index.ts:244](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/utils/index.ts#L244)
+Defined in: utils/index.ts:244
 
 Checks if a color token is achromatic (without hue or simply grayscale).
 
@@ -54,7 +54,7 @@ console.log(grays.map(achromatic));
 
 > **alpha**\<`Amount`\>(`color`, `amount`): `Amount` _extends_ `undefined` ? `number` : [`ColorToken`](types.md#colortoken)
 
-Defined in: [utils/index.ts:82](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/utils/index.ts#L82)
+Defined in: utils/index.ts:82
 
 Sets and retrieves the color token's alpha (or opacity).
 
@@ -119,7 +119,7 @@ console.log(myColor);
 
 > **family**(`color`, `bias`): \{ `bias`: `false` \| [`ColorFamily`](types.md#colorfamily); `hue`: `never`; \}
 
-Defined in: [utils/index.ts:630](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/utils/index.ts#L630)
+Defined in: utils/index.ts:630
 
 Returns the hue family which the passed in color belongs to with the "overtone" included (if it has one.).
 
@@ -172,7 +172,7 @@ console.log(family("#310000"));
 
 > **lightness**(`color`, `options?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [utils/index.ts:286](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/utils/index.ts#L286)
+Defined in: utils/index.ts:286
 
 Darkens the color by reducing the `lightness` channel by `amount` of the channel. For example `0.3` means reduce the lightness by `0.3` of the channel's current value.
 
@@ -216,7 +216,7 @@ console.log(brighten("blue", 0.3));
 
 > **luminance**\<`Amount`\>(`color?`, `amount?`): `Amount` _extends_ `number` ? [`ColorToken`](types.md#colortoken) : `number`
 
-Defined in: [utils/index.ts:563](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/utils/index.ts#L563)
+Defined in: utils/index.ts:563
 
 Sets/Gets the luminance of the passed in color token.
 
@@ -287,7 +287,7 @@ console.log(luminance(myColor))
 
 > **mc**(`modeChannel`): \<`Value`\>(`color?`, `value?`) => `Value` _extends_ `number` ? [`ColorToken`](types.md#colortoken) : `number`
 
-Defined in: [utils/index.ts:171](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/utils/index.ts#L171)
+Defined in: utils/index.ts:171
 
 Sets the value of the specified channel on the passed in color.
 
@@ -340,7 +340,7 @@ console.log(mc("rgb.g")("#a1bd2f"));
 
 > **temp**(`color`): `"warm"` \| `"cool"`
 
-Defined in: [utils/index.ts:686](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/utils/index.ts#L686)
+Defined in: utils/index.ts:686
 
 Returns a rough estimation of a color's temperature as either `'cool'` or `'warm'` using the `'lch'` colorspace.
 
@@ -378,7 +378,7 @@ console.log(map(sample, temp));
 
 > **token**(`color`, `options?`): [`ColorToken`](types.md#colortoken)
 
-Defined in: [utils/index.ts:337](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/utils/index.ts#L337)
+Defined in: utils/index.ts:337
 
 Parses any recognizable color to the specified `kind`.
 

@@ -2,7 +2,7 @@
 
 > **default**(`collection`, `options`): [`Collection`](../types.md#collection)
 
-Defined in: [collection/filterBy.ts:68](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/collection/filterBy.ts#L68)
+Defined in: collection/filterBy.ts:68
 
 Filters a collection of colors using the specified `factor` as the criterion.
 

@@ -2,7 +2,7 @@
 
 > **default**(`collection`, `options?`): [`Stats`](../types.md#stats)
 
-Defined in: [collection/stats.ts:51](https://github.com/prjctimg/huetiful/blob/1c1db632d03b1d44995cb0e0dcc96d142d7ce49a/lib/collection/stats.ts#L51)
+Defined in: collection/stats.ts:51
 
 Computes statistical values about the specified `factor(s)` from the passedin collection.
 
