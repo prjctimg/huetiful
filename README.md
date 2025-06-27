@@ -1,6 +1,6 @@
-[![NPM publish 📦](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml/badge.svg)](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml)
+[![NPM publish 📦](https://github.com/xml-wizard/huetiful/actions/workflows/release-please.yml/badge.svg)](https://github.com/prjctimg/huetiful/actions/workflows/publish.yml)
 
-![huetiful-logo]()
+![huetiful-logo](./logo.svg)
 
 TypeScript utility library for simple 🧮, fast ⏱️ and accessible ♿ color manipulation.
 
