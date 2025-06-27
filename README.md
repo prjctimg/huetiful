@@ -323,4 +323,4 @@ License ⚖️
 
 ###### This is free software. Released under the GNU GPL-3.0 license
 
-© 2021 - 2025, [ディーン・タリサイ]("https://prjctimg.netlify.app")
+© 2021 - 2025, [ディーン・タリサイ](https://prjctimg.netlify.app)
