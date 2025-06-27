@@ -16,7 +16,7 @@
   "plugin": ["typedoc-plugin-markdown"],
   "skipErrorChecking": true,
   "entryPointStrategy": "resolve",
-  "out": "docs/api",
+  "out": "docs/",
   "exclude": ["./lib/internal"],
   "formatWithPrettier": true,
   "groupOrder": [
