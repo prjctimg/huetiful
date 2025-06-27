@@ -47,18 +47,19 @@ You can use this library when you want to do cool stuff with color and code 😎
 > The library uses ES modules and has no default export. If you wish to have a UMD variant (for some reason known to self), you can build from source. See [BUILD.md]() for more info
 
 ```sh
-npm i huetiful-js
+npm i @prjctimg/huetiful
 
 # Or if you have different package manager...
 
-# yarn add huetiful-js
-# bun add huetiful-js
+# yarn add @prjctimg/huetiful
+
+# bun add @prjctimg/huetiful
 ```
 
 For Deno users, the library is available on JSR under a different alias:
 
 ```sh
-deno add jsr:@algorist/color
+deno add jsr:@prjctimg/huetiful
 
 ```
 
@@ -106,7 +107,7 @@ console.log(res);
 The library comes along with the default TailwindCSS palette included. This helps you get started easier when you're using [palette generators](/docs/api/generators).
 
 ```ts
- import { colors } from "huetiful-js";
+ import { colors } from "@prjctimg/huetiful";
 
 
 
