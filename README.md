@@ -226,7 +226,7 @@ let sample = [
 Here's an example of `hueshift` and paired palettes.
 
 ```ts
-import { hueshift } from "huetiful-js";
+import { hueshift } from "@prjctimg/huetiful";
 
 let hueShiftedPalette = hueshift("#3e0000");
 
