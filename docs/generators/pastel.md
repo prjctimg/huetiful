@@ -26,7 +26,7 @@ The color to return a pastel variant of.
 ### Example
 
 ```ts
-import { pastel } from "huetiful-js";
+import { pastel } from "@prjctimg/huetiful-js";
 
 console.log(pastel("green"));
 

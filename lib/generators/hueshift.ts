@@ -14,13 +14,13 @@ import type { Collection, ColorToken, HueshiftOptions } from "../types.d.ts";
  * The `minLightness` and `maxLightness` values determine how dark or light our color will be at either extremum respectively.'
  *
  *
- *  The length of the resultant array is the number of samples (`num`) multiplied by 2 plus the base color passed in or simply `(num * 2) + 1`.
+ *  The length of the resultant array is the number of samples (`num`) mult lied by 2 plus the base color passed in or simply `(num * 2) + 1`.
  *
  * @param baseColor The color to use as the base of the palette.
  * @param options The optional overrides object.
 
  * @example
- * import { hueshift } from "huetiful-js";
+ * import { hueshift } from "@prjctimg/huetiful";
 
 let hueShiftedPalette = hueShift("#3e0000");
 

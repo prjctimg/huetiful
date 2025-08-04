@@ -36,7 +36,7 @@ The optional overrides object.
 ### Example
 
 ```ts
-import { hueshift } from "huetiful-js";
+import { hueshift } from "@prjctimg/huetiful-js";
 
 let hueShiftedPalette = hueShift("#3e0000");
 

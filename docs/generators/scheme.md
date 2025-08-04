@@ -44,7 +44,7 @@ Optional overrides.
 ### Example
 
 ```ts
-import { scheme } from "huetiful-js";
+import { scheme } from "@prjctimg/huetiful-js";
 
 console.log(scheme("triadic")("#a1bd2f"));
 // [ '#a1bd2f', '#00caff', '#ff78c9' ]

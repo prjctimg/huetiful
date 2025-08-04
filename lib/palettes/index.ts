@@ -283,7 +283,7 @@ function hasScheme(s: string = "", obj: Collection = {}) {
  * @returns {Collection|import('../types.js').ColorToken}  A collection of colors in the specified colorspace. The default is hex if `colorspace` is `undefined.`
  * @example
  *
- * import { sequential } from 'huetiful-js'
+ * import { sequential } from '@prjctimg/huetiful'
 
 
 console.log(sequential("OrRd"))
@@ -523,7 +523,7 @@ function sequential<Scheme extends SequentialScheme>(
  * @param  scheme The name of the scheme.
  * @example
  *
- * import { diverging } from 'huetiful-js'
+ * import { diverging } from '@prjctimg/huetiful'
 
 
 
@@ -666,7 +666,7 @@ function diverging<Scheme extends DivergingScheme>(
  * @param scheme The name of the scheme
  * @example
  *
- * import { qualitative } from 'huetiful-js'
+ * import { qualitative } from '@prjctimg/huetiful'
 
 
 console.log(qualitative("Accent"))
@@ -821,15 +821,15 @@ function nearest(
  `blue-500`.
    * * If called with no parameters or just the `'all'` parameter as the `shade`, it returns an array of colors from `'050'` to `'900'` for every `shade`.
    * * If the `shade ` is `'all'` and the `value` is specified, it returns an array of colors at the specified `value` for each `shade`.
-   * :::tip
+   *   
    *  To specify `'050'` as a number you just pass `50`. Values are all valid as string or number for example `'100'` and`100` .
-   * :::
+   *  
    * @param  shade The hue family to return.
    * @param   value The tone value of the shade. Values are in incrementals of `100`. For example numeric (`100`) and its string equivalent (`'100'`) are valid.
    * @returns {Array<string>|string}
    * @example
    *
-   * import { colors } from "huetiful-js";
+   * import { colors } from "@prjctimg/huetiful";
 
   // We pass in red as the target hue.
   // It returns a function that can be called with an optional value parameter

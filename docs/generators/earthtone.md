@@ -27,7 +27,7 @@ Optional overrides for customising interpolation and easing functions.
 ### Example
 
 ```ts
-import { earthtone } from "huetiful-js";
+import { earthtone } from "@prjctimg/huetiful-js";
 
 console.log(earthtone("pink", "lch", { earthtones: "clay", samples: 5 }));
 // [ '#6a5c52', '#8d746a', '#b38d86', '#d9a6a6', '#ffc0cb' ]

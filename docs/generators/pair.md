@@ -30,7 +30,7 @@ The optional overrides object to customize per channel options like interpolatio
 ### Example
 
 ```ts
-import { pair } from "huetiful-js";
+import { pair } from "@prjctimg/huetiful-js";
 
 console.log(pair("green", { hueStep: 6, num: 4, tone: "dark" }));
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]

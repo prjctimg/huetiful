@@ -33,7 +33,7 @@ The collection of colors to create palettes from. Preferably use 6 or more color
 ### Example
 
 ```ts
-import { discover } from "huetiful-js";
+import { discover } from "@prjctimg/huetiful-js";
 
 let sample = [
   "#ffff00",

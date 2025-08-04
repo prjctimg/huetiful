@@ -216,7 +216,7 @@ export type FilterByOptions = {
    * The targeted start and end ranges for the factor:
    *
    * * If a single `factor` is specified, `ranges` is expected to be an array.
-   * * If multiple `factor`s are specified then `ranges` is expected to be an object with the factor(s) as keys and an array of the start and end as values.
+   * * If mult le `factor`s are specified then `ranges` is expected to be an object with the factor(s) as keys and an array of the start and end as values.
    * * The start and end values can be either numbers or string expressions.
    * The end value is optional but the range value(s) are expected to be in an array.
    */

@@ -27,7 +27,7 @@ import {
   token,
 } from "../lib";
 type Spec = {
-  description?: string;
+  description: string;
 
   callback: any;
   params: unknown[];
@@ -276,15 +276,13 @@ const specs = [
   },
 ] as Spec[];
 
-(function () {
+function runner(specs: Spec[]) {
   for (const spec of specs) {
-    console.info(
-      `${spec?.description} \n`,
-      spec?.callback(...spec?.params),
-      `\n`,
-    );
-    test(spec?.description || "Running test...", () => {
-      expect(spec?.callback(...spec?.params)).toBeTruthy();
+    console.info(`${spec?.description} \n`);
+    test(spec.description, () => {
+      expect(spec.callback(...spec?.params)).toBeTruthy();
     });
   }
-})();
+}
+
+runner(specs);

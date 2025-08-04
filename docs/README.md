@@ -47,12 +47,12 @@ You can use this library when you want to do cool stuff with color and code 😎
 > The library uses ES modules and has no default export. If you wish to have a UMD variant (for some reason known to self), you can build from source. See [BUILD.md]() for more info
 
 ```sh
-npm i huetiful-js
+npm i @prjctimg/huetiful-js
 
 # Or if you have different package manager...
 
-# yarn add huetiful-js
-# bun add huetiful-js
+# yarn add @prjctimg/huetiful-js
+# bun add @prjctimg/huetiful-js
 ```
 
 For Deno users, the library is available on JSR under a different alias:
@@ -70,7 +70,7 @@ These examples are only compatible with version 3.x. Versions prior to that are 
 
 A color can be defined using different types(arrays, strings, numbers, plain objects etc). Below are examples listing all the valid color tokens:
 
-[See more about the expected types of color tokens](https://huetiful-js/docs/guides/color)
+[See more about the expected types of color tokens](https://@prjctimg/huetiful-js/docs/guides/color)
 
 ```ts
 import { token } from "@prjctimg/huetiful";
@@ -106,7 +106,7 @@ console.log(res);
 The library comes along with the default TailwindCSS palette included. This helps you get started easier when you're using [palette generators](/docs/api/generators).
 
 ```ts
- import { colors } from "huetiful-js";
+ import { colors } from "@prjctimg/huetiful-js";
 
 // colors() has a builtin parameter called 'all' that returns all colors at the specified value which is '300' in this example
 let all300 = colors("all", 300);
@@ -153,7 +153,7 @@ Here are some example using the filtering and sorting functions on an array of c
 An example of sorting colors by hue angle and distance between each color in the collection as compared against 'yellow'. We get an object whose keys are the specified factors in the `factors` option:
 
 ```ts
-import { sortBy } from "huetiful-js";
+import { sortBy } from "@prjctimg/huetiful-js";
 
 let sample = [
   "#00ffdc",
@@ -216,14 +216,14 @@ let sample = [
 ];
 ```
 
-[See more functions for manipulating collections](https://huetiful-js.com/docs/api/collection)
+[See more functions for manipulating collections](https://@prjctimg/huetiful-js.com/docs/api/collection)
 
 ### Palette generators
 
 Here's an example of `hueshift` and paired palettes.
 
 ```ts
-import { hueshift } from "huetiful-js";
+import { hueshift } from "@prjctimg/huetiful-js";
 
 let hueShiftedPalette = hueshift("#3e0000");
 
@@ -244,7 +244,7 @@ console.log(hueShiftedPalette);
 // ]
 ```
 
-[See more palette generator functions](https://huetiful-js.com/docs/api/palettes)
+[See more palette generator functions](https://@prjctimg/huetiful-js.com/docs/api/palettes)
 
 ### Predicates⚖️
 

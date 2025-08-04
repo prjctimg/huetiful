@@ -11,8 +11,10 @@ import {
   interpolatorSplineNaturalClosed,
   interpolatorSplineNatural,
   interpolatorSplineMonotoneClosed,
+  interpolate,
   interpolatorSplineMonotone,
   samples,
+  fixupHueLonger,
 } from "culori/fn";
 
 /**
@@ -39,7 +41,7 @@ import {
  *
  * @example
  *
- * import { interpolator } from 'huetiful-js';
+ * import { interpolator } from '@prjctimg/huetiful';
 
 console.log(interpolator(['pink', 'blue'], { num:8 }));
 

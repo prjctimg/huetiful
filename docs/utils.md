@@ -21,7 +21,7 @@ The color token to test if it is achromatic or not.
 ### Example
 
 ```ts
-import { achromatic } from "huetiful-js";
+import { achromatic } from "@prjctimg/huetiful-js";
 S;
 achromatic("pink");
 // false
@@ -37,7 +37,7 @@ achromatic("gray");
 
 // We can expand this example by interpolating between black and white and then getting some samples to iterate through.
 
-import { interpolator } from "huetiful-js";
+import { interpolator } from "@prjctimg/huetiful-js";
 
 // we create an interpolation using black and white with 12 samples
 let grays = interpolator(["black", "white"], { num: 12 });
@@ -98,7 +98,7 @@ The value to apply to the opacity channel. The value is between `[0,1]`
 ### Example
 
 ```ts
-import { alpha } from "huetiful-js";
+import { alpha } from "@prjctimg/huetiful-js";
 
 // Getting the alpha
 console.log(alpha("#a1bd2f0d"));
@@ -159,7 +159,7 @@ This `bias` parameter replaces the `overtone()` function prior version `3.0.x`.
 ### Example
 
 ```ts
-import { family } from "huetiful-js";
+import { family } from "@prjctimg/huetiful-js";
 
 console.log(family("#310000"));
 
@@ -197,7 +197,7 @@ Specify options such as whether to darken or highlight.
 ### Example
 
 ```ts
-import { lightness } from "huetiful-js";
+import { lightness } from "@prjctimg/huetiful-js";
 
 // darkening a color
 console.log(lightness("blue", 0.3, true));
@@ -251,7 +251,7 @@ The amount of luminance to set. The value range is normalised between [0,1]
 ### Example
 
 ```ts
-import { luminance } from 'huetiful-js'
+import { luminance } from '@prjctimg/huetiful-js'
 
 // Getting the luminance
 
@@ -328,7 +328,7 @@ The mode and channel to be retrieved. For example `'rgb.b'` will return the valu
 ### Example
 
 ```ts
-import { mc } from "huetiful-js";
+import { mc } from "@prjctimg/huetiful-js";
 
 console.log(mc("rgb.g")("#a1bd2f"));
 // 0.7411764705882353
@@ -360,7 +360,7 @@ True if the color is cool else false.
 ### Example
 
 ```ts
-import { temp } from "huetiful-js";
+import { temp } from "@prjctimg/huetiful-js";
 
 let sample = ["#00ffdc", "#00ff78", "#00c000"];
 

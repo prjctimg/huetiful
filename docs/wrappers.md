@@ -7,7 +7,7 @@ Creates a lazy chain wrapper over a single color token that has all the function
 ### Example
 
 ```ts
-import { Color } from "huetiful-js";
+import { Color } from "@prjctimg/huetiful-js";
 
 let wrapper = new Color("pink");
 
@@ -58,7 +58,7 @@ Returns `true` if the bound color has hue or is grayscale elsColorspaces} [color
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 import { formatHex8, interpolate, samples } from "culori";
 
 var test = (c) => color(c).isAchromatic();
@@ -111,7 +111,7 @@ The value to apply to the opacity channel. The value is normalized to the range 
 ##### Example
 
 ```ts
-import { color } from 'huetiful-js';
+import { color } from '@prjctimg/huetiful-js';
 
 // Getting the alpha
 console.log(color('#a1bd2f0d').alpha())
@@ -148,7 +148,7 @@ The color to use for comparison. The default is `'black'`.
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 
 console.log(color("pink").contrast("yellow"));
 // 1.4322318222624262
@@ -181,7 +181,7 @@ To avoid writing the long types, the expected parameters for the `kind` of blind
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 
 // Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
 // We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.1
@@ -221,7 +221,7 @@ Creates a color scale between an earth tone and any color token using spline int
 ##### Example
 
 ```ts
-import { color } from 'huetiful-js'
+import { color } from '@prjctimg/huetiful-js'
 
 let base = 'purple'
 
@@ -272,7 +272,7 @@ For example `'red'` or `'blue-green'`. If the color is achromatic it returns the
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 
 console.log(color("#310000").family());
 // 'red'
@@ -310,7 +310,7 @@ The optional overrides object to customize the `HueShiftOptions` like easing fun
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 
  let hueShiftedPalette = color("#3e0000").hueShift({ iterations:1 });
 
@@ -353,7 +353,7 @@ The amount to darken with. The value is expected to be in the range `[0,1]`. Def
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 console.log(color("blue").darken(0.3));
 //#464646
 ```
@@ -383,7 +383,7 @@ The `luminance` value to set on the bound color.
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 
 let myColor = "green";
 console.log(color(myColor).luminance());
@@ -433,7 +433,7 @@ The value to set on the queried channel. Also supports expressions as strings e.
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 
 console.log(color("#a1bd2f").mc("rgb.g"));
 // 0.7411764705882353
@@ -454,7 +454,7 @@ Returns the final value from the chain.
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 
 let myOutput = color(["rgb", 200, 34, 65]).output();
 
@@ -488,7 +488,7 @@ The optional overrides object to customize per channel options like interpolatio
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 
 console.log(
   color("green").pairedScheme({ hueStep: 6, samples: 4, tone: "dark" }),
@@ -511,7 +511,7 @@ Returns a randomized pastel variant of the bound color token. Preserves the boun
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 
 console.log(color("green").pastel());
 
@@ -541,7 +541,7 @@ The amount of `saturation` to set on the bound color token. Also supports string
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 
 let myColor = ["lch", 60, 13, 0.5];
 
@@ -574,7 +574,7 @@ Returns a randomised classic color scheme from the bound color.
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 
 console.log(color("#a1bd2f").scheme("triadic"));
 // [ '#a1bd2fff', '#00caffff', '#ff78c9ff' ]
@@ -595,7 +595,7 @@ Returns a rough estimation of a color's temperature as either `'cool'` or `'warm
 ##### Example
 
 ```ts
-import { color } from "huetiful-js";
+import { color } from "@prjctimg/huetiful-js";
 
 let sample = ["#00ffdc", "#00ff78", "#00c000"];
 
@@ -679,7 +679,7 @@ if you prefer not to explicitly instantiate a `new ColorArray`.
 ### Example
 
 ```ts
-import { ColorArray } from "huetiful-js";
+import { ColorArray } from "@prjctimg/huetiful-js";
 let sample = ["blue", "pink", "yellow", "green"];
 let wrapper = new ColorArray(sample);
 // We can even chain the methods and get the result by calling `.output()`
@@ -750,7 +750,7 @@ If no colors are valid for the palette types it returns an empty array for the p
 ##### Example
 
 ```ts
-import { load } from "huetiful-js";
+import { load } from "@prjctimg/huetiful-js";
 
 let sample = [
   "#ffff00",
@@ -811,7 +811,7 @@ Supports expression strings e.g `'>=0.5'`. The supported symbols are `== | === |
 ##### Example
 
 ```ts
-import { filterBy } from "huetiful-js";
+import { filterBy } from "@prjctimg/huetiful-js";
 let sample = [
   "#00ffdc",
   "#00ff78",
@@ -864,7 +864,7 @@ Optional channel specific overrides.
 ##### Example
 
 ```ts
-import { load } from 'huetiful-js';
+import { load } from '@prjctimg/huetiful-js';
 
   *
 ```
@@ -891,7 +891,7 @@ the entire collection is returned with colors ordered in ascending order using t
 ##### Example
 
 ```ts
-import { load, colors } from "huetiful-js";
+import { load, colors } from "@prjctimg/huetiful-js";
 
 let cols = colors("all", "500");
 
@@ -946,7 +946,7 @@ The return type is determined by the type of `collection`:
 ##### Example
 
 ```ts
-import { sortBy } from 'huetiful-js';
+import { sortBy } from '@prjctimg/huetiful-js';
 
 let sample = ['purple', 'green', 'red', 'brown']
 

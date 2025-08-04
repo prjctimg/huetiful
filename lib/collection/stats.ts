@@ -1,17 +1,22 @@
 /**
-*  Dean Tarisai
-*  @license GPL-3.0
-*
+ *  Dean Tarisai
+ *  @license GPL-3.0
+ *
  */
 
-
-
-
-
-import { averageNumber, averageAngle } from "culori";
-import { Collection, ColorToken, Factor, Stats, StatsOptions } from '../types'
-import { family, mc, luminance } from '../utils'
-import { chnDiff, mcchn, ctrst, dstnce, sortedColl, map, values } from "../internal";
+import { averageNumber, averageAngle } from "culori/fn";
+import { Collection, ColorToken, Factor, Stats, StatsOptions } from "../types";
+import { family, mc, luminance, achromatic } from "../utils";
+import {
+  chnDiff,
+  iterator,
+  mcchn,
+  ctrst,
+  dstnce,
+  sortedColl,
+  map,
+  values,
+} from "../internal";
 
 /**
  *
@@ -29,7 +34,7 @@ import { chnDiff, mcchn, ctrst, dstnce, sortedColl, map, values } from "../inter
  *
  * The `mean` property can be overloaded by the `relativeMean` option:
  *
-* * If `relativeMean` is `true`, the `against` option will be used as a subtrahend for calculating the distance between each `extremum`.
+ * * If `relativeMean` is `true`, the `against` option will be used as a subtrahend for calculating the distance between each `extremum`.
  * For example, it will mean "Get the largest/smallest distance between `factor` as compared `against` this color token otherwise just get the smallest/largest `factor` from the passed in collection."
  *
  *
@@ -48,7 +53,10 @@ import { chnDiff, mcchn, ctrst, dstnce, sortedColl, map, values } from "../inter
  * @param  collection The collection to compute stats from. Any collection with color tokens as values will work.
  * @param options The optional overrides to customize the computing behaviour for the factors.
  */
-export default function stats(collection: Collection = [], options?: StatsOptions): Stats {
+export default function stats(
+  collection: Collection = [],
+  options?: StatsOptions,
+): Stats {
   let { factor, relative, against, colorspace } =
     options || ({} as StatsOptions);
 
@@ -150,6 +158,3 @@ export default function stats(collection: Collection = [], options?: StatsOption
 
   return statsObject;
 }
-
-
-

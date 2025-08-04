@@ -1,6 +1,6 @@
 # Contributing 💙
 
-Thank you :smile: for contributing to [huetiful-js](https://github.com/prjctimg/huetiful)!
+Thank you :smile: for contributing to [@prjctimg/huetiful-js](https://github.com/prjctimg/huetiful)!
 
 On this page you'll find information on how to setup the project and navigate the file structure.
 

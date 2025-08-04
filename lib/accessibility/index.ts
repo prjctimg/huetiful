@@ -13,11 +13,11 @@ import type { ColorToken, DeficiencyOptions } from "../types.d.ts";
 /**
  * Gets the contrast between the passed in colors.
  *
- * :::tip
+ *   
  *
  * Swapping color `a` and `b` in the parameter list doesn't change the resulting value. The maximum value is 21 (or the contrast between black and white).
  *
- * :::
+ *  
  *
  * @param  a First color to query. The default is `white`.
  * @param  b The color to compare against. The default is `black`.
@@ -36,7 +36,7 @@ function contrast(a: ColorToken = "white", b: ColorToken = "black"): number {
 /**
  * Simulates how a color may be perceived by people with color vision deficiency.
  *
- * :::tip
+ *   
  * 
  * To avoid writing the long types, the expected parameters for the `kind` of blindness are simply the colors that are hard to perceive for the type of color blindness:
  *
@@ -46,7 +46,7 @@ function contrast(a: ColorToken = "white", b: ColorToken = "black"): number {
  * * `'deuteranopia'` - An inability to distinguish the color 'green'.. The `kind` is `'green'`.
  * * `'protanopia'` - An inability to distinguish the color 'red'. The `kind` is `'red'`.
  * 
- * :::
+ *  
 
  * @param  color The color to return its simulated variant. The default is `cyan`.
  * @param  options The optional overrides for tweaking the final output.

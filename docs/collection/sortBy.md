@@ -44,7 +44,7 @@ The optional overrides to customize the sorting behaviour.
 ### Example
 
 ```ts
-import { sortBy } from 'huetiful-js'
+import { sortBy } from '@prjctimg/huetiful-js'
 
 let sample = ['purple', 'green', 'red', 'brown']
 console.log(

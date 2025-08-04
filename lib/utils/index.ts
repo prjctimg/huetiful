@@ -50,13 +50,13 @@ import { interpolator } from "../generators";
  *  If the the `amount` argument is passed in, it sets the color token's alpha channel with the `amount` specified
  * and returns the color as a hex string.
  *
- * :::tip
+ *   
  *
  * * Also supports math expressions as a `string` for the `amount` parameter.
- * For example `*0.5` which means the value multiply the current alpha by `0.5` and set the product as the new alpha value.
+ * For example `*0.5` which means the value mult ly the current alpha by `0.5` and set the product as the new alpha value.
  * In short `currentAlpha * 0.5 = newAlpha`. The supported symbols are `*  -  /  +`.
  *
- * :::
+ *  
  *
  * If the `alpha` channel is `undefined`, it defaults to `1`.
  *
@@ -64,7 +64,7 @@ import { interpolator } from "../generators";
  * @param amount The value to apply to the opacity channel. The value is between `[0,1]`
 
  * @example
-  import { alpha } from 'huetiful-js'
+  import { alpha } from '@prjctimg/huetiful'
 
  // Getting the alpha
 console.log(alpha('#a1bd2f0d'))
@@ -108,12 +108,12 @@ function alpha<Amount>(
   if (eq(typeof color, "string"))
     alphaChannel =
       gte((color as ColorTuple)?.length, 8) &&
-        // @ts-ignore:
-        !colorsNamed[(color as string).toLowerCase()]
+      // @ts-ignore:
+      !colorsNamed[(color as string).toLowerCase()]
         ? Number.parseInt(
-          (color as string)?.slice((color as string)?.length - 2),
-          16,
-        ) / 255
+            (color as string)?.slice((color as string)?.length - 2),
+            16,
+          ) / 255
         : 1;
   // @ts-ignore:
   if (typeof color === "object" && !len)
@@ -161,7 +161,7 @@ function alpha<Amount>(
 
  * @example
 
- * import { mc } from 'huetiful-js'
+ * import { mc } from '@prjctimg/huetiful'
 
 console.log(mc('rgb.g')('#a1bd2f'))
 // 0.7411764705882353
@@ -205,7 +205,7 @@ function mc(modeChannel = "") {
  * @param  color The color token to test if it is achromatic or not.
  * @example
 
-import { achromatic } from "huetiful-js";
+import { achromatic } from "@prjctimg/huetiful";
 S
  achromatic('pink')
 // false
@@ -226,7 +226,7 @@ achromatic('gray')
 
 // We can expand this example by interpolating between black and white and then getting some samples to iterate through.
 
-import { interpolator } from "huetiful-js"
+import { interpolator } from "@prjctimg/huetiful"
 
 // we create an interpolation using black and white with 12 samples
 let grays = interpolator(["black", "white"],{ num:12 });
@@ -248,19 +248,16 @@ function achromatic(color: ColorToken): boolean {
   // If a color has no lightness then it has no hue
   // so its technically not achromatic since white and black are not grayscale
   // @ts-ignore:
-  const isFalsy = (x: unknown) =>
-    typeof x === "undefined" || x === 0 || Number.isNaN(x as number);
+  const isFalsy = (x: any) =>
+    typeof x === "undefined" || Math.floor(x) === 0 || Number.isNaN(x);
 
-  return (
-    // @ts-ignore:
-    ((isFalsy(color.l) || color.l >= 100) &&
-      // @ts-ignore:
-      (!isFalsy(color.c) || isFalsy(color.c)) &&
-      false) ||
-    // @ts-ignore:
-    (isFalsy(color.c) && true) ||
-    false
-  );
+  // @ts-ignore
+
+  if (color.l <= 0 || color.l >= 100 || isFalsy(color.c)) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 /**
@@ -269,7 +266,7 @@ function achromatic(color: ColorToken): boolean {
  * @param  options Specify options such as whether to darken or highlight.
  * @example
  *
- *  import { lightness } from "huetiful-js";
+ *  import { lightness } from "@prjctimg/huetiful";
  *
  // darkening a color
 console.log(lightness('blue', 0.3, true));
@@ -324,12 +321,12 @@ function lightness(color: ColorToken, options?: LightnessOptions): ColorToken {
  *
  *  - `'obj'` - Parses the color token to a plain color object in the `mode` specified by the `targetMode` parameter in the `options` object.t
  *
- * :::tip
+ *   
  *
  *  If the color token has an explicit `alpha` (specified by the `alpha` key in color objects and as the fourth and last number in a color array) the string will be 8 characters long instead of 6.
 
  *
- * :::
+ *  
  * @param  color The color token to parse or convert.
  * @param  options Options to customize the parsing and output behaviour.
  
@@ -428,9 +425,9 @@ function token(color: ColorToken = "cyan", options?: TokenOptions): ColorToken {
     if (eq(col, "obj")) {
       omitMode
         ? // @ts-ignore:
-        delete res.mode
+          delete res.mode
         : // @ts-ignore:
-        (res.mode = (targetMode && targetMode) || srcMode);
+          (res.mode = (targetMode && targetMode) || srcMode);
 
       // @ts-ignore:
       omitAlpha ? delete res.alpha : (res.alpha = alphaValue);
@@ -447,7 +444,7 @@ function token(color: ColorToken = "cyan", options?: TokenOptions): ColorToken {
     omitMode
       ? srcChannelValues
       : // @ts-ignore:
-      srcChannelValues.unshift(targetMode ? targetMode : srcMode);
+        srcChannelValues.unshift(targetMode ? targetMode : srcMode);
     return srcChannelValues;
   }
 
@@ -503,13 +500,13 @@ function token(color: ColorToken = "cyan", options?: TokenOptions): ColorToken {
     return (eq(typeof color, "number"), gte(color as number, 0)) &&
       lte(color as number, 0xffffff)
       ? {
-        r: ((color as number) >> 16) / 255,
+          r: ((color as number) >> 16) / 255,
 
-        g: (((color as number) >> 8) & 0xff) / 255,
+          g: (((color as number) >> 8) & 0xff) / 255,
 
-        b: (color as number & 0xff) / 255,
-        mode: "rgb",
-      }
+          b: (color as number & 0xff) / 255,
+          mode: "rgb",
+        }
       : Error(`unknown num color:   ${color}`);
   }
 
@@ -531,7 +528,7 @@ function token(color: ColorToken = "cyan", options?: TokenOptions): ColorToken {
  * @param amount The amount of luminance to set. The value range is normalised between [0,1]
  * @example
  *
- * import { luminance } from 'huetiful-js'
+ * import { luminance } from '@prjctimg/huetiful'
 
 // Getting the luminance
 
@@ -612,15 +609,15 @@ function luminance<Amount>(
  * For example `'red'` or `'blue-green'`. If the color is achromatic it returns the string `'gray'`.
  * @param  color The color to query its shade or hue family.
  * @param bias Returns the name of the hue family which is biasing the passed in color using the `'lch'` colorspace. If it has no bias it returns `false` on the `bias` property of the returned object.
- * :::note
+ *  ote
  *
  * This `bias` parameter replaces the `overtone()` function prior version `3.0.x`.
  *
- :::
+  
  *
  * @example
  *
- * import { family } from 'huetiful-js'
+ * import { family } from '@prjctimg/huetiful'
 
 
 console.log(family("#310000"))
@@ -633,9 +630,9 @@ function family(
 ):
   | (BiasedHues & ColorFamily)
   | {
-    hue: BiasedHues & ColorFamily;
-    bias: false | ColorFamily;
-  } {
+      hue: BiasedHues & ColorFamily;
+      bias: false | ColorFamily;
+    } {
   // @ts-ignore:
   const res =
     (!achromatic(color) &&
@@ -664,7 +661,7 @@ function family(
  * True if the color is cool else false.
  * @example
  *
- * import { temp } from 'huetiful-js'
+ * import { temp } from '@prjctimg/huetiful'
 
 let sample = [
   "#00ffdc",

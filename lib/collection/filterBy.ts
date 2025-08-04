@@ -48,7 +48,7 @@ import { luminance, mc, token } from "../utils";
  * @param  options Options to customise filtering behaviour.
  * @example
  *
- * import { filterBy } from 'huetiful-js'
+ * import { filterBy } from '@prjctimg/huetiful'
 
   let sample = [
   '#00ffdc',

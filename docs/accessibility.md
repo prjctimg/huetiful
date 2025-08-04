@@ -33,7 +33,7 @@ The color to compare against. The default is `black`.
 ### Example
 
 ```ts
-import { contrast } from "huetiful-js";
+import { contrast } from "@prjctimg/huetiful-js";
 
 console.log(contrast("blue", "red"));
 // 21
@@ -82,7 +82,7 @@ The optional overrides for tweaking the final output.
 ### Example
 
 ```ts
-import { deficiency } from "huetiful-js";
+import { deficiency } from "@prjctimg/huetiful-js";
 
 // Here we are simulating color blindness of tritanomaly or we can't see 'blue'.
 // We are passing in our color as an array of channel values in the mode "rgb". The severity is set to 0.5

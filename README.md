@@ -71,7 +71,7 @@ These examples are only compatible with version 3.x. Versions prior to that are 
 
 A color can be defined using different types(arrays, strings, numbers, plain objects etc). Below are examples listing all the valid color tokens:
 
-[See more about the expected types of color tokens](https://huetiful-js/docs/guides/color)
+[See more about the expected types of color tokens](https://@prjctimg/huetiful-js/docs/guides/color)
 
 ```ts
 import { token } from "@prjctimg/huetiful";
@@ -156,7 +156,7 @@ Here are some example using the filtering and sorting functions on an array of c
 An example of sorting colors by hue angle and distance between each color in the collection as compared against 'yellow'. We get an object whose keys are the specified factors in the `factors` option:
 
 ```ts
-import { sortBy } from "huetiful-js";
+import { sortBy } from "@prjctimg/huetiful-js";
 
 let sample = [
   "#00ffdc",
@@ -219,7 +219,7 @@ let sample = [
 ];
 ```
 
-[See more functions for manipulating collections](https://huetiful-js.com/docs/api/collection)
+[See more functions for manipulating collections](https://@prjctimg/huetiful-js.com/docs/api/collection)
 
 ### Palette generators
 
@@ -247,7 +247,7 @@ console.log(hueShiftedPalette);
 // ]
 ```
 
-[See more palette generator functions](https://huetiful-js.com/docs/api/palettes)
+[See more palette generator functions](https://@prjctimg/huetiful-js.com/docs/api/palettes)
 
 ### Predicates⚖️
 

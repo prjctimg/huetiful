@@ -2,8 +2,10 @@ import { differenceHyab, nearest as nrst } from "culori/fn";
 import type {
   Collection,
   ScaleValues,
+  SequentialScheme,
+  QualitativeScheme,
+  DivergingScheme,
   Tailwind,
-  ColorBrewerSchemes,
 } from "../types.d.ts";
 import { and, eq, isArray, keys, or, values } from "../internal";
 
@@ -283,7 +285,7 @@ function hasScheme(s: string = "", obj: Collection = {}) {
  * @returns {Collection|import('../types.js').ColorToken}  A collection of colors in the specified colorspace. The default is hex if `colorspace` is `undefined.`
  * @example
  *
- * import { sequential } from 'huetiful-js'
+ * import { sequential } from '@prjctimg/huetiful'
 
 
 console.log(sequential("OrRd"))
@@ -299,7 +301,7 @@ console.log(sequential("OrRd"))
 
 
  */
-function sequential<Scheme extends ColorBrewerSchemes["Sequential"]>(
+function sequential<Scheme extends SequentialScheme>(
   scheme?: Scheme | Array<Scheme>,
 ): Scheme[] {
   const so = {
@@ -523,7 +525,7 @@ function sequential<Scheme extends ColorBrewerSchemes["Sequential"]>(
  * @param  scheme The name of the scheme.
  * @example
  *
- * import { diverging } from 'huetiful-js'
+ * import { diverging } from '@prjctimg/huetiful'
 
 
 
@@ -535,7 +537,7 @@ console.log(diverging("Spectral"))
   '#bf5b17', '#666666'
 ]
  */
-function diverging<Scheme extends ColorBrewerSchemes["Diverging"]>(
+function diverging<Scheme extends DivergingScheme>(
   scheme?: Scheme | Array<Scheme>,
 ): Scheme[] {
   const so = {
@@ -666,7 +668,7 @@ function diverging<Scheme extends ColorBrewerSchemes["Diverging"]>(
  * @param scheme The name of the scheme
  * @example
  *
- * import { qualitative } from 'huetiful-js'
+ * import { qualitative } from '@prjctimg/huetiful'
 
 
 console.log(qualitative("Accent"))
@@ -678,7 +680,7 @@ console.log(qualitative("Accent"))
 ]
 
  */
-function qualitative<Scheme extends ColorBrewerSchemes["Qualitative"]>(
+function qualitative<Scheme extends QualitativeScheme>(
   scheme?: Scheme | Array<Scheme>,
 ): Scheme[] {
   const so = {
@@ -820,15 +822,15 @@ function nearest(
    * * If called with both `shade` and `value` parameters, it returns that color as a hex string. For example `'blue'` and `'500'` would return the equivalent of `blue-500`.
    * * If called with no parameters or just the `'all'` parameter as the `shade`, it returns an array of colors from `'050'` to `'900'` for every `shade`.
    * * If the `shade ` is `'all'` and the `value` is specified, it returns an array of colors at the specified `value` for each `shade`.
-   * :::tip
+   *   
    *  To specify `'050'` as a number you just pass `50`. Values are all valid as string or number for example `'100'` and`100` .
-   * :::
+   *  
    * @param  shade The hue family to return.
    * @param   value The tone value of the shade. Values are in incrementals of `100`. For example numeric (`100`) and its string equivalent (`'100'`) are valid.
    * @returns {Array<string>|string}
    * @example
    *
-   * import { colors } from "huetiful-js";
+   * import { colors } from "@prjctimg/huetiful";
 
   // We pass in red as the target hue.
   // It returns a function that can be called with an optional value parameter

@@ -43,7 +43,7 @@ Optional overrides to customize parameters such as interpolation methods and per
 ### Example
 
 ```ts
-import { interpolator } from 'huetiful-js';
+import { interpolator } from '@prjctimg/huetiful-js';
 
 console.log(interpolator(['pink', 'blue'], { num:8 }));
 

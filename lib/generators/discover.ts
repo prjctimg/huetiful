@@ -1,5 +1,6 @@
 import { eq, gt, inRange, keys, dstnce, not, values } from "../internal";
 import type { Collection, DiscoverOptions } from "../types.d.ts";
+import scheme from "./scheme.ts";
 
 /**
  * Takes a collection of colors and finds the nearest matches using the `differenceHyab()` color difference metric for a set of predefined palettes.
@@ -8,15 +9,13 @@ import type { Collection, DiscoverOptions } from "../types.d.ts";
  *
  * * An array of colors for the `kind` of scheme, if the `kind` parameter is specified.
  * * Else it returns an object of all the palette types as keys and their values as an array of colors.
- * :::caution
  * If no colors are valid for the palette types it returns an empty array for the palette results. It does not work with achromatic colors thus they're excluded from the resulting collection.
- * :::
  *
  * @param  colors The collection of colors to create palettes from. Preferably use 6 or more colors for better results.
 * @param  options
  * @example
  *
- * import { discover } from 'huetiful-js'
+ * import { discover } from '@prjctimg/huetiful'
 
 let sample = [
   "#ffff00",
@@ -43,7 +42,6 @@ export default function discover(
     kind: undefined,
   },
 ): Collection {
-  //  Initialize and sanitize parameters
   const colorTokenValues = values(colors),
     colorTokenKeys = keys(colors);
   const { kind, maxDistance, minDistance } = options || {};

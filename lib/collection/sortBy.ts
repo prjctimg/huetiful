@@ -43,7 +43,7 @@ import { luminance, mc, token } from "../utils";
  * @param  options The optional overrides to customize the sorting behaviour.
  * @example
 
-import { sortBy } from 'huetiful-js'
+import { sortBy } from '@prjctimg/huetiful'
 
 let sample = ['purple', 'green', 'red', 'brown']
 console.log(

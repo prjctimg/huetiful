@@ -1,10 +1,11 @@
-import { lt, or } from "../internal";
+import { or } from "../internal";
 import { mc } from "../utils";
 import type {
   Collection,
   ColorToken,
   PairedSchemeOptions,
 } from "../types.d.ts";
+import interpolator from "./interpolator.ts";
 
 /**
  * Creates a palette that consists of a `baseColor` that is incremented by a `hueStep` to get the final color to pair with.
@@ -18,7 +19,7 @@ import type {
 
  * @example
  *
- * import { pair } from 'huetiful-js'
+ * import { pair } from '@prjctimg/huetiful'
 
 console.log(pair("green",{hueStep:6,num:4,tone:'dark'}))
 // [ '#008116ff', '#006945ff', '#184b4eff', '#007606ff' ]
@@ -38,7 +39,7 @@ export default function pair(
     // @ts-ignore:
     Math.abs(
       // @ts-ignore:
-      mc(`${colorspace}.h`)(baseColor) + (lt(hueStep, 0) ? -hueStep : hueStep),
+      mc(`${colorspace}.h`)(baseColor) + (hueStep > 0 ? -hueStep : hueStep),
     ),
   );
 

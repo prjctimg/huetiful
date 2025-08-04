@@ -39,7 +39,7 @@ import { samples } from "culori/fn";
  * @param options Optional overrides.
  * @example
  *
- import { scheme } from 'huetiful-js'
+ import { scheme } from '@prjctimg/huetiful'
 
 console.log(scheme("triadic")("#a1bd2f"))
 // [ '#a1bd2f', '#00caff', '#ff78c9' ]
@@ -83,7 +83,7 @@ export default function scheme(
     },
     // @ts-ignore:
     callback = (kind) => {
-      // // For each step return a  random value between lowMin && lowMax multipied by highMin && highMax and 0.9 of the step
+      // // For each step return a  random value between lowMin && lowMax mult ied by highMin && highMax and 0.9 of the step
 
       // // The map for steps to obtain the targeted palettes
 

@@ -51,7 +51,7 @@ Options to customise filtering behaviour.
 ### Example
 
 ```ts
-import { filterBy } from "huetiful-js";
+import { filterBy } from "@prjctimg/huetiful-js";
 
 let sample = [
   "#00ffdc",

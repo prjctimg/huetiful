@@ -37,7 +37,7 @@ The tone value of the shade. Values are in incrementals of `100`. For example nu
 ### Example
 
 ```ts
-import { colors } from "huetiful-js";
+import { colors } from "@prjctimg/huetiful-js";
 
 // We pass in red as the target hue.
 // It returns a function that can be called with an optional value parameter
@@ -85,7 +85,7 @@ The name of the scheme.
 ### Example
 
 ```ts
-import { diverging } from 'huetiful-js'
+import { diverging } from '@prjctimg/huetiful-js'
 
 console.log(diverging("Spectral"))
 //[
@@ -173,7 +173,7 @@ The name of the scheme
 ### Example
 
 ```ts
-import { qualitative } from 'huetiful-js'
+import { qualitative } from '@prjctimg/huetiful-js'
 
 console.log(qualitative("Accent"))
 // [
@@ -217,7 +217,7 @@ A collection of colors in the specified colorspace. The default is hex if `color
 ### Example
 
 ```ts
-import { sequential } from 'huetiful-js'
+import { sequential } from '@prjctimg/huetiful-js'
 
 console.log(sequential("OrRd"))
 
