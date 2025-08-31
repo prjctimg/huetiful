@@ -166,7 +166,7 @@ function take(x: number, y: number): number {
   return x - y;
 }
 
-function exprParser(a: string, b: unknown) {
+function exprParser(a: unknown, b: unknown) {
   // @ts-ignore:
   return and(
     eq(typeof b, "string"),

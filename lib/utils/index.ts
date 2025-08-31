@@ -94,7 +94,7 @@ function alpha<Amount>(
     //  @ts-ignore:
 
     [len, hasMode, hasAlpha, alphaIdx, alphaChannel] = [
-      color?.length,
+      (color as ColorTuple).length,
       (color as ColorTuple).find((c) => eq(typeof c, "string")),
       (color as ColorTuple).filter((channel) => eq(typeof channel, "number"))
         .length === 4,
@@ -365,7 +365,7 @@ function token(color: ColorToken = "cyan", options?: TokenOptions): ColorToken {
   /**
    * An array of channel keys from the source colorspace. If undefined it defaults to 'rgb'
    */
-  let srcChannels = gmchn(srcMode),
+  let srcChannels = gmchn(srcMode) as string[],
     /**
      * an array of channel values
      */
@@ -402,7 +402,7 @@ function token(color: ColorToken = "cyan", options?: TokenOptions): ColorToken {
       result[channel] = srcChannelValues[srcChannels.indexOf(channel)];
 
   if (srcMode === "rgb" && normalizeRgb)
-    if (srcChannels.some((c) => Math.abs(result[c]) > 1))
+    if (srcChannels.some((c) => Math.abs(result[c] as number) > 1))
       // @ts-ignore:
       for (const k of srcChannels) (result[k] as number) /= 255;
 
@@ -420,7 +420,7 @@ function token(color: ColorToken = "cyan", options?: TokenOptions): ColorToken {
 
     if (targetMode)
       // 🖕🏿
-      srcChannels = gmchn(targetMode);
+      srcChannels = gmchn(targetMode) as string[];
 
     if (eq(col, "obj")) {
       omitMode
@@ -435,9 +435,10 @@ function token(color: ColorToken = "cyan", options?: TokenOptions): ColorToken {
     }
 
     if (eq(col, "arr")) srcChannelValues = [];
-    // @ts-ignore:
-    for (const k of srcChannels)
+    for (const k of srcChannels) {
+      // @ts-ignore:
       srcChannelValues[srcChannels.indexOf(k)] = res[k];
+    }
 
     // @ts-ignore:
     omitAlpha ? srcChannelValues : srcChannelValues.push(alphaValue);
@@ -454,8 +455,8 @@ function token(color: ColorToken = "cyan", options?: TokenOptions): ColorToken {
   function c2num() {
     const rgbObject: object = parseToken(c2str(), "rgb");
 
-    // @ts-ignore:
     const result =
+      // @ts-ignore:
       ((255 * rgbObject.r) << 16) +
       // @ts-ignore:
       ((255 * rgbObject.g) << 8) +
