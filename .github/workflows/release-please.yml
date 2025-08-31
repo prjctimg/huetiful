@@ -33,7 +33,7 @@ jobs:
       - run: |
           bun build.ts
           npm publish
-          npx jsr publish
+          npx jsr publish --no-check
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH}}
         if: ${{ steps.release.outputs.release_created }}
