@@ -1,9 +1,15 @@
 {
   "name": "@prjctimg/huetiful",
-  "version": "0.0.1",
+  "version": "refs/heads/main",
   "exports": "./lib/index.ts",
   "publish": {
-    "include": ["./README.md", "./LICENSE", "./lib/**/*.ts"],
-    "exclude": ["./tests"]
+    "include": [
+      "./README.md",
+      "./LICENSE",
+      "./lib/**/*.ts"
+    ],
+    "exclude": [
+      "./tests"
+    ]
   }
 }
