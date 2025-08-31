@@ -31,8 +31,8 @@ jobs:
       - run: npm i -g bun jsr && bun install
         if: ${{ steps.release.outputs.release_created }}
       - run: |
-          bun build.ts
-          npm publish
+          # bun build.ts
+          # npm publish
           npx jsr publish --no-check
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH}}
