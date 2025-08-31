@@ -1,4 +1,4 @@
-import { or } from "../internal";
+import { or } from "../internal/index.ts";
 import type { ColorToken, EarthtoneOptions } from "../types.d.ts";
 import interpolator from "./interpolator.ts";
 /**

@@ -5,8 +5,14 @@
  */
 
 import { averageNumber, averageAngle } from "culori/fn";
-import { Collection, ColorToken, Factor, Stats, StatsOptions } from "../types";
-import { family, mc, luminance, achromatic } from "../utils";
+import type {
+  Collection,
+  ColorToken,
+  Factor,
+  Stats,
+  StatsOptions,
+} from "../types.d.ts";
+import { family, mc, luminance, achromatic } from "../utils/index.ts";
 import {
   chnDiff,
   iterator,
@@ -16,7 +22,7 @@ import {
   sortedColl,
   map,
   values,
-} from "../internal";
+} from "../internal/index.ts";
 
 /**
  *

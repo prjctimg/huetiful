@@ -7,7 +7,7 @@ import type {
   SequentialScheme,
   Tailwind,
 } from "../types.d.ts";
-import { and, eq, isArray, keys, or, values } from "../internal";
+import { and, eq, isArray, keys, or, values } from "../internal/index.ts";
 
 const tailwind = {
   indigo: {

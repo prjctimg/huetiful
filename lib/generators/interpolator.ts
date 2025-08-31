@@ -1,5 +1,16 @@
-import { gt, gte, li, mcchn, or, values, hi, and, ci, ef } from "../internal";
-import { token } from "../utils";
+import {
+  gt,
+  gte,
+  li,
+  mcchn,
+  or,
+  values,
+  hi,
+  and,
+  ci,
+  ef,
+} from "../internal/index.ts";
+import { token } from "../utils/index.ts";
 import type {
   Collection,
   ColorToken,

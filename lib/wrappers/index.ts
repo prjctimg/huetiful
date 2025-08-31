@@ -1,5 +1,5 @@
-import { contrast, deficiency } from "../accessibility";
-import { filterBy, sortBy, stats } from "../collection";
+import { contrast, deficiency } from "../accessibility/index.ts";
+import { filterBy, sortBy, stats } from "../collection/index.ts";
 import {
   discover,
   earthtone,
@@ -8,9 +8,9 @@ import {
   pair,
   pastel,
   scheme,
-} from "../generators";
-import { mcchn, or } from "../internal";
-import { colors, nearest } from "../palettes";
+} from "../generators/index.ts";
+import { mcchn, or } from "../internal/index.ts";
+import { colors, nearest } from "../palettes/index.ts";
 import type {
   BiasedHues,
   Collection,
@@ -39,7 +39,7 @@ import {
   mc,
   temp,
   token,
-} from "../utils";
+} from "../utils/index.ts";
 
 /**
 * Creates a lazy chain wrapper over a collection of colors that has all the array methods (functions that take a collection of colors as their first argument).

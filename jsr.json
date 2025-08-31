@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "exports": "./lib/index.ts",
   "publish": {
-    "include": ["./README.md", "./LICENSE", "./lib/*.ts"],
+    "include": ["./README.md", "./LICENSE", "./lib/**/*.ts"],
     "exclude": ["./tests"]
   }
 }

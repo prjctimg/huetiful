@@ -8,10 +8,10 @@ import {
   interpolatorSplineBasisClosed,
   interpolatorSplineNatural,
 } from "culori/fn";
-import { mc } from "../utils";
+import { mc } from "../utils/index.ts";
 
-import { contrast } from "../accessibility";
-import type { hue } from "../constants";
+import { contrast } from "../accessibility/index.ts";
+import type { hue } from "../constants/index.ts";
 import type {
   Collection,
   Colorspaces,

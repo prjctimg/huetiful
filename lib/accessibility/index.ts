@@ -1,4 +1,4 @@
-import { token } from "../utils";
+import { token } from "../utils/index.ts";
 import {
   filterDeficiencyDeuter,
   filterDeficiencyProt,
@@ -6,18 +6,18 @@ import {
   filterGrayscale,
   formatHex8,
 } from "culori/fn";
-import { eq, or } from "../internal";
+import { eq, or } from "../internal/index.ts";
 import { wcagContrast } from "culori/fn";
 import type { ColorToken, DeficiencyOptions } from "../types.d.ts";
 
 /**
  * Gets the contrast between the passed in colors.
  *
- *   
+ *
  *
  * Swapping color `a` and `b` in the parameter list doesn't change the resulting value. The maximum value is 21 (or the contrast between black and white).
  *
- *  
+ *
  *
  * @param  a First color to query. The default is `white`.
  * @param  b The color to compare against. The default is `black`.

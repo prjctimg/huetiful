@@ -1,5 +1,5 @@
-import { or } from "../internal";
-import { mc } from "../utils";
+import { or } from "../internal/index.ts";
+import { mc } from "../utils/index.ts";
 import type {
   Collection,
   ColorToken,

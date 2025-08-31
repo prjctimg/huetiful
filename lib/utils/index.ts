@@ -31,8 +31,8 @@ import {
   max,
   min,
   or,
-} from "../internal";
-import { hue } from "../constants";
+} from "../internal/index.ts";
+import { hue } from "../constants/index.ts";
 import type {
   BiasedHues,
   ColorFamily,
@@ -41,7 +41,7 @@ import type {
   LightnessOptions,
   TokenOptions,
 } from "../types.d.ts";
-import { interpolator } from "../generators";
+import { interpolator } from "../generators/index.ts";
 
 /**
  *

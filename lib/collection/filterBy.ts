@@ -1,4 +1,4 @@
-import { limits } from "../constants";
+import { limits } from "../constants/index.ts";
 import {
   COLOR_SPACES,
   ctrst,
@@ -6,14 +6,14 @@ import {
   filteredColl,
   iterator,
   mcchn,
-} from "../internal";
+} from "../internal/index.ts";
 import type {
   Collection,
   Colorspaces,
   Factor,
   FilterByOptions,
 } from "../types.d.ts";
-import { luminance, mc, token } from "../utils";
+import { luminance, mc, token } from "../utils/index.ts";
 
 /**
  * Filters a collection of colors using the specified `factor` as the criterion.

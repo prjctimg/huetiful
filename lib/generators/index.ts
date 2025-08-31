@@ -1,9 +1,9 @@
-import discover from "./discover";
-import earthtone from "./earthtone";
-import hueshift from "./hueshift";
-import interpolator from "./interpolator";
-import pair from "./pair";
-import pastel from "./pastel";
-import scheme from "./scheme";
+import discover from "./discover.ts";
+import earthtone from "./earthtone.ts";
+import hueshift from "./hueshift.ts";
+import interpolator from "./interpolator.ts";
+import pair from "./pair.ts";
+import pastel from "./pastel.ts";
+import scheme from "./scheme.ts";
 
 export { discover, earthtone, hueshift, interpolator, pair, pastel, scheme };

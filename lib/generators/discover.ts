@@ -1,4 +1,12 @@
-import { eq, gt, inRange, keys, dstnce, not, values } from "../internal";
+import {
+  eq,
+  gt,
+  inRange,
+  keys,
+  dstnce,
+  not,
+  values,
+} from "../internal/index.ts";
 import type { Collection, DiscoverOptions } from "../types.d.ts";
 import scheme from "./scheme.ts";
 

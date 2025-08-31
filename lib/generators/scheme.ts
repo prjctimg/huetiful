@@ -7,8 +7,8 @@ import {
   rand,
   adjustHue,
   ef,
-} from "../internal";
-import { token } from "../utils";
+} from "../internal/index.ts";
+import { token } from "../utils/index.ts";
 import type { Collection, ColorToken, SchemeOptions } from "../types.d.ts";
 import { samples } from "culori/fn";
 

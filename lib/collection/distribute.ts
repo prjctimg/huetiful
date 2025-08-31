@@ -1,21 +1,12 @@
-import {
-  fixupHueLonger,
-  fixupHueShorter
-} from "culori/fn";
-import {
-  hf,
-  iterator,
-  map,
-  mcchn,
-  or
-} from "../internal";
+import { fixupHueLonger, fixupHueShorter } from "culori/fn";
+import { hf, iterator, map, mcchn, or } from "../internal/index.ts";
 import type {
   Collection,
-  ColorToken, DistributionOptions,
-  Factor
+  ColorToken,
+  DistributionOptions,
+  Factor,
 } from "../types.d.ts";
-import { achromatic, luminance, mc } from "../utils";
-
+import { achromatic, luminance, mc } from "../utils/index.ts";
 
 // distributionfunc => the function to use when tweaking the channel values. we use culori's mapper function
 
@@ -59,18 +50,18 @@ export default function distribute<Options extends DistributionOptions>(
 
   type ExtremumObject = {
     [K in Factor]:
-    | Array<{
-      color: ColorToken[];
-      factor: number;
-    }>
-    | Array<{ [K in Factor]: number }>;
+      | Array<{
+          color: ColorToken[];
+          factor: number;
+        }>
+      | Array<{ [K in Factor]: number }>;
   };
   // @ts-ignore:
   const extremumsObject = sortBy(collection, {
-    factorObject: true,
-    factor: factor,
-    order: extremum?.toLowerCase() === "max" ? "desc" : "asc",
-  }) as ExtremumObject,
+      factorObject: true,
+      factor: factor,
+      order: extremum?.toLowerCase() === "max" ? "desc" : "asc",
+    }) as ExtremumObject,
     factCallbacks = (fact: Factor, tkn: ColorToken, val: number | string) => {
       // @ts-ignore:
       return {
@@ -85,8 +76,7 @@ export default function distribute<Options extends DistributionOptions>(
     // for each color tuple, tweak its factor
     // and have the operation clamped
 
-var c = 0 
-
+    var c = 0;
 
     for (const idx in collection as Array<ColorToken>) {
       // pass the current token to a factor callback that retrieves the token's targeted factor
@@ -97,7 +87,3 @@ var c = 0
 
   return iterator(factor, callback, true, ["chroma", "hue", "lightness"]);
 }
-
-
-
-

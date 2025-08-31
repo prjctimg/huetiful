@@ -1,5 +1,5 @@
-import { lte, or, adjustHue, ef } from "../internal";
-import { token } from "../utils";
+import { lte, or, adjustHue, ef } from "../internal/index.ts";
+import { token } from "../utils/index.ts";
 import type { Collection, ColorToken, HueshiftOptions } from "../types.d.ts";
 
 /**

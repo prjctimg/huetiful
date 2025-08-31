@@ -1,39 +1,53 @@
+name: Release on Tag Push
+
 on:
   push:
+    tags:
+      - "*" # Trigger on any tag
     branches:
       - main
 
-  pull_request:
-    types:
-      - opened
-      - synchronize
-
-permissions:
-  contents: write
-
-name: release-please
 jobs:
-  release-please:
+  release:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: googleapis/release-please-action@v4
-        id: release
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract tag version
+        id: extract_version
+        run: |
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          echo "Extracted tag: $TAG_NAME"
+          echo "version=$TAG_NAME" >> $GITHUB_OUTPUT
+
+      - name: Update jsr.json version
+        run: |
+          VERSION="${{ steps.extract_version.outputs.version }}"
+          jq --arg v "$VERSION" '.version = $v' jsr.json > tmp.json && mv tmp.json jsr.json
+          echo "Updated jsr.json to version $VERSION"
+
+      - name: Commit updated jsr.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add jsr.json
+          git commit -m "chore: update jsr.json version to ${{ steps.extract_version.outputs.version }}"
+          git push
+
+      - name: Run Release Please
+        uses: googleapis/release-please-action@v4
         with:
           release-type: node
-          token: ${{secrets.GH_PAT}}
-      - uses: actions/checkout@v4
-        if: ${{ steps.release.outputs.release_created }}
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          registry-url: "https://registry.npmjs.org"
-        if: ${{ steps.release.outputs.release_created }}
-      - run: npm i -g bun jsr && bun install
-        if: ${{ steps.release.outputs.release_created }}
-      - run: |
-          # bun build.ts
-          # npm publish
-          npx jsr publish --no-check
+          package-name: "@prjctimg/huetiful"
+          default-branch: main
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH}}
-        if: ${{ steps.release.outputs.release_created }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT}}
+
+      - name: Deploy to JSR
+        run: |
+          npm install jsr
+          npx jsr publish
+        env:
+          JSR_TOKEN: ${{ secrets.JSR_TOKEN }}

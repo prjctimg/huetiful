@@ -6,7 +6,7 @@ import {
   iterator,
   mcchn,
   sortedColl,
-} from "../internal";
+} from "../internal/index.ts";
 import type {
   Collection,
   ColorToken,
@@ -14,8 +14,7 @@ import type {
   Factor,
   SortByOptions,
 } from "../types.d.ts";
-import { luminance, mc, token } from "../utils";
-
+import { luminance, mc, token } from "../utils/index.ts";
 
 /**
  * Sorts colors according to the specified `factor(s)`. The supported options are:
@@ -139,5 +138,3 @@ export default function sortBy(
   // @ts-ignore:
   return iterator(factor, callback, factorObject);
 }
-
-

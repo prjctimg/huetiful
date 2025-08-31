@@ -1,5 +1,5 @@
-import { max, min } from "../internal";
-import { token } from "../utils";
+import { max, min } from "../internal/index.ts";
+import { token } from "../utils/index.ts";
 import type { ColorToken } from "../types.d.ts";
 import { averageNumber, random } from "culori/fn";
 
