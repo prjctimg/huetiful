@@ -1,6 +1,6 @@
 {
   "name": "@prjctimg/huetiful",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
   "main": "./build/huetiful.esm.js",
   "browser": "./build/huetiful.min.js",
