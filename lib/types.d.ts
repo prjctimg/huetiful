@@ -594,3 +594,58 @@ export type LightnessOptions = {
   amount?: number;
   darken?: boolean;
 };
+
+/**
+ * Options for the `vangogh()` palette generator function.
+ */
+export type VangoghOptions = InterpolatorOptions & {
+  /**
+   * The artistic period to emulate.
+   * - 'netherlands': Dark, muted colors (1883-1886)
+   * - 'paris': Lighter, more saturated (1886-1888)
+   * - 'arles': Vibrant yellows, deep blues (1888-1889)
+   */
+  period?: "netherlands" | "paris" | "arles";
+  /**
+   * Intensity of complementary contrast.
+   */
+  contrast?: "subtle" | "medium" | "bold";
+};
+
+/**
+ * Options for the `impressionist()` palette generator function.
+ */
+export type ImpressionistOptions = InterpolatorOptions & {
+  /**
+   * Color application technique.
+   * - 'broken': Short brushstrokes that blend visually
+   * - 'optical': Pointillism-style (Seurat, Signac)
+   */
+  technique?: "broken" | "optical";
+  /**
+   * Time of day for light quality.
+   */
+  timeOfDay?: "morning" | "noon" | "evening" | "dusk";
+  /**
+   * Use blue for shadows instead of black.
+   * @default true
+   */
+  blueShadows?: boolean;
+};
+
+/**
+ * Options for the `picasso()` palette generator function.
+ */
+export type PicassoOptions = InterpolatorOptions & {
+  /**
+   * The artistic period.
+   * - 'blue': Blue Period (1901-1904) - melancholic blues
+   * - 'rose': Rose Period (1904-1906) - warm pinks, oranges
+   */
+  period?: "blue" | "rose";
+  /**
+   * Emotional intensity for Blue Period (0-1).
+   * Higher values = darker, more muted blues.
+   */
+  intensity?: number;
+};
